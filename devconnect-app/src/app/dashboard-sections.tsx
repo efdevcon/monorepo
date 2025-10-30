@@ -19,6 +19,7 @@ import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
 import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
 import { toast } from 'sonner';
 import { ChevronDownIcon, Copy } from 'lucide-react';
+import { useRefreshOnAuthChange } from '@/hooks/useServerData';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -239,6 +240,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
   const events = useEvents();
   const [favorites] = useFavorites();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  
+  // Refresh favorites when user logs in
+  useRefreshOnAuthChange();
+  
   // TODO: implement more advanced filtering here, e.g. highlighted events like ethereum day , etc.
   const filteredEvents = events.filter((event) =>
     favorites.includes(event.id.toString())

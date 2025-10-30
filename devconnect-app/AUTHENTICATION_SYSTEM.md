@@ -175,6 +175,7 @@ open()                          // Open wallet connection modal
 useUserData()                  // User data + email + favorites
 useTickets()                   // Tickets + QR codes
 useFavorites()                 // Manage favorites with optimistic updates
+useRefreshOnAuthChange()       // Auto-refresh data when user logs in/out
 ```
 
 **Key Benefits:**
@@ -183,6 +184,12 @@ useFavorites()                 // Manage favorites with optimistic updates
 - Request deduplication (multiple components → 1 API call)
 - Background revalidation keeps data fresh
 - Built-in loading/error states
+
+**Auto-Refresh on Auth Changes:**
+
+- Global `onAuthStateChange` listener automatically invalidates SWR cache on `SIGNED_IN`, `SIGNED_OUT`, or `TOKEN_REFRESHED`
+- Use `useRefreshOnAuthChange()` hook in components that need explicit refresh after login (e.g., dashboard favorites)
+- Para token generation now validates biometric verification completion via `canIssueParaJwt()` check
 
 ## Configuration
 

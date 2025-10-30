@@ -1,11 +1,12 @@
 'use client';
 
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 import { useMemo, useState, useEffect } from 'react';
 import { fetchAuth } from '@/services/apiClient';
 import { toast } from 'sonner';
 import type { Order } from '@/app/store';
 import QRCode from 'qrcode';
+import { authService } from '@/services/authService';
 
 /**
  * SWR-based hooks for server data
@@ -17,6 +18,39 @@ import QRCode from 'qrcode';
  * - Built-in loading/error states
  * - Optimistic updates support
  */
+
+// Global auth state listener to refresh SWR caches when user logs in/out
+// Set up after a small delay to avoid SSR/HMR issues
+if (typeof window !== 'undefined') {
+  // Use setTimeout to ensure DOM is ready and avoid detached context issues
+  setTimeout(() => {
+    const supabase = authService.getSupabaseClient();
+    if (supabase) {
+      supabase.auth.onAuthStateChange(async (event, session) => {
+        console.log('🔄 [SWR] Auth state changed:', event, 'Session:', !!session);
+
+        try {
+          // Refresh all user-related data when auth state changes
+          if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+            console.log('🔄 [SWR] Invalidating user data cache');
+            mutate('/api/auth/user-data');
+            mutate('/api/auth/tickets');
+          } else if (event === 'INITIAL_SESSION' && session?.user) {
+            // If there's a valid session on initial load (e.g., after reconnection), refresh data
+            console.log('🔄 [SWR] Initial session with valid user, invalidating cache');
+            mutate('/api/auth/user-data');
+            mutate('/api/auth/tickets');
+          } else if (event === 'INITIAL_SESSION') {
+            console.log('🔄 [SWR] Initial session without user, skipping cache invalidation');
+          }
+        } catch (error) {
+          // Silently handle cache errors (e.g., during HMR or in detached contexts)
+          console.warn('🔄 [SWR] Failed to invalidate cache:', error);
+        }
+      });
+    }
+  }, 0);
+}
 
 // ===== User Data =====
 
@@ -40,8 +74,13 @@ export function useUserData(fallbackData?: UserData) {
       : undefined,
     revalidateOnFocus: true, // Refresh when tab regains focus
     dedupingInterval: 5000, // Dedupe requests within 5 seconds
+    shouldRetryOnError: false, // Don't retry if no auth session
     onError: (err) => {
-      console.error('Failed to fetch user data:', err);
+      // Only log errors if it's not an auth-related error
+      if (!err?.message?.includes('No active Supabase session') &&
+        !err?.message?.includes('Para biometric verification')) {
+        console.error('Failed to fetch user data:', err);
+      }
     },
   });
 
@@ -209,4 +248,47 @@ export function useFavorites() {
     favorites: favoriteEvents,
     updateFavorite,
   };
+}
+
+// ===== Auth Change Listener =====
+
+/**
+ * Hook to refresh data when authentication state changes
+ * Useful for components that need to ensure data is fresh after login
+ */
+export function useRefreshOnAuthChange() {
+  const { refresh: refreshUserData } = useUserData();
+
+  useEffect(() => {
+    const supabase = authService.getSupabaseClient();
+    if (!supabase) return;
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('🔄 [useRefreshOnAuthChange] Auth state changed:', event, 'Session:', !!session);
+
+      try {
+        // Refresh on sign-in or initial session with valid user (after reconnection)
+        if (event === 'SIGNED_IN') {
+          console.log('🔄 [useRefreshOnAuthChange] User signed in, refreshing data');
+          refreshUserData();
+        } else if (event === 'INITIAL_SESSION' && session?.user) {
+          console.log('🔄 [useRefreshOnAuthChange] Initial session with valid user, refreshing data');
+          refreshUserData();
+        } else if (event === 'INITIAL_SESSION') {
+          console.log('🔄 [useRefreshOnAuthChange] Initial session without user, skipping refresh');
+        }
+      } catch (error) {
+        // Silently handle errors during HMR or component unmounting
+        console.warn('🔄 [useRefreshOnAuthChange] Failed to refresh data:', error);
+      }
+    });
+
+    return () => {
+      try {
+        authListener.subscription.unsubscribe();
+      } catch (error) {
+        // Ignore unsubscribe errors during cleanup
+      }
+    };
+  }, [refreshUserData]);
 }
