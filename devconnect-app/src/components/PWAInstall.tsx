@@ -23,6 +23,10 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     'showInstallPWA',
     false
   );
+  const [forceShowInstallPWA, setForceShowInstallPWA] = useLocalStorage(
+    'forceShowInstallPWA',
+    false
+  );
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const [lastShownTimestamp, setLastShownTimestamp] = useLocalStorage<
     number | null
@@ -102,6 +106,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
   };
 
   const handleCloseClick = () => {
+    setForceShowInstallPWA(false);
     setShowPopup(false);
     setShowInstallPWA(false);
 
@@ -119,7 +124,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     }
   };
 
-  if (!showPopup) return null;
+  if (!showPopup && !forceShowInstallPWA) return null;
 
   return (
     <div className="fixed inset-0 z-[1000000000000000000] flex items-end justify-center bg-black/64 md:items-center overflow-y-auto">
