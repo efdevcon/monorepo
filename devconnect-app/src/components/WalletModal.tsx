@@ -9,6 +9,8 @@ import {
   WalletDisplay,
   WalletAvatarWithFallback,
 } from '@/components/WalletDisplay';
+import { useGlobalStore } from '@/app/store.provider';
+import { useRouter } from 'next/navigation';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -24,7 +26,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     isConnected,
     address,
     isPara,
-    disconnect: hookDisconnect,
+    disconnect,
     para,
     eoa,
     paraEmail,
@@ -35,6 +37,8 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     portfolioCache,
     portfolioLoading,
   } = useWallet();
+  const storeLogout = useGlobalStore((state) => state.logout);
+  const router = useRouter();
 
   // For compatibility, expose the underlying data
   const connections = eoa.eoaConnections;
@@ -142,7 +146,16 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const handleDisconnect = async () => {
     try {
       console.log('🔌 [WALLET_MODAL] Starting disconnect process');
-      await hookDisconnect();
+      const isPara = primaryType === 'para';
+      await disconnect();
+      if (isPara) {
+        console.log('🔌 [WALLET_MODAL] Para is active, logging out');
+        localStorage.removeItem('loginIsSkipped');
+        storeLogout();
+        router.push('/onboarding');
+      } else {
+        console.log('🔌 [WALLET_MODAL] EOA is active, disconnecting');
+      }
 
       toast.success(
         <div className="space-y-1">
