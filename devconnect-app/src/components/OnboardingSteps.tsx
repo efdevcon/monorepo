@@ -38,8 +38,9 @@ const Slide = ({
         <Image
           src={image}
           alt="voxel art"
-          width={480}
-          height={194}
+          // width={480}
+          placeholder="blur"
+          // height={194}
           className="w-full h-full object-cover"
         />
       </div>
@@ -195,22 +196,22 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   const router = useRouter();
 
   // Prefetch images for subsequent slides
-  useEffect(() => {
-    // Prefetch the remaining images when component mounts
-    const imagesToPreload = [
-      WorldsFairImage.src,
-      EthDayImage.src,
-      CommunityEventsImage.src,
-    ];
+  // useEffect(() => {
+  //   // Prefetch the remaining images when component mounts
+  //   const imagesToPreload = [
+  //     WorldsFairImage.src,
+  //     EthDayImage.src,
+  //     CommunityEventsImage.src,
+  //   ];
 
-    imagesToPreload.forEach((src) => {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
-    });
-  }, []);
+  //   imagesToPreload.forEach((src) => {
+  //     const link = document.createElement('link');
+  //     link.rel = 'prefetch';
+  //     link.as = 'image';
+  //     link.href = src;
+  //     document.head.appendChild(link);
+  //   });
+  // }, []);
 
   const stepItems = steps.map((_, index) => ({
     label: `Step ${index + 1}`,
@@ -238,7 +239,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   };
 
   return (
-    <div className="section screen-height py-3 sm:py-8 gradient-background">
+    <div className="section screen-height py-3 sm:py-8 gradient-background always-gradient">
       <div className="flex flex-col h-full justify-center items-center">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">

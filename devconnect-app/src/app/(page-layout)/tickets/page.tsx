@@ -262,7 +262,7 @@ const SideEventTicket = ({
 }) => {
   return (
     <div className="relative max-w-[350px]">
-      <Image src={TicketImage} alt="Ticket" />
+      <Image src={TicketImage} alt="Ticket" placeholder="blur" />
     </div>
   );
 };

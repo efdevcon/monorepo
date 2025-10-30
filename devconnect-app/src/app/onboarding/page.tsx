@@ -8,7 +8,8 @@ import Lottie from 'lottie-react';
 import LoadingAnimation from '@/images/loading-animation.json';
 
 export default function OnboardingPage() {
-  const { isInitialLoading, shouldSkipWalletAnimation } = useOnboardingLoading();
+  const { isInitialLoading, shouldSkipWalletAnimation } =
+    useOnboardingLoading();
   const showLoadingOverlay = isInitialLoading || shouldSkipWalletAnimation;
 
   return (
@@ -18,14 +19,15 @@ export default function OnboardingPage() {
         alt="Midj Epic City 3"
         className="absolute inset-0 w-full h-full object-cover"
         fill
+        placeholder="blur"
       />
       <div className="max-w-md w-full">
         <Onboarding />
       </div>
-      
+
       {/* Loading overlay at page level - not affected by parent containers */}
       {showLoadingOverlay && (
-        <div 
+        <div
           style={{
             position: 'fixed',
             top: 0,

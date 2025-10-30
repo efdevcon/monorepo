@@ -34,7 +34,6 @@ export async function getPaidTicketsByEmail(email: string) {
   }
 
   const data = await response.json()
-  console.log(data)
   const orders = data.results || []
 
   // Return simplified ticket data, filtering out positions without attendee names
@@ -44,7 +43,9 @@ export async function getPaidTicketsByEmail(email: string) {
       orderDate: order.datetime,
       email: order.email,
       tickets: order.positions
-        .filter((position: any) => position.attendee_email === email)
+        .filter((position: any) => {
+          return position.attendee_email?.toLowerCase() === email.toLowerCase()
+        })
         .map((position: any) => ({
           secret: position.secret,
           attendeeName: position.attendee_name,

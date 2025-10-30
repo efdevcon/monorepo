@@ -43,6 +43,7 @@ const HighlightCard = ({
         src={image}
         alt={title}
         width={295}
+        placeholder="blur"
         height={150}
         className="aspect-[4/2] object-cover group-hover:scale-105 transition-all duration-500 will-change-transform cursor-pointer"
       />
