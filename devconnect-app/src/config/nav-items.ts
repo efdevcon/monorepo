@@ -48,7 +48,8 @@ export const NAV_ITEMS: NavItem[] = [
         pathname.split('/').pop() === 'schedule' ||
         pathname.split('/').pop() === 'tickets' ||
         pathname.split('/').pop() === 'announcements' ||
-        pathname.split('/').pop() === 'stages'
+        pathname.split('/').pop() === 'stages' ||
+        pathname.includes('/stages/')
       );
     },
   },

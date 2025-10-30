@@ -66,7 +66,7 @@ export const homeTabs = () => [
     labelIcon: StageTabIcon,
     href: '/stages',
     component: () => null,
-    isActive: (pathname: string) => pathname === '/stages',
+    isActive: (pathname: string) => pathname.includes('/stages'),
   },
   {
     label: 'Tickets',

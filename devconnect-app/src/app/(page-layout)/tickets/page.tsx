@@ -484,7 +484,7 @@ const TicketTab = RequiresAuthHOC(() => {
               </div>
             </div>
           )}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 mt-4">
             {orders.map((order) => {
               return (
                 <div key={order.orderCode}>
