@@ -464,8 +464,19 @@ export default function PageLayout({
                 </div>
               </div>
               <div className="flex flex-col flex-1 mb-8">
-                <div className="h-[45px] my-2 ml-6 text-lg font-bold">
-                  {title}
+                <div className="h-[45px] my-2 ml-6 text-lg font-bold flex items-center justify-between pr-6">
+                  <span>{title}</span>
+                  {isComingSoon && (
+                    <button
+                      onClick={() => {
+                        openReportIssue();
+                      }}
+                      className="w-[24px] h-[24px] shrink-0 flex items-center justify-center hover:opacity-70 transition-opacity"
+                      aria-label="Report issue"
+                    >
+                      <Icon path={mdiBug} size={1} className="text-[#4b4b66]" />
+                    </button>
+                  )}
                 </div>
                 <div className="flex-1 border border-solid border-[#8855CC26] h-[fit-content] rounded-sm relative">
                   {tabs.length > 1 && (

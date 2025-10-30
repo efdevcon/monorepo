@@ -10,6 +10,8 @@ import {
 } from '@/app/store.hooks';
 import { toast } from 'sonner';
 import cn from 'classnames';
+import { hasBetaAccess } from '@/utils/cookies';
+import ComingSoonMessage from '@/components/ComingSoonMessage';
 
 const MeerkatComponent = () => {
   const { tickets } = useTickets();
@@ -49,6 +51,10 @@ const MeerkatComponent = () => {
 };
 
 const StagesPage = () => {
+  const isBetaMode = hasBetaAccess();
+  if (isBetaMode) {
+    return <ComingSoonMessage />;
+  }
   return (
     <div className="flex flex-col w-full">
       <div className="mx-4 mt-4 aspect-[16/9] bg-neutral-100 p-4 w-full">

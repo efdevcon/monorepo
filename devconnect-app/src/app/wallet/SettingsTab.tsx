@@ -65,7 +65,7 @@ export default function SettingsTab() {
   const storeLogout = useGlobalStore((state) => state.logout);
 
   // Get disconnect function from WalletContext
-  const { disconnect, isDisconnecting, address } = useWallet();
+  const { disconnectAll, isDisconnecting, address } = useWallet();
 
   // Extract Para wallet information
   const isParaConnected = paraAccount?.isConnected && !!paraWallet?.address;
@@ -152,11 +152,11 @@ export default function SettingsTab() {
 
   const handleLogout = async () => {
     try {
-      await disconnect();
+      await disconnectAll();
 
       localStorage.removeItem('loginIsSkipped');
       storeLogout();
-      router.push('/onboarding?noLoading=true');
+      router.push('/onboarding');
 
       // toast.success(
       //   <div className="space-y-1">
@@ -201,7 +201,7 @@ export default function SettingsTab() {
   };
 
   const handleSignIn = () => {
-    router.push('/onboarding?noLoading=true');
+    router.push('/onboarding');
   };
 
   return (
