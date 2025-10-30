@@ -33,9 +33,25 @@ class AuthService {
   }
 
   /**
+   * Check if Para is ready to issue JWTs
+   * Para must be connected AND have completed biometric/OTP verification
+   */
+  private canIssueParaJwt(): boolean {
+    return (
+      typeof para !== 'undefined' &&
+      typeof (window as any).para?.issueJwt === 'function' &&
+      (para as any).isConnected === true
+    );
+  }
+
+  /**
    * Generate auth token for Para authentication
    */
   async generateParaToken(): Promise<AuthToken> {
+    if (!this.canIssueParaJwt()) {
+      throw new Error('Para is not ready to issue JWT. Please complete biometric verification first.');
+    }
+
     try {
       const { token } = await para.issueJwt();
       return {
@@ -94,14 +110,18 @@ class AuthService {
         }
       }
 
-      // Fallback to Para if no Supabase user
-      if (typeof para !== 'undefined' && typeof para.issueJwt === 'function') {
+      // Check if Para is ready before attempting token generation
+      if (this.canIssueParaJwt()) {
         try {
-          console.log('No Supabase user, using Para token');
+          console.log('No Supabase user, using Para token (verification complete)');
           return await this.generateParaToken();
         } catch (paraError) {
           console.log('Para token generation failed:', paraError);
         }
+      } else if (typeof para !== 'undefined' && (para as any).isConnected) {
+        // Para is connected but not ready to issue JWTs (biometric verification pending)
+        console.log('⏳ Para is connected but waiting for biometric verification');
+        throw new Error('Para biometric verification required. Please complete authentication in the Para wallet.');
       }
 
       // If both fail, try Supabase one more time (in case of session issues)
@@ -126,17 +146,19 @@ class AuthService {
         return await this.generateSupabaseToken();
       }
 
-      // Try Para if no Supabase user
-      // Note: This will only succeed if Para user has completed biometric/OTP verification
-      // (checked by useWalletManager via isFullyAuthenticated before calling useEnsureUserData)
-      if (typeof para !== 'undefined' && typeof para.issueJwt === 'function') {
+      // Check if Para is ready before attempting token generation
+      if (this.canIssueParaJwt()) {
         try {
-          console.log('No Supabase user, attempting Para token generation');
+          console.log('No Supabase user, using Para token (verification complete)');
           return await this.generateParaToken();
         } catch (paraError) {
           console.log('Para token generation failed:', paraError);
           // Fall through to error below
         }
+      } else if (typeof para !== 'undefined' && (para as any).isConnected) {
+        // Para is connected but not ready to issue JWTs (biometric verification pending)
+        console.log('⏳ Para is connected but waiting for biometric verification');
+        throw new Error('Para biometric verification required. Please complete authentication in the Para wallet.');
       }
 
       // Fallback to Supabase if available (will likely fail, but consistent behavior)

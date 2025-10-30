@@ -80,7 +80,18 @@ class ApiClient {
         success: true,
       };
     } catch (error) {
-      console.error('API Client fetch error:', error);
+      // Don't log expected auth errors (no session, biometric verification pending)
+      const isExpectedAuthError =
+        error instanceof Error && (
+          error.message.includes('No active Supabase session') ||
+          error.message.includes('Para biometric verification') ||
+          error.message.includes('Please complete authentication first')
+        );
+
+      if (!isExpectedAuthError) {
+        console.error('API Client fetch error:', error);
+      }
+
       return {
         data: null as T,
         success: false,
