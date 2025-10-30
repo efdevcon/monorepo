@@ -28,8 +28,8 @@ export default function PasswordForm() {
 
       if (data.success) {
         // Cookie is set by the API, redirect to home
-        router.push('/');
-        router.refresh();
+        router.push('/onboarding');
+        // router.refresh();
       } else {
         setError('Incorrect password');
         setIsLoading(false);
