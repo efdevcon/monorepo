@@ -85,7 +85,7 @@ export default function PasswordForm() {
               fontFamily: 'var(--font-geist-sans, sans-serif)',
             }}
           >
-            {isLoading ? '...' : 'Enter'}
+            {isLoading ? 'Loading...' : 'Enter'}
           </button>
         </div>
         {error && <p className="text-red-600 text-sm text-center">{error}</p>}
