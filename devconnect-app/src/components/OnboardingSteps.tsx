@@ -75,7 +75,7 @@ const defaultSteps = [
       <Lottie
         animationData={WalletConnectedAnimation}
         loop={false}
-        className="w-full h-full object-contain mix-blend-multiply"
+        className="w-full h-full object-contain mix-blend-multiply max-w-[300px]"
       />
     </div>
     <div className="leading-tight">
@@ -255,7 +255,10 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             onActiveIndexChange={setCurrentStep}
           />
         </div>
-        <div className="flex flex-col items-center sm:justify-center relative flex-1 w-[580px] max-w-[calc(100%-32px)] min-h-0">
+        <div
+          className="flex flex-col items-center relative flex-1 w-[500px] max-w-[calc(100%-32px)] min-h-0"
+          style={{ justifyContent: 'space-between' }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -282,10 +285,15 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
               Back
             </Button>
 
-            <Button className="font-semibold" size="sm" onClick={nextStep}>
+            <Button
+              color="blue-2"
+              className="font-semibold"
+              size="sm"
+              onClick={nextStep}
+            >
               {currentStep === steps.length - 1
                 ? "Enter the World's Fair →"
-                : 'Continue'}
+                : 'Continue →'}
             </Button>
           </div>
         </div>
