@@ -239,8 +239,8 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   };
 
   return (
-    <div className="section screen-height py-3 sm:py-8 gradient-background always-gradient">
-      <div className="flex flex-col h-full justify-center items-center">
+    <div className="section min-h-screen gradient-background always-gradient overflow-y-auto flex flex-col">
+      <div className="flex flex-col flex-1 items-center py-3 sm:py-8">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">
             {currentStep === 0 && 'Setup'}
@@ -255,7 +255,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             onActiveIndexChange={setCurrentStep}
           />
         </div>
-        <div className="flex flex-col items-center justify-center relative grow w-[580px] max-w-[calc(100%-32px)] ">
+        <div className="flex flex-col items-center sm:justify-center relative flex-1 w-[580px] max-w-[calc(100%-32px)] min-h-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -263,13 +263,13 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.5 }}
-              className="w-full h-full flex justify-center sm:items-center mt-8 sm:mt-16"
+              className="w-full flex justify-center sm:items-center mt-8 sm:mt-16"
             >
               {steps[currentStep]}
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex gap-4 w-full justify-between items-center sm:px-16 mt-8 sm:mt-16 shrink-0">
+          <div className="flex gap-4 w-full justify-between items-center sm:px-16 mt-auto pb-2 sm:mt-16 !px-0 shrink-0">
             <Button
               className={cn(
                 'font-semibold',
