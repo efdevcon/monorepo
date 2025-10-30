@@ -94,6 +94,7 @@ export async function middleware(request: NextRequest) {
       // Allow access only to the coming-soon page and static assets
       if (
         !request.nextUrl.pathname.startsWith('/coming-soon') &&
+        !request.nextUrl.pathname.startsWith('/pos') &&
         !request.nextUrl.pathname.startsWith('/_next') &&
         !request.nextUrl.pathname.startsWith('/static') &&
         !request.nextUrl.pathname.match(
