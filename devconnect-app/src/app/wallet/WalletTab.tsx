@@ -770,7 +770,7 @@ export default function WalletTab() {
           {/* Action Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             {/* Receive Button - Always visible */}
-            <div className="flex flex-col items-center gap-2 w-[100px]">
+            <div className="flex flex-col items-center gap-2 md:w-[100px]">
               <button
                 onClick={handleReceiveClick}
                 className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -788,7 +788,7 @@ export default function WalletTab() {
 
             {/* Send Button - Only when Para wallet */}
             {isPara && (
-              <div className="flex flex-col items-center gap-2 w-[100px]">
+              <div className="flex flex-col items-center gap-2 md:w-[100px]">
                 <button
                   onClick={handleSendClick}
                   className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -807,7 +807,7 @@ export default function WalletTab() {
 
             {/* Add Button - Only when not in beta mode */}
             {!isBetaMode && (
-              <div className="flex flex-col items-center gap-2 w-[100px]">
+              <div className="flex flex-col items-center gap-2 md:w-[100px]">
                 <button
                   onClick={handleDigitalClick}
                   className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -825,7 +825,7 @@ export default function WalletTab() {
             )}
 
             {/* Scan Button - Mobile only */}
-            <div className="flex flex-col items-center gap-2 w-[100px] md:hidden">
+            <div className="flex flex-col items-center gap-2 md:hidden">
               <button
                 onClick={handleScanClick}
                 className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
