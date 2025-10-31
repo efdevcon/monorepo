@@ -56,6 +56,7 @@ export default function Menu() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={true}
               onClick={() => triggerHaptic(200)}
               className={cn(
                 'flex flex-col items-center flex-1 py-1 gap-1',

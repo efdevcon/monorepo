@@ -57,7 +57,7 @@ interface TabsProps {
   className?: string;
 }
 
-const BackButton = () => {
+const BackButton = React.memo(() => {
   const router = useRouter();
   const pathname = usePathname();
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -108,9 +108,9 @@ const BackButton = () => {
       )}
     </div>
   );
-};
+});
 
-const Tabs = ({
+const Tabs = React.memo(({
   tabs = [],
   activeIndex,
   setActiveIndex,
@@ -199,6 +199,7 @@ const Tabs = ({
               <Link
                 href={tab.href || ''}
                 key={tab.label}
+                prefetch={true}
                 onClick={() => triggerHaptic(200)}
               >
                 {tabBody}
@@ -211,9 +212,9 @@ const Tabs = ({
       </div>
     </div>
   );
-};
+});
 
-export default function PageLayout({
+const PageLayout = React.memo(function PageLayout({
   title,
   children,
   tabs = [],
@@ -424,6 +425,7 @@ export default function PageLayout({
                           <Link
                             key={item.href}
                             href={item.href}
+                            prefetch={true}
                             onClick={() => triggerHaptic(200)}
                             className={cn(
                               'p-1.5 px-2 text-sm flex gap-2 items-center rounded transition-colors duration-200',
@@ -531,4 +533,6 @@ export default function PageLayout({
       )}
     </>
   );
-}
+});
+
+export default PageLayout;
