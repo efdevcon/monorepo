@@ -43,6 +43,37 @@ const stages = {
   ],
 };
 
+type StageType = 'yellow' | 'green' | 'red' | 'music' | 'entertainment';
+
+interface StageBadgeProps {
+  type: StageType;
+  label: string;
+}
+
+export const StageBadge: React.FC<StageBadgeProps> = ({ type, label }) => {
+  const stageColors: Record<StageType, { bg: string; text?: string }> = {
+    yellow: { bg: 'bg-[rgba(246,180,14,1)]' },
+    green: { bg: 'bg-[rgba(56,142,48,1)]', text: 'text-white' },
+    red: { bg: 'bg-[rgba(229,30,84,1)]', text: 'text-white' },
+    music: { bg: 'bg-[rgba(23,71,149,1)]', text: 'text-white' },
+    entertainment: { bg: 'bg-[rgba(232,131,1,1)]' },
+  };
+
+  const colors = stageColors[type];
+
+  return (
+    <div
+      className={cn(
+        'inline-block font-semibold p-1 text-sm px-3 rounded-xs mb-2 self-start',
+        colors.bg,
+        colors.text
+      )}
+    >
+      {label}
+    </div>
+  );
+};
+
 const StagesPage = () => {
   const isBetaMode = hasBetaAccess();
 
@@ -91,17 +122,15 @@ const StagesPage = () => {
 
       {/* Yellow Pavilion */}
       <div className="mb-6">
-        <div className="inline-block bg-[rgba(246,180,14,1)] font-semibold p-1 text-sm px-2 rounded-xs mb-2">
-          Yellow Pavilion
-        </div>
+        <StageBadge type="yellow" label="Yellow Pavilion" />
         <div>
           {stages.yellowPavilion.map((stage, index) => {
             return (
               <>
                 {renderStageRow(stage)}
-                {index !== stages.yellowPavilion.length - 1 && (
-                  <Separator className="my-2 grow w-auto" />
-                )}
+                {/* {index !== stages.yellowPavilion.length - 1 && ( */}
+                <Separator className="my-2 grow w-auto" />
+                {/* )} */}
               </>
             );
           })}
@@ -110,17 +139,14 @@ const StagesPage = () => {
 
       {/* Green Pavilion */}
       <div className="mb-6">
-        <div className="inline-block bg-[rgba(56,142,48,1)] font-semibold p-1 text-sm px-2 rounded-xs mb-2 text-white">
-          Green Pavilion
-        </div>
+        <StageBadge type="green" label="Green Pavilion" />
         <div>
           {stages.greenPavilion.map((stage, index) => {
             return (
               <>
                 {renderStageRow(stage)}
-                {index !== stages.greenPavilion.length - 1 && (
-                  <Separator className="my-2 grow w-auto" />
-                )}
+
+                <Separator className="my-2 grow w-auto" />
               </>
             );
           })}
@@ -129,17 +155,14 @@ const StagesPage = () => {
 
       {/* Red Pavilion */}
       <div className="mb-6">
-        <div className="inline-block bg-[rgba(229,30,84,1)] font-semibold p-1 text-sm px-2 rounded-xs mb-2 text-white">
-          Red Pavilion
-        </div>
+        <StageBadge type="red" label="Red Pavilion" />
         <div>
           {stages.redPavilion.map((stage, index) => {
             return (
               <>
                 {renderStageRow(stage)}
-                {index !== stages.redPavilion.length - 1 && (
-                  <Separator className="my-2 grow w-auto" />
-                )}
+
+                <Separator className="my-2 grow w-auto" />
               </>
             );
           })}
@@ -148,17 +171,14 @@ const StagesPage = () => {
 
       {/* Music */}
       <div className="mb-6">
-        <div className="inline-block bg-[rgba(23,71,149,1)] font-semibold p-1 text-sm px-2 rounded-xs mb-2 text-white">
-          Music
-        </div>
+        <StageBadge type="music" label="Music" />
         <div>
           {stages.music.map((stage, index) => {
             return (
               <>
                 {renderStageRow(stage)}
-                {index !== stages.music.length - 1 && (
-                  <Separator className="my-2 grow w-auto" />
-                )}
+
+                <Separator className="my-2 grow w-auto" />
               </>
             );
           })}
@@ -167,17 +187,14 @@ const StagesPage = () => {
 
       {/* Entertainment */}
       <div className="mb-6">
-        <div className="inline-block bg-[rgba(232,131,1,1)] font-semibold p-1 text-sm px-2 rounded-xs mb-2">
-          Entertainment
-        </div>
+        <StageBadge type="entertainment" label="Entertainment" />
         <div>
           {stages.entertainment.map((stage, index) => {
             return (
               <>
                 {renderStageRow(stage)}
-                {index !== stages.entertainment.length - 1 && (
-                  <Separator className="my-2 grow w-auto" />
-                )}
+
+                <Separator className="my-2 grow w-auto" />
               </>
             );
           })}
