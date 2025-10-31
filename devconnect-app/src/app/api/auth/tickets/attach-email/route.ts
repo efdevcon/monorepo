@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '../../supabaseServerClient';
 
+/**
+ * Attach Additional Email for Ticket Retrieval
+ * 
+ * ✨ NOTE: This is one of the few places Supabase is still used for Para users!
+ * - Para users authenticate with Para JWT (no Supabase)
+ * - BUT we still use Supabase OTP to verify ownership of additional emails
+ * - This is a separate concern from authentication (email verification only)
+ * 
+ * Flow:
+ * 1. User wants to add tickets from another email
+ * 2. Send OTP code to that email (Supabase)
+ * 3. User verifies code (proves they own that email)
+ * 4. Add email to their additional_ticket_emails array
+ */
 export const POST = async (request: NextRequest) => {
   const supabase = createServerClient();
   /* 1 - Extract user email provided by auth middleware */

@@ -61,28 +61,63 @@ export interface UserData {
 }
 
 /**
- * Fetch and cache user data from Supabase
+ * Fetch and cache user data from backend
  * Automatically revalidates on window focus
+ * 
+ * ✨ OPTIMIZED: Prevents initial race condition by pausing until Para JWT is ready
+ * - Uses SWR's isPaused() to wait for Para JWT initialization
+ * - Reduces console spam (only logs important events)
+ * - Auto-retries when Para becomes ready
+ * - Works with both Para JWT and Supabase authentication
  */
 export function useUserData(fallbackData?: UserData) {
   const { data, error, isLoading, mutate } = useSWR<{
     success: boolean;
     data?: UserData;
-  }>('/api/auth/user-data', fetchAuth, {
-    fallbackData: fallbackData
-      ? { success: true, data: fallbackData }
-      : undefined,
-    revalidateOnFocus: true, // Refresh when tab regains focus
-    dedupingInterval: 5000, // Dedupe requests within 5 seconds
-    shouldRetryOnError: false, // Don't retry if no auth session
-    onError: (err) => {
-      // Only log errors if it's not an auth-related error
-      if (!err?.message?.includes('No active Supabase session') &&
-        !err?.message?.includes('Para biometric verification')) {
-        console.error('Failed to fetch user data:', err);
-      }
+  }>(
+    '/api/auth/user-data',
+    async (url) => {
+      console.log('📡 [useUserData] Fetching user data...');
+      const result = await fetchAuth(url);
+      return result;
     },
-  });
+    {
+      fallbackData: fallbackData
+        ? { success: true, data: fallbackData }
+        : undefined,
+      revalidateOnFocus: true, // Refresh when tab regains focus (will retry if Para now ready)
+      revalidateOnReconnect: true, // Retry on network reconnection
+      dedupingInterval: 5000, // Dedupe requests within 5 seconds
+      shouldRetryOnError: false, // Don't retry automatically on error
+      // ✨ Prevent initial fetch until Para JWT is ready (if Para is being used)
+      isPaused: () => {
+        // Only pause if Para is initializing (not ready yet)
+        if (typeof window !== 'undefined') {
+          const hasParaAddress = !!(window as any).__paraAddress;
+          const hasParaJwt = !!(window as any).__paraJwt;
+
+          // Pause if Para address exists but JWT not ready yet
+          if (hasParaAddress && !hasParaJwt) {
+            return true; // Pause until JWT is ready
+          }
+        }
+        return false; // Don't pause (fetch immediately)
+      },
+      onError: (err) => {
+        // Only log errors if it's not an auth-related error
+        if (!err?.message?.includes('No active Supabase session') &&
+          !err?.message?.includes('Para biometric verification') &&
+          !err?.message?.includes('No authentication method available')) {
+          console.error('❌ [useUserData] Failed to fetch user data:', err);
+        }
+      },
+      onSuccess: (data) => {
+        if (data?.data) {
+          console.log('✅ [useUserData] User data loaded:', data.data.email);
+        }
+      },
+    }
+  );
 
   return {
     userData: data?.data || null,

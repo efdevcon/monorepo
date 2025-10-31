@@ -6,6 +6,7 @@ import { useEOAWalletConnection } from './useEOAWallet';
 import { useUser } from './useUser';
 import { ensureUserData, useEnsureUserData } from '@/app/store.hooks';
 import { useAutoParaJwtExchange } from './useAutoParaJwtExchange';
+import { useInitParaJwt } from './useInitParaJwt';
 import { normalize } from 'viem/ens';
 import { mainnet, base } from 'viem/chains';
 import { createPublicClient, http, toCoinType } from 'viem';
@@ -217,8 +218,21 @@ export function useWalletManager() {
     localStorage.setItem('loginIsSkipped', 'true');
   }
 
-  // Automatically exchange Para JWT for Supabase session when Para is connected
-  // This eliminates the need to manually click "Get Supabase JWT" button
+  // ✨ NEW: Initialize Para JWT capability (always enabled)
+  // This ensures Para's issueJwt function is ready for direct authentication
+  // No token exchange, just initialization of Para's JWT capability
+  useInitParaJwt({
+    paraConnected: para.isConnected,
+    paraAddress: para.address,
+  });
+
+  // 🔄 LEGACY: Auto-exchange Para JWT → Supabase session (DISABLED BY DEFAULT)
+  // ✨ NEW DEFAULT: Para JWTs work directly with backend (no exchange needed!)
+  //
+  // Auto-exchange is DISABLED by default (new architecture)
+  // To ENABLE legacy auto-exchange: Set NEXT_PUBLIC_ENABLE_AUTO_JWT_EXCHANGE=true
+  //
+  // This hook is kept for backward compatibility but not used by default
   useAutoParaJwtExchange({
     paraConnected: para.isConnected,
     paraAddress: para.address,
@@ -227,8 +241,8 @@ export function useWalletManager() {
   });
 
   // Sync authentication state to global store (for RequiresAuthHOC and other components)
-  // Only use Supabase authentication for this check
-  // Para users will automatically get a Supabase session via auto JWT exchange above
+  // Note: Para users may or may not have a Supabase session (depends on auto-exchange)
+  // But they can still authenticate via direct Para JWT to backend!
   const hasValidSupabaseAuth = supabaseInitialized && !!supabaseUser;
 
   // Log comprehensive user authentication state
@@ -247,7 +261,7 @@ export function useWalletManager() {
         walletId: para.walletId,
         canIssueJwt: canIssueParaJwt,
         note: canIssueParaJwt
-          ? '✅ Para can issue JWT - backend supports Para JWT directly!'
+          ? '✅ Para ready - JWT sent directly to backend (NEW FLOW!)'
           : '❌ Para cannot issue JWT yet - biometric verification needed',
       },
       // Supabase state
@@ -257,14 +271,17 @@ export function useWalletManager() {
         hasUser: !!supabaseUser,
         userId: supabaseUser?.id,
         email: supabaseUser?.email,
-        userMetadata: supabaseUser?.user_metadata,
+        note: !!supabaseUser
+          ? '✅ Has Supabase session (EOA or legacy Para exchange)'
+          : para.isConnected
+            ? '🔄 No Supabase session yet (auto-exchange in progress as fallback)'
+            : '❌ No Supabase session',
       },
       // Unified state
       unified: {
         email,
         isAuthenticated: !!email,
-        hasValidSupabaseAuth,
-        willTriggerUserDataFetch: hasValidSupabaseAuth,
+        primaryAuthMethod: canIssueParaJwt ? 'para-direct' : !!supabaseUser ? 'supabase' : 'none',
       },
       // Connection state
       connection: {
@@ -273,29 +290,23 @@ export function useWalletManager() {
         isPara,
         primaryType,
       },
-      // Auth options
-      authOptions: {
-        option1_supabase:
-          supabaseInitialized && !!supabaseUser
-            ? '✅ Can use Supabase auth'
-            : '❌ No Supabase session',
-        option2_paraAutoExchange:
-          para.isConnected && !supabaseUser
-            ? '🔄 Auto JWT exchange will trigger automatically'
-            : para.isConnected && !!supabaseUser
-              ? '✅ Para JWT already exchanged'
-              : '❌ Para not connected',
-      },
-      // Current behavior
-      currentBehavior: {
-        description:
-          '🚀 Automatic JWT exchange enabled! Para users will be authenticated automatically.',
-        requiresAuthHOCWillWork: hasValidSupabaseAuth,
-        whatYouNeedToDo: hasValidSupabaseAuth
-          ? '✅ You are authenticated!'
+      // ✨ NEW Authentication Flow
+      authFlow: {
+        primary: canIssueParaJwt
+          ? '✅ Para JWT → Direct backend verification (SIMPLIFIED!)'
+          : !!supabaseUser
+            ? '✅ Supabase JWT → Backend verification (EOA users)'
+            : '❌ No active authentication',
+        legacy: para.isConnected && !supabaseUser
+          ? '🔄 Auto JWT exchange running (creates Supabase session as fallback)'
+          : '⏸️ Legacy exchange not needed',
+        whatToKnow: canIssueParaJwt
+          ? '🎉 You are using the NEW simplified flow! Para JWT works directly with backend.'
           : para.isConnected
-            ? '🔄 Automatic JWT exchange in progress... Please complete biometric verification when prompted.'
-            : '❌ Please connect a wallet',
+            ? '⏳ Complete biometric verification to enable direct Para JWT flow'
+            : !!supabaseUser
+              ? '✅ EOA user authenticated via Supabase'
+              : '❌ Please connect a wallet',
       },
     });
   }, [

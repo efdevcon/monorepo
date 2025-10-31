@@ -88,10 +88,13 @@ export const ensureUserData = async (
 /**
  * Hook to ensure user data is loaded (now uses SWR, no manual refetching needed)
  * SWR automatically handles revalidation on focus and reconnect
+ * 
+ * ✨ NEW: Only fetches when email is available (indicating authentication readiness)
+ * This prevents premature fetch attempts when Para is connecting but not ready to issue JWTs
  */
 export const useEnsureUserData = (email: string | undefined) => {
   // SWR handles all the caching and revalidation automatically
-  // We just need to use the hook - it will fetch when email is available
+  // Only fetch when email is available (indicates some form of authentication is ready)
   const { userData, refresh } = useUserDataSWR();
 
   // Optionally sync to Zustand for backward compatibility

@@ -2,14 +2,17 @@ import { authService, type AuthToken } from './authService';
 import { type User } from '@supabase/supabase-js';
 
 // Helper function to get current user from Supabase
+// ✨ NEW: For Para users, this returns null (which is fine - authService handles it)
 async function getCurrentUser(): Promise<User | null> {
   try {
     const supabase = authService.getSupabaseClient();
-    if (!supabase) return null;
+    if (!supabase) {
+      return null;
+    }
     
     const { data: { user } } = await supabase.auth.getUser();
     return user;
-  } catch {
+  } catch (error) {
     return null;
   }
 }
@@ -52,7 +55,7 @@ class ApiClient {
       headers.set('Authorization', `Bearer ${authToken.token}`);
       headers.set('X-Auth-Method', authToken.method);
       headers.set('Content-Type', 'application/json');
-
+      
       // Make the request
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         ...fetchOptions,

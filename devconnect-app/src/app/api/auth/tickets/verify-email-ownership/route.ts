@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '../../supabaseServerClient';
 import { ensureUser } from '../../user-data/ensure-user';
 
+/**
+ * Verify Email Ownership (Part 2 of attach-email flow)
+ * 
+ * ✨ NOTE: This is one of the few places Supabase is still used for Para users!
+ * - Verifies the OTP code sent to additional email
+ * - Once verified, adds email to additional_ticket_emails array
+ * - This is separate from authentication (email verification only)
+ */
 export const POST = async (request: NextRequest) => {
   const supabase = createServerClient();
   /* 4 (continued from attach-email route) - Extract user email provided by auth middleware */

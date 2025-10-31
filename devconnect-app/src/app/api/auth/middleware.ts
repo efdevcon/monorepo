@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient, type User } from '@supabase/supabase-js';
 import { jwtVerify, createRemoteJWKSet } from 'jose';
+import { ensureUser } from './user-data/ensure-user';
+import { createServerClient } from './supabaseServerClient';
 
 const supabaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -89,16 +91,49 @@ async function verifyAuthCore(
         algorithms: ['RS256'],
       });
 
-      // If Para JWT verification succeeds, create a mock user object
+      // Extract user email and wallet info
       const email =
         payload.data.email || `${payload.data.userId}@para-fallback.com`;
+      const walletAddress = payload.data.wallets?.[0]?.address;
+
+      // ✨ NEW: Ensure devconnect_app_user exists for Para users
+      // This replaces the need for /api/exchange-token route
+      try {
+        await ensureUser(email);
+
+        // Add wallet address to user's addresses array if provided
+        if (walletAddress) {
+          const supabaseClient = createServerClient();
+          const { data: existingUser } = await supabaseClient
+            .from('devconnect_app_user')
+            .select('addresses')
+            .eq('email', email)
+            .single();
+
+          const currentAddresses = existingUser?.addresses || [];
+
+          // Only add if not already present
+          if (!currentAddresses.includes(walletAddress)) {
+            await supabaseClient
+              .from('devconnect_app_user')
+              .update({
+                addresses: [...currentAddresses, walletAddress],
+              })
+              .eq('email', email);
+          }
+        }
+      } catch (ensureError) {
+        // Don't fail auth if user creation fails - they're still authenticated
+      }
+
+      // Create mock user object for downstream handlers
       const paraUser: User = {
         id: payload.data.userId,
         email,
         user_metadata: {
           external_id: payload.data.userId,
           para_auth_type: payload.data.authType,
-          wallet_address: payload.data.wallets?.[0]?.address,
+          wallet_address: walletAddress,
           wallet_type: payload.data.wallets?.[0]?.type,
         },
         app_metadata: {},
@@ -107,14 +142,11 @@ async function verifyAuthCore(
         updated_at: new Date().toISOString(),
       };
 
-      console.log('Para user:', paraUser);
-
       return {
         success: true,
         user: paraUser,
       };
     } catch (paraError) {
-      console.log('Para JWT verification failed:', paraError);
       return {
         success: false,
         error: 'Invalid or expired Para JWT token',

@@ -13,8 +13,17 @@ interface UseAutoParaJwtExchangeProps {
 }
 
 /**
- * Automatically exchanges Para JWT for Supabase session when Para is connected
- * This eliminates the need to manually click "Get Supabase JWT" button
+ * 🔄 LEGACY FALLBACK: Auto-exchange Para JWT for Supabase session
+ * 
+ * ✨ NEW ARCHITECTURE: This is no longer required for authentication!
+ * Para JWTs work directly with the backend via middleware verification.
+ * 
+ * This hook remains active for:
+ * - Backward compatibility
+ * - RequiresAuthHOC support (expects Supabase session)
+ * - Fallback authentication path
+ * 
+ * Primary flow: Para JWT → authService → Backend (no exchange needed!)
  */
 export function useAutoParaJwtExchange({
   paraConnected,
@@ -27,6 +36,17 @@ export function useAutoParaJwtExchange({
   const hasExchangedRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    // ✨ NEW DEFAULT: Auto-exchange is DISABLED by default (new architecture)
+    // Set NEXT_PUBLIC_ENABLE_AUTO_JWT_EXCHANGE=true to enable legacy auto-exchange
+    const isAutoExchangeEnabled = process.env.NEXT_PUBLIC_ENABLE_AUTO_JWT_EXCHANGE === 'true';
+
+    if (!isAutoExchangeEnabled) {
+      console.log('🔄 [AUTO_JWT_EXCHANGE] Disabled by default (new architecture). Set NEXT_PUBLIC_ENABLE_AUTO_JWT_EXCHANGE=true to enable.');
+      return;
+    }
+
+    // Only exchange if Para connected but no Supabase session exists
+    // ✨ NEW: This is now a fallback path, not the primary authentication method
     const shouldExchange =
       paraConnected &&
       paraAddress &&
@@ -44,7 +64,7 @@ export function useAutoParaJwtExchange({
       hasExchangedRef.current.add(paraAddress);
 
       try {
-        console.log('🔄 [AUTO_JWT_EXCHANGE] Starting automatic Para JWT exchange for', paraAddress);
+        console.log('🔄 [AUTO_JWT_EXCHANGE] [LEGACY FALLBACK] Starting automatic Para JWT exchange for', paraAddress);
 
         // Step 1: Issue Para JWT (will prompt for biometric/OTP if needed)
         const { token: paraJwt } = await issueJwtAsync();
@@ -64,7 +84,7 @@ export function useAutoParaJwtExchange({
         }
 
         const { supabaseJwt } = await response.json();
-        console.log('✅ [AUTO_JWT_EXCHANGE] Supabase JWT obtained');
+        console.log('✅ [AUTO_JWT_EXCHANGE] Supabase JWT obtained (legacy path)');
 
         // Step 3: Set Supabase session
         const supabase = authService.getSupabaseClient();
@@ -80,7 +100,7 @@ export function useAutoParaJwtExchange({
         // Step 4: Verify session
         const { data: { user } } = await supabase.auth.getUser();
         console.log('✅ [AUTO_JWT_EXCHANGE] Supabase session set successfully for', user?.email);
-        console.log('🎉 [AUTO_JWT_EXCHANGE] Authentication complete! RequiresAuthHOC will now work.');
+        console.log('🎉 [AUTO_JWT_EXCHANGE] [LEGACY] Fallback authentication complete!');
 
       } catch (error) {
         console.error('❌ [AUTO_JWT_EXCHANGE] Failed:', error);

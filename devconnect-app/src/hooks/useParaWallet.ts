@@ -32,6 +32,9 @@ export function useParaWalletConnection() {
   // Auto-switch to Para when it connects (if no other wallet was primary)
   useEffect(() => {
     if (isConnected && typeof window !== 'undefined') {
+      // ✨ Set flag immediately when Para connects (for SWR pause detection)
+      (window as any).__paraAddress = address;
+      
       const currentPrimary = localStorage.getItem('devconnect_primary_wallet_type');
 
       // If no primary wallet is set, automatically make Para primary
@@ -52,6 +55,9 @@ export function useParaWalletConnection() {
           note: 'Another wallet is already primary',
         });
       }
+    } else if (typeof window !== 'undefined') {
+      // Clear flag when Para disconnects
+      delete (window as any).__paraAddress;
     }
   }, [isConnected, address, walletId, email]);
 

@@ -33,33 +33,37 @@ class AuthService {
   }
 
   /**
-   * Check if Para is ready to issue JWTs
-   * Para must be connected AND have completed biometric/OTP verification
-   */
-  private canIssueParaJwt(): boolean {
-    return (
-      typeof para !== 'undefined' &&
-      typeof (window as any).para?.issueJwt === 'function' &&
-      (para as any).isConnected === true
-    );
-  }
-
-  /**
    * Generate auth token for Para authentication
    */
   async generateParaToken(): Promise<AuthToken> {
-    if (!this.canIssueParaJwt()) {
-      throw new Error('Para is not ready to issue JWT. Please complete biometric verification first.');
+    if (typeof para === 'undefined') {
+      throw new Error('Para SDK not loaded');
     }
 
     try {
-      const { token } = await para.issueJwt();
-      return {
-        token,
-        method: 'para'
-      };
+      // Check if we have Para JWT from useInitParaJwt
+      const cachedToken = (window as any).__paraJwt;
+      const issueAsync = (window as any).__paraJwtIssueAsync;
+
+      if (cachedToken) {
+        return {
+          token: cachedToken,
+          method: 'para'
+        };
+      }
+
+      // If no cached token but issueAsync is available, try to get a fresh token
+      if (typeof issueAsync === 'function') {
+        const { token } = await issueAsync();
+        (window as any).__paraJwt = token; // Cache it
+        return {
+          token,
+          method: 'para'
+        };
+      }
+
+      throw new Error('Para not initialized - please connect wallet first');
     } catch (error) {
-      console.error('Failed to generate Para token:', error);
       throw new Error(`Failed to generate Para token: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
@@ -93,35 +97,76 @@ class AuthService {
 
   /**
    * Generate auth token based on current authentication state
-   * Prioritizes Supabase if user is available, otherwise falls back to Para
+   * ✨ NEW (default): Prioritizes Para JWT when available (direct backend verification)
+   * 🔄 LEGACY: Set NEXT_PUBLIC_USE_LEGACY_AUTH_PRIORITY=true to use old Supabase-first flow
    */
   async generateToken(): Promise<AuthToken> {
+    const useLegacyPriority = process.env.NEXT_PUBLIC_USE_LEGACY_AUTH_PRIORITY === 'true';
+
+    if (useLegacyPriority) {
+      return this.generateTokenLegacy();
+    }
+
     try {
+      // ✨ NEW: Try Para FIRST (no pre-check, just attempt)
+      if (typeof para !== 'undefined') {
+        try {
+          console.log('✅ [NEW FLOW] Attempting Para JWT (direct backend verification)');
+          return await this.generateParaToken();
+        } catch (paraError) {
+          console.log('⚠️ Para token generation failed, falling back to Supabase:', paraError);
+          // Fall through to Supabase
+        }
+      }
+
+      // Fallback to Supabase (for EOA users or if Para failed)
+      if (this.supabase) {
+        try {
+          const { data: { user } } = await this.supabase.auth.getUser();
+          if (user) {
+            console.log('✅ Supabase user found - using Supabase token');
+            return await this.generateSupabaseToken();
+          }
+        } catch (supabaseError) {
+          console.log('⚠️ No Supabase session:', supabaseError);
+        }
+      }
+
+      throw new Error('No authentication method available');
+    } catch (error) {
+      throw new Error(`Failed to generate any auth token: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  /**
+   * 🔄 LEGACY: Original Supabase-first authentication priority
+   * Use NEXT_PUBLIC_USE_LEGACY_AUTH_PRIORITY=true to enable
+   */
+  private async generateTokenLegacy(): Promise<AuthToken> {
+    try {
+      console.log('🔄 [LEGACY FLOW] Using Supabase-first authentication priority');
+
       // Try Supabase first if configured
       if (this.supabase) {
         try {
           const { data: { user } } = await this.supabase.auth.getUser();
           if (user) {
-            console.log('Supabase user found, using Supabase token');
+            console.log('✅ [LEGACY] Supabase user found, using Supabase token');
             return await this.generateSupabaseToken();
           }
         } catch (supabaseError) {
-          console.log('No Supabase user or session, trying Para:', supabaseError);
+          console.log('⚠️ [LEGACY] No Supabase user or session, trying Para:', supabaseError);
         }
       }
 
-      // Check if Para is ready before attempting token generation
-      if (this.canIssueParaJwt()) {
+      // Try Para (no pre-check needed)
+      if (typeof para !== 'undefined') {
         try {
-          console.log('No Supabase user, using Para token (verification complete)');
+          console.log('✅ [LEGACY] No Supabase user, attempting Para token');
           return await this.generateParaToken();
         } catch (paraError) {
-          console.log('Para token generation failed:', paraError);
+          console.log('⚠️ [LEGACY] Para token generation failed:', paraError);
         }
-      } else if (typeof para !== 'undefined' && (para as any).isConnected) {
-        // Para is connected but not ready to issue JWTs (biometric verification pending)
-        console.log('⏳ Para is connected but waiting for biometric verification');
-        throw new Error('Para biometric verification required. Please complete authentication in the Para wallet.');
       }
 
       // If both fail, try Supabase one more time (in case of session issues)
@@ -141,24 +186,21 @@ class AuthService {
    */
   async generateTokenWithUser(user: User | null): Promise<AuthToken> {
     try {
+      // ✨ NEW: For Para users (user === null), try Para first
+      if (!user) {
+        // Try Para (no pre-check, just attempt and catch error)
+        if (typeof para !== 'undefined') {
+          try {
+            return await this.generateParaToken();
+          } catch (paraError) {
+            // Fall through to Supabase
+          }
+        }
+      }
+
       // If user is provided, use Supabase
       if (user && this.supabase) {
         return await this.generateSupabaseToken();
-      }
-
-      // Check if Para is ready before attempting token generation
-      if (this.canIssueParaJwt()) {
-        try {
-          console.log('No Supabase user, using Para token (verification complete)');
-          return await this.generateParaToken();
-        } catch (paraError) {
-          console.log('Para token generation failed:', paraError);
-          // Fall through to error below
-        }
-      } else if (typeof para !== 'undefined' && (para as any).isConnected) {
-        // Para is connected but not ready to issue JWTs (biometric verification pending)
-        console.log('⏳ Para is connected but waiting for biometric verification');
-        throw new Error('Para biometric verification required. Please complete authentication in the Para wallet.');
       }
 
       // Fallback to Supabase if available (will likely fail, but consistent behavior)

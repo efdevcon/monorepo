@@ -96,7 +96,7 @@ export default function WalletIcon({ active }: { active: boolean }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_1108_11116)">
+      <g clipPath="url(#clip0_1108_11116)">
         <path
           d="M27.0367 13.3308H25.7067V9.33203H24.3767V13.3308H21.7079V14.6695H20.3779V17.3295H21.7079V18.6683H24.3767V23.997H25.7067V18.6683H27.0367V17.3295H28.3754V14.6695H27.0367V13.3308ZM24.3767 15.9995H23.0379V14.6695H24.3767V15.9995Z"
           fill="#4B4B66"

@@ -5,6 +5,7 @@ All routes in this directory are automatically protected by authentication middl
 ## How it works
 
 - Global middleware automatically protects all `/api/auth/*` routes
+- Verifies Para JWT or Supabase JWT (automatic detection)
 - Routes read user info from headers set by middleware
 - No manual configuration needed
 
