@@ -111,7 +111,12 @@ export async function GET(request: NextRequest) {
 ✅ **Race Condition Fixed**: SWR pauses until Para JWT ready  
 ✅ **Console Spam Reduced**: Only essential logs  
 ✅ **Direct JWT**: No exchange endpoint needed  
-✅ **Auto-provisioning**: devconnect_app_user created on-the-fly
+✅ **Auto-provisioning**: devconnect_app_user created on-the-fly  
+✅ **Hardcoded JWKS**: Para public keys embedded (zero network latency)  
+
+- Instant verification (~0ms)
+- Perfect for serverless/edge functions
+- Auto-fallback to remote if keys rotate
 
 ## Environment Variables
 

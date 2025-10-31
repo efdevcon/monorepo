@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient, type User } from '@supabase/supabase-js';
-import { jwtVerify, createRemoteJWKSet } from 'jose';
+import { jwtVerify, createRemoteJWKSet, type JWTVerifyGetKey, importJWK } from 'jose';
 import { ensureUser } from './user-data/ensure-user';
 import { createServerClient } from './supabaseServerClient';
 
@@ -9,12 +9,62 @@ const supabaseUrl =
 const supabaseAnonKey =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
-// Define Para JWKS URLs based on environment
+// ✨ HARDCODED JWKS: Para's public keys for instant verification (no network fetch)
+// Last updated: 2024-10-31
+// To update: curl https://api.getpara.com/.well-known/jwks.json
+const PARA_HARDCODED_JWKS = {
+  prod: {
+    keys: [
+      {
+        kty: "RSA",
+        use: "sig",
+        alg: "RS256",
+        kid: "-fap65HJ77eVfbW82i53yl8YpcW9LuAu12jPYnBDw1o",
+        n: "1FZic2Qit2EZu0-UEqJIGcWDJnhlSF7ClhsfkwEtiw87pOaVCqHgWziDvSE_NuZOzb3_1aXu-W0JeUGNG7j62Pvtw8gc9kypYW7Jt6XFpCeTNsga6BN6wHweUFPbp_vO2ZMzwGSTjKGRKTpLExdemQjZpeC7lmN1Q5fXGrsM98VcevpT1O-i2OhQNwQ-_2iwbi3xvLWTG1wMF2Dx9zq41pHheDuiixCO25rImCLaWmf2CPkWiwfr58F6vESfMGUmqpPnuM-gMU0ylFHiUNGBOafcBnoBxf5LMljJ6SFzb6uiPlyRyepzRzirZx2hhFb9s3K5gEKr_EHyFs29ATf20Q",
+        e: "AQAB"
+      }
+    ]
+  },
+  // Add sandbox/beta keys if needed
+  sandbox: null,
+  beta: null
+};
+
+// Define Para JWKS URLs for fallback
 const PARA_JWKS_URLS = {
   sandbox: 'https://api.sandbox.getpara.com/.well-known/jwks.json',
   beta: 'https://api.beta.getpara.com/.well-known/jwks.json',
   prod: 'https://api.getpara.com/.well-known/jwks.json',
 };
+
+// Cache for remote JWKS (only used as fallback)
+let cachedRemoteJWKS: JWTVerifyGetKey | null = null;
+
+/**
+ * Get JWKS verification function
+ * 1. Try hardcoded keys first (instant, no network)
+ * 2. Fall back to remote fetch if hardcoded keys fail (handles key rotation)
+ */
+async function getJWKSKey(header: any, token: any): Promise<any> {
+  const env = (process.env.PARA_ENVIRONMENT || 'prod') as keyof typeof PARA_JWKS_URLS;
+  const hardcodedKeys = PARA_HARDCODED_JWKS[env];
+
+  // Try hardcoded keys first
+  if (hardcodedKeys?.keys) {
+    const matchingKey = hardcodedKeys.keys.find((key) => key.kid === header.kid);
+    if (matchingKey) {
+      return await importJWK(matchingKey, matchingKey.alg);
+    }
+  }
+
+  // Fallback: Fetch from remote (key rotation or new keys)
+  if (!cachedRemoteJWKS) {
+    const jwksUrl = PARA_JWKS_URLS[env];
+    cachedRemoteJWKS = createRemoteJWKSet(new URL(jwksUrl));
+  }
+
+  return await cachedRemoteJWKS(header, token);
+}
 
 // Type for Para JWT payload
 interface ParaJwtPayload {
@@ -80,14 +130,8 @@ async function verifyAuthCore(
   if (authMethod === 'para') {
     // Verify as Para JWT
     try {
-      // Get JWKS URL based on environment
-      const env = (process.env.PARA_ENVIRONMENT ||
-        'prod') as keyof typeof PARA_JWKS_URLS;
-      const jwksUrl = PARA_JWKS_URLS[env];
-      const JWKS = createRemoteJWKSet(new URL(jwksUrl));
-
-      // Verify Para JWT
-      const { payload } = await jwtVerify<ParaJwtPayload>(token, JWKS, {
+      // ✨ OPTIMIZED: Use hardcoded JWKS (instant verification, no network fetch)
+      const { payload } = await jwtVerify<ParaJwtPayload>(token, getJWKSKey, {
         algorithms: ['RS256'],
       });
 
@@ -96,8 +140,7 @@ async function verifyAuthCore(
         payload.data.email || `${payload.data.userId}@para-fallback.com`;
       const walletAddress = payload.data.wallets?.[0]?.address;
 
-      // ✨ NEW: Ensure devconnect_app_user exists for Para users
-      // This replaces the need for /api/exchange-token route
+      // Ensure devconnect_app_user exists for Para users
       try {
         await ensureUser(email);
 
