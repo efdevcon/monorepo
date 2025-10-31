@@ -941,10 +941,10 @@ export default function AppShowcaseDetail({
                                 </span>
                               ) : (
                                 <p
-                                  className="text-[#4B4B66] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
+                                  className="text-[#0073de] text-[10px] font-bold leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
                                   style={{ fontFamily: 'Roboto, sans-serif' }}
                                 >
-                                  TO DO
+                                  LOCATION
                                 </p>
                               )}
                             </div>
@@ -992,18 +992,23 @@ export default function AppShowcaseDetail({
                                 </button>
                                 <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                               </div>
-                              {(!isCompleted || verifyingQuestId === quest.id.toString()) && (
+                              {(!isCompleted ||
+                                verifyingQuestId === quest.id.toString()) && (
                                 <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
                                   <button
                                     onClick={() => handleQuestAction(quest)}
-                                    disabled={verifyingQuestId === quest.id.toString()}
+                                    disabled={
+                                      verifyingQuestId === quest.id.toString()
+                                    }
                                     className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3 disabled:cursor-not-allowed"
                                     style={{
                                       fontVariationSettings: "'wdth' 100",
                                     }}
                                   >
                                     <p className="leading-none whitespace-pre">
-                                      {verifyingQuestId === quest.id.toString() ? 'Verifying...' : 'Verify'}
+                                      {verifyingQuestId === quest.id.toString()
+                                        ? 'Verifying...'
+                                        : 'Verify'}
                                     </p>
                                   </button>
                                   <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
