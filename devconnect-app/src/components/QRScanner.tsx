@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import Button from './Button';
 import { useLocalStorage } from 'usehooks-ts';
+import { HEIGHT_MENU } from '@/config/config';
 
 interface QRScannerProps {
   onScan?: (result: string) => void;
@@ -165,7 +166,9 @@ const QRScanner = ({
         createPortal(
           <div
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70"
-            style={{ height: `calc(100vh - ${pwa ? '91px' : '59px'})` }}
+            style={{
+              height: `calc(100vh - ${HEIGHT_MENU}px - max(0px, env(safe-area-inset-bottom))`,
+            }}
             onClick={handleClose}
           >
             <div
