@@ -92,9 +92,15 @@ export function useParaWalletConnection() {
         console.log('✅ [PARA] Sync logout completed');
       }
 
-      // Clear primary state
+      // Clear primary state and JWT cache
       if (typeof window !== 'undefined') {
         localStorage.removeItem(PRIMARY_PARA_KEY);
+        localStorage.removeItem('paraJwt');
+        localStorage.removeItem('paraJwtExpiry');
+        delete (window as any).__paraJwt;
+        delete (window as any).__paraJwtIssueAsync;
+        delete (window as any).__paraAddress;
+        console.log('🧹 [PARA] Cleared Para JWT cache from localStorage and memory');
       }
 
       console.log('✅ [PARA] Para disconnect completed');

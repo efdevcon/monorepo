@@ -118,6 +118,13 @@ export async function GET(request: NextRequest) {
 - Perfect for serverless/edge functions
 - Auto-fallback to remote if keys rotate
 
+✅ **JWT Persistence**: Para JWT stored in localStorage  
+
+- 30-day expiration (Para default)
+- Survives page refreshes
+- Auto-cleared on logout
+- Expiration validation before use
+
 ## Environment Variables
 
 ```bash

@@ -62,12 +62,21 @@ export function useInitParaJwt({
                 
                 console.log('✅ [PARA_JWT_INIT] Para JWT obtained successfully!');
                 
-                // Store the JWT in window for authService to use
-                // This is a simple way to make it available outside React context
+                // Decode to get expiration
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const expiresAt = new Date(payload.exp * 1000);
+                const ttl = Math.round((payload.exp - payload.iat) / 60);
+                console.log(`🔑 [PARA_JWT_INIT] JWT expires in ${ttl} minutes (${expiresAt.toLocaleString()})`);
+                
+                // ✨ Store in localStorage for persistence across refreshes
+                localStorage.setItem('paraJwt', token);
+                localStorage.setItem('paraJwtExpiry', payload.exp.toString());
+                
+                // Also store in window for immediate use
                 (window as any).__paraJwt = token;
                 (window as any).__paraJwtIssueAsync = issueJwtAsync;
                 
-                console.log('✅ [PARA_JWT_INIT] Para JWT stored - triggering data refresh');
+                console.log('✅ [PARA_JWT_INIT] Para JWT stored in localStorage - triggering data refresh');
                 
                 // Trigger SWR cache refresh for user data now that authentication is ready
                 mutate('/api/auth/user-data');

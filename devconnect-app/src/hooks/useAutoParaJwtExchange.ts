@@ -41,7 +41,6 @@ export function useAutoParaJwtExchange({
     const isAutoExchangeEnabled = process.env.NEXT_PUBLIC_ENABLE_AUTO_JWT_EXCHANGE === 'true';
 
     if (!isAutoExchangeEnabled) {
-      console.log('🔄 [AUTO_JWT_EXCHANGE] Disabled by default (new architecture). Set NEXT_PUBLIC_ENABLE_AUTO_JWT_EXCHANGE=true to enable.');
       return;
     }
 

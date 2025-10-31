@@ -34,6 +34,7 @@ class AuthService {
 
   /**
    * Generate auth token for Para authentication
+   * ✨ Now persists in localStorage across page refreshes
    */
   async generateParaToken(): Promise<AuthToken> {
     if (typeof para === 'undefined') {
@@ -41,11 +42,43 @@ class AuthService {
     }
 
     try {
-      // Check if we have Para JWT from useInitParaJwt
-      const cachedToken = (window as any).__paraJwt;
+      // Check memory cache first (fastest)
+      let cachedToken = (window as any).__paraJwt;
       const issueAsync = (window as any).__paraJwtIssueAsync;
 
+      // If not in memory, check localStorage
+      if (!cachedToken && typeof window !== 'undefined') {
+        const storedToken = localStorage.getItem('paraJwt');
+        const storedExpiry = localStorage.getItem('paraJwtExpiry');
+        
+        if (storedToken && storedExpiry) {
+          const expiryTimestamp = parseInt(storedExpiry);
+          const now = Math.floor(Date.now() / 1000);
+          
+          // Check if token is still valid
+          if (expiryTimestamp > now) {
+            console.log('🔑 [localStorage] Restored Para JWT from localStorage');
+            cachedToken = storedToken;
+            (window as any).__paraJwt = storedToken; // Restore to memory
+          } else {
+            console.log('⚠️ [localStorage] Stored Para JWT expired, clearing');
+            localStorage.removeItem('paraJwt');
+            localStorage.removeItem('paraJwtExpiry');
+          }
+        }
+      }
+
       if (cachedToken) {
+        // Decode to check expiration (for debugging)
+        try {
+          const payload = JSON.parse(atob(cachedToken.split('.')[1]));
+          const expiresAt = new Date(payload.exp * 1000);
+          const expiresIn = Math.round((payload.exp * 1000 - Date.now()) / 1000 / 60);
+          console.log(`🔑 Para JWT expires at: ${expiresAt.toLocaleString()} (in ${expiresIn} minutes)`);
+        } catch (e) {
+          // Ignore decode errors
+        }
+
         return {
           token: cachedToken,
           method: 'para'
@@ -55,7 +88,23 @@ class AuthService {
       // If no cached token but issueAsync is available, try to get a fresh token
       if (typeof issueAsync === 'function') {
         const { token } = await issueAsync();
-        (window as any).__paraJwt = token; // Cache it
+        
+        // Decode and store in both memory and localStorage
+        try {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          const expiresAt = new Date(payload.exp * 1000);
+          const ttl = Math.round((payload.exp - payload.iat) / 60);
+          console.log(`🔑 New Para JWT created - TTL: ${ttl} minutes, expires at: ${expiresAt.toLocaleString()}`);
+          
+          // Store in localStorage
+          localStorage.setItem('paraJwt', token);
+          localStorage.setItem('paraJwtExpiry', payload.exp.toString());
+        } catch (e) {
+          // Ignore decode errors
+        }
+        
+        (window as any).__paraJwt = token; // Cache in memory
+        
         return {
           token,
           method: 'para'
