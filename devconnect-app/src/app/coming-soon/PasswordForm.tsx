@@ -28,8 +28,8 @@ export default function PasswordForm() {
 
       if (data.success) {
         // Cookie is set by the API, redirect to home
-        router.push('/');
-        router.refresh();
+        router.push('/onboarding');
+        // router.refresh();
       } else {
         setError('Incorrect password');
         setIsLoading(false);
@@ -85,7 +85,7 @@ export default function PasswordForm() {
               fontFamily: 'var(--font-geist-sans, sans-serif)',
             }}
           >
-            {isLoading ? '...' : 'Enter'}
+            {isLoading ? 'Loading...' : 'Enter'}
           </button>
         </div>
         {error && <p className="text-red-600 text-sm text-center">{error}</p>}

@@ -13,15 +13,29 @@ export default function OnboardingPage() {
   const showLoadingOverlay = isInitialLoading || shouldSkipWalletAnimation;
 
   return (
-    <div className="min-h-screen h-full flex items-center justify-center p-4 grow">
-      <Image
+    <div
+      className="flex items-start justify-center px-4 grow overflow-y"
+      style={{
+        backgroundImage: `url(${fullWidthBackground.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        height: '100vh',
+        minHeight: 'fit-content',
+      }}
+    >
+      {/* <Image
         src={fullWidthBackground}
         alt="Midj Epic City 3"
         className="absolute inset-0 w-full h-full object-cover"
         fill
         placeholder="blur"
-      />
-      <div className="max-w-md w-full">
+      /> */}
+
+      <div
+        className="max-w-md w-full h-full"
+        style={{ marginTop: 'env(safe-area-inset-top, 0px)' }}
+      >
         <Onboarding />
       </div>
 

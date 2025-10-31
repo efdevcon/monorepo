@@ -23,6 +23,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import Loader from 'src/components/Loader';
 import Lottie from 'lottie-react';
 import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
+import Link from 'next/link';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -83,6 +84,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const { openModal } = useModal();
   const router = useRouter();
+  const [, setForceShowInstallPWA] = useLocalStorage(
+    'forceShowInstallPWA',
+    false
+  );
   const [EOA_FLOW, setEOA_FLOW] = useState(false);
   const [iFrameState, setIFrameState] = useState<
     'closed' | 'loading' | 'loaded'
@@ -571,9 +576,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       });
     } else if (isIOS) {
       // For iOS, show instructions since they can't use the install prompt
-      alert(
-        'To install this app on your iOS device:\n\n1. Tap the Share button\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add" in the top right corner'
-      );
+      setForceShowInstallPWA(true);
     }
   };
 
@@ -667,25 +670,51 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     };
   }, []);
 
+  const renderPrivacyPolicyAndTerms = () => {
+    return (
+      <div className="flex flex-row gap-2 items-center justify-center relative w-full border-[#36364c] mt-2 mb-4">
+        <p className="font-normal text-[11px] text-center leading-[1.4] m-4 my-0">
+          <span className="text-[#4b4b66]">
+            By logging in, you agree to the following: Terms and Conditions{' '}
+            <Link
+              href="https://www.getpara.com/terms-of-service"
+              target="_blank"
+              className="text-[#0073de]"
+            >
+              [1]
+            </Link>{' '}
+            <Link
+              href="https://ethereum.org/en/terms-of-use/"
+              target="_blank"
+              className="text-[#0073de]"
+            >
+              [2]
+            </Link>{' '}
+            and Privacy Policy{' '}
+            <Link
+              href="https://www.getpara.com/privacy-policy"
+              target="_blank"
+              className="text-[#0073de]"
+            >
+              [1]
+            </Link>
+            <Link
+              href="https://ethereum.org/en/privacy-policy"
+              target="_blank"
+              className="text-[#0073de]"
+            >
+              [2]
+            </Link>
+          </span>
+        </p>
+      </div>
+    );
+  };
+
   // Footer
   const renderFooter = () => {
     return (
       <>
-        <div className="flex flex-row gap-2 items-center justify-center relative w-full border-[#36364c] mt-2">
-          <p className="font-normal text-[11px] text-center leading-[1.4] m-4 my-0">
-            <span className="text-[#4b4b66]">
-              By logging in, you agree to our{' '}
-            </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Terms and Conditions
-            </span>
-            <span className="text-[#4b4b66]"> and </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Privacy Policy
-            </span>
-            <span className="text-[#4b4b66]">.</span>
-          </p>
-        </div>
         <div className="flex flex-row items-center justify-center pb-2 relative w-full border-[#36364c] mt-5">
           <img src="/images/para.png" alt="Para" className="h-4 w-auto" />
         </div>
@@ -713,9 +742,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     authState !== undefined
   ) {
     return (
-      <div className="relative size-full overflow-y-auto">
+      <div className="relative size-full">
         {/* Content Wrapper */}
-        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -782,9 +811,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Show redirecting state when connected and about to redirect
   if (isRedirecting && !isWaitingForLogin && !isWaitingForWalletCreation) {
     return (
-      <div className="relative size-full overflow-y-auto">
+      <div className="relative size-full">
         {/* Content Wrapper */}
-        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -851,9 +880,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // OTP verification screen for external wallet connection
   if (otpSent) {
     return (
-      <div className="relative size-full overflow-y-auto">
+      <div className="relative size-full">
         {/* Content Wrapper */}
-        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -899,7 +928,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   height="48"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="#1b6fae"
+                  stroke="#0073de"
                   strokeWidth="2"
                 >
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -1101,7 +1130,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     <button
                       onClick={handleOtpSubmit}
                       disabled={!otp || otp.length !== 6 || !!loading}
-                      className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                         {loading ? 'Verifying...' : 'Verify'}
@@ -1110,7 +1139,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   ) : (
                     <button
                       onClick={handleConnectWallet}
-                      className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
+                      className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
                     >
                       <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                         Connect Wallet
@@ -1140,7 +1169,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     <button
                       onClick={handleResendOtp}
                       disabled={!!loading}
-                      className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
+                      className="font-bold text-[#0073de] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
                     >
                       {loading ? 'Sending...' : 'Resend code'}
                     </button>
@@ -1151,7 +1180,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 {!otpVerified && (
                   <button
                     onClick={handleBackToWallet}
-                    className="font-bold text-[#1b6fae] text-[14px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+                    className="font-bold text-[#0073de] text-[14px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
                   >
                     Back to wallet connection
                   </button>
@@ -1177,9 +1206,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Email verification screen
   if (authState?.stage === 'verify') {
     return (
-      <div className="relative size-full overflow-y-auto">
+      <div className="relative size-full">
         {/* Content Wrapper */}
-        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -1226,7 +1255,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     height="48"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#1b6fae"
+                    stroke="#0073de"
                     strokeWidth="2"
                   >
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -1496,7 +1525,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       disabled={
                         verificationCode.length !== 6 || isVerifyingNewAccount
                       }
-                      className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                         {isVerifyingNewAccount ? 'Verifying...' : 'Verify Code'}
@@ -1520,7 +1549,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       <button
                         onClick={handleResendCode}
                         disabled={isResending}
-                        className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
+                        className="font-bold text-[#0073de] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
                       >
                         {isResending
                           ? 'Sending...'
@@ -1545,9 +1574,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Signup/Login method selection screen
   if (authState?.stage === 'signup' || authState?.stage === 'login') {
     return (
-      <div className="relative size-full overflow-y-auto">
+      <div className="relative size-full">
         {/* Content Wrapper */}
-        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -1597,7 +1626,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   <button
                     onClick={handleOpenWindowClick(authState.passkeyUrl)}
                     disabled={isWaitingForLogin || isWaitingForWalletCreation}
-                    className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50"
+                    className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50"
                   >
                     <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                       {isWaitingForLogin || isWaitingForWalletCreation
@@ -1653,9 +1682,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Get Started Container
   return (
-    <div className="relative size-full overflow-y-auto">
+    <div className="relative size-full">
       {/* Content Wrapper - centered container for logo, main content, and install PWA */}
-      <div className="relative min-h-full flex flex-col items-center justify-center gap-6 py-8 pt-0">
+      <div className="relative flex flex-col items-center justify-start gap-6 py-8">
         {/* Logo */}
         <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0">
           <img
@@ -1679,18 +1708,18 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           <div className="flex flex-col gap-0 items-start justify-start p-0 relative w-full">
             {/* Header */}
             <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3] mb-4">
-              Get started
+              Let's get set up
             </h1>
 
             {/* First, enter your email address */}
             <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
               <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-                <h2 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
-                  First, enter your email address
+                <h2 className="font-normal text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+                  Import your event tickets, enable easy crypto payments, and
+                  take part in quests.
                 </h2>
-                <p className="font-normal text-[14px] w-full leading-[1.3]">
-                  We require this to identify your account, and add your
-                  ticketing data to the app.
+                <p className="font-normal text-[16px] w-full leading-[1.3]">
+                  Use the email you used to order your ticket for instant setup.
                 </p>
               </div>
 
@@ -1704,7 +1733,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       height="16"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#7c7c99"
+                      stroke="#353548"
                       strokeWidth="2"
                     >
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -1721,7 +1750,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                         handleEmailSubmit();
                       }
                     }}
-                    className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
+                    className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#353548] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
                   />
                 </div>
               </div>
@@ -1765,7 +1794,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   !email.includes('@') ||
                   isSigningUpOrLoggingIn
                 }
-                className="bg-[#1b6fae] mb-6 flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#0073de] mb-6 flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 title={
                   mounted
                     ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUpOrLoggingIn}`
@@ -1790,7 +1819,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
               {/* Wallet creation text */}
               <p className="font-normal text-[#4b4b66] text-[12px] text-center w-full leading-[1.3]">
-                We&apos;ll create a wallet for you behind the scenes
+                A wallet will be created for you during setup
               </p>
 
               {!EOA_FLOW && renderFooter()}
@@ -1837,7 +1866,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             {/* Skip for now */}
             <button
               onClick={handleSkip}
-              className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-4"
+              className="font-bold text-[#0073de] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-4"
             >
               Skip for now
             </button>
@@ -1851,6 +1880,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 Account logout
               </button>
             )}
+
+            {renderPrivacyPolicyAndTerms()}
           </div>
           {EOA_FLOW && renderFooter()}
         </div>
