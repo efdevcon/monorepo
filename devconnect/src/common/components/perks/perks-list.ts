@@ -24,6 +24,9 @@ import BanklessImage from './images/bankless-perk.png'
 import MetanaImage from './images/metana.jpg'
 import ChainstackImage from './images/chainstack.png'
 import FortaImage from './images/forta.png'
+import SavantChatImage from './images/savant.png'
+import TAIKAIimage from './images/taikai-perk.png'
+import ProofOfTravelImage from './images/proof-of-travel.png'
 
 type Perk = {
   coupon_collection: string
@@ -424,6 +427,60 @@ const perks: Perk[] = [
     global_coupon: 'FORTDEVCON50',
     issuer: 'Forta',
     image: FortaImage,
+  },
+
+  {
+    coupon_collection: 'savant-chat-2025',
+    name: 'Savant Chat',
+    description: 'Get $100 in free credits added to your account',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Redeem the promo code in Account',
+    urls: [
+      {
+        text: 'Visit Savant Chat',
+        url: 'https://savant.chat/',
+      },
+    ],
+    global_coupon: 'DEVCONNECT25',
+    issuer: 'Savant Chat',
+    image: SavantChatImage,
+  },
+
+  {
+    coupon_collection: 'taikai-2025',
+    name: 'TAIKAI',
+    description: '20% discount on your next hackathon on TAIKAI',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Visit TAIKAI',
+        url: 'https://taikai.network/organizations',
+      },
+    ],
+    global_coupon: 'TAIKAIDEVCONNECT20',
+    issuer: 'TAIKAI',
+    image: TAIKAIimage,
+  },
+
+  {
+    coupon_collection: 'proof-of-travel-2025',
+    name: 'Proof of Travel',
+    description: 'Devconnect Travel Assistance Offer - Pay with Crypto!',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Select Devconnect plan on website',
+    external: true,
+    urls: [
+      {
+        text: 'Visit Proof of Travel',
+        url: 'https://proofoftravel.xyz/',
+      },
+    ],
+    issuer: 'Proof of Travel',
+    image: ProofOfTravelImage,
   },
 
   {
