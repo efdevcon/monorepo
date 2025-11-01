@@ -2,19 +2,33 @@ import { useState } from 'react';
 import FlexibleDrawer from 'lib/components/flexible-drawer';
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native';
 import { ChevronDownIcon, TextSearch, XIcon } from 'lucide-react';
+import Icon from '@mdi/react';
+import {
+  mdiCoffeeOutline,
+  mdiHubOutline,
+  mdiBriefcaseOutline,
+  mdiDomain,
+  mdiSoccer,
+  mdiFoodOutline,
+  mdiHandshakeOutline,
+  mdiInformationOutline,
+  mdiCashPlus,
+  mdiHumanMaleFemale,
+  mdiMicrophoneVariant,
+} from '@mdi/js';
 
 const filters = [
-  { key: 'coffee', label: 'Coffee' },
-  { key: 'community-hubs', label: 'Community Hubs' },
-  { key: 'coworking', label: 'Coworking' },
-  { key: 'districts', label: 'Districts' },
-  { key: 'entertainment', label: 'Entertainment' },
-  { key: 'food-beverage', label: 'Food & Beverage' },
-  { key: 'meeting-rooms', label: 'Meeting rooms' },
-  { key: 'onboarding', label: 'Onboarding' },
-  { key: 'onramps', label: 'Onramps' },
-  { key: 'toilets', label: 'Toilets' },
-  { key: 'stages', label: 'Stages' },
+  { icon: mdiHubOutline, key: 'community-hubs', label: 'Community Hubs' },
+  { icon: mdiBriefcaseOutline, key: 'coworking', label: 'Coworking' },
+  { icon: mdiDomain, key: 'districts', label: 'Districts' },
+  { icon: mdiSoccer, key: 'entertainment', label: 'Entertainment' },
+  { icon: mdiFoodOutline, key: 'food-beverage', label: 'Food & Beverage' },
+  { icon: mdiCoffeeOutline, key: 'coffee', label: 'Powerup Stations' },
+  { icon: mdiHandshakeOutline, key: 'meeting-rooms', label: 'Meeting rooms' },
+  { icon: mdiInformationOutline, key: 'onboarding', label: 'Onboarding' },
+  { icon: mdiCashPlus, key: 'onramps', label: 'Onramps' },
+  { icon: mdiHumanMaleFemale, key: 'toilets', label: 'Toilets' },
+  { icon: mdiMicrophoneVariant, key: 'stages', label: 'Stages' },
 ];
 
 export const SurfaceFilters = () => {
@@ -40,16 +54,19 @@ export const SurfaceFilters = () => {
     >
       <SwipeToScroll>
         <div className="flex items-center py-2 pl-2">
-          {filters.map((filter, index) => (
-            <button
-              key={filter.key}
-              className={`text-sm shrink-0 basic-button white-button small-button  ${
-                index === filters.length - 1 ? 'mr-8' : 'mr-0'
-              } ${index === 0 ? '!ml-0' : 'ml-1'}`}
-            >
-              {filter.label}
-            </button>
-          ))}
+          {filters.map((filter, index) => {
+            return (
+              <button
+                key={filter.key}
+                className={`text-sm shrink-0 basic-button white-button !px-2 small-button flex items-center gap-1 ${
+                  index === filters.length - 1 ? 'mr-8' : 'mr-0'
+                } ${index === 0 ? '!ml-0' : 'ml-2'}`}
+              >
+                <Icon path={filter.icon} size={0.5} className="shrink-0" />
+                {filter.label}
+              </button>
+            );
+          })}
           <div className="w-4 h-[1px] shrink-0"></div>
         </div>
       </SwipeToScroll>
@@ -101,20 +118,25 @@ export const ListFilters = ({
             {/* </button> */}
           </div>
           <div className="flex flex-col overflow-hidden bg-white mb-2">
-            {filters.map((filter, index) => (
-              <button
-                key={filter.key}
-                className={`
-                  flex items-center justify-between py-1.5 text-left px-4 pr-4
-                  hover:bg-gray-50 transition-colors duration-150
-                  border-b border-gray-100 last:border-b-0 font-medium
-                  text-sm
-                `}
-              >
-                <span>{filter.label}</span>
-                <ChevronDownIcon className="w-[14px] h-[14px] text-[rgba(0,115,222,1)]" />
-              </button>
-            ))}
+            {filters.map((filter, index) => {
+              return (
+                <button
+                  key={filter.key}
+                  className={`
+                    flex items-center justify-between py-1.5 text-left px-4 pr-4
+                    hover:bg-gray-50 transition-colors duration-150
+                    border-b border-gray-100 last:border-b-0 font-medium
+                    text-sm
+                  `}
+                >
+                  <span className="flex items-center gap-2">
+                    <Icon path={filter.icon} size={0.6} />
+                    {filter.label}
+                  </span>
+                  <ChevronDownIcon className="w-[14px] h-[14px] text-[rgba(0,115,222,1)]" />
+                </button>
+              );
+            })}
           </div>
         </div>
       </FlexibleDrawer>
