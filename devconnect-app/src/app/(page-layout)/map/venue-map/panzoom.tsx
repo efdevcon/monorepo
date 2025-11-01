@@ -110,19 +110,13 @@ export const usePanzoom = (
       // });
 
       // panzoomInstance.on('zoom', (e: any) => {
-      //   // console.log('zoomstart', e);)
-      //   setIsZooming(true);
-      //   // // Set a timeout to ensure the zoom animation is complete
-      //   setTimeout(() => {
-      //     setIsZooming(false);
-      //   }, 600);
+      //   console.log('zoomstart', e);
+      //   // setIsZooming(true);
       // });
 
       // panzoomInstance.on('zoomend', (e: any) => {
       //   console.log('zoomend', e);
-      //   // setTimeout(() => {
-      //   //   setIsZooming(false);
-      //   // }, 300);
+
       //   // setIsZooming(false);
       // });
 
@@ -145,12 +139,12 @@ export const usePanzoom = (
         // console.log('transform', transform);
 
         if (transform.scale > 1.6) {
-          console.log('zoomed in', zoomLevel);
+          // console.log('zoomed in', zoomLevel);
           if (zoomLevelRef.current === 'zoomed-out') {
             setZoomLevel('zoomed-in');
           }
         } else {
-          console.log('zoomed out', zoomLevel);
+          // console.log('zoomed out', zoomLevel);
           if (zoomLevelRef.current === 'zoomed-in') {
             console.log('setting zoomed out', zoomLevel);
             setZoomLevel('zoomed-out');

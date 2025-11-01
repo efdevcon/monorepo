@@ -4,11 +4,12 @@ import Map from './devconnect-map.svg';
 
 interface MapTestProps {
   onSVGElementClick: (id: string, event: React.MouseEvent<SVGElement>) => void;
+  onInteractionStart?: () => void;
 }
 
 const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
-  ({ onSVGElementClick }, ref) => {
-    const svgProps = { ...useSVGProps({ onSVGElementClick }), ref };
+  ({ onSVGElementClick, onInteractionStart }, ref) => {
+    const svgProps = { ...useSVGProps({ onSVGElementClick, onInteractionStart }), ref };
 
     return <Map {...svgProps} />;
   }

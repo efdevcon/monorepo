@@ -1,13 +1,14 @@
 import { useRef } from 'react';
 
 // Reusable props for the SVG element, can be used with any SVG element
-const useSVGProps = ({ onSVGElementClick }: any) => {
+const useSVGProps = ({ onSVGElementClick, onInteractionStart }: any) => {
   const interactionStart = useRef<{ x: number; y: number } | null>(null);
   const movementExceededThreshold = useRef(false);
 
   const handleInteractionStart = (clientX: number, clientY: number) => {
     interactionStart.current = { x: clientX, y: clientY };
     movementExceededThreshold.current = false;
+    onInteractionStart?.();
   };
 
   const handleInteractionMove = (clientX: number, clientY: number) => {

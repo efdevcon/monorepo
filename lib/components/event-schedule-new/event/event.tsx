@@ -27,6 +27,7 @@ import coworkingImage from "./cowork.webp";
 import ethDayImage from "./eth-day-bg.png";
 import ethDayLogo from "./eth-day-logo.png";
 import ethDayDialogImage from "./eth-day-updated.png";
+import communityHubsImage from "./chubs.png";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
 import { Separator } from "lib/components/ui/separator";
@@ -483,6 +484,16 @@ function Event({
                   </div>
                 )}
 
+                {isCommunityHubs && (
+                  <div className="aspect-[300/160] relative w-full overflow-hidden shrink-0">
+                    <Image
+                      src={communityHubsImage}
+                      alt={event.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+
                 {event.imageUrl && imageLoaded && (
                   <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
                     <img
@@ -624,7 +635,14 @@ function Event({
                     <div className="flex justify-between items-center gap-2 flex-wrap">
                       <div className="flex gap-2 items-center flex-wrap">
                         {showVisitSite && !hideVisitSite && (
-                          <Link href={event.eventLink} className="self-start">
+                          <Link
+                            href={
+                              isCommunityHubs
+                                ? "https://devconnect.org/community-hubs"
+                                : event.eventLink
+                            }
+                            className="self-start"
+                          >
                             <VoxelButton
                               color="blue-1"
                               size="sm"
