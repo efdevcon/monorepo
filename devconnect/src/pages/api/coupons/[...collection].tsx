@@ -99,7 +99,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'User does not have a Devconnect ticket' })
     }
 
-    const coupon = await claimSingleCoupon(perk!.zupass_proof_id ?? '', collection, claimedBy)
+    // Flatten tickets array to get all ticket secrets
+    const ticketSecrets = tickets.flatMap((order: any) => order.tickets.map((t: any) => t.secret))
+
+    if (ticketSecrets.length === 0) {
+      return res.status(400).json({ error: 'No valid ticket secrets found' })
+    }
+
+    // Try each ticket secret until we find one that hasn't been used
+    const coupon = await claimCouponWithTickets(perk!.zupass_proof_id ?? '', collection, claimedBy, ticketSecrets)
 
     return res.status(200).json({
       coupon: coupon.coupon,
@@ -197,10 +205,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
   }
 
-  // If zupass gating, use ticket owner, otherwise use ticket ID. Why:
-  // This is because the ticket id is zupass specific and not known to pretix - we are building a fallback claiming process if zupass goes down - that means we cannot claim by the ticket id found in the proof, we have to use something that works in either case (email)
-  const claimedBy = isZupassGating ? ticketOwner : ticketId
-  const coupon = await claimSingleCoupon(perk.zupass_proof_id ?? '', collection, claimedBy)
+  // Fetch tickets for the ticket owner to get ticket secrets
+  const tickets = await getPaidTicketsByEmail(ticketOwner)
+
+  if (!tickets || tickets.length === 0) {
+    return res.status(400).json({ error: 'No tickets found for this email' })
+  }
+
+  // Flatten tickets array to get all ticket secrets
+  const ticketSecrets = tickets.flatMap((order: any) => order.tickets.map((t: any) => t.secret))
+
+  if (ticketSecrets.length === 0) {
+    return res.status(400).json({ error: 'No valid ticket secrets found' })
+  }
+
+  // Try each ticket secret until we find one that hasn't been used
+  const coupon = await claimCouponWithTickets(perk.zupass_proof_id ?? '', collection, ticketOwner, ticketSecrets)
 
   return res.status(200).json({
     coupon: coupon.coupon,
@@ -295,6 +315,119 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 //     error: 'Proof verification failed',
 //   })
 // }
+
+// Claim coupon with multiple ticket attempts
+async function claimCouponWithTickets(
+  proofId: string,
+  collection: string,
+  claimedBy: string,
+  ticketSecrets: string[]
+): Promise<{
+  coupon: string | null
+  status: { success: boolean; error?: string }
+}> {
+  console.log('claimCouponWithTickets', proofId, collection, claimedBy, `${ticketSecrets.length} tickets`)
+
+  // First, check if user already has claimed a coupon for this specific collection
+  const { data: existingCoupon, error: checkError } = await supabaseAdmin
+    .from('coupons')
+    .select('value')
+    .eq('zk_proof_id', proofId)
+    .eq('collection', collection)
+    .eq('claimed_by', claimedBy)
+    .maybeSingle()
+
+  if (checkError) {
+    throw new Error(`Failed to check existing coupon: ${checkError.message}`)
+  }
+
+  // If user already has this coupon, return it
+  if (existingCoupon) {
+    return {
+      coupon: existingCoupon.value,
+      status: { success: true },
+    }
+  }
+
+  // Try each ticket secret until we find one that hasn't been used
+  for (const ticketSecret of ticketSecrets) {
+    // Check if this ticket has already been used for this collection
+    const { data: usedTicket, error: usedCheckError } = await supabaseAdmin
+      .from('coupons')
+      .select('id')
+      .eq('collection', collection)
+      .eq('ticket_used', ticketSecret)
+      .maybeSingle()
+
+    if (usedCheckError) {
+      console.error(`Failed to check if ticket is used:`, usedCheckError)
+      continue // Try next ticket
+    }
+
+    if (usedTicket) {
+      console.log(`Ticket ${ticketSecret} already used for collection ${collection}, trying next ticket`)
+      continue // This ticket was already used, try next one
+    }
+
+    // This ticket hasn't been used, try to claim with it
+    const { data: availableCoupon, error: findError } = await supabaseAdmin
+      .from('coupons')
+      .select('id, value')
+      .eq('collection', collection)
+      .eq('zk_proof_id', proofId)
+      .is('claimed_by', null)
+      .order('created_at', { ascending: true })
+      .limit(1)
+      .maybeSingle()
+
+    if (findError) {
+      console.error(`Failed to find available coupon for collection ${collection}:`, findError)
+      return {
+        coupon: null,
+        status: { success: false, error: 'Database error occurred' },
+      }
+    }
+
+    if (!availableCoupon) {
+      console.warn(`No available coupons for collection: ${collection}`)
+      return {
+        coupon: null,
+        status: { success: false, error: 'All coupons claimed' },
+      }
+    }
+
+    // Claim the coupon with this ticket
+    const { error: claimError } = await supabaseAdmin
+      .from('coupons')
+      .update({
+        claimed_by: claimedBy,
+        claimed_date: new Date().toISOString(),
+        ticket_used: ticketSecret,
+      })
+      .eq('id', availableCoupon.id)
+      .is('claimed_by', null) // Double-check it's still available
+
+    if (claimError) {
+      console.error(`Failed to claim coupon ${availableCoupon.id}:`, claimError)
+      return {
+        coupon: null,
+        status: { success: false, error: 'Database error occurred, try again.' },
+      }
+    }
+
+    // Successfully claimed!
+    return {
+      coupon: availableCoupon.value,
+      status: { success: true },
+    }
+  }
+
+  // All tickets have been used
+  return {
+    coupon: null,
+    status: { success: false, error: 'All your tickets have already been used to claim this perk' },
+  }
+}
 
 // Claim single coupon from Supabase
 async function claimSingleCoupon(
