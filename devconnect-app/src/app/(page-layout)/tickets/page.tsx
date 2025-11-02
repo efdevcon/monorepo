@@ -14,8 +14,6 @@ import {
 import { useGlobalStore } from '@/app/store.provider';
 import type { Ticket, Order } from '@/app/store';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
-import { homeTabs } from '../../navigation';
-import PageLayout from '@/components/PageLayout';
 import moment, { Moment } from 'moment';
 import cn from 'classnames';
 import {
@@ -25,6 +23,7 @@ import {
   DialogTitle,
 } from 'lib/components/ui/dialog';
 import Loader from '@/components/Loader';
+import { useUserData } from '@/hooks/useServerData';
 
 // Additional types not in store
 interface Addon {
@@ -95,10 +94,11 @@ const SwagItems = ({
 };
 
 const ConnectedEmails = () => {
-  const additionalTicketEmails = useAdditionalTicketEmails();
-  const setUserData = useGlobalStore((state) => state.setUserData);
+  // const additionalTicketEmails = useAdditionalTicketEmails();
+  // const setUserData = useGlobalStore((state) => state.setUserData);
   const email = useGlobalStore((state) => state.userData?.email);
   const { refresh } = useTickets();
+  const { additionalTicketEmails, refresh: refreshUserData } = useUserData();
 
   const [checkYourEmail, setCheckYourEmail] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
@@ -218,7 +218,8 @@ const ConnectedEmails = () => {
 
                       if (response.success) {
                         toast.success('Email verified successfully!');
-                        await ensureUserData(setUserData);
+                        // await ensureUserData(setUserData);
+                        await refreshUserData();
                         await refresh();
                       } else {
                         if (response.error) {

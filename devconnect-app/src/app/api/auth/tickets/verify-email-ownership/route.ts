@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 import { createServerClient } from '../../supabaseServerClient';
 import { ensureUser } from '../../user-data/ensure-user';
 
 /**
  * Verify Email Ownership (Part 2 of attach-email flow)
- * 
+ *
  * ✨ NOTE: This is one of the few places Supabase is still used for Para users!
  * - Verifies the OTP code sent to additional email
  * - Once verified, adds email to additional_ticket_emails array
@@ -30,7 +31,21 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
-  const { verificationCode, emailToVerify } = await request.json();
+  const { verificationCode: rawCode, emailToVerify: rawEmail } =
+    await request.json();
+
+  // Trim whitespace from inputs (common copy-paste issue)
+  const verificationCode = rawCode?.trim();
+  const emailToVerify = rawEmail?.trim().toLowerCase();
+
+  if (verificationCode.length !== 6) {
+    return NextResponse.json(
+      {
+        error: 'Verification code must be 6 digits',
+      },
+      { status: 400 }
+    );
+  }
 
   if (!verificationCode || !emailToVerify) {
     return NextResponse.json(
@@ -50,13 +65,40 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
-  const { error } = await supabase.auth.verifyOtp({
+  // Create a fresh anon client (NOT service role) for OTP verification
+  // Service role key bypasses OTP checks - we need anon key for proper verification
+  const supabaseAnon = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    }
+  );
+
+  // Add detailed logging to debug OTP issues
+  console.log('OTP verification attempt:', {
+    email: emailToVerify,
+    timestamp: new Date().toISOString(),
+    codeLength: verificationCode?.length,
+  });
+
+  const { error } = await supabaseAnon.auth.verifyOtp({
     email: emailToVerify,
     token: verificationCode,
     type: 'email',
   });
 
   if (error) {
+    console.error('OTP verification failed:', {
+      email: emailToVerify,
+      error: error.message,
+      errorCode: error.code,
+      errorStatus: error.status,
+    });
+
     return NextResponse.json(
       {
         error: 'Error verifying OTP: ' + error.message,
@@ -65,6 +107,8 @@ export const POST = async (request: NextRequest) => {
       { status: 400 }
     );
   }
+
+  console.log('OTP verified successfully for:', emailToVerify);
 
   // Calling verifyOTP writes some auth shit to that instance of supabase (PAIN to debug btw), so we need to create a new unauthed client
   const supabaseUnauthed = createServerClient();

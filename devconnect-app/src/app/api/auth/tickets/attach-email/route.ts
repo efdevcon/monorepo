@@ -47,6 +47,12 @@ export const POST = async (request: NextRequest) => {
   }
 
   /* 2 Send OTP code to user's email */
+  console.log('Sending OTP to:', {
+    email: emailToAttach,
+    requestedBy: userEmail,
+    timestamp: new Date().toISOString(),
+  });
+
   const { data, error } = await supabase.auth.signInWithOtp({
     email: emailToAttach,
     options: {
@@ -55,9 +61,11 @@ export const POST = async (request: NextRequest) => {
   });
 
   if (error) {
-    console.error(
-      'Error adding email: ' + emailToAttach + ' - ' + error.message
-    );
+    console.error('Failed to send OTP:', {
+      email: emailToAttach,
+      error: error.message,
+      errorCode: error.code,
+    });
 
     return NextResponse.json(
       {
@@ -67,6 +75,8 @@ export const POST = async (request: NextRequest) => {
       { status: 400 }
     );
   }
+
+  console.log('OTP sent successfully to:', emailToAttach);
 
   /* 3 Return success response, frontend will display status e.g. "Verify your email to continue" */
   return NextResponse.json({
