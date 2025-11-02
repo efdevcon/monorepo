@@ -192,7 +192,7 @@ const ConnectedEmails = () => {
                     <span className="font-bold">{checkYourEmail}</span>
                   </div>
                   <input
-                    type="text"
+                    type="number"
                     className="border border-neutral-300 w-full outline-none p-2 px-4 mt-2 text-center"
                     value={verificationCode}
                     placeholder="Enter verification code"
@@ -201,7 +201,7 @@ const ConnectedEmails = () => {
 
                   <button
                     className="mt-4 basic-button blue w-full"
-                    disabled={verificationCode.length !== 6}
+                    disabled={verificationCode.length !== 6 || verifyingCode}
                     onClick={async () => {
                       setVerifyingCode(true);
 
@@ -220,6 +220,7 @@ const ConnectedEmails = () => {
                         toast.success('Email verified successfully!');
                         // await ensureUserData(setUserData);
                         await refreshUserData();
+                        setExpanded(false);
                         await refresh();
                       } else {
                         if (response.error) {
