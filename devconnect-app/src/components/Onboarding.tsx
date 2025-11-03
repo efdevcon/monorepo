@@ -742,7 +742,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     authState !== undefined
   ) {
     return (
-      <div className="relative size-full">
+      <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
@@ -811,7 +811,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Show redirecting state when connected and about to redirect
   if (isRedirecting && !isWaitingForLogin && !isWaitingForWalletCreation) {
     return (
-      <div className="relative size-full">
+      <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
@@ -880,7 +880,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // OTP verification screen for external wallet connection
   if (otpSent) {
     return (
-      <div className="relative size-full">
+      <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
@@ -1206,7 +1206,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Email verification screen
   if (authState?.stage === 'verify') {
     return (
-      <div className="relative size-full">
+      <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
@@ -1574,7 +1574,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Signup/Login method selection screen
   if (authState?.stage === 'signup' || authState?.stage === 'login') {
     return (
-      <div className="relative size-full">
+      <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8">
           {/* Logo */}
@@ -1682,7 +1682,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Get Started Container
   return (
-    <div className="relative size-full">
+    <div className="relative size-full flex justify-center items-center">
       {/* Content Wrapper - centered container for logo, main content, and install PWA */}
       <div className="relative flex flex-col items-center justify-start gap-6 py-8">
         {/* Logo */}

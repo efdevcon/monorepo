@@ -96,9 +96,9 @@ export const Highlights = () => {
 
   return (
     <div className="flex flex-col w-screen md:w-auto overflow-hidden md:overflow-visible mb-4 [mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-32px),transparent_100%)]">
-      {/* <div className="flex justify-between font-bold border-top mb-3 ml-4">
+      <div className="flex justify-between font-bold border-top mb-3 ml-4">
         Highlights
-      </div> */}
+      </div>
       <SwipeToScroll>
         <div className="flex no-wrap gap-2 ml-4 pr-4 ">
           {highlights.map((highlight, index) => (

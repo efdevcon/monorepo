@@ -41,7 +41,7 @@ export default function HomePageContent() {
       <WelcomeSection />
 
       <HighlightsContainer />
-      <Separator className="mt-6 mb-0 mx-4 !w-auto" />
+      {/* <Separator className="mt-6 mb-0 mx-4 !w-auto" /> */}
       <AnnouncementsWrapper />
       <TodaysSchedule />
       <PracticalInfo />

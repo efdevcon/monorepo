@@ -22,6 +22,7 @@ import { ChevronDownIcon, Copy } from 'lucide-react';
 import { useRefreshOnAuthChange } from '@/hooks/useServerData';
 import { useUserData } from '@/hooks/useServerData';
 import Loader from '@/components/Loader';
+import Lock from '@/images/lock.png';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -92,26 +93,34 @@ export function WelcomeSection() {
         )}
 
         {!loading && !email && (
-          <div className="grow shadow-sm flex flex-col md:flex-row gap-2 justify-between">
-            <div className="flex flex-col">
-              <div className="font-medium text-base leading-tight">
-                Unlock the Ethereum World's Fair
-              </div>
-              <div className="text-xs">
-                Log in to sync your event tickets, take part in fun quests,
-                access exclusive perks, and more!
+          <div className="grow shadow-sm flex flex-col sm:flex-row gap-4 justify-between bg-white p-4 border border-[rgba(234,234,234,1)]">
+            <div className="flex items-center gap-4">
+              <Image src={Lock} alt="Lock" className="w-10 shrink-0" />
+              <div className="flex flex-col">
+                <div className="font-bold m:text-base leading-tight">
+                  Unlock the Ethereum World's Fair
+                </div>
+                <div className="text-xs">
+                  Log in to sync your event tickets, take part in fun quests,
+                  access exclusive perks, and more!
+                </div>
               </div>
             </div>
-            <Button color="blue-2" size="sm" className="shrink-0 md:self-start">
-              Sign in here
-            </Button>
+            <Link
+              href="/onboarding"
+              className="shrink-0 relative flex sm:justify-center sm:items-center"
+            >
+              <Button color="blue-2" size="sm" className="!py-1 !px-6 w-full">
+                Login
+              </Button>
+            </Link>
           </div>
         )}
       </div>
 
-      <div className="w-[120px] md:w-[140px] shrink-0 hidden md:block">
+      {/* <div className="w-[120px] md:w-[140px] shrink-0 hidden md:block">
         <DevconnectLogoWhite />
-      </div>
+      </div> */}
 
       {/* <Image
         src={DevconnectLogoWhite}
