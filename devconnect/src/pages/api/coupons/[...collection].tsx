@@ -212,7 +212,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // Quick fix for Devcon SEA; people cannot edit their email anyway.
   if (isDevcon) {
-    tickets = ['devcon_sea_email_fixed' + ticketOwner]
+    tickets = [{ tickets: [{ secret: 'devcon_sea_email_fixed_' + ticketOwner }] }]
   } else {
     tickets = await getPaidTicketsByEmail(ticketOwner)
   }
