@@ -146,10 +146,10 @@ export const PracticalInfo = () => {
       id: 'venue',
       title: 'Venue & Facilities 🏛️',
       content: (
-        <div className="text-sm space-y-2">
-          <ul className="list-disc list-inside space-y-1">
+        <div className="text-sm space-y-3">
+          <ul className="list-disc list-inside space-y-2 mt-1">
             <li>
-              <strong>Freshen up:</strong> Make your way to the{' '}
+              <strong>• Freshen up:</strong> Make your way to the{' '}
               <Link
                 href="/map?filter=toilets"
                 className="text-[rgba(0,115,222,1)] font-medium"
@@ -166,7 +166,7 @@ export const PracticalInfo = () => {
               (free coffee & snacks)
             </li>
             <li>
-              <strong>Focus work:</strong> Head to the{' '}
+              <strong>• Focus work:</strong> Head to the{' '}
               <Link
                 href="/map?filter=coworking"
                 className="text-[rgba(0,115,222,1)] font-medium"
@@ -175,7 +175,7 @@ export const PracticalInfo = () => {
               </Link>
             </li>
             <li>
-              <strong>Meetings:</strong> Book a slot in a{' '}
+              <strong>• Meetings:</strong> Book a slot in a{' '}
               <Link
                 href="/map?filter=meeting-rooms"
                 className="text-[rgba(0,115,222,1)] font-medium"
@@ -191,17 +191,20 @@ export const PracticalInfo = () => {
       id: 'city',
       title: 'City Guide 🌶️',
       content: (
-        <div className="text-sm">
-          <p>
-            <strong>City Guide:</strong> Check out our guide to learn more about{' '}
-            <Link
-              href="https://devconnect.org/buenos-aires"
-              target="_blank"
-              className="text-[rgba(0,115,222,1)] font-medium"
-            >
-              navigating Buenos Aires
-            </Link>
-          </p>
+        <div className="text-sm space-y-3">
+          <ul className="list-disc list-inside space-y-2 mt-1">
+            <li>
+              <strong>• City Guide:</strong> Check out our guide to learn more
+              about{' '}
+              <Link
+                href="https://devconnect.org/buenos-aires"
+                target="_blank"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                navigating Buenos Aires
+              </Link>
+            </li>
+          </ul>
         </div>
       ),
     },
@@ -209,17 +212,19 @@ export const PracticalInfo = () => {
       id: 'perks',
       title: 'Perks 🎁',
       content: (
-        <div className="text-sm">
-          <p>
-            <strong>Attendee Perks:</strong> Discover the cool{' '}
-            <Link
-              href="/wallet/perks"
-              className="text-[rgba(0,115,222,1)] font-medium"
-            >
-              Perks you can claim
-            </Link>{' '}
-            with your Devconnect ticket
-          </p>
+        <div className="text-sm space-y-3">
+          <ul className="list-disc list-inside space-y-2 mt-1">
+            <li>
+              <strong>• Attendee Perks:</strong> Discover the cool{' '}
+              <Link
+                href="/wallet/perks"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                Perks you can claim
+              </Link>{' '}
+              with your Devconnect ticket
+            </li>
+          </ul>
         </div>
       ),
     },
@@ -227,10 +232,10 @@ export const PracticalInfo = () => {
       id: 'community',
       title: 'Community 🌍',
       content: (
-        <div className="text-sm space-y-2">
-          <ul className="list-disc list-inside space-y-1">
+        <div className="text-sm space-y-3">
+          <ul className="list-disc list-inside space-y-2 mt-1">
             <li>
-              Prove your ticket ownership and join the{' '}
+              <strong>•</strong> Prove your ticket ownership and join the{' '}
               <Link
                 href="https://t.me/DevconPodBot?text=%2Fstart"
                 target="_blank"
@@ -240,7 +245,7 @@ export const PracticalInfo = () => {
               </Link>
             </li>
             <li>
-              Follow{' '}
+              <strong>•</strong> Follow{' '}
               <Link
                 href="https://x.com/devconnect_fun"
                 target="_blank"
@@ -250,7 +255,7 @@ export const PracticalInfo = () => {
               </Link>
             </li>
             <li>
-              Follow{' '}
+              <strong>•</strong> Follow{' '}
               <Link
                 href="https://www.instagram.com/devconnect_fun/"
                 target="_blank"
@@ -260,7 +265,7 @@ export const PracticalInfo = () => {
               </Link>
             </li>
             <li>
-              Follow{' '}
+              <strong>•</strong> Follow{' '}
               <Link
                 href="https://warpcast.com/devconnect"
                 target="_blank"
@@ -277,10 +282,10 @@ export const PracticalInfo = () => {
       id: 'safety',
       title: 'Safety & Conduct ⚠️',
       content: (
-        <div className="text-sm space-y-2">
-          <ul className="list-disc list-inside space-y-1">
+        <div className="text-sm space-y-3">
+          <ul className="list-disc list-inside space-y-2 mt-1">
             <li>
-              <strong>In Emergency:</strong>{' '}
+              <strong>• In Emergency:</strong>{' '}
               <Link
                 href="tel:911"
                 className="text-[rgba(0,115,222,1)] font-medium"
@@ -304,7 +309,7 @@ export const PracticalInfo = () => {
               fire department
             </li>
             <li>
-              <strong>Evacuation:</strong> Look for the{' '}
+              <strong>• Evacuation:</strong> Look for the{' '}
               <span className="text-green-600 font-semibold">Green Exit →</span>{' '}
               signs
             </li>
@@ -323,7 +328,7 @@ export const PracticalInfo = () => {
           {/* left col on desktop, top on mobile */}
           <div className="flex flex-col gap-1 lg:flex-1 lg:gap-0.5">
             <div className="flex justify-between items-center group">
-              <span className="font-semibold text-sm">Wi-Fi:</span>
+              <span className="font-semibold text-sm">• Wi-Fi:</span>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText('LA-RURAL-WIFI-BA25');
@@ -338,7 +343,7 @@ export const PracticalInfo = () => {
               </button>
             </div>
             <div className="flex justify-between items-center group">
-              <span className="font-semibold text-sm">Wifi Password:</span>
+              <span className="font-semibold text-sm">• Wifi Password:</span>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText('E7H3R3UM-DEVCONNECT');
@@ -353,7 +358,7 @@ export const PracticalInfo = () => {
               </button>
             </div>
             <div className="flex justify-between items-center">
-              <span className="font-semibold text-sm">Venue address:</span>
+              <span className="font-semibold text-sm">• Venue address:</span>
               <Link
                 target="_blank"
                 href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
@@ -401,7 +406,7 @@ export const PracticalInfo = () => {
               }
               className="w-full flex items-center justify-between py-2 text-left cursor-pointer"
             >
-              <span className="font-semibold text-sm">{section.title}</span>
+              <span className="font-semibold text-base">{section.title}</span>
               <ChevronDownIcon className="w-4 h-4 text-[rgba(0,115,222,1)]" />
             </button>
             {openSection === section.id && (
