@@ -13,6 +13,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { getNotionTable } from '@/services/getNotionTable';
 import moment from 'moment';
+import { MatomoAnalytics } from '@/app/matomo';
+import { Suspense } from 'react';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -345,6 +347,10 @@ export default async function RootLayout({
             </WalletsProviders>
           </NextIntlClientProvider>
         </PWAProvider>
+
+        <Suspense fallback={null}>
+          <MatomoAnalytics />
+        </Suspense>
 
         <Toaster />
         <div id="requires-auth-modal" />

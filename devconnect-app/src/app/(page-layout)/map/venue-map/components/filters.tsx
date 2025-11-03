@@ -18,7 +18,13 @@ import {
 } from '@mdi/js';
 
 const filters = [
-  { icon: mdiHubOutline, key: 'community-hubs', label: 'Community Hubs' },
+  {
+    icon: mdiHubOutline,
+    key: 'community-hubs',
+    label: 'Community Hubs',
+    size: 0.5,
+  },
+  { icon: mdiMicrophoneVariant, key: 'stages', label: 'Stages' },
   { icon: mdiBriefcaseOutline, key: 'coworking', label: 'Coworking' },
   { icon: mdiDomain, key: 'districts', label: 'Districts' },
   { icon: mdiSoccer, key: 'entertainment', label: 'Entertainment' },
@@ -28,7 +34,6 @@ const filters = [
   { icon: mdiInformationOutline, key: 'onboarding', label: 'Onboarding' },
   { icon: mdiCashPlus, key: 'onramps', label: 'Onramps' },
   { icon: mdiHumanMaleFemale, key: 'toilets', label: 'Toilets' },
-  { icon: mdiMicrophoneVariant, key: 'stages', label: 'Stages' },
 ];
 
 export const SurfaceFilters = () => {
@@ -58,11 +63,15 @@ export const SurfaceFilters = () => {
             return (
               <button
                 key={filter.key}
-                className={`text-sm shrink-0 basic-button white-button !px-2 small-button flex items-center gap-1 ${
+                className={`text-sm shrink-0 basic-button white-button !px-2 small-button flex items-center !gap-[6px] shadow-xs ${
                   index === filters.length - 1 ? 'mr-8' : 'mr-0'
                 } ${index === 0 ? '!ml-0' : 'ml-2'}`}
               >
-                <Icon path={filter.icon} size={0.5} className="shrink-0" />
+                <Icon
+                  path={filter.icon}
+                  size={filter.size || 0.6}
+                  className="shrink-0"
+                />
                 {filter.label}
               </button>
             );
@@ -84,7 +93,7 @@ export const ListFilters = ({
   return (
     <>
       <button
-        className="absolute bottom-2 left-2 flex items-center !text-[rgba(0,115,222,1)] !gap-1 !px-3s cursor-pointer z-10 basic-button white-button small-button"
+        className="absolute bottom-3 left-3 flex shadow-xs items-center !text-[rgba(0,115,222,1)] !gap-1.5 !px-2.5 !h-[auto] py-1 cursor-pointer z-10 basic-button white-button small-button"
         onClick={(e) => {
           e.stopPropagation();
           setOpen(!open);

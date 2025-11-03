@@ -349,7 +349,7 @@ export const VenueMap = () => {
 
       {/* Zoom controls */}
       <div
-        className="absolute bottom-2 right-2 flex flex-col gap-2 z-10"
+        className="absolute bottom-3 right-3 shadow-xs flex flex-col gap-2 z-10"
         onTouchStartCapture={(e) => e.stopPropagation()}
         onPointerDownCapture={(e) => e.stopPropagation()}
       >
@@ -403,7 +403,7 @@ export const VenueMap = () => {
           -
         </button> */}
         <button
-          className="basic-button white-button small-button"
+          className="basic-button white-button small-button !px-2"
           data-prevent-interaction-element={true}
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => {
