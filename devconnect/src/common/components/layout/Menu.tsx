@@ -108,12 +108,13 @@ const menuItems = (pathname: string) => [
       )
     },
     // customClass: css['ethday-rainbow'],
-    url: '/calendar?event=ethday',
+    hideIndicator: true,
+    url: 'https://ethday.devconnect.org' /*/calendar?event=ethday',
     onClick: () => {
       // Hacky but works
       // @ts-ignore
       if (typeof window !== 'undefined' && window.selectEthDay) window.selectEthDay()
-    },
+    },*/,
   },
   {
     text: 'Destino Support',
@@ -273,7 +274,7 @@ export const FooterMenu = (props: any) => {
               if (props.onClickMenuItem) props.onClickMenuItem()
               if (menuItem.onClick) menuItem.onClick()
             }}
-            indicateExternal
+            indicateExternal={typeof menuItem.hideIndicator === 'undefined' ? true : !menuItem.hideIndicator}
           >
             {typeof menuItem.text === 'function' ? menuItem.text() : menuItem.text}
           </Link>
@@ -388,7 +389,7 @@ export const Menu = (props: any) => {
             key={menuItem.text}
             href={menuItem.url}
             onClick={menuItem.onClick}
-            indicateExternal
+            indicateExternal={typeof menuItem.hideIndicator === 'undefined' ? true : !menuItem.hideIndicator}
           >
             {typeof menuItem.text === 'function' ? menuItem.text() : menuItem.text}
           </Link>
