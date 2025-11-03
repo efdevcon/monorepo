@@ -20,6 +20,7 @@ import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
 import { toast } from 'sonner';
 import { ChevronDownIcon, Copy } from 'lucide-react';
 import { useRefreshOnAuthChange } from '@/hooks/useServerData';
+import { useUserData } from '@/hooks/useServerData';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -49,17 +50,36 @@ export const LoopingHeader = () => {
 };
 
 export function WelcomeSection() {
-  const email = useGlobalStore((state) => state.userData?.email);
+  const { email } = useUserData();
   const now = useNow();
-  const dummyEmail = email || 'Anon';
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
   const formattedDate = buenosAiresTime.format('h:mm A');
+
+  // Determine greeting based on Buenos Aires time
+  const hour = now.hour();
+  let greeting = '¡Buen día!';
+  let greetingGradient =
+    'bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]';
+  if (hour >= 12 && hour < 18) {
+    greeting = '¡Buenas tardes!';
+    greetingGradient =
+      'bg-[linear-gradient(90.38deg,#F6B40E_2.42%,#74ACDF_42.51%,#97C1E7_92.08%)]';
+  } else if (hour >= 18 || hour < 4) {
+    greeting = '¡Buenas noches!';
+    greetingGradient =
+      'bg-[linear-gradient(89.84deg,#74ACDF_1.16%,#8B8BBE_45.22%,#36364C_99.72%)]';
+  }
 
   return (
     <div className="flex justify-between items-center gap-4 mb-5 px-4 max-w-screen">
       <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1">
-        <div className="text-xl self-start font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
-          ¡Buen dia!
+        <div
+          className={cn(
+            'text-xl self-start font-bold leading-none bg-clip-text text-transparent',
+            greetingGradient
+          )}
+        >
+          {greeting}
         </div>
         <div className="text-base text-[rgba(53,53,72,1)] font-medium italic truncate">
           {email || 'Anon'}
@@ -240,10 +260,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
   const events = useEvents();
   const [favorites] = useFavorites();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
-  
+
   // Refresh favorites when user logs in
   useRefreshOnAuthChange();
-  
+
   // TODO: implement more advanced filtering here, e.g. highlighted events like ethereum day , etc.
   const filteredEvents = events.filter((event) =>
     favorites.includes(event.id.toString())

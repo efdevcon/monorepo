@@ -128,7 +128,7 @@ export const AnnouncementsWrapper = () => {
 
   return (
     <div className="flex flex-col mb-6 mt-4">
-      <div className="flex flex justify-between items-center gap-2 mb-4">
+      <div className="flex justify-between items-center gap-2 mb-4">
         <div className="flex flex-col">
           <div className="flex justify-between items-center gap-2 font-bold border-top ml-4">
             Announcements
