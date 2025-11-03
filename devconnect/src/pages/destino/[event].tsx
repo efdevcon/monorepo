@@ -19,6 +19,8 @@ interface EventPageProps {
 }
 
 const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
+  if (!eventData) return <div>Error generating event page.</div>
+
   const currentUrl = `https://devconnect.org/destino/${event}?r=${Math.random().toString(36).substring(2, 8)}`
 
   const date = moment(eventData.date).format('MMMM D, YYYY')
@@ -229,22 +231,31 @@ ${currentUrl}`
 }
 
 export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
-  const eventsResponse = await fetch(
-    process.env.NODE_ENV === 'development' ? `http://localhost:4000/destino` : `https://api.devcon.org/destino`
-  )
+  try {
+    const eventsResponse = await fetch(
+      process.env.NODE_ENV === 'development' ? `http://localhost:4000/destino` : `https://api.devcon.org/destino`
+    )
 
-  const events = await eventsResponse.json()
+    const events = await eventsResponse.json()
 
-  const paths = locales.flatMap(locale =>
-    events.map((event: any) => ({
-      params: { event: `${encodeURIComponent(event.name).replace(/%20/g, '-')}-${encodeURIComponent(event.event_id)}` },
-      locale,
-    }))
-  )
+    const paths = locales.flatMap(locale =>
+      events.map((event: any) => ({
+        params: {
+          event: `${encodeURIComponent(event.name).replace(/%20/g, '-')}-${encodeURIComponent(event.event_id)}`,
+        },
+        locale,
+      }))
+    )
 
-  return {
-    paths,
-    fallback: 'blocking',
+    return {
+      paths,
+      fallback: 'blocking',
+    }
+  } catch (error) {
+    console.error('Error fetching events:', error)
+    return {
+      notFound: true,
+    }
   }
 }
 
@@ -253,24 +264,31 @@ export async function getStaticProps({ params, locale }: { params: { event: stri
   const translations = await client.queries.global_translations({ relativePath: translationPath })
   const event = decodeURIComponent(params.event).split('-').pop()
 
-  const eventDataResponse = await fetch(
-    process.env.NODE_ENV === 'development'
-      ? `http://localhost:4000/destino/${event}`
-      : `https://api.devcon.org/destino/${event}`
-  )
+  try {
+    const eventDataResponse = await fetch(
+      process.env.NODE_ENV === 'development'
+        ? `http://localhost:4000/destino/${event}`
+        : `https://api.devcon.org/destino/${event}`
+    )
 
-  const eventData = await eventDataResponse.json()
+    const eventData = await eventDataResponse.json()
 
-  return {
-    props: {
-      translations,
-      event: params.event,
-      eventData: {
-        ...eventData,
-        content: eventData.content[locale || 'en'],
+    return {
+      props: {
+        translations,
+        event: params.event,
+        eventData: {
+          ...eventData,
+          content: eventData.content[locale || 'en'],
+        },
       },
-    },
-    revalidate: 60 * 60 * 1, // Revalidate every 8 hours, just being conservative to avoid rate limiting issues as there may be a lot of events
+      revalidate: 60 * 60 * 1, // Revalidate every 8 hours, just being conservative to avoid rate limiting issues as there may be a lot of events
+    }
+  } catch (error) {
+    console.error('Error fetching event data:', error)
+    return {
+      notFound: true,
+    }
   }
 }
 
