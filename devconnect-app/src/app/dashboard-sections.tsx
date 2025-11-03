@@ -73,7 +73,7 @@ export function WelcomeSection() {
   }
 
   return (
-    <div className="flex justify-between items-center gap-4 mb-5 px-4 max-w-screen">
+    <div className="flex justify-between items-center gap-4 mb-4 px-4 max-w-screen">
       <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1 grow">
         {loading && !email && <Loader />}
         {!loading && email && (
@@ -118,9 +118,11 @@ export function WelcomeSection() {
         )}
       </div>
 
-      {/* <div className="w-[120px] md:w-[140px] shrink-0 hidden md:block">
-        <DevconnectLogoWhite />
-      </div> */}
+      {email && (
+        <div className="w-[120px] md:w-[140px] shrink-0">
+          <DevconnectLogoWhite />
+        </div>
+      )}
 
       {/* <Image
         src={DevconnectLogoWhite}
@@ -144,8 +146,44 @@ export const PracticalInfo = () => {
       id: 'venue',
       title: 'Venue & Facilities 🏛️',
       content: (
-        <div className="text-sm">
-          <p>Venue and facilities information coming soon...</p>
+        <div className="text-sm space-y-2">
+          <ul className="list-disc list-inside space-y-1">
+            <li>
+              <strong>Freshen up:</strong> Make your way to the{' '}
+              <Link
+                href="/map?filter=toilets"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                Toilets
+              </Link>{' '}
+              or{' '}
+              <Link
+                href="/map?filter=power-up-stations"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                Power-Up Stations
+              </Link>{' '}
+              (free coffee & snacks)
+            </li>
+            <li>
+              <strong>Focus work:</strong> Head to the{' '}
+              <Link
+                href="/map?filter=coworking"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                Quiet Coworking
+              </Link>
+            </li>
+            <li>
+              <strong>Meetings:</strong> Book a slot in a{' '}
+              <Link
+                href="/map?filter=meeting-rooms"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                Meeting Room
+              </Link>
+            </li>
+          </ul>
         </div>
       ),
     },
@@ -154,7 +192,16 @@ export const PracticalInfo = () => {
       title: 'City Guide 🌶️',
       content: (
         <div className="text-sm">
-          <p>City guide information coming soon...</p>
+          <p>
+            <strong>City Guide:</strong> Check out our guide to learn more about{' '}
+            <Link
+              href="https://devconnect.org/buenos-aires"
+              target="_blank"
+              className="text-[rgba(0,115,222,1)] font-medium"
+            >
+              navigating Buenos Aires
+            </Link>
+          </p>
         </div>
       ),
     },
@@ -163,7 +210,16 @@ export const PracticalInfo = () => {
       title: 'Perks 🎁',
       content: (
         <div className="text-sm">
-          <p>Perks information coming soon...</p>
+          <p>
+            <strong>Attendee Perks:</strong> Discover the cool{' '}
+            <Link
+              href="/wallet/perks"
+              className="text-[rgba(0,115,222,1)] font-medium"
+            >
+              Perks you can claim
+            </Link>{' '}
+            with your Devconnect ticket
+          </p>
         </div>
       ),
     },
@@ -171,8 +227,49 @@ export const PracticalInfo = () => {
       id: 'community',
       title: 'Community 🌍',
       content: (
-        <div className="text-sm">
-          <p>Community information coming soon...</p>
+        <div className="text-sm space-y-2">
+          <ul className="list-disc list-inside space-y-1">
+            <li>
+              Prove your ticket ownership and join the{' '}
+              <Link
+                href="https://t.me/DevconPodBot?text=%2Fstart"
+                target="_blank"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                Official Devconnect Telegram
+              </Link>
+            </li>
+            <li>
+              Follow{' '}
+              <Link
+                href="https://x.com/devconnect_fun"
+                target="_blank"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                us on Twitter
+              </Link>
+            </li>
+            <li>
+              Follow{' '}
+              <Link
+                href="https://www.instagram.com/devconnect_fun/"
+                target="_blank"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                us on Instagram
+              </Link>
+            </li>
+            <li>
+              Follow{' '}
+              <Link
+                href="https://warpcast.com/devconnect"
+                target="_blank"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                us on Farcaster
+              </Link>
+            </li>
+          </ul>
         </div>
       ),
     },
@@ -180,8 +277,38 @@ export const PracticalInfo = () => {
       id: 'safety',
       title: 'Safety & Conduct ⚠️',
       content: (
-        <div className="text-sm">
-          <p>Safety and conduct information coming soon...</p>
+        <div className="text-sm space-y-2">
+          <ul className="list-disc list-inside space-y-1">
+            <li>
+              <strong>In Emergency:</strong>{' '}
+              <Link
+                href="tel:911"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                911
+              </Link>{' '}
+              police,{' '}
+              <Link
+                href="tel:107"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                107
+              </Link>{' '}
+              ambulance,{' '}
+              <Link
+                href="tel:100"
+                className="text-[rgba(0,115,222,1)] font-medium"
+              >
+                100
+              </Link>{' '}
+              fire department
+            </li>
+            <li>
+              <strong>Evacuation:</strong> Look for the{' '}
+              <span className="text-green-600 font-semibold">Green Exit →</span>{' '}
+              signs
+            </li>
+          </ul>
         </div>
       ),
     },
