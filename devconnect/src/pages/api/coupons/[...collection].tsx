@@ -174,7 +174,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Event ID is required' })
   }
 
-  if (perk.zupass_proof_id === 'Devcon SEA') {
+  const isDevcon = perk.zupass_proof_id === 'Devcon SEA'
+
+  if (isDevcon) {
     const correctTicketId = eventId === eventIdDevcon
     if (!correctTicketId) {
       return res.status(400).json({ error: 'Invalid ticket ID' })
@@ -206,7 +208,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Fetch tickets for the ticket owner to get ticket secrets
-  const tickets = await getPaidTicketsByEmail(ticketOwner)
+  let tickets = []
+
+  // Quick fix for Devcon SEA; people cannot edit their email anyway.
+  if (isDevcon) {
+    tickets = ['devcon_sea_email_fixed' + ticketOwner]
+  } else {
+    tickets = await getPaidTicketsByEmail(ticketOwner)
+  }
 
   if (!tickets || tickets.length === 0) {
     return res.status(400).json({ error: 'No tickets found for this email' })
