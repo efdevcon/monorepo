@@ -117,7 +117,7 @@ const StagesPage = () => {
   );
 
   return (
-    <div className="flex flex-col w-full px-6 py-4">
+    <div className="flex flex-col w-full px-6 py-4 gradient-background">
       <h1 className="text-lg font-semibold mb-4">All Stages</h1>
 
       {/* Yellow Pavilion */}

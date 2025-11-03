@@ -207,13 +207,9 @@ export default function SettingsTab() {
   return (
     <div
       className={cn(
-        'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto grow',
+        'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto grow gradient-background',
         'grow pb-8'
       )}
-      style={{
-        background:
-          'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
-      }}
     >
       {/* App Section */}
       <div className="mb-6">

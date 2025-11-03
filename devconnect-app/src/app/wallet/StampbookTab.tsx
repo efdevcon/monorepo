@@ -182,13 +182,7 @@ export default function StampbookTab() {
   }, [questStates]); // Recalculate when quest states change
 
   return (
-    <div
-      className="w-full flex-1 py-4 sm:py-5 px-4 sm:px-6 pb-6"
-      style={{
-        background:
-          'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
-      }}
-    >
+    <div className="w-full flex-1 py-4 sm:py-5 px-4 sm:px-6 pb-6 gradient-background">
       {/* Content */}
       <div className="space-y-6">
         {/* Header */}
@@ -297,4 +291,3 @@ export default function StampbookTab() {
     </div>
   );
 }
-

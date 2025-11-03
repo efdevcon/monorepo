@@ -107,7 +107,7 @@ const Layout = (props: CalendarLayoutProps) => {
 
       <div className={cn("grow relative pb-12", layoutCss["layout-app"])}>
         {/* white gradient to indicate more events on the right for mobile */}
-        <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10"></div>
+        <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-[#f7fcff] via-[#f7fcff]/60 to-transparent pointer-events-none z-10"></div>
         <NewScheduleIndex
           {...props}
           events={filteredEvents}
@@ -117,7 +117,7 @@ const Layout = (props: CalendarLayoutProps) => {
           noUrlRouting
           noZupass
         />
-        <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-white via-white/60 to-transparent pointer-events-none z-10"></div>
+        <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-[#f7fcff] via-[#f7fcff]/60 to-transparent pointer-events-none z-10"></div>
       </div>
     </>
   );

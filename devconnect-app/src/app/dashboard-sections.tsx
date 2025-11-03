@@ -21,6 +21,7 @@ import { toast } from 'sonner';
 import { ChevronDownIcon, Copy } from 'lucide-react';
 import { useRefreshOnAuthChange } from '@/hooks/useServerData';
 import { useUserData } from '@/hooks/useServerData';
+import Loader from '@/components/Loader';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -50,7 +51,7 @@ export const LoopingHeader = () => {
 };
 
 export function WelcomeSection() {
-  const { email } = useUserData();
+  const { email, loading } = useUserData();
   const now = useNow();
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
   const formattedDate = buenosAiresTime.format('h:mm A');
@@ -72,21 +73,43 @@ export function WelcomeSection() {
 
   return (
     <div className="flex justify-between items-center gap-4 mb-5 px-4 max-w-screen">
-      <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1">
-        <div
-          className={cn(
-            'text-xl self-start font-bold leading-none bg-clip-text text-transparent',
-            greetingGradient
-          )}
-        >
-          {greeting}
-        </div>
-        <div className="text-base text-[rgba(53,53,72,1)] font-medium italic truncate">
-          {email || 'Anon'}
-        </div>
+      <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1 grow">
+        {loading && !email && <Loader />}
+        {!loading && email && (
+          <>
+            <div
+              className={cn(
+                'text-xl self-start font-bold leading-none bg-clip-text text-transparent',
+                greetingGradient
+              )}
+            >
+              {greeting}
+            </div>
+            <div className="text-base text-[rgba(53,53,72,1)] font-medium italic truncate">
+              {!email && !loading ? 'Anon' : email}
+            </div>
+          </>
+        )}
+
+        {!loading && !email && (
+          <div className="grow shadow-sm flex flex-col md:flex-row gap-2 justify-between">
+            <div className="flex flex-col">
+              <div className="font-medium text-base leading-tight">
+                Unlock the Ethereum World's Fair
+              </div>
+              <div className="text-xs">
+                Log in to sync your event tickets, take part in fun quests,
+                access exclusive perks, and more!
+              </div>
+            </div>
+            <Button color="blue-2" size="sm" className="shrink-0 md:self-start">
+              Sign in here
+            </Button>
+          </div>
+        )}
       </div>
 
-      <div className="w-[120px] md:w-[140px] shrink-0">
+      <div className="w-[120px] md:w-[140px] shrink-0 hidden md:block">
         <DevconnectLogoWhite />
       </div>
 
@@ -172,7 +195,7 @@ export const PracticalInfo = () => {
                     position: 'bottom-center',
                   });
                 }}
-                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)]"
+                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)] cursor-pointer"
               >
                 <span>LA-RURAL-WIFI-BA25</span>
                 <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
@@ -187,7 +210,7 @@ export const PracticalInfo = () => {
                     position: 'bottom-center',
                   });
                 }}
-                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)]"
+                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)] cursor-pointer"
               >
                 <span>E7H3R3UM-DEVCONNECT</span>
                 <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
@@ -198,9 +221,9 @@ export const PracticalInfo = () => {
               <Link
                 target="_blank"
                 href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
-                className="text-sm text-[rgba(0,115,222,1)]"
+                className="text-sm text-[rgba(0,115,222,1)] font-medium"
               >
-                <span>View on map ↗</span>
+                <span>View on map</span>
               </Link>
             </div>
           </div>
@@ -213,7 +236,7 @@ export const PracticalInfo = () => {
               <Link
                 target="_blank"
                 href="https://devconnect.com/support"
-                className="text-[rgba(0,115,222,1)]"
+                className="text-[rgba(0,115,222,1)] font-medium"
               >
                 Support FAQ
               </Link>{' '}
@@ -221,7 +244,7 @@ export const PracticalInfo = () => {
               <Link
                 target="_blank"
                 href="https://devconnect.com/onboarding"
-                className="text-[rgba(0,115,222,1)]"
+                className="text-[rgba(0,115,222,1)] font-medium"
               >
                 Onboarding Area
               </Link>

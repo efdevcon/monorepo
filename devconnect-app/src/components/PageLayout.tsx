@@ -110,109 +110,111 @@ const BackButton = React.memo(() => {
   );
 });
 
-const Tabs = React.memo(({
-  tabs = [],
-  activeIndex,
-  setActiveIndex,
-  onTabClick,
-  className,
-}: TabsProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const announcements = useAnnouncements(true);
+const Tabs = React.memo(
+  ({
+    tabs = [],
+    activeIndex,
+    setActiveIndex,
+    onTabClick,
+    className,
+  }: TabsProps) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const announcements = useAnnouncements(true);
 
-  const numberUnseenAnnouncements = announcements.filter(
-    (announcement) => !announcement.seen
-  ).length;
+    const numberUnseenAnnouncements = announcements.filter(
+      (announcement) => !announcement.seen
+    ).length;
 
-  console.log('numberUnseenAnnouncements', numberUnseenAnnouncements);
+    const handleTabClick = (tab: TabItem, idx: number) => {
+      triggerHaptic(200);
+      if (onTabClick) {
+        onTabClick(tab, idx);
+      } else if (tab.href) {
+        // If no onTabClick provided but tab has href, navigate to URL
+        router.push(tab.href);
+      } else {
+        setActiveIndex(idx);
+      }
+    };
 
-  const handleTabClick = (tab: TabItem, idx: number) => {
-    triggerHaptic(200);
-    if (onTabClick) {
-      onTabClick(tab, idx);
-    } else if (tab.href) {
-      // If no onTabClick provided but tab has href, navigate to URL
-      router.push(tab.href);
-    } else {
-      setActiveIndex(idx);
-    }
-  };
+    return (
+      <div
+        id="page-tabs"
+        className={cn(
+          'py-2 h-[47px] md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
+          '[mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-32px),transparent_100%)]',
+          tabs.length > 3 && 'justify-start',
+          className
+        )}
+      >
+        <div className="flex md:rounded shrink-0 gap-1.5 mr-3">
+          {tabs.map((tab, idx) => {
+            let isActive;
 
-  return (
-    <div
-      id="page-tabs"
-      className={cn(
-        'py-2 h-[47px] md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
-        '[mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-32px),transparent_100%)]',
-        tabs.length > 3 && 'justify-start',
-        className
-      )}
-    >
-      <div className="flex md:rounded shrink-0 gap-1.5 mr-3">
-        {tabs.map((tab, idx) => {
-          let isActive;
+            // If tab has isActive function, use it to determine if the tab is active
+            if (tab.isActive) {
+              isActive = tab.isActive(pathname);
+            } else {
+              // Otherwise use whatever we had before... I think we can remove this later, but lets keep it so I don't break anything
+              isActive = idx === activeIndex;
+            }
 
-          // If tab has isActive function, use it to determine if the tab is active
-          if (tab.isActive) {
-            isActive = tab.isActive(pathname);
-          } else {
-            // Otherwise use whatever we had before... I think we can remove this later, but lets keep it so I don't break anything
-            isActive = idx === activeIndex;
-          }
-
-          const hasHref = tab.href && tab.href !== '';
-          const tabBody = (
-            <button
-              key={tab.label}
-              type="button"
-              data-tab-index={idx}
-              className={cn(
-                'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap border-b-2 border-b-solid border-b-transparent',
-                'hover:!bg-[rgba(234,244,251,1)]',
-                isActive
-                  ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] !bg-[rgba(234,244,251,1)] !border-b-2 !border-b-solid !border-[rgba(22,90,141,1))]'
-                  : 'rounded-xs',
-                tab.labelIcon && 'pl-2'
-              )}
-              onClick={hasHref ? undefined : () => handleTabClick(tab, idx)}
-            >
-              <div
-                className={cn(
-                  'text-center justify-center text-sm font-medium leading-tight flex gap-1.5 items-center',
-                  isActive ? 'text-[#165a8d]' : 'text-[#4b4b66] cursor-pointer'
-                )}
-              >
-                {tab.labelIcon && (
-                  <tab.labelIcon color={isActive ? '#165a8d' : '#4b4b66'} />
-                )}
-                {tab.label}{' '}
-                {numberUnseenAnnouncements > 0 &&
-                  tab.href === '/announcements' &&
-                  `(${numberUnseenAnnouncements})`}
-              </div>
-            </button>
-          );
-
-          if (hasHref) {
-            return (
-              <Link
-                href={tab.href || ''}
+            const hasHref = tab.href && tab.href !== '';
+            const tabBody = (
+              <button
                 key={tab.label}
-                prefetch={true}
-                onClick={() => triggerHaptic(200)}
+                type="button"
+                data-tab-index={idx}
+                className={cn(
+                  'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap border-b-2 border-b-solid border-b-transparent',
+                  'hover:!bg-[rgba(234,244,251,1)]',
+                  isActive
+                    ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] !bg-[rgba(234,244,251,1)] !border-b-2 !border-b-solid !border-[rgba(22,90,141,1))]'
+                    : 'rounded-xs',
+                  tab.labelIcon && 'pl-2'
+                )}
+                onClick={hasHref ? undefined : () => handleTabClick(tab, idx)}
               >
-                {tabBody}
-              </Link>
+                <div
+                  className={cn(
+                    'text-center justify-center text-sm font-medium leading-tight flex gap-1.5 items-center',
+                    isActive
+                      ? 'text-[#165a8d]'
+                      : 'text-[#4b4b66] cursor-pointer'
+                  )}
+                >
+                  {tab.labelIcon && (
+                    <tab.labelIcon color={isActive ? '#165a8d' : '#4b4b66'} />
+                  )}
+                  {tab.label}{' '}
+                  {numberUnseenAnnouncements > 0 &&
+                    tab.href === '/announcements' &&
+                    `(${numberUnseenAnnouncements})`}
+                </div>
+              </button>
             );
-          } else {
-            return tabBody;
-          }
-        })}
+
+            if (hasHref) {
+              return (
+                <Link
+                  href={tab.href || ''}
+                  key={tab.label}
+                  prefetch={true}
+                  onClick={() => triggerHaptic(200)}
+                >
+                  {tabBody}
+                </Link>
+              );
+            } else {
+              return tabBody;
+            }
+          })}
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 const PageLayout = React.memo(function PageLayout({
   title,
@@ -393,7 +395,7 @@ const PageLayout = React.memo(function PageLayout({
       {/* Desktop layout */}
       {!isMobile && (
         <div
-          className="hidden md:flex flex-col items-start justify-start py-8 bg-[#f6fafe] !min-h-screen"
+          className="hidden md:flex flex-col items-start justify-start py-8 gradient-background always-gradient fixed-background grow"
           data-type="layout-desktop"
         >
           <div className="section relative">

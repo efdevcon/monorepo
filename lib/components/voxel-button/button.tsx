@@ -8,7 +8,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
     // TODO: add more colors
     if (color === "blue-1") return defaultColor;
     if (color === "blue-2")
-      return "bg-[#0073DE] border-[#125181] text-white hover:bg-[#0F8CFF] disabled:opacity-70 disabled:pointer-events-none";
+      return "bg-[#0073DE] border-[rgba(0,84,147,1)] text-white hover:bg-[#0F8CFF] disabled:opacity-70 disabled:pointer-events-none";
     if (color === "green-1")
       return "border-[#0D5424] bg-[#127331] text-white hover:bg-[#127331] disabled:opacity-70 disabled:pointer-events-none";
     if (color === "red-1")
@@ -36,7 +36,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
       {...props}
       className={cn(
         computedColor,
-        "cursor-pointer border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors hover:!border-transparent flex items-center justify-center disabled:pointer-events-none disabled:opacity-70",
+        "cursor-pointer border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors font-medium hover:!border-transparent flex items-center justify-center disabled:pointer-events-none disabled:opacity-70",
         size,
         props.className
       )}

@@ -260,7 +260,7 @@ export const VenueMap = () => {
       id="venue-container"
       className={cn(
         'relative w-full overflow-hidden grow flex py-16 px-8 md:h-[80vh]',
-        'gradient-background always-gradient',
+        'gradient-background',
         css.map,
         zoomLevel === 'zoomed-in' && css['zoomed-in'],
         zoomLevel === 'zoomed-out' && css['zoomed-out'],

@@ -17,13 +17,9 @@ export const RequiresAuthContent = ({
 }) => {
   return (
     <div
-      className={`flex items-center justify-center px-4 w-full ${
+      className={`flex items-center justify-center gradient-background px-4 w-full ${
         asModal ? 'h-full' : 'flex-1'
       }`}
-      style={{
-        background:
-          'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
-      }}
     >
       <div className="max-w-[560px] min-w-[320px] w-full mx-auto my-8">
         <div className="flex flex-col gap-4 items-center justify-center px-4 py-6">

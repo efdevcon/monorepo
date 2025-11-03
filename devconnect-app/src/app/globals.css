@@ -74,7 +74,9 @@ html {
 }
 
 /* Prevent zooming on input focus for iOS */
-input, textarea, select {
+input,
+textarea,
+select {
   font-size: 16px !important;
   transform: scale(1);
   -webkit-transform: scale(1);
@@ -82,25 +84,31 @@ input, textarea, select {
 
 /* Additional iOS zoom prevention */
 @media screen and (max-width: 768px) {
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     font-size: 16px !important;
   }
 }
 
 /* Prevent zooming on any interactive elements */
-button, a, [role="button"] {
+button,
+a,
+[role='button'] {
   touch-action: manipulation;
 }
 
 /* Prevent zooming on the entire page */
-html, body {
+html,
+body {
   /* touch-action: manipulation; */ /* Disabled: can interfere with scrolling on iOS */
   -webkit-touch-callout: none;
   /* Removed user-select: none as it can interfere with touch scrolling on iOS */
 }
 
 /* Allow text selection in inputs and other content */
-input, textarea {
+input,
+textarea {
   -webkit-user-select: text;
   -khtml-user-select: text;
   -moz-user-select: text;
@@ -109,7 +117,9 @@ input, textarea {
 }
 
 /* Prevent text selection on buttons and interactive elements only */
-button, a, [role="button"] {
+button,
+a,
+[role='button'] {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -194,12 +204,12 @@ body {
     html {
       height: 100%;
     }
-   
+
     body {
       min-height: 100vh;
       min-height: -webkit-fill-available;
     }
-    
+
     /* 
      * Pattern for position: fixed bottom elements with viewport-fit: cover:
      * 
@@ -298,11 +308,11 @@ body {
   margin: 0 auto;
   width: 100%;
   min-height: 100vh; /* Fallback for browsers that don't support svh */
-  min-height: 100svh; 
+  min-height: 100svh;
 
   /* For PWA */
   @media (display-mode: standalone) {
-    min-height: 100vh; 
+    min-height: 100vh;
   }
 
   overflow-x: hidden;
@@ -331,7 +341,7 @@ body {
       minmax(16px, 1fr) minmax(auto, var(--content-width, 1114px))
       minmax(16px, 1fr);
   }
-  
+
   .left-only {
     grid-column: 1 / 2 !important;
   }
@@ -368,22 +378,47 @@ svg.icon {
   z-index: 10000000000000 !important;
 }
 
+.basic-color {
+  background: #f7fcff;
+}
+
 .gradient-background {
-  background: white;
-  
+  background: #fafcfd;
 
   @media (max-width: 768px) {
-    background: linear-gradient(360deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%);
+    /* background: #f7fcff; */
+    background: linear-gradient(
+      360deg,
+      rgba(246, 182, 19, 0.15) 6.87%,
+      rgba(255, 133, 166, 0.15) 14.79%,
+      rgba(152, 148, 255, 0.15) 32.84%,
+      rgba(116, 172, 223, 0.15) 43.68%,
+      rgba(238, 247, 255, 0.15) 54.97%
+    ) !important;
   }
 
   &.always-gradient {
-    background: linear-gradient(360deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%) !important;
+    /* background: #f7fcff; */
+    background: linear-gradient(
+        360deg,
+        rgba(246, 182, 19, 0.15) 6.87%,
+        rgba(255, 133, 166, 0.15) 14.79%,
+        rgba(152, 148, 255, 0.15) 22.84%,
+        rgba(116, 172, 223, 0.15) 43.68%,
+        rgba(238, 247, 255, 0.15) 54.97%
+      )
+      fixed !important;
   }
 }
 
 .gradient-header {
-  background: linear-gradient(91deg, #74ACDF -26.73%, #165A8D 50.61%, #FF85A6 126.73%);
-background-blend-mode: overlay;
+  background: linear-gradient(
+    91deg,
+    #74acdf -26.73%,
+    #165a8d 50.61%,
+    #ff85a6 126.73%
+  );
+  background-blend-mode: overlay;
 }
 
 .basic-button {
@@ -420,7 +455,7 @@ background-blend-mode: overlay;
       background-color: #f5f5f5;
     }
   }
-  
+
   &.blue {
     background-color: white;
     color: rgba(27, 111, 174, 1);
@@ -452,5 +487,5 @@ background-blend-mode: overlay;
   @media (min-width: 768px) {
     padding-top: calc(32px + max(0px, env(safe-area-inset-top)));
     padding-bottom: calc(32px + max(0px, env(safe-area-inset-bottom)));
-  }  
+  }
 }

@@ -58,7 +58,7 @@ export default function AnnouncementsPageContent() {
   }, []);
 
   return (
-    <div className="mt-2 w-full pb-8 px-4 gradient-background grow">
+    <div className="pt-4 w-full pb-8 px-4 gradient-background grow">
       <div className="flex justify-center md:justify-start gap-1 mb-4 w-full text-center text-xs text-gray-600">
         With ❤️ from the Devconnect Team
       </div>
