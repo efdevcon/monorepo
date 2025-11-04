@@ -20,7 +20,10 @@ export function ServiceWorkerUpdateBanner() {
       toastIdRef.current = toast('New app version available!', {
         // description: 'Refresh to get the latest updates.',
         duration: Infinity,
-        position: 'top-center',
+        position: 'bottom-center',
+        style: {
+          paddingBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
+        },
         action: {
           label: 'Refresh Now',
           onClick: () => {
