@@ -69,6 +69,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get merchant_id from query params if provided
+    const { searchParams } = new URL(request.url);
+    const merchantId = searchParams.get('merchantId') || PAYMENT_CONFIG.MERCHANT_ID;
+
     const response = await fetch('https://api.simplefi.tech/payment_requests', {
       method: 'POST',
       headers: {
@@ -85,7 +89,7 @@ export async function POST(request: NextRequest) {
           product_name: 'Devconnect Test',
         },
         card_payment: false,
-        merchant_id: PAYMENT_CONFIG.MERCHANT_ID,
+        merchant_id: merchantId,
         // memo: 'DEVCONNECT-TEST-1-11',
       }),
     });

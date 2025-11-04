@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Button } from '@/components/ui/button';
 import { Copy, Check } from 'lucide-react';
+import { getMerchantById } from '@/config/merchants';
 
 interface PaymentRequest {
   id: string;
   order_id: number;
   amount: number;
   currency: string;
+  merchant_id?: string;
   transactions: Array<{
     id: string;
     coin: string;
@@ -28,9 +30,9 @@ export default function POSPage() {
   );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [qrCodeFormat, setQrCodeFormat] = useState<'manual' | 'eip681'>(
-    'manual'
-  );
+  const [qrCodeFormat, setQrCodeFormat] = useState<
+    'manual' | 'eip681' | 'static'
+  >('static');
   const [copiedPaymentId, setCopiedPaymentId] = useState(false);
 
   // Get cached payment request from localStorage
@@ -158,6 +160,8 @@ export default function POSPage() {
   const generateQrCodeValue = (paymentData: PaymentRequest) => {
     if (qrCodeFormat === 'manual') {
       return paymentData.checkout_url;
+    } else if (qrCodeFormat === 'static') {
+      return 'https://pay.simplefi.tech/cafe-cuyo';
     } else {
       return generateEIP681Url(paymentData);
     }
@@ -230,7 +234,7 @@ export default function POSPage() {
                     : 'text-gray-600 hover:text-gray-800'
                 }`}
               >
-                Manual
+                Dynamic
               </button>
               <button
                 onClick={() => setQrCodeFormat('eip681')}
@@ -241,6 +245,16 @@ export default function POSPage() {
                 }`}
               >
                 EIP-681
+              </button>
+              <button
+                onClick={() => setQrCodeFormat('static')}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+                  qrCodeFormat === 'static'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                Static
               </button>
             </div>
           </div>
@@ -342,7 +356,15 @@ export default function POSPage() {
         <div className="w-full mt-8">
           <h3 className="text-black text-xl font-semibold mb-4 text-center">
             <a
-              href={paymentRequest.checkout_url}
+              href={(() => {
+                // Get merchant slug from merchant_id
+                const merchant = paymentRequest.merchant_id
+                  ? getMerchantById(paymentRequest.merchant_id)
+                  : null;
+                const merchantSlug = merchant?.id || 'default';
+                // Construct new URL format: https://pay.simplefi.tech/{merchant-slug}/{payment-id}
+                return `https://pay.simplefi.tech/${merchantSlug}/${paymentRequest.id}`;
+              })()}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-600 transition-colors underline"

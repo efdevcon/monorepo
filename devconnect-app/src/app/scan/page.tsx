@@ -110,6 +110,21 @@ export default function ScanPage() {
     }
   };
 
+  // Function to check if URL is a SimpleFi merchant URL
+  const parseSimpleFiMerchantUrl = (url: string): string | null => {
+    try {
+      // Parse SimpleFi merchant URL format: https://pay.simplefi.tech/merchant-slug
+      const match = url.match(/^https:\/\/pay\.simplefi\.tech\/([^\/]+)$/);
+      if (match) {
+        return url; // Return the full URL to pass to PaymentModal
+      }
+      return null;
+    } catch (error) {
+      console.error('Error parsing SimpleFi merchant URL:', error);
+      return null;
+    }
+  };
+
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
     console.log('QR Scanner received value:', value);
@@ -120,6 +135,15 @@ export default function ScanPage() {
       console.log('QR Scanner parsed EIP-681 data:', eip681Data);
       // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
       window.open(value, '_blank');
+      return;
+    }
+
+    // Then, try to parse as SimpleFi merchant URL
+    const simpleFiMerchantUrl = parseSimpleFiMerchantUrl(value);
+    if (simpleFiMerchantUrl) {
+      console.log('QR Scanner parsed SimpleFi merchant URL:', simpleFiMerchantUrl);
+      setPaymentRequestId(simpleFiMerchantUrl); // Pass the full URL to PaymentModal
+      setIsManualPaymentOpen(true);
       return;
     }
 
