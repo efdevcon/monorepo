@@ -49,5 +49,19 @@
   status = 302
   force = true
 
+# beta
+[[redirects]]
+  from = "/beta"
+  to = "https://ef-events.notion.site/Devconnect-App-Beta-Testing-Guide-Public-2a0638cdc415813eb2f8cb5072a085ce"
+  status = 302
+  force = true
+
+# faq
+[[redirects]]
+  from = "/beta"
+  to = "https://ef-events.notion.site/Devconnect-App-Support-FAQ-29d638cdc41580ff88a7c7d43b19b0fe"
+  status = 302
+  force = true
+
 [build.environment]
 PNPM_FLAGS = "--filter devconnect..."
