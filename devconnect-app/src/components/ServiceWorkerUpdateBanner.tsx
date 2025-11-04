@@ -22,7 +22,7 @@ export function ServiceWorkerUpdateBanner() {
         duration: Infinity,
         position: 'bottom-center',
         style: {
-          paddingBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
+          marginBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
         },
         action: {
           label: 'Refresh Now',
