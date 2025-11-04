@@ -63,6 +63,7 @@ export default function PaymentModal({
     isPara,
     para,
     eoa,
+    triggerDelayedPortfolioRefresh,
   } = useWallet();
 
   // Payment details state
@@ -1111,6 +1112,16 @@ export default function PaymentModal({
     setIsRecipientValid(validateAddress(recipient));
     setIsAmountValid(validateAmount(amount));
   }, [recipient, amount]);
+
+  // Trigger portfolio refresh when transaction is confirmed
+  useEffect(() => {
+    if (txStatus === 'confirmed' && !isSimulation) {
+      console.log(
+        '💰 [PAYMENT_MODAL] Transaction confirmed, triggering delayed portfolio refresh'
+      );
+      triggerDelayedPortfolioRefresh(3000);
+    }
+  }, [txStatus, isSimulation, triggerDelayedPortfolioRefresh]);
 
   // Helper function to update amounts from a specific transaction
   const updateAmountsFromTransaction = useCallback(
