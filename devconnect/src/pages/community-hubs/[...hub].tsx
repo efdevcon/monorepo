@@ -74,7 +74,8 @@ const hubData = [
   {
     name: 'Privacy Hub',
     slug: 'privacy-hub',
-    iframeUrl: '/community-hubs/coming-soon',
+    iframeUrl:
+      'https://sheets.fileverse.io/0x76c97623ecB250Cda54b431a63c1523a5B50003c/0#key=1g_H3jaYmAs_Hm-tjJOLv3Gh9eTY1BKUo9XT8ze7qaqLBdW-Kir2Joj3df1aczyK',
   },
   {
     name: 'Real World Assets Hub',
@@ -86,7 +87,7 @@ const hubData = [
     name: 'Regen Hub',
     slug: 'regen-hub',
     iframeUrl:
-      'https://regensunite.notion.site/ebd/27a859725d2980909ba6ee9aab4029e2?v=27a859725d298011bd65000c9b79dd0a',
+      'https://sheets.fileverse.io/0x170991B85cc8020b7c45CD43d331cF774E437447/1#key=Q8iSQJ9nVeeMYCeMsUoxGH-Gt2j467PXS-7_4-NeEyGVGxy5a9zyeCy99U7s-HcP',
   },
   {
     name: 'Women in Web3 Hub',
