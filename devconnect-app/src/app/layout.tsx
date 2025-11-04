@@ -15,6 +15,7 @@ import { getNotionTable } from '@/services/getNotionTable';
 import moment from 'moment';
 import { MatomoAnalytics } from '@/app/matomo';
 import { Suspense } from 'react';
+import { SerwistProvider } from '@/app/serwist-provider';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -332,21 +333,23 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <PWAProvider>
-          <NextIntlClientProvider>
-            <WalletsProviders>
-              <GlobalStoreProvider
-                events={atprotoEvents} /*userData={userData}*/
-                announcements={announcements}
-              >
-                <WalletProvider>
-                  {children}
-                  <NewDeployment />
-                </WalletProvider>
-              </GlobalStoreProvider>
-            </WalletsProviders>
-          </NextIntlClientProvider>
-        </PWAProvider>
+        <SerwistProvider swUrl="/sw.js/sw.js" options={{ scope: '/' }}>
+          <PWAProvider>
+            <NextIntlClientProvider>
+              <WalletsProviders>
+                <GlobalStoreProvider
+                  events={atprotoEvents} /*userData={userData}*/
+                  announcements={announcements}
+                >
+                  <WalletProvider>
+                    {children}
+                    <NewDeployment />
+                  </WalletProvider>
+                </GlobalStoreProvider>
+              </WalletsProviders>
+            </NextIntlClientProvider>
+          </PWAProvider>
+        </SerwistProvider>
 
         <Suspense fallback={null}>
           <MatomoAnalytics />

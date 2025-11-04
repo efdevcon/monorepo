@@ -7,10 +7,24 @@ const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
   transpilePackages: ['lib'],
+  serverExternalPackages: ['esbuild', 'esbuild-wasm', '@esbuild/linux-x64'],
   logging: {
     fetches: {
       fullUrl: true,
     },
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Service-Worker-Allowed',
+            value: '/',
+          },
+        ],
+      },
+    ];
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {

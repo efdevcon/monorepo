@@ -55,6 +55,8 @@ export const GlobalStoreProvider = ({
     );
   }
 
+  console.log('hello everybody new sercice worker triggered');
+
   return (
     <GlobalStoreContext.Provider value={globalStoreProvider}>
       {children}
