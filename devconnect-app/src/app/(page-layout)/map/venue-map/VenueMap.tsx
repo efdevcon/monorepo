@@ -115,8 +115,12 @@ export const VenueMap = () => {
         svgElement.style.filter = 'none';
       } */ else {
         // Reset fallback
-        svgElement.style.opacity = '1';
-        svgElement.style.filter = 'none';
+        if (svgElement.style.opacity) {
+          svgElement.style.opacity = '';
+        }
+        if (svgElement.style.filter) {
+          svgElement.style.filter = '';
+        }
       }
     });
   }, [currentFilters.selection, hoveredElement, hasActiveFilters]);

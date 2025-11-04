@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react';
 import useSVGProps from './event-listeners';
-import Map from './devconnect-map.svg';
+import Map from './map-v12.svg';
 
 interface MapTestProps {
   onSVGElementClick: (id: string, event: React.MouseEvent<SVGElement>) => void;
@@ -9,7 +9,10 @@ interface MapTestProps {
 
 const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
   ({ onSVGElementClick, onInteractionStart }, ref) => {
-    const svgProps = { ...useSVGProps({ onSVGElementClick, onInteractionStart }), ref };
+    const svgProps = {
+      ...useSVGProps({ onSVGElementClick, onInteractionStart }),
+      ref,
+    };
 
     return <Map {...svgProps} />;
   }
