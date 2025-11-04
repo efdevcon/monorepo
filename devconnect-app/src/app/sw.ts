@@ -19,7 +19,8 @@ const serwist = new Serwist({
     concurrency: 10,
     cleanupOutdatedCaches: true,
   },
-  skipWaiting: true,
+  skipWaiting: false,
+  disableDevLogs: true,
   clientsClaim: true,
   navigationPreload: true,
   runtimeCaching: defaultCache,
@@ -33,6 +34,13 @@ const serwist = new Serwist({
       },
     ],
   },
+});
+
+// Listen for SKIP_WAITING message from client
+self.addEventListener('message', (event: any) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 serwist.addEventListeners();

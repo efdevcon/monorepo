@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
-import NewDeployment from '@/components/NewDeployment';
+// import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import { WalletProvider } from '@/context/WalletContext';
@@ -16,6 +16,7 @@ import moment from 'moment';
 import { MatomoAnalytics } from '@/app/matomo';
 import { Suspense } from 'react';
 import { SerwistProvider } from '@/app/serwist-provider';
+import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -343,7 +344,8 @@ export default async function RootLayout({
                 >
                   <WalletProvider>
                     {children}
-                    <NewDeployment />
+                    {/* <NewDeployment /> */}
+                    <ServiceWorkerUpdateBanner />
                   </WalletProvider>
                 </GlobalStoreProvider>
               </WalletsProviders>
@@ -355,7 +357,7 @@ export default async function RootLayout({
           <MatomoAnalytics />
         </Suspense>
 
-        <Toaster />
+        <Toaster style={{ zIndex: 100000000000 } as React.CSSProperties} />
         <div id="requires-auth-modal" />
       </body>
     </html>

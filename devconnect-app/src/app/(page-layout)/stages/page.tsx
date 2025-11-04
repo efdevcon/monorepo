@@ -126,12 +126,12 @@ const StagesPage = () => {
         <div>
           {stages.yellowPavilion.map((stage, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 {renderStageRow(stage)}
                 {/* {index !== stages.yellowPavilion.length - 1 && ( */}
                 <Separator className="my-2 grow w-auto" />
                 {/* )} */}
-              </>
+              </React.Fragment>
             );
           })}
         </div>
@@ -143,11 +143,11 @@ const StagesPage = () => {
         <div>
           {stages.greenPavilion.map((stage, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 {renderStageRow(stage)}
 
                 <Separator className="my-2 grow w-auto" />
-              </>
+              </React.Fragment>
             );
           })}
         </div>
@@ -159,11 +159,11 @@ const StagesPage = () => {
         <div>
           {stages.redPavilion.map((stage, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 {renderStageRow(stage)}
 
                 <Separator className="my-2 grow w-auto" />
-              </>
+              </React.Fragment>
             );
           })}
         </div>
@@ -175,11 +175,11 @@ const StagesPage = () => {
         <div>
           {stages.music.map((stage, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 {renderStageRow(stage)}
 
                 <Separator className="my-2 grow w-auto" />
-              </>
+              </React.Fragment>
             );
           })}
         </div>
@@ -191,11 +191,11 @@ const StagesPage = () => {
         <div>
           {stages.entertainment.map((stage, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 {renderStageRow(stage)}
 
                 <Separator className="my-2 grow w-auto" />
-              </>
+              </React.Fragment>
             );
           })}
         </div>

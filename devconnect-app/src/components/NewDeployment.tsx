@@ -7,7 +7,10 @@ import { useLocalStorage } from 'usehooks-ts';
 
 export default function NewDeployment() {
   const pathname = usePathname();
-  const [appDeploymentId, setAppDeploymentId] = useLocalStorage('app-deployment-id', '');
+  const [appDeploymentId, setAppDeploymentId] = useLocalStorage(
+    'app-deployment-id',
+    ''
+  );
   const [latestDeploymentId, setLatestDeploymentId] = useState(appDeploymentId);
 
   useEffect(() => {
@@ -52,13 +55,15 @@ export default function NewDeployment() {
   }, [appDeploymentId, setAppDeploymentId]);
 
   const newVersionAvailable =
-    latestDeploymentId && latestDeploymentId !== '' && latestDeploymentId !== appDeploymentId;
+    latestDeploymentId &&
+    latestDeploymentId !== '' &&
+    latestDeploymentId !== appDeploymentId;
 
   if (!newVersionAvailable) {
     return null;
   }
 
-  const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);  
+  const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
 
   return (
     <nav
