@@ -18,14 +18,14 @@ export function ServiceWorkerUpdateBanner() {
       }
 
       toastIdRef.current = toast('New app version available!', {
-        // description: 'Refresh to get the latest updates.',
+        description: 'Refresh to get the latest updates.',
         duration: Infinity,
         position: 'bottom-center',
         style: {
-          marginBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
+          marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
         },
         action: {
-          label: 'Refresh Now',
+          label: 'Update Now',
           onClick: () => {
             waitingWorker.postMessage({ type: 'SKIP_WAITING' });
           },
