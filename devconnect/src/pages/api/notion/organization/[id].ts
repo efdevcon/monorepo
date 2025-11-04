@@ -99,11 +99,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Process Sub-item property with individual page retrievals for detailed data
       if (propertyName === 'Sub-item') {
         const propertyData = property as any;
-        if (propertyData.relation && propertyData.relation.length > 0) {
-          // console.log(`[API Call] Processing ${propertyData.relation.length} sub-items with detailed data`);
+
+        // Fetch all relation items with pagination support
+        let allRelations: any[] = [];
+        let hasMore = true;
+        let startCursor: string | undefined = undefined;
+
+        while (hasMore) {
+          const propertyResponse: any = await notion.pages.properties.retrieve({
+            page_id: pageId,
+            property_id: propertyData.id,
+            start_cursor: startCursor,
+          });
+
+          if (propertyResponse.object === 'list' && propertyResponse.results) {
+            // Extract relation IDs from the results
+            const relationIds = propertyResponse.results
+              .filter((item: any) => item.type === 'relation')
+              .map((item: any) => item.relation);
+            allRelations = [...allRelations, ...relationIds];
+            hasMore = propertyResponse.has_more || false;
+            startCursor = propertyResponse.next_cursor || undefined;
+          } else {
+            hasMore = false;
+          }
+        }
+
+        if (allRelations.length > 0) {
+        // console.log(`[API Call] Processing ${allRelations.length} sub-items with detailed data`);
 
           const relatedPages = await Promise.all(
-            propertyData.relation.map(async (relation: any) => {
+            allRelations.map(async (relation: any) => {
               try {
                 const page = await notion.pages.retrieve({ page_id: relation.id });
                 const pageData = page as any;
@@ -225,9 +251,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
+    // Sort subItems by accreditationType
+    const sortedSubItems = subItems.sort((a, b) => {
+      return a.accreditationType.localeCompare(b.accreditationType);
+    });
+
     return res.status(200).json({
-      children: subItems,
-      count: subItems.length,
+      children: sortedSubItems,
+      count: sortedSubItems.length,
       orgName,
       descriptionLinks: {
         'accreditation guide': process.env.ACCREDITATION_GUIDE || '',
