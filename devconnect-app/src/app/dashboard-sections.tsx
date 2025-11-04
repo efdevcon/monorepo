@@ -414,15 +414,14 @@ export const PracticalInfo = () => {
               Read our{' '}
               <Link
                 target="_blank"
-                href="https://devconnect.com/support"
+                href="https://devconnect.org/faq"
                 className="text-[rgba(0,115,222,1)] font-semibold"
               >
                 Support FAQ
               </Link>{' '}
               or visit the{' '}
               <Link
-                target="_blank"
-                href="https://devconnect.com/onboarding"
+                href="/map?filter=onboarding"
                 className="text-[rgba(0,115,222,1)] font-semibold"
               >
                 Onboarding Area
