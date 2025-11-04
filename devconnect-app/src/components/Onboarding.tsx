@@ -744,7 +744,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     return (
       <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
-        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -813,7 +813,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     return (
       <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
-        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -882,7 +882,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     return (
       <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
-        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -1208,7 +1208,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     return (
       <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
-        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
@@ -1576,7 +1576,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     return (
       <div className="relative size-full flex justify-center items-center">
         {/* Content Wrapper */}
-        <div className="relative flex flex-col items-center justify-start gap-0 py-8">
+        <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
           <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
