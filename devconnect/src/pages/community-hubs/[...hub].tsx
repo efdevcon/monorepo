@@ -87,7 +87,7 @@ const hubData = [
     name: 'Regen Hub',
     slug: 'regen-hub',
     iframeUrl:
-      'https://regensunite.notion.site/ebd/27a859725d2980909ba6ee9aab4029e2?v=27a859725d298011bd65000c9b79dd0a',
+      'https://sheets.fileverse.io/0x170991B85cc8020b7c45CD43d331cF774E437447/1#key=Q8iSQJ9nVeeMYCeMsUoxGH-Gt2j467PXS-7_4-NeEyGVGxy5a9zyeCy99U7s-HcP',
   },
   {
     name: 'Women in Web3 Hub',
