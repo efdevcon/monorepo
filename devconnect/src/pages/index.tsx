@@ -63,6 +63,7 @@ import IProUpLogo from 'assets/images/ba/media-partners/iproup.png'
 import TheDefiantLogo from 'assets/images/ba/media-partners/the_defiant.png'
 import TheRollupLogo from 'assets/images/ba/media-partners/the_rollup.png'
 import { toast } from 'sonner'
+import Supporters from 'common/components/ba/supporters'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -1124,6 +1125,20 @@ const Home: NextPage = (props: any) => {
               </Link>
             </div>
           </div>
+
+          {/* <div
+            className="section relative py-8 md:py-12"
+            style={{
+              background:
+                'linear-gradient(270deg, #f6b61313 6.87%, #ff85a613 14.79%, #9894ff13 22.84%, #74acdf13 43.68%, #eef7ff50 54.97%) fixed',
+            }}
+          >
+            <div className="mb-8">
+              <h2 className="section-header black mb-6">OUR SUPPORTERS</h2>
+            </div>
+
+            <Supporters />
+          </div> */}
 
           <div className="section relative py-8 md:py-12 bg-white">
             <div className="mb-8">

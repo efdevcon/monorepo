@@ -10,60 +10,126 @@ export const getProgramming = (event: Event) => {
     // Add dummy sessions for ETH Day
     const dummySessions = [
       {
+        time: "9:00",
         title: "Opening Ceremony",
-        speakers: "Devconnect Team",
+        speakers: "-",
       },
       {
+        time: "9:30",
+        title: "Devconnect Opening",
+        speakers: "Nathan Sexer / Devconnect Team",
+      },
+      {
+        time: "9:45",
         title: "EF & Ethereum Update",
-        speakers: "Tomasz K. Stańczak",
+        speakers: "Tomasz Stanczak",
       },
       {
+        time: "10:05",
+        title: "EF & Ethereum Update",
+        speakers: "Hsiao-Wei Wang",
+      },
+      {
+        time: "10:25",
+        title: "EF Priorities (Scale L1 / L2 / UX)",
+        speakers: "Ansgar Dietrichs, Barnabé Monnot",
+      },
+      {
+        time: "10:55",
         title: "The Trillion Dollar Security initiative",
-        speakers: "Mehdi Zerouali",
+        speakers: "Fredrik Svantes, Mehdi Zerouali",
       },
       {
+        time: "11:25",
         title: "Ethereum is for Institutions and Enterprises",
         speakers: "Danny Ryan",
       },
       {
-        title: "Ethereum In 30 minutes",
+        time: "11:55",
+        title: "Ethereum (Roadmap) in 30min",
         speakers: "Vitalik Buterin",
       },
       {
-        title: "Ethereum Ecosystem overview",
-        speakers: "Jason Chaskin",
+        time: "12:30",
+        title: "LUNCH BREAK",
+        speakers: "-",
       },
       {
+        time: "13:15",
+        title:
+          "POAP: How Argentina Adopted Crypto, and what it means for the rest of us",
+        speakers: "Isabel Gonzalez",
+      },
+      {
+        time: "13:45",
         title: "Stablecoins and Argentina",
         speakers: "Mariano Conti",
       },
       {
-        title: "Local Web3 Companies (Lambda Class)",
-        speakers: "Fede",
+        time: "14:15",
+        title: "Lambda Class: Local Web3 Companies",
+        speakers: "Fede Intern",
       },
       {
-        title: "Local Web3 Companies (POAP)",
-        speakers: "Isabel Gonzalez",
-      },
-      {
-        title: "Argentina talk",
+        time: "14:45",
+        title: "Ethereum, Everywhere (All at Once)",
         speakers: "Santiago Palladino",
       },
       {
-        title: "Defi: AAVE",
-        speakers: "Stani",
+        time: "15:15",
+        title: "Ethereum Ecosystem overview",
+        speakers: "Jason Chaskin",
       },
       {
-        title: "App: Farcaster",
+        time: "12:30",
+        title: "COFFEE BREAK",
+        speakers: "-",
+      },
+      {
+        time: "16:00",
+        title: "Base Announcement",
+        speakers: "Jesse Pollak",
+      },
+      {
+        time: "16:15",
+        title: "Linea Announcement",
+        speakers: "Declan Fox",
+      },
+      {
+        time: "16:15",
+        title: "L2 Panel",
+        speakers:
+          "Josh Rudolf, Jesse Pollak, Steven Goldfeder, Mark Tyneway, Oren Katz, Alex Gluchovski",
+      },
+      {
+        time: "16:25",
+        title: "Linea",
+        speakers: "Declan Fox",
+      },
+      {
+        time: "17:25",
+        title: "Aave: The New Architecture of Credit: Programming Trust",
+        speakers: "Stani Kulechov",
+      },
+      {
+        time: "17:55",
+        title: "CowSwap: Making DeFi Truly Cross-Chain",
+        speakers: "Anna George",
+      },
+      {
+        time: "18:25",
+        title: "Farcaster: Crypto Apps and Decentralized SocialShort",
         speakers: "Linda Xie",
       },
       {
-        title: "Privacy in Ethereum",
+        time: "18:55",
+        title: "Privacy on Ethereum",
         speakers: "Peter Van Valkenburgh",
       },
       {
-        title: "Stay tuned for more programming - and speaker announcements 👀",
-        faded: true,
+        time: "19:25",
+        title: "Closing note, announcement",
+        speakers: "Nathan Sexer / Devconnect Team",
       },
     ];
 
@@ -208,10 +274,11 @@ export const Programming = ({
                   >
                     {timeblock.title}
                   </div>
-                  <div className="flex items-center gap-1 text-[11px]">
+                  <div className="flex items-center gap-1 text-[11px] leading-tight">
                     {/* <MicVocal className="w-3 h-3 shrink-0" /> */}
                     {timeblock.speakers}
                   </div>
+                  <div className="text-[11px]">{timeblock.time}</div>
                 </div>
               </div>
             );
