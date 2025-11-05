@@ -389,7 +389,7 @@ export const PracticalInfo = () => {
                 }}
                 className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)] cursor-pointer"
               >
-                <span>25</span>
+                <span>onchain25</span>
                 <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
               </button>
             </div>
