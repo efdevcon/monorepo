@@ -26,6 +26,7 @@ import {
   useSignMessage,
 } from '@getpara/react-sdk';
 import { useAlchemyBalance } from '@/hooks/useAlchemyBalance';
+import { useRouter } from 'next/navigation';
 
 type PaymentStep = 'form' | 'status';
 
@@ -42,6 +43,7 @@ export default function PaymentModal({
   isPara: _isPara = false, // Prop not needed anymore but kept for compatibility
   paymentRequestId,
 }: PaymentModalProps) {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
   const [paymentData, setPaymentData] = useState<{
     recipient: string;
@@ -1330,19 +1332,12 @@ export default function PaymentModal({
   };
 
   const handleStatusDone = useCallback(() => {
-    // Remove hash before closing
-    if (
-      typeof window !== 'undefined' &&
-      window.location.hash.startsWith('#payment_')
-    ) {
-      window.history.pushState(
-        null,
-        '',
-        window.location.pathname + window.location.search
-      );
-    }
-    onClose();
-  }, [onClose]);
+    // Redirect first, then close modal
+    // Navigation takes priority to ensure redirect completes
+    router.push('/wallet');
+    // Small delay to ensure navigation starts before modal closes
+    setTimeout(() => onClose(), 100);
+  }, [router, onClose]);
 
   const handleTryAgain = useCallback(() => {
     // Go back to form step with preserved data
@@ -1369,9 +1364,21 @@ export default function PaymentModal({
           window.location.pathname + window.location.search
         );
       }
+      // Redirect to wallet if payment was confirmed or already completed
+      const isPaymentComplete =
+        txStatus === 'confirmed' || paymentDetails.orderStatus === 'approved';
+
+      if (isPaymentComplete) {
+        // Redirect first, then close modal
+        // Navigation takes priority to ensure redirect completes
+        router.push('/wallet');
+        // Small delay to ensure navigation starts before modal closes
+        setTimeout(() => onClose(), 100);
+        return;
+      }
       onClose();
     }
-  }, [txStatus, onClose]);
+  }, [txStatus, onClose, router, paymentDetails.orderStatus]);
 
   // Check if user has insufficient balance (memoized to avoid recalculation)
   const hasInsufficientBalance = useMemo(() => {
