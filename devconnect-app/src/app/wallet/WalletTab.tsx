@@ -78,6 +78,7 @@ export default function WalletTab() {
     portfolioLoading,
     portfolioError,
     refreshPortfolio,
+    triggerDelayedPortfolioRefresh,
     email,
     paraEmail,
     supabaseEmail,
@@ -390,6 +391,17 @@ export default function WalletTab() {
       return;
     }
 
+    // Monitor popup closure and refresh portfolio when closed
+    const checkPopupClosed = setInterval(() => {
+      if (popup.closed) {
+        clearInterval(checkPopupClosed);
+        console.log(
+          '🔄 [WALLET_TAB] Peanut popup closed, refreshing portfolio'
+        );
+        triggerDelayedPortfolioRefresh(2000);
+      }
+    }, 500);
+
     try {
       const response = await fetchAuth<{ link: string; message: string }>(
         '/api/auth/claim-peanut'
@@ -409,6 +421,7 @@ export default function WalletTab() {
 
         // Close the popup
         popup.close();
+        clearInterval(checkPopupClosed);
 
         // Show error toast with dynamic content from API
         // Use info toast for "already claimed" scenarios
@@ -467,6 +480,8 @@ export default function WalletTab() {
             </body>
           </html>
         `);
+      } else {
+        clearInterval(checkPopupClosed);
       }
 
       toast.error('Failed to retrieve claim link', {
