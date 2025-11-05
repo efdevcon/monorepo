@@ -62,7 +62,6 @@ import EpicenterLogo from 'assets/images/ba/media-partners/epicenter.png'
 import IProUpLogo from 'assets/images/ba/media-partners/iproup.png'
 import TheDefiantLogo from 'assets/images/ba/media-partners/the_defiant.png'
 import TheRollupLogo from 'assets/images/ba/media-partners/the_rollup.png'
-import { toast } from 'sonner'
 import Supporters from 'common/components/ba/supporters'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
@@ -1126,19 +1125,19 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          {/* <div
+          <div
             className="section relative py-8 md:py-12"
             style={{
               background:
-                'linear-gradient(270deg, #f6b61313 6.87%, #ff85a613 14.79%, #9894ff13 22.84%, #74acdf13 43.68%, #eef7ff50 54.97%) fixed',
+                'linear-gradient(277deg, rgba(246, 182, 19, 0.10) 7.62%, rgba(255, 133, 166, 0.20) 33.39%, rgba(152, 148, 255, 0.20) 70.15%, rgba(116, 172, 223, 0.20) 87.69%)',
             }}
           >
-            <div className="mb-8">
+            <div className="mb-3">
               <h2 className="section-header black mb-6">OUR SUPPORTERS</h2>
             </div>
 
             <Supporters />
-          </div> */}
+          </div>
 
           <div className="section relative py-8 md:py-12 bg-white">
             <div className="mb-8">
