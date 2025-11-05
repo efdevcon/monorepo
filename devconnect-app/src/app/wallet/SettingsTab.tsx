@@ -216,7 +216,7 @@ export default function SettingsTab() {
         <h2 className="text-[#20202b] text-lg font-bold mb-3">App</h2>
 
         {/* Language */}
-        <button
+        {/* <button
           onClick={() => setShowLanguageModal(true)}
           className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
         >
@@ -238,7 +238,7 @@ export default function SettingsTab() {
               className="text-[#4b4b66]"
             />
           </div>
-        </button>
+        </button> */}
 
         {/* Provide Feedback */}
         <button
@@ -409,7 +409,7 @@ export default function SettingsTab() {
         </button> */}
 
         {/* Debug */}
-        {address && (
+        {/* {address && (
           <button
             onClick={handleDebugClick}
             className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
@@ -426,7 +426,7 @@ export default function SettingsTab() {
               className="text-[#4b4b66]"
             />
           </button>
-        )}
+        )} */}
 
         {/* Provided by Para */}
         <div className="flex items-center justify-center gap-3 mt-4">

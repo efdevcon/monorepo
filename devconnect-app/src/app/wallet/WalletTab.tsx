@@ -1448,6 +1448,7 @@ export default function WalletTab() {
             setSelectedPaymentId(null);
           }}
           paymentRequestId={selectedPaymentId}
+          isHistoricalPayment={true}
         />
       )}
     </div>
