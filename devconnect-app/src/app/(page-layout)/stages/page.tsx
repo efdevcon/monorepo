@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Icon from '@mdi/react';
 import { mdiMicrophoneVariant } from '@mdi/js';
 import { MapPinIcon as MapIcon } from 'lucide-react';
+import useSWR from 'swr';
 
 const stages = {
   yellowPavilion: [
@@ -80,6 +81,13 @@ const StagesPage = () => {
   if (isBetaMode) {
     return <ComingSoonMessage />;
   }
+
+  const { data: programming } = useSWR(
+    'https://devconnect.pblvrt.com/schedules',
+    fetch
+  );
+
+  console.log(programming, 'programming ay');
 
   const renderStageRow = (stage: {
     id: string;

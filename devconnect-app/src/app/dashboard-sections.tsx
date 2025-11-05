@@ -382,14 +382,14 @@ export const PracticalInfo = () => {
               <span className="font-semibold">Wi-Fi Password:</span>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText('onchain');
+                  navigator.clipboard.writeText('onchain25');
                   toast('Copied wifi password to clipboard', {
                     position: 'bottom-center',
                   });
                 }}
                 className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)] cursor-pointer"
               >
-                <span>onchain</span>
+                <span>25</span>
                 <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
               </button>
             </div>
