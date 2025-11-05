@@ -1132,7 +1132,7 @@ const Home: NextPage = (props: any) => {
                 'linear-gradient(277deg, rgba(246, 182, 19, 0.10) 7.62%, rgba(255, 133, 166, 0.20) 33.39%, rgba(152, 148, 255, 0.20) 70.15%, rgba(116, 172, 223, 0.20) 87.69%)',
             }}
           >
-            <div className="mb-3">
+            <div className="mb-3" id="supporters">
               <h2 className="section-header black mb-6">OUR SUPPORTERS</h2>
             </div>
 

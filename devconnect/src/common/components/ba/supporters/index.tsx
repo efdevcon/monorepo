@@ -121,9 +121,9 @@ const SupportersComponent = () => {
   const row3 = infiniteSupporters.filter((_, index) => index % 3 === 2)
 
   // Calculate speeds based on row length (5 seconds per item for smooth scrolling)
-  const speed1 = `${row1.length * 9}s`
-  const speed2 = `${row2.length * 10.5}s`
-  const speed3 = `${row3.length * 11}s`
+  const speed1 = `${row1.length * 12}s`
+  const speed2 = `${row2.length * 13}s`
+  const speed3 = `${row3.length * 14}s`
 
   return (
     <div
