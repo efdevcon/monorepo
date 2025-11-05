@@ -35,6 +35,7 @@ interface PaymentModalProps {
   onClose: () => void;
   isPara?: boolean;
   paymentRequestId?: string;
+  isHistoricalPayment?: boolean; // Flag to indicate viewing a completed payment (skip merchant URL resolution)
 }
 
 export default function PaymentModal({
@@ -42,6 +43,7 @@ export default function PaymentModal({
   onClose,
   isPara: _isPara = false, // Prop not needed anymore but kept for compatibility
   paymentRequestId,
+  isHistoricalPayment = false,
 }: PaymentModalProps) {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
@@ -239,7 +241,8 @@ export default function PaymentModal({
       const merchantSlug = extractMerchantSlugFromUrl(paymentRequestId);
       let actualPaymentRequestId = paymentRequestId;
 
-      if (merchantSlug) {
+      // Skip merchant URL resolution for historical payments
+      if (merchantSlug && !isHistoricalPayment) {
         console.log('Detected SimpleFi URL with merchant slug:', merchantSlug);
 
         // Find merchant by slug - look through the MERCHANTS object entries
