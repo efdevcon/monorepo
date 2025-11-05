@@ -640,6 +640,21 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
       return res.status(403).json({ error: 'Page is locked and cannot be updated' });
     }
 
+    // Exception: Allow updatin Large logo fields directly (for automated image processing)
+    const allowedDirectFields = ['Large logo'];
+    for (const allowedField of allowedDirectFields) {
+      if (formData[allowedField] !== undefined && page.properties[allowedField]) {
+        const property = page.properties[allowedField];
+        const fieldType = getFieldType(property);
+
+        if (fieldType === 'file') {
+          updates[allowedField] = {
+            files: formData[allowedField] ? [{ name: 'External File', external: { url: formData[allowedField] } }] : []
+          };
+        }
+      }
+    }
+
     // Find all properties that start with "[edit]" and update them (ignore [read] fields)
     for (const [propertyName, property] of Object.entries(page.properties)) {
       const { name: fieldName, mode } = extractFieldName(propertyName);
