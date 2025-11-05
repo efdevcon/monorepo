@@ -23,8 +23,11 @@ export async function POST(request: NextRequest) {
       // Create response with success
       const response = NextResponse.json({ success: true });
       
+      // Store password without spaces for consistent comparison
+      const normalizedPassword = password.replace(/\s/g, '');
+      
       // Set earlyAccess cookie for both types
-      response.cookies.set('earlyAccess', password, {
+      response.cookies.set('earlyAccess', normalizedPassword, {
         httpOnly: false, // Can be accessed by JavaScript
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
@@ -34,7 +37,7 @@ export async function POST(request: NextRequest) {
 
       // If beta access, also set betaAccess cookie
       if (isBetaAccess) {
-        response.cookies.set('betaAccess', password, {
+        response.cookies.set('betaAccess', normalizedPassword, {
           httpOnly: false, // Can be accessed by JavaScript
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'lax',
