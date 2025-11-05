@@ -10,6 +10,7 @@ export interface Supporter {
   locationId: string | null;
   supporterId?: string;
   logo: string;
+  largeLogo?: string;
   description: string;
   websiteLink?: string;
   twitterLink?: string;
