@@ -879,7 +879,7 @@ export default function WalletTab() {
                   }}
                 >
                   <p className="text-black text-[16px] font-bold leading-4">
-                    Claim $0.02 (USDC)
+                    Claim $2 (USDC)
                   </p>
                   <svg
                     className="w-3.5 h-3.5 text-black flex-shrink-0"
