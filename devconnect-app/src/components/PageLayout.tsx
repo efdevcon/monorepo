@@ -244,26 +244,7 @@ const PageLayout = React.memo(function PageLayout({
   const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
   // Detect iOS 26.1 with AppleWebKit
-  const [isIOS26_1, setIsIOS26_1] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const userAgent = navigator.userAgent;
-      const hasAppleWebKit = userAgent.includes('AppleWebKit');
-      const has26_1 = userAgent.includes('26.1');
-      setIsIOS26_1(hasAppleWebKit && has26_1);
-
-      // Update meta theme-color
-      if (hasAppleWebKit && has26_1) {
-        const metaThemeColor = document.querySelector(
-          'meta[name="theme-color"]'
-        );
-        if (metaThemeColor) {
-          metaThemeColor.setAttribute('content', '#3a365e');
-        }
-      }
-    }
-  }, []);
+  const [isIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
 
   /*
    * iOS PWA Viewport Fix
@@ -399,10 +380,9 @@ const PageLayout = React.memo(function PageLayout({
               paddingTop: title
                 ? `calc(${heightHeaderCalc}px + env(safe-area-inset-top, 0px))`
                 : `calc(${heightHeaderTabsCalc}px + env(safe-area-inset-top, 0px))`,
-              paddingBottom:
-                isIOS26_1 && pwa
-                  ? `calc(${HEIGHT_MENU}px)`
-                  : `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
+              paddingBottom: isIOS26_1
+                ? `152px`
+                : `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
               WebkitOverflowScrolling: 'touch', // Smooth iOS momentum scrolling
             }}
           >

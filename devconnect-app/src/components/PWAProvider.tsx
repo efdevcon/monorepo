@@ -1,19 +1,20 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import { useLocalStorage } from 'usehooks-ts'
-import InstallPWA from './PWAInstall'
+import React, { useEffect } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import InstallPWA from './PWAInstall';
 
 interface PWAProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 interface NavigatorStandalone extends Navigator {
-  standalone?: boolean
+  standalone?: boolean;
 }
 
 const PWAProvider = ({ children }: PWAProviderProps) => {
   const [pwa, setPwa] = useLocalStorage<boolean | null>('pwa', null);
+  const [, setIsIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
   const [, setShowInstallPWA] = useLocalStorage('showInstallPWA', false);
 
   useEffect(() => {
@@ -23,6 +24,18 @@ const PWAProvider = ({ children }: PWAProviderProps) => {
       pwa === true
     ) {
       setPwa(true);
+      const userAgent = navigator.userAgent;
+      const hasAppleWebKit = userAgent.includes('AppleWebKit');
+      const has26_1 = userAgent.includes('26.1');
+      if (hasAppleWebKit && has26_1) {
+        setIsIOS26_1(true);
+        const metaThemeColor = document.querySelector(
+          'meta[name="theme-color"]'
+        );
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', '#3a365e');
+        }
+      }
     } else if (typeof window !== 'undefined') {
       // Check if we're in standalone mode (already installed as PWA)
       const isStandalone = window.matchMedia(
@@ -51,8 +64,10 @@ const PWAProvider = ({ children }: PWAProviderProps) => {
         if (e.touches.length > 1) {
           // Check if the target is within a map element
           const target = e.target as Element;
-          const isMapElement = target.closest('[data-map="true"], .map-container, .leaflet-container, .mapboxgl-canvas-container, [role="application"]');
-          
+          const isMapElement = target.closest(
+            '[data-map="true"], .map-container, .leaflet-container, .mapboxgl-canvas-container, [role="application"]'
+          );
+
           if (!isMapElement) {
             e.preventDefault();
           }
@@ -66,8 +81,10 @@ const PWAProvider = ({ children }: PWAProviderProps) => {
         if (now - lastTouchEnd <= 300) {
           // Check if the target is within a map element
           const target = e.target as Element;
-          const isMapElement = target.closest('[data-map="true"], .map-container, .leaflet-container, .mapboxgl-canvas-container, [role="application"]');
-          
+          const isMapElement = target.closest(
+            '[data-map="true"], .map-container, .leaflet-container, .mapboxgl-canvas-container, [role="application"]'
+          );
+
           if (!isMapElement) {
             e.preventDefault();
           }
