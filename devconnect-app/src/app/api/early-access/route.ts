@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const isEarlyAccess = earlyAccessPassword && password === earlyAccessPassword;
-    const isBetaAccess = betaAccessPassword && password === betaAccessPassword;
+    const isEarlyAccess = earlyAccessPassword && password.replace(/\s/g, '') === earlyAccessPassword.replace(/\s/g, '');
+    const isBetaAccess = betaAccessPassword && password.replace(/\s/g, '') === betaAccessPassword.replace(/\s/g, '');
 
     if (isEarlyAccess || isBetaAccess) {
       // Create response with success
