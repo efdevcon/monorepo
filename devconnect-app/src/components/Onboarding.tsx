@@ -372,8 +372,55 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     setOtpVerified(false);
   };
 
+  // Email validation function using RFC 5322 compliant regex
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // More comprehensive validation
+    const strictEmailRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+    if (!email || email.trim() === '') {
+      return false;
+    }
+
+    // Basic checks
+    if (!emailRegex.test(email)) {
+      return false;
+    }
+
+    // Additional validation
+    if (email.length > 254) {
+      return false;
+    }
+
+    const [localPart, domain] = email.split('@');
+
+    // Local part (before @) validation
+    if (!localPart || localPart.length > 64) {
+      return false;
+    }
+
+    // Domain validation
+    if (!domain || domain.length > 253) {
+      return false;
+    }
+
+    // Check for consecutive dots
+    if (email.includes('..')) {
+      return false;
+    }
+
+    // Check if starts or ends with dot
+    if (localPart.startsWith('.') || localPart.endsWith('.')) {
+      return false;
+    }
+
+    // Use strict regex for final validation
+    return strictEmailRegex.test(email);
+  };
+
   const handleEmailSubmit = () => {
-    if (!email || !email.includes('@')) {
+    if (!email || !validateEmail(email.trim())) {
       setEmailError('Please enter a valid email address');
       return;
     }
@@ -383,7 +430,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
     signUpOrLogIn(
       {
-        auth: { email },
+        auth: { email: email.trim() },
       },
       {
         onSuccess: (authState) => {
@@ -1725,7 +1772,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
               {/* Email Input */}
               <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
-                <div className="absolute border border-solid border-zinc-200 inset-0 pointer-events-none rounded-[1px]" />
+                <div
+                  className={`absolute border border-solid inset-0 pointer-events-none rounded-[1px] ${
+                    emailError ? 'border-red-500' : 'border-zinc-200'
+                  }`}
+                />
                 <div className="basis-0 box-border content-stretch flex flex-row gap-2 grow items-center justify-start min-h-px min-w-px overflow-clip p-0 relative self-stretch shrink-0">
                   <div className="overflow-clip relative shrink-0 size-4">
                     <svg
@@ -1733,7 +1784,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       height="16"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#353548"
+                      stroke={emailError ? '#dc2626' : '#353548'}
                       strokeWidth="2"
                     >
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -1745,6 +1796,12 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     placeholder="Enter your email"
                     value={mounted ? email : ''}
                     onChange={(e) => setEmail(e.target.value)}
+                    onBlur={(e) => {
+                      const value = e.target.value.trim();
+                      if (value && !validateEmail(value)) {
+                        setEmailError('Please enter a valid email address');
+                      }
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' && mounted && email) {
                         handleEmailSubmit();
@@ -1791,13 +1848,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 disabled={
                   !mounted ||
                   !email ||
-                  !email.includes('@') ||
+                  !validateEmail(email.trim()) ||
                   isSigningUpOrLoggingIn
                 }
                 className="bg-[#0073de] mb-6 flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 title={
                   mounted
-                    ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUpOrLoggingIn}`
+                    ? `Email: "${email}", Valid: ${validateEmail(email.trim())}, Disabled: ${!email || !validateEmail(email.trim()) || isSigningUpOrLoggingIn}`
                     : 'Loading...'
                 }
               >
@@ -1828,11 +1885,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               {EOA_FLOW && (
                 <button
                   onClick={handleWalletConnect}
-                  disabled={!mounted || !email || !email.includes('@')}
+                  disabled={!mounted || !email || !validateEmail(email.trim())}
                   className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   title={
                     mounted
-                      ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@')}`
+                      ? `Email: "${email}", Valid: ${validateEmail(email.trim())}, Disabled: ${!email || !validateEmail(email.trim())}`
                       : 'Loading...'
                   }
                 >

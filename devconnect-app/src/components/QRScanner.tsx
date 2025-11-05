@@ -25,6 +25,7 @@ const QRScanner = ({
   const [error, setError] = useState<string | null>(null);
   const [permissionStatus, setPermissionStatus] = useState<string | null>(null);
   const scannerRef = useRef<HTMLDivElement>(null);
+  const [isIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
 
   // Check and monitor camera permission status
   const checkCameraPermission = useCallback(async () => {
@@ -167,7 +168,9 @@ const QRScanner = ({
           <div
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70"
             style={{
-              height: `calc(100vh - ${HEIGHT_MENU}px - max(0px, env(safe-area-inset-bottom))`,
+              height: isIOS26_1
+                ? `calc(100vh - 152px)`
+                : `calc(100vh - ${HEIGHT_MENU}px - max(0px, env(safe-area-inset-bottom))`,
             }}
             onClick={handleClose}
           >

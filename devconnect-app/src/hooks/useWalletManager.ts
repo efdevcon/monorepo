@@ -824,6 +824,23 @@ export function useWalletManager() {
     return 'Not connected';
   };
 
+  /**
+   * Trigger portfolio refresh after a delay
+   * Used to refresh portfolio after transaction completion
+   */
+  const triggerDelayedPortfolioRefresh = useCallback((delayMs: number = 3000) => {
+    console.log(`⏳ [WALLET_MANAGER] Triggering delayed portfolio refresh in ${delayMs}ms`);
+    setTimeout(() => {
+      console.log('🔄 [WALLET_MANAGER] Executing delayed portfolio refresh');
+      setPortfolioRefreshTrigger(prev => prev + 1);
+
+      // Also fetch fresh portfolio data from API
+      if (address) {
+        fetchPortfolio();
+      }
+    }, delayMs);
+  }, [address, fetchPortfolio]);
+
   useEnsureUserData(email);
 
   return {
@@ -849,6 +866,7 @@ export function useWalletManager() {
     portfolioLoading,
     portfolioError,
     refreshPortfolio: fetchPortfolio, // Manual refresh to update existing data
+    triggerDelayedPortfolioRefresh, // Delayed refresh for transaction completion
 
     // Authentication state (unified)
     email, // Unified email (Supabase or Para)

@@ -243,6 +243,9 @@ const PageLayout = React.memo(function PageLayout({
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
+  // Detect iOS 26.1 with AppleWebKit
+  const [isIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
+
   /*
    * iOS PWA Viewport Fix
    * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
@@ -271,8 +274,11 @@ const PageLayout = React.memo(function PageLayout({
                   className="w-full flex flex-col items-start gradient-header text-white"
                   style={{
                     backgroundBlendMode: 'normal, normal, overlay, normal',
-                    backdropFilter: 'blur(4px)',
+                    backdropFilter: isIOS26_1 ? undefined : 'blur(4px)',
                     paddingTop: 'env(safe-area-inset-top, 0px)',
+                    background: isIOS26_1
+                      ? '#3a365e'
+                      : 'linear-gradient(91deg, #74acdf -26.73%, #165a8d 50.61%, #ff85a6 126.73%)',
                   }}
                 >
                   <div
@@ -374,7 +380,9 @@ const PageLayout = React.memo(function PageLayout({
               paddingTop: title
                 ? `calc(${heightHeaderCalc}px + env(safe-area-inset-top, 0px))`
                 : `calc(${heightHeaderTabsCalc}px + env(safe-area-inset-top, 0px))`,
-              paddingBottom: `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
+              paddingBottom: isIOS26_1
+                ? `152px`
+                : `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
               WebkitOverflowScrolling: 'touch', // Smooth iOS momentum scrolling
             }}
           >

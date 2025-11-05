@@ -2,7 +2,7 @@
 
 import { useWallet } from '@/context/WalletContext';
 import { useRouter } from 'next/navigation';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
 import Icon from '@mdi/react';
 import { mdiLockOutline, mdiLoading } from '@mdi/js';
@@ -24,7 +24,8 @@ const imgBase =
 type SendStep = 'form' | 'status';
 
 export default function SendPage() {
-  const { address, isPara, portfolio } = useWallet();
+  const { address, isPara, portfolio, triggerDelayedPortfolioRefresh } =
+    useWallet();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<SendStep>('form');
   const [recipientAddress, setRecipientAddress] = useState('');
@@ -310,6 +311,16 @@ export default function SendPage() {
     resetTransaction();
     setCurrentStep('form');
   }, [resetTransaction]);
+
+  // Trigger portfolio refresh when transaction is confirmed
+  useEffect(() => {
+    if (txStatus === 'confirmed' && !isSimulation) {
+      console.log(
+        '💰 [SEND_TAB] Transaction confirmed, triggering delayed portfolio refresh'
+      );
+      triggerDelayedPortfolioRefresh(3000);
+    }
+  }, [txStatus, isSimulation, triggerDelayedPortfolioRefresh]);
 
   // Early return for no address - AFTER all hooks are called
   if (!address) {
