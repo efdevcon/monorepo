@@ -12,6 +12,7 @@ import { getAtprotoEvents } from '@/utils/atproto-events';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { getNotionTable } from '@/services/getNotionTable';
+import { getProgramming } from '@/utils/programming';
 import moment from 'moment';
 import { MatomoAnalytics } from '@/app/matomo';
 import { Suspense } from 'react';
@@ -131,6 +132,7 @@ export default async function RootLayout({
 
   // const t = await getTranslations();
   const atprotoEvents = await getAtprotoEvents();
+  const programming = await getProgramming();
   const announcementsRaw = await getNotionTable(
     '295638cdc41580fe8d85ff5487f71277',
     undefined,
@@ -341,6 +343,7 @@ export default async function RootLayout({
                 <GlobalStoreProvider
                   events={atprotoEvents} /*userData={userData}*/
                   announcements={announcements}
+                  programming={programming}
                 >
                   <WalletProvider>
                     {children}

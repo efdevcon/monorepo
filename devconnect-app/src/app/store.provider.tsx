@@ -9,6 +9,7 @@ import {
   createRef,
 } from 'react';
 import { useStore } from 'zustand';
+import { SWRConfig } from 'swr';
 // Context no longer needed here - wallet state managed by WalletProvider
 // import { useWallet } from '@/context/WalletContext';
 
@@ -27,6 +28,7 @@ export const GlobalStoreContext = createContext<AppStore | undefined>(
 export interface GlobalStoreProviderProps {
   children: ReactNode;
   events: AppState['events'];
+  programming: any;
   announcements?: AppState['announcements'];
   userData?: AppState['userData'];
 }
@@ -46,6 +48,7 @@ let globalStoreProvider: AppStore | null = null;
 export const GlobalStoreProvider = ({
   events,
   announcements,
+  programming,
   userData,
   children,
 }: GlobalStoreProviderProps) => {
@@ -57,7 +60,19 @@ export const GlobalStoreProvider = ({
 
   return (
     <GlobalStoreContext.Provider value={globalStoreProvider}>
-      {children}
+      <SWRConfig
+        value={{
+          fallback: {
+            '/api/auth/user-data': { success: true, data: { userData: null } },
+            'https://devconnect.pblvrt.com/schedules': {
+              success: true,
+              data: programming,
+            },
+          },
+        }}
+      >
+        {children}
+      </SWRConfig>
     </GlobalStoreContext.Provider>
   );
 };
