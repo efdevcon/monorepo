@@ -227,16 +227,22 @@ export default function ScanPage() {
 
   return (
     <PageLayout title="Scan" hasBackButton={true}>
-      <div className="max-w-xl mx-auto flex flex-col items-center p-8">
-        {/* Manual Payment Request ID Input */}
-        <div className="w-full mt-6 bg-white border border-[#c7c7d0] rounded-[4px] p-4">
-          <div className="mb-4">
-            <h2 className="text-[#353548] text-base font-bold tracking-[-0.1px]">
-              Manual payment request
-            </h2>
-          </div>
+      <div
+        className="flex-1 w-full flex items-center justify-center p-4"
+        style={{
+          background:
+            'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
+        }}
+      >
+        <div className="max-w-xl w-full flex flex-col items-center">
+          <div className="w-full bg-white border border-[#c7c7d0] rounded-[4px] p-4">
+            <div className="mb-4">
+              <h2 className="text-[#353548] text-base font-bold tracking-[-0.1px]">
+                Manual payment request
+              </h2>
+            </div>
 
-          <div className="flex gap-3 mb-4">
+            {/* <div className="flex gap-3 mb-4">
             <div className="flex-1 bg-white border border-[#ededf0] rounded-[2px] p-3">
               <input
                 type="text"
@@ -268,89 +274,88 @@ export default function ScanPage() {
             </button>
           </div>
 
-          {/* OR Divider */}
           <div className="flex items-center mb-4">
             <div className="flex-1 h-px bg-[#ededf0]"></div>
             <div className="px-2">
               <span className="text-[#4b4b66] text-xs font-normal">OR</span>
             </div>
             <div className="flex-1 h-px bg-[#ededf0]"></div>
-          </div>
+          </div> */}
 
-          {/* Merchant Selection */}
-          <div className="flex gap-3">
-            <div className="flex-1 relative">
-              <select
-                value={selectedMerchant}
-                onChange={(e) => setSelectedMerchant(e.target.value)}
-                className="w-full bg-white border border-[#ededf0] rounded-[2px] px-4 py-3 text-base font-normal tracking-[-0.1px] appearance-none cursor-pointer focus:outline-none focus:border-[#0073de]"
-              >
-                <option value="" className="text-[#868698]">
-                  Select merchant
-                </option>
-                {Object.values(MERCHANTS).map((merchant) => (
-                  <option
-                    key={merchant.id}
-                    value={merchant.id}
-                    className="text-[#353548]"
-                  >
-                    [{merchant.posNumber}] {merchant.name}
+            {/* Merchant Selection */}
+            <div className="flex gap-3">
+              <div className="flex-1 relative">
+                <select
+                  value={selectedMerchant}
+                  onChange={(e) => setSelectedMerchant(e.target.value)}
+                  className="w-full bg-white border border-[#ededf0] rounded-[2px] px-4 py-3 text-base font-normal tracking-[-0.1px] appearance-none cursor-pointer focus:outline-none focus:border-[#0073de]"
+                >
+                  <option value="" className="text-[#868698]">
+                    Select merchant
                   </option>
-                ))}
-              </select>
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M4 6L8 10L12 6"
-                    stroke="#868698"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                  {Object.values(MERCHANTS).map((merchant) => (
+                    <option
+                      key={merchant.id}
+                      value={merchant.id}
+                      className="text-[#353548]"
+                    >
+                      [{merchant.posNumber}] {merchant.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M4 6L8 10L12 6"
+                      stroke="#868698"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
+              <button
+                onClick={handleMerchantPaymentRequest}
+                disabled={isLoadingMerchantPayment || !selectedMerchant}
+                className="bg-[#0073de] text-white px-4 py-3 rounded-[1px] font-bold text-base disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {isLoadingMerchantPayment ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                ) : (
+                  'Get Order'
+                )}
+              </button>
             </div>
-            <button
-              onClick={handleMerchantPaymentRequest}
-              disabled={isLoadingMerchantPayment || !selectedMerchant}
-              className="bg-[#0073de] text-white px-4 py-3 rounded-[1px] font-bold text-base disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              {isLoadingMerchantPayment ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              ) : (
-                'Get Order'
-              )}
-            </button>
+
+            {merchantPaymentError && (
+              <div className="text-red-600 text-sm mt-3">
+                {merchantPaymentError}
+              </div>
+            )}
+
+            {manualPaymentError && (
+              <div className="text-red-600 text-sm mt-3">
+                {manualPaymentError}
+              </div>
+            )}
           </div>
 
-          {merchantPaymentError && (
-            <div className="text-red-600 text-sm mt-3">
-              {merchantPaymentError}
-            </div>
-          )}
+          <div className="flex flex-col items-center justify-center mt-6">
+            <QRScanner
+              buttonLabel="Scan Payment QR Code"
+              onScan={handleQRScan}
+              onClose={() => {
+                console.log('close');
+                // window.open(paymentRequest.checkout_url, '_blank');
+              }}
+              autoOpen={true}
+            />
+          </div>
 
-          {manualPaymentError && (
-            <div className="text-red-600 text-sm mt-3">
-              {manualPaymentError}
-            </div>
-          )}
-        </div>
-
-        <div className="flex flex-col items-center justify-center mt-6">
-          <QRScanner
-            buttonLabel="Scan Payment QR Code"
-            onScan={handleQRScan}
-            onClose={() => {
-              console.log('close');
-              // window.open(paymentRequest.checkout_url, '_blank');
-            }}
-            autoOpen={true}
-          />
-        </div>
-
-        {/* Manual Payment Button */}
-        <div className="mt-6">
-          {/* <Button
+          {/* Manual Payment Button */}
+          <div className="mt-6">
+            {/* <Button
             variant="outline"
             className="w-full flex items-center gap-2 cursor-pointer text-black"
             onClick={async () => {
@@ -361,20 +366,21 @@ export default function ScanPage() {
             <CreditCard className="h-4 w-4" />
             Re-open last payment
           </Button> */}
-        </div>
-        <div className="mt-6">
+          </div>
+          {/* <div className="mt-6">
           <a href="/pos" target="_blank" className="text-blue-600 underline">
             POS Terminal
           </a>
-        </div>
+        </div> */}
 
-        {/* Payment Modal */}
-        <PaymentModal
-          isOpen={isManualPaymentOpen}
-          onClose={() => setIsManualPaymentOpen(false)}
-          isPara={Boolean(isPara)}
-          paymentRequestId={paymentRequestId}
-        />
+          {/* Payment Modal */}
+          <PaymentModal
+            isOpen={isManualPaymentOpen}
+            onClose={() => setIsManualPaymentOpen(false)}
+            isPara={Boolean(isPara)}
+            paymentRequestId={paymentRequestId}
+          />
+        </div>
       </div>
     </PageLayout>
   );

@@ -169,8 +169,8 @@ const QRScanner = ({
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70"
             style={{
               height: isIOS26_1
-                ? `calc(100vh - 152px)`
-                : `calc(100vh - ${HEIGHT_MENU}px - max(0px, env(safe-area-inset-bottom))`,
+                ? `calc(100dvh - 93px)`
+                : `calc(100dvh - ${HEIGHT_MENU}px - max(0px, env(safe-area-inset-bottom))`,
             }}
             onClick={handleClose}
           >

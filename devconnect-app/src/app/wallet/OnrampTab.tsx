@@ -146,7 +146,8 @@ export default function OnrampTab() {
           return;
         }
 
-        const ripioUrl = `https://devcon-ramp.ripio.com/?address=${address}`;
+        const ripioUrl = `https://devcon-ramp.ripio.com/?address=${address}&token=USDC&chain=8453&amount=20000`;
+        console.log('ripioUrl', ripioUrl);
         popup.location.href = ripioUrl;
 
         // try {
