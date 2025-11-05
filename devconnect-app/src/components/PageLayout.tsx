@@ -243,6 +243,28 @@ const PageLayout = React.memo(function PageLayout({
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
+  // Detect iOS 26.1 with AppleWebKit
+  const [isIOS26_1, setIsIOS26_1] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userAgent = navigator.userAgent;
+      const hasAppleWebKit = userAgent.includes('AppleWebKit');
+      const has26_1 = userAgent.includes('26.1');
+      setIsIOS26_1(hasAppleWebKit && has26_1);
+
+      // Update meta theme-color
+      if (hasAppleWebKit && has26_1) {
+        const metaThemeColor = document.querySelector(
+          'meta[name="theme-color"]'
+        );
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', '#3a365e');
+        }
+      }
+    }
+  }, []);
+
   /*
    * iOS PWA Viewport Fix
    * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
@@ -273,6 +295,9 @@ const PageLayout = React.memo(function PageLayout({
                     backgroundBlendMode: 'normal, normal, overlay, normal',
                     backdropFilter: 'blur(4px)',
                     paddingTop: 'env(safe-area-inset-top, 0px)',
+                    background: isIOS26_1
+                      ? '#3a365e'
+                      : 'linear-gradient(91deg, #74acdf -26.73%, #165a8d 50.61%, #ff85a6 126.73%)',
                   }}
                 >
                   <div
