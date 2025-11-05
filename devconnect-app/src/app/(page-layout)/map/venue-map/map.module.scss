@@ -23,6 +23,13 @@
         }
     }
 
+    &.zoomed-in {
+        g[id='BUILDINGS-NAME'] {
+            opacity: 0;
+            pointer-events: none !important;
+        }
+    }
+
     // &.zoomed-in {
     //     g[id='Info'], g[id='Icons'] {
     //         opacity: 1;
