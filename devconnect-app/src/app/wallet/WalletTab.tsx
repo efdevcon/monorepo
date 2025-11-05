@@ -1100,7 +1100,7 @@ export default function WalletTab() {
                         onClick={handleDigitalClick}
                         className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
                       >
-                        View Add options
+                        Add Funds
                       </button>
                     </div>
                   )}
