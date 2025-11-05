@@ -1769,7 +1769,7 @@ export default function PaymentModal({
                       </Button>
 
                       {/* Simulation Button */}
-                      {isPara && (
+                      {/* {isPara && (
                         <Button
                           onClick={() => {
                             // Set payment data and move to status step
@@ -1817,7 +1817,7 @@ export default function PaymentModal({
                           </svg>
                           Simulate Payment
                         </Button>
-                      )}
+                      )} */}
                     </>
                   )}
                 </div>
