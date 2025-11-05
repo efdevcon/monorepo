@@ -98,7 +98,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
   const atprotoEvents = await fetch(
     process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4000/calendar-events'
+      ? 'https://at-slurper.onrender.com/calendar-events'
       : 'https://at-slurper.onrender.com/calendar-events'
   )
   const atprotoEventsData = await atprotoEvents.json()

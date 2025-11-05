@@ -58,7 +58,7 @@ export default function PasswordForm() {
         <div className="flex flex-col gap-3">
           <input
             id="password"
-            type="password"
+            type="text"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"

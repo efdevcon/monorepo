@@ -1,4 +1,16 @@
-import type { Supporter } from '@/types/api-data';
+export interface Supporter {
+  name: string;
+  layerName: string;
+  districtId: string | null;
+  locationId: string | null;
+  supporterId?: string;
+  logo: string;
+  largeLogo?: string;
+  description: string;
+  websiteLink?: string;
+  twitterLink?: string;
+  farcasterLink?: string;
+}
 
 export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580279504c4b4182f7f7b": {

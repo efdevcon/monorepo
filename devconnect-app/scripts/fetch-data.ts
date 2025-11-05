@@ -35,6 +35,7 @@ const API_ENDPOINT = `http://localhost:3000/api/data`;
 // Define output paths
 const DATA_DIR = path.join(__dirname, '..', 'src', 'data');
 const SUPPORTERS_FILE = path.join(DATA_DIR, 'supporters.ts');
+const SUPPORTERS_FILE_DEVCONNECT = path.join(__dirname, '..', '..', 'devconnect', 'src', 'data', 'supporters.ts');
 const POIS_FILE = path.join(DATA_DIR, 'pois.ts');
 const DISTRICTS_FILE = path.join(DATA_DIR, 'districts.ts');
 const LOCATIONS_FILE = path.join(DATA_DIR, 'locations.ts');
@@ -217,10 +218,11 @@ async function getPoiPageId(poiName: string): Promise<string | null> {
 
 /**
  * Process all Notion temporary images found in the data
+ * Returns the updated data with new URLs
  */
-async function processAllNotionImages(data: ApiResponse): Promise<number> {
+async function processAllNotionImages(data: ApiResponse): Promise<{ count: number; updatedData: ApiResponse }> {
   if (!data.success || !data.data) {
-    return 0;
+    return { count: 0, updatedData: data };
   }
 
   const { supporters, pois } = data.data;
@@ -235,8 +237,8 @@ async function processAllNotionImages(data: ApiResponse): Promise<number> {
       console.log(`   Supporter ID: ${supporterId}`);
 
       try {
-        // Get the full page ID with hyphens
-        const pageId = supporterId.match(/.{1,8}/g)?.join('-') || supporterId;
+        // Format the page ID as a proper UUID (8-4-4-4-12)
+        const pageId = `${supporterId.slice(0, 8)}-${supporterId.slice(8, 12)}-${supporterId.slice(12, 16)}-${supporterId.slice(16, 20)}-${supporterId.slice(20)}`;
 
         // Fetch password from Notion
         console.log(`   🔑 Fetching password...`);
@@ -249,6 +251,39 @@ async function processAllNotionImages(data: ApiResponse): Promise<number> {
 
         // Process the image
         const newUrl = await processNotionImage(supporter.logo, pageId, password, 'Logo');
+        // Update the data in-memory with the new URL
+        supporters[supporterId].logo = newUrl;
+        processedCount++;
+        console.log(`   ✅ Successfully processed! New URL: ${newUrl.substring(0, 80)}...`);
+      } catch (error) {
+        console.error(`   ❌ Failed to process: ${error instanceof Error ? error.message : error}`);
+      }
+    }
+  }
+
+  // Check supporters for largeLogo
+  for (const [supporterId, supporter] of Object.entries(supporters)) {
+    if (supporter.largeLogo && isNotionTemporaryUrl(supporter.largeLogo)) {
+      console.log(`\n🎯 [${processedCount + 1}] Found Notion temporary URL in supporter large logo: ${supporter.name}`);
+      console.log(`   Supporter ID: ${supporterId}`);
+
+      try {
+        // Format the page ID as a proper UUID (8-4-4-4-12)
+        const pageId = `${supporterId.slice(0, 8)}-${supporterId.slice(8, 12)}-${supporterId.slice(12, 16)}-${supporterId.slice(16, 20)}-${supporterId.slice(20)}`;
+
+        // Fetch password from Notion
+        console.log(`   🔑 Fetching password...`);
+        const password = await getNotionPagePassword(pageId);
+
+        if (!password) {
+          console.error(`   ❌ Could not fetch password - skipping`);
+          continue;
+        }
+
+        // Process the image
+        const newUrl = await processNotionImage(supporter.largeLogo, pageId, password, 'Large logo');
+        // Update the data in-memory with the new URL
+        supporters[supporterId].largeLogo = newUrl;
         processedCount++;
         console.log(`   ✅ Successfully processed! New URL: ${newUrl.substring(0, 80)}...`);
       } catch (error) {
@@ -283,6 +318,8 @@ async function processAllNotionImages(data: ApiResponse): Promise<number> {
 
         // Process the image
         const newUrl = await processNotionImage(poi.logo, pageId, password, 'Logo');
+        // Update the data in-memory with the new URL
+        poi.logo = newUrl;
         processedCount++;
         console.log(`   ✅ Successfully processed! New URL: ${newUrl.substring(0, 80)}...`);
       } catch (error) {
@@ -297,7 +334,7 @@ async function processAllNotionImages(data: ApiResponse): Promise<number> {
     console.log(`\n✨ Successfully processed ${processedCount} image(s)!`);
   }
 
-  return processedCount;
+  return { count: processedCount, updatedData: data };
 }
 
 /**
@@ -373,6 +410,24 @@ async function saveData(data: ApiResponse): Promise<void> {
 export const supportersData: Record<string, Supporter> = ${JSON.stringify(supporters, null, 2)};
 `;
 
+  // Generate TypeScript content with hardcoded type for devconnect
+  const supportersContentDevconnect = `export interface Supporter {
+  name: string;
+  layerName: string;
+  districtId: string | null;
+  locationId: string | null;
+  supporterId?: string;
+  logo: string;
+  largeLogo?: string;
+  description: string;
+  websiteLink?: string;
+  twitterLink?: string;
+  farcasterLink?: string;
+}
+
+export const supportersData: Record<string, Supporter> = ${JSON.stringify(supporters, null, 2)};
+`;
+
   const poisContent = `import type { POI } from '@/types/api-data';
 
 export const poisData: POI[] = ${JSON.stringify(pois, null, 2)};
@@ -418,7 +473,8 @@ export const poiGroupsData: PoiGroups = ${JSON.stringify(poiGroups, null, 2)};
   // Save individual data files
   await Promise.all([
     fs.writeFile(SUPPORTERS_FILE, supportersContent),
-    fs.writeFile(POIS_FILE, poisContent),
+     fs.writeFile(SUPPORTERS_FILE_DEVCONNECT, supportersContentDevconnect),
+     fs.writeFile(POIS_FILE, poisContent),
     // fs.writeFile(DISTRICTS_FILE, districtsContent),
     fs.writeFile(LOCATIONS_FILE, locationsContent),
     fs.writeFile(POI_GROUPS_FILE, poiGroupsContent),
@@ -452,18 +508,10 @@ async function main(): Promise<void> {
 
     // Process all Notion temporary images if environment is set up
     if (canProcessImages) {
-      const processedCount = await processAllNotionImages(data as ApiResponse);
+      const { count, updatedData } = await processAllNotionImages(data as ApiResponse);
 
-      // If we processed any images, fetch data again to get the updated URLs
-      if (processedCount > 0) {
-        console.log('\n🔄 Re-fetching data to get updated URLs...');
-        const updatedData = await fetchData();
-        if (updatedData.success) {
-          await saveData(updatedData as ApiResponse);
-        }
-      } else {
-        await saveData(data as ApiResponse);
-      }
+      // Save the data with the directly updated URLs (no need to re-fetch)
+      await saveData(updatedData);
     } else {
       console.log('\n⚠️  Skipping image processing (NOTION_SECRET not configured)');
       await saveData(data as ApiResponse);

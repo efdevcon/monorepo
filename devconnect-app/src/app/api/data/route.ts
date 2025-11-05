@@ -109,6 +109,7 @@ export async function GET(request: NextRequest) {
         POI: getPropertyValue('POI'),
         id: page.id?.replaceAll('-', ''),
         logo: getPropertyValue('Logo'),
+        largeLogo: getPropertyValue('Large logo'),
         description: getPropertyValue('Project description'),
         group: getPropertyValue('POI'),
         websiteLink: getPropertyValue('Website link'),
@@ -169,7 +170,7 @@ export async function GET(request: NextRequest) {
     });
 
     const poisWithIds = cleanPois.map(item => {
-      const { district, location, group, ...rest } = item;
+      const { district, location, group, largeLogo, ...rest } = item;
       delete rest.id;
       return {
         ...rest,
