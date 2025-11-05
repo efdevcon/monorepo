@@ -1,5 +1,6 @@
 import { defaultCache } from '@serwist/turbopack/worker';
 import { type PrecacheEntry, Serwist, type SerwistGlobalConfig } from 'serwist';
+import { NetworkFirst } from 'serwist';
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -15,7 +16,7 @@ declare const self: ServiceWorkerGlobalScope;
 
 const serwist = new Serwist({
   precacheEntries: [
-    ...(self.__SW_MANIFEST || []),
+    // ...(self.__SW_MANIFEST || []),
     { url: '/~offline', revision: '1' },
   ],
   precacheOptions: {
@@ -24,9 +25,25 @@ const serwist = new Serwist({
   },
   skipWaiting: false,
   disableDevLogs: true,
-  clientsClaim: true,
-  navigationPreload: true,
-  runtimeCaching: defaultCache,
+  clientsClaim: false,
+  navigationPreload: false,
+  runtimeCaching: [
+    {
+      matcher: ({ request }) => request.mode === 'navigate',
+      handler: new NetworkFirst({
+        cacheName: 'pages',
+        networkTimeoutSeconds: 10,
+        plugins: [
+          {
+            handlerDidError: async () => {
+              return (await caches.match('/~offline')) || Response.error();
+            },
+          },
+        ],
+      }),
+    },
+    ...defaultCache,
+  ],
   fallbacks: {
     entries: [
       {
