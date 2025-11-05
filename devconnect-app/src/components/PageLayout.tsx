@@ -293,7 +293,7 @@ const PageLayout = React.memo(function PageLayout({
                   className="w-full flex flex-col items-start gradient-header text-white"
                   style={{
                     backgroundBlendMode: 'normal, normal, overlay, normal',
-                    backdropFilter: 'blur(4px)',
+                    backdropFilter: isIOS26_1 ? undefined : 'blur(4px)',
                     paddingTop: 'env(safe-area-inset-top, 0px)',
                     background: isIOS26_1
                       ? '#3a365e'
@@ -399,7 +399,10 @@ const PageLayout = React.memo(function PageLayout({
               paddingTop: title
                 ? `calc(${heightHeaderCalc}px + env(safe-area-inset-top, 0px))`
                 : `calc(${heightHeaderTabsCalc}px + env(safe-area-inset-top, 0px))`,
-              paddingBottom: `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
+              paddingBottom:
+                isIOS26_1 && pwa
+                  ? `calc(${HEIGHT_MENU}px)`
+                  : `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
               WebkitOverflowScrolling: 'touch', // Smooth iOS momentum scrolling
             }}
           >
