@@ -87,7 +87,7 @@ const StagesPage = () => {
     fetch
   );
 
-  console.log(programming, 'programming ay');
+  // console.log(programming, 'programming ay');
 
   const renderStageRow = (stage: {
     id: string;
