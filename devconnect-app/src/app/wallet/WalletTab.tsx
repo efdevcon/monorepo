@@ -844,12 +844,12 @@ export default function WalletTab() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-nowrap justify-center gap-2 md:gap-4">
                 {/* Receive Button - Always visible */}
-                <div className="flex flex-col items-center gap-2 md:w-[100px]">
+                <div className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]">
                   <button
                     onClick={handleReceiveClick}
-                    className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                    className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                   >
                     <Icon
                       path={mdiCallReceived}
@@ -857,17 +857,17 @@ export default function WalletTab() {
                       className="text-[#0073de]"
                     />
                   </button>
-                  <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                  <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
                     Receive
                   </span>
                 </div>
 
                 {/* Send Button - Only when Para wallet */}
                 {isPara && (
-                  <div className="flex flex-col items-center gap-2 md:w-[100px]">
+                  <div className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]">
                     <button
                       onClick={handleSendClick}
-                      className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <Icon
                         path={mdiSendOutline}
@@ -875,7 +875,7 @@ export default function WalletTab() {
                         className="text-[#0073de]"
                       />
                     </button>
-                    <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                    <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
                       Send
                     </span>
                   </div>
@@ -883,10 +883,10 @@ export default function WalletTab() {
 
                 {/* Add Button - Only when not in beta mode */}
                 {!isBetaMode && (
-                  <div className="flex flex-col items-center gap-2 md:w-[100px]">
+                  <div className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]">
                     <button
                       onClick={handleDigitalClick}
-                      className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <Icon
                         path={mdiCurrencyUsd}
@@ -894,17 +894,17 @@ export default function WalletTab() {
                         className="text-[#0073de]"
                       />
                     </button>
-                    <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                    <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
                       Add
                     </span>
                   </div>
                 )}
 
                 {/* Scan Button - Mobile only */}
-                <div className="flex flex-col items-center gap-2 md:hidden">
+                <div className="flex flex-col items-center gap-2 flex-1 md:hidden">
                   <button
                     onClick={handleScanClick}
-                    className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                    className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                   >
                     <Icon
                       path={mdiQrcodeScan}
@@ -912,7 +912,7 @@ export default function WalletTab() {
                       className="text-[#0073de]"
                     />
                   </button>
-                  <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                  <span className="text-[#353548] text-xs font-medium tracking-[-0.1px]">
                     Scan
                   </span>
                 </div>
