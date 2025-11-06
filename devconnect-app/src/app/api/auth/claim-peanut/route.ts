@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Check whitelist eligibility
-  const eligibleEmails = process.env.PEANUT_LINKS?.split(',').map(e => e.trim().toLowerCase()) || [];
+  // const eligibleEmails = process.env.PEANUT_LINKS?.split(',').map(e => e.trim().toLowerCase()) || [];
   // const isEligible = eligibleEmails.includes(userEmail) || userEmail.endsWith('@ethereum.org') || userEmail.endsWith('getpara.com') || userEmail.endsWith('usecapsule.com') || userEmail.endsWith('@peanut.me');
   const isEligible = true;
 
