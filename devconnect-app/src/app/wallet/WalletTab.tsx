@@ -1273,7 +1273,7 @@ export default function WalletTab() {
                                 if (hash && chainId) {
                                   let explorerUrl: string;
 
-                                  // Use JiffyScan for User Operations (ERC-4337)
+                                  // Use Basescan for User Operations (ERC-4337)
                                   if (userOpHash) {
                                     const networkMap: Record<number, string> = {
                                       1: 'mainnet',
@@ -1285,7 +1285,7 @@ export default function WalletTab() {
                                     };
                                     const network =
                                       networkMap[chainId] || 'base';
-                                    explorerUrl = `https://jiffyscan.xyz/userOpHash/${userOpHash}?network=${network}`;
+                                    explorerUrl = `https://basescan.org/tx/${userOpHash}?network=${network}`;
                                   } else {
                                     // Regular block explorer for standard transactions
                                     const networkConfig =

@@ -18,7 +18,7 @@ const getTransactionExplorerUrl = (
   chainId: number,
   userOpHash?: string | null
 ): string => {
-  // If UserOp Hash is available, use JiffyScan (ERC-4337 explorer)
+  // If UserOp Hash is available, use Basescan (ERC-4337 explorer)
   if (userOpHash) {
     const networkMap: Record<number, string> = {
       1: 'mainnet',
@@ -29,7 +29,7 @@ const getTransactionExplorerUrl = (
       84532: 'base-sepolia',
     };
     const network = networkMap[chainId] || 'base';
-    return `https://jiffyscan.xyz/userOpHash/${userOpHash}?network=${network}`;
+    return `https://basescan.org/tx/${userOpHash}?network=${network}`;
   }
 
   // Use viem's block explorer configuration dynamically
@@ -49,9 +49,9 @@ const getBlockExplorerName = (
   chainId: number,
   userOpHash?: string | null
 ): string => {
-  // If UserOp Hash is available, use JiffyScan
+  // If UserOp Hash is available, use Basescan
   if (userOpHash) {
-    return 'JiffyScan';
+    return 'Explorer';
   }
 
   // Use viem's block explorer configuration dynamically
