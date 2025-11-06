@@ -520,12 +520,12 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415801d84b8ebe461e4ac20": {
     "name": "Noice",
     "layerName": "noice",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-06T17-46-50-097Z-image%20(15).png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-52-758Z-Noice.png",
-    "description": "",
+    "description": "noice is building an ICM platform on base. we help contrarian builders form on-chain capital by launching through tokens that represent their startup or product.\n\n",
     "websiteLink": "https://noice.so/",
-    "twitterLink": "",
-    "farcasterLink": "",
+    "twitterLink": "https://x.com/noicedotso",
+    "farcasterLink": "https://farcaster.xyz/noiceapp",
     "districtId": "8",
     "locationId": "1"
   },
@@ -544,11 +544,11 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580e98301c364ae531a10": {
     "name": "NYM",
     "layerName": "nym",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-06T16-03-46-950Z-nym_logo.svg",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-58-060Z-NYM.png",
-    "description": "",
+    "description": "Access to the Nym Noise Generating Network for network level privacy - protecting your metadata with the world's most private VPN. ",
     "websiteLink": "https://nym.com/",
-    "twitterLink": "",
+    "twitterLink": "https://x.com/nym",
     "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
