@@ -102,32 +102,27 @@ export const getProgramming = (event: Event) => {
           "Josh Rudolf, Jesse Pollak, Steven Goldfeder, Mark Tyneway, Oren Katz, Alex Gluchovski",
       },
       {
-        time: "16:25",
-        title: "Linea",
-        speakers: "Declan Fox",
-      },
-      {
-        time: "17:25",
+        time: "17:00",
         title: "Aave: The New Architecture of Credit: Programming Trust",
         speakers: "Stani Kulechov",
       },
       {
-        time: "17:55",
+        time: "17:30",
         title: "CowSwap: Making DeFi Truly Cross-Chain",
         speakers: "Anna George",
       },
       {
-        time: "18:25",
+        time: "18:00",
         title: "Farcaster: Crypto Apps and Decentralized SocialShort",
         speakers: "Linda Xie",
       },
       {
-        time: "18:55",
+        time: "18:30",
         title: "Privacy on Ethereum",
         speakers: "Peter Van Valkenburgh",
       },
       {
-        time: "19:25",
+        time: "19:00",
         title: "Closing note, announcement",
         speakers: "Nathan Sexer / Devconnect Team",
       },

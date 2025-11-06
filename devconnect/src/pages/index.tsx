@@ -1133,7 +1133,7 @@ const Home: NextPage = (props: any) => {
             }}
           >
             <div className="mb-3" id="supporters">
-              <h2 className="section-header black mb-6">OUR SUPPORTERS</h2>
+              <h2 className="section-header black mb-4">OUR SUPPORTERS</h2>
             </div>
 
             <Supporters />
@@ -1227,7 +1227,11 @@ const Home: NextPage = (props: any) => {
             <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="h-full flex flex-col justify-between gap-4">
                 <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
-                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
+                <img
+                  src="/moving-glyph.gif"
+                  alt="Moving Glyph"
+                  className="w-[130px] hidden md:block translate-x-[-36%]"
+                />
               </div>
 
               <div className={`${css['accordion']} tab-content`}>
