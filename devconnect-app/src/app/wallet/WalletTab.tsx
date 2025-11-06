@@ -178,6 +178,7 @@ export default function WalletTab() {
     null
   );
   const [addressCopied, setAddressCopied] = useState(false);
+  const [refreshTimestamps, setRefreshTimestamps] = useState<number[]>([]);
 
   // Load stored payments from localStorage
   const [storedPayments] = useLocalStorage<StoredPayments>(
@@ -529,9 +530,27 @@ export default function WalletTab() {
     }
   };
 
+  // Check if we should show BlockExplorer link (more than 2 refreshes in last minute)
+  const shouldShowBlockExplorer = useMemo(() => {
+    const now = Date.now();
+    const oneMinuteAgo = now - 60000; // 60 seconds
+    const recentRefreshes = refreshTimestamps.filter((ts) => ts > oneMinuteAgo);
+    return recentRefreshes.length >= 2;
+  }, [refreshTimestamps]);
+
   // Manual refresh function
   const handleRefresh = async () => {
     console.log('🔄 [WALLET_TAB] Manual refresh started for:', address);
+
+    // Track this refresh attempt
+    const now = Date.now();
+    setRefreshTimestamps((prev) => {
+      // Keep only timestamps from the last minute
+      const oneMinuteAgo = now - 60000;
+      const recentTimestamps = prev.filter((ts) => ts > oneMinuteAgo);
+      return [...recentTimestamps, now];
+    });
+
     setIsRefreshing(true);
     try {
       await refreshPortfolio();
@@ -841,6 +860,45 @@ export default function WalletTab() {
                     </button>
                   </div>
                 </div>
+
+                {/* BlockExplorer Link - shown after multiple refreshes */}
+                {shouldShowBlockExplorer && address && (
+                  <div className="flex items-center justify-center mt-1">
+                    <button
+                      onClick={() => {
+                        // Use Base network (8453) for Para wallet, otherwise use current network
+                        const chainId = isPara ? 8453 : currentChainId;
+                        const networkConfig = getNetworkConfig(chainId);
+                        const baseUrl =
+                          networkConfig?.blockExplorers?.default?.url;
+                        if (baseUrl && address) {
+                          window.open(
+                            `${baseUrl}/address/${address}`,
+                            '_blank'
+                          );
+                        }
+                      }}
+                      className="border border-[#0073de] border-solid flex items-center gap-[2px] px-[8px] py-[6px] rounded-[1px] hover:bg-[#eaf4fb] transition-colors cursor-pointer"
+                    >
+                      <span className="text-[#0073de] text-[12px] font-medium leading-none">
+                        Block Explorer
+                      </span>
+                      <svg
+                        className="w-3 h-3 text-[#0073de]"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M3 9l6-6m0 0H4.5M9 3v4.5"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Action Buttons */}
