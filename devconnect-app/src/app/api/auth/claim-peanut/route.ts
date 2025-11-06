@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'No valid ticket found',
-          message: 'You must have a valid Devconnect ticket to claim this perk'
+          message: 'Add your devconnect ticket here to claim this perk'
         },
         { status: 403 }
       );
@@ -160,11 +160,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Get the user's wallet address from the request headers (passed by frontend)
+    const userAddress = request.headers.get('x-wallet-address');
+
     // Update the link to mark it as claimed
     const { data: claimedLink, error: updateError } = await supabase
       .from('devconnect_app_claiming_links')
       .update({
         claimed_by_user_email: userEmail,
+        claimed_by_address: userAddress?.toLowerCase() || null,
         claimed_date: new Date().toISOString(),
         ticket_secret_proof: availableSecret
       })

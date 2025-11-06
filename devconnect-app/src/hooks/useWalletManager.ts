@@ -43,10 +43,22 @@ interface RecentActivity {
   };
 }
 
+export interface PeanutClaimingState {
+  link: string;
+  amount: number;
+  claimed_date: string | null;
+  ticket_secret_proof: string | null;
+  peanut_claimed: boolean | null; // Actual blockchain state from Peanut protocol
+  db_claimed_by_address: string | null; // Database state
+  db_claimed_by_user_email: string | null;
+  error?: string;
+}
+
 export interface PortfolioData {
   totalValue: number;
   tokenBalances: TokenBalance[];
   recentActivity: RecentActivity[];
+  peanutClaimingState?: PeanutClaimingState | null;
 }
 
 /**

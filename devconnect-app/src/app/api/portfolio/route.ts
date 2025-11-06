@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { chains, convertNetworkToChainId } from '@/config/networks';
 import { ENTRYPOINT_ADDRESS } from '@/config/config';
+import { createServerClient } from '../auth/supabaseServerClient';
+import peanut from '@squirrel-labs/peanut-sdk';
 
 const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
@@ -253,10 +255,75 @@ export async function POST(request: NextRequest) {
     // Process activity data
     const recentActivity = activityResult.data?.transactionHistoryV2?.edges?.map((edge: any) => edge.node) || [];
 
+    // ============================================
+    // Check for peanut claiming link associated with this address
+    // This allows the frontend to show claiming status in the wallet UI
+    // ============================================
+    let peanutClaimingState = null;
+    try {
+      const supabase = createServerClient();
+
+      // Query for claiming link by address
+      const { data: claimingLink, error: claimError } = await supabase
+        .from('devconnect_app_claiming_links')
+        .select('*')
+        .eq('claimed_by_address', address.toLowerCase())
+        .maybeSingle();
+
+      if (claimError) {
+        console.error('Error checking peanut claiming link:', claimError);
+      } else if (claimingLink) {
+        console.log('Found claiming link for address:', address);
+
+        // Check the actual claim status on Peanut protocol
+        try {
+          const linkDetails = await peanut.getLinkDetails({
+            link: claimingLink.link,
+          });
+
+          peanutClaimingState = {
+            link: claimingLink.link,
+            amount: claimingLink.amount,
+            claimed_date: claimingLink.claimed_date,
+            ticket_secret_proof: claimingLink.ticket_secret_proof,
+            // Peanut protocol claim status (actual blockchain state)
+            peanut_claimed: linkDetails.claimed,
+            // Database claim status
+            db_claimed_by_address: claimingLink.claimed_by_address,
+            db_claimed_by_user_email: claimingLink.claimed_by_user_email,
+          };
+
+          console.log('Peanut claiming state:', {
+            address,
+            peanut_claimed: linkDetails.claimed,
+            db_claimed: !!claimingLink.claimed_by_address,
+          });
+        } catch (peanutError) {
+          console.error('Error fetching peanut link details:', peanutError);
+          // Still return database info even if peanut check fails
+          peanutClaimingState = {
+            link: claimingLink.link,
+            amount: claimingLink.amount,
+            claimed_date: claimingLink.claimed_date,
+            ticket_secret_proof: claimingLink.ticket_secret_proof,
+            peanut_claimed: null, // Unknown state
+            db_claimed_by_address: claimingLink.claimed_by_address,
+            db_claimed_by_user_email: claimingLink.claimed_by_user_email,
+            error: 'Failed to check Peanut protocol status',
+          };
+        }
+      } else {
+        console.log('No claiming link found for address:', address);
+      }
+    } catch (supabaseError) {
+      console.error('Error accessing Supabase for peanut check:', supabaseError);
+    }
+
     return NextResponse.json({
       totalValue,
       tokenBalances: filteredTokenBalances,
       recentActivity,
+      peanutClaimingState,
     });
 
   } catch (error) {

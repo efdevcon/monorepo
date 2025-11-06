@@ -125,9 +125,13 @@ export default function WalletTab() {
     //     hash: a.transaction?.hash?.slice(0, 10),
     //     timestamp: a.transaction?.timestamp,
     //   })),
+    //   peanutClaimingState: result?.peanutClaimingState,
     // });
     return result;
   }, [address, portfolioCache, portfolioRefreshTrigger]);
+
+  // Get peanut claiming state from portfolio
+  const peanutClaimingState = portfolio?.peanutClaimingState;
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
 
@@ -404,7 +408,12 @@ export default function WalletTab() {
 
     try {
       const response = await fetchAuth<{ link: string; message: string }>(
-        '/api/auth/claim-peanut'
+        '/api/auth/claim-peanut',
+        {
+          headers: {
+            'x-wallet-address': address || '',
+          },
+        }
       );
 
       if (response.success && response.data?.link) {
@@ -413,7 +422,7 @@ export default function WalletTab() {
         console.log('linkWithAddress', linkWithAddress);
         // Navigate popup to the actual URL
         popup.location.href = linkWithAddress;
-        toast.success('Claim link opened in new tab');
+        // toast.success('Claim link opened in new tab');
       } else {
         // Handle error - show user-friendly message
         const errorTitle = response.error || 'Failed to access claim link';
@@ -429,6 +438,33 @@ export default function WalletTab() {
           toast.info(errorTitle, {
             description: errorMessage,
             duration: 5000,
+          });
+        } else if (
+          errorMessage.toLowerCase().includes('add your devconnect ticket')
+        ) {
+          // Special handling for ticket requirement message with clickable link
+          toast.error(errorTitle, {
+            description: (
+              <span>
+                Add your devconnect ticket{' '}
+                <a
+                  href="/tickets"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push('/tickets');
+                  }}
+                  className="underline font-bold hover:text-blue-600"
+                >
+                  here
+                </a>{' '}
+                to claim this perk
+              </span>
+            ),
+            duration: Infinity, // Persistent toast
+            cancel: {
+              label: 'Close',
+              onClick: () => {},
+            },
           });
         } else {
           toast.error(errorTitle, {
@@ -872,29 +908,60 @@ export default function WalletTab() {
               >
                 <button
                   onClick={handlePeanutClaim}
-                  className="w-full bg-[#ff91e9] rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#ff7de3] transition-colors cursor-pointer"
+                  disabled={peanutClaimingState?.peanut_claimed === true}
+                  className={`w-full rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
+                    peanutClaimingState?.peanut_claimed === true
+                      ? 'bg-gray-300 cursor-not-allowed'
+                      : 'bg-[#ff91e9] hover:bg-[#ff7de3] cursor-pointer'
+                  }`}
                   style={{
                     outline: '1px black solid',
                     outlineOffset: '-1px',
                   }}
                 >
                   <p className="text-black text-[16px] font-bold leading-4">
-                    Claim $2 (USDC)
+                    {peanutClaimingState?.peanut_claimed === true
+                      ? '✓ Claimed'
+                      : peanutClaimingState?.peanut_claimed === false
+                        ? 'Complete Claim'
+                        : 'Claim $2 (USDC)'}
                   </p>
-                  <svg
-                    className="w-3.5 h-3.5 text-black flex-shrink-0"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 7h8m0 0L7 3m4 4l-4 4"
-                    />
-                  </svg>
+                  {peanutClaimingState?.peanut_claimed !== true && (
+                    <svg
+                      className="w-3.5 h-3.5 text-black flex-shrink-0"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 7h8m0 0L7 3m4 4l-4 4"
+                      />
+                    </svg>
+                  )}
                 </button>
+                {/* {peanutClaimingState && (
+                  <div className="w-full">
+                    {peanutClaimingState.peanut_claimed === true ? (
+                      <p className="text-green-700 text-[11px] font-medium text-center leading-[1.3]">
+                        ✓ Successfully claimed on{' '}
+                        {peanutClaimingState.claimed_date
+                          ? new Date(peanutClaimingState.claimed_date).toLocaleDateString()
+                          : 'blockchain'}
+                      </p>
+                    ) : peanutClaimingState.peanut_claimed === false ? (
+                      <p className="text-orange-700 text-[11px] font-medium text-center leading-[1.3]">
+                        ⚠️ Link assigned but not yet claimed on Peanut
+                      </p>
+                    ) : peanutClaimingState.error ? (
+                      <p className="text-gray-600 text-[11px] font-medium text-center leading-[1.3]">
+                        Link assigned - claim status unknown
+                      </p>
+                    ) : null}
+                  </div>
+                )} */}
                 <div className="flex items-center gap-3">
                   <p className="text-black text-[12px] font-normal leading-[15.6px]">
                     Sponsored by
