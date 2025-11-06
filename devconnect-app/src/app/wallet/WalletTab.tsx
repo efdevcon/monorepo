@@ -443,7 +443,7 @@ export default function WalletTab() {
           errorMessage.toLowerCase().includes('add your devconnect ticket')
         ) {
           // Special handling for ticket requirement message with clickable link
-          toast.error(errorTitle, {
+          const toastId = toast.error(errorTitle, {
             description: (
               <span>
                 Add your devconnect ticket{' '}
@@ -451,6 +451,7 @@ export default function WalletTab() {
                   href="/tickets"
                   onClick={(e) => {
                     e.preventDefault();
+                    toast.dismiss(toastId);
                     router.push('/tickets');
                   }}
                   className="underline font-bold hover:text-blue-600"
@@ -923,7 +924,7 @@ export default function WalletTab() {
                     {peanutClaimingState?.peanut_claimed === true
                       ? '✓ Claimed'
                       : peanutClaimingState?.peanut_claimed === false
-                        ? 'Complete Claim'
+                        ? 'Claim $2 (USDC)'
                         : 'Claim $2 (USDC)'}
                   </p>
                   {peanutClaimingState?.peanut_claimed !== true && (
