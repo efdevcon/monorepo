@@ -13,7 +13,8 @@
     "d": "npx tsx scripts/fetch-data.ts",
     "q": "npx tsx scripts/fetch-quests.ts",
     "create-wallet": "npx tsx scripts/create-smart-wallet.ts",
-    "l": "npx tsx scripts/import-claiming-links.ts"
+    "l": "npx tsx scripts/import-claiming-links.ts",
+    "u": "npx tsx scripts/filter-unclaimed-links.ts"
   },
   "dependencies": {
     "@aa-sdk/core": "^4.70.0",
@@ -55,6 +56,7 @@
     "@solana/wallet-adapter-react": "^0.15.39",
     "@solana/wallet-adapter-walletconnect": "^0.1.21",
     "@solana/web3.js": "^1.98.4",
+    "@squirrel-labs/peanut-sdk": "^0.6.2",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.52.0",
     "@svgr/webpack": "^8.1.0",
