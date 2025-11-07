@@ -33,6 +33,18 @@ Imports claiming links from CSV files into the database for distribution to user
 - Configurable amount per link
 - Batch processing to handle large files efficiently
 
+### `filter-unclaimed-links.ts`
+
+Filters unclaimed links from a CSV file using the Peanut SDK to check claim status.
+
+**Features:**
+
+- Reads claiming links from CSV file (one URL per line)
+- Checks claim status using `@squirrel-labs/peanut-sdk`
+- Outputs only unclaimed links to a new file: `<input_name>_unclaimed.csv`
+- Sequential processing with rate limiting to avoid API issues
+- Detailed progress reporting and error handling
+
 ## Usage
 
 ### Data Script
@@ -120,6 +132,45 @@ pnpm l 5 scripts/csv/links_1.csv
 - `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_KEY` must be set in `.env.local`
 - CSV file should contain one claiming link URL per line
 
+### Filter Unclaimed Links Script
+
+#### Using pnpm script (recommended)
+
+```bash
+pnpm u <csv-file>
+```
+
+#### Using tsx directly
+
+```bash
+pnpm exec tsx scripts/filter-unclaimed-links.ts <csv-file>
+```
+
+**Example:**
+
+```bash
+# Filter unclaimed links from links_1.csv (automatically looks in scripts/csv/)
+pnpm u links_1.csv
+
+# Output will be: scripts/csv/links_1_unclaimed.csv
+
+# Or use full path
+pnpm u scripts/csv/links_1.csv
+```
+
+**Arguments:**
+
+- `csv-file` - CSV filename (automatically looks in `scripts/csv/` directory) or full path
+
+**Output:**
+
+- Creates a new file: `<input_name>_unclaimed.csv` containing only unclaimed links
+- Example: `links_1.csv` → `links_1_unclaimed.csv`
+
+**Requirements:**
+
+- CSV file should contain one claiming link URL per line (Peanut protocol links)
+
 ## What the scripts do
 
 ### Data Script (`fetch-data.ts`)
@@ -194,6 +245,28 @@ When Notion temporary image URLs are detected, the script automatically:
 - `claimed_by_address` - NULL (unclaimed)
 - `claimed_date` - NULL (unclaimed)
 - `ticket_secret_proof` - NULL (unclaimed)
+
+### Filter Unclaimed Links Script (`filter-unclaimed-links.ts`)
+
+1. **Reads CSV file** containing Peanut protocol claiming links (one URL per line)
+2. **Checks claim status** for each link using the Peanut SDK:
+   - Calls `peanut.getLinkDetails()` for each link
+   - Extracts the `claimed` boolean from the response
+   - Handles errors gracefully (e.g., invalid links, network issues)
+3. **Filters and categorizes** links:
+   - Unclaimed links - saved to output file
+   - Claimed links - counted and logged
+   - Error links - reported with error messages
+4. **Creates output file** with only unclaimed links:
+   - Filename format: `<input_name>_unclaimed.csv`
+   - Contains one URL per line
+   - Sequential processing with 100ms delay to avoid rate limiting
+
+**Link Status Check:**
+
+- Uses `@squirrel-labs/peanut-sdk` to check link details
+- Returns claim status, token info, and other metadata
+- Processes links sequentially to avoid API rate limits
 
 ## Configuration
 

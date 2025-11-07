@@ -628,9 +628,11 @@ export default function SendPage() {
                   )}
                   {userOpHash && (
                     <div className="space-y-2 mt-4">
-                      <p className="text-xs text-[#4b4b66]">User Operation:</p>
+                      <p className="text-xs text-[#4b4b66]">
+                        User Operation (might take a few minutes to be indexed):
+                      </p>
                       <a
-                        href={`https://jiffyscan.xyz/userOpHash/${userOpHash}?network=base`}
+                        href={`https://basescan.org/tx/${userOpHash}?network=base`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#0073de] text-sm font-mono hover:underline break-all"

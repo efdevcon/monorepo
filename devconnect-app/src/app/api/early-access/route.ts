@@ -16,15 +16,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const isEarlyAccess = earlyAccessPassword && password.replace(/\s/g, '') === earlyAccessPassword.replace(/\s/g, '');
-    const isBetaAccess = betaAccessPassword && password.replace(/\s/g, '') === betaAccessPassword.replace(/\s/g, '');
+    const isEarlyAccess = earlyAccessPassword && password.replace(/\s/g, '').toLowerCase() === earlyAccessPassword.replace(/\s/g, '').toLowerCase();
+    const isBetaAccess = betaAccessPassword && password.replace(/\s/g, '').toLowerCase() === betaAccessPassword.replace(/\s/g, '').toLowerCase();
 
     if (isEarlyAccess || isBetaAccess) {
       // Create response with success
       const response = NextResponse.json({ success: true });
       
-      // Store password without spaces for consistent comparison
-      const normalizedPassword = password.replace(/\s/g, '');
+      // Store password without spaces and lowercase for consistent comparison
+      const normalizedPassword = password.replace(/\s/g, '').toLowerCase();
       
       // Set earlyAccess cookie for both types
       response.cookies.set('earlyAccess', normalizedPassword, {

@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 import cn from 'classnames';
 import { hasBetaAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
-import { StageBadge } from '@/app/(page-layout)/stages/page';
+import { StageBadge } from '@/components/StageBadge';
 import Image from 'next/image';
 import imgMeerkat from './meerkat.png';
 
@@ -117,7 +117,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
           Ethereum Day & Devconnect Opening Ceremony
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row flex-col mx-6 gap-4">
+      <div className="flex flex-col lg:flex-row mx-6 gap-4">
         <div className="aspect-[16/9] bg-neutral-100 grow">
           <iframe
             className="w-full h-full"

@@ -47,7 +47,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 async function parseCsvFile(filePath: string): Promise<string[]> {
   try {
     const content = await fs.readFile(filePath, 'utf-8');
-    const lines = content.split('\n').map(line => line.trim()?.replace('&campaignTag=devconnect_ba_2025', '')?.replace('&step=claim', '')).filter(line => line?.length > 0);
+    const lines = content.split('\n').map(line => line.trim()?.replaceAll('"', '')?.replace('&campaignTag=devconnect_ba_2025', '')?.replace('&step=claim', '')).filter(line => line?.length > 0);
     return lines;
   } catch (error) {
     console.error(`❌ Error reading CSV file: ${filePath}`);

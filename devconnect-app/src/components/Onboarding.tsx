@@ -201,6 +201,25 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   const shouldCancelPolling = useRef(false);
 
+  // Debug: Log connection state
+  useEffect(() => {
+    console.log('🔍 [ONBOARDING] Connection state:', { isConnected });
+  }, [isConnected]);
+
+  // Reset polling when authState changes to login/signup stage
+  // This prevents stuck "waiting" states from previous polling attempts
+  useEffect(() => {
+    if (authState?.stage === 'login' || authState?.stage === 'signup') {
+      console.log('🔄 [ONBOARDING] AuthState is login/signup, canceling any ongoing polling');
+      shouldCancelPolling.current = true;
+      
+      // Reset the flag after a brief delay to allow new polling to start
+      setTimeout(() => {
+        shouldCancelPolling.current = false;
+      }, 100);
+    }
+  }, [authState?.stage]);
+
   // Handle delayed redirects (1.5 seconds)
   useEffect(() => {
     if (isConnected) {
@@ -242,7 +261,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       },
       {
         onSuccess: ({ needsWallet }) => {
+          console.log('✅ [ONBOARDING] Login polling succeeded!', { needsWallet });
           if (needsWallet) {
+            console.log('🔄 [ONBOARDING] Wallet needed, waiting for wallet creation...');
             waitForWalletCreation(
               {
                 // Also check cancellation for wallet creation
@@ -250,18 +271,31 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               },
               {
                 onSuccess: ({ recoverySecret }) => {
-                  // Can optionally give this recovery secret to the user here
-                  // console.log(
-                  //   '🚀 ~ pollLogin ~ recoverySecret:',
-                  //   recoverySecret
-                  // );
+                  console.log('✅ [ONBOARDING] Wallet creation succeeded!');
                   // Set redirecting state immediately when wallet creation succeeds
                   setIsRedirecting(true);
+                },
+                onError: (error) => {
+                  // Para SDK may throw internal errors during wallet setup that don't affect functionality
+                  console.warn('⚠️ [ONBOARDING] Wallet creation error (may be internal SDK issue):', error);
+                  // Still try to redirect if we're connected
+                  if (isConnected) {
+                    setIsRedirecting(true);
+                  }
                 },
               }
             );
           } else {
+            console.log('✅ [ONBOARDING] No wallet needed, setting redirecting state');
             // Set redirecting state immediately when login succeeds (no wallet needed)
+            setIsRedirecting(true);
+          }
+        },
+        onError: (error) => {
+          // Para SDK may throw internal errors during login that don't affect functionality
+          console.warn('⚠️ [ONBOARDING] Login polling error (may be internal SDK issue):', error);
+          // Still try to redirect if we're connected
+          if (isConnected) {
             setIsRedirecting(true);
           }
         },
@@ -284,6 +318,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           // console.log('🚀 ~ pollSignUp ~ recoverySecret:', recoverySecret);
           // Set redirecting state immediately when signup succeeds
           setIsRedirecting(true);
+        },
+        onError: (error) => {
+          // Para SDK may throw internal errors during signup that don't affect functionality
+          console.warn('⚠️ [ONBOARDING] Signup error (may be internal SDK issue):', error);
+          // Still try to redirect if we're connected
+          if (isConnected) {
+            setIsRedirecting(true);
+          }
         },
       }
     );
@@ -434,16 +476,20 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       },
       {
         onSuccess: (authState) => {
+          console.log('🔑 [ONBOARDING] signUpOrLogIn success:', authState);
           switch (authState?.stage) {
             case 'verify':
               // Only start polling for passkey/password/PIN users when loginUrl is present
               if (!!authState.loginUrl) {
+                console.log('🔄 [ONBOARDING] Starting iframe flow with polling');
                 setIFrameState('loading');
                 setupIframeListener();
 
                 if (authState.nextStage === 'signup') {
+                  console.log('🔄 [ONBOARDING] Starting signup polling');
                   pollSignUp();
                 } else if (authState.nextStage === 'login') {
+                  console.log('🔄 [ONBOARDING] Starting login polling');
                   pollLogin();
                 }
               }
@@ -778,6 +824,21 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Determine if we should skip the wallet loading animation
   const shouldSkipWalletAnimation = hasExistingWallet && isPwaParam;
+
+  // Debug: Log loading states
+  useEffect(() => {
+    if (isSigningUpOrLoggingIn || isVerifyingNewAccount || isWaitingForLogin || isWaitingForWalletCreation) {
+      console.log('🔄 [ONBOARDING] Loading states:', {
+        isSigningUpOrLoggingIn,
+        isVerifyingNewAccount,
+        isWaitingForLogin,
+        isWaitingForWalletCreation,
+        isPollingWithIframe,
+        isResetting,
+        authState: authState?.stage,
+      });
+    }
+  }, [isSigningUpOrLoggingIn, isVerifyingNewAccount, isWaitingForLogin, isWaitingForWalletCreation, isPollingWithIframe, isResetting, authState]);
 
   if (
     (isSigningUpOrLoggingIn ||

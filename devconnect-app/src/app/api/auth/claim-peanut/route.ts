@@ -26,9 +26,13 @@ export async function GET(request: NextRequest) {
   }
 
   // Check whitelist eligibility
+<<<<<<< HEAD
   const eligibleEmails =
     process.env.PEANUT_LINKS?.split(',').map((e) => e.trim().toLowerCase()) ||
     [];
+=======
+  // const eligibleEmails = process.env.PEANUT_LINKS?.split(',').map(e => e.trim().toLowerCase()) || [];
+>>>>>>> 323915a98e7add9547dfcd354f5eda0b93bab6ef
   // const isEligible = eligibleEmails.includes(userEmail) || userEmail.endsWith('@ethereum.org') || userEmail.endsWith('getpara.com') || userEmail.endsWith('usecapsule.com') || userEmail.endsWith('@peanut.me');
   const isEligible = true;
 
@@ -83,7 +87,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'No valid ticket found',
+<<<<<<< HEAD
           message: 'You must have a valid Devconnect ticket to claim this perk',
+=======
+          message: 'Add your devconnect ticket here to claim this perk'
+>>>>>>> 323915a98e7add9547dfcd354f5eda0b93bab6ef
         },
         { status: 403 }
       );
@@ -168,11 +176,15 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Get the user's wallet address from the request headers (passed by frontend)
+    const userAddress = request.headers.get('x-wallet-address');
+
     // Update the link to mark it as claimed
     const { data: claimedLink, error: updateError } = await supabase
       .from('devconnect_app_claiming_links')
       .update({
         claimed_by_user_email: userEmail,
+        claimed_by_address: userAddress?.toLowerCase() || null,
         claimed_date: new Date().toISOString(),
         ticket_secret_proof: availableSecret,
       })

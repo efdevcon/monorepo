@@ -62,7 +62,6 @@ import EpicenterLogo from 'assets/images/ba/media-partners/epicenter.png'
 import IProUpLogo from 'assets/images/ba/media-partners/iproup.png'
 import TheDefiantLogo from 'assets/images/ba/media-partners/the_defiant.png'
 import TheRollupLogo from 'assets/images/ba/media-partners/the_rollup.png'
-import { toast } from 'sonner'
 import Supporters from 'common/components/ba/supporters'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
@@ -1126,19 +1125,19 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          {/* <div
+          <div
             className="section relative py-8 md:py-12"
             style={{
               background:
-                'linear-gradient(270deg, #f6b61313 6.87%, #ff85a613 14.79%, #9894ff13 22.84%, #74acdf13 43.68%, #eef7ff50 54.97%) fixed',
+                'linear-gradient(277deg, rgba(246, 182, 19, 0.10) 7.62%, rgba(255, 133, 166, 0.20) 33.39%, rgba(152, 148, 255, 0.20) 70.15%, rgba(116, 172, 223, 0.20) 87.69%)',
             }}
           >
-            <div className="mb-8">
-              <h2 className="section-header black mb-6">OUR SUPPORTERS</h2>
+            <div className="mb-3" id="supporters">
+              <h2 className="section-header black mb-4">OUR SUPPORTERS</h2>
             </div>
 
             <Supporters />
-          </div> */}
+          </div>
 
           <div className="section relative py-8 md:py-12 bg-white">
             <div className="mb-8">
@@ -1228,7 +1227,11 @@ const Home: NextPage = (props: any) => {
             <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="h-full flex flex-col justify-between gap-4">
                 <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
-                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
+                <img
+                  src="/moving-glyph.gif"
+                  alt="Moving Glyph"
+                  className="w-[130px] hidden md:block translate-x-[-36%]"
+                />
               </div>
 
               <div className={`${css['accordion']} tab-content`}>

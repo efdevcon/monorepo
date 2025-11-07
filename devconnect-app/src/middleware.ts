@@ -84,8 +84,8 @@ export async function middleware(request: NextRequest) {
       const betaAccessPassword = process.env.BETA_ACCESS_PASSWORD;
 
       // If either password matches and is configured, allow access
-      const hasEarlyAccess = earlyAccessPassword && earlyAccessCookie?.replace(/\s/g, '') === earlyAccessPassword.replace(/\s/g, '');
-      const hasBetaAccess = betaAccessPassword && betaAccessCookie?.replace(/\s/g, '') === betaAccessPassword.replace(/\s/g, '');
+      const hasEarlyAccess = earlyAccessPassword && earlyAccessCookie?.replace(/\s/g, '').toLowerCase() === earlyAccessPassword.replace(/\s/g, '').toLowerCase();
+      const hasBetaAccess = betaAccessPassword && betaAccessCookie?.replace(/\s/g, '').toLowerCase() === betaAccessPassword.replace(/\s/g, '').toLowerCase();
 
       if (hasEarlyAccess || hasBetaAccess) {
         return await languageMiddleware(request);
