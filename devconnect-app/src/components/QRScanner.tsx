@@ -159,7 +159,7 @@ const QRScanner = ({
                       onClick={handleClose}
                       className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
                     >
-                      Close
+                      Make manual payment
                     </button>
                     <button
                       onClick={
@@ -170,7 +170,7 @@ const QRScanner = ({
                       }
                       className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
                     >
-                      Reset permissions
+                      Reset camera permissions
                     </button>
                   </div>
                 </div>
