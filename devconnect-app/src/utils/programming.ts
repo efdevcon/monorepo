@@ -27,7 +27,7 @@ export async function getProgramming(): Promise<DaySchedule[]> {
 
   const sessions: Session[] = await response.json();
 
-  console.log(sessions, 'sessions ay');
+  // console.log(sessions, 'sessions ay');
 
   // Group sessions by day
   const sessionsByDay = sessions.reduce(

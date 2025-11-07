@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPaidTicketsByEmail } from './pretix';
 import { createServerClient } from '../supabaseServerClient';
+import PretixStores from './pretix-stores-list';
 
 export async function GET(request: NextRequest) {
   try {
@@ -50,17 +51,50 @@ export async function GET(request: NextRequest) {
         ...(additionalEmails?.additional_ticket_emails || []),
       ];
 
-      const allTickets = await Promise.all(
-        emails.map((email) => getPaidTicketsByEmail(email))
-      );
+      // const allTickets = await Promise.all(
+      //   emails.map((email) => getPaidTicketsByEmail(email))
+      // );
+
+      const storeFetchPromises = PretixStores.map(async (store) => {
+        console.log(
+          'Fetching tickets for store:',
+          store.organizerSlug,
+          store.eventSlug
+        );
+        return Promise.all(
+          emails.map(async (email) => {
+            console.log('Fetching tickets for email:', email);
+            try {
+              return await getPaidTicketsByEmail(email, store);
+            } catch (error) {
+              console.error(
+                `Failed to fetch tickets for ${email} from ${store.organizerSlug}/${store.eventSlug}:`,
+                error
+              );
+              return []; // Return empty array on error, continue with other stores
+            }
+          })
+        );
+      });
+
+      const allTickets = await Promise.all(storeFetchPromises);
+
       // Fetch tickets for the authenticated user's email
-      const tickets = allTickets.flat();
+      const tickets = allTickets.flat().flat();
+
+      const sideTickets = tickets.filter(
+        (ticket) => ticket.eventSlug !== 'cowork'
+      );
+      const mainTickets = tickets.filter(
+        (ticket) => ticket.eventSlug === 'cowork'
+      );
 
       console.log('Successfully fetched tickets:', tickets.length, 'tickets');
 
       return NextResponse.json({
         email: userEmail,
-        tickets,
+        tickets: mainTickets,
+        sideTickets: sideTickets,
         count: tickets.length,
       });
     } catch (error) {

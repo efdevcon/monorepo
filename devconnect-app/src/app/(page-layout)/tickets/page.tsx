@@ -6,11 +6,7 @@ import { toast } from 'sonner';
 import TicketImage from '@/images/devconnect-arg-ticket.png';
 import Image from 'next/image';
 import { ChevronDown, LockKeyhole, Mail } from 'lucide-react';
-import {
-  useAdditionalTicketEmails,
-  ensureUserData,
-  useTickets,
-} from '@/app/store.hooks';
+import { useTickets } from '@/app/store.hooks';
 import { useGlobalStore } from '@/app/store.provider';
 import type { Ticket, Order } from '@/app/store';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
@@ -255,6 +251,121 @@ const ConnectedEmails = () => {
   );
 };
 
+const EventTicketCard = ({
+  order,
+  ticket,
+  dateKey,
+  qrCodes,
+}: {
+  order: Order & { event: any };
+  ticket: Ticket;
+  dateKey: string;
+  qrCodes: QRCodes;
+}) => {
+  const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
+
+  // Calculate the time range for this specific date
+  let timeRange = '';
+
+  if (order.event?.timeblocks && order.event.timeblocks.length > 0) {
+    // Check if there's a single timeblock spanning multiple days
+    if (order.event.timeblocks.length === 1) {
+      const block = order.event.timeblocks[0];
+      const blockStartDate = moment.utc(block.start).format('YYYY-MM-DD');
+      const blockEndDate = moment.utc(block.end).format('YYYY-MM-DD');
+
+      if (blockStartDate !== blockEndDate) {
+        // Single multi-day timeblock: use the same start/end time every day
+        const startTime = moment.utc(block.start).format('HH:mm');
+        const endTime = moment.utc(block.end).format('HH:mm');
+        timeRange = `${startTime} - ${endTime}`;
+      } else {
+        // Single-day timeblock
+        timeRange = `${moment.utc(block.start).format('HH:mm')} - ${moment.utc(block.end).format('HH:mm')}`;
+      }
+    } else {
+      // Multiple timeblocks: find ones for this specific date
+      const timeblocksForDate = order.event.timeblocks.filter(
+        (timeblock: any) => {
+          const blockStartDate = moment
+            .utc(timeblock.start)
+            .format('YYYY-MM-DD');
+          const blockEndDate = moment.utc(timeblock.end).format('YYYY-MM-DD');
+          return (
+            blockStartDate === dateKey ||
+            blockEndDate === dateKey ||
+            (blockStartDate < dateKey && blockEndDate > dateKey)
+          );
+        }
+      );
+
+      if (timeblocksForDate.length > 0) {
+        const firstBlock = timeblocksForDate[0];
+        const lastBlock = timeblocksForDate[timeblocksForDate.length - 1];
+
+        const startTime =
+          moment.utc(firstBlock.start).format('YYYY-MM-DD') === dateKey
+            ? moment.utc(firstBlock.start).format('HH:mm')
+            : '00:00';
+
+        const endTime =
+          moment.utc(lastBlock.end).format('YYYY-MM-DD') === dateKey
+            ? moment.utc(lastBlock.end).format('HH:mm')
+            : '23:59';
+
+        timeRange = `${startTime}–${endTime}`;
+      }
+    }
+  }
+
+  return (
+    <>
+      <div className="flex items-center justify-between p-2 bg-white border border-gray-200 rounded-sm hover:shadow-md transition-shadow gap-1">
+        <div className="flex flex-col gap-1 flex-1 min-w-0">
+          <div className="text-xs font-medium text-gray-900">{timeRange}</div>
+          <div className="text-xs font-semibold text-gray-900 break-words leading-tight">
+            {order.event?.name}
+          </div>
+          <div className="text-xs text-gray-600 uppercase tracking-wide">
+            {order.event?.organizer || 'ETHEREUM FOUNDATION'}
+          </div>
+        </div>
+        <div
+          className="flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-80 transition-opacity border-2 border-blue-600 rounded p-2"
+          onClick={() => setIsQRCodeModalOpen(true)}
+        >
+          <svg
+            className="w-4 h-4 text-blue-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+            />
+          </svg>
+          <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
+            QR CODE
+          </div>
+        </div>
+      </div>
+
+      {qrCodes[ticket.secret] && (
+        <QRCodeModal
+          qrCode={qrCodes[ticket.secret]}
+          isOpen={isQRCodeModalOpen}
+          onClose={() => setIsQRCodeModalOpen(false)}
+          ticket={ticket}
+        />
+      )}
+    </>
+  );
+};
+
 const SideEventTicket = ({
   ticket,
   qrCodes,
@@ -367,11 +478,60 @@ const SideEventTickets = ({
     moment('2025-11-21'),
     moment('2025-11-22'),
   ]);
+  const events = useGlobalStore((state) => state.events);
+
+  const orderWithEvent =
+    orders &&
+    orders
+      .map((order) => {
+        const event = events?.find((event) => event.id === order.eventId);
+        return {
+          ...order,
+          event: event || null,
+        };
+      })
+      .filter((order) => order.event !== null);
+
+  console.log(orderWithEvent, 'ORDER WITH EVENT');
+
+  // Create a map of dates to orders based on event timeblocks
+  const dateToOrders = new Map<string, typeof orderWithEvent>();
+
+  orderWithEvent?.forEach((order) => {
+    if (
+      order.event?.timeblocks &&
+      Array.isArray(order.event.timeblocks) &&
+      order.event.timeblocks.length > 0
+    ) {
+      // Get the start of the first timeblock and end of the last timeblock
+      const firstTimeblock = order.event.timeblocks[0];
+      const lastTimeblock =
+        order.event.timeblocks[order.event.timeblocks.length - 1];
+
+      if (firstTimeblock.start && lastTimeblock.end) {
+        const startDate = moment.utc(firstTimeblock.start);
+        const endDate = moment.utc(lastTimeblock.end);
+
+        // Add the order to every date between start and end (inclusive)
+        const currentDate = startDate.clone().startOf('day');
+        const finalDate = endDate.clone().startOf('day');
+
+        while (currentDate.isSameOrBefore(finalDate)) {
+          const dateKey = currentDate.format('YYYY-MM-DD');
+          if (!dateToOrders.has(dateKey)) {
+            dateToOrders.set(dateKey, []);
+          }
+          dateToOrders.get(dateKey)?.push(order);
+          currentDate.add(1, 'day');
+        }
+      }
+    }
+  });
 
   const [selectedDates, setSelectedDates] = useState<Set<Moment>>(new Set());
 
   return (
-    <div className="flex flex-col gap-1 py-4 grow self-start w-full md:w-auto">
+    <div className="flex flex-col gap-1 py-4 grow self-start w-full">
       <div className="flex flex-col gap-1 mb-3">
         <div className="text-lg font-semibold">Event Tickets</div>
         <div className="text-sm">
@@ -379,34 +539,79 @@ const SideEventTickets = ({
         </div>
       </div>
 
-      {dates.map((date) => (
-        <div
-          key={date.format('YYYY-MM-DD')}
-          className={cn(
-            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3 border border-solid border-gray-200 rounded-sm bg-white shadow-xs',
-            selectedDates.has(date) && 'border-b border-[rgba(237,237,240,1)]'
-          )}
-          onClick={() => setSelectedDates(new Set([...selectedDates, date]))}
-        >
-          <div className="flex flex-col">
-            <div className="text-sm font-medium mb-1">
-              {date.format('MMMM D, YYYY')}
+      {dates.map((date) => {
+        const dateKey = date.format('YYYY-MM-DD');
+        const ordersForDate = dateToOrders.get(dateKey) || [];
+        const hasTicketsForDate = ordersForDate.length > 0;
+        const isExpanded = selectedDates.has(date);
+
+        return (
+          <div key={dateKey} className="flex flex-col">
+            <div
+              className={cn(
+                'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3 border border-solid border-gray-200 rounded-sm bg-white shadow-xs',
+                isExpanded && 'border-b-0 rounded-b-none'
+              )}
+              onClick={() => {
+                const newDates = new Set(selectedDates);
+                if (newDates.has(date)) {
+                  newDates.delete(date);
+                } else {
+                  newDates.add(date);
+                }
+                setSelectedDates(newDates);
+              }}
+            >
+              <div className="flex flex-col">
+                <div className="text-sm font-medium mb-1">
+                  {date.format('MMMM D, YYYY')}
+                </div>
+                <div className="text-xs text-gray-600">
+                  {hasTicketsForDate
+                    ? `${ordersForDate.length} event${ordersForDate.length > 1 ? 's' : ''}`
+                    : 'You have no tickets for this date'}
+                </div>
+              </div>
+              <ChevronDown
+                className={cn(
+                  'w-4 h-4 transition-transform',
+                  isExpanded && 'rotate-180'
+                )}
+              />
             </div>
-            <div className="text-xs text-gray-600">
-              You have no tickets for this date
-            </div>
+
+            {isExpanded && hasTicketsForDate && (
+              <div className="border border-t-0 border-solid border-gray-200 rounded-b-sm bg-white shadow-xs p-3 pt-0 flex flex-col gap-2">
+                {ordersForDate.map((order) =>
+                  order.tickets.map((ticket) => (
+                    <EventTicketCard
+                      key={ticket.secret}
+                      order={order}
+                      ticket={ticket}
+                      dateKey={dateKey}
+                      qrCodes={qrCodes}
+                    />
+                  ))
+                )}
+              </div>
+            )}
           </div>
-          <ChevronDown className="w-4 h-4" />
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
 
 const TicketTab = RequiresAuthHOC(() => {
   // Use the tickets hook from store
-  const { tickets: orders, loading, qrCodes } = useTickets();
+  const {
+    tickets: orders,
+    sideTickets: sideOrders,
+    loading,
+    qrCodes,
+  } = useTickets();
   const hasTickets = orders && orders.length > 0;
+  const hasSideTickets = sideOrders && sideOrders.length > 0;
   const isLoading = loading && !hasTickets;
 
   return (
@@ -455,9 +660,9 @@ const TicketTab = RequiresAuthHOC(() => {
             </div>
           )}
 
-          <div className="flex flex-col md:flex-row gap-8 lg:items-center items-center">
+          <div className="flex flex-col md:flex-row gap-8 items-start w-full">
             {hasTickets && (
-              <div className="flex flex-col gap-8 mt-4">
+              <div className="flex flex-col gap-8 mt-4 shrink-0 self-center">
                 {orders.map((order) => (
                   <div key={order.orderCode}>
                     {order.tickets.map((ticket, idx) => (
@@ -473,16 +678,18 @@ const TicketTab = RequiresAuthHOC(() => {
             )}
 
             {hasTickets && (
-              <SideEventTickets orders={orders} qrCodes={qrCodes} />
+              <div className="w-full grow">
+                <SideEventTickets orders={sideOrders || []} qrCodes={qrCodes} />
+              </div>
             )}
           </div>
 
           {hasTickets && (
             <div className="flex flex-col gap-1 order-2 sm:order-1 mt-8">
-              <div className="text-lg font-semibold">Swag Vouchers</div>
+              <div className="text-lg font-semibold">Swag Items</div>
               <div className="text-sm">
-                Got Devconnect swag with your ticket? Find your vouchers here
-                and claim your items at the Swag Station.
+                Got swag with your Devconnect ticket? Claim it at the Swag
+                Station using the QR codes below.
               </div>
             </div>
           )}

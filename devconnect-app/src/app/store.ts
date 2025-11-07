@@ -28,6 +28,8 @@ export interface Ticket {
 }
 
 export interface Order {
+  eventId: number | undefined;
+  event: any | undefined;
   orderCode: string;
   orderDate: string;
   email: string;
@@ -46,6 +48,7 @@ export interface AppState {
     email?: string;
   } | null;
   tickets: Order[] | null;
+  sideTickets: Order[] | null;
   ticketsLoading: boolean;
   qrCodes: { [key: string]: string };
   announcements: any[];
@@ -55,6 +58,7 @@ export interface AppState {
   setUserData: (userData: AppState['userData']) => void;
   setFavoriteEvents: (nextFavoriteEvents: string[]) => void;
   setTickets: (tickets: Order[] | null) => void;
+  setSideTickets: (sideTickets: Order[] | null) => void;
   setTicketsLoading: (loading: boolean) => void;
   setQrCodes: (qrCodes: { [key: string]: string }) => void;
   logout: () => void;
@@ -71,6 +75,7 @@ export const initGlobalStore = (
   | 'setUserData'
   | 'setFavoriteEvents'
   | 'setTickets'
+  | 'setSideTickets'
   | 'setTicketsLoading'
   | 'setQrCodes'
   | 'logout'
@@ -79,6 +84,7 @@ export const initGlobalStore = (
   announcements: announcements || [],
   userData: userData || null,
   tickets: null,
+  sideTickets: null,
   ticketsLoading: false,
   qrCodes: {},
 });
@@ -91,6 +97,7 @@ export const createGlobalStore = (
     | 'setTickets'
     | 'setTicketsLoading'
     | 'setQrCodes'
+    | 'setSideTickets'
     | 'logout'
   > = initGlobalStore()
 ) => {
@@ -119,6 +126,12 @@ export const createGlobalStore = (
       set((state) => ({
         ...state,
         tickets,
+      })),
+
+    setSideTickets: (sideTickets: Order[] | null) =>
+      set((state) => ({
+        ...state,
+        sideTickets,
       })),
 
     setTicketsLoading: (loading: boolean) =>
@@ -151,6 +164,7 @@ export const createGlobalStore = (
         partialize: (state) => ({
           userData: state.userData,
           tickets: state.tickets,
+          sideTickets: state.sideTickets,
           ticketsLoading: state.ticketsLoading,
           qrCodes: state.qrCodes,
         }),
