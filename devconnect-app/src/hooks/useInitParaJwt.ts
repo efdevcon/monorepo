@@ -73,7 +73,7 @@ export function useInitParaJwt({
       paraConnected,
       paraAddress,
       isInitializing: isInitializingRef.current,
-      hasInitialized: hasInitializedRef.current.has(paraAddress),
+      hasInitialized: paraAddress ? hasInitializedRef.current.has(paraAddress) : false,
       hasValidCachedJwt,
       shouldInit,
     });
@@ -83,6 +83,9 @@ export function useInitParaJwt({
     }
 
     const initializeParaJwt = async () => {
+      // TypeScript guard: paraAddress is guaranteed to be non-null here due to shouldInit check
+      if (!paraAddress) return;
+
       isInitializingRef.current = true;
       hasInitializedRef.current.add(paraAddress);
 
