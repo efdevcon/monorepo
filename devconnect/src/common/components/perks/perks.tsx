@@ -758,7 +758,7 @@ const Perk = ({
                   <div className="text-xs text-[#4B4B66] w-full text-center">{perk.instructions}</div>
                 )}
 
-                {coupon.startsWith('https://') && (
+                {coupon.startsWith('http') && (
                   <a
                     href={coupon}
                     target="_blank"
@@ -769,13 +769,13 @@ const Perk = ({
                   </a>
                 )}
 
-                {!coupon.startsWith('https://') && (
+                {!coupon.startsWith('http') && (
                   <div className="shrink">
                     <strong>Coupon:</strong>&nbsp;{coupon}
                   </div>
                 )}
 
-                {!coupon.startsWith('https://') && (
+                {!coupon.startsWith('http') && (
                   <div className="">
                     <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
                       <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center shrink-0">
@@ -785,7 +785,7 @@ const Perk = ({
                   </div>
                 )}
 
-                {coupon.startsWith('https://') && (
+                {coupon.startsWith('http') && (
                   <Link href={coupon} className="my-0.5 w-full">
                     <Button size="sm" className="my-0.5 w-full">
                       <div className="flex items-center gap-1">
@@ -796,7 +796,7 @@ const Perk = ({
                   </Link>
                 )}
 
-                {!coupon.startsWith('https://') && (
+                {!coupon.startsWith('http') && (
                   <Link href={perk.urls?.[0]?.url ?? ''} className="my-0.5 w-full">
                     <Button size="sm" className="my-0.5 w-full">
                       <div className="flex items-center gap-1">
