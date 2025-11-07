@@ -263,79 +263,96 @@ export async function POST(request: NextRequest) {
     try {
       const supabase = createServerClient();
 
-      // Query for claiming link by address
-      const { data: claimingLink, error: claimError } = await supabase
-        .from('devconnect_app_claiming_links')
-        .select('*')
-        .eq('claimed_by_address', address.toLowerCase())
-        .maybeSingle();
+      // Find user who owns this address by checking addresses array
+      const normalizedAddress = address.toLowerCase();
+      const { data: users, error: userError } = await supabase
+        .from('devconnect_app_user')
+        .select('email, addresses')
+        .contains('addresses', [normalizedAddress]);
 
-      if (claimError) {
-        console.error('Error checking peanut claiming link:', claimError);
-      } else if (claimingLink) {
-        console.log('Found claiming link for address:', address);
+      if (userError) {
+        console.error('Error fetching user by address:', userError);
+      } else if (users && users.length > 0) {
+        // Take the first user (should only be one since addresses should be unique)
+        const userEmail = users[0].email;
+        console.log('Portfolio address belongs to user:', userEmail);
 
-        // Check the actual claim status on Peanut protocol
-        try {
-          const linkDetails = await peanut.getLinkDetails({
-            link: claimingLink.link,
-          });
+        // Query for claiming link by user email (not by address)
+        const { data: claimingLink, error: claimError } = await supabase
+          .from('devconnect_app_claiming_links')
+          .select('*')
+          .eq('claimed_by_user_email', userEmail)
+          .maybeSingle();
 
-          // Try to get transaction hash from Peanut API if claimed
-          let txHash = null;
-          if (linkDetails.claimed && linkDetails.rawOnchainDepositInfo) {
-            try {
-              const pubKey20 = (linkDetails.rawOnchainDepositInfo as any).pubKey20;
-              if (pubKey20) {
-                const apiUrl = `https://api.peanut.me/send-links/${pubKey20}?c=${linkDetails.chainId}&v=${linkDetails.contractVersion}&i=${linkDetails.depositIndex}`;
-                const apiResponse = await fetch(apiUrl);
-                if (apiResponse.ok) {
-                  const apiData = await apiResponse.json();
-                  txHash = apiData.claim?.txHash || null;
+        if (claimError) {
+          console.error('Error checking peanut claiming link:', claimError);
+        } else if (claimingLink) {
+          console.log('Found claiming link for user:', userEmail);
+
+          // Check the actual claim status on Peanut protocol
+          try {
+            const linkDetails = await peanut.getLinkDetails({
+              link: claimingLink.link,
+            });
+
+            // Try to get transaction hash from Peanut API if claimed
+            let txHash = null;
+            if (linkDetails.claimed && linkDetails.rawOnchainDepositInfo) {
+              try {
+                const pubKey20 = (linkDetails.rawOnchainDepositInfo as any).pubKey20;
+                if (pubKey20) {
+                  const apiUrl = `https://api.peanut.me/send-links/${pubKey20}?c=${linkDetails.chainId}&v=${linkDetails.contractVersion}&i=${linkDetails.depositIndex}`;
+                  const apiResponse = await fetch(apiUrl);
+                  if (apiResponse.ok) {
+                    const apiData = await apiResponse.json();
+                    txHash = apiData.claim?.txHash || null;
+                  }
                 }
+              } catch (apiError) {
+                console.error('Error fetching transaction hash from Peanut API:', apiError);
               }
-            } catch (apiError) {
-              console.error('Error fetching transaction hash from Peanut API:', apiError);
             }
+
+            peanutClaimingState = {
+              link: claimingLink.link,
+              amount: claimingLink.amount,
+              claimed_date: claimingLink.claimed_date,
+              ticket_secret_proof: claimingLink.ticket_secret_proof,
+              // Peanut protocol claim status (actual blockchain state)
+              peanut_claimed: linkDetails.claimed,
+              // Transaction hash from Peanut API
+              tx_hash: txHash,
+              // Database claim status
+              db_claimed_by_address: claimingLink.claimed_by_address,
+              db_claimed_by_user_email: claimingLink.claimed_by_user_email,
+            };
+
+            console.log('Peanut claiming state:', {
+              userEmail,
+              peanut_claimed: linkDetails.claimed,
+              tx_hash: txHash,
+              db_claimed: !!claimingLink.claimed_by_user_email,
+            });
+          } catch (peanutError) {
+            console.error('Error fetching peanut link details:', peanutError);
+            // Still return database info even if peanut check fails
+            peanutClaimingState = {
+              link: claimingLink.link,
+              amount: claimingLink.amount,
+              claimed_date: claimingLink.claimed_date,
+              ticket_secret_proof: claimingLink.ticket_secret_proof,
+              peanut_claimed: null, // Unknown state
+              tx_hash: null,
+              db_claimed_by_address: claimingLink.claimed_by_address,
+              db_claimed_by_user_email: claimingLink.claimed_by_user_email,
+              error: 'Failed to check Peanut protocol status',
+            };
           }
-
-          peanutClaimingState = {
-            link: claimingLink.link,
-            amount: claimingLink.amount,
-            claimed_date: claimingLink.claimed_date,
-            ticket_secret_proof: claimingLink.ticket_secret_proof,
-            // Peanut protocol claim status (actual blockchain state)
-            peanut_claimed: linkDetails.claimed,
-            // Transaction hash from Peanut API
-            tx_hash: txHash,
-            // Database claim status
-            db_claimed_by_address: claimingLink.claimed_by_address,
-            db_claimed_by_user_email: claimingLink.claimed_by_user_email,
-          };
-
-          console.log('Peanut claiming state:', {
-            address,
-            peanut_claimed: linkDetails.claimed,
-            tx_hash: txHash,
-            db_claimed: !!claimingLink.claimed_by_address,
-          });
-        } catch (peanutError) {
-          console.error('Error fetching peanut link details:', peanutError);
-          // Still return database info even if peanut check fails
-          peanutClaimingState = {
-            link: claimingLink.link,
-            amount: claimingLink.amount,
-            claimed_date: claimingLink.claimed_date,
-            ticket_secret_proof: claimingLink.ticket_secret_proof,
-            peanut_claimed: null, // Unknown state
-            tx_hash: null,
-            db_claimed_by_address: claimingLink.claimed_by_address,
-            db_claimed_by_user_email: claimingLink.claimed_by_user_email,
-            error: 'Failed to check Peanut protocol status',
-          };
+        } else {
+          console.log('No claiming link found for user:', userEmail);
         }
       } else {
-        console.log('No claiming link found for address:', address);
+        console.log('No user found with address:', address);
       }
     } catch (supabaseError) {
       console.error('Error accessing Supabase for peanut check:', supabaseError);
