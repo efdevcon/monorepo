@@ -263,7 +263,7 @@ export const VenueMap = () => {
       ref={containerRef}
       id="venue-container"
       className={cn(
-        'relative w-full overflow-hidden grow flex py-16 px-8 md:h-[80vh]',
+        'relative w-full overflow-hidden grow flex py-16 px-4 md:h-[80vh]',
         'gradient-background',
         css.map,
         zoomLevel === 'zoomed-in' && css['zoomed-in'],
