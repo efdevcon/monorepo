@@ -411,7 +411,7 @@ export default function WalletTab() {
         // Wait 2 seconds before changing popup state to closed
         setTimeout(() => {
           setIsPeanutPopupOpen(false);
-        }, 3000);
+        }, 5000);
         triggerDelayedPortfolioRefresh(2000);
       }
     }, 500);
