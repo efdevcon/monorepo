@@ -3,15 +3,15 @@ import type { POI } from '@/types/api-data';
 export const poisData: POI[] = [
   {
     "name": "Account Abstraction Hub",
-    "layerName": "account-abstraction-hub",
+    "layerName": "account-abrstraction-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-27-33-208Z-AA-Logo.png",
     "description": "",
     "websiteLink": "https://devconnect.org/community-hubs/account-abstraction-hub",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
   },
   {
     "name": "Activation 1",
@@ -22,7 +22,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "6",
+    "locationId": "13",
     "groupId": "1"
   },
   {
@@ -35,11 +35,119 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "1",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
   },
   {
-    "name": "Childcare 1",
-    "layerName": "childcare-1",
+    "name": "AID Room",
+    "layerName": "aid-room",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "1",
+    "groupId": "1"
+  },
+  {
+    "name": "Ambulance",
+    "layerName": "ambulance",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "1"
+  },
+  {
+    "name": "Amphitheater",
+    "layerName": "amphitheater",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "1",
+    "groupId": "1"
+  },
+  {
+    "name": "Badge Station",
+    "layerName": "badge-station",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Bleachers",
+    "layerName": "bleachers",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "12",
+    "groupId": "1"
+  },
+  {
+    "name": "Blue Discussion Corner",
+    "layerName": "blue-discussion-corner",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "12",
+    "groupId": "7"
+  },
+  {
+    "name": "Blue Pavilion Space",
+    "layerName": "blue-pavilion",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "2",
+    "groupId": "1"
+  },
+  {
+    "name": "Bootcamp",
+    "layerName": "poi-buidIguidl-bootcamp",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Ceibo Hall",
+    "layerName": "ceibo-hall",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "10",
+    "groupId": "1"
+  },
+  {
+    "name": "Childcare",
+    "layerName": "childcare",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -50,16 +158,16 @@ export const poisData: POI[] = [
     "groupId": "3"
   },
   {
-    "name": "Chill Out Area 1",
-    "layerName": "chill-out-area-1",
+    "name": "Chillout Area",
+    "layerName": "chillout-area",
     "logo": "",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "4"
+    "locationId": "3",
+    "groupId": "1"
   },
   {
     "name": "Co-work 1",
@@ -70,8 +178,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "4",
-    "groupId": "5"
+    "locationId": "8",
+    "groupId": "4"
   },
   {
     "name": "Coffee 1",
@@ -83,7 +191,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "6"
+    "groupId": "5"
   },
   {
     "name": "Collectibles Onboarding",
@@ -95,7 +203,43 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "2",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
+  },
+  {
+    "name": "Cowork Main Arena 1",
+    "layerName": "cowork-main-arena-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Cowork Main Arena 2",
+    "layerName": "cowork-main-arena-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Cowork The Hub",
+    "layerName": "cowork-the-hub",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "12",
+    "groupId": "1"
   },
   {
     "name": "DeFi Onboarding",
@@ -107,7 +251,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "3",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
   },
   {
     "name": "DeSci Hub",
@@ -118,20 +262,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
-  },
-  {
-    "name": "Discussion corner 1",
-    "layerName": "discussion-corner-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
     "locationId": "5",
-    "groupId": "8"
+    "groupId": "6"
   },
   {
     "name": "Enterprise Hub",
@@ -142,24 +274,12 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
   },
   {
-    "name": "Food & Beverage 1",
-    "layerName": "food-beverage-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "1",
-    "groupId": "10"
-  },
-  {
-    "name": "Football Area 1",
-    "layerName": "football-area-1",
+    "name": "Entrance",
+    "layerName": "Entrance",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -167,19 +287,151 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Ethluminal Gallery",
+    "layerName": "ethluminal-gallery",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Exit",
+    "layerName": "Exit",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck",
+    "layerName": "food-truck",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "12",
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck 1",
+    "layerName": "food-truck-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck 2",
+    "layerName": "food-truck-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "11",
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck 3",
+    "layerName": "food-truck-3",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck 4",
+    "layerName": "food-truck-4",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "9",
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck 5",
+    "layerName": "food-truck-5",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Food Truck 6",
+    "layerName": "food-truck-6",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "9",
+    "groupId": "1"
+  },
+  {
+    "name": "Football Field",
+    "layerName": "football-field",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "3",
     "groupId": "2"
   },
   {
     "name": "Future Cities & Hubs",
-    "layerName": "future-cities-hubs",
+    "layerName": "future-cities-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-54-55-465Z-Future-Cities-Hubs.png",
     "description": "",
     "websiteLink": "https://devconnect.org/community-hubs/future-cities-hubs",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
+  },
+  {
+    "name": "Gamers Discussion Corner",
+    "layerName": "gamers-discussion-corner",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "11",
+    "groupId": "1"
   },
   {
     "name": "Gaming Onboarding",
@@ -191,7 +443,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "4",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
   },
   {
     "name": "Governance Geeks Hub",
@@ -202,8 +454,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "5",
+    "groupId": "6"
   },
   {
     "name": "Hardware & Wallets Onboarding",
@@ -215,19 +467,43 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "5",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
   },
   {
-    "name": "Interview room 1",
-    "layerName": "interview-room-1",
+    "name": "Infinite Garden Artist Exhibition",
+    "layerName": "infinite-garden-artists-exhibition",
     "logo": "",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "11"
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Interview Room",
+    "layerName": "poi-interview-room",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "L Stage",
+    "layerName": "l-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "10",
+    "groupId": "1"
   },
   {
     "name": "L2 Onboarding",
@@ -239,7 +515,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "6",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
   },
   {
     "name": "LATAM Hub",
@@ -250,8 +526,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
   },
   {
     "name": "Legal Tech Hub",
@@ -263,7 +539,43 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "7"
+    "groupId": "6"
+  },
+  {
+    "name": "Lighting Talks Stage",
+    "layerName": "lighting-talks-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "M1 Stage",
+    "layerName": "m1-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "M2 Stage",
+    "layerName": "m2-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
   },
   {
     "name": "Main entrance",
@@ -274,8 +586,20 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "3",
-    "groupId": "9"
+    "locationId": "7",
+    "groupId": "8"
+  },
+  {
+    "name": "Media Room",
+    "layerName": "media",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
   },
   {
     "name": "Meeting Room 1",
@@ -287,7 +611,175 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "12"
+    "groupId": "10"
+  },
+  {
+    "name": "Meeting Room 1",
+    "layerName": "mr-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 10",
+    "layerName": "mr-10",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 2",
+    "layerName": "mr-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 3",
+    "layerName": "mr-3",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 4",
+    "layerName": "mr-4",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 5",
+    "layerName": "mr-5",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 6",
+    "layerName": "mr-6",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 7",
+    "layerName": "mr-7",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 8",
+    "layerName": "mr-8",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room 9",
+    "layerName": "mr-9",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room A",
+    "layerName": "meeting-room-a",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room B",
+    "layerName": "meeting-room-b",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Room Registration",
+    "layerName": "meeting-rooms-registration",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Music Stage",
+    "layerName": "music-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "1"
   },
   {
     "name": "Music Stage 1",
@@ -299,7 +791,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "11"
   },
   {
     "name": "Node Operators Hub",
@@ -310,8 +802,32 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
+  },
+  {
+    "name": "Nogal Hall",
+    "layerName": "nogal-hall",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Offices",
+    "layerName": "offices",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
   },
   {
     "name": "Onchain Art Hub",
@@ -322,8 +838,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
   },
   {
     "name": "Onchain Fintech Hub",
@@ -334,24 +850,24 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
+    "locationId": "4",
+    "groupId": "6"
+  },
+  {
+    "name": "Onramp ",
+    "layerName": "onramping",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
     "locationId": null,
-    "groupId": "7"
+    "groupId": "13"
   },
   {
     "name": "Onramp 1",
-    "layerName": "onramp-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "2",
-    "groupId": "15"
-  },
-  {
-    "name": "Open Cinema 1",
-    "layerName": "open-cinema-1",
+    "layerName": "onramping-1",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -359,6 +875,30 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Onramp 2",
+    "layerName": "onramping-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Open Air Cinema",
+    "layerName": "open-air-cinema",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "3",
     "groupId": "2"
   },
   {
@@ -370,8 +910,200 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
+  },
+  {
+    "name": "Orange Discussion Corner",
+    "layerName": "orange-discussion-corner",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "12",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station",
+    "layerName": "power-up-station",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "3",
+    "groupId": "9"
+  },
+  {
+    "name": "Power Up Station 1",
+    "layerName": "power-up-station-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 10",
+    "layerName": "power-up-station-10",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "11",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 11",
+    "layerName": "power-up-station-11",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 12",
+    "layerName": "power-up-station-12",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 13",
+    "layerName": "power-up-station-13",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "3",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 14",
+    "layerName": "power-up-station-14",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 2",
+    "layerName": "power-up-station-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 3",
+    "layerName": "power-up-station-3",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "10",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 4",
+    "layerName": "power-up-station-4",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 5",
+    "layerName": "power-up-station-5",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 6",
+    "layerName": "power-up-station-6",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 7",
+    "layerName": "power-up-station-7",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 8",
+    "layerName": "power-up-station-8",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
+  },
+  {
+    "name": "Power Up Station 9",
+    "layerName": "power-up-station-9",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
   },
   {
     "name": "Privacy Hub",
@@ -382,8 +1114,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "11",
+    "groupId": "6"
   },
   {
     "name": "Privacy Onboarding",
@@ -395,7 +1127,19 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "7",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
+  },
+  {
+    "name": "Purple Discussion Corner",
+    "layerName": "purple-discussion-corner",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "1"
   },
   {
     "name": "QR-code 1",
@@ -407,7 +1151,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "16"
+    "groupId": "14"
   },
   {
     "name": "QR-code 2",
@@ -419,7 +1163,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "16"
+    "groupId": "14"
   },
   {
     "name": "QR-code 3",
@@ -431,11 +1175,23 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "16"
+    "groupId": "14"
+  },
+  {
+    "name": "Quiet Cowork",
+    "layerName": "quiet-cowork",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "9",
+    "groupId": "1"
   },
   {
     "name": "Real World Assets Hub",
-    "layerName": "real-world-assets-hub",
+    "layerName": "poi-real-world-assets-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-57-230Z-RWA-Hub.png",
     "description": "",
     "websiteLink": "https://devconnect.org/community-hubs/real-world-assets-hub",
@@ -443,7 +1199,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "7"
+    "groupId": "6"
   },
   {
     "name": "Regen Hub",
@@ -454,8 +1210,68 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "5",
+    "groupId": "6"
+  },
+  {
+    "name": "Registration M1 1",
+    "layerName": "poi-registration-yellow-pavilion-m1-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Registration M1 2",
+    "layerName": "poi-registration-yellow-pavilion-m1-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Registration M2 Stage",
+    "layerName": "poi-registration-yellow-pavilion-m2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Registration XL",
+    "layerName": "poi-registration-yellow-pavilion-xl",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "Registration XS Stage",
+    "layerName": "poi-registration-yellow-pavilion-xs",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
   },
   {
     "name": "Social Onboarding",
@@ -467,7 +1283,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "8",
     "locationId": null,
-    "groupId": "14"
+    "groupId": "12"
   },
   {
     "name": "Stage 1",
@@ -479,18 +1295,42 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "18"
+    "groupId": "16"
   },
   {
-    "name": "SWAG station 1",
-    "layerName": "swag-station-1",
+    "name": "Storage",
+    "layerName": "storage",
     "logo": "",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "3",
+    "groupId": "1"
+  },
+  {
+    "name": "SWAG station",
+    "layerName": "swag-station",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "4",
+    "groupId": "15"
+  },
+  {
+    "name": "Toilet",
+    "layerName": "toilet",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "10",
     "groupId": "17"
   },
   {
@@ -503,7 +1343,55 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "19"
+    "groupId": "1"
+  },
+  {
+    "name": "Toilet 2",
+    "layerName": "toilet-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Toilet 3",
+    "layerName": "toilet-3",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Toilet 4",
+    "layerName": "toilet-4",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
+  },
+  {
+    "name": "Toilet 6",
+    "layerName": "toilet-6",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "1"
   },
   {
     "name": "Women in Web3 Hub",
@@ -514,7 +1402,31 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
-    "groupId": "7"
+    "locationId": "4",
+    "groupId": "6"
+  },
+  {
+    "name": "XL Stage",
+    "layerName": "xl-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
+  },
+  {
+    "name": "XS Stage",
+    "layerName": "xs-stage",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "13",
+    "groupId": "1"
   }
 ];
