@@ -14,7 +14,13 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
       ref,
     };
 
-    return <Map {...svgProps} />;
+    return (
+      <Map
+        {...svgProps}
+        viewBox="0 0 1091 951"
+        style={{ overflow: 'visible' }}
+      />
+    );
   }
 );
 
