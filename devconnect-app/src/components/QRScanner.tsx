@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import Button from './Button';
@@ -20,61 +20,30 @@ const QRScanner = ({
   autoOpen = false,
 }: QRScannerProps) => {
   const [open, setOpen] = useState(false);
-  const [pwa] = useLocalStorage('pwa', false);
   const [scanResult, setScanResult] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [permissionStatus, setPermissionStatus] = useState<string | null>(null);
+  const [permissionDenied, setPermissionDenied] = useState(false);
+  const [showScanner, setShowScanner] = useState(true);
   const scannerRef = useRef<HTMLDivElement>(null);
   const [isIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
 
-  // Check and monitor camera permission status
-  const checkCameraPermission = useCallback(async () => {
-    if (navigator.permissions && navigator.permissions.query) {
-      try {
-        const permission = await navigator.permissions.query({
-          name: 'camera',
-        });
-        setPermissionStatus(permission.state); // 'granted', 'denied', or 'prompt'
-        // Monitor permission changes (e.g., if user changes settings)
-        permission.onchange = () => {
-          setPermissionStatus(permission.state);
-          if (permission.state === 'granted' && error) {
-            setError(null); // Clear error if permission is granted
-          }
-        };
-        return permission.state;
-      } catch (err) {
-        console.warn('Permission API not supported:', err);
-        setPermissionStatus('unknown');
-        return 'unknown';
-      }
-    }
-    setPermissionStatus('unknown');
-    return 'unknown';
-  }, [error]);
-
-  // Initialize permission check on component mount
+  // Reset permission state when component mounts (user returns to page)
   useEffect(() => {
-    checkCameraPermission();
-  }, [checkCameraPermission]);
+    setPermissionDenied(false);
+  }, []);
 
   // Auto-open scanner if autoOpen prop is true
   useEffect(() => {
     if (autoOpen) {
       handleOpenScanner();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpen]);
 
   // Handle opening the scanner
-  const handleOpenScanner = async () => {
-    const status = await checkCameraPermission();
-    if (status === 'denied') {
-      setError(
-        'Camera access is denied. Please enable camera access in Settings > Privacy > Camera for this app.'
-      );
-      return;
-    }
-    setError(null); // Clear any previous errors
+  const handleOpenScanner = () => {
+    setScanResult(null);
+    setPermissionDenied(false);
+    setShowScanner(true);
     setOpen(true);
   };
 
@@ -83,6 +52,8 @@ const QRScanner = ({
     setScanResult(result);
     onScan?.(result);
     setOpen(false);
+    // Reset permission state for next time scanner is opened
+    setPermissionDenied(false);
   };
 
   // Function to stop camera stream
@@ -104,27 +75,23 @@ const QRScanner = ({
   const handleClose = () => {
     stopCamera();
     setOpen(false);
+    // Reset permission state for next time scanner is opened
+    setPermissionDenied(false);
     onClose?.();
   };
 
   const handleError = (err: unknown) => {
-    const errorMessage = (err as Error)?.message || 'Unknown error';
-    if (errorMessage.includes('NotAllowedError')) {
-      setError(
-        'Camera access is required to scan QR codes. Please enable camera access in Settings > Privacy > Camera.'
-      );
-      setPermissionStatus('denied');
+    console.log('Scanner error:', err);
+    const error = err as Error;
+
+    // Handle permission denial - recommended approach from library docs
+    if (error.name === 'NotAllowedError') {
+      setPermissionDenied(true);
+      console.log('Camera permission denied');
     } else {
-      setError(`Camera error: ${errorMessage}`);
+      console.error('Scanner error:', error);
     }
   };
-
-  // Reset error when closing the scanner
-  useEffect(() => {
-    if (!open) {
-      setError(null);
-    }
-  }, [open]);
 
   // Cleanup camera when component unmounts
   useEffect(() => {
@@ -137,32 +104,13 @@ const QRScanner = ({
 
   return (
     <>
-      {/* Display permission status */}
-      {/* {permissionStatus && (
-        <div className="p-2 text-gray-600 text-sm">
-          Camera Permission:{' '}
-          {permissionStatus === 'granted'
-            ? 'Ready'
-            : permissionStatus === 'denied'
-              ? 'Denied (Enable in Settings)'
-              : permissionStatus === 'prompt'
-                ? 'Not requested yet'
-                : 'Unknown (Browser may not support permission checks)'}
-        </div>
-      )} */}
       <Button
         type="Primary"
         className="w-full mt-2"
         onClick={handleOpenScanner}
-        disabled={permissionStatus === 'denied'} // Disable button if permission is denied
       >
         {buttonLabel || 'Scan QR Code'}
       </Button>
-      {error && !open && (
-        <div className="p-4 bg-red-100 text-red-700 rounded-md mt-4">
-          {error}
-        </div>
-      )}
       {open &&
         createPortal(
           <div
@@ -178,61 +126,105 @@ const QRScanner = ({
               className="w-full h-full bg-gray-900 flex flex-col items-center relative min-w-[260px]"
               onClick={(e) => e.stopPropagation()}
             >
-              {error && <div className="text-red-400 mt-2 mb-2">{error}</div>}
-              <div
-                className="w-full flex-1 flex justify-center items-center overflow-hidden relative"
-                ref={scannerRef}
-              >
-                <Scanner
-                  onScan={(detectedCodes: { rawValue: string }[]) => {
-                    if (detectedCodes.length > 0) {
-                      const result = detectedCodes[0].rawValue;
-                      handleScan(result);
-                    }
-                  }}
-                  onError={handleError}
-                  constraints={{ facingMode: 'environment' }}
-                  formats={['qr_code']}
-                  allowMultiple={true}
-                  components={{
-                    // onOff: true,
-                    finder: true,
-                    torch: false,
-                    zoom: false,
-                  }}
-                  styles={{
-                    container: {
-                      backgroundColor: 'transparent',
-                      height: '100%',
-                    },
-                    video: {
-                      borderRadius: '0',
-                    },
-                  }}
-                  // TEMP: Disable sound
-                  sound={false}
-                />
-                {/* Scan payment QR code text positioned over the scanner */}
-                {/* <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                  <span className="text-white font-semibold text-lg">
-                    Scan payment QR code
-                  </span>
-                </div> */}
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-transparent">
-                {/* Having trouble scanning link */}
-                <div className="mt-3 flex flex-col items-center gap-2">
-                  {/* <p className="text-white text-sm font-bold text-center">
-                    Having trouble scanning?
-                  </p> */}
-                  <button
-                    onClick={handleClose}
-                    className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
-                  >
-                    Make manual payment
-                  </button>
+              {permissionDenied ? (
+                // Permission denied UI
+                <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
+                  <div className="mb-6">
+                    <svg
+                      className="w-16 h-16 text-blue-400 mx-auto mb-4"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      Camera Access Required
+                    </h3>
+                    <p className="text-gray-300 mb-2">
+                      Camera access was blocked. To scan QR codes, you need to
+                      enable camera permissions.
+                    </p>
+                    <p className="text-gray-400 text-sm mb-6">
+                      Look for the camera icon in your browser's address bar,
+                      click it, and allow camera access. Then close this and try
+                      scanning again.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3 w-full max-w-xs">
+                    <button
+                      onClick={handleClose}
+                      className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                    >
+                      Make manual payment
+                    </button>
+                    <button
+                      onClick={
+                        () => {
+                          // refresh the page
+                          window.location.reload();
+                        }
+                      }
+                      className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                    >
+                      Reset camera permissions
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                // Scanner UI
+                <>
+                  <div
+                    className="w-full flex-1 flex justify-center items-center overflow-hidden relative"
+                    ref={scannerRef}
+                  >
+                    {showScanner && (
+                      <Scanner
+                        onScan={(detectedCodes: { rawValue: string }[]) => {
+                          if (detectedCodes.length > 0) {
+                            const result = detectedCodes[0].rawValue;
+                            handleScan(result);
+                          }
+                        }}
+                        onError={handleError}
+                        constraints={{ facingMode: 'environment' }}
+                        formats={['qr_code']}
+                        allowMultiple={true}
+                        components={{
+                          // onOff: true,
+                          finder: true,
+                          torch: false,
+                          zoom: false,
+                        }}
+                        styles={{
+                          container: {
+                            backgroundColor: 'transparent',
+                            height: '100%',
+                          },
+                          video: {
+                            borderRadius: '0',
+                          },
+                        }}
+                        // TEMP: Disable sound
+                        sound={false}
+                      />
+                    )}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-8 bg-transparent">
+                    <div className="mt-3 flex flex-col items-center gap-2">
+                      <button
+                        onClick={handleClose}
+                        className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                      >
+                        Make manual payment
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>,
           document.body
