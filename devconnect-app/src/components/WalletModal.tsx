@@ -3,7 +3,7 @@
 import { useAppKit } from '@reown/appkit/react';
 import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import {
   WalletDisplay,
@@ -11,6 +11,7 @@ import {
 } from '@/components/WalletDisplay';
 import { useGlobalStore } from '@/app/store.provider';
 import { useRouter } from 'next/navigation';
+import { authService } from '@/services/authService';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -69,6 +70,71 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const primaryConnector = isPara
     ? { id: 'para', name: 'Para', ...para.paraAccount }
     : eoa.wagmiAccount.connector;
+
+  // Track EOA connections to detect new wallets
+  const previousEOAAddresses = useRef<Set<string>>(new Set());
+
+  // Effect: Save new EOA addresses to database
+  useEffect(() => {
+    // Get all current EOA addresses
+    const currentEOAAddresses = new Set<string>();
+    
+    eoa.eoaConnections.forEach((conn) => {
+      if (conn.accounts && conn.accounts.length > 0) {
+        conn.accounts.forEach((addr: string) => {
+          currentEOAAddresses.add(addr.toLowerCase());
+        });
+      }
+    });
+
+    // Find newly added addresses
+    const newAddresses = Array.from(currentEOAAddresses).filter(
+      (addr) => !previousEOAAddresses.current.has(addr)
+    );
+
+    // Save new addresses to database
+    if (newAddresses.length > 0) {
+      console.log('🔌 [WALLET_MODAL] New EOA addresses detected:', newAddresses);
+      
+      // Use async IIFE to handle async operations properly
+      (async () => {
+        try {
+          // Get authentication token using authService
+          const authToken = await authService.generateToken();
+
+          // Save each new address
+          for (const address of newAddresses) {
+            try {
+              const response = await fetch('/api/user/add-address', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${authToken.token}`,
+                  'x-auth-method': authToken.method,
+                },
+                body: JSON.stringify({ address }),
+              });
+
+              if (!response.ok) {
+                const error = await response.json();
+                console.error('🔌 [WALLET_MODAL] Failed to save address:', error);
+              } else {
+                const result = await response.json();
+                console.log('🔌 [WALLET_MODAL] Address saved successfully:', result);
+              }
+            } catch (error) {
+              console.error('🔌 [WALLET_MODAL] Error saving address:', error);
+            }
+          }
+        } catch (authError) {
+          console.warn('🔌 [WALLET_MODAL] No auth token available, skipping address save:', authError);
+        }
+      })();
+    }
+
+    // Update the tracked addresses
+    previousEOAAddresses.current = currentEOAAddresses;
+  }, [eoa.eoaConnections]);
 
   // Debug: Log wallet state when modal opens
   // useEffect(() => {
