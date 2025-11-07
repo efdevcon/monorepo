@@ -75,7 +75,7 @@ const hubData = [
     name: 'Privacy Hub',
     slug: 'privacy-hub',
     iframeUrl:
-      'https://sheets.fileverse.io/0x76c97623ecB250Cda54b431a63c1523a5B50003c/0#key=1g_H3jaYmAs_Hm-tjJOLv3Gh9eTY1BKUo9XT8ze7qaqLBdW-Kir2Joj3df1aczyK',
+      'https://sheets.fileverse.io/0x76c97623ecB250Cda54b431a63c1523a5B50003c/1#key=tUNKZgArn5JPPG61tBSnzhRo8x9nYQxrgApPA4kPezXVOV64X0VuBeF5ZcWQLTCl',
   },
   {
     name: 'Real World Assets Hub',
