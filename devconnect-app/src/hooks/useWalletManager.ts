@@ -49,6 +49,7 @@ export interface PeanutClaimingState {
   claimed_date: string | null;
   ticket_secret_proof: string | null;
   peanut_claimed: boolean | null; // Actual blockchain state from Peanut protocol
+  tx_hash: string | null; // Transaction hash from Peanut API
   db_claimed_by_address: string | null; // Database state
   db_claimed_by_user_email: string | null;
   error?: string;

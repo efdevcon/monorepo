@@ -179,6 +179,7 @@ export default function WalletTab() {
   );
   const [addressCopied, setAddressCopied] = useState(false);
   const [refreshTimestamps, setRefreshTimestamps] = useState<number[]>([]);
+  const [isPeanutPopupOpen, setIsPeanutPopupOpen] = useState(false);
 
   // Load stored payments from localStorage
   const [storedPayments] = useLocalStorage<StoredPayments>(
@@ -397,6 +398,9 @@ export default function WalletTab() {
       return;
     }
 
+    // Set popup open state
+    setIsPeanutPopupOpen(true);
+
     // Monitor popup closure and refresh portfolio when closed
     const checkPopupClosed = setInterval(() => {
       if (popup.closed) {
@@ -404,6 +408,10 @@ export default function WalletTab() {
         console.log(
           '🔄 [WALLET_TAB] Peanut popup closed, refreshing portfolio'
         );
+        // Wait 2 seconds before changing popup state to closed
+        setTimeout(() => {
+          setIsPeanutPopupOpen(false);
+        }, 3000);
         triggerDelayedPortfolioRefresh(2000);
       }
     }, 500);
@@ -433,6 +441,7 @@ export default function WalletTab() {
         // Close the popup
         popup.close();
         clearInterval(checkPopupClosed);
+        setIsPeanutPopupOpen(false);
 
         // Show error toast with dynamic content from API
         // Use info toast for "already claimed" scenarios
@@ -521,6 +530,7 @@ export default function WalletTab() {
         `);
       } else {
         clearInterval(checkPopupClosed);
+        setIsPeanutPopupOpen(false);
       }
 
       toast.error('Failed to retrieve claim link', {
@@ -997,9 +1007,13 @@ export default function WalletTab() {
                   >
                     <button
                       onClick={handlePeanutClaim}
-                      disabled={peanutClaimingState?.peanut_claimed === true}
+                      disabled={
+                        peanutClaimingState?.peanut_claimed === true ||
+                        isPeanutPopupOpen
+                      }
                       className={`w-full rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
-                        peanutClaimingState?.peanut_claimed === true
+                        peanutClaimingState?.peanut_claimed === true ||
+                        isPeanutPopupOpen
                           ? 'bg-gray-300 cursor-not-allowed'
                           : 'bg-[#ff91e9] hover:bg-[#ff7de3] cursor-pointer'
                       }`}
@@ -1009,28 +1023,80 @@ export default function WalletTab() {
                       }}
                     >
                       <p className="text-black text-[16px] font-bold leading-4">
-                        {peanutClaimingState?.peanut_claimed === true
-                          ? '✓ Claimed'
-                          : peanutClaimingState?.peanut_claimed === false
-                            ? 'Claim $2 (USDC)'
-                            : 'Claim $2 (USDC)'}
+                        {isPeanutPopupOpen
+                          ? 'Claiming...'
+                          : peanutClaimingState?.peanut_claimed === true
+                            ? '✓ Claimed'
+                            : peanutClaimingState?.peanut_claimed === false
+                              ? 'Claim $2 (USDC)'
+                              : 'Claim $2 (USDC)'}
                       </p>
-                      {peanutClaimingState?.peanut_claimed !== true && (
-                        <svg
-                          className="w-3.5 h-3.5 text-black flex-shrink-0"
-                          viewBox="0 0 14 14"
-                          fill="none"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 7h8m0 0L7 3m4 4l-4 4"
-                          />
-                        </svg>
-                      )}
+                      {peanutClaimingState?.peanut_claimed !== true &&
+                        !isPeanutPopupOpen && (
+                          <svg
+                            className="w-3.5 h-3.5 text-black flex-shrink-0"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 7h8m0 0L7 3m4 4l-4 4"
+                            />
+                          </svg>
+                        )}
                     </button>
+                    {/* Transaction Link or Claiming Status */}
+                    {peanutClaimingState?.peanut_claimed === true && (
+                      <>
+                        {peanutClaimingState?.tx_hash ? (
+                          <a
+                            href={`https://axelarscan.io/gmp/${peanutClaimingState.tx_hash}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
+                          >
+                            View transaction
+                            <svg
+                              className="w-3 h-3"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.5}
+                                d="M3 9l6-6m0 0H4.5M9 3v4.5"
+                              />
+                            </svg>
+                          </a>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span className="text-[#4b4b66] text-[12px] font-medium">
+                              {isPeanutPopupOpen
+                                ? 'Claiming...'
+                                : 'Waiting for transaction...'}
+                            </span>
+                            <button
+                              onClick={handleRefresh}
+                              disabled={isRefreshing || portfolioLoading}
+                              className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                              title="Refresh to check if transaction is available"
+                            >
+                              <Icon
+                                path={mdiCached}
+                                size={0.5}
+                                className={`${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
+                              />
+                              Refresh
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    )}
                     {/* {peanutClaimingState && (
                   <div className="w-full">
                     {peanutClaimingState.peanut_claimed === true ? (

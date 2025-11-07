@@ -281,6 +281,24 @@ export async function POST(request: NextRequest) {
             link: claimingLink.link,
           });
 
+          // Try to get transaction hash from Peanut API if claimed
+          let txHash = null;
+          if (linkDetails.claimed && linkDetails.rawOnchainDepositInfo) {
+            try {
+              const pubKey20 = (linkDetails.rawOnchainDepositInfo as any).pubKey20;
+              if (pubKey20) {
+                const apiUrl = `https://api.peanut.me/send-links/${pubKey20}?c=${linkDetails.chainId}&v=${linkDetails.contractVersion}&i=${linkDetails.depositIndex}`;
+                const apiResponse = await fetch(apiUrl);
+                if (apiResponse.ok) {
+                  const apiData = await apiResponse.json();
+                  txHash = apiData.claim?.txHash || null;
+                }
+              }
+            } catch (apiError) {
+              console.error('Error fetching transaction hash from Peanut API:', apiError);
+            }
+          }
+
           peanutClaimingState = {
             link: claimingLink.link,
             amount: claimingLink.amount,
@@ -288,6 +306,8 @@ export async function POST(request: NextRequest) {
             ticket_secret_proof: claimingLink.ticket_secret_proof,
             // Peanut protocol claim status (actual blockchain state)
             peanut_claimed: linkDetails.claimed,
+            // Transaction hash from Peanut API
+            tx_hash: txHash,
             // Database claim status
             db_claimed_by_address: claimingLink.claimed_by_address,
             db_claimed_by_user_email: claimingLink.claimed_by_user_email,
@@ -296,6 +316,7 @@ export async function POST(request: NextRequest) {
           console.log('Peanut claiming state:', {
             address,
             peanut_claimed: linkDetails.claimed,
+            tx_hash: txHash,
             db_claimed: !!claimingLink.claimed_by_address,
           });
         } catch (peanutError) {
@@ -307,6 +328,7 @@ export async function POST(request: NextRequest) {
             claimed_date: claimingLink.claimed_date,
             ticket_secret_proof: claimingLink.ticket_secret_proof,
             peanut_claimed: null, // Unknown state
+            tx_hash: null,
             db_claimed_by_address: claimingLink.claimed_by_address,
             db_claimed_by_user_email: claimingLink.claimed_by_user_email,
             error: 'Failed to check Peanut protocol status',
