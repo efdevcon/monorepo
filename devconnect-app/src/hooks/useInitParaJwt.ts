@@ -30,13 +30,53 @@ export function useInitParaJwt({
   const hasInitializedRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    // Check if we already have a valid JWT cached
+    const hasValidCachedJwt = (() => {
+      if (typeof window === 'undefined') return false;
+
+      const memoryJwt = (window as any).__paraJwt;
+      if (memoryJwt) {
+        console.log('🔍 [PARA_JWT_INIT] Found cached JWT in memory');
+        return true;
+      }
+
+      // Check localStorage for unexpired token
+      const storedToken = localStorage.getItem('paraJwt');
+      const storedExpiry = localStorage.getItem('paraJwtExpiry');
+
+      if (storedToken && storedExpiry) {
+        const expiryTimestamp = parseInt(storedExpiry);
+        const now = Math.floor(Date.now() / 1000);
+        const isValid = expiryTimestamp > now;
+        console.log(`🔍 [PARA_JWT_INIT] Found JWT in localStorage, valid: ${isValid}`);
+        return isValid;
+      }
+
+      return false;
+    })();
+
+    // If we have no cached JWT but the address is marked as initialized,
+    // it means logout happened - clear the initialization flag
+    if (!hasValidCachedJwt && paraAddress && hasInitializedRef.current.has(paraAddress)) {
+      console.log('🧹 [PARA_JWT_INIT] No JWT but address marked as initialized, clearing flag');
+      hasInitializedRef.current.delete(paraAddress);
+    }
+
     const shouldInit =
       paraConnected &&
       paraAddress &&
       !isInitializingRef.current &&
       !hasInitializedRef.current.has(paraAddress) &&
-      // Check if issueJwt is NOT already available
-      typeof (window as any).para?.issueJwt !== 'function';
+      !hasValidCachedJwt; // Only init if we don't have a valid cached JWT
+
+    console.log('🔍 [PARA_JWT_INIT] Check initialization:', {
+      paraConnected,
+      paraAddress,
+      isInitializing: isInitializingRef.current,
+      hasInitialized: hasInitializedRef.current.has(paraAddress),
+      hasValidCachedJwt,
+      shouldInit,
+    });
 
     if (!shouldInit) {
       return;

@@ -141,8 +141,18 @@ NEXT_PUBLIC_USE_LEGACY_AUTH_PRIORITY=false  # Default
 
 ## Troubleshooting
 
-### Para not authenticating
-- Check: `[PARA_JWT_INIT] Para JWT obtained successfully!` in console
+### Para not authenticating after logout/reconnect
+
+**Symptom**: User data doesn't load after logging out and back in  
+**Cause & Fix**:
+
+- ✅ **JWT cache check**: Now checks for valid cached JWT (both memory and localStorage), not just if `issueJwt` function exists
+- This prevents re-initialization when a valid JWT is already available
+- Re-initialization only happens when JWT is expired or missing
+
+**Verify it's working**:
+
+- Check: `[PARA_JWT_INIT] Para JWT obtained successfully!` in console after reconnect
 - Verify: `window.__paraJwt` is set
 - Confirm: Biometric/OTP verification completed
 

@@ -152,10 +152,18 @@ export default function SettingsTab() {
 
   const handleLogout = async () => {
     try {
+      console.log('🔌 [SETTINGS_TAB] Starting logout process');
+      
+      // Wait for disconnect to complete (handles all cleanup including signOut)
       await disconnectAll();
-
+      
+      // Clear app-level state
       localStorage.removeItem('loginIsSkipped');
       storeLogout();
+      
+      console.log('🔌 [SETTINGS_TAB] Logout completed, navigating to onboarding');
+      
+      // Navigate to onboarding
       router.push('/onboarding');
 
       // toast.success(

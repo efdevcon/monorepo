@@ -147,14 +147,24 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     try {
       console.log('🔌 [WALLET_MODAL] Starting disconnect process');
       const isPara = primaryType === 'para';
+      
+      // Wait for disconnect to complete (handles all cleanup including signOut)
       await disconnect();
+      
       if (isPara) {
         console.log('🔌 [WALLET_MODAL] Para is active, logging out');
+        // Clear app-level state and redirect
         localStorage.removeItem('loginIsSkipped');
         storeLogout();
+        
+        // Close modal before navigation
+        onClose();
+        
+        // Navigate to onboarding
         router.push('/onboarding');
+        return; // Skip toast and second onClose
       } else {
-        console.log('🔌 [WALLET_MODAL] EOA is active, disconnecting');
+        console.log('🔌 [WALLET_MODAL] EOA is active, disconnected');
       }
 
       toast.success(

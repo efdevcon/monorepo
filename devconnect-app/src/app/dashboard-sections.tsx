@@ -9,6 +9,7 @@ import { useNow } from 'lib/hooks/useNow';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useGlobalStore } from './store.provider';
+import { useLocalStorage } from 'usehooks-ts';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
 import { withParcnetProvider } from 'lib/components/event-schedule-new/zupass/zupass';
 import cn from 'classnames';
@@ -20,8 +21,6 @@ import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
 import { toast } from 'sonner';
 import { ChevronDownIcon, Copy } from 'lucide-react';
 import { useRefreshOnAuthChange } from '@/hooks/useServerData';
-import { useUserData } from '@/hooks/useServerData';
-import Loader from '@/components/Loader';
 import Lock from '@/images/lock.png';
 import { Separator } from 'lib/components/ui/separator';
 
@@ -53,7 +52,9 @@ export const LoopingHeader = () => {
 };
 
 export function WelcomeSection() {
-  const { email, loading } = useUserData();
+  // Get email from localStorage (set during onboarding) - instant, no loading
+  const [email] = useLocalStorage('email', '');
+
   const now = useNow();
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
   const formattedDate = buenosAiresTime.format('h:mm A');
@@ -76,8 +77,8 @@ export function WelcomeSection() {
   return (
     <div className="flex justify-between items-center gap-4 mb-4 px-4 max-w-screen">
       <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1 grow">
-        {loading && !email && <Loader />}
-        {!loading && email && (
+        {/* Show greeting when we have email */}
+        {email && (
           <>
             <div
               className={cn(
@@ -88,12 +89,13 @@ export function WelcomeSection() {
               {greeting}
             </div>
             <div className="text-base text-[rgba(53,53,72,1)] font-medium italic truncate">
-              {!email && !loading ? 'Anon' : email}
+              {email || 'Anon'}
             </div>
           </>
         )}
 
-        {!loading && !email && (
+        {/* Show login block when no email */}
+        {!email && (
           <div className="grow shadow-sm flex flex-col sm:flex-row gap-4 justify-between bg-white p-4 border border-[rgba(234,234,234,1)]">
             <div className="flex items-center gap-4">
               <Image src={Lock} alt="Lock" className="w-10 shrink-0" />

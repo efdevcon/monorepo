@@ -71,6 +71,9 @@ export interface UserData {
  * - Works with both Para JWT and Supabase authentication
  */
 export function useUserData(fallbackData?: UserData) {
+  // Track if we're in initial loading state (before any data arrives)
+  const [hasReceivedData, setHasReceivedData] = useState(false);
+
   const { data, error, isLoading, mutate } = useSWR<{
     success: boolean;
     data?: UserData;
@@ -110,21 +113,42 @@ export function useUserData(fallbackData?: UserData) {
           !err?.message?.includes('No authentication method available')) {
           console.error('❌ [useUserData] Failed to fetch user data:', err);
         }
+        // Mark as received data (even if error) to stop showing loader
+        setHasReceivedData(true);
       },
       onSuccess: (data) => {
         if (data?.data) {
           console.log('✅ [useUserData] User data loaded:', data.data.email);
         }
+        // Mark as received data
+        setHasReceivedData(true);
       },
     }
   );
+
+  // Check if request is paused (waiting for Para JWT)
+  const isPaused = typeof window !== 'undefined' && 
+    !!(window as any).__paraAddress && 
+    !(window as any).__paraJwt;
+
+  // Check if we have any authentication available
+  const hasAnyAuth = typeof window !== 'undefined' && (
+    !!(window as any).__paraAddress || // Para connected
+    !!(window as any).__paraJwt // Para JWT available
+  );
+
+  // True loading state: Show loading if:
+  // 1. SWR is actively loading, OR
+  // 2. We're paused waiting for Para JWT, OR
+  // 3. We haven't received any data yet AND we have some form of auth connected
+  const effectiveLoading = isLoading || isPaused || (!hasReceivedData && hasAnyAuth);
 
   return {
     userData: data?.data || null,
     email: data?.data?.email,
     additionalTicketEmails: data?.data?.additional_ticket_emails || [],
     favoriteEvents: data?.data?.favorite_events || [],
-    loading: isLoading,
+    loading: effectiveLoading,
     error,
     refresh: mutate,
   };
