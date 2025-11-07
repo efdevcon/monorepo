@@ -1,9 +1,7 @@
-import stores from './pretix-stores-list';
-
 interface PretixItem {
   id: number;
-  name: string | { en: string;[key: string]: string };
-  description?: string | { en: string;[key: string]: string };
+  name: string | { en: string; [key: string]: string };
+  description?: string | { en: string; [key: string]: string };
   category?: string;
   active?: boolean;
   [key: string]: any;
@@ -11,12 +9,19 @@ interface PretixItem {
 
 export async function getPaidTicketsByEmail(
   email: string,
-  storeID = 'devconnect'
+  store: {
+    organizerSlug: string;
+    eventSlug: string;
+    eventName: string;
+    eventId: number | undefined;
+    url: string;
+    apiKey: string;
+  }
 ) {
-  const apiKey = stores[storeID].apiKey;
-  const baseUrl = stores[storeID].url;
-  const organizerSlug = stores[storeID].organizerSlug;
-  const eventSlug = stores[storeID].eventSlug;
+  const apiKey = store.apiKey;
+  const baseUrl = store.url;
+  const organizerSlug = store.organizerSlug;
+  const eventSlug = store.eventSlug;
 
   if (!apiKey) {
     throw new Error('PRETIX_API_KEY is missing');
@@ -60,19 +65,31 @@ export async function getPaidTicketsByEmail(
   const data = await response.json();
   const orders = data.results || [];
 
+  const isMainTicket =
+    store.organizerSlug === 'devconnect' && store.eventSlug === 'cowork';
+
+  // console.log('orders', orders);
+
   return orders
     .map((order: any) => {
-      const mainPositions = order.positions.filter(
-        (position: any) =>
-          position.attendee_email &&
-          position.attendee_email.toLowerCase() === email.toLowerCase() &&
-          !position.addon_to
-      );
+      const mainPositions = isMainTicket
+        ? order.positions.filter(
+            (position: any) =>
+              position.attendee_email &&
+              position.attendee_email.toLowerCase() === email.toLowerCase() &&
+              !position.addon_to
+          )
+        : order.positions;
+
+      // console.log('mainPositions', order.positions);
 
       return {
         orderCode: order.code,
         orderDate: order.datetime,
         email: order.email,
+        eventName: store.eventName,
+        eventSlug: store.eventSlug,
+        eventId: store.eventId || null,
         tickets: mainPositions.map((position: any) => {
           // Resolve main ticket item details
           const mainItemDetails = itemsMap.get(position.item);
@@ -88,9 +105,13 @@ export async function getPaidTicketsByEmail(
                 id: addon.item,
                 secret: addon.secret,
                 itemName:
-                  typeof name === 'object' ? name.en : name || `Item ${addon.item}`,
+                  typeof name === 'object'
+                    ? name.en
+                    : name || `Item ${addon.item}`,
                 description:
-                  typeof description === 'object' ? description.en : description,
+                  typeof description === 'object'
+                    ? description.en
+                    : description,
                 price: addon.price,
                 attendeeName: addon.attendee_name,
                 category: itemDetails?.category,
@@ -109,9 +130,13 @@ export async function getPaidTicketsByEmail(
             // Use item details from the items endpoint
             itemId: position.item,
             itemName:
-              typeof mainName === 'object' ? mainName.en : mainName || position.item_name || 'Ticket',
+              typeof mainName === 'object'
+                ? mainName.en
+                : mainName || position.item_name || 'Ticket',
             itemDescription:
-              typeof mainDescription === 'object' ? mainDescription.en : mainDescription,
+              typeof mainDescription === 'object'
+                ? mainDescription.en
+                : mainDescription,
             addons: addons,
           };
         }),

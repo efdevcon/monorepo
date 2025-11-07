@@ -27,21 +27,34 @@ if (typeof window !== 'undefined') {
     const supabase = authService.getSupabaseClient();
     if (supabase) {
       supabase.auth.onAuthStateChange(async (event, session) => {
-        console.log('🔄 [SWR] Auth state changed:', event, 'Session:', !!session);
+        console.log(
+          '🔄 [SWR] Auth state changed:',
+          event,
+          'Session:',
+          !!session
+        );
 
         try {
           // Refresh all user-related data when auth state changes
-          if (event === 'SIGNED_IN' || event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+          if (
+            event === 'SIGNED_IN' ||
+            event === 'SIGNED_OUT' ||
+            event === 'TOKEN_REFRESHED'
+          ) {
             console.log('🔄 [SWR] Invalidating user data cache');
             mutate('/api/auth/user-data');
             mutate('/api/auth/tickets');
           } else if (event === 'INITIAL_SESSION' && session?.user) {
             // If there's a valid session on initial load (e.g., after reconnection), refresh data
-            console.log('🔄 [SWR] Initial session with valid user, invalidating cache');
+            console.log(
+              '🔄 [SWR] Initial session with valid user, invalidating cache'
+            );
             mutate('/api/auth/user-data');
             mutate('/api/auth/tickets');
           } else if (event === 'INITIAL_SESSION') {
-            console.log('🔄 [SWR] Initial session without user, skipping cache invalidation');
+            console.log(
+              '🔄 [SWR] Initial session without user, skipping cache invalidation'
+            );
           }
         } catch (error) {
           // Silently handle cache errors (e.g., during HMR or in detached contexts)
@@ -63,7 +76,7 @@ export interface UserData {
 /**
  * Fetch and cache user data from backend
  * Automatically revalidates on window focus
- * 
+ *
  * ✨ OPTIMIZED: Prevents initial race condition by pausing until Para JWT is ready
  * - Uses SWR's isPaused() to wait for Para JWT initialization
  * - Reduces console spam (only logs important events)
@@ -108,9 +121,11 @@ export function useUserData(fallbackData?: UserData) {
       },
       onError: (err) => {
         // Only log errors if it's not an auth-related error
-        if (!err?.message?.includes('No active Supabase session') &&
+        if (
+          !err?.message?.includes('No active Supabase session') &&
           !err?.message?.includes('Para biometric verification') &&
-          !err?.message?.includes('No authentication method available')) {
+          !err?.message?.includes('No authentication method available')
+        ) {
           console.error('❌ [useUserData] Failed to fetch user data:', err);
         }
         // Mark as received data (even if error) to stop showing loader
@@ -160,6 +175,7 @@ interface TicketsResponse {
   success: boolean;
   data?: {
     tickets: Order[];
+    sideTickets: Order[];
   };
 }
 
@@ -170,7 +186,8 @@ interface TicketsResponse {
  */
 export function useTickets(
   fallbackData?: Order[],
-  fallbackQrCodes?: { [key: string]: string }
+  fallbackQrCodes?: { [key: string]: string },
+  fallbackSideTickets?: Order[]
 ) {
   const { email } = useUserData(); // Wait for email before fetching tickets
 
@@ -180,7 +197,13 @@ export function useTickets(
     fetchAuth,
     {
       fallbackData: fallbackData
-        ? { success: true, data: { tickets: fallbackData } }
+        ? {
+            success: true,
+            data: {
+              tickets: fallbackData || [],
+              sideTickets: fallbackSideTickets || [],
+            },
+          }
         : undefined,
       revalidateOnFocus: false, // Don't refetch tickets on focus (expensive QR generation)
       dedupingInterval: 10000, // Dedupe within 10 seconds
@@ -236,14 +259,52 @@ export function useTickets(
         }
       }
 
+      // Generate QR codes for sideTickets
+      if (data.data.sideTickets) {
+        for (const order of data.data.sideTickets) {
+          for (const ticket of order.tickets) {
+            if (ticket.secret) {
+              try {
+                const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
+                  width: 200,
+                  margin: 1,
+                  color: {
+                    dark: '#000000',
+                    light: '#FFFFFF',
+                  },
+                });
+                newQrCodes[ticket.secret] = qrDataUrl;
+
+                // Generate QR codes for addons in sideTickets
+                if (ticket.addons) {
+                  for (const addon of ticket.addons) {
+                    const addonQr = await QRCode.toDataURL(addon.secret, {
+                      width: 200,
+                      margin: 1,
+                    });
+                    newQrCodes[addon.secret] = addonQr;
+                  }
+                }
+              } catch (qrErr) {
+                console.error(
+                  'Error generating QR code for sideTicket:',
+                  qrErr
+                );
+              }
+            }
+          }
+        }
+      }
+
       setQrCodes(newQrCodes);
     };
 
     generateQRCodes();
-  }, [data?.data?.tickets]);
+  }, [data?.data?.tickets, data?.data?.sideTickets]);
 
   return {
     tickets: data?.data?.tickets || [],
+    sideTickets: data?.data?.sideTickets || [],
     qrCodes,
     loading: isLoading,
     error,
@@ -322,25 +383,41 @@ export function useRefreshOnAuthChange() {
     const supabase = authService.getSupabaseClient();
     if (!supabase) return;
 
-    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('🔄 [useRefreshOnAuthChange] Auth state changed:', event, 'Session:', !!session);
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log(
+          '🔄 [useRefreshOnAuthChange] Auth state changed:',
+          event,
+          'Session:',
+          !!session
+        );
 
-      try {
-        // Refresh on sign-in or initial session with valid user (after reconnection)
-        if (event === 'SIGNED_IN') {
-          console.log('🔄 [useRefreshOnAuthChange] User signed in, refreshing data');
-          refreshUserData();
-        } else if (event === 'INITIAL_SESSION' && session?.user) {
-          console.log('🔄 [useRefreshOnAuthChange] Initial session with valid user, refreshing data');
-          refreshUserData();
-        } else if (event === 'INITIAL_SESSION') {
-          console.log('🔄 [useRefreshOnAuthChange] Initial session without user, skipping refresh');
+        try {
+          // Refresh on sign-in or initial session with valid user (after reconnection)
+          if (event === 'SIGNED_IN') {
+            console.log(
+              '🔄 [useRefreshOnAuthChange] User signed in, refreshing data'
+            );
+            refreshUserData();
+          } else if (event === 'INITIAL_SESSION' && session?.user) {
+            console.log(
+              '🔄 [useRefreshOnAuthChange] Initial session with valid user, refreshing data'
+            );
+            refreshUserData();
+          } else if (event === 'INITIAL_SESSION') {
+            console.log(
+              '🔄 [useRefreshOnAuthChange] Initial session without user, skipping refresh'
+            );
+          }
+        } catch (error) {
+          // Silently handle errors during HMR or component unmounting
+          console.warn(
+            '🔄 [useRefreshOnAuthChange] Failed to refresh data:',
+            error
+          );
         }
-      } catch (error) {
-        // Silently handle errors during HMR or component unmounting
-        console.warn('🔄 [useRefreshOnAuthChange] Failed to refresh data:', error);
       }
-    });
+    );
 
     return () => {
       try {

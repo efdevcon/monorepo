@@ -63,7 +63,6 @@ export const GlobalStoreProvider = ({
       <SWRConfig
         value={{
           fallback: {
-            '/api/auth/user-data': { success: true, data: { userData: null } },
             'https://devconnect.pblvrt.com/schedules': {
               success: true,
               data: programming,

@@ -88,7 +88,7 @@ export const ensureUserData = async (
 /**
  * Hook to ensure user data is loaded (now uses SWR, no manual refetching needed)
  * SWR automatically handles revalidation on focus and reconnect
- * 
+ *
  * ✨ NEW: Only fetches when email is available (indicating authentication readiness)
  * This prevents premature fetch attempts when Para is connecting but not ready to issue JWTs
  */
@@ -118,15 +118,23 @@ export const useTickets = () => {
   // Get persisted data from Zustand to use as fallback
   const persistedTickets = useGlobalStore((state) => state.tickets);
   const persistedQrCodes = useGlobalStore((state) => state.qrCodes);
+  const persistedSideTickets = useGlobalStore((state) => state.sideTickets);
 
   // Initialize SWR with persisted data so tickets and QR codes appear instantly on page load
-  const { tickets, qrCodes, loading, refresh } = useTicketsSWR(
+  const { tickets, sideTickets, qrCodes, loading, refresh } = useTicketsSWR(
     persistedTickets || undefined,
-    persistedQrCodes
+    persistedQrCodes,
+    persistedSideTickets || undefined
   );
+
+  console.log('tickets amount', tickets.length);
+  console.log('tickets', tickets);
+  console.log('sideTickets amount', sideTickets.length);
+  console.log('sideTickets', sideTickets);
 
   // Sync fresh data back to Zustand for persistence
   const setTickets = useGlobalStore((state) => state.setTickets);
+  const setSideTickets = useGlobalStore((state) => state.setSideTickets);
   const setQrCodes = useGlobalStore((state) => state.setQrCodes);
   const setTicketsLoading = useGlobalStore((state) => state.setTicketsLoading);
 
@@ -136,11 +144,23 @@ export const useTickets = () => {
       setTickets(tickets);
       setQrCodes(qrCodes);
     }
+    if (sideTickets) {
+      setSideTickets(sideTickets);
+    }
     setTicketsLoading(loading);
-  }, [tickets, qrCodes, loading, setTickets, setQrCodes, setTicketsLoading]);
+  }, [
+    sideTickets,
+    tickets,
+    qrCodes,
+    loading,
+    setTickets,
+    setQrCodes,
+    setTicketsLoading,
+  ]);
 
   return {
     tickets,
+    sideTickets,
     loading,
     qrCodes,
     refresh,
