@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@getpara/react-common':
-        specifier: 2.0.0-alpha.63
-        version: 2.0.0-alpha.63(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        specifier: 2.0.0-alpha.70
+        version: 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     devDependencies:
       typescript:
         specifier: ^5.9.3
@@ -1305,13 +1305,13 @@ importers:
         version: 1.0.0(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@wagmi/core@2.22.1(@tanstack/query-core@5.83.0)(@types/react@19.2.2)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76)))(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))
       '@getpara/graz':
         specifier: 2.0.0-alpha.20
-        version: 2.0.0-alpha.20(1fe329c44eb7095acdd69420ab172d76)
+        version: 2.0.0-alpha.20(2473677750e3e49470e5d5b94ee1ef49)
       '@getpara/react-common':
         specifier: 2.0.0-alpha.70
         version: 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/react-sdk':
         specifier: 2.0.0-alpha.70
-        version: 2.0.0-alpha.70(368d33e477845220ddb47c6f41348f38)
+        version: 2.0.0-alpha.70(de7d58fae61ac7c6f40e749f543ccb15)
       '@getpara/viem-v2-integration':
         specifier: 2.0.0-alpha.70
         version: 2.0.0-alpha.70(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))
@@ -1320,7 +1320,7 @@ importers:
         version: 2.0.0-alpha.70(@emotion/is-prop-valid@1.2.2)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(encoding@0.1.13)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(wagmi@2.18.1(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.2(@babel/core@7.28.4)(@types/react@19.2.2)(bufferutil@4.0.9)(react@19.2.0)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.83.0)(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(bufferutil@4.0.9)(encoding@0.1.13)(immer@10.1.1)(react@19.2.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76))
       '@leapwallet/cosmos-social-login-capsule-provider':
         specifier: ^0.0.44
-        version: 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
+        version: 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
@@ -1423,6 +1423,9 @@ importers:
       framer-motion:
         specifier: 12.0.0-alpha.1
         version: 12.0.0-alpha.1(@emotion/is-prop-valid@1.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      graz:
+        specifier: 0.4.2
+        version: 0.4.2(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.2(@babel/core@7.28.4)(@types/react@19.2.2)(bufferutil@4.0.9)(react@19.2.0)(utf-8-validate@5.0.10)))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(bufferutil@4.0.9)(encoding@0.1.13)(immer@10.1.1)(react@19.2.0)(starknet@7.6.4)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(utf-8-validate@5.0.10)(zod@3.25.76)
       jose:
         specifier: ^5.10.0
         version: 5.10.0
@@ -2719,9 +2722,11 @@ packages:
 
   '@cosmjs/crypto@0.27.1':
     resolution: {integrity: sha512-vbcxwSt99tIYJg8Spp00wc3zx72qx+pY3ozGuBN8gAvySnagK9dQ/jHwtWQWdammmdD6oW+75WfIHZ+gNa+Ybg==}
+    deprecated: This uses elliptic for cryptographic operations, which contains several security-relevant bugs. To what degree this affects your application is something you need to carefully investigate. See https://github.com/cosmos/cosmjs/issues/1708 for further pointers. Starting with version 0.34.0 the cryptographic library has been replaced. However, private keys might still be at risk.
 
   '@cosmjs/crypto@0.31.3':
     resolution: {integrity: sha512-vRbvM9ZKR2017TO73dtJ50KxoGcFzKtKI7C8iO302BQ5p+DuB+AirUg1952UpSoLfv5ki9O416MFANNg8UN/EQ==}
+    deprecated: This uses elliptic for cryptographic operations, which contains several security-relevant bugs. To what degree this affects your application is something you need to carefully investigate. See https://github.com/cosmos/cosmjs/issues/1708 for further pointers. Starting with version 0.34.0 the cryptographic library has been replaced. However, private keys might still be at risk.
 
   '@cosmjs/crypto@0.34.0':
     resolution: {integrity: sha512-hn8Z1RYS9bhT5mbitGhPYF5CMcln9r2BVZ7nXIpfpI7TdhUEmNnHVI2ddodxFun0uOg8kokOM6X/etD/MZ6NFA==}
@@ -3744,17 +3749,11 @@ packages:
     peerDependencies:
       viem: '>=2.0.0'
 
-  '@getpara/core-components@2.0.0-alpha.63':
-    resolution: {integrity: sha512-B/hm1+SSBCct959PnUfjKh5hoTFHnZiikgcIIIwUVu4BqEwTlqKZGqLmReSBCMWMyjqVfRIX/5JSIFSQM5JBVg==}
-
   '@getpara/core-components@2.0.0-alpha.64':
     resolution: {integrity: sha512-7MqAKFeRx+QzLv1MoC8x/xrVTNg2eBte/N7DKUB8uPlQeslJODuS1rLbdF448xDmxCZ25M2vD7YjTCO9labnSA==}
 
   '@getpara/core-components@2.0.0-alpha.70':
     resolution: {integrity: sha512-htF8WdjWOtGoCsyRDm1BPn0tjEVWRs2vLPGvXGCTrFzEKV+RsUdWiMbnhmeYA1GW7PH39iNk+43hjvKL4AApNw==}
-
-  '@getpara/core-sdk@2.0.0-alpha.63':
-    resolution: {integrity: sha512-mLnJdHt0BP8DVq68QpRPaG7gs9DPA0EFanWgyZts6Y5ryIhTWXmXUPg1DzDWucm/ckdIDp958tPlPzDqvLfnbw==}
 
   '@getpara/core-sdk@2.0.0-alpha.64':
     resolution: {integrity: sha512-QnIdJhtUX+hwkUyW1//qb2od8mdw6CqdwtPThWsNmBCxjW7BL9tSveB++82fm9CELcIMkp0OcNTT+b6JCGKd0w==}
@@ -3843,12 +3842,6 @@ packages:
       '@leapwallet/cosmos-social-login-capsule-provider': ^0.0.41
       react: '>=17'
 
-  '@getpara/react-common@2.0.0-alpha.63':
-    resolution: {integrity: sha512-jG2CBXIQS3B2K8jwebvaSEJwoXCVJShf4iouWCIeZPPNpjI/NGEvCW2yJbqkFyBe6Fv8VfB0Beqn63oPAAR/3g==}
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-
   '@getpara/react-common@2.0.0-alpha.64':
     resolution: {integrity: sha512-hOs2VQvWsLSv4O30NakimYsi/4nT8fyK3DqpxjwVQT1PZ+Es2WqPQ+wlnMzzPaoHdbjhG7BJePnYJxpMu2z9Ew==}
     peerDependencies:
@@ -3860,9 +3853,6 @@ packages:
     peerDependencies:
       react: '*'
       react-dom: '*'
-
-  '@getpara/react-components@2.0.0-alpha.63':
-    resolution: {integrity: sha512-xV17/kAvrYt7jcnr5w6oZHWzp69IvNBUfKHeQYOWTZFLlkY9uVPWHKTOgSURuOrRhly5YvQixOI7N+SazuI0rQ==}
 
   '@getpara/react-components@2.0.0-alpha.64':
     resolution: {integrity: sha512-cfUa5x/4FaTTZ6IGoUnHp+YxvILqnhKK74RP5l8ScqejNRNVE5ZrYl1Qy8dwY3zkKWFGvH1Cd7xIUCXVTqCogA==}
@@ -3900,9 +3890,6 @@ packages:
       '@tanstack/react-query': '>=5.0.0'
       react: '*'
       react-dom: '*'
-
-  '@getpara/shared@1.1.0':
-    resolution: {integrity: sha512-AeHpbsIW7zGl4QI0fnWmFXbvUAtotNth0+ohBjdbWh0eF6ocCRsPyXEHYX8Wsb0I40A0I0DOI6iSNTXiddie4Q==}
 
   '@getpara/shared@1.3.0':
     resolution: {integrity: sha512-AmxY6XRJrBdQh37HRb10QwPwCbwuQPX7WrZOppTCl5IteK4/O/EwAhsugneYm0dU6dKGnpxj8qL5m1aa6Bp6TA==}
@@ -3958,9 +3945,6 @@ packages:
       '@farcaster/mini-app-solana':
         optional: true
 
-  '@getpara/user-management-client@2.0.0-alpha.63':
-    resolution: {integrity: sha512-NSzKRCw/27zHTpPh1r49Sjcnr6CXjA4UrW7Hh4dbWmk6LB/txQ7bM9r9lPSJNm8+8BtA0+QIXB8q/9e331954w==}
-
   '@getpara/user-management-client@2.0.0-alpha.64':
     resolution: {integrity: sha512-hw9AYdnXQP4C1A6mO7oOKJot88x6soEGnNNdzd0wv302tN6XtUGaGGOot/HJ0K4s0bB+NC3hVk8/GVN9/16D4A==}
 
@@ -3999,14 +3983,6 @@ packages:
       '@tanstack/react-query': '>=5.0.0'
       react: '*'
       react-dom: '*'
-
-  '@getpara/web-sdk@2.0.0-alpha.63':
-    resolution: {integrity: sha512-Lu0FAtvi8N0NEIAmsg9hTEiFTmZQ2KJaeCMXopCkhhbNxoajloKZD61tL9QM/VZml6guM0VxMDMybrtZ7zb8Wg==}
-    peerDependencies:
-      '@farcaster/miniapp-sdk': ^0.1.2
-    peerDependenciesMeta:
-      '@farcaster/miniapp-sdk':
-        optional: true
 
   '@getpara/web-sdk@2.0.0-alpha.64':
     resolution: {integrity: sha512-gm7i91MhWYBTTVnXnb9V4vs/2gbI7N3B5D/puGxVN9VnGyTtT5jbVR66IPDuiUSzQSvWV8AJajCUXX1lDRCXLQ==}
@@ -9425,6 +9401,7 @@ packages:
 
   '@walletconnect/ethereum-provider@2.21.1':
     resolution: {integrity: sha512-SSlIG6QEVxClgl1s0LMk4xr2wg4eT3Zn/Hb81IocyqNSGfXpjtawWxKxiC5/9Z95f1INyBD6MctJbL/R1oBwIw==}
+    deprecated: 'Reliability and performance improvements. See: https://github.com/WalletConnect/walletconnect-monorepo/releases'
 
   '@walletconnect/ethereum-provider@2.23.0':
     resolution: {integrity: sha512-jDuFarWWTbET2UhwUBBDfr1ZcPnrKBmqQtIc5EG6+ftzD+GcCz+cEJH7YJ5O77IdT8Uds9ETuIngvRokyWRSUw==}
@@ -17150,7 +17127,7 @@ packages:
   puppeteer@18.2.1:
     resolution: {integrity: sha512-7+UhmYa7wxPh2oMRwA++k8UGVDxh3YdWFB52r9C3tM81T6BU7cuusUSxImz0GEYSOYUKk/YzIhkQ6+vc0gHbxQ==}
     engines: {node: '>=14.1.0'}
-    deprecated: < 22.8.2 is no longer supported
+    deprecated: < 24.15.0 is no longer supported
 
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
@@ -22308,7 +22285,7 @@ snapshots:
 
   '@celo/base@7.0.3': {}
 
-  '@celo/utils@3.2.0(fp-ts@2.1.1)':
+  '@celo/utils@3.2.0(fp-ts@2.16.9)':
     dependencies:
       '@celo/base': 3.2.0
       '@types/bn.js': 5.2.0
@@ -22318,7 +22295,7 @@ snapshots:
       bignumber.js: 9.3.1
       elliptic: 6.6.1
       ethereumjs-util: 5.2.1
-      io-ts: 2.0.1(fp-ts@2.1.1)
+      io-ts: 2.0.1(fp-ts@2.16.9)
       web3-eth-abi: 1.3.6
       web3-utils: 1.3.6
     transitivePeerDependencies:
@@ -23779,15 +23756,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@getpara/core-components@2.0.0-alpha.63':
-    dependencies:
-      '@stencil/core': 4.36.2
-      color-blend: 4.0.0
-      color2k: 2.0.3
-      gsap: 3.13.0
-      inputmask: 5.0.9
-      qrcode-with-logos: 1.1.1
-
   '@getpara/core-components@2.0.0-alpha.64':
     dependencies:
       '@stencil/core': 4.36.2
@@ -23805,20 +23773,6 @@ snapshots:
       gsap: 3.13.0
       inputmask: 5.0.9
       qrcode-with-logos: 1.1.1
-
-  '@getpara/core-sdk@2.0.0-alpha.63':
-    dependencies:
-      '@celo/utils': 8.0.3
-      '@cosmjs/encoding': 0.32.4
-      '@ethereumjs/util': 9.1.0
-      '@getpara/user-management-client': 2.0.0-alpha.63
-      '@noble/hashes': 1.8.0
-      base64url: 3.0.1
-      libphonenumber-js: 1.12.10
-      node-forge: 1.3.1
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - debug
 
   '@getpara/core-sdk@2.0.0-alpha.64':
     dependencies:
@@ -23868,12 +23822,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@getpara/graz@2.0.0-alpha.20(1fe329c44eb7095acdd69420ab172d76))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.1.1)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@getpara/graz@2.0.0-alpha.20(2473677750e3e49470e5d5b94ee1ef49))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.16.9)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@getpara/graz': 2.0.0-alpha.20(1fe329c44eb7095acdd69420ab172d76)
+      '@getpara/graz': 2.0.0-alpha.20(2473677750e3e49470e5d5b94ee1ef49)
       '@getpara/react-common': 2.0.0-alpha.64(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/web-sdk': 2.0.0-alpha.64(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)
-      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
+      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
       starknet: 6.24.1(encoding@0.1.13)
@@ -23889,12 +23843,12 @@ snapshots:
       - fp-ts
       - immer
 
-  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.70(470cc87d3b0fed08bee18d227646970e)':
+  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.70(e3c0c42a225d2ec6c75ef8b6ac29ee92)':
     dependencies:
       '@getpara/graz-connector': 2.0.0-alpha.70(a787bce1a1b9741822247bffc600be10)
       '@getpara/react-common': 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/web-sdk': 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)
-      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
+      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
       graz: 0.4.2(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.2(@babel/core@7.28.4)(@types/react@19.2.2)(bufferutil@4.0.9)(react@19.2.0)(utf-8-validate@5.0.10)))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(bufferutil@4.0.9)(encoding@0.1.13)(immer@10.1.1)(react@19.2.0)(starknet@7.6.4)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(utf-8-validate@5.0.10)(zod@3.25.76)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
@@ -23997,7 +23951,7 @@ snapshots:
       - debug
       - encoding
 
-  '@getpara/graz@2.0.0-alpha.20(1fe329c44eb7095acdd69420ab172d76)':
+  '@getpara/graz@2.0.0-alpha.20(2473677750e3e49470e5d5b94ee1ef49)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@cosmjs/cosmwasm-stargate': 0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
@@ -24008,10 +23962,10 @@ snapshots:
       '@cosmsnap/snapper': 0.1.29
       '@dao-dao/cosmiframe': 0.1.0(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.34.0)
       '@getpara/cosmjs-v0-integration': 2.0.0-alpha.64(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))
-      '@getpara/react-sdk': 2.0.0-alpha.64(f25d0a4252503046327f770effaaba57)
+      '@getpara/react-sdk': 2.0.0-alpha.64(2b5931af165dc5652b51a9700d945048)
       '@keplr-wallet/cosmos': 0.12.156(starknet@7.6.4)
       '@keplr-wallet/types': 0.12.156(starknet@7.6.4)
-      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
+      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
       '@metamask/providers': 12.0.0
       '@tanstack/react-query': 5.83.0(react@19.2.0)
       '@terra-money/station-connector': 1.1.0(@cosmjs/amino@0.31.3)(@terra-money/feather.js@3.0.0-beta.3)(axios@1.11.0)
@@ -24073,22 +24027,6 @@ snapshots:
       - viem
       - wagmi
 
-  '@getpara/react-common@2.0.0-alpha.63(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
-    dependencies:
-      '@getpara/react-components': 2.0.0-alpha.63
-      '@getpara/web-sdk': 2.0.0-alpha.63(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)
-      '@moonpay/moonpay-react': 1.10.4(react@19.2.0)
-      '@ramp-network/ramp-instant-sdk': 4.0.8
-      libphonenumber-js: 1.12.10
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
-      styled-components: 6.1.19(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      ua-parser-js: 2.0.4(encoding@0.1.13)
-    transitivePeerDependencies:
-      - '@farcaster/miniapp-sdk'
-      - debug
-      - encoding
-
   '@getpara/react-common@2.0.0-alpha.64(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@getpara/react-components': 2.0.0-alpha.64
@@ -24121,9 +24059,21 @@ snapshots:
       - debug
       - encoding
 
-  '@getpara/react-components@2.0.0-alpha.63':
+  '@getpara/react-common@2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@getpara/core-components': 2.0.0-alpha.63
+      '@getpara/react-components': 2.0.0-alpha.70
+      '@getpara/web-sdk': 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)
+      '@moonpay/moonpay-react': 1.10.4(react@19.2.0)
+      '@ramp-network/ramp-instant-sdk': 4.0.8
+      libphonenumber-js: 1.12.10
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      styled-components: 6.1.19(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      ua-parser-js: 2.0.4(encoding@0.1.13)
+    transitivePeerDependencies:
+      - '@farcaster/miniapp-sdk'
+      - debug
+      - encoding
 
   '@getpara/react-components@2.0.0-alpha.64':
     dependencies:
@@ -24177,10 +24127,10 @@ snapshots:
       - encoding
       - immer
 
-  '@getpara/react-sdk@2.0.0-alpha.64(f25d0a4252503046327f770effaaba57)':
+  '@getpara/react-sdk@2.0.0-alpha.64(2b5931af165dc5652b51a9700d945048)':
     dependencies:
       '@getpara/cosmjs-v0-integration': 2.0.0-alpha.64(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))
-      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@getpara/graz@2.0.0-alpha.20(1fe329c44eb7095acdd69420ab172d76))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.1.1)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@getpara/graz@2.0.0-alpha.20(2473677750e3e49470e5d5b94ee1ef49))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.16.9)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/evm-wallet-connectors': 2.0.0-alpha.64(8b1420b7581a1664c53c5f3657a53513)
       '@getpara/react-sdk-lite': 2.0.0-alpha.64(@emotion/is-prop-valid@1.2.2)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(encoding@0.1.13)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/solana-signers-v2-integration': 2.0.0-alpha.64(@solana/addresses@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/keys@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-api@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-spec@2.3.0(typescript@5.8.3))(@solana/signers@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/transactions@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))
@@ -24217,10 +24167,10 @@ snapshots:
       - viem
       - wagmi
 
-  '@getpara/react-sdk@2.0.0-alpha.70(368d33e477845220ddb47c6f41348f38)':
+  '@getpara/react-sdk@2.0.0-alpha.70(de7d58fae61ac7c6f40e749f543ccb15)':
     dependencies:
       '@getpara/cosmjs-v0-integration': 2.0.0-alpha.70(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))
-      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.70(470cc87d3b0fed08bee18d227646970e)
+      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.70(e3c0c42a225d2ec6c75ef8b6ac29ee92)
       '@getpara/evm-wallet-connectors': 2.0.0-alpha.70(2c73bd5728d4895d7d2c23e2dcc576c7)
       '@getpara/react-sdk-lite': 2.0.0-alpha.70(@emotion/is-prop-valid@1.2.2)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(encoding@0.1.13)(immer@10.1.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/solana-signers-v2-integration': 2.0.0-alpha.70(@solana/addresses@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/keys@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-api@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-spec@2.3.0(typescript@5.8.3))(@solana/signers@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/transactions@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))
@@ -24281,8 +24231,6 @@ snapshots:
       - viem
       - wagmi
       - zod
-
-  '@getpara/shared@1.1.0': {}
 
   '@getpara/shared@1.3.0': {}
 
@@ -24349,14 +24297,6 @@ snapshots:
       - '@farcaster/miniapp-sdk'
       - debug
       - encoding
-
-  '@getpara/user-management-client@2.0.0-alpha.63':
-    dependencies:
-      '@getpara/shared': 1.1.0
-      axios: 1.12.2
-      libphonenumber-js: 1.12.10
-    transitivePeerDependencies:
-      - debug
 
   '@getpara/user-management-client@2.0.0-alpha.64':
     dependencies:
@@ -24431,21 +24371,6 @@ snapshots:
       - viem
       - wagmi
 
-  '@getpara/web-sdk@2.0.0-alpha.63(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)':
-    dependencies:
-      '@getpara/core-sdk': 2.0.0-alpha.63
-      '@getpara/user-management-client': 2.0.0-alpha.63
-      base64url: 3.0.1
-      buffer: 6.0.3
-      cbor-web: 9.0.2
-      node-forge: 1.3.1
-      ua-parser-js: 2.0.4(encoding@0.1.13)
-    optionalDependencies:
-      '@farcaster/miniapp-sdk': 0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11)
-    transitivePeerDependencies:
-      - debug
-      - encoding
-
   '@getpara/web-sdk@2.0.0-alpha.64(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76))(encoding@0.1.13)':
     dependencies:
       '@getpara/core-sdk': 2.0.0-alpha.64
@@ -24472,6 +24397,21 @@ snapshots:
       ua-parser-js: 2.0.4(encoding@0.1.13)
     optionalDependencies:
       '@farcaster/miniapp-sdk': 0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.76)
+    transitivePeerDependencies:
+      - debug
+      - encoding
+
+  '@getpara/web-sdk@2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11))(encoding@0.1.13)':
+    dependencies:
+      '@getpara/core-sdk': 2.0.0-alpha.70
+      '@getpara/user-management-client': 2.0.0-alpha.70
+      base64url: 3.0.1
+      buffer: 6.0.3
+      cbor-web: 9.0.2
+      node-forge: 1.3.1
+      ua-parser-js: 2.0.4(encoding@0.1.13)
+    optionalDependencies:
+      '@farcaster/miniapp-sdk': 0.1.8(encoding@0.1.13)(typescript@5.9.3)(zod@4.1.11)
     transitivePeerDependencies:
       - debug
       - encoding
@@ -25201,7 +25141,7 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
       jest-mock: 29.7.0
 
   '@jest/expect-utils@29.7.0':
@@ -25219,7 +25159,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -25437,12 +25377,12 @@ snapshots:
     transitivePeerDependencies:
       - starknet
 
-  '@leapwallet/cosmos-social-login-capsule-provider@0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)':
+  '@leapwallet/cosmos-social-login-capsule-provider@0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@leapwallet/cosmos-social-login-core': 0.0.1
       '@usecapsule/cosmjs-v0-integration': 1.24.1(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)
-      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.1.1)
+      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.16.9)
       long: 5.2.3
     transitivePeerDependencies:
       - '@cosmjs/encoding'
@@ -25450,12 +25390,12 @@ snapshots:
       - debug
       - fp-ts
 
-  '@leapwallet/cosmos-social-login-capsule-provider@0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)':
+  '@leapwallet/cosmos-social-login-capsule-provider@0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@leapwallet/cosmos-social-login-core': 0.0.1
-      '@usecapsule/cosmjs-v0-integration': 1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
-      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.1.1)
+      '@usecapsule/cosmjs-v0-integration': 1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
+      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.16.9)
       long: 5.2.3
     transitivePeerDependencies:
       - '@cosmjs/encoding'
@@ -32424,13 +32364,13 @@ snapshots:
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 6.0.0
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
 
   '@types/google.maps@3.58.1': {}
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
 
   '@types/handlebars@4.1.0':
     dependencies:
@@ -32784,7 +32724,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
     optional: true
 
   '@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.35.0)(typescript@5.8.3))(eslint@8.35.0)(typescript@5.8.3)':
@@ -34901,9 +34841,9 @@ snapshots:
       '@use-gesture/core': 10.3.1
       react: 19.1.0
 
-  '@usecapsule/core-sdk@1.21.0(fp-ts@2.1.1)':
+  '@usecapsule/core-sdk@1.21.0(fp-ts@2.16.9)':
     dependencies:
-      '@celo/utils': 3.2.0(fp-ts@2.1.1)
+      '@celo/utils': 3.2.0(fp-ts@2.16.9)
       '@usecapsule/user-management-client': 1.18.0
       base64url: 3.0.1
       buffer: 6.0.3
@@ -34928,12 +34868,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@usecapsule/cosmjs-v0-integration@1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)':
+  '@usecapsule/cosmjs-v0-integration@1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@cosmjs/encoding': 0.34.0
       '@cosmjs/proto-signing': 0.34.0
-      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.1.1)
+      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.16.9)
     transitivePeerDependencies:
       - debug
       - fp-ts
@@ -34961,9 +34901,9 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@usecapsule/web-sdk@1.23.0(fp-ts@2.1.1)':
+  '@usecapsule/web-sdk@1.23.0(fp-ts@2.16.9)':
     dependencies:
-      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.1.1)
+      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.16.9)
       '@usecapsule/user-management-client': 1.18.0
       assert: 2.1.0
       base64url: 3.0.1
@@ -41099,9 +41039,9 @@ snapshots:
 
   create-hash@1.1.3:
     dependencies:
-      cipher-base: 1.0.6
+      cipher-base: 1.0.7
       inherits: 2.0.4
-      ripemd160: 2.0.2
+      ripemd160: 2.0.3
       sha.js: 2.4.12
 
   create-hash@1.2.0:
@@ -41114,10 +41054,10 @@ snapshots:
 
   create-hmac@1.1.7:
     dependencies:
-      cipher-base: 1.0.6
+      cipher-base: 1.0.7
       create-hash: 1.2.0
       inherits: 2.0.4
-      ripemd160: 2.0.2
+      ripemd160: 2.0.3
       safe-buffer: 5.2.1
       sha.js: 2.4.12
 
@@ -45310,7 +45250,7 @@ snapshots:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.6.0
@@ -45435,7 +45375,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -45484,7 +45424,7 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
       jest-util: 29.7.0
 
   jest-pnp-resolver@1.2.3(jest-resolve@29.7.0):
@@ -45633,7 +45573,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 20.19.9
+      '@types/node': 20.19.21
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
