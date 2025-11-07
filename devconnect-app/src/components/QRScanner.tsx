@@ -23,8 +23,17 @@ const QRScanner = ({
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [permissionDenied, setPermissionDenied] = useState(false);
   const [showScanner, setShowScanner] = useState(true);
+  const [isReloading, setIsReloading] = useState(false);
   const scannerRef = useRef<HTMLDivElement>(null);
   const [isIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
+  const [isIOS, setIsIOS] = useState(false);
+
+  // Detect iOS
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const isiOS = /iphone|ipad|ipod/.test(userAgent);
+    setIsIOS(isiOS);
+  }, []);
 
   // Reset permission state when component mounts (user returns to page)
   useEffect(() => {
@@ -45,6 +54,32 @@ const QRScanner = ({
     setPermissionDenied(false);
     setShowScanner(true);
     setOpen(true);
+  };
+
+  // Handle opening iOS settings
+  const handleOpenSettings = () => {
+    if (!isIOS) return;
+
+    // Try multiple iOS settings deep link approaches
+    const settingsUrls = [
+      'App-prefs:root=SAFARI&path=Camera',
+      'prefs:root=SAFARI&path=Camera',
+      'App-prefs:root=Privacy&path=CAMERA',
+      'prefs:root=Privacy&path=CAMERA',
+    ];
+
+    // Try the first URL (most likely to work on recent iOS)
+    const tryOpenSettings = () => {
+      // Create a hidden link and click it
+      const link = document.createElement('a');
+      link.href = settingsUrls[0];
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    tryOpenSettings();
   };
 
   const handleScan = (result: string) => {
@@ -148,11 +183,25 @@ const QRScanner = ({
                       Camera access was blocked. To scan QR codes, you need to
                       enable camera permissions.
                     </p>
-                    <p className="text-gray-400 text-sm mb-6">
-                      Look for the camera icon in your browser's address bar,
-                      click it, and allow camera access. Then close this and try
-                      scanning again.
-                    </p>
+                    {isIOS ? (
+                      <div className="text-gray-400 text-sm mb-6">
+                        <p className="mb-2">To enable camera access on iOS:</p>
+                        <ol className="text-left list-decimal list-inside space-y-1 mb-3">
+                          <li>Open iOS system settings</li>
+                          <li>Go to Apps at the bottom of the screen</li>
+                          <li>Find Safari and tap on it</li>
+                          <li>Find Camera at the bottom of the screen</li>
+                          <li>Choose Allow</li>
+                          <li>Return here and try scanning again</li>
+                        </ol>
+                      </div>
+                    ) : (
+                      <p className="text-gray-400 text-sm mb-6">
+                        Look for the camera icon in your browser's address bar,
+                        click it, and allow camera access. Then close this and try
+                        scanning again.
+                      </p>
+                    )}
                   </div>
                   <div className="flex flex-col gap-3 w-full max-w-xs">
                     <button
@@ -162,15 +211,17 @@ const QRScanner = ({
                       Make manual payment
                     </button>
                     <button
-                      onClick={
-                        () => {
-                          // refresh the page
+                      onClick={() => {
+                        setIsReloading(true);
+                        // Give time for state to update before reload
+                        setTimeout(() => {
                           window.location.reload();
-                        }
-                      }
-                      className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                        }, 100);
+                      }}
+                      disabled={isReloading}
+                      className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Reset camera permissions
+                      {isReloading ? 'Reloading page...' : 'Reset camera permissions'}
                     </button>
                   </div>
                 </div>
