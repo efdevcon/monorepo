@@ -27,6 +27,8 @@ import FortaImage from './images/forta.png'
 import SavantChatImage from './images/savant.png'
 import TAIKAIimage from './images/taikai-perk.png'
 import ProofOfTravelImage from './images/proof-of-travel.png'
+import CorpusImage from './images/corpus.jpg'
+import LNVPNImage from './images/lnvpn.jpg'
 
 type Perk = {
   coupon_collection: string
@@ -72,6 +74,23 @@ const perks: Perk[] = [
     ],
     zupass_proof_id: 'Devconnect ARG',
   },
+  // {
+
+  //   coupon_collection: 'lnvpn-2025',
+  //   name: 'LNVPN',
+  //   description: 'Free 1GB eSIM for South America - Top up with Crypto!',
+  //   requires: 'Devconnect ARG ticket',
+  //   issuer: 'LNVPN',
+  //   image: LNVPNImage,
+  //   instructions: 'Visit the unique link to claim',
+  //   urls: [
+  //     {
+  //       text: 'Visit LNVPN',
+  //       url: 'https://lnvpn.com',
+  //     },
+  //   ],
+  //   zupass_proof_id: 'Devconnect ARG',
+  // },
   {
     coupon_collection: 'Devconnect ARG Telegram Chat',
     name: 'Devconnect ARG Telegram Chat',
@@ -445,6 +464,16 @@ const perks: Perk[] = [
     global_coupon: 'DEVCONNECT25',
     issuer: 'Savant Chat',
     image: SavantChatImage,
+  },
+
+  {
+    coupon_collection: 'corpus-2025',
+    name: 'Corpus Core',
+    description: 'Get 3-month free access to Colibri Prover Data!',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Corpus Core',
+    image: CorpusImage,
+    zupass_proof_id: 'Devconnect ARG',
   },
 
   {
