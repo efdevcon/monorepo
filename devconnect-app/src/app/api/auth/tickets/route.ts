@@ -51,10 +51,35 @@ export async function GET(request: NextRequest) {
         ...(additionalEmails?.additional_ticket_emails || []),
       ];
 
-      // const allTickets = await Promise.all(
-      //   emails.map((email) => getPaidTicketsByEmail(email))
-      // );
+      // Check for refresh query param to bypass cache
+      const refresh = request.nextUrl.searchParams.get('refresh') === 'true';
 
+      // Check cache first
+      const { data: cachedData } = await supabase
+        .from('ticket_cache')
+        .select('ticket_data, updated_at')
+        .eq('email', userEmail)
+        .single();
+
+      if (cachedData) {
+        const cacheAge = Date.now() - new Date(cachedData.updated_at).getTime();
+        const twoMinutesInMs = 2 * 60 * 1000;
+        const eightHoursInMs = 8 * 60 * 60 * 1000;
+
+        // If refreshing, enforce 2-minute minimum between refreshes
+        if (refresh && cacheAge < twoMinutesInMs) {
+          console.log('Rate limit: returning cached tickets for user:', userEmail);
+          return NextResponse.json(cachedData.ticket_data);
+        }
+
+        // Normal cache check (8 hours)
+        if (!refresh && cacheAge < eightHoursInMs) {
+          console.log('Returning cached tickets for user:', userEmail);
+          return NextResponse.json(cachedData.ticket_data);
+        }
+      }
+
+      // Fetch fresh data from Pretix stores
       const storeFetchPromises = PretixStores.map(async (store) => {
         console.log(
           'Fetching tickets for store:',
@@ -91,12 +116,23 @@ export async function GET(request: NextRequest) {
 
       console.log('Successfully fetched tickets:', tickets.length, 'tickets');
 
-      return NextResponse.json({
+      const responseData = {
         email: userEmail,
         tickets: mainTickets,
         sideTickets: sideTickets,
         count: tickets.length,
-      });
+      };
+
+      // Update cache
+      await supabase
+        .from('ticket_cache')
+        .upsert({
+          email: userEmail,
+          ticket_data: responseData,
+          updated_at: new Date().toISOString(),
+        });
+
+      return NextResponse.json(responseData);
     } catch (error) {
       console.error('Error fetching tickets:', error);
       console.error(

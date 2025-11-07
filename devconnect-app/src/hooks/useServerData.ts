@@ -191,7 +191,7 @@ export function useTickets(
 ) {
   const { email } = useUserData(); // Wait for email before fetching tickets
 
-  const { data, error, isLoading, mutate } = useSWR<TicketsResponse>(
+  const { data, error, isLoading, isValidating, mutate: swrMutate } = useSWR<TicketsResponse>(
     // Only fetch if email exists (dependency on user being logged in)
     email ? '/api/auth/tickets' : null,
     fetchAuth,
@@ -213,6 +213,14 @@ export function useTickets(
       },
     }
   );
+
+  // Custom refresh function that bypasses server cache
+  const refresh = async () => {
+    return swrMutate(async () => {
+      console.log('🔄 Refreshing tickets with cache bypass...');
+      return fetchAuth('/api/auth/tickets?refresh=true');
+    });
+  };
 
   // Generate QR codes from ticket data (use persisted codes as initial state)
   const [qrCodes, setQrCodes] = useState<{ [key: string]: string }>(
@@ -306,9 +314,9 @@ export function useTickets(
     tickets: data?.data?.tickets || [],
     sideTickets: data?.data?.sideTickets || [],
     qrCodes,
-    loading: isLoading,
+    loading: isLoading || isValidating,
     error,
-    refresh: mutate,
+    refresh,
   };
 }
 

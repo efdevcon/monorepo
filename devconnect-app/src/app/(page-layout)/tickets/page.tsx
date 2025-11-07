@@ -12,6 +12,7 @@ import type { Ticket, Order } from '@/app/store';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import moment, { Moment } from 'moment';
 import cn from 'classnames';
+import { RefreshCw } from 'lucide-react';
 import {
   Dialog as DialogRoot,
   DialogContent,
@@ -609,6 +610,7 @@ const TicketTab = RequiresAuthHOC(() => {
     sideTickets: sideOrders,
     loading,
     qrCodes,
+    refresh,
   } = useTickets();
   const hasTickets = orders && orders.length > 0;
   const hasSideTickets = sideOrders && sideOrders.length > 0;
@@ -625,8 +627,18 @@ const TicketTab = RequiresAuthHOC(() => {
         <div className="w-full">
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <div className="flex flex-col gap-1 order-2 sm:order-1">
-              <div className="text-lg font-semibold">
+              <div className="text-lg font-semibold flex items-center gap-2 justify-between lg:justify-start">
                 Your Devconnect Ticket
+                <button
+                  className="text-sm basic-button white-button small-button text-gray-600 hover:text-gray-900 flex items-center gap-1 !p-1.5"
+                  onClick={() => {
+                    refresh();
+                  }}
+                >
+                  <RefreshCw
+                    className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`}
+                  />
+                </button>
               </div>
 
               {hasTickets && (
