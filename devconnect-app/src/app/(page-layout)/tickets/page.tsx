@@ -123,14 +123,15 @@ const ConnectedEmails = () => {
         >
           <div className="flex flex-col">
             <div className="text-sm font-medium mb-1 select-none">
-              Connected emails
+              Connected emails ({additionalTicketEmails.length + 1})
             </div>
             <div>{email}</div>
-            {additionalTicketEmails.map((email: string) => (
-              <div key={email} className="">
-                {email}
-              </div>
-            ))}
+            {expanded &&
+              additionalTicketEmails.map((email: string) => (
+                <div key={email} className="">
+                  {email}
+                </div>
+              ))}
           </div>
           <ChevronDown className="w-4 h-4" />
         </div>
@@ -554,6 +555,9 @@ const SideEventTickets = ({
                 isExpanded && 'border-b-0 rounded-b-none'
               )}
               onClick={() => {
+                if (ordersForDate.length === 0) {
+                  return;
+                }
                 const newDates = new Set(selectedDates);
                 if (newDates.has(date)) {
                   newDates.delete(date);
@@ -564,10 +568,10 @@ const SideEventTickets = ({
               }}
             >
               <div className="flex flex-col">
-                <div className="text-sm font-medium mb-1">
+                <div className="text-sm font-medium mb-1 select-none">
                   {date.format('MMMM D, YYYY')}
                 </div>
-                <div className="text-xs text-gray-600">
+                <div className="text-xs text-gray-600 select-none">
                   {hasTicketsForDate
                     ? `${ordersForDate.length} event${ordersForDate.length > 1 ? 's' : ''}`
                     : 'You have no tickets for this date'}
@@ -615,6 +619,7 @@ const TicketTab = RequiresAuthHOC(() => {
   const hasTickets = orders && orders.length > 0;
   const hasSideTickets = sideOrders && sideOrders.length > 0;
   const isLoading = loading && !hasTickets;
+  const [loadingInternal, setLoadingInternal] = useState(false);
 
   return (
     <div
@@ -630,13 +635,15 @@ const TicketTab = RequiresAuthHOC(() => {
               <div className="text-lg font-semibold flex items-center gap-2 justify-between lg:justify-start">
                 Your Devconnect Ticket
                 <button
-                  className="text-sm basic-button white-button small-button text-gray-600 hover:text-gray-900 flex items-center gap-1 !p-1.5"
-                  onClick={() => {
-                    refresh();
+                  className="text-sm basic-button white-button small-button text-gray-600 hover:text-gray-900 flex items-center gap-1 !p-1 !h-auto"
+                  onClick={async () => {
+                    setLoadingInternal(true);
+                    await refresh();
+                    setLoadingInternal(false);
                   }}
                 >
                   <RefreshCw
-                    className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`}
+                    className={`w-4 h-4 ${loadingInternal || loading ? 'animate-spin' : ''}`}
                   />
                 </button>
               </div>
@@ -674,7 +681,7 @@ const TicketTab = RequiresAuthHOC(() => {
 
           <div className="flex flex-col md:flex-row gap-8 items-start w-full">
             {hasTickets && (
-              <div className="flex flex-col gap-8 mt-4 shrink-0 self-center">
+              <div className="flex flex-col gap-8 mt-8 shrink-0 self-center">
                 {orders.map((order) => (
                   <div key={order.orderCode}>
                     {order.tickets.map((ticket, idx) => (
