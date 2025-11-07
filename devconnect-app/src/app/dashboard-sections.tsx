@@ -494,7 +494,8 @@ export const TodaysSchedule = withParcnetProvider(() => {
             Your Events {/* - {moment().format('dddd, D MMMM')} */}
           </div>
           <p className="text-xs mb-2 shrink-0">
-            These are your recommended events. Build your own schedule by adding
+            These are your recommended events based on your favorites and
+            tickets connected in the app. Build your own schedule by adding
             events to your favorites.
           </p>
         </div>
