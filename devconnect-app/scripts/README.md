@@ -45,6 +45,20 @@ Filters unclaimed links from a CSV file using the Peanut SDK to check claim stat
 - Sequential processing with rate limiting to avoid API issues
 - Detailed progress reporting and error handling
 
+### `get-link-details.ts`
+
+Gets detailed information about a single Peanut protocol link from multiple sources.
+
+**Features:**
+
+- Accepts a single Peanut link as command line argument
+- Fetches link details from two sources:
+  - Peanut SDK (`@squirrel-labs/peanut-sdk`)
+  - Peanut API (`api.peanut.me/send-links`)
+- Shows formatted information including claim status, token info, chain details, and transaction data
+- Displays events history and claim information
+- Outputs full raw JSON responses from both sources for detailed inspection
+
 ## Usage
 
 ### Data Script
@@ -171,6 +185,47 @@ pnpm u scripts/csv/links_1.csv
 
 - CSV file should contain one claiming link URL per line (Peanut protocol links)
 
+### Get Link Details Script
+
+#### Using pnpm script (recommended)
+
+```bash
+pnpm p '<peanut-link>'
+```
+
+#### Using tsx directly
+
+```bash
+pnpm exec tsx scripts/get-link-details.ts '<peanut-link>'
+```
+
+**Example:**
+
+```bash
+# Get details for a Peanut link (note the single quotes!)
+pnpm p 'https://peanut.me/claim?c=42161&v=v4.3&i=6524#p=hzfg12SjsO0CZ3yz'
+```
+
+**Arguments:**
+
+- `peanut-link` - The Peanut protocol claiming link URL (must be quoted)
+
+**Important:**
+
+⚠️ **Always wrap the URL in single quotes!** The `&` and `#` characters have special meaning in the shell (background jobs and comments). Without quotes, the shell will truncate the URL and the command will fail.
+
+**Output:**
+
+- Displays formatted information from both SDK and API sources
+- SDK response: claim status, token details, chain info, sender/claimer addresses
+- API response: detailed events history, claim transaction info, timestamps
+- Outputs full raw JSON responses from both sources for detailed inspection
+
+**Requirements:**
+
+- Valid Peanut protocol link URL
+- Internet connection to reach api.peanut.me
+
 ## What the scripts do
 
 ### Data Script (`fetch-data.ts`)
@@ -267,6 +322,36 @@ When Notion temporary image URLs are detected, the script automatically:
 - Uses `@squirrel-labs/peanut-sdk` to check link details
 - Returns claim status, token info, and other metadata
 - Processes links sequentially to avoid API rate limits
+
+### Get Link Details Script (`get-link-details.ts`)
+
+1. **Accepts a single Peanut link** as command line argument
+2. **Fetches detailed information from two sources**:
+   - **SDK**: Calls `peanut.getLinkDetails()` from `@squirrel-labs/peanut-sdk`
+   - **API**: Makes HTTP request to `https://api.peanut.me/send-links/{pubKey}?c={chainId}&v={version}&i={depositIdx}`
+   - Parses link URL to extract parameters (pubKey, chainId, version, depositIdx)
+   - Handles errors gracefully for each source independently
+3. **Displays formatted output from SDK** including:
+   - Claim status (claimed or unclaimed)
+   - Token information (symbol, amount, decimals, address)
+   - Chain information (chain ID)
+   - Sender and claimer addresses
+   - Transaction details (hash, deposit date, index)
+4. **Displays formatted output from API** including:
+   - Link status and creation timestamp
+   - Public key, deposit index, chain ID, contract version
+   - Token amount and address
+   - Sender address
+   - Detailed claim information (amount, recipient, transaction hash)
+   - Events history with timestamps and status changes
+5. **Outputs raw JSON** from both sources for detailed inspection and debugging
+
+**Link Details Retrieved:**
+
+- **SDK source**: Uses `@squirrel-labs/peanut-sdk` to fetch link metadata from blockchain
+- **API source**: Queries Peanut's API database for additional information and events
+- Provides comprehensive view combining on-chain and off-chain data
+- Useful for debugging, verifying link information, and tracking claim history
 
 ## Configuration
 
