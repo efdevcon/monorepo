@@ -141,10 +141,13 @@ export function ServiceWorkerUpdateBanner() {
       worker.postMessage({ type: 'SKIP_WAITING' });
     };
 
-    const showUpdateToast = (waitingWorker: ServiceWorker, skipEvent = false) => {
+    const showUpdateToast = (
+      waitingWorker: ServiceWorker,
+      skipEvent = false
+    ) => {
       // Store worker reference globally
       globalWaitingWorker = waitingWorker;
-      
+
       // Dispatch event so other components (like Settings) know update is available
       // Skip if this is triggered BY the event (prevent loop)
       if (!skipEvent) {
@@ -227,7 +230,10 @@ export function ServiceWorkerUpdateBanner() {
     };
 
     window.addEventListener('sw-update-trigger', handleUpdateTrigger);
-    window.addEventListener('sw-update-available', handleSimulatedUpdateAvailable);
+    window.addEventListener(
+      'sw-update-available',
+      handleSimulatedUpdateAvailable
+    );
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener(
@@ -236,37 +242,64 @@ export function ServiceWorkerUpdateBanner() {
       );
     }
 
-    // Check for waiting service worker on mount
-    navigator.serviceWorker.ready.then((registration) => {
-      if (registration.waiting) {
-        showUpdateToast(registration.waiting);
-      }
+    // Check for waiting service worker IMMEDIATELY (fastest possible check)
+    const checkForWaitingWorker = async () => {
+      try {
+        // Use getRegistration() instead of .ready for faster response
+        // This returns immediately if SW is already registered
+        const registration = await navigator.serviceWorker.getRegistration();
 
-      // Listen for new service worker installing
-      registration.addEventListener('updatefound', () => {
-        const newWorker = registration.installing;
-        if (newWorker) {
-          newWorker.addEventListener('statechange', () => {
-            if (
-              newWorker.state === 'installed' &&
-              navigator.serviceWorker.controller
-            ) {
-              showUpdateToast(newWorker);
+        if (registration) {
+          // Immediately check if there's a waiting worker
+          if (registration.waiting) {
+            console.log('🔄 [SW Update] Waiting worker found immediately');
+            showUpdateToast(registration.waiting);
+          }
+
+          // Listen for new service worker installing
+          registration.addEventListener('updatefound', () => {
+            console.log('🔄 [SW Update] Update found event triggered');
+            const newWorker = registration.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                console.log(
+                  '🔄 [SW Update] New worker state:',
+                  newWorker.state
+                );
+                if (
+                  newWorker.state === 'installed' &&
+                  navigator.serviceWorker.controller
+                ) {
+                  console.log(
+                    '🔄 [SW Update] New worker installed, showing toast'
+                  );
+                  showUpdateToast(newWorker);
+                }
+              });
             }
           });
         }
-      });
-    });
+      } catch (err) {
+        console.error('Failed to check for waiting worker:', err);
+      }
+    };
+
+    // Run immediately - getRegistration() is much faster than .ready
+    checkForWaitingWorker();
 
     // Check for updates when user returns to the app (e.g., switching tabs)
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = async () => {
       if (document.visibilityState === 'visible') {
-        navigator.serviceWorker.ready.then((registration) => {
-          // Check for updates in the background
-          registration.update().catch((err) => {
-            console.warn('Service worker update check failed:', err);
-          });
-        });
+        try {
+          // Get registration immediately without waiting
+          const registration = await navigator.serviceWorker.getRegistration();
+          if (registration) {
+            // Check for updates in the background
+            await registration.update();
+          }
+        } catch (err) {
+          console.warn('Service worker update check failed:', err);
+        }
       }
     };
 
@@ -371,7 +404,10 @@ export function ServiceWorkerUpdateBanner() {
         toast.dismiss(toastIdRef.current);
       }
       window.removeEventListener('sw-update-trigger', handleUpdateTrigger);
-      window.removeEventListener('sw-update-available', handleSimulatedUpdateAvailable);
+      window.removeEventListener(
+        'sw-update-available',
+        handleSimulatedUpdateAvailable
+      );
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener(
         'sw-controllerchange-debug',
