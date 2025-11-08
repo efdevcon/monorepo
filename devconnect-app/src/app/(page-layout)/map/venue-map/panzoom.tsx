@@ -138,7 +138,7 @@ export const usePanzoom = (
         const transform = e.getTransform();
         // console.log('transform', transform);
 
-        if (transform.scale > 1.6) {
+        if (transform.scale > 3) {
           // console.log('zoomed in', zoomLevel);
           if (zoomLevelRef.current === 'zoomed-out') {
             setZoomLevel('zoomed-in');

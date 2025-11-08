@@ -51,10 +51,12 @@ type EventProps = {
   className?: string;
   selectedEvent: EventType | null;
   setSelectedEvent: (event: EventType | null) => void;
-  setExports: (exports: EventType[] | null) => void;
+  setExports?: (exports: EventType[] | null) => void;
   toggleFavoriteEvent?: (eventId: string) => void;
   favoriteEvents?: string[];
   noZupass?: boolean;
+  includeProgramming?: any;
+  includeTickets?: any;
 };
 
 const formatTime = (isoString: string) => {
@@ -85,7 +87,7 @@ const computeEventTimeString = (event: EventType): string[] => {
 
     if (isMultiDay) {
       formattedTimeblocks = [
-        `${startDateFormatted} — ${endDateFormatted}, ${startTime} to ${endTime} every day`,
+        `${startDateFormatted} — ${endDateFormatted}, ${startTime} to ${endTime}`, // every day`,
       ];
     } else {
       formattedTimeblocks = [
@@ -231,6 +233,8 @@ const ExportEvent = ({
 
 function Event({
   compact,
+  includeProgramming,
+  includeTickets,
   event,
   isDialog,
   className,
@@ -568,13 +572,16 @@ function Event({
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-3 pr-6">
+                      <div
+                        className={cn(
+                          "flex justify-end gap-2 shrink-0 items-center"
+                        )}
+                      >
+                        {includeTickets || null}
+                        {includeProgramming || null}
+
                         <ShareEvent event={event} isDialog />
-                        <ExportEvent
-                          event={event}
-                          isDialog
-                          setExports={setExports}
-                        />
+
                         {toggleFavoriteEvent && (
                           <FavoriteEvent
                             event={event}
@@ -588,8 +595,8 @@ function Event({
 
                     <Separator className="my-3" />
 
-                    <div className="text-sm flex gap-4 mb-2">
-                      <div className="flex justify-center gap-1.5 items-center font-medium shrink-0">
+                    <div className="text-sm flex gap-2 mb-2 flex-wrap overflow-hidden">
+                      <div className="flex justify-center gap-1.5 items-center font-medium shrink-0 flex-wrap">
                         <MapPin className="w-4 h-4 mb-0.5" />
                         {typeof event.location === "string"
                           ? event.location
@@ -818,7 +825,7 @@ function Event({
                   <Image
                     src={DevconnectCubeLogo}
                     alt="Devconnect Cube"
-                    className="w-[26px] object-contain"
+                    className="w-[24px] object-contain self-start mt-0.5"
                   />
                 )}
 
@@ -828,21 +835,44 @@ function Event({
                     alt="ETH Day"
                     className={cn(
                       "w-[26px] object-contain md:hidden",
-                      compact && "!block w-[30px]"
+                      compact && "!block w-[24px] self-start mt-1"
                     )}
                   />
                 )}
 
-                <div className="flex flex-col w-full">
-                  <div className="flex justify-between gap-2">
-                    <div
-                      className={cn(
-                        "md:line-clamp-none",
-                        compact && "leading-tight"
-                      )}
-                    >
-                      {eventName}
+                <div className="flex w-full h-full gap-1 justify-between items-center">
+                  <div className="flex flex-col w-full">
+                    <div className="flex justify-between gap-2">
+                      <div
+                        className={cn(
+                          "md:line-clamp-none leading-tight",
+                          compact && "leading-tight"
+                        )}
+                      >
+                        {eventName}
+                      </div>
                     </div>
+                    <div className="flex gap-4 justify-between w-full">
+                      {timeOfDay.map((time, index) => (
+                        <div key={index} className="text-xs text-gray-600">
+                          {time}
+                        </div>
+                      ))}
+                    </div>
+                    {showTicketTag && compact && !includeTickets && (
+                      <div className="flex gap-1 items-start mt-2">
+                        <TicketTag event={event} compact />
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    className={cn(
+                      "flex h-full gap-1.5 shrink-0 grow justify-end",
+                      compact && "items-center"
+                    )}
+                  >
+                    {includeTickets || null}
+                    {includeProgramming || null}
                     {toggleFavoriteEvent && (
                       <FavoriteEvent
                         event={event}
@@ -850,13 +880,6 @@ function Event({
                         favoriteEvents={favoriteEvents}
                       />
                     )}
-                  </div>
-                  <div className="flex gap-4 justify-between w-full">
-                    {timeOfDay.map((time, index) => (
-                      <div key={index} className="text-xs text-gray-600">
-                        {time}
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>

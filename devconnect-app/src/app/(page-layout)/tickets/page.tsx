@@ -13,6 +13,8 @@ import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import moment, { Moment } from 'moment';
 import cn from 'classnames';
 import { RefreshCw } from 'lucide-react';
+import Icon from '@mdi/react';
+import { mdiQrcode } from '@mdi/js';
 import {
   Dialog as DialogRoot,
   DialogContent,
@@ -38,6 +40,14 @@ const TicketWrapper = () => {
     // <PageLayout title="Ethereum World's Fair — Tickets" tabs={homeTabs()}>
     <TicketTab />
     // </PageLayout>
+  );
+};
+
+export const QRCodeBox = () => {
+  return (
+    <div className="flex gap-2 p-1 items-center bg-white border border-solid border-gray-200">
+      <Icon path={mdiQrcode} size={0.95} /> QR CODE
+    </div>
   );
 };
 
@@ -123,7 +133,7 @@ const ConnectedEmails = () => {
         >
           <div className="flex flex-col">
             <div className="text-sm font-medium mb-1 select-none">
-              Connected emails ({additionalTicketEmails.length + 1})
+              Connected emails ({(additionalTicketEmails.length || 0) + 1})
             </div>
             <div>{email}</div>
             {expanded &&
@@ -534,6 +544,11 @@ const SideEventTickets = ({
 
   return (
     <div className="flex flex-col gap-1 py-4 grow self-start w-full">
+      <div
+        className="relative block top-[-115px] visibility-hidden"
+        data-type="anchor"
+        id="event-tickets"
+      ></div>
       <div className="flex flex-col gap-1 mb-3">
         <div className="text-lg font-semibold">Event Tickets</div>
         <div className="text-sm">

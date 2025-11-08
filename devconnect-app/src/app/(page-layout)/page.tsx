@@ -35,7 +35,7 @@ export default function HomePageContent() {
   }, []);
 
   return (
-    <div className="bg-[#74ACDF10] gradient-background grow pb-8">
+    <div className="bg-[#74ACDF10] gradient-background grow pb-8 overflow-x-hidden">
       <LoopingHeader />
 
       <WelcomeSection />

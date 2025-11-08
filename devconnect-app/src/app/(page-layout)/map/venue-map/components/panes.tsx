@@ -145,7 +145,7 @@ const Pane = ({
             />
           )}
 
-          <div className="flex flex-col gap-1.5 pr-2 justify-center">
+          <div className="flex flex-col gap-1 pr-2 justify-center">
             <div className="flex gap-1.5 items-center">
               <p className="font-bold text-[18px] leading-none text-[#20202B]">
                 {selection}
@@ -196,6 +196,7 @@ const Pane = ({
           <button
             className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
             onClick={() => {
+              console.log('copying location link', selection);
               try {
                 navigator.clipboard.writeText(
                   window.location.origin +
@@ -296,6 +297,8 @@ const MapPane = (props: {
   fromQuests?: boolean;
 }) => {
   const { selection, setSelection, fromQuests = false } = props;
+
+  console.log('MapPane selection', selection);
 
   // Hooks must be called before any conditional returns
   const [isDesktop, setIsDesktop] = useState(false);
@@ -418,6 +421,7 @@ const MapPane = (props: {
     if (!selectionData) {
       selectionData = {
         name: selection,
+        layerName: selection,
         pane_type: 'fallback (no notion data)',
       };
     }
@@ -439,7 +443,7 @@ const MapPane = (props: {
           <Pane
             paneOpen={paneOpen}
             setSelection={setSelection}
-            selection={selection}
+            selection={selectionData.layerName}
             description={selectionData.description}
             subtitle={selectionData.pane_type}
             logo={selectionData.logo}
@@ -448,11 +452,11 @@ const MapPane = (props: {
             showAsModal={isDesktop && fromQuests}
           >
             {districtSupporters.length > 0 && (
-              <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4">
+              <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4 max-h-[60vh] overflow-y-auto">
                 <div className="text-base font-bold mb-3 text-[#353548]">
                   App Showcase
                 </div>
-                <div className="flex gap-4 items-start w-full">
+                <div className="flex gap-4 items-start w-full ma">
                   {/* Split supporters into two columns */}
                   <div className="flex-1 flex flex-col gap-2">
                     {districtSupporters
@@ -600,7 +604,7 @@ const MapPane = (props: {
           <Pane
             paneOpen={paneOpen}
             setSelection={setSelection}
-            selection={selectionData.name}
+            selection={selectionData.layerName}
             description={selectionData.description}
             subtitle={
               !selectionData.districtId ? selectionData.pane_type : undefined
@@ -641,7 +645,7 @@ const MapPane = (props: {
           <Pane
             paneOpen={paneOpen}
             setSelection={setSelection}
-            selection={selectionData.name}
+            selection={selectionData.layerName}
             description={selectionData.description}
             subtitle={selectionData.pane_type}
             links={selectionData.links}

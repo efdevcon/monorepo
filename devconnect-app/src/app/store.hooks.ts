@@ -9,7 +9,165 @@ import {
 } from '@/hooks/useServerData';
 import { AppState } from './store';
 import { usePathname } from 'next/navigation';
-// import { useWalletManager } from '@/hooks/useWalletManager';
+import useSWR from 'swr';
+import moment from 'moment';
+
+// This is based on the notion database layer names. E.g. programming has "M2" but the map expects "m2-stage", so we have to map them to the canonical id
+export const canonicalStageIds = {
+  M1: 'm1-stage',
+  M2: 'm2-stage',
+  L: 'l-stage',
+  XL: 'xl-stage',
+  XS: 'xs-stage',
+  LIGHTNING: 'lighting-talks-stage', // typo in the id but ehh whatever we will map our way out of it
+  MUSIC: 'music-stage',
+  STAGE1: 'stage-1',
+  CINEMA: 'open-air-cinema',
+};
+
+// Stage names via stage IDs
+export const canonicalStageNames = {
+  'm1-stage': 'M1 Stage',
+  'm2-stage': 'M2 Stage',
+  'l-stage': 'L Stage',
+  'xl-stage': 'XL Stage',
+  'xs-stage': 'XS Stage',
+  'lighting-talks-stage': 'Lightning Stage',
+  'music-stage': 'Music Stage',
+  'stage-1': 'Stage 1',
+  'open-air-cinema': 'Open Air Cinema',
+};
+
+/*
+ Ideal data structure:
+
+  {
+    stage: "M2",
+    sessions: [
+      {
+        eventID: 24, // for map filtering
+        sessionTitle: 'abc',
+        date: '2025-11-08',
+        start: '...',
+        end: '...'
+      }
+    ]
+
+    /stages/xl?event=24
+   }
+
+   const hasActiveProgrammingNow(stage) => yes or no
+   const event = getActiveProrgrammingNow(stage) => session
+   const nextEvent = getNextEvent(stage) => session
+   const nextEventTime = getNextEventTimeLeft(stage) => moment
+   const streamURL = stage.streamURL
+
+*/
+
+/*
+  {
+    "folderId": "1P5_JEqq9wPQLZPpHcgm1x-97Rdjn5AGr",
+    "name": "Trustless Agents Day",
+    "sheetId": "1c62SohvDfOjI7_pP5XEyNYiC32f5BJJFV83ifI16R5E",
+    "sheetName": "Trustless Agents Day",
+    "stage": "M2",
+    "updatedAt": "2025-11-07T19:06:51.590607+00:00"
+  },
+*/
+const computeStages = (events?: any[]) => {
+  if (!events) return [];
+  if (!events || !Array.isArray(events)) return [];
+
+  const uniqueStages = new Set<string>();
+  events.forEach((event) => {
+    if (event.stage) {
+      const upperCaseStage = event.stage.toUpperCase();
+      const canonicalStage =
+        canonicalStageIds[upperCaseStage as keyof typeof canonicalStageIds];
+      if (canonicalStage) {
+        uniqueStages.add(canonicalStage);
+      }
+    }
+  });
+
+  return Array.from(uniqueStages).sort();
+};
+
+export const useProgramming = () => {
+  const {
+    data: events,
+    error: eventsError,
+    isLoading: eventsLoading,
+  } = useSWR('https://devconnect.pblvrt.com/events', fetch);
+
+  /* Example "schedule" entry from the /schedules endpoint
+ {
+    "event": "Daily Newcomers lessons",
+    "title": "Presentación de la charla (moderador + oradores)",
+    "description": "Keynote",
+    "day": "21/11/2025",
+    "start": "14:00",
+    "end": "14:15",
+    "speakers": [
+      "Borja Martel",
+      "Martin Carrica",
+      "Sofia Vasquez"
+    ]
+  },
+  */
+  const {
+    data: schedules,
+    error: schedulesError,
+    isLoading: schedulesLoading,
+  } = useSWR('https://devconnect.pblvrt.com/schedules', fetch);
+
+  const eventsData = (events as any)?.data;
+  const schedulesData = (schedules as any)?.data;
+
+  return {
+    stages: computeStages(eventsData) as any,
+    schedules: schedulesData as any,
+    events: eventsData as any,
+  } as any;
+
+  const sessions: any = schedules;
+
+  console.log(sessions, 'sessions ay');
+
+  // Group sessions by day
+  const sessionsByDay = sessions.reduce(
+    (acc: Record<string, any[]>, session: any) => {
+      // Check if session has a day field in DD/MM/YYYY format
+      let day: string;
+      if (session.day && /^\d{2}\/\d{2}\/\d{4}$/.test(session.day)) {
+        // Parse DD/MM/YYYY format
+        day = moment.utc(session.day, 'DD/MM/YYYY').format('YYYY-MM-DD');
+      } else {
+        // Assume start is in HH:mm format, use today as fallback
+        day = moment.utc().format('YYYY-MM-DD');
+      }
+
+      if (!acc[day]) {
+        acc[day] = [];
+      }
+      acc[day].push(session);
+      return acc;
+    },
+    {} as Record<string, any[]>
+  );
+
+  // Convert to array and sort by day
+  const daySchedules: any[] = Object.entries(sessionsByDay)
+    .map(([day, sessions]: any) => ({
+      day,
+      sessions: sessions.sort((a: any, b: any) =>
+        moment.utc(a.start, 'HH:mm').diff(moment.utc(b.start, 'HH:mm'))
+      ),
+    }))
+    .sort((a: any, b: any) => a.day.localeCompare(b.day));
+
+  return daySchedules;
+};
 
 /**
  * Manage favorite events (now using SWR)
@@ -17,6 +175,7 @@ import { usePathname } from 'next/navigation';
  */
 export const useFavorites = () => {
   const { favorites, updateFavorite } = useFavoritesSWR();
+
   return [favorites, updateFavorite] as [string[], (eventId: string) => void];
 };
 

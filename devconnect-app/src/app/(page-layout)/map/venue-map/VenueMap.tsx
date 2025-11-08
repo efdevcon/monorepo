@@ -56,7 +56,7 @@ export const VenueMap = () => {
     'venue-map',
     setZoomLevel,
     zoomLevel,
-    selection ? 3 : undefined
+    selection ? 3.1 : undefined
   );
 
   const reset = () => {
@@ -170,7 +170,7 @@ export const VenueMap = () => {
     panzoomInstance.zoomAbs(
       targetCenterX,
       targetCenterY,
-      Math.max(currentZoom, 3)
+      Math.max(currentZoom, 3.1)
     );
   };
 
@@ -253,6 +253,8 @@ export const VenueMap = () => {
         ...currentFilters,
         selection: id,
       });
+
+      console.log('setting selection', id);
 
       focusOnElement(id);
     }
@@ -439,6 +441,15 @@ export const VenueMap = () => {
         >
           <HomeIcon className="w-4 h-4 !text-[rgba(0,115,222,1)]" />
         </button>
+      </div>
+
+      <div
+        className={cn(
+          'absolute bottom-2 flex justify-center items-center text-center left-0 opacity-80 w-full z-[10] text-[11px] font-bold transition-opacity duration-300',
+          zoomLevel === 'zoomed-in' && '!opacity-0 pointer-events-none'
+        )}
+      >
+        Zoom in for details
       </div>
 
       <SurfaceFilters />

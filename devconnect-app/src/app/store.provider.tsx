@@ -29,6 +29,7 @@ export interface GlobalStoreProviderProps {
   children: ReactNode;
   events: AppState['events'];
   programming: any;
+  programmingEvents: any;
   announcements?: AppState['announcements'];
   userData?: AppState['userData'];
 }
@@ -49,6 +50,7 @@ export const GlobalStoreProvider = ({
   events,
   announcements,
   programming,
+  programmingEvents,
   userData,
   children,
 }: GlobalStoreProviderProps) => {
@@ -66,6 +68,10 @@ export const GlobalStoreProvider = ({
             'https://devconnect.pblvrt.com/schedules': {
               success: true,
               data: programming,
+            },
+            'https://devconnect.pblvrt.com/events': {
+              success: true,
+              data: programmingEvents,
             },
           },
         }}

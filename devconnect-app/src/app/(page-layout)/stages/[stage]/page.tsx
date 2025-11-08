@@ -1,7 +1,8 @@
 'use client';
-import React, { use } from 'react';
+import React, { use, useState, useEffect } from 'react';
 import { Separator } from 'lib/components/ui/separator';
 import { fetchAuth } from '@/services/apiClient';
+import { useNow } from 'lib/hooks/useNow';
 import Link from 'next/link';
 import {
   useAdditionalTicketEmails,
@@ -15,6 +16,7 @@ import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { StageBadge } from '@/components/StageBadge';
 import Image from 'next/image';
 import imgMeerkat from './meerkat.png';
+import moment, { Moment } from 'moment';
 
 const MeerkatComponent = () => {
   const { tickets } = useTickets();
@@ -104,7 +106,25 @@ const dummyProgramming = [
 ];
 
 const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
+  const [dates, setDates] = useState<Moment[]>([
+    moment.utc('2025-11-17'),
+    moment.utc('2025-11-18'),
+    moment.utc('2025-11-19'),
+    moment.utc('2025-11-20'),
+    moment.utc('2025-11-21'),
+    moment.utc('2025-11-22'),
+  ]);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const { stage } = use(params);
+  const now = useNow();
+  const today = now.format('YYYY-MM-DD');
+
+  useEffect(() => {
+    if (dates.some((date) => date.format('YYYY-MM-DD') === today)) {
+      setSelectedDay(today);
+    }
+  }, [today, dates]);
+
   const isBetaMode = hasBetaAccess();
   if (isBetaMode) {
     return <ComingSoonMessage />;
@@ -134,51 +154,83 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
         </div>
       </div>
       <div className="p-4 px-6 w-full">
-        <h2 className="text-xl font-bold mb-4">Programming</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border border-solid border-neutral-200 text-xs leading-tight">
-            <thead>
-              <tr className="bg-[rgba(53,53,72,1)] text-white">
-                <th className="text-left p-4 font-bold">Time</th>
-                <th className="text-left p-4 font-bold">Topic(s)</th>
-                <th className="text-left p-4 font-bold">Speaker(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dummyProgramming.map((item, index) => (
-                <tr
-                  key={index}
-                  className="bg-white even:bg-[rgba(234,244,251,1)]"
-                >
-                  <td
-                    className={cn(
-                      'p-4 py-3 border-b border-gray-200',
-                      item.isHighlighted && 'font-bold'
-                    )}
-                  >
-                    {item.time}
-                  </td>
-                  <td
-                    className={cn(
-                      'p-4 py-3 border-b border-gray-200',
-                      item.isHighlighted && 'font-bold'
-                    )}
-                  >
-                    {item.topic}
-                  </td>
-                  <td
-                    className={cn(
-                      'p-4 py-3 border-b border-gray-200',
-                      item.isHighlighted && 'font-bold'
-                    )}
-                  >
-                    {item.speaker}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <h2 className="text-xl font-bold mb-2 sm:mb-4">
+          Programming
+          {/* {selectedDay && '-'}{' '}
+          {selectedDay ? moment(selectedDay).format('dddd, MMMM D, YYYY') : ''} */}
+        </h2>
+        <div className="flex justify-between items-center mb-2 sm:mb-4 gap-0.5 sm:gap-2">
+          {dates.map((date, index) => {
+            const dateStr = date.format('YYYY-MM-DD');
+            const isToday = dateStr === today;
+            return (
+              <div
+                key={index}
+                onClick={() => setSelectedDay(dateStr)}
+                className={cn(
+                  'px-1.5 sm:px-3 py-1.5 cursor-pointer text-xs sm:text-sm leading-tight transition-colors grow border border-solid border-neutral-200',
+                  selectedDay === dateStr
+                    ? 'bg-[#eaf4fb] !border-b-[#175a8d] !border-b-2'
+                    : 'bg-white hover:bg-gray-100'
+                )}
+              >
+                <div className="font-bold">
+                  {isToday ? 'Today' : date.format('ddd')}
+                </div>
+                <div className="text-[11px] sm:text-inherit">
+                  {date.format('MMM D')}
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        {selectedDay && (
+          <div className="overflow-x-auto">
+            <table className="w-full border border-solid border-neutral-200 text-xs leading-tight">
+              <thead>
+                <tr className="bg-[rgba(53,53,72,1)] text-white">
+                  <th className="text-left p-4 font-bold">Time</th>
+                  <th className="text-left p-4 font-bold">Topic(s)</th>
+                  <th className="text-left p-4 font-bold">Speaker(s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dummyProgramming.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="bg-white even:bg-[rgba(234,244,251,1)]"
+                  >
+                    <td
+                      className={cn(
+                        'p-4 py-3 border-b border-gray-200',
+                        item.isHighlighted && 'font-bold'
+                      )}
+                    >
+                      {item.time}
+                    </td>
+                    <td
+                      className={cn(
+                        'p-4 py-3 border-b border-gray-200',
+                        item.isHighlighted && 'font-bold'
+                      )}
+                    >
+                      {item.topic}
+                    </td>
+                    <td
+                      className={cn(
+                        'p-4 py-3 border-b border-gray-200',
+                        item.isHighlighted && 'font-bold'
+                      )}
+                    >
+                      {item.speaker}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

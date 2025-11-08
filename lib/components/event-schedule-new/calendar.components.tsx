@@ -105,12 +105,40 @@ const TypeTag = ({
   );
 };
 
-export const TicketTag = ({ event }: { event: any }) => {
+export const TicketTag = ({
+  event,
+  compact = false,
+}: {
+  event: any;
+  compact?: boolean;
+}) => {
   const isCommunityCalendar = !event.isCoreEvent;
   const isCoworking = event.id.toString() === "23";
   const isSoldOut = event.soldOut;
   const requiresSignup = event.requiresSignup;
   const isPaidEvent = event.ticketsAvailable;
+
+  if (compact) {
+    if (!isPaidEvent) {
+      if (isCommunityCalendar) {
+        return null;
+      }
+
+      return (
+        <div
+          className={`px-1.5 py-0.5 font-medium border border-solid text-[rgba(27,111,174,1)] border-[rgba(27,111,174,1)] bg-[white] uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
+        >
+          Included in Devconnect Ticket
+        </div>
+      );
+    }
+
+    return (
+      <div className="px-1.5 py-0.5 font-medium border border-solid border-[rgba(27,111,174,1)] bg-[rgba(27,111,174,1)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+        {isPaidEvent && "Signup Required"}
+      </div>
+    );
+  }
 
   if (isCoworking) {
     return (

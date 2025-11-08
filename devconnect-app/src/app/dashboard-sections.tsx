@@ -19,10 +19,15 @@ import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
 import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
 import { toast } from 'sonner';
-import { ChevronDownIcon, Copy } from 'lucide-react';
+import { ChevronDownIcon, Copy, QrCode } from 'lucide-react';
 import { useRefreshOnAuthChange } from '@/hooks/useServerData';
 import Lock from '@/images/lock.png';
 import { Separator } from 'lib/components/ui/separator';
+import Icon from '@mdi/react';
+import { mdiQrcode, mdiCalendarRangeOutline } from '@mdi/js';
+import { useTickets } from '@/hooks/useServerData';
+import { useUserData as useUserDataSWR } from '@/hooks/useServerData';
+// import { QRCodeBox } from '@/app/(page-layout)/tickets/page';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -464,18 +469,58 @@ export const PracticalInfo = () => {
 };
 
 export const TodaysSchedule = withParcnetProvider(() => {
-  const email = useGlobalStore((state) => state.userData?.email);
+  const { email } = useUserDataSWR();
   const events = useEvents();
   const [favorites] = useFavorites();
+  const { tickets, sideTickets } = useTickets();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
 
+  if (!email) return null;
+
+  const coworkingEventId = '23';
+  const communityHubsEventId = '149';
+  const ethereumDayEventId = '84';
+
+  const ticketEventIds = tickets.map((ticket) => ticket.eventId?.toString());
+  const sideTicketEventIds = sideTickets.map((ticket) =>
+    ticket.eventId?.toString()
+  );
+  const allTicketEventIds = [...ticketEventIds, ...sideTicketEventIds];
+  // remove duplicates
+  const allEventIds = [
+    ...new Set([
+      coworkingEventId,
+      communityHubsEventId,
+      ethereumDayEventId,
+      ...favorites,
+      ...allTicketEventIds,
+    ]),
+  ];
+  // console.log(favorites, 'favs');
+
   // Refresh favorites when user logs in
-  useRefreshOnAuthChange();
+  // TODO:
+  // useRefreshOnAuthChange();  <-- This doesnt do anything anymore, right?
 
   // TODO: implement more advanced filtering here, e.g. highlighted events like ethereum day , etc.
-  const filteredEvents = events.filter((event) =>
-    favorites.includes(event.id.toString())
-  );
+  const filteredEvents = events
+    .filter((event) => allEventIds.includes(event.id.toString()))
+    .sort((a, b) => {
+      if (
+        a.id.toString() === ethereumDayEventId &&
+        b.id.toString() === coworkingEventId
+      ) {
+        return 1;
+      }
+      if (
+        a.id.toString() === coworkingEventId &&
+        b.id.toString() === ethereumDayEventId
+      ) {
+        return -1;
+      }
+
+      return a.timeblocks[0].start.localeCompare(b.timeblocks[0].start);
+    });
 
   const hasEventsToShow = filteredEvents.length > 0;
 
@@ -514,7 +559,36 @@ export const TodaysSchedule = withParcnetProvider(() => {
           event={selectedEvent}
           selectedEvent={selectedEvent}
           setSelectedEvent={setSelectedEvent}
-          setExports={() => {}}
+          // setExports={() => {}}
+          includeProgramming={
+            selectedEvent.isCoreEvent ? (
+              <Link
+                href={`/stages/${selectedEvent.stage}`}
+                className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <Icon path={mdiCalendarRangeOutline} size={0.95} />{' '}
+              </Link>
+            ) : undefined
+          }
+          includeTickets={
+            allTicketEventIds.includes(selectedEvent.id.toString()) ? (
+              <Link
+                href={
+                  selectedEvent === 23 ? '/tickets' : '/tickets#event-tickets'
+                }
+                className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                {/* <QRCodeBox /> */}
+                <Icon path={mdiQrcode} size={0.95} />{' '}
+              </Link>
+            ) : undefined
+          }
           className="w-full"
           isDialog
           noZupass
@@ -530,8 +604,49 @@ export const TodaysSchedule = withParcnetProvider(() => {
               event={event}
               className="w-full"
               selectedEvent={selectedEvent}
+              includeProgramming={
+                event.isCoreEvent ? (
+                  <Link
+                    href={`/stages/${event.stage}`}
+                    className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Icon
+                      path={mdiCalendarRangeOutline}
+                      size={1}
+                      className="text-[#4b4b66] opacity-90"
+                    />{' '}
+                  </Link>
+                ) : undefined
+              }
+              includeTickets={
+                allTicketEventIds.includes(event.id.toString()) ? (
+                  <Link
+                    href={
+                      event.id === 23 ? '/tickets' : '/tickets#event-tickets'
+                    }
+                    className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    {/* <QrCode className="w-8 h-8" /> */}
+                    <Icon
+                      path={mdiQrcode}
+                      size={1}
+                      className="text-[#4b4b66] opacity-90"
+                    />{' '}
+                  </Link>
+                ) : undefined
+              }
               setSelectedEvent={setSelectedEvent}
-              setExports={() => {}}
+              // setExports={() => {}}
             />
           ))}
         </div>
