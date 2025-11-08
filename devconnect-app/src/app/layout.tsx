@@ -362,7 +362,14 @@ export default async function RootLayout({
           <MatomoAnalytics />
         </Suspense>
 
-        <Toaster style={{ zIndex: 100000000000 } as React.CSSProperties} />
+        <Toaster
+          style={{ zIndex: 9999999999999999999 } as React.CSSProperties}
+          toastOptions={{
+            style: {
+              zIndex: 9999999999999999999,
+            },
+          }}
+        />
         <div id="requires-auth-modal" />
       </body>
     </html>
