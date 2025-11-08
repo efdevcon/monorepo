@@ -18,6 +18,7 @@ import { MatomoAnalytics } from '@/app/matomo';
 import { Suspense } from 'react';
 import { SerwistProvider } from '@/app/serwist-provider';
 import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
+import { BigIntSerializer } from '@/components/BigIntSerializer';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -336,6 +337,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <BigIntSerializer />
         <SerwistProvider swUrl="/sw.js/sw.js" options={{ scope: '/' }}>
           <PWAProvider>
             <NextIntlClientProvider>
