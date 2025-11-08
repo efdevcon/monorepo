@@ -208,7 +208,6 @@ const Pane = ({
 
               toast.success('Location link copied to clipboard', {
                 duration: 5000,
-                position: 'top-center',
               });
             }}
           >

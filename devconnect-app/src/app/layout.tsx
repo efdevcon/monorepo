@@ -363,13 +363,10 @@ export default async function RootLayout({
         </Suspense>
 
         <Toaster
-          position="bottom-right"
+          position="bottom-left"
           closeButton
-          dir="ltr"
-          swipeToDismissDirection="left"
           style={{ zIndex: 9999999999999999999 } as React.CSSProperties}
           toastOptions={{
-            dismissible: true,
             closeButton: true,
             style: {
               zIndex: 9999999999999999999,

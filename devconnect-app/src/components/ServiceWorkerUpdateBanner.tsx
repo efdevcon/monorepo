@@ -104,7 +104,6 @@ export function ServiceWorkerUpdateBanner() {
             description:
               "You're now using the latest version with new improvements.",
             duration: 5000,
-            position: 'bottom-center',
             dismissible: true,
             closeButton: true,
             style: {
@@ -130,7 +129,6 @@ export function ServiceWorkerUpdateBanner() {
       toastIdRef.current = toast.loading('Updating app...', {
         description: 'This will only take a moment.',
         duration: Infinity,
-        position: 'bottom-center',
         dismissible: true,
         closeButton: true,
         style: {
@@ -161,7 +159,6 @@ export function ServiceWorkerUpdateBanner() {
       toastIdRef.current = toast('New app version available!', {
         description: 'Refresh to get the latest updates.',
         duration: Infinity,
-        position: 'bottom-center',
         dismissible: true, // Allow swipe/click to dismiss
         closeButton: true, // Show X button
         style: {
@@ -184,7 +181,6 @@ export function ServiceWorkerUpdateBanner() {
 
             toast.success('Update postponed', {
               description: 'You can update from Settings later.',
-              position: 'bottom-center',
               duration: 4000,
               dismissible: true,
               closeButton: true,
@@ -219,7 +215,6 @@ export function ServiceWorkerUpdateBanner() {
       if (event.data && event.data.type === 'SLOW_NETWORK') {
         toast.info('Slow connection', {
           description: event.data.message,
-          position: 'bottom-center',
           duration: 3000,
           dismissible: true,
           closeButton: true,
