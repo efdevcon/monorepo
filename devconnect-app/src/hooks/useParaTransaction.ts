@@ -180,7 +180,11 @@ export function useParaTransaction() {
           throw new Error(errorMsg);
         }
 
-        throw new Error(errorData.error || 'Failed to execute transfer');
+        // Include details if available for more specific error messages
+        const errorMessage = errorData.details 
+          ? `${errorData.error}: ${errorData.details}`
+          : errorData.error || 'Failed to execute transfer';
+        throw new Error(errorMessage);
       }
 
       const executeData = await executeResponse.json();

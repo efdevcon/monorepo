@@ -3,11 +3,18 @@
 import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   generateSessionToken,
   formatAddressesForToken,
 } from '@/utils/coinbase';
+import Icon from '@mdi/react';
+import {
+  mdiInformation,
+  mdiClose,
+  mdiChevronLeft,
+  mdiArrowTopRight,
+} from '@mdi/js';
 
 // Image assets
 const imgOnrampDigital = '/images/onramp-digital.svg';
@@ -17,6 +24,7 @@ const imgLocationOn = '/images/imgLocation.svg';
 export default function OnrampTab() {
   const { address } = useWallet();
   const router = useRouter();
+  const [isDisclaimerModalOpen, setIsDisclaimerModalOpen] = useState(false);
 
   // Handle hash-based scrolling on component mount
   useEffect(() => {
@@ -187,11 +195,12 @@ export default function OnrampTab() {
     },
     {
       name: 'Peanut',
-      description: 'Blurb for Peanut.',
+      description:
+        'Instant wire transfer, Mercado Pago and quick KYC. No debit/credit cards.',
       gradient:
         'linear-gradient(114.577deg, rgba(255, 145, 233, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'peanut-logo.png',
-      fees: 'Low% - Based on sources',
+      fees: 'Low% - Based on rate',
       onClick: () => {
         if (!address) {
           showErrorToast(
@@ -226,7 +235,7 @@ export default function OnrampTab() {
     },
     {
       name: 'Coinbase',
-      description: 'Best rates and easy flow, requires KYC.',
+      description: 'Zero fees on Base. Requires KYC.',
       gradient:
         'linear-gradient(114.577deg, rgba(0, 82, 255, 0.2) 52.142%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'coinbase-logo.png',
@@ -359,24 +368,24 @@ export default function OnrampTab() {
       description: (
         <>
           <span className="font-bold">Argentinians only</span> via Mercado Pago
-          or Bank Transfer, via Ripio's unique totem!
+          or Bank Transfer, via their unique &apos;Gas&apos; totem!
         </>
       ),
       gradient:
         'linear-gradient(103.512deg, rgba(130, 39, 241, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'ripio-logo.png',
-      fees: 'X%',
+      fees: 'Low% - Based on rate',
       locations: ['Green Pavilion', 'Pista Central'],
     },
     {
       name: 'BitBase',
-      description: 'Blurb for Bitbase lorem ipsum dolor sit amet consectetur.',
+      description:
+        'Simple fiat-to-crypto on-ramp with card, or bank transfer. Requires standard KYC.',
       gradient:
         'linear-gradient(103.512deg, rgba(40, 108, 255, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
-      logoImage: 'calypso-logo.png',
-      fees: 'X%',
+      logoImage: 'bitbase-logo.png',
+      fees: 'Based on rate/country',
       locations: ['Green Pavilion', 'Pista Central'],
-      opacity: true,
     },
   ];
 
@@ -418,19 +427,7 @@ export default function OnrampTab() {
             onClick={() => router.push('/wallet')}
             className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors cursor-pointer"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="#36364c"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
+            <Icon path={mdiChevronLeft} size={0.67} color="#36364c" />
           </button>
           <h1 className="text-[#353548] text-lg font-bold tracking-[-0.1px]">
             Add Funds
@@ -441,6 +438,30 @@ export default function OnrampTab() {
 
       {/* Main Content */}
       <div className="px-6 py-6 space-y-6">
+        {/* Important Disclaimer Banner */}
+        <div className="backdrop-blur-sm backdrop-filter bg-[#fff5db] border border-[#ecc791] border-solid rounded-[1px] p-3 flex gap-2">
+          <div className="w-6 h-6 flex-shrink-0 mt-0.5">
+            <Icon path={mdiInformation} size={1} color="#492e09" />
+          </div>
+          <div className="flex-1 space-y-2">
+            <div className="text-[#492e09] text-sm leading-[1.4] tracking-[0.1px] space-y-1">
+              <p className="font-bold">Important Disclaimer</p>
+              <p className="font-normal">
+                Use of digital exchanges means you will leave the Devconnect App
+                and be redirected to a third-party which is not operated,
+                controlled by, or under the responsibility of the Ethereum
+                Foundation. You proceed at your own risk.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsDisclaimerModalOpen(true)}
+              className="text-[#0073de] text-sm font-bold hover:underline"
+            >
+              Read full disclaimer
+            </button>
+          </div>
+        </div>
+
         {/* Digital Section */}
         <div className="space-y-2">
           <div className="flex items-start justify-between gap-2">
@@ -449,7 +470,7 @@ export default function OnrampTab() {
                 Add crypto digitally
               </h2>
               <p className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
-                Partners accept Debit/Credit card only
+                Providers accept Card and Wire Transfer
               </p>
             </div>
             <div className="w-10 h-10 flex-shrink-0">
@@ -494,19 +515,7 @@ export default function OnrampTab() {
 
                 {/* Chevron Icon */}
                 <div className="w-4 h-4 flex-shrink-0">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="#36364c"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <Icon path={mdiArrowTopRight} size={0.67} color="#0073de" />
                 </div>
               </button>
             ))}
@@ -521,7 +530,7 @@ export default function OnrampTab() {
                 Add crypto in-person
               </h2>
               <p className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
-                Partners accept Debit/Credit card only
+                Providers accept Card and Wire Transfer
               </p>
             </div>
             <div className="w-10 h-10 flex-shrink-0">
@@ -543,7 +552,7 @@ export default function OnrampTab() {
               >
                 {/* Provider Icon */}
                 <div
-                  className={`w-8 h-8 rounded-[2px] flex-shrink-0 overflow-hidden ${provider.opacity ? 'opacity-25' : ''}`}
+                  className={`w-8 h-8 rounded-[2px] flex-shrink-0 overflow-hidden`}
                 >
                   <img
                     src={`/images/${provider.logoImage}`}
@@ -599,19 +608,7 @@ export default function OnrampTab() {
         {/* Help Banner */}
         <div className="backdrop-blur-sm backdrop-filter bg-[#fff5db] border border-[#ecc791] rounded-[1px] p-3 flex gap-2">
           <div className="w-6 h-6 flex-shrink-0 mt-0.5">
-            <svg
-              className="w-6 h-6 text-[#492e09]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <Icon path={mdiInformation} size={1} color="#492e09" />
           </div>
           <div className="flex-1 text-[#492e09] text-sm leading-[1.4] tracking-[0.1px]">
             <div className="font-bold mb-1">Need help?</div>
@@ -626,6 +623,66 @@ export default function OnrampTab() {
           </div>
         </div>
       </div>
+
+      {/* Disclaimer Modal */}
+      {isDisclaimerModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-[rgba(0,0,0,0.33)]"
+            onClick={() => setIsDisclaimerModalOpen(false)}
+          />
+
+          {/* Modal */}
+          <div className="relative bg-white border border-[#c7c7d0] rounded-[4px] w-[353px] max-w-[560px] min-w-[320px] mx-4 pt-4">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsDisclaimerModalOpen(false)}
+              className="absolute right-3 top-3 w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors"
+            >
+              <Icon path={mdiClose} size={0.67} color="#36364c" />
+            </button>
+
+            {/* Modal Content */}
+            <div className="px-6 pt-3 pb-6 space-y-4">
+              <div className="space-y-2">
+                <h2 className="text-[#20202b] text-lg font-bold leading-[1.3]">
+                  Using Digital Exchanges:
+                  <br />
+                  Legal Disclaimer from the Ethereum Foundation
+                </h2>
+                <p className="text-[#353548] text-sm leading-[1.3]">
+                  The use of digital exchanges means you will leave the
+                  Devconnect App and be redirected to a third-party which{' '}
+                  <span className="font-bold">
+                    is not operated or controlled by the Ethereum Foundation
+                  </span>
+                  .
+                </p>
+                <p className="text-[#353548] text-sm leading-[1.3]">
+                  The Ethereum Foundation is not responsible for the context,
+                  security, accuracy, or privacy practices of any third-party
+                  site.
+                </p>
+                <p className="text-[#353548] text-sm leading-[1.3]">
+                  <span className="font-bold">We strongly advise you</span> to
+                  review the third party&apos;s Terms and Conditions and Privacy
+                  Policy before creating an account, providing personal
+                  information, or conducting any transactions.
+                </p>
+                <p className="text-[#353548] text-sm leading-[1.3]">
+                  If you decide to access any third party app,{' '}
+                  <span className="font-bold">
+                    you do so entirely at your own risk
+                  </span>
+                  . We reserve the right to withdraw any redirection to a third
+                  party app without notice.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

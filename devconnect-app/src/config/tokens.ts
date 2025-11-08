@@ -28,7 +28,7 @@ const tokenAddresses: Record<string, Record<number, string>> = {
     // 1: '0xdac17f958d2ee523a2206206994597c13d831ec7', // Ethereum mainnet
     // 8453: '0xfde4c96c8593536e31f229ea8f37b2ada2699bb2', // Base (bridged)
     // 10: '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58', // Optimism (bridged) // native: 0x01bff41798a0bcf287b996046ca68b395dbc1071
-    // 42161: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9', // Arbitrum (native)
+    42161: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9', // Arbitrum (native)
     // 42220: '0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e', // Celo
     137: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // Polygon (native)
   },

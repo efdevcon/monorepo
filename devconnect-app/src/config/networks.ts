@@ -20,6 +20,8 @@ export const CHAIN_ID_TO_ALCHEMY_NETWORK: Record<number, string> = {
   10: 'opt-mainnet',
   137: 'polygon-mainnet',
   42161: 'arb-mainnet',
+  42220: 'celo-mainnet',
+  480: 'worldchain-mainnet',
 };
 
 // Network name to chain ID mapping for API responses

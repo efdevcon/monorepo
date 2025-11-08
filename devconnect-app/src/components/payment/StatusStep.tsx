@@ -10,6 +10,15 @@ import { useClearEIP7702 } from '@/hooks/useClearEIP7702';
 import Lottie from 'lottie-react';
 import WalletConnectedAnimation from '@/images/Wallet-Connected.json';
 import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
+import { CheckCircle, AlertTriangle, Loader2 } from 'lucide-react';
+import Icon from '@mdi/react';
+import {
+  mdiNetworkPos,
+  mdiFolderKeyNetworkOutline,
+  mdiSignalVariant,
+  mdiLockCheckOutline,
+  mdiAlertOutline,
+} from '@mdi/js';
 
 // Helper function to get the correct explorer URL for a transaction
 // Prefers UserOp Hash when available (for ERC-4337 transactions)
@@ -65,14 +74,6 @@ const getBlockExplorerName = (
   // Fallback to generic "Explorer"
   return 'Explorer';
 };
-import { CheckCircle, AlertTriangle, Loader2 } from 'lucide-react';
-import Icon from '@mdi/react';
-import {
-  mdiNetworkPos,
-  mdiFolderKeyNetworkOutline,
-  mdiSignalVariant,
-  mdiLockCheckOutline,
-} from '@mdi/js';
 
 type TransactionStatusBadge =
   | 'completed'
@@ -557,43 +558,59 @@ export default function StatusStep({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 w-full max-w-[345px]">
-          {displayTxHash && !isSimulation && (
-            <a
-              href={getTransactionExplorerUrl(
-                displayTxHash,
-                displayChainId,
-                displayUserOpHash
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-[#EAF3FA] hover:bg-[#D5E7F4] transition-colors flex items-center justify-center gap-2 px-6 py-3 rounded-[1px] text-[#44445D] font-bold text-[16px] no-underline"
+        <div className="flex flex-col gap-3 w-full max-w-[345px]">
+          <div className="flex gap-3 w-full">
+            {displayTxHash && !isSimulation && (
+              <a
+                href={getTransactionExplorerUrl(
+                  displayTxHash,
+                  displayChainId,
+                  null // Always use regular tx hash for the Transaction button
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-[#EAF3FA] hover:bg-[#D5E7F4] transition-colors flex items-center justify-center gap-2 px-6 py-3 rounded-[1px] text-[#44445D] font-bold text-[16px] no-underline"
+                style={{
+                  fontFamily: 'Roboto, sans-serif',
+                  boxShadow: '0px 4px 0px 0px #595978',
+                }}
+              >
+                Transaction
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                >
+                  <path d="M12 3.5L12 9.5L10.5 9.5L10.5 5.5L5 11L4 10L9.5 4.5L5.5 4.5L5.5 3L11.5 3C11.7761 3 12 3.22386 12 3.5Z" />
+                </svg>
+              </a>
+            )}
+            <button
+              onClick={onDone}
+              className="flex-1 bg-[#0073DE] hover:bg-[#005DAC] transition-colors flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] border-none cursor-pointer"
               style={{
                 fontFamily: 'Roboto, sans-serif',
-                boxShadow: '0px 4px 0px 0px #595978',
+                boxShadow: '0px 4px 0px 0px #005493',
               }}
             >
-              Transaction
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="currentColor"
+              Return to App
+            </button>
+          </div>
+
+          {/* User Operation link on separate line */}
+          {displayUserOpHash && !isSimulation && (
+            <div className="text-center">
+              <a
+                href={`https://basescan.org/tx/${displayUserOpHash}?network=base`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#0073de] text-xs hover:underline inline-block"
               >
-                <path d="M12 3.5L12 9.5L10.5 9.5L10.5 5.5L5 11L4 10L9.5 4.5L5.5 4.5L5.5 3L11.5 3C11.7761 3 12 3.22386 12 3.5Z" />
-              </svg>
-            </a>
+                View User Operation (might take a few minutes to be indexed)
+              </a>
+            </div>
           )}
-          <button
-            onClick={onDone}
-            className="flex-1 bg-[#0073DE] hover:bg-[#005DAC] transition-colors flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] border-none cursor-pointer"
-            style={{
-              fontFamily: 'Roboto, sans-serif',
-              boxShadow: '0px 4px 0px 0px #005493',
-            }}
-          >
-            Return to App
-          </button>
         </div>
 
         {isPara && isSimulation && (
@@ -704,45 +721,47 @@ export default function StatusStep({
       txError.includes('delegation active');
 
     return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <AlertTriangle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold mb-2">
-            {isUserCancellation ? 'Payment Cancelled' : 'Payment Failed'}
-          </h2>
-          <p className="text-sm text-gray-600">
-            {isUserCancellation
-              ? 'You cancelled the transaction in your wallet.'
-              : 'There was an error processing your payment.'}
-          </p>
-          {isPara && isSimulation && (
-            <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              Simulation Mode
-            </div>
-          )}
+      <div className="flex flex-col items-center gap-4 py-6">
+        {/* Warning Icon Circle */}
+        <div className="bg-[#ffe3e2] rounded-full w-[88px] h-[88px] flex items-center justify-center">
+          <Icon path={mdiAlertOutline} size={1.7} className="text-[#d32f2f]" />
         </div>
 
-        {!isUserCancellation && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <div className="text-sm text-red-700">
-              <div className="font-medium">Error Details:</div>
-              <div className="mt-2 whitespace-pre-wrap">
-                {transactionState.errorMessage || 'Unknown error occurred'}
-              </div>
-            </div>
+        {/* Title and Message */}
+        <div className="flex flex-col gap-3 items-center w-full max-w-[345px]">
+          <p
+            className="text-[20px] leading-none text-[#20202b] text-center tracking-[-0.1px] w-full"
+            style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700 }}
+          >
+            {isUserCancellation ? 'Payment Cancelled' : 'Transaction failed'}
+          </p>
+          <p
+            className="text-[16px] leading-[1.3] text-[#353548] text-center tracking-[-0.1px] w-full"
+            style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
+          >
+            {isUserCancellation
+              ? 'You cancelled the transaction in your wallet.'
+              : transactionState.errorMessage ||
+                'There was an error processing your payment.'}
+          </p>
+        </div>
+
+        {isPara && isSimulation && (
+          <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Simulation Mode
           </div>
         )}
 
@@ -848,12 +867,44 @@ export default function StatusStep({
           </div>
         )}
 
-        <Button
-          onClick={isUserCancellation && onTryAgain ? onTryAgain : onDone}
-          className={`w-full ${isUserCancellation ? 'bg-gray-600 hover:bg-gray-700' : 'bg-red-600 hover:bg-red-700'} text-white`}
-        >
-          {isUserCancellation ? 'Try Again' : 'Close'}
-        </Button>
+        {/* Action Buttons */}
+        <div className="flex flex-col gap-3 w-full max-w-[345px]">
+          {!isUserCancellation && onTryAgain ? (
+            <>
+              <button
+                onClick={onTryAgain}
+                className="bg-[#0073de] flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] w-full border-none cursor-pointer"
+                style={{
+                  fontFamily: 'Roboto, sans-serif',
+                  boxShadow: '0px 4px 0px 0px #005493',
+                }}
+              >
+                Try again
+              </button>
+              <button
+                onClick={onDone}
+                className="bg-[#eaf3fa] flex items-center justify-center px-6 py-3 rounded-[1px] text-[#44445d] font-bold text-[16px] w-full border-none cursor-pointer"
+                style={{
+                  fontFamily: 'Roboto, sans-serif',
+                  boxShadow: '0px 4px 0px 0px #595978',
+                }}
+              >
+                Cancel transaction
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={isUserCancellation && onTryAgain ? onTryAgain : onDone}
+              className="bg-[#0073de] flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] w-full border-none cursor-pointer"
+              style={{
+                fontFamily: 'Roboto, sans-serif',
+                boxShadow: '0px 4px 0px 0px #005493',
+              }}
+            >
+              {isUserCancellation ? 'Try Again' : 'Cancel transaction'}
+            </button>
+          )}
+        </div>
       </div>
     );
   }

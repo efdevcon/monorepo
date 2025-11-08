@@ -18,6 +18,7 @@ import { MatomoAnalytics } from '@/app/matomo';
 import { Suspense } from 'react';
 import { SerwistProvider } from '@/app/serwist-provider';
 import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
+import { BigIntSerializer } from '@/components/BigIntSerializer';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -337,6 +338,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <BigIntSerializer />
         <SerwistProvider swUrl="/sw.js/sw.js" options={{ scope: '/' }}>
           <PWAProvider>
             <NextIntlClientProvider>
@@ -362,7 +364,20 @@ export default async function RootLayout({
           <MatomoAnalytics />
         </Suspense>
 
-        <Toaster style={{ zIndex: 100000000000 } as React.CSSProperties} />
+        <Toaster
+          position="bottom-left"
+          closeButton
+          style={{ zIndex: 9999999999999999999 } as React.CSSProperties}
+          toastOptions={{
+            closeButton: true,
+            style: {
+              zIndex: 9999999999999999999,
+            },
+            classNames: {
+              closeButton: 'sonner-close-button-right',
+            },
+          }}
+        />
         <div id="requires-auth-modal" />
       </body>
     </html>

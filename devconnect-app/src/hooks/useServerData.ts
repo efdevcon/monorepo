@@ -21,11 +21,18 @@ import { authService } from '@/services/authService';
 
 // Global auth state listener to refresh SWR caches when user logs in/out
 // Set up after a small delay to avoid SSR/HMR issues
-if (typeof window !== 'undefined') {
+// HMR-safe: Only initialize once per session
+let authListenerInitialized = false;
+
+if (typeof window !== 'undefined' && !authListenerInitialized) {
+  authListenerInitialized = true;
+
   // Use setTimeout to ensure DOM is ready and avoid detached context issues
   setTimeout(() => {
     const supabase = authService.getSupabaseClient();
     if (supabase) {
+      console.log('🔄 [SWR] Initializing auth state listener (one-time setup)');
+
       supabase.auth.onAuthStateChange(async (event, session) => {
         console.log(
           '🔄 [SWR] Auth state changed:',

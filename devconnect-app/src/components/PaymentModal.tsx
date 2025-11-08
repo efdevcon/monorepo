@@ -136,22 +136,6 @@ export default function PaymentModal({
   const [isAddingTransaction, setIsAddingTransaction] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Function to extract merchant slug from SimpleFi URL
-  const extractMerchantSlugFromUrl = (url?: string): string | null => {
-    if (!url) return null;
-    try {
-      // Match URLs like https://pay.simplefi.tech/cafe-cuyo
-      const match = url.match(/^https:\/\/pay\.simplefi\.tech\/([^\/]+)$/);
-      if (match) {
-        return match[1]; // Returns 'cafe-cuyo'
-      }
-      return null;
-    } catch (error) {
-      console.error('Error parsing SimpleFi URL:', error);
-      return null;
-    }
-  };
-
   // Check if EIP-7702 is available
   const isUsingEIP7702 = isPara && isEIP7702Available();
 
@@ -235,60 +219,16 @@ export default function PaymentModal({
   );
 
   // Function to fetch payment details from payment-status API
+  // Now only accepts actual payment IDs (no URL resolution)
   const fetchPaymentDetails = async (paymentRequestId: string) => {
     try {
-      // Check if paymentRequestId is a SimpleFi URL
-      const merchantSlug = extractMerchantSlugFromUrl(paymentRequestId);
-      let actualPaymentRequestId = paymentRequestId;
-
-      // Skip merchant URL resolution for historical payments
-      if (merchantSlug && !isHistoricalPayment) {
-        console.log('Detected SimpleFi URL with merchant slug:', merchantSlug);
-
-        // Find merchant by slug - look through the MERCHANTS object entries
-        const { MERCHANTS } = await import('@/config/merchants');
-        const merchantEntry = Object.entries(MERCHANTS).find(
-          ([_, merchant]) => merchant.id === merchantSlug
-        );
-
-        if (!merchantEntry) {
-          throw new Error(`Merchant not found: ${merchantSlug}`);
-        }
-
-        const [merchantApiId, merchantData] = merchantEntry;
-        console.log('Found merchant:', merchantData, 'API ID:', merchantApiId);
-
-        // Load the latest payment request for this merchant (similar to "Get Order")
-        const lastPaymentResponse = await fetch(
-          `/api/payment-request/last/${merchantSlug}`
-        );
-
-        if (!lastPaymentResponse.ok) {
-          if (lastPaymentResponse.status === 404) {
-            throw new Error(
-              'No payment available for this merchant at the moment.'
-            );
-          }
-          throw new Error(
-            'Failed to fetch latest payment request for merchant'
-          );
-        }
-
-        const lastPaymentData = await lastPaymentResponse.json();
-        actualPaymentRequestId = lastPaymentData.id;
-        console.log('Loaded latest payment request:', actualPaymentRequestId);
-      }
-
       // Add timeout to prevent hanging requests
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-      const response = await fetch(
-        `/api/payment-status/${actualPaymentRequestId}`,
-        {
-          signal: controller.signal,
-        }
-      );
+      const response = await fetch(`/api/payment-status/${paymentRequestId}`, {
+        signal: controller.signal,
+      });
 
       clearTimeout(timeoutId);
 
@@ -617,6 +557,7 @@ export default function PaymentModal({
       token: currentToken,
       chainId: currentChainId,
       fromParams: !!(token && chainId),
+      paymentId: paymentRequestId,
     });
 
     try {
@@ -898,60 +839,35 @@ export default function PaymentModal({
               transactions: details.transactions,
             };
 
-            // Set the selected token and chain based on wallet type and preferences
+            // Set the selected token and chain based on wallet type
             if (isPara) {
               // Para wallets always use USDC on Base, regardless of transaction
               console.log('Para wallet - forcing USDC on Base:', 'USDC', 8453);
               updateSelectedToken('USDC');
               updateSelectedChainId(8453);
             } else {
-              // External wallets: use saved preferences if available, otherwise use transaction
-              const savedToken = localStorage.getItem('selectedToken');
-              const savedChainId = localStorage.getItem('selectedChainId');
-
-              console.log('External wallet - checking preferences:', {
-                savedToken,
-                savedChainId,
+              // External wallets: ALWAYS use the transaction's token/chain on initial load
+              // Saved preferences are only applied when user explicitly changes dropdowns
+              console.log('External wallet - using transaction token/chain:', {
                 transactionCoin: transaction.coin,
                 transactionChainId: transaction.chain_id,
-                currentSelectedToken: selectedToken,
-                currentSelectedChainId: selectedChainId,
-                isPara,
               });
-
-              if (savedToken && savedChainId) {
-                // Use saved preferences
-                console.log(
-                  'Using saved token/chain preferences:',
-                  savedToken,
-                  savedChainId
-                );
-                updateSelectedToken(savedToken);
-                updateSelectedChainId(parseInt(savedChainId));
-              } else {
-                // No saved preferences, use the transaction's token/chain
-                console.log(
-                  'No saved preferences, using transaction token/chain:',
-                  transaction.coin,
-                  transaction.chain_id
-                );
-                updateSelectedToken(transaction.coin);
-                updateSelectedChainId(transaction.chain_id);
-              }
+              updateSelectedToken(transaction.coin);
+              updateSelectedChainId(transaction.chain_id);
             }
 
             setPaymentDetails(paymentData);
 
             // For Para wallets, only use transaction amounts if it's USDC on Base
-            // For external wallets, only use transaction amounts if it matches selection
+            // For external wallets, use the existing transaction on initial load
+            // (saved preferences are only applied when user explicitly changes token/network)
             const shouldUseTransactionAmounts = isPara
               ? transaction.coin === 'USDC' && transaction.chain_id === 8453
-              : transaction.coin === selectedToken &&
-                transaction.chain_id === selectedChainId;
+              : true; // EOA: Always use existing transaction on initial load
 
             if (shouldUseTransactionAmounts) {
               console.log(
-                'Setting amounts from matching transaction:',
+                'Setting amounts from transaction:',
                 transaction.coin,
                 transaction.chain_id
               );
@@ -966,20 +882,16 @@ export default function PaymentModal({
               });
             } else {
               console.log(
-                'Transaction does not match selected token/chain, creating new transaction'
+                'Transaction does not match Para requirements, creating USDC/Base transaction'
               );
-              // Create a transaction with user's selected token and chain
-              // For Para wallets, always use USDC on Base
-              const tokenToUse = isPara ? 'USDC' : selectedToken;
-              const chainIdToUse = isPara ? 8453 : selectedChainId;
-
+              // Only Para wallets should reach here - create USDC/Base transaction
               const success = await addTransactionToPaymentRequest(
-                tokenToUse,
-                chainIdToUse
+                'USDC',
+                8453
               );
               if (success) {
                 // Refresh payment details to get the new transaction data
-                await refreshPaymentDetails(tokenToUse, chainIdToUse);
+                await refreshPaymentDetails('USDC', 8453);
 
                 // Mark initial load as complete
                 setIsInitialLoad(false);
@@ -1017,18 +929,16 @@ export default function PaymentModal({
             // Mark initial load as complete
             setIsInitialLoad(false);
           } else {
-            // No transactions found, create one with user's selected token/chain
+            // No transactions found, create one with default token/chain
             console.log(
-              'No transactions found, creating new transaction with selected token:',
-              selectedToken,
-              'on chain:',
-              selectedChainId
+              'No transactions found, creating new transaction with default: USDC on Base'
             );
 
-            // Create a transaction with user's selected token and chain
+            // Always start with USDC on Base (most common/reliable)
             // For Para wallets, always use USDC on Base
-            const tokenToUse = isPara ? 'USDC' : selectedToken;
-            const chainIdToUse = isPara ? 8453 : selectedChainId;
+            // For EOA wallets, also default to USDC on Base for initial transaction
+            const tokenToUse = 'USDC';
+            const chainIdToUse = 8453; // Base
 
             const success = await addTransactionToPaymentRequest(
               tokenToUse,
@@ -1074,14 +984,24 @@ export default function PaymentModal({
     }
   }, [isOpen, paymentRequestId]);
 
-  // Reset when modal opens
+  // Reset when modal opens or closes
   useEffect(() => {
     if (isOpen) {
+      console.log(
+        '[PaymentModal] Resetting state on modal open, isPending:',
+        isPending
+      );
       setCurrentStep('form');
       setPaymentData({ recipient: '', amount: '0.01' });
       setRecipient('');
       setAmount('0.01');
-      resetTransaction();
+
+      // Reset transaction state with a small delay to ensure it's applied
+      setTimeout(() => {
+        console.log('[PaymentModal] Calling resetTransaction');
+        resetTransaction();
+      }, 0);
+
       checkSimulationMode();
       setIsInitialLoad(true); // Reset initial load flag
 
@@ -1091,8 +1011,12 @@ export default function PaymentModal({
         setSelectedToken('USDC');
         setSelectedChainId(8453);
       }
+    } else {
+      // When modal closes, ensure transaction state is fully reset
+      console.log('[PaymentModal] Resetting transaction on modal close');
+      resetTransaction();
     }
-  }, [isOpen, checkSimulationMode, isPara]); // Remove resetTransaction from dependencies
+  }, [isOpen, checkSimulationMode, isPara]); // Keep resetTransaction and isPending out to avoid infinite loops
 
   // Manage URL hash when modal opens/closes
   useEffect(() => {
@@ -1382,6 +1306,16 @@ export default function PaymentModal({
       onClose();
     }
   }, [txStatus, onClose, router, paymentDetails.orderStatus]);
+
+  // Debug: Track isPending state changes
+  useEffect(() => {
+    console.log(
+      '[PaymentModal] isPending changed:',
+      isPending,
+      'txStatus:',
+      txStatus
+    );
+  }, [isPending, txStatus]);
 
   // Check if user has insufficient balance (memoized to avoid recalculation)
   const hasInsufficientBalance = useMemo(() => {

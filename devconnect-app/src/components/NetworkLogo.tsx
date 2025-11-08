@@ -46,8 +46,8 @@ export default function NetworkLogo({
         onError={handleImageError}
         onLoad={handleImageLoad}
         style={{
-          width: size === 'sm' ? '16px' : size === 'md' ? '24px' : '32px',
-          height: size === 'sm' ? '16px' : size === 'md' ? '24px' : '32px',
+          width: size === 'sm' ? '20px' : size === 'md' ? '24px' : '32px',
+          height: size === 'sm' ? '20px' : size === 'md' ? '24px' : '32px',
         }}
       />
     </div>

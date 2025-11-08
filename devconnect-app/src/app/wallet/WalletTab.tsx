@@ -914,7 +914,10 @@ export default function WalletTab() {
               {/* Action Buttons */}
               <div className="flex flex-nowrap justify-center gap-2 md:gap-4">
                 {/* Receive Button - Always visible */}
-                <div className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]" style={{ maxWidth: 'min(21vw, 100%)' }}>
+                <div
+                  className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
+                  style={{ maxWidth: 'min(21vw, 100%)' }}
+                >
                   <button
                     onClick={handleReceiveClick}
                     className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -932,7 +935,10 @@ export default function WalletTab() {
 
                 {/* Send Button - Only when Para wallet */}
                 {isPara && (
-                  <div className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]" style={{ maxWidth: 'min(21vw, 100%)' }}>
+                  <div
+                    className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
+                    style={{ maxWidth: 'min(21vw, 100%)' }}
+                  >
                     <button
                       onClick={handleSendClick}
                       className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -951,7 +957,10 @@ export default function WalletTab() {
 
                 {/* Add Button - Only when not in beta mode */}
                 {!isBetaMode && (
-                  <div className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]" style={{ maxWidth: 'min(21vw, 100%)' }}>
+                  <div
+                    className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
+                    style={{ maxWidth: 'min(21vw, 100%)' }}
+                  >
                     <button
                       onClick={handleDigitalClick}
                       className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -969,7 +978,10 @@ export default function WalletTab() {
                 )}
 
                 {/* Scan Button - Mobile only */}
-                <div className="flex flex-col items-center gap-2 flex-1 md:hidden" style={{ maxWidth: '21vw' }}>
+                <div
+                  className="flex flex-col items-center gap-2 flex-1 md:hidden"
+                  style={{ maxWidth: '21vw' }}
+                >
                   <button
                     onClick={handleScanClick}
                     className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -1593,7 +1605,7 @@ export default function WalletTab() {
             </div>
 
             {/* Exchange Section */}
-            {!isBetaMode && (
+            {/* {!isBetaMode && (
               <div className="pb-5">
                 <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
                   <div className="space-y-2">
@@ -1646,12 +1658,12 @@ export default function WalletTab() {
                       </button>
                     </div>
                     <p className="text-[#4b4b66] text-[10px] font-normal italic text-center leading-[1.3]">
-                      Our partner exchanges are registered as VASP in Argentina
+                      Providers are registered as VASP in Argentina
                     </p>
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </PullToRefresh>

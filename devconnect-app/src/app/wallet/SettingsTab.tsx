@@ -24,6 +24,8 @@ import {
   mdiLockReset,
   mdiLogout,
   mdiLogin,
+  mdiUpdate,
+  mdiTestTube,
 } from '@mdi/js';
 import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
@@ -32,6 +34,8 @@ import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
 import { openReportIssue } from '@/utils/reportIssue';
 import { useWallet } from '@/context/WalletContext';
 import { useGlobalStore } from '../store.provider';
+import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
+import { simulateUpdate } from '@/components/ServiceWorkerUpdateBanner';
 
 // Helper function to read cookie value
 function getCookie(name: string): string | null {
@@ -63,6 +67,10 @@ export default function SettingsTab() {
   const [locale, setLocale] = useState<string>('en');
   const [showLanguageModal, setShowLanguageModal] = useState(false);
   const storeLogout = useGlobalStore((state) => state.logout);
+
+  // Service worker update hook
+  const { updateAvailable, triggerUpdate: handleTriggerUpdate } =
+    useServiceWorkerUpdate();
 
   // Get disconnect function from WalletContext
   const { disconnectAll, isDisconnecting, address } = useWallet();
@@ -150,19 +158,26 @@ export default function SettingsTab() {
     }
   };
 
+  const handleSimulateUpdate = () => {
+    // Trigger the simulated update - this will show the regular update toast
+    simulateUpdate();
+  };
+
   const handleLogout = async () => {
     try {
       console.log('🔌 [SETTINGS_TAB] Starting logout process');
-      
+
       // Wait for disconnect to complete (handles all cleanup including signOut)
       await disconnectAll();
-      
+
       // Clear app-level state
       localStorage.removeItem('loginIsSkipped');
       storeLogout();
-      
-      console.log('🔌 [SETTINGS_TAB] Logout completed, navigating to onboarding');
-      
+
+      console.log(
+        '🔌 [SETTINGS_TAB] Logout completed, navigating to onboarding'
+      );
+
       // Navigate to onboarding
       router.push('/onboarding');
 
@@ -223,6 +238,31 @@ export default function SettingsTab() {
       <div className="mb-6">
         <h2 className="text-[#20202b] text-lg font-bold mb-3">App</h2>
 
+        {/* App Update Available */}
+        {updateAvailable && (
+          <button
+            onClick={handleTriggerUpdate}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 bg-blue-50 hover:bg-blue-100 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiUpdate} size={1} className="text-[#0073de]" />
+            </div>
+            <div className="flex-1 text-left">
+              <p className="text-[#0073de] text-base font-bold">
+                Update Available
+              </p>
+              <p className="text-[#0073de] text-xs">
+                Tap to install the latest version
+              </p>
+            </div>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-[#0073de]"
+            />
+          </button>
+        )}
+
         {/* Language */}
         {/* <button
           onClick={() => setShowLanguageModal(true)}
@@ -275,6 +315,31 @@ export default function SettingsTab() {
           </p>
           <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
         </button>
+
+        {/* DEBUG: Simulate Update - Available for @ethereum.org users */}
+        {paraEmail && paraEmail.includes('@ethereum.org') && (
+          <button
+            onClick={handleSimulateUpdate}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 bg-purple-50 hover:bg-purple-100 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiTestTube} size={1} className="text-purple-600" />
+            </div>
+            <div className="flex-1 text-left">
+              <p className="text-purple-700 text-base font-bold">
+                🔧 Simulate Update
+              </p>
+              <p className="text-purple-600 text-xs">
+                Test the update flow (for @ethereum.org accounts only)
+              </p>
+            </div>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-purple-600"
+            />
+          </button>
+        )}
       </div>
 
       {/* Wallet Section */}
