@@ -135,6 +135,9 @@ export default function PaymentModal({
   );
   const [isAddingTransaction, setIsAddingTransaction] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [resolvedPaymentId, setResolvedPaymentId] = useState<string | null>(
+    null
+  );
 
   // Function to extract merchant slug from SimpleFi URL
   const extractMerchantSlugFromUrl = (url?: string): string | null => {
@@ -277,6 +280,12 @@ export default function PaymentModal({
         const lastPaymentData = await lastPaymentResponse.json();
         actualPaymentRequestId = lastPaymentData.id;
         console.log('Loaded latest payment request:', actualPaymentRequestId);
+
+        // Store the resolved payment ID for hash management
+        setResolvedPaymentId(actualPaymentRequestId);
+      } else {
+        // Not a SimpleFi URL, use the payment request ID as-is
+        setResolvedPaymentId(actualPaymentRequestId);
       }
 
       // Add timeout to prevent hanging requests
@@ -550,7 +559,10 @@ export default function PaymentModal({
     token: string,
     chainId: number
   ) => {
-    if (!paymentRequestId) return;
+    // Use resolved payment ID if available (for SimpleFi URLs), otherwise use the prop
+    const actualPaymentId = resolvedPaymentId || paymentRequestId;
+
+    if (!actualPaymentId) return;
 
     try {
       // Add timeout to prevent hanging requests
@@ -558,7 +570,7 @@ export default function PaymentModal({
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
       const response = await fetch(
-        `/api/payment-request?paymentId=${paymentRequestId}&ticker=${token}&chainId=${chainId}`,
+        `/api/payment-request?paymentId=${actualPaymentId}&ticker=${token}&chainId=${chainId}`,
         {
           method: 'GET',
           headers: {
@@ -607,7 +619,10 @@ export default function PaymentModal({
 
   // Function to refresh payment details after adding a transaction
   const refreshPaymentDetails = async (token?: string, chainId?: number) => {
-    if (!paymentRequestId) return;
+    // Use resolved payment ID if available (for SimpleFi URLs), otherwise use the prop
+    const actualPaymentId = resolvedPaymentId || paymentRequestId;
+
+    if (!actualPaymentId) return;
 
     // Use passed parameters or current state
     const currentToken = token || selectedToken;
@@ -617,10 +632,11 @@ export default function PaymentModal({
       token: currentToken,
       chainId: currentChainId,
       fromParams: !!(token && chainId),
+      paymentId: actualPaymentId,
     });
 
     try {
-      const details = await fetchPaymentDetails(paymentRequestId);
+      const details = await fetchPaymentDetails(actualPaymentId);
       console.log('Payment details refreshed:', details);
 
       // Update payment details with fresh data
@@ -898,60 +914,35 @@ export default function PaymentModal({
               transactions: details.transactions,
             };
 
-            // Set the selected token and chain based on wallet type and preferences
+            // Set the selected token and chain based on wallet type
             if (isPara) {
               // Para wallets always use USDC on Base, regardless of transaction
               console.log('Para wallet - forcing USDC on Base:', 'USDC', 8453);
               updateSelectedToken('USDC');
               updateSelectedChainId(8453);
             } else {
-              // External wallets: use saved preferences if available, otherwise use transaction
-              const savedToken = localStorage.getItem('selectedToken');
-              const savedChainId = localStorage.getItem('selectedChainId');
-
-              console.log('External wallet - checking preferences:', {
-                savedToken,
-                savedChainId,
+              // External wallets: ALWAYS use the transaction's token/chain on initial load
+              // Saved preferences are only applied when user explicitly changes dropdowns
+              console.log('External wallet - using transaction token/chain:', {
                 transactionCoin: transaction.coin,
                 transactionChainId: transaction.chain_id,
-                currentSelectedToken: selectedToken,
-                currentSelectedChainId: selectedChainId,
-                isPara,
               });
-
-              if (savedToken && savedChainId) {
-                // Use saved preferences
-                console.log(
-                  'Using saved token/chain preferences:',
-                  savedToken,
-                  savedChainId
-                );
-                updateSelectedToken(savedToken);
-                updateSelectedChainId(parseInt(savedChainId));
-              } else {
-                // No saved preferences, use the transaction's token/chain
-                console.log(
-                  'No saved preferences, using transaction token/chain:',
-                  transaction.coin,
-                  transaction.chain_id
-                );
-                updateSelectedToken(transaction.coin);
-                updateSelectedChainId(transaction.chain_id);
-              }
+              updateSelectedToken(transaction.coin);
+              updateSelectedChainId(transaction.chain_id);
             }
 
             setPaymentDetails(paymentData);
 
             // For Para wallets, only use transaction amounts if it's USDC on Base
-            // For external wallets, only use transaction amounts if it matches selection
+            // For external wallets, use the existing transaction on initial load
+            // (saved preferences are only applied when user explicitly changes token/network)
             const shouldUseTransactionAmounts = isPara
               ? transaction.coin === 'USDC' && transaction.chain_id === 8453
-              : transaction.coin === selectedToken &&
-                transaction.chain_id === selectedChainId;
+              : true; // EOA: Always use existing transaction on initial load
 
             if (shouldUseTransactionAmounts) {
               console.log(
-                'Setting amounts from matching transaction:',
+                'Setting amounts from transaction:',
                 transaction.coin,
                 transaction.chain_id
               );
@@ -966,20 +957,16 @@ export default function PaymentModal({
               });
             } else {
               console.log(
-                'Transaction does not match selected token/chain, creating new transaction'
+                'Transaction does not match Para requirements, creating USDC/Base transaction'
               );
-              // Create a transaction with user's selected token and chain
-              // For Para wallets, always use USDC on Base
-              const tokenToUse = isPara ? 'USDC' : selectedToken;
-              const chainIdToUse = isPara ? 8453 : selectedChainId;
-
+              // Only Para wallets should reach here - create USDC/Base transaction
               const success = await addTransactionToPaymentRequest(
-                tokenToUse,
-                chainIdToUse
+                'USDC',
+                8453
               );
               if (success) {
                 // Refresh payment details to get the new transaction data
-                await refreshPaymentDetails(tokenToUse, chainIdToUse);
+                await refreshPaymentDetails('USDC', 8453);
 
                 // Mark initial load as complete
                 setIsInitialLoad(false);
@@ -1017,18 +1004,16 @@ export default function PaymentModal({
             // Mark initial load as complete
             setIsInitialLoad(false);
           } else {
-            // No transactions found, create one with user's selected token/chain
+            // No transactions found, create one with default token/chain
             console.log(
-              'No transactions found, creating new transaction with selected token:',
-              selectedToken,
-              'on chain:',
-              selectedChainId
+              'No transactions found, creating new transaction with default: USDC on Base'
             );
 
-            // Create a transaction with user's selected token and chain
+            // Always start with USDC on Base (most common/reliable)
             // For Para wallets, always use USDC on Base
-            const tokenToUse = isPara ? 'USDC' : selectedToken;
-            const chainIdToUse = isPara ? 8453 : selectedChainId;
+            // For EOA wallets, also default to USDC on Base for initial transaction
+            const tokenToUse = 'USDC';
+            const chainIdToUse = 8453; // Base
 
             const success = await addTransactionToPaymentRequest(
               tokenToUse,
@@ -1074,16 +1059,27 @@ export default function PaymentModal({
     }
   }, [isOpen, paymentRequestId]);
 
-  // Reset when modal opens
+  // Reset when modal opens or closes
   useEffect(() => {
     if (isOpen) {
+      console.log(
+        '[PaymentModal] Resetting state on modal open, isPending:',
+        isPending
+      );
       setCurrentStep('form');
       setPaymentData({ recipient: '', amount: '0.01' });
       setRecipient('');
       setAmount('0.01');
-      resetTransaction();
+
+      // Reset transaction state with a small delay to ensure it's applied
+      setTimeout(() => {
+        console.log('[PaymentModal] Calling resetTransaction');
+        resetTransaction();
+      }, 0);
+
       checkSimulationMode();
       setIsInitialLoad(true); // Reset initial load flag
+      setResolvedPaymentId(null); // Reset resolved payment ID
 
       // For Para wallets, ensure they're always set to USDC/Base
       if (isPara) {
@@ -1091,14 +1087,18 @@ export default function PaymentModal({
         setSelectedToken('USDC');
         setSelectedChainId(8453);
       }
+    } else {
+      // When modal closes, ensure transaction state is fully reset
+      console.log('[PaymentModal] Resetting transaction on modal close');
+      resetTransaction();
     }
-  }, [isOpen, checkSimulationMode, isPara]); // Remove resetTransaction from dependencies
+  }, [isOpen, checkSimulationMode, isPara, isPending]); // Keep resetTransaction out to avoid infinite loops
 
   // Manage URL hash when modal opens/closes
   useEffect(() => {
-    if (isOpen && paymentRequestId) {
-      // Add hash to URL when modal opens
-      const newHash = `#payment_${paymentRequestId}`;
+    if (isOpen && resolvedPaymentId) {
+      // Add hash to URL when modal opens (use resolved payment ID)
+      const newHash = `#payment_${resolvedPaymentId}`;
       if (window.location.hash !== newHash) {
         window.history.pushState(null, '', newHash);
       }
@@ -1110,7 +1110,7 @@ export default function PaymentModal({
         window.location.pathname + window.location.search
       );
     }
-  }, [isOpen, paymentRequestId]);
+  }, [isOpen, resolvedPaymentId]);
 
   // Validate recipient and amount when they change
   useEffect(() => {
@@ -1382,6 +1382,16 @@ export default function PaymentModal({
       onClose();
     }
   }, [txStatus, onClose, router, paymentDetails.orderStatus]);
+
+  // Debug: Track isPending state changes
+  useEffect(() => {
+    console.log(
+      '[PaymentModal] isPending changed:',
+      isPending,
+      'txStatus:',
+      txStatus
+    );
+  }, [isPending, txStatus]);
 
   // Check if user has insufficient balance (memoized to avoid recalculation)
   const hasInsufficientBalance = useMemo(() => {
@@ -1855,7 +1865,11 @@ export default function PaymentModal({
                   isSimulation={false}
                   simulationDetails={null}
                   onDone={handleClose}
-                  paymentId={paymentRequestId || paymentDetails.orderId}
+                  paymentId={
+                    resolvedPaymentId ||
+                    paymentRequestId ||
+                    paymentDetails.orderId
+                  }
                   orderId={paymentDetails.orderId}
                   isAlreadyCompleted={true}
                   recipient={paymentDetails.recipient || paymentData.recipient}
@@ -1879,7 +1893,11 @@ export default function PaymentModal({
                 simulationDetails={simulationDetails}
                 onDone={handleStatusDone}
                 onTryAgain={handleTryAgain}
-                paymentId={paymentRequestId || paymentDetails.orderId}
+                paymentId={
+                  resolvedPaymentId ||
+                  paymentRequestId ||
+                  paymentDetails.orderId
+                }
                 orderId={paymentDetails.orderId}
                 recipient={
                   paymentData.recipient || paymentDetails.recipient || recipient

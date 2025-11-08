@@ -20,7 +20,7 @@ const tokenAddresses: Record<string, Record<number, string>> = {
     42161: '0xaf88d065e77c8cc2239327c5edb3a432268e5831', // Arbitrum
     42220: '0xceba9300f2b948710d2653dd7b07f33a8b32118c', // Celo
     137: '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', // Polygon (native) // bridged: 0x2791bca1f2de4661ed88a30c99a7a9449aa84174
-    480: '0x79a02482a880bce3f13e09da970dc34db4cd24d1', // World Chain
+    // 480: '0x79a02482a880bce3f13e09da970dc34db4cd24d1', // World Chain
   },
   // https://app.zerion.io/tokens/USDT-0xdac17f958d2ee523a2206206994597c13d831ec7
   // USDT0: https://zapper.xyz/token/optimism/0x01bff41798a0bcf287b996046ca68b395dbc1071/USD%25E2%2582%25AE0/details
