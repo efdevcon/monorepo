@@ -159,14 +159,8 @@ export default function SettingsTab() {
   };
 
   const handleSimulateUpdate = () => {
-    toast.info('Simulating app update...', {
-      description: 'This will show the update flow without a real deployment.',
-      duration: 2000,
-    });
-
-    setTimeout(() => {
-      simulateUpdate();
-    }, 500);
+    // Trigger the simulated update - this will show the regular update toast
+    simulateUpdate();
   };
 
   const handleLogout = async () => {
@@ -322,8 +316,8 @@ export default function SettingsTab() {
           <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
         </button>
 
-        {/* DEBUG: Simulate Update */}
-        {process.env.NODE_ENV === 'development' && (
+        {/* DEBUG: Simulate Update - Available for @ethereum.org users */}
+        {paraEmail && paraEmail.includes('@ethereum.org') && (
           <button
             onClick={handleSimulateUpdate}
             className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 bg-purple-50 hover:bg-purple-100 transition-colors"
@@ -336,7 +330,7 @@ export default function SettingsTab() {
                 🔧 Simulate Update
               </p>
               <p className="text-purple-600 text-xs">
-                Test the update flow (dev only)
+                Test the update flow (for @ethereum.org accounts only)
               </p>
             </div>
             <Icon

@@ -489,3 +489,11 @@ svg.icon {
     padding-bottom: calc(32px + max(0px, env(safe-area-inset-bottom)));
   }
 }
+
+/* Sonner toast close button - top right positioning */
+.sonner-close-button-right {
+  position: absolute !important;
+  top: -3px !important;
+  right: -17px !important;
+  left: auto !important;
+}

@@ -105,6 +105,8 @@ export function ServiceWorkerUpdateBanner() {
               "You're now using the latest version with new improvements.",
             duration: 5000,
             position: 'bottom-center',
+            dismissible: true,
+            closeButton: true,
             style: {
               marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
               zIndex: 9999999999999999999,
@@ -129,6 +131,8 @@ export function ServiceWorkerUpdateBanner() {
         description: 'This will only take a moment.',
         duration: Infinity,
         position: 'bottom-center',
+        dismissible: true,
+        closeButton: true,
         style: {
           marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
           zIndex: 9999999999999999999,
@@ -139,12 +143,15 @@ export function ServiceWorkerUpdateBanner() {
       worker.postMessage({ type: 'SKIP_WAITING' });
     };
 
-    const showUpdateToast = (waitingWorker: ServiceWorker) => {
+    const showUpdateToast = (waitingWorker: ServiceWorker, skipEvent = false) => {
       // Store worker reference globally
       globalWaitingWorker = waitingWorker;
-
+      
       // Dispatch event so other components (like Settings) know update is available
-      window.dispatchEvent(new CustomEvent('sw-update-available'));
+      // Skip if this is triggered BY the event (prevent loop)
+      if (!skipEvent) {
+        window.dispatchEvent(new CustomEvent('sw-update-available'));
+      }
 
       // Dismiss any existing update toast
       if (toastIdRef.current) {
@@ -155,6 +162,8 @@ export function ServiceWorkerUpdateBanner() {
         description: 'Refresh to get the latest updates.',
         duration: Infinity,
         position: 'bottom-center',
+        dismissible: true, // Allow swipe/click to dismiss
+        closeButton: true, // Show X button
         style: {
           marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
           zIndex: 9999999999999999999,
@@ -177,6 +186,8 @@ export function ServiceWorkerUpdateBanner() {
               description: 'You can update from Settings later.',
               position: 'bottom-center',
               duration: 4000,
+              dismissible: true,
+              closeButton: true,
               style: {
                 marginBottom:
                   'calc(4px + max(0px, env(safe-area-inset-bottom)))',
@@ -195,6 +206,14 @@ export function ServiceWorkerUpdateBanner() {
       }
     };
 
+    // DEBUG: Listen for simulated update available event
+    const handleSimulatedUpdateAvailable = () => {
+      if (globalWaitingWorker) {
+        console.log('🔧 [DEBUG] Showing update toast for simulated worker');
+        showUpdateToast(globalWaitingWorker, true); // skipEvent = true to prevent loop
+      }
+    };
+
     // Recommendation 3: Listen for slow network notifications from service worker
     const handleServiceWorkerMessage = (event: MessageEvent) => {
       if (event.data && event.data.type === 'SLOW_NETWORK') {
@@ -202,6 +221,8 @@ export function ServiceWorkerUpdateBanner() {
           description: event.data.message,
           position: 'bottom-center',
           duration: 3000,
+          dismissible: true,
+          closeButton: true,
           style: {
             marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
             zIndex: 9999999999999999999,
@@ -211,6 +232,7 @@ export function ServiceWorkerUpdateBanner() {
     };
 
     window.addEventListener('sw-update-trigger', handleUpdateTrigger);
+    window.addEventListener('sw-update-available', handleSimulatedUpdateAvailable);
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener(
@@ -354,6 +376,7 @@ export function ServiceWorkerUpdateBanner() {
         toast.dismiss(toastIdRef.current);
       }
       window.removeEventListener('sw-update-trigger', handleUpdateTrigger);
+      window.removeEventListener('sw-update-available', handleSimulatedUpdateAvailable);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener(
         'sw-controllerchange-debug',
