@@ -1,6 +1,6 @@
 import { defaultCache } from '@serwist/turbopack/worker';
 import { type PrecacheEntry, Serwist, type SerwistGlobalConfig } from 'serwist';
-import { NetworkFirst } from 'serwist';
+import { NetworkFirst, NetworkOnly } from 'serwist';
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -19,23 +19,49 @@ declare global {
 // @ts-ignore
 declare const self: ServiceWorkerGlobalScope;
 
+// Detect development mode (localhost or .local domains)
+const isDevelopment =
+  self.location.hostname === 'localhost' ||
+  self.location.hostname === '127.0.0.1' ||
+  self.location.hostname.includes('.local') ||
+  self.location.hostname.includes('.localhost');
+
+if (isDevelopment) {
+  console.log('🔧 [SW] Development mode detected - caching disabled');
+}
+
 const serwist = new Serwist({
-  precacheEntries: [
-    // Recommendation 2: Enable precaching for better offline support
-    ...(self.__SW_MANIFEST || []),
-    { url: '/~offline', revision: '1' },
-    { url: '/', revision: '1' },
-    { url: '/manifest.json', revision: '1' },
-  ],
+  // Disable precaching in development
+  precacheEntries: isDevelopment
+    ? []
+    : [
+        // Recommendation 2: Enable precaching for better offline support
+        ...(self.__SW_MANIFEST || []),
+        { url: '/~offline', revision: '1' },
+        { url: '/', revision: '1' },
+        { url: '/manifest.json', revision: '1' },
+      ],
   precacheOptions: {
     concurrency: 10,
     cleanupOutdatedCaches: true,
   },
   skipWaiting: false,
-  disableDevLogs: true,
+  disableDevLogs: isDevelopment ? false : true, // Show logs in dev
   clientsClaim: false,
-  navigationPreload: true, // Enable for faster page loads after updates
-  runtimeCaching: [
+  navigationPreload: !isDevelopment, // Disable navigation preload in dev
+  runtimeCaching: isDevelopment
+    ? [
+        // Development: NetworkOnly - no caching at all
+        {
+          matcher: ({ request }) => request.mode === 'navigate',
+          handler: new NetworkOnly(),
+        },
+        {
+          matcher: ({ request }) => request.url.includes('/api/'),
+          handler: new NetworkOnly(),
+        },
+      ]
+    : [
     {
       matcher: ({ request }) => request.mode === 'navigate',
       handler: new NetworkFirst({
@@ -108,18 +134,20 @@ const serwist = new Serwist({
         ],
       }),
     },
-    ...defaultCache,
+    ...(isDevelopment ? [] : defaultCache), // Disable default cache in dev
   ],
-  fallbacks: {
+  fallbacks: isDevelopment
+    ? undefined
+    : ({
     entries: [
       {
         url: '/~offline',
-        matcher({ request }) {
+        matcher({ request }: { request: Request }) {
           return request.destination === 'document';
         },
       },
     ],
-  },
+  } as any),
 });
 
 // Listen for SKIP_WAITING message from client
