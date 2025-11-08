@@ -558,19 +558,19 @@ export const TodaysSchedule = withParcnetProvider(() => {
           selectedEvent={selectedEvent}
           setSelectedEvent={setSelectedEvent}
           // setExports={() => {}}
-          includeProgramming={
-            selectedEvent.isCoreEvent ? (
-              <Link
-                href={`/stages/${selectedEvent.stage}`}
-                className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                <Icon path={mdiCalendarRangeOutline} size={0.95} />{' '}
-              </Link>
-            ) : undefined
-          }
+          // includeProgramming={
+          //   selectedEvent.isCoreEvent ? (
+          //     <Link
+          //       href={`/stages/${selectedEvent.stage}`}
+          //       className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
+          //       onClick={(e) => {
+          //         e.stopPropagation();
+          //       }}
+          //     >
+          //       <Icon path={mdiCalendarRangeOutline} size={0.95} />{' '}
+          //     </Link>
+          //   ) : undefined
+          // }
           includeTickets={
             allTicketEventIds.includes(selectedEvent.id.toString()) ? (
               <Link
@@ -602,23 +602,23 @@ export const TodaysSchedule = withParcnetProvider(() => {
               event={event}
               className="w-full"
               selectedEvent={selectedEvent}
-              includeProgramming={
-                event.isCoreEvent ? (
-                  <Link
-                    href={`/stages/${event.stage}`}
-                    className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  >
-                    <Icon
-                      path={mdiCalendarRangeOutline}
-                      size={1}
-                      className="text-[#4b4b66] opacity-90"
-                    />{' '}
-                  </Link>
-                ) : undefined
-              }
+              // includeProgramming={
+              //   event.isCoreEvent ? (
+              //     <Link
+              //       href={`/stages/${event.stage}`}
+              //       className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
+              //       onClick={(e) => {
+              //         e.stopPropagation();
+              //       }}
+              //     >
+              //       <Icon
+              //         path={mdiCalendarRangeOutline}
+              //         size={1}
+              //         className="text-[#4b4b66] opacity-90"
+              //       />{' '}
+              //     </Link>
+              //   ) : undefined
+              // }
               includeTickets={
                 allTicketEventIds.includes(event.id.toString()) ? (
                   <Link
