@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import PageLayout from '@/components/PageLayout';
 import QRScanner from '@/components/QRScanner';
 import PaymentModal from '@/components/PaymentModal';
@@ -39,6 +41,8 @@ interface PaymentRequest {
 }
 
 export default function ScanPage() {
+  const router = useRouter();
+  const { isPara } = useWallet();
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
   const [manualPaymentRequestId, setManualPaymentRequestId] = useState('');
   const [isLoadingManualPayment, setIsLoadingManualPayment] = useState(false);
@@ -52,7 +56,6 @@ export default function ScanPage() {
   const [merchantPaymentError, setMerchantPaymentError] = useState<
     string | null
   >(null);
-  const { isPara } = useWallet();
 
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {
@@ -141,9 +144,54 @@ export default function ScanPage() {
     // Then, try to parse as SimpleFi merchant URL
     const simpleFiMerchantUrl = parseSimpleFiMerchantUrl(value);
     if (simpleFiMerchantUrl) {
-      console.log('QR Scanner parsed SimpleFi merchant URL:', simpleFiMerchantUrl);
-      setPaymentRequestId(simpleFiMerchantUrl); // Pass the full URL to PaymentModal
-      setIsManualPaymentOpen(true);
+      console.log(
+        'QR Scanner parsed SimpleFi merchant URL:',
+        simpleFiMerchantUrl
+      );
+      // Extract merchant slug from URL
+      const match = simpleFiMerchantUrl.match(
+        /^https:\/\/pay\.simplefi\.tech\/([^\/]+)$/
+      );
+      if (match) {
+        const merchantSlug = match[1];
+        console.log('Extracted merchant slug:', merchantSlug);
+
+        // Fetch the latest payment request for this merchant
+        try {
+          const response = await fetch(
+            `/api/payment-request/last/${merchantSlug}`
+          );
+
+          if (!response.ok) {
+            if (response.status === 404) {
+              toast.error(
+                'No payment available for this merchant at the moment.'
+              );
+            } else {
+              toast.error('Failed to fetch payment request');
+            }
+            return;
+          }
+
+          const paymentRequest = await response.json();
+          console.log('Loaded payment request:', paymentRequest.id);
+
+          // Open modal with resolved payment ID
+          setPaymentRequestId(paymentRequest.id);
+          setIsManualPaymentOpen(true);
+        } catch (error) {
+          console.error('Error fetching payment request:', error);
+          toast.error('Failed to load payment request');
+        }
+      }
+      return;
+    }
+
+    // Check if it's an Ethereum address (must be checked BEFORE payment ID)
+    if (value.startsWith('0x') && value.length === 42) {
+      console.log('QR Scanner detected Ethereum address:', value);
+      // Redirect to send page with prefilled address
+      router.push(`/wallet/send?to=${value}`);
       return;
     }
 
@@ -161,9 +209,12 @@ export default function ScanPage() {
       return;
     }
 
-    // If neither EIP-681 nor payment request ID, try to open as a regular link
-    console.log('Opening as regular link:', value);
-    window.open(value, '_blank');
+    // If nothing matches, show error
+    console.log('QR code not recognized:', value);
+    toast.error('QR code not recognized', {
+      description: 'Please scan a valid payment QR code or Ethereum address',
+      duration: 4000,
+    });
   };
 
   // Function to handle manual payment request ID submission
@@ -196,21 +247,25 @@ export default function ScanPage() {
 
       if (!response.ok) {
         if (response.status === 404) {
+          toast.error('No payment available for this merchant at the moment.');
           throw new Error(
             'No payment available for this merchant at the moment.'
           );
         }
         const errorData = await response.json();
+        toast.error(errorData.error || 'Failed to fetch payment request');
         throw new Error(errorData.error || 'Failed to fetch payment request');
       }
 
       const paymentRequest = await response.json();
 
       if (paymentRequest && paymentRequest.id) {
+        console.log('Merchant payment request loaded:', paymentRequest.id);
         setPaymentRequestId(paymentRequest.id);
         setIsManualPaymentOpen(true);
         setSelectedMerchant(''); // Clear the selection
       } else {
+        toast.error('No payment request found for this merchant');
         throw new Error('No payment request found for this merchant');
       }
     } catch (error) {

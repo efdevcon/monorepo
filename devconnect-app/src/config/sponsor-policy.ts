@@ -44,7 +44,7 @@ export function checkRateLimit(userAddress: string): { allowed: boolean; reason?
   if (lastMinute.length >= SPONSOR_POLICY.rateLimit.maxTransactionsPerMinute) {
     return {
       allowed: false,
-      reason: `Rate limit exceeded: Maximum ${SPONSOR_POLICY.rateLimit.maxTransactionsPerMinute} transactions per minute`
+      reason: `Rate limit exceeded. Maximum ${SPONSOR_POLICY.rateLimit.maxTransactionsPerMinute} transactions per minute`
     };
   }
   
@@ -52,7 +52,7 @@ export function checkRateLimit(userAddress: string): { allowed: boolean; reason?
   if (userData.timestamps.length >= SPONSOR_POLICY.rateLimit.maxTransactionsPerHour) {
     return {
       allowed: false,
-      reason: `Rate limit exceeded: Maximum ${SPONSOR_POLICY.rateLimit.maxTransactionsPerHour} transactions per hour`
+      reason: `Rate limit exceeded. Maximum ${SPONSOR_POLICY.rateLimit.maxTransactionsPerHour} transactions per hour`
     };
   }
   
@@ -70,14 +70,14 @@ export function checkTransactionAmount(amount: bigint): { allowed: boolean; reas
   if (amount < SPONSOR_POLICY.minTransactionAmount) {
     return {
       allowed: false,
-      reason: `Amount too small: Minimum ${formatAmount(SPONSOR_POLICY.minTransactionAmount)} USDC required`
+      reason: `Amount too small. Minimum ${formatAmount(SPONSOR_POLICY.minTransactionAmount)} USDC required`
     };
   }
   
   if (amount > SPONSOR_POLICY.maxTransactionAmount) {
     return {
       allowed: false,
-      reason: `Amount too large: Maximum ${formatAmount(SPONSOR_POLICY.maxTransactionAmount)} USDC allowed per transaction`
+      reason: `Amount too large. Maximum ${formatAmount(SPONSOR_POLICY.maxTransactionAmount)} USDC allowed per transaction`
     };
   }
   
@@ -95,7 +95,7 @@ export function checkAllowedContract(contractAddress: string): { allowed: boolea
   if (!isAllowed) {
     return {
       allowed: false,
-      reason: `Contract not allowed: Only USDC transfers are sponsored`
+      reason: `Contract not allowed. Only USDC transfers are sponsored`
     };
   }
   

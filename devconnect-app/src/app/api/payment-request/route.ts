@@ -82,8 +82,8 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         amount: 8,
-        // currency: 'ARS',
-        // coins: [{ chain_id: 8453, ticker: 'USDC' }],
+        currency: 'ARS',
+        coins: [{ chain_id: 8453, ticker: 'USDC' }],
         reference: {
           _product_id: '688ba8db51fc6c100f32cd63',
           product_name: 'Devconnect Test',

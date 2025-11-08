@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
 import Icon from '@mdi/react';
-import { mdiLockOutline, mdiLoading } from '@mdi/js';
+import { mdiLockOutline, mdiLoading, mdiContentPaste, mdiQrcodeScan } from '@mdi/js';
 import { createPublicClient, http, isAddress } from 'viem';
 import { normalize } from 'viem/ens';
 import { mainnet } from 'viem/chains';
@@ -35,6 +35,23 @@ export default function SendPage() {
   const [amount, setAmount] = useState('');
   const [isResolvingAddress, setIsResolvingAddress] = useState(false);
   const [addressError, setAddressError] = useState<string | null>(null);
+
+  // Handle prefilled address from query params (from QR scan)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const toAddress = params.get('to');
+      if (toAddress) {
+        console.log('Prefilling recipient address from QR scan:', toAddress);
+        const normalizedAddress = toAddress.trim().toLowerCase();
+        setRecipientAddress(normalizedAddress);
+        // Validate the prefilled address
+        validateAndResolveAddress(normalizedAddress);
+        // Clear the query param
+        router.replace('/wallet/send');
+      }
+    }
+  }, []);
 
   // Transaction hook for Para gas-sponsored transactions
   const {
@@ -421,12 +438,48 @@ export default function SendPage() {
             </div>
 
             {/* To Field */}
-            <div className="flex flex-col xs:flex-row gap-2 xs:gap-5 xs:items-start">
-              <p className="text-[#353548] text-sm xs:text-base font-semibold tracking-[-0.1px] whitespace-nowrap xs:pt-3">
-                To:
-              </p>
-              <div className="flex-1 space-y-1 min-w-0">
-                <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-3 flex gap-2 xs:gap-3 items-start min-h-[48px]">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <p className="text-[#353548] text-sm xs:text-base font-semibold tracking-[-0.1px] whitespace-nowrap">
+                  To:
+                </p>
+                {!recipientAddress && !isResolvingAddress && (
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={handlePaste}
+                      className="bg-[#0073de] px-3 xs:px-4 py-2 rounded-[1px] text-white text-xs xs:text-sm font-bold hover:bg-[#005bb5] transition-colors cursor-pointer touch-manipulation flex items-center gap-1.5"
+                    >
+                      <Icon path={mdiContentPaste} size={0.65} className="flex-shrink-0" />
+                      <span>Paste</span>
+                    </button>
+                    <button
+                      onClick={() => router.push('/scan')}
+                      className="bg-[#eaf3fa] px-3 xs:px-4 py-2 rounded-[1px] text-[#44445d] text-xs xs:text-sm font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer touch-manipulation flex items-center gap-1.5"
+                    >
+                      <Icon path={mdiQrcodeScan} size={0.65} className="flex-shrink-0" />
+                      <span>Scan</span>
+                    </button>
+                  </div>
+                )}
+                {isResolvingAddress && (
+                  <div className="flex items-center gap-2">
+                    <div className="animate-spin w-4 h-4 border-2 border-[#0073de] border-t-transparent rounded-full"></div>
+                    <span className="text-[#0073de] text-xs xs:text-sm font-bold whitespace-nowrap">
+                      Resolving...
+                    </span>
+                  </div>
+                )}
+                {recipientAddress && !isResolvingAddress && (
+                  <button
+                    onClick={handleClear}
+                    className="bg-[#eaf3fa] px-3 xs:px-4 py-2 rounded-[1px] text-[#44445d] text-xs xs:text-sm font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer touch-manipulation"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+              <div className="space-y-1">
+                <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-3 min-h-[48px]">
                   <textarea
                     value={recipientAddress}
                     onChange={(e) => {
@@ -449,35 +502,11 @@ export default function SendPage() {
                       }, 100);
                     }}
                     onBlur={handleAddressBlur}
-                    placeholder="Paste address (0x) or ENS"
+                    placeholder="Address (0x) or ENS name"
                     disabled={isResolvingAddress}
                     rows={2}
-                    className="flex-1 text-[#353548] text-xs xs:text-sm font-normal outline-none placeholder:text-[#4b4b66] leading-[1.2] disabled:opacity-50 min-w-0 resize-none"
+                    className="w-full text-[#353548] text-xs xs:text-sm font-normal outline-none placeholder:text-[#4b4b66] leading-[1.2] disabled:opacity-50 resize-none"
                   />
-                  <div className="flex-shrink-0 w-[70px] xs:w-[85px] pt-0.5">
-                    {isResolvingAddress ? (
-                      <div className="flex items-center gap-1 xs:gap-2 justify-center">
-                        <div className="animate-spin w-3 h-3 border-2 border-[#0073de] border-t-transparent rounded-full"></div>
-                        <span className="text-[#0073de] text-[10px] xs:text-xs font-bold whitespace-nowrap">
-                          Resolving...
-                        </span>
-                      </div>
-                    ) : recipientAddress ? (
-                      <button
-                        onClick={handleClear}
-                        className="bg-[#eaf3fa] px-2 xs:px-3 py-1.5 rounded-[1px] text-[#44445d] text-[10px] xs:text-xs font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer w-full touch-manipulation"
-                      >
-                        Clear
-                      </button>
-                    ) : (
-                      <button
-                        onClick={handlePaste}
-                        className="bg-[#0073de] px-2 xs:px-3 py-1.5 rounded-[1px] text-white text-[10px] xs:text-xs font-bold hover:bg-[#005bb5] transition-colors cursor-pointer w-full touch-manipulation"
-                      >
-                        Paste
-                      </button>
-                    )}
-                  </div>
                 </div>
                 {addressError && (
                   <p className="text-red-600 text-[10px] xs:text-xs leading-[1.3] px-1">
@@ -503,8 +532,9 @@ export default function SendPage() {
                     inputMode="decimal"
                     value={amount}
                     onChange={(e) => {
+                      // Replace comma with period for international users
+                      let value = e.target.value.replace(',', '.');
                       // Only allow numbers and decimal point
-                      const value = e.target.value;
                       if (value === '' || /^\d*\.?\d*$/.test(value)) {
                         setAmount(value);
                       }

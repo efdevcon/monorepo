@@ -135,25 +135,6 @@ export default function PaymentModal({
   );
   const [isAddingTransaction, setIsAddingTransaction] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [resolvedPaymentId, setResolvedPaymentId] = useState<string | null>(
-    null
-  );
-
-  // Function to extract merchant slug from SimpleFi URL
-  const extractMerchantSlugFromUrl = (url?: string): string | null => {
-    if (!url) return null;
-    try {
-      // Match URLs like https://pay.simplefi.tech/cafe-cuyo
-      const match = url.match(/^https:\/\/pay\.simplefi\.tech\/([^\/]+)$/);
-      if (match) {
-        return match[1]; // Returns 'cafe-cuyo'
-      }
-      return null;
-    } catch (error) {
-      console.error('Error parsing SimpleFi URL:', error);
-      return null;
-    }
-  };
 
   // Check if EIP-7702 is available
   const isUsingEIP7702 = isPara && isEIP7702Available();
@@ -238,66 +219,16 @@ export default function PaymentModal({
   );
 
   // Function to fetch payment details from payment-status API
+  // Now only accepts actual payment IDs (no URL resolution)
   const fetchPaymentDetails = async (paymentRequestId: string) => {
     try {
-      // Check if paymentRequestId is a SimpleFi URL
-      const merchantSlug = extractMerchantSlugFromUrl(paymentRequestId);
-      let actualPaymentRequestId = paymentRequestId;
-
-      // Skip merchant URL resolution for historical payments
-      if (merchantSlug && !isHistoricalPayment) {
-        console.log('Detected SimpleFi URL with merchant slug:', merchantSlug);
-
-        // Find merchant by slug - look through the MERCHANTS object entries
-        const { MERCHANTS } = await import('@/config/merchants');
-        const merchantEntry = Object.entries(MERCHANTS).find(
-          ([_, merchant]) => merchant.id === merchantSlug
-        );
-
-        if (!merchantEntry) {
-          throw new Error(`Merchant not found: ${merchantSlug}`);
-        }
-
-        const [merchantApiId, merchantData] = merchantEntry;
-        console.log('Found merchant:', merchantData, 'API ID:', merchantApiId);
-
-        // Load the latest payment request for this merchant (similar to "Get Order")
-        const lastPaymentResponse = await fetch(
-          `/api/payment-request/last/${merchantSlug}`
-        );
-
-        if (!lastPaymentResponse.ok) {
-          if (lastPaymentResponse.status === 404) {
-            throw new Error(
-              'No payment available for this merchant at the moment.'
-            );
-          }
-          throw new Error(
-            'Failed to fetch latest payment request for merchant'
-          );
-        }
-
-        const lastPaymentData = await lastPaymentResponse.json();
-        actualPaymentRequestId = lastPaymentData.id;
-        console.log('Loaded latest payment request:', actualPaymentRequestId);
-
-        // Store the resolved payment ID for hash management
-        setResolvedPaymentId(actualPaymentRequestId);
-      } else {
-        // Not a SimpleFi URL, use the payment request ID as-is
-        setResolvedPaymentId(actualPaymentRequestId);
-      }
-
       // Add timeout to prevent hanging requests
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-      const response = await fetch(
-        `/api/payment-status/${actualPaymentRequestId}`,
-        {
-          signal: controller.signal,
-        }
-      );
+      const response = await fetch(`/api/payment-status/${paymentRequestId}`, {
+        signal: controller.signal,
+      });
 
       clearTimeout(timeoutId);
 
@@ -559,10 +490,7 @@ export default function PaymentModal({
     token: string,
     chainId: number
   ) => {
-    // Use resolved payment ID if available (for SimpleFi URLs), otherwise use the prop
-    const actualPaymentId = resolvedPaymentId || paymentRequestId;
-
-    if (!actualPaymentId) return;
+    if (!paymentRequestId) return;
 
     try {
       // Add timeout to prevent hanging requests
@@ -570,7 +498,7 @@ export default function PaymentModal({
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
       const response = await fetch(
-        `/api/payment-request?paymentId=${actualPaymentId}&ticker=${token}&chainId=${chainId}`,
+        `/api/payment-request?paymentId=${paymentRequestId}&ticker=${token}&chainId=${chainId}`,
         {
           method: 'GET',
           headers: {
@@ -619,10 +547,7 @@ export default function PaymentModal({
 
   // Function to refresh payment details after adding a transaction
   const refreshPaymentDetails = async (token?: string, chainId?: number) => {
-    // Use resolved payment ID if available (for SimpleFi URLs), otherwise use the prop
-    const actualPaymentId = resolvedPaymentId || paymentRequestId;
-
-    if (!actualPaymentId) return;
+    if (!paymentRequestId) return;
 
     // Use passed parameters or current state
     const currentToken = token || selectedToken;
@@ -632,11 +557,11 @@ export default function PaymentModal({
       token: currentToken,
       chainId: currentChainId,
       fromParams: !!(token && chainId),
-      paymentId: actualPaymentId,
+      paymentId: paymentRequestId,
     });
 
     try {
-      const details = await fetchPaymentDetails(actualPaymentId);
+      const details = await fetchPaymentDetails(paymentRequestId);
       console.log('Payment details refreshed:', details);
 
       // Update payment details with fresh data
@@ -1079,7 +1004,6 @@ export default function PaymentModal({
 
       checkSimulationMode();
       setIsInitialLoad(true); // Reset initial load flag
-      setResolvedPaymentId(null); // Reset resolved payment ID
 
       // For Para wallets, ensure they're always set to USDC/Base
       if (isPara) {
@@ -1092,13 +1016,13 @@ export default function PaymentModal({
       console.log('[PaymentModal] Resetting transaction on modal close');
       resetTransaction();
     }
-  }, [isOpen, checkSimulationMode, isPara, isPending]); // Keep resetTransaction out to avoid infinite loops
+  }, [isOpen, checkSimulationMode, isPara]); // Keep resetTransaction and isPending out to avoid infinite loops
 
   // Manage URL hash when modal opens/closes
   useEffect(() => {
-    if (isOpen && resolvedPaymentId) {
-      // Add hash to URL when modal opens (use resolved payment ID)
-      const newHash = `#payment_${resolvedPaymentId}`;
+    if (isOpen && paymentRequestId) {
+      // Add hash to URL when modal opens
+      const newHash = `#payment_${paymentRequestId}`;
       if (window.location.hash !== newHash) {
         window.history.pushState(null, '', newHash);
       }
@@ -1110,7 +1034,7 @@ export default function PaymentModal({
         window.location.pathname + window.location.search
       );
     }
-  }, [isOpen, resolvedPaymentId]);
+  }, [isOpen, paymentRequestId]);
 
   // Validate recipient and amount when they change
   useEffect(() => {
@@ -1865,11 +1789,7 @@ export default function PaymentModal({
                   isSimulation={false}
                   simulationDetails={null}
                   onDone={handleClose}
-                  paymentId={
-                    resolvedPaymentId ||
-                    paymentRequestId ||
-                    paymentDetails.orderId
-                  }
+                  paymentId={paymentRequestId || paymentDetails.orderId}
                   orderId={paymentDetails.orderId}
                   isAlreadyCompleted={true}
                   recipient={paymentDetails.recipient || paymentData.recipient}
@@ -1893,11 +1813,7 @@ export default function PaymentModal({
                 simulationDetails={simulationDetails}
                 onDone={handleStatusDone}
                 onTryAgain={handleTryAgain}
-                paymentId={
-                  resolvedPaymentId ||
-                  paymentRequestId ||
-                  paymentDetails.orderId
-                }
+                paymentId={paymentRequestId || paymentDetails.orderId}
                 orderId={paymentDetails.orderId}
                 recipient={
                   paymentData.recipient || paymentDetails.recipient || recipient
