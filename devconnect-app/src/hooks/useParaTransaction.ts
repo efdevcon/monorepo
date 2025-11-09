@@ -50,16 +50,31 @@ export function useParaTransaction() {
    */
   const isUserRejectionError = (error: any): boolean => {
     if (!error) return false;
+
+    // Check error name/type
+    const errorName = error.name || '';
+    if (errorName.includes('UserRejectedRequestError')) return true;
+
+    // Check error message
     const errorMessage = error.message || '';
-    const errorCode = error.code;
-    return (
+    if (
       errorMessage.includes('User denied') ||
       errorMessage.includes('User rejected') ||
       errorMessage.includes('User cancelled') ||
       errorMessage.includes('User denied transaction signature') ||
-      errorCode === 4001 ||
-      errorCode === '4001'
-    );
+      errorMessage.includes('rejected the request')
+    ) return true;
+
+    // Check error code
+    const errorCode = error.code;
+    if (errorCode === 4001 || errorCode === '4001') return true;
+
+    // Check if it's a viem error with causes
+    if (error.cause) {
+      return isUserRejectionError(error.cause);
+    }
+
+    return false;
   };
 
   /**

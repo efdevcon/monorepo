@@ -46,17 +46,30 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
   const isUserRejectionError = (error: any): boolean => {
     if (!error) return false;
 
-    const errorMessage = error.message || '';
-    const errorCode = error.code;
+    // Check error name/type
+    const errorName = error.name || '';
+    if (errorName.includes('UserRejectedRequestError')) return true;
 
-    return (
+    // Check error message
+    const errorMessage = error.message || '';
+    if (
       errorMessage.includes('User denied') ||
       errorMessage.includes('User rejected') ||
       errorMessage.includes('User cancelled') ||
       errorMessage.includes('User denied transaction signature') ||
-      errorCode === 4001 ||
-      errorCode === '4001'
-    );
+      errorMessage.includes('rejected the request')
+    ) return true;
+
+    // Check error code
+    const errorCode = error.code;
+    if (errorCode === 4001 || errorCode === '4001') return true;
+
+    // Check if it's a viem error with causes
+    if (error.cause) {
+      return isUserRejectionError(error.cause);
+    }
+
+    return false;
   };
 
   // Wallet connection hooks
