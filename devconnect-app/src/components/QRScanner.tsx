@@ -219,48 +219,13 @@ const QRScanner = ({
                         try {
                           // Close the scanner modal first
                           stopCamera();
-                          
                           console.log('🔄 Simulating app kill...');
-                          
-                          // 1. Unregister service worker (simulates app termination)
-                          if ('serviceWorker' in navigator) {
-                            const registrations = await navigator.serviceWorker.getRegistrations();
-                            for (const registration of registrations) {
-                              console.log('🗑️ Unregistering service worker...');
-                              await registration.unregister();
-                            }
-                          }
-                          
-                          // 2. Clear all service worker caches
-                          if ('caches' in window) {
-                            console.log('🗑️ Clearing all caches...');
-                            const cacheNames = await caches.keys();
-                            await Promise.all(
-                              cacheNames.map((cacheName) => caches.delete(cacheName))
-                            );
-                          }
-                          
-                          // 3. Clear session storage (temporary app state)
-                          console.log('🗑️ Clearing session storage...');
-                          sessionStorage.clear();
-                          
-                          // 4. Clear any media stream state
-                          if (navigator.mediaDevices) {
-                            const stream = await navigator.mediaDevices.getUserMedia({ video: true }).catch(() => null);
-                            if (stream) {
-                              stream.getTracks().forEach(track => track.stop());
-                            }
-                          }
-                          
-                          console.log('✅ App state cleared, restarting...');
-                          
-                          // 5. Hard navigation to wallet (simulates app restart)
                           // Use window.location for complete page reload
                           window.location.href = '/wallet';
                         } catch (err) {
                           console.error('Error during app reset:', err);
                           // Fallback to direct navigation
-                          window.location.href = '/wallet';
+                          alert('"Kill the app" then open it again.');
                         }
                       }}
                       disabled={isReloading}
