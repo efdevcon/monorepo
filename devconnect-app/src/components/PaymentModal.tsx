@@ -1495,25 +1495,25 @@ export default function PaymentModal({
                         )}
                         <div className="space-y-2">
                           <div className="flex items-end justify-center gap-1">
-                            <span className="text-[#4b4b66] text-xl">
-                              {paymentDetails.priceDetails?.currency || 'ARS'}
-                            </span>
                             <span className="text-[#20202b] text-2xl font-bold">
                               {paymentDetails.priceDetails?.currency_final_amount?.toLocaleString() ||
                                 paymentDetails.arsAmount?.toLocaleString() ||
                                 '15'}
                             </span>
+                            <span className="text-[#4b4b66] text-xl">
+                              {paymentDetails.priceDetails?.currency || 'ARS'}
+                            </span>
                           </div>
                           <div className="flex items-end justify-center gap-1">
-                            <span className="text-[#4b4b66] text-base">
-                              {isPara ? 'USDC' : selectedToken}
-                            </span>
                             <span className="text-[#20202b] text-xl font-bold">
                               {paymentDetails.priceDetails?.final_amount?.toFixed(
                                 6
                               ) ||
                                 paymentDetails.amount ||
                                 amount}
+                            </span>
+                            <span className="text-[#4b4b66] text-base">
+                              {isPara ? 'USDC' : selectedToken}
                             </span>
                           </div>
                         </div>
