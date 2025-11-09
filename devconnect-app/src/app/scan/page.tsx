@@ -10,6 +10,8 @@ import { Search } from 'lucide-react';
 import { useWallet } from '@/context/WalletContext';
 import { PAYMENT_CONFIG } from '@/config/config';
 import { MERCHANTS } from '@/config/merchants';
+import { poisData } from '@/data/pois';
+import { POI } from '@/types/api-data';
 
 interface PaymentRequest {
   id: string;
@@ -188,26 +190,55 @@ export default function ScanPage() {
     }
 
     // Check if it's an Ethereum address (must be checked BEFORE payment ID)
-    if (value.startsWith('0x') && value.length === 42) {
+    if (value?.toLowerCase()?.startsWith('0x') && value.length === 42) {
       console.log('QR Scanner detected Ethereum address:', value);
       // Redirect to send page with prefilled address
       router.push(`/wallet/send?to=${value}`);
       return;
     }
 
-    // Then, try to parse as manual URL or payment request ID
-    const parsedPaymentRequestId = value.startsWith('https://')
-      ? parseManualUrl(value)
-      : value;
-    if (parsedPaymentRequestId) {
-      console.log(
-        'QR Scanner parsed payment request ID:',
-        parsedPaymentRequestId
-      );
-      setPaymentRequestId(parsedPaymentRequestId);
-      setIsManualPaymentOpen(true);
+    if (
+      value?.toLowerCase()?.startsWith('https://ef-events.notion.site/') ||
+      value?.toLowerCase()?.startsWith('https://devconnect.org/faq')
+    ) {
+      console.log('QR Scanner detected Devconnect URL:', value);
+      // open in new tab
+      window.open(value, '_blank');
       return;
     }
+
+    if (value?.toLowerCase()?.startsWith('https://app.devconnect.org/')) {
+      console.log('QR Scanner detected Devconnect URL:', value);
+      // redirect to the url
+      let redirectUrl = value.replace('https://app.devconnect.org/', '/');
+      if (redirectUrl?.includes('/qr-code/')) {
+        redirectUrl = redirectUrl.replace('/qr-code/', 'qr-code-');
+        // see if we have a poi with the same layerName
+        const poi = poisData.find((poi: POI) => poi.layerName === redirectUrl);
+        if (poi && poi.websiteLink) {
+          redirectUrl = poi.websiteLink;
+        } else {
+          toast.error('Redirect URL not recognized');
+          return;
+        }
+      }
+      router.push(redirectUrl);
+      return;
+    }
+
+    // Then, try to parse as manual URL or payment request ID
+    // const parsedPaymentRequestId = value.startsWith('https://')
+    //   ? parseManualUrl(value)
+    //   : value;
+    // if (parsedPaymentRequestId) {
+    //   console.log(
+    //     'QR Scanner parsed payment request ID:',
+    //     parsedPaymentRequestId
+    //   );
+    //   setPaymentRequestId(parsedPaymentRequestId);
+    //   setIsManualPaymentOpen(true);
+    //   return;
+    // }
 
     // If nothing matches, show error
     console.log('QR code not recognized:', value);
@@ -398,7 +429,7 @@ export default function ScanPage() {
 
           <div className="flex flex-col items-center justify-center mt-6">
             <QRScanner
-              buttonLabel="Scan Payment QR Code"
+              buttonLabel="Scan QR Code"
               onScan={handleQRScan}
               onClose={() => {
                 console.log('close');
