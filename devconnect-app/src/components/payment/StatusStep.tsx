@@ -133,6 +133,7 @@ interface StatusStepProps {
   } | null;
   onDone: () => void;
   onTryAgain?: () => void;
+  onCancel?: () => void;
   paymentId?: string;
   orderId?: string;
   isAlreadyCompleted?: boolean;
@@ -364,6 +365,7 @@ export default function StatusStep({
   simulationDetails,
   onDone,
   onTryAgain,
+  onCancel,
   paymentId,
   orderId,
   isAlreadyCompleted = false,
@@ -991,6 +993,22 @@ export default function StatusStep({
           );
         })}
       </div>
+
+      {/* Cancel Button */}
+      {/* {onCancel && (
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={onCancel}
+            className="bg-[#eaf3fa] flex items-center justify-center px-6 py-3 rounded-[1px] text-[#44445d] font-bold text-[16px] border-none cursor-pointer"
+            style={{
+              fontFamily: 'Roboto, sans-serif',
+              boxShadow: '0px 4px 0px 0px #595978',
+            }}
+          >
+            Cancel Payment
+          </button>
+        </div>
+      )} */}
     </div>
   );
 } 

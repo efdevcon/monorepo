@@ -1273,39 +1273,50 @@ export default function PaymentModal({
     resetTransaction();
   }, [resetTransaction]);
 
-  const handleClose = useCallback(() => {
-    // Don't allow closing during transaction processing
-    if (
-      txStatus === 'idle' ||
-      txStatus === 'confirmed' ||
-      txStatus === 'error'
-    ) {
-      // Remove hash before closing
-      if (
-        typeof window !== 'undefined' &&
-        window.location.hash.startsWith('#payment_')
-      ) {
-        window.history.pushState(
-          null,
-          '',
-          window.location.pathname + window.location.search
-        );
-      }
-      // Redirect to wallet if payment was confirmed or already completed
-      const isPaymentComplete =
-        txStatus === 'confirmed' || paymentDetails.orderStatus === 'approved';
+  const handleCancelTransaction = useCallback(() => {
+    // Reset transaction state
+    resetTransaction();
+    // Go back to form step
+    setCurrentStep('form');
+    toast.info('Transaction cancelled');
+  }, [resetTransaction]);
 
-      if (isPaymentComplete) {
-        // Redirect first, then close modal
-        // Navigation takes priority to ensure redirect completes
-        router.push('/wallet');
-        // Small delay to ensure navigation starts before modal closes
-        setTimeout(() => onClose(), 100);
-        return;
-      }
-      onClose();
+  const handleClose = useCallback(() => {
+    // If transaction is in progress, cancel it first
+    if (
+      txStatus !== 'idle' &&
+      txStatus !== 'confirmed' &&
+      txStatus !== 'error'
+    ) {
+      handleCancelTransaction();
+      return;
     }
-  }, [txStatus, onClose, router, paymentDetails.orderStatus]);
+
+    // Remove hash before closing
+    if (
+      typeof window !== 'undefined' &&
+      window.location.hash.startsWith('#payment_')
+    ) {
+      window.history.pushState(
+        null,
+        '',
+        window.location.pathname + window.location.search
+      );
+    }
+    // Redirect to wallet if payment was confirmed or already completed
+    const isPaymentComplete =
+      txStatus === 'confirmed' || paymentDetails.orderStatus === 'approved';
+
+    if (isPaymentComplete) {
+      // Redirect first, then close modal
+      // Navigation takes priority to ensure redirect completes
+      router.push('/wallet');
+      // Small delay to ensure navigation starts before modal closes
+      setTimeout(() => onClose(), 100);
+      return;
+    }
+    onClose();
+  }, [txStatus, onClose, router, paymentDetails.orderStatus, handleCancelTransaction]);
 
   // Debug: Track isPending state changes
   useEffect(() => {
@@ -1484,25 +1495,25 @@ export default function PaymentModal({
                         )}
                         <div className="space-y-2">
                           <div className="flex items-end justify-center gap-1">
-                            <span className="text-[#4b4b66] text-xl">
-                              {paymentDetails.priceDetails?.currency || 'ARS'}
-                            </span>
                             <span className="text-[#20202b] text-2xl font-bold">
                               {paymentDetails.priceDetails?.currency_final_amount?.toLocaleString() ||
                                 paymentDetails.arsAmount?.toLocaleString() ||
                                 '15'}
                             </span>
+                            <span className="text-[#4b4b66] text-xl">
+                              {paymentDetails.priceDetails?.currency || 'ARS'}
+                            </span>
                           </div>
                           <div className="flex items-end justify-center gap-1">
-                            <span className="text-[#4b4b66] text-base">
-                              {isPara ? 'USDC' : selectedToken}
-                            </span>
                             <span className="text-[#20202b] text-xl font-bold">
                               {paymentDetails.priceDetails?.final_amount?.toFixed(
                                 6
                               ) ||
                                 paymentDetails.amount ||
                                 amount}
+                            </span>
+                            <span className="text-[#4b4b66] text-base">
+                              {isPara ? 'USDC' : selectedToken}
                             </span>
                           </div>
                         </div>
@@ -1813,6 +1824,7 @@ export default function PaymentModal({
                 simulationDetails={simulationDetails}
                 onDone={handleStatusDone}
                 onTryAgain={handleTryAgain}
+                onCancel={handleCancelTransaction}
                 paymentId={paymentRequestId || paymentDetails.orderId}
                 orderId={paymentDetails.orderId}
                 recipient={

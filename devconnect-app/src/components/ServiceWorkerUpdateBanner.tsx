@@ -3,6 +3,7 @@
 import { toast } from 'sonner';
 import { useEffect, useRef } from 'react';
 import { mutate } from 'swr';
+import { hardReload } from '@/utils/reload';
 
 // Store the waiting worker reference globally so it can be accessed from Settings
 let globalWaitingWorker: ServiceWorker | null = null;
@@ -261,6 +262,25 @@ export function ServiceWorkerUpdateBanner() {
             console.log('🔄 [SW Update] Update found event triggered');
             const newWorker = registration.installing;
             if (newWorker) {
+              // Show toast IMMEDIATELY when update starts downloading
+              // Don't wait for 'installed' state - that can take 20+ seconds
+              console.log('🔄 [SW Update] Showing update notification immediately');
+              
+              // Show a different toast while downloading
+              if (toastIdRef.current) {
+                toast.dismiss(toastIdRef.current);
+              }
+              
+              toastIdRef.current = toast.loading('Downloading update...', {
+                description: 'A new version is being prepared.',
+                duration: Infinity,
+                closeButton: true,
+                style: {
+                  marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
+                  zIndex: 9999999999999999999,
+                },
+              });
+              
               newWorker.addEventListener('statechange', () => {
                 console.log(
                   '🔄 [SW Update] New worker state:',
@@ -271,8 +291,9 @@ export function ServiceWorkerUpdateBanner() {
                   navigator.serviceWorker.controller
                 ) {
                   console.log(
-                    '🔄 [SW Update] New worker installed, showing toast'
+                    '🔄 [SW Update] New worker installed, showing update prompt'
                   );
+                  // Now show the actual update prompt
                   showUpdateToast(newWorker);
                 }
               });
@@ -383,9 +404,8 @@ export function ServiceWorkerUpdateBanner() {
       // 1. Service worker to fully settle
       // 2. Fade animation to complete
       // 3. User to see the loading state
-      setTimeout(() => {
-        window.location.reload();
-      }, 350); // Reduced from 500ms since fade takes 300ms
+      // Use cache-aware reload to ensure fresh content after SW update
+      hardReload(350); // Reduced from 500ms since fade takes 300ms
     };
 
     navigator.serviceWorker.addEventListener(

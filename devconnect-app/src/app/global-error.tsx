@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Icon from '@mdi/react';
 import { mdiAlertOutline } from '@mdi/js';
 import { openReportIssue } from '@/utils/reportIssue';
+import { hardReload } from '@/utils/reload';
 
 export default function GlobalError({
   error,
@@ -113,7 +114,7 @@ export default function GlobalError({
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-3 items-start w-full">
                   <button
-                    onClick={() => window.location.reload()}
+                    onClick={() => hardReload()}
                     className="w-full px-6 py-3 box-border flex gap-2 items-center justify-center font-bold text-white transition-all hover:opacity-90"
                     style={{
                       backgroundColor: '#0073de',
