@@ -219,7 +219,6 @@ const QRScanner = ({
                         try {
                           // Close the scanner modal first
                           stopCamera();
-                          setOpen(false);
                           
                           console.log('🔄 Simulating app kill...');
                           
