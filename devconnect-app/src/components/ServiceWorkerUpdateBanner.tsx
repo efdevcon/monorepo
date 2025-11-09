@@ -262,6 +262,25 @@ export function ServiceWorkerUpdateBanner() {
             console.log('🔄 [SW Update] Update found event triggered');
             const newWorker = registration.installing;
             if (newWorker) {
+              // Show toast IMMEDIATELY when update starts downloading
+              // Don't wait for 'installed' state - that can take 20+ seconds
+              console.log('🔄 [SW Update] Showing update notification immediately');
+              
+              // Show a different toast while downloading
+              if (toastIdRef.current) {
+                toast.dismiss(toastIdRef.current);
+              }
+              
+              toastIdRef.current = toast.loading('Downloading update...', {
+                description: 'A new version is being prepared.',
+                duration: Infinity,
+                closeButton: true,
+                style: {
+                  marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
+                  zIndex: 9999999999999999999,
+                },
+              });
+              
               newWorker.addEventListener('statechange', () => {
                 console.log(
                   '🔄 [SW Update] New worker state:',
@@ -272,8 +291,9 @@ export function ServiceWorkerUpdateBanner() {
                   navigator.serviceWorker.controller
                 ) {
                   console.log(
-                    '🔄 [SW Update] New worker installed, showing toast'
+                    '🔄 [SW Update] New worker installed, showing update prompt'
                   );
+                  // Now show the actual update prompt
                   showUpdateToast(newWorker);
                 }
               });
