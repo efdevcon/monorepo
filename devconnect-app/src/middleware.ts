@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyAuth } from './app/api/auth/middleware';
 import { validLocales } from './i18n/locales';
 import { cookies } from 'next/headers';
+import { poisData } from './data/pois';
+import { POI } from './types/api-data';
 
 const languageMiddleware = async (request: NextRequest) => {
   // Read locale from cookie
@@ -24,28 +26,12 @@ const languageMiddleware = async (request: NextRequest) => {
 };
 
 const QRCodeRedirect = (request: NextRequest) => {
-  const QRCodes = [
-    {
-      path: '/qr-code/1',
-      redirect: '/map?filter=1',
-    },
-    {
-      path: '/qr-code/2',
-      redirect: '/map?filter=2',
-    },
-    {
-      path: '/qr-code/3',
-      redirect: '/map?filter=3',
-    },
-  ];
-
-  const qrCode = QRCodes.find(
-    (qrCode) => qrCode.path === request.nextUrl.pathname
-  );
+  const qrCode = request.nextUrl.pathname.replace('/qr-code/', 'qr-code-');
+  const poi = poisData.find((poi: POI) => poi.layerName === qrCode);
 
   // If QR code is found, perform redirect
-  if (qrCode) {
-    return NextResponse.redirect(new URL(qrCode.redirect, request.url));
+  if (poi && poi.websiteLink) {
+    return NextResponse.redirect(new URL(poi.websiteLink, request.url));
   }
 
   // otherwise, continue with the request
