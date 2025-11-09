@@ -46,6 +46,10 @@ export const customUrlTransforms = [
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
   favoriteEvents?: string[];
+  renderProgrammingCTA?: any;
+  renderTicketsCTA?: any;
+  renderProgrammingCTADialog?: any;
+  renderTicketsCTADialog?: any;
   toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
   noUrlRouting?: boolean;
@@ -198,6 +202,10 @@ const NewScheduleIndexInner = ({
   // selectedDay,
   // setSelectedEvent,
   // setSelectedDay,
+  renderProgrammingCTA,
+  renderTicketsCTA,
+  renderProgrammingCTADialog,
+  renderTicketsCTADialog,
   favoriteEvents,
   toggleFavoriteEvent,
   events,
@@ -232,7 +240,8 @@ const NewScheduleIndexInner = ({
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 240px))`;
+  const span = isMobile ? "280px" : "240px";
+  const columnTemplate = `repeat(${eventRange.length}, minmax(auto, ${span}))`;
 
   // Check if an event should be highlighted based on hovered date
   // const isEventHighlighted = (placement: any) => {
@@ -374,6 +383,10 @@ const NewScheduleIndexInner = ({
           setExports={setExports}
           toggleFavoriteEvent={toggleFavoriteEvent}
           favoriteEvents={favoriteEvents}
+          renderProgrammingCTA={renderProgrammingCTA}
+          renderTicketsCTA={renderTicketsCTA}
+          renderProgrammingCTADialog={renderProgrammingCTADialog}
+          renderTicketsCTADialog={renderTicketsCTADialog}
         />
       )}
 
@@ -480,6 +493,13 @@ const NewScheduleIndexInner = ({
                           setExports={setExports}
                           toggleFavoriteEvent={toggleFavoriteEvent}
                           favoriteEvents={favoriteEvents}
+                          renderProgrammingCTA={renderProgrammingCTA}
+                          renderTicketsCTA={renderTicketsCTA}
+                          renderProgrammingCTADialog={
+                            renderProgrammingCTADialog
+                          }
+                          renderTicketsCTADialog={renderTicketsCTADialog}
+                          compact={isMobile}
                         />
                       ))}
                     </div>
@@ -574,11 +594,16 @@ const NewScheduleIndexInner = ({
                         //     ? "!border-neutral-500"
                         //     : ""
                         // }
+                        compact={isMobile}
                         selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
                         setExports={setExports}
                         toggleFavoriteEvent={toggleFavoriteEvent}
                         favoriteEvents={favoriteEvents}
+                        renderProgrammingCTA={renderProgrammingCTA}
+                        renderTicketsCTA={renderTicketsCTA}
+                        renderProgrammingCTADialog={renderProgrammingCTADialog}
+                        renderTicketsCTADialog={renderTicketsCTADialog}
                       />
                     </div>
                   ))}

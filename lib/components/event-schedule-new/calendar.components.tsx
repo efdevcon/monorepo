@@ -1,5 +1,6 @@
 import React from "react";
 import { TicketIcon } from "lucide-react";
+import Link from "next/link";
 
 type Difficulty =
   | "beginner"
@@ -108,9 +109,11 @@ const TypeTag = ({
 export const TicketTag = ({
   event,
   compact = false,
+  renderTicketsCTA,
 }: {
   event: any;
   compact?: boolean;
+  renderTicketsCTA?: any;
 }) => {
   const isCommunityCalendar = !event.isCoreEvent;
   const isCoworking = event.id.toString() === "23";
@@ -129,6 +132,28 @@ export const TicketTag = ({
           className={`px-1.5 py-0.5 font-medium border border-solid text-[rgba(27,111,174,1)] border-[rgba(27,111,174,1)] bg-[white] uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
         >
           Included in Devconnect Ticket
+        </div>
+      );
+    }
+
+    if (renderTicketsCTA(event)) {
+      return (
+        <Link
+          href="/tickets"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="px-1.5 py-0.5 font-medium border border-solid border-[rgb(27,174,59)] bg-[#e0ffed] uppercase text-[10px] flex items-center gap-1.5 shrink-0"
+        >
+          You have a ticket!
+        </Link>
+      );
+    }
+
+    if (isCoworking) {
+      return (
+        <div className="px-1.5 py-0.5 font-medium border border-solid border-[rgba(27,111,174,1)] bg-[rgba(27,111,174,1)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+          Requires Devconnect Ticket
         </div>
       );
     }

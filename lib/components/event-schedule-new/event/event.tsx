@@ -55,8 +55,10 @@ type EventProps = {
   toggleFavoriteEvent?: (eventId: string) => void;
   favoriteEvents?: string[];
   noZupass?: boolean;
-  includeProgramming?: any;
-  includeTickets?: any;
+  renderProgrammingCTA?: any;
+  renderProgrammingCTADialog?: any;
+  renderTicketsCTA?: any;
+  renderTicketsCTADialog?: any;
 };
 
 const formatTime = (isoString: string) => {
@@ -183,7 +185,15 @@ const ShareEvent = ({
     }
 
     // Build the shareable URL
-    const url = `${window.location.origin}${window.location.pathname}?event=${eventId}`;
+    const route =
+      window.location.origin.includes("app.devconnect.org") ||
+      window.location.origin.includes("localhost")
+        ? "/schedule"
+        : "/calendar";
+    const url = `${window.location.origin}${route}?event=${eventId}`.replace(
+      "//",
+      "/"
+    );
 
     try {
       await navigator.clipboard.writeText(url);
@@ -233,8 +243,10 @@ const ExportEvent = ({
 
 function Event({
   compact,
-  includeProgramming,
-  includeTickets,
+  renderProgrammingCTA,
+  renderProgrammingCTADialog,
+  renderTicketsCTA,
+  renderTicketsCTADialog,
   event,
   isDialog,
   className,
@@ -577,8 +589,12 @@ function Event({
                           "flex justify-end gap-2 shrink-0 items-center"
                         )}
                       >
-                        {includeTickets || null}
-                        {includeProgramming || null}
+                        {(renderTicketsCTADialog &&
+                          renderTicketsCTADialog(event)) ||
+                          null}
+                        {(renderProgrammingCTADialog &&
+                          renderProgrammingCTADialog(event)) ||
+                          null}
 
                         <ShareEvent event={event} isDialog />
 
@@ -829,7 +845,7 @@ function Event({
                   />
                 )}
 
-                {isETHDay && (
+                {isETHDay && !compact && (
                   <Image
                     src={ethDayLogo}
                     alt="ETH Day"
@@ -859,20 +875,13 @@ function Event({
                         </div>
                       ))}
                     </div>
-                    {showTicketTag && compact && !includeTickets && (
-                      <div className="flex gap-1 items-start mt-2">
-                        <TicketTag event={event} compact />
-                      </div>
-                    )}
                   </div>
                   <div
                     className={cn(
-                      "flex h-full gap-1.5 shrink-0 grow justify-end",
-                      compact && "items-center"
+                      "flex h-full gap-1.5 shrink-0 grow justify-end relative",
+                      compact && ""
                     )}
                   >
-                    {includeTickets || null}
-                    {includeProgramming || null}
                     {toggleFavoriteEvent && (
                       <FavoriteEvent
                         event={event}
@@ -882,7 +891,23 @@ function Event({
                     )}
                   </div>
                 </div>
+                {compact && (
+                  <div className="flex absolute bottom-[5px] gap-1 right-[5px]">
+                    {(renderTicketsCTA && renderTicketsCTA(event)) || null}
+                    {(renderProgrammingCTA && renderProgrammingCTA(event)) ||
+                      null}
+                  </div>
+                )}
               </div>
+              {showTicketTag && compact && (
+                <div className="flex gap-1 items-start mt-2">
+                  <TicketTag
+                    event={event}
+                    compact
+                    renderTicketsCTA={renderTicketsCTA}
+                  />
+                </div>
+              )}
 
               {isETHDay && !compact && (
                 <div className="hidden md:flex items-center justify-center mt-2">

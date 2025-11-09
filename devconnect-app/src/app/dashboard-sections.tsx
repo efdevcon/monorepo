@@ -27,6 +27,10 @@ import Icon from '@mdi/react';
 import { mdiQrcode, mdiCalendarRangeOutline } from '@mdi/js';
 import { useTickets } from '@/hooks/useServerData';
 import { useUserData as useUserDataSWR } from '@/hooks/useServerData';
+import {
+  renderTicketsCTA,
+  renderTicketsCTADialog,
+} from '@/components/EventCTAs';
 // import { QRCodeBox } from '@/app/(page-layout)/tickets/page';
 
 export const LoopingHeader = () => {
@@ -483,7 +487,9 @@ export const TodaysSchedule = withParcnetProvider(() => {
   const sideTicketEventIds = sideTickets.map((ticket) =>
     ticket.eventId?.toString()
   );
-  const allTicketEventIds = [...ticketEventIds, ...sideTicketEventIds];
+  const allTicketEventIds = [...ticketEventIds, ...sideTicketEventIds].filter(
+    (id): id is string => id !== undefined
+  );
   // remove duplicates
   const allEventIds = [
     ...new Set([
@@ -494,13 +500,11 @@ export const TodaysSchedule = withParcnetProvider(() => {
       ...allTicketEventIds,
     ]),
   ];
-  // console.log(favorites, 'favs');
 
   // Refresh favorites when user logs in
   // TODO:
   // useRefreshOnAuthChange();  <-- This doesnt do anything anymore, right?
 
-  // TODO: implement more advanced filtering here, e.g. highlighted events like ethereum day , etc.
   const filteredEvents = events
     .filter((event) => allEventIds.includes(event.id.toString()))
     .sort((a, b) => {
@@ -571,22 +575,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
           //     </Link>
           //   ) : undefined
           // }
-          includeTickets={
-            allTicketEventIds.includes(selectedEvent.id.toString()) ? (
-              <Link
-                href={
-                  selectedEvent === 23 ? '/tickets' : '/tickets#event-tickets'
-                }
-                className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                {/* <QRCodeBox /> */}
-                <Icon path={mdiQrcode} size={0.95} />{' '}
-              </Link>
-            ) : undefined
-          }
+          renderTicketsCTADialog={renderTicketsCTADialog({
+            coworkingEventId,
+            allTicketEventIds,
+          })}
           className="w-full"
           isDialog
           noZupass
@@ -619,30 +611,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
               //     </Link>
               //   ) : undefined
               // }
-              includeTickets={
-                allTicketEventIds.includes(event.id.toString()) ? (
-                  <Link
-                    href={
-                      event.id === 23 ? '/tickets' : '/tickets#event-tickets'
-                    }
-                    className="shrink-0 cursor-pointer scale-100 hover:scale-105 transition-all duration-300"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth',
-                      });
-                    }}
-                  >
-                    {/* <QrCode className="w-8 h-8" /> */}
-                    <Icon
-                      path={mdiQrcode}
-                      size={1}
-                      className="text-[#4b4b66] opacity-90"
-                    />{' '}
-                  </Link>
-                ) : undefined
-              }
+              renderTicketsCTA={renderTicketsCTA({
+                coworkingEventId,
+                allTicketEventIds,
+              })}
               setSelectedEvent={setSelectedEvent}
               // setExports={() => {}}
             />

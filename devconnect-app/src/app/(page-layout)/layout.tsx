@@ -16,9 +16,7 @@ export default function HomePageLayout({
   const tabs = activeNavItem?.tabItems || [];
 
   useEffect(() => {
-    console.log('scroll to top');
-    // window.smoothScrollTo(0, 0);
-    window.scrollTo({
+    document.querySelector('[data-type="layout-mobile"]')?.scrollTo({
       top: 0,
       behavior: 'smooth',
     });

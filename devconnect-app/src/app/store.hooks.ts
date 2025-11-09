@@ -286,10 +286,10 @@ export const useTickets = () => {
     persistedSideTickets || undefined
   );
 
-  console.log('tickets amount', tickets.length);
-  console.log('tickets', tickets);
-  console.log('sideTickets amount', sideTickets.length);
-  console.log('sideTickets', sideTickets);
+  // console.log('tickets amount', tickets.length);
+  // console.log('tickets', tickets);
+  // console.log('sideTickets amount', sideTickets.length);
+  // console.log('sideTickets', sideTickets);
 
   // Sync fresh data back to Zustand for persistence
   const setTickets = useGlobalStore((state) => state.setTickets);

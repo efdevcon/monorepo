@@ -114,6 +114,10 @@ const Layout = (props: CalendarLayoutProps) => {
           viewMode={viewMode}
           favoriteEvents={props.favoriteEvents}
           toggleFavoriteEvent={props.toggleFavoriteEvent}
+          renderProgrammingCTA={props.renderProgrammingCTA}
+          renderTicketsCTA={props.renderTicketsCTA}
+          renderProgrammingCTADialog={props.renderProgrammingCTADialog}
+          renderTicketsCTADialog={props.renderTicketsCTADialog}
           noUrlRouting
           noZupass
         />
