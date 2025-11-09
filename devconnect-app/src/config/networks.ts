@@ -1,6 +1,7 @@
 import { mainnet, base, arbitrum, optimism, celo, polygon, worldchain } from '@reown/appkit/networks';
 
-export const chains = [mainnet, arbitrum, base, celo, optimism, polygon, worldchain];
+// export const chains = [mainnet, arbitrum, base, celo, optimism, polygon, worldchain];
+export const chains = [mainnet, arbitrum, base, celo, optimism, polygon];
 
 // Zapper network logos (high quality)
 const zapperLogos: Record<number, string> = {
