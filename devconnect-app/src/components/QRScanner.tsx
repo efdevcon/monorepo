@@ -216,13 +216,59 @@ const QRScanner = ({
                     <button
                       onClick={async () => {
                         setIsReloading(true);
-                        await hardReloadWithRouter(router);
+                        try {
+                          // Close the scanner modal first
+                          stopCamera();
+                          setOpen(false);
+                          
+                          console.log('🔄 Simulating app kill...');
+                          
+                          // 1. Unregister service worker (simulates app termination)
+                          if ('serviceWorker' in navigator) {
+                            const registrations = await navigator.serviceWorker.getRegistrations();
+                            for (const registration of registrations) {
+                              console.log('🗑️ Unregistering service worker...');
+                              await registration.unregister();
+                            }
+                          }
+                          
+                          // 2. Clear all service worker caches
+                          if ('caches' in window) {
+                            console.log('🗑️ Clearing all caches...');
+                            const cacheNames = await caches.keys();
+                            await Promise.all(
+                              cacheNames.map((cacheName) => caches.delete(cacheName))
+                            );
+                          }
+                          
+                          // 3. Clear session storage (temporary app state)
+                          console.log('🗑️ Clearing session storage...');
+                          sessionStorage.clear();
+                          
+                          // 4. Clear any media stream state
+                          if (navigator.mediaDevices) {
+                            const stream = await navigator.mediaDevices.getUserMedia({ video: true }).catch(() => null);
+                            if (stream) {
+                              stream.getTracks().forEach(track => track.stop());
+                            }
+                          }
+                          
+                          console.log('✅ App state cleared, restarting...');
+                          
+                          // 5. Hard navigation to wallet (simulates app restart)
+                          // Use window.location for complete page reload
+                          window.location.href = '/wallet';
+                        } catch (err) {
+                          console.error('Error during app reset:', err);
+                          // Fallback to direct navigation
+                          window.location.href = '/wallet';
+                        }
                       }}
                       disabled={isReloading}
                       className="bg-[#eaf3fa] flex items-center justify-center px-6 py-3 rounded-[1px] text-[#44445d] font-bold text-[16px] border-none cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isReloading
-                        ? 'Reloading page...'
+                        ? 'Reset in progress...'
                         : 'Reset camera permissions'}
                     </button>
                   </div>
