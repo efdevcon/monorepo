@@ -32,6 +32,8 @@ import {
   mdiWalletPlusOutline,
   mdiWalletOutline,
   mdiSwapHorizontal,
+  mdiInformationOutline,
+  mdiClose,
 } from '@mdi/js';
 
 // Image assets from local public/images directory
@@ -180,6 +182,7 @@ export default function WalletTab() {
   const [addressCopied, setAddressCopied] = useState(false);
   const [refreshTimestamps, setRefreshTimestamps] = useState<number[]>([]);
   const [isPeanutPopupOpen, setIsPeanutPopupOpen] = useState(false);
+  const [showNetworkInfoModal, setShowNetworkInfoModal] = useState(false);
 
   // Load stored payments from localStorage
   const [storedPayments] = useLocalStorage<StoredPayments>(
@@ -722,14 +725,25 @@ export default function WalletTab() {
                   <div className="absolute left-0 flex items-center gap-1 py-1 rounded">
                     {isPara ? (
                       // Show Base network icon when connected with Para
-                      <div className="flex items-center gap-1 p-1">
+                      <div className="flex items-center gap-1 p-1 border border-[#e5e5e5] rounded">
                         <NetworkLogo chainId={8453} size="sm" />
+                        <button
+                          onClick={() => setShowNetworkInfoModal(true)}
+                          className="p-0.5 hover:bg-gray-100 rounded transition-colors"
+                          title="Network information"
+                        >
+                          <Icon
+                            path={mdiInformationOutline}
+                            size={0.65}
+                            className="text-[#0073de]"
+                          />
+                        </button>
                       </div>
                     ) : (
                       // Show network selector for external wallets
                       <button
                         onClick={() => setShowNetworkModal(true)}
-                        className="flex items-center gap-1 p-1 hover:bg-gray-100 rounded transition-colors"
+                        className="flex items-center gap-1 p-1 border border-[#e5e5e5] hover:bg-gray-100 rounded transition-colors"
                       >
                         <NetworkLogo chainId={currentChainId} size="sm" />
                         <Icon
@@ -1700,6 +1714,82 @@ export default function WalletTab() {
           paymentRequestId={selectedPaymentId}
           isHistoricalPayment={true}
         />
+      )}
+
+      {/* Network Info Modal */}
+      {showNetworkInfoModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setShowNetworkInfoModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-start justify-between">
+              <h3 className="text-[#20202b] text-lg font-bold tracking-[-0.1px]">
+                Network Information
+              </h3>
+              <button
+                onClick={() => setShowNetworkInfoModal(false)}
+                className="p-1 hover:bg-gray-100 rounded transition-colors"
+              >
+                <Icon path={mdiClose} size={0.8} className="text-[#353548]" />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="space-y-4 text-[#36364c]">
+              <p className="text-sm leading-relaxed">
+                In the Devconnect App, we only support{' '}
+                <span className="font-semibold">Base</span> and{' '}
+                <span className="font-semibold">USDC</span> for best UX on
+                payment.
+              </p>
+
+              <p className="text-sm leading-relaxed">
+                If you want to pay with other tokens and network, connect an
+                external wallet (add button on the top right).
+              </p>
+
+              <p className="text-sm leading-relaxed">
+                If you want to be able to access tokens on other networks with
+                your Para wallet, go to{' '}
+                <button
+                  onClick={() => {
+                    setShowNetworkInfoModal(false);
+                    router.push('/wallet/settings');
+                  }}
+                  className="text-[#0073de] font-semibold hover:underline"
+                >
+                  Settings
+                </button>{' '}
+                tab to export your private key, and follow{' '}
+                <a
+                  href="https://ef-events.notion.site/Devconnect-App-Support-FAQ-29d638cdc41580ff88a7c7d43b19b0fe#29d638cdc41580e587acd7bede69861d"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0073de] font-semibold hover:underline"
+                >
+                  this guide
+                </a>{' '}
+                to import it in the wallet of your Choice (MetaMask, Rainbow,
+                Zerion, ...)
+              </p>
+            </div>
+
+            {/* Footer */}
+            <div className="flex justify-end pt-2">
+              <button
+                onClick={() => setShowNetworkInfoModal(false)}
+                className="bg-[#0073de] text-white px-6 py-2 rounded-[1px] hover:bg-[#005493] transition-colors font-medium"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
