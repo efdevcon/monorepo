@@ -11,19 +11,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
-  },
-  {
-    "name": "Activation 1",
-    "layerName": "activation-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "13",
-    "groupId": "1"
+    "groupId": "7"
   },
   {
     "name": "Ai Onboarding",
@@ -35,7 +23,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "1",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "AID Room",
@@ -47,7 +35,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "1",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Ambulance",
@@ -59,14 +47,14 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Amphitheater",
     "layerName": "amphitheater",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": " ",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -83,7 +71,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "14"
   },
   {
     "name": "Bleachers",
@@ -95,7 +83,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "1"
+    "groupId": "4"
   },
   {
     "name": "Blue Discussion Corner",
@@ -107,7 +95,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "7"
+    "groupId": "8"
   },
   {
     "name": "Blue Pavilion Space",
@@ -119,7 +107,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "2",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "Bootcamp",
@@ -143,7 +131,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "10",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "Childcare",
@@ -158,6 +146,18 @@ export const poisData: POI[] = [
     "groupId": "3"
   },
   {
+    "name": "Childcare",
+    "layerName": "childcare",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "9",
+    "groupId": "3"
+  },
+  {
     "name": "Chillout Area",
     "layerName": "chillout-area",
     "logo": "",
@@ -167,7 +167,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "1"
+    "groupId": "4"
   },
   {
     "name": "Co-work 1",
@@ -179,7 +179,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "8",
-    "groupId": "4"
+    "groupId": "5"
   },
   {
     "name": "Coffee 1",
@@ -191,7 +191,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "5"
+    "groupId": "6"
   },
   {
     "name": "Collectibles Onboarding",
@@ -203,7 +203,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "2",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "Cowork Main Arena 1",
@@ -215,7 +215,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "5"
   },
   {
     "name": "Cowork Main Arena 2",
@@ -227,7 +227,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "5"
   },
   {
     "name": "Cowork The Hub",
@@ -239,7 +239,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "1"
+    "groupId": "5"
   },
   {
     "name": "DeFi Onboarding",
@@ -251,7 +251,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "3",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "DeSci Hub",
@@ -263,7 +263,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Enterprise Hub",
@@ -275,7 +275,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Entrance",
@@ -287,7 +287,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "9"
   },
   {
     "name": "Ethluminal Gallery",
@@ -311,19 +311,19 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "9"
   },
   {
     "name": "Food Truck",
     "layerName": "food-truck",
     "logo": "",
-    "description": "",
+    "description": "food truck description",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Food Truck 1",
@@ -335,7 +335,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Food Truck 2",
@@ -347,7 +347,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Food Truck 3",
@@ -359,7 +359,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Food Truck 4",
@@ -371,7 +371,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "9",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Food Truck 5",
@@ -383,7 +383,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Food Truck 6",
@@ -395,7 +395,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "9",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Football Field",
@@ -419,7 +419,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Gamers Discussion Corner",
@@ -431,7 +431,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "1"
+    "groupId": "8"
   },
   {
     "name": "Gaming Onboarding",
@@ -443,7 +443,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "4",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "Governance Geeks Hub",
@@ -455,7 +455,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Hardware & Wallets Onboarding",
@@ -467,7 +467,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "5",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "Infinite Garden Artist Exhibition",
@@ -491,7 +491,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "11"
   },
   {
     "name": "L Stage",
@@ -503,7 +503,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "10",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "L2 Onboarding",
@@ -515,7 +515,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "6",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "LATAM Hub",
@@ -527,7 +527,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Legal Tech Hub",
@@ -539,7 +539,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Lighting Talks Stage",
@@ -551,7 +551,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "M1 Stage",
@@ -563,7 +563,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "M2 Stage",
@@ -575,7 +575,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "Main entrance",
@@ -587,7 +587,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Media Room",
@@ -599,7 +599,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "11"
   },
   {
     "name": "Meeting Room 1",
@@ -611,19 +611,19 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "10"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 1",
     "layerName": "mr-1",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://ef-events.notion.site/Meeting-Room-1-293638cdc4158058b41dfe5ad538c5ba",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 10",
@@ -635,7 +635,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 2",
@@ -647,7 +647,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 3",
@@ -659,7 +659,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 4",
@@ -671,7 +671,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 5",
@@ -683,7 +683,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 6",
@@ -695,7 +695,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 7",
@@ -707,7 +707,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 8",
@@ -719,7 +719,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room 9",
@@ -731,7 +731,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room A",
@@ -743,7 +743,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room B",
@@ -755,7 +755,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Meeting Room Registration",
@@ -767,7 +767,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Music Stage",
@@ -779,7 +779,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "1"
+    "groupId": "13"
   },
   {
     "name": "Music Stage 1",
@@ -791,7 +791,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "11"
+    "groupId": "13"
   },
   {
     "name": "Node Operators Hub",
@@ -803,7 +803,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Nogal Hall",
@@ -815,7 +815,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "Offices",
@@ -827,7 +827,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "12"
   },
   {
     "name": "Onchain Art Hub",
@@ -839,7 +839,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Onchain Fintech Hub",
@@ -851,7 +851,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Onramp ",
@@ -863,7 +863,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "15"
   },
   {
     "name": "Onramp 1",
@@ -875,7 +875,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "15"
   },
   {
     "name": "Onramp 2",
@@ -887,7 +887,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "15"
   },
   {
     "name": "Open Air Cinema",
@@ -911,7 +911,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Orange Discussion Corner",
@@ -923,7 +923,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "1"
+    "groupId": "8"
   },
   {
     "name": "Power Up Station",
@@ -935,7 +935,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "9"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 1",
@@ -947,7 +947,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 10",
@@ -959,7 +959,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 11",
@@ -971,7 +971,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 12",
@@ -983,7 +983,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 13",
@@ -995,7 +995,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "1"
+    "groupId": "14"
   },
   {
     "name": "Power Up Station 14",
@@ -1007,7 +1007,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 2",
@@ -1019,7 +1019,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 3",
@@ -1031,7 +1031,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "10",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 4",
@@ -1043,7 +1043,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 5",
@@ -1055,7 +1055,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 6",
@@ -1067,7 +1067,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 7",
@@ -1079,7 +1079,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 8",
@@ -1091,7 +1091,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Power Up Station 9",
@@ -1103,7 +1103,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "10"
   },
   {
     "name": "Privacy Hub",
@@ -1115,7 +1115,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Privacy Onboarding",
@@ -1127,7 +1127,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "7",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "14"
   },
   {
     "name": "Purple Discussion Corner",
@@ -1139,43 +1139,31 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "1"
+    "groupId": "8"
   },
   {
-    "name": "QR-code 1",
-    "layerName": "qrcode-1",
+    "name": "QR code 1",
+    "layerName": "qr-code-1",
     "logo": "",
     "description": "",
-    "websiteLink": "/map?filter=1",
+    "websiteLink": "/map?filter=defi-district",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
+    "groupId": "16"
   },
   {
-    "name": "QR-code 2",
-    "layerName": "qrcode-2",
+    "name": "QR code 2",
+    "layerName": "qr-code-2",
     "logo": "",
     "description": "",
-    "websiteLink": "/map?filter=2",
+    "websiteLink": "/map?filter=social-district",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
-  },
-  {
-    "name": "QR-code 3",
-    "layerName": "qrcode-3",
-    "logo": "",
-    "description": "",
-    "websiteLink": "/map?filter=3",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "14"
+    "groupId": "16"
   },
   {
     "name": "Quiet Cowork",
@@ -1187,7 +1175,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "9",
-    "groupId": "1"
+    "groupId": "5"
   },
   {
     "name": "Real World Assets Hub",
@@ -1199,7 +1187,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Regen Hub",
@@ -1211,7 +1199,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Registration M1 1",
@@ -1223,7 +1211,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Registration M1 2",
@@ -1235,7 +1223,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Registration M2 Stage",
@@ -1247,7 +1235,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Registration XL",
@@ -1259,7 +1247,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Registration XS Stage",
@@ -1271,7 +1259,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Social Onboarding",
@@ -1283,19 +1271,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "8",
     "locationId": null,
-    "groupId": "12"
-  },
-  {
-    "name": "Stage 1",
-    "layerName": "stage-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "16"
+    "groupId": "14"
   },
   {
     "name": "Storage",
@@ -1307,7 +1283,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "SWAG station",
@@ -1319,7 +1295,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "15"
+    "groupId": "17"
   },
   {
     "name": "Toilet",
@@ -1331,7 +1307,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "10",
-    "groupId": "17"
+    "groupId": "20"
   },
   {
     "name": "Toilet 1",
@@ -1343,7 +1319,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Toilet 2",
@@ -1355,7 +1331,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Toilet 3",
@@ -1367,7 +1343,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Toilet 4",
@@ -1379,7 +1355,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Toilet 6",
@@ -1391,7 +1367,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "19"
   },
   {
     "name": "Women in Web3 Hub",
@@ -1403,7 +1379,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "XL Stage",
@@ -1415,7 +1391,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "XS Stage",
@@ -1427,6 +1403,6 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "1"
+    "groupId": "18"
   }
 ];

@@ -11,45 +11,54 @@ export const poiGroupsData: PoiGroups = {
     "name": "Childcare"
   },
   "4": {
-    "name": "Co-work"
+    "name": "Chill Out Area"
   },
   "5": {
-    "name": "Coffee"
+    "name": "Co-work"
   },
   "6": {
-    "name": "Community Hubs"
+    "name": "Coffee"
   },
   "7": {
-    "name": "Discussion corner"
+    "name": "Community Hubs"
   },
   "8": {
-    "name": "Entrance"
+    "name": "Discussion corner"
   },
   "9": {
-    "name": "Food & Beverage"
+    "name": "Entrance"
   },
   "10": {
-    "name": "Meeting Rooms"
+    "name": "Food & Beverage"
   },
   "11": {
-    "name": "Music Stage"
+    "name": "Interview rooms"
   },
   "12": {
-    "name": "Onboarding desk"
+    "name": "Meeting Rooms"
   },
   "13": {
-    "name": "Onramp"
+    "name": "Music Stage"
   },
   "14": {
-    "name": "QR-code"
+    "name": "Onboarding desk"
   },
   "15": {
-    "name": "SWAG station"
+    "name": "Onramp"
   },
   "16": {
-    "name": "Stages"
+    "name": "QR-code"
   },
   "17": {
+    "name": "SWAG station"
+  },
+  "18": {
+    "name": "Stages"
+  },
+  "19": {
+    "name": "TBD"
+  },
+  "20": {
     "name": "Toilets"
   }
 };
