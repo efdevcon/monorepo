@@ -995,7 +995,7 @@ export default function StatusStep({
       </div>
 
       {/* Cancel Button */}
-      {onCancel && (
+      {/* {onCancel && (
         <div className="flex justify-center mt-6">
           <button
             onClick={onCancel}
@@ -1008,7 +1008,7 @@ export default function StatusStep({
             Cancel Payment
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 } 
