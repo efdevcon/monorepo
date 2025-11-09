@@ -3,6 +3,7 @@
 import { toast } from 'sonner';
 import { useEffect, useRef } from 'react';
 import { mutate } from 'swr';
+import { hardReload } from '@/utils/reload';
 
 // Store the waiting worker reference globally so it can be accessed from Settings
 let globalWaitingWorker: ServiceWorker | null = null;
@@ -383,9 +384,8 @@ export function ServiceWorkerUpdateBanner() {
       // 1. Service worker to fully settle
       // 2. Fade animation to complete
       // 3. User to see the loading state
-      setTimeout(() => {
-        window.location.reload();
-      }, 350); // Reduced from 500ms since fade takes 300ms
+      // Use cache-aware reload to ensure fresh content after SW update
+      hardReload(350); // Reduced from 500ms since fade takes 300ms
     };
 
     navigator.serviceWorker.addEventListener(

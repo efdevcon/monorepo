@@ -7,6 +7,7 @@ import { createClient } from '@supabase/supabase-js';
 import { useConnect } from 'wagmi';
 import { useWallet } from '@/context/WalletContext';
 import { useModal, useLogout, useIssueJwt } from '@getpara/react-sdk';
+import { hardReload } from '@/utils/reload';
 
 // Toast utility functions
 const showSuccessToast = (title: string, message?: string, duration = 3000) => {
@@ -260,9 +261,9 @@ export default function ParaIntegration({
                 console.log('Logging out from Para...');
                 logout();
                 setUserData(null);
-                // HACK: refresh the page after 3 seconds
+                // Refresh the page after 3 seconds
                 setTimeout(() => {
-                  window.location.reload();
+                  hardReload();
                 }, 3000);
               }}
             >

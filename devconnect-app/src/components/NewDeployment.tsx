@@ -4,6 +4,7 @@ import { NAV_ITEMS } from '@/config/nav-items';
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
+import { hardReload } from '@/utils/reload';
 
 export default function NewDeployment() {
   const pathname = usePathname();
@@ -134,7 +135,7 @@ export default function NewDeployment() {
           New app version available!
         </span>
         <button
-          onClick={() => window.location.reload()}
+          onClick={() => hardReload()}
           className="text-[#1B6FAE] transition-colors text-[14px] leading-[14px] font-['Roboto'] font-semibold cursor-pointer"
         >
           Refresh

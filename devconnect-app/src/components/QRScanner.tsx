@@ -5,6 +5,8 @@ import { Scanner } from '@yudiel/react-qr-scanner';
 import Button from './Button';
 import { useLocalStorage } from 'usehooks-ts';
 import { HEIGHT_MENU } from '@/config/config';
+import { useRouter } from 'next/navigation';
+import { hardReloadWithRouter } from '@/utils/reload';
 
 interface QRScannerProps {
   onScan?: (result: string) => void;
@@ -19,6 +21,7 @@ const QRScanner = ({
   buttonLabel,
   autoOpen = false,
 }: QRScannerProps) => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [permissionDenied, setPermissionDenied] = useState(false);
@@ -211,12 +214,9 @@ const QRScanner = ({
                       Make manual payment
                     </button>
                     <button
-                      onClick={() => {
+                      onClick={async () => {
                         setIsReloading(true);
-                        // Give time for state to update before reload
-                        setTimeout(() => {
-                          window.location.reload();
-                        }, 100);
+                        await hardReloadWithRouter(router);
                       }}
                       disabled={isReloading}
                       className="bg-[#eaf3fa] flex items-center justify-center px-6 py-3 rounded-[1px] text-[#44445d] font-bold text-[16px] border-none cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"

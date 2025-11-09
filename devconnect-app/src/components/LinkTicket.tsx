@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useZupass } from '@/context/ZupassProvider';
 import { toast } from 'sonner';
 import { Ticket } from '@/context/ZupassProvider';
+import { hardReload } from '@/utils/reload';
 
 interface LinkTicketProps {
   className?: string;
@@ -107,7 +108,7 @@ export default function LinkTicket({ className }: LinkTicketProps) {
       setTicket(null);
       
       // Force page reload to reset the context
-      window.location.reload();
+      hardReload();
       
       toast.success(
         <div className="space-y-2">
