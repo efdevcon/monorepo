@@ -74,23 +74,22 @@ const perks: Perk[] = [
     ],
     zupass_proof_id: 'Devconnect ARG',
   },
-  // {
-
-  //   coupon_collection: 'lnvpn-2025',
-  //   name: 'LNVPN',
-  //   description: 'Free 1GB eSIM for South America - Top up with Crypto!',
-  //   requires: 'Devconnect ARG ticket',
-  //   issuer: 'LNVPN',
-  //   image: LNVPNImage,
-  //   instructions: 'Visit the unique link to claim',
-  //   urls: [
-  //     {
-  //       text: 'Visit LNVPN',
-  //       url: 'https://lnvpn.com',
-  //     },
-  //   ],
-  //   zupass_proof_id: 'Devconnect ARG',
-  // },
+  {
+    coupon_collection: 'lnvpn-2025',
+    name: 'LNVPN',
+    description: 'Free 1GB eSIM for South America - Top up with Crypto!',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'LNVPN',
+    image: LNVPNImage,
+    instructions: 'Visit the unique link to claim',
+    urls: [
+      {
+        text: 'Visit LNVPN',
+        url: 'https://lnvpn.com',
+      },
+    ],
+    zupass_proof_id: 'Devconnect ARG',
+  },
   {
     coupon_collection: 'Devconnect ARG Telegram Chat',
     name: 'Devconnect ARG Telegram Chat',
