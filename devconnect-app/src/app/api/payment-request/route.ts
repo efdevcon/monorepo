@@ -81,9 +81,9 @@ export async function POST(request: NextRequest) {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        amount: 8,
-        currency: 'ARS',
-        coins: [{ chain_id: 8453, ticker: 'USDC' }],
+        ars_amount: 8,
+        // currency: 'ARS',
+        // coins: [{ chain_id: 8453, ticker: 'USDC' }],
         reference: {
           _product_id: '688ba8db51fc6c100f32cd63',
           product_name: 'Devconnect Test',
@@ -104,6 +104,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await response.json();
+    // console.log('data', data);
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error fetching payment request:', error);
