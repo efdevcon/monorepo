@@ -198,8 +198,8 @@ const QRScanner = ({
                     ) : (
                       <p className="text-gray-400 text-sm mb-6">
                         Look for the camera icon in your browser's address bar,
-                        click it, and allow camera access. Then close this and try
-                        scanning again.
+                        click it, and allow camera access. Then close this and
+                        try scanning again.
                       </p>
                     )}
                   </div>
@@ -219,9 +219,11 @@ const QRScanner = ({
                         }, 100);
                       }}
                       disabled={isReloading}
-                      className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-[#eaf3fa] flex items-center justify-center px-6 py-3 rounded-[1px] text-[#44445d] font-bold text-[16px] border-none cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isReloading ? 'Reloading page...' : 'Reset camera permissions'}
+                      {isReloading
+                        ? 'Reloading page...'
+                        : 'Reset camera permissions'}
                     </button>
                   </div>
                 </div>
