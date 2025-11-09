@@ -136,7 +136,7 @@ export const TicketTag = ({
       );
     }
 
-    if (renderTicketsCTA(event)) {
+    if (renderTicketsCTA && renderTicketsCTA(event)) {
       return (
         <Link
           href="/tickets"
