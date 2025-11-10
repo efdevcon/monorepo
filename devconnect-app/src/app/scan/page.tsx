@@ -192,9 +192,19 @@ export default function ScanPage() {
     // Check if it's an Ethereum address (must be checked BEFORE payment ID)
     if (value?.toLowerCase()?.startsWith('0x') && value.length === 42) {
       console.log('QR Scanner detected Ethereum address:', value);
-      // Redirect to send page with prefilled address
-      router.push(`/wallet/send?to=${value}`);
-      return;
+      if (isPara) {
+        // Redirect to send page with prefilled address
+        router.push(`/wallet/send?to=${value}`);
+        return;
+      } else {
+        // no send for external wallets
+        toast.error('Send is not supported for external wallets', {
+          description:
+            'Use the send button in your external wallet to send funds.',
+          duration: 8000,
+        });
+        return;
+      }
     }
 
     if (

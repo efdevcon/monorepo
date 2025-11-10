@@ -376,11 +376,10 @@ export default function SendPage() {
 
   return (
     <div
-      className="overflow-auto flex-1"
+      className="w-full min-h-full flex flex-col"
       style={{
         backgroundImage:
           'linear-gradient(-7.43299e-07deg, rgba(246, 182, 19, 0.15) 6.8662%, rgba(255, 133, 166, 0.15) 14.794%, rgba(152, 148, 255, 0.15) 22.844%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.975%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
-        width: '100%',
       }}
     >
       {/* Header */}
@@ -449,14 +448,22 @@ export default function SendPage() {
                       onClick={handlePaste}
                       className="bg-[#0073de] px-3 xs:px-4 py-2 rounded-[1px] text-white text-xs xs:text-sm font-bold hover:bg-[#005bb5] transition-colors cursor-pointer touch-manipulation flex items-center gap-1.5"
                     >
-                      <Icon path={mdiContentPaste} size={0.65} className="flex-shrink-0" />
+                      <Icon
+                        path={mdiContentPaste}
+                        size={0.65}
+                        className="flex-shrink-0"
+                      />
                       <span>Paste</span>
                     </button>
                     <button
                       onClick={() => router.push('/scan')}
                       className="bg-[#eaf3fa] px-3 xs:px-4 py-2 rounded-[1px] text-[#44445d] text-xs xs:text-sm font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer touch-manipulation flex items-center gap-1.5"
                     >
-                      <Icon path={mdiQrcodeScan} size={0.65} className="flex-shrink-0" />
+                      <Icon
+                        path={mdiQrcodeScan}
+                        size={0.65}
+                        className="flex-shrink-0"
+                      />
                       <span>Scan</span>
                     </button>
                   </div>

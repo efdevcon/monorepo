@@ -17,6 +17,7 @@ import { getNetworkConfig } from '@/config/networks';
 import { HEIGHT_HEADER_PWA_DIFF, PAYMENT_CONFIG } from '@/config/config';
 import { getMerchantName, getMerchantById } from '@/config/merchants';
 import { triggerHaptic } from 'tactus';
+import { WalletDisplay } from '@/components/WalletDisplay';
 import Icon from '@mdi/react';
 import { mdiBug } from '@mdi/js';
 import { openReportIssue } from '@/utils/reportIssue';
@@ -26,6 +27,7 @@ import {
   useSignMessage,
 } from '@getpara/react-sdk';
 import { useAlchemyBalance } from '@/hooks/useAlchemyBalance';
+import { useGasEstimation } from '@/hooks/useGasEstimation';
 import { useRouter } from 'next/navigation';
 
 type PaymentStep = 'form' | 'status';
@@ -192,6 +194,14 @@ export default function PaymentModal({
     getTokenBalance,
     getFormattedTokenBalance,
   } = useAlchemyBalance(isPara ? 8453 : selectedChainId);
+
+  // Gas estimation using Alchemy (only for EOA wallets)
+  const {
+    gasEstimation,
+    loading: gasLoading,
+    error: gasError,
+    estimateGas,
+  } = useGasEstimation();
 
   const productUrl = `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/products/688ba8db51fc6c100f32cd63`;
 
@@ -1316,7 +1326,13 @@ export default function PaymentModal({
       return;
     }
     onClose();
-  }, [txStatus, onClose, router, paymentDetails.orderStatus, handleCancelTransaction]);
+  }, [
+    txStatus,
+    onClose,
+    router,
+    paymentDetails.orderStatus,
+    handleCancelTransaction,
+  ]);
 
   // Debug: Track isPending state changes
   useEffect(() => {
@@ -1343,6 +1359,29 @@ export default function PaymentModal({
     getTokenBalance,
     paymentDetails.priceDetails?.final_amount,
     amount,
+  ]);
+
+  // Estimate gas when payment details change (only for EOA wallets)
+  useEffect(() => {
+    // Only estimate gas for EOA wallets (not Para)
+    if (isPara) return;
+
+    // Only estimate if we have valid payment details
+    if (!recipient || !amount || !selectedToken || !selectedChainId) return;
+
+    // Only estimate if recipient is valid
+    if (!isRecipientValid) return;
+
+    // Estimate gas
+    estimateGas(recipient, amount, selectedToken, selectedChainId);
+  }, [
+    isPara,
+    recipient,
+    amount,
+    selectedToken,
+    selectedChainId,
+    isRecipientValid,
+    estimateGas,
   ]);
 
   return (
@@ -1591,11 +1630,16 @@ export default function PaymentModal({
                                   />
                                 );
                               })()}
-                              <span className="text-white text-sm">
-                                {connectedAddress
-                                  ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
-                                  : 'Not connected'}
-                              </span>
+                              {connectedAddress ? (
+                                <WalletDisplay
+                                  address={connectedAddress}
+                                  className="text-white text-sm font-normal"
+                                />
+                              ) : (
+                                <span className="text-white text-sm">
+                                  Not connected
+                                </span>
+                              )}
                             </div>
                           </div>
 
@@ -1672,8 +1716,44 @@ export default function PaymentModal({
                         </div>
                       </div>
 
-                      {/* Amount to Pay */}
-                      <div className="border-t border-[#c7c7d0] pt-3">
+                      {/* Gas and Amount Container */}
+                      <div className="border-t border-[#c7c7d0] pt-3 space-y-2">
+                        {/* Gas Estimation (only for EOA wallets) */}
+                        {!isPara && (
+                          <div className="flex items-center justify-between text-base">
+                            <span className="text-[#353548] font-semibold">
+                              Gas{' '}
+                              <span className="text-xs text-gray-500 font-normal">
+                                (see final cost in your wallet)
+                              </span>
+                            </span>
+                            <span className="text-[#353548] text-right">
+                              {gasLoading ? (
+                                <span className="text-sm">Estimating...</span>
+                              ) : gasError ? (
+                                <span className="text-sm text-red-500">
+                                  Failed
+                                </span>
+                              ) : gasEstimation?.estimatedCostUsd ? (
+                                gasEstimation.estimatedCostUsd.startsWith(
+                                  '<'
+                                ) ? (
+                                  `~${gasEstimation.estimatedCostUsd} USD`
+                                ) : (
+                                  `~$${gasEstimation.estimatedCostUsd} USD`
+                                )
+                              ) : gasEstimation?.estimatedCostNative ? (
+                                `~${parseFloat(gasEstimation.estimatedCostNative).toFixed(6)} ${gasEstimation.nativeTokenSymbol}`
+                              ) : (
+                                <span className="text-sm text-gray-400">
+                                  --
+                                </span>
+                              )}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Amount to Pay */}
                         <div className="flex items-center justify-between">
                           <span className="text-[#353548] text-base font-semibold">
                             Amount to pay
