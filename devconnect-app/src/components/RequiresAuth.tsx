@@ -3,8 +3,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Link from 'next/link';
-import Image from 'next/image';
-import KeyIllustration from '@/images/key-illustration.png';
 
 export const RequiresAuthContent = ({
   message,
@@ -24,13 +22,11 @@ export const RequiresAuthContent = ({
       <div className="max-w-[560px] min-w-[320px] w-full mx-auto my-8">
         <div className="flex flex-col gap-4 items-center justify-center px-4 py-6">
           {/* Key illustration */}
-          <div className="relative h-[169px] w-[297px] shrink-0">
-            <Image
-              src={KeyIllustration}
+          <div className="relative h-[100px] w-[100px] content-center items-center justify-center flex">
+            <img
+              src={'/images/key-illustration.svg'}
               alt="Sign in required"
-              fill
-              className="object-cover object-center"
-              priority
+              className="w-full h-full object-contain"
             />
           </div>
 

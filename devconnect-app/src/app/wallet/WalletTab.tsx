@@ -679,7 +679,7 @@ export default function WalletTab() {
   if (!para.isConnected && !eoa.isConnected) {
     return (
       <RequiresAuthContent
-        message="Connect your wallet to access your portfolio and manage your assets."
+        message="To access this page, sign in to your account."
         asModal={false}
       />
     );
