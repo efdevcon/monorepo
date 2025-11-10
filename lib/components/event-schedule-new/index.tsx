@@ -110,6 +110,8 @@ const computeEventPlacements = (
     const isSameLastDay = lastDay1 === lastDay2;
 
     if (isSameLastDay && isSameDay) {
+      if (a.id.toString() === "272" && b.id.toString() !== "272") return -1;
+      if (a.id.toString() !== "272" && b.id.toString() === "272") return 1;
       if (a.isCoreEvent && !b.isCoreEvent) return -1;
       if (!a.isCoreEvent && b.isCoreEvent) return 1;
 

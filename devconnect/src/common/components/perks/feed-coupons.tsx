@@ -11,7 +11,6 @@ interface CouponFeedProps {
   3) Update collection name in coupon object
   4) Update zk_proof_id to match the proof ID used in perks system
 */
-
 const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsUploaded }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)

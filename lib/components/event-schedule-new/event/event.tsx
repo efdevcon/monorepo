@@ -281,6 +281,7 @@ function Event({
 
   const isCoworking = event.id.toString() === "23";
   const isETHDay = event.id.toString() === "84";
+  const isClosingHours = event.id.toString() === "272";
   const isCoreEvent = event.isCoreEvent;
   const isCommunityHubs = event.id.toString() === "149";
 
@@ -295,7 +296,7 @@ function Event({
       return "bg-[rgba(246,180,14,0.05)] hover:bg-[rgba(246,180,14,0.1)] !border-[rgba(246,180,14,1)] border-l-[4px]";
     }
 
-    if (isCoworking || isETHDay) {
+    if (isCoworking || isETHDay || isClosingHours) {
       return "bg-[rgba(255,133,166,0.05)] hover:bg-[rgba(255,133,166,0.1)] !border-[rgba(255,133,166,1)] border-l-[4px]";
     } else if (isETHDay) {
       // Not used atm looks cool though
