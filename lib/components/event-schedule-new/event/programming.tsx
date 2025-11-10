@@ -96,7 +96,7 @@ export const getProgramming = (event: Event) => {
         speakers: "Declan Fox",
       },
       {
-        time: "16:15",
+        time: "16:25",
         title: "L2 Panel",
         speakers:
           "Josh Rudolf, Jesse Pollak, Steven Goldfeder, Mark Tyneway, Oren Katz, Alex Gluchovski",
