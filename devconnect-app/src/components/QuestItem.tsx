@@ -25,7 +25,7 @@ const QuestItem = ({
   isExpanded = false,
   onQuestSelect,
 }: QuestItemProps) => {
-  const { address } = useWallet();
+  const { para, eoa, address } = useWallet();
   const { tickets } = useTickets();
   const [isExecutingAction, setIsExecutingAction] = useState(false);
   const questRef = useRef<HTMLDivElement>(null);
@@ -89,8 +89,10 @@ const QuestItem = ({
         `Executing quest action: ${quest.conditionType} with values: ${quest.conditionValues}`
       );
 
-      // Get user addresses for POAP verification
-      const userAddresses = address ? [address] : [];
+      // Get all connected wallet addresses (both Para and EOA)
+      const userAddresses = [para.address, eoa.address].filter(
+        (addr): addr is string => !!addr
+      );
 
       const result = await executeQuestAction(
         quest.id.toString(),

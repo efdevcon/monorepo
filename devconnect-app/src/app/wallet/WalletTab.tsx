@@ -133,8 +133,35 @@ export default function WalletTab() {
     return result;
   }, [address, portfolioCache, portfolioRefreshTrigger]);
 
-  // Get peanut claiming state from portfolio
-  const peanutClaimingState = portfolio?.peanutClaimingState;
+  // Get peanut claiming state from both Para and EOA addresses
+  // Check if either wallet has claimed the peanut perk
+  const peanutClaimingState = useMemo(() => {
+    const paraAddressKey = para.address?.toLowerCase();
+    const eoaAddressKey = eoa.address?.toLowerCase();
+
+    // Check Para wallet first
+    const paraPortfolio = paraAddressKey
+      ? portfolioCache[paraAddressKey]
+      : null;
+    if (paraPortfolio?.peanutClaimingState?.peanut_claimed === true) {
+      return paraPortfolio.peanutClaimingState;
+    }
+
+    // Check EOA wallet second
+    const eoaPortfolio = eoaAddressKey ? portfolioCache[eoaAddressKey] : null;
+    if (eoaPortfolio?.peanutClaimingState?.peanut_claimed === true) {
+      return eoaPortfolio.peanutClaimingState;
+    }
+
+    // If neither claimed, return the current address's state (might have db_claimed but not peanut_claimed)
+    return portfolio?.peanutClaimingState || null;
+  }, [
+    para.address,
+    eoa.address,
+    portfolioCache,
+    portfolio,
+    portfolioRefreshTrigger,
+  ]);
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
 
