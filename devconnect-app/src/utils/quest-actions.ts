@@ -212,7 +212,7 @@ export async function isTicketAssociated(
               }
             },
           },
-          duration: 5000,
+          duration: 10000,
         });
         return false;
       }
@@ -260,7 +260,7 @@ export async function isTicketAssociated(
             }
           },
         },
-        duration: 5000,
+        duration: 10000,
       });
       return false;
     }
@@ -296,7 +296,7 @@ export async function isProfileSetup(questId: string, conditionValues: string): 
  * @returns Promise<boolean> - True if link has been visited
  */
 export async function isLinkVisited(questId: string, conditionValues: string): Promise<boolean> {
-  toast.success('🎉 Link Visited!', {
+  toast.success('🎉 Quest Completed!', {
     description: 'Congratulations! You have completed this quest!',
     duration: 6000,
   });
@@ -319,18 +319,101 @@ export async function isMiniQuizCompleted(questId: string, conditionValues: stri
 }
 
 /**
- * Verify if the user has the required balance
+ * Verify if the user has the required balance (checks if Peanut perk has been claimed)
  * @param questId - The ID of the quest
- * @param conditionValues - Balance verification requirements
- * @returns Promise<boolean> - True if balance requirement is met
+ * @param conditionValues - Balance verification requirements (not used currently)
+ * @param userAddresses - Array of connected wallet addresses to check
+ * @returns Promise<boolean> - True if Peanut perk has been claimed in any connected address
  */
-export async function verifyBalance(questId: string, conditionValues: string): Promise<boolean> {
-  // TODO: Implement balance verification logic
-  toast.info('🔧 Coming Soon', {
-    description: `Verifying balance with values: ${conditionValues}`,
-    duration: 3000,
-  });
-  return true;
+export async function verifyBalance(
+  questId: string,
+  conditionValues: string,
+  userAddresses?: string[]
+): Promise<boolean> {
+  try {
+    // Check if we're in a browser environment
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      console.error('localStorage is not available');
+      return false;
+    }
+
+    // Check if addresses are provided
+    if (!userAddresses || userAddresses.length === 0) {
+      toast.warning('🥜 Connect Wallet', {
+        description: 'Please connect a wallet to verify this quest.',
+        duration: 5000,
+      });
+      return false;
+    }
+
+    console.log('🥜 [verifyBalance] User addresses:', userAddresses);
+
+    // Get portfolio data from localStorage cache (key: 'portfolio')
+    const portfolioCacheJson = localStorage.getItem('portfolio');
+
+    if (!portfolioCacheJson) {
+      toast.warning('🥜 Claim Your Perk', {
+        description: 'Claim your $2 USDC in the Wallet tab to complete this quest.',
+        action: {
+          label: 'Go to Wallet',
+          onClick: () => {
+            window.location.href = '/wallet';
+          },
+        },
+        duration: 10000,
+      });
+      return false;
+    }
+
+    try {
+      const portfolioCache = JSON.parse(portfolioCacheJson);
+
+      // Check all connected addresses for peanut claiming state
+      for (const address of userAddresses) {
+        const addressKey = address.toLowerCase();
+        const portfolio = portfolioCache[addressKey];
+
+        if (portfolio?.peanutClaimingState) {
+          console.log('🥜 [verifyBalance] Checking peanut claiming state for:', {
+            address: address.slice(0, 10) + '...',
+            peanut_claimed: portfolio.peanutClaimingState.peanut_claimed,
+            db_claimed: portfolio.peanutClaimingState.db_claimed,
+          });
+
+          // If any connected address has claimed the peanut, return true
+          if (portfolio.peanutClaimingState.peanut_claimed === true) {
+            toast.success('✅ Peanut Claimed!', {
+              description: 'You have successfully claimed your $2 USDC perk.',
+              duration: 5000,
+            });
+            return true;
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Error parsing portfolio cache:', e);
+    }
+
+    // If not claimed in any connected address, show message to claim
+    toast.warning('🥜 Claim Your Perk', {
+      description: 'Claim your $2 USDC in the Wallet tab to complete this quest.',
+      action: {
+        label: 'Go to Wallet',
+        onClick: () => {
+          window.location.href = '/wallet';
+        },
+      },
+      duration: 10000,
+    });
+    return false;
+  } catch (error) {
+    console.error(`Error verifying balance for quest ${questId}:`, error);
+    toast.error('⚠️ Verification Error', {
+      description: 'Unable to verify perk claim status at this time.',
+      duration: 5000,
+    });
+    return false;
+  }
 }
 
 /**
@@ -338,7 +421,7 @@ export async function verifyBalance(questId: string, conditionValues: string): P
  * @param questId - The ID of the quest
  * @param conditionType - The type of condition to check
  * @param conditionValues - Values for the condition check
- * @param userAddresses - Optional array of user addresses for POAP verification
+ * @param userAddresses - Optional array of user addresses for POAP verification and balance checks
  * @param tickets - Optional array of ticket orders from useTickets hook
  * @returns Promise<boolean> - True if the condition is met
  */
@@ -370,7 +453,7 @@ export async function executeQuestAction(
     case 'isMiniQuizCompleted':
       return isMiniQuizCompleted(questId, conditionValues);
     case 'verifyBalance':
-      return verifyBalance(questId, conditionValues);
+      return verifyBalance(questId, conditionValues, userAddresses);
     case '':
       // Default case for empty condition type
       toast.info('🔧 No Action Required', {
