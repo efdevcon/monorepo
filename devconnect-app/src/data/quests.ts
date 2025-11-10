@@ -240,7 +240,7 @@ export const questsData: Quest[] = [
     "instructions": "Claim 2$ of USDC thanks to Peanut",
     "action": "verify-balance",
     "button": "Claim Starter Fund",
-    "conditionType": "isLinkVisited",
+    "conditionType": "verifyBalance",
     "conditionValues": "/wallet#perk",
     "supporterId": "",
     "poapImageLink": "",
