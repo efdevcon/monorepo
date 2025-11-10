@@ -4,7 +4,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580279504c4b4182f7f7b": {
     "name": "0xbow / Privacy Pools",
     "layerName": "0xbow-privacy-pools",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-09-311Z-0xbow.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-05-32-367Z-Oxbow.png",
     "description": "",
     "websiteLink": "https://0xbow.io/",
@@ -28,7 +28,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580fc975fe3023c8f17f0": {
     "name": "Aave",
     "layerName": "aave",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-13-992Z-Aave.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-05-47-845Z-aave-logo.png",
     "description": "",
     "websiteLink": "https://app.aave.com/",
@@ -40,7 +40,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580be910bd11367d15f83": {
     "name": "Ambire",
     "layerName": "ambire",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-22T09-06-24-842Z-logo-ver-color-black.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-16-931Z-Ambire.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-05-52-803Z-Ambire-Wallet.png",
     "description": "Ambire is your Web3 wallet that just works - a browser extension built for the new internet.",
     "websiteLink": "https://www.ambire.com/",
@@ -64,7 +64,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415806097ded8fddaae1f33": {
     "name": "Axie / Ronin",
     "layerName": "axie-ronin",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-04T15-51-39-305Z-RoninLogo.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-18-789Z-Ronin.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-05-59-071Z-Ronin_Mark_Text_Blue.png",
     "description": "-",
     "websiteLink": "https://www.roninchain.com",
@@ -88,7 +88,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415804c8099e0415b0c4169": {
     "name": "Barter",
     "layerName": "barter",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T16-19-24-165Z-icon-logo-2.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-22-459Z-Barter.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-09-097Z-Barter-horizontal-icon.png",
     "description": "Barter is one of the largest routers on Ethereum, delivering best price across all intent order flow channels, and Superposition is our liquidity layer that turns any wallet into a market maker, unifying liquidity for consistently better swaps.",
     "websiteLink": "https://barterswap.xyz/",
@@ -100,7 +100,7 @@ export const supportersData: Record<string, Supporter> = {
   "241638cdc415809d9909ea3bbcb6d327": {
     "name": "Base",
     "layerName": "base",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-32-746Z-Base.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-11-677Z-Base.png",
     "description": "",
     "websiteLink": "https://www.base.org/",
@@ -124,7 +124,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415809c837afb6d51567780": {
     "name": "Belo",
     "layerName": "belo",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-38-442Z-Belo.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-23-445Z-belo-full-color.png",
     "description": "",
     "websiteLink": "https://belo.app/en/",
@@ -136,7 +136,7 @@ export const supportersData: Record<string, Supporter> = {
   "280638cdc41580c9869fc31f2895acfe": {
     "name": "Boulder",
     "layerName": "boulder",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T22-00-18-013Z-icon_BT.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-45-191Z-Boulder.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-28-632Z-Bouldertech.png",
     "description": "Tokenizing public and private markets across Latin America. Bringing Latam on-chain.",
     "websiteLink": "https://www.bouldertech.fi/",
@@ -148,7 +148,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415800ea54ddbc8fa7ac1f5": {
     "name": "Burner",
     "layerName": "burner",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-30T21-03-12-220Z-burner-square.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-52-715Z-Burner.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-31-852Z-Burner.png",
     "description": "Burner is the easiest way to get started on Ethereum. Simply tap Burner to your phone and load funds, swap tokens and save NFTs.",
     "websiteLink": "https://www.burner.pro/eth",
@@ -160,7 +160,7 @@ export const supportersData: Record<string, Supporter> = {
   "24e638cdc41580c1b782c738fb082f8d": {
     "name": "Celo",
     "layerName": "celo",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-04T13-48-09-653Z-Celo_Wordmark_CMYK_Onyx%20(1).png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-55-481Z-Celo.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-38-384Z-Celo-Wordmark.png",
     "description": "Celo is the Ethereum Layer-2 built for the real world and designed for fast, low-cost transactions worldwide. ",
     "websiteLink": "https://celo.org/",
@@ -172,7 +172,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415801e9439fd63fd5c6ea7": {
     "name": "Chrom.AR",
     "layerName": "chromar",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-12T23-07-19-270Z-logo_split.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-57-826Z-SparkA1.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-41-223Z-Spark-A1.png",
     "description": "SPARK-A1 is a Web3 Copilot",
     "websiteLink": "https://chrom.ar/spark-a1",
@@ -196,7 +196,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580efafe9c31c7ab8c7ff": {
     "name": "Dappnode",
     "layerName": "dappnode",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-23T12-43-31-523Z-Dappnode-logo.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-00-693Z-DappNode.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-47-032Z-Dappnode.png",
     "description": "Dappnode is the easiest way to run Ethereum validators, local AI models that respect your privacy and any type of self-sovereign infrastructure. ",
     "websiteLink": "https://dappnode.com/",
@@ -256,7 +256,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158040af1dc672ed5a7588": {
     "name": "ENS",
     "layerName": "ens",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T20-39-17-058Z-ens-logo-Blue%20(1).svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-04-057Z-ENS.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-07-07-784Z-ens-logo-Blue.png",
     "description": "ENS maps names like 'alice.eth' to Ethereum addresses, other cryptocurrency addresses, content, DNS, and more.",
     "websiteLink": "https://app.ens.domains/",
@@ -268,7 +268,7 @@ export const supportersData: Record<string, Supporter> = {
   "268638cdc41580a1b02dc7a52c626d67": {
     "name": "Espresso",
     "layerName": "espresso",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-04T10-25-34-554Z-__Espresso_vertical%20lockup_caramel.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-07-264Z-Espresso.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-07-16-063Z-Espresso.png",
     "description": "Espresso is a base layer designed to give rollups fast, low-cost infrastructure and composability across chains. Espresso aims to support billions of users and trillions in assets on thousands of chains that all work together as one.",
     "websiteLink": "https://www.espressosys.com/",
@@ -292,7 +292,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158033ad04f20813ae1431": {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-10-673Z-Ethluminal.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-07-27-550Z-Ethluminal-Gallery.png",
     "description": "",
     "websiteLink": "",
@@ -352,7 +352,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580cf8b99ccba5531dcf3": {
     "name": "Franklin",
     "layerName": "franklin",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-22T02-11-02-010Z-Favicon%20Blck%20Green.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-13-687Z-Franklin.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-07-47-675Z-Franklin.png",
     "description": "Learn more about getting paid and our host country by visiting our booth and answering a trivia question.",
     "websiteLink": "https://www.hellofranklin.co/",
@@ -364,7 +364,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158011ba2ecb11cdaaf8ee": {
     "name": "Freedom Factory (EthOS)",
     "layerName": "freedom-factory-ethos",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-17-043Z-FreedomFactory.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-07-57-316Z-FreedomFactory.png",
     "description": "",
     "websiteLink": "https://www.freedomfactory.io/",
@@ -385,10 +385,22 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "8",
     "locationId": "4"
   },
+  "2a7638cdc415802a9f1bd71692fde47f": {
+    "name": "Gensys",
+    "layerName": "gensys",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-20-000Z-Gensyn.png",
+    "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-43-06-303Z-Gensyn-Logo-Inline-Brown_1.png",
+    "description": "",
+    "websiteLink": "https://www.gensyn.ai/",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null
+  },
   "25d638cdc41580768dbfc6b48f30d71a": {
     "name": "Gitcoin",
     "layerName": "gitcoin",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-23-967Z-Gitcoin.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-04-532Z-Gitcoin.png",
     "description": "",
     "websiteLink": "https://www.gitcoin.co/",
@@ -400,7 +412,7 @@ export const supportersData: Record<string, Supporter> = {
   "276638cdc41580e2bf57c9906e575621": {
     "name": "Gnosis",
     "layerName": "gnosis",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-31T12-36-11-481Z-Gnosis%20Logo%202025.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-26-825Z-Gnosis.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-12-150Z-2025-10-31T12-36-11-481Z-Gnosis_Logo_2025.svg",
     "description": "Gnosis has everything you need to build the future of finance. Plug-and-play card infrastructure, a global stablecoin network, comprehensive on and off ramps, a growing ecosystem of DeFi and FinTech products, and access to a trusted EVM sidechain that has had zero downtime since 2018.",
     "websiteLink": "https://www.gnosis.io/",
@@ -412,7 +424,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415809c97ffec49ceeb7573": {
     "name": "Hats Protocol",
     "layerName": "hats-protocol",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-31T04-02-56-218Z-HATS%20HAT%20VECTOR%209-19-24.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-30-461Z-HATS.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-18-765Z-Hats.png",
     "description": "Making DAOs Work",
     "websiteLink": "https://www.hatsprotocol.xyz/",
@@ -424,7 +436,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158001aa64dc7af6b20f22": {
     "name": "Holonym",
     "layerName": "holonym",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-13T10-52-43-393Z-Brand=human.tech,%20Type=Default.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-38-450Z-Human.Tech.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-21-234Z-human.tech_logo_black_1.png",
     "description": "Holonym’s mission is the foundation of natural digital rights for privacy, security, and data ownership. human.tech is a project by Holonym to proliferate humanistic technology through applied cryptography.",
     "websiteLink": "https://human.tech/",
@@ -448,7 +460,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580e69a97f635ca4a9099": {
     "name": "Ledger",
     "layerName": "ledger",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T14-26-57-452Z-Ledger%20POAP%20-%20Devconnect%20Supporters%20Quest.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-42-201Z-Ledger.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-26-696Z-LEDGER-WORDMARK-BLACK-RGB_1.png",
     "description": "Come and interact with the Ledger ecosystem to earn the quest!",
     "websiteLink": "https://www.ledger.com/",
@@ -460,7 +472,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580e8b906c4188f51042e": {
     "name": "Lemon",
     "layerName": "lemon",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-30T22-09-36-862Z-Rd3Vepv2BCGVA2ynwKixOHHA0%20(1).png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-44-490Z-Lemon.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-35-541Z-lemon-logo.png",
     "description": "The only fintech you need. Exchange local currency for Bitcoin, USDT, Ethereum, and other cryptocurrencies instantly. Invest in DeFi and get your international VISA Lemon Card with cashback in Bitcoin.",
     "websiteLink": "https://lemon.me/",
@@ -472,7 +484,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415808faaebea619bb6a1b7": {
     "name": "Mimic",
     "layerName": "mimic",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T12-42-30-228Z-Mimic%20Main%20Logo%20-%20Dark.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-50-986Z-Mimic.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-38-875Z-mimic.png",
     "description": "Mimic is the abstraction and automation engine for onchain execution. A protocol that lets developers create programmable onchain tasks using TypeScript, with any logic and conditions, and automate their execution securely across chains.",
     "websiteLink": "https://www.mimic.fi/",
@@ -496,7 +508,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415803cba59c384174881d9": {
     "name": "Nethermind",
     "layerName": "nethermind",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T10-21-46-663Z-15224232-18b7-44e9-bd33-523f30821d27.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-53-629Z-Nethermind.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-49-715Z-Nethermind_Dark_Horizontal_2.png",
     "description": "Leading blockchain engineers building the infrastructure, security, and identity layers of the decentralized web.",
     "websiteLink": "https://www.nethermind.io/",
@@ -508,7 +520,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415801d84b8ebe461e4ac20": {
     "name": "Noice",
     "layerName": "noice",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-06T17-46-50-097Z-image%20(15).png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-55-613Z-Noice.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-52-758Z-Noice.png",
     "description": "noice is building an ICM platform on base. we help contrarian builders form on-chain capital by launching through tokens that represent their startup or product.\n\n",
     "websiteLink": "https://noice.so/",
@@ -544,7 +556,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580fc88aff47f153f0674": {
     "name": "Obol",
     "layerName": "obol",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-23T04-57-38-319Z-Vertical_inverted.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-59-009Z-Obol.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-01-754Z-Obol-Logo.png",
     "description": "Obol powers and secures the multi-trillion-dollar Ethereum economy.\nOver $3B in stake already runs on Obol Distributed Validators (DVs) — a strict improvement over legacy validators. \nDVs deliver the most resilient, high-performance infrastructure on Ethereum through multi-operator clusters with distributed key generation, threshold signing, and built-in client diversity. \nObol DVs are the end game of Ethereum staking.\nBeyond DVs, Obol is building the Obol Stack — a modular, plug-and-play framework for deploying and managing Ethereum nodes, sequencers, provers, AI agents, and other decentralized infrastructure.\nFrom L1s to L2s and beyond, Obol is building the backbone of Ethereum.“\n",
     "websiteLink": "https://obol.org",
@@ -604,7 +616,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc4158061b35df76bff79f9d0": {
     "name": "Peanut",
     "layerName": "peanut",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-23T16-09-58-422Z-Group_92.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-03-470Z-Peanut.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-13-621Z-Peanut-Full-Logo.png",
     "description": "Peanut is the easiest way to send digital dollars to anyone anywhere.",
     "websiteLink": "https://peanut.me",
@@ -616,7 +628,7 @@ export const supportersData: Record<string, Supporter> = {
   "271638cdc41580499f92f0eb9a5bc8b1": {
     "name": "Pistachio",
     "layerName": "pistachio",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-13T22-10-36-635Z-1.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-06-173Z-pistachio.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-21-734Z-PISTACHIO.png",
     "description": "Pistachio Fi, the self-custodial crypto neobank on Ethereum. Instantly buy, earn, send and spend onchain.",
     "websiteLink": "https://www.pistachio.fi/download",
@@ -628,7 +640,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158082b3eae60aefe1a6f2": {
     "name": "Pond",
     "layerName": "pond",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-31T18-46-35-823Z-Pond-logo.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-08-904Z-Pond.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-24-536Z-pond_logo_black_1.png",
     "description": "Pond is where proven startups launch. ",
     "websiteLink": "https://cryptopond.xyz/",
@@ -664,7 +676,7 @@ export const supportersData: Record<string, Supporter> = {
   "256638cdc4158003aadde80270c59050": {
     "name": "R3al Blocks",
     "layerName": "r3al-blocks",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-21T19-01-25-178Z-RB-brand-Web-exportar_RB-En%20Bandera.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-11-061Z-r3al_blocks.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-30-394Z-R3al_Blocks.png",
     "description": "Tokenizing real-world assets to open financial access in LATAM through simple, secure, onchain solutions.",
     "websiteLink": "https://r3al.io/en",
@@ -676,7 +688,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415806c9d25e537edf97b24": {
     "name": "Radicle / DRIP",
     "layerName": "radicle-drip",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-13-856Z-Drips.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-33-498Z-Radicle.png",
     "description": "",
     "websiteLink": "https://www.drips.network/",
@@ -688,7 +700,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580ed81c5c223efaf83b7": {
     "name": "Railgun",
     "layerName": "railgun",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-23T12-11-35-012Z-POAP.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-16-558Z-Railgun.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-41-262Z-railgun-logo-white_1.png",
     "description": "RAILGUN is a leading smart contract based privacy solution for Ethereum that enables private access to public applications. ",
     "websiteLink": "https://www.railgun.org/",
@@ -712,7 +724,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580c79339dfd968171fbc": {
     "name": "Replicats",
     "layerName": "replicats",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-19-067Z-Replicats.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-52-284Z-Replicats.png",
     "description": "",
     "websiteLink": "https://www.replicats.ai/",
@@ -760,7 +772,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580488b40d8633f8c324d": {
     "name": "Santiment",
     "layerName": "santiment",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-27T17-52-20-595Z-SanbaseIcon_Full.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-21-949Z-Santiment.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-09-384Z-santiment_svg_1.png",
     "description": "A crypto investor's dream. Santiment helps you make smarter decisions by providing a suite of amazing tools for analyzing, tracking, and comparing social, on-chain, and financial data for all your favorite assets. ",
     "websiteLink": "https://santiment.net/",
@@ -772,7 +784,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158068af74cda68f195c2f": {
     "name": "Seer",
     "layerName": "seer",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T08-14-00-818Z-Seer-logo%20-%20purple.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-28-311Z-Seer.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-15-113Z-Seer_logo_1.png",
     "description": "",
     "websiteLink": "https://seer.pm/",
@@ -784,10 +796,10 @@ export const supportersData: Record<string, Supporter> = {
   "28d638cdc415803b9647ea84dfed6038": {
     "name": "Space Ai",
     "layerName": "space-ai",
-    "logo": "",
-    "largeLogo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-31-654Z-SpaceAI.png",
+    "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-43-14-468Z-spaceai-logo.png",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://spaceai.com/",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "1",
@@ -796,7 +808,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc4158045a5f4e7bc71ded71c": {
     "name": "Starknet",
     "layerName": "starknet",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-29T08-33-55-232Z-dark.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-34-252Z-Starknet.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-20-565Z-Starknet-Logo.png",
     "description": "Starknet is a Validity-Rollup (aka ZK-Rollup) Layer 2 network that operates on top of Ethereum, enabling dApps to massively scale without compromising on security.",
     "websiteLink": "https://www.starknet.io/",
@@ -820,7 +832,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580c9a780d43f478523c9": {
     "name": "Tally",
     "layerName": "tally",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-37-094Z-Tally.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-28-914Z-Tally.png",
     "description": "",
     "websiteLink": "https://www.tally.xyz/",
@@ -844,10 +856,10 @@ export const supportersData: Record<string, Supporter> = {
   "28e638cdc41580189eebe05dcfec511c": {
     "name": "UNICEF",
     "layerName": "unicef",
-    "logo": "",
-    "largeLogo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-39-414Z-UNICEF.png",
+    "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-43-17-304Z-unicef-logo-full.png",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://www.unicef.org/",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "3",
@@ -856,10 +868,10 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580b89861dfe7cb275fa4": {
     "name": "Uphold",
     "layerName": "uphold",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-41-647Z-Uphold.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-33-814Z-Uphold-Branded-Main.png",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://uphold.com/en-us",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "3",
@@ -868,7 +880,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580318feed20db5500fa3": {
     "name": "Virtuals",
     "layerName": "virtuals",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-44-725Z-Virtuals.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-36-367Z-virtuals-protocol_1.png",
     "description": "",
     "websiteLink": "https://app.virtuals.io/",
@@ -880,10 +892,10 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580259dd2e55161bab92a": {
     "name": "WalletConnect",
     "layerName": "walletconnect",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-47-827Z-Walletconnect.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-42-470Z-Walletconnect_Lockup_1.png",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://walletconnect.com/",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "5",
@@ -892,7 +904,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580aaade0d21fa14a6dd6": {
     "name": "World",
     "layerName": "world",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-52-834Z-World.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-48-498Z-World-Coin.png",
     "description": "",
     "websiteLink": "https://world.org/",
@@ -916,7 +928,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415803cbc84cffd81127c5d": {
     "name": "ZKP2P",
     "layerName": "zkp2p",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T10-24-38-472Z-zkp2p%20logo.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-55-860Z-ZKP2P.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-54-797Z-ZKP2P-Logo.png",
     "description": "ZKP2P is a peer-to-peer, non-custodial protocol that enables seamless crypto <> fiat on/off ramping powered by zero-knowledge proofs. ",
     "websiteLink": "https://www.zkp2p.xyz/",
@@ -940,7 +952,7 @@ export const supportersData: Record<string, Supporter> = {
   "279638cdc41580a09c58f82b8156d26a": {
     "name": "Zora",
     "layerName": "zora",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-58-101Z-Zora.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-11-05-304Z-ZORA-Logo.png",
     "description": "",
     "websiteLink": "ourzora.com",
@@ -952,7 +964,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580b0bd59e6e5713b80f0": {
     "name": "Zyfai",
     "layerName": "zyfai",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T13-53-04-808Z-Zyfai%20Icon%20Primary.svg",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-43-01-029Z-Zyfai.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-11-08-478Z-zyfai_logo_1.png",
     "description": "ZyFAI is an Agent platform designed to optimize and enhance yield in DeFi. Secured by personalized smart accounts and session keys, it offers a next-generation alternative to traditional vaults in the on-chain capital allocation ecosystem.",
     "websiteLink": "https://www.zyf.ai/",
