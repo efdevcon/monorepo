@@ -373,7 +373,7 @@ export default async function RootLayout({
             closeButton: true,
             style: {
               zIndex: 9999999999999999999,
-              bottom: `${HEIGHT_MENU}px`,
+              bottom: `calc(${HEIGHT_MENU}px + max(0px, env(safe-area-inset-bottom)))`,
             },
             classNames: {
               closeButton: 'sonner-close-button-right',
