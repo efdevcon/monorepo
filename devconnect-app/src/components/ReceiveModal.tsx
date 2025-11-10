@@ -77,7 +77,7 @@ export default function ReceiveModal({
         </div>
 
         {/* Modal Content */}
-        <div className="px-4 pb-8 pt-4 flex flex-col items-center gap-8 w-full overflow-y-auto">
+        <div className="px-4 pb-8 pt-4 flex flex-col items-center gap-8 w-full overflow-y-auto bg-white">
           {/* QR Code */}
           {address && (
             <div className="flex justify-center w-full">
@@ -86,6 +86,8 @@ export default function ReceiveModal({
                 size={220}
                 level="H"
                 includeMargin={false}
+                fgColor="#000000"
+                bgColor="#FFFFFF"
               />
             </div>
           )}
