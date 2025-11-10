@@ -132,4 +132,10 @@ export const eventShops: EventShop[] = [
     coupon_collection: "obfuscation",
     zupass_disabled: zupassGatingFallbackOn,
   },
+  {
+    supabase_id: "168",
+    zupass_proof_id: "Devconnect ARG",
+    gate_link_only: true,
+    zupass_disabled: zupassGatingFallbackOn,
+  },
 ];
