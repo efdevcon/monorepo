@@ -54,32 +54,6 @@ export const questsData: Quest[] = [
     "groupId": 1
   },
   {
-    "id": 10,
-    "name": "Pay with crypto at the venue",
-    "order": 3,
-    "instructions": "Have at least tried crypto payement at the venue once.",
-    "action": "verify-payment",
-    "button": "Verify Payment",
-    "conditionType": "numberOfCryptoPayment",
-    "conditionValues": "1",
-    "supporterId": "",
-    "poapImageLink": "",
-    "groupId": 2
-  },
-  {
-    "id": 12,
-    "name": "TODO",
-    "order": 1,
-    "instructions": "…",
-    "action": "",
-    "button": "",
-    "conditionType": "",
-    "conditionValues": "",
-    "supporterId": "",
-    "poapImageLink": "",
-    "groupId": 3
-  },
-  {
     "id": 13,
     "name": "Learn how to fund your wallet",
     "order": 5,
@@ -133,19 +107,6 @@ export const questsData: Quest[] = [
     "poapImageLink": "",
     "groupId": 4,
     "districtId": "3"
-  },
-  {
-    "id": 27,
-    "name": "Complete an App Showcase quest",
-    "order": 4,
-    "instructions": "",
-    "action": "",
-    "button": "",
-    "conditionType": "",
-    "conditionValues": "",
-    "supporterId": "",
-    "poapImageLink": "",
-    "groupId": 2
   },
   {
     "id": 28,
@@ -276,11 +237,11 @@ export const questsData: Quest[] = [
     "id": 40,
     "name": "Claim your starter fund",
     "order": 6,
-    "instructions": "Claim 3$ of USDC thanks to Peanut",
+    "instructions": "Claim 2$ of USDC thanks to Peanut",
     "action": "verify-balance",
     "button": "Claim Starter Fund",
     "conditionType": "isLinkVisited",
-    "conditionValues": "https://peanut.me/claim",
+    "conditionValues": "/wallet#perk",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -554,7 +515,7 @@ export const questsData: Quest[] = [
     "id": 60,
     "name": "Fileverse",
     "order": 0,
-    "instructions": "Get 5 GB of encrypted storage space, inside a floppy disc! Write & collaborate with anyone, all privately & owned by you. Claim here or at our booth.",
+    "instructions": "Get 5 GB of encrypted storage space, inside a floppy disc! Write & collaborate with anyone, all privately & owned by you. Claim here or at our booth: https://ddocs.new/devconnect25",
     "action": "claim-poap",
     "button": "",
     "conditionType": "verifyPoap",
