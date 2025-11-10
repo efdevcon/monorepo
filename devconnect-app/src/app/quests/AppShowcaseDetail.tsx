@@ -13,6 +13,7 @@ import PoapModal from '@/components/PoapModal';
 import { HEIGHT_HEADER } from '@/config/config';
 import confetti from 'canvas-confetti';
 import { useTickets } from '@/app/store.hooks';
+import { triggerHaptic } from 'tactus';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: QuestAction) => {
@@ -71,9 +72,7 @@ export default function AppShowcaseDetail({
   const [selectedSupporter, setSelectedSupporter] = useState<string | null>(
     null
   );
-  const [verifyingQuestId, setVerifyingQuestId] = useState<string | null>(
-    null
-  );
+  const [verifyingQuestId, setVerifyingQuestId] = useState<string | null>(null);
   const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
     useState<boolean>(false);
   const hasInitialized = useRef(false);
@@ -421,7 +420,10 @@ export default function AppShowcaseDetail({
   };
 
   // Trigger full page confetti
-  const triggerDistrictConfetti = (districtId: string | undefined, questId: string) => {
+  const triggerDistrictConfetti = (
+    districtId: string | undefined,
+    questId: string
+  ) => {
     const duration = 3000; // 3 seconds
     const animationEnd = Date.now() + duration;
     const defaults = {
@@ -466,6 +468,7 @@ export default function AppShowcaseDetail({
   };
 
   const handleQuestAction = async (quest: Quest) => {
+    triggerHaptic(200);
     const currentStatus = getQuestStatus(quest);
     if (currentStatus === 'completed') return;
 
