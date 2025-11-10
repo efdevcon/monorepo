@@ -15,6 +15,7 @@ import cn from 'classnames';
 import { RefreshCw } from 'lucide-react';
 import Icon from '@mdi/react';
 import { mdiQrcode } from '@mdi/js';
+import { useNow } from 'lib/hooks/useNow';
 import {
   Dialog as DialogRoot,
   DialogContent,
@@ -330,37 +331,30 @@ const EventTicketCard = ({
     }
   }
 
+  console.log(order, 'ORDER SIDE EVENT');
+
   return (
     <>
-      <div className="flex items-center justify-between p-2 bg-white border border-gray-200 rounded-sm hover:shadow-md transition-shadow gap-1">
-        <div className="flex flex-col gap-1 flex-1 min-w-0">
+      <div className="flex items-center justify-between p-2 bg-white border border-neutral-200 gap-2">
+        <div className="flex flex-col gap-0 flex-1 min-w-0 select-none">
           <div className="text-xs font-medium text-gray-900">{timeRange}</div>
-          <div className="text-xs font-semibold text-gray-900 break-words leading-tight">
+          <div className="text-sm font-medium text-gray-900 break-words leading-tight mt-2">
             {order.event?.name}
           </div>
-          <div className="text-xs text-gray-600 uppercase tracking-wide">
-            {order.event?.organizer || 'ETHEREUM FOUNDATION'}
+          <div className="text-sm mb-2 text-gray-900 break-words leading-tight mt-1">
+            {ticket.itemName}
+          </div>
+          <div className="text-xs uppercase tracking-wide">
+            {order.event?.organizer}
           </div>
         </div>
         <div
-          className="flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-80 transition-opacity border-2 border-blue-600 rounded p-2"
+          className="flex flex-col text-[#1B6FAE] items-center justify-center cursor-pointer hover:opacity-80 transition-opacity border border-[#1B6FAE] px-2 py-0.5"
           onClick={() => setIsQRCodeModalOpen(true)}
         >
-          <svg
-            className="w-4 h-4 text-blue-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
-            />
-          </svg>
-          <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
+          <Icon path={mdiQrcode} size={1} />
+
+          <div className="text-[11px] font-semibold text-[#1B6FAE] uppercase tracking-wide">
             QR CODE
           </div>
         </div>
@@ -483,14 +477,15 @@ const SideEventTickets = ({
   qrCodes: QRCodes;
 }) => {
   const [dates, setDates] = useState<Moment[]>([
-    moment('2025-11-17'),
-    moment('2025-11-18'),
-    moment('2025-11-19'),
-    moment('2025-11-20'),
-    moment('2025-11-21'),
-    moment('2025-11-22'),
+    moment.utc('2025-11-17'),
+    moment.utc('2025-11-18'),
+    moment.utc('2025-11-19'),
+    moment.utc('2025-11-20'),
+    moment.utc('2025-11-21'),
+    moment.utc('2025-11-22'),
   ]);
   const events = useGlobalStore((state) => state.events);
+  const now = useNow();
 
   const orderWithEvent =
     orders &&
@@ -503,8 +498,6 @@ const SideEventTickets = ({
         };
       })
       .filter((order) => order.event !== null);
-
-  console.log(orderWithEvent, 'ORDER WITH EVENT');
 
   // Create a map of dates to orders based on event timeblocks
   const dateToOrders = new Map<string, typeof orderWithEvent>();
@@ -540,6 +533,8 @@ const SideEventTickets = ({
     }
   });
 
+  console.log(orderWithEvent, 'ORDER WITH EVENT');
+
   const [selectedDates, setSelectedDates] = useState<Set<Moment>>(new Set());
 
   return (
@@ -561,6 +556,7 @@ const SideEventTickets = ({
         const ordersForDate = dateToOrders.get(dateKey) || [];
         const hasTicketsForDate = ordersForDate.length > 0;
         const isExpanded = selectedDates.has(date);
+        const isToday = now && date.isSame(now, 'day');
 
         return (
           <div key={dateKey} className="flex flex-col">
@@ -584,11 +580,17 @@ const SideEventTickets = ({
             >
               <div className="flex flex-col">
                 <div className="text-sm font-medium mb-1 select-none">
-                  {date.format('MMMM D, YYYY')}
+                  {isToday ? 'Today' : date.format('MMMM D, YYYY')}
                 </div>
                 <div className="text-xs text-gray-600 select-none">
                   {hasTicketsForDate
-                    ? `${ordersForDate.length} event${ordersForDate.length > 1 ? 's' : ''}`
+                    ? (() => {
+                        const ticketCount = ordersForDate.reduce(
+                          (sum, order) => sum + (order.tickets?.length || 0),
+                          0
+                        );
+                        return `${ticketCount} ticket${ticketCount > 1 ? 's' : ''}`;
+                      })()
                     : 'You have no tickets for this date'}
                 </div>
               </div>
