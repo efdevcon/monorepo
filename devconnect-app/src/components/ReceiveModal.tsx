@@ -4,7 +4,11 @@ import { QRCodeSVG } from 'qrcode.react';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { getNetworkLogo } from '@/config/networks';
+import {
+  getNetworkLogo,
+  chains,
+  getReadableNetworkName,
+} from '@/config/networks';
 import { getTokenLogo } from '@/config/tokens';
 
 interface ReceiveModalProps {
@@ -135,78 +139,26 @@ export default function ReceiveModal({
                       </span>
                     </div>
                   ) : (
-                    // EOA: Multiple networks
+                    // EOA: Dynamic networks from chains config
                     <>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(8453)}
-                          alt="Base"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          Base
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(1)}
-                          alt="Ethereum"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          Ethereum
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(42161)}
-                          alt="Arbitrum"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          Arbitrum
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(42220)}
-                          alt="Celo"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          Celo
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(10)}
-                          alt="Optimism"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          Optimism
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(137)}
-                          alt="Polygon"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          Polygon
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <img
-                          src={getNetworkLogo(480)}
-                          alt="World Chain"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
-                          World Chain
-                        </span>
-                      </div>
+                      {chains.map((chain) => {
+                        const networkName = getReadableNetworkName(chain.name);
+                        return (
+                          <div
+                            key={chain.id}
+                            className="flex items-center gap-1"
+                          >
+                            <img
+                              src={getNetworkLogo(chain.id)}
+                              alt={networkName}
+                              className="w-4 h-4"
+                            />
+                            <span className="text-[#242436] text-[14px] tracking-[-0.1px]">
+                              {networkName}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </>
                   )}
                 </div>
