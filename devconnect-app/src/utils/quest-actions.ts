@@ -178,39 +178,70 @@ export async function isWalletConnected(questId: string, conditionValues: string
  * Check if the user's ticket is associated with their account
  * @param questId - The ID of the quest
  * @param conditionValues - Ticket association requirements
+ * @param tickets - Optional array of ticket orders from useTickets hook
  * @returns Promise<boolean> - True if ticket is associated
  */
-export async function isTicketAssociated(questId: string, conditionValues: string): Promise<boolean> {
+export async function isTicketAssociated(
+  questId: string,
+  conditionValues: string,
+  tickets?: any[]
+): Promise<boolean> {
   try {
-    // Check if we're in a browser environment
-    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
-      console.error('localStorage is not available');
-      return false;
+    let ticketsToCheck = tickets;
+
+    // Fallback to localStorage if tickets not provided
+    if (!ticketsToCheck) {
+      console.log('📋 No tickets provided, reading from localStorage');
+      // Check if we're in a browser environment
+      if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+        console.error('localStorage is not available');
+        return false;
+      }
+
+      // Get tickets from Zustand persisted store
+      const storeJson = localStorage.getItem('devconnect-store');
+
+      if (!storeJson) {
+        toast.warning('🎫 No Tickets Found', {
+          description: 'Please connect a ticket to your account first in the ticket tab.',
+          action: {
+            label: 'Go to Tickets',
+            onClick: () => {
+              if (typeof window !== 'undefined') {
+                window.location.href = '/tickets';
+              }
+            },
+          },
+          duration: 5000,
+        });
+        return false;
+      }
+
+      // Parse the persisted store data (only main tickets, not sideTickets)
+      const store = JSON.parse(storeJson);
+      ticketsToCheck = store.state?.tickets || [];
+    } else {
+      console.log('🎟️ Tickets provided from useTickets hook');
     }
 
-    // Get tickets from local storage
-    const ticketsJson = localStorage.getItem('user-tickets');
+    console.log('🎫 Ticket data:', {
+      totalOrders: ticketsToCheck?.length || 0,
+      orders: ticketsToCheck,
+    });
 
-    if (!ticketsJson) {
-      toast.warning('🎫 No Tickets Found', {
-        description: 'Please connect a ticket to your account first.',
-        duration: 5000,
-      });
-      return false;
-    }
-
-    // Parse the tickets data
-    const orders = JSON.parse(ticketsJson);
-
-    // Check if there's at least one ticket
+    // Check if there's at least one ticket (only counting main tickets)
     let totalTickets = 0;
-    if (Array.isArray(orders)) {
-      for (const order of orders) {
+    if (Array.isArray(ticketsToCheck)) {
+      for (const order of ticketsToCheck) {
         if (order.tickets && Array.isArray(order.tickets)) {
-          totalTickets += order.tickets.length;
+          const orderTicketCount = order.tickets.length;
+          totalTickets += orderTicketCount;
+          console.log(`  Order ${order.orderCode || 'N/A'}: ${orderTicketCount} ticket(s)`);
         }
       }
     }
+
+    console.log(`✅ Total tickets found: ${totalTickets}`);
 
     if (totalTickets > 0) {
       toast.success('✅ Ticket Verified!', {
@@ -220,7 +251,15 @@ export async function isTicketAssociated(questId: string, conditionValues: strin
       return true;
     } else {
       toast.warning('🎫 No Tickets Found', {
-        description: 'Please connect a ticket to your account first.',
+        description: 'Please connect a ticket to your account first in the ticket tab.',
+        action: {
+          label: 'Go to Tickets',
+          onClick: () => {
+            if (typeof window !== 'undefined') {
+              window.location.href = '/tickets';
+            }
+          },
+        },
         duration: 5000,
       });
       return false;
@@ -300,13 +339,15 @@ export async function verifyBalance(questId: string, conditionValues: string): P
  * @param conditionType - The type of condition to check
  * @param conditionValues - Values for the condition check
  * @param userAddresses - Optional array of user addresses for POAP verification
+ * @param tickets - Optional array of ticket orders from useTickets hook
  * @returns Promise<boolean> - True if the condition is met
  */
 export async function executeQuestAction(
   questId: string,
   conditionType: QuestConditionType,
   conditionValues: string,
-  userAddresses?: string[]
+  userAddresses?: string[],
+  tickets?: any[]
 ): Promise<boolean> {
   switch (conditionType) {
     case 'verifyBasename':
@@ -321,7 +362,7 @@ export async function executeQuestAction(
     case 'isWalletConnected':
       return isWalletConnected(questId, conditionValues);
     case 'isTicketAssociated':
-      return isTicketAssociated(questId, conditionValues);
+      return isTicketAssociated(questId, conditionValues, tickets);
     case 'isProfileSetup':
       return isProfileSetup(questId, conditionValues);
     case 'isLinkVisited':

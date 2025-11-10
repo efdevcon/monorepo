@@ -12,6 +12,7 @@ import { useWallet } from '@/context/WalletContext';
 import PoapModal from '@/components/PoapModal';
 import { HEIGHT_HEADER } from '@/config/config';
 import confetti from 'canvas-confetti';
+import { useTickets } from '@/app/store.hooks';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: QuestAction) => {
@@ -64,6 +65,7 @@ export default function AppShowcaseDetail({
 }: AppShowcaseDetailProps) {
   const router = useRouter();
   const { address } = useWallet();
+  const { tickets } = useTickets();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
   const [selectedSupporter, setSelectedSupporter] = useState<string | null>(
@@ -476,7 +478,8 @@ export default function AppShowcaseDetail({
         quest.id.toString(),
         quest.conditionType as any, // Type assertion for QuestConditionType
         quest.conditionValues,
-        userAddresses
+        userAddresses,
+        tickets
       );
 
       // For groupId 1 (Setup & app tour), also open links if conditionValues is a URL or path
