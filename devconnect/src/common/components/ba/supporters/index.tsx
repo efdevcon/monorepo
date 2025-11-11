@@ -1,7 +1,14 @@
 import React, { useMemo } from 'react'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
-import Image from 'next/image'
 import { supportersData } from 'data/supporters'
+
+// Optimize Supabase images by using the render endpoint
+const optimizeImageUrl = (url: string, width: number = 200): string => {
+  if (url.includes('.supabase.co/storage/v1/object/')) {
+    return url.replace('/object/', '/render/image/') + `?width=${width}&resize=contain`
+  }
+  return url
+}
 
 // Fisher-Yates shuffle algorithm
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -73,17 +80,20 @@ const SupportersComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                minWidth: '150px',
+                width: '150px',
                 height: '80px',
                 background: 'white',
                 borderRadius: '8px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 padding: '18px',
+                flexShrink: 0,
               }}
             >
-              <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <Image src={supporter.logo} alt={supporter.category} fill style={{ objectFit: 'contain' }} />
-              </div>
+              <img
+                src={optimizeImageUrl(supporter.logo)}
+                alt={supporter.category}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </a>
           ))}
         </div>
@@ -98,17 +108,20 @@ const SupportersComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                minWidth: '150px',
+                width: '150px',
                 height: '80px',
                 background: 'white',
                 borderRadius: '8px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 padding: '18px',
+                flexShrink: 0,
               }}
             >
-              <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <Image src={supporter.logo} alt={supporter.category} fill style={{ objectFit: 'contain' }} />
-              </div>
+              <img
+                src={optimizeImageUrl(supporter.logo)}
+                alt={supporter.category}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </a>
           ))}
         </div>
@@ -123,17 +136,20 @@ const SupportersComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                minWidth: '150px',
+                width: '150px',
                 height: '80px',
                 background: 'white',
                 borderRadius: '8px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 padding: '18px',
+                flexShrink: 0,
               }}
             >
-              <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-                <Image src={supporter.logo} alt={supporter.category} fill style={{ objectFit: 'contain' }} />
-              </div>
+              <img
+                src={optimizeImageUrl(supporter.logo)}
+                alt={supporter.category}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
             </a>
           ))}
         </div>
