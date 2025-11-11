@@ -22,7 +22,7 @@ export const StageBadge: React.FC<StageBadgeProps> = ({ type, label }) => {
   return (
     <div
       className={cn(
-        'inline-block font-semibold p-1 text-sm px-3 rounded-xs mb-2 self-start',
+        'inline-block font-semibold p-1 text-sm px-3 rounded-xs self-start',
         colors.bg,
         colors.text
       )}
@@ -31,4 +31,3 @@ export const StageBadge: React.FC<StageBadgeProps> = ({ type, label }) => {
     </div>
   );
 };
-

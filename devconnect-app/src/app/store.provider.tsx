@@ -9,7 +9,7 @@ import {
   createRef,
 } from 'react';
 import { useStore } from 'zustand';
-import { SWRConfig } from 'swr';
+// import { SWRConfig } from 'swr';
 // Context no longer needed here - wallet state managed by WalletProvider
 // import { useWallet } from '@/context/WalletContext';
 
@@ -28,8 +28,8 @@ export const GlobalStoreContext = createContext<AppStore | undefined>(
 export interface GlobalStoreProviderProps {
   children: ReactNode;
   events: AppState['events'];
-  programming: any;
-  programmingEvents: any;
+  programming?: any;
+  programmingEvents?: any;
   announcements?: AppState['announcements'];
   userData?: AppState['userData'];
 }
@@ -62,7 +62,7 @@ export const GlobalStoreProvider = ({
 
   return (
     <GlobalStoreContext.Provider value={globalStoreProvider}>
-      <SWRConfig
+      {/* <SWRConfig
         value={{
           fallback: {
             'https://devconnect.pblvrt.com/schedules': {
@@ -75,9 +75,9 @@ export const GlobalStoreProvider = ({
             },
           },
         }}
-      >
-        {children}
-      </SWRConfig>
+      > */}
+      {children}
+      {/* </SWRConfig> */}
     </GlobalStoreContext.Provider>
   );
 };
