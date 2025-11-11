@@ -14,6 +14,12 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 }
 
 const SupportersComponent = () => {
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
   // Convert supportersData object to array and use largeLogo
   const supporters = useMemo(() => {
     return Object.entries(supportersData)
@@ -26,8 +32,10 @@ const SupportersComponent = () => {
       }))
   }, [])
 
-  // Randomize order on each load
-  const randomizedSupporters = useMemo(() => shuffleArray(supporters), [supporters])
+  // Randomize order only on client after hydration to avoid mismatch
+  const randomizedSupporters = useMemo(() => {
+    return mounted ? shuffleArray(supporters) : supporters
+  }, [supporters, mounted])
 
   // console.log(supporters, 'hello')
 
