@@ -47,13 +47,26 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { setUtmParams } = useUrlParamsStore()
 
   React.useEffect(() => {
-    // Parse UTM parameters from URL
+    // Parse UTM parameters from URL and localStorage
     if (typeof window !== 'undefined') {
+      // First, try to load from localStorage (for persistence across refreshes)
+      let storedParams: any = null
+      try {
+        const stored = localStorage.getItem('devconnect_utm_params')
+        if (stored) {
+          storedParams = JSON.parse(stored)
+        }
+      } catch (error) {
+        console.error('Error reading UTM params from localStorage:', error)
+      }
+
+      // Then check URL params (which take priority and can override stored params)
       const urlParams = new URLSearchParams(window.location.search)
       const mtm_campaign = urlParams.get('mtm_campaign')
       const mtm_kwd = urlParams.get('mtm_kwd')
       const mtm_content = urlParams.get('mtm_content')
 
+      // If URL has UTM params, use those (and update localStorage)
       if (mtm_campaign || mtm_kwd || mtm_content) {
         const params = {
           ...(mtm_campaign && { mtm_campaign }),
@@ -66,6 +79,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         
         // Also store in localStorage for shared lib components
         localStorage.setItem('devconnect_utm_params', JSON.stringify(params))
+      } 
+      // Otherwise, if we have stored params, use those
+      else if (storedParams) {
+        setUtmParams(storedParams)
       }
     }
   }, [setUtmParams])

@@ -17,7 +17,7 @@ interface FallbackProps {
 
 const Fallback = (props: FallbackProps) => {
   const [ticketsUrl, setTicketsUrl] = useState(
-    "https://tickets.devconnect.org"
+    "https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
   );
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);

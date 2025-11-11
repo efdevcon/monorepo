@@ -277,7 +277,7 @@ const EventVoucher = ({
   const disconnect = ctx?.disconnect;
 
   const [ticketsUrl, setTicketsUrl] = useState(
-    "https://tickets.devconnect.org"
+    "https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
   );
   const [couponFetchingComplete, setCouponFetchingComplete] = useState(false);
   const [couponStatus, setCouponStatus] = useState<{

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useUrlParamsStore } from 'store/urlParams'
 
 export const TITLE = 'Devconnect Argentina'
@@ -18,6 +19,16 @@ const DEFAULT_TICKETS_URL = 'https://tickets.devconnect.org/?mtm_campaign=devcon
 // Hook to get dynamic TICKETS_URL with UTM parameters
 export const useTicketsUrl = (): string => {
   const { mtm_campaign, mtm_kwd, mtm_content } = useUrlParamsStore()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Return default during SSR and initial render to avoid hydration mismatch
+  if (!mounted) {
+    return DEFAULT_TICKETS_URL
+  }
   
   if (mtm_campaign || mtm_kwd || mtm_content) {
     const params = new URLSearchParams()

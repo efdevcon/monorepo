@@ -16,7 +16,7 @@ type CalendarLayoutProps = ScheduleProps & {
 const Layout = (props: CalendarLayoutProps) => {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [ticketsUrl, setTicketsUrl] = useState(
-    "https://tickets.devconnect.org"
+    "https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
   );
   const {
     filterOpen,
