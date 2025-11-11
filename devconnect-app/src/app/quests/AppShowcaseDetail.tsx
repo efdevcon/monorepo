@@ -37,6 +37,7 @@ interface AppShowcaseDetailProps {
     questId: string,
     status: 'completed' | 'active' | 'locked'
   ) => void;
+  resetQuestCompletions: () => Promise<void>;
 }
 
 export default function AppShowcaseDetail({
@@ -44,6 +45,7 @@ export default function AppShowcaseDetail({
   onBack,
   questStates,
   updateQuestStatus,
+  resetQuestCompletions,
 }: AppShowcaseDetailProps) {
   const router = useRouter();
   const { para, eoa, address } = useWallet();
@@ -518,27 +520,8 @@ export default function AppShowcaseDetail({
   };
 
   // Reset function to clear all quest states for App Showcase, Setup, and Crypto Payment quests
-  const handleReset = () => {
-    // Reset App Showcase quests (groupId === 4), Setup quests (groupId === 1), and Crypto Payment quests (groupId === 2)
-    const appShowcaseQuestIds = appShowcaseQuests.map((quest) =>
-      quest.id.toString()
-    );
-    const setupQuestIds = setupQuests.map((quest) => quest.id.toString());
-    const cryptoPaymentQuestIds = cryptoPaymentQuests.map((quest) =>
-      quest.id.toString()
-    );
-    const allQuestIds = [
-      ...appShowcaseQuestIds,
-      ...setupQuestIds,
-      ...cryptoPaymentQuestIds,
-    ];
-
-    // Reset each quest by calling updateQuestStatus
-    allQuestIds.forEach((questId) => {
-      updateQuestStatus(questId, 'locked');
-    });
-
-    // Reset local UI states
+  const handleReset = async () => {
+    // Reset local UI states first
     setExpandedQuests(new Set());
     setExpandedDistrict('');
     setIsSetupSectionExpanded(false);
@@ -551,6 +534,15 @@ export default function AppShowcaseDetail({
         '',
         window.location.pathname + window.location.search
       );
+    }
+
+    // Reset quest completions in database
+    // The parent component's sync effect will handle clearing localStorage
+    // when it sees the empty database response
+    try {
+      await resetQuestCompletions();
+    } catch (error) {
+      console.error('Failed to reset quest completions in database:', error);
     }
   };
 

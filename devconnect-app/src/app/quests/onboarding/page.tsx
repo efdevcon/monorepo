@@ -34,21 +34,31 @@ export default function OnboardingPage() {
 
   // Track if we're currently syncing from DB to prevent infinite loop
   const isSyncingFromDB = React.useRef(false);
+  // Track if we're currently resetting to prevent re-sync
+  const isResetting = React.useRef(false);
+  // Track previous DB state to detect resets
+  const prevQuestCompletions = React.useRef<Record<string, number> | null>(null);
 
   // Sync quest states from database (works across devices)
   // This effect runs whenever questCompletions from the database changes
   // (on initial load, window focus, reconnect, etc. thanks to SWR)
   useEffect(() => {
-    if (questCompletions && Object.keys(questCompletions).length > 0) {
-      isSyncingFromDB.current = true;
+    isSyncingFromDB.current = true;
+    
+    setQuestStates((prev) => {
+      const updated = { ...prev };
+      let hasChanges = false;
 
-      setQuestStates((prev) => {
-        const updated = { ...prev };
-        let hasChanges = false;
+      const currentCompletions = questCompletions || {};
+      const prevCompletions = prevQuestCompletions.current || {};
+      const hadPreviousData = Object.keys(prevCompletions).length > 0;
+      const hasCurrentData = Object.keys(currentCompletions).length > 0;
 
-        Object.entries(questCompletions).forEach(([questId, dbCompletedAt]) => {
+      // Case 1: Database has completions - merge them into local
+      if (hasCurrentData) {
+        Object.entries(currentCompletions).forEach(([questId, dbCompletedAt]) => {
           const localState = prev[questId];
-
+          
           // If quest not in localStorage, add it as completed
           if (!localState) {
             updated[questId] = {
@@ -56,7 +66,7 @@ export default function OnboardingPage() {
               completedAt: dbCompletedAt,
             };
             hasChanges = true;
-          }
+          } 
           // If quest exists locally but isn't completed, sync from database
           else if (!localState.completedAt) {
             updated[questId] = {
@@ -75,16 +85,33 @@ export default function OnboardingPage() {
             hasChanges = true;
           }
         });
+      }
+      
+      // Case 2: Database was cleared (reset case)
+      // Only clear local state if we previously had DB data and now it's empty
+      // This prevents clearing on initial load or when DB is loading
+      if (hadPreviousData && !hasCurrentData) {
+        Object.keys(prev).forEach((questId) => {
+          if (prev[questId]?.completedAt) {
+            updated[questId] = {
+              status: 'locked',
+            };
+            hasChanges = true;
+          }
+        });
+      }
 
-        // Reset the sync flag after a short delay
-        setTimeout(() => {
-          isSyncingFromDB.current = false;
-        }, 100);
+      // Update the previous state tracker
+      prevQuestCompletions.current = currentCompletions;
 
-        // Only update if there are actual changes to avoid unnecessary re-renders
-        return hasChanges ? updated : prev;
-      });
-    }
+      // Reset the sync flag after a short delay
+      setTimeout(() => {
+        isSyncingFromDB.current = false;
+      }, 100);
+
+      // Only update if there are actual changes to avoid unnecessary re-renders
+      return hasChanges ? updated : prev;
+    });
   }, [questCompletions, setQuestStates]);
 
   // Function to update quest status
@@ -92,22 +119,34 @@ export default function OnboardingPage() {
     questId: string,
     status: 'completed' | 'active' | 'locked'
   ) => {
-    setQuestStates((prev) => ({
-      ...prev,
-      [questId]: {
-        ...prev[questId],
-        status,
-        // Add completedAt timestamp when status is completed
-        ...(status === 'completed' && { completedAt: Date.now() }),
-      },
-    }));
+    setQuestStates((prev) => {
+      const newState: { 
+        status: 'completed' | 'active' | 'locked'; 
+        completedAt?: number;
+      } = { status };
+      
+      // Add completedAt timestamp when status is completed
+      if (status === 'completed') {
+        newState.completedAt = Date.now();
+      }
+      // Remove completedAt when setting to locked (reset)
+      // For active state, preserve existing completedAt if any
+      else if (status === 'active' && prev[questId]?.completedAt) {
+        newState.completedAt = prev[questId].completedAt;
+      }
+      
+      return {
+        ...prev,
+        [questId]: newState,
+      };
+    });
   };
 
   // Sync quest states to database whenever they change
-  // Skip sync if we're currently merging from database to prevent infinite loop
+  // Skip sync if we're currently merging from database or resetting
   useEffect(() => {
-    // Don't sync if we're currently receiving updates from DB
-    if (isSyncingFromDB.current) {
+    // Don't sync if we're currently receiving updates from DB or resetting
+    if (isSyncingFromDB.current || isResetting.current) {
       return;
     }
 

@@ -424,9 +424,30 @@ export function useQuestCompletions() {
     }
   };
 
+  const resetQuestCompletions = async () => {
+    if (!userData) {
+      // Silently skip reset if user is not authenticated
+      return;
+    }
+
+    // Send reset request to server
+    const response = await fetchAuth('/api/auth/quest-completions/reset', {
+      method: 'POST',
+    });
+
+    if (!response.success) {
+      console.error('Failed to reset quest completions');
+      throw new Error('Failed to reset quest completions');
+    } else {
+      // Refresh user data to get updated (empty) quest completions
+      refresh();
+    }
+  };
+
   return {
     questCompletions,
     syncQuestStates,
+    resetQuestCompletions,
   };
 }
 
