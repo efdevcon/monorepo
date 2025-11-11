@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
 import Icon from '@mdi/react';
-import { mdiLockOutline, mdiLoading, mdiContentPaste, mdiQrcodeScan } from '@mdi/js';
+import { mdiLock, mdiContentPaste, mdiQrcodeScan } from '@mdi/js';
 import { createPublicClient, http, isAddress } from 'viem';
 import { normalize } from 'viem/ens';
 import { mainnet } from 'viem/chains';
@@ -622,7 +622,7 @@ export default function SendPage() {
             }`}
           >
             <Icon
-              path={mdiLockOutline}
+              path={mdiLock}
               size={0.6}
               className="text-white flex-shrink-0"
             />
