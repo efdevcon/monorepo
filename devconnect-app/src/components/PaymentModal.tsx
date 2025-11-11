@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Modal, ModalContent } from 'lib/components/modal';
 import { Button } from '@/components/ui/button';
-import { X, Wallet, Copy, DollarSign, Send, ChevronDown } from 'lucide-react';
+import { X, Wallet } from 'lucide-react';
 import { toast } from 'sonner';
 import { base } from '@base-org/account';
 import { useWallet } from '@/context/WalletContext';
@@ -19,7 +19,7 @@ import { getMerchantName, getMerchantById } from '@/config/merchants';
 import { triggerHaptic } from 'tactus';
 import { WalletDisplay } from '@/components/WalletDisplay';
 import Icon from '@mdi/react';
-import { mdiBug, mdiAlertOutline } from '@mdi/js';
+import { mdiBug, mdiAlertOutline, mdiLock } from '@mdi/js';
 import { openReportIssue } from '@/utils/reportIssue';
 import {
   useAccount as useParaAccount,
@@ -1858,9 +1858,12 @@ export default function PaymentModal({
                           </>
                         ) : (
                           <>
-                            <Send className="h-4 w-4 mr-2" />
-                            Pay {paymentDetails.merchantName ||
-                              'Devconnect'}{' '}
+                            <Icon
+                              path={mdiLock}
+                              size={0.6}
+                              className="text-white flex-shrink-0 mr-2"
+                            />
+                            Pay {paymentDetails.merchantName || 'Devconnect'}{' '}
                             {paymentDetails.priceDetails?.final_amount?.toFixed(
                               6
                             ) || amount}{' '}

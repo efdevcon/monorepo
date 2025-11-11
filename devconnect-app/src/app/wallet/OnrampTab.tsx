@@ -15,6 +15,7 @@ import {
   mdiChevronLeft,
   mdiArrowTopRight,
 } from '@mdi/js';
+import Link from 'next/link';
 
 // Image assets
 const imgOnrampDigital = '/images/onramp-digital.svg';
@@ -77,43 +78,21 @@ export default function OnrampTab() {
 
   // Toast utility functions
   const showInfoToast = (title: string, message?: string, duration = 3000) => {
-    toast.info(
-      <div className="space-y-1">
-        <div className="font-semibold text-blue-800">{title}</div>
-        {message && <div className="text-sm text-blue-700">{message}</div>}
-      </div>,
-      {
-        duration,
-        dismissible: true,
-        closeButton: true,
-        style: {
-          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-          border: '1px solid #bfdbfe',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }
-    );
+    toast.info(title, {
+      description: message,
+      duration,
+      dismissible: true,
+      closeButton: true,
+    });
   };
 
   const showErrorToast = (title: string, message?: string, duration = 4000) => {
-    toast.error(
-      <div className="space-y-1">
-        <div className="font-semibold text-red-800">{title}</div>
-        {message && <div className="text-sm text-red-700">{message}</div>}
-      </div>,
-      {
-        duration,
-        dismissible: true,
-        closeButton: true,
-        style: {
-          background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-          border: '1px solid #fecaca',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }
-    );
+    toast.error(title, {
+      description: message,
+      duration,
+      dismissible: true,
+      closeButton: true,
+    });
   };
 
   const digitalProviders = [
@@ -609,12 +588,15 @@ export default function OnrampTab() {
           <div className="flex-1 text-[#492e09] text-sm leading-[1.4] tracking-[0.1px]">
             <div className="font-bold mb-1">Need help?</div>
             <div className="font-normal">
-              Contact our support team if you're having trouble with our digital
-              exchange options. Alternatively, you can visit our{' '}
-              <span className="font-bold underline">
-                in-person exchange page
-              </span>{' '}
-              to learn more about exchanging currency for crypto in La Rural.
+              Head to the{' '}
+              <Link
+                href="/map?filter=onboarding-area"
+                className="font-bold text-[#0073de]"
+              >
+                Onboarding area
+              </Link>{' '}
+              near the entrance and let one of our volunteer team know about the
+              technical issue.
             </div>
           </div>
         </div>

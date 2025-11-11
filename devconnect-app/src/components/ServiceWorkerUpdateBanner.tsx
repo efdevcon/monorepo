@@ -165,10 +165,6 @@ export function ServiceWorkerUpdateBanner() {
         duration: Infinity,
         dismissible: true, // Allow swipe/click to dismiss
         closeButton: true, // Show X button
-        style: {
-          marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
-          zIndex: 9999999999999999999,
-        },
         action: {
           label: 'Update Now',
           onClick: () => performUpdate(waitingWorker),
@@ -188,11 +184,6 @@ export function ServiceWorkerUpdateBanner() {
               duration: 4000,
               dismissible: true,
               closeButton: true,
-              style: {
-                marginBottom:
-                  'calc(4px + max(0px, env(safe-area-inset-bottom)))',
-                zIndex: 9999999999999999999,
-              },
             });
           },
         },

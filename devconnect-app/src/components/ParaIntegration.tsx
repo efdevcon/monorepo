@@ -11,43 +11,21 @@ import { hardReload } from '@/utils/reload';
 
 // Toast utility functions
 const showSuccessToast = (title: string, message?: string, duration = 3000) => {
-  toast.success(
-    <div className="space-y-1">
-      <div className="font-semibold text-green-800">{title}</div>
-      {message && <div className="text-sm text-green-700">{message}</div>}
-    </div>,
-    {
-      duration,
-      dismissible: true,
-      closeButton: true,
-      style: {
-        background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-        border: '1px solid #bbf7d0',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      },
-    }
-  );
+  toast.success(title, {
+    description: message,
+    duration,
+    dismissible: true,
+    closeButton: true,
+  });
 };
 
 const showErrorToast = (title: string, message?: string, duration = 4000) => {
-  toast.error(
-    <div className="space-y-1">
-      <div className="font-semibold text-red-800">{title}</div>
-      {message && <div className="text-sm text-red-700">{message}</div>}
-    </div>,
-    {
-      duration,
-      dismissible: true,
-      closeButton: true,
-      style: {
-        background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-        border: '1px solid #fecaca',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      },
-    }
-  );
+  toast.error(title, {
+    description: message,
+    duration,
+    dismissible: true,
+    closeButton: true,
+  });
 };
 
 interface ParaIntegrationProps {
@@ -106,27 +84,12 @@ export default function ParaIntegration({
       console.log('🔄 [PARA_JWT] Starting Para JWT exchange process');
 
       // Show loading toast
-      toast.info(
-        <div className="space-y-2">
-          <div className="font-semibold text-blue-800">
-            🔄 Exchanging Para JWT
-          </div>
-          <div className="text-sm text-blue-700">
-            Please complete OTP verification in your Para wallet...
-          </div>
-        </div>,
-        {
-          duration: Infinity,
-          dismissible: false,
-          closeButton: false,
-          style: {
-            background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-            border: '1px solid #bfdbfe',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
+      toast.info('🔄 Exchanging Para JWT', {
+        description: 'Please complete OTP verification in your Para wallet...',
+        duration: Infinity,
+        dismissible: false,
+        closeButton: false,
+      });
 
       // After OTP verification and session active
       const { token: paraJwt } = await issueJwtAsync();

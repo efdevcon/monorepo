@@ -2,6 +2,7 @@ import { useSwitchChain, useChainId, useAccount } from 'wagmi';
 import { chains, networkConfig, getNetworkConfig } from '@/config/networks';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import React from 'react';
 
 export function useNetworkSwitcher() {
   const { switchChain, isPending, error } = useSwitchChain();
@@ -26,10 +27,20 @@ export function useNetworkSwitcher() {
       await switchChain({ chainId });
       const network = getNetworkConfig(chainId);
       
-      toast.success(`✅ Network Switched - Connected to ${network.name}`, {
+      // Create custom icon with network logo
+      const networkIcon = network.logoUrl
+        ? React.createElement('img', {
+          src: network.logoUrl,
+          alt: network.name,
+          style: { width: '24px', height: '24px', borderRadius: '2px' }
+        })
+        : undefined;
+
+      toast.success(`You switched network to ${network.name}`, {
         duration: 3000,
         dismissible: true,
         closeButton: true,
+        icon: networkIcon,
       });
 
       return { success: true, message: `Switched to ${network.name}` };
