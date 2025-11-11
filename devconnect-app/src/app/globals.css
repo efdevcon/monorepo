@@ -497,3 +497,17 @@ svg.icon {
   right: -17px !important;
   left: auto !important;
 }
+
+/* Prevent screen rotation - lock to portrait orientation on mobile */
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
