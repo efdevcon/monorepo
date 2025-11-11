@@ -7,13 +7,15 @@ import styles from './tickets.module.scss'
 import cn from 'classnames'
 import VoxelCar from 'assets/images/ba/voxel-car.jpg'
 import PageTitle from 'assets/images/ba/subpage_devconnect_ticketing_2x.webp'
-import { TICKETS_URL } from 'common/constants'
+import { useTicketsUrl } from 'common/constants'
 
 const Tickets = (props: any) => {
+  const ticketsUrl = useTicketsUrl()
+
   useEffect(() => {
     // Redirect to external tickets page
-    window.location.href = TICKETS_URL
-  }, [])
+    window.location.href = ticketsUrl
+  }, [ticketsUrl])
 
   return (
     <>

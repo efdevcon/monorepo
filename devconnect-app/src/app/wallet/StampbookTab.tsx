@@ -33,7 +33,7 @@ export default function StampbookTab() {
     return <ComingSoonMessage />;
   }
   const router = useRouter();
-  const [expandedCategory, setExpandedCategory] = useState<string | null>('0'); // First category expanded by default
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null); // No category expanded by default
   const [selectedPoap, setSelectedPoap] = useState<{
     id: number;
     name: string;
@@ -128,29 +128,22 @@ export default function StampbookTab() {
     });
   };
 
-  // Build categories: First one hardcoded, then districts
-  const categories: StampCategory[] = useMemo(() => {
-    // Get quest 28 (Devconnect POAP)
-    const devconnectQuest = questsData.find((quest) => quest.id === 28);
+  // Get quest 28 (Devconnect POAP) - to be displayed at the top
+  const devconnectQuest = useMemo(() => {
+    return questsData.find((quest) => quest.id === 28);
+  }, []);
 
-    const cats: StampCategory[] = [
-      // Hardcoded first category - Devconnect ARG (using quest id 28)
-      {
-        id: '0',
-        name: 'Devconnect ARG',
-        total: 1,
-        collected: devconnectQuest ? (isQuestCompleted(28) ? 1 : 0) : 0,
-        stamps: devconnectQuest
-          ? [
-              {
-                id: 28,
-                name: devconnectQuest.name,
-                image: devconnectQuest.poapImageLink || FALLBACK_IMAGE,
-              },
-            ]
-          : [],
-      },
-    ];
+  // Build categories: districts first, then Crypto payment at the end
+  const categories: StampCategory[] = useMemo(() => {
+    // Get all Crypto payment quests (groupId === 2)
+    const cryptoPaymentQuests = questsData.filter(
+      (quest) => quest.groupId === 2
+    );
+    const cryptoPaymentCompletedCount = cryptoPaymentQuests.filter((quest) =>
+      isQuestCompleted(quest.id)
+    ).length;
+
+    const cats: StampCategory[] = [];
 
     // Add districts as categories
     Object.entries(districtsData).forEach(([districtId, district]) => {
@@ -178,6 +171,19 @@ export default function StampbookTab() {
       }
     });
 
+    // Add Crypto payment category at the end
+    cats.push({
+      id: 'crypto-payment',
+      name: 'Crypto payment',
+      total: cryptoPaymentQuests.length,
+      collected: cryptoPaymentCompletedCount,
+      stamps: cryptoPaymentQuests.map((quest) => ({
+        id: quest.id,
+        name: quest.name,
+        image: quest.poapImageLink || FALLBACK_IMAGE,
+      })),
+    });
+
     return cats;
   }, [questStates]); // Recalculate when quest states change
 
@@ -194,6 +200,42 @@ export default function StampbookTab() {
             Complete Quests at the World's Fair to collect!
           </p>
         </div>
+
+        {/* Devconnect POAP - Featured at top */}
+        {devconnectQuest && (
+          <div className="flex flex-col items-center justify-center py-4">
+            <button
+              onClick={() =>
+                handlePoapClick({
+                  id: 28,
+                  name: devconnectQuest.name,
+                  image: devconnectQuest.poapImageLink || FALLBACK_IMAGE,
+                })
+              }
+              className="flex flex-col items-center justify-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+            >
+              <div className="relative w-24 h-24 overflow-hidden flex items-center justify-center">
+                <img
+                  src={devconnectQuest.poapImageLink || FALLBACK_IMAGE}
+                  alt={devconnectQuest.name}
+                  className={`w-full h-full object-cover rounded-full ${
+                    isQuestCompleted(28) ? '' : 'grayscale opacity-50'
+                  }`}
+                  onError={(e) => {
+                    e.currentTarget.src = FALLBACK_IMAGE;
+                  }}
+                />
+              </div>
+              <p
+                className={`text-[#353548] text-[16px] leading-none text-center ${
+                  isQuestCompleted(28) ? 'font-bold' : 'font-normal'
+                }`}
+              >
+                Devconnect ARG POAP
+              </p>
+            </button>
+          </div>
+        )}
 
         {/* Categories */}
         <div className="space-y-3">

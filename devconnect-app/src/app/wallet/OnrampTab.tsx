@@ -265,12 +265,8 @@ export default function OnrampTab() {
 
         try {
           const sessionToken = await generateSessionToken({
-            addresses: formatAddressesForToken(address, [
-              'base',
-              'ethereum',
-              'optimism',
-            ]),
-            assets: ['ETH', 'USDC'],
+            addresses: formatAddressesForToken(address, ['base']),
+            assets: ['USDC'],
           });
 
           if (!sessionToken) {

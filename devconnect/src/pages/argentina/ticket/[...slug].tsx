@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { colorKeys, colorMap } from 'common/components/ticket'
 import { SEO } from 'common/components/SEO'
-import { FARCASTE_HANDLE, SITE_URL, SOCIAL_HANDLE, TICKETS_URL } from 'common/constants'
+import { FARCASTE_HANDLE, SITE_URL, SOCIAL_HANDLE, useTicketsUrl } from 'common/constants'
 import Link from 'common/components/link/Link'
 import cn from 'classnames'
 import styles from 'common/components/ticket/styles.module.scss'
@@ -33,6 +33,7 @@ export const ShareTicket = ({
   random?: string
 }) => {
   const router = useRouter()
+  const ticketsUrl: string = useTicketsUrl()
   const [isLoading, setIsLoading] = useState(true)
   const [color, setColor] = useState(initialColor)
   const [showInstagramModal, setShowInstagramModal] = useState(false)
@@ -275,7 +276,7 @@ You coming?`)
           )}
         </div>
         <div className="flex flex-col mt-10">
-          <Link href={TICKETS_URL}>
+          <Link href={ticketsUrl}>
             <TiledButton
               icon={
                 <svg

@@ -19,6 +19,7 @@ import { Suspense } from 'react';
 import { SerwistProvider } from '@/app/serwist-provider';
 import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
 import { BigIntSerializer } from '@/components/BigIntSerializer';
+import { HEIGHT_MENU } from '@/config/config';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -372,6 +373,7 @@ export default async function RootLayout({
             closeButton: true,
             style: {
               zIndex: 9999999999999999999,
+              bottom: `calc(${HEIGHT_MENU}px + max(0px, env(safe-area-inset-bottom)))`,
             },
             classNames: {
               closeButton: 'sonner-close-button-right',

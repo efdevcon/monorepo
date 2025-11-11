@@ -6,7 +6,7 @@ export const chains = [mainnet, arbitrum, base, celo, optimism, polygon];
 // Zapper network logos (high quality)
 const zapperLogos: Record<number, string> = {
   1: 'https://storage.googleapis.com/zapper-fi-assets/networks/ethereum-icon.png',
-  8453: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+  8453: 'https://www.base.org/document/apple-touch-icon.png',
   10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
   42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
   42220: 'https://storage.googleapis.com/zapper-fi-assets/networks/celo-icon.png',

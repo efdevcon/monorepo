@@ -7,6 +7,7 @@ import cn from "classnames";
 import { Session, AuthChangeEvent } from "@supabase/supabase-js";
 import { eventShops } from "./event-shops-list";
 import NextLink from "next/link";
+import { getTicketsUrl } from "lib/helpers/ticketsUrl";
 
 interface FallbackProps {
   eventId: string | number;
@@ -15,6 +16,9 @@ interface FallbackProps {
 }
 
 const Fallback = (props: FallbackProps) => {
+  const [ticketsUrl, setTicketsUrl] = useState(
+    "https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
+  );
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,6 +47,11 @@ const Fallback = (props: FallbackProps) => {
     );
 
     return () => subscription.unsubscribe();
+  }, []);
+
+  // Initialize tickets URL from localStorage
+  useEffect(() => {
+    setTicketsUrl(getTicketsUrl());
   }, []);
 
   // Get the coupon collection from event shops or use a default
@@ -253,6 +262,7 @@ const Fallback = (props: FallbackProps) => {
                 className={cn({
                   contents: !hasValidTicket,
                 })}
+                target="_blank"
               >
                 <VoxelButton
                   disabled={!hasValidTicket}
@@ -279,6 +289,7 @@ const Fallback = (props: FallbackProps) => {
                 className={cn({
                   contents: !connectedWithCoupon,
                 })}
+                target="_blank"
               >
                 <VoxelButton
                   disabled={!connectedWithCoupon}
@@ -335,7 +346,7 @@ const Fallback = (props: FallbackProps) => {
             size="sm"
             className=""
             onClick={() => {
-              window.open("https://tickets.devconnect.org", "_blank");
+              window.open(ticketsUrl, "_blank");
             }}
           >
             Buy Devconnect ticket <SquareArrowOutUpRight size={16} />

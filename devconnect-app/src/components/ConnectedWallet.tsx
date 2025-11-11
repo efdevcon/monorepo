@@ -9,7 +9,6 @@ import { ModalStep, useLogout, useModal } from '@getpara/react-sdk';
 import { useViemAccount } from '@getpara/react-sdk/evm';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import CoinbaseOnrampButton from '@/components/CoinbaseOnrampButton';
 import CoinbaseOneClickBuyButton from '@/components/CoinbaseOneClickBuyButton';
 import RipioOnrampButton from '@/components/RipioOnrampButton';
@@ -980,11 +979,6 @@ export default function ConnectedWallet() {
             </Button>
           )}
         </div>
-
-        {/* {address && <Zkp2pOnrampQRCode address={address} />} */}
-        {/* <a href="/map" className="text-sm text-blue-500 m-auto">
-          Fullscreen Map
-        </a> */}
       </div>
     </div>
   );

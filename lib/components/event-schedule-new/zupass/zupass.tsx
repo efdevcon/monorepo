@@ -18,6 +18,7 @@ import { Info, ArrowRight } from "lucide-react";
 import NextLink from "next/link";
 import cn from "classnames";
 import Fallback from "./fallback";
+import { getTicketsUrl } from "lib/helpers/ticketsUrl";
 
 // HOC to wrap ParcnetClientProvider
 export const withParcnetProvider = <P extends object>(
@@ -275,6 +276,9 @@ const EventVoucher = ({
   const ctx = useContext(ParcnetClientContext as React.Context<any>);
   const disconnect = ctx?.disconnect;
 
+  const [ticketsUrl, setTicketsUrl] = useState(
+    "https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
+  );
   const [couponFetchingComplete, setCouponFetchingComplete] = useState(false);
   const [couponStatus, setCouponStatus] = useState<{
     success: boolean;
@@ -378,6 +382,11 @@ const EventVoucher = ({
     }
   }, [connectionState]);
 
+  // Initialize tickets URL from localStorage
+  useEffect(() => {
+    setTicketsUrl(getTicketsUrl());
+  }, []);
+
   return (
     <div className="w-full max-w-md mx-auto flex gap-2 flex-col">
       {/* Header */}
@@ -460,6 +469,7 @@ const EventVoucher = ({
                 className={cn({
                   "!contents": !connectedWithTicket,
                 })}
+                target="_blank"
               >
                 <VoxelButton
                   disabled={!connectedWithTicket}
@@ -486,6 +496,7 @@ const EventVoucher = ({
                 className={cn({
                   "!contents": !connectedWithCoupon,
                 })}
+                target="_blank"
               >
                 <VoxelButton
                   disabled={!connectedWithCoupon}
@@ -537,7 +548,7 @@ const EventVoucher = ({
             size="sm"
             className=""
             onClick={() => {
-              window.open("https://tickets.devconnect.org", "_blank");
+              window.open(ticketsUrl, "_blank");
             }}
           >
             Buy Devconnect ticket <SquareArrowOutUpRight size={16} />

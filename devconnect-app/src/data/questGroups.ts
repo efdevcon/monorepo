@@ -15,14 +15,8 @@ export const questGroupsData: QuestGroup[] = [
   },
   {
     id: 2,
-    name: "World’s Fair interactions",
-    description: "Practice the fundamentals of Ethereum and earn rewards for interacting with the World's Fair.",
+    name: "Crypto payment",
+    description: "Pay with crypto at participating merchants.",
     image: "/images/quest-worlds-fair-interactions.png"
-  },
-  {
-    id: 3,
-    name: "Explore the Ethereum ecosystem",
-    description: "Master the basics of Ethereum and dive deeper into the wider ecosystem.",
-    image: "/images/quest-ethereum-ecosystem.png"
   }
 ];

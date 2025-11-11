@@ -48,8 +48,7 @@ export type QuestCategory =
 export type QuestGroupName =
   | 'Setup & app tour'
   | 'App Showcase'
-  | 'World’s Fair interactions'
-  | 'Explore the Ethereum ecosystem'
+  | 'Crypto payment'
 
 /**
  * Quest group object

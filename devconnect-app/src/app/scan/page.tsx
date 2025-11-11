@@ -167,7 +167,7 @@ export default function ScanPage() {
           if (!response.ok) {
             if (response.status === 404) {
               toast.error(
-                'No payment available for this merchant at the moment.'
+                'No payment available for this merchant at the moment. If the problem persists, ask the merchant to create a new order then report the issue.'
               );
             } else {
               toast.error('Failed to fetch payment request');
@@ -288,9 +288,11 @@ export default function ScanPage() {
 
       if (!response.ok) {
         if (response.status === 404) {
-          toast.error('No payment available for this merchant at the moment.');
+          // toast.error(
+          //   'No payment available for this merchant at the moment. If the problem persists, ask the merchant to create a new order then report the issue.'
+          // );
           throw new Error(
-            'No payment available for this merchant at the moment.'
+            'No payment available for this merchant at the moment. If the problem persists, ask the merchant to create a new order then report the issue.'
           );
         }
         const errorData = await response.json();

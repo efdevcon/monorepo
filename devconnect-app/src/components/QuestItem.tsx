@@ -8,6 +8,7 @@ import ChevronIcon from '@/components/icons/ChevronIcon';
 import type { ComponentQuest, QuestConditionType } from '@/types';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
+import { useTickets } from '@/app/store.hooks';
 
 interface QuestItemProps {
   quest: ComponentQuest;
@@ -24,7 +25,8 @@ const QuestItem = ({
   isExpanded = false,
   onQuestSelect,
 }: QuestItemProps) => {
-  const { address } = useWallet();
+  const { para, eoa, address } = useWallet();
+  const { tickets } = useTickets();
   const [isExecutingAction, setIsExecutingAction] = useState(false);
   const questRef = useRef<HTMLDivElement>(null);
 
@@ -87,14 +89,17 @@ const QuestItem = ({
         `Executing quest action: ${quest.conditionType} with values: ${quest.conditionValues}`
       );
 
-      // Get user addresses for POAP verification
-      const userAddresses = address ? [address] : [];
+      // Get all connected wallet addresses (both Para and EOA)
+      const userAddresses = [para.address, eoa.address].filter(
+        (addr): addr is string => !!addr
+      );
 
       const result = await executeQuestAction(
         quest.id.toString(),
         quest.conditionType as QuestConditionType,
         quest.conditionValues,
-        userAddresses
+        userAddresses,
+        tickets
       );
 
       if (result) {

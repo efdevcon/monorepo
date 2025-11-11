@@ -19,7 +19,7 @@ import { getMerchantName, getMerchantById } from '@/config/merchants';
 import { triggerHaptic } from 'tactus';
 import { WalletDisplay } from '@/components/WalletDisplay';
 import Icon from '@mdi/react';
-import { mdiBug } from '@mdi/js';
+import { mdiBug, mdiAlertOutline } from '@mdi/js';
 import { openReportIssue } from '@/utils/reportIssue';
 import {
   useAccount as useParaAccount,
@@ -1492,29 +1492,98 @@ export default function PaymentModal({
 
                   {/* Error State */}
                   {paymentDetailsError && (
-                    <div className="text-center py-8">
-                      <div className="text-red-600 mb-4">
-                        <svg
-                          className="h-12 w-12 mx-auto mb-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z"
-                          />
-                        </svg>
-                        <p className="font-semibold">
-                          Error loading payment details
-                        </p>
-                        <p className="text-sm">{paymentDetailsError}</p>
+                    <div className="flex flex-col items-center justify-center gap-6 py-8">
+                      {/* Warning Icon */}
+                      <div className="bg-[#ffe3e2] rounded-full w-[88px] h-[88px] flex items-center justify-center">
+                        <Icon
+                          path={mdiAlertOutline}
+                          size={1.67}
+                          className="text-[#e63946]"
+                        />
                       </div>
-                      <Button onClick={onClose} variant="outline">
-                        Close
-                      </Button>
+
+                      {/* Message Container */}
+                      <div className="flex flex-col gap-3 items-start w-full text-center">
+                        <p className="font-bold text-2xl text-[#20202b] w-full leading-[1.2] tracking-[-0.1px]">
+                          No active order
+                        </p>
+                        <p className="font-normal text-base text-[#353548] w-full leading-[1.3]">
+                          Sorry, there doesn't seem to be an active order
+                          available for this merchant at the moment.
+                        </p>
+                        <p className="font-normal text-base text-[#353548] w-full leading-[1.3]">
+                          Please wait then try again.
+                        </p>
+                      </div>
+
+                      {/* CTA Buttons */}
+                      <div className="flex flex-col gap-3 w-full">
+                        <button
+                          onClick={() => {
+                            // Retry loading payment details
+                            if (paymentRequestId) {
+                              setPaymentDetailsError(null);
+                              setIsLoadingPaymentDetails(true);
+                              fetchPaymentDetails(paymentRequestId)
+                                .then((details) => {
+                                  console.log(
+                                    'Payment details fetched:',
+                                    details
+                                  );
+                                  // Handle success similar to the initial load
+                                  if (
+                                    details.transactions &&
+                                    details.transactions.length > 0
+                                  ) {
+                                    const transaction = details.transactions[0];
+                                    const paymentData = {
+                                      orderId: details.order_id?.toString(),
+                                      orderStatus: details.status,
+                                      orderStatusDetail: details.status_detail,
+                                      arsAmount: details.ars_amount,
+                                      merchantId: details.merchant_id,
+                                      merchantName: details.merchant_id
+                                        ? getMerchantName(details.merchant_id)
+                                        : 'Devconnect',
+                                      priceDetails: transaction.price_details,
+                                      recipient: transaction.address,
+                                      amount:
+                                        transaction.price_details?.final_amount?.toString() ||
+                                        '0.01',
+                                      transactions: details.transactions,
+                                    };
+                                    setPaymentDetails(paymentData);
+                                    setIsLoadingPaymentDetails(false);
+                                  }
+                                })
+                                .catch((error) => {
+                                  console.error('Retry failed:', error);
+                                  setPaymentDetailsError(
+                                    error instanceof Error
+                                      ? error.message
+                                      : 'Failed to fetch payment details'
+                                  );
+                                  setIsLoadingPaymentDetails(false);
+                                });
+                            }
+                          }}
+                          className="w-full bg-[#0073de] hover:bg-[#005db3] text-white font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] transition-colors text-base"
+                        >
+                          Try again
+                        </button>
+                        <button
+                          onClick={openReportIssue}
+                          className="w-full bg-[#eaf3fa] hover:bg-[#d5e7f4] text-[#44445d] font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors text-base"
+                        >
+                          Report issue
+                        </button>
+                      </div>
+
+                      {/* Helper Text */}
+                      <p className="font-normal text-sm text-[#4b4b66] text-center leading-[1.3] tracking-[-0.1px] w-full">
+                        If the problem persists, ask the merchant to create a
+                        new order then report the issue.
+                      </p>
                     </div>
                   )}
 
