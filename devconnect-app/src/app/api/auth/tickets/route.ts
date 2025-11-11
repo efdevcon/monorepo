@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       console.log('Fallback: User email from headers:', userEmail);
     }
 
-    console.log('All headers:', Array.from(request.headers.entries()));
+    // console.log('All headers:', Array.from(request.headers.entries()));
 
     if (!userEmail) {
       console.log('No userEmail found in query params or headers');

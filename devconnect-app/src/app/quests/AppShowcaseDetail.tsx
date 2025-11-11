@@ -30,16 +30,12 @@ interface AppShowcaseDetailProps {
     string,
     {
       status: 'completed' | 'active' | 'locked';
-      is_locked: boolean;
-      isCheckedIn?: boolean;
       completedAt?: number;
     }
   >;
   updateQuestStatus: (
     questId: string,
-    status: 'completed' | 'active' | 'locked',
-    is_locked: boolean,
-    isCheckedIn?: boolean
+    status: 'completed' | 'active' | 'locked'
   ) => void;
 }
 
@@ -135,9 +131,13 @@ export default function AppShowcaseDetail({
       }
 
       // Check if it's a quest ID from any group
-      const allQuests = [...appShowcaseQuests, ...setupQuests, ...cryptoPaymentQuests];
+      const allQuests = [
+        ...appShowcaseQuests,
+        ...setupQuests,
+        ...cryptoPaymentQuests,
+      ];
       const quest = allQuests.find((q) => q.id.toString() === hash);
-      
+
       if (quest) {
         // Check if it's an app showcase quest (has districtId)
         if (quest.groupId === 4) {
@@ -183,7 +183,7 @@ export default function AppShowcaseDetail({
             }
           }, 200);
         }
-        
+
         hasInitialized.current = true;
         return;
       }
@@ -191,7 +191,13 @@ export default function AppShowcaseDetail({
 
     // Default: don't expand anything on first load
     hasInitialized.current = true;
-  }, [districtsWithQuests, appShowcaseQuests, setupQuests, cryptoPaymentQuests, expandedDistrict]);
+  }, [
+    districtsWithQuests,
+    appShowcaseQuests,
+    setupQuests,
+    cryptoPaymentQuests,
+    expandedDistrict,
+  ]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -212,14 +218,15 @@ export default function AppShowcaseDetail({
   );
 
   // Calculate overall progress
+  // Note: Order matters for consistency - Setup, Crypto Payment, App Showcase
   const overallProgress = useMemo(() => {
     const allQuests = [
-      ...appShowcaseQuests,
       ...setupQuests,
       ...cryptoPaymentQuests,
+      ...appShowcaseQuests,
     ];
     return calculateProgress(allQuests, questStates);
-  }, [appShowcaseQuests, setupQuests, cryptoPaymentQuests, questStates]);
+  }, [setupQuests, cryptoPaymentQuests, appShowcaseQuests, questStates]);
 
   // Get quest status
   const getQuestStatus = (quest: Quest) => {
@@ -228,13 +235,14 @@ export default function AppShowcaseDetail({
   };
 
   const isQuestCompleted = (quest: Quest) => {
-    return getQuestStatus(quest) === 'completed';
+    const questState = questStates[quest.id.toString()];
+    return !!questState?.completedAt; // Quest is completed if completedAt exists
   };
 
   // Helper function to get completion date (returns ISO string for display)
   const getCompletionDate = (questId: number): string | undefined => {
     const questState = questStates[questId.toString()];
-    if (questState?.status === 'completed') {
+    if (questState?.completedAt) {
       // First check if we have POAP metadata with the actual minted date
       try {
         const poapMetadata = JSON.parse(
@@ -256,12 +264,7 @@ export default function AppShowcaseDetail({
       }
 
       // Fall back to the completedAt timestamp from quest-states
-      if (questState.completedAt) {
-        return new Date(questState.completedAt).toISOString();
-      }
-
-      // If collected but no date available, use current timestamp
-      return new Date().toISOString();
+      return new Date(questState.completedAt).toISOString();
     }
     return undefined;
   };
@@ -443,8 +446,7 @@ export default function AppShowcaseDetail({
 
   const handleQuestAction = async (quest: Quest) => {
     triggerHaptic(200);
-    const currentStatus = getQuestStatus(quest);
-    if (currentStatus === 'completed') return;
+    if (isQuestCompleted(quest)) return;
 
     try {
       // Get all connected wallet addresses (both Para and EOA)
@@ -474,7 +476,7 @@ export default function AppShowcaseDetail({
 
       if (isCompleted) {
         // Update quest status to completed if the action was successful
-        updateQuestStatus(quest.id.toString(), 'completed', false);
+        updateQuestStatus(quest.id.toString(), 'completed');
 
         // Trigger confetti and set verifying state
         setVerifyingQuestId(quest.id.toString());
@@ -533,7 +535,7 @@ export default function AppShowcaseDetail({
 
     // Reset each quest by calling updateQuestStatus
     allQuestIds.forEach((questId) => {
-      updateQuestStatus(questId, 'locked', true, false);
+      updateQuestStatus(questId, 'locked');
     });
 
     // Reset local UI states

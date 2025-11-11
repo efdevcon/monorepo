@@ -141,12 +141,12 @@ export const triggerDistrictConfetti = (
  */
 export const calculateProgress = (
   quests: Quest[],
-  questStates: Record<string, { status: string }>
+  questStates: Record<string, { status: string; completedAt?: number }>
 ): { completed: number; total: number; percentage: number } => {
   const total = quests.length;
   const completed = quests.filter((quest) => {
     const state = questStates[quest.id.toString()];
-    return state?.status === 'completed';
+    return !!state?.completedAt; // Quest is completed if completedAt exists
   }).length;
   const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 

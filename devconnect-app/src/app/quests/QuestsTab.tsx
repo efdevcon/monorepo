@@ -17,8 +17,7 @@ type QuestStates = Record<
   string,
   {
     status: 'completed' | 'active' | 'locked';
-    is_locked: boolean;
-    isCheckedIn?: boolean;
+    completedAt?: number;
   }
 >;
 
@@ -27,8 +26,7 @@ const transformApiQuestToComponentQuest = (
   apiQuest: ApiQuest,
   questState: {
     status: 'completed' | 'active' | 'locked';
-    is_locked: boolean;
-    isCheckedIn?: boolean;
+    completedAt?: number;
   }
 ): ExtendedComponentQuest => {
   if (!(apiQuest as any).category) {
@@ -61,9 +59,7 @@ interface QuestsTabProps {
   questStates: QuestStates;
   updateQuestStatus: (
     questId: string,
-    status: 'completed' | 'active' | 'locked',
-    is_locked: boolean,
-    isCheckedIn?: boolean
+    status: 'completed' | 'active' | 'locked'
   ) => void;
   loading: boolean;
   error: string | null;
@@ -94,8 +90,6 @@ export default function QuestsTab({
     (apiQuest) => {
       const savedState = questStates[apiQuest.id.toString()] || {
         status: 'locked' as const,
-        is_locked: true,
-        isCheckedIn: false,
       };
 
       return transformApiQuestToComponentQuest(apiQuest, savedState);
@@ -104,14 +98,14 @@ export default function QuestsTab({
 
   // Handle quest completion
   const handleQuestComplete = (questId: string) => {
-    updateQuestStatus(questId, 'completed', false);
+    updateQuestStatus(questId, 'completed');
   };
 
   // Handle reset all quest states
   const handleResetStates = () => {
     // Reset all quests to locked state
     apiQuests.forEach((quest) => {
-      updateQuestStatus(quest.id.toString(), 'locked', true);
+      updateQuestStatus(quest.id.toString(), 'locked');
     });
   };
 
