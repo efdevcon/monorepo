@@ -30,7 +30,7 @@ const SupportersComponent = () => {
   // Convert supportersData object to array and use largeLogo
   const supporters = useMemo(() => {
     return Object.entries(supportersData)
-      .filter(([_, s]) => s.largeLogo) // Only include supporters with largeLogo
+      .filter(([_, s]) => s.largeLogo && s.websiteLink) // Only include supporters with largeLogo and websiteLink
       .map(([id, s]) => ({
         id,
         logo: s.largeLogo!,
