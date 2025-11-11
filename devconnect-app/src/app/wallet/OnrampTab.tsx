@@ -15,6 +15,7 @@ import {
   mdiChevronLeft,
   mdiArrowTopRight,
 } from '@mdi/js';
+import Link from 'next/link';
 
 // Image assets
 const imgOnrampDigital = '/images/onramp-digital.svg';
@@ -609,12 +610,15 @@ export default function OnrampTab() {
           <div className="flex-1 text-[#492e09] text-sm leading-[1.4] tracking-[0.1px]">
             <div className="font-bold mb-1">Need help?</div>
             <div className="font-normal">
-              Contact our support team if you're having trouble with our digital
-              exchange options. Alternatively, you can visit our{' '}
-              <span className="font-bold underline">
-                in-person exchange page
-              </span>{' '}
-              to learn more about exchanging currency for crypto in La Rural.
+              Head to the{' '}
+              <Link
+                href="/map?filter=onboarding-area"
+                className="font-bold text-[#0073de]"
+              >
+                Onboarding area
+              </Link>{' '}
+              near the entrance and let one of our volunteer team know about the
+              technical issue.
             </div>
           </div>
         </div>
