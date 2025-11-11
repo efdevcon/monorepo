@@ -5,6 +5,9 @@ import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
 import { useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import React from 'react';
+import Icon from '@mdi/react';
+import { mdiWallet } from '@mdi/js';
 import {
   WalletDisplay,
   WalletAvatarWithFallback,
@@ -73,12 +76,13 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
 
   // Track EOA connections to detect new wallets
   const previousEOAAddresses = useRef<Set<string>>(new Set());
+  const isInitialMount = useRef(true);
 
   // Effect: Save new EOA addresses to database
   useEffect(() => {
     // Get all current EOA addresses
     const currentEOAAddresses = new Set<string>();
-    
+
     eoa.eoaConnections.forEach((conn) => {
       if (conn.accounts && conn.accounts.length > 0) {
         conn.accounts.forEach((addr: string) => {
@@ -92,16 +96,27 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
       (addr) => !previousEOAAddresses.current.has(addr)
     );
 
-    // Save new addresses to database
+    // On initial mount, just populate the ref without showing toast
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      previousEOAAddresses.current = currentEOAAddresses;
+      return;
+    }
+
+    // Save new addresses to database (only after initial mount)
     if (newAddresses.length > 0) {
-      console.log('🔌 [WALLET_MODAL] New EOA addresses detected:', newAddresses);
-      
+      console.log(
+        '🔌 [WALLET_MODAL] New EOA addresses detected:',
+        newAddresses
+      );
+
       // Use async IIFE to handle async operations properly
       (async () => {
         try {
           // Get authentication token using authService
           const authToken = await authService.generateToken();
 
+          let successCount = 0;
           // Save each new address
           for (const address of newAddresses) {
             try {
@@ -109,7 +124,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${authToken.token}`,
+                  Authorization: `Bearer ${authToken.token}`,
                   'x-auth-method': authToken.method,
                 },
                 body: JSON.stringify({ address }),
@@ -117,17 +132,41 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
 
               if (!response.ok) {
                 const error = await response.json();
-                console.error('🔌 [WALLET_MODAL] Failed to save address:', error);
+                console.error(
+                  '🔌 [WALLET_MODAL] Failed to save address:',
+                  error
+                );
               } else {
                 const result = await response.json();
-                console.log('🔌 [WALLET_MODAL] Address saved successfully:', result);
+                console.log(
+                  '🔌 [WALLET_MODAL] Address saved successfully:',
+                  result
+                );
+                successCount++;
               }
             } catch (error) {
               console.error('🔌 [WALLET_MODAL] Error saving address:', error);
             }
           }
+
+          // Show success toast if at least one address was saved successfully
+          if (successCount > 0) {
+            const walletIcon = React.createElement(Icon, {
+              path: mdiWallet,
+              size: 0.67,
+              color: 'white',
+            });
+
+            toast.success('You successfully added an external wallet', {
+              icon: walletIcon,
+              duration: 4000,
+            });
+          }
         } catch (authError) {
-          console.warn('🔌 [WALLET_MODAL] No auth token available, skipping address save:', authError);
+          console.warn(
+            '🔌 [WALLET_MODAL] No auth token available, skipping address save:',
+            authError
+          );
         }
       })();
     }
@@ -213,19 +252,19 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     try {
       console.log('🔌 [WALLET_MODAL] Starting disconnect process');
       const isPara = primaryType === 'para';
-      
+
       // Wait for disconnect to complete (handles all cleanup including signOut)
       await disconnect();
-      
+
       if (isPara) {
         console.log('🔌 [WALLET_MODAL] Para is active, logging out');
         // Clear app-level state and redirect
         localStorage.removeItem('loginIsSkipped');
         storeLogout();
-        
+
         // Close modal before navigation
         onClose();
-        
+
         // Navigate to onboarding
         router.push('/onboarding');
         return; // Skip toast and second onClose
@@ -351,27 +390,19 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
         connector.id === 'para' || connector.id === 'getpara' ? 'para' : 'eoa';
       switchWallet(walletType);
 
-      toast.success(
-        <div className="space-y-1">
-          <div className="font-semibold text-green-800">
-            ✅ Switched Successfully
-          </div>
-          <div className="text-sm text-green-700">
-            Now using {connector.name}
-          </div>
-        </div>,
-        {
-          duration: 3000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-            border: '1px solid #bbf7d0',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
+      // Create wallet icon
+      const walletIcon = React.createElement(Icon, {
+        path: mdiWallet,
+        size: 0.67,
+        color: 'white',
+      });
+
+      toast.success(`You switched your active wallet to ${connector.name}`, {
+        icon: walletIcon,
+        duration: 3000,
+        dismissible: true,
+        closeButton: true,
+      });
 
       onClose();
     } catch (err) {

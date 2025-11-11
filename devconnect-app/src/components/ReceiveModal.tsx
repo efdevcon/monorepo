@@ -4,6 +4,9 @@ import { QRCodeSVG } from 'qrcode.react';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import React from 'react';
+import Icon from '@mdi/react';
+import { mdiContentCopy } from '@mdi/js';
 import {
   getNetworkLogo,
   chains,
@@ -38,8 +41,17 @@ export default function ReceiveModal({
       await navigator.clipboard.writeText(address);
       setAddressCopied(true);
       setTimeout(() => setAddressCopied(false), 2000);
+
+      // Create copy icon using MDI
+      const copyIcon = React.createElement(Icon, {
+        path: mdiContentCopy,
+        size: 0.67,
+        color: 'white',
+      });
+
       toast.success('Address copied to clipboard', {
         description: address,
+        icon: copyIcon,
       });
     }
   };

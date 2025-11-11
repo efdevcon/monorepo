@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import React from 'react';
 import {
   useExportPrivateKey,
   useWallet as useParaWallet,
@@ -100,7 +101,18 @@ export default function SettingsTab() {
   const handleCopyAddress = () => {
     if (paraAddress) {
       navigator.clipboard.writeText(paraAddress);
-      toast.success('Address copied to clipboard');
+      
+      // Create copy icon using MDI
+      const copyIcon = React.createElement(Icon, {
+        path: mdiContentCopy,
+        size: 0.67,
+        color: 'white',
+      });
+
+      toast.success('Address copied to clipboard', {
+        description: paraAddress,
+        icon: copyIcon,
+      });
     }
   };
 

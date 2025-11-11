@@ -4,6 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@/context/WalletContext';
 import { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
@@ -608,8 +609,17 @@ export default function WalletTab() {
       await navigator.clipboard.writeText(address);
       setAddressCopied(true);
       setTimeout(() => setAddressCopied(false), 2000);
+
+      // Create copy icon using MDI
+      const copyIcon = React.createElement(Icon, {
+        path: mdiContentCopy,
+        size: 0.67,
+        color: 'white',
+      });
+
       toast.success('Address copied to clipboard', {
         description: address,
+        icon: copyIcon,
       });
     }
   };

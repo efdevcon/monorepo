@@ -78,43 +78,21 @@ export default function OnrampTab() {
 
   // Toast utility functions
   const showInfoToast = (title: string, message?: string, duration = 3000) => {
-    toast.info(
-      <div className="space-y-1">
-        <div className="font-semibold text-blue-800">{title}</div>
-        {message && <div className="text-sm text-blue-700">{message}</div>}
-      </div>,
-      {
-        duration,
-        dismissible: true,
-        closeButton: true,
-        style: {
-          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-          border: '1px solid #bfdbfe',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }
-    );
+    toast.info(title, {
+      description: message,
+      duration,
+      dismissible: true,
+      closeButton: true,
+    });
   };
 
   const showErrorToast = (title: string, message?: string, duration = 4000) => {
-    toast.error(
-      <div className="space-y-1">
-        <div className="font-semibold text-red-800">{title}</div>
-        {message && <div className="text-sm text-red-700">{message}</div>}
-      </div>,
-      {
-        duration,
-        dismissible: true,
-        closeButton: true,
-        style: {
-          background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-          border: '1px solid #fecaca',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }
-    );
+    toast.error(title, {
+      description: message,
+      duration,
+      dismissible: true,
+      closeButton: true,
+    });
   };
 
   const digitalProviders = [

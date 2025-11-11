@@ -27,63 +27,30 @@ import { useRouter, usePathname } from 'next/navigation';
 
 // Toast utility functions to reduce overload and improve UX
 const showSuccessToast = (title: string, message?: string, duration = 3000) => {
-  toast.success(
-    <div className="space-y-1">
-      <div className="font-semibold text-green-800">{title}</div>
-      {message && <div className="text-sm text-green-700">{message}</div>}
-    </div>,
-    {
-      duration,
-      dismissible: true,
-      closeButton: true,
-      style: {
-        background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-        border: '1px solid #bbf7d0',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      },
-    }
-  );
+  toast.success(title, {
+    description: message,
+    duration,
+    dismissible: true,
+    closeButton: true,
+  });
 };
 
 const showErrorToast = (title: string, message?: string, duration = 4000) => {
-  toast.error(
-    <div className="space-y-1">
-      <div className="font-semibold text-red-800">{title}</div>
-      {message && <div className="text-sm text-red-700">{message}</div>}
-    </div>,
-    {
-      duration,
-      dismissible: true,
-      closeButton: true,
-      style: {
-        background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-        border: '1px solid #fecaca',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      },
-    }
-  );
+  toast.error(title, {
+    description: message,
+    duration,
+    dismissible: true,
+    closeButton: true,
+  });
 };
 
 const showInfoToast = (title: string, message?: string, duration = 3000) => {
-  toast.info(
-    <div className="space-y-1">
-      <div className="font-semibold text-blue-800">{title}</div>
-      {message && <div className="text-sm text-blue-700">{message}</div>}
-    </div>,
-    {
-      duration,
-      dismissible: true,
-      closeButton: true,
-      style: {
-        background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-        border: '1px solid #bfdbfe',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      },
-    }
-  );
+  toast.info(title, {
+    description: message,
+    duration,
+    dismissible: true,
+    closeButton: true,
+  });
 };
 
 export default function ConnectedWallet() {
@@ -203,27 +170,12 @@ export default function ConnectedWallet() {
         console.log('Disconnecting from Para to connect to:', connector.name);
 
         // Show connecting toast
-        toast.info(
-          <div className="space-y-2">
-            <div className="font-semibold text-blue-800">
-              🔄 Switching Wallets
-            </div>
-            <div className="text-sm text-blue-700">
-              Disconnecting from Para and connecting to {connector.name}...
-            </div>
-          </div>,
-          {
-            duration: 3000,
-            dismissible: false,
-            closeButton: false,
-            style: {
-              background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-              border: '1px solid #bfdbfe',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
+        toast.info('🔄 Switching Wallets', {
+          description: `Disconnecting from Para and connecting to ${connector.name}...`,
+          duration: 3000,
+          dismissible: false,
+          closeButton: false,
+        });
 
         // Disconnect from current Para connection (without showing success toast)
         await handleDisconnectSilently();
@@ -393,34 +345,18 @@ export default function ConnectedWallet() {
 
       // Show pending toast for non-Para wallets
       if (!isPara) {
-        toast.info(
-          <div className="space-y-3">
-            <div className="font-semibold text-blue-800">
-              🔐 Waiting for Signature
-            </div>
-            <div className="text-sm text-blue-700">
-              Please check your wallet and approve the signature request.
-            </div>
-            <button
-              onClick={handleCancelSigning}
-              className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-sm font-medium transition-colors cursor-pointer"
-            >
-              Cancel
-            </button>
-          </div>,
-          {
-            id: 'signing-pending',
-            duration: Infinity,
-            dismissible: false,
-            closeButton: false,
-            style: {
-              background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-              border: '1px solid #bfdbfe',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
+        toast.info('🔐 Waiting for Signature', {
+          description:
+            'Please check your wallet and approve the signature request.',
+          id: 'signing-pending',
+          duration: Infinity,
+          dismissible: false,
+          closeButton: false,
+          cancel: {
+            label: 'Cancel',
+            onClick: handleCancelSigning,
+          },
+        });
       }
 
       // Check for cancellation before starting
@@ -510,28 +446,12 @@ export default function ConnectedWallet() {
         toast.info('ℹ️ Signing Cancelled', { duration: 3000 });
       } else {
         setSigningState('error');
-        toast.error(
-          <div className="space-y-2">
-            <div className="font-semibold text-red-800">❌ Signing Failed</div>
-            <div className="text-sm text-red-700">
-              <div className="font-medium">Error:</div>
-              <div className="bg-red-50 p-2 rounded border text-red-600">
-                {errorMessage}
-              </div>
-            </div>
-          </div>,
-          {
-            duration: 6000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-              border: '1px solid #fecaca',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
+        toast.error('❌ Signing Failed', {
+          description: `Error: ${errorMessage}`,
+          duration: 6000,
+          dismissible: true,
+          closeButton: true,
+        });
       }
 
       // Reset state after error
@@ -903,51 +823,19 @@ export default function ConnectedWallet() {
               console.log('Attempting to restore Para wagmi connection...');
               const success = await ensureParaWagmiConnection();
               if (success) {
-                toast.success(
-                  <div className="space-y-2">
-                    <div className="font-semibold text-green-800">
-                      ✅ Para Connection Restored
-                    </div>
-                    <div className="text-sm text-green-700">
-                      Para is now properly connected to wagmi.
-                    </div>
-                  </div>,
-                  {
-                    duration: 3000,
-                    dismissible: true,
-                    closeButton: true,
-                    style: {
-                      background:
-                        'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-                      border: '1px solid #bbf7d0',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                    },
-                  }
-                );
+                toast.success('✅ Para Connection Restored', {
+                  description: 'Para is now properly connected to wagmi.',
+                  duration: 3000,
+                  dismissible: true,
+                  closeButton: true,
+                });
               } else {
-                toast.error(
-                  <div className="space-y-2">
-                    <div className="font-semibold text-red-800">
-                      ❌ Connection Failed
-                    </div>
-                    <div className="text-sm text-red-700">
-                      Failed to restore Para wagmi connection.
-                    </div>
-                  </div>,
-                  {
-                    duration: 4000,
-                    dismissible: true,
-                    closeButton: true,
-                    style: {
-                      background:
-                        'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-                      border: '1px solid #fecaca',
-                      borderRadius: '8px',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                    },
-                  }
-                );
+                toast.error('❌ Connection Failed', {
+                  description: 'Failed to restore Para wagmi connection.',
+                  duration: 4000,
+                  dismissible: true,
+                  closeButton: true,
+                });
               }
             }}
             className="w-full cursor-pointer"

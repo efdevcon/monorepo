@@ -498,6 +498,146 @@ svg.icon {
   left: auto !important;
 }
 
+/* Sonner toast container z-index and positioning */
+[data-sonner-toaster] {
+  z-index: 999999 !important;
+  /* Add menu height (59px) + margin (24px) + safe area to bottom positioning */
+  bottom: calc(59px + 24px + max(0px, env(safe-area-inset-bottom))) !important;
+}
+
+/* Sonner toast custom styles matching Figma design */
+[data-sonner-toast] {
+  padding: 12px !important;
+  border-radius: 4px !important;
+  gap: 12px !important;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  box-shadow: none !important;
+}
+
+/* Success toast styling */
+[data-sonner-toast][data-type='success'] {
+  background-color: #d3f8ec !important;
+  border: 1px solid #b5e3d4 !important;
+  color: #0a4230 !important;
+}
+
+[data-sonner-toast][data-type='success'] [data-icon] {
+  background-color: #137c59 !important;
+  color: white !important;
+  border-radius: 2px !important;
+  padding: 4px !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[data-sonner-toast][data-type='success'] [data-icon] svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Remove padding and background for custom image icons (like network logos) */
+[data-sonner-toast][data-type='success'] [data-icon]:has(img) {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Error toast styling */
+[data-sonner-toast][data-type='error'] {
+  background-color: #ffe6e6 !important;
+  border: 1px solid #e7b1b1 !important;
+  color: #700f0f !important;
+}
+
+[data-sonner-toast][data-type='error'] [data-icon] {
+  background-color: #b51c1c !important;
+  color: white !important;
+  border-radius: 2px !important;
+  padding: 4px !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[data-sonner-toast][data-type='error'] [data-icon] svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Remove padding and background for custom image icons */
+[data-sonner-toast][data-type='error'] [data-icon]:has(img) {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Info toast styling */
+[data-sonner-toast][data-type='info'] {
+  background-color: white !important;
+  border: 1px solid #ededf0 !important;
+  color: #20202b !important;
+}
+
+[data-sonner-toast][data-type='info'] [data-icon] {
+  background-color: #ededf0 !important;
+  color: #353548 !important;
+  border-radius: 2px !important;
+  padding: 4px !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[data-sonner-toast][data-type='info'] [data-icon] svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Remove padding and background for custom image icons */
+[data-sonner-toast][data-type='info'] [data-icon]:has(img) {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Default/neutral toast styling (for toast() without type) */
+[data-sonner-toast]:not([data-type]) {
+  background-color: white !important;
+  border: 1px solid #ededf0 !important;
+  color: #20202b !important;
+}
+
+/* Toast text styling */
+[data-sonner-toast] [data-content] {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}
+
+[data-sonner-toast] [data-title] {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}
+
+[data-sonner-toast] [data-description] {
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  margin-top: 4px !important;
+}
+
+/* Hide wallet connector chainChanged notifications */
+[class*="_chainChanged"] {
+  display: none !important;
+}
+
 /* Prevent screen rotation - lock to portrait orientation on mobile */
 @media screen and (max-width: 1024px) and (orientation: landscape) {
   html {
