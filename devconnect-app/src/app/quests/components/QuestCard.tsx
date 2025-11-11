@@ -168,9 +168,11 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   );
                 })()
               ) : (
-                <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
-                  <span className="text-xs text-gray-600">?</span>
-                </div>
+                <img
+                  src="/images/icons/pay.png"
+                  alt="PAY"
+                  className="w-6 h-6 object-contain"
+                />
               )}
             </div>
             <div className="flex-1 min-w-0">
@@ -269,8 +271,7 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   </button>
                   <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                 </div>
-                {(!isCompleted ||
-                  verifyingQuestId === quest.id.toString()) && (
+                {(!isCompleted || verifyingQuestId === quest.id.toString()) && (
                   <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
                     <button
                       onClick={() => onQuestAction(quest)}

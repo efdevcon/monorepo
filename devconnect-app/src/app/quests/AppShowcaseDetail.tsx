@@ -19,6 +19,7 @@ import {
 } from './utils/quest-helpers';
 import InfoCard from './components/InfoCard';
 import SetupSection from './components/SetupSection';
+import CryptoPaymentSection from './components/CryptoPaymentSection';
 import DistrictSection from './components/DistrictSection';
 import ProgressSection from './components/ProgressSection';
 
@@ -59,9 +60,12 @@ export default function AppShowcaseDetail({
   const [verifyingQuestId, setVerifyingQuestId] = useState<string | null>(null);
   const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
     useState<boolean>(false);
+  const [isCryptoPaymentSectionExpanded, setIsCryptoPaymentSectionExpanded] =
+    useState<boolean>(false);
   const hasInitialized = useRef(false);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const setupSectionRef = useRef<HTMLDivElement | null>(null);
+  const cryptoPaymentSectionRef = useRef<HTMLDivElement | null>(null);
   const districtRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [selectedPoap, setSelectedPoap] = useState<{
     id: number;
@@ -77,6 +81,9 @@ export default function AppShowcaseDetail({
 
   // Get all Setup & app tour quests (groupId === 1)
   const setupQuests = questsData.filter((quest) => quest.groupId === 1);
+
+  // Get all Crypto payment quests (groupId === 2)
+  const cryptoPaymentQuests = questsData.filter((quest) => quest.groupId === 2);
 
   // Group quests by district
   const questsByDistrict = useMemo(() => {
@@ -127,14 +134,32 @@ export default function AppShowcaseDetail({
         return;
       }
 
-      // Check if it's a quest ID
-      const quest = appShowcaseQuests.find((q) => q.id.toString() === hash);
+      // Check if it's a quest ID from any group
+      const allQuests = [...appShowcaseQuests, ...setupQuests, ...cryptoPaymentQuests];
+      const quest = allQuests.find((q) => q.id.toString() === hash);
+      
       if (quest) {
-        const questDistrict = districtsWithQuests.find(
-          (d) => d.id === quest.districtId?.toString()
-        );
-        if (questDistrict) {
-          setExpandedDistrict(questDistrict.id);
+        // Check if it's an app showcase quest (has districtId)
+        if (quest.groupId === 4) {
+          const questDistrict = districtsWithQuests.find(
+            (d) => d.id === quest.districtId?.toString()
+          );
+          if (questDistrict) {
+            setExpandedDistrict(questDistrict.id);
+            setExpandedQuests(new Set([quest.id]));
+
+            // Scroll to the quest after a delay
+            setTimeout(() => {
+              const questElement = questRefs.current[quest.id];
+              if (questElement) {
+                scrollToElement(questElement);
+              }
+            }, 200);
+          }
+        }
+        // Check if it's a setup quest (groupId === 1)
+        else if (quest.groupId === 1) {
+          setIsSetupSectionExpanded(true);
           setExpandedQuests(new Set([quest.id]));
 
           // Scroll to the quest after a delay
@@ -143,8 +168,22 @@ export default function AppShowcaseDetail({
             if (questElement) {
               scrollToElement(questElement);
             }
-          }, 200); // Increased delay to ensure DOM updates are complete
+          }, 200);
         }
+        // Check if it's a crypto payment quest (groupId === 2)
+        else if (quest.groupId === 2) {
+          setIsCryptoPaymentSectionExpanded(true);
+          setExpandedQuests(new Set([quest.id]));
+
+          // Scroll to the quest after a delay
+          setTimeout(() => {
+            const questElement = questRefs.current[quest.id];
+            if (questElement) {
+              scrollToElement(questElement);
+            }
+          }, 200);
+        }
+        
         hasInitialized.current = true;
         return;
       }
@@ -152,7 +191,7 @@ export default function AppShowcaseDetail({
 
     // Default: don't expand anything on first load
     hasInitialized.current = true;
-  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict]);
+  }, [districtsWithQuests, appShowcaseQuests, setupQuests, cryptoPaymentQuests, expandedDistrict]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -166,11 +205,21 @@ export default function AppShowcaseDetail({
   // Calculate setup progress
   const setupProgress = calculateProgress(setupQuests, questStates);
 
+  // Calculate crypto payment progress
+  const cryptoPaymentProgress = calculateProgress(
+    cryptoPaymentQuests,
+    questStates
+  );
+
   // Calculate overall progress
   const overallProgress = useMemo(() => {
-    const allQuests = [...appShowcaseQuests, ...setupQuests];
+    const allQuests = [
+      ...appShowcaseQuests,
+      ...setupQuests,
+      ...cryptoPaymentQuests,
+    ];
     return calculateProgress(allQuests, questStates);
-  }, [appShowcaseQuests, setupQuests, questStates]);
+  }, [appShowcaseQuests, setupQuests, cryptoPaymentQuests, questStates]);
 
   // Get quest status
   const getQuestStatus = (quest: Quest) => {
@@ -279,9 +328,10 @@ export default function AppShowcaseDetail({
         }
       }, 100);
     } else {
-      // Expand the district and collapse any expanded setup section
+      // Expand the district and collapse any expanded setup section or crypto payment section
       setExpandedDistrict(districtId);
       setIsSetupSectionExpanded(false);
+      setIsCryptoPaymentSectionExpanded(false);
 
       // Find the first uncompleted quest in this district
       const quests = questsByDistrict[districtId] || [];
@@ -322,9 +372,10 @@ export default function AppShowcaseDetail({
         }
       }, 100);
     } else {
-      // Expand the setup section and collapse any expanded district
+      // Expand the setup section and collapse any expanded district or crypto payment section
       setIsSetupSectionExpanded(true);
       setExpandedDistrict(''); // Collapse any expanded district
+      setIsCryptoPaymentSectionExpanded(false); // Collapse crypto payment section
 
       // Find the first uncompleted quest in setup quests
       const firstUncompletedQuest = setupQuests.find((quest) => {
@@ -343,6 +394,48 @@ export default function AppShowcaseDetail({
       setTimeout(() => {
         if (setupSectionRef.current) {
           scrollToElement(setupSectionRef.current, true);
+        }
+      }, 100);
+    }
+  };
+
+  const toggleCryptoPaymentSectionExpansion = () => {
+    const isCurrentlyExpanded = isCryptoPaymentSectionExpanded;
+
+    if (isCurrentlyExpanded) {
+      // Collapse the crypto payment section
+      setIsCryptoPaymentSectionExpanded(false);
+      setExpandedQuests(new Set());
+
+      // Scroll to the crypto payment section after collapse
+      setTimeout(() => {
+        if (cryptoPaymentSectionRef.current) {
+          scrollToElement(cryptoPaymentSectionRef.current, true);
+        }
+      }, 100);
+    } else {
+      // Expand the crypto payment section and collapse any expanded district or setup section
+      setIsCryptoPaymentSectionExpanded(true);
+      setExpandedDistrict(''); // Collapse any expanded district
+      setIsSetupSectionExpanded(false); // Collapse setup section
+
+      // Find the first uncompleted quest in crypto payment quests
+      const firstUncompletedQuest = cryptoPaymentQuests.find((quest) => {
+        const questState = questStates[quest.id.toString()];
+        return questState?.status !== 'completed';
+      });
+
+      // Auto-expand the first uncompleted quest if found
+      if (firstUncompletedQuest) {
+        setExpandedQuests(new Set([firstUncompletedQuest.id]));
+      } else {
+        setExpandedQuests(new Set());
+      }
+
+      // Scroll to the crypto payment section after expansion
+      setTimeout(() => {
+        if (cryptoPaymentSectionRef.current) {
+          scrollToElement(cryptoPaymentSectionRef.current, true);
         }
       }, 100);
     }
@@ -422,14 +515,21 @@ export default function AppShowcaseDetail({
     setSelectedSupporter(supporter.layerName);
   };
 
-  // Reset function to clear all quest states for App Showcase and Setup quests
+  // Reset function to clear all quest states for App Showcase, Setup, and Crypto Payment quests
   const handleReset = () => {
-    // Reset App Showcase quests (groupId === 4) and Setup quests (groupId === 1)
+    // Reset App Showcase quests (groupId === 4), Setup quests (groupId === 1), and Crypto Payment quests (groupId === 2)
     const appShowcaseQuestIds = appShowcaseQuests.map((quest) =>
       quest.id.toString()
     );
     const setupQuestIds = setupQuests.map((quest) => quest.id.toString());
-    const allQuestIds = [...appShowcaseQuestIds, ...setupQuestIds];
+    const cryptoPaymentQuestIds = cryptoPaymentQuests.map((quest) =>
+      quest.id.toString()
+    );
+    const allQuestIds = [
+      ...appShowcaseQuestIds,
+      ...setupQuestIds,
+      ...cryptoPaymentQuestIds,
+    ];
 
     // Reset each quest by calling updateQuestStatus
     allQuestIds.forEach((questId) => {
@@ -440,6 +540,7 @@ export default function AppShowcaseDetail({
     setExpandedQuests(new Set());
     setExpandedDistrict('');
     setIsSetupSectionExpanded(false);
+    setIsCryptoPaymentSectionExpanded(false);
 
     // If we were on a specific quest/district, clear the hash
     if (window.location.hash) {
@@ -510,6 +611,26 @@ export default function AppShowcaseDetail({
           </div>
         );
       })}
+
+      {/* Crypto Payment Section */}
+      <div className="w-full pb-1">
+        <CryptoPaymentSection
+          ref={cryptoPaymentSectionRef}
+          cryptoPaymentQuests={cryptoPaymentQuests}
+          isExpanded={isCryptoPaymentSectionExpanded}
+          progress={cryptoPaymentProgress}
+          expandedQuests={expandedQuests}
+          isQuestCompleted={isQuestCompleted}
+          verifyingQuestId={verifyingQuestId}
+          address={address || undefined}
+          onQuestAction={handleQuestAction}
+          onAboutClick={handleAboutClick}
+          onPoapClick={handlePoapClick}
+          onToggleExpansion={toggleCryptoPaymentSectionExpansion}
+          onToggleQuestExpansion={toggleQuestExpansion}
+          questRefs={questRefs}
+        />
+      </div>
 
       {/* Progress Section */}
       <ProgressSection
