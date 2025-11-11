@@ -25,7 +25,7 @@ import cn from 'classnames'
 import { useScroll } from 'framer-motion'
 import { useDevaBotStore } from 'store/devai'
 import MailIcon from 'assets/icons/mail.svg'
-import { TICKETS_URL } from 'common/constants'
+import { useTicketsUrl } from 'common/constants'
 import EthDayLogo from 'assets/images/eth-day-logo.png'
 import Image from 'next/image'
 
@@ -77,7 +77,7 @@ const MultiLink = (props: any) => {
   )
 }
 
-const menuItems = (pathname: string) => [
+const menuItems = (pathname: string, ticketsUrl: string) => [
   {
     text: (globalThis as any).translations.about,
     url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
@@ -88,7 +88,7 @@ const menuItems = (pathname: string) => [
   },
   {
     text: 'Tickets',
-    url: TICKETS_URL,
+    url: ticketsUrl,
   },
   {
     text: 'Perks',
@@ -242,6 +242,7 @@ const Mobile = (props: any) => {
 export const FooterMenu = (props: any) => {
   const [languageOpen, setLanguageOpen] = React.useState(false)
   const router = useRouter()
+  const ticketsUrl = useTicketsUrl()
 
   return (
     <div className={cn(css['footer-menu'], 'pt-2.5')}>
@@ -249,7 +250,7 @@ export const FooterMenu = (props: any) => {
         {(globalThis as any).translations.back_to_top} <ArrowUpIcon />
       </AnchorLink>
 
-      {menuItems(router.pathname).map((menuItem: any) => {
+      {menuItems(router.pathname, ticketsUrl).map((menuItem: any) => {
         const isMultiLink = !!menuItem.children
 
         if (isMultiLink) {
@@ -347,6 +348,7 @@ export const FooterMenu = (props: any) => {
 export const Menu = (props: any) => {
   const router = useRouter()
   const [languageOpen, setLanguageOpen] = React.useState(false)
+  const ticketsUrl = useTicketsUrl()
   // const { visible, toggleVisible } = useDevaBotStore()
 
   const hasScrolled = props.hasScrolled
@@ -365,7 +367,7 @@ export const Menu = (props: any) => {
     >
       <Mobile menuOpen={props.menuOpen} setMenuOpen={props.setMenuOpen} />
 
-      {menuItems(router.pathname).map((menuItem: any) => {
+      {menuItems(router.pathname, ticketsUrl).map((menuItem: any) => {
         const isMultiLink = !!menuItem.children
 
         if (menuItem.onlyFooter) return null

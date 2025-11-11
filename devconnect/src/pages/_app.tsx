@@ -23,6 +23,7 @@ export const robotoCondensed = Roboto_Condensed({
 })
 import { init, push } from '@socialgouv/matomo-next'
 import { useDevaBotStore } from 'store/devai'
+import { useUrlParamsStore } from 'store/urlParams'
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '29'
 let matomoAdded = false
@@ -43,6 +44,31 @@ if (typeof window !== 'undefined') {
 function MyApp({ Component, pageProps }: AppProps) {
   const [showBanner, setShowBanner] = useState(true)
   const { visible, toggleVisible } = useDevaBotStore()
+  const { setUtmParams } = useUrlParamsStore()
+
+  React.useEffect(() => {
+    // Parse UTM parameters from URL
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const mtm_campaign = urlParams.get('mtm_campaign')
+      const mtm_kwd = urlParams.get('mtm_kwd')
+      const mtm_content = urlParams.get('mtm_content')
+
+      if (mtm_campaign || mtm_kwd || mtm_content) {
+        const params = {
+          ...(mtm_campaign && { mtm_campaign }),
+          ...(mtm_kwd && { mtm_kwd }),
+          ...(mtm_content && { mtm_content }),
+        }
+        
+        // Store in Zustand
+        setUtmParams(params)
+        
+        // Also store in localStorage for shared lib components
+        localStorage.setItem('devconnect_utm_params', JSON.stringify(params))
+      }
+    }
+  }, [setUtmParams])
 
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
@@ -61,14 +87,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
           html {
             --font-roboto: ${roboto.style.fontFamily};
             --font-roboto-condensed: ${robotoCondensed.style.fontFamily};
           }
-        `
-      }} />
+        `,
+        }}
+      />
 
       <DevaBot
         botVersion="devconnect"

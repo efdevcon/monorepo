@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewScheduleIndex, { ScheduleProps } from "./index";
 import ActionBar from "./action-bar";
 import { Filter, FilterSummary, useFilters } from "./filter";
@@ -7,6 +7,7 @@ import Link from "lib/components/link/Link";
 import { withParcnetProvider } from "./zupass/zupass";
 import TicketPurple from "lib/assets/icons/ticket-purple.svg";
 import cn from "classnames";
+import { getTicketsUrl } from "lib/helpers/ticketsUrl";
 
 type CalendarLayoutProps = ScheduleProps & {
   isCommunityCalendar: boolean;
@@ -14,6 +15,9 @@ type CalendarLayoutProps = ScheduleProps & {
 
 const Layout = (props: CalendarLayoutProps) => {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [ticketsUrl, setTicketsUrl] = useState(
+    "https://tickets.devconnect.org"
+  );
   const {
     filterOpen,
     setFilterOpen,
@@ -25,6 +29,11 @@ const Layout = (props: CalendarLayoutProps) => {
     resetFilter,
     filterActive,
   } = useFilters(props.events, true);
+
+  // Initialize tickets URL from localStorage on client side
+  useEffect(() => {
+    setTicketsUrl(getTicketsUrl());
+  }, []);
 
   return (
     <div className="text-left">
@@ -45,7 +54,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   <div className="text-base font-secondary">
                     Events held within La Rural require a{` `}
                     <Link
-                      href="https://tickets.devconnect.org"
+                      href={ticketsUrl}
                       className="text-blue-500 font-medium"
                     >
                       world's fair ticket{` `}

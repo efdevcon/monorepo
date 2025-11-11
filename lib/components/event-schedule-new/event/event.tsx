@@ -21,6 +21,7 @@ import moment from "moment";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "lib/components/link/Link";
+import { addUtmParams, isDevconnectUrl } from "lib/helpers/ticketsUrl";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
@@ -261,6 +262,19 @@ function Event({
   const [imageLoaded, setImageLoaded] = useState(false);
   const imageRef = useRef<any>(null);
   const isMobile = useIsMobile(768);
+
+  // Process ticketsUrl to add UTM parameters if it's any devconnect.org subdomain
+  const [processedTicketsUrl, setProcessedTicketsUrl] = useState(
+    event.ticketsUrl
+  );
+
+  useEffect(() => {
+    if (event.ticketsUrl && isDevconnectUrl(event.ticketsUrl)) {
+      setProcessedTicketsUrl(addUtmParams(event.ticketsUrl));
+    } else {
+      setProcessedTicketsUrl(event.ticketsUrl);
+    }
+  }, [event.ticketsUrl]);
 
   // Reset image loaded state when imageUrl changes
   useEffect(() => {
@@ -682,7 +696,10 @@ function Event({
                         )}
 
                         {showBuyTickets && !isGated && (
-                          <Link href={event.ticketsUrl} className="self-start">
+                          <Link
+                            href={processedTicketsUrl}
+                            className="self-start"
+                          >
                             <VoxelButton
                               color="blue-1"
                               size="sm"
@@ -765,7 +782,7 @@ function Event({
                         ) : (
                           <ZupassConnection
                             eventId={event.id}
-                            shopUrl={event.ticketsUrl || event.eventLink}
+                            shopUrl={processedTicketsUrl || event.eventLink}
                           />
                         )}
 
