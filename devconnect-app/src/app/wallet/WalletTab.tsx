@@ -1013,7 +1013,7 @@ export default function WalletTab() {
                       />
                     </button>
                     <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
-                      Add
+                      Buy
                     </span>
                   </div>
                 )}
