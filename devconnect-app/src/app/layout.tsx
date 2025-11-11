@@ -134,8 +134,8 @@ export default async function RootLayout({
 
   // const t = await getTranslations();
   const atprotoEvents = await getAtprotoEvents();
-  const programming = await getProgramming();
-  const programmingEvents = await getStageEvents();
+  // const programming = await getProgramming();
+  // const programmingEvents = await getStageEvents();
   const announcementsRaw = await getNotionTable(
     '295638cdc41580fe8d85ff5487f71277',
     undefined,
@@ -347,8 +347,8 @@ export default async function RootLayout({
                 <GlobalStoreProvider
                   events={atprotoEvents} /*userData={userData}*/
                   announcements={announcements}
-                  programming={programming}
-                  programmingEvents={programmingEvents}
+                  // programming={programming}
+                  // programmingEvents={programmingEvents}
                 >
                   <WalletProvider>
                     {children}

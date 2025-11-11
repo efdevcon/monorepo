@@ -38,42 +38,6 @@ export const canonicalStageNames = {
   'open-air-cinema': 'Open Air Cinema',
 };
 
-/*
- Ideal data structure:
-
-  {
-    stage: "M2",
-    sessions: [
-      {
-        eventID: 24, // for map filtering
-        sessionTitle: 'abc',
-        date: '2025-11-08',
-        start: '...',
-        end: '...'
-      }
-    ]
-
-    /stages/xl?event=24
-   }
-
-   const hasActiveProgrammingNow(stage) => yes or no
-   const event = getActiveProrgrammingNow(stage) => session
-   const nextEvent = getNextEvent(stage) => session
-   const nextEventTime = getNextEventTimeLeft(stage) => moment
-   const streamURL = stage.streamURL
-
-*/
-
-/*
-  {
-    "folderId": "1P5_JEqq9wPQLZPpHcgm1x-97Rdjn5AGr",
-    "name": "Trustless Agents Day",
-    "sheetId": "1c62SohvDfOjI7_pP5XEyNYiC32f5BJJFV83ifI16R5E",
-    "sheetName": "Trustless Agents Day",
-    "stage": "M2",
-    "updatedAt": "2025-11-07T19:06:51.590607+00:00"
-  },
-*/
 const computeStages = (events?: any[]) => {
   if (!events) return [];
   if (!events || !Array.isArray(events)) return [];
@@ -93,12 +57,219 @@ const computeStages = (events?: any[]) => {
   return Array.from(uniqueStages).sort();
 };
 
+// Stage metadata - keys match normalized API values
+const stageMetadata: Record<
+  string,
+  { name: string; mapUrl: string; urlId: string; pavilion: string }
+> = {
+  xl: {
+    name: 'XL Stage',
+    mapUrl: '/map?filter=xl-stage',
+    urlId: 'xl-stage',
+    pavilion: 'yellowPavilion',
+  },
+  x1: {
+    name: 'XL Stage',
+    mapUrl: '/map?filter=xl-stage',
+    urlId: 'xl-stage',
+    pavilion: 'yellowPavilion',
+  },
+  m2: {
+    name: 'M2 Stage',
+    mapUrl: '/map?filter=m2-stage',
+    urlId: 'm2-stage',
+    pavilion: 'yellowPavilion',
+  },
+  m1: {
+    name: 'M1 Stage',
+    mapUrl: '/map?filter=m1-stage',
+    urlId: 'm1-stage',
+    pavilion: 'yellowPavilion',
+  },
+  xs: {
+    name: 'XS Stage',
+    mapUrl: '/map?filter=xs-stage',
+    urlId: 'xs-stage',
+    pavilion: 'yellowPavilion',
+  },
+  // Map link not working
+  workshop: {
+    name: 'Workshop',
+    mapUrl: '/map?filter=workshop',
+    urlId: 'workshop',
+    pavilion: 'yellowPavilion',
+  },
+  // Map link not working
+  auditorium: {
+    name: 'Auditorium',
+    mapUrl: '/map?filter=auditorium',
+    urlId: 'auditorium',
+    pavilion: 'redPavilion',
+  },
+  nogal: {
+    name: 'Nogal Hall',
+    mapUrl: '/map?filter=nogal-hall',
+    urlId: 'nogal-hall',
+    pavilion: 'redPavilion',
+  },
+  ceibo: {
+    name: 'Ceibo Hall',
+    mapUrl: '/map?filter=ceibo-hall',
+    urlId: 'ceibo-hall',
+    pavilion: 'redPavilion',
+  },
+  amphitheater: {
+    name: 'Music Stage',
+    mapUrl: '/map?filter=music-stage',
+    urlId: 'music-stage',
+    pavilion: 'music',
+  },
+};
+
+// Normalize stage names from API to match our lookup keys
+const normalizeStageId = (stageName: string): string => {
+  return stageName.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+};
+
+export const useAllStages = () => {
+  const {
+    data: events,
+    error: eventsError,
+    isLoading: eventsLoading,
+  } = useSWR<any>('https://devconnect.pblvrt.com/events', async (url: any) => {
+    const res = await fetch(url);
+    return res.json();
+  });
+  // Handle both fallback format {success: true, data: [...]} and direct array format
+  const eventData = events?.data || events;
+
+  // Create map of normalized ID to canonical ID
+  const stageMap = new Map<string, string>();
+  eventData?.forEach((event: any) => {
+    if (event.stage) {
+      const normalizedId = normalizeStageId(event.stage);
+      if (!stageMap.has(normalizedId)) {
+        stageMap.set(normalizedId, event.stage);
+      }
+    }
+  });
+
+  const allStages = Array.from(stageMap.keys()).filter(
+    (stage) => stage != null && stage !== ''
+  );
+
+  console.log('useAllStages - allStages:', allStages);
+
+  // Group stages by pavilion with full metadata
+  const pavilions = {
+    yellowPavilion: [] as Array<{
+      id: string;
+      apiSourceId: string;
+      name: string;
+      mapUrl: string;
+      pavilionType: string;
+    }>,
+    greenPavilion: [] as Array<{
+      id: string;
+      apiSourceId: string;
+      name: string;
+      mapUrl: string;
+      pavilionType: string;
+    }>,
+    redPavilion: [] as Array<{
+      id: string;
+      apiSourceId: string;
+      name: string;
+      mapUrl: string;
+      pavilionType: string;
+    }>,
+    music: [] as Array<{
+      id: string;
+      apiSourceId: string;
+      name: string;
+      mapUrl: string;
+      pavilionType: string;
+    }>,
+    entertainment: [] as Array<{
+      id: string;
+      apiSourceId: string;
+      name: string;
+      mapUrl: string;
+      pavilionType: string;
+    }>,
+  };
+
+  // Map pavilion names to badge types
+  const pavilionTypeMappings: Record<string, string> = {
+    yellowPavilion: 'yellow',
+    greenPavilion: 'green',
+    redPavilion: 'red',
+    music: 'music',
+    entertainment: 'entertainment',
+  };
+
+  allStages?.forEach((stageId: string) => {
+    const metadata = stageMetadata[stageId];
+    const apiSourceId = stageMap.get(stageId);
+    console.log(
+      'Processing stage:',
+      stageId,
+      'apiSourceId:',
+      apiSourceId,
+      'metadata:',
+      metadata
+    );
+    if (metadata && apiSourceId) {
+      const pavilion = metadata.pavilion as keyof typeof pavilions;
+      pavilions[pavilion].push({
+        id: metadata.urlId, // Use urlId for consistent URLs with map
+        apiSourceId,
+        name: metadata.name,
+        mapUrl: metadata.mapUrl,
+        pavilionType: pavilionTypeMappings[pavilion],
+      });
+    }
+  });
+
+  return {
+    stages: allStages,
+    pavilions,
+    error: eventsError,
+    isLoading: eventsLoading,
+  };
+};
+
+export const useSessions = (stage: string) => {
+  const {
+    data: sessions,
+    error: eventsError,
+    isLoading: eventsLoading,
+  } = useSWR<any>(
+    stage ? `https://devconnect.pblvrt.com/sessions?stage=${stage}` : null,
+    async (url: string) => {
+      const res = await fetch(url);
+      return res.json();
+    },
+    {
+      dedupingInterval: 10000,
+    }
+  );
+
+  return {
+    sessions: sessions,
+    error: eventsError,
+    isLoading: eventsLoading,
+  };
+};
+
 export const useProgramming = () => {
   const {
     data: events,
     error: eventsError,
     isLoading: eventsLoading,
   } = useSWR('https://devconnect.pblvrt.com/events', fetch);
+
+  // const allStages = events?.data?.map((event: any) => event.stage);
 
   /* Example "schedule" entry from the /schedules endpoint
  {

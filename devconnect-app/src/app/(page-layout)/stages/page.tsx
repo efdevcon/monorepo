@@ -7,91 +7,25 @@ import Link from 'next/link';
 import Icon from '@mdi/react';
 import { mdiMicrophoneVariant } from '@mdi/js';
 import { MapPinIcon as MapIcon } from 'lucide-react';
-import useSWR from 'swr';
 import { StageBadge } from '@/components/StageBadge';
-import { useProgramming } from '@/app/store.hooks';
-
-const stages = {
-  yellowPavilion: [
-    {
-      id: 'xl-stage',
-      name: 'XL Stage',
-      mapUrl: '/map?filter=xl-stage',
-    },
-    {
-      id: 'm2-stage',
-      name: 'M2 Stage',
-      mapUrl: '/map?filter=m2-stage',
-    },
-    {
-      id: 'm1-stage',
-      name: 'M1 Stage',
-      mapUrl: '/map?filter=m1-stage',
-    },
-    {
-      id: 'xs-stage',
-      name: 'XS Stage',
-      mapUrl: '/map?filter=xs-stage',
-    },
-  ],
-  greenPavilion: [
-    {
-      id: 'lighting-talks-stage',
-      name: 'Lightning Stage',
-      mapUrl: '/map?filter=lighting-talks-stage',
-    },
-  ],
-  redPavilion: [
-    {
-      id: 'l-stage',
-      name: 'L Stage',
-      mapUrl: '/map?filter=l-stage',
-    },
-    {
-      id: 'nogal-hall',
-      name: 'Nogal Hall',
-      mapUrl: '/map?filter=nogal-hall',
-    },
-    {
-      id: 'ceibo-hall',
-      name: 'Ceibo Hall',
-      mapUrl: '/map?filter=ceibo-hall',
-    },
-  ],
-  music: [
-    {
-      id: 'music-stage',
-      name: 'Music Stage',
-      mapUrl: '/map?filter=music-stage',
-    },
-  ],
-  entertainment: [
-    {
-      id: 'open-air-cinema',
-      name: 'Open Air Cinema',
-      mapUrl: '/map?filter=open-air-cinema',
-    },
-  ],
-};
+import { useAllStages } from '@/app/store.hooks';
 
 const StagesPage = () => {
-  const { stages: programmingStages } = useProgramming();
+  const { pavilions } = useAllStages();
   const isBetaMode = hasBetaAccess();
 
   if (isBetaMode) {
     return <ComingSoonMessage />;
   }
 
-  console.log(programmingStages, 'programming ay ay');
-
   const renderStageRow = (stage: {
     id: string;
     name: string;
     mapUrl?: string;
+    apiSourceId?: string;
   }) => {
-    const info = programmingStages.find((s: any) => s === stage.id);
-
-    console.log(stage, info, 'info ay ay');
+    // Show info link if the stage has an apiSourceId (meaning it came from the API)
+    const hasInfo = !!stage.apiSourceId;
 
     return (
       <div key={stage.id} className="flex items-center justify-between py-1">
@@ -105,7 +39,7 @@ const StagesPage = () => {
               <span className="font-medium">Directions</span>
             </Link>
           )}
-          {info && (
+          {hasInfo && (
             <Link
               href={`/stages/${stage.id}`}
               className="flex items-center text-sm gap-1.5"
@@ -121,90 +55,46 @@ const StagesPage = () => {
     );
   };
 
+  const renderPavilion = (
+    type: 'yellow' | 'green' | 'red' | 'music' | 'entertainment',
+    label: string,
+    pavilionStages: Array<{
+      id: string;
+      name: string;
+      mapUrl: string;
+      apiSourceId: string;
+    }>
+  ) => {
+    if (!pavilionStages || pavilionStages.length === 0) return null;
+
+    return (
+      <div className="mb-6">
+        <StageBadge type={type} label={label} />
+        <div className="mt-2">
+          {pavilionStages.map((stage, index) => (
+            <React.Fragment key={stage.id}>
+              {renderStageRow(stage)}
+              <Separator className="my-2 grow w-auto" />
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="flex flex-col w-full px-6 py-4 gradient-background">
-      <h1 className="text-lg font-semibold mb-4">All Stages</h1>
+    <div className="flex flex-col w-full px-6 py-4 pt-6 gradient-background">
+      {/* <h1 className="text-lg font-semibold mb-4">All Stages</h1> */}
 
-      {/* Yellow Pavilion */}
-      <div className="mb-6">
-        <StageBadge type="yellow" label="Yellow Pavilion" />
-        <div>
-          {stages.yellowPavilion.map((stage: any, index: number) => {
-            return (
-              <React.Fragment key={index}>
-                {renderStageRow(stage)}
-                {/* {index !== stages.yellowPavilion.length - 1 && ( */}
-                <Separator className="my-2 grow w-auto" />
-                {/* )} */}
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Green Pavilion */}
-      <div className="mb-6">
-        <StageBadge type="green" label="Green Pavilion" />
-        <div>
-          {stages.greenPavilion.map((stage, index) => {
-            return (
-              <React.Fragment key={index}>
-                {renderStageRow(stage)}
-
-                <Separator className="my-2 grow w-auto" />
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Red Pavilion */}
-      <div className="mb-6">
-        <StageBadge type="red" label="Red Pavilion" />
-        <div>
-          {stages.redPavilion.map((stage, index) => {
-            return (
-              <React.Fragment key={index}>
-                {renderStageRow(stage)}
-
-                <Separator className="my-2 grow w-auto" />
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Music */}
-      <div className="mb-6">
-        <StageBadge type="music" label="Music" />
-        <div>
-          {stages.music.map((stage, index) => {
-            return (
-              <React.Fragment key={index}>
-                {renderStageRow(stage)}
-
-                <Separator className="my-2 grow w-auto" />
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Entertainment */}
-      <div className="mb-6">
-        <StageBadge type="entertainment" label="Entertainment" />
-        <div>
-          {stages.entertainment.map((stage, index) => {
-            return (
-              <React.Fragment key={index}>
-                {renderStageRow(stage)}
-
-                <Separator className="my-2 grow w-auto" />
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
+      {renderPavilion('yellow', 'Yellow Pavilion', pavilions.yellowPavilion)}
+      {renderPavilion('green', 'Green Pavilion', pavilions.greenPavilion)}
+      {renderPavilion('red', 'Red Pavilion', pavilions.redPavilion)}
+      {renderPavilion('music', 'Music', pavilions.music)}
+      {renderPavilion(
+        'entertainment',
+        'Entertainment',
+        pavilions.entertainment
+      )}
     </div>
   );
 };
