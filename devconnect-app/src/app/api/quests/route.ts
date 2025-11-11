@@ -70,19 +70,33 @@ export async function GET(request: NextRequest) {
 
     const databaseId = '24c638cdc41580e5bc31f643e4eaeff3';
 
-    // Try to fetch from Notion first
-    const response = await notion.databases.query({
-      database_id: databaseId,
-      sorts: [
-        {
-          property: 'ID',
-          direction: 'ascending',
-        },
-      ],
-    });
+    // Try to fetch from Notion first with pagination to get all results
+    let allResults: any[] = [];
+    let hasMore = true;
+    let startCursor: string | undefined = undefined;
+
+    while (hasMore) {
+      const response = await notion.databases.query({
+        database_id: databaseId,
+        start_cursor: startCursor,
+        page_size: 100, // Maximum page size
+        sorts: [
+          {
+            property: 'ID',
+            direction: 'ascending',
+          },
+        ],
+      });
+
+      allResults = allResults.concat(response.results);
+      hasMore = response.has_more;
+      startCursor = response.next_cursor || undefined;
+
+      console.log(`Fetched ${response.results.length} items, total: ${allResults.length}, hasMore: ${hasMore}`);
+    }
 
     // Transform Notion response to quest format
-    const quests = response.results.map((page: any) => {
+    const quests = allResults.map((page: any) => {
       const properties = page.properties;
 
       // console.log(properties);
