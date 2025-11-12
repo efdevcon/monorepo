@@ -18,7 +18,6 @@ import { Suspense } from 'react';
 import { SerwistProvider } from '@/app/serwist-provider';
 import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
 import { BigIntSerializer } from '@/components/BigIntSerializer';
-import { HEIGHT_MENU } from '@/config/config';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
@@ -164,6 +163,7 @@ export default async function RootLayout({
       if (process.env.NODE_ENV === 'development') {
         return true;
       }
+
       // Filter out announcements without titles and those scheduled for the future
       return (
         announcement.title !== '' &&

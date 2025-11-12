@@ -83,7 +83,7 @@ const StagesPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full px-6 py-4 pt-6 gradient-background">
+    <div className="flex flex-col w-full px-6 py-4 pt-6 gradient-background grow">
       {/* <h1 className="text-lg font-semibold mb-4">All Stages</h1> */}
 
       {renderPavilion('yellow', 'Yellow Pavilion', pavilions.yellowPavilion)}

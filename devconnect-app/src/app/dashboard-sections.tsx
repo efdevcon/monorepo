@@ -153,63 +153,63 @@ export const PracticalInfo = () => {
   const [openSection, setOpenSection] = useState<string | null>('essentials');
 
   const sections = [
-    {
-      id: 'venue',
-      title: 'Venue & Facilities 🏛️',
-      content: (
-        <div className="text-sm space-y-3">
-          <ul className="ml-2 space-y-2 mt-1 mb-3">
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                <strong>Freshen up:</strong> Make your way to the{' '}
-                <Link
-                  href="/map?filter=toilets"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  Toilets
-                </Link>{' '}
-                or{' '}
-                <Link
-                  href="/map?filter=power-up-stations"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  Power-Up Stations
-                </Link>{' '}
-                (free coffee & snacks)
-              </div>
-            </li>
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                <strong> Focus work:</strong> Head to the{' '}
-                <Link
-                  href="/map?filter=coworking"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  Quiet Coworking
-                </Link>
-              </div>
-            </li>
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                <strong> Meetings:</strong> Book a slot in a{' '}
-                <Link
-                  href="/map?filter=meeting-rooms"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  Meeting Room
-                </Link>
-              </div>
-            </li>
-          </ul>
-        </div>
-      ),
-    },
+    // {
+    //   id: 'venue',
+    //   title: 'Venue & Facilities 🏛️',
+    //   content: (
+    //     <div className="text-sm space-y-3">
+    //       <ul className="ml-2 space-y-2 mt-1 mb-3">
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             <strong>Freshen up:</strong> Make your way to the{' '}
+    //             <Link
+    //               href="/map?filter=toilets"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               Toilets
+    //             </Link>{' '}
+    //             or{' '}
+    //             <Link
+    //               href="/map?filter=power-up-stations"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               Power-Up Stations
+    //             </Link>{' '}
+    //             (free coffee & snacks)
+    //           </div>
+    //         </li>
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             <strong> Focus work:</strong> Head to the{' '}
+    //             <Link
+    //               href="/map?filter=coworking"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               Quiet Coworking
+    //             </Link>
+    //           </div>
+    //         </li>
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             <strong> Meetings:</strong> Book a slot in a{' '}
+    //             <Link
+    //               href="/map?filter=meeting-rooms"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               Meeting Room
+    //             </Link>
+    //           </div>
+    //         </li>
+    //       </ul>
+    //     </div>
+    //   ),
+    // },
     {
       id: 'city',
-      title: 'City Guide 🌶️',
+      title: 'City Guide 🔖',
       content: (
         <div className="text-sm space-y-3">
           <ul className="ml-2 space-y-2 mt-1">
@@ -276,39 +276,39 @@ export const PracticalInfo = () => {
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Follow{' '}
+                Follow us{' '}
                 <Link
                   href="https://x.com/efdevcon"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  us on Twitter
+                  on Twitter
                 </Link>
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Follow{' '}
+                Follow us{' '}
                 <Link
                   href="https://www.instagram.com/efdevcon/#"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  us on Instagram
+                  on Instagram
                 </Link>
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Follow{' '}
+                Follow us{' '}
                 <Link
                   href="https://farcaster.xyz/efdevconnect"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  us on Farcaster
+                  on Farcaster
                 </Link>
               </div>
             </li>

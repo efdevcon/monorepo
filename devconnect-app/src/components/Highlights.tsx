@@ -6,6 +6,8 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
 import cn from 'classnames';
 import Image9 from '@/images/announcements/09.jpg';
 import Image6 from '@/images/announcements/06.jpg';
+import PhoneImage from '@/images/announcements/phones.jpg';
+import VoxelImage from '@/images/voxel-car.jpg';
 import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
 import { StaticImageData } from 'next/image';
@@ -58,25 +60,35 @@ const HighlightCard = ({
 export const Highlights = () => {
   const highlights = [
     {
-      title: 'The Ethereum Worlds Fair App',
-      to: '/quests',
-      description:
-        'Download the Ethereum Worlds Fair App to navigate the fair, complete quests, earn rewards, and favorite events.',
-      image: Image9,
-    },
-    {
-      title: 'Pre-Fair Planning',
-      to: '/schedule',
-      description:
-        'Create your Worlds Fair account, mark your favorite events, load your wallet & tickets, and more.',
-      image: Image12,
-    },
-    {
       title: 'Ethereum Day',
-      to: '/schedule/ethday',
+      to: 'https://ethday.devconnect.org',
       description:
         "Mark your calendar for November 17th. You don't want to miss the opening ceremonies of the Ethereum World's Fair!",
       image: Image6,
+    },
+    {
+      title: 'The Devconnect App',
+      to: '#',
+      onClick: () => {
+        alert('trigger pwa popup');
+      },
+      description: `Install the Ethereum World's Fair App on your device to navigate the fair, complete quests, earn rewards, and more.`,
+      image: PhoneImage,
+    },
+    // {
+    //   title: 'Pre-Fair Planning',
+    //   to: '/schedule',
+    //   description:
+    //     'Create your Worlds Fair account, mark your favorite events, load your wallet & tickets, and more.',
+    //   image: Image12,
+    // },
+
+    {
+      title: 'Devconnect Perks',
+      to: 'https://ethday.devconnect.org',
+      description:
+        'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Go explore the perks page.',
+      image: VoxelImage,
     },
     // {
     //   title: 'Networking Events',
