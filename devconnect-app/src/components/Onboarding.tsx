@@ -850,7 +850,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     authState !== undefined
   ) {
     return (
-      <div className="relative size-full flex justify-center items-center">
+      <div className="relative w-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
@@ -919,7 +919,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Show redirecting state when connected and about to redirect
   if (isRedirecting && !isWaitingForLogin && !isWaitingForWalletCreation) {
     return (
-      <div className="relative size-full flex justify-center items-center">
+      <div className="relative w-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
@@ -988,7 +988,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // OTP verification screen for external wallet connection
   if (otpSent) {
     return (
-      <div className="relative size-full flex justify-center items-center">
+      <div className="relative w-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
@@ -1314,7 +1314,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Email verification screen
   if (authState?.stage === 'verify') {
     return (
-      <div className="relative size-full flex justify-center items-center">
+      <div className="relative w-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
@@ -1682,7 +1682,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Signup/Login method selection screen
   if (authState?.stage === 'signup' || authState?.stage === 'login') {
     return (
-      <div className="relative size-full flex justify-center items-center">
+      <div className="relative w-full flex justify-center items-center">
         {/* Content Wrapper */}
         <div className="relative flex flex-col items-center justify-start gap-0 py-8 w-full">
           {/* Logo */}
@@ -1790,7 +1790,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Get Started Container
   return (
-    <div className="relative size-full flex justify-center items-center">
+    <div className="relative w-full flex justify-center items-center">
       {/* Content Wrapper - centered container for logo, main content, and install PWA */}
       <div className="relative flex flex-col items-center justify-start gap-6 py-8">
         {/* Logo */}
@@ -1822,7 +1822,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             {/* First, enter your email address */}
             <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
               <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-                <h2 className="font-normal text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+                <h2 className="font-normal text-[16px] tracking-[-0.1px] w-full leading-[1.3]">
                   Import your event tickets, enable easy crypto payments, and
                   take part in quests.
                 </h2>

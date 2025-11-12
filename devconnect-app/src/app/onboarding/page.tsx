@@ -14,14 +14,12 @@ export default function OnboardingPage() {
 
   return (
     <div
-      className="flex items-start justify-center px-4 grow overflow-y"
+      className="flex items-center justify-center px-4 overflow-y-auto min-h-screen"
       style={{
         backgroundImage: `url(${fullWidthBackground.src})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        height: '100vh',
-        minHeight: 'fit-content',
       }}
     >
       {/* <Image
@@ -33,8 +31,11 @@ export default function OnboardingPage() {
       /> */}
 
       <div
-        className="max-w-md w-full h-full"
-        style={{ marginTop: 'env(safe-area-inset-top, 0px)' }}
+        className="max-w-md w-full py-4"
+        style={{
+          marginTop: 'env(safe-area-inset-top, 0px)',
+          marginBottom: 'env(safe-area-inset-bottom, 0px)',
+        }}
       >
         <Onboarding />
       </div>
