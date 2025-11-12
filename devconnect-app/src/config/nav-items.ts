@@ -55,7 +55,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Map',
-    longLabel: 'La Rural - Venue Map',
+    longLabel: 'Map',
     href: '/map',
     icon: MapIcon,
     backgroundColor: 'rgba(116, 172, 223, 0.15)',

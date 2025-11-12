@@ -72,7 +72,7 @@ export const Highlights = () => {
       onClick: () => {
         alert('trigger pwa popup');
       },
-      description: `Install the Ethereum World's Fair App on your device to navigate the fair, complete quests, earn rewards, and more.`,
+      description: `Install the Ethereum World's Fair App on your device to navigate the fair, complete quests, collect souvenirs, and more.`,
       image: PhoneImage,
     },
     // {
@@ -87,7 +87,7 @@ export const Highlights = () => {
       title: 'Devconnect Perks',
       to: 'https://ethday.devconnect.org',
       description:
-        'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Go explore the perks page.',
+        'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
       image: VoxelImage,
     },
     // {
