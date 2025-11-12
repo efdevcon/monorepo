@@ -82,7 +82,6 @@ export default function OnrampTab() {
       description: message,
       duration,
       dismissible: true,
-      closeButton: true,
     });
   };
 
@@ -91,7 +90,6 @@ export default function OnrampTab() {
       description: message,
       duration,
       dismissible: true,
-      closeButton: true,
     });
   };
 

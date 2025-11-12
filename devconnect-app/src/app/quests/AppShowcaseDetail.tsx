@@ -40,13 +40,23 @@ interface AppShowcaseDetailProps {
   resetQuestCompletions: () => Promise<void>;
 }
 
-export default function AppShowcaseDetail({
-  group,
-  onBack,
-  questStates,
-  updateQuestStatus,
-  resetQuestCompletions,
-}: AppShowcaseDetailProps) {
+export interface AppShowcaseDetailHandle {
+  scrollToProgress: () => void;
+}
+
+const AppShowcaseDetail = React.forwardRef<
+  AppShowcaseDetailHandle,
+  AppShowcaseDetailProps
+>(function AppShowcaseDetail(
+  {
+    group,
+    onBack,
+    questStates,
+    updateQuestStatus,
+    resetQuestCompletions,
+  }: AppShowcaseDetailProps,
+  ref
+) {
   const router = useRouter();
   const { para, eoa, address } = useWallet();
   const { tickets } = useTickets();
@@ -65,6 +75,7 @@ export default function AppShowcaseDetail({
   const setupSectionRef = useRef<HTMLDivElement | null>(null);
   const cryptoPaymentSectionRef = useRef<HTMLDivElement | null>(null);
   const districtRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const progressSectionRef = useRef<HTMLDivElement | null>(null);
   const [selectedPoap, setSelectedPoap] = useState<{
     id: number;
     name: string;
@@ -73,6 +84,15 @@ export default function AppShowcaseDetail({
     collected: boolean;
     stampedDate?: string;
   } | null>(null);
+
+  // Expose scrollToProgress method to parent via ref
+  React.useImperativeHandle(ref, () => ({
+    scrollToProgress: () => {
+      if (progressSectionRef.current) {
+        scrollToElement(progressSectionRef.current, true);
+      }
+    },
+  }));
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -630,6 +650,7 @@ export default function AppShowcaseDetail({
 
       {/* Progress Section */}
       <ProgressSection
+        ref={progressSectionRef}
         progress={overallProgress}
         onViewStampbook={() => router.push('/wallet/stampbook')}
         onReset={handleReset}
@@ -651,5 +672,6 @@ export default function AppShowcaseDetail({
       )}
     </div>
   );
-}
+});
 
+export default AppShowcaseDetail;

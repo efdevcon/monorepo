@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
 import PageLayout from '@/components/PageLayout';
-import AppShowcaseDetail from './AppShowcaseDetail';
+import AppShowcaseDetail, {
+  type AppShowcaseDetailHandle,
+} from './AppShowcaseDetail';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { questGroupsData } from '@/data/questGroups';
 import { NAV_ITEMS } from '@/config/nav-items';
@@ -21,6 +23,7 @@ export default function QuestsPage() {
   const router = useRouter();
   const [selectedGroup, setSelectedGroup] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const appShowcaseDetailRef = useRef<AppShowcaseDetailHandle>(null);
 
   // Check if beta mode is enabled (hide for beta users)
   const isBetaMode = hasBetaAccess();
@@ -220,6 +223,11 @@ export default function QuestsPage() {
     }
   };
 
+  // Handle quest progress click - scroll to progress section
+  const handleQuestProgressClick = () => {
+    appShowcaseDetailRef.current?.scrollToProgress();
+  };
+
   // Quest info modal content
   const questInfoModalContent = (
     <div className="flex flex-col gap-4 items-start justify-center pb-4 pt-3 px-4 w-full">
@@ -278,6 +286,7 @@ export default function QuestsPage() {
         title={title}
         infoModalContent={questInfoModalContent}
         questProgress={questProgress}
+        onQuestProgressClick={handleQuestProgressClick}
       >
         <ComingSoonMessage />
       </PageLayout>
@@ -309,8 +318,10 @@ export default function QuestsPage() {
       title={title}
       infoModalContent={questInfoModalContent}
       questProgress={questProgress}
+      onQuestProgressClick={handleQuestProgressClick}
     >
       <AppShowcaseDetail
+        ref={appShowcaseDetailRef}
         group={selectedGroup}
         onBack={handleBackToGroups}
         questStates={questStates}

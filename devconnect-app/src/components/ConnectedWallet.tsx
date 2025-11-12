@@ -31,7 +31,6 @@ const showSuccessToast = (title: string, message?: string, duration = 3000) => {
     description: message,
     duration,
     dismissible: true,
-    closeButton: true,
   });
 };
 
@@ -40,7 +39,6 @@ const showErrorToast = (title: string, message?: string, duration = 4000) => {
     description: message,
     duration,
     dismissible: true,
-    closeButton: true,
   });
 };
 
@@ -49,7 +47,6 @@ const showInfoToast = (title: string, message?: string, duration = 3000) => {
     description: message,
     duration,
     dismissible: true,
-    closeButton: true,
   });
 };
 
@@ -420,7 +417,6 @@ export default function ConnectedWallet() {
         {
           duration: 5000,
           dismissible: true,
-          closeButton: true,
           style: {
             background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
             border: '1px solid #bbf7d0',
@@ -450,7 +446,6 @@ export default function ConnectedWallet() {
           description: `Error: ${errorMessage}`,
           duration: 6000,
           dismissible: true,
-          closeButton: true,
         });
       }
 
@@ -610,10 +605,6 @@ export default function ConnectedWallet() {
       </div>
 
       <div className="flex flex-col gap-2 border-t pt-4">
-        {/* <ZupassProvider>
-          <LinkTicket className="mb-2" />
-        </ZupassProvider> */}
-
         {address && <PortfolioModal address={address} />}
 
         {/* SIWE Verification Button - disabled for now */}
@@ -827,14 +818,12 @@ export default function ConnectedWallet() {
                   description: 'Para is now properly connected to wagmi.',
                   duration: 3000,
                   dismissible: true,
-                  closeButton: true,
                 });
               } else {
                 toast.error('❌ Connection Failed', {
                   description: 'Failed to restore Para wagmi connection.',
                   duration: 4000,
                   dismissible: true,
-                  closeButton: true,
                 });
               }
             }}

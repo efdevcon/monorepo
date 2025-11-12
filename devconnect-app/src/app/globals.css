@@ -501,8 +501,15 @@ svg.icon {
 /* Sonner toast container z-index and positioning */
 [data-sonner-toaster] {
   z-index: 999999 !important;
-  /* Add menu height (59px) + margin (24px) + safe area to bottom positioning */
-  bottom: calc(59px + 24px + max(0px, env(safe-area-inset-bottom))) !important;
+  /* Desktop - no menu, just margin + safe area */
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+/* Mobile - add menu height (59px) */
+@media (max-width: 768px) {
+  [data-sonner-toaster] {
+    bottom: calc(59px + 16px + env(safe-area-inset-bottom, 0px)) !important;
+  }
 }
 
 /* Sonner toast custom styles matching Figma design */
