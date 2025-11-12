@@ -240,8 +240,11 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
 
   return (
     <div
-      className="section gradient-background always-gradient overflow-y-auto flex flex-col"
-      style={{ minHeight: '100svh' }}
+      className="section gradient-background always-gradient overflow-y-auto flex flex-col min-h-screen"
+      style={{
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+      }}
     >
       <div className="flex flex-col flex-1 items-center py-3 sm:py-8">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
@@ -278,7 +281,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
           <div className="flex gap-4 w-full justify-between items-center sm:px-16 mt-auto pb-2 sm:mt-16 !px-0 shrink-0">
             <Button
               className={cn(
-                'font-semibold',
+                'font-semibold shrink-0',
                 currentStep === 0 && 'opacity-50 pointer-events-none'
               )}
               color="white-1"
@@ -290,7 +293,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
 
             <Button
               color="blue-2"
-              className="font-semibold"
+              className="font-semibold grow sm:grow-0"
               size="sm"
               onClick={nextStep}
             >
