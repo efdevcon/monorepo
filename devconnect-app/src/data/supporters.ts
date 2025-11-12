@@ -313,6 +313,18 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "3",
     "locationId": "5"
   },
+  "2a8638cdc415803bbc7ff7404879a0dd": {
+    "name": "F(x) Protocol",
+    "layerName": "fx-protocol",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-12T14-21-21-036Z-fxn.png",
+    "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-12T14-21-27-075Z-fxn.png",
+    "description": "",
+    "websiteLink": "https://fx.aladdin.club/",
+    "twitterLink": "https://fx.aladdin.club/",
+    "farcasterLink": "",
+    "districtId": "3",
+    "locationId": null
+  },
   "254638cdc415802c97d8f585214603ad": {
     "name": "Farcaster",
     "layerName": "farcaster",
@@ -726,10 +738,10 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "replicats",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-19-067Z-Replicats.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-52-284Z-Replicats.png",
-    "description": "",
-    "websiteLink": "https://www.replicats.ai/",
-    "twitterLink": "",
-    "farcasterLink": "",
+    "description": "Smart Wealth Companions - your first fully automated portfolio",
+    "websiteLink": "https://bit.ly/repli-dc-app",
+    "twitterLink": "https://x.com/ReplicatsAI",
+    "farcasterLink": "https://farcaster.xyz/replicatsai",
     "districtId": "1",
     "locationId": "5"
   },

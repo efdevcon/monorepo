@@ -48,8 +48,5 @@ export const poiGroupsData: PoiGroups = {
   },
   "16": {
     "name": "TBD"
-  },
-  "17": {
-    "name": "Toilets"
   }
 };

@@ -242,7 +242,7 @@ export const poisData: POI[] = [
     "groupId": "1"
   },
   {
-    "name": "Food Truck",
+    "name": "Food Truck 1",
     "layerName": "food-truck",
     "logo": "",
     "description": "food truck description",
@@ -254,18 +254,6 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
-    "name": "Food Truck 1",
-    "layerName": "food-truck-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "7",
-    "groupId": "7"
-  },
-  {
     "name": "Food Truck 2",
     "layerName": "food-truck-2",
     "logo": "",
@@ -274,7 +262,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "7",
     "groupId": "7"
   },
   {
@@ -286,7 +274,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "5",
+    "locationId": "12",
     "groupId": "7"
   },
   {
@@ -298,7 +286,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "10",
+    "locationId": "5",
     "groupId": "7"
   },
   {
@@ -310,12 +298,24 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "6",
+    "locationId": "10",
     "groupId": "7"
   },
   {
     "name": "Food Truck 6",
     "layerName": "food-truck-6",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "7"
+  },
+  {
+    "name": "Food Truck 7",
+    "layerName": "food-truck-7",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -516,6 +516,78 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": "5",
     "groupId": "8"
+  },
+  {
+    "name": "Meeting Point 1",
+    "layerName": "meeting-point-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "2",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Point 2",
+    "layerName": "meeting-point-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Point 3",
+    "layerName": "meeting-point-3",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "14",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Point 4",
+    "layerName": "meeting-point-4",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "11",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Point 5",
+    "layerName": "meeting-point-5",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "3",
+    "groupId": "1"
+  },
+  {
+    "name": "Meeting Point 6",
+    "layerName": "meeting-point-6",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "1"
   },
   {
     "name": "Meeting Room 1",
@@ -746,18 +818,6 @@ export const poisData: POI[] = [
     "groupId": "5"
   },
   {
-    "name": "Onramp ",
-    "layerName": "onramping",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "12"
-  },
-  {
     "name": "Onramp 1",
     "layerName": "onramping-1",
     "logo": "",
@@ -772,6 +832,18 @@ export const poisData: POI[] = [
   {
     "name": "Onramp 2",
     "layerName": "onramping-2",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "12"
+  },
+  {
+    "name": "Onramp 3",
+    "layerName": "onramping-3",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -818,18 +890,6 @@ export const poisData: POI[] = [
     "groupId": "6"
   },
   {
-    "name": "Power Up Station",
-    "layerName": "power-up-station",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "3",
-    "groupId": "7"
-  },
-  {
     "name": "Power Up Station 1",
     "layerName": "power-up-station-1",
     "logo": "",
@@ -838,7 +898,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "6",
+    "locationId": "3",
     "groupId": "7"
   },
   {
@@ -850,7 +910,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "5",
     "groupId": "7"
   },
   {
@@ -862,12 +922,24 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "5",
+    "locationId": "12",
     "groupId": "7"
   },
   {
     "name": "Power Up Station 12",
     "layerName": "power-up-station-12",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up Station 13",
+    "layerName": "power-up-station-13",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -898,8 +970,20 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "5",
+    "locationId": "3",
     "groupId": "7"
+  },
+  {
+    "name": "Power Up Station 15",
+    "layerName": "power-up-station-15",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "5",
+    "groupId": "1"
   },
   {
     "name": "Power Up Station 2",
@@ -922,7 +1006,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "6",
     "groupId": "7"
   },
   {
@@ -934,7 +1018,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "6",
+    "locationId": "11",
     "groupId": "7"
   },
   {
@@ -958,7 +1042,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "14",
+    "locationId": "6",
     "groupId": "7"
   },
   {
@@ -970,7 +1054,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "5",
+    "locationId": "14",
     "groupId": "7"
   },
   {
@@ -1190,18 +1274,6 @@ export const poisData: POI[] = [
     "groupId": "14"
   },
   {
-    "name": "Toilet",
-    "layerName": "toilet",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "11",
-    "groupId": "17"
-  },
-  {
     "name": "Toilet 1",
     "layerName": "toilet-1",
     "logo": "",
@@ -1210,7 +1282,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "11",
     "groupId": "16"
   },
   {
@@ -1222,7 +1294,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "2",
     "groupId": "16"
   },
   {
