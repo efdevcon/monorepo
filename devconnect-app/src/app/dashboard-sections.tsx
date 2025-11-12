@@ -374,6 +374,24 @@ export const PracticalInfo = () => {
         <div className="flex flex-col lg:flex-row lg:gap-24">
           {/* left col on desktop, top on mobile */}
           <div className="flex flex-col gap-1 lg:flex-1 lg:gap-0.5 text-sm">
+            <span className="font-semibold">Venue Opening Hours</span>
+            <div className="text-sm flex flex-col gap-0.5">
+              <div className="flex items-center justify-between ">
+                <span className="font-semibold">Pre-registration:</span>
+                <span className="">Nov 16, 10:00 - 18:00</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-semibold">First day:</span>
+                <span className="">Nov 17, 8:30 - 18:00</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-semibold">Other days:</span>
+                <span className="">9:00 - 18:00</span>
+              </div>
+            </div>
+
+            <Separator className="mb-3 mt-2 w-full" />
+
             <div className="flex justify-between items-center group">
               <span className="font-semibold">Wi-Fi:</span>
               <div

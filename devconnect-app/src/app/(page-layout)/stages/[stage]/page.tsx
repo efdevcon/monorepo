@@ -63,59 +63,16 @@ const MeerkatComponent = () => {
   );
 };
 
-const dummyProgramming = [
-  {
-    time: '09:00',
-    topic: 'Opening Ceremony',
-    speaker: 'Binji',
-    isHighlighted: false,
-  },
-  {
-    time: '09:30',
-    topic: 'Devconnect Opening',
-    speaker: 'Nathan Sexer',
-    isHighlighted: false,
-  },
-  {
-    time: '09:45',
-    topic: 'EF & Ethereum Update',
-    speaker: 'Tomasz Stańczak',
-    isHighlighted: true,
-  },
-  {
-    time: '10:05',
-    topic: 'EF & Ethereum Update',
-    speaker: 'Hsiao-Wei Wang',
-    isHighlighted: false,
-  },
-  {
-    time: '10:55',
-    topic: 'The Trillion Dollar Security initiative',
-    speaker: 'Mehdi Zerouali',
-    isHighlighted: false,
-  },
-  {
-    time: '11:25',
-    topic: 'Ethereum is for Institutions and Enterprises',
-    speaker: 'Danny Ryan',
-    isHighlighted: false,
-  },
-  {
-    time: '11:55',
-    topic: 'Ethereum (Roadmap) in 30min',
-    speaker: 'Vitalik Buterin',
-    isHighlighted: false,
-  },
-];
+// const devconnectMoment = moment('2025-11-23 18:30:00');
 
 const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const [dates, setDates] = useState<Moment[]>([
-    moment('2025-11-17'),
-    moment('2025-11-18'),
-    moment('2025-11-19'),
-    moment('2025-11-20'),
-    moment('2025-11-21'),
-    moment('2025-11-22'),
+    moment.utc('2025-11-17').subtract(3, 'hours'),
+    moment.utc('2025-11-18').subtract(3, 'hours'),
+    moment.utc('2025-11-19').subtract(3, 'hours'),
+    moment.utc('2025-11-20').subtract(3, 'hours'),
+    moment.utc('2025-11-21').subtract(3, 'hours'),
+    moment.utc('2025-11-22').subtract(3, 'hours'),
   ]);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const { stage } = use(params);
@@ -124,19 +81,19 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
 
   // Get stage metadata from useAllStages to find the apiSourceId
   const { pavilions } = useAllStages();
-  const allStages = [
-    ...pavilions.yellowPavilion,
-    ...pavilions.greenPavilion,
-    ...pavilions.redPavilion,
-    ...pavilions.music,
-    ...pavilions.entertainment,
-  ];
-  const stageInfo = allStages.find((s) => s.id === stage);
+  const stageInfo = React.useMemo(() => {
+    const allStages = [
+      ...pavilions.yellowPavilion,
+      ...pavilions.greenPavilion,
+      ...pavilions.redPavilion,
+      ...pavilions.music,
+      ...pavilions.entertainment,
+    ];
+    return allStages.find((s) => s.id === stage);
+  }, [pavilions, stage]);
 
   // Fetch sessions using the apiSourceId
   const { sessions, isLoading } = useSessions(stageInfo?.apiSourceId || '');
-
-  console.log(sessions, 'sessions ay ay');
 
   const isBetaMode = hasBetaAccess();
   if (isBetaMode) {
@@ -289,7 +246,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
 
         <Separator className="my-2 grow w-auto" />
 
-        {(currentSession || nextSession) && (
+        {currentSession || nextSession ? (
           <div className="flex flex-col lg:flex-row justify-between mt-1">
             <div className="flex flex-col">
               <div className="text-xl leading-tight">
@@ -306,17 +263,8 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                 {currentSession ? currentSession.event : nextSession.event}
               </div>
             </div>
-            <div className="text-sm bg-white p-1 px-2 mt-2 border border-solid border-neutral-200 self-start lg:!self-end">
-              {currentSession ? (
-                // Current session: show time range and next up info
-                <>
-                  {currentSession.start} - {currentSession.end}
-                  {nextSession && countdown && (
-                    <span className="ml-2">Next up {countdown}</span>
-                  )}
-                </>
-              ) : (
-                // No current session: show countdown
+            {!currentSession && (
+              <div className="text-sm bg-white p-1 px-2 mt-2 border border-solid border-neutral-200 self-start lg:!self-end">
                 <div className="flex items-center gap-1.5">
                   {countdown && (
                     <>
@@ -325,10 +273,16 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                     </>
                   )}
                 </div>
-              )}
+              </div>
+            )}
+          </div>
+        ) : sessions && sessions.length > 0 ? (
+          <div className="flex flex-col mt-1">
+            <div className="text-lg text-gray-500 italic">
+              No upcoming sessions
             </div>
           </div>
-        )}
+        ) : null}
       </div>
       <div className="flex flex-col mx-6 gap-4">
         <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
@@ -396,7 +350,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
               <table className="w-full border border-solid border-neutral-200 text-xs leading-tight">
                 <thead>
                   <tr className="bg-[rgba(53,53,72,1)] text-white">
-                    <th className="text-left p-4 font-bold">Time</th>
+                    <th className="text-left p-4  font-bold">Time</th>
                     <th className="text-left p-4 font-bold">Event / Topic</th>
                     <th className="text-left p-4 font-bold">Speaker(s)</th>
                   </tr>
@@ -407,10 +361,10 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                       key={index}
                       className="bg-white even:bg-[rgba(234,244,251,1)]"
                     >
-                      <td className="p-4 px-2 lg:!px-4 py-3 border-b border-gray-200 whitespace-wrap">
-                        {session.start} - {session.end}
+                      <td className="p-4  py-3 border-b border-gray-200 whitespace-wrap">
+                        {session.start} {/* - {session.end} */}
                       </td>
-                      <td className="p-4 px-2 lg:!px-4 py-3 border-b border-gray-200">
+                      <td className="p-4  py-3 border-b border-gray-200">
                         <div className="font-medium">{session.event}</div>
                         {session.title && (
                           <div className="text-gray-600 mt-0.5">
@@ -418,7 +372,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                           </div>
                         )}
                       </td>
-                      <td className="p-4 px-2 lg:!px-4 py-3 border-b border-gray-200">
+                      <td className="p-4  py-3 border-b border-gray-200">
                         {session.speakers && session.speakers.length > 0
                           ? session.speakers
                               .filter((s: string) => s !== 'TBD')

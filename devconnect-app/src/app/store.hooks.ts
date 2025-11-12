@@ -136,10 +136,16 @@ export const useAllStages = () => {
     data: events,
     error: eventsError,
     isLoading: eventsLoading,
-  } = useSWR<any>('https://devconnect.pblvrt.com/events', async (url: any) => {
-    const res = await fetch(url);
-    return res.json();
-  });
+  } = useSWR<any>(
+    'https://devconnect.pblvrt.com/events',
+    async (url: any) => {
+      const res = await fetch(url);
+      return res.json();
+    },
+    {
+      dedupingInterval: 10000,
+    }
+  );
   // Handle both fallback format {success: true, data: [...]} and direct array format
   const eventData = events?.data || events;
 
@@ -245,9 +251,10 @@ export const useSessions = (stage: string) => {
     error: eventsError,
     isLoading: eventsLoading,
   } = useSWR<any>(
-    stage ? `https://devconnect.pblvrt.com/sessions?stage=${stage}` : null,
+    `https://devconnect.pblvrt.com/sessions?stage=${stage}`,
     async (url: string) => {
       const res = await fetch(url);
+      console.log(res, 'res ay ay');
       return res.json();
     },
     {
