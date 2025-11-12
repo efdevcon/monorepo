@@ -44,7 +44,7 @@ const Slide = ({
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="mt-5 leading-tight">
+      <div className="mt-3 sm:mt-5 leading-tight">
         <div className="text-xl font-semibold leading-tight mb-2 ">{title}</div>
         {description}
       </div>
@@ -71,11 +71,11 @@ const Block = ({
 
 const defaultSteps = [
   <div key="step0" className="flex flex-col items-center text-center">
-    <div className="aspect-[480/480] relative w-full mb-6">
+    <div className="aspect-[480/480] relative w-full mb-3 sm:mb-6">
       <Lottie
         animationData={WalletConnectedAnimation}
         loop={false}
-        className="w-full h-full object-contain mix-blend-multiply max-w-[300px]"
+        className="w-full h-full object-contain mix-blend-multiply max-w-[240px] sm:max-w-[300px]"
       />
     </div>
     <div className="leading-tight">
@@ -92,7 +92,7 @@ const defaultSteps = [
     title="Welcome to Devconnect ARG: the first Ethereum World's Fair"
     image={WorldsFairImage}
     description={
-      <div className="flex flex-col gap-2 mt-4 text-sm sm:text-base">
+      <div className="flex flex-col gap-2 mt-2 sm:mt-4 text-sm sm:text-base">
         <div>
           You're joining 15,000+ builders and users from around the world as we
           imagine the city of the future, built on Ethereum.
@@ -114,7 +114,7 @@ const defaultSteps = [
       <div className="text-sm sm:text-base">
         During Devconnect, La Rural will be transformed into the first Ethereum
         World's Fair:
-        <div className="flex flex-col gap-2 mt-4 items-center">
+        <div className="flex flex-col gap-2 mt-2 sm:mt-4 items-center">
           <Block
             icon={<MicrophoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
             description={
@@ -164,7 +164,7 @@ const defaultSteps = [
           We've created dedicated quest systems to help you explore the World's
           Fair, regardless of your experience level.
         </div>
-        <div className="flex flex-col gap-2 mt-4 items-center">
+        <div className="flex flex-col gap-2 mt-2 sm:mt-4 items-center">
           <Block
             icon={<RocketIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
             description={
@@ -240,10 +240,10 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
 
   return (
     <div
-      className="section gradient-background always-gradient overflow-y-auto flex flex-col min-h-screen"
+      className="section gradient-background always-gradient flex flex-col h-screen relative overflow-hidden"
       style={{
         paddingTop: 'env(safe-area-inset-top, 0px)',
-        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+        paddingBottom: 'calc(80px + env(safe-area-inset-bottom, 0px))',
       }}
     >
       <div className="flex flex-col flex-1 items-center py-3 sm:py-8">
@@ -263,7 +263,6 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
         </div>
         <div
           className="flex flex-col items-center relative flex-1 w-[500px] max-w-[calc(100%-32px)] min-h-0"
-          style={{ justifyContent: 'space-between' }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -272,36 +271,44 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.5 }}
-              className="w-full flex justify-center sm:items-center mt-8 sm:mt-16"
+              className="w-full flex justify-center sm:items-center mt-4 sm:mt-16"
             >
               {steps[currentStep]}
             </motion.div>
           </AnimatePresence>
+        </div>
+      </div>
 
-          <div className="flex gap-4 w-full justify-between items-center sm:px-16 mt-auto pb-2 sm:mt-16 !px-0 shrink-0">
-            <Button
-              className={cn(
-                'font-semibold shrink-0',
-                currentStep === 0 && 'opacity-50 pointer-events-none'
-              )}
-              color="white-1"
-              size="sm"
-              onClick={backStep}
-            >
-              Back
-            </Button>
+      {/* Fixed navigation at bottom */}
+      <div 
+        className="fixed bottom-0 left-0 right-0 px-4 sm:px-16 py-4 bg-gradient-to-t from-white/90 to-transparent backdrop-blur-sm"
+        style={{
+          paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
+        }}
+      >
+        <div className="flex gap-4 w-full justify-between items-center max-w-[500px] mx-auto">
+          <Button
+            className={cn(
+              'font-semibold shrink-0',
+              currentStep === 0 && 'opacity-50 pointer-events-none'
+            )}
+            color="white-1"
+            size="sm"
+            onClick={backStep}
+          >
+            Back
+          </Button>
 
-            <Button
-              color="blue-2"
-              className="font-semibold grow sm:grow-0"
-              size="sm"
-              onClick={nextStep}
-            >
-              {currentStep === steps.length - 1
-                ? "Enter the World's Fair →"
-                : 'Continue →'}
-            </Button>
-          </div>
+          <Button
+            color="blue-2"
+            className="font-semibold grow sm:grow-0"
+            size="sm"
+            onClick={nextStep}
+          >
+            {currentStep === steps.length - 1
+              ? "Enter the World's Fair →"
+              : 'Continue →'}
+          </Button>
         </div>
       </div>
     </div>
