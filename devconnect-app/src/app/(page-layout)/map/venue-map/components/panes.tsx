@@ -24,6 +24,7 @@ const Pane = ({
   paneOpen,
   selection,
   setSelection,
+  displayName,
   description,
   subtitle,
   links,
@@ -40,6 +41,7 @@ const Pane = ({
   links?: Record<'website' | 'x' | 'farcaster', string>;
   selection: string | null;
   setSelection: Dispatch<SetStateAction<string | null>>;
+  displayName?: string;
   description?: string;
   subtitle?: string;
   logo?: string;
@@ -128,7 +130,7 @@ const Pane = ({
             >
               <img
                 src={imageSrc}
-                alt={selection || ''}
+                alt={displayName || selection || ''}
                 className="w-full h-full object-cover"
                 loading="eager"
                 width={44}
@@ -139,7 +141,7 @@ const Pane = ({
           ) : (
             <Image
               src={Placeholder}
-              alt={selection || ''}
+              alt={displayName || selection || ''}
               className="w-8 h-8 object-cover shrink-0"
               style={{ filter: 'brightness(0)' }}
             />
@@ -148,9 +150,9 @@ const Pane = ({
           <div className="flex flex-col gap-1 pr-2 justify-center">
             <div className="flex gap-1.5 items-center">
               <p className="font-bold text-[18px] leading-none text-[#20202B]">
-                {selection}
+                {displayName || selection}
               </p>
-              {districtBadge && (
+              {/* {districtBadge && (
                 <div
                   className="border border-[#353548] px-1 py-0.5"
                   onClick={() => {
@@ -164,7 +166,7 @@ const Pane = ({
                     {districtBadge}
                   </p>
                 </div>
-              )}
+              )} */}
             </div>
             {questAvailable ? (
               <div className="flex gap-1 items-center">
@@ -443,6 +445,7 @@ const MapPane = (props: {
             paneOpen={paneOpen}
             setSelection={setSelection}
             selection={selectionData.layerName}
+            displayName={selectionData.name}
             description={selectionData.description}
             subtitle={selectionData.pane_type}
             logo={selectionData.logo}
@@ -604,6 +607,7 @@ const MapPane = (props: {
             paneOpen={paneOpen}
             setSelection={setSelection}
             selection={selectionData.layerName}
+            displayName={selectionData.name}
             description={selectionData.description}
             subtitle={
               !selectionData.districtId ? selectionData.pane_type : undefined
@@ -632,7 +636,9 @@ const MapPane = (props: {
                     boxShadow: '0px 4px 0px 0px #005493',
                   }}
                 >
-                  {fromQuests ? 'View Map' : 'View Quest'}
+                  {fromQuests
+                    ? `View ${supporterDistrict?.name} District`
+                    : 'View Quest'}
                 </button>
               </Link>
             )}
@@ -645,6 +651,7 @@ const MapPane = (props: {
             paneOpen={paneOpen}
             setSelection={setSelection}
             selection={selectionData.layerName}
+            displayName={selectionData.name}
             description={selectionData.description}
             subtitle={selectionData.pane_type}
             links={selectionData.links}
