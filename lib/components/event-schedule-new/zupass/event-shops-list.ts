@@ -20,12 +20,12 @@ export const eventShops: EventShop[] = [
     coupon_collection: "dss-voucher-gating",
     zupass_disabled: zupassGatingFallbackOn,
   },
-  {
-    supabase_id: "71",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "agenticzero",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
+  // {
+  //   supabase_id: "71",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "agenticzero",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
   {
     supabase_id: "109",
     zupass_proof_id: "Devconnect ARG",
