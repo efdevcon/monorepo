@@ -654,7 +654,14 @@ function Event({
                     </div>
 
                     <div className="text-sm mt-1">
-                      {convert(event.description)}
+                      {event.description.split("\n").map((line, i) => (
+                        <React.Fragment key={i}>
+                          {convert(line)}
+                          {i < event.description.split("\n").length - 1 && (
+                            <br />
+                          )}
+                        </React.Fragment>
+                      ))}
                     </div>
 
                     {event.categories && event.categories.length > 0 && (
