@@ -77,15 +77,10 @@ export const NotificationCard = ({
           withoutContainer && '!max-w-none'
         )}
       >
-        <p
-          className={cn(
-            'text-sm font-semibold',
-            withoutContainer && '!text-sm'
-          )}
-        >
+        <p className={cn('text-base font-semibold', withoutContainer && '')}>
           {title}
         </p>
-        <p className={cn('text-xs pr-4', withoutContainer && '!text-sm')}>
+        <p className={cn('text-sm pr-4', withoutContainer && '!text-sm')}>
           {message}
         </p>
       </div>
@@ -133,7 +128,7 @@ export const AnnouncementsWrapper = () => {
           <div className="flex justify-between items-center gap-2 font-bold border-top ml-4">
             Announcements
           </div>
-          <div className="text-[11px] ml-4 leading-none">
+          <div className="text-[12px] ml-4 leading-none">
             With ❤️ from the Devconnect Team
           </div>
         </div>

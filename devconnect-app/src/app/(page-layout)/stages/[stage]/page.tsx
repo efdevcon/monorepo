@@ -349,7 +349,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                 No sessions scheduled for this date
               </div>
             ) : (
-              <table className="w-full relative border border-solid border-neutral-200 text-xs leading-tight">
+              <table className="w-full relative border border-solid border-neutral-200 text-xs md:text-sm leading-tight">
                 <thead className="">
                   <tr className="bg-[rgba(53,53,72,1)] text-white">
                     <th className="text-left p-4  font-bold">Time</th>

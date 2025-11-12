@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MapFont';
+    src: url('/fonts/map-font.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .map {
     svg * {
         transition: opacity 0.5s ease, filter 0.5s ease;
@@ -6,6 +13,10 @@
 
         &:not([id]) {
             pointer-events: none;
+        }
+
+        &[id$='-DISTRICT'] * {
+            font-family: 'MapFont', sans-serif;
         }
 
         pointer-events: auto;

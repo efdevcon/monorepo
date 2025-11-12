@@ -48,8 +48,8 @@ const HighlightCard = ({
         className="aspect-[4/2] object-cover group-hover:scale-105 transition-all duration-500 will-change-transform cursor-pointer"
       />
       <div className="flex flex-col bg-white z-[10] relative">
-        <p className="font-semibold text-sm px-4 py-2 pb-1">{title}</p>
-        <div className="text-xs px-4 pb-4">{description}</div>
+        <p className="font-semibold text-base px-4 py-2 pt-3 pb-1">{title}</p>
+        <div className="text-sm px-4 pb-4">{description}</div>
       </div>
     </Link>
   );

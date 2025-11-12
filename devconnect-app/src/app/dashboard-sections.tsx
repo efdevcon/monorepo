@@ -38,7 +38,7 @@ export const LoopingHeader = () => {
   const items = [
     { label: 'Nov 17 - 22, 2025', icon: CalendarIcon },
     { label: 'La Rural, Buenos Aires, Argentina', icon: PinIcon },
-    { label: '15,000+ Attendees', icon: PhoneIcon },
+    { label: '80+ Applications', icon: PhoneIcon },
     { label: '40+ Events', icon: CameraIcon },
   ];
 
@@ -96,7 +96,7 @@ export function WelcomeSection() {
             >
               {greeting}
             </div>
-            <div className="text-base text-[rgba(53,53,72,1)] font-medium italic truncate">
+            <div className="text-lg text-[rgba(53,53,72,1)] font-medium italic truncate">
               {email || 'Anon'}
             </div>
           </>
@@ -130,7 +130,7 @@ export function WelcomeSection() {
       </div>
 
       {email && (
-        <div className="w-[120px] md:w-[140px] shrink-0">
+        <div className="w-[120px] md:w-[140px] hidden md:block shrink-0">
           <DevconnectLogoWhite />
         </div>
       )}
@@ -373,7 +373,7 @@ export const PracticalInfo = () => {
         <div className="flex flex-col lg:flex-row lg:gap-24">
           {/* left col on desktop, top on mobile */}
           <div className="flex flex-col gap-1 lg:flex-1 lg:gap-0.5 text-sm">
-            <span className="font-semibold">Venue Opening Hours</span>
+            <span className="font-semibold mb-1">Venue Opening Hours</span>
             <div className="text-sm flex flex-col gap-0.5">
               <div className="flex items-center justify-between ">
                 <span className="font-semibold">Pre-registration:</span>
@@ -390,6 +390,17 @@ export const PracticalInfo = () => {
             </div>
 
             <Separator className="mb-3 mt-2 w-full" />
+
+            <div className="flex justify-between items-center">
+              <span className="font-semibold">Venue Address:</span>
+              <Link
+                target="_blank"
+                href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
+                className="text-sm text-[rgba(0,115,222,1)] font-semibold"
+              >
+                <span>View on map</span>
+              </Link>
+            </div>
 
             <div className="flex justify-between items-center group">
               <span className="font-semibold">Wi-Fi:</span>
@@ -413,21 +424,11 @@ export const PracticalInfo = () => {
                   navigator.clipboard.writeText('onchain25');
                   toast('Copied wifi password to clipboard');
                 }}
-                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)] cursor-pointer"
+                className="text-sm flex items-center gap-1 text-[rgba(0,115,222,1)] hover:text-[rgba(0,115,222,1)] cursor-pointer"
               >
-                <span>onchain25</span>
+                <span className="font-semibold">onchain25</span>
                 <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
               </button>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="font-semibold">Venue address:</span>
-              <Link
-                target="_blank"
-                href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
-                className="text-sm text-[rgba(0,115,222,1)] font-semibold"
-              >
-                <span>View on map</span>
-              </Link>
             </div>
           </div>
 
@@ -554,10 +555,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
     >
       <div className="flex w-full items-center justify-between gap-2 shrink-0 mb-1">
         <div className="flex flex-col">
-          <div className="font-bold text-base">
-            Your Events {/* - {moment().format('dddd, D MMMM')} */}
+          <div className="font-bold text-base mb-1">
+            My Events {/* - {moment().format('dddd, D MMMM')} */}
           </div>
-          <p className="text-xs mb-2 shrink-0">
+          <p className="text-sm mb-2 shrink-0">
             These are your recommended events based on your favorites and
             tickets connected in the app. Build your own schedule by adding
             events to your favorites.

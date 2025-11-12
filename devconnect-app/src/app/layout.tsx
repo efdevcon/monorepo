@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
 // import NewDeployment from '@/components/NewDeployment';
@@ -20,6 +19,12 @@ import { SerwistProvider } from '@/app/serwist-provider';
 import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
 import { BigIntSerializer } from '@/components/BigIntSerializer';
 import { HEIGHT_MENU } from '@/config/config';
+import { Roboto } from 'next/font/google';
+
+const roboto = Roboto({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+});
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -28,16 +33,6 @@ import { HEIGHT_MENU } from '@/config/config';
 
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -336,9 +331,7 @@ export default async function RootLayout({
         <meta name="twitter:image" content={image} key="tw_image" />
         */}
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${roboto.className} antialiased`}>
         <BigIntSerializer />
         <SerwistProvider swUrl="/sw.js/sw.js" options={{ scope: '/' }}>
           <PWAProvider>
