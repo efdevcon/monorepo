@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
 import PageLayout from '@/components/PageLayout';
@@ -30,7 +30,13 @@ export default function OnboardingPage() {
   >('quest-states', {});
 
   // Hook to sync quest completions to database
-  const { questCompletions, syncQuestStates } = useQuestCompletions();
+  const { questCompletions: rawQuestCompletions, syncQuestStates } = useQuestCompletions();
+
+  // Memoize questCompletions to prevent infinite loops from reference changes
+  // Only recreate when the actual keys/values change
+  const questCompletions = useMemo(() => {
+    return rawQuestCompletions;
+  }, [JSON.stringify(rawQuestCompletions)]);
 
   // Track if we're currently syncing from DB to prevent infinite loop
   const isSyncingFromDB = React.useRef(false);
@@ -112,7 +118,7 @@ export default function OnboardingPage() {
       // Only update if there are actual changes to avoid unnecessary re-renders
       return hasChanges ? updated : prev;
     });
-  }, [questCompletions, setQuestStates]);
+  }, [questCompletions]);
 
   // Function to update quest status
   const updateQuestStatus = (

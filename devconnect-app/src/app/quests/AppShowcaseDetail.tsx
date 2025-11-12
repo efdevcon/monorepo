@@ -548,11 +548,13 @@ export default function AppShowcaseDetail({
 
   return (
     <div className="flex flex-col items-center w-full h-full overflow-y-auto bg-white">
-      <MapPane
-        selection={selectedSupporter}
-        setSelection={setSelectedSupporter}
-        fromQuests={true}
-      />
+      {selectedSupporter && (
+        <MapPane
+          selection={selectedSupporter}
+          setSelection={setSelectedSupporter}
+          fromQuests={true}
+        />
+      )}
 
       {/* Info Card: Using wallets to complete Quests */}
       <InfoCard />
