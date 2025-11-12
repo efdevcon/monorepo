@@ -252,7 +252,7 @@ export default function QuestsPage() {
         <ol className="list-decimal pl-5 space-y-1 leading-[1.3]">
           <li>Head to the supporters booth</li>
           <li>Complete their Quest & verify with supporter</li>
-          <li>Mint their unique Devconnect ARG POAP</li>
+          <li>Mint their unique Devconnect POAP</li>
           <li>
             Tap <span className="font-bold">'Verify'</span> on their Quest card
             in-app 🎉

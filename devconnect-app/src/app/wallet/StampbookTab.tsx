@@ -224,7 +224,7 @@ export default function StampbookTab() {
                   isQuestCompleted(28) ? 'font-bold' : 'font-normal'
                 }`}
               >
-                Devconnect ARG POAP
+                Devconnect POAP
               </p>
             </button>
           </div>
