@@ -1,6 +1,6 @@
 import type { Quest, QuestAction } from '@/types';
 import { supportersData } from '@/data/supporters';
-import confetti from 'canvas-confetti';
+const confetti = require('canvas-confetti');
 import { HEIGHT_HEADER } from '@/config/config';
 
 /**
@@ -97,13 +97,24 @@ export const triggerDistrictConfetti = (
 ) => {
   const duration = 3000; // 3 seconds
   const animationEnd = Date.now() + duration;
+
+  // ETH logo SVG path
+  const ethShape = confetti.default.shapeFromPath({
+    path: "M 269.9 325.2 L 0 447.9 L 269.9 607.5 L 540 447.9 Z M 0.1 447.8 L 269.9 607.4 L 269.9 0 Z M 270 0 L 270 607.4 L 539.9 447.8 Z M 0 499 L 269.9 879.4 L 269.9 658.5 Z M 269.9 658.5 L 269.9 879.4 L 540 499 Z",
+    matrix: [0.02, 0, 0, 0.02, -5.4, -8.8], // Scale down to fit confetti size
+  });
+
   const defaults = {
     startVelocity: 15,
     spread: 360,
     ticks: 120,
     zIndex: 0,
     gravity: 0.5,
+    shapes: [ethShape],
     colors: ['#FFD700', '#FFA500', '#FF69B4', '#87CEEB', '#98FB98'],
+    scalar: 1.8,
+    flat: false,
+    spin: { min: -5, max: 5 },
   };
 
   const interval = setInterval(() => {
@@ -118,17 +129,17 @@ export const triggerDistrictConfetti = (
     const particleCount = 100 * (timeLeft / duration);
 
     // Trigger confetti from multiple points for full page effect
-    confetti({
+    confetti.default({
       ...defaults,
       particleCount: particleCount / 3,
       origin: { x: Math.random() * 0.3, y: Math.random() * 0.5 },
     });
-    confetti({
+    confetti.default({
       ...defaults,
       particleCount: particleCount / 3,
       origin: { x: 0.4 + Math.random() * 0.2, y: Math.random() * 0.5 },
     });
-    confetti({
+    confetti.default({
       ...defaults,
       particleCount: particleCount / 3,
       origin: { x: 0.7 + Math.random() * 0.3, y: Math.random() * 0.5 },
