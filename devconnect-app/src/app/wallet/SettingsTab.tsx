@@ -223,7 +223,6 @@ export default function SettingsTab() {
         {
           duration: 4000,
           dismissible: true,
-          closeButton: true,
           style: {
             background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
             border: '1px solid #fecaca',

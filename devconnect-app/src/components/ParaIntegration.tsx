@@ -15,7 +15,6 @@ const showSuccessToast = (title: string, message?: string, duration = 3000) => {
     description: message,
     duration,
     dismissible: true,
-    closeButton: true,
   });
 };
 
@@ -24,7 +23,6 @@ const showErrorToast = (title: string, message?: string, duration = 4000) => {
     description: message,
     duration,
     dismissible: true,
-    closeButton: true,
   });
 };
 

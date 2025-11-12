@@ -39,7 +39,6 @@ export function useNetworkSwitcher() {
       toast.success(`You switched network to ${network.name}`, {
         duration: 3000,
         dismissible: true,
-        closeButton: true,
         icon: networkIcon,
       });
 
@@ -61,7 +60,6 @@ export function useNetworkSwitcher() {
       toast.error(`❌ Network Switch Failed - ${userFriendlyMessage}`, {
         duration: 4000,
         dismissible: true,
-        closeButton: true,
       });
 
       return { success: false, message: userFriendlyMessage };

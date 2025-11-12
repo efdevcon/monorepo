@@ -106,7 +106,6 @@ export function ServiceWorkerUpdateBanner() {
               "You're now using the latest version with new improvements.",
             duration: 5000,
             dismissible: true,
-            closeButton: true,
             style: {
               marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
               zIndex: 9999999999999999999,
@@ -131,7 +130,6 @@ export function ServiceWorkerUpdateBanner() {
         description: 'This will only take a moment.',
         duration: Infinity,
         dismissible: true,
-        closeButton: true,
         style: {
           marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
           zIndex: 9999999999999999999,
@@ -164,7 +162,6 @@ export function ServiceWorkerUpdateBanner() {
         description: 'Refresh to get the latest updates.',
         duration: Infinity,
         dismissible: true, // Allow swipe/click to dismiss
-        closeButton: true, // Show X button
         action: {
           label: 'Update Now',
           onClick: () => performUpdate(waitingWorker),
@@ -183,7 +180,6 @@ export function ServiceWorkerUpdateBanner() {
               description: 'You can update from Settings later.',
               duration: 4000,
               dismissible: true,
-              closeButton: true,
             });
           },
         },
@@ -212,7 +208,6 @@ export function ServiceWorkerUpdateBanner() {
           description: event.data.message,
           duration: 3000,
           dismissible: true,
-          closeButton: true,
           style: {
             marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
             zIndex: 9999999999999999999,
@@ -265,7 +260,6 @@ export function ServiceWorkerUpdateBanner() {
               toastIdRef.current = toast.loading('Downloading update...', {
                 description: 'A new version is being prepared.',
                 duration: Infinity,
-                closeButton: true,
                 style: {
                   marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
                   zIndex: 9999999999999999999,

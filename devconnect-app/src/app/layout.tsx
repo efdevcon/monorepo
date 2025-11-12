@@ -360,12 +360,9 @@ export default async function RootLayout({
 
         <Toaster
           position="bottom-left"
-          closeButton
+          closeButton={false}
           toastOptions={{
-            closeButton: true,
-            classNames: {
-              closeButton: 'sonner-close-button-right',
-            },
+            closeButton: false,
           }}
         />
         <div id="requires-auth-modal" />
