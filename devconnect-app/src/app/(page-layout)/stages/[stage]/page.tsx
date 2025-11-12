@@ -349,11 +349,11 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                 No sessions scheduled for this date
               </div>
             ) : (
-              <table className="w-full border border-solid border-neutral-200 text-xs leading-tight">
-                <thead>
+              <table className="w-full relative border border-solid border-neutral-200 text-xs leading-tight">
+                <thead className="">
                   <tr className="bg-[rgba(53,53,72,1)] text-white">
                     <th className="text-left p-4  font-bold">Time</th>
-                    <th className="text-left p-4 font-bold">Event / Topic</th>
+                    <th className="text-left p-4 font-bold">Topic + Event</th>
                     <th className="text-left p-4 font-bold">Speaker(s)</th>
                   </tr>
                 </thead>
@@ -367,12 +367,12 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                         {session.start} {/* - {session.end} */}
                       </td>
                       <td className="p-4  py-3 border-b border-gray-200">
-                        <div className="font-medium">{session.event}</div>
                         {session.title && (
-                          <div className="text-gray-600 mt-0.5">
+                          <div className="mb-1 font-medium">
                             {session.title}
                           </div>
                         )}
+                        <div className="">{session.event}</div>
                       </td>
                       <td className="p-4  py-3 border-b border-gray-200">
                         {session.speakers && session.speakers.length > 0
