@@ -63,5 +63,12 @@
   status = 302
   force = true
 
+# meeting rooms
+[[redirects]]
+  from = "/meeting-rooms"
+  to = "https://ef-events.notion.site/Devconnect-Meeting-Rooms-Scheduler-292638cdc41581dfa2b0c2ab50b942d0?source=copy_link"
+  status = 302
+  force = true
+
 [build.environment]
 PNPM_FLAGS = "--filter devconnect..."
