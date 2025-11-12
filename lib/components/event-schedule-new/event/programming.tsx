@@ -55,48 +55,48 @@ export const getProgramming = (event: Event) => {
         speakers: "-",
       },
       {
-        time: "13:15",
+        time: "13:00",
         title:
           "POAP: How Argentina Adopted Crypto, and what it means for the rest of us",
         speakers: "Isabel Gonzalez",
       },
       {
-        time: "13:45",
+        time: "13:35",
         title: "Stablecoins and Argentina",
         speakers: "Mariano Conti",
       },
       {
-        time: "14:15",
+        time: "14:05",
         title: "Lambda Class: Local Web3 Companies",
         speakers: "Fede Intern",
       },
       {
-        time: "14:45",
+        time: "14:35",
         title: "Ethereum, Everywhere (All at Once)",
         speakers: "Santiago Palladino",
       },
       {
-        time: "15:15",
+        time: "15:05",
         title: "Ethereum Ecosystem overview",
         speakers: "Jason Chaskin",
       },
       {
-        time: "12:30",
+        time: "15:35",
         title: "COFFEE BREAK",
         speakers: "-",
       },
       {
-        time: "16:00",
+        time: "15:50",
         title: "Base Announcement",
         speakers: "Jesse Pollak",
       },
       {
-        time: "16:15",
+        time: "16:00",
         title: "Linea Announcement",
         speakers: "Declan Fox",
       },
       {
-        time: "16:25",
+        time: "16:15",
         title: "L2 Panel",
         speakers:
           "Josh Rudolf, Jesse Pollak, Steven Goldfeder, Mark Tyneway, Oren Katz, Alex Gluchovski",
@@ -113,12 +113,12 @@ export const getProgramming = (event: Event) => {
       },
       {
         time: "18:00",
-        title: "Farcaster: Crypto Apps and Decentralized SocialShort",
+        title: "Farcaster: Crypto Apps and Decentralized Social",
         speakers: "Linda Xie",
       },
       {
         time: "18:30",
-        title: "Privacy on Ethereum",
+        title: "Privacy is Existential: thought it may not be a right",
         speakers: "Peter Van Valkenburgh",
       },
       {
