@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react'
-import moment, { Moment } from 'moment'
+import { useState, useEffect } from "react";
+import moment, { Moment } from "moment";
 
 export const useNow = (override?: string | Date | Moment): Moment => {
-  const [now, setNow] = useState(() => 
-    override ? moment(override) : moment()
-  )
+  const [now, setNow] = useState(() =>
+    override ? moment.utc(override) : moment.utc().subtract(3, "hours")
+  );
 
   useEffect(() => {
     if (override) {
-      setNow(moment(override))
-      return
+      setNow(moment.utc(override));
+      return;
     }
 
-    const updateNow = () => setNow(moment())
-    
-    // Update every minute
-    const interval = setInterval(updateNow, 60000)
-    
-    return () => clearInterval(interval)
-  }, [override])
+    const updateNow = () => setNow(moment.utc().subtract(3, "hours"));
 
-  return now
-}
+    // Update every minute
+    const interval = setInterval(updateNow, 60000);
+
+    return () => clearInterval(interval);
+  }, [override]);
+
+  return now;
+};

@@ -63,21 +63,23 @@ const MeerkatComponent = () => {
   );
 };
 
-// const devconnectMoment = moment('2025-11-23 18:30:00');
+// const devconnectMoment = moment.utc('2025-11-17 11:30:00').subtract(3, 'hours');
 
 const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const [dates, setDates] = useState<Moment[]>([
-    moment.utc('2025-11-17').subtract(3, 'hours'),
-    moment.utc('2025-11-18').subtract(3, 'hours'),
-    moment.utc('2025-11-19').subtract(3, 'hours'),
-    moment.utc('2025-11-20').subtract(3, 'hours'),
-    moment.utc('2025-11-21').subtract(3, 'hours'),
-    moment.utc('2025-11-22').subtract(3, 'hours'),
+    moment.utc('2025-11-17'),
+    moment.utc('2025-11-18'),
+    moment.utc('2025-11-19'),
+    moment.utc('2025-11-20'),
+    moment.utc('2025-11-21'),
+    moment.utc('2025-11-22'),
   ]);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const { stage } = use(params);
   const now = useNow();
   const today = now.format('YYYY-MM-DD');
+
+  console.log(now.format('YYYY-MM-DD HH:mm:ss'), 'now ay ay');
 
   // Get stage metadata from useAllStages to find the apiSourceId
   const { pavilions } = useAllStages();
@@ -194,7 +196,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const countdown = React.useMemo(() => {
     if (!nextSession) return null;
 
-    const nextSessionDateTime = moment(
+    const nextSessionDateTime = moment.utc(
       `${nextSession.dateKey || today} ${nextSession.start}`,
       'YYYY-MM-DD HH:mm'
     );

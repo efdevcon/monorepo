@@ -199,6 +199,8 @@ const computeEventPlacements = (
   return eventPlacements;
 };
 
+// const devconnectMoment = moment("2025-11-18 10:30:00");
+
 const NewScheduleIndexInner = ({
   // selectedEvent,
   // selectedDay,
@@ -529,40 +531,44 @@ const NewScheduleIndexInner = ({
                 >
                   {/* Header row with dates */}
                   {/* <div className="contents relative"> */}
-                  {eventRange.map((date) => (
-                    <div
-                      key={date}
-                      className={cn(
-                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-medium py-2 px-3 mr-1 mb-1.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300",
-                        !isDateInDevconnectRange(date) && "!bg-blue-50"
-                        // selectedDay === date && "!bg-slate-100 !opacity-100",
-                        // selectedDay !== null && "opacity-20"
-                      )}
-                      // onMouseEnter={() => setHoveredDate(date)}
-                      // onMouseLeave={() => setHoveredDate(null)}
-                      // onClick={() => {
-                      //   if (selectedDay !== date) {
-                      //     setSelectedDay(date);
-                      //   } else {
-                      //     setSelectedDay(null);
-                      //   }
-                      // }}
-                    >
-                      <div className="text-center flex items-center justify-between w-full grow">
-                        <div className="flex gap-2 items-center justify-center h-full">
-                          {isDateInDevconnectRange(date) && (
-                            <Image
-                              src={DevconnectCubeLogo}
-                              alt="Devconnect Cube"
-                              className="w-[26px] object-contain"
-                            />
-                          )}
-                          {formatDateHeader(date).day}{" "}
+                  {eventRange.map((date) => {
+                    const isToday = date === today;
+                    return (
+                      <div
+                        key={date}
+                        className={cn(
+                          "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-medium py-2 px-3 mr-1 mb-1.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300",
+                          !isDateInDevconnectRange(date) && "!bg-blue-50",
+                          isToday && "text-[#165a8d] !font-bold"
+                          // selectedDay === date && "!bg-slate-100 !opacity-100",
+                          // selectedDay !== null && "opacity-20"
+                        )}
+                        // onMouseEnter={() => setHoveredDate(date)}
+                        // onMouseLeave={() => setHoveredDate(null)}
+                        // onClick={() => {
+                        //   if (selectedDay !== date) {
+                        //     setSelectedDay(date);
+                        //   } else {
+                        //     setSelectedDay(null);
+                        //   }
+                        // }}
+                      >
+                        <div className="text-center flex items-center justify-between w-full grow">
+                          <div className="flex gap-2 items-center justify-center h-full">
+                            {isDateInDevconnectRange(date) && (
+                              <Image
+                                src={DevconnectCubeLogo}
+                                alt="Devconnect Cube"
+                                className="w-[26px] object-contain"
+                              />
+                            )}
+                            {isToday ? "Today" : formatDateHeader(date).day}{" "}
+                          </div>
+                          <div className="">{formatDateHeader(date).date}</div>
                         </div>
-                        <div className="">{formatDateHeader(date).date}</div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                   {/* </div> */}
 
                   {/* <div

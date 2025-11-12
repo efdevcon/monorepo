@@ -65,11 +65,10 @@ export function WelcomeSection() {
   const [email] = useLocalStorage('email', '');
 
   const now = useNow();
-  const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
-  const formattedDate = buenosAiresTime.format('h:mm A');
 
   // Determine greeting based on Buenos Aires time
   const hour = now.hour();
+
   let greeting = '¡Buen día!';
   let greetingGradient =
     'bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]';
