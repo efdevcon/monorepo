@@ -66,15 +66,7 @@ export const Highlights = () => {
         "Mark your calendar for November 17th. You don't want to miss the opening ceremonies of the Ethereum World's Fair!",
       image: Image6,
     },
-    {
-      title: 'The Devconnect App',
-      to: '#',
-      onClick: () => {
-        alert('trigger pwa popup');
-      },
-      description: `Install the Ethereum World's Fair App on your device to navigate the fair, complete quests, collect souvenirs, and more.`,
-      image: PhoneImage,
-    },
+
     // {
     //   title: 'Pre-Fair Planning',
     //   to: '/schedule',
@@ -89,6 +81,15 @@ export const Highlights = () => {
       description:
         'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
       image: VoxelImage,
+    },
+    {
+      title: 'The Devconnect App',
+      to: '#',
+      onClick: () => {
+        alert('trigger pwa popup');
+      },
+      description: `Install the Ethereum World's Fair App on your device to navigate the fair, complete quests, collect souvenirs, and more.`,
+      image: PhoneImage,
     },
     // {
     //   title: 'Networking Events',
