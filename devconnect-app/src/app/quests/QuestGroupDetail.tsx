@@ -14,15 +14,12 @@ interface QuestGroupDetailProps {
     string,
     {
       status: 'completed' | 'active' | 'locked';
-      is_locked: boolean;
-      isCheckedIn?: boolean;
+      completedAt?: number;
     }
   >;
   updateQuestStatus: (
     questId: string,
-    status: 'completed' | 'active' | 'locked',
-    is_locked: boolean,
-    isCheckedIn?: boolean
+    status: 'completed' | 'active' | 'locked'
   ) => void;
 }
 
@@ -63,7 +60,7 @@ export default function QuestGroupDetail({
   // Calculate progress
   const completedQuests = groupQuests.filter((quest) => {
     const questState = questStates[quest.id.toString()];
-    return questState?.status === 'completed';
+    return !!questState?.completedAt; // Quest is completed if completedAt exists
   });
 
   const completed = completedQuests.length;
@@ -76,15 +73,15 @@ export default function QuestGroupDetail({
   };
 
   const isQuestCompleted = (quest: Quest) => {
-    return getQuestStatus(quest) === 'completed';
+    const questState = questStates[quest.id.toString()];
+    return !!questState?.completedAt; // Quest is completed if completedAt exists
   };
 
   const handleQuestAction = (quest: Quest) => {
-    const currentStatus = getQuestStatus(quest);
-    if (currentStatus === 'completed') return;
+    if (isQuestCompleted(quest)) return;
 
     // Go directly from locked to completed
-    updateQuestStatus(quest.id.toString(), 'completed', false);
+    updateQuestStatus(quest.id.toString(), 'completed');
   };
 
   const handleTodoClick = (quest: Quest) => {

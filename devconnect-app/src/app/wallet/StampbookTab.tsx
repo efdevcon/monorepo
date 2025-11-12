@@ -49,8 +49,6 @@ export default function StampbookTab() {
       string,
       {
         status: 'completed' | 'active' | 'locked';
-        is_locked: boolean;
-        isCheckedIn?: boolean;
         completedAt?: number; // Timestamp when completed
       }
     >
@@ -59,13 +57,13 @@ export default function StampbookTab() {
   // Helper function to check if a quest is completed
   const isQuestCompleted = (questId: number): boolean => {
     const questState = questStates[questId.toString()];
-    return questState?.status === 'completed';
+    return !!questState?.completedAt; // Quest is completed if completedAt exists
   };
 
   // Helper function to get completion date (returns ISO string for display)
   const getCompletionDate = (questId: number): string | undefined => {
     const questState = questStates[questId.toString()];
-    if (questState?.status === 'completed') {
+    if (questState?.completedAt) {
       // First check if we have POAP metadata with the actual minted date
       try {
         const poapMetadata = JSON.parse(
@@ -87,12 +85,7 @@ export default function StampbookTab() {
       }
 
       // Fall back to the completedAt timestamp from quest-states
-      if (questState.completedAt) {
-        return new Date(questState.completedAt).toISOString();
-      }
-
-      // If collected but no date available, use current timestamp
-      return new Date().toISOString();
+      return new Date(questState.completedAt).toISOString();
     }
     return undefined;
   };

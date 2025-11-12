@@ -6,6 +6,7 @@ import {
   useUserData as useUserDataSWR,
   useTickets as useTicketsSWR,
   useFavorites as useFavoritesSWR,
+  useQuestCompletions as useQuestCompletionsSWR,
 } from '@/hooks/useServerData';
 import { AppState } from './store';
 import { usePathname } from 'next/navigation';
@@ -502,4 +503,12 @@ export const useTickets = () => {
     qrCodes,
     refresh,
   };
+};
+
+/**
+ * Hook to sync quest completions to the database
+ * Re-exports the useQuestCompletions hook from useServerData
+ */
+export const useQuestCompletions = () => {
+  return useQuestCompletionsSWR();
 };

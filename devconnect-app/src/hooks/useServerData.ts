@@ -77,6 +77,7 @@ if (typeof window !== 'undefined' && !authListenerInitialized) {
 export interface UserData {
   additional_ticket_emails?: string[];
   favorite_events?: string[];
+  quests?: Record<string, number>; // Map of questId: completedAt timestamp
   email?: string;
 }
 
@@ -170,6 +171,7 @@ export function useUserData(fallbackData?: UserData) {
     email: data?.data?.email,
     additionalTicketEmails: data?.data?.additional_ticket_emails || [],
     favoriteEvents: data?.data?.favorite_events || [],
+    questCompletions: data?.data?.quests || {}, // Map of questId: completedAt
     loading: effectiveLoading,
     error,
     refresh: mutate,
@@ -382,6 +384,70 @@ export function useFavorites() {
   return {
     favorites: favoriteEvents,
     updateFavorite,
+  };
+}
+
+// ===== Quest Completions =====
+
+/**
+ * Manage quest completions with sync to database
+ * Quest states are stored in localStorage and synced to the database
+ */
+export function useQuestCompletions() {
+  const { userData, questCompletions, refresh } = useUserData();
+
+  const syncQuestStates = async (
+    questStates: Record<
+      string,
+      {
+        status: 'completed' | 'active' | 'locked';
+        completedAt?: number;
+      }
+    >
+  ) => {
+    if (!userData) {
+      // Silently skip sync if user is not authenticated
+      return;
+    }
+
+    // Send to server
+    const response = await fetchAuth('/api/auth/quest-completions', {
+      method: 'POST',
+      body: JSON.stringify({ questStates }),
+    });
+
+    if (!response.success) {
+      console.error('Failed to sync quest completions');
+    } else {
+      // Refresh user data to get updated quest completions
+      refresh();
+    }
+  };
+
+  const resetQuestCompletions = async () => {
+    if (!userData) {
+      // Silently skip reset if user is not authenticated
+      return;
+    }
+
+    // Send reset request to server
+    const response = await fetchAuth('/api/auth/quest-completions/reset', {
+      method: 'POST',
+    });
+
+    if (!response.success) {
+      console.error('Failed to reset quest completions');
+      throw new Error('Failed to reset quest completions');
+    } else {
+      // Refresh user data to get updated (empty) quest completions
+      refresh();
+    }
+  };
+
+  return {
+    questCompletions,
+    syncQuestStates,
+    resetQuestCompletions,
   };
 }
 
