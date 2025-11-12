@@ -1051,116 +1051,116 @@ export default function WalletTab() {
             </div>
 
             {/* My Perks Section */}
+            {!isBetaMode && (
+              <>
+                <div className="flex flex-col gap-4">
+                  <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
+                    My Perks
+                  </p>
 
-            <>
-              <div className="flex flex-col gap-4">
-                <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
-                  My Perks
-                </p>
-
-                <div className="flex flex-col md:flex-row gap-4">
-                  {/* Peanut Claim Card */}
-                  <div
-                    className="bg-white p-4 flex flex-col gap-4 items-center w-full md:flex-1"
-                    style={{
-                      boxShadow: '4px 4px 0px black',
-                      outline: '1px black solid',
-                      outlineOffset: '-1px',
-                    }}
-                  >
-                    <button
-                      onClick={handlePeanutClaim}
-                      disabled={
-                        peanutClaimingState?.peanut_claimed === true ||
-                        isPeanutPopupOpen
-                      }
-                      className={`w-full rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
-                        peanutClaimingState?.peanut_claimed === true ||
-                        isPeanutPopupOpen
-                          ? 'bg-gray-300 cursor-not-allowed'
-                          : 'bg-[#ff91e9] hover:bg-[#ff7de3] cursor-pointer'
-                      }`}
+                  <div className="flex flex-col md:flex-row gap-4">
+                    {/* Peanut Claim Card */}
+                    <div
+                      className="bg-white p-4 flex flex-col gap-4 items-center w-full md:flex-1"
                       style={{
+                        boxShadow: '4px 4px 0px black',
                         outline: '1px black solid',
                         outlineOffset: '-1px',
                       }}
                     >
-                      <p className="text-black text-[16px] font-bold leading-4">
-                        {isPeanutPopupOpen
-                          ? 'Claiming...'
-                          : peanutClaimingState?.peanut_claimed === true
-                            ? '✓ Claimed'
-                            : peanutClaimingState?.peanut_claimed === false
-                              ? 'Claim $2 (USDC)'
-                              : 'Claim $2 (USDC)'}
-                      </p>
-                      {peanutClaimingState?.peanut_claimed !== true &&
-                        !isPeanutPopupOpen && (
-                          <svg
-                            className="w-3.5 h-3.5 text-black flex-shrink-0"
-                            viewBox="0 0 14 14"
-                            fill="none"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M3 7h8m0 0L7 3m4 4l-4 4"
-                            />
-                          </svg>
-                        )}
-                    </button>
-                    {/* Transaction Link or Claiming Status */}
-                    {peanutClaimingState?.peanut_claimed === true && (
-                      <>
-                        {peanutClaimingState?.tx_hash ? (
-                          <a
-                            href={`https://axelarscan.io/gmp/${peanutClaimingState.tx_hash}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
-                          >
-                            View transaction
+                      <button
+                        onClick={handlePeanutClaim}
+                        disabled={
+                          peanutClaimingState?.peanut_claimed === true ||
+                          isPeanutPopupOpen
+                        }
+                        className={`w-full rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
+                          peanutClaimingState?.peanut_claimed === true ||
+                          isPeanutPopupOpen
+                            ? 'bg-gray-300 cursor-not-allowed'
+                            : 'bg-[#ff91e9] hover:bg-[#ff7de3] cursor-pointer'
+                        }`}
+                        style={{
+                          outline: '1px black solid',
+                          outlineOffset: '-1px',
+                        }}
+                      >
+                        <p className="text-black text-[16px] font-bold leading-4">
+                          {isPeanutPopupOpen
+                            ? 'Claiming...'
+                            : peanutClaimingState?.peanut_claimed === true
+                              ? '✓ Claimed'
+                              : peanutClaimingState?.peanut_claimed === false
+                                ? 'Claim $2 (USDC)'
+                                : 'Claim $2 (USDC)'}
+                        </p>
+                        {peanutClaimingState?.peanut_claimed !== true &&
+                          !isPeanutPopupOpen && (
                             <svg
-                              className="w-3 h-3"
-                              viewBox="0 0 12 12"
+                              className="w-3.5 h-3.5 text-black flex-shrink-0"
+                              viewBox="0 0 14 14"
                               fill="none"
                               stroke="currentColor"
                             >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M3 9l6-6m0 0H4.5M9 3v4.5"
+                                strokeWidth={2}
+                                d="M3 7h8m0 0L7 3m4 4l-4 4"
                               />
                             </svg>
-                          </a>
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            <span className="text-[#4b4b66] text-[12px] font-medium">
-                              {isPeanutPopupOpen
-                                ? 'Claiming...'
-                                : 'Waiting for transaction...'}
-                            </span>
-                            <button
-                              onClick={handleRefresh}
-                              disabled={isRefreshing || portfolioLoading}
-                              className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                              title="Refresh to check if transaction is available"
+                          )}
+                      </button>
+                      {/* Transaction Link or Claiming Status */}
+                      {peanutClaimingState?.peanut_claimed === true && (
+                        <>
+                          {peanutClaimingState?.tx_hash ? (
+                            <a
+                              href={`https://axelarscan.io/gmp/${peanutClaimingState.tx_hash}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
                             >
-                              <Icon
-                                path={mdiCached}
-                                size={0.5}
-                                className={`${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
-                              />
-                              Refresh
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    )}
-                    {/* {peanutClaimingState && (
+                              View transaction
+                              <svg
+                                className="w-3 h-3"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={1.5}
+                                  d="M3 9l6-6m0 0H4.5M9 3v4.5"
+                                />
+                              </svg>
+                            </a>
+                          ) : (
+                            <div className="flex items-center gap-2">
+                              <span className="text-[#4b4b66] text-[12px] font-medium">
+                                {isPeanutPopupOpen
+                                  ? 'Claiming...'
+                                  : 'Waiting for transaction...'}
+                              </span>
+                              <button
+                                onClick={handleRefresh}
+                                disabled={isRefreshing || portfolioLoading}
+                                className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                                title="Refresh to check if transaction is available"
+                              >
+                                <Icon
+                                  path={mdiCached}
+                                  size={0.5}
+                                  className={`${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
+                                />
+                                Refresh
+                              </button>
+                            </div>
+                          )}
+                        </>
+                      )}
+                      {/* {peanutClaimingState && (
                   <div className="w-full">
                     {peanutClaimingState.peanut_claimed === true ? (
                       <p className="text-green-700 text-[11px] font-medium text-center leading-[1.3]">
@@ -1180,20 +1180,20 @@ export default function WalletTab() {
                     ) : null}
                   </div>
                 )} */}
-                    <div className="flex items-center gap-3">
-                      <p className="text-black text-[12px] font-normal leading-[15.6px]">
-                        Sponsored by
-                      </p>
-                      <img
-                        src={imgPeanutLogo}
-                        alt="Peanut"
-                        className="h-5 w-[82px] object-contain"
-                      />
+                      <div className="flex items-center gap-3">
+                        <p className="text-black text-[12px] font-normal leading-[15.6px]">
+                          Sponsored by
+                        </p>
+                        <img
+                          src={imgPeanutLogo}
+                          alt="Peanut"
+                          className="h-5 w-[82px] object-contain"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* ENS Claim Card */}
-                  {!isBetaMode && (
+                    {/* ENS Claim Card */}
+
                     <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
                       <button
                         onClick={() => {
@@ -1231,10 +1231,10 @@ export default function WalletTab() {
                         />
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            </>
+              </>
+            )}
 
             {/* Assets Section */}
             <div className="space-y-1 mb-0 pb-5">
