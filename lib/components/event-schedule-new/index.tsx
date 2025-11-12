@@ -450,7 +450,7 @@ const NewScheduleIndexInner = ({
                   <div
                     data-type="list-day-header"
                     className={cn(
-                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-medium py-2.5 border-solid cursor-pointer flex items-center justify-between",
+                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-semibold py-2.5 border-solid cursor-pointer flex items-center justify-between",
                       !isLast && "border-b border-[rgba(224,224,235,1)]",
                       isToday && "text-[#165a8d] !font-bold"
                     )}
@@ -459,7 +459,7 @@ const NewScheduleIndexInner = ({
                     <span className="text-base">
                       {isToday
                         ? "Today 👀"
-                        : moment(date).format("dddd, MMMM D")}
+                        : moment(date).format("dddd, MMM D")}
                     </span>
                     <div className="flex items-center gap-2">
                       <span className="text-xs">

@@ -437,8 +437,28 @@ export const PracticalInfo = () => {
 
           {/* right col on desktop, below on mobile */}
           <div className="flex flex-col mt-4 lg:mt-0 text-sm lg:flex-1">
-            <span className="font-semibold mb-1 lg:mb-0.5">Need help?</span>
+            <span className="font-semibold mb-1">Need help?</span>
             <span>
+              Find quick answers in our Support FAQ, or speak with us at the{' '}
+              <Link
+                href="/map?filter=onboarding"
+                className="text-[rgba(0,115,222,1)] font-semibold "
+              >
+                Onboarding Area
+              </Link>
+              .
+            </span>
+
+            <Link
+              target="_blank"
+              href="https://devconnect.org/faq"
+              className="mt-3"
+            >
+              <Button size="sm" className="w-full font-medium" color="blue-2">
+                View Support FAQ
+              </Button>
+            </Link>
+            {/* <span>
               Read our{' '}
               <Link
                 target="_blank"
@@ -447,14 +467,8 @@ export const PracticalInfo = () => {
               >
                 Support FAQ
               </Link>{' '}
-              or visit the{' '}
-              <Link
-                href="/map?filter=onboarding"
-                className="text-[rgba(0,115,222,1)] font-semibold"
-              >
-                Onboarding Area
-              </Link>
-            </span>
+              or visit
+            </span> */}
           </div>
         </div>
       </div>

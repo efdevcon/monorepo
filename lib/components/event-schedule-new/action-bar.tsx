@@ -112,7 +112,7 @@ const ActionBar = ({
         <div
           className={cn(
             "text-sm h-[40px] w-[40px] bg-white font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
-            viewMode === "list" && "bg-blue-50"
+            viewMode === "list" && "!bg-blue-50 !border-gray-300"
           )}
           onClick={() => setViewMode("list")}
         >
@@ -122,7 +122,7 @@ const ActionBar = ({
         <div
           className={cn(
             "text-sm h-[40px] w-[40px] bg-white font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
-            viewMode === "grid" && "bg-blue-50"
+            viewMode === "grid" && "!bg-blue-50 !border-gray-300"
           )}
           onClick={() => setViewMode("grid")}
         >
