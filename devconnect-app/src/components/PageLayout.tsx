@@ -47,6 +47,7 @@ interface PageLayoutProps {
     completed: number;
     total: number;
   };
+  onQuestProgressClick?: () => void;
 }
 
 interface TabsProps {
@@ -226,6 +227,7 @@ const PageLayout = React.memo(function PageLayout({
   hasBackButton,
   infoModalContent,
   questProgress,
+  onQuestProgressClick,
 }: PageLayoutProps) {
   const pathname = usePathname();
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
@@ -324,12 +326,14 @@ const PageLayout = React.memo(function PageLayout({
                     {/* Right side: Quest completion count OR Bug report button */}
                     <div className="absolute right-6 flex items-center gap-1">
                       {questProgress ? (
-                        <p
-                          className="text-base font-medium text-white tracking-[-0.1px] whitespace-nowrap"
+                        <button
+                          onClick={onQuestProgressClick}
+                          className="text-base font-medium text-white tracking-[-0.1px] whitespace-nowrap cursor-pointer"
                           style={{ fontFamily: 'Roboto Mono, monospace' }}
+                          aria-label="View quest progress"
                         >
                           {questProgress.completed}/{questProgress.total}
-                        </p>
+                        </button>
                       ) : isComingSoon ? (
                         <button
                           onClick={() => {
