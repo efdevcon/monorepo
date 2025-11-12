@@ -142,13 +142,13 @@ const QRScanner = ({
 
   return (
     <>
-      <Button
-        type="Primary"
+      {/* <Button
+        type="Secondary"
         className="w-full mt-2"
         onClick={handleOpenScanner}
       >
         {buttonLabel || 'Scan QR Code'}
-      </Button>
+      </Button> */}
       {open &&
         createPortal(
           <div
