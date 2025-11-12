@@ -395,11 +395,14 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
         color: 'white',
       });
 
-      toast.success(`You switched your active wallet to ${connector.name}`, {
-        icon: walletIcon,
-        duration: 3000,
-        dismissible: true,
-      });
+      toast.success(
+        `You switched your active wallet to ${connector.name?.replace('WalletConnect', 'External')}`,
+        {
+          icon: walletIcon,
+          duration: 3000,
+          dismissible: true,
+        }
+      );
 
       onClose();
     } catch (err) {
