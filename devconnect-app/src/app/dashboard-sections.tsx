@@ -63,6 +63,7 @@ export const LoopingHeader = () => {
 export function WelcomeSection() {
   // Get email from localStorage (set during onboarding) - instant, no loading
   const [email] = useLocalStorage('email', '');
+  const [ensName] = useLocalStorage('ens_name', '');
 
   const now = useNow();
 
@@ -86,7 +87,7 @@ export function WelcomeSection() {
     <div className="flex justify-between items-center gap-4 mb-4 px-4 max-w-screen">
       <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1 grow">
         {/* Show greeting when we have email */}
-        {email && (
+        {(email || ensName) && (
           <>
             <div
               className={cn(
@@ -97,7 +98,7 @@ export function WelcomeSection() {
               {greeting}
             </div>
             <div className="text-lg text-[rgba(53,53,72,1)] font-medium italic truncate">
-              {email || 'Anon'}
+              {ensName || email || 'Anon'}
             </div>
           </>
         )}

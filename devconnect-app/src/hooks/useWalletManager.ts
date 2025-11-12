@@ -358,6 +358,8 @@ export function useWalletManager() {
   const [identityMap, setIdentityMap] = useLocalStorage<
     Record<string, WalletIdentity | null>
     >('wallet_identity_map', {});
+  const [, setEnsName] = useLocalStorage('ens_name', '');
+  const [, setEnsAvatar] = useLocalStorage('ens_avatar', '');
   const [identityLoading, setIdentityLoading] = useState(false);
   const identityFetchingRef = useRef<Set<string>>(new Set());
 
@@ -532,6 +534,24 @@ export function useWalletManager() {
       prevAddressRef.current = address;
     }
   }, [address, resolveIdentityForAddress]);
+
+  // Update global ENS name/avatar when active address or identity changes
+  useEffect(() => {
+    if (address && identity !== undefined) {
+      const currentName = identity?.name || '';
+      const currentAvatar = identity?.avatar || '';
+      console.log(`[identity] Updating global ENS for active address ${address.slice(0, 10)}...`, {
+        name: currentName,
+        hasAvatar: !!currentAvatar,
+      });
+      setEnsName(currentName);
+      setEnsAvatar(currentAvatar);
+    } else if (!address) {
+      // Clear ENS when no address
+      setEnsName('');
+      setEnsAvatar('');
+    }
+  }, [address, identity, setEnsName, setEnsAvatar]);
 
   // ============================================
   // Portfolio Data - Store all portfolios in single global cache
