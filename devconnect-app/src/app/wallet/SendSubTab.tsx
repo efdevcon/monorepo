@@ -354,7 +354,10 @@ export default function SendPage() {
   if (!address) {
     return (
       <div className="bg-[#f6fafe] w-full flex items-center justify-center px-4">
-        <div className="text-center space-y-4 sm:space-y-6 max-w-sm">
+        <div
+          className="text-center space-y-4 sm:space-y-6 w-full"
+          style={{ maxWidth: '400px' }}
+        >
           <div className="space-y-2">
             <h1 className="text-[#242436] text-xl sm:text-2xl font-bold tracking-[-0.1px]">
               Connect Your Wallet
@@ -384,7 +387,10 @@ export default function SendPage() {
     >
       {/* Header */}
       <div className="bg-white border-b border-[#ededf0] px-4 sm:px-5 py-3 sm:py-2">
-        <div className="flex items-center justify-between max-w-md mx-auto">
+        <div
+          className="flex items-center justify-between mx-auto w-full"
+          style={{ maxWidth: '400px' }}
+        >
           <button
             onClick={() => router.push('/wallet')}
             className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors cursor-pointer touch-manipulation"
@@ -413,7 +419,10 @@ export default function SendPage() {
 
       {/* Main Content */}
       {currentStep === 'form' && (
-        <div className="px-4 sm:px-6 py-4 sm:py-6 space-y-6 sm:space-y-8 max-w-md mx-auto">
+        <div
+          className="px-4 sm:px-6 py-4 sm:py-6 space-y-6 sm:space-y-8 mx-auto w-full"
+          style={{ maxWidth: '400px' }}
+        >
           {/* From and To Section */}
           <div className="space-y-3">
             {/* From Field */}
@@ -602,8 +611,8 @@ export default function SendPage() {
           {/* Gas-free notice for Para wallets */}
           {isPara && (
             <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] px-3 xs:px-4 py-2.5 xs:py-3 w-full">
-              <p className="text-[#ededf0] text-[10px] xs:text-xs font-bold text-center tracking-[-0.1px]">
-                <span>Para: </span>
+              <p className="text-[#ededf0] text-xs text-center">
+                <span className="font-bold">Para: </span>
                 <span className="font-normal">
                   This transaction is gas-free
                 </span>
@@ -637,7 +646,10 @@ export default function SendPage() {
 
       {/* Transaction Status Step */}
       {currentStep === 'status' && (
-        <div className="px-4 sm:px-6 py-4 sm:py-6 max-w-md mx-auto">
+        <div
+          className="px-4 sm:px-6 py-4 sm:py-6 mx-auto w-full"
+          style={{ maxWidth: '400px' }}
+        >
           <div className="space-y-4 sm:space-y-6">
             {/* Status Display */}
             {(txStatus === 'preparing' ||
