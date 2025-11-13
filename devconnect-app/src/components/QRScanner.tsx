@@ -112,10 +112,11 @@ const QRScanner = ({
 
   const handleClose = () => {
     stopCamera();
-    setOpen(false);
     // Reset permission state for next time scanner is opened
     setPermissionDenied(false);
+    // Call onClose callback before state changes to ensure navigation happens
     onClose?.();
+    setOpen(false);
   };
 
   const handleError = (err: unknown) => {
