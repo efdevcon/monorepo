@@ -5,11 +5,13 @@ import { base } from 'viem/chains';
 
 /**
  * Clear EIP-7702 delegation using the backend relayer
+ * POST /api/auth/relayer/clear-delegation
  * 
  * This endpoint:
- * 1. Receives a signed EIP-7702 authorization from the frontend
- * 2. Uses the backend relayer to execute the transaction
- * 3. Returns the transaction hash
+ * 1. User authenticated via middleware
+ * 2. Receives a signed EIP-7702 authorization from the frontend
+ * 3. Uses the backend relayer to execute the transaction
+ * 4. Returns the transaction hash
  * 
  * Pattern: EOA signs authorization, relayer executes & pays gas
  */

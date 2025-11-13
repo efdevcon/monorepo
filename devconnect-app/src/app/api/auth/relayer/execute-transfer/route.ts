@@ -6,7 +6,6 @@ import {
   formatUSDCAmount,
   USDC_CONTRACT_ADDRESS 
 } from '@/lib/usdc-contract';
-import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
 import { validateSponsorshipPolicy } from '@/config/sponsor-policy';
 import { COINBASE_CONFIG } from '@/config/coinbase-config';
 import {
@@ -17,13 +16,14 @@ import {
 
 /**
  * API endpoint to execute USDC transfers using signed authorization
- * POST /api/base/execute-transfer
+ * POST /api/auth/relayer/execute-transfer
  * 
  * Flow:
- * 1. Validates signed authorization data
- * 2. Verifies signature and nonce haven't been used
- * 3. Uses relayer wallet to call transferWithAuthorization
- * 4. Returns transaction hash and confirmation
+ * 1. User authenticated via middleware
+ * 2. Validates signed authorization data
+ * 3. Verifies signature and nonce haven't been used
+ * 4. Uses relayer wallet to call transferWithAuthorization
+ * 5. Returns transaction hash and confirmation
  */
 export async function POST(request: NextRequest) {
   try {
@@ -367,28 +367,30 @@ export async function POST(request: NextRequest) {
     }
 
     // ⭐ Legacy EOA Relayer Path (when Coinbase Smart Wallet is disabled)
-    // Note: Authorization checks only apply to legacy relayer mode
-    // When Coinbase Smart Wallet is enabled, any EOA can request transfers
+    // Any authenticated user can request transfers (auth enforced by middleware)
     console.log('🔧 [LEGACY] Using legacy EOA relayer');
 
-    // Get private key from environment and check wallet authorization
-    const privateKey = process.env.PRIVATE_KEY;
+    // Determine transaction purpose - default to 'payment' if not specified
+    const legacyPurpose: TransactionPurpose = (transactionType === 'send' || transactionType === 'payment')
+      ? transactionType as TransactionPurpose
+      : 'payment';
 
-    // Check if we have private key and the 'from' address matches any authorized sponsor
+    // Get the appropriate private key based on transaction type
+    const privateKey = legacyPurpose === 'payment' 
+      ? process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY 
+      : process.env.ETH_RELAYER_SEND_PRIVATE_KEY;
+
+    console.log(`🔧 [LEGACY] Transaction type: ${legacyPurpose.toUpperCase()}`);
+    console.log(`🔧 [LEGACY] Using ${legacyPurpose} relayer wallet`);
+
     const hasPrivateKey = !!privateKey;
-    const isCorrectWallet = AUTHORIZED_SPONSOR_ADDRESSES.some(
-      address => address.toLowerCase() === from.toLowerCase()
-    );
 
-    // Force simulation mode if simulation parameter is true
-    if (simulation === true || !hasPrivateKey || !isCorrectWallet) {
-      // Simulation mode - either forced by parameter, no private key, or unauthorized wallet
+    // Only simulate if explicitly requested OR if no private key configured
+    if (simulation === true || !hasPrivateKey) {
       const reason = simulation === true
         ? 'simulation mode requested by client'
-        : !hasPrivateKey
-          ? 'no private key available'
-          : 'wallet not authorized';
-      console.log(`${reason}, generating simulation transaction`);
+        : 'no private key available';
+      console.log(`🔧 [LEGACY] ${reason}, generating simulation transaction`);
 
       // Create provider for simulation
       const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
@@ -444,9 +446,7 @@ export async function POST(request: NextRequest) {
 
       const simulationReason = simulation === true
         ? 'Simulation mode requested by client'
-        : !hasPrivateKey
-        ? 'No PRIVATE_KEY configured'
-        : `Wallet ${from} is not authorized. Only authorized sponsor addresses can execute real transactions.`;
+        : `No ${legacyPurpose === 'payment' ? 'ETH_RELAYER_PAYMENT_PRIVATE_KEY' : 'ETH_RELAYER_SEND_PRIVATE_KEY'} configured`;
 
       return NextResponse.json({
         success: true,
@@ -477,9 +477,7 @@ export async function POST(request: NextRequest) {
           success: true,
           message: `Transaction simulation successful - ${simulationReason}`,
           reason: simulationReason,
-          hasPrivateKey,
-          isCorrectWallet,
-          authorizedSponsorAddresses: AUTHORIZED_SPONSOR_ADDRESSES
+          hasPrivateKey
         },
         timestamp: new Date().toISOString()
       });

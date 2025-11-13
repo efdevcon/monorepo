@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useWallet } from '@getpara/react-sdk';
 import { useViemAccount } from '@getpara/react-sdk/evm';
+import { fetchAuth } from '@/services/apiClient';
 
 export type TransactionStatus = 
   | 'idle' 
@@ -121,9 +122,8 @@ export function useParaTransaction() {
 
       // Step 1: Prepare authorization (USDC on Base)
       console.log('🔄 [PARA_TX] Preparing authorization...');
-      const authResponse = await fetch('/api/base/prepare-authorization', {
+      const authResult = await fetchAuth('/api/auth/relayer/prepare-authorization', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           from: paraWalletAddress,
           to: recipient,
@@ -131,12 +131,11 @@ export function useParaTransaction() {
         }),
       });
 
-      if (!authResponse.ok) {
-        const errorData = await authResponse.json();
-        throw new Error(errorData.error || 'Failed to prepare authorization');
+      if (!authResult.success) {
+        throw new Error(authResult.error || 'Failed to prepare authorization');
       }
 
-      const authData = await authResponse.json();
+      const authData = authResult.data;
       console.log('✅ [PARA_TX] Authorization prepared');
       
       setTxStatus('signing');
@@ -174,9 +173,8 @@ export function useParaTransaction() {
 
       // Step 3: Execute the transfer
       console.log('🔄 [PARA_TX] Executing transfer...');
-      const executeResponse = await fetch('/api/base/execute-transfer', {
+      const executeResult = await fetchAuth('/api/auth/relayer/execute-transfer', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           signature,
           authorization: authData.authorization,
@@ -185,8 +183,8 @@ export function useParaTransaction() {
         }),
       });
 
-      if (!executeResponse.ok) {
-        const errorData = await executeResponse.json();
+      if (!executeResult.success) {
+        const errorData = executeResult.data || { error: executeResult.error };
         console.error('❌ [PARA_TX] Execution failed:', errorData);
 
         // Check if this is an EIP-7702 delegation error
@@ -198,11 +196,11 @@ export function useParaTransaction() {
         // Include details if available for more specific error messages
         const errorMessage = errorData.details 
           ? `${errorData.error}: ${errorData.details}`
-          : errorData.error || 'Failed to execute transfer';
+          : errorData.error || executeResult.error || 'Failed to execute transfer';
         throw new Error(errorMessage);
       }
 
-      const executeData = await executeResponse.json();
+      const executeData = executeResult.data;
 
       // Check if this is a simulation response
       if (executeData.simulation) {

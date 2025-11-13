@@ -1,20 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
 import { COINBASE_CONFIG } from '@/config/coinbase-config';
 
 /**
- * API endpoint to check if the system is in simulation mode
- * GET /api/base/check-simulation-mode?wallet=0x...
+ * Public API endpoint to check if the system is in simulation mode
+ * GET /api/relayer/check-simulation-mode?wallet=0x...
  * 
- * Returns whether the system is configured for real transactions or simulation mode
+ * Note: Public endpoint (no auth required) - just checks system configuration
+ * Returns whether the system is configured for real transactions
  * 
  * When Coinbase Smart Wallet is enabled:
  * - Always returns isSimulationMode: false (real transactions via Paymaster)
- * - No authorization checks needed (any EOA can request transfers)
  * 
  * When using legacy EOA relayer:
- * - Requires PRIVATE_KEY configured
- * - Wallet address must match authorized sponsor address
+ * - Requires ETH_RELAYER_PAYMENT_PRIVATE_KEY or ETH_RELAYER_SEND_PRIVATE_KEY
+ * - No wallet restrictions - any authenticated user can request transfers
  */
 export async function GET(request: NextRequest) {
   try {
@@ -28,7 +27,6 @@ export async function GET(request: NextRequest) {
         isSimulationMode: false,
         mode: 'coinbase-smart-wallet',
         hasPrivateKey: true,
-        isCorrectWallet: true,
         walletAddress,
         message: 'System is configured for gasless transactions via Coinbase Smart Wallet',
         paymasterEnabled: true,
@@ -36,32 +34,23 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Legacy EOA relayer checks
-    const privateKey = process.env.PRIVATE_KEY;
-    const hasPrivateKey = !!privateKey;
-    const isCorrectWallet = walletAddress && AUTHORIZED_SPONSOR_ADDRESSES.some(
-      address => address.toLowerCase() === walletAddress.toLowerCase()
-    );
+    // Legacy EOA relayer checks - only require at least one private key
+    const paymentPrivateKey = process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY;
+    const sendPrivateKey = process.env.ETH_RELAYER_SEND_PRIVATE_KEY;
+    const hasPrivateKey = !!paymentPrivateKey || !!sendPrivateKey;
 
-    const isSimulationMode = !hasPrivateKey || !isCorrectWallet;
+    const isSimulationMode = !hasPrivateKey;
 
-    let message = '';
-    if (!hasPrivateKey) {
-      message = 'System is in simulation mode - no PRIVATE_KEY configured';
-    } else if (!isCorrectWallet) {
-      message = `System is in simulation mode - wallet ${walletAddress} is not authorized. Only authorized sponsor addresses can execute real transactions.`;
-    } else {
-      message = 'System is configured for real transactions';
-    }
+    const message = hasPrivateKey
+      ? 'System is configured for real transactions'
+      : 'System is in simulation mode - no relayer private keys configured';
 
     return NextResponse.json({
       success: true,
       isSimulationMode,
       mode: 'legacy-eoa-relayer',
       hasPrivateKey,
-      isCorrectWallet,
       walletAddress,
-      authorizedSponsorAddresses: AUTHORIZED_SPONSOR_ADDRESSES,
       message,
       timestamp: new Date().toISOString()
     });
@@ -73,7 +62,7 @@ export async function GET(request: NextRequest) {
       success: false,
       error: 'Failed to check simulation mode',
       details: error instanceof Error ? error.message : 'Unknown error',
-      isSimulationMode: true, // Default to simulation mode on error
+      isSimulationMode: false,
       timestamp: new Date().toISOString()
     }, { status: 500 });
   }

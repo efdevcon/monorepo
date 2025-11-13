@@ -705,7 +705,7 @@ export default function PaymentModal({
       // Pass the connected wallet address to check if it's authorized
       const walletParam = connectedAddress ? `?wallet=${connectedAddress}` : '';
       const response = await fetch(
-        `/api/base/check-simulation-mode${walletParam}`
+        `/api/relayer/check-simulation-mode${walletParam}`
       );
       const data = await response.json();
 

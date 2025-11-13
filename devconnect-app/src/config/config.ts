@@ -22,7 +22,8 @@ export const APP_CONFIG = {
 export const APP_NAME = "Devconnect App";
 export const APP_DESCRIPTION = "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
 
-// Authorized sponsor addresses for transaction execution
+// DEPRECATED: No longer used - authentication now enforced by middleware
+// Any authenticated user can request gas-sponsored transactions
 export const AUTHORIZED_SPONSOR_ADDRESSES = [
   '0x20c85697e4789d7a1570e78688567160426d4cdd',
   '0x8c7ABe004Ab7E07C81862A44a10faeA1C4a7feE3',
