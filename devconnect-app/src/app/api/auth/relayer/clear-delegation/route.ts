@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get RPC URL (use same as execute-transfer)
-    const rpcUrl = process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org';
+    const rpcUrl = process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org';
 
     console.log('[CLEAR-DELEGATION-API] Using RPC:', rpcUrl.includes('alchemy') ? 'Alchemy' : 'Base');
 

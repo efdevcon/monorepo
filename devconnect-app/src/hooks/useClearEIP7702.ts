@@ -34,7 +34,8 @@ export function useClearEIP7702() {
 
     try {
       setStatus('checking');
-      const rpcUrl = process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org';
+      // Use public Base RPC for read-only operations in frontend
+      const rpcUrl = 'https://mainnet.base.org';
       
       const publicClient = createPublicClient({
         chain: base,
@@ -74,7 +75,8 @@ export function useClearEIP7702() {
       throw new Error('Viem account not available for signing');
     }
 
-    const rpcUrl = process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org';
+    // Use public Base RPC for read-only operations in frontend
+    const rpcUrl = 'https://mainnet.base.org';
 
     try {
       setStatus('clearing');

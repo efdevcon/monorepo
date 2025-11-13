@@ -158,7 +158,7 @@ export async function POST(request: NextRequest) {
         console.log('🔄 [COINBASE] Simulation mode requested - generating simulation response');
 
         // Create provider for simulation
-        const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+        const provider = new ethers.JsonRpcProvider(process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org');
 
         // Create a dummy wallet for simulation
         const dummyWallet = new ethers.Wallet(ethers.hexlify(ethers.randomBytes(32)), provider);
@@ -393,7 +393,7 @@ export async function POST(request: NextRequest) {
       console.log(`🔧 [LEGACY] ${reason}, generating simulation transaction`);
 
       // Create provider for simulation
-      const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+      const provider = new ethers.JsonRpcProvider(process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org');
 
       // Create a dummy wallet for simulation (this won't actually execute)
       const dummyWallet = new ethers.Wallet(ethers.hexlify(ethers.randomBytes(32)), provider);
@@ -484,7 +484,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Real execution mode - private key available
-    const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+    const provider = new ethers.JsonRpcProvider(process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org');
     const relayerWallet = new ethers.Wallet(privateKey, provider);
 
     console.log(`Relayer wallet address: ${relayerWallet.address}`);

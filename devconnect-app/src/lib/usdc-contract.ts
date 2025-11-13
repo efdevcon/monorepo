@@ -96,7 +96,7 @@ export async function getUSDCBalance(address: string): Promise<{
   formatted: string;
   decimals: number;
 }> {
-  const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+  const provider = new ethers.JsonRpcProvider(process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org');
   const contract = createUSDCContract(provider);
   
   const balance = await contract.balanceOf(address);
@@ -123,7 +123,7 @@ export async function generateUniqueNonce(from: string): Promise<string> {
 // Check if nonce has been used
 export async function isNonceUsed(from: string, nonce: string): Promise<boolean> {
   try {
-    const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+    const provider = new ethers.JsonRpcProvider(process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org');
     const contract = createUSDCContract(provider);
     
     // For USDC transferWithAuthorization, we need to check if the authorization has been used

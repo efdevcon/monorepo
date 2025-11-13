@@ -23,7 +23,7 @@ Two EOA wallets sponsor gas for USDC transfers on Base. Requires authentication.
 # .env.local
 ETH_RELAYER_PAYMENT_PRIVATE_KEY="0x..."
 ETH_RELAYER_SEND_PRIVATE_KEY="0x..."
-NEXT_PUBLIC_BASE_RPC_URL="https://mainnet.base.org"
+ALCHEMY_RPC_URL="https://base-mainnet.g.alchemy.com/v2/{API_KEY}"
 USDC_CONTRACT_ADDRESS="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
 NEXT_PUBLIC_USDC_DECIMALS="6"
 NEXT_PUBLIC_USE_COINBASE_SMART_WALLET=false
