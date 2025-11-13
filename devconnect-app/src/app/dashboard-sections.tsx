@@ -438,7 +438,7 @@ export const PracticalInfo = () => {
           {/* right col on desktop, below on mobile */}
           <div className="flex flex-col mt-4 lg:mt-0 text-sm lg:flex-1">
             <span className="font-semibold mb-1">Need help?</span>
-            <span>
+            {/* <span>
               Find quick answers in our Support FAQ, or speak with us at the{' '}
               <Link
                 href="/map?filter=onboarding"
@@ -447,7 +447,8 @@ export const PracticalInfo = () => {
                 Onboarding Area
               </Link>
               .
-            </span>
+            </span> */}
+            <span>Find quick answers in our Support FAQ.</span>
 
             <Link
               target="_blank"

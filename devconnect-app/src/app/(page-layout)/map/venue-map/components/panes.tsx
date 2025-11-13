@@ -299,8 +299,6 @@ const MapPane = (props: {
 }) => {
   const { selection, setSelection, fromQuests = false } = props;
 
-  console.log('MapPane selection', selection);
-
   // Hooks must be called before any conditional returns
   const [isDesktop, setIsDesktop] = useState(false);
 

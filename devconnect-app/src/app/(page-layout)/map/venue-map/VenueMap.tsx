@@ -507,8 +507,32 @@ export const VenueMap = () => {
         Zoom in for details
       </div>
 
-      <SurfaceFilters />
-      <ListFilters open={listFiltersOpen} setOpen={setListFiltersOpen} />
+      <SurfaceFilters
+        selection={currentFilters.selection}
+        setSelection={(selection) => {
+          setCurrentFilters({
+            ...currentFilters,
+            selection: selection,
+          });
+          if (selection) {
+            focusOnElement(selection);
+          }
+        }}
+      />
+      <ListFilters
+        open={listFiltersOpen}
+        setOpen={setListFiltersOpen}
+        selection={currentFilters.selection}
+        setSelection={(selection) => {
+          setCurrentFilters({
+            ...currentFilters,
+            selection: selection,
+          });
+          if (selection) {
+            focusOnElement(selection);
+          }
+        }}
+      />
     </div>
   );
 };

@@ -80,7 +80,7 @@ export const usePanzoom = (
             '[data-prevent-interaction-element="true"]'
           );
 
-          console.log('preventInteractionElement', preventInteractionElement);
+          // console.log('preventInteractionElement', preventInteractionElement);
 
           if (preventInteractionElement) {
             return true;
