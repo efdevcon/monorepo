@@ -11,14 +11,15 @@ import {
 
 /**
  * API endpoint to prepare EIP-712 authorization message for USDC transfers
- * POST /api/base/prepare-authorization
+ * POST /api/auth/relayer/prepare-authorization
  * 
  * Flow:
- * 1. Validates transfer parameters (from, to, amount)
- * 2. Checks sender has sufficient USDC balance
- * 3. Generates unique nonce for the authorization
- * 4. Creates EIP-712 message for user to sign
- * 5. Returns domain, types, and message for frontend signing
+ * 1. User authenticated via middleware
+ * 2. Validates transfer parameters (from, to, amount)
+ * 3. Checks sender has sufficient USDC balance
+ * 4. Generates unique nonce for the authorization
+ * 5. Creates EIP-712 message for user to sign
+ * 6. Returns domain, types, and message for frontend signing
  */
 export async function POST(request: NextRequest) {
   try {

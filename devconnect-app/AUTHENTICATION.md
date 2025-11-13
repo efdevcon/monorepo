@@ -23,7 +23,10 @@ EOA Wallet     →  OTP  →  Supabase   →  auth.users + devconnect_app_user
 | `src/hooks/useWalletManager.ts` | Unified wallet state (Para + EOA) |
 | `src/hooks/useServerData.ts` | SWR data fetching (user, tickets, favorites) |
 | `src/services/authService.ts` | Token generation |
+| `src/services/apiClient.ts` | fetchAuth helper (authenticated API calls) |
+| `src/middleware.ts` | Root middleware - applies auth to `/api/auth/*` |
 | `src/app/api/auth/middleware.ts` | JWT verification + user provisioning |
+| `src/app/api/auth/relayer/*` | Gas sponsoring relayer (authenticated) |
 | `src/context/WalletContext.tsx` | Context provider - use `useWallet()` hook |
 
 ## Authentication Flow
@@ -96,15 +99,43 @@ function MyComponent() {
 
 ## Protected Routes
 
-```typescript
-// src/app/api/auth/middleware.ts
-// Automatically verifies JWT and injects user info
+All routes under `/api/auth/*` are automatically authenticated by `src/middleware.ts`:
 
-export async function GET(request: NextRequest) {
+```typescript
+// src/middleware.ts applies verifyAuth to /api/auth/*
+// Sets x-user-email and x-user-id headers
+
+export async function POST(request: NextRequest) {
   const email = request.headers.get('x-user-email');
+  const userId = request.headers.get('x-user-id');
   // User is authenticated by middleware
 }
 ```
+
+**Protected Routes:**
+
+All routes under `/api/auth/*` require authentication using `fetchAuth()`:
+
+- `/api/auth/user-data` - User profile data
+- `/api/auth/tickets` - User tickets
+- `/api/auth/favorites` - User favorites
+- `/api/auth/relayer/prepare-authorization` - Prepare USDC transfer
+- `/api/auth/relayer/execute-transfer` - Execute USDC transfer
+- `/api/auth/relayer/clear-delegation` - Clear EIP-7702 delegation
+
+```typescript
+import { fetchAuth } from '@/services/apiClient';
+
+// Automatically includes auth headers (JWT + X-Auth-Method)
+const result = await fetchAuth('/api/auth/relayer/prepare-authorization', {
+  method: 'POST',
+  body: JSON.stringify({ from, to, amount })
+});
+```
+
+**Public Routes:**
+
+- `/api/relayer/check-simulation-mode` - System status check (no auth needed)
 
 ## Key Optimizations
 

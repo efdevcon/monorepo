@@ -66,7 +66,7 @@ export async function clearEIP7702WithRelayer(
   console.log('💰 [CLEAR-7702-RELAYER] Backend relayer will pay gas fees');
 
   try {
-    const response = await fetch('/api/base/clear-delegation', {
+    const response = await fetch('/api/auth/relayer/clear-delegation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

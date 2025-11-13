@@ -6,6 +6,7 @@ import { useWalletManager } from './useWalletManager';
 import { useSignMessage } from '@getpara/react-sdk';
 import { createWalletClient, custom, hashTypedData } from 'viem';
 import { base } from 'viem/chains';
+import { fetchAuth } from '@/services/apiClient';
 
 export type TransactionStatus = 
   | 'idle' 
@@ -232,11 +233,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       console.log('🔄 [PARA_TX] Preparing authorization for Para wallet:', paraWalletAddress);
       setTxStatus('preparing');
 
-      const authResponse = await fetch('/api/base/prepare-authorization', {
+      const authResult = await fetchAuth('/api/auth/relayer/prepare-authorization', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           from: paraWalletAddress,
           to: recipient,
@@ -244,12 +242,11 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         }),
       });
 
-      if (!authResponse.ok) {
-        const errorData = await authResponse.json();
-        throw new Error(errorData.error || 'Failed to prepare authorization');
+      if (!authResult.success) {
+        throw new Error(authResult.error || 'Failed to prepare authorization');
       }
 
-      const authData = await authResponse.json();
+      const authData = authResult.data;
       console.log('🔄 [PARA_TX] Authorization prepared, now signing');
       setTxStatus('signing');
 
@@ -281,11 +278,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         signatureLength: signature?.length
       });
 
-      const executeResponse = await fetch('/api/base/execute-transfer', {
+      const executeResult = await fetchAuth('/api/auth/relayer/execute-transfer', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           signature,
           authorization: authData.authorization,
@@ -294,8 +288,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         }),
       });
 
-      if (!executeResponse.ok) {
-        const errorData = await executeResponse.json();
+      if (!executeResult.success) {
+        const errorData = executeResult.data || { error: executeResult.error };
         console.error('🔄 [PARA_TX] Backend error response:', errorData);
         console.error('🔄 [PARA_TX] Request payload:', {
           signature,
@@ -313,7 +307,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         throw new Error(errorData.error || 'Failed to execute transfer');
       }
 
-      const executeData = await executeResponse.json();
+      const executeData = executeResult.data;
 
       // Check if this is a simulation response
       if (executeData.simulation) {
