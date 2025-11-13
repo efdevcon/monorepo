@@ -7,6 +7,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import { HEIGHT_MENU } from '@/config/config';
 import { useRouter } from 'next/navigation';
 import { hardReloadWithRouter } from '@/utils/reload';
+import { toast } from 'sonner';
 
 interface QRScannerProps {
   onScan?: (result: string) => void;
@@ -216,6 +217,34 @@ const QRScanner = ({
                     </button>
                     <button
                       onClick={async () => {
+                        // Check last reset time from localStorage
+                        const lastResetTime = localStorage.getItem(
+                          'lastCameraResetTime'
+                        );
+                        const currentTime = Date.now();
+                        const oneMinute = 60 * 1000; // 1 minute in milliseconds
+
+                        if (lastResetTime) {
+                          const timeSinceLastReset =
+                            currentTime - parseInt(lastResetTime);
+
+                          if (timeSinceLastReset < oneMinute) {
+                            // User clicked within 1 minute, show toast instead of resetting
+                            toast.error('Kill the app and open it again', {
+                              description:
+                                'Close the app completely and reopen it to reset camera permissions.',
+                              duration: 8000,
+                            });
+                            return;
+                          }
+                        }
+
+                        // Store current time in localStorage
+                        localStorage.setItem(
+                          'lastCameraResetTime',
+                          currentTime.toString()
+                        );
+
                         setIsReloading(true);
                         try {
                           // Close the scanner modal first
