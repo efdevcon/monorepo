@@ -191,10 +191,9 @@ const ShareEvent = ({
       window.location.origin.includes("localhost")
         ? "/schedule"
         : "/calendar";
-    const url = `${window.location.origin}${route}?event=${eventId}`.replace(
-      "//",
-      "/"
-    );
+    const url = `${window.location.origin}${route}?event=${eventId}`
+      .replace("//", "/")
+      ?.replace("https:/", "https://");
 
     try {
       await navigator.clipboard.writeText(url);
