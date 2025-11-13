@@ -85,12 +85,20 @@ const DistrictSection = forwardRef<HTMLDivElement, DistrictSectionProps>(
                   className="text-xs font-medium text-[#353548] tracking-[-0.1px] leading-[1.2]"
                   style={{ fontFamily: 'Roboto Mono, monospace' }}
                 >
-                  {progress.completed}/{progress.total} completed
+                  {progress.completed === progress.total
+                    ? 'Completed 🥳'
+                    : `${progress.completed}/${progress.total} completed`}
                 </p>
                 <div className="w-full h-[6px] bg-[#f6fafe] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#1b6fae]"
-                    style={{ width: `${progress.percentage}%` }}
+                    className="h-full"
+                    style={{
+                      width: `${progress.percentage}%`,
+                      backgroundColor:
+                        progress.completed === progress.total
+                          ? '#137C59'
+                          : '#1b6fae',
+                    }}
                   />
                 </div>
               </div>
