@@ -1849,7 +1849,7 @@ export default function PaymentModal({
                           isPending ||
                           hasInsufficientBalance
                         }
-                        className="w-full bg-[#137c59] hover:bg-[#0c5039] text-white font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#0c5039] transition-colors disabled:opacity-50"
+                        className="w-full px-4 xs:px-6 py-3 xs:py-3.5 rounded-[1px] flex items-center justify-center gap-2 transition-colors shadow-[0px_4px_0px_0px_#0c5039] touch-manipulation bg-[#137c59] hover:bg-[#0f6347] cursor-pointer active:shadow-[0px_2px_0px_0px_#0c5039] active:translate-y-[2px] disabled:opacity-50"
                       >
                         {isPending ? (
                           <>
