@@ -138,6 +138,19 @@ export default function StampbookTab() {
 
     const cats: StampCategory[] = [];
 
+    // Add Crypto payment category at the end
+    cats.push({
+      id: 'crypto-payment',
+      name: 'Crypto payment',
+      total: cryptoPaymentQuests.length,
+      collected: cryptoPaymentCompletedCount,
+      stamps: cryptoPaymentQuests.map((quest) => ({
+        id: quest.id,
+        name: quest.name,
+        image: quest.poapImageLink || FALLBACK_IMAGE,
+      })),
+    });
+
     // Add districts as categories
     Object.entries(districtsData).forEach(([districtId, district]) => {
       const questsInDistrict = questsData.filter(
@@ -162,19 +175,6 @@ export default function StampbookTab() {
           })),
         });
       }
-    });
-
-    // Add Crypto payment category at the end
-    cats.push({
-      id: 'crypto-payment',
-      name: 'Crypto payment',
-      total: cryptoPaymentQuests.length,
-      collected: cryptoPaymentCompletedCount,
-      stamps: cryptoPaymentQuests.map((quest) => ({
-        id: quest.id,
-        name: quest.name,
-        image: quest.poapImageLink || FALLBACK_IMAGE,
-      })),
     });
 
     return cats;
