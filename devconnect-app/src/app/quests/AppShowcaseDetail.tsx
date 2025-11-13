@@ -597,6 +597,26 @@ const AppShowcaseDetail = React.forwardRef<
         />
       </div>
 
+      {/* Crypto Payment Section */}
+      <div className="w-full pb-1">
+        <CryptoPaymentSection
+          ref={cryptoPaymentSectionRef}
+          cryptoPaymentQuests={cryptoPaymentQuests}
+          isExpanded={isCryptoPaymentSectionExpanded}
+          progress={cryptoPaymentProgress}
+          expandedQuests={expandedQuests}
+          isQuestCompleted={isQuestCompleted}
+          verifyingQuestId={verifyingQuestId}
+          address={address || undefined}
+          onQuestAction={handleQuestAction}
+          onAboutClick={handleAboutClick}
+          onPoapClick={handlePoapClick}
+          onToggleExpansion={toggleCryptoPaymentSectionExpansion}
+          onToggleQuestExpansion={toggleQuestExpansion}
+          questRefs={questRefs}
+        />
+      </div>
+
       {/* District Sections */}
       {filteredDistricts.map((district) => {
         const quests = questsByDistrict[district.id] || [];
@@ -627,26 +647,6 @@ const AppShowcaseDetail = React.forwardRef<
           </div>
         );
       })}
-
-      {/* Crypto Payment Section */}
-      <div className="w-full pb-1">
-        <CryptoPaymentSection
-          ref={cryptoPaymentSectionRef}
-          cryptoPaymentQuests={cryptoPaymentQuests}
-          isExpanded={isCryptoPaymentSectionExpanded}
-          progress={cryptoPaymentProgress}
-          expandedQuests={expandedQuests}
-          isQuestCompleted={isQuestCompleted}
-          verifyingQuestId={verifyingQuestId}
-          address={address || undefined}
-          onQuestAction={handleQuestAction}
-          onAboutClick={handleAboutClick}
-          onPoapClick={handlePoapClick}
-          onToggleExpansion={toggleCryptoPaymentSectionExpansion}
-          onToggleQuestExpansion={toggleQuestExpansion}
-          questRefs={questRefs}
-        />
-      </div>
 
       {/* Progress Section */}
       <ProgressSection
