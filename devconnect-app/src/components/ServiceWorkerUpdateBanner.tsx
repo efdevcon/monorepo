@@ -107,7 +107,7 @@ export function ServiceWorkerUpdateBanner() {
             duration: 5000,
             dismissible: true,
             style: {
-              marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
+              // marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
               zIndex: 9999999999999999999,
             },
           });
@@ -131,7 +131,7 @@ export function ServiceWorkerUpdateBanner() {
         duration: Infinity,
         dismissible: true,
         style: {
-          marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
+          // marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
           zIndex: 9999999999999999999,
         },
       });
@@ -250,22 +250,25 @@ export function ServiceWorkerUpdateBanner() {
             if (newWorker) {
               // Show toast IMMEDIATELY when update starts downloading
               // Don't wait for 'installed' state - that can take 20+ seconds
-              console.log('🔄 [SW Update] Showing update notification immediately');
-              
+              console.log(
+                '🔄 [SW Update] Showing update notification immediately'
+              );
+
               // Show a different toast while downloading
               if (toastIdRef.current) {
                 toast.dismiss(toastIdRef.current);
               }
-              
+
               toastIdRef.current = toast.loading('Downloading update...', {
                 description: 'A new version is being prepared.',
                 duration: Infinity,
                 style: {
-                  marginBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
+                  marginBottom:
+                    'calc(4px + max(0px, env(safe-area-inset-bottom)))',
                   zIndex: 9999999999999999999,
                 },
               });
-              
+
               newWorker.addEventListener('statechange', () => {
                 console.log(
                   '🔄 [SW Update] New worker state:',

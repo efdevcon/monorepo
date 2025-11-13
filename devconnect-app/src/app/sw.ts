@@ -27,7 +27,7 @@ const isDevelopment =
   self.location.hostname.includes('.localhost');
 
 if (isDevelopment) {
-  console.log('🔧 [SW] Development mode detected - caching disabled');
+  console.log(' 🔧 [SW] Development mode detected - caching disabled');
 }
 
 const serwist = new Serwist({
@@ -36,15 +36,15 @@ const serwist = new Serwist({
     ? []
     : [
         // Recommendation 2: Enable precaching for better offline support
-        ...(self.__SW_MANIFEST || []),
-        { url: '/~offline', revision: '1' },
-        { url: '/', revision: '1' },
-        { url: '/manifest.json', revision: '1' },
+        // ...(self.__SW_MANIFEST || []),
+        // { url: '/~offline', revision: '1' },
+        // { url: '/', revision: '1' },
+        // { url: '/manifest.json', revision: '1' },
       ],
-  precacheOptions: {
-    concurrency: 10,
-    cleanupOutdatedCaches: true,
-  },
+  // precacheOptions: {
+  //   concurrency: 10,
+  //   cleanupOutdatedCaches: true,
+  // },
   skipWaiting: false,
   disableDevLogs: isDevelopment ? false : true, // Show logs in dev
   clientsClaim: false,
@@ -62,92 +62,98 @@ const serwist = new Serwist({
         },
       ]
     : [
-    {
-      matcher: ({ request }) => request.mode === 'navigate',
-      handler: new NetworkFirst({
-        cacheName: 'pages',
-        networkTimeoutSeconds: 10,
-        plugins: [
-          {
-            // Recommendation 3: Network timeout detection
-            requestWillFetch: async ({ request }) => {
-              // Notify clients about slow network after 3 seconds
-              const timeoutId = setTimeout(async () => {
-                try {
-                  const clients = await self.clients.matchAll({ type: 'window' });
-                  clients.forEach((client: Client) => {
-                    client.postMessage({
-                      type: 'SLOW_NETWORK',
-                      message: 'Slow connection detected, loading from cache...'
+        {
+          matcher: ({ request }) => request.mode === 'navigate',
+          handler: new NetworkFirst({
+            cacheName: 'pages',
+            networkTimeoutSeconds: 10,
+            plugins: [
+              {
+                // Recommendation 3: Network timeout detection
+                requestWillFetch: async ({ request }) => {
+                  // Notify clients about slow network after 3 seconds
+                  const timeoutId = setTimeout(async () => {
+                    try {
+                      const clients = await self.clients.matchAll({
+                        type: 'window',
+                      });
+                      clients.forEach((client: Client) => {
+                        client.postMessage({
+                          type: 'SLOW_NETWORK',
+                          message:
+                            'Slow connection detected, loading from cache...',
+                        });
+                      });
+                    } catch (err) {
+                      console.warn(
+                        'Failed to notify clients about slow network:',
+                        err
+                      );
+                    }
+                  }, 3000);
+
+                  // Store timeout ID to clear it later
+                  (request as any).__timeoutId = timeoutId;
+
+                  return request;
+                },
+                fetchDidSucceed: async ({ request, response }) => {
+                  // Clear the slow network timeout on successful fetch
+                  const timeoutId = (request as any).__timeoutId;
+                  if (timeoutId) {
+                    clearTimeout(timeoutId);
+                  }
+                  return response;
+                },
+                handlerDidError: async () => {
+                  return (await caches.match('/~offline')) || Response.error();
+                },
+              },
+            ],
+          }),
+        },
+        // SWR Compatibility: Exclude API routes from service worker caching
+        // Let SWR handle all API caching with its own strategies
+        {
+          matcher: ({ request }) => request.url.includes('/api/'),
+          handler: new NetworkFirst({
+            cacheName: 'api-cache',
+            networkTimeoutSeconds: 5,
+            plugins: [
+              {
+                // Add Cache-Control headers to prevent conflicts with SWR
+                cacheWillUpdate: async ({ response }) => {
+                  // Only cache successful responses
+                  if (response && response.status === 200) {
+                    // Clone response and add short TTL header
+                    const headers = new Headers(response.headers);
+                    headers.set('X-SW-Cached', 'true');
+                    return new Response(response.body, {
+                      status: response.status,
+                      statusText: response.statusText,
+                      headers: headers,
                     });
-                  });
-                } catch (err) {
-                  console.warn('Failed to notify clients about slow network:', err);
-                }
-              }, 3000);
-
-              // Store timeout ID to clear it later
-              (request as any).__timeoutId = timeoutId;
-
-              return request;
-            },
-            fetchDidSucceed: async ({ request, response }) => {
-              // Clear the slow network timeout on successful fetch
-              const timeoutId = (request as any).__timeoutId;
-              if (timeoutId) {
-                clearTimeout(timeoutId);
-              }
-              return response;
-            },
-            handlerDidError: async () => {
-              return (await caches.match('/~offline')) || Response.error();
-            },
-          },
-        ],
-      }),
-    },
-    // SWR Compatibility: Exclude API routes from service worker caching
-    // Let SWR handle all API caching with its own strategies
-    {
-      matcher: ({ request }) => request.url.includes('/api/'),
-      handler: new NetworkFirst({
-        cacheName: 'api-cache',
-        networkTimeoutSeconds: 5,
-        plugins: [
-          {
-            // Add Cache-Control headers to prevent conflicts with SWR
-            cacheWillUpdate: async ({ response }) => {
-              // Only cache successful responses
-              if (response && response.status === 200) {
-                // Clone response and add short TTL header
-                const headers = new Headers(response.headers);
-                headers.set('X-SW-Cached', 'true');
-                return new Response(response.body, {
-                  status: response.status,
-                  statusText: response.statusText,
-                  headers: headers,
-                });
-              }
-              return null; // Don't cache errors
-            },
-          },
-        ],
-      }),
-    },
-    ...(isDevelopment ? [] : defaultCache), // Disable default cache in dev
-  ],
+                  }
+                  return null; // Don't cache errors
+                },
+              },
+            ],
+          }),
+        },
+        ...(isDevelopment ? [] : defaultCache), // Disable default cache in dev
+      ],
   fallbacks: isDevelopment
     ? undefined
     : ({
-    entries: [
-      {
-        url: '/~offline',
-        matcher({ request }: { request: Request }) {
-          return request.destination === 'document';
-        },
-      },
-    ],
-  } as any),
+        entries: [
+          {
+            url: '/~offline',
+            matcher({ request }: { request: Request }) {
+              return request.destination === 'document';
+            },
+          },
+        ],
+      } as any),
 });
 
 // Listen for SKIP_WAITING message from client
