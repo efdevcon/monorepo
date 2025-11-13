@@ -438,14 +438,13 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between p-6 pb-3">
-          <div className="w-6 h-6"></div>
+        <div className="relative flex items-center justify-center p-6 pb-3">
           <h2 className="text-base font-semibold text-[#36364c] tracking-[-0.1px]">
             Wallets
           </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="absolute right-6 top-6 p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
             <svg
               className="w-6 h-6"
