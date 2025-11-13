@@ -10,6 +10,10 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import MapPane from './components/panes';
 import { SurfaceFilters, ListFilters } from './components/filters';
 import { HomeIcon } from 'lucide-react';
+import { poisData } from '@/data/pois';
+import { districtsData } from '@/data/districts';
+import { poiGroupsData } from '@/data/poiGroups';
+import { supportersData } from '@/data/supporters';
 
 const initialFilters = {
   search: '', // Search term, not supported yet but added for future use
@@ -88,6 +92,37 @@ export const VenueMap = () => {
   const hasActiveFilters =
     currentFilters.selection !== null || currentFilters.search.length > 0;
 
+  /*
+    Each click should resolve up until it finds an element with notion data available
+    When no notion data available, return null
+  */
+  const resolveClickable = (id: string): string | null => {
+    // Check if element exists in POI data
+    const poiData = poisData.find((poi) => poi.layerName === id);
+    if (poiData) return id;
+
+    // Check if element exists in supporter data
+    const supporterData = Object.values(supportersData).find(
+      (supporter) => supporter.layerName === id
+    );
+    if (supporterData) return id;
+
+    // Check if element exists in district data
+    const districtData = Object.values(districtsData).find(
+      (district: any) => district.layerName === id
+    );
+    if (districtData) return id;
+
+    // Check if element exists in POI group data
+    const groupData = Object.values(poiGroupsData).find(
+      (group: any) => group.layerName === id
+    );
+    if (groupData) return id;
+
+    // No notion data available for this element
+    return null;
+  };
+
   // Apply hover effect to all SVG elements dynamically
   useEffect(() => {
     if (!svgRef.current) return;
@@ -96,12 +131,12 @@ export const VenueMap = () => {
 
     svgElements.forEach((element) => {
       const isSelected = currentFilters.selection === element.id;
-      const isHovered = hoveredElement === element.id;
+      const isHovered = false; // hoveredElement === element.id;
 
       const svgElement = element as SVGElement;
       if (isSelected || isHovered) {
         svgElement.style.opacity = '1';
-        svgElement.style.filter = 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))';
+        // svgElement.style.filter = 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))';
 
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
       } else if (hasActiveFilters) {
@@ -218,6 +253,8 @@ export const VenueMap = () => {
     // }
   };
 
+  console.log(currentFilters.selection, 'currentFilters.selection');
+
   const onSVGElementClick = (
     id: string,
     event: React.MouseEvent<SVGElement>
@@ -227,6 +264,22 @@ export const VenueMap = () => {
     // setSelectedElement(isCurrentlySelected ? null : id);
 
     // console.log(id, 'id');
+
+    // Bubble up DOM tree until we find an element with notion data
+    let currentElement = event.target as SVGElement | null;
+    let resolvedId: string | null = null;
+
+    while (currentElement && currentElement.tagName !== 'svg') {
+      console.log(currentElement.id, 'currentElement.id');
+      if (currentElement.id) {
+        const clicked = resolveClickable(currentElement.id);
+        if (clicked) {
+          resolvedId = clicked;
+          break;
+        }
+      }
+      currentElement = currentElement.parentElement as SVGElement | null;
+    }
 
     const currentZoom = panzoomInstance?.getTransform().scale;
 
@@ -243,7 +296,7 @@ export const VenueMap = () => {
 
     setListFiltersOpen(false);
 
-    if (currentFilters.selection && id !== currentFilters.selection) {
+    if (currentFilters.selection && resolvedId !== currentFilters.selection) {
       setCurrentFilters({
         ...currentFilters,
         selection: null,
@@ -251,12 +304,14 @@ export const VenueMap = () => {
     } else {
       setCurrentFilters({
         ...currentFilters,
-        selection: id,
+        selection: resolvedId,
       });
 
-      console.log('setting selection', id);
+      console.log('setting selection', resolvedId);
 
-      focusOnElement(id);
+      if (resolvedId) {
+        focusOnElement(resolvedId);
+      }
     }
   };
 
