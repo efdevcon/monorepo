@@ -15,8 +15,16 @@
             pointer-events: none;
         }
 
-        &[id$='-DISTRICT'] * {
-            font-family: 'MapFont', sans-serif;
+        &[id$='-STAGE'], &[id$='-DISTRICT'], &[id^='meeting-point'], &[id='BOOTCAMP'], &[id='SECOND-FLOOR'], &[id$='-HALL'], &[id$='AMPHITHEATER'], &[id$='-SPACE'], &[id='Exit'], &[id='Entrance'] {
+            * {
+                font-family: 'MapFont', sans-serif;
+            }
+        }
+
+        &[id^='building-'] {
+            * {
+                font-family: 'Roboto', sans-serif !important;
+            }
         }
 
         pointer-events: auto;
