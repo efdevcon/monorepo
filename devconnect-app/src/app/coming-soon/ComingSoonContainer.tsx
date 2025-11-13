@@ -24,7 +24,7 @@ export default function ComingSoonContainer({ content, children }: ComingSoonCon
           <pre
             className="text-[0.4rem] lg:text-[0.45rem] leading-tight max-w-full select-text text-center"
             style={{
-              fontFamily: 'var(--font-geist-mono), monospace',
+              fontFamily: 'monospace',
               color: '#353548',
             }}
           >
