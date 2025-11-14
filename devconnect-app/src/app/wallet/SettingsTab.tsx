@@ -24,9 +24,9 @@ import {
   mdiCodeBraces,
   mdiLockReset,
   mdiLogout,
-  mdiLogin,
   mdiUpdate,
   mdiTestTube,
+  mdiEyeLock,
 } from '@mdi/js';
 import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
@@ -37,6 +37,7 @@ import { useWallet } from '@/context/WalletContext';
 import { useGlobalStore } from '../store.provider';
 import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
 import { simulateUpdate } from '@/components/ServiceWorkerUpdateBanner';
+import { hasEarlyAccess } from '@/utils/cookies';
 
 // Helper function to read cookie value
 function getCookie(name: string): string | null {
@@ -76,6 +77,9 @@ export default function SettingsTab() {
   // Get disconnect function from WalletContext
   const { disconnectAll, isDisconnecting, address } = useWallet();
 
+  // Check if user has early access cookie
+  const hasEarlyAccessCookie = hasEarlyAccess();
+
   // Extract Para wallet information
   const isParaConnected = paraAccount?.isConnected && !!paraWallet?.address;
   const paraAddress = paraWallet?.address || null;
@@ -101,7 +105,7 @@ export default function SettingsTab() {
   const handleCopyAddress = () => {
     if (paraAddress) {
       navigator.clipboard.writeText(paraAddress);
-      
+
       // Create copy icon using MDI
       const copyIcon = React.createElement(Icon, {
         path: mdiContentCopy,
@@ -149,7 +153,7 @@ export default function SettingsTab() {
 
   const handleResetEarlyAccess = async () => {
     try {
-      // Call API to delete the httpOnly cookie
+      // Call API to delete the cookie
       const response = await fetch('/api/early-access/reset', {
         method: 'POST',
       });
@@ -159,14 +163,50 @@ export default function SettingsTab() {
       if (data.success) {
         toast.success('Early access cookie cleared');
 
-        // Redirect to coming soon page if mode is enabled
-        router.push('/coming-soon');
+        // Refresh the page to apply changes
         router.refresh();
       } else {
         toast.error('Failed to reset early access');
       }
     } catch (error) {
       toast.error('Something went wrong');
+    }
+  };
+
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleAddPassword = async () => {
+    if (!password.trim()) {
+      toast.error('Please enter a password');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/early-access', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: password.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Early access granted');
+        setShowPasswordModal(false);
+        setPassword('');
+        router.refresh();
+      } else {
+        toast.error(data.error || 'Incorrect password');
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -313,19 +353,44 @@ export default function SettingsTab() {
           <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
         </button>
 
-        {/* Reset Early Access */}
-        <button
-          onClick={handleResetEarlyAccess}
-          className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
-        >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <Icon path={mdiLockReset} size={1} className="text-[#353548]" />
-          </div>
-          <p className="flex-1 text-left text-[#353548] text-base font-medium">
-            Reset early access
-          </p>
-          <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
-        </button>
+        {/* Conditional: Add Early Access Password OR Reset Early Access */}
+        {hasEarlyAccessCookie ? (
+          /* Reset Early Access */
+          <button
+            onClick={handleResetEarlyAccess}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiLockReset} size={1} className="text-[#353548]" />
+            </div>
+            <p className="flex-1 text-left text-[#353548] text-base font-medium">
+              Reset early access
+            </p>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-[#4b4b66]"
+            />
+          </button>
+        ) : (
+          /* Add Early Access Password */
+          <button
+            onClick={() => setShowPasswordModal(true)}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiEyeLock} size={1} className="text-[#353548]" />
+            </div>
+            <p className="flex-1 text-left text-[#353548] text-base font-medium">
+              Early access
+            </p>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-[#4b4b66]"
+            />
+          </button>
+        )}
 
         {/* DEBUG: Simulate Update - Available for @ethereum.org users */}
         {paraEmail && paraEmail.includes('@ethereum.org') && (
@@ -581,6 +646,66 @@ export default function SettingsTab() {
                 );
               })}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Password Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/30"
+            onClick={() => !isSubmitting && setShowPasswordModal(false)}
+          />
+
+          {/* Modal */}
+          <div className="relative bg-white border border-[#c7c7d0] rounded p-5 max-w-[353px] w-[calc(100%-40px)] mx-5">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-[#20202b] text-lg font-bold">
+                Early Access Password
+              </h3>
+              <button
+                onClick={() => !isSubmitting && setShowPasswordModal(false)}
+                disabled={isSubmitting}
+                className="cursor-pointer hover:opacity-70 transition-opacity disabled:opacity-50"
+              >
+                <Icon path={mdiClose} size={1} className="text-[#4b4b66]" />
+              </button>
+            </div>
+
+            {/* Password Input */}
+            <div className="mb-4">
+              <input
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !isSubmitting) {
+                    handleAddPassword();
+                  }
+                }}
+                placeholder="Enter password"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 border border-[#c7c7d0] rounded text-base focus:outline-none focus:border-[#0073de] disabled:opacity-50 disabled:cursor-not-allowed"
+                autoFocus
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              onClick={handleAddPassword}
+              disabled={isSubmitting || !password.trim()}
+              className={cn(
+                'w-full bg-[#0073de] text-white font-bold py-3 px-6 rounded-[1px] transition-colors',
+                'shadow-[0px_4px_0px_0px_#005493]',
+                'disabled:opacity-50 disabled:cursor-not-allowed',
+                !isSubmitting && password.trim() && 'hover:bg-[#0060c0]'
+              )}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
           </div>
         </div>
       )}

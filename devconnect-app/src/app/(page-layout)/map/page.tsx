@@ -2,15 +2,15 @@
 import PageLayout from '@/components/PageLayout';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { VenueMap } from './venue-map/VenueMap';
-import { hasBetaAccess } from '@/utils/cookies';
+import { hasEarlyAccess } from '@/utils/cookies';
 import React from 'react';
 
 export default function MapPage() {
-  // Check if beta mode is enabled (hide for beta users)
-  const isBetaMode = hasBetaAccess();
+  // Check if early access is enabled
+  const hasEarlyAccessCookie = hasEarlyAccess();
 
-  // Show coming soon message if beta mode is enabled
-  if (isBetaMode) {
+  // Show coming soon message if early access is not enabled
+  if (!hasEarlyAccessCookie) {
     return (
       // <PageLayout title="La Rural - Venue Map">
       <ComingSoonMessage />

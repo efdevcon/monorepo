@@ -10,7 +10,7 @@ import AppShowcaseDetail, {
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { questGroupsData } from '@/data/questGroups';
 import { NAV_ITEMS } from '@/config/nav-items';
-import { hasBetaAccess } from '@/utils/cookies';
+import { hasEarlyAccess } from '@/utils/cookies';
 import Image from 'next/image';
 import { useQuestCompletions } from '@/app/store.hooks';
 import { useQuestProgress } from '@/hooks/useQuestProgress';
@@ -25,8 +25,8 @@ export default function QuestsPage() {
   const [loading, setLoading] = useState(true);
   const appShowcaseDetailRef = useRef<AppShowcaseDetailHandle>(null);
 
-  // Check if beta mode is enabled (hide for beta users)
-  const isBetaMode = hasBetaAccess();
+  // Check if early access is enabled
+  const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Local storage for quest status
   const [questStates, setQuestStates] = useLocalStorage<
@@ -279,8 +279,8 @@ export default function QuestsPage() {
     </div>
   );
 
-  // Show coming soon message if beta mode is enabled
-  if (isBetaMode) {
+  // Show coming soon message if early access is not enabled
+  if (!hasEarlyAccessCookie) {
     return (
       <PageLayout
         title={title}

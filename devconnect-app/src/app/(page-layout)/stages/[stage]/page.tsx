@@ -13,7 +13,7 @@ import {
 } from '@/app/store.hooks';
 import { toast } from 'sonner';
 import cn from 'classnames';
-import { hasBetaAccess } from '@/utils/cookies';
+import { hasEarlyAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { StageBadge } from '@/components/StageBadge';
 import Image from 'next/image';
@@ -97,8 +97,8 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   // Fetch sessions using the apiSourceId
   const { sessions, isLoading } = useSessions(stageInfo?.apiSourceId || '');
 
-  const isBetaMode = hasBetaAccess();
-  if (isBetaMode) {
+  const hasEarlyAccessCookie = hasEarlyAccess();
+  if (!hasEarlyAccessCookie) {
     return <ComingSoonMessage />;
   }
 

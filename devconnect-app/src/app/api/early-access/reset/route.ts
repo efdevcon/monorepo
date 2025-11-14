@@ -5,9 +5,8 @@ export async function POST(request: NextRequest) {
     // Create response
     const response = NextResponse.json({ success: true });
     
-    // Delete the cookie by setting it with an expired date
+    // Delete the early access cookie
     response.cookies.delete('earlyAccess');
-    response.cookies.delete('betaAccess');
 
     return response;
   } catch (error) {

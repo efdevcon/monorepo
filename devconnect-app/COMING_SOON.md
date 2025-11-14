@@ -71,80 +71,44 @@
                         /\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/                               
 ---
 
-## How to Use This Coming Soon Page
+Set the environment variable:
 
-This ASCII art is displayed when the app is in "Coming Soon" mode.
-
-**To Enable Coming Soon Mode:**
-
-Set the environment variables:
-```
-NEXT_PUBLIC_COMING_SOON=true
+```bash
 EARLY_ACCESS_PASSWORD=yourSecretPassword
-BETA_ACCESS_PASSWORD=yourBetaSecretPassword  # Optional: for beta testers
 ```
 
-**To Disable (Normal App Access):**
-```
-NEXT_PUBLIC_COMING_SOON=false
-```
+## How It Works
 
-Or remove the variable entirely.
+- Features can be gated using the `hasEarlyAccess()` utility function
+- Users can add their password via Settings > Add early access password
+- Password sets an `earlyAccess` cookie (accessible by JavaScript, 30-day expiration)
+- Users can reset access via Settings > Reset early access
 
-**Behavior:**
-- When enabled, all routes redirect to `/coming-soon`
-- A password form appears at the bottom for early access
-- Correct password grants access via cookies (accessible by JavaScript)
-- **Two password tiers:**
-  - `EARLY_ACCESS_PASSWORD`: Grants full access to the app
-  - `BETA_ACCESS_PASSWORD`: Grants access BUT hides certain features (beta mode)
-- Both passwords set an `earlyAccess` cookie for site access
-- Beta password also sets a `betaAccess` cookie to identify beta users
-- **Password must be set in environment variables** - no default
-- If neither password is configured, all access is blocked
-- Cookies persist for 30 days
-- Static assets (images, fonts, etc.) still load normally
-- This is useful for pre-launch periods or maintenance
+## Usage in Components
 
----
-
-## Beta Mode for Individual Features
-
-Beta mode is now controlled by the `betaAccess` cookie, which is automatically set when a user logs in with the `BETA_ACCESS_PASSWORD`.
-
-**When a user has the betaAccess cookie:**
-- Features marked as beta will show a "Coming Soon" message instead of full content
-- Currently applies to: `/quests`, `/map`, wallet perks/onramp features
-- Uses the reusable `ComingSoonMessage` component
-- Can be easily applied to other routes
-
-**Usage in components:**
 ```typescript
+import { hasEarlyAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
-import { hasBetaAccess } from '@/utils/cookies';
 
-// In your component
-const isBetaMode = hasBetaAccess();
+export default function MyComponent() {
+  const hasEarlyAccessCookie = hasEarlyAccess();
 
-if (isBetaMode) {
-  return <ComingSoonMessage message="Custom message (optional)" />;
+  if (!hasEarlyAccessCookie) {
+    return <ComingSoonMessage />;
+  }
+
+  // ... rest of your component
 }
 ```
 
-**Utility Functions:**
+## Utility Functions
 
 ```typescript
-import { hasBetaAccess, getCookie } from '@/utils/cookies';
+import { hasEarlyAccess, getCookie } from '@/utils/cookies';
 
-// Check if user has beta access
-const isBeta = hasBetaAccess(); // Returns boolean
+// Check if user has early access
+const hasAccess = hasEarlyAccess(); // Returns boolean
 
 // Get any cookie value
-const cookieValue = getCookie('betaAccess'); // Returns string | null
+const cookieValue = getCookie('earlyAccess'); // Returns string | null
 ```
-
-**Notes:**
-- This is different from `NEXT_PUBLIC_COMING_SOON` which blocks the entire app
-- Beta mode only affects specific features while allowing access to the rest of the app
-- Useful for gradual feature rollouts or hiding incomplete features
-- Beta users can still access the app, they just see limited features

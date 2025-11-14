@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Separator } from 'lib/components/ui/separator';
-import { hasBetaAccess } from '@/utils/cookies';
+import { hasEarlyAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 import Link from 'next/link';
 import Icon from '@mdi/react';
@@ -12,9 +12,9 @@ import { useAllStages } from '@/app/store.hooks';
 
 const StagesPage = () => {
   const { pavilions } = useAllStages();
-  const isBetaMode = hasBetaAccess();
+  const hasEarlyAccessCookie = hasEarlyAccess();
 
-  if (isBetaMode) {
+  if (!hasEarlyAccessCookie) {
     return <ComingSoonMessage />;
   }
 

@@ -1,8 +1,8 @@
 /**
- * Check if the betaAccess cookie exists
- * @returns true if betaAccess cookie is set, false otherwise
+ * Check if the earlyAccess cookie exists
+ * @returns true if earlyAccess cookie is set, false otherwise
  */
-export function hasBetaAccess(): boolean {
+export function hasEarlyAccess(): boolean {
   if (typeof document === 'undefined') {
     return false;
   }
@@ -10,7 +10,7 @@ export function hasBetaAccess(): boolean {
   const cookies = document.cookie.split(';');
   return cookies.some(cookie => {
     const [name] = cookie.trim().split('=');
-    return name === 'betaAccess';
+    return name === 'earlyAccess';
   });
 }
 

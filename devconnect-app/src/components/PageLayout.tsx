@@ -12,11 +12,10 @@ import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
 import { Blend as AppIcon, Undo2 } from 'lucide-react';
 import Icon from '@mdi/react';
-import { mdiBug, mdiInformation, mdiClose } from '@mdi/js';
+import { mdiInformation, mdiClose } from '@mdi/js';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
-import { openReportIssue } from '@/utils/reportIssue';
 import { useLocalStorage } from 'usehooks-ts';
 import { useAnnouncements } from '@/app/store.hooks';
 import {
@@ -243,7 +242,6 @@ const PageLayout = React.memo(function PageLayout({
   const activeTab = tabs[activeIndex];
   const isMobile = useIsMobile();
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
-  const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
   // Detect iOS 26.1 with AppleWebKit
   const [isIOS26_1] = useLocalStorage<boolean | null>('ios26_1', null);
@@ -286,20 +284,9 @@ const PageLayout = React.memo(function PageLayout({
                   <div
                     className={`flex items-center justify-between w-full px-6 p-3 ${pwa ? 'pt-0' : 'pt-3'} relative`}
                   >
-                    {/* Left side: Bug report button (only if questProgress exists) OR Back button */}
+                    {/* Left side: Back button */}
                     <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
-                      {isComingSoon && questProgress && (
-                        <button
-                          onClick={() => {
-                            openReportIssue();
-                          }}
-                          className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
-                          aria-label="Report issue"
-                        >
-                          <Icon path={mdiBug} size={1} />
-                        </button>
-                      )}
-                      {hasBackButton && !isComingSoon && <BackButton />}
+                      {hasBackButton && <BackButton />}
                     </div>
 
                     {/* Center: Title with Info button */}
@@ -323,9 +310,9 @@ const PageLayout = React.memo(function PageLayout({
                       )}
                     </div>
 
-                    {/* Right side: Quest completion count OR Bug report button */}
+                    {/* Right side: Quest completion count */}
                     <div className="absolute right-6 flex items-center gap-1">
-                      {questProgress ? (
+                      {questProgress && (
                         <button
                           onClick={onQuestProgressClick}
                           className="text-base font-medium text-white tracking-[-0.1px] whitespace-nowrap cursor-pointer"
@@ -334,17 +321,7 @@ const PageLayout = React.memo(function PageLayout({
                         >
                           {questProgress.completed}/{questProgress.total}
                         </button>
-                      ) : isComingSoon ? (
-                        <button
-                          onClick={() => {
-                            openReportIssue();
-                          }}
-                          className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
-                          aria-label="Report issue"
-                        >
-                          <Icon path={mdiBug} size={1} />
-                        </button>
-                      ) : null}
+                      )}
                     </div>
                   </div>
                 </div>
@@ -482,17 +459,6 @@ const PageLayout = React.memo(function PageLayout({
               <div className="flex flex-col flex-1 mb-8">
                 <div className="h-[45px] my-2 ml-6 text-lg font-bold flex items-center justify-between pr-6">
                   <span>{title}</span>
-                  {isComingSoon && (
-                    <button
-                      onClick={() => {
-                        openReportIssue();
-                      }}
-                      className="w-[24px] h-[24px] shrink-0 flex items-center justify-center hover:opacity-70 transition-opacity"
-                      aria-label="Report issue"
-                    >
-                      <Icon path={mdiBug} size={1} className="text-[#4b4b66]" />
-                    </button>
-                  )}
                 </div>
                 <div className="flex-1 border border-solid border-[#8855CC26] h-[fit-content] rounded-sm relative">
                   {tabs.length > 1 && (

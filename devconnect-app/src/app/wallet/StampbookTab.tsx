@@ -8,7 +8,7 @@ import { questsData } from '@/data/quests';
 import Icon from '@mdi/react';
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import PoapModal from '@/components/PoapModal';
-import { hasBetaAccess } from '@/utils/cookies';
+import { hasEarlyAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 
 // Fallback image for empty POAP links
@@ -28,8 +28,8 @@ interface StampCategory {
 }
 
 export default function StampbookTab() {
-  const isBetaMode = hasBetaAccess();
-  if (isBetaMode) {
+  const hasEarlyAccessCookie = hasEarlyAccess();
+  if (!hasEarlyAccessCookie) {
     return <ComingSoonMessage />;
   }
   const router = useRouter();

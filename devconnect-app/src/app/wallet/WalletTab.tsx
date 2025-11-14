@@ -16,7 +16,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import PaymentModal from '@/components/PaymentModal';
 import { fetchAuth } from '@/services/apiClient';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
-import { hasBetaAccess } from '@/utils/cookies';
+import { hasEarlyAccess } from '@/utils/cookies';
 import { RequiresAuthContent } from '@/components/RequiresAuth';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import Icon from '@mdi/react';
@@ -93,8 +93,8 @@ export default function WalletTab() {
   // Debug: Log hasMultipleWallets value
   // console.log('🎯 [WALLET_TAB] hasMultipleWallets:', hasMultipleWallets);
 
-  // Check if beta mode is enabled (hide features for beta users)
-  const isBetaMode = hasBetaAccess();
+  // Check if early access is enabled
+  const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Debug: Log the refresh trigger value received from useWallet
   // console.log('🔍 [WALLET_TAB] Received from useWallet:', {
@@ -745,9 +745,9 @@ export default function WalletTab() {
         pullDownThreshold={80}
         maxPullDownDistance={120}
         resistance={2}
-        className="flex-1 w-full"
+        className="flex-1 w-full grow gradient-background"
       >
-        <div className="flex-1 w-full gradient-background">
+        <div className="flex-1 w-full">
           {/* Main Content */}
           <div className="px-6 pt-6 space-y-6">
             {/* Profile Section */}
@@ -1007,7 +1007,7 @@ export default function WalletTab() {
                 )}
 
                 {/* Add Button - Only when not in beta mode */}
-                {!isBetaMode && (
+                {hasEarlyAccessCookie && (
                   <div
                     className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
                     style={{ maxWidth: 'min(21vw, 100%)' }}
@@ -1051,7 +1051,7 @@ export default function WalletTab() {
             </div>
 
             {/* My Perks Section */}
-            {!isBetaMode && (
+            {hasEarlyAccessCookie && (
               <>
                 <div className="flex flex-col gap-4">
                   <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">

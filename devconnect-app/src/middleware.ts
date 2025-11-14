@@ -43,61 +43,6 @@ export async function middleware(request: NextRequest) {
     return await QRCodeRedirect(request);
   }
 
-  // Check if coming soon mode is enabled
-  const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
-
-  if (isComingSoon) {
-    // Allow API routes through but let them continue through middleware
-    // (they'll still go through auth checks below if needed)
-    if (request.nextUrl.pathname.startsWith('/api/')) {
-      // Don't return early - let it continue to auth middleware
-    } else {
-      // For non-API routes, apply coming soon logic
-
-      // Allow manifest.json and other PWA files
-      if (
-        request.nextUrl.pathname === '/manifest.json' ||
-        request.nextUrl.pathname.startsWith('/sw') ||
-        request.nextUrl.pathname.startsWith('/workbox')
-      ) {
-        return NextResponse.next();
-      }
-
-      // Check for early access password in cookie
-      const earlyAccessCookie = request.cookies.get('earlyAccess')?.value;
-      const betaAccessCookie = request.cookies.get('betaAccess')?.value;
-      const earlyAccessPassword = process.env.EARLY_ACCESS_PASSWORD;
-      const betaAccessPassword = process.env.BETA_ACCESS_PASSWORD;
-
-      // If either password matches and is configured, allow access
-      const hasEarlyAccess = earlyAccessPassword && earlyAccessCookie?.replace(/\s/g, '').toLowerCase() === earlyAccessPassword.replace(/\s/g, '').toLowerCase();
-      const hasBetaAccess = betaAccessPassword && betaAccessCookie?.replace(/\s/g, '').toLowerCase() === betaAccessPassword.replace(/\s/g, '').toLowerCase();
-
-      if (hasEarlyAccess || hasBetaAccess) {
-        return await languageMiddleware(request);
-      }
-
-      // Allow access only to the coming-soon page and static assets
-      if (
-        !request.nextUrl.pathname.startsWith('/coming-soon') &&
-        !request.nextUrl.pathname.startsWith('/pos') &&
-        !request.nextUrl.pathname.startsWith('/_next') &&
-        !request.nextUrl.pathname.startsWith('/static') &&
-        !request.nextUrl.pathname.match(
-          /\.(ico|png|jpg|jpeg|svg|gif|webp|json)$/
-        )
-      ) {
-        // Redirect all other routes to coming-soon page
-        return NextResponse.redirect(new URL('/coming-soon', request.url));
-      }
-
-      // Allow the coming-soon page itself to load
-      if (request.nextUrl.pathname.startsWith('/coming-soon')) {
-        return NextResponse.next();
-      }
-    }
-  }
-
   // Only apply to API that do not start with /api/auth
   if (!request.nextUrl.pathname.startsWith('/api/auth/')) {
     return await languageMiddleware(request);
