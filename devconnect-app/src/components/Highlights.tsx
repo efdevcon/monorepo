@@ -84,7 +84,7 @@ const HighlightCard = ({
 export const Highlights = () => {
   const highlights = [
     {
-      title: 'Ethereum Day (Nov 17th)',
+      title: 'Ethereum Day (Nov 17)',
       to: 'https://ethday.devconnect.org',
       description:
         'The main Ethereum event and official opening of the week. Come early!',
@@ -100,18 +100,18 @@ export const Highlights = () => {
     // },
 
     {
-      title: 'Setup your wallet',
+      title: 'Install the Devconnect App',
       to: '/wallet',
       description: `Install the app, claim your perks, and setup your wallets to get started`,
       image: PhoneImage,
     },
-    // {
-    //   title: 'Devconnect Perks',
-    //   to: 'https://ethday.devconnect.org',
-    //   description:
-    //     'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
-    //   image: VoxelImage,
-    // },
+    {
+      title: 'Devconnect Perks',
+      to: 'https://devconnect.org/perks',
+      description:
+        'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
+      image: VoxelImage,
+    },
     // {
     //   title: 'Networking Events',
     //   to: '/schedule',
