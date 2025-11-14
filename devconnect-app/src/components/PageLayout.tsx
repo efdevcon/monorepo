@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { triggerHaptic } from 'tactus';
 // import WorldsFairLogo from '@/images/worlds-fair-logo.png';
 import EthereumWorldsFairLogo from '@/images/ethereum-worlds-fair-logo.png';
+import NeedHelpIcon from '@/images/need-help.png';
 import { NAV_ITEMS } from '@/config/nav-items';
 import Link from 'next/link';
 import cn from 'classnames';
@@ -12,12 +13,18 @@ import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
 import { Blend as AppIcon, Undo2 } from 'lucide-react';
 import Icon from '@mdi/react';
-import { mdiInformation, mdiClose } from '@mdi/js';
+import {
+  mdiInformation,
+  mdiClose,
+  mdiHelpCircle,
+  mdiArrowRight,
+} from '@mdi/js';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
 import { useLocalStorage } from 'usehooks-ts';
 import { useAnnouncements } from '@/app/store.hooks';
+import { openReportIssue } from '@/utils/reportIssue';
 import {
   HEIGHT_HEADER,
   HEIGHT_HEADER_TABS,
@@ -47,6 +54,8 @@ interface PageLayoutProps {
     total: number;
   };
   onQuestProgressClick?: () => void;
+  showNeedHelp?: boolean;
+  needHelpPosition?: 'left' | 'right';
 }
 
 interface TabsProps {
@@ -227,10 +236,13 @@ const PageLayout = React.memo(function PageLayout({
   infoModalContent,
   questProgress,
   onQuestProgressClick,
+  showNeedHelp = true,
+  needHelpPosition = 'right',
 }: PageLayoutProps) {
   const pathname = usePathname();
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showNeedHelpModal, setShowNeedHelpModal] = useState(false);
   const t = useTranslations();
   // Use external state if provided, otherwise use internal state
   const activeIndex =
@@ -284,9 +296,20 @@ const PageLayout = React.memo(function PageLayout({
                   <div
                     className={`flex items-center justify-between w-full px-6 p-3 ${pwa ? 'pt-0' : 'pt-3'} relative`}
                   >
-                    {/* Left side: Back button */}
+                    {/* Left side: Back button or Need Help (if position is left) */}
                     <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
                       {hasBackButton && <BackButton />}
+                      {showNeedHelp &&
+                        needHelpPosition === 'left' &&
+                        !hasBackButton && (
+                          <button
+                            onClick={() => setShowNeedHelpModal(true)}
+                            className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
+                            aria-label="Need help"
+                          >
+                            <Icon path={mdiHelpCircle} size={1} />
+                          </button>
+                        )}
                     </div>
 
                     {/* Center: Title with Info button */}
@@ -310,7 +333,7 @@ const PageLayout = React.memo(function PageLayout({
                       )}
                     </div>
 
-                    {/* Right side: Quest completion count */}
+                    {/* Right side: Quest completion count or Need Help (if position is right) */}
                     <div className="absolute right-6 flex items-center gap-1">
                       {questProgress && (
                         <button
@@ -322,6 +345,17 @@ const PageLayout = React.memo(function PageLayout({
                           {questProgress.completed}/{questProgress.total}
                         </button>
                       )}
+                      {showNeedHelp &&
+                        needHelpPosition === 'right' &&
+                        !questProgress && (
+                          <button
+                            onClick={() => setShowNeedHelpModal(true)}
+                            className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
+                            aria-label="Need help"
+                          >
+                            <Icon path={mdiHelpCircle} size={1} />
+                          </button>
+                        )}
                     </div>
                   </div>
                 </div>
@@ -459,6 +493,19 @@ const PageLayout = React.memo(function PageLayout({
               <div className="flex flex-col flex-1 mb-8">
                 <div className="h-[45px] my-2 ml-6 text-lg font-bold flex items-center justify-between pr-6">
                   <span>{title}</span>
+                  {showNeedHelp && (
+                    <button
+                      onClick={() => setShowNeedHelpModal(true)}
+                      className="w-[24px] h-[24px] shrink-0 flex items-center justify-center hover:opacity-70 transition-opacity"
+                      aria-label="Need help"
+                    >
+                      <Icon
+                        path={mdiHelpCircle}
+                        size={1}
+                        className="text-[#0073de]"
+                      />
+                    </button>
+                  )}
                 </div>
                 <div className="flex-1 border border-solid border-[#8855CC26] h-[fit-content] rounded-sm relative">
                   {tabs.length > 1 && (
@@ -508,6 +555,75 @@ const PageLayout = React.memo(function PageLayout({
 
             {/* Content */}
             <div className="pt-4 pb-0 px-0">{infoModalContent}</div>
+          </div>
+        </div>
+      )}
+
+      {/* Need Help Modal */}
+      {showNeedHelpModal && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/30"
+            onClick={() => setShowNeedHelpModal(false)}
+          />
+
+          {/* Modal */}
+          <div className="relative bg-white border border-[#c7c7d0] rounded w-[353px] max-w-[calc(100%-40px)] md:w-[560px] mx-5">
+            <div className="pt-3 pb-5 px-4">
+              {/* Close button */}
+              <button
+                onClick={() => setShowNeedHelpModal(false)}
+                className="absolute right-3 top-3 cursor-pointer hover:opacity-70 transition-opacity z-10"
+                aria-label="Close modal"
+              >
+                <Icon path={mdiClose} size={1} className="text-[#4b4b66]" />
+              </button>
+
+              {/* Icon */}
+              <div className="mb-4">
+                <Image
+                  src={NeedHelpIcon}
+                  alt="Need help"
+                  className="w-12 h-12"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="mb-4">
+                <h3 className="text-[#20202b] text-lg font-bold mb-2">Need help?</h3>
+                <p className="text-[#353548] text-sm md:text-base leading-[1.3]">
+                  Find quick answers in our Support FAQ, or tell us if something's not working quite right.
+                </p>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex flex-col md:flex-row gap-3">
+                {/* Support FAQ - Primary button (first on mobile, second on desktop) */}
+                <button
+                  onClick={() => {
+                    window.open('https://devconnect.org/faq', '_blank');
+                    setShowNeedHelpModal(false);
+                  }}
+                  className="w-full md:order-2 bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span className="text-white text-base font-bold">Support FAQ</span>
+                  <Icon path={mdiArrowRight} size={0.67} className="text-white" />
+                </button>
+
+                {/* Send Feedback - Secondary button (second on mobile, first on desktop) */}
+                <button
+                  onClick={() => {
+                    openReportIssue();
+                    setShowNeedHelpModal(false);
+                  }}
+                  className="w-full md:order-1 bg-[#eaf3fa] hover:bg-[#d8ebf7] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span className="text-[#44445d] text-base font-bold">Send feedback</span>
+                  <Icon path={mdiArrowRight} size={0.67} className="text-[#44445d]" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

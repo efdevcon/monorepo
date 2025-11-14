@@ -319,6 +319,7 @@ export default function QuestsPage() {
       infoModalContent={questInfoModalContent}
       questProgress={questProgress}
       onQuestProgressClick={handleQuestProgressClick}
+      needHelpPosition="left"
     >
       <AppShowcaseDetail
         ref={appShowcaseDetailRef}
