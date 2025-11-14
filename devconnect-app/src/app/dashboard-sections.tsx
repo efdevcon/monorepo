@@ -1,4 +1,5 @@
 'use client';
+
 import Event from 'lib/components/event-schedule-new/event/event';
 import { useEvents, useFavorites } from './store.hooks';
 import NoEventsImage from 'lib/components/event-schedule-new/images/404.png';
@@ -6,7 +7,7 @@ import moment from 'moment';
 import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
 import { useNow } from 'lib/hooks/useNow';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useGlobalStore } from './store.provider';
 import { useLocalStorage } from 'usehooks-ts';
@@ -32,6 +33,7 @@ import {
   renderTicketsCTADialog,
 } from '@/components/EventCTAs';
 // import { QRCodeBox } from '@/app/(page-layout)/tickets/page';
+import { useAccount } from '@getpara/react-sdk';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -64,10 +66,17 @@ export function WelcomeSection() {
   // Get email from localStorage (set during onboarding) - instant, no loading
   const [email] = useLocalStorage('email', '');
   const [ensName] = useLocalStorage('ens_name', '');
-  const [userIsConnected] = useLocalStorage<boolean | null>(
+  const [userIsConnected, setUserIsConnected] = useLocalStorage<boolean | null>(
     'userIsConnected',
     false
   );
+  const { isConnected } = useAccount();
+
+  useEffect(() => {
+    if (isConnected) {
+      setUserIsConnected(true);
+    }
+  }, [isConnected]);
 
   const now = useNow();
 
