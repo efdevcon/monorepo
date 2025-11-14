@@ -343,38 +343,36 @@ export const PracticalInfo = () => {
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong> In Emergency:</strong>{' '}
-                <Link
-                  href="tel:911"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  911
-                </Link>{' '}
-                police,{' '}
-                <Link
-                  href="tel:107"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  107
-                </Link>{' '}
-                ambulance,{' '}
-                <Link
-                  href="tel:100"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  100
-                </Link>{' '}
-                fire department
+                <strong>In Emergency:</strong> reach out immediately to the
+                closest Security Staff, Volunteer or Devconnect Staff.
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong> Evacuation:</strong> Look for the{' '}
-                <span className="text-green-600 font-semibold">
-                  Green Exit →
-                </span>{' '}
-                signs
+                In case of conflict, harassment or danger, please report it to
+                the{' '}
+                <Link
+                  href="https://devconnect.org/report"
+                  className="text-[rgba(0,115,222,1)] font-semibold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Devconnect Arg Incident Report Form
+                </Link>
+              </div>
+            </li>
+            <li className="flex gap-2">
+              <div className="shrink-0">•</div>
+              <div>
+                Reach out to{' '}
+                <Link
+                  href="mailto:emergency@devconnect.org"
+                  className="text-[rgba(0,115,222,1)] font-semibold"
+                >
+                  emergency@devconnect.org
+                </Link>{' '}
+                if needed.
               </div>
             </li>
           </ul>

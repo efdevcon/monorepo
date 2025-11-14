@@ -23,6 +23,8 @@ const initialFilters = {
   selection: string | null;
 };
 
+const baseZoomLevel = 4.1;
+
 export const VenueMap = () => {
   // const router = useRouter();
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -60,7 +62,7 @@ export const VenueMap = () => {
     'venue-map',
     setZoomLevel,
     zoomLevel,
-    selection ? 3.1 : undefined
+    selection ? baseZoomLevel : undefined
   );
 
   const reset = () => {
@@ -80,6 +82,7 @@ export const VenueMap = () => {
       });
 
       setTimeout(() => {
+        // focusOnElement(selection);
         moveToElement(selection, false);
       }, 50);
 
@@ -204,7 +207,7 @@ export const VenueMap = () => {
     panzoomInstance.zoomAbs(
       targetCenterX,
       targetCenterY,
-      Math.max(currentZoom, 3.1)
+      Math.max(currentZoom, baseZoomLevel)
     );
   };
 
@@ -228,28 +231,36 @@ export const VenueMap = () => {
     }
   };
 
-  const focusOnElement = (id: string) => {
+  const focusOnElement = (id: string, offset: number = 50) => {
     const svgElement = document.getElementById(id);
 
     if (!svgElement || !panzoomInstance || !containerRef.current) return;
 
     const currentZoom = panzoomInstance.getTransform().scale;
+    const targetZoom = Math.max(currentZoom, baseZoomLevel);
 
-    // console.log(currentZoom, 'currentZoom');
+    // Get element's current position
+    const elementRect = svgElement.getBoundingClientRect();
+    const elementCenterX = elementRect.left + elementRect.width / 2;
+    const elementCenterY = elementRect.top + elementRect.height / 2;
 
-    moveToElement(id, true);
+    // Get container center (where we want the element to end up)
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const targetCenterX = containerRect.left + containerRect.width / 2;
+    const targetCenterY = containerRect.top + containerRect.height / 2 - offset;
 
-    // if (currentZoom < 3) {
-    //   console.log('zooming to element', id);
-    //   zoomToElement(id);
-    //   setTimeout(() => {
-    //     moveToElement(id, false);
-    //   // }, 0);
-    // } else {
-    //   console.log('moving to element', id);
+    // Calculate how much to move BEFORE zoom to position element at target
+    const deltaX = targetCenterX - elementCenterX;
+    const deltaY = targetCenterY - elementCenterY;
 
-    //   moveToElement(id, true);
-    // }
+    // Move to position first, then zoom at that position
+    panzoomInstance.moveBy(deltaX, deltaY, true);
+
+    // Wait for the move to complete, then zoom
+    setTimeout(() => {
+      // Zoom at the target center
+      panzoomInstance.smoothZoomAbs(targetCenterX, targetCenterY, targetZoom);
+    }, 500);
   };
 
   console.log(currentFilters.selection, 'currentFilters.selection');
@@ -278,6 +289,31 @@ export const VenueMap = () => {
         }
       }
       currentElement = currentElement.parentElement as SVGElement | null;
+    }
+
+    if (!resolvedId) {
+      const pavillions = [
+        'building-green-pavilion',
+        'building-the-cave',
+        'building-the-hub-ampthitheater',
+        'building-main-arena',
+        'building-quiet-cowork',
+        'building-red-pavilion',
+        'building-blue-pavilion',
+        'building-music-stage',
+        'building-yellow-pavillion',
+      ];
+
+      // Check if clicked element or any parent is a pavilion
+      let checkElement = event.target as SVGElement | null;
+      while (checkElement && checkElement.tagName !== 'svg') {
+        if (checkElement.id && pavillions.includes(checkElement.id)) {
+          console.log('focusing on pavilion', checkElement.id);
+          focusOnElement(checkElement.id, 0);
+          return;
+        }
+        checkElement = checkElement.parentElement as SVGElement | null;
+      }
     }
 
     const currentZoom = panzoomInstance?.getTransform().scale;
