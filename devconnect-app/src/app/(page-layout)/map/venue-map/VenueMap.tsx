@@ -135,13 +135,12 @@ export const VenueMap = () => {
 
       const svgElement = element as SVGElement;
       if (isSelected || isHovered) {
-        svgElement.style.opacity = '1';
+        // svgElement.style.opacity = '1';
         // svgElement.style.filter = 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))';
-
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
       } else if (hasActiveFilters) {
         // Selected fallback
-        svgElement.style.opacity = '0.15';
+        // svgElement.style.opacity = '0.15';
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
         svgElement.style.filter = 'none';
       } /*else if (hoveredElement) {
