@@ -15,7 +15,7 @@ export default function ComingSoonMessage({
 }: ComingSoonMessageProps) {
   return (
     <div
-      className={`flex items-center justify-center px-4 w-full flex-1 ${className}`}
+      className={`flex items-center justify-center px-4 py-8 w-full flex-1 ${className}`}
       style={{
         background:
           'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
@@ -68,4 +68,3 @@ export default function ComingSoonMessage({
     </div>
   );
 }
-
