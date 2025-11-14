@@ -24,6 +24,8 @@ import Loader from 'src/components/Loader';
 import Lottie from 'lottie-react';
 import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
 import Link from 'next/link';
+import Icon from '@mdi/react';
+import { mdiExportVariant } from '@mdi/js';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -210,9 +212,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // This prevents stuck "waiting" states from previous polling attempts
   useEffect(() => {
     if (authState?.stage === 'login' || authState?.stage === 'signup') {
-      console.log('🔄 [ONBOARDING] AuthState is login/signup, canceling any ongoing polling');
+      console.log(
+        '🔄 [ONBOARDING] AuthState is login/signup, canceling any ongoing polling'
+      );
       shouldCancelPolling.current = true;
-      
+
       // Reset the flag after a brief delay to allow new polling to start
       setTimeout(() => {
         shouldCancelPolling.current = false;
@@ -261,9 +265,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       },
       {
         onSuccess: ({ needsWallet }) => {
-          console.log('✅ [ONBOARDING] Login polling succeeded!', { needsWallet });
+          console.log('✅ [ONBOARDING] Login polling succeeded!', {
+            needsWallet,
+          });
           if (needsWallet) {
-            console.log('🔄 [ONBOARDING] Wallet needed, waiting for wallet creation...');
+            console.log(
+              '🔄 [ONBOARDING] Wallet needed, waiting for wallet creation...'
+            );
             waitForWalletCreation(
               {
                 // Also check cancellation for wallet creation
@@ -277,7 +285,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 },
                 onError: (error) => {
                   // Para SDK may throw internal errors during wallet setup that don't affect functionality
-                  console.warn('⚠️ [ONBOARDING] Wallet creation error (may be internal SDK issue):', error);
+                  console.warn(
+                    '⚠️ [ONBOARDING] Wallet creation error (may be internal SDK issue):',
+                    error
+                  );
                   // Still try to redirect if we're connected
                   if (isConnected) {
                     setIsRedirecting(true);
@@ -286,14 +297,19 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               }
             );
           } else {
-            console.log('✅ [ONBOARDING] No wallet needed, setting redirecting state');
+            console.log(
+              '✅ [ONBOARDING] No wallet needed, setting redirecting state'
+            );
             // Set redirecting state immediately when login succeeds (no wallet needed)
             setIsRedirecting(true);
           }
         },
         onError: (error) => {
           // Para SDK may throw internal errors during login that don't affect functionality
-          console.warn('⚠️ [ONBOARDING] Login polling error (may be internal SDK issue):', error);
+          console.warn(
+            '⚠️ [ONBOARDING] Login polling error (may be internal SDK issue):',
+            error
+          );
           // Still try to redirect if we're connected
           if (isConnected) {
             setIsRedirecting(true);
@@ -321,7 +337,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         },
         onError: (error) => {
           // Para SDK may throw internal errors during signup that don't affect functionality
-          console.warn('⚠️ [ONBOARDING] Signup error (may be internal SDK issue):', error);
+          console.warn(
+            '⚠️ [ONBOARDING] Signup error (may be internal SDK issue):',
+            error
+          );
           // Still try to redirect if we're connected
           if (isConnected) {
             setIsRedirecting(true);
@@ -481,7 +500,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             case 'verify':
               // Only start polling for passkey/password/PIN users when loginUrl is present
               if (!!authState.loginUrl) {
-                console.log('🔄 [ONBOARDING] Starting iframe flow with polling');
+                console.log(
+                  '🔄 [ONBOARDING] Starting iframe flow with polling'
+                );
                 setIFrameState('loading');
                 setupIframeListener();
 
@@ -659,18 +680,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleInstallPWA = () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('PWA installed successfully');
-        }
-        setDeferredPrompt(null);
-      });
-    } else if (isIOS) {
-      // For iOS, show instructions since they can't use the install prompt
-      setForceShowInstallPWA(true);
-    }
+    // Always show the install instructions modal
+    setForceShowInstallPWA(true);
   };
 
   // PWA Install detection
@@ -827,7 +838,12 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Debug: Log loading states
   useEffect(() => {
-    if (isSigningUpOrLoggingIn || isVerifyingNewAccount || isWaitingForLogin || isWaitingForWalletCreation) {
+    if (
+      isSigningUpOrLoggingIn ||
+      isVerifyingNewAccount ||
+      isWaitingForLogin ||
+      isWaitingForWalletCreation
+    ) {
       console.log('🔄 [ONBOARDING] Loading states:', {
         isSigningUpOrLoggingIn,
         isVerifyingNewAccount,
@@ -838,7 +854,15 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         authState: authState?.stage,
       });
     }
-  }, [isSigningUpOrLoggingIn, isVerifyingNewAccount, isWaitingForLogin, isWaitingForWalletCreation, isPollingWithIframe, isResetting, authState]);
+  }, [
+    isSigningUpOrLoggingIn,
+    isVerifyingNewAccount,
+    isWaitingForLogin,
+    isWaitingForWalletCreation,
+    isPollingWithIframe,
+    isResetting,
+    authState,
+  ]);
 
   if (
     (isSigningUpOrLoggingIn ||
@@ -2010,23 +2034,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             onClick={handleInstallPWA}
             className="bg-white border border-[#4b4b66] border-solid box-border flex gap-2 items-center justify-center px-6 py-3 hover:bg-gray-50 transition-colors flex-shrink-0 w-auto"
           >
-            <div className="overflow-clip relative shrink-0 size-5">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 3.33334V13.3333M10 3.33334L6.66667 6.66668M10 3.33334L13.3333 6.66668M3.33333 13.3333V15C3.33333 15.442 3.50893 15.866 3.82149 16.1785C4.13405 16.4911 4.55797 16.6667 5 16.6667H15C15.442 16.6667 15.866 16.4911 16.1785 16.1785C16.4911 15.866 16.6667 15.442 16.6667 15V13.3333"
-                  stroke="#36364C"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
+            <Icon path={mdiExportVariant} size={0.8} color="#36364C" />
             <span className="font-bold text-[#36364c] text-[16px] text-center text-nowrap tracking-[-0.1px] leading-none">
               Install PWA
             </span>
