@@ -295,7 +295,7 @@ export const VenueMap = () => {
 
     setListFiltersOpen(false);
 
-    if (currentFilters.selection) {
+    if (currentFilters.selection && !resolvedId) {
       //  } && resolvedId !== currentFilters.selection) {
       setCurrentFilters({
         ...currentFilters,
