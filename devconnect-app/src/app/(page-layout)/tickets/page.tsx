@@ -44,7 +44,7 @@ const TicketWrapper = () => {
   );
 };
 
-export const QRCodeBox = () => {
+const QRCodeBox = () => {
   return (
     <div className="flex gap-2 p-1 items-center bg-white border border-solid border-gray-200">
       <Icon path={mdiQrcode} size={0.95} /> QR CODE
