@@ -32,15 +32,10 @@ const HighlightCard = ({
   className,
 }: HighlightCardProps) => {
   const draggableLink = useDraggableLink();
-  return (
-    <Link
-      href={to}
-      className={cn(
-        'shrink-0 bg-white border border-solid border-[#E4E6EB] w-[295px] overflow-hidden group',
-        className
-      )}
-      {...draggableLink}
-    >
+  const isExternal = to.startsWith('http://') || to.startsWith('https://');
+  
+  const cardContent = (
+    <>
       <Image
         src={image}
         alt={title}
@@ -53,6 +48,35 @@ const HighlightCard = ({
         <p className="font-semibold text-base px-4 py-2 pt-3 pb-1">{title}</p>
         <div className="text-sm px-4 pb-4">{description}</div>
       </div>
+    </>
+  );
+  
+  const linkClassName = cn(
+    'shrink-0 bg-white border border-solid border-[#E4E6EB] w-[295px] overflow-hidden group',
+    className
+  );
+  
+  if (isExternal) {
+    return (
+      <a
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClassName}
+        {...draggableLink}
+      >
+        {cardContent}
+      </a>
+    );
+  }
+  
+  return (
+    <Link
+      href={to}
+      className={linkClassName}
+      {...draggableLink}
+    >
+      {cardContent}
     </Link>
   );
 };
@@ -60,10 +84,10 @@ const HighlightCard = ({
 export const Highlights = () => {
   const highlights = [
     {
-      title: 'Ethereum Day',
+      title: 'Ethereum Day (Nov 17th)',
       to: 'https://ethday.devconnect.org',
       description:
-        "Mark your calendar for November 17th. You don't want to miss the opening ceremonies of the Ethereum World's Fair!",
+        'The main Ethereum event and official opening of the week. Come early!',
       image: Image6,
     },
 
@@ -76,21 +100,18 @@ export const Highlights = () => {
     // },
 
     {
-      title: 'Devconnect Perks',
-      to: 'https://ethday.devconnect.org',
-      description:
-        'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
-      image: VoxelImage,
-    },
-    {
-      title: 'The Devconnect App',
-      to: '#',
-      onClick: () => {
-        alert('trigger pwa popup');
-      },
-      description: `Install the Ethereum World's Fair App on your device to navigate the fair, complete quests, collect souvenirs, and more.`,
+      title: 'Setup your wallet',
+      to: '/wallet',
+      description: `Install the app, claim your perks, and setup your wallets to get started`,
       image: PhoneImage,
     },
+    // {
+    //   title: 'Devconnect Perks',
+    //   to: 'https://ethday.devconnect.org',
+    //   description:
+    //     'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
+    //   image: VoxelImage,
+    // },
     // {
     //   title: 'Networking Events',
     //   to: '/schedule',
