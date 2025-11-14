@@ -64,6 +64,10 @@ export function WelcomeSection() {
   // Get email from localStorage (set during onboarding) - instant, no loading
   const [email] = useLocalStorage('email', '');
   const [ensName] = useLocalStorage('ens_name', '');
+  const [userIsConnected] = useLocalStorage<boolean | null>(
+    'userIsConnected',
+    false
+  );
 
   const now = useNow();
 
@@ -87,7 +91,7 @@ export function WelcomeSection() {
     <div className="flex justify-between items-center gap-4 mb-4 px-4 max-w-screen">
       <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1 grow">
         {/* Show greeting when we have email */}
-        {(email || ensName) && (
+        {userIsConnected && (email || ensName) ? (
           <>
             <div
               className={cn(
@@ -101,11 +105,9 @@ export function WelcomeSection() {
               {ensName || email || 'Anon'}
             </div>
           </>
-        )}
-
-        {/* Show login block when no email */}
-        {!email && (
+        ) : (
           <div className="grow shadow-sm flex flex-col sm:flex-row gap-4 justify-between bg-white p-4 border border-[rgba(234,234,234,1)]">
+            {/* Show login block when no email */}
             <div className="flex items-center gap-4">
               <Image src={Lock} alt="Lock" className="w-10 shrink-0" />
               <div className="flex flex-col">
@@ -130,7 +132,7 @@ export function WelcomeSection() {
         )}
       </div>
 
-      {email && (
+      {userIsConnected && (
         // <div className="w-[120px] w[] md:block shrink-0">
         <Image
           src={DevconnectLogoWhite}

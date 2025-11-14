@@ -7,6 +7,7 @@ import {
 } from '@getpara/react-sdk';
 import { useState, useEffect } from 'react';
 import { useUser } from './useUser';
+import { useLocalStorage } from 'usehooks-ts';
 
 const PRIMARY_PARA_KEY = 'devconnect_para_primary';
 
@@ -20,7 +21,10 @@ export function useParaWalletConnection() {
   const paraWallet = useParaWallet();
   const { logout, logoutAsync } = useLogout();
   const { signOut } = useUser();
-  
+  const [, setUserIsConnected] = useLocalStorage<boolean | null>(
+    'userIsConnected',
+    false
+  );
   const [isDisconnecting, setIsDisconnecting] = useState(false);
 
   // Para connection state
@@ -66,6 +70,7 @@ export function useParaWalletConnection() {
    * Uses Para SDK logout directly - no wagmi coordination needed
    */
   const disconnect = async () => {
+    setUserIsConnected(false);
     if (isDisconnecting) {
       console.warn('⚠️ [PARA] Disconnect already in progress');
       return;

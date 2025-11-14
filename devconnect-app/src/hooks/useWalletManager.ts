@@ -79,6 +79,7 @@ export function useWalletManager() {
     hasInitialized: supabaseInitialized,
     ...userMethods
   } = useUser();
+  const [, setUserIsConnected] = useLocalStorage<boolean | null>('userIsConnected', false);
 
   // Track disconnecting state at manager level for better UI control
   const [isDisconnecting, setIsDisconnecting] = useState(false);
@@ -895,6 +896,7 @@ export function useWalletManager() {
     // Set disconnecting state at manager level for UI control
     if (shouldShowDisconnectingState) {
       setIsDisconnecting(true);
+      setUserIsConnected(false);
     }
 
     try {
