@@ -63,6 +63,8 @@ import IProUpLogo from 'assets/images/ba/media-partners/iproup.png'
 import TheDefiantLogo from 'assets/images/ba/media-partners/the_defiant.png'
 import TheRollupLogo from 'assets/images/ba/media-partners/the_rollup.png'
 import Supporters from 'common/components/ba/supporters'
+import Button from 'lib/components/voxel-button/button'
+import PhonesApp from 'assets/images/ba/devconnect-phones-super-new.png'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -296,20 +298,24 @@ const TicketButton = ({
 
   return (
     <Link
-      href={ticketsUrl}
+      href="https://app.devconnect.org"
       className="pointer-events-auto"
-      spanClass={cn('flex flex-col items-end gap-2 group', className, css['no-underline'])}
+      spanClass={cn(
+        'flex flex-col items-end gap-2 group hover:scale-[1.02] transition-all duration-300 will-transform translate-x-[26px]',
+        className,
+        css['no-underline']
+      )}
     >
-      <p
+      {/* <p
         className={cn(
-          'bg-[#f2f7fc] border-2 border-solid border-[#74ACDF] group-hover:translate-y-[-4px] will-change-transform transition-all duration-300 px-3 py-1 flex items-center gap-2 self-end',
+          'bg-[#f2f7fc] border-2 border-solid group-hover:translate-y-[-4px] will-change-transform transition-all duration-300 px-3 py-1 flex items-center gap-2 self-end',
           css['no-underline']
         )}
       >
-        {(globalThis as any).translations.tickets_available}
+        Download the Devconnect App
         <ExternalLink className="w-4 h-4 opacity-80" />
-      </p>
-      <Image src={TicketExample} alt="Ticket Example" className="w-[440px]" quality={100} />
+      </p> */}
+      <Image src={PhonesApp} alt="Ticket Example" width={310} className="w-[310px]" quality={100} />
     </Link>
   )
 }
@@ -432,21 +438,45 @@ const Home: NextPage = (props: any) => {
 
                     <Image src={HeroText} alt="Hero text" className={cn('translate-x-[-2%]')} />
 
-                    <p className={cn('self-start text-xl font-secondary font-normal', css['text-highlight'])}>
+                    <p
+                      className={cn(
+                        'self-start text-normal text-base sm:text-xl font-secondary font-normal',
+                        css['text-highlight']
+                      )}
+                    >
                       {data.pages.what_is_devconnect}
                     </p>
 
-                    <Link href={ticketsUrl} className="pointer-events-auto">
-                      <button
-                        className={cn(
-                          'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
-                        )}
-                      >
-                        <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                          {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
-                        </div>
-                      </button>
-                    </Link>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6 mb-2">
+                      <Link href={ticketsUrl} className="pointer-events-auto">
+                        <Button
+                          color="blue-1"
+                          className="w-full sm:w-auto"
+                          // className={cn(
+                          //   'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
+                          // )}
+                        >
+                          <div className="transition-transform uppercase flex items-center gap-2 font-medium">
+                            {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
+                          </div>
+                        </Button>
+                      </Link>
+
+                      <Link href="https://app.devconnect.org" className="pointer-events-auto">
+                        <Button
+                          color="white-1"
+                          className="w-full sm:w-auto"
+                          // className={cn(
+                          //   'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
+                          // )}
+                        >
+                          <div className="transition-transform uppercase flex items-center gap-2 font-medium">
+                            <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[20px]" />{' '}
+                            Devconnect App
+                          </div>
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-8">
@@ -454,7 +484,7 @@ const Home: NextPage = (props: any) => {
                       src={DevconnectCubeLogo}
                       alt="Devconnect Cube Logo"
                       className={cn(
-                        'w-[60px] lg:w-[80px] opacity-0 transition-opacity duration-[3000ms]',
+                        'w-[60px] lg:w-[60px] opacity-0 transition-opacity duration-[3000ms]',
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
                       )}
                     />
@@ -469,7 +499,7 @@ const Home: NextPage = (props: any) => {
                   })}
                 >
                   <TicketButton
-                    className="mb-24"
+                    className="mb-14"
                     fadeInArgentina={fadeInArgentina}
                     userHasInterruptedPlayback={userHasInterruptedPlayback}
                   />

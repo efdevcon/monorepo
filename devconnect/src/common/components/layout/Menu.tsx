@@ -28,6 +28,7 @@ import MailIcon from 'assets/icons/mail.svg'
 import { useTicketsUrl } from 'common/constants'
 import EthDayLogo from 'assets/images/eth-day-logo.png'
 import Image from 'next/image'
+import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
@@ -116,11 +117,11 @@ const menuItems = (pathname: string, ticketsUrl: string) => [
       if (typeof window !== 'undefined' && window.selectEthDay) window.selectEthDay()
     },*/,
   },
-  {
-    text: 'Destino Support',
-    customClass: css['destino-rainbow'],
-    url: '/destino',
-  },
+  // {
+  //   text: 'Destino Support',
+  //   customClass: css['destino-rainbow'],
+  //   url: '/destino',
+  // },
   // {
   //   text: 'Cowork',
   //   url: '/cowork',
@@ -170,6 +171,19 @@ const menuItems = (pathname: string, ticketsUrl: string) => [
         url: 'https://devcon.org',
       },
     ],
+  },
+  {
+    text: () => {
+      return (
+        <div className={cn(css['devconnect-app'], 'flex items-center gap-1.5')}>
+          <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" width={22} />
+          <div>Devconnect App</div>
+        </div>
+      )
+    },
+    customClass: css['devconnect-app'],
+    hideIndicator: true,
+    url: 'https://app.devconnect.org',
   },
   // {
   //   text: 'Devcon',
@@ -358,7 +372,7 @@ export const Menu = (props: any) => {
       className={cn(
         css['menu'],
         css['menu-desktop'],
-        'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
+        'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-1 transition-all duration-500 pointer-events-auto',
         hasScrolled && 'bg-black/90',
         {
           '!pointer-events-none opacity-0': hasScrolled && !props.menuOpen,
@@ -422,7 +436,7 @@ export const Menu = (props: any) => {
 
         <Popover open={languageOpen} onOpenChange={setLanguageOpen}>
           <PopoverTrigger asChild>
-            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none">
+            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none translate-x-[-8px]">
               <GlobeIcon className="opacity-90  icon" />
               <span className="text-white text-base">
                 {router.locale === 'es' ? 'ES' : router.locale === 'pt' ? 'PT' : 'ENG'}
