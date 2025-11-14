@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useWallet } from '@/context/WalletContext';
 import { useState, useEffect, useMemo } from 'react';
 import React from 'react';
+import Image from 'next/image';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
@@ -35,6 +36,7 @@ import {
   mdiSwapHorizontal,
   mdiInformationOutline,
   mdiClose,
+  mdiArrowRight,
 } from '@mdi/js';
 
 // Image assets from local public/images directory
@@ -47,6 +49,9 @@ const imgEnsLogo = '/images/ens-logo.svg';
 const imgZapperLogo = '/images/power-zap-gray.svg';
 const imgNoAssetsIcon = '/images/no-assets-icon.svg';
 const imgNoActivityIcon = '/images/no-activity-icon.svg';
+
+// Network Info Icon
+import NetworkInfoIcon from '@/images/network-info-para.png';
 
 // Types for stored payment info
 type StoredPaymentInfo = {
@@ -770,8 +775,8 @@ export default function WalletTab() {
                           title="Network information"
                         >
                           <Icon
-                            path={mdiInformationOutline}
-                            size={0.65}
+                            path={mdiChevronDown}
+                            size={0.7}
                             className="text-[#0073de]"
                           />
                         </button>
@@ -786,7 +791,7 @@ export default function WalletTab() {
                         <Icon
                           path={mdiChevronDown}
                           size={0.7}
-                          className="text-[#20202b]"
+                          className="text-[#0073de]"
                         />
                       </button>
                     )}
@@ -1756,73 +1761,81 @@ export default function WalletTab() {
       {/* Network Info Modal */}
       {showNetworkInfoModal && (
         <div
-          className="fixed inset-0 z-101 flex items-center justify-center bg-black/50 p-4"
+          className="fixed inset-0 z-101 flex items-center justify-center bg-black/33 p-4"
           onClick={() => setShowNetworkInfoModal(false)}
         >
           <div
-            className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 space-y-4"
+            className="bg-white rounded border border-[#c7c7d0] shadow-xl max-w-[560px] min-w-[320px] w-[calc(100%-40px)] md:w-[560px] pt-4 pb-0 px-0 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="flex items-start justify-between">
-              <h3 className="text-[#20202b] text-lg font-bold tracking-[-0.1px]">
-                Network Information
-              </h3>
-              <button
-                onClick={() => setShowNetworkInfoModal(false)}
-                className="p-1 hover:bg-gray-100 rounded transition-colors"
-              >
-                <Icon path={mdiClose} size={0.8} className="text-[#353548]" />
-              </button>
-            </div>
+            {/* Close button */}
+            <button
+              onClick={() => setShowNetworkInfoModal(false)}
+              className="absolute right-3 top-3 hover:opacity-70 transition-opacity"
+              aria-label="Close modal"
+            >
+              <Icon path={mdiClose} size={1} className="text-[#4b4b66]" />
+            </button>
 
             {/* Content */}
-            <div className="space-y-4 text-[#36364c]">
-              <p className="text-sm leading-relaxed">
-                In the Devconnect App, we only support{' '}
-                <span className="font-semibold">Base</span> and{' '}
-                <span className="font-semibold">USDC</span> for best UX on
-                payment.
-              </p>
+            <div className="px-4 pt-3 pb-5 space-y-4">
+              {/* Info Icon */}
+              <div className="w-12 h-12">
+                <Image
+                  src={NetworkInfoIcon}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="w-full h-full"
+                />
+              </div>
 
-              <p className="text-sm leading-relaxed">
-                If you want to pay with other tokens and network, connect an
-                external wallet (add button on the top right).
-              </p>
+              {/* Text Content */}
+              <div className="space-y-4">
+                <h3 className="text-[#20202b] text-lg font-bold leading-[1.3]">
+                  Network information
+                </h3>
 
-              <p className="text-sm leading-relaxed">
-                If you want to be able to access tokens on other networks with
-                your Para wallet, go to{' '}
-                <button
-                  onClick={() => {
-                    setShowNetworkInfoModal(false);
-                    router.push('/wallet/settings');
-                  }}
-                  className="text-[#0073de] font-semibold hover:underline"
-                >
-                  Settings
-                </button>{' '}
-                tab to export your private key, and follow{' '}
-                <a
-                  href="https://ef-events.notion.site/Devconnect-App-Support-FAQ-29d638cdc41580ff88a7c7d43b19b0fe#29d638cdc41580e587acd7bede69861d"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#0073de] font-semibold hover:underline"
-                >
-                  this guide
-                </a>{' '}
-                to import it in the wallet of your Choice (MetaMask, Rainbow,
-                Zerion, ...)
-              </p>
-            </div>
+                <div className="space-y-3 text-[#353548] text-sm leading-[1.3]">
+                  <p>
+                    Payments in the Devconnect App use{' '}
+                    <span className="font-bold">USDC</span> on{' '}
+                    <span className="font-bold">Base</span> for the best
+                    experience.
+                  </p>
 
-            {/* Footer */}
-            <div className="flex justify-end pt-2">
+                  <p>
+                    To pay with other tokens or on a different network, connect
+                    an <span className="font-bold">external wallet</span> using
+                    the button in the top-right corner of the Wallet tab.
+                  </p>
+
+                  <p>
+                    To use your Para wallet elsewhere,{' '}
+                    <span className="font-bold">export your private key</span>{' '}
+                    in <span className="font-bold">Settings</span>, then follow
+                    our guide to importing it into your preferred wallet.
+                  </p>
+                </div>
+              </div>
+
+              {/* View export guide button */}
               <button
-                onClick={() => setShowNetworkInfoModal(false)}
-                className="bg-[#0073de] text-white px-6 py-2 rounded-[1px] hover:bg-[#005493] transition-colors font-medium"
+                onClick={() => {
+                  window.open(
+                    'https://ef-events.notion.site/Devconnect-App-Support-FAQ-29d638cdc41580ff88a7c7d43b19b0fe#29d638cdc41580e587acd7bede69861d',
+                    '_blank',
+                    'noopener,noreferrer'
+                  );
+                }}
+                className="bg-[#eaf3fa] text-[#44445d] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] hover:opacity-90 transition-opacity font-bold text-base w-full flex items-center justify-center gap-2"
               >
-                Got it
+                View export guide
+                <Icon
+                  path={mdiArrowRight}
+                  size={0.67}
+                  className="text-[#44445d]"
+                />
               </button>
             </div>
           </div>
