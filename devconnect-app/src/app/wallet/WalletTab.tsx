@@ -52,6 +52,8 @@ const imgNoActivityIcon = '/images/no-activity-icon.svg';
 
 // Network Info Icon
 import NetworkInfoIcon from '@/images/network-info-para.png';
+// Ticket Perk Icon
+import TicketPerkIcon from '@/images/ticket-perk.png';
 
 // Types for stored payment info
 type StoredPaymentInfo = {
@@ -216,6 +218,44 @@ export default function WalletTab() {
   const [refreshTimestamps, setRefreshTimestamps] = useState<number[]>([]);
   const [isPeanutPopupOpen, setIsPeanutPopupOpen] = useState(false);
   const [showNetworkInfoModal, setShowNetworkInfoModal] = useState(false);
+
+  // Check if user has tickets (similar logic to isTicketAssociated in quest-actions.ts)
+  const hasTicket = useMemo(() => {
+    try {
+      // Check if we're in a browser environment
+      if (
+        typeof window === 'undefined' ||
+        typeof localStorage === 'undefined'
+      ) {
+        return false;
+      }
+
+      // Get tickets from Zustand persisted store
+      const storeJson = localStorage.getItem('devconnect-store');
+      if (!storeJson) {
+        return false;
+      }
+
+      // Parse the persisted store data
+      const store = JSON.parse(storeJson);
+      const tickets = store.state?.tickets || [];
+
+      // Count total tickets
+      let totalTickets = 0;
+      if (Array.isArray(tickets)) {
+        for (const order of tickets) {
+          if (order.tickets && Array.isArray(order.tickets)) {
+            totalTickets += order.tickets.length;
+          }
+        }
+      }
+
+      return totalTickets > 0;
+    } catch (error) {
+      console.error('Error checking ticket status:', error);
+      return false;
+    }
+  }, []);
 
   // Load stored payments from localStorage
   const [storedPayments] = useLocalStorage<StoredPayments>(
@@ -1056,116 +1096,195 @@ export default function WalletTab() {
             </div>
 
             {/* My Perks Section */}
-            {hasEarlyAccessCookie && (
-              <>
-                <div className="flex flex-col gap-4">
-                  <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
-                    My Perks
-                  </p>
+            <div className="flex flex-col gap-4">
+              <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
+                My Perks
+              </p>
 
-                  <div className="flex flex-col md:flex-row gap-4">
-                    {/* Peanut Claim Card */}
-                    <div
-                      className="bg-white p-4 flex flex-col gap-4 items-center w-full md:flex-1"
+              {/* No Ticket State */}
+              {!hasTicket && (
+                <div className="bg-white border border-[#ededf0] rounded-[2px] p-4 flex flex-col gap-4">
+                  {/* Top Row: Text + Icon (mobile and desktop) */}
+                  <div className="flex gap-6 items-start">
+                    {/* Icon - Hidden on mobile row, shown on desktop as first item */}
+                    <div className="hidden md:block w-12 h-12 shrink-0">
+                      <Image
+                        src={TicketPerkIcon}
+                        alt="Ticket Perk"
+                        width={48}
+                        height={48}
+                        className="w-full h-full"
+                      />
+                    </div>
+
+                    {/* Text Content - Grows to fill space */}
+                    <div className="flex-1 flex flex-col gap-1 leading-[1.3] text-[#353548] tracking-[-0.1px]">
+                      <p className="text-[#353548] text-[16px] font-bold">
+                        Access exclusive in-app Perks
+                      </p>
+                      <p className="text-[#353548] text-[14px] font-normal">
+                        Connect your Devconnect ticket to your account to claim!
+                      </p>
+                    </div>
+
+                    {/* Icon - Shown on mobile, hidden on desktop (shown in first position above) */}
+                    <div className="md:hidden w-12 h-12 shrink-0">
+                      <Image
+                        src={TicketPerkIcon}
+                        alt="Ticket Perk"
+                        width={48}
+                        height={48}
+                        className="w-full h-full"
+                      />
+                    </div>
+
+                    {/* Button - Only shown on desktop in this row */}
+                    <button
+                      onClick={() => {
+                        router.push('/tickets');
+                      }}
+                      className="hidden md:flex bg-[#0073de] text-white px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors font-bold text-[16px] items-center justify-center gap-2 shrink-0"
+                    >
+                      Add my ticket
+                      <Icon
+                        path={mdiArrowRight}
+                        size={0.67}
+                        className="text-white"
+                      />
+                    </button>
+                  </div>
+
+                  {/* Button - Only shown on mobile, full width below */}
+                  <button
+                    onClick={() => {
+                      router.push('/tickets');
+                    }}
+                    className="md:hidden bg-[#0073de] text-white px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors font-bold text-[16px] flex items-center justify-center gap-2 w-full"
+                  >
+                    Add my ticket
+                    <Icon
+                      path={mdiArrowRight}
+                      size={0.67}
+                      className="text-white"
+                    />
+                  </button>
+                </div>
+              )}
+
+              {/* Coming Soon State - User has ticket but no early access */}
+              {hasTicket && !hasEarlyAccessCookie && (
+                <div className="bg-white border border-[#ededf0] rounded-[2px] p-4 flex items-center justify-center py-8">
+                  <p className="text-[#4b4b66] text-[16px] font-medium">
+                    Coming Soon™
+                  </p>
+                </div>
+              )}
+
+              {/* With Ticket State - Existing Perks (Early Access) */}
+              {hasTicket && hasEarlyAccessCookie && (
+                <div className="flex flex-col md:flex-row gap-4">
+                  {/* Peanut Claim Card */}
+                  <div
+                    className="bg-white p-4 flex flex-col gap-4 items-center w-full md:flex-1"
+                    style={{
+                      boxShadow: '4px 4px 0px black',
+                      outline: '1px black solid',
+                      outlineOffset: '-1px',
+                    }}
+                  >
+                    <button
+                      onClick={handlePeanutClaim}
+                      disabled={
+                        peanutClaimingState?.peanut_claimed === true ||
+                        isPeanutPopupOpen
+                      }
+                      className={`w-full rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
+                        peanutClaimingState?.peanut_claimed === true ||
+                        isPeanutPopupOpen
+                          ? 'bg-gray-300 cursor-not-allowed'
+                          : 'bg-[#ff91e9] hover:bg-[#ff7de3] cursor-pointer'
+                      }`}
                       style={{
-                        boxShadow: '4px 4px 0px black',
                         outline: '1px black solid',
                         outlineOffset: '-1px',
                       }}
                     >
-                      <button
-                        onClick={handlePeanutClaim}
-                        disabled={
-                          peanutClaimingState?.peanut_claimed === true ||
-                          isPeanutPopupOpen
-                        }
-                        className={`w-full rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
-                          peanutClaimingState?.peanut_claimed === true ||
-                          isPeanutPopupOpen
-                            ? 'bg-gray-300 cursor-not-allowed'
-                            : 'bg-[#ff91e9] hover:bg-[#ff7de3] cursor-pointer'
-                        }`}
-                        style={{
-                          outline: '1px black solid',
-                          outlineOffset: '-1px',
-                        }}
-                      >
-                        <p className="text-black text-[16px] font-bold leading-4">
-                          {isPeanutPopupOpen
-                            ? 'Claiming...'
-                            : peanutClaimingState?.peanut_claimed === true
-                              ? '✓ Claimed'
-                              : peanutClaimingState?.peanut_claimed === false
-                                ? 'Claim $2 (USDC)'
-                                : 'Claim $2 (USDC)'}
-                        </p>
-                        {peanutClaimingState?.peanut_claimed !== true &&
-                          !isPeanutPopupOpen && (
+                      <p className="text-black text-[16px] font-bold leading-4">
+                        {isPeanutPopupOpen
+                          ? 'Claiming...'
+                          : peanutClaimingState?.peanut_claimed === true
+                            ? '✓ Claimed'
+                            : peanutClaimingState?.peanut_claimed === false
+                              ? 'Claim $2 (USDC)'
+                              : 'Claim $2 (USDC)'}
+                      </p>
+                      {peanutClaimingState?.peanut_claimed !== true &&
+                        !isPeanutPopupOpen && (
+                          <svg
+                            className="w-3.5 h-3.5 text-black flex-shrink-0"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 7h8m0 0L7 3m4 4l-4 4"
+                            />
+                          </svg>
+                        )}
+                    </button>
+                    {/* Transaction Link or Claiming Status */}
+                    {peanutClaimingState?.peanut_claimed === true && (
+                      <>
+                        {peanutClaimingState?.tx_hash ? (
+                          <a
+                            href={`https://axelarscan.io/gmp/${peanutClaimingState.tx_hash}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
+                          >
+                            View transaction
                             <svg
-                              className="w-3.5 h-3.5 text-black flex-shrink-0"
-                              viewBox="0 0 14 14"
+                              className="w-3 h-3"
+                              viewBox="0 0 12 12"
                               fill="none"
                               stroke="currentColor"
                             >
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M3 7h8m0 0L7 3m4 4l-4 4"
+                                strokeWidth={1.5}
+                                d="M3 9l6-6m0 0H4.5M9 3v4.5"
                               />
                             </svg>
-                          )}
-                      </button>
-                      {/* Transaction Link or Claiming Status */}
-                      {peanutClaimingState?.peanut_claimed === true && (
-                        <>
-                          {peanutClaimingState?.tx_hash ? (
-                            <a
-                              href={`https://axelarscan.io/gmp/${peanutClaimingState.tx_hash}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
+                          </a>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span className="text-[#4b4b66] text-[12px] font-medium">
+                              {isPeanutPopupOpen
+                                ? 'Claiming...'
+                                : 'Waiting for transaction...'}
+                            </span>
+                            <button
+                              onClick={handleRefresh}
+                              disabled={isRefreshing || portfolioLoading}
+                              className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                              title="Refresh to check if transaction is available"
                             >
-                              View transaction
-                              <svg
-                                className="w-3 h-3"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={1.5}
-                                  d="M3 9l6-6m0 0H4.5M9 3v4.5"
-                                />
-                              </svg>
-                            </a>
-                          ) : (
-                            <div className="flex items-center gap-2">
-                              <span className="text-[#4b4b66] text-[12px] font-medium">
-                                {isPeanutPopupOpen
-                                  ? 'Claiming...'
-                                  : 'Waiting for transaction...'}
-                              </span>
-                              <button
-                                onClick={handleRefresh}
-                                disabled={isRefreshing || portfolioLoading}
-                                className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                                title="Refresh to check if transaction is available"
-                              >
-                                <Icon
-                                  path={mdiCached}
-                                  size={0.5}
-                                  className={`${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
-                                />
-                                Refresh
-                              </button>
-                            </div>
-                          )}
-                        </>
-                      )}
-                      {/* {peanutClaimingState && (
+                              <Icon
+                                path={mdiCached}
+                                size={0.5}
+                                className={`${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
+                              />
+                              Refresh
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {/* {peanutClaimingState && (
                   <div className="w-full">
                     {peanutClaimingState.peanut_claimed === true ? (
                       <p className="text-green-700 text-[11px] font-medium text-center leading-[1.3]">
@@ -1185,61 +1304,60 @@ export default function WalletTab() {
                     ) : null}
                   </div>
                 )} */}
-                      <div className="flex items-center gap-3">
-                        <p className="text-black text-[12px] font-normal leading-[15.6px]">
-                          Sponsored by
-                        </p>
-                        <img
-                          src={imgPeanutLogo}
-                          alt="Peanut"
-                          className="h-5 w-[82px] object-contain"
-                        />
-                      </div>
+                    <div className="flex items-center gap-3">
+                      <p className="text-black text-[12px] font-normal leading-[15.6px]">
+                        Sponsored by
+                      </p>
+                      <img
+                        src={imgPeanutLogo}
+                        alt="Peanut"
+                        className="h-5 w-[82px] object-contain"
+                      />
                     </div>
+                  </div>
 
-                    {/* ENS Claim Card */}
+                  {/* ENS Claim Card */}
 
-                    <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
-                      <button
-                        onClick={() => {
-                          // TODO: Implement ENS claim functionality
-                          toast.error('❌ ENS claim is not available yet');
-                          return;
-                        }}
-                        className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
+                  <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
+                    <button
+                      onClick={() => {
+                        // TODO: Implement ENS claim functionality
+                        toast.error('❌ ENS claim is not available yet');
+                        return;
+                      }}
+                      className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
+                    >
+                      <p className="text-white text-[16px] font-bold leading-none">
+                        Claim worldfair.eth name
+                      </p>
+                      <svg
+                        className="w-3.5 h-3.5 text-white flex-shrink-0"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        stroke="currentColor"
                       >
-                        <p className="text-white text-[16px] font-bold leading-none">
-                          Claim worldfair.eth name
-                        </p>
-                        <svg
-                          className="w-3.5 h-3.5 text-white flex-shrink-0"
-                          viewBox="0 0 14 14"
-                          fill="none"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 7h8m0 0L7 3m4 4l-4 4"
-                          />
-                        </svg>
-                      </button>
-                      <div className="flex items-center gap-3">
-                        <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
-                          Sponsored by
-                        </p>
-                        <img
-                          src={imgEnsLogo}
-                          alt="ENS"
-                          className="h-5 w-[62px] object-contain"
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 7h8m0 0L7 3m4 4l-4 4"
                         />
-                      </div>
+                      </svg>
+                    </button>
+                    <div className="flex items-center gap-3">
+                      <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
+                        Sponsored by
+                      </p>
+                      <img
+                        src={imgEnsLogo}
+                        alt="ENS"
+                        className="h-5 w-[62px] object-contain"
+                      />
                     </div>
                   </div>
                 </div>
-              </>
-            )}
+              )}
+            </div>
 
             {/* Assets Section */}
             <div className="space-y-1 mb-0 pb-5">
