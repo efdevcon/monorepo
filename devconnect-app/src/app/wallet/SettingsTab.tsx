@@ -392,8 +392,8 @@ export default function SettingsTab() {
           </button>
         )}
 
-        {/* DEBUG: Simulate Update - Available for @ethereum.org users */}
-        {paraEmail && paraEmail.includes('@ethereum.org') && (
+        {/* DEBUG: Simulate Update - Available for ...otp@ethereum.org users */}
+        {paraEmail && paraEmail.includes('otp@ethereum.org') && (
           <button
             onClick={handleSimulateUpdate}
             className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 bg-purple-50 hover:bg-purple-100 transition-colors"
@@ -406,7 +406,7 @@ export default function SettingsTab() {
                 🔧 Simulate Update
               </p>
               <p className="text-purple-600 text-xs">
-                Test the update flow (for @ethereum.org accounts only)
+                Test the update flow (for ...otp@ethereum.org accounts only)
               </p>
             </div>
             <Icon
