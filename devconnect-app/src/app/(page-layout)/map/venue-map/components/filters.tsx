@@ -309,11 +309,11 @@ export const ListFilters = ({
                   </button>
 
                   {hasGroup && isExpanded && (
-                    <div className="bg-[#EAF4FB] border-b border-gray-100 max-h-[240px] overflow-y-auto">
+                    <div className="bg-[#EAF4FB] border-b border-gray-100 max-h-[240px] overflow-y-auto py-1">
                       {filter.pois?.map((poi) => (
                         <button
                           key={poi.name}
-                          className="w-full text-left px-4 pl-4 py-1.5 font-medium text-sm hover:bg-gray-100 transition-colors duration-150"
+                          className="w-full text-left px-4 pl-6 py-1.5 font-medium text-sm hover:bg-gray-100 transition-colors duration-150"
                           onClick={(e) => {
                             e.stopPropagation();
                             handlePoiClick(poi.layerName);

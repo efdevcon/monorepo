@@ -295,7 +295,8 @@ export const VenueMap = () => {
 
     setListFiltersOpen(false);
 
-    if (currentFilters.selection && resolvedId !== currentFilters.selection) {
+    if (currentFilters.selection) {
+      //  } && resolvedId !== currentFilters.selection) {
       setCurrentFilters({
         ...currentFilters,
         selection: null,
@@ -325,7 +326,6 @@ export const VenueMap = () => {
         zoomLevel === 'zoomed-in' && css['zoomed-in'],
         zoomLevel === 'zoomed-out' && css['zoomed-out'],
         hoveredElement && css['highlight-active']
-
         // hasActiveFilters && css['has-selection-or-hover']
       )}
       onClick={(e) => {

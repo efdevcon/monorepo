@@ -146,8 +146,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "5"
   },
   "280638cdc41580c9869fc31f2895acfe": {
-    "name": "Boulder",
-    "layerName": "boulder",
+    "name": "BoulderTech",
+    "layerName": "bouldertech",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-45-191Z-Boulder.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-28-632Z-Bouldertech.png",
     "description": "Tokenizing public and private markets across Latin America. Bringing Latam on-chain.",

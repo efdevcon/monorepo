@@ -79,11 +79,17 @@ const FlexibleDrawer = ({
 
   // Mobile: shadcn drawer (bottom sheet)
   return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
+    <Drawer
+      open={open}
+      onOpenChange={onOpenChange}
+      modal={false}
+      dismissible={false}
+    >
       <DrawerContent
         className={className}
         // Let people interact when the drawer is open, otherwise the overlay will block all interactions
-        overlayClassName="!pointer-events-none"
+        // overlayClassName="bg-black/50"
+        overlayClassName="!pointer-events-none !bg-black/40"
         hideHandle={hideHandle}
         onClick={(e: React.MouseEvent) => e.stopPropagation()}
         onTouchEnd={(e: React.TouchEvent) => e.stopPropagation()}

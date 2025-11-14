@@ -17,7 +17,7 @@ import CameraIcon from '@/components/icons/onboarding-steps/camera.svg';
 import PhoneIcon from '@/components/icons/onboarding-steps/phone.svg';
 import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
-import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
+import DevconnectLogoWhite from '@/images/cube-logo.png';
 import { toast } from 'sonner';
 import { ChevronDownIcon, Copy, QrCode } from 'lucide-react';
 import { useRefreshOnAuthChange } from '@/hooks/useServerData';
@@ -131,9 +131,15 @@ export function WelcomeSection() {
       </div>
 
       {email && (
-        <div className="w-[120px] md:w-[140px] hidden md:block shrink-0">
-          <DevconnectLogoWhite />
-        </div>
+        // <div className="w-[120px] w[] md:block shrink-0">
+        <Image
+          src={DevconnectLogoWhite}
+          alt="Ethereum World's Fair"
+          className="object-contain shrink-0 mr-2"
+          width={40}
+          // height={50}
+        />
+        // </div>
       )}
 
       {/* <Image

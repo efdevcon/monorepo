@@ -61,7 +61,13 @@ const Pane = ({
     : undefined;
 
   const LinkItems = (() => {
-    if (!links || Object.keys(links).length === 0) return null;
+    if (!links) return null;
+
+    // Check if any links have non-empty values
+    const hasValidLinks = Object.values(links).some(
+      (link) => link && link.trim() !== ''
+    );
+    if (!hasValidLinks) return null;
 
     return (
       <div className="flex flex-col gap-1 mt-4">
@@ -69,7 +75,7 @@ const Pane = ({
           Links
         </p>
         <div className="flex items-start gap-2">
-          {links && links.website && (
+          {links && links.website && links.website.trim() !== '' && (
             <Link
               href={links.website}
               target="_blank"
@@ -83,14 +89,14 @@ const Pane = ({
               </button>
             </Link>
           )}
-          {links && links.x && (
+          {links && links.x && links.x.trim() !== '' && (
             <Link href={links.x} target="_blank" rel="noopener noreferrer">
               <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px] cursor-pointer">
                 <X className="!h-4 !w-auto shrink-0 icon" />
               </button>
             </Link>
           )}
-          {links && links.farcaster && (
+          {links && links.farcaster && links.farcaster.trim() !== '' && (
             <Link
               href={links.farcaster}
               target="_blank"
