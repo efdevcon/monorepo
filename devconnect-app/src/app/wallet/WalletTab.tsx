@@ -1172,16 +1172,16 @@ export default function WalletTab() {
               )}
 
               {/* Coming Soon State - User has ticket but no early access */}
-              {hasTicket && !hasEarlyAccessCookie && (
+              {/* {hasTicket && !hasEarlyAccessCookie && (
                 <div className="bg-white border border-[#ededf0] rounded-[2px] p-4 flex items-center justify-center py-8">
                   <p className="text-[#4b4b66] text-[16px] font-medium">
                     Coming Soon™
                   </p>
                 </div>
-              )}
+              )} */}
 
               {/* With Ticket State - Existing Perks (Early Access) */}
-              {hasTicket && hasEarlyAccessCookie && (
+              {hasTicket && (
                 <div className="flex flex-col md:flex-row gap-4">
                   {/* Peanut Claim Card */}
                   <div
