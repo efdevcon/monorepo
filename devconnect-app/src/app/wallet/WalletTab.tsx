@@ -219,7 +219,53 @@ export default function WalletTab() {
   const [addressCopied, setAddressCopied] = useState(false);
   const [refreshTimestamps, setRefreshTimestamps] = useState<number[]>([]);
   const [isPeanutPopupOpen, setIsPeanutPopupOpen] = useState(false);
+  const [isEnsPopupOpen, setIsEnsPopupOpen] = useState(false);
   const [showNetworkInfoModal, setShowNetworkInfoModal] = useState(false);
+
+  // Track worldfair.eth name claims in localStorage (per address)
+  const [worldfairClaimedMap, setWorldfairClaimedMap] = useLocalStorage<
+    Record<string, { claimed: boolean; name: string; claimedAt: number }>
+  >('worldfair_claimed_map', {});
+
+  // Check if current address has a worldfair.eth name and save to localStorage
+  useEffect(() => {
+    if (!address) return;
+
+    const addressKey = address.toLowerCase();
+    const ensName = identity?.name;
+
+    // Early return if no name or name is null
+    if (!ensName || ensName === null) return;
+
+    const hasWorldfairName = ensName.endsWith('.worldfair.eth');
+
+    // If user has a worldfair.eth name, mark it as claimed
+    if (hasWorldfairName) {
+      const existingClaim = worldfairClaimedMap[addressKey];
+
+      // Only update if not already claimed or if the name changed
+      if (!existingClaim || existingClaim.name !== ensName) {
+        console.log(
+          `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${ensName}`
+        );
+        setWorldfairClaimedMap((prev) => ({
+          ...prev,
+          [addressKey]: {
+            claimed: true,
+            name: ensName,
+            claimedAt: Date.now(),
+          },
+        }));
+      }
+    }
+  }, [address, identity?.name, worldfairClaimedMap, setWorldfairClaimedMap]);
+
+  // Get worldfair claim status for current address
+  const worldfairClaimed = useMemo(() => {
+    if (!address) return null;
+    const addressKey = address.toLowerCase();
+    return worldfairClaimedMap[addressKey] || null;
+  }, [address, worldfairClaimedMap]);
 
   // Check if user has tickets - now reactive to Zustand store updates
   // This will automatically update when TicketPreloader fetches tickets in the background
@@ -444,6 +490,49 @@ export default function WalletTab() {
     setShowAllAssets(!showAllAssets);
   };
 
+  // Handle ENS claim
+  const handleEnsClaim = () => {
+    // Open popup immediately (prevents mobile popup blockers)
+    const popup = window.open(
+      'https://worldfair.id/',
+      '_blank',
+      'width=600,height=800'
+    );
+
+    if (!popup) {
+      toast.error('Popup Blocked', {
+        description: 'Please allow popups for this site',
+        duration: 4000,
+      });
+      return;
+    }
+
+    // Set popup open state
+    setIsEnsPopupOpen(true);
+
+    // Monitor popup closure and refresh identity when closed
+    const checkPopupClosed = setInterval(() => {
+      if (popup.closed) {
+        clearInterval(checkPopupClosed);
+        console.log('🔄 [WALLET_TAB] ENS popup closed, refreshing identity');
+
+        // Wait a moment before changing popup state
+        setTimeout(() => {
+          setIsEnsPopupOpen(false);
+        }, 1000);
+
+        // Refresh identity after user closes the popup (they may have claimed an ENS name)
+        if (address) {
+          console.log(
+            `🔄 [WALLET_TAB] Triggering identity refresh for ${address.slice(0, 10)}...`
+          );
+          // Force refresh to get the newly claimed ENS name
+          walletData.resolveIdentityForAddress(address, true);
+        }
+      }
+    }, 500);
+  };
+
   // Handle Peanut claim
   const handlePeanutClaim = async () => {
     // Open popup immediately with blank URL (prevents mobile popup blockers)
@@ -622,8 +711,16 @@ export default function WalletTab() {
 
     setIsRefreshing(true);
     try {
-      await refreshPortfolio();
-      console.log('✅ [WALLET_TAB] Manual refresh completed');
+      // Refresh both portfolio and identity (ENS name) in parallel
+      await Promise.all([
+        refreshPortfolio(),
+        address
+          ? walletData.resolveIdentityForAddress(address, true)
+          : Promise.resolve(),
+      ]);
+      console.log(
+        '✅ [WALLET_TAB] Manual refresh completed (portfolio + identity)'
+      );
     } catch (error) {
       console.error('❌ [WALLET_TAB] Manual refresh failed:', error);
     } finally {
@@ -1303,32 +1400,66 @@ export default function WalletTab() {
 
                   <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
                     <button
-                      onClick={() => {
-                        window.open(
-                          'https://worldfair.id/',
-                          '_blank',
-                          'noopener,noreferrer'
-                        );
-                      }}
-                      className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
+                      onClick={handleEnsClaim}
+                      disabled={isEnsPopupOpen || !!worldfairClaimed}
+                      className={`w-full rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
+                        worldfairClaimed
+                          ? 'bg-green-100 cursor-not-allowed'
+                          : isEnsPopupOpen
+                            ? 'bg-[#247cff] opacity-60 cursor-not-allowed'
+                            : 'bg-[#247cff] hover:bg-[#1a69e6] cursor-pointer'
+                      }`}
                     >
-                      <p className="text-white text-[16px] font-bold leading-none">
-                        Claim worldfair.eth name
-                      </p>
-                      <svg
-                        className="w-3.5 h-3.5 text-white flex-shrink-0"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        stroke="currentColor"
+                      <p
+                        className={`text-[16px] font-bold leading-none ${
+                          worldfairClaimed ? 'text-green-700' : 'text-white'
+                        }`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 7h8m0 0L7 3m4 4l-4 4"
-                        />
-                      </svg>
+                        {worldfairClaimed
+                          ? `✓ Claimed: ${worldfairClaimed.name}`
+                          : isEnsPopupOpen
+                            ? 'Popup open...'
+                            : 'Claim worldfair.eth name'}
+                      </p>
+                      {!isEnsPopupOpen && !worldfairClaimed && (
+                        <svg
+                          className="w-3.5 h-3.5 text-white flex-shrink-0"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 7h8m0 0L7 3m4 4l-4 4"
+                          />
+                        </svg>
+                      )}
                     </button>
+                    {worldfairClaimed && (
+                      <a
+                        href={`http://worldfair.id/${worldfairClaimed.name?.replace('.worldfair.eth', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
+                      >
+                        Edit {worldfairClaimed.name}
+                        <svg
+                          className="w-3 h-3"
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M3 9l6-6m0 0H4.5M9 3v4.5"
+                          />
+                        </svg>
+                      </a>
+                    )}
                     <div className="flex items-center gap-3">
                       <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
                         Sponsored by

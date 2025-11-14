@@ -45,6 +45,8 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     wallet.portfolioRefreshTrigger, // CRITICAL: Include to force re-render when portfolio updates
     wallet.hasMultipleWallets, // CRITICAL: Include to force re-render when multiple wallets state changes
     wallet.primaryType, // CRITICAL: Include to force re-render when switching wallets
+    wallet.identity, // CRITICAL: Include to force re-render when identity (ENS) resolves
+    wallet.identityLoading, // Include to show loading state
     // Para wallet properties
     wallet.para.isConnected,
     wallet.para.address,

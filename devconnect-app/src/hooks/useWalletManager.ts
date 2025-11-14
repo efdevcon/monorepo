@@ -1042,6 +1042,7 @@ export function useWalletManager() {
     // Identity (ENS)
     identity,
     identityLoading,
+    resolveIdentityForAddress, // Expose for manual identity refresh (e.g., after ENS claim)
 
     // Portfolio data
     portfolio, // Current address's portfolio only
