@@ -1321,9 +1321,11 @@ export default function WalletTab() {
                   <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
                     <button
                       onClick={() => {
-                        // TODO: Implement ENS claim functionality
-                        toast.error('❌ ENS claim is not available yet');
-                        return;
+                        window.open(
+                          'https://worldfair.id/',
+                          '_blank',
+                          'noopener,noreferrer'
+                        );
                       }}
                       className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
                     >
