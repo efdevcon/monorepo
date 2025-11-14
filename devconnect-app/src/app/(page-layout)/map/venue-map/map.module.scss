@@ -7,18 +7,52 @@
 
 .map {
     svg * {
-        transition: opacity 0.5s ease, filter 0.5s ease;
+        transition: opacity 0.3s ease, filter 0.3s ease;
 
         font-family: 'Roboto', sans-serif;
 
+        /* Things without IDs are never clickable */
         &:not([id]) {
-            pointer-events: none;
+            pointer-events: none !important;
         }
 
+        /* Certain text should have the special voxel font */
         &[id$='-STAGE'], &[id$='-DISTRICT'], &[id^='meeting-point'], &[id='BOOTCAMP'], &[id='SECOND-FLOOR'], &[id$='-HALL'], &[id$='AMPHITHEATER'], &[id$='-SPACE'], &[id='Exit'], &[id='Entrance'] {
             * {
                 font-family: 'MapFont', sans-serif;
             }
+        }
+
+        /* Districts should not be clickable unless its a path (the building shape) */
+        &[id$='-DISTRICT'] {
+            > :not(path) {
+                pointer-events: none !important;
+
+                * {
+                    pointer-events: none !important;
+                }
+            }
+        }
+
+        /* When things are named like this, they are most often figma filler and should not be clickable */ 
+        &[id^='Vector'] {
+            pointer-events: none;
+
+            * {
+                pointer-events: none;
+            }
+        }
+
+        /* exceptions to the Vector rule above */
+        &[id^='meeting-point'], &[id="BUILDINGS"] {
+            * {
+                pointer-events: auto;
+            }
+        }
+
+        /* Building names should not be clickable */
+        &[id='BUILDINGS-NAME'] * {
+            pointer-events: none !important;
         }
 
         &[id^='building-'] {
@@ -46,6 +80,17 @@
         g[id='BUILDINGS-NAME'] {
             opacity: 0;
             pointer-events: none !important;
+        }
+
+        g[id="BUILDINGS"] * {
+            pointer-events: none !important;
+        }
+
+        // Exceptions: these should remain clickable
+        g[id="BUILDINGS"] [id^='poi-bleachers'],
+        g[id="BUILDINGS"] [id^='onboarding'],
+        g[id="BUILDINGS"] [id^='registration'] {
+            pointer-events: auto !important;
         }
     }
 

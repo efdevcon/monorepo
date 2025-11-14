@@ -3,7 +3,7 @@ import type { POI } from '@/types/api-data';
 export const poisData: POI[] = [
   {
     "name": "Account Abstraction Hub",
-    "layerName": "account-abrstraction-hub",
+    "layerName": "account-abstraction-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-27-33-208Z-AA-Logo.png",
     "description": "",
     "websiteLink": "https://devconnect.org/community-hubs/account-abstraction-hub",
@@ -1306,7 +1306,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "14",
     "groupId": "16"
   },
   {
@@ -1318,8 +1318,20 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "5",
     "groupId": "16"
+  },
+  {
+    "name": "Toilet 5",
+    "layerName": "toilet-5",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "10",
+    "groupId": "1"
   },
   {
     "name": "Toilet 6",
@@ -1330,8 +1342,20 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "10",
     "groupId": "16"
+  },
+  {
+    "name": "Toilet 7",
+    "layerName": "toilet-7",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "10",
+    "groupId": "1"
   },
   {
     "name": "Women in Web3 Hub",
