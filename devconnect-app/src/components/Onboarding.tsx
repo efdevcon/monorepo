@@ -99,6 +99,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // PWA Install State
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
+  const [userIsConnected, setUserIsConnected] = useLocalStorage<boolean | null>(
+    'userIsConnected',
+    false
+  );
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
@@ -227,6 +231,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Handle delayed redirects (1.5 seconds)
   useEffect(() => {
     if (isConnected) {
+      setUserIsConnected(true);
       // Set redirecting state immediately when connected
       setIsRedirecting(true);
 

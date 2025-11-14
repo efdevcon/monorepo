@@ -9,6 +9,7 @@ import { Search } from 'lucide-react';
 import { useWallet } from '@/context/WalletContext';
 import { PAYMENT_CONFIG } from '@/config/config';
 import { MERCHANTS } from '@/config/merchants';
+import { hasEarlyAccess } from '@/utils/cookies';
 
 interface PaymentRequest {
   id: string;
@@ -55,6 +56,8 @@ export default function ScanPage() {
   const [merchantPaymentError, setMerchantPaymentError] = useState<
     string | null
   >(null);
+
+  const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Function to handle manual payment request ID submission
   const handleManualPaymentRequest = async () => {
@@ -189,15 +192,21 @@ export default function ScanPage() {
                   <option value="" className="text-[#868698]">
                     Select merchant
                   </option>
-                  {Object.values(MERCHANTS).map((merchant) => (
-                    <option
-                      key={merchant.id}
-                      value={merchant.id}
-                      className="text-[#353548]"
-                    >
-                      [{merchant.posNumber}] {merchant.name}
+                  {hasEarlyAccessCookie ? (
+                    Object.values(MERCHANTS).map((merchant) => (
+                      <option
+                        key={merchant.id}
+                        value={merchant.id}
+                        className="text-[#353548]"
+                      >
+                        [{merchant.posNumber}] {merchant.name}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="" className="text-[#868698]">
+                      No merchants available yet
                     </option>
-                  ))}
+                  )}
                 </select>
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
