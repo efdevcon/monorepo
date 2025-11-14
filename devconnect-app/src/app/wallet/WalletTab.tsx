@@ -4,6 +4,8 @@ import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@/context/WalletContext';
 import { useState, useEffect, useMemo } from 'react';
+import { useGlobalStore } from '@/app/store.provider';
+import type { AppState } from '@/app/store';
 import React from 'react';
 import Image from 'next/image';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
@@ -219,43 +221,24 @@ export default function WalletTab() {
   const [isPeanutPopupOpen, setIsPeanutPopupOpen] = useState(false);
   const [showNetworkInfoModal, setShowNetworkInfoModal] = useState(false);
 
-  // Check if user has tickets (similar logic to isTicketAssociated in quest-actions.ts)
+  // Check if user has tickets - now reactive to Zustand store updates
+  // This will automatically update when TicketPreloader fetches tickets in the background
+  const tickets = useGlobalStore((state: AppState) => state.tickets);
   const hasTicket = useMemo(() => {
-    try {
-      // Check if we're in a browser environment
-      if (
-        typeof window === 'undefined' ||
-        typeof localStorage === 'undefined'
-      ) {
-        return false;
-      }
-
-      // Get tickets from Zustand persisted store
-      const storeJson = localStorage.getItem('devconnect-store');
-      if (!storeJson) {
-        return false;
-      }
-
-      // Parse the persisted store data
-      const store = JSON.parse(storeJson);
-      const tickets = store.state?.tickets || [];
-
-      // Count total tickets
-      let totalTickets = 0;
-      if (Array.isArray(tickets)) {
-        for (const order of tickets) {
-          if (order.tickets && Array.isArray(order.tickets)) {
-            totalTickets += order.tickets.length;
-          }
-        }
-      }
-
-      return totalTickets > 0;
-    } catch (error) {
-      console.error('Error checking ticket status:', error);
+    if (!tickets || !Array.isArray(tickets)) {
       return false;
     }
-  }, []);
+
+    // Count total tickets across all orders
+    let totalTickets = 0;
+    for (const order of tickets) {
+      if (order.tickets && Array.isArray(order.tickets)) {
+        totalTickets += order.tickets.length;
+      }
+    }
+
+    return totalTickets > 0;
+  }, [tickets]);
 
   // Load stored payments from localStorage
   const [storedPayments] = useLocalStorage<StoredPayments>(
