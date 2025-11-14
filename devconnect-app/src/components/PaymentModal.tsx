@@ -29,6 +29,8 @@ import {
 import { useAlchemyBalance } from '@/hooks/useAlchemyBalance';
 import { useGasEstimation } from '@/hooks/useGasEstimation';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import SimpleFiLogo from '@/images/simplefi-logo.png';
 
 type PaymentStep = 'form' | 'status';
 
@@ -1412,7 +1414,7 @@ export default function PaymentModal({
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 <Wallet className="h-5 w-5" />
-                Payment
+                {isHistoricalPayment ? 'Order Details' : 'Pay'}
               </h2>
               {isPara && isSystemSimulationMode === null && (
                 <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
@@ -1608,7 +1610,7 @@ export default function PaymentModal({
                                 paymentDetails.arsAmount?.toLocaleString() ||
                                 '15'}
                             </span>
-                            <span className="text-[#4b4b66] text-xl">
+                            <span className="text-[#4b4b66] text-2xl">
                               {paymentDetails.priceDetails?.currency || 'ARS'}
                             </span>
                           </div>
@@ -1620,7 +1622,7 @@ export default function PaymentModal({
                                 paymentDetails.amount ||
                                 amount}
                             </span>
-                            <span className="text-[#4b4b66] text-base">
+                            <span className="text-[#4b4b66] text-xl">
                               {isPara ? 'USDC' : selectedToken}
                             </span>
                           </div>
@@ -1874,6 +1876,19 @@ export default function PaymentModal({
                           </>
                         )}
                       </Button>
+
+                      {/* Powered by SimpleFi */}
+                      <div className="flex items-center justify-center gap-2">
+                        <p className="text-[#20202b] text-xs font-normal leading-[1.2] text-center">
+                          Powered by
+                        </p>
+                        <Image
+                          src={SimpleFiLogo}
+                          alt="SimpleFi"
+                          height={16}
+                          className="w-auto"
+                        />
+                      </div>
 
                       {/* Simulation Button */}
                       {/* {isPara && (

@@ -19,6 +19,8 @@ import {
   mdiLockCheckOutline,
   mdiAlertOutline,
 } from '@mdi/js';
+import Image from 'next/image';
+import SimpleFiLogo from '@/images/simplefi-logo.png';
 
 // Helper function to get the correct explorer URL for a transaction
 // Prefers UserOp Hash when available (for ERC-4337 transactions)
@@ -556,6 +558,22 @@ export default function StatusStep({
                 minute: '2-digit',
               })}
             </p>
+          </div>
+
+          {/* Powered by SimpleFi */}
+          <div className="flex items-center justify-center gap-2">
+            <p
+              className="text-[#20202b] text-xs leading-[1.2] text-center"
+              style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
+            >
+              Powered by
+            </p>
+            <Image
+              src={SimpleFiLogo}
+              alt="SimpleFi"
+              height={16}
+              className="w-auto"
+            />
           </div>
         </div>
 
