@@ -8,6 +8,8 @@ import { HEIGHT_MENU } from '@/config/config';
 import { useRouter } from 'next/navigation';
 import { hardReloadWithRouter } from '@/utils/reload';
 import { toast } from 'sonner';
+import CameraPermissionIcon from '@/images/camera-permission.png';
+import Image from 'next/image';
 
 interface QRScannerProps {
   onScan?: (result: string) => void;
@@ -163,108 +165,110 @@ const QRScanner = ({
             onClick={handleClose}
           >
             <div
-              className="w-full h-full bg-gray-900 flex flex-col items-center relative min-w-[260px]"
+              className="w-full h-full bg-[#20202b] flex flex-col items-center relative min-w-[260px]"
               onClick={(e) => e.stopPropagation()}
             >
               {permissionDenied ? (
                 // Permission denied UI
-                <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                  <div className="mb-6">
-                    <svg
-                      className="w-16 h-16 text-blue-400 mx-auto mb-4"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      Camera Access Required
-                    </h3>
-                    <p className="text-gray-300 mb-2">
-                      Camera access was blocked. To scan QR codes, you need to
-                      enable camera permissions.
-                    </p>
-                    {isIOS ? (
-                      <div className="text-gray-400 text-sm mb-6">
-                        <p className="mb-2">To enable camera access on iOS:</p>
-                        <ol className="text-left list-decimal list-inside space-y-1 mb-3">
-                          <li>Open iOS system settings</li>
-                          <li>Go to Apps at the bottom of the screen</li>
-                          <li>Find Safari and tap on it</li>
-                          <li>Find Camera at the bottom of the screen</li>
-                          <li>Choose Allow</li>
-                          <li>Return here and try scanning again</li>
+                <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
+                  <div className="flex flex-col gap-6 items-center max-w-[345px] w-full">
+                    {/* Camera Icon */}
+                    <div className="w-20 h-20 shrink-0">
+                      <Image
+                        src={CameraPermissionIcon}
+                        alt="Camera permission"
+                        className="w-full h-full"
+                        width={80}
+                        height={80}
+                      />
+                    </div>
+
+                    {/* Message Container */}
+                    <div className="flex flex-col gap-4 w-full">
+                      {/* Title and Description */}
+                      <div className="flex flex-col gap-3 text-center tracking-[-0.1px]">
+                        <h3 className="font-bold text-white text-2xl leading-[1.2]">
+                          Camera access required
+                        </h3>
+                        <p className="text-[#c7c7d0] text-base leading-[1.3]">
+                          To scan QR codes, you need to enable camera
+                          permissions for the app.
+                        </p>
+                      </div>
+
+                      {/* Instructions */}
+                      <div className="flex flex-col gap-2 text-[#c7c7d0] text-base tracking-[-0.1px]">
+                        <p className="font-bold leading-[1.3]">
+                          To enable camera access permanently:
+                        </p>
+                        <ol className="list-decimal text-left leading-[1.3] pl-6 space-y-0">
+                          <li>Locate the app in your device Settings</li>
+                          <li>Find and open Camera permissions.</li>
+                          <li>Set it to "Allow" or "Always allow"</li>
+                          <li>Refresh or restart to apply the changes</li>
                         </ol>
                       </div>
-                    ) : (
-                      <p className="text-gray-400 text-sm mb-6">
-                        Look for the camera icon in your browser's address bar,
-                        click it, and allow camera access. Then close this and
-                        try scanning again.
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex flex-col gap-3 w-full max-w-xs">
-                    <button
-                      onClick={handleClose}
-                      className="bg-[#0073de] text-white px-6 py-3 rounded text-sm font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
-                    >
-                      Make manual payment
-                    </button>
-                    <button
-                      onClick={async () => {
-                        // Check last reset time from localStorage
-                        const lastResetTime = localStorage.getItem(
-                          'lastCameraResetTime'
-                        );
-                        const currentTime = Date.now();
-                        const oneMinute = 60 * 1000; // 1 minute in milliseconds
+                    </div>
 
-                        if (lastResetTime) {
-                          const timeSinceLastReset =
-                            currentTime - parseInt(lastResetTime);
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col gap-3 w-full">
+                      <button
+                        onClick={handleClose}
+                        className="bg-[#0073de] text-white px-6 py-4 rounded-[1px] text-base font-bold shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors w-full"
+                      >
+                        Make manual payment
+                      </button>
+                      <button
+                        onClick={async () => {
+                          // Check last reset time from localStorage
+                          const lastResetTime = localStorage.getItem(
+                            'lastCameraResetTime'
+                          );
+                          const currentTime = Date.now();
+                          const oneMinute = 60 * 1000; // 1 minute in milliseconds
 
-                          if (timeSinceLastReset < oneMinute) {
-                            // User clicked within 1 minute, show toast instead of resetting
-                            toast.error('Kill the app and open it again', {
-                              description:
-                                'Close the app completely and reopen it to reset camera permissions.',
-                              duration: 8000,
-                            });
-                            return;
+                          if (lastResetTime) {
+                            const timeSinceLastReset =
+                              currentTime - parseInt(lastResetTime);
+
+                            if (timeSinceLastReset < oneMinute) {
+                              // User clicked within 1 minute, show toast instead of resetting
+                              toast.error('Kill the app and open it again', {
+                                description:
+                                  'Close the app completely and reopen it to reset camera permissions.',
+                                duration: 8000,
+                              });
+                              return;
+                            }
                           }
-                        }
 
-                        // Store current time in localStorage
-                        localStorage.setItem(
-                          'lastCameraResetTime',
-                          currentTime.toString()
-                        );
+                          // Store current time in localStorage
+                          localStorage.setItem(
+                            'lastCameraResetTime',
+                            currentTime.toString()
+                          );
 
-                        setIsReloading(true);
-                        try {
-                          // Close the scanner modal first
-                          stopCamera();
-                          console.log('🔄 Simulating app kill...');
-                          // Use window.location for complete page reload
-                          window.location.href = '/wallet';
-                        } catch (err) {
-                          console.error('Error during app reset:', err);
-                          // Fallback to direct navigation
-                          alert('"Kill the app" then open it again.');
-                        }
-                      }}
-                      disabled={isReloading}
-                      className="bg-[#eaf3fa] flex items-center justify-center px-6 py-3 rounded-[1px] text-[#44445d] font-bold text-[16px] border-none cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isReloading
-                        ? 'Reset in progress...'
-                        : 'Reset camera permissions'}
-                    </button>
+                          setIsReloading(true);
+                          try {
+                            // Close the scanner modal first
+                            stopCamera();
+                            console.log('🔄 Simulating app kill...');
+                            // Use window.location for complete page reload
+                            window.location.href = '/wallet';
+                          } catch (err) {
+                            console.error('Error during app reset:', err);
+                            // Fallback to direct navigation
+                            alert('"Kill the app" then open it again.');
+                          }
+                        }}
+                        disabled={isReloading}
+                        className="bg-[#eaf3fa] text-[#44445d] px-6 py-4 rounded-[1px] text-base font-bold shadow-[0px_4px_0px_0px_#595978] hover:bg-[#d5e5f0] transition-colors w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isReloading
+                          ? 'Reset in progress...'
+                          : 'Reset camera permissions'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ) : (
