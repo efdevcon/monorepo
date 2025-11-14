@@ -339,7 +339,15 @@ export function useFavorites() {
 
   const updateFavorite = async (eventId: string) => {
     if (!userData) {
-      toast.error('You need to be authenticated to add favorites');
+      toast.error('You need to be authenticated to add favorites', {
+        duration: 10000,
+        action: {
+          label: 'Login',
+          onClick: () => {
+            window.location.href = '/onboarding';
+          },
+        },
+      });
       return;
     }
 
