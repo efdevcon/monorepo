@@ -434,6 +434,10 @@ const MapPane = (props: {
       };
     }
 
+    const paneType = poiGroupsData[selectionData.groupId]?.name || 'District';
+
+    console.log(selectionData, 'SELECTION DATA AHHH');
+
     switch (selectionData.pane_type) {
       case 'group':
       case 'district':
@@ -454,7 +458,7 @@ const MapPane = (props: {
             selection={selectionData.layerName}
             displayName={selectionData.name}
             description={selectionData.description}
-            subtitle={selectionData.pane_type}
+            subtitle={paneType}
             logo={selectionData.logo}
             backgroundColor={selectionData.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
@@ -559,9 +563,7 @@ const MapPane = (props: {
             selection={selectionData.layerName}
             displayName={selectionData.name}
             description={selectionData.description}
-            subtitle={
-              !selectionData.districtId ? selectionData.pane_type : undefined
-            }
+            subtitle={selectionData.districtId ? 'District' : paneType}
             links={selectionData.links}
             logo={selectionData.logo}
             districtBadge={supporterDistrict?.name}
@@ -604,7 +606,7 @@ const MapPane = (props: {
             selection={selectionData.layerName}
             displayName={selectionData.name}
             description={selectionData.description}
-            subtitle={selectionData.pane_type}
+            subtitle={selectionData.paneType}
             links={selectionData.links}
             logo={selectionData.logo}
             showAsModal={isDesktop && fromQuests}

@@ -271,7 +271,9 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                 </span>
               </div>
               <div className="text-xs text-gray-600 mt-1">
-                {currentSession ? currentSession.event : nextSession.event}
+                {currentSession
+                  ? currentSession.event.replace('(internal) Website - ', '')
+                  : nextSession.event.replace('(internal) Website - ', '')}
               </div>
             </div>
             {!currentSession && (

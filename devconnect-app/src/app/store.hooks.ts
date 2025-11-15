@@ -36,7 +36,7 @@ export const canonicalStageNames = {
   'lighting-talks-stage': 'Lightning Stage',
   amphitheater: 'Amphitheater',
   'stage-1': 'Stage 1',
-  'open-air-cinema': 'Open Air Cinema',
+  'outdoor-cinema': 'Open Air Cinema',
 };
 
 const computeStages = (events?: any[]) => {
@@ -114,6 +114,16 @@ const stageMetadata: Record<
     name: 'Amphitheater',
     mapUrl: '/map?filter=amphitheater',
     pavilion: 'amphitheater',
+  },
+  lightning: {
+    name: 'Lightning Stage',
+    mapUrl: '/map?filter=lightning-stage',
+    pavilion: 'greenPavilion',
+  },
+  'outdoor-cinema': {
+    name: 'Open Air Cinema',
+    mapUrl: '/map?filter=open-air-cinema',
+    pavilion: 'entertainment',
   },
 };
 

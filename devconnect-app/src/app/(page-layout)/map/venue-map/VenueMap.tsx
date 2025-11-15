@@ -368,6 +368,7 @@ export const VenueMap = () => {
         'building-blue-pavilion',
         'building-music-stage',
         'building-yellow-pavillion',
+        'building-entertainment',
       ];
 
       // Check if clicked element or any parent is a pavilion
