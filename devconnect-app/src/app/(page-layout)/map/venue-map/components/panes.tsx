@@ -459,68 +459,75 @@ const MapPane = (props: {
           >
             {districtSupporters.length > 0 && (
               <div className="bg-[rgba(255,255,255,0.4)] shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4 max-h-[35vh] overflow-hidden">
-                <div className="p-3 pb-8 overflow-y-auto max-h-[35vh] [mask-image:linear-gradient(to_bottom,black_calc(100%-2rem),transparent)]">
+                <div
+                  className={cn(
+                    'p-3 overflow-y-auto max-h-[35vh]',
+                    districtSupporters.length > 8
+                      ? 'pb-8 [mask-image:linear-gradient(to_bottom,black_calc(100%-3rem),transparent)]'
+                      : 'pb-3'
+                  )}
+                >
                   <div className="text-base font-bold mb-3 text-[#353548]">
                     App Showcase
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                  {districtSupporters.map((supporter, index) => {
-                    // Find quest for this supporter
-                    const supporterQuest = questsData.find(
-                      (quest) =>
-                        quest.supporterId ===
-                        Object.keys(supportersData).find(
-                          (key) => supportersData[key] === supporter
-                        )
-                    );
+                    {districtSupporters.map((supporter, index) => {
+                      // Find quest for this supporter
+                      const supporterQuest = questsData.find(
+                        (quest) =>
+                          quest.supporterId ===
+                          Object.keys(supportersData).find(
+                            (key) => supportersData[key] === supporter
+                          )
+                      );
 
-                    const content = (
-                      <>
-                        {supporter.logo ? (
-                          <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white">
-                            <img
-                              src={supporter.logo}
-                              alt={supporter.name}
-                              width={24}
-                              height={24}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </div>
-                        ) : (
-                          <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white opacity-25">
-                            <Image
-                              src={Placeholder}
-                              alt={supporter.name}
-                              className="w-4 h-4 object-cover"
-                              style={{ filter: 'brightness(0)' }}
-                            />
-                          </div>
-                        )}
-                        <p className="flex-1 text-sm leading-none text-[#353548] font-normal">
-                          {supporter.name}
-                        </p>
-                      </>
-                    );
+                      const content = (
+                        <>
+                          {supporter.logo ? (
+                            <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white">
+                              <img
+                                src={supporter.logo}
+                                alt={supporter.name}
+                                width={24}
+                                height={24}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </div>
+                          ) : (
+                            <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white opacity-25">
+                              <Image
+                                src={Placeholder}
+                                alt={supporter.name}
+                                className="w-4 h-4 object-cover"
+                                style={{ filter: 'brightness(0)' }}
+                              />
+                            </div>
+                          )}
+                          <p className="flex-1 text-sm leading-none text-[#353548] font-normal">
+                            {supporter.name}
+                          </p>
+                        </>
+                      );
 
-                    return supporterQuest ? (
-                      <Link
-                        href={`/quests#${supporterQuest.id}`}
-                        key={index}
-                        className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
-                      >
-                        {content}
-                      </Link>
-                    ) : (
-                      <div
-                        className="flex gap-2 items-center py-0.5 w-full"
-                        key={index}
-                      >
-                        {content}
-                      </div>
-                    );
-                  })}
+                      return supporterQuest ? (
+                        <Link
+                          href={`/quests#${supporterQuest.id}`}
+                          key={index}
+                          className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
+                        >
+                          {content}
+                        </Link>
+                      ) : (
+                        <div
+                          className="flex gap-2 items-center py-0.5 w-full"
+                          key={index}
+                        >
+                          {content}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

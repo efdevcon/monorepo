@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react';
 import useSVGProps from './event-listeners';
-import Map from './lasse-fork-2.svg';
+import Map from './map-15-1.svg';
 
 interface MapTestProps {
   onSVGElementClick: (id: string, event: React.MouseEvent<SVGElement>) => void;

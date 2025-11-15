@@ -236,31 +236,89 @@ export const VenueMap = () => {
 
     if (!svgElement || !panzoomInstance || !containerRef.current) return;
 
-    const currentZoom = panzoomInstance.getTransform().scale;
-    const targetZoom = Math.max(currentZoom, baseZoomLevel);
+    const currentTransform = panzoomInstance.getTransform();
+    const targetZoom = Math.max(currentTransform.scale, baseZoomLevel);
 
-    // Get element's current position
+    // Get element and container rectangles
     const elementRect = svgElement.getBoundingClientRect();
-    const elementCenterX = elementRect.left + elementRect.width / 2;
-    const elementCenterY = elementRect.top + elementRect.height / 2;
-
-    // Get container center (where we want the element to end up)
     const containerRect = containerRef.current.getBoundingClientRect();
-    const targetCenterX = containerRect.left + containerRect.width / 2;
-    const targetCenterY = containerRect.top + containerRect.height / 2 - offset;
 
-    // Calculate how much to move BEFORE zoom to position element at target
-    const deltaX = targetCenterX - elementCenterX;
-    const deltaY = targetCenterY - elementCenterY;
+    // Element center in container-relative coordinates
+    const elementScreenX =
+      elementRect.left + elementRect.width / 2 - containerRect.left;
+    const elementScreenY =
+      elementRect.top + elementRect.height / 2 - containerRect.top;
 
-    // Move to position first, then zoom at that position
-    panzoomInstance.moveBy(deltaX, deltaY, true);
+    // Target position in container-relative coordinates (center of container)
+    const targetScreenX = containerRect.width / 2;
+    const targetScreenY = containerRect.height / 2 - offset;
 
-    // Wait for the move to complete, then zoom
-    setTimeout(() => {
-      // Zoom at the target center
-      panzoomInstance.smoothZoomAbs(targetCenterX, targetCenterY, targetZoom);
-    }, 500);
+    // Calculate element's position in SVG coordinate space (unaffected by transform)
+    // Using: svgPos = (screenPos - transform.offset) / scale
+    const elementSvgX =
+      (elementScreenX - currentTransform.x) / currentTransform.scale;
+    const elementSvgY =
+      (elementScreenY - currentTransform.y) / currentTransform.scale;
+
+    // Calculate what the transform offset should be to position this SVG point at target
+    // Using: screenPos = svgPos * scale + transform.offset
+    // Rearranging: transform.offset = screenPos - svgPos * scale
+    const targetTransformX = targetScreenX - elementSvgX * targetZoom;
+    const targetTransformY = targetScreenY - elementSvgY * targetZoom;
+
+    // Calculate the focal point that produces the desired transform when zooming
+    // From panzoom source: transform.x = focalX - ratio * (focalX - transform.x)
+    // We want: targetTransformX = focalX - ratio * (focalX - currentTransform.x)
+    // Solving: focalX = (targetTransformX - ratio * currentTransform.x) / (1 - ratio)
+    const ratio = targetZoom / currentTransform.scale;
+
+    // Handle edge case where there's no zoom change (ratio = 1)
+    if (Math.abs(ratio - 1) < 0.001) {
+      const deltaX = targetTransformX - currentTransform.x;
+      const deltaY = targetTransformY - currentTransform.y;
+
+      // Validate deltas before moving
+      if (!isFinite(deltaX) || !isFinite(deltaY)) {
+        console.error('Invalid pan deltas:', {
+          deltaX,
+          deltaY,
+          targetTransformX,
+          targetTransformY,
+          currentTransform,
+        });
+        return;
+      }
+
+      panzoomInstance.moveBy(deltaX, deltaY, true);
+    } else {
+      const focalX =
+        (targetTransformX - ratio * currentTransform.x) / (1 - ratio);
+      const focalY =
+        (targetTransformY - ratio * currentTransform.y) / (1 - ratio);
+
+      // Validate focal points and zoom values before calling smoothZoomAbs
+      if (
+        !isFinite(focalX) ||
+        !isFinite(focalY) ||
+        !isFinite(targetZoom) ||
+        targetZoom <= 0
+      ) {
+        console.error('Invalid zoom parameters:', {
+          focalX,
+          focalY,
+          targetZoom,
+          ratio,
+          currentTransform,
+          targetTransformX,
+          targetTransformY,
+          elementSvgX,
+          elementSvgY,
+        });
+        return;
+      }
+
+      panzoomInstance.smoothZoomAbs(focalX, focalY, targetZoom);
+    }
   };
 
   console.log(currentFilters.selection, 'currentFilters.selection');
@@ -295,7 +353,7 @@ export const VenueMap = () => {
       const pavillions = [
         'building-green-pavilion',
         'building-the-cave',
-        'building-the-hub-ampthitheater',
+        'building-the-hub-amphitheater',
         'building-main-arena',
         'building-quiet-cowork',
         'building-red-pavilion',
