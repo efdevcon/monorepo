@@ -14,6 +14,8 @@ import { poisData } from '@/data/pois';
 import { districtsData } from '@/data/districts';
 import { poiGroupsData } from '@/data/poiGroups';
 import { supportersData } from '@/data/supporters';
+import Image from 'next/image';
+import backgroundImage from './bg-image-new.png';
 
 const initialFilters = {
   search: '', // Search term, not supported yet but added for future use
@@ -338,9 +340,15 @@ export const VenueMap = () => {
     let resolvedId: string | null = null;
 
     while (currentElement && currentElement.tagName !== 'svg') {
-      console.log(currentElement.id, 'currentElement.id');
-      if (currentElement.id) {
-        const clicked = resolveClickable(currentElement.id);
+      let id = currentElement.id;
+      if (id === 'onboarding_2') id = 'onboarding';
+      if (id === 'registration-1') id = 'registration';
+      if (id === 'media-area') id = 'media';
+      if (id === 'food-truck-1') id = 'food-truck';
+
+      console.log(id, 'currentElement.id');
+      if (id) {
+        const clicked = resolveClickable(id);
         if (clicked) {
           resolvedId = clicked;
           break;
@@ -415,7 +423,7 @@ export const VenueMap = () => {
       id="venue-container"
       className={cn(
         'relative w-full overflow-hidden grow flex py-16 px-4 md:h-[80vh]',
-        'gradient-background',
+        // 'gradient-background',
         css.map,
         zoomLevel === 'zoomed-in' && css['zoomed-in'],
         zoomLevel === 'zoomed-out' && css['zoomed-out'],
@@ -431,6 +439,12 @@ export const VenueMap = () => {
         reset();
       }}
     >
+      <Image
+        src={backgroundImage}
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover"
+        quality={100}
+      />
       {/* Panzoom container */}
       <div
         id="venue-map"
@@ -593,7 +607,7 @@ export const VenueMap = () => {
 
       <div
         className={cn(
-          'absolute bottom-2 flex justify-center items-center text-center left-0 opacity-80 w-full z-[10] text-[11px] font-bold transition-opacity duration-300',
+          'absolute bottom-2 flex justify-center text-white items-center text-center left-0 opacity-80 w-full z-[10] text-[11px] font-bold transition-opacity duration-300',
           zoomLevel === 'zoomed-in' && '!opacity-0 pointer-events-none'
         )}
       >

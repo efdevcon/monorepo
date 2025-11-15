@@ -31,7 +31,7 @@ export const getProgramming = (event: Event) => {
       },
       {
         time: "10:25",
-        title: "EF Priorities (Scale L1 / L2 / UX)",
+        title: "Scale L1, scale blobs, improve UX: A Protocol update",
         speakers: "Ansgar Dietrichs, Barnabé Monnot",
       },
       {
@@ -41,7 +41,7 @@ export const getProgramming = (event: Event) => {
       },
       {
         time: "11:25",
-        title: "Ethereum is for Institutions and Enterprises",
+        title: "Institutions 🤝 Decentralization",
         speakers: "Danny Ryan",
       },
       {
@@ -57,17 +57,17 @@ export const getProgramming = (event: Event) => {
       {
         time: "13:00",
         title:
-          "POAP: How Argentina Adopted Crypto, and what it means for the rest of us",
+          "How Argentina Adopted Crypto, and what it means for the rest of us",
         speakers: "Isabel Gonzalez",
       },
       {
         time: "13:35",
-        title: "Stablecoins and Argentina",
+        title: "Ethereum: the things I like and some I don’t",
         speakers: "Mariano Conti",
       },
       {
         time: "14:05",
-        title: "Lambda Class: Local Web3 Companies",
+        title: "The Next 10 Years of Ethereum: Verifiable Future",
         speakers: "Fede Intern",
       },
       {
@@ -87,12 +87,12 @@ export const getProgramming = (event: Event) => {
       },
       {
         time: "15:50",
-        title: "Base Announcement",
+        title: "Base Update",
         speakers: "Jesse Pollak",
       },
       {
         time: "16:00",
-        title: "Linea Announcement",
+        title: "Linea Update",
         speakers: "Declan Fox",
       },
       {
@@ -108,7 +108,7 @@ export const getProgramming = (event: Event) => {
       },
       {
         time: "17:30",
-        title: "CowSwap: Making DeFi Truly Cross-Chain",
+        title: "Making DeFi Truly Cross-Chain",
         speakers: "Anna George",
       },
       {
@@ -124,7 +124,7 @@ export const getProgramming = (event: Event) => {
       {
         time: "19:00",
         title: "Closing note, announcement",
-        speakers: "Nathan Sexer / Devconnect Team",
+        speakers: "Binji / Nathan Sexer / Devconnect Team",
       },
     ];
 

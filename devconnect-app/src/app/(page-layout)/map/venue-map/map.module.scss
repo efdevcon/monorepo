@@ -16,6 +16,10 @@
             pointer-events: none !important;
         }
 
+        &[id^='image'], &[id='coworking-3'], &[id='futbol-field_2'], &[id='chillout-area_2'], &[id='open-air-cinema_2'], &[id='interview-room'], &[id='Registration'], &[id='registration-2'] {
+            pointer-events: none !important;
+        }
+
         /* Certain text should have the special voxel font */
         &[id$='-STAGE'], &[id$='-DISTRICT'], &[id^='meeting-point'], &[id='BOOTCAMP'], &[id='SECOND-FLOOR'], &[id$='-HALL'], &[id$='AMPHITHEATER'], &[id$='-SPACE'], &[id='Exit'], &[id='Entrance'] {
             * {

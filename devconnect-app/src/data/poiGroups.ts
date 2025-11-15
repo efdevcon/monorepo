@@ -5,31 +5,31 @@ export const poiGroupsData: PoiGroups = {
     "name": "Activation"
   },
   "2": {
-    "name": "Animation"
-  },
-  "3": {
-    "name": "Chill Out Area"
-  },
-  "4": {
     "name": "Co-work"
   },
-  "5": {
+  "3": {
     "name": "Community Hubs"
   },
-  "6": {
+  "4": {
     "name": "Discussion corner"
   },
-  "7": {
+  "5": {
+    "name": "Entertainment"
+  },
+  "6": {
     "name": "Food & Beverage"
   },
-  "8": {
+  "7": {
     "name": "Interview rooms"
   },
-  "9": {
+  "8": {
     "name": "Meeting Rooms"
   },
-  "10": {
+  "9": {
     "name": "Music Stage"
+  },
+  "10": {
+    "name": "Onboarding Area"
   },
   "11": {
     "name": "Onboarding desk"

@@ -14,46 +14,50 @@ export const locationsData: Locations = {
     "layerName": "entertainment-space"
   },
   "4": {
+    "name": "Entrance",
+    "layerName": "entrance"
+  },
+  "5": {
     "name": "Floating Hub",
     "layerName": "floating-hub"
   },
-  "5": {
+  "6": {
     "name": "Green Pavilion",
     "layerName": "green-pavilion"
   },
-  "6": {
+  "7": {
     "name": "Main Arena",
     "layerName": "main-arena"
   },
-  "7": {
+  "8": {
     "name": "Music Stage",
     "layerName": "music-stage"
   },
-  "8": {
+  "9": {
     "name": "Pavilion 9",
     "layerName": "pavilion-9"
   },
-  "9": {
+  "10": {
     "name": "Pista Central",
     "layerName": "pista-central"
   },
-  "10": {
+  "11": {
     "name": "Quiet Cowork",
     "layerName": "quiet-cowork"
   },
-  "11": {
+  "12": {
     "name": "Red Pavilion",
     "layerName": "red-pavilion"
   },
-  "12": {
+  "13": {
     "name": "The Cave",
     "layerName": "the-cave"
   },
-  "13": {
+  "14": {
     "name": "The Hub",
     "layerName": "the-hub"
   },
-  "14": {
+  "15": {
     "name": "Yellow Pavilion",
     "layerName": "yellow-pavilion"
   }

@@ -30,24 +30,24 @@ const StagesPage = () => {
     return (
       <div key={stage.id} className="flex items-center justify-between py-1">
         <h3 className="text-sm font-bold">{stage.name}</h3>
-        <div className="flex gap-4 text-sm mr-4 text-[#0073de]">
+        <div className="flex gap-4 text-sm mr-2 text-[#0073de]">
           {stage.mapUrl && (
-            <Link href={stage.mapUrl} className="flex items-center gap-2">
+            <Link href={stage.mapUrl} className="flex items-center gap-1.5">
               <span className="">
                 <MapIcon className="w-4 h-4" />
               </span>
-              <span className="font-medium">Location</span>
+              <span className="font-medium">Find</span>
             </Link>
           )}
           {hasInfo && (
             <Link
               href={`/stages/${stage.id}`}
-              className="flex items-center text-sm gap-1.5"
+              className="flex items-center text-sm gap-1"
             >
               <span className=" ">
                 <Icon path={mdiMicrophoneVariant} size={0.7} />
               </span>
-              <span className="font-medium">Info</span>
+              <span className="font-medium">Programming</span>
             </Link>
           )}
         </div>

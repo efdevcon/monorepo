@@ -19,7 +19,11 @@ import { StageBadge } from '@/components/StageBadge';
 import Image from 'next/image';
 import imgMeerkat from './meerkat.png';
 import moment, { Moment } from 'moment';
-import { ClockIcon, MapPinIcon } from 'lucide-react';
+import {
+  ClockIcon,
+  ArrowLeft as ChevronLeftIcon,
+  MapPinIcon,
+} from 'lucide-react';
 
 const MeerkatComponent = () => {
   const { tickets } = useTickets();
@@ -221,10 +225,15 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
     <div className="flex flex-col w-full  bg-[#f6fafe]">
       <div className="py-5 pb-4 px-6 flex flex-col">
         <div className="flex justify-between items-center gap-2 mb-2">
-          <StageBadge
-            type={stageInfo.pavilionType as any}
-            label={stageInfo.name}
-          />
+          <div className="flex items-center gap-2">
+            <Link href="/stages" className="flex items-center gap-1.5">
+              <ChevronLeftIcon className="w-4 h-4" />
+            </Link>
+            <StageBadge
+              type={stageInfo.pavilionType as any}
+              label={stageInfo.name}
+            />
+          </div>
           <Link
             href={stageInfo.mapUrl}
             className="flex items-center gap-1 text-sm font-medium hover:underline text-[#0073de]"
@@ -241,7 +250,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
               className="text-xs font-bold leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
               style={{ fontFamily: 'Roboto, sans-serif' }}
             >
-              Find Stage
+              Find Location
             </div>
           </Link>
         </div>
@@ -372,7 +381,9 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                             {session.title}
                           </div>
                         )}
-                        <div className="">{session.event}</div>
+                        <div className="">
+                          {session.event.replace('(internal) Website - ', '')}
+                        </div>
                       </td>
                       <td className="p-4  py-3 border-b border-gray-200">
                         {session.speakers && session.speakers.length > 0
