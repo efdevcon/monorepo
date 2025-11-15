@@ -25,59 +25,64 @@ const filters = [
     icon: mdiHubOutline,
     key: 'community-hubs',
     label: 'Community Hubs',
-    pois: poisData.filter((poi) => poi.groupId === '5'),
+    pois: poisData.filter((poi) => poi.groupId === '3'), // Fixed: Community Hubs is groupId 3
     size: 0.5,
   },
   {
     icon: mdiMicrophoneVariant,
     key: 'stages',
     label: 'Stages',
-    pois: poisData.filter((poi) => poi.groupId === '15'),
+    pois: poisData.filter((poi) => poi.groupId === '15'), // Correct: Stages is groupId 15
   },
   {
     icon: mdiBriefcaseOutline,
     key: 'coworking',
     label: 'Coworking',
+    pois: poisData.filter((poi) => poi.groupId === '2'), // Fixed: Co-work is groupId 2
   },
   {
     icon: mdiDomain,
     key: 'districts',
     label: 'Districts',
-    pois: poisData.filter((poi) => poi.districtId !== null),
+    pois: poisData.filter((poi) => poi.districtId !== null), // Correct: filtering by districtId
   },
-  { icon: mdiSoccer, key: 'entertainment', label: 'Entertainment' },
+  {
+    icon: mdiSoccer,
+    key: 'entertainment',
+    label: 'Entertainment',
+    pois: poisData.filter((poi) => poi.groupId === '5'), // Fixed: Entertainment is groupId 5
+  },
   {
     icon: mdiFoodOutline,
     key: 'food-beverage',
     label: 'Food & Beverage',
-    pois: poisData.filter((poi) => poi.groupId === '7'),
+    pois: poisData.filter((poi) => poi.groupId === '6'), // Fixed: Food & Beverage is groupId 6
   },
-  // TODO: Do not have this category in the table
-  // {
-  //   icon: mdiCoffeeOutline,
-  //   key: 'coffee',
-  //   label: 'Powerup Stations',
-  //   pois: poisData.filter((poi) => poi.groupId === '14'),
-  // },
   {
     icon: mdiHandshakeOutline,
     key: 'meeting-rooms',
-    label: 'Meeting rooms',
-    pois: poisData.filter((poi) => poi.groupId === '9'),
+    label: 'Meeting Rooms',
+    pois: poisData.filter((poi) => poi.groupId === '8'), // Fixed: Meeting Rooms is groupId 8
   },
-  { icon: mdiInformationOutline, key: 'onboarding', label: 'Onboarding' },
+  {
+    icon: mdiInformationOutline,
+    key: 'onboarding',
+    label: 'Onboarding',
+    pois: poisData.filter((poi) => poi.groupId === '10' || poi.groupId === '11'), // Fixed: Onboarding Area (10) and Onboarding desk (11)
+  },
   {
     icon: mdiCashPlus,
     key: 'onramps',
     label: 'Onramps',
-    pois: poisData.filter((poi) => poi.groupId === '12'),
+    pois: poisData.filter((poi) => poi.groupId === '12'), // Correct: Onramp is groupId 12
   },
-  // TODO: This category is not in the table
-  // {
-  //   icon: mdiHumanMaleFemale,
-  //   key: 'toilets',
-  //   label: 'Toilets',
-  // },
+  // Additional categories available in the data:
+  // - Activation (groupId: 1)
+  // - Discussion corner (groupId: 4)
+  // - Interview rooms (groupId: 7)
+  // - Music Stage (groupId: 9)
+  // - QR-code (groupId: 13)
+  // - SWAG station (groupId: 14)
 ];
 
 export const SurfaceFilters = ({

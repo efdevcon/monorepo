@@ -1,11 +1,10 @@
 import FlexibleDrawer from 'lib/components/flexible-drawer';
 import { Dispatch, SetStateAction, useMemo, useState, useEffect } from 'react';
 import cn from 'classnames';
-import { MapPin, GlobeIcon, XIcon, ArrowUpRightIcon } from 'lucide-react';
+import { MapPin, XIcon, ArrowUpRightIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import X from './icons/x.svg';
 import FarcasterIcon from './icons/farcaster.svg';
-// import GlobeIcon from './icons/globe.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 import Placeholder from './images/placeholder.png';
@@ -196,10 +195,8 @@ const Pane = ({
                   Quest available
                 </p>
               </div>
-            ) : (
-              subtitle && (
-                <div className="text-xs leading-tight">{subtitle}</div>
-              )
+            ) : subtitle === 'TBD' || !subtitle ? null : (
+              <div className="text-xs leading-tight">{subtitle}</div>
             )}
           </div>
         </div>
