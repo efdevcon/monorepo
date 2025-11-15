@@ -27,6 +27,7 @@ import {
   mdiUpdate,
   mdiTestTube,
   mdiEyeLock,
+  mdiChartBar,
 } from '@mdi/js';
 import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
@@ -352,6 +353,31 @@ export default function SettingsTab() {
           </p>
           <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
         </button>
+
+        {/* Admin Stats - Available for @ethereum.org users */}
+        {paraEmail && paraEmail.endsWith('@ethereum.org') && (
+          <button
+            onClick={() => router.push('/stats')}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 bg-indigo-50 hover:bg-indigo-100 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiChartBar} size={1} className="text-indigo-600" />
+            </div>
+            <div className="flex-1 text-left">
+              <p className="text-indigo-700 text-base font-bold">
+                Admin Statistics (for @ethereum.org users only)
+              </p>
+              <p className="text-indigo-600 text-xs">
+                View claiming links and relayer stats
+              </p>
+            </div>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-indigo-600"
+            />
+          </button>
+        )}
 
         {/* Conditional: Add Early Access Password OR Reset Early Access */}
         {hasEarlyAccessCookie ? (
