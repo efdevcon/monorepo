@@ -353,7 +353,7 @@ export const PracticalInfo = () => {
                 In case of conflict, harassment or danger, please report it to
                 the{' '}
                 <Link
-                  href="https://devconnect.org/report"
+                  href="https://app.formbricks.com/s/cmhpckiio00q5ad01s1g0r1jp"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                   target="_blank"
                   rel="noopener noreferrer"
