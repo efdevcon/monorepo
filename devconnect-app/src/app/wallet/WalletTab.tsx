@@ -227,45 +227,81 @@ export default function WalletTab() {
     Record<string, { claimed: boolean; name: string; claimedAt: number }>
   >('worldfair_claimed_map', {});
 
-  // Check if current address has a worldfair.eth name and save to localStorage
+  // Get identity map from localStorage to check both Para and EOA addresses
+  const [identityMap] = useLocalStorage<
+    Record<string, { name: string | null; avatar: string | null } | null>
+  >('wallet_identity_map', {});
+
+  // Check both Para and EOA addresses for worldfair.eth names and save to localStorage
   useEffect(() => {
-    if (!address) return;
+    const addressesToCheck = [
+      para.address?.toLowerCase(),
+      eoa.address?.toLowerCase(),
+    ].filter(Boolean) as string[];
 
-    const addressKey = address.toLowerCase();
-    const ensName = identity?.name;
+    if (addressesToCheck.length === 0) return;
 
-    // Early return if no name or name is null
-    if (!ensName || ensName === null) return;
+    let hasUpdates = false;
+    const updates: Record<
+      string,
+      { claimed: boolean; name: string; claimedAt: number }
+    > = {};
 
-    const hasWorldfairName = ensName.endsWith('.worldfair.eth');
+    for (const addressKey of addressesToCheck) {
+      const identity = identityMap[addressKey];
+      const ensName = identity?.name;
 
-    // If user has a worldfair.eth name, mark it as claimed
-    if (hasWorldfairName) {
-      const existingClaim = worldfairClaimedMap[addressKey];
+      if (ensName && ensName.endsWith('.worldfair.eth')) {
+        const existingClaim = worldfairClaimedMap[addressKey];
 
-      // Only update if not already claimed or if the name changed
-      if (!existingClaim || existingClaim.name !== ensName) {
-        console.log(
-          `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${ensName}`
-        );
-        setWorldfairClaimedMap((prev) => ({
-          ...prev,
-          [addressKey]: {
+        // Only update if not already claimed or if the name changed
+        if (!existingClaim || existingClaim.name !== ensName) {
+          console.log(
+            `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${ensName}`
+          );
+          updates[addressKey] = {
             claimed: true,
             name: ensName,
             claimedAt: Date.now(),
-          },
-        }));
+          };
+          hasUpdates = true;
+        }
       }
     }
-  }, [address, identity?.name, worldfairClaimedMap, setWorldfairClaimedMap]);
 
-  // Get worldfair claim status for current address
+    // Batch update if there are any changes
+    if (hasUpdates) {
+      setWorldfairClaimedMap((prev) => ({
+        ...prev,
+        ...updates,
+      }));
+    }
+  }, [
+    para.address,
+    eoa.address,
+    identityMap,
+    worldfairClaimedMap,
+    setWorldfairClaimedMap,
+  ]);
+
+  // Get worldfair claim status - check both Para and EOA addresses
   const worldfairClaimed = useMemo(() => {
-    if (!address) return null;
-    const addressKey = address.toLowerCase();
-    return worldfairClaimedMap[addressKey] || null;
-  }, [address, worldfairClaimedMap]);
+    // Check Para address first
+    if (para.address) {
+      const paraKey = para.address.toLowerCase();
+      const paraClaim = worldfairClaimedMap[paraKey];
+      if (paraClaim) return paraClaim;
+    }
+
+    // Check EOA address second
+    if (eoa.address) {
+      const eoaKey = eoa.address.toLowerCase();
+      const eoaClaim = worldfairClaimedMap[eoaKey];
+      if (eoaClaim) return eoaClaim;
+    }
+
+    return null;
+  }, [para.address, eoa.address, worldfairClaimedMap]);
 
   // Check if user has tickets - now reactive to Zustand store updates
   // This will automatically update when TicketPreloader fetches tickets in the background
