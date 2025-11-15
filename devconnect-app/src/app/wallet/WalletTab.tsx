@@ -39,6 +39,7 @@ import {
   mdiInformationOutline,
   mdiClose,
   mdiArrowRight,
+  mdiInformation,
 } from '@mdi/js';
 
 // Image assets from local public/images directory
@@ -951,7 +952,7 @@ export default function WalletTab() {
                           title="Network information"
                         >
                           <Icon
-                            path={mdiChevronDown}
+                            path={mdiInformationOutline}
                             size={0.7}
                             className="text-[#0073de]"
                           />
