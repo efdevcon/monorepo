@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       const normalizedPassword = password.replace(/\s/g, '').toLowerCase();
       
       // Set earlyAccess cookie
-      response.cookies.set('earlyAccess', normalizedPassword, {
+      response.cookies.set('earlyAccessV2', normalizedPassword, {
         httpOnly: false, // Can be accessed by JavaScript
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',

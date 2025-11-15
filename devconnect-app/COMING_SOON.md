@@ -110,5 +110,5 @@ import { hasEarlyAccess, getCookie } from '@/utils/cookies';
 const hasAccess = hasEarlyAccess(); // Returns boolean
 
 // Get any cookie value
-const cookieValue = getCookie('earlyAccess'); // Returns string | null
+const cookieValue = getCookie('earlyAccessV2'); // Returns string | null
 ```
