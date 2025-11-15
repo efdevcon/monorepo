@@ -436,8 +436,6 @@ const MapPane = (props: {
 
     const paneType = poiGroupsData[selectionData.groupId]?.name || 'District';
 
-    console.log(selectionData, 'SELECTION DATA AHHH');
-
     switch (selectionData.pane_type) {
       case 'group':
       case 'district':
