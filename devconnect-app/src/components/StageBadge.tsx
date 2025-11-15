@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-type StageType = 'yellow' | 'green' | 'red' | 'music' | 'entertainment';
+type StageType = 'yellow' | 'green' | 'red' | 'amphitheater' | 'entertainment';
 
 interface StageBadgeProps {
   type: StageType;
@@ -13,7 +13,7 @@ export const StageBadge: React.FC<StageBadgeProps> = ({ type, label }) => {
     yellow: { bg: 'bg-[rgba(246,180,14,1)]' },
     green: { bg: 'bg-[rgba(56,142,48,1)]', text: 'text-white' },
     red: { bg: 'bg-[rgba(229,30,84,1)]', text: 'text-white' },
-    music: { bg: 'bg-[rgba(23,71,149,1)]', text: 'text-white' },
+    amphitheater: { bg: 'bg-[rgba(23,71,149,1)]', text: 'text-white' },
     entertainment: { bg: 'bg-[rgba(232,131,1,1)]' },
   };
 

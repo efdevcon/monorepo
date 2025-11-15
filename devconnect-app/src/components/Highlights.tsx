@@ -33,7 +33,7 @@ const HighlightCard = ({
 }: HighlightCardProps) => {
   const draggableLink = useDraggableLink();
   const isExternal = to.startsWith('http://') || to.startsWith('https://');
-  
+
   const cardContent = (
     <>
       <Image
@@ -50,12 +50,12 @@ const HighlightCard = ({
       </div>
     </>
   );
-  
+
   const linkClassName = cn(
     'shrink-0 bg-white border border-solid border-[#E4E6EB] w-[295px] overflow-hidden group',
     className
   );
-  
+
   if (isExternal) {
     return (
       <a
@@ -69,13 +69,9 @@ const HighlightCard = ({
       </a>
     );
   }
-  
+
   return (
-    <Link
-      href={to}
-      className={linkClassName}
-      {...draggableLink}
-    >
+    <Link href={to} className={linkClassName} {...draggableLink}>
       {cardContent}
     </Link>
   );
@@ -84,7 +80,7 @@ const HighlightCard = ({
 export const Highlights = () => {
   const highlights = [
     {
-      title: 'Ethereum Day (Nov 17)',
+      title: 'Ethereum Day - Nov 17th',
       to: 'https://ethday.devconnect.org',
       description:
         'The main Ethereum event and official opening of the week. Come early!',

@@ -92,7 +92,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
       ...pavilions.yellowPavilion,
       ...pavilions.greenPavilion,
       ...pavilions.redPavilion,
-      ...pavilions.music,
+      ...pavilions.amphitheater,
       ...pavilions.entertainment,
     ];
     return allStages.find((s) => s.id === stage);

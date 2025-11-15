@@ -21,7 +21,7 @@ export const canonicalStageIds = {
   XL: 'xl-stage',
   XS: 'xs-stage',
   LIGHTNING: 'lighting-talks-stage', // typo in the id but ehh whatever we will map our way out of it
-  MUSIC: 'music-stage',
+  AMPHITHEATER: 'amphitheater',
   STAGE1: 'stage-1',
   CINEMA: 'open-air-cinema',
 };
@@ -34,7 +34,7 @@ export const canonicalStageNames = {
   'xl-stage': 'XL Stage',
   'xs-stage': 'XS Stage',
   'lighting-talks-stage': 'Lightning Stage',
-  'music-stage': 'Music Stage',
+  amphitheater: 'Amphitheater',
   'stage-1': 'Stage 1',
   'open-air-cinema': 'Open Air Cinema',
 };
@@ -111,9 +111,9 @@ const stageMetadata: Record<
     pavilion: 'redPavilion',
   },
   amphitheater: {
-    name: 'Music Stage',
-    mapUrl: '/map?filter=music-stage',
-    pavilion: 'music',
+    name: 'Amphitheater',
+    mapUrl: '/map?filter=amphitheater',
+    pavilion: 'amphitheater',
   },
 };
 
@@ -180,7 +180,7 @@ export const useAllStages = () => {
       mapUrl: string;
       pavilionType: string;
     }>,
-    music: [] as Array<{
+    amphitheater: [] as Array<{
       id: string;
       apiSourceId: string;
       name: string;
@@ -201,7 +201,7 @@ export const useAllStages = () => {
     yellowPavilion: 'yellow',
     greenPavilion: 'green',
     redPavilion: 'red',
-    music: 'music',
+    amphitheater: 'amphitheater',
     entertainment: 'entertainment',
   };
 

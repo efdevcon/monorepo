@@ -56,7 +56,7 @@ const StagesPage = () => {
   };
 
   const renderPavilion = (
-    type: 'yellow' | 'green' | 'red' | 'music' | 'entertainment',
+    type: 'yellow' | 'green' | 'red' | 'amphitheater' | 'entertainment',
     label: string,
     pavilionStages: Array<{
       id: string;
@@ -89,7 +89,7 @@ const StagesPage = () => {
       {renderPavilion('yellow', 'Yellow Pavilion', pavilions.yellowPavilion)}
       {renderPavilion('green', 'Green Pavilion', pavilions.greenPavilion)}
       {renderPavilion('red', 'Red Pavilion', pavilions.redPavilion)}
-      {renderPavilion('music', 'Music', pavilions.music)}
+      {renderPavilion('amphitheater', 'Amphitheater', pavilions.amphitheater)}
       {renderPavilion(
         'entertainment',
         'Entertainment',
