@@ -145,65 +145,91 @@ export async function GET(request: NextRequest) {
 
     console.log('Using ticket secret for claim:', availableSecret);
 
-    // Get next available unclaimed link
-    const { data: availableLink, error: fetchError } = await supabase
-      .from('devconnect_app_claiming_links')
-      .select('*')
-      .is('claimed_by_user_email', null)
-      .order('created_at', { ascending: true })
-      .limit(1)
-      .single();
-
-    if (fetchError || !availableLink) {
-      console.error('Error fetching available link:', fetchError);
-      return NextResponse.json(
-        {
-          error: 'No links available',
-          message:
-            'All peanut links have been claimed. Please try again later.',
-        },
-        { status: 404 }
-      );
-    }
-
     // Get the user's wallet address from the request headers (passed by frontend)
     const userAddress = request.headers.get('x-wallet-address');
 
-    // Update the link to mark it as claimed
-    const { data: claimedLink, error: updateError } = await supabase
-      .from('devconnect_app_claiming_links')
-      .update({
-        claimed_by_user_email: userEmail,
-        claimed_by_address: userAddress?.toLowerCase() || null,
-        claimed_date: new Date().toISOString(),
-        ticket_secret_proof: availableSecret,
-      })
-      .eq('id', availableLink.id)
-      .is('claimed_by_user_email', null) // Double-check it's still unclaimed
-      .select()
-      .single();
+    // Retry logic to handle race conditions
+    const MAX_RETRIES = 3;
+    let attempt = 0;
+    let lastError: any = null;
 
-    if (updateError || !claimedLink) {
-      console.error('Error claiming link:', updateError);
-      // Link might have been claimed by someone else in the meantime
-      return NextResponse.json(
-        {
-          error: 'Claim failed',
-          message: 'Failed to claim link. Please try again.',
-        },
-        { status: 409 }
+    while (attempt < MAX_RETRIES) {
+      attempt++;
+      console.log(`Claim attempt ${attempt}/${MAX_RETRIES}`);
+
+      // Get next available unclaimed link
+      const { data: availableLink, error: fetchError } = await supabase
+        .from('devconnect_app_claiming_links')
+        .select('*')
+        .is('claimed_by_user_email', null)
+        .order('created_at', { ascending: true })
+        .limit(1)
+        .single();
+
+      if (fetchError || !availableLink) {
+        console.error('Error fetching available link:', fetchError);
+        return NextResponse.json(
+          {
+            error: 'No links available',
+            message:
+              'All peanut links have been claimed. Please try again later.',
+          },
+          { status: 404 }
+        );
+      }
+
+      // Update the link to mark it as claimed
+      const { data: claimedLink, error: updateError } = await supabase
+        .from('devconnect_app_claiming_links')
+        .update({
+          claimed_by_user_email: userEmail,
+          claimed_by_address: userAddress?.toLowerCase() || null,
+          claimed_date: new Date().toISOString(),
+          ticket_secret_proof: availableSecret,
+        })
+        .eq('id', availableLink.id)
+        .is('claimed_by_user_email', null) // Double-check it's still unclaimed
+        .select()
+        .single();
+
+      if (!updateError && claimedLink) {
+        // Success! Return the claimed link
+        console.log(`Successfully claimed link on attempt ${attempt}`);
+        return NextResponse.json({
+          link: claimedLink.link,
+          amount: claimedLink.amount,
+          claimed_date: claimedLink.claimed_date,
+          ticket_secret: claimedLink.ticket_secret_proof,
+          already_claimed: false,
+          message: 'Claim link retrieved successfully',
+        });
+      }
+
+      // Update failed - likely race condition
+      lastError = updateError;
+      console.log(
+        `Claim attempt ${attempt} failed (likely race condition):`,
+        updateError
       );
+
+      // If not the last attempt, wait before retrying with exponential backoff
+      if (attempt < MAX_RETRIES) {
+        const backoffMs = 100 * attempt; // 100ms, 200ms, 300ms
+        console.log(`Waiting ${backoffMs}ms before retry...`);
+        await new Promise((resolve) => setTimeout(resolve, backoffMs));
+      }
     }
 
-    // Return the claimed link
-    return NextResponse.json({
-      link: claimedLink.link,
-      amount: claimedLink.amount,
-      claimed_date: claimedLink.claimed_date,
-      ticket_secret: claimedLink.ticket_secret_proof,
-      already_claimed: false,
-      message: 'Claim link retrieved successfully',
-    });
+    // All retries exhausted
+    console.error('All claim attempts failed:', lastError);
+    return NextResponse.json(
+      {
+        error: 'Claim failed',
+        message:
+          'Failed to claim link after multiple attempts. Please try again.',
+      },
+      { status: 409 }
+    );
   } catch (error) {
     console.error('Unexpected error in claim-peanut:', error);
     return NextResponse.json(

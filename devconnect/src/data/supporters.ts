@@ -616,7 +616,7 @@ export const supportersData: Record<string, Supporter> = {
   "27e638cdc41580acb2e3d4c9af1a355f": {
     "name": "Open Gaming Space",
     "layerName": "open-gaming-space",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-15T03-29-16-934Z-OGS.png",
     "largeLogo": "",
     "description": "",
     "websiteLink": "",
@@ -688,7 +688,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415803ba79cfdf2f7353ded": {
     "name": "PSE",
     "layerName": "pse",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-15T03-29-19-806Z-PSE.png",
     "largeLogo": "",
     "description": "",
     "websiteLink": "",

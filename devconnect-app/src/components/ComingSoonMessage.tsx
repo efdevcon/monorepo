@@ -45,7 +45,6 @@ export default function ComingSoonMessage({
                   Whilst we apply the finishing touches, check out the{' '}
                   <Link
                     href="/schedule"
-                    target="_blank"
                     className="font-bold text-[#0073de] underline"
                   >
                     Schedule
@@ -53,7 +52,6 @@ export default function ComingSoonMessage({
                   and get your{' '}
                   <Link
                     href="/tickets"
-                    target="_blank"
                     className="font-bold text-[#0073de] underline"
                   >
                     Tickets

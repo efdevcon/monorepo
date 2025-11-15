@@ -159,7 +159,7 @@ export async function GET(request: NextRequest) {
         id: getPropertyValue('ID'),
         name: getPropertyValue('Quest name'),
         order: getPropertyValue('Order'),
-        instructions: getPropertyValue('Quest instructions'),
+        instructions: getPropertyValue('Short instructions') || getPropertyValue('Quest instructions'),
         action: getPropertyValue('Action'),
         button: getPropertyValue('Button'),
         group: getPropertyValue('Group'),
