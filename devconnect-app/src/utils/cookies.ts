@@ -10,7 +10,7 @@ export function hasEarlyAccess(): boolean {
   const cookies = document.cookie.split(';');
   return cookies.some(cookie => {
     const [name] = cookie.trim().split('=');
-    return name === 'earlyAccess';
+    return name === 'earlyAccessV2';
   });
 }
 
