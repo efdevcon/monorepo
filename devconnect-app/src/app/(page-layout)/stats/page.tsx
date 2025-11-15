@@ -317,7 +317,7 @@ export default function StatsPage() {
               Claim Progress
             </h3>
             <span className={`text-2xl font-bold ${
-              stats.stats.available_links < 500 ? 'text-red-600' : 'text-blue-600'
+              stats.stats.available_links < 500 ? 'text-red-600' : 'text-green-600'
             }`}>
               {claimRate}%
             </span>
@@ -325,7 +325,7 @@ export default function StatsPage() {
           <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
             <div
               className={`h-4 rounded-full transition-all duration-500 ${
-                stats.stats.available_links < 500 ? 'bg-red-600' : 'bg-blue-600'
+                stats.stats.available_links < 500 ? 'bg-red-600' : 'bg-green-600'
               }`}
               style={{ width: `${claimRate}%` }}
             ></div>
