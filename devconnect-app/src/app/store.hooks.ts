@@ -61,68 +61,58 @@ const computeStages = (events?: any[]) => {
 // Stage metadata - keys match normalized API values
 const stageMetadata: Record<
   string,
-  { name: string; mapUrl: string; urlId: string; pavilion: string }
+  { name: string; mapUrl: string; pavilion: string }
 > = {
   xl: {
     name: 'XL Stage',
     mapUrl: '/map?filter=xl-stage',
-    urlId: 'xl-stage',
     pavilion: 'yellowPavilion',
   },
   x1: {
     name: 'XL Stage',
     mapUrl: '/map?filter=xl-stage',
-    urlId: 'xl-stage',
     pavilion: 'yellowPavilion',
   },
   m2: {
     name: 'M2 Stage',
     mapUrl: '/map?filter=m2-stage',
-    urlId: 'm2-stage',
     pavilion: 'yellowPavilion',
   },
   m1: {
     name: 'M1 Stage',
     mapUrl: '/map?filter=m1-stage',
-    urlId: 'm1-stage',
     pavilion: 'yellowPavilion',
   },
   xs: {
     name: 'XS Stage',
     mapUrl: '/map?filter=xs-stage',
-    urlId: 'xs-stage',
     pavilion: 'yellowPavilion',
   },
   // Map link not working
-  workshop: {
-    name: 'Workshop',
-    mapUrl: '/map?filter=workshop',
-    urlId: 'workshop',
+  bootcamp: {
+    name: 'Bootcamp',
+    mapUrl: '/map?filter=bootcamp',
     pavilion: 'yellowPavilion',
   },
   // Map link not working
-  auditorium: {
-    name: 'Auditorium',
-    mapUrl: '/map?filter=auditorium',
-    urlId: 'auditorium',
+  l: {
+    name: 'L Stage',
+    mapUrl: '/map?filter=l-stage',
     pavilion: 'redPavilion',
   },
   nogal: {
     name: 'Nogal Hall',
     mapUrl: '/map?filter=nogal-hall',
-    urlId: 'nogal-hall',
     pavilion: 'redPavilion',
   },
   ceibo: {
     name: 'Ceibo Hall',
     mapUrl: '/map?filter=ceibo-hall',
-    urlId: 'ceibo-hall',
     pavilion: 'redPavilion',
   },
   amphitheater: {
     name: 'Music Stage',
     mapUrl: '/map?filter=music-stage',
-    urlId: 'music-stage',
     pavilion: 'music',
   },
 };
@@ -229,7 +219,7 @@ export const useAllStages = () => {
     if (metadata && apiSourceId) {
       const pavilion = metadata.pavilion as keyof typeof pavilions;
       pavilions[pavilion].push({
-        id: metadata.urlId, // Use urlId for consistent URLs with map
+        id: stageId,
         apiSourceId,
         name: metadata.name,
         mapUrl: metadata.mapUrl,
