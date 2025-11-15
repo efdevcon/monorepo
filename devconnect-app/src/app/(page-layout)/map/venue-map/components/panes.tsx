@@ -16,6 +16,7 @@ import { supportersData } from '@/data/supporters';
 import { questsData } from '@/data/quests';
 import { questGroupsData } from '@/data/questGroups';
 import { District } from '@/types/api-data';
+import { Quest } from '@/types/quest';
 import { useRouter } from 'next/navigation';
 
 const Pane = ({
@@ -34,6 +35,7 @@ const Pane = ({
   questAvailable,
   backgroundColor,
   showAsModal = false,
+  supporterQuest,
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -50,6 +52,7 @@ const Pane = ({
   questAvailable?: boolean;
   backgroundColor?: string;
   showAsModal?: boolean;
+  supporterQuest?: Quest | null;
 }) => {
   const imageSrc = logo || '';
   const router = useRouter();
@@ -250,13 +253,13 @@ const Pane = ({
           </p>
         </div>
       )}
-      {description && (
+      {supporterQuest?.instructions && (
         <div className="flex flex-col gap-1 leading-[1.5] mt-4">
           <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
             Quest
           </p>
           <p className="text-sm text-[#353548] font-normal">
-            Visit the booth to learn more about the quest!
+            {supporterQuest.instructions}
           </p>
         </div>
       )}
@@ -464,63 +467,63 @@ const MapPane = (props: {
                     App Showcase
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                  {districtSupporters.map((supporter, index) => {
-                    // Find quest for this supporter
-                    const supporterQuest = questsData.find(
-                      (quest) =>
-                        quest.supporterId ===
-                        Object.keys(supportersData).find(
-                          (key) => supportersData[key] === supporter
-                        )
-                    );
+                    {districtSupporters.map((supporter, index) => {
+                      // Find quest for this supporter
+                      const supporterQuest = questsData.find(
+                        (quest) =>
+                          quest.supporterId ===
+                          Object.keys(supportersData).find(
+                            (key) => supportersData[key] === supporter
+                          )
+                      );
 
-                    const content = (
-                      <>
-                        {supporter.logo ? (
-                          <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white">
-                            <img
-                              src={supporter.logo}
-                              alt={supporter.name}
-                              width={24}
-                              height={24}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </div>
-                        ) : (
-                          <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white opacity-25">
-                            <Image
-                              src={Placeholder}
-                              alt={supporter.name}
-                              className="w-4 h-4 object-cover"
-                              style={{ filter: 'brightness(0)' }}
-                            />
-                          </div>
-                        )}
-                        <p className="flex-1 text-sm leading-none text-[#353548] font-normal">
-                          {supporter.name}
-                        </p>
-                      </>
-                    );
+                      const content = (
+                        <>
+                          {supporter.logo ? (
+                            <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white">
+                              <img
+                                src={supporter.logo}
+                                alt={supporter.name}
+                                width={24}
+                                height={24}
+                                className="w-full h-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </div>
+                          ) : (
+                            <div className="shrink-0 w-[24px] h-[24px] border rounded-[1px] overflow-hidden flex items-center justify-center bg-white opacity-25">
+                              <Image
+                                src={Placeholder}
+                                alt={supporter.name}
+                                className="w-4 h-4 object-cover"
+                                style={{ filter: 'brightness(0)' }}
+                              />
+                            </div>
+                          )}
+                          <p className="flex-1 text-sm leading-none text-[#353548] font-normal">
+                            {supporter.name}
+                          </p>
+                        </>
+                      );
 
-                    return supporterQuest ? (
-                      <Link
-                        href={`/quests#${supporterQuest.id}`}
-                        key={index}
-                        className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
-                      >
-                        {content}
-                      </Link>
-                    ) : (
-                      <div
-                        className="flex gap-2 items-center py-0.5 w-full"
-                        key={index}
-                      >
-                        {content}
-                      </div>
-                    );
-                  })}
+                      return supporterQuest ? (
+                        <Link
+                          href={`/quests#${supporterQuest.id}`}
+                          key={index}
+                          className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
+                        >
+                          {content}
+                        </Link>
+                      ) : (
+                        <div
+                          className="flex gap-2 items-center py-0.5 w-full"
+                          key={index}
+                        >
+                          {content}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -560,6 +563,7 @@ const MapPane = (props: {
             backgroundColor={supporterDistrict?.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
             showAsModal={isDesktop && fromQuests}
+            supporterQuest={supporterQuest}
           >
             {/* View Quest/Map Button for supporters with quests */}
             {supporterQuest && (
