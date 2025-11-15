@@ -5,6 +5,7 @@ import { Modal, ModalContent } from 'lib/components/modal';
 import { Button } from '@/components/ui/button';
 import { Wallet, TrendingUp, Activity, Coins, X } from 'lucide-react';
 import { useLocalStorage } from 'usehooks-ts';
+import { fetchAuth } from '@/services/apiClient';
 
 interface TokenBalance {
   tokenAddress: string;
@@ -31,6 +32,7 @@ interface PortfolioData {
   totalValue: number;
   tokenBalances: TokenBalance[];
   recentActivity: RecentActivity[];
+  worldfairDomain?: string | null; // The worldfair.eth domain name if owned (e.g., "didierkrux.worldfair.eth")
 }
 
 interface PortfolioModalProps {
@@ -90,7 +92,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
       const addressKey = currentAddress.toLowerCase();
       console.log('🌐 [PORTFOLIO_MODAL] Fetching from API');
 
-      const response = await fetch('/api/portfolio', {
+      const response = await fetchAuth('/api/auth/portfolio', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,12 +100,11 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
         body: JSON.stringify({ address: addressKey }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch portfolio data');
+      if (!response.success) {
+        throw new Error(response.error || 'Failed to fetch portfolio data');
       }
 
-      const data = await response.json();
+      const data = response.data;
       setPortfolioData(data);
 
       // Save to global portfolio cache with address as key
@@ -266,6 +267,36 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                   {formatUSD(portfolioData.totalValue)}
                 </p>
               </div>
+
+              {/* Worldfair.eth Domain */}
+              {portfolioData.worldfairDomain && (
+                <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4 border-2 border-purple-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg
+                      className="h-5 w-5 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                    <h3 className="font-semibold text-lg text-purple-800">
+                      Worldfair Domain
+                    </h3>
+                  </div>
+                  <p className="text-xl font-bold text-purple-700">
+                    {portfolioData.worldfairDomain}
+                  </p>
+                  <p className="text-sm text-purple-600 mt-1">
+                    ✓ Verified NFT ownership
+                  </p>
+                </div>
+              )}
 
               {/* Token Balances */}
               <div>
