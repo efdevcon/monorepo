@@ -12,7 +12,6 @@ import { mainnet, base } from 'viem/chains';
 import { createPublicClient, http, toCoinType, parseAbi, type Address } from 'viem';
 import { useLocalStorage } from 'usehooks-ts';
 import { APP_CONFIG } from '@/config/config';
-import { fetchAuth } from '@/services/apiClient';
 
 const PRIMARY_WALLET_TYPE_KEY = 'devconnect_primary_wallet_type';
 
@@ -21,7 +20,6 @@ export type WalletType = 'para' | 'eoa' | null;
 interface WalletIdentity {
   name: string | null;
   avatar: string | null;
-  worldfairName: string | null; // Separate field for worldfair.eth even if primary name is different
 }
 
 interface TokenBalance {
@@ -62,7 +60,6 @@ export interface PortfolioData {
   tokenBalances: TokenBalance[];
   recentActivity: RecentActivity[];
   peanutClaimingState?: PeanutClaimingState | null;
-  worldfairDomain?: string | null; // The worldfair.eth domain name if owned (e.g., "didierkrux.worldfair.eth")
 }
 
 /**
@@ -468,126 +465,117 @@ export function useWalletManager() {
           }
         }
 
-        // Check for worldfair.eth L2 reverse name on Base
-        // Always check this regardless of ENS/basename to detect worldfair.eth ownership
+        // If no ENS or basename, check for L2 reverse name on Base
+        // Supports any L2 name (worldfair.eth, base.eth, etc.) set as primary on Base
         let worldfairName: string | null = null;
-        let worldfairNftName: string | null = null; // Track worldfair.eth NFT ownership separately
-
-        // ✅ ALWAYS try L2 reverse lookup first (fast, accurate)
-        try {
-          console.log(`[identity] Checking for L2 reverse name (worldfair.eth) via registrar lookup`);
-
-          // Optimistic L2 reverse resolution (instant, no propagation delay)
-          // This queries the L2 reverse registrar directly and verifies forward resolution
+        if (!ensName && !basename) {
           try {
-            console.log(`[identity] Trying optimistic L2 reverse resolution on Base`);
+            console.log(`[identity] Trying L2 reverse name lookup for ${addressKey}`);
 
-            // Step 1: Get the L2 reverse registrar address from L1
-            const reverseNamespace = `${toCoinType(base.id).toString(16)}.reverse`;
-            console.log(`[identity] Reverse namespace:`, reverseNamespace);
-
-            const chainReverseResolver = await publicClient.getEnsResolver({
-              name: reverseNamespace,
-            });
-            console.log(`[identity] Chain reverse resolver:`, chainReverseResolver);
-
-            if (!chainReverseResolver) {
-              throw new Error('No reverse resolver found for Base chain');
-            }
-
-            // Step 2: Get the L2 registrar address from the resolver
-            const l2ReverseRegistrar = await publicClient.readContract({
-              address: chainReverseResolver,
-              abi: parseAbi(['function l2Registrar() view returns (address)']),
-              functionName: 'l2Registrar',
-            });
-            console.log(`[identity] L2 reverse registrar:`, l2ReverseRegistrar);
-
-            // Step 3: Query the L2 registrar directly on Base for the reverse name
-            const reverseName = await baseClient.readContract({
-              address: l2ReverseRegistrar as Address,
-              abi: parseAbi(['function nameForAddr(address) view returns (string)']),
-              functionName: 'nameForAddr',
-              args: [addressKey as Address],
-            });
-            console.log(`[identity] Reverse name from L2 registrar:`, reverseName);
-
-            // Step 4: Verify forward resolution (ensure the name actually points back to this address)
-            if (reverseName) {
-              console.log(`[identity] Found L2 reverse name: ${reverseName}, verifying forward resolution...`);
-
-              const forwardAddr = await publicClient.getEnsAddress({
-                name: reverseName,
-                coinType: toCoinType(base.id),
+            // Optimistic L2 reverse resolution (instant, no propagation delay)
+            // This queries the L2 reverse registrar directly and verifies forward resolution
+            try {
+              console.log(`[identity] Trying optimistic L2 reverse resolution on Base`);
+              
+              // Step 1: Get the L2 reverse registrar address from L1
+              const reverseNamespace = `${toCoinType(base.id).toString(16)}.reverse`;
+              console.log(`[identity] Reverse namespace:`, reverseNamespace);
+              
+              const chainReverseResolver = await publicClient.getEnsResolver({
+                name: reverseNamespace,
               });
-              console.log(`[identity] Forward resolution result:`, forwardAddr);
+              console.log(`[identity] Chain reverse resolver:`, chainReverseResolver);
+              
+              if (!chainReverseResolver) {
+                throw new Error('No reverse resolver found for Base chain');
+              }
 
-              if (forwardAddr?.toLowerCase() === addressKey.toLowerCase()) {
-                worldfairName = reverseName;
-                console.log(`[identity] ✅ Found and verified L2 reverse name via registrar:`, worldfairName);
+              // Step 2: Get the L2 registrar address from the resolver
+              const l2ReverseRegistrar = await publicClient.readContract({
+                address: chainReverseResolver,
+                abi: parseAbi(['function l2Registrar() view returns (address)']),
+                functionName: 'l2Registrar',
+              });
+              console.log(`[identity] L2 reverse registrar:`, l2ReverseRegistrar);
+
+              // Step 3: Query the L2 registrar directly on Base for the reverse name
+              const reverseName = await baseClient.readContract({
+                address: l2ReverseRegistrar as Address,
+                abi: parseAbi(['function nameForAddr(address) view returns (string)']),
+                functionName: 'nameForAddr',
+                args: [addressKey as Address],
+              });
+              console.log(`[identity] Reverse name from L2 registrar:`, reverseName);
+
+              // Step 4: Verify forward resolution (ensure the name actually points back to this address)
+              if (reverseName) {
+                console.log(`[identity] Found L2 reverse name: ${reverseName}, verifying forward resolution...`);
+                
+                const forwardAddr = await publicClient.getEnsAddress({
+                  name: reverseName,
+                  coinType: toCoinType(base.id),
+                });
+                console.log(`[identity] Forward resolution result:`, forwardAddr);
+
+                if (forwardAddr?.toLowerCase() === addressKey.toLowerCase()) {
+                  worldfairName = reverseName;
+                  console.log(`[identity] ✅ Found and verified L2 reverse name via optimistic resolution:`, worldfairName);
+                } else {
+                  console.warn(`[identity] ⚠️ Forward resolution mismatch: ${forwardAddr} !== ${addressKey}`);
+                }
               } else {
-                console.warn(`[identity] ⚠️ Forward resolution mismatch: ${forwardAddr} !== ${addressKey}`);
+                console.log(`[identity] ℹ️ No L2 reverse name set on Base`);
               }
-            } else {
-              console.log(`[identity] ℹ️ No L2 reverse name set on Base registrar`);
+            } catch (err) {
+              console.warn('[identity] ❌ Optimistic L2 reverse resolution failed:', err instanceof Error ? err.message : String(err));
+              console.warn('[identity] Error details:', err);
             }
-          } catch (err) {
-            console.warn('[identity] ❌ L2 reverse registrar lookup failed:', err instanceof Error ? err.message : String(err));
-          }
-        } catch (err) {
-          console.warn('[identity] L2 reverse name check failed:', err instanceof Error ? err.message : String(err));
-        }
 
-        // ⚠️ FALLBACK: Only check NFT API if no L2 reverse name was found
-        // NFT API is slower and less accurate, so only use as last resort
-        if (!worldfairName && APP_CONFIG.ALCHEMY_APIKEY) {
-          try {
-            console.log(`[identity] L2 registrar lookup didn't find worldfair.eth, falling back to NFT API scan`);
+            // If no L2 reverse record found, fall back to NFT ownership check for worldfair.eth specifically
+            // This catches cases where user owns a worldfair.eth but hasn't set it as their primary reverse name
+            if (!worldfairName && APP_CONFIG.ALCHEMY_APIKEY) {
+              console.log(`[identity] No L2 reverse name found, falling back to worldfair.eth NFT ownership check`);
+              
+              const worldfairContract = '0xD6A7dCDEe200Fa37F149323C0aD6b3698Aa0E829';
+              const alchemyResponse = await fetch(
+                `https://base-mainnet.g.alchemy.com/nft/v3/${APP_CONFIG.ALCHEMY_APIKEY}/getNFTsForOwner?owner=${addressKey}&contractAddresses=${worldfairContract}&withMetadata=true&excludeFilters=SPAM&excludeFilters=AIRDROPS&pageSize=100`,
+                {
+                  method: 'GET',
+                  headers: {
+                    'Accept': 'application/json',
+                  },
+                }
+              );
 
-            const worldfairContract = '0xD6A7dCDEe200Fa37F149323C0aD6b3698Aa0E829';
-            const alchemyResponse = await fetch(
-              `https://base-mainnet.g.alchemy.com/nft/v3/${APP_CONFIG.ALCHEMY_APIKEY}/getNFTsForOwner?owner=${addressKey}&contractAddresses=${worldfairContract}&withMetadata=true&excludeFilters=SPAM&excludeFilters=AIRDROPS&pageSize=100`,
-              {
-                method: 'GET',
-                headers: {
-                  'Accept': 'application/json',
-                },
-              }
-            );
+              if (alchemyResponse.ok) {
+                const alchemyData = await alchemyResponse.json();
+                console.log(`[identity] Alchemy NFT API returned ${alchemyData.ownedNfts?.length || 0} worldfair.eth NFTs`);
 
-            if (alchemyResponse.ok) {
-              const alchemyData = await alchemyResponse.json();
-              console.log(`[identity] Alchemy NFT API returned ${alchemyData.ownedNfts?.length || 0} worldfair.eth NFTs`);
+                // Look through owned NFTs for worldfair.eth domains
+                if (alchemyData.ownedNfts && Array.isArray(alchemyData.ownedNfts)) {
+                  for (const nft of alchemyData.ownedNfts) {
+                    const name = nft.name || nft.raw?.metadata?.name || nft.title || nft.metadata?.name || '';
+                    const description = nft.description || nft.metadata?.description || '';
 
-              // Look through owned NFTs for worldfair.eth domains
-              if (alchemyData.ownedNfts && Array.isArray(alchemyData.ownedNfts)) {
-                for (const nft of alchemyData.ownedNfts) {
-                  const name = nft.name || nft.raw?.metadata?.name || nft.title || nft.metadata?.name || '';
-                  const description = nft.description || nft.metadata?.description || '';
-
-                  // Look for worldfair.eth in the NFT metadata
-                  if (name.endsWith('.worldfair.eth')) {
-                    worldfairNftName = name;
-                    console.log(`[identity] ✅ Found worldfair.eth name via NFT API fallback:`, worldfairNftName);
-                    break;
-                  } else if (description.includes('.worldfair.eth')) {
-                    const match = description.match(/([a-zA-Z0-9-]+\.worldfair\.eth)/);
-                    if (match) {
-                      worldfairNftName = match[1];
-                      console.log(`[identity] ✅ Extracted worldfair.eth name from NFT description (fallback):`, worldfairNftName);
+                    // Look for worldfair.eth in the NFT metadata
+                    if (name.endsWith('.worldfair.eth')) {
+                      worldfairName = name;
+                      console.log(`[identity] Found worldfair.eth name via NFT ownership:`, worldfairName);
                       break;
+                    } else if (description.includes('.worldfair.eth')) {
+                      const match = description.match(/([a-zA-Z0-9-]+\.worldfair\.eth)/);
+                      if (match) {
+                        worldfairName = match[1];
+                        console.log(`[identity] Extracted worldfair.eth name from NFT description:`, worldfairName);
+                        break;
+                      }
                     }
                   }
                 }
               }
             }
-
-            // Use worldfair NFT name if found via fallback
-            if (worldfairNftName) {
-              worldfairName = worldfairNftName;
-            }
           } catch (err) {
-            console.warn('[identity] Worldfair.eth NFT API fallback failed:', err instanceof Error ? err.message : String(err));
+            console.warn('[identity] L2 reverse name lookup failed:', err instanceof Error ? err.message : String(err));
           }
         }
 
@@ -639,7 +627,6 @@ export function useWalletManager() {
         const resolvedIdentity: WalletIdentity = {
           name,
           avatar,
-          worldfairName: worldfairNftName, // Always include worldfair.eth NFT ownership (may be null)
         };
 
         setIdentityMap((prev) => ({
@@ -649,12 +636,7 @@ export function useWalletManager() {
 
         console.log(
           `✅ [WALLET_MANAGER] [identity] Identity resolved for ${addressKey}:`,
-          {
-            name,
-            hasAvatar: !!avatar,
-            type: ensName ? 'ENS' : basename ? 'basename' : worldfairName ? 'L2 name' : 'none',
-            worldfairName: worldfairNftName, // Separately tracked worldfair.eth NFT
-          }
+          { name, hasAvatar: !!avatar, type: ensName ? 'ENS' : basename ? 'basename' : worldfairName ? 'L2 name' : 'none' }
         );
       } catch (err) {
         console.error('[identity] Error resolving identity:', err instanceof Error ? err.message : String(err));
@@ -776,7 +758,7 @@ export function useWalletManager() {
         `🌐 [WALLET_MANAGER] Fetching portfolio from API for ${address.slice(0, 10)}...`
       );
 
-      const response = await fetchAuth('/api/auth/portfolio', {
+      const response = await fetch('/api/portfolio', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -784,11 +766,12 @@ export function useWalletManager() {
         body: JSON.stringify({ address: addressKey }),
       });
 
-      if (!response.success) {
-        throw new Error(response.error || 'Failed to fetch portfolio');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch portfolio');
       }
 
-      const data = response.data;
+      const data = await response.json();
 
       // Save to global portfolio cache with address as key
       setPortfolioCache((prev) => ({
