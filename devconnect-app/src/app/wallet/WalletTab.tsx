@@ -230,20 +230,10 @@ export default function WalletTab() {
 
   // Get identity map from localStorage to check both Para and EOA addresses
   const [identityMap] = useLocalStorage<
-    Record<
-      string,
-      {
-        name: string | null;
-        avatar: string | null;
-        worldfairName: string | null;
-      } | null
-    >
+    Record<string, { name: string | null; avatar: string | null } | null>
   >('wallet_identity_map', {});
 
   // Check both Para and EOA addresses for worldfair.eth names and save to localStorage
-  // Checks: 1) portfolio.worldfairDomain (NFT ownership from Zapper)
-  //         2) identity.worldfairName (L2 reverse lookup)
-  //         3) identity.name (if ends with .worldfair.eth)
   useEffect(() => {
     const addressesToCheck = [
       para.address?.toLowerCase(),
@@ -260,28 +250,19 @@ export default function WalletTab() {
 
     for (const addressKey of addressesToCheck) {
       const identity = identityMap[addressKey];
-      const portfolioData = portfolioCache[addressKey];
+      const ensName = identity?.name;
 
-      // Check multiple sources for worldfair.eth name (in priority order):
-      // 1. Portfolio NFT ownership (most reliable, direct from Zapper API)
-      // 2. Identity worldfairName field (from L2 reverse lookup)
-      // 3. Primary name if it ends with .worldfair.eth
-      const worldfairName =
-        portfolioData?.worldfairDomain ||
-        identity?.worldfairName ||
-        (identity?.name?.endsWith('.worldfair.eth') ? identity.name : null);
-
-      if (worldfairName) {
+      if (ensName && ensName.endsWith('.worldfair.eth')) {
         const existingClaim = worldfairClaimedMap[addressKey];
 
         // Only update if not already claimed or if the name changed
-        if (!existingClaim || existingClaim.name !== worldfairName) {
+        if (!existingClaim || existingClaim.name !== ensName) {
           console.log(
-            `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${worldfairName}`
+            `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${ensName}`
           );
           updates[addressKey] = {
             claimed: true,
-            name: worldfairName,
+            name: ensName,
             claimedAt: Date.now(),
           };
           hasUpdates = true;
@@ -300,7 +281,6 @@ export default function WalletTab() {
     para.address,
     eoa.address,
     identityMap,
-    portfolioCache,
     worldfairClaimedMap,
     setWorldfairClaimedMap,
   ]);
