@@ -652,15 +652,22 @@ const TicketTab = RequiresAuthHOC(() => {
               <div className="text-lg font-semibold flex items-center gap-2 justify-between lg:justify-start">
                 Your Devconnect Ticket
                 <button
-                  className="text-sm basic-button white-button small-button text-gray-600 hover:text-gray-900 flex items-center gap-1 !p-1 !h-auto"
+                  className="text-sm basic-button white-button small-button !gap-1.5 text-gray-600 hover:text-gray-900 flex items-center !p-1 !px-1.5 !h-auto"
                   onClick={async () => {
+                    if (loadingInternal || loading) {
+                      return;
+                    }
+
                     setLoadingInternal(true);
                     await refresh();
                     setLoadingInternal(false);
+
+                    toast.success('Tickets refreshed successfully!');
                   }}
                 >
+                  <div>Refresh Tickets</div>
                   <RefreshCw
-                    className={`w-4 h-4 ${loadingInternal || loading ? 'animate-spin' : ''}`}
+                    className={`w-3.5 h-3.5 ${loadingInternal || loading ? 'animate-spin' : ''}`}
                   />
                 </button>
               </div>

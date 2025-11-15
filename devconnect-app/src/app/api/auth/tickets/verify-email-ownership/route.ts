@@ -149,6 +149,17 @@ export const POST = async (request: NextRequest) => {
     );
   }
 
+  // Clear ticket cache so user gets fresh tickets with the new email
+  const { error: deleteCacheError } = await supabaseUnauthed
+    .from('ticket_cache')
+    .delete()
+    .eq('email', userEmail);
+
+  if (deleteCacheError) {
+    console.error('Failed to clear ticket cache:', deleteCacheError);
+    // Don't fail the request, just log the error
+  }
+
   return NextResponse.json({
     email: userEmail,
   });
