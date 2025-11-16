@@ -217,9 +217,7 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                     COLLECTED
                   </span>
                 ) : !quest.conditionValues ? (
-                  <span className="text-red-600 text-[10px] font-bold">
-                    NO POAP
-                  </span>
+                  <span className="text-red-600 text-[10px] font-bold"></span>
                 ) : (
                   <p
                     className="text-[#0073de] text-[10px] font-bold leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"

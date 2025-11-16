@@ -94,7 +94,7 @@ export async function verifyPoap(
     const mintedOn = data.mintedOn; // Unix timestamp from POAP API
 
     // TETMP: return fake data for testing (unix timestamp)
-    toast.success('🎉 FAKE POAP Verification Successful!', {
+    toast.success('POAP Verification Successful! 🎉', {
       description: 'Congratulations! You have completed this quest!',
       duration: 6000,
     });
