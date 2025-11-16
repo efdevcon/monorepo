@@ -375,6 +375,19 @@ export const PracticalInfo = () => {
                 if needed.
               </div>
             </li>
+            <li className="flex gap-2">
+              <div className="shrink-0">•</div>
+              <div>
+                Familiarize yourself with our{' '}
+                <Link
+                  href="https://devconnect.org/devconnect-code-of-conduct.pdf"
+                  className="text-[rgba(0,115,222,1)] font-semibold"
+                >
+                  Code of Conduct
+                </Link>{' '}
+                .
+              </div>
+            </li>
           </ul>
         </div>
       ),
