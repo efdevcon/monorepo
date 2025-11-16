@@ -44,7 +44,19 @@ const filters = [
     icon: mdiDomain,
     key: 'districts',
     label: 'Districts',
-    pois: poisData.filter((poi) => poi.districtId !== null), // Correct: filtering by districtId
+    pois: [
+      { name: 'AI', layerName: 'ai-district' },
+      { name: 'Defi', layerName: 'defi-district' },
+      { name: 'Collectibles', layerName: 'collectibles-district' },
+      { name: 'Social', layerName: 'social-district' },
+      {
+        name: 'Hardware & Wallets',
+        layerName: 'hardware-wallets-district',
+      },
+      { name: 'Gaming', layerName: 'gaming-district' },
+      { name: 'L2', layerName: 'l2-district' },
+      { name: 'Privacy', layerName: 'privacy-district' },
+    ],
   },
   {
     icon: mdiSoccer,
@@ -56,13 +68,13 @@ const filters = [
     icon: mdiFoodOutline,
     key: 'food-beverage',
     label: 'Food & Beverage',
-    pois: poisData.filter((poi) => poi.groupId === '6'), // Fixed: Food & Beverage is groupId 6
+    pois: poisData.filter((poi) => poi.groupId === '7'), // Fixed: Food & Beverage is groupId 6
   },
   {
     icon: mdiHandshakeOutline,
     key: 'meeting-rooms',
     label: 'Meeting Rooms',
-    pois: poisData.filter((poi) => poi.groupId === '8'), // Fixed: Meeting Rooms is groupId 8
+    pois: poisData.filter((poi) => poi.groupId === '9'), // Fixed: Meeting Rooms is groupId 8
   },
   // {
   //   icon: mdiInformationOutline,
@@ -74,15 +86,8 @@ const filters = [
     icon: mdiCashPlus,
     key: 'onramps',
     label: 'Onramps',
-    pois: poisData.filter((poi) => poi.groupId === '12'), // Correct: Onramp is groupId 12
+    pois: poisData.filter((poi) => poi.groupId === '13'), // Correct: Onramp is groupId 12
   },
-  // Additional categories available in the data:
-  // - Activation (groupId: 1)
-  // - Discussion corner (groupId: 4)
-  // - Interview rooms (groupId: 7)
-  // - Music Stage (groupId: 9)
-  // - QR-code (groupId: 13)
-  // - SWAG station (groupId: 14)
 ];
 
 export const SurfaceFilters = ({
