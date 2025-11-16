@@ -26,8 +26,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { file, fileName, contentType } = req.body;
 
-    if (!file || !fileName || !contentType) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    if (!file || !fileName) {
+      return res.status(400).json({ error: 'Missing required fields: file and fileName are required' });
+    }
+
+    if (!contentType) {
+      return res.status(400).json({ 
+        error: 'Missing content type',
+        details: 'The file type could not be determined. This often happens with HEIC files from iPhones. Please convert to JPEG or PNG first.' 
+      });
+    }
+
+    // Validate content type - reject unsupported formats
+    const supportedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'image/avif', // Modern format, Android 12+ and modern browsers
+      'image/bmp',
+      'image/tiff',
+      'image/svg+xml',
+      'application/pdf',
+      'text/plain'
+    ];
+
+    if (!supportedTypes.includes(contentType)) {
+      return res.status(415).json({ 
+        error: 'Unsupported file type',
+        details: `Content type "${contentType}" is not supported. Please use: JPEG, PNG, GIF, WebP, AVIF, BMP, TIFF, SVG, PDF, or TXT.` 
+      });
     }
 
     console.log('Upload request received:', {

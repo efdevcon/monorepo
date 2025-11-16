@@ -2,6 +2,9 @@
 
 import { useLocalStorage } from 'usehooks-ts';
 import { formatAddress } from '@/utils/format';
+import Icon from '@mdi/react';
+import { mdiInformationOutline } from '@mdi/js';
+import { toast } from 'sonner';
 
 interface WalletIdentity {
   name: string | null;
@@ -23,7 +26,31 @@ export function WalletDisplay({ address, className }: WalletDisplayProps) {
     {}
   );
 
-  if (!address) return <span className={className}>Not connected</span>;
+  if (!address)
+    return (
+      <span className={`${className} inline-flex items-center gap-1`}>
+        Not connected
+        <span
+          className="inline-flex items-center justify-center cursor-help relative group"
+          onClick={(event) => {
+            event.stopPropagation();
+            toast.info(
+              'Disconnect & connect again. Contact support if the problem is persisting.'
+            );
+          }}
+        >
+          <Icon
+            path={mdiInformationOutline}
+            size={0.65}
+            className="text-gray-500"
+          />
+          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Disconnect & connect again. Contact support if the problem is
+            persisting.
+          </span>
+        </span>
+      </span>
+    );
 
   const addressKey = address.toLowerCase();
   const identity = identityMap[addressKey];

@@ -12,8 +12,8 @@ export const SPONSOR_POLICY = {
   
   // Rate limiting per user
   rateLimit: {
-    maxTransactionsPerMinute: 5,
-    maxTransactionsPerHour: 50,
+    maxTransactionsPerMinute: 10,
+    maxTransactionsPerHour: 100,
   },
   
   // Allowed contracts (only USDC)
