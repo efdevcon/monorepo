@@ -95,6 +95,46 @@ export default function OnrampTab() {
 
   const digitalProviders = [
     {
+      name: 'Peanut',
+      description:
+        'Instant wire transfer, Mercado Pago and quick KYC. No debit/credit cards.',
+      gradient:
+        'linear-gradient(114.577deg, rgba(255, 145, 233, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
+      logoImage: 'peanut-logo.png',
+      fees: 'Low% - Based on rate',
+      onClick: () => {
+        if (!address) {
+          showErrorToast(
+            '❌ No Address Available',
+            'Please connect your wallet first'
+          );
+          return;
+        }
+
+        // Open popup immediately with blank URL (prevents mobile popup blockers)
+        const popup = window.open(
+          'about:blank',
+          '_blank',
+          'width=470,height=750'
+        );
+
+        if (!popup) {
+          showErrorToast(
+            '❌ Popup Blocked',
+            'Please allow popups for this site'
+          );
+          return;
+        }
+
+        const peanutUrl = `https://peanut.me/${address}@base`;
+        popup.location.href = peanutUrl;
+        showInfoToast(
+          '🥜 Peanut Opened',
+          'Complete your purchase in the new tab'
+        );
+      },
+    },
+    {
       name: 'Ripio',
       description: (
         <>
@@ -170,114 +210,74 @@ export default function OnrampTab() {
         // }
       },
     },
-    {
-      name: 'Peanut',
-      description:
-        'Instant wire transfer, Mercado Pago and quick KYC. No debit/credit cards.',
-      gradient:
-        'linear-gradient(114.577deg, rgba(255, 145, 233, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
-      logoImage: 'peanut-logo.png',
-      fees: 'Low% - Based on rate',
-      onClick: () => {
-        if (!address) {
-          showErrorToast(
-            '❌ No Address Available',
-            'Please connect your wallet first'
-          );
-          return;
-        }
+    // {
+    //   name: 'Coinbase',
+    //   description: 'Zero fees on Base. Requires KYC.',
+    //   gradient:
+    //     'linear-gradient(114.577deg, rgba(0, 82, 255, 0.2) 52.142%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
+    //   logoImage: 'coinbase-logo.png',
+    //   fees: '0% – 2.5%',
+    //   onClick: async () => {
+    //     if (!address) {
+    //       showErrorToast(
+    //         '❌ No Address Available',
+    //         'Please connect your wallet first'
+    //       );
+    //       return;
+    //     }
 
-        // Open popup immediately with blank URL (prevents mobile popup blockers)
-        const popup = window.open(
-          'about:blank',
-          '_blank',
-          'width=470,height=750'
-        );
+    //     const popup = window.open(
+    //       'about:blank',
+    //       '_blank',
+    //       'width=470,height=750'
+    //     );
 
-        if (!popup) {
-          showErrorToast(
-            '❌ Popup Blocked',
-            'Please allow popups for this site'
-          );
-          return;
-        }
+    //     if (!popup) {
+    //       showErrorToast(
+    //         '❌ Popup Blocked',
+    //         'Please allow popups for this site'
+    //       );
+    //       return;
+    //     }
 
-        const peanutUrl = `https://peanut.me/${address}@base`;
-        popup.location.href = peanutUrl;
-        showInfoToast(
-          '🥜 Peanut Opened',
-          'Complete your purchase in the new tab'
-        );
-      },
-    },
-    {
-      name: 'Coinbase',
-      description: 'Zero fees on Base. Requires KYC.',
-      gradient:
-        'linear-gradient(114.577deg, rgba(0, 82, 255, 0.2) 52.142%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
-      logoImage: 'coinbase-logo.png',
-      fees: '0% – 2.5%',
-      onClick: async () => {
-        if (!address) {
-          showErrorToast(
-            '❌ No Address Available',
-            'Please connect your wallet first'
-          );
-          return;
-        }
+    //     try {
+    //       const sessionToken = await generateSessionToken({
+    //         addresses: formatAddressesForToken(address, ['base']),
+    //         assets: ['USDC'],
+    //       });
 
-        const popup = window.open(
-          'about:blank',
-          '_blank',
-          'width=470,height=750'
-        );
+    //       if (!sessionToken) {
+    //         throw new Error('Failed to generate session token');
+    //       }
 
-        if (!popup) {
-          showErrorToast(
-            '❌ Popup Blocked',
-            'Please allow popups for this site'
-          );
-          return;
-        }
+    //       const baseUrl = 'https://pay.coinbase.com/buy/select-asset';
+    //       const params = new URLSearchParams();
+    //       params.append('sessionToken', sessionToken);
+    //       params.append('defaultNetwork', 'base');
+    //       params.append('defaultExperience', 'send');
 
-        try {
-          const sessionToken = await generateSessionToken({
-            addresses: formatAddressesForToken(address, ['base']),
-            assets: ['USDC'],
-          });
+    //       const currentDomain = window.location.origin;
+    //       const redirectURL = `${currentDomain}/onramp?type=coinbase&confirm=true`;
+    //       params.append('redirectURL', redirectURL);
 
-          if (!sessionToken) {
-            throw new Error('Failed to generate session token');
-          }
-
-          const baseUrl = 'https://pay.coinbase.com/buy/select-asset';
-          const params = new URLSearchParams();
-          params.append('sessionToken', sessionToken);
-          params.append('defaultNetwork', 'base');
-          params.append('defaultExperience', 'send');
-
-          const currentDomain = window.location.origin;
-          const redirectURL = `${currentDomain}/onramp?type=coinbase&confirm=true`;
-          params.append('redirectURL', redirectURL);
-
-          const url = `${baseUrl}?${params.toString()}`;
-          popup.location.href = url;
-          showInfoToast(
-            '🪙 Coinbase Opened',
-            'Complete your purchase in the new tab'
-          );
-        } catch (error) {
-          console.error('Failed to open Coinbase Onramp:', error);
-          if (popup && !popup.closed) {
-            popup.close();
-          }
-          showErrorToast(
-            '❌ Coinbase Error',
-            'Failed to connect to Coinbase. Please try again.'
-          );
-        }
-      },
-    },
+    //       const url = `${baseUrl}?${params.toString()}`;
+    //       popup.location.href = url;
+    //       showInfoToast(
+    //         '🪙 Coinbase Opened',
+    //         'Complete your purchase in the new tab'
+    //       );
+    //     } catch (error) {
+    //       console.error('Failed to open Coinbase Onramp:', error);
+    //       if (popup && !popup.closed) {
+    //         popup.close();
+    //       }
+    //       showErrorToast(
+    //         '❌ Coinbase Error',
+    //         'Failed to connect to Coinbase. Please try again.'
+    //       );
+    //     }
+    //   },
+    // },
     // {
     //   name: 'Transak (⚠️ Staging Environment)',
     //   description: 'Good rates, simple flow and light KYC.',
