@@ -28,7 +28,7 @@ export const poisData: POI[] = [
   {
     "name": "AID Room",
     "layerName": "aid-room",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-31-926Z-AID_Room.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -40,7 +40,7 @@ export const poisData: POI[] = [
   {
     "name": "Ambulance",
     "layerName": "ambulance",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-36-532Z-Ambulance.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -100,7 +100,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "bleachers",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-42-604Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -112,7 +112,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-1-pista-central",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-46-071Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -124,7 +124,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-3-pista-central",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-54-558Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -136,7 +136,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-4-pista-central",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-57-635Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -148,7 +148,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-2-pista-central",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-01-673Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -160,7 +160,7 @@ export const poisData: POI[] = [
   {
     "name": "Blue Discussion Corner",
     "layerName": "blue-discussion-corner",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-41-13-056Z-discuss-blue.png",
     "description": "The Devconnect Discussion Corners are open to all attendees who wants to work, network, and meet the people working in Ethereum. ",
     "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
     "twitterLink": "",
@@ -208,7 +208,7 @@ export const poisData: POI[] = [
   {
     "name": "Chicken Tenders",
     "layerName": "chicken-tenders",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-12-109Z-Cowork.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -220,7 +220,7 @@ export const poisData: POI[] = [
   {
     "name": "Childcare",
     "layerName": "childcare",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-20-737Z-childcare.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -256,7 +256,7 @@ export const poisData: POI[] = [
   {
     "name": "Cowork - Main Arena 1",
     "layerName": "cowork-main-arena-1",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-30-971Z-Cowork.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -268,7 +268,7 @@ export const poisData: POI[] = [
   {
     "name": "Cowork - Main Arena 2",
     "layerName": "cowork-main-arena-2",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-35-968Z-Cowork.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -280,7 +280,7 @@ export const poisData: POI[] = [
   {
     "name": "Cowork - The Hub",
     "layerName": "cowork-the-hub",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-38-529Z-Cowork.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -326,18 +326,6 @@ export const poisData: POI[] = [
     "groupId": "3"
   },
   {
-    "name": "Ethluminal Gallery",
-    "layerName": "ethluminal-gallery",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-35-15-115Z-Ethluminal-POI.png",
-    "description": "Ethluminal Gallery is a digital gallery space that showcases artworks selected by curators from within the vibrant Ethereum ecosystem.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "6",
-    "groupId": "1"
-  },
-  {
     "name": "Futbol Field",
     "layerName": "futbol-field",
     "logo": "",
@@ -364,7 +352,7 @@ export const poisData: POI[] = [
   {
     "name": "Gamers Discussion Corner",
     "layerName": "gamers-discussion-corner",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-41-46-953Z-discuss-gamers.png",
     "description": "Love all things gaming? Then this Discussion Corner is reserved exclusively for you – swing by and say hey!",
     "websiteLink": "",
     "twitterLink": "",
@@ -460,7 +448,7 @@ export const poisData: POI[] = [
   {
     "name": "Interview Room",
     "layerName": "poi-interview-room",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-41-317Z-Interview_Room.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -472,7 +460,7 @@ export const poisData: POI[] = [
   {
     "name": "KOI",
     "layerName": "koi",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-45-215Z-Cowork.png",
     "description": "Tasty asian food and delicious cocktails 🐉 ❤",
     "websiteLink": "https://drive.google.com/file/d/1xXQnwhfklTvI4pGQwmOpk7cWJzLAoqo-/view",
     "twitterLink": "",
@@ -592,7 +580,7 @@ export const poisData: POI[] = [
   {
     "name": "Media Room",
     "layerName": "media",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-52-123Z-Media_Room.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -604,7 +592,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Point 1",
     "layerName": "meeting-point-1",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-56-038Z-Meeting_point.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -616,7 +604,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Point 2",
     "layerName": "meeting-point-2",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-00-150Z-Meeting_point.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -820,7 +808,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Room Registration",
     "layerName": "meeting-rooms-registration",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-05-106Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -940,7 +928,7 @@ export const poisData: POI[] = [
   {
     "name": "Orange Discussion Corner",
     "layerName": "orange-discussion-corner",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-41-49-799Z-discuss-orange.png",
     "description": "The Devconnect Discussion Corners are open to all attendees who wants to work, network, and meet the people working in Ethereum. ",
     "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
     "twitterLink": "",
@@ -952,7 +940,7 @@ export const poisData: POI[] = [
   {
     "name": "Outdoor Seating Area",
     "layerName": "outdoor-seating-area-1",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-10-001Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -964,7 +952,7 @@ export const poisData: POI[] = [
   {
     "name": "Outdoor Seating Area",
     "layerName": "outdoor-seating-area",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-13-603Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1204,7 +1192,7 @@ export const poisData: POI[] = [
   {
     "name": "Purple Discussion Corner",
     "layerName": "purple-discussion-corner",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-41-53-326Z-discuss-blue.png",
     "description": "The Devconnect Discussion Corners are open to all attendees who wants to work, network, and meet the people working in Ethereum. ",
     "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
     "twitterLink": "",
@@ -1240,7 +1228,7 @@ export const poisData: POI[] = [
   {
     "name": "Quiet Cowork",
     "layerName": "quiet-cowork",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-19-713Z-Cowork.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1276,7 +1264,7 @@ export const poisData: POI[] = [
   {
     "name": "Registration",
     "layerName": "registration",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-22-826Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1288,7 +1276,7 @@ export const poisData: POI[] = [
   {
     "name": "Registration - M1 1",
     "layerName": "poi-registration-yellow-pavilion-m1-1",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-31-446Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1300,7 +1288,7 @@ export const poisData: POI[] = [
   {
     "name": "Registration - M1 2",
     "layerName": "poi-registration-yellow-pavilion-m1-2",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-38-045Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1312,7 +1300,7 @@ export const poisData: POI[] = [
   {
     "name": "Registration - M2 Stage",
     "layerName": "poi-registration-yellow-pavilion-m2",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-41-286Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1324,7 +1312,7 @@ export const poisData: POI[] = [
   {
     "name": "Registration - XL Stage",
     "layerName": "poi-registration-yellow-pavilion-xl",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-44-730Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1336,7 +1324,7 @@ export const poisData: POI[] = [
   {
     "name": "Registration - XS Stage",
     "layerName": "poi-registration-yellow-pavilion-xs",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-47-705Z-Registration.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1408,7 +1396,7 @@ export const poisData: POI[] = [
   {
     "name": "Toilet - Blue Pavilion",
     "layerName": "toilet-blue-pavilion",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-54-204Z-toilets.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1420,7 +1408,7 @@ export const poisData: POI[] = [
   {
     "name": "Toilet - Green Pavilion",
     "layerName": "toilet-green-pavilion",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-53-01-112Z-toilets.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1432,7 +1420,7 @@ export const poisData: POI[] = [
   {
     "name": "Toilet - Quiet Cowork 1",
     "layerName": "toilet-quiet-cowork-1",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-53-04-504Z-toilets.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1444,7 +1432,7 @@ export const poisData: POI[] = [
   {
     "name": "Toilet - Quiet Cowork 2",
     "layerName": "toilet-quiet-cowork-2",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-53-07-567Z-toilets.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1456,7 +1444,7 @@ export const poisData: POI[] = [
   {
     "name": "Toilet - Red Pavilion",
     "layerName": "toilet-red-pavilion",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-53-11-545Z-toilets.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -1468,7 +1456,7 @@ export const poisData: POI[] = [
   {
     "name": "Toilet - Yellow Pavilion",
     "layerName": "toilet-yellow-pavilion",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-53-15-036Z-toilets.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
