@@ -117,7 +117,7 @@ const stageMetadata: Record<
   },
   lightning: {
     name: 'Lightning Stage',
-    mapUrl: '/map?filter=lightning-stage',
+    mapUrl: '/map?filter=lighting-talks-stage',
     pavilion: 'greenPavilion',
   },
   'outdoor-cinema': {

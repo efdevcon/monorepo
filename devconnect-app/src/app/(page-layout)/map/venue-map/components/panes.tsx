@@ -27,6 +27,7 @@ import {
   mdiTshirtCrew,
   mdiInformationOutline,
   mdiSoccer,
+  mdiExportVariant,
 } from '@mdi/js';
 
 // Helper function to get stage color based on location/pavilion
@@ -174,7 +175,9 @@ const Pane = ({
           {links && links.website && links.website.trim() !== '' && (
             <Link
               href={links.website}
-              {...(links.website.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              {...(links.website.startsWith('http')
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
             >
               <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2 cursor-pointer">
                 <span className="font-bold text-sm text-[#0073DE]">
@@ -332,7 +335,8 @@ const Pane = ({
             }}
           >
             {/* Copy Location */}
-            <MapPin className="w-4 h-4 cursor-pointer" />
+            {/* <MapPin className="w-4 h-4 cursor-pointer" /> */}
+            <Icon path={mdiExportVariant} size={0.7} className="text-black" />
           </button>
           <button
             onClick={() => setSelection(null)}

@@ -19,14 +19,91 @@ import { StageBadge } from '@/components/StageBadge';
 import Image from 'next/image';
 import imgMeerkat from './meerkat.png';
 import moment, { Moment } from 'moment';
+import Button from 'lib/components/voxel-button/button';
 import {
   ClockIcon,
   ArrowLeft as ChevronLeftIcon,
+  ShareIcon,
   MapPinIcon,
 } from 'lucide-react';
 
-const MeerkatComponent = () => {
+const streams = {
+  amphitheater: {
+    translations: 'https://stm.live/stage-Amphitheatre/fullscreen?embed=true',
+    youtube: 'https://www.youtube.com/embed/aLptf94VIxc?si=tEFsjIPrfjw5c_v-',
+  },
+  lightning: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/iGN3K8aa58I?si=6xmYNVo14n1h1GI3',
+  },
+  ceibo: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/Mw5LZW2wICs?si=C4BiC_Q2V9EiVVm4',
+  },
+  nogal: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/C-kF0gplCto?si=NCDndzxiDbawrnFK',
+  },
+  xs: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+  },
+  xl: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
+  },
+  m1: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
+  },
+  m2: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+  },
+  l: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
+  },
+  bootcamp: {
+    translations: '',
+    youtube: 'https://www.youtube.com/embed/CjCii7U2GiY?si=zLDUGOn-Ygly3Z_5',
+  },
+};
+
+const AITranslations = ({ stage }: { stage: string }) => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const translationUrl = (streams as any)[stage]?.translations;
+
+  if (!translationUrl) {
+    return null;
+  }
+
+  if (!isEnabled) {
+    return (
+      <Button onClick={() => setIsEnabled(true)} color="blue-1" size="sm">
+        <div className="flex flex-col items-start">
+          <div className="font-semibold leading-tight">Live translations</div>
+        </div>
+      </Button>
+    );
+  }
+
+  return (
+    <div className="rounded-xl w-full h-full bg-white border border-solid border-neutral-200 aspect-[436/776]">
+      <iframe
+        src={`${translationUrl}`}
+        title={stage}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        className="w-full h-full rounded-xl"
+      />
+    </div>
+  );
+};
+
+const MeerkatComponent = ({ stage }: { stage: string }) => {
   const { tickets } = useTickets();
+  const url = `https://app.meerkat.events/stage/${stage}`;
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -44,25 +121,20 @@ const MeerkatComponent = () => {
 
     // 2. Pass off to Meerkat
     // window.location.href = `https://meerkat.events/e/stage-1?token=${token}`;
-    window.open('https://meerkat.events/e/stage-1', '_blank');
+    window.open(url, '_blank');
   };
 
   return (
-    <Link
-      href="https://meerkat.events/e/stage-1"
-      onClick={handleClick}
-      className={cn(
-        'border border-solid border-neutral-200 py-3 px-3 self-start bg-white flex items-center gap-2 justify-center',
-        tickets.length > 0 ? 'block' : 'pointer-events-none opacity-50'
-      )}
-    >
-      <Image src={imgMeerkat} alt="Meerkat" width={30} height={30} />
-      <div className="flex flex-col items-start">
-        <div className="text-xs font-semibold leading-tight">
-          Join the live Q/A
+    <Link href={url} onClick={handleClick} className={cn('w-full self-start')}>
+      <Button size="sm" color="blue-1" className="w-full">
+        <div className="flex flex-col items-start">
+          <div className="text-sm font-semibold leading-tight">
+            Join the live Q/A
+          </div>
         </div>
-        <div className="text-[11px]">Powered by Meerkat</div>
-      </div>
+        <Image src={imgMeerkat} alt="Meerkat" width={23} />
+        {/* <div className="text-[11px]">Powered by Meerkat</div> */}
+      </Button>
     </Link>
   );
 };
@@ -297,22 +369,22 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
           </div>
         ) : null}
       </div>
-      <div className="flex flex-col mx-6 gap-4">
-        <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
-          {/* <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/vabXXkZjKiw?si=-M34EYT3UoZoMyXQ"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe> */}
+      {(streams as any)[stageInfo.id]?.youtube && (
+        <div className="flex flex-col mx-6 gap-4">
+          <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
+            <iframe
+              className="w-full h-full"
+              src={(streams as any)[stageInfo.id]?.youtube}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 shrink-0">
+            <MeerkatComponent stage={stageInfo.id} />
+            <AITranslations stage={stageInfo.id} />
+          </div>
         </div>
-        <div className="flex gap-2 shrink-0">
-          <MeerkatComponent />
-        </div>
-      </div>
+      )}
       <div className="p-4 px-6 w-full">
         <h2 className="text-xl font-bold mb-2 sm:mb-4">
           Programming
