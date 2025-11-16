@@ -4,6 +4,19 @@ import { createServerClient } from '../supabaseServerClient';
 import { getPaidTicketsByEmail } from '../tickets/pretix';
 import { mainStore } from '../tickets/pretix-stores-list';
 
+// Normalize Gmail addresses
+function normalizeGmailForClaim(email: string): string {
+  const [localPart, domain] = email.toLowerCase().split('@');
+  if (!localPart || !domain) return email.toLowerCase();
+  
+  if (domain === 'gmail.com' || domain === 'googlemail.com') {
+    // Remove dots and strip +alias (Gmail ignores both)
+    const normalized = localPart.replace(/\./g, '').split('+')[0];
+    return normalized + '@gmail.com';
+  }
+  return email.toLowerCase();
+}
+
 export async function GET(request: NextRequest) {
   // Verify authentication
   const authResult = await verifyAuth(request);
@@ -120,6 +133,33 @@ export async function GET(request: NextRequest) {
         already_claimed: true,
         message: 'You have already claimed this perk',
       });
+    }
+
+    // For Gmail, check if any normalized variation has already claimed
+    const normalizedEmail = normalizeGmailForClaim(exactEmail);
+    const domain = exactEmail.split('@')[1]?.toLowerCase();
+    
+    if (domain === 'gmail.com' || domain === 'googlemail.com') {
+      // Fetch all Gmail claims and check for normalized duplicates in-memory
+      const { data: gmailClaims } = await supabase
+        .from('devconnect_app_claiming_links')
+        .select('claimed_by_user_email')
+        .not('claimed_by_user_email', 'is', null)
+        .or('claimed_by_user_email.ilike.%@gmail.com,claimed_by_user_email.ilike.%@googlemail.com');
+
+      if (gmailClaims) {
+        const hasDuplicate = gmailClaims.some(claim => 
+          normalizeGmailForClaim(claim.claimed_by_user_email) === normalizedEmail
+        );
+        
+        if (hasDuplicate) {
+          return NextResponse.json({
+            error: 'Already claimed',
+            message: 'This email has already been used to claim.',
+            already_claimed: true,
+          }, { status: 403 });
+        }
+      }
     }
 
     // Find first unclaimed ticket secret (not already used in database)
