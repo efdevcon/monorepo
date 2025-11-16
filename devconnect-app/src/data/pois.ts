@@ -328,7 +328,7 @@ export const poisData: POI[] = [
   {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/e8d6d6d6-6a27-47dc-92ad-a529fdebd290/Ethluminal-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664KJZABUZ%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T141623Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIGYu0O5GJZFj5YBbKP41RNrjrQPVnNxBTZ8Pd5aXHFfpAiA82Zh07kNBHYG87a9k8N55rzpNEDS47jPxViuitvUa3SqIBAiW%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIMlh%2FyLm5%2B%2FJy6Pn1lKtwDIrJJbF%2BbMvuT%2BPMNpKNr9EygMF%2FSFoL5xuvWc4D1l1y%2FtUqOqUKZSbEwx%2BRB5P3cPZh1c%2F7K%2FalktS8hpx4zaINquYk%2B%2FsIZF76zD606r20nfjxhccLXqcdyr4J2I0AfwC50D67uORL5jaxZxZgCa4nwdbKZnMUKPDwNl2P3B8MSCB9p%2FrRA6S8wL0cmBVTcxF1%2FAOxxMjlX3dfHGD1ZVGlTLqHPK0lWVehKyhb9%2FX1fd%2F9XWErVu96XVOjvQwECBVcrPuJWkd7nUjiHjuqjPqNJYNdSJlp32q3cVXcEtw8hkSg1NA7j566z0%2FjCb8fIBUOcJzTv6iEHGmBnCYUWHuEfYZePlZprP9OXpJRUBkrFVW9Wk%2BAmVxIb9mYo6TGfsFeLjF%2BrU9EVu65FQ6ydgoXsPpHqBvG8akAUOXCp3scSlSRduG2oHEctFSo4QtekBiqYOvkJtRL0xuzJYoMrZ2%2FBPUgLaLEsXi1vcisMpKteNHIX9SAIJhuoCKHv45SUGg8fDStVXrrb%2FZUCUf%2BlRYuX3VkIpGLMndwHGFjTaF12Mk5cp%2BrY%2F44mgfS0PSbe%2Byi0o2aqI3kaWJ6%2BF7RZPOtCz0DhtcN%2FModr9%2FLfNvbGrvS27b7CoxUeQgcwgp%2FnyAY6pgEnu8jNpjO9ytWs1ysYKlVYSkBWTEx%2B2D4%2FkMgZ1iG9QXvP7QaYuh8TtiKBkSViATF3QQy%2FyID1OL1tHHmAEkLQOO9ksyh%2F3XxdfXgbcA01Aq9SYCnY3%2BA4BwQJeEKK197dGYFfuuYRSn9pA%2FJOVLGJmCMVQ3sp2PKvcJg6OMkKgcC8KjU3oaPsp5xp7pcAO%2BtNVCk196FcnJ7L2iU1caWp0cqeuHYv&X-Amz-Signature=381d51e307a453fa50314589d649a7ba70a5da29c64608d69518858bdbd05ce4&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T16-30-28-364Z-Ethluminal-POI.png",
     "description": "Ethluminal Gallery is a digital gallery space that showcases artworks selected by curators from within the vibrant Ethereum ecosystem.",
     "websiteLink": "",
     "twitterLink": "",
@@ -542,7 +542,7 @@ export const poisData: POI[] = [
     "groupId": "3"
   },
   {
-    "name": "Lighting Talks Stage",
+    "name": "Lightning Talks Stage",
     "layerName": "lighting-talks-stage",
     "logo": "",
     "description": "",
@@ -880,7 +880,7 @@ export const poisData: POI[] = [
   {
     "name": "Onboarding",
     "layerName": "onboarding",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T16-30-33-732Z-Devconnect_ARG_logo_POI.png",
     "description": "Visit our Devconnect Onboarding Area for information and support, including set up of your Devconnect app.",
     "websiteLink": "",
     "twitterLink": "",
