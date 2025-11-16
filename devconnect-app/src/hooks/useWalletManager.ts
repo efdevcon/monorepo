@@ -12,7 +12,6 @@ import { mainnet, base } from 'viem/chains';
 import { createPublicClient, http, toCoinType, parseAbi, type Address } from 'viem';
 import { useLocalStorage } from 'usehooks-ts';
 import { APP_CONFIG } from '@/config/config';
-import { fetchAuth } from '@/services/apiClient';
 
 const PRIMARY_WALLET_TYPE_KEY = 'devconnect_primary_wallet_type';
 
@@ -794,26 +793,29 @@ export function useWalletManager() {
         `🌐 [WALLET_MANAGER] Fetching portfolio from API for ${address.slice(0, 10)}...`
       );
 
-      const response = await fetchAuth('/api/auth/portfolio', {
+      const response = await fetch('/api/portfolio', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ address: addressKey }),
+        body: JSON.stringify({
+          address: addressKey,
+          email: email || undefined, // Include email if user is authenticated (for peanut claiming state)
+        }),
       });
 
-      if (!response.success) {
+      if (!response.ok) {
         // Extract error details from API response
-        const errorData = response.data as any;
+        const errorData = await response.json();
         const errorInfo = {
-          message: response.error || 'Failed to fetch portfolio',
-          address: errorData?.address || addressKey,
-          errorType: errorData?.errorType || 'UNKNOWN_ERROR',
+          message: errorData.error || 'Failed to fetch portfolio',
+          address: errorData.address || addressKey,
+          errorType: errorData.errorType || 'UNKNOWN_ERROR',
         };
         throw errorInfo;
       }
 
-      const data = response.data;
+      const data = await response.json();
 
       // Save to global portfolio cache with address as key
       setPortfolioCache((prev) => ({
@@ -838,21 +840,13 @@ export function useWalletManager() {
       setPortfolioLoading(false);
       portfolioFetchingRef.current = false;
     }
-  }, [address, setPortfolioCache]);
+  }, [address, email, setPortfolioCache]);
 
   // Auto-fetch portfolio ONCE if not in cache (first-time load only)
-  // ⚠️ MUST wait for authentication to be ready since /api/auth/portfolio requires auth
   useEffect(() => {
     if (!address) return;
 
     const addressKey = address.toLowerCase();
-
-    // Check if authentication is ready
-    // For Para users: check for Para JWT in localStorage
-    // For Supabase users: check for supabase user
-    const hasParaJwt = typeof window !== 'undefined' && !!localStorage.getItem('paraJwt');
-    const hasSupabaseAuth = !!supabaseUser;
-    const isAuthReady = hasParaJwt || hasSupabaseAuth;
 
     // Check if we have cached data for this address
     const hasCachedData = !!portfolioCache[addressKey];
@@ -863,21 +857,24 @@ export function useWalletManager() {
     // Check if we're currently fetching
     const currentlyFetching = portfolioFetchingRef.current;
 
+    // Check if user is authenticated (has email) - preferred for peanut claiming state
+    // Portfolio API works without auth, but won't include peanut claiming state
+    const isAuthenticated = !!email;
+
     console.log(
       `🔍 [WALLET_MANAGER] Auto-fetch check for ${addressKey.slice(0, 10)}...`,
       {
         hasCachedData,
         alreadyAttempted,
         currentlyFetching,
-        isAuthReady,
-        hasParaJwt,
-        hasSupabaseAuth,
-        willFetch: !hasCachedData && !alreadyAttempted && !currentlyFetching && isAuthReady,
+        isAuthenticated,
+        willFetch: !hasCachedData && !alreadyAttempted && !currentlyFetching && isAuthenticated,
       }
     );
 
-    // Only fetch if: authentication ready AND no cached data AND haven't attempted before AND not currently fetching
-    if (isAuthReady && !hasCachedData && !alreadyAttempted && !currentlyFetching) {
+    // Only fetch if: authenticated (has email) AND no cached data AND haven't attempted before AND not currently fetching
+    // Wait for email to ensure we get peanut claiming state in the response
+    if (isAuthenticated && !hasCachedData && !alreadyAttempted && !currentlyFetching) {
       console.log(
         `📡 [WALLET_MANAGER] Auto-fetching portfolio for ${addressKey.slice(0, 10)}... (first time)`
       );
@@ -888,7 +885,7 @@ export function useWalletManager() {
       // Trigger the fetch
       fetchPortfolio();
     }
-  }, [address, portfolioCache, fetchPortfolio, supabaseUser, paraJwtReadyTrigger]);
+  }, [address, email, portfolioCache, fetchPortfolio, paraJwtReadyTrigger]);
 
   // Debug logging for address changes
   useEffect(() => {

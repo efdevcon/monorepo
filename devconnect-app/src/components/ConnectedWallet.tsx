@@ -605,7 +605,7 @@ export default function ConnectedWallet() {
       </div>
 
       <div className="flex flex-col gap-2 border-t pt-4">
-        {address && <PortfolioModal address={address} />}
+        {address && <PortfolioModal address={address} email={email} />}
 
         {/* SIWE Verification Button - disabled for now */}
         {/* {siweEnabled && (
