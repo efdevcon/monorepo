@@ -77,6 +77,22 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Get count of users who created accounts
+    const { count: totalUsers, error: usersError } = await supabase
+      .from('devconnect_app_user')
+      .select('*', { count: 'exact', head: true });
+
+    if (usersError) {
+      console.error('Error fetching users count:', usersError);
+      return NextResponse.json(
+        {
+          error: 'Database error',
+          message: 'Failed to fetch users count',
+        },
+        { status: 500 }
+      );
+    }
+
     // Fetch ETH price from CoinGecko
     let ethPriceUsd = null;
     try {
@@ -137,6 +153,7 @@ export async function GET(request: NextRequest) {
         available_links: availableLinks ?? 0,
         claimed_links: claimedLinks ?? 0,
         total_links: (availableLinks ?? 0) + (claimedLinks ?? 0),
+        total_users: totalUsers ?? 0,
       },
       relayers: relayerStats,
       timestamp: new Date().toISOString(),

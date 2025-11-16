@@ -3,19 +3,20 @@ import { useEffect, useState } from 'react';
 import { fetchAuth } from '@/services/apiClient';
 import { Separator } from 'lib/components/ui/separator';
 import Icon from '@mdi/react';
-import { 
-  mdiRefresh, 
-  mdiInformationOutline, 
-  mdiCheckCircleOutline, 
-  mdiAccountOutline, 
-  mdiLinkVariant, 
+import {
+  mdiRefresh,
+  mdiInformationOutline,
+  mdiCheckCircleOutline,
+  mdiAccountOutline,
+  mdiLinkVariant,
   mdiFileDocumentOutline,
   mdiAlertOutline,
   mdiAlert,
   mdiConsole,
   mdiCreditCardOutline,
   mdiSendOutline,
-  mdiCloseCircleOutline
+  mdiCloseCircleOutline,
+  mdiAccountMultiple,
 } from '@mdi/js';
 
 // Configuration
@@ -27,22 +28,25 @@ interface StatsData {
     available_links: number;
     claimed_links: number;
     total_links: number;
+    total_users: number;
   };
-  relayers?: {
-    payment: {
-      address: string;
-      balance: string;
-      balance_usd: string | null;
-      transaction_count: number;
-    };
-    send: {
-      address: string;
-      balance: string;
-      balance_usd: string | null;
-      transaction_count: number;
-    };
-    eth_price_usd: number | null;
-  } | { error: string };
+  relayers?:
+    | {
+        payment: {
+          address: string;
+          balance: string;
+          balance_usd: string | null;
+          transaction_count: number;
+        };
+        send: {
+          address: string;
+          balance: string;
+          balance_usd: string | null;
+          transaction_count: number;
+        };
+        eth_price_usd: number | null;
+      }
+    | { error: string };
   timestamp: string;
 }
 
@@ -67,10 +71,15 @@ export default function StatsPage() {
 
       if (!response.success) {
         // Check if it's an access denied error
-        if (response.error === 'Access denied' || response.message?.includes('@ethereum.org')) {
+        if (
+          response.error === 'Access denied' ||
+          response.message?.includes('@ethereum.org')
+        ) {
           setAccessDenied(true);
         } else {
-          setError(response.message || response.error || 'Failed to fetch stats');
+          setError(
+            response.message || response.error || 'Failed to fetch stats'
+          );
         }
         return;
       }
@@ -123,17 +132,14 @@ export default function StatsPage() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="text-center">
               <div className="mb-4 flex justify-center">
-                <Icon
-                  path={mdiAlert}
-                  size={2}
-                  color="#EF4444"
-                />
+                <Icon path={mdiAlert} size={2} color="#EF4444" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 Access Restricted
               </h2>
               <p className="text-gray-600">
-                This page is only accessible to users with @ethereum.org email addresses.
+                This page is only accessible to users with @ethereum.org email
+                addresses.
               </p>
             </div>
           </div>
@@ -149,11 +155,7 @@ export default function StatsPage() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="text-center">
               <div className="mb-4 flex justify-center">
-                <Icon
-                  path={mdiCloseCircleOutline}
-                  size={2}
-                  color="#EF4444"
-                />
+                <Icon path={mdiCloseCircleOutline} size={2} color="#EF4444" />
               </div>
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 Error Loading Stats
@@ -176,18 +178,23 @@ export default function StatsPage() {
     return null;
   }
 
-  const claimRate = stats.stats.total_links > 0
-    ? ((stats.stats.claimed_links / stats.stats.total_links) * 100).toFixed(1)
-    : '0';
+  const claimRate =
+    stats.stats.total_links > 0
+      ? ((stats.stats.claimed_links / stats.stats.total_links) * 100).toFixed(1)
+      : '0';
 
   const hasRelayerError = stats.relayers && 'error' in stats.relayers;
-  const relayers = !hasRelayerError && stats.relayers && 'payment' in stats.relayers ? stats.relayers : null;
-  
+  const relayers =
+    !hasRelayerError && stats.relayers && 'payment' in stats.relayers
+      ? stats.relayers
+      : null;
+
   // Calculate last imported CSV file (each file has 100 links, first 200 skipped for testing)
   // 800 links = prod_3 through prod_10 (skipped prod_1 and prod_2)
-  const lastImportedFile = stats.stats.total_links > 0 
-    ? `prod_${Math.floor(stats.stats.total_links / 100) + 2}.csv`
-    : 'None';
+  const lastImportedFile =
+    stats.stats.total_links > 0
+      ? `prod_${Math.floor(stats.stats.total_links / 100) + 2}.csv`
+      : 'None';
 
   return (
     <div className="bg-[#74ACDF10] gradient-background grow pb-8 overflow-x-hidden">
@@ -241,7 +248,7 @@ export default function StatsPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Available Links */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between">
@@ -296,6 +303,24 @@ export default function StatsPage() {
               </div>
             </div>
             <p className="text-xs text-gray-500 mt-2">Total in the system</p>
+          </div>
+
+          {/* Total Users */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600 mb-1">
+                  Total Users
+                </p>
+                <p className="text-3xl font-bold text-purple-600">
+                  {stats.stats.total_users}
+                </p>
+              </div>
+              <div className="p-3 bg-purple-100 rounded-full">
+                <Icon path={mdiAccountMultiple} size={1.3} color="#9333EA" />
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">Created accounts</p>
           </div>
         </div>
 
