@@ -292,7 +292,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158033ad04f20813ae1431": {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T16-30-28-364Z-Ethluminal-POI.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T18-10-32-801Z-Ethluminal-POI.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-07-27-550Z-Ethluminal-Gallery.png",
     "description": "",
     "websiteLink": "",

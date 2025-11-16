@@ -36,10 +36,7 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
     // For Setup Section (simple layout)
     if (!showExpandedActions) {
       return (
-        <div
-          ref={ref}
-          className="bg-white border border-[#e2e2e9] rounded"
-        >
+        <div ref={ref} className="bg-white border border-[#e2e2e9] rounded">
           <div className="flex items-start gap-3 p-4">
             {/* Quest Icon */}
             <div className="w-6 h-6 flex-shrink-0">
@@ -76,9 +73,11 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   <h3 className="text-base font-bold text-[#242436] tracking-[-0.1px] mb-1 leading-[1.3]">
                     {quest.name}
                   </h3>
-                  <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3] line-clamp-2">
-                    {quest.instructions || 'Quest instructions missing...'}
-                  </p>
+                  {!isCompleted && (
+                    <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3] line-clamp-2">
+                      {quest.instructions || 'Quest instructions missing...'}
+                    </p>
+                  )}
                 </div>
 
                 {/* Completion Status */}
@@ -113,18 +112,32 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
           </div>
 
           {/* Action Button */}
-          {!isCompleted && (
-            <div className="w-full p-4 bg-gradient-to-br from-[#f6b513]/40 via-[#ff85a6]/40 via-32% to-[#74acdf]/40 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center">
+          {!isCompleted && quest.conditionValues && (
+            <div
+              className="w-full p-4 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center"
+              style={{
+                backgroundImage:
+                  'linear-gradient(272deg, rgba(246, 182, 19, 0.70) 0%, rgba(255, 133, 166, 0.70) 31.99%, rgba(152, 148, 255, 0.70) 77.61%, rgba(116, 172, 223, 0.70) 99.39%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
+              }}
+            >
               <div className="w-full flex justify-start items-center gap-3">
                 <button
                   data-icon="false"
                   data-state="default"
                   data-type="Secondary"
-                  className="w-full bg-[#eaf3fa] border border-white rounded px-3 py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-[#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className={`w-full rounded-[1px] px-3 py-3 text-sm font-bold tracking-[-0.1px] transition-colors disabled:cursor-not-allowed ${
+                    !address
+                      ? quest.conditionType === 'verifyPoap'
+                        ? 'bg-[#0073de] text-white opacity-40 cursor-not-allowed'
+                        : 'bg-[#eaf3fa] text-[#353548] opacity-40 cursor-not-allowed'
+                      : quest.conditionType === 'verifyPoap'
+                        ? 'bg-[#0073de] text-white hover:bg-[#005ba8] shadow-[0px_4px_0px_0px_#005493] cursor-pointer'
+                        : 'bg-[#eaf3fa] text-[#36364c] hover:bg-[#d4e7f5] shadow-[0px_4px_0px_0px_#595978] cursor-pointer'
+                  }`}
                   onClick={() => onQuestAction(quest)}
                   disabled={!address}
                 >
-                  <div className="text-center justify-start text-[#36364c] text-sm font-bold font-['Roboto'] leading-[14px]">
+                  <div className="text-center justify-start text-sm font-bold font-['Roboto'] leading-[14px]">
                     {quest.button || 'Verify'}
                   </div>
                 </button>
@@ -216,8 +229,6 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   <span className="text-green-600 text-[10px] font-bold">
                     COLLECTED
                   </span>
-                ) : !quest.conditionValues ? (
-                  <span className="text-red-600 text-[10px] font-bold"></span>
                 ) : (
                   <p
                     className="text-[#0073de] text-[10px] font-bold leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
@@ -269,27 +280,38 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   </button>
                   <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                 </div>
-                {(!isCompleted || verifyingQuestId === quest.id.toString()) && (
-                  <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
-                    <button
-                      onClick={() => onQuestAction(quest)}
-                      disabled={
+                {quest.conditionValues &&
+                  (!isCompleted ||
+                    verifyingQuestId === quest.id.toString()) && (
+                    <div
+                      className={`basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shrink-0 ${
                         !address || verifyingQuestId === quest.id.toString()
-                      }
-                      className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3 disabled:cursor-not-allowed disabled:opacity-50"
-                      style={{
-                        fontVariationSettings: "'wdth' 100",
-                      }}
+                          ? 'opacity-40'
+                          : 'shadow-[0px_4px_0px_0px_#125181]'
+                      }`}
                     >
-                      <p className="leading-none whitespace-pre">
-                        {verifyingQuestId === quest.id.toString()
-                          ? 'Verifying...'
-                          : 'Verify'}
-                      </p>
-                    </button>
-                    <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
-                  </div>
-                )}
+                      <button
+                        onClick={() => onQuestAction(quest)}
+                        disabled={
+                          !address || verifyingQuestId === quest.id.toString()
+                        }
+                        className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full flex items-center justify-center p-3 disabled:cursor-not-allowed"
+                        style={{
+                          fontVariationSettings: "'wdth' 100",
+                        }}
+                      >
+                        <p className="leading-none whitespace-pre">
+                          {verifyingQuestId === quest.id.toString()
+                            ? 'Verifying...'
+                            : 'Verify'}
+                        </p>
+                      </button>
+                      {(!address ||
+                        verifyingQuestId !== quest.id.toString()) && (
+                        <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
+                      )}
+                    </div>
+                  )}
               </div>
             </div>
           </div>
