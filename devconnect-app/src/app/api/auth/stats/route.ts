@@ -93,6 +93,40 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Get hourly user creation data (only after Nov 3, 2025)
+    const nov3Date = '2025-11-03T00:00:00Z';
+    const { data: hourlyData, error: hourlyError } = await supabase
+      .from('devconnect_app_user')
+      .select('created_at')
+      .gte('created_at', nov3Date)
+      .order('created_at', { ascending: true });
+
+    if (hourlyError) {
+      console.error('Error fetching hourly user data:', hourlyError);
+      return NextResponse.json(
+        {
+          error: 'Database error',
+          message: 'Failed to fetch hourly user data',
+        },
+        { status: 500 }
+      );
+    }
+
+    // Process hourly data into buckets
+    const hourlyBuckets: { [key: string]: number } = {};
+    hourlyData?.forEach((user) => {
+      if (user.created_at) {
+        const date = new Date(user.created_at);
+        const hourKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:00`;
+        hourlyBuckets[hourKey] = (hourlyBuckets[hourKey] || 0) + 1;
+      }
+    });
+
+    // Convert to sorted array
+    const hourlyUserCreation = Object.entries(hourlyBuckets)
+      .map(([hour, count]) => ({ hour, count }))
+      .sort((a, b) => a.hour.localeCompare(b.hour));
+
     // Fetch ETH price from CoinGecko
     let ethPriceUsd = null;
     try {
@@ -155,6 +189,7 @@ export async function GET(request: NextRequest) {
         total_links: (availableLinks ?? 0) + (claimedLinks ?? 0),
         total_users: totalUsers ?? 0,
       },
+      hourly_user_creation: hourlyUserCreation,
       relayers: relayerStats,
       timestamp: new Date().toISOString(),
     });

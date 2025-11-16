@@ -17,7 +17,17 @@ import {
   mdiSendOutline,
   mdiCloseCircleOutline,
   mdiAccountMultiple,
+  mdiChartBar,
 } from '@mdi/js';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 // Configuration
 const AVAILABLE_LINKS_WARNING_THRESHOLD = 500; // Show warnings when available links drop below this
@@ -30,6 +40,10 @@ interface StatsData {
     total_links: number;
     total_users: number;
   };
+  hourly_user_creation: Array<{
+    hour: string;
+    count: number;
+  }>;
   relayers?:
     | {
         payment: {
@@ -323,6 +337,120 @@ export default function StatsPage() {
             <p className="text-xs text-gray-500 mt-2">Created accounts</p>
           </div>
         </div>
+
+        {/* Hourly User Creation Chart */}
+        {stats.hourly_user_creation &&
+          stats.hourly_user_creation.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Icon path={mdiChartBar} size={0.9} color="#9333EA" />
+                <h2 className="text-xl font-bold text-gray-900">
+                  Account Creation Timeline
+                </h2>
+              </div>
+              <p className="text-sm text-gray-500 mb-4">
+                Number of accounts created per hour (since Nov 3, 2024)
+              </p>
+
+              <div className="w-full h-80 mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={stats.hourly_user_creation}
+                    margin={{ top: 10, right: 10, left: 0, bottom: 60 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                    <XAxis
+                      dataKey="hour"
+                      angle={-45}
+                      textAnchor="end"
+                      height={80}
+                      tick={{ fontSize: 11, fill: '#6b7280' }}
+                      tickFormatter={(value) => {
+                        const date = new Date(value);
+                        return date.toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: 'numeric',
+                        });
+                      }}
+                    />
+                    <YAxis
+                      tick={{ fontSize: 12, fill: '#6b7280' }}
+                      label={{
+                        value: 'Users',
+                        angle: -90,
+                        position: 'insideLeft',
+                        style: { fontSize: 12, fill: '#6b7280' },
+                      }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1f2937',
+                        border: 'none',
+                        borderRadius: '8px',
+                        color: '#fff',
+                      }}
+                      labelFormatter={(value) => {
+                        const date = new Date(value);
+                        return date.toLocaleString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                        });
+                      }}
+                      formatter={(value: number) => [
+                        `${value} user${value !== 1 ? 's' : ''}`,
+                        'Created',
+                      ]}
+                    />
+                    <Bar dataKey="count" fill="#9333EA" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Summary stats */}
+              <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                  <div>
+                    <span className="text-gray-600">Peak Hour:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {
+                        stats.hourly_user_creation.reduce((max, curr) =>
+                          curr.count > max.count ? curr : max
+                        ).count
+                      }{' '}
+                      users
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Average:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {(
+                        stats.hourly_user_creation.reduce(
+                          (sum, curr) => sum + curr.count,
+                          0
+                        ) / stats.hourly_user_creation.length
+                      ).toFixed(1)}{' '}
+                      /hr
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Time Range:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {stats.hourly_user_creation.length}h
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Total:</span>
+                    <span className="ml-2 font-semibold text-purple-600">
+                      {stats.stats.total_users} users
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
         {/* Progress Bar */}
         <div className="bg-white rounded-lg shadow-sm p-6">
