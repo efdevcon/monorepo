@@ -24,6 +24,7 @@ import {
   ClockIcon,
   ArrowLeft as ChevronLeftIcon,
   ShareIcon,
+  LanguagesIcon,
   MapPinIcon,
 } from 'lucide-react';
 
@@ -65,31 +66,26 @@ const streams = {
     youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
   },
   bootcamp: {
-    translations: 'https://stm.live/Stage-Bootcamp',
+    translations: 'https://stm.live/Stage-Bootcamp/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/CjCii7U2GiY?si=zLDUGOn-Ygly3Z_5',
   },
 };
 
-const AITranslations = ({ stage }: { stage: string }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+const AITranslations = ({
+  stage,
+  isEnabled,
+}: {
+  stage: string;
+  isEnabled: boolean;
+}) => {
   const translationUrl = (streams as any)[stage]?.translations;
 
-  if (!translationUrl) {
+  if (!translationUrl || !isEnabled) {
     return null;
   }
 
-  if (!isEnabled) {
-    return (
-      <Button onClick={() => setIsEnabled(true)} color="blue-1" size="sm">
-        <div className="flex flex-col items-start">
-          <div className="font-semibold leading-tight">Live translations</div>
-        </div>
-      </Button>
-    );
-  }
-
   return (
-    <div className="rounded-xl w-full h-full bg-white border border-solid border-neutral-200 aspect-[436/776]">
+    <div className="max-w-[500px] self-center rounded-xl w-full h-full bg-white border border-solid border-neutral-200 aspect-[436/776]">
       <iframe
         src={`${translationUrl}`}
         title={stage}
@@ -126,7 +122,7 @@ const MeerkatComponent = ({ stage }: { stage: string }) => {
 
   return (
     <Link href={url} onClick={handleClick} className={cn('w-full self-start')}>
-      <Button size="sm" color="blue-1" className="w-full">
+      <Button size="sm" color="blue-2" className="w-full">
         <div className="flex flex-col items-start">
           <div className="text-sm font-semibold leading-tight">
             Join the live Q/A
@@ -151,11 +147,10 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
     moment.utc('2025-11-22'),
   ]);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const [translationsVisible, setTranslationsVisible] = useState(false);
   const { stage } = use(params);
   const now = useNow();
   const today = now.format('YYYY-MM-DD');
-
-  console.log(now.format('YYYY-MM-DD HH:mm:ss'), 'now ay ay');
 
   // Get stage metadata from useAllStages to find the apiSourceId
   const { pavilions } = useAllStages();
@@ -379,9 +374,30 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
               allowFullScreen
             ></iframe>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 shrink-0">
-            <MeerkatComponent stage={stageInfo.id} />
-            <AITranslations stage={stageInfo.id} />
+          <div className="flex flex-col gap-2 shrink-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <MeerkatComponent stage={stageInfo.id} />
+              {(streams as any)[stageInfo.id]?.translations && (
+                <Button
+                  onClick={() => setTranslationsVisible(!translationsVisible)}
+                  color="blue-2"
+                  size="sm"
+                >
+                  <div className="flex flex-col items-start">
+                    <div className="font-semibold leading-tight flex items-center gap-1.5">
+                      {translationsVisible
+                        ? 'Hide translations'
+                        : 'Live translations'}{' '}
+                      <LanguagesIcon className="w-4 h-4" />
+                    </div>
+                  </div>
+                </Button>
+              )}
+            </div>
+            <AITranslations
+              stage={stageInfo.id}
+              isEnabled={translationsVisible}
+            />
           </div>
         </div>
       )}
