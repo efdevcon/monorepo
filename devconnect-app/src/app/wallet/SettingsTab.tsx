@@ -39,6 +39,7 @@ import { useGlobalStore } from '../store.provider';
 import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
 import { simulateUpdate } from '@/components/ServiceWorkerUpdateBanner';
 import { hasEarlyAccess } from '@/utils/cookies';
+import { internalDebuging } from '@/utils/auth';
 
 // Helper function to read cookie value
 function getCookie(name: string): string | null {
@@ -355,7 +356,7 @@ export default function SettingsTab() {
         </button>
 
         {/* Admin Stats - Available for @ethereum.org users */}
-        {paraEmail && paraEmail.endsWith('@ethereum.org') && (
+        {internalDebuging(paraEmail) && (
           <button
             onClick={() => router.push('/stats')}
             className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 bg-indigo-50 hover:bg-indigo-100 transition-colors"
