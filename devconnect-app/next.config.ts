@@ -94,6 +94,7 @@ const nextConfig: NextConfig = {
                     params: {
                       overrides: {
                         cleanupIds: false,
+                        removeUnusedNS: false,
                       },
                     },
                   },
