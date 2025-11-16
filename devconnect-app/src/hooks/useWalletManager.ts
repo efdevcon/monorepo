@@ -831,7 +831,7 @@ export function useWalletManager() {
       console.error('Error fetching portfolio:', err);
       setPortfolioError({
         message: err.message || (err instanceof Error ? err.message : 'Failed to fetch portfolio'),
-        address: err.address || addressKey,
+        address: err.address || address.toLowerCase(),
         errorType: err.errorType || 'UNKNOWN_ERROR',
       });
     } finally {
