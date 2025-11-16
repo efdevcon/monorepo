@@ -171,15 +171,38 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     // Validate file type (images, PDFs, etc.)
     const validTypes = [
       'image/jpeg',
+      'image/jpg',
       'image/png',
       'image/gif',
       'image/webp',
+      'image/avif', // Modern format, Android 12+ and modern browsers
+      'image/bmp',
+      'image/tiff',
+      'image/heic',
+      'image/heif',
       'application/pdf',
       'text/plain',
       'image/svg+xml',
     ]
-    if (!validTypes.includes(file.type)) {
-      addNotification('error', 'Please select a valid file type (image, PDF, or text)')
+
+    // Check file type - some browsers don't set type for HEIC files
+    const fileExtension = file.name.toLowerCase().split('.').pop() || ''
+    const isHEIC = fileExtension === 'heic' || fileExtension === 'heif'
+
+    if (!validTypes.includes(file.type) && !isHEIC) {
+      addNotification(
+        'error',
+        `File type not supported: ${file.type || 'unknown'}. Please use: JPEG, PNG, GIF, WebP, AVIF, BMP, TIFF, SVG, PDF, or TXT`
+      )
+      return
+    }
+
+    // Warn about HEIC files - they may not display properly in all browsers
+    if (isHEIC || file.type === 'image/heic' || file.type === 'image/heif') {
+      addNotification(
+        'error',
+        'HEIC files from iPhones are not fully supported. Please convert to JPEG or PNG first, or change your iPhone camera settings to capture in "Most Compatible" format (Settings > Camera > Formats)'
+      )
       return
     }
 
@@ -481,13 +504,16 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               })
 
               if (!uploadRes.ok) {
-                throw new Error('Failed to upload file')
+                const errorData = await uploadRes.json().catch(() => ({ error: 'Failed to upload file' }))
+                const errorMessage = errorData.details || errorData.error || 'Failed to upload file'
+                throw new Error(errorMessage)
               }
 
               const uploadData = await uploadRes.json()
               updates[field.name] = uploadData.url
             } catch (error) {
-              addNotification('error', `Failed to upload ${field.name}: ${error}`)
+              const errorMessage = error instanceof Error ? error.message : String(error)
+              addNotification('error', `Failed to upload ${field.name}: ${errorMessage}`)
               setIsSubmitting(false)
               return
             }
