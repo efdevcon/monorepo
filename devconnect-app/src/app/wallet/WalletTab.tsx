@@ -1763,12 +1763,14 @@ export default function WalletTab() {
                           <p className="text-[#353548] text-base font-bold tracking-[-0.1px]">
                             No assets to show
                           </p>
-                          <button
-                            onClick={handleDigitalClick}
-                            className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
-                          >
-                            Add Funds
-                          </button>
+                          {hasEarlyAccessCookie && (
+                            <button
+                              onClick={handleDigitalClick}
+                              className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                            >
+                              Add Funds
+                            </button>
+                          )}
                         </div>
                       )}
                     </div>
