@@ -44,12 +44,16 @@ export async function GET(request: NextRequest) {
   const supabase = createServerClient();
 
   try {
-    // Get additional emails from the user's profile
+    // Get additional emails from the user's profile (case-insensitive lookup)
+    // Then get exact email from DB for FK constraints (retro-compatible with any casing)
     const { data: userData } = await supabase
       .from('devconnect_app_user')
-      .select('additional_ticket_emails')
-      .eq('email', userEmail)
+      .select('email, additional_ticket_emails')
+      .ilike('email', userEmail)
       .single();
+
+    // Use exact email from DB for FK operations (handles both old lowercase and new mixed-case)
+    const exactEmail = userData?.email || userEmail;
 
     // Build list of all emails to check for tickets
     const allEmails = [
@@ -91,7 +95,7 @@ export async function GET(request: NextRequest) {
     const { data: existingClaim, error: checkError } = await supabase
       .from('devconnect_app_claiming_links')
       .select('*')
-      .eq('claimed_by_user_email', userEmail)
+      .eq('claimed_by_user_email', exactEmail)
       .single();
 
     if (checkError && checkError.code !== 'PGRST116') {
@@ -182,7 +186,7 @@ export async function GET(request: NextRequest) {
       const { data: claimedLink, error: updateError } = await supabase
         .from('devconnect_app_claiming_links')
         .update({
-          claimed_by_user_email: userEmail,
+          claimed_by_user_email: exactEmail,
           claimed_by_address: userAddress?.toLowerCase() || null,
           claimed_date: new Date().toISOString(),
           ticket_secret_proof: availableSecret,
