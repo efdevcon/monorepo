@@ -486,7 +486,8 @@ const AppShowcaseDetail = React.forwardRef<
         quest.conditionType as any, // Type assertion for QuestConditionType
         quest.conditionValues,
         userAddresses,
-        tickets
+        tickets,
+        quest.supporterId
       );
 
       // For groupId 1 (Setup & app tour), also open links if conditionValues is a URL or path

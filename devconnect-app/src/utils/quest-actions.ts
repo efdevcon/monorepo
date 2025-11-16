@@ -1,5 +1,7 @@
 import type { QuestConditionType } from '@/types/quest';
 import { toast } from 'sonner';
+import React from 'react';
+import { getSupporterById } from '@/app/quests/utils/quest-helpers';
 
 /**
  * Quest action functions for each QuestConditionType
@@ -41,12 +43,14 @@ export async function numberOfCryptoPayment(questId: string, conditionValues: st
  * @param questId - The ID of the quest
  * @param conditionValues - POAP drop ID to verify
  * @param userAddresses - Array of user addresses to check
+ * @param supporterId - Optional supporter ID for custom logo in toast
  * @returns Promise<{completed: boolean, mintedOn?: number}> - Verification result with minting date (Unix timestamp)
  */
 export async function verifyPoap(
   questId: string,
   conditionValues: string,
-  userAddresses?: string[]
+  userAddresses?: string[],
+  supporterId?: number | string
 ): Promise<{ completed: boolean; mintedOn?: number }> {
   try {
     if (!userAddresses || userAddresses.length === 0) {
@@ -100,6 +104,10 @@ export async function verifyPoap(
     // });
     // return { completed: true, mintedOn: Math.floor(Date.now() / 1000) };
 
+    // Get supporter logo for toast icon
+    const supporter = supporterId ? getSupporterById(supporterId) : null;
+    const logoSrc = supporter?.logo || '/images/icons/poap.png';
+
     if (hasPoap) {
       console.log(
         `✅ POAP verification successful for quest ${questId} with drop ID ${conditionValues}`
@@ -130,9 +138,14 @@ export async function verifyPoap(
       }
 
       // Show success feedback to user
-      toast.success('🎉 POAP Verified!', {
+      toast.success('POAP Verified!', {
         description: 'Congratulations! You have completed this quest!',
         duration: 6000,
+        icon: React.createElement('img', {
+          src: logoSrc,
+          alt: supporter?.name || 'POAP',
+          style: { width: '24px', height: '24px', borderRadius: '2px' },
+        }),
       });
 
       return { completed: true, mintedOn };
@@ -141,9 +154,13 @@ export async function verifyPoap(
         `❌ POAP verification failed for quest ${questId} with drop ID ${conditionValues}`
       );
       // Show helpful feedback to user
-      toast.warning('🔍 POAP Not Found', {
-        description: `You don't currently own the required POAP (ID: ${conditionValues}). Visit the quest location to claim it.`,
+      toast.error("It looks like you don't own the POAP needed to complete this quest.", {
         duration: 6000,
+        icon: React.createElement('img', {
+          src: logoSrc,
+          alt: supporter?.name || 'POAP',
+          style: { width: '24px', height: '24px', borderRadius: '2px' },
+        }),
       });
       return { completed: false };
     }
@@ -423,6 +440,7 @@ export async function verifyBalance(
  * @param conditionValues - Values for the condition check
  * @param userAddresses - Optional array of user addresses for POAP verification and balance checks
  * @param tickets - Optional array of ticket orders from useTickets hook
+ * @param supporterId - Optional supporter ID for custom icons/logos
  * @returns Promise<boolean> - True if the condition is met
  */
 export async function executeQuestAction(
@@ -430,7 +448,8 @@ export async function executeQuestAction(
   conditionType: QuestConditionType,
   conditionValues: string,
   userAddresses?: string[],
-  tickets?: any[]
+  tickets?: any[],
+  supporterId?: number | string
 ): Promise<boolean> {
   switch (conditionType) {
     case 'verifyBasename':
@@ -439,7 +458,7 @@ export async function executeQuestAction(
       return numberOfCryptoPayment(questId, conditionValues);
     case 'verifyPoap': {
       // verifyPoap returns an object, extract the completed boolean
-      const result = await verifyPoap(questId, conditionValues, userAddresses);
+      const result = await verifyPoap(questId, conditionValues, userAddresses, supporterId);
       return result.completed;
     }
     case 'isWalletConnected':
