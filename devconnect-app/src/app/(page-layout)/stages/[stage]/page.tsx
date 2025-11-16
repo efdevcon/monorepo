@@ -99,7 +99,7 @@ const AITranslations = ({
 
 const MeerkatComponent = ({ stage }: { stage: string }) => {
   const { tickets } = useTickets();
-  const url = `https://app.meerkat.events/stage/${stage}`;
+  const url = `https://app.meerkat.events/stage/${stage}/qa`;
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
