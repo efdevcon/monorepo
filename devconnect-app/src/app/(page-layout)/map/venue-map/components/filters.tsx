@@ -64,12 +64,12 @@ const filters = [
     label: 'Meeting Rooms',
     pois: poisData.filter((poi) => poi.groupId === '8'), // Fixed: Meeting Rooms is groupId 8
   },
-  {
-    icon: mdiInformationOutline,
-    key: 'onboarding',
-    label: 'Onboarding',
-    pois: poisData.filter((poi) => poi.groupId === '10' || poi.groupId === '11'), // Fixed: Onboarding Area (10) and Onboarding desk (11)
-  },
+  // {
+  //   icon: mdiInformationOutline,
+  //   key: 'onboarding',
+  //   label: 'Onboarding',
+  //   pois: poisData.filter((poi) => poi.groupId === '10' || poi.groupId === '11'), // Fixed: Onboarding Area (10) and Onboarding desk (11)
+  // },
   {
     icon: mdiCashPlus,
     key: 'onramps',
