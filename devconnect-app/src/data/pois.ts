@@ -100,7 +100,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "bleachers",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-42-604Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-36-784Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -112,7 +112,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-1-pista-central",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-46-071Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-36-784Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -124,7 +124,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-3-pista-central",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-54-558Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-36-784Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -136,7 +136,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-4-pista-central",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-50-57-635Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-36-784Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -148,7 +148,7 @@ export const poisData: POI[] = [
   {
     "name": "Bleachers",
     "layerName": "poi-bleachers-2-pista-central",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-01-673Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-36-784Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -172,7 +172,7 @@ export const poisData: POI[] = [
   {
     "name": "Blue Pavilion Space",
     "layerName": "blue-pavilion",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-05-36-121Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -208,7 +208,7 @@ export const poisData: POI[] = [
   {
     "name": "Chicken Tenders",
     "layerName": "chicken-tenders",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-12-109Z-Cowork.png",
+    "logo": "",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -436,7 +436,7 @@ export const poisData: POI[] = [
   {
     "name": "Infinite Garden Artist Exhibition",
     "layerName": "infinite-garden-artists-exhibition",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-59-40-925Z-infinite-garden.png",
     "description": "Enjoy a group show titled “Echoing as One,” a collection of artworks that embody and resonate with the vision of the Infinite Garden.",
     "websiteLink": "https://infinitegarden.art/",
     "twitterLink": "",
@@ -460,7 +460,7 @@ export const poisData: POI[] = [
   {
     "name": "KOI",
     "layerName": "koi",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-45-215Z-Cowork.png",
+    "logo": "",
     "description": "Tasty asian food and delicious cocktails 🐉 ❤",
     "websiteLink": "https://drive.google.com/file/d/1xXQnwhfklTvI4pGQwmOpk7cWJzLAoqo-/view",
     "twitterLink": "",
@@ -616,7 +616,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Point 3",
     "layerName": "meeting-point-3",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-59-46-784Z-Meeting_point.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -628,7 +628,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Point 4",
     "layerName": "meeting-point-4",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-59-52-506Z-Meeting_point.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -640,7 +640,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Point 5",
     "layerName": "meeting-point-5",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-05-42-432Z-Meeting_point.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -652,7 +652,7 @@ export const poisData: POI[] = [
   {
     "name": "Meeting Point 6",
     "layerName": "meeting-point-6",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-05-48-696Z-Meeting_point.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -819,7 +819,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Music Stage",
-    "layerName": "music-stage_2",
+    "layerName": "music-stage",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -940,7 +940,7 @@ export const poisData: POI[] = [
   {
     "name": "Outdoor Seating Area",
     "layerName": "outdoor-seating-area-1",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-10-001Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-39-200Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -952,7 +952,7 @@ export const poisData: POI[] = [
   {
     "name": "Outdoor Seating Area",
     "layerName": "outdoor-seating-area",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-13-603Z-seating-area-bleachers.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T23-10-39-200Z-seating-area-bleachers.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
