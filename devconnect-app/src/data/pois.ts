@@ -23,7 +23,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "1",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "AID Room",
@@ -35,7 +35,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "1",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Ambulance",
@@ -47,7 +47,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "8",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Amphitheater",
@@ -59,7 +59,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "1",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "Badge Station",
@@ -71,7 +71,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Beer House",
@@ -95,7 +95,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "13"
+    "groupId": "12"
   },
   {
     "name": "Bleachers",
@@ -107,7 +107,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Bleachers",
@@ -119,7 +119,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Bleachers",
@@ -131,7 +131,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Bleachers",
@@ -143,7 +143,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Bleachers",
@@ -155,7 +155,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Blue Discussion Corner",
@@ -179,7 +179,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "2",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Bootcamp",
@@ -191,7 +191,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "Ceibo Hall",
@@ -203,7 +203,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "Chicken Tenders",
@@ -227,7 +227,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Chillout Area",
@@ -251,7 +251,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "2",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Cowork - Main Arena 1",
@@ -299,7 +299,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "3",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "DeSci Hub",
@@ -328,7 +328,7 @@ export const poisData: POI[] = [
   {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/e8d6d6d6-6a27-47dc-92ad-a529fdebd290/Ethluminal-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Y54P6PU5%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T173535Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEND%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQC0CblDfjJwTT87roBI59ODMvazVG6QslfGFrNbnoAXQQIgC7cvMcR4wj303OmHYbRYXqLP%2FyUjoc8mVP%2FVbE0%2BR4IqiAQImf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDItS6pfhuKmIFLOPKSrcAyseV%2F3qsrDR8tMUHfIwvWKBd2y%2FCuTp%2BgJsBjmJRaicq5%2BleDlP5ddhweZvHhYY4y3D5ptgglBEhrERkvXUc4AONnHH%2BupoUdtOVJD3khl3aLw60ioaBXvLZvkxUJJXmkQpuiDMlvviGNQKoYtjPpNsMXEIiFeggNv7Xeml2zcoZen%2FJ%2F83C4ISGiSQoMwO1PvSz8LWBbighvJmd3VHJQmu%2FmwT33TxLsXNIWuEZyxnxdh06c9R7Op6rVtn%2BT%2F7a%2F5wxRefP22c%2BcJzclpZY%2FkCM%2BKdJ4awzVVI%2BYMG7iWEJ3h1oUJIvdj73dOPOdxtMcUy%2BjkfW6UEeD6%2BYPL1qz%2Fx%2BN5wLVB28uwF%2BbBgvm1hV%2BZBxIALuWwiaLBt3qW%2FjS3gE6vwiHCwdC%2B48tmdVB%2FrGZ5jfmVNWxiyW2ceQ4Fh57W30lfZlAalqPzW%2BHMOTLmb%2FQtg8r3uHdbGdoaEdeqAN%2FBDdGWzxLxH1CG2qJPb93EO71rqvFuZqg7O8r2uTD8wtsm%2FLRoj9SMnt3j21znLx88T6b5Mk8iUhcANq7admg8cplH%2FhMLxI%2B4vKEMcHw7bgn%2F2dEOmvyueebwTMMqROkdhgE687HnGLDOEsGg7JL73rspCQBxs%2BjXGMJXf58gGOqUBlSpXQrZI8MDlO%2BBK14iiR4DlSkecHV%2FkeJYJj%2FDhl3XxBi6FS0hmbbVx9NdOiAJyESyC3syXmHxNWzpNzs6LNuUvHOoBz5soQ49t%2BlYjvx4B1bwJ36P8SAZuQS%2FMRiHkjzJDTgBF0%2BqrI5AXMqNnmpQwa5mEfY2N5kEI3%2BJXkXTmxARMzky8DIRIsQxvYxL3dxAEr0DPJl6AsIiZ1FYYpHL2deeH&X-Amz-Signature=54ad0f91c1bd7a6fca0da14b62262976767f9dfc721e8f85e0a651be71949a3d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/e8d6d6d6-6a27-47dc-92ad-a529fdebd290/Ethluminal-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466Q2YUWEJL%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T173838Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEND%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDZMczvUnBC1p1ElsAIhMiJmNpLhTwTfh67BF9v3wRAugIhAMgKfTM5rQnP3yHtqVGSV7SR7COdoJgFNF1fdbE5IU6IKogECJn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgwPIUisxyJ1fpV%2BRKYq3ANGV2DYRTmervRuvpkekcxEtRBP84wOan%2Fz0RLnCzJH6dTEG27rT%2FbwaXA5zCIiC6p%2FScRzCr6iOz7buBGMq8XU23Eh%2BeADqzDxP%2FTRVyZ6hDv94pVTyJsxRjUBHQxW75E7PQlMYhjlcAJyl8XSWevjGe7WULsCUNMVLuXRAGfTe1nV8TytLThMtwFxoFONUpRXldQN%2BLvG%2F%2B9clW7OjnICSlbi3x%2Btl7tgvCqzJpfnwbHNFSpAC5fXtAUkXCTYcK%2ByUUWJVkKc%2BznV1kxHKm0VPJ9%2Fax3TAZ5o%2BJUHdD%2Fyv2W3RWtqrxPRCcyDOkMKn0xqPvPbLCgJyxh3HKG2Nmhod6wBUecllfXs3NbtO%2BxrRSvKukPTNN7EesO%2B7%2BDGcP%2B3Fcti47xxfy%2Fs48n0Hy5h4qAX75BHzuoWQ53Q34DgHpW0z4b1UE1pdgNgg1Oii60bQiyb%2Fx5NlxTuZPYrdribNx9NsE%2BO6wmXFZ82j7MZYtVgZJcL4pRNw4%2FPy9tX9xkY2ReEcu00uWo54AB7P%2B%2BlWutrXqXr5TecTzo82pk%2BItUFiZs8LuqJzt2B7V%2FOnymcdUSLJ4LmbJJnn5q09tUbycavN4gBWtwPS6P4PBl3tGhOQK8DlwtalE1QADCl4OfIBjqkATHraXAiPHz7aYOdX2T1zo%2B3V%2B5bbQJyFSFkzEsY%2Fvm5ppUxblF7rakO%2BW6nOAZJYDw7tKa%2BGMfSf2NWtqg0XXyL0HXWzjIQdyxxzJzXdpoFC5qa6zZIJda0s5TNdkGKvFt9ZdupHhtf9agpUMPyOFFB2fmaxDbswNRzVBDBGhlsqbLCBQjPlePGOZ5lk6hx%2BXEHq0pce0JiVLXYNiNWB6lMesyD&X-Amz-Signature=98c2cb2b604e9e83bee84cf1dc12299297bbe6790044a5ca256c802481aafc88&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
     "description": "Ethluminal Gallery is a digital gallery space that showcases artworks selected by curators from within the vibrant Ethereum ecosystem.",
     "websiteLink": "",
     "twitterLink": "",
@@ -383,7 +383,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "4",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Governance Geeks Hub",
@@ -443,7 +443,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "5",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Infinite Garden Artist Exhibition",
@@ -491,7 +491,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "L2 Onboarding",
@@ -503,7 +503,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "6",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "LATAM Hub",
@@ -551,7 +551,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "Los Petersen",
@@ -575,7 +575,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "M2 Stage",
@@ -587,7 +587,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "Media Room",
@@ -831,7 +831,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Music Stage",
-    "layerName": "music-stage",
+    "layerName": "music-stage_2",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -839,7 +839,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "8",
-    "groupId": "10"
+    "groupId": "5"
   },
   {
     "name": "Node Operators Hub",
@@ -863,7 +863,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "Offices",
@@ -875,7 +875,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Onboarding",
@@ -887,7 +887,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "11"
+    "groupId": "10"
   },
   {
     "name": "Onchain Art Hub",
@@ -959,7 +959,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Outdoor Seating Area",
@@ -971,7 +971,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Persicco",
@@ -1175,7 +1175,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Privacy Hub",
@@ -1199,7 +1199,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "7",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Purple Discussion Corner",
@@ -1223,7 +1223,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
+    "groupId": "13"
   },
   {
     "name": "QR code 2",
@@ -1235,7 +1235,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
+    "groupId": "13"
   },
   {
     "name": "Quiet Cowork",
@@ -1295,7 +1295,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Registration - M1 2",
@@ -1307,7 +1307,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Registration - M2 Stage",
@@ -1319,7 +1319,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Registration - XL Stage",
@@ -1331,7 +1331,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Registration - XS Stage",
@@ -1343,7 +1343,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Ripio - Green Pavilion",
@@ -1355,7 +1355,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "13"
+    "groupId": "12"
   },
   {
     "name": "Ripio - The Hub",
@@ -1367,7 +1367,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "14",
-    "groupId": "13"
+    "groupId": "12"
   },
   {
     "name": "Social Onboarding",
@@ -1379,7 +1379,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "8",
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
   },
   {
     "name": "Storage",
@@ -1391,7 +1391,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "SWAG station",
@@ -1415,7 +1415,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "2",
-    "groupId": "17"
+    "groupId": "16"
   },
   {
     "name": "Toilet - Green Pavilion",
@@ -1427,7 +1427,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "17"
+    "groupId": "16"
   },
   {
     "name": "Toilet - Quiet Cowork 1",
@@ -1439,7 +1439,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "17"
+    "groupId": "16"
   },
   {
     "name": "Toilet - Quiet Cowork 2",
@@ -1451,7 +1451,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "17"
+    "groupId": "16"
   },
   {
     "name": "Toilet - Red Pavilion",
@@ -1463,7 +1463,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "17"
+    "groupId": "16"
   },
   {
     "name": "Toilet - Yellow Pavilion",
@@ -1475,7 +1475,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "17"
+    "groupId": "16"
   },
   {
     "name": "Women in Web3 Hub",
@@ -1499,7 +1499,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "15"
+    "groupId": "14"
   },
   {
     "name": "XS Stage",
@@ -1511,6 +1511,6 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "15"
+    "groupId": "14"
   }
 ];

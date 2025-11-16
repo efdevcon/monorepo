@@ -29,27 +29,24 @@ export const poiGroupsData: PoiGroups = {
     "name": "Meeting Rooms"
   },
   "10": {
-    "name": "Music Stage"
-  },
-  "11": {
     "name": "Onboarding Area"
   },
-  "12": {
+  "11": {
     "name": "Onboarding desk"
   },
-  "13": {
+  "12": {
     "name": "Onramp"
   },
-  "14": {
+  "13": {
     "name": "QR-code"
   },
-  "15": {
+  "14": {
     "name": "Stages"
   },
-  "16": {
+  "15": {
     "name": "TBD"
   },
-  "17": {
+  "16": {
     "name": "Toilets"
   }
 };

@@ -32,7 +32,7 @@ const filters = [
     icon: mdiMicrophoneVariant,
     key: 'stages',
     label: 'Stages',
-    pois: poisData.filter((poi) => poi.groupId === '15'), // Correct: Stages is groupId 15
+    pois: poisData.filter((poi) => poi.groupId === '14'), // Correct: Stages is groupId 15
   },
   {
     icon: mdiBriefcaseOutline,
@@ -86,7 +86,7 @@ const filters = [
     icon: mdiCashPlus,
     key: 'onramps',
     label: 'Onramps',
-    pois: poisData.filter((poi) => poi.groupId === '13'), // Correct: Onramp is groupId 12
+    pois: poisData.filter((poi) => poi.groupId === '12'), // Correct: Onramp is groupId 12
   },
 ];
 
