@@ -129,8 +129,9 @@ export default function OnrampTab() {
         const peanutUrl = `https://peanut.me/${address}@base`;
         popup.location.href = peanutUrl;
         showInfoToast(
-          '🥜 Peanut Opened',
-          'Complete your purchase in the new tab'
+          'Peanut Onramp Opened',
+          'Complete your purchase in the new tab',
+          8000
         );
       },
     },
@@ -174,6 +175,11 @@ export default function OnrampTab() {
         const ripioUrl = `https://devcon-ramp.ripio.com/?address=${address}&token=USDC&chain=8453`;
         console.log('ripioUrl', ripioUrl);
         popup.location.href = ripioUrl;
+        showInfoToast(
+          'Ripio Onramp Opened',
+          'Complete your purchase in the new tab',
+          8000
+        );
 
         // try {
         //   const externalRef = generateUUID();
@@ -314,23 +320,46 @@ export default function OnrampTab() {
       logoImage: 'zkp2p-logo.png',
       fees: 'Based on rate/pool',
       onClick: () => {
-        showErrorToast('❌ ZKP2P is not available yet');
-        return;
-        // if (!address) {
-        //   showErrorToast(
-        //     '❌ No Address Available',
-        //     'Please connect your wallet first'
-        //   );
-        //   return;
-        // }
+        // showErrorToast('❌ ZKP2P is not available yet');
+        // return;
+        if (!address) {
+          showErrorToast(
+            '❌ No Address Available',
+            'Please connect your wallet first'
+          );
+          return;
+        }
+        const popup = window.open(
+          'about:blank',
+          '_blank',
+          'width=470,height=750'
+        );
+
+        if (!popup) {
+          showErrorToast(
+            '❌ Popup Blocked',
+            'Please allow popups for this site'
+          );
+          return;
+        }
         // const currentDomain = window.location.origin;
         // const zkp2pUrl = `https://www.zkp2p.xyz/swap?referrer=Devconnect+App&referrerLogo=https%3A%2F%2Fpartner-assets.beta.getpara.com%2Ficons%2F7766a9b6-0afd-477e-9501-313f384e3e19%2Fkey-logos%2FDevconnect%2520Project-icon.jpg&callbackUrl=${encodeURIComponent(currentDomain + '/onramp?type=zkp2p&confirm=true')}&inputCurrency=USD&inputAmount=10&toToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&recipientAddress=${address}&tab=buy`;
 
-        // window.open(zkp2pUrl, '_blank', 'noopener,noreferrer');
-        // showInfoToast(
-        //   '🔒 zkp2p Opened',
-        //   'Complete your purchase in the new tab'
-        // );
+        // Detect iOS/macOS/Android device
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        const isIOS = /iphone|ipad|ipod/.test(userAgent);
+        const isMacOS = /macintosh|mac os x/.test(userAgent);
+
+        const androidAppUrl = `https://play.google.com/store/apps/details?id=com.zkp2p.mobile.dev`;
+        const iosAppUrl = `https://apps.apple.com/app/peer-crypto-wallet/id6749191100`;
+
+        popup.location.href = isIOS || isMacOS ? iosAppUrl : androidAppUrl;
+
+        showInfoToast(
+          '🔒 ZKP2P Onramp Opened',
+          'Complete your purchase in the App',
+          8000
+        );
       },
     },
   ];
