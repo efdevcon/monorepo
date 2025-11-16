@@ -41,14 +41,53 @@ const DISTRICTS_FILE = path.join(DATA_DIR, 'districts.ts');
 const LOCATIONS_FILE = path.join(DATA_DIR, 'locations.ts');
 const POI_GROUPS_FILE = path.join(DATA_DIR, 'poiGroups.ts');
 const FULL_DATA_FILE = path.join(DATA_DIR, 'api-data.json');
+const IMAGE_CACHE_FILE = path.join(DATA_DIR, '.image-cache.json');
 
 // Using the imported ApiResponse type from ../src/types
+
+/**
+ * Image cache structure: maps Notion page IDs to their permanent Supabase URLs
+ */
+interface ImageCache {
+  [pageId: string]: {
+    url: string;
+    fileName: string;
+    uploadedAt: string;
+  };
+}
+
+/**
+ * Load the image cache from disk
+ */
+async function loadImageCache(): Promise<ImageCache> {
+  try {
+    const cacheContent = await fs.readFile(IMAGE_CACHE_FILE, 'utf-8');
+    return JSON.parse(cacheContent);
+  } catch (error) {
+    // Cache file doesn't exist or is invalid, return empty cache
+    return {};
+  }
+}
+
+/**
+ * Save the image cache to disk
+ */
+async function saveImageCache(cache: ImageCache): Promise<void> {
+  await fs.writeFile(IMAGE_CACHE_FILE, JSON.stringify(cache, null, 2));
+}
 
 /**
  * Check if a URL is a Notion-hosted temporary image URL
  */
 function isNotionTemporaryUrl(url: string): boolean {
   return url.includes('X-Amz-Security-Token');
+}
+
+/**
+ * Check if a URL is already a permanent Supabase URL
+ */
+function isSupabaseUrl(url: string): boolean {
+  return url.includes('supabase.co/storage');
 }
 
 /**
@@ -227,19 +266,37 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
 
   const { supporters, pois } = data.data;
   let processedCount = 0;
+  let cachedCount = 0;
+
+  // Load the image cache
+  const imageCache = await loadImageCache();
 
   console.log(`\n📸 Processing Notion temporary images...`);
 
   // First, check supporters
   for (const [supporterId, supporter] of Object.entries(supporters)) {
+    // Skip if already a permanent URL
+    if (supporter.logo && isSupabaseUrl(supporter.logo)) {
+      continue;
+    }
+    
     if (supporter.logo && isNotionTemporaryUrl(supporter.logo)) {
+      // Format the page ID as a proper UUID (8-4-4-4-12)
+      const pageId = `${supporterId.slice(0, 8)}-${supporterId.slice(8, 12)}-${supporterId.slice(12, 16)}-${supporterId.slice(16, 20)}-${supporterId.slice(20)}`;
+
+      // Check if we have this image in cache
+      const cacheKey = `${pageId}-Logo`;
+      if (imageCache[cacheKey]) {
+        console.log(`\n💾 [${cachedCount + 1}] Using cached URL for supporter: ${supporter.name}`);
+        supporters[supporterId].logo = imageCache[cacheKey].url;
+        cachedCount++;
+        continue;
+      }
+
       console.log(`\n🎯 [${processedCount + 1}] Found Notion temporary URL in supporter: ${supporter.name}`);
       console.log(`   Supporter ID: ${supporterId}`);
 
       try {
-        // Format the page ID as a proper UUID (8-4-4-4-12)
-        const pageId = `${supporterId.slice(0, 8)}-${supporterId.slice(8, 12)}-${supporterId.slice(12, 16)}-${supporterId.slice(16, 20)}-${supporterId.slice(20)}`;
-
         // Fetch password from Notion
         console.log(`   🔑 Fetching password...`);
         const password = await getNotionPagePassword(pageId);
@@ -251,6 +308,14 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
 
         // Process the image
         const newUrl = await processNotionImage(supporter.logo, pageId, password, 'Logo');
+        
+        // Update cache
+        imageCache[cacheKey] = {
+          url: newUrl,
+          fileName: supporter.logo.split('/').pop() || 'unknown',
+          uploadedAt: new Date().toISOString()
+        };
+        
         // Update the data in-memory with the new URL
         supporters[supporterId].logo = newUrl;
         processedCount++;
@@ -263,14 +328,28 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
 
   // Check supporters for largeLogo
   for (const [supporterId, supporter] of Object.entries(supporters)) {
+    // Skip if already a permanent URL
+    if (supporter.largeLogo && isSupabaseUrl(supporter.largeLogo)) {
+      continue;
+    }
+    
     if (supporter.largeLogo && isNotionTemporaryUrl(supporter.largeLogo)) {
+      // Format the page ID as a proper UUID (8-4-4-4-12)
+      const pageId = `${supporterId.slice(0, 8)}-${supporterId.slice(8, 12)}-${supporterId.slice(12, 16)}-${supporterId.slice(16, 20)}-${supporterId.slice(20)}`;
+
+      // Check if we have this image in cache
+      const cacheKey = `${pageId}-LargeLogo`;
+      if (imageCache[cacheKey]) {
+        console.log(`\n💾 [${cachedCount + 1}] Using cached URL for supporter large logo: ${supporter.name}`);
+        supporters[supporterId].largeLogo = imageCache[cacheKey].url;
+        cachedCount++;
+        continue;
+      }
+
       console.log(`\n🎯 [${processedCount + 1}] Found Notion temporary URL in supporter large logo: ${supporter.name}`);
       console.log(`   Supporter ID: ${supporterId}`);
 
       try {
-        // Format the page ID as a proper UUID (8-4-4-4-12)
-        const pageId = `${supporterId.slice(0, 8)}-${supporterId.slice(8, 12)}-${supporterId.slice(12, 16)}-${supporterId.slice(16, 20)}-${supporterId.slice(20)}`;
-
         // Fetch password from Notion
         console.log(`   🔑 Fetching password...`);
         const password = await getNotionPagePassword(pageId);
@@ -282,6 +361,14 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
 
         // Process the image
         const newUrl = await processNotionImage(supporter.largeLogo, pageId, password, 'Large logo');
+        
+        // Update cache
+        imageCache[cacheKey] = {
+          url: newUrl,
+          fileName: supporter.largeLogo.split('/').pop() || 'unknown',
+          uploadedAt: new Date().toISOString()
+        };
+        
         // Update the data in-memory with the new URL
         supporters[supporterId].largeLogo = newUrl;
         processedCount++;
@@ -292,20 +379,49 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
     }
   }
 
-  // Then, check POIs
+  // Then, check POIs (deduplicate by name to avoid processing duplicates)
+  const processedPoiNames = new Set<string>();
   for (const poi of pois) {
-    if (poi.logo && isNotionTemporaryUrl(poi.logo)) {
-      console.log(`\n🎯 [${processedCount + 1}] Found Notion temporary URL in POI: ${poi.name}`);
+    // Skip if we've already processed a POI with this name
+    if (processedPoiNames.has(poi.name)) {
+      console.log(`   ⏭️  Skipping duplicate POI: ${poi.name}`);
+      continue;
+    }
 
+    // Skip if already a permanent URL
+    if (poi.logo && isSupabaseUrl(poi.logo)) {
+      continue;
+    }
+
+    if (poi.logo && isNotionTemporaryUrl(poi.logo)) {
       try {
         // Get the page ID from Notion by querying with the POI name
-        console.log(`   🔍 Finding page ID...`);
+        console.log(`\n🔍 Finding page ID for POI: ${poi.name}...`);
         const pageId = await getPoiPageId(poi.name);
 
         if (!pageId) {
           console.error(`   ❌ Could not find page ID - skipping`);
           continue;
         }
+
+        // Check if we have this image in cache
+        const cacheKey = `${pageId}-Logo`;
+        if (imageCache[cacheKey]) {
+          console.log(`💾 Using cached URL for POI: ${poi.name}`);
+          
+          // Update ALL instances of this POI in the array with the cached URL
+          pois.forEach(p => {
+            if (p.name === poi.name) {
+              p.logo = imageCache[cacheKey].url;
+            }
+          });
+          
+          cachedCount++;
+          processedPoiNames.add(poi.name);
+          continue;
+        }
+
+        console.log(`🎯 [${processedCount + 1}] Found Notion temporary URL in POI: ${poi.name}`);
 
         // Fetch password from Notion
         console.log(`   🔑 Fetching password...`);
@@ -318,9 +434,23 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
 
         // Process the image
         const newUrl = await processNotionImage(poi.logo, pageId, password, 'Logo');
-        // Update the data in-memory with the new URL
-        poi.logo = newUrl;
+        
+        // Update cache
+        imageCache[cacheKey] = {
+          url: newUrl,
+          fileName: poi.logo.split('/').pop() || 'unknown',
+          uploadedAt: new Date().toISOString()
+        };
+        
+        // Update ALL instances of this POI in the array with the new URL
+        pois.forEach(p => {
+          if (p.name === poi.name) {
+            p.logo = newUrl;
+          }
+        });
+        
         processedCount++;
+        processedPoiNames.add(poi.name);
         console.log(`   ✅ Successfully processed! New URL: ${newUrl.substring(0, 80)}...`);
       } catch (error) {
         console.error(`   ❌ Failed to process: ${error instanceof Error ? error.message : error}`);
@@ -328,10 +458,16 @@ async function processAllNotionImages(data: ApiResponse): Promise<{ count: numbe
     }
   }
 
-  if (processedCount === 0) {
+  // Save the updated cache
+  await saveImageCache(imageCache);
+
+  if (processedCount === 0 && cachedCount === 0) {
     console.log(`\n  ℹ️  No Notion temporary URLs found in data.`);
   } else {
-    console.log(`\n✨ Successfully processed ${processedCount} image(s)!`);
+    const parts = [];
+    if (processedCount > 0) parts.push(`processed ${processedCount} new image(s)`);
+    if (cachedCount > 0) parts.push(`used ${cachedCount} cached image(s)`);
+    console.log(`\n✨ Successfully ${parts.join(' and ')}!`);
   }
 
   return { count: processedCount, updatedData: data };

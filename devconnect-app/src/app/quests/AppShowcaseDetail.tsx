@@ -98,10 +98,14 @@ const AppShowcaseDetail = React.forwardRef<
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
 
   // Get all Setup & app tour quests (groupId === 1)
-  const setupQuests = questsData.filter((quest) => quest.groupId === 1);
+  const setupQuests = questsData
+    .filter((quest) => quest.groupId === 1)
+    .sort((a, b) => a.order - b.order);
 
   // Get all Crypto payment quests (groupId === 2)
-  const cryptoPaymentQuests = questsData.filter((quest) => quest.groupId === 2);
+  const cryptoPaymentQuests = questsData
+    .filter((quest) => quest.groupId === 2)
+    .sort((a, b) => a.order - b.order);
 
   // Group quests by district
   const questsByDistrict = useMemo(() => {
