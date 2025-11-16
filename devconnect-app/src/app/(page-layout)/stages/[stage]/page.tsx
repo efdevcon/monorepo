@@ -125,7 +125,7 @@ const MeerkatComponent = ({ stage }: { stage: string }) => {
       <Button size="sm" color="blue-2" className="w-full">
         <div className="flex flex-col items-start">
           <div className="text-sm font-semibold leading-tight">
-            Join the live Q/A
+            Ask a Question
           </div>
         </div>
         <Image src={imgMeerkat} alt="Meerkat" width={23} />

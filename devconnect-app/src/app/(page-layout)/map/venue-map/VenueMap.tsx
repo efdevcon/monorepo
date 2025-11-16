@@ -134,6 +134,76 @@ export const VenueMap = () => {
   useEffect(() => {
     if (!svgRef.current) return;
 
+    // Inject glow filter into SVG if it doesn't exist
+    if (!svgRef.current.querySelector('#glow')) {
+      let defs = svgRef.current.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        svgRef.current.insertBefore(defs, svgRef.current.firstChild);
+      }
+
+      const filter = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'filter'
+      );
+      filter.setAttribute('id', 'glow');
+      filter.setAttribute('x', '-50%');
+      filter.setAttribute('y', '-50%');
+      filter.setAttribute('width', '200%');
+      filter.setAttribute('height', '200%');
+
+      const feFlood = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'feFlood'
+      );
+      feFlood.setAttribute('flood-color', 'rgba(0, 115, 222, 1)');
+      feFlood.setAttribute('result', 'flood');
+
+      const feComposite = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'feComposite'
+      );
+      feComposite.setAttribute('in', 'flood');
+      feComposite.setAttribute('in2', 'SourceGraphic');
+      feComposite.setAttribute('operator', 'in');
+      feComposite.setAttribute('result', 'mask');
+
+      const feGaussianBlur = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'feGaussianBlur'
+      );
+      feGaussianBlur.setAttribute('in', 'mask');
+      feGaussianBlur.setAttribute('stdDeviation', '3');
+      feGaussianBlur.setAttribute('result', 'blur');
+
+      const feMerge = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'feMerge'
+      );
+
+      const feMergeNode1 = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'feMergeNode'
+      );
+      feMergeNode1.setAttribute('in', 'blur');
+
+      const feMergeNode2 = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'feMergeNode'
+      );
+      feMergeNode2.setAttribute('in', 'SourceGraphic');
+
+      feMerge.appendChild(feMergeNode1);
+      feMerge.appendChild(feMergeNode2);
+
+      filter.appendChild(feFlood);
+      filter.appendChild(feComposite);
+      filter.appendChild(feGaussianBlur);
+      filter.appendChild(feMerge);
+
+      defs.insertBefore(filter, defs.firstChild);
+    }
+
     const svgElements = svgRef.current.querySelectorAll('[id]:not(g)');
 
     svgElements.forEach((element) => {
@@ -142,9 +212,10 @@ export const VenueMap = () => {
 
       const svgElement = element as SVGElement;
       if (isSelected || isHovered) {
-        svgElement.classList.add(css['pulse']);
+        // svgElement.classList.add(css['pulse']);
+        svgElement.style.filter = 'url(#glow)';
       } else if (hasActiveFilters) {
-        svgElement.classList.remove(css['pulse']);
+        // svgElement.classList.remove(css['pulse']);
         // Selected fallback
         // svgElement.style.opacity = '0.15';
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
@@ -155,7 +226,7 @@ export const VenueMap = () => {
         svgElement.style.filter = 'none';
       } */ else {
         // Reset fallback
-        svgElement.classList.remove(css['pulse']);
+        // svgElement.classList.remove(css['pulse']);
         if (svgElement.style.opacity) {
           svgElement.style.opacity = '';
         }
