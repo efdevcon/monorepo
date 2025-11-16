@@ -127,6 +127,7 @@ const Pane = ({
   stageColor,
   isStage = false,
   tealBoxIcon,
+  linkText,
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -146,6 +147,7 @@ const Pane = ({
   supporterQuest?: Quest | null;
   stageColor?: string | null;
   isStage?: boolean;
+  linkText?: string;
   tealBoxIcon?: string | null;
 }) => {
   const imageSrc = logo || '';
@@ -181,7 +183,7 @@ const Pane = ({
             >
               <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2 cursor-pointer">
                 <span className="font-bold text-sm text-[#0073DE]">
-                  {isStage ? 'View Programming' : 'Visit Website'}
+                  {linkText || (isStage ? 'View Programming' : 'Visit Website')}
                 </span>
                 <ArrowUpRightIcon className="w-4 h-4 shrink-0 text-[#0073DE]" />
               </button>
@@ -548,6 +550,8 @@ const MapPane = (props: {
 
     const paneType = poiGroupsData[selectionData.groupId]?.name || 'District';
 
+    console.log(selectionData, 'selectionData');
+
     switch (selectionData.pane_type) {
       case 'group':
       case 'district':
@@ -687,6 +691,16 @@ const MapPane = (props: {
             ? getTealBoxIcon(selectionData.groupId, selectionData.layerName)
             : null;
 
+        let subtitle = selectionData.districtId ? 'District' : paneType;
+
+        if (selectionData.layerName === 'ethluminal-gallery')
+          subtitle = 'Activation';
+
+        let linkText;
+
+        if (selectionData.groupId === '9') linkText = 'Book Meeting Room';
+        if (selectionData.groupId === '4') linkText = 'Book Corner';
+
         return (
           <Pane
             paneOpen={paneOpen}
@@ -694,7 +708,7 @@ const MapPane = (props: {
             selection={selectionData.layerName}
             displayName={selectionData.name}
             description={selectionData.description}
-            subtitle={selectionData.districtId ? 'District' : paneType}
+            subtitle={subtitle}
             links={selectionData.links}
             logo={selectionData.logo}
             districtBadge={supporterDistrict?.name}
@@ -706,6 +720,7 @@ const MapPane = (props: {
             supporterQuest={supporterQuest}
             stageColor={stageColor}
             isStage={isStage}
+            linkText={linkText}
             tealBoxIcon={tealBoxIcon}
           >
             {/* View Quest/Map Button for supporters with quests */}
