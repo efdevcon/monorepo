@@ -6,12 +6,15 @@ import peanut from '@squirrel-labs/peanut-sdk';
 
 const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
+const SPECIFIC_NFT_CONTRACT = '0xD6A7dCDEe200Fa37F149323C0aD6b3698Aa0E829';
+const BASE_CHAIN_ID = 8453;
+
 
 export async function POST(request: NextRequest) {
   try {
-    const { address } = await request.json();
+    const { address, email } = await request.json();
     
-    console.log('Portfolio API called for address:', address);
+    console.log('Portfolio API called for address:', address, email ? `by user: ${email}` : '(unauthenticated)');
 
     if (!address) {
       return NextResponse.json(
@@ -37,7 +40,7 @@ export async function POST(request: NextRequest) {
 
     // Fetch portfolio data
     const portfolioQuery = `
-      query PortfolioV2Query($addresses: [Address!]!, $chainIds: [Int!]) {
+      query PortfolioV2Query($addresses: [Address!]!, $chainIds: [Int!], $nftFilters: PortfolioV2NftBalanceByTokenFiltersInput) {
         portfolioV2(addresses: $addresses, chainIds: $chainIds) {
           tokenBalances {
             totalBalanceUSD
@@ -60,7 +63,20 @@ export async function POST(request: NextRequest) {
             totalBalanceUSD
           }
           nftBalances {
-            totalBalanceUSD
+            byToken(first: 100, filters: $nftFilters) {
+              edges {
+                node {
+                  token {
+                    tokenId
+                    name
+                    collection {
+                      address
+                      network
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -74,6 +90,12 @@ export async function POST(request: NextRequest) {
         variables: {
           addresses: [address],
           chainIds: chainIds,
+          nftFilters: {
+            collections: [{
+              address: SPECIFIC_NFT_CONTRACT,
+              chainId: BASE_CHAIN_ID
+            }]
+          },
         },
       }),
     });
@@ -83,12 +105,48 @@ export async function POST(request: NextRequest) {
     if (portfolioResult.errors) {
       console.error('Zapper portfolio API error:', portfolioResult.errors);
       return NextResponse.json(
-        { error: portfolioResult.errors[0]?.message || 'Failed to fetch portfolio data' },
+        { 
+          error: portfolioResult.errors[0]?.message || 'Failed to fetch portfolio data',
+          errorType: 'ZAPPER_API_ERROR',
+          address: address,
+        },
         { status: 500 }
       );
     }
 
     console.log('Portfolio data fetched successfully');
+
+    // Process portfolio data
+    const portfolio = portfolioResult.data.portfolioV2;
+
+    // Extract worldfair.eth domain name from NFT collection
+    const nftTokenEdges = portfolio.nftBalances?.byToken?.edges || [];
+    let worldfairDomain: string | null = null;
+    
+    if (nftTokenEdges.length > 0) {
+      // Look through all NFT tokens
+      for (const tokenEdge of nftTokenEdges) {
+        const token = tokenEdge.node?.token;
+        const name = token?.name || '';
+        
+        // Look for worldfair.eth in the NFT name
+        if (name.endsWith('.worldfair.eth')) {
+          worldfairDomain = name;
+          console.log(`✅ [Portfolio] Found worldfair.eth domain from NFT:`, {
+            domain: worldfairDomain,
+            tokenId: token?.tokenId,
+            collection: token?.collection?.address,
+          });
+          break;
+        }
+      }
+      
+      if (worldfairDomain) {
+        console.log(`✅ [Portfolio] Address ${address} owns worldfair.eth NFT: ${worldfairDomain}`);
+      } else {
+        console.log(`ℹ️ [Portfolio] Address ${address} has ${nftTokenEdges.length} NFT(s) from worldfair contract but none have .worldfair.eth name`);
+      }
+    }
 
     // Fetch activity data for all chains
     const activityQuery = `
@@ -225,9 +283,6 @@ export async function POST(request: NextRequest) {
       console.log('Activity data fetched successfully');
     }
 
-    // Process portfolio data
-    const portfolio = portfolioResult.data.portfolioV2;
-    
     // Filter tokens with value >= $0.01 and calculate total from tokens only
     const allTokenBalances = portfolio.tokenBalances?.byToken?.edges?.map((edge: any) => {
       const token = edge.node;
@@ -256,38 +311,29 @@ export async function POST(request: NextRequest) {
     const recentActivity = activityResult.data?.transactionHistoryV2?.edges?.map((edge: any) => edge.node) || [];
 
     // ============================================
-    // Check for peanut claiming link associated with this address
+    // Check for peanut claiming link associated with this user (optional, requires auth)
     // This allows the frontend to show claiming status in the wallet UI
+    // Email is provided by frontend if user is authenticated
     // ============================================
     let peanutClaimingState = null;
-    try {
-      const supabase = createServerClient();
+    
+    if (email) {
+      try {
+        const supabase = createServerClient();
 
-      // Find user who owns this address by checking addresses array
-      const normalizedAddress = address.toLowerCase();
-      const { data: users, error: userError } = await supabase
-        .from('devconnect_app_user')
-        .select('email, addresses')
-        .contains('addresses', [normalizedAddress]);
+        console.log('Portfolio request from authenticated user:', email);
 
-      if (userError) {
-        console.error('Error fetching user by address:', userError);
-      } else if (users && users.length > 0) {
-        // Take the first user (should only be one since addresses should be unique)
-        const userEmail = users[0].email;
-        console.log('Portfolio address belongs to user:', userEmail);
-
-        // Query for claiming link by user email (not by address)
+        // Query for claiming link by user email directly
         const { data: claimingLink, error: claimError } = await supabase
           .from('devconnect_app_claiming_links')
           .select('*')
-          .eq('claimed_by_user_email', userEmail)
+          .eq('claimed_by_user_email', email)
           .maybeSingle();
 
         if (claimError) {
           console.error('Error checking peanut claiming link:', claimError);
         } else if (claimingLink) {
-          console.log('Found claiming link for user:', userEmail);
+          console.log('Found claiming link for user:', email);
 
           // Check the actual claim status on Peanut protocol
           try {
@@ -314,7 +360,6 @@ export async function POST(request: NextRequest) {
             }
 
             peanutClaimingState = {
-              link: claimingLink.link,
               amount: claimingLink.amount,
               claimed_date: claimingLink.claimed_date,
               ticket_secret_proof: claimingLink.ticket_secret_proof,
@@ -328,7 +373,7 @@ export async function POST(request: NextRequest) {
             };
 
             console.log('Peanut claiming state:', {
-              userEmail,
+              userEmail: email,
               peanut_claimed: linkDetails.claimed,
               tx_hash: txHash,
               db_claimed: !!claimingLink.claimed_by_user_email,
@@ -337,7 +382,6 @@ export async function POST(request: NextRequest) {
             console.error('Error fetching peanut link details:', peanutError);
             // Still return database info even if peanut check fails
             peanutClaimingState = {
-              link: claimingLink.link,
               amount: claimingLink.amount,
               claimed_date: claimingLink.claimed_date,
               ticket_secret_proof: claimingLink.ticket_secret_proof,
@@ -349,13 +393,11 @@ export async function POST(request: NextRequest) {
             };
           }
         } else {
-          console.log('No claiming link found for user:', userEmail);
+          console.log('No claiming link found for user:', email);
         }
-      } else {
-        console.log('No user found with address:', address);
+      } catch (supabaseError) {
+        console.error('Error accessing Supabase for peanut check:', supabaseError);
       }
-    } catch (supabaseError) {
-      console.error('Error accessing Supabase for peanut check:', supabaseError);
     }
 
     return NextResponse.json({
@@ -363,13 +405,18 @@ export async function POST(request: NextRequest) {
       tokenBalances: filteredTokenBalances,
       recentActivity,
       peanutClaimingState,
+      worldfairDomain,
     });
 
   } catch (error) {
     console.error('Portfolio API error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { 
+        error: 'Internal server error',
+        errorType: 'INTERNAL_ERROR',
+      },
       { status: 500 }
     );
   }
 } 
+

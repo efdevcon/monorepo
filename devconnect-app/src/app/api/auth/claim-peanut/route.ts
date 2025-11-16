@@ -4,6 +4,19 @@ import { createServerClient } from '../supabaseServerClient';
 import { getPaidTicketsByEmail } from '../tickets/pretix';
 import { mainStore } from '../tickets/pretix-stores-list';
 
+// Normalize Gmail addresses
+function normalizeGmailForClaim(email: string): string {
+  const [localPart, domain] = email.toLowerCase().split('@');
+  if (!localPart || !domain) return email.toLowerCase();
+  
+  if (domain === 'gmail.com' || domain === 'googlemail.com') {
+    // Remove dots and strip +alias (Gmail ignores both)
+    const normalized = localPart.replace(/\./g, '').split('+')[0];
+    return normalized + '@gmail.com';
+  }
+  return email.toLowerCase();
+}
+
 export async function GET(request: NextRequest) {
   // Verify authentication
   const authResult = await verifyAuth(request);
@@ -44,12 +57,16 @@ export async function GET(request: NextRequest) {
   const supabase = createServerClient();
 
   try {
-    // Get additional emails from the user's profile
+    // Get additional emails from the user's profile (case-insensitive lookup)
+    // Then get exact email from DB for FK constraints (retro-compatible with any casing)
     const { data: userData } = await supabase
       .from('devconnect_app_user')
-      .select('additional_ticket_emails')
-      .eq('email', userEmail)
+      .select('email, additional_ticket_emails')
+      .ilike('email', userEmail)
       .single();
+
+    // Use exact email from DB for FK operations (handles both old lowercase and new mixed-case)
+    const exactEmail = userData?.email || userEmail;
 
     // Build list of all emails to check for tickets
     const allEmails = [
@@ -91,7 +108,7 @@ export async function GET(request: NextRequest) {
     const { data: existingClaim, error: checkError } = await supabase
       .from('devconnect_app_claiming_links')
       .select('*')
-      .eq('claimed_by_user_email', userEmail)
+      .eq('claimed_by_user_email', exactEmail)
       .single();
 
     if (checkError && checkError.code !== 'PGRST116') {
@@ -116,6 +133,33 @@ export async function GET(request: NextRequest) {
         already_claimed: true,
         message: 'You have already claimed this perk',
       });
+    }
+
+    // For Gmail, check if any normalized variation has already claimed
+    const normalizedEmail = normalizeGmailForClaim(exactEmail);
+    const domain = exactEmail.split('@')[1]?.toLowerCase();
+    
+    if (domain === 'gmail.com' || domain === 'googlemail.com') {
+      // Fetch all Gmail claims and check for normalized duplicates in-memory
+      const { data: gmailClaims } = await supabase
+        .from('devconnect_app_claiming_links')
+        .select('claimed_by_user_email')
+        .not('claimed_by_user_email', 'is', null)
+        .or('claimed_by_user_email.ilike.%@gmail.com,claimed_by_user_email.ilike.%@googlemail.com');
+
+      if (gmailClaims) {
+        const hasDuplicate = gmailClaims.some(claim => 
+          normalizeGmailForClaim(claim.claimed_by_user_email) === normalizedEmail
+        );
+        
+        if (hasDuplicate) {
+          return NextResponse.json({
+            error: 'Already claimed',
+            message: 'This email has already been used to claim.',
+            already_claimed: true,
+          }, { status: 403 });
+        }
+      }
     }
 
     // Find first unclaimed ticket secret (not already used in database)
@@ -182,7 +226,7 @@ export async function GET(request: NextRequest) {
       const { data: claimedLink, error: updateError } = await supabase
         .from('devconnect_app_claiming_links')
         .update({
-          claimed_by_user_email: userEmail,
+          claimed_by_user_email: exactEmail,
           claimed_by_address: userAddress?.toLowerCase() || null,
           claimed_date: new Date().toISOString(),
           ticket_secret_proof: availableSecret,

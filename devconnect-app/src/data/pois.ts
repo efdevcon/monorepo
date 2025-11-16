@@ -88,8 +88,8 @@ export const poisData: POI[] = [
   {
     "name": "BitBase",
     "layerName": "bitbase",
-    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/dec0d5a6-608d-45a4-90cf-2bf515ddfb4d/BitBase-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466WTTMBS2U%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T012535Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEML%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDRhPeMKn3s2uvZtcnSZ4ydiHFzCZQ9yrbUZUJFyNRVXQIgGj7qeehmU3UDkjlQcp0bHipWFuYcKgS7TeoF4BZlzZEqiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDJ7rNlMQwaEmrIGzTCrcA2gC9nGpiEG%2F2XCAccKaIY7pHIfmwmWS%2FOdGurmmMHz6TRdq2h4VpPM2peJ6W5SoNP%2FhJQbGSOc0FQOLYj%2BfCo5Ro54W19Apw1M1AZ%2B8X4VW%2BqyFW22MuEZcrnqwQGKepJU02irUJU6mXbdmW%2FyNQqKLWJX%2Fa5Cnle0gq5sQBG1J1sV7RIz47ibVplxn6H85wWT0AwKpgzmGWqrGGXiJz0EyBDuSGii1t8ahm76maWPTH2P1lJBe4MhXvlIaMfh7whiFGhh8SWA3IBA9BiHj0ITCUHws5uK3%2BXv%2BtCLOi%2BZlYZ9Xm4VHLzD%2B%2F5%2FJXbHyjPtALI4H70Y5Ku5Hj%2B9ASdtBRogCbPJ6hjuu1GO%2FRYHYNQqYu2YPDXn%2FEeSxNJzbc7yBcYVexfhmdQs0xkiTwiYDhWQxrnVmGdX9JoK9PRvaFPWnNqwUQ30QO6gs2DOGKgmii3M9rs5u06cc0CljGxMEwiIcw1nTYlvlJXNLgnw%2BZHNIvHdrHjV%2BcVwxf%2BHmk5hD2AtY3RAAmHlZ94QH9vvKZ1C2f7E%2FI9ZE%2BR0%2BTUPDrUVYr7ILOjpGBF6d%2BfzzL5Z3amsLy4f8u%2FbOPiZ%2BOp%2BmAKw7r1w1GkcgPcSLVpuqHk34Vuem0BlMiZ5%2BMIzP5MgGOqUB5fwfu5QDAzTbOu7Rf6E7ZeVCiZmpkKIkYqQZBQHeveYsli833APN66GgPyirrz%2B9ee%2F0bc293nWxFgO37Py2O0PdcsOOcm09g0fNSOT2JF7sJEU5TS0VmLblA7hhWzs32LTe6Hmjw91UyQOOXYffUf97nYK7JgVZBpdTmNhStdjzmn9z1W6sBKUlqOsc58Nc6kqbFuRd4xG9c32JFcdcikPMy3eq&X-Amz-Signature=7a1d19bafe6819b02287d2ff6bbdb308aca42faab85caf7def686206783e8d0e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-    "description": "The simplest and safest way to buy or sell Ethereum and other cryptocurrencies with the help of a specialist.",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T03-54-09-973Z-BitBase-POI.png",
+    "description": "The simplest way to buy or sell Ethereum and other cryptocurrencies with the help of a specialist.",
     "websiteLink": "https://www.bitbase.es/es",
     "twitterLink": "",
     "farcasterLink": "",
@@ -179,7 +179,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "2",
-    "groupId": "15"
+    "groupId": "16"
   },
   {
     "name": "Bootcamp",
@@ -328,7 +328,7 @@ export const poisData: POI[] = [
   {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/e8d6d6d6-6a27-47dc-92ad-a529fdebd290/Ethluminal-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZNQCOJBF%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T012537Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEML%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDSrRL7BbJnF0RvPRzDOAIO8sb8Ut0SqoCe%2F%2Bm9vHj1sQIgPugaF8a3jPTcQkFulF8LgWC9Q%2BxktnQ28lAU7iY%2B0q0qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDE6dxhSfiJp2rdxqsircAw0XG%2BpVHIXP3TWNduAyV8O1n3dfpWsHcDppq049Cu8YwQuzellQLoykkTx%2BsEiMk3jIqctGf7lN76L7M3QBSsYsCS7kTtmxlouOEplXRkKiwjVkkj83cehW94UqGjD59fsWbgxi38frYX9ElzAn7n6zFmgl7qbinNlyD3US8GmvsbRd52H6rGxfcPCeRmc0TG4a5ePMv1Uw1Ubd9Smjepu0qHoJqYGxVpDRdMJHGOMgSC90%2FnM%2FCmGsgp4bZpDhAcAokTqO34tdsQnd%2FCWw0jS%2BR2b8eUslbu3hsvPleOlrJ81GealWWZ3sXo0Xl6NV1ov7OwGwxl5KuTYNJ2TijPfFFGpx1FEXylt6oEgEYa1FR7PvwOR%2BKDEH7D%2B4koiS425FQnnzjUOz2U3R9dO4oBgHhtnvJXjlQsB%2FSswAHgwGDXNYOLnqsuvv4pLuLL8a0kjMhAc2ctSE1s1DRe%2FdQZjWidPIaJ6lzkZPm2gLyvanteB9NNgkcEsITUL86fcybEZNkMepqnCDK1R6bxVkpILngkj7lpQAepatGoOkKQGL4JgstKTPd4aaFVVnpEehF5WbL1rSQ3EWhNSANWsQ%2FjjDOPEJICuWvN1Pcx9Ida7y5%2FyaifvBO2csjYdyMPDO5MgGOqUBJeNWRe42KZPX0CPp%2Fn2D2XzC%2BRC99rK5J75hU8qcaspkdtma%2FaQ63%2BCdgEMgV%2BJ8oLPgH1xIW19gdBWvboXiRNbzhAYNGxlXMUCKtS4KP4uaoDU67CTD%2B51rIbsDJrgj6TQHCqMrzcYs1vXb6Jer6cmovRY7J%2F8r5PDU%2BOs2dND%2Fa2UTrJtDQcoYxDbAZZ7Q%2BgIqEOqviaRmzKhFzvEPO%2FrGxOzk&X-Amz-Signature=27d03e5b1f459d3b7c98735dbd83a9b720e753e880a15a67dc8510268703e60d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T03-54-13-947Z-Ethluminal-POI.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -875,7 +875,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "9"
+    "groupId": "16"
   },
   {
     "name": "Onboarding",
@@ -1348,7 +1348,7 @@ export const poisData: POI[] = [
   {
     "name": "Ripio - Green Pavilion",
     "layerName": "ripio-green-pavilion",
-    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/8598f4e0-987a-498b-b3b4-135218f6cd23/Ripio-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZNQCOJBF%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T012536Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEML%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDSrRL7BbJnF0RvPRzDOAIO8sb8Ut0SqoCe%2F%2Bm9vHj1sQIgPugaF8a3jPTcQkFulF8LgWC9Q%2BxktnQ28lAU7iY%2B0q0qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDE6dxhSfiJp2rdxqsircAw0XG%2BpVHIXP3TWNduAyV8O1n3dfpWsHcDppq049Cu8YwQuzellQLoykkTx%2BsEiMk3jIqctGf7lN76L7M3QBSsYsCS7kTtmxlouOEplXRkKiwjVkkj83cehW94UqGjD59fsWbgxi38frYX9ElzAn7n6zFmgl7qbinNlyD3US8GmvsbRd52H6rGxfcPCeRmc0TG4a5ePMv1Uw1Ubd9Smjepu0qHoJqYGxVpDRdMJHGOMgSC90%2FnM%2FCmGsgp4bZpDhAcAokTqO34tdsQnd%2FCWw0jS%2BR2b8eUslbu3hsvPleOlrJ81GealWWZ3sXo0Xl6NV1ov7OwGwxl5KuTYNJ2TijPfFFGpx1FEXylt6oEgEYa1FR7PvwOR%2BKDEH7D%2B4koiS425FQnnzjUOz2U3R9dO4oBgHhtnvJXjlQsB%2FSswAHgwGDXNYOLnqsuvv4pLuLL8a0kjMhAc2ctSE1s1DRe%2FdQZjWidPIaJ6lzkZPm2gLyvanteB9NNgkcEsITUL86fcybEZNkMepqnCDK1R6bxVkpILngkj7lpQAepatGoOkKQGL4JgstKTPd4aaFVVnpEehF5WbL1rSQ3EWhNSANWsQ%2FjjDOPEJICuWvN1Pcx9Ida7y5%2FyaifvBO2csjYdyMPDO5MgGOqUBJeNWRe42KZPX0CPp%2Fn2D2XzC%2BRC99rK5J75hU8qcaspkdtma%2FaQ63%2BCdgEMgV%2BJ8oLPgH1xIW19gdBWvboXiRNbzhAYNGxlXMUCKtS4KP4uaoDU67CTD%2B51rIbsDJrgj6TQHCqMrzcYs1vXb6Jer6cmovRY7J%2F8r5PDU%2BOs2dND%2Fa2UTrJtDQcoYxDbAZZ7Q%2BgIqEOqviaRmzKhFzvEPO%2FrGxOzk&X-Amz-Signature=7848e66af04cd0245b21aec83ce1b909e251e8f978c431d474ff7fbcde13da38&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T03-54-17-351Z-Ripio-POI.png",
     "description": "Onramp with the leading crypto company in LATAM. They’re building tools that bring DeFi to millions across the region, making automated yield accessible to everyone.",
     "websiteLink": "https://www.ripio.com/en",
     "twitterLink": "",
@@ -1360,7 +1360,7 @@ export const poisData: POI[] = [
   {
     "name": "Ripio - The Hub",
     "layerName": "ripio-the-hub",
-    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/1e52d4ef-7e13-4a46-950c-d02fce270098/Ripio-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466ZNQCOJBF%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T012537Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEML%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQDSrRL7BbJnF0RvPRzDOAIO8sb8Ut0SqoCe%2F%2Bm9vHj1sQIgPugaF8a3jPTcQkFulF8LgWC9Q%2BxktnQ28lAU7iY%2B0q0qiAQIiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDE6dxhSfiJp2rdxqsircAw0XG%2BpVHIXP3TWNduAyV8O1n3dfpWsHcDppq049Cu8YwQuzellQLoykkTx%2BsEiMk3jIqctGf7lN76L7M3QBSsYsCS7kTtmxlouOEplXRkKiwjVkkj83cehW94UqGjD59fsWbgxi38frYX9ElzAn7n6zFmgl7qbinNlyD3US8GmvsbRd52H6rGxfcPCeRmc0TG4a5ePMv1Uw1Ubd9Smjepu0qHoJqYGxVpDRdMJHGOMgSC90%2FnM%2FCmGsgp4bZpDhAcAokTqO34tdsQnd%2FCWw0jS%2BR2b8eUslbu3hsvPleOlrJ81GealWWZ3sXo0Xl6NV1ov7OwGwxl5KuTYNJ2TijPfFFGpx1FEXylt6oEgEYa1FR7PvwOR%2BKDEH7D%2B4koiS425FQnnzjUOz2U3R9dO4oBgHhtnvJXjlQsB%2FSswAHgwGDXNYOLnqsuvv4pLuLL8a0kjMhAc2ctSE1s1DRe%2FdQZjWidPIaJ6lzkZPm2gLyvanteB9NNgkcEsITUL86fcybEZNkMepqnCDK1R6bxVkpILngkj7lpQAepatGoOkKQGL4JgstKTPd4aaFVVnpEehF5WbL1rSQ3EWhNSANWsQ%2FjjDOPEJICuWvN1Pcx9Ida7y5%2FyaifvBO2csjYdyMPDO5MgGOqUBJeNWRe42KZPX0CPp%2Fn2D2XzC%2BRC99rK5J75hU8qcaspkdtma%2FaQ63%2BCdgEMgV%2BJ8oLPgH1xIW19gdBWvboXiRNbzhAYNGxlXMUCKtS4KP4uaoDU67CTD%2B51rIbsDJrgj6TQHCqMrzcYs1vXb6Jer6cmovRY7J%2F8r5PDU%2BOs2dND%2Fa2UTrJtDQcoYxDbAZZ7Q%2BgIqEOqviaRmzKhFzvEPO%2FrGxOzk&X-Amz-Signature=17d8e3a97066aaf2cdc83ad909daf0448b3e3ffd85e7163d4acc1de1117481e0&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T03-54-20-279Z-Ripio-POI.png",
     "description": "Onramp with the leading crypto company in LATAM. They’re building tools that bring DeFi to millions across the region, making automated yield accessible to everyone.",
     "websiteLink": "https://www.ripio.com/en",
     "twitterLink": "",
