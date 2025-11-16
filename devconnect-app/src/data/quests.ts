@@ -1299,5 +1299,19 @@ export const questsData: Quest[] = [
     "supporterId": "",
     "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-chicken-tenders-2025-logo-1762805016772.png?size=large",
     "groupId": 2
+  },
+  {
+    "id": 135,
+    "name": "Ethluminal Gallery",
+    "order": 0,
+    "instructions": "Come say 'Hi' at our booth!",
+    "action": "",
+    "button": "",
+    "conditionType": "",
+    "conditionValues": "",
+    "supporterId": "25d638cdc4158033ad04f20813ae1431",
+    "poapImageLink": "",
+    "groupId": 4,
+    "districtId": "2"
   }
 ];
