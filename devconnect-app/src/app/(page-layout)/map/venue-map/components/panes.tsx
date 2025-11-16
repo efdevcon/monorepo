@@ -14,9 +14,97 @@ import { poiGroupsData } from '@/data/poiGroups';
 import { supportersData } from '@/data/supporters';
 import { questsData } from '@/data/quests';
 import { questGroupsData } from '@/data/questGroups';
+import { locationsData } from '@/data/locations';
 import { District } from '@/types/api-data';
 import { Quest } from '@/types/quest';
 import { useRouter } from 'next/navigation';
+import Icon from '@mdi/react';
+import {
+  mdiMicrophoneVariant,
+  mdiFoodOutline,
+  mdiCoffeeOutline,
+  mdiHandshakeOutline,
+  mdiTshirtCrew,
+  mdiInformationOutline,
+  mdiSoccer,
+} from '@mdi/js';
+
+// Helper function to get stage color based on location/pavilion
+const getStageColor = (
+  locationId: string | null,
+  layerName: string
+): string | null => {
+  // Map of stages that need special colors based on image
+  const stageColorMap: Record<string, string> = {
+    // Yellow Pavilion stages (locationId: 15)
+    'xl-stage': 'rgba(246,180,14,1)', // Yellow/Gold
+    'xs-stage': 'rgba(246,180,14,1)',
+    'm1-stage': 'rgba(246,180,14,1)',
+    'm2-stage': 'rgba(246,180,14,1)',
+    'poi-buidIguidl-bootcamp': 'rgba(246,180,14,1)',
+    bootcamp: 'rgba(246,180,14,1)',
+
+    // Green Pavilion stages (locationId: 6)
+    'lighting-talks-stage': '#388e31', // Green
+    'lightning-stage': '#388e31',
+
+    // Red Pavilion stages (locationId: 12)
+    'l-stage': '#e61d54', // Red
+    'nogal-hall': '#e61d54',
+    'ceibo-hall': '#e61d54',
+
+    // Blue Pavilion stages (locationId: 2)
+    amphitheater: '#184795', // Blue
+    'blue-pavilion': '#184795',
+
+    // Entertainment/Music stages
+    'music-stage_2': '#e98302', // Orange
+    'open-air-cinema': '#e98302',
+  };
+
+  // First check if the layerName has a direct mapping
+  if (stageColorMap[layerName]) {
+    return stageColorMap[layerName];
+  }
+
+  // Fallback to location-based color mapping
+  // if (locationId) {
+  //   const locationColorMap: Record<string, string> = {
+  //     '15': '#F5BC51', // Yellow Pavilion
+  //     '6': '#388e31', // Green Pavilion
+  //     '12': '#e61d54', // Red Pavilion
+  //     '2': '#5B8ACF', // Blue Pavilion
+  //     '1': '#5B8ACF', // Amphitheater
+  //     '3': '#E97E46', // Entertainment
+  //     '8': '#E97E46', // Music Stage
+  //   };
+
+  //   return locationColorMap[locationId] || null;
+  // }
+
+  return null;
+};
+
+// Helper function to get teal box icon based on POI category
+const getTealBoxIcon = (
+  groupId: string | null,
+  layerName: string
+): string | null => {
+  if (!groupId) return null;
+
+  // Map groupIds to icons
+  const iconMap: Record<string, string> = {
+    '7': mdiFoodOutline, // Food & Beverage
+    '14': mdiCoffeeOutline, // Power-up Station (Coffee)
+    '9': mdiHandshakeOutline, // Meeting Rooms
+    '6': mdiTshirtCrew, // SWAG station
+    '10': mdiInformationOutline, // Onboarding Area
+    '11': mdiInformationOutline, // Onboarding desk
+    '5': mdiSoccer, // Entertainment (Futbol)
+  };
+
+  return iconMap[groupId] || null;
+};
 
 const Pane = ({
   children,
@@ -35,6 +123,9 @@ const Pane = ({
   backgroundColor,
   showAsModal = false,
   supporterQuest,
+  stageColor,
+  isStage = false,
+  tealBoxIcon,
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -52,6 +143,9 @@ const Pane = ({
   backgroundColor?: string;
   showAsModal?: boolean;
   supporterQuest?: Quest | null;
+  stageColor?: string | null;
+  isStage?: boolean;
+  tealBoxIcon?: string | null;
 }) => {
   const imageSrc = logo || '';
   const router = useRouter();
@@ -73,9 +167,9 @@ const Pane = ({
 
     return (
       <div className="flex flex-col gap-1 mt-4">
-        <p className="font-bold text-base text-[#20202B] leading-[1.5] tracking-[-0.1px]">
+        {/* <p className="font-bold text-base text-[#20202B] leading-[1.5] tracking-[-0.1px]">
           Links
-        </p>
+        </p> */}
         <div className="flex items-start gap-2">
           {links && links.website && links.website.trim() !== '' && (
             <Link
@@ -85,7 +179,7 @@ const Pane = ({
             >
               <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2 cursor-pointer">
                 <span className="font-bold text-sm text-[#0073DE]">
-                  Visit Website
+                  {isStage ? 'View Programming' : 'Visit Website'}
                 </span>
                 <ArrowUpRightIcon className="w-4 h-4 shrink-0 text-[#0073DE]" />
               </button>
@@ -145,6 +239,24 @@ const Pane = ({
                 height={44}
                 style={{ contentVisibility: 'auto' }}
               />
+            </div>
+          ) : stageColor ? (
+            <div
+              className="shrink-0 w-[44px] h-[44px] rounded-[4px] flex items-center justify-center"
+              style={{ backgroundColor: stageColor }}
+            >
+              <Icon
+                path={mdiMicrophoneVariant}
+                size={1.2}
+                className="text-white"
+              />
+            </div>
+          ) : tealBoxIcon ? (
+            <div
+              className="shrink-0 w-[44px] h-[44px] rounded-[4px] flex items-center justify-center"
+              style={{ backgroundColor: '#4DB8AC' }}
+            >
+              <Icon path={tealBoxIcon} size={1.2} className="text-white" />
             </div>
           ) : (
             <Image
@@ -551,6 +663,27 @@ const MapPane = (props: {
           ? questsData.find((quest) => quest.supporterId === supporterId)
           : null;
 
+        // Check if this POI is a stage and get its color
+        const isStage =
+          selectionData.groupId === '15' ||
+          [
+            'amphitheater',
+            'nogal-hall',
+            'ceibo-hall',
+            'bootcamp',
+            'open-air-cinema',
+            'music-stage_2',
+          ].includes(selectionData.layerName);
+        const stageColor = isStage
+          ? getStageColor(selectionData.locationId, selectionData.layerName)
+          : null;
+
+        // Check if this POI should have a teal box icon
+        const tealBoxIcon =
+          !isStage && !selectionData.logo
+            ? getTealBoxIcon(selectionData.groupId, selectionData.layerName)
+            : null;
+
         return (
           <Pane
             paneOpen={paneOpen}
@@ -568,6 +701,9 @@ const MapPane = (props: {
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
             showAsModal={isDesktop && fromQuests}
             supporterQuest={supporterQuest}
+            stageColor={stageColor}
+            isStage={isStage}
+            tealBoxIcon={tealBoxIcon}
           >
             {/* View Quest/Map Button for supporters with quests */}
             {supporterQuest && (

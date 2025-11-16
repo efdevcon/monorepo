@@ -23,7 +23,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "1",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "AID Room",
@@ -71,7 +71,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "Beer House",
@@ -83,13 +83,85 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "6"
+    "groupId": "7"
+  },
+  {
+    "name": "BitBase",
+    "layerName": "bitbase",
+    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/dec0d5a6-608d-45a4-90cf-2bf515ddfb4d/BitBase-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466RMJ37REY%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T010323Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIGEsMvXM3srM3M0B1tqR%2FegW%2Fk4N5mTWrVNZpGDQuvbmAiEAnIAhBAc76oU6g1wKT3W2d4T7d0cj1zEFUMZde8Pv7ZkqiAQIhv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDGI60iiXL9YzbrYcPyrcA0jCuHmrcSdRNHuhfdIEfbzyUQbRgIU8gBxOpUTWiw2bxNrMniU1xE%2FHDnBjsjak5BfOa3Nuu3oAMnlC%2FfyGrg27htP4128%2Fi5QFt2N5DAddpcpyUoPnQZQ%2FNFZwrXA%2Fis4MadH15l%2FrejrC2fa9nUneio5uGLjtRBvT%2Bv9kSibqylXkkP13puPIJy14bOApCd4lwFG0PxemrVwbO28FSP%2FSuwGMlZev%2FkO7tgOsRRMw7Yi6Bgosa5H1n5WZgIWR2ccX1SMInUqzoW09pjDMkuF0NARsV%2Bub5EIlSeBbC880QArxGG5yCBUefW2Q%2F6l3WRjVWXwD7J8lmjUsZQl1bQHmpFWORUg2FPb0bmi1ZSXHuMM2ylJaVSO90FGPqB5mp%2FlpTQJ3YhvFr8SfZ%2BeUzww6LP8aCIB8TT%2FbEOoG2sDCMTxrPYTTG1C4wlc80VHxboufNJte95DeHk5vBhQdGnT%2FTSgAZAgmAeOQgjurISHf6sXg1DVryaZCU0tHzF9BcQlIDJagUM5MnOEZJxjio2GULqjhE2qFElzwkDEvOmgfJ6%2Ft1Q8lh0dj%2Bo1pjlg6liOYjH0KSgtAdVauGLyAt%2B8LiW%2F0C%2B09GEHAcYCgS8gnzW%2FDYs8tiAWcJ16gMOnM48gGOqUB3qCg6Ek1%2FjuMnwSchvpcbRe%2ForgrliO46QC8NyEwMRBzKdtr%2BdOQO%2FWXsOaI8asuspPFU46F%2F1WZVLbo2T6fv0P4uM0DoXNy45K5ptGs2fzA%2FzGs57YRgBvCQkNGk9%2FBk0pZbTGKE48t31RZfBd7msuPgf5%2FCbc%2FYBcCUBhlksxxF452AyyYfpbexclmP9Pwh1bOGtw%2ByfOR3ITV4NKpIDj38oU7&X-Amz-Signature=fe0945e19e27cfa0dccc0850feb634773233d7a87aa4c893c8276fa6b94285a8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "description": "The simplest and safest way to buy or sell Ethereum and other cryptocurrencies with the help of a specialist.",
+    "websiteLink": "https://www.bitbase.es/es",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "13"
+  },
+  {
+    "name": "Bleachers",
+    "layerName": "bleachers",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
+  },
+  {
+    "name": "Bleachers",
+    "layerName": "poi-bleachers-1-pista-central",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
+  },
+  {
+    "name": "Bleachers",
+    "layerName": "poi-bleachers-3-pista-central",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
+  },
+  {
+    "name": "Bleachers",
+    "layerName": "poi-bleachers-4-pista-central",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
+  },
+  {
+    "name": "Bleachers",
+    "layerName": "poi-bleachers-2-pista-central",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
   },
   {
     "name": "Blue Discussion Corner",
     "layerName": "blue-discussion-corner",
     "logo": "",
-    "description": "",
+    "description": "The Devconnect Discussion Corners are open to all attendees who wants to work, network, and meet the people working in Ethereum. ",
     "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
     "twitterLink": "",
     "farcasterLink": "",
@@ -114,19 +186,19 @@ export const poisData: POI[] = [
     "layerName": "poi-buidIguidl-bootcamp",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/bootcamp",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "1"
+    "groupId": "15"
   },
   {
     "name": "Ceibo Hall",
     "layerName": "ceibo-hall",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/ceibo",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -143,7 +215,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Childcare",
@@ -161,7 +233,7 @@ export const poisData: POI[] = [
     "name": "Chillout Area",
     "layerName": "chillout-area",
     "logo": "",
-    "description": "",
+    "description": "Rest, relax, decompress. A place to get away from the crowd for a moment.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -179,10 +251,10 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "2",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
-    "name": "Cowork Main Arena 1",
+    "name": "Cowork - Main Arena 1",
     "layerName": "cowork-main-arena-1",
     "logo": "",
     "description": "",
@@ -194,7 +266,7 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
-    "name": "Cowork Main Arena 2",
+    "name": "Cowork - Main Arena 2",
     "layerName": "cowork-main-arena-2",
     "logo": "",
     "description": "",
@@ -206,7 +278,7 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
-    "name": "Cowork The Hub",
+    "name": "Cowork - The Hub",
     "layerName": "cowork-the-hub",
     "logo": "",
     "description": "",
@@ -227,7 +299,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "3",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "DeSci Hub",
@@ -256,7 +328,7 @@ export const poisData: POI[] = [
   {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "",
+    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/e8d6d6d6-6a27-47dc-92ad-a529fdebd290/Ethluminal-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UTARABUQ%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T010324Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCsCpRWRxjGKfKrWzemoDZqfalDWpo7pcC4rTTXhrY7uwIhAOAF%2FeiyEZqD9fM0j%2BwYoSVOgwXevd6hbKtkmFaufgxtKogECIb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igz37zfQaI%2Fc%2BIXMaVAq3AN1WwYk6O7nT%2FLYpXk1WGCfggsEj5WwsLcYohKVemaYEDCqATPioXCqK7UxuSxMuNBEUEIEddIGmQiZ%2BqKRHqfO08KTwSqSzQq%2BPXk1F3KBR6zlJPpf2m%2BlPWm%2B7IfvFotEHAXcjBJ3%2FNdx8yBwsbXKf7vTn1gr1pM%2BtHJVKjOjtwIv%2FUOTnV9u53TKUiWbc88OPX7Lun175qTBkFgqdAQuRxHsdlwRpnUjrWAjRUd5Mr3gP9d%2F8saK5gwS0N3nj1uNOg7BmSMJpvtA16lfAylUZIKsqwla7TUx2dHTgzpcqUT9POtXQiq4Sgxc1SxIbNGokHuQix32u6yV6OtU1qVsdNSmBkGmNS%2FMvMAsIkFKx4sJoags5w5JGwLA2yhJV4dJ1UKu%2F0GRx7QZcGQ2AN9QvFVZEvQvYoJvSLFSGmGn80fFi4qvOPjmqlvHptFG1r%2BTY2IDlrWh4jIQQb7M3E7%2BCAycP7g%2BAdEdNTh7lGwM7ixd3aTSjsmh5QUdr%2FpBdTE9mkD5hkzQeJ7o0q34T4yBW0QnB7%2F%2Bxd7iUUENmMJa8%2BRmmhFs26cn9IdWwFwhTe9vfaBGNiCkp5Cqj%2FKIwv3HWoPHbFAuROOW96e0Q%2Boe0DgEGPf1a%2BqS6La9yDC8zOPIBjqkAVcfbMolsO5fP3LbFILeAUXujn1nGnmmGMtVZa5tyZuRic1TH0qj9zNb2vfxZAp7gSZt1p%2Bbo867Y8ZvsW7RrdFgKw6cC81o87FA1b4qSo45pxBVKJW4meYM6QjUWcDz7hyGQRJpPaf%2BornbkrQ1LN6Hq5lNPDqisXH8DSfvQtR4dY8eY7MZqioeHlJIpLjO%2FgARNMU7ZTijAj4JG5AmhjhfVPyQ&X-Amz-Signature=839e5ef5499a745c9000865b702cfd17d71370f755036f7decd577a95c5b46df&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -293,8 +365,8 @@ export const poisData: POI[] = [
     "name": "Gamers Discussion Corner",
     "layerName": "gamers-discussion-corner",
     "logo": "",
-    "description": "",
-    "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
+    "description": "Love all things gaming? Then this Discussion Corner is reserved exclusively for you – swing by and say hey!",
+    "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -311,7 +383,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "4",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "Governance Geeks Hub",
@@ -335,7 +407,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "14",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Hamburgueseria 1",
@@ -347,7 +419,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Hamburgueseria 2",
@@ -359,7 +431,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Hardware & Wallets Onboarding",
@@ -371,7 +443,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "5",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "Infinite Garden Artist Exhibition",
@@ -395,26 +467,26 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "7"
+    "groupId": "8"
   },
   {
     "name": "KOI",
     "layerName": "koi",
     "logo": "",
-    "description": "Tasty asian food and delicious cocktails 🐉❤",
+    "description": "Tasty asian food and delicious cocktails 🐉 ❤",
     "websiteLink": "https://drive.google.com/file/d/1xXQnwhfklTvI4pGQwmOpk7cWJzLAoqo-/view",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "L Stage",
     "layerName": "l-stage",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/l",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -431,7 +503,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "6",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "LATAM Hub",
@@ -449,13 +521,13 @@ export const poisData: POI[] = [
     "name": "Le Ble",
     "layerName": "le-ble",
     "logo": "",
-    "description": "Mobile food truck catering to different situations (events, outdoor events, festivals, etc). It's a synthesis of the best of their bakery and pastry shop, paired with great coffee, always maintaining the quality and warmth that define us.",
+    "description": "Mobile food truck catering to different situations (events, outdoor events, festivals, etc). It's a synthesis of the best of their bakery and pastry shop, paired with great coffee, always maintaining the quality and warmth that define their service.",
     "websiteLink": "https://www.leble.com.ar/foodtruck.html",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "13",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "Legal Tech Hub",
@@ -474,7 +546,7 @@ export const poisData: POI[] = [
     "layerName": "lighting-talks-stage",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/lightning",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -491,14 +563,14 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "8",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
     "name": "M1 Stage",
     "layerName": "m1-stage",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/m1",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -510,7 +582,7 @@ export const poisData: POI[] = [
     "layerName": "m2-stage",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/m2",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -527,7 +599,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "7"
+    "groupId": "8"
   },
   {
     "name": "Meeting Point 1",
@@ -611,7 +683,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 10",
@@ -623,7 +695,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 2",
@@ -635,7 +707,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 3",
@@ -647,7 +719,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 4",
@@ -659,7 +731,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 5",
@@ -671,7 +743,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 6",
@@ -683,7 +755,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 7",
@@ -695,7 +767,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 8",
@@ -707,7 +779,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 9",
@@ -719,7 +791,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room A",
@@ -731,7 +803,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room B",
@@ -743,7 +815,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Meeting Room Registration",
@@ -755,11 +827,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Music Stage",
-    "layerName": "music-stage_2",
+    "layerName": "music-stage",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -767,7 +839,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "8",
-    "groupId": "9"
+    "groupId": "10"
   },
   {
     "name": "Node Operators Hub",
@@ -786,7 +858,7 @@ export const poisData: POI[] = [
     "layerName": "nogal-hall",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/nogal",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -803,7 +875,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "8"
+    "groupId": "9"
   },
   {
     "name": "Onboarding",
@@ -815,7 +887,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
-    "groupId": "10"
+    "groupId": "11"
   },
   {
     "name": "Onchain Art Hub",
@@ -842,46 +914,10 @@ export const poisData: POI[] = [
     "groupId": "3"
   },
   {
-    "name": "Onramp 1",
-    "layerName": "onramping-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "12"
-  },
-  {
-    "name": "Onramp 2",
-    "layerName": "onramping-2",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "12"
-  },
-  {
-    "name": "Onramp 3",
-    "layerName": "onramping-3",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "12"
-  },
-  {
     "name": "Open Air Cinema",
     "layerName": "open-air-cinema",
     "logo": "",
-    "description": "",
+    "description": "Watch a curated schedule of programming on Ethereum, decentralization, finance, culture and blockchain.",
     "websiteLink": "https://app.devconnect.org/stages/outdoor-cinema",
     "twitterLink": "",
     "farcasterLink": "",
@@ -905,13 +941,37 @@ export const poisData: POI[] = [
     "name": "Orange Discussion Corner",
     "layerName": "orange-discussion-corner",
     "logo": "",
-    "description": "",
+    "description": "The Devconnect Discussion Corners are open to all attendees who wants to work, network, and meet the people working in Ethereum. ",
     "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "14",
     "groupId": "4"
+  },
+  {
+    "name": "Outdoor Seating Area",
+    "layerName": "outdoor-seating-area-1",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
+  },
+  {
+    "name": "Outdoor Seating Area",
+    "layerName": "outdoor-seating-area",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "16"
   },
   {
     "name": "Persicco",
@@ -923,11 +983,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 1",
-    "layerName": "power-up-station-1",
+    "name": "Power Up - Entertainment 1",
+    "layerName": "power-up-station-entertainment-1",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
@@ -935,71 +995,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 10",
-    "layerName": "power-up-station-10",
-    "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "6",
-    "groupId": "6"
-  },
-  {
-    "name": "Power Up Station 11",
-    "layerName": "power-up-station-11",
-    "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "13",
-    "groupId": "6"
-  },
-  {
-    "name": "Power Up Station 12",
-    "layerName": "power-up-station-12",
-    "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "6",
-    "groupId": "6"
-  },
-  {
-    "name": "Power Up Station 13",
-    "layerName": "power-up-station-13",
-    "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "6",
-    "groupId": "6"
-  },
-  {
-    "name": "Power Up Station 13",
-    "layerName": "power-up-station-13",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "3",
-    "groupId": "11"
-  },
-  {
-    "name": "Power Up Station 14",
-    "layerName": "power-up-station-14",
+    "name": "Power Up - Entertainment 2",
+    "layerName": "power-up-station-entertainment-2",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
@@ -1007,23 +1007,83 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 15",
-    "layerName": "power-up-station-15",
+    "name": "Power Up - Green Pavilion 1",
+    "layerName": "power-up-station-green-pavilion-1",
     "logo": "",
-    "description": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 2",
-    "layerName": "power-up-station-2",
+    "name": "Power Up - Green Pavilion 2",
+    "layerName": "power-up-station-green-pavilion-2",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Green Pavilion 3",
+    "layerName": "power-up-station-green-pavilion-3",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Green Pavilion 4",
+    "layerName": "power-up-station-green-pavilion-4",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Green Pavilion 5",
+    "layerName": "power-up-station-green-pavilion-5",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Green Pavilion 6",
+    "layerName": "power-up-station-green-pavilion-6",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Main Arena 1",
+    "layerName": "power-up-station-main-arena-1",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
@@ -1031,11 +1091,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 3",
-    "layerName": "power-up-station-3",
+    "name": "Power Up - Main Arena 2",
+    "layerName": "power-up-station-main-arena-2",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
@@ -1043,11 +1103,35 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "7",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 4",
-    "layerName": "power-up-station-4",
+    "name": "Power Up - Main Arena 3",
+    "layerName": "power-up-station-main-arena-3",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Main Arena 4",
+    "layerName": "power-up-station-main-arena-4",
+    "logo": "",
+    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "7",
+    "groupId": "7"
+  },
+  {
+    "name": "Power Up - Red Pavilion",
+    "layerName": "power-up-station-red-pavilion",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
@@ -1055,35 +1139,23 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "12",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 5",
-    "layerName": "power-up-station-5",
+    "name": "Power Up - The Cave",
+    "layerName": "power-up-station-the-cave",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "7",
-    "groupId": "6"
+    "locationId": "13",
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 6",
-    "layerName": "power-up-station-6",
-    "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "7",
-    "groupId": "6"
-  },
-  {
-    "name": "Power Up Station 7",
-    "layerName": "power-up-station-7",
+    "name": "Power Up - Yellow Pavilion",
+    "layerName": "power-up-station-yellow-pavilion",
     "logo": "",
     "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
@@ -1091,31 +1163,19 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "15",
-    "groupId": "6"
+    "groupId": "7"
   },
   {
-    "name": "Power Up Station 8",
-    "layerName": "power-up-station-8",
+    "name": "Power Up Station 13",
+    "layerName": "power-up-station-13",
     "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "description": "",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "6",
-    "groupId": "6"
-  },
-  {
-    "name": "Power Up Station 9",
-    "layerName": "power-up-station-9",
-    "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "6",
-    "groupId": "6"
+    "locationId": "3",
+    "groupId": "12"
   },
   {
     "name": "Privacy Hub",
@@ -1139,13 +1199,13 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "7",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "Purple Discussion Corner",
     "layerName": "purple-discussion-corner",
     "logo": "",
-    "description": "",
+    "description": "The Devconnect Discussion Corners are open to all attendees who wants to work, network, and meet the people working in Ethereum. ",
     "websiteLink": "https://ef-events.notion.site/Discussion-Corners-Booking-299638cdc415803db11bf6c9aa0334f5",
     "twitterLink": "",
     "farcasterLink": "",
@@ -1163,7 +1223,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "14"
   },
   {
     "name": "QR code 2",
@@ -1175,7 +1235,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "14"
   },
   {
     "name": "Quiet Cowork",
@@ -1226,7 +1286,7 @@ export const poisData: POI[] = [
     "groupId": "1"
   },
   {
-    "name": "Registration M1 1",
+    "name": "Registration - M1 1",
     "layerName": "poi-registration-yellow-pavilion-m1-1",
     "logo": "",
     "description": "",
@@ -1238,7 +1298,7 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
-    "name": "Registration M1 2",
+    "name": "Registration - M1 2",
     "layerName": "poi-registration-yellow-pavilion-m1-2",
     "logo": "",
     "description": "",
@@ -1250,7 +1310,7 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
-    "name": "Registration M2 Stage",
+    "name": "Registration - M2 Stage",
     "layerName": "poi-registration-yellow-pavilion-m2",
     "logo": "",
     "description": "",
@@ -1262,7 +1322,7 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
-    "name": "Registration XL",
+    "name": "Registration - XL Stage",
     "layerName": "poi-registration-yellow-pavilion-xl",
     "logo": "",
     "description": "",
@@ -1274,7 +1334,7 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
-    "name": "Registration XS Stage",
+    "name": "Registration - XS Stage",
     "layerName": "poi-registration-yellow-pavilion-xs",
     "logo": "",
     "description": "",
@@ -1286,6 +1346,30 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
+    "name": "Ripio - Green Pavilion",
+    "layerName": "ripio-green-pavilion",
+    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/8598f4e0-987a-498b-b3b4-135218f6cd23/Ripio-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UTARABUQ%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T010324Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCsCpRWRxjGKfKrWzemoDZqfalDWpo7pcC4rTTXhrY7uwIhAOAF%2FeiyEZqD9fM0j%2BwYoSVOgwXevd6hbKtkmFaufgxtKogECIb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igz37zfQaI%2Fc%2BIXMaVAq3AN1WwYk6O7nT%2FLYpXk1WGCfggsEj5WwsLcYohKVemaYEDCqATPioXCqK7UxuSxMuNBEUEIEddIGmQiZ%2BqKRHqfO08KTwSqSzQq%2BPXk1F3KBR6zlJPpf2m%2BlPWm%2B7IfvFotEHAXcjBJ3%2FNdx8yBwsbXKf7vTn1gr1pM%2BtHJVKjOjtwIv%2FUOTnV9u53TKUiWbc88OPX7Lun175qTBkFgqdAQuRxHsdlwRpnUjrWAjRUd5Mr3gP9d%2F8saK5gwS0N3nj1uNOg7BmSMJpvtA16lfAylUZIKsqwla7TUx2dHTgzpcqUT9POtXQiq4Sgxc1SxIbNGokHuQix32u6yV6OtU1qVsdNSmBkGmNS%2FMvMAsIkFKx4sJoags5w5JGwLA2yhJV4dJ1UKu%2F0GRx7QZcGQ2AN9QvFVZEvQvYoJvSLFSGmGn80fFi4qvOPjmqlvHptFG1r%2BTY2IDlrWh4jIQQb7M3E7%2BCAycP7g%2BAdEdNTh7lGwM7ixd3aTSjsmh5QUdr%2FpBdTE9mkD5hkzQeJ7o0q34T4yBW0QnB7%2F%2Bxd7iUUENmMJa8%2BRmmhFs26cn9IdWwFwhTe9vfaBGNiCkp5Cqj%2FKIwv3HWoPHbFAuROOW96e0Q%2Boe0DgEGPf1a%2BqS6La9yDC8zOPIBjqkAVcfbMolsO5fP3LbFILeAUXujn1nGnmmGMtVZa5tyZuRic1TH0qj9zNb2vfxZAp7gSZt1p%2Bbo867Y8ZvsW7RrdFgKw6cC81o87FA1b4qSo45pxBVKJW4meYM6QjUWcDz7hyGQRJpPaf%2BornbkrQ1LN6Hq5lNPDqisXH8DSfvQtR4dY8eY7MZqioeHlJIpLjO%2FgARNMU7ZTijAj4JG5AmhjhfVPyQ&X-Amz-Signature=9be3c2270b65827985b0d2ae783ec8f141f4790e3e4dc632cc6dff282ee420bf&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "description": "Onramp with the leading crypto company in LATAM. They’re building tools that bring DeFi to millions across the region, making automated yield accessible to everyone.",
+    "websiteLink": "https://www.ripio.com/en",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "6",
+    "groupId": "13"
+  },
+  {
+    "name": "Ripio - The Hub",
+    "layerName": "ripio-the-hub",
+    "logo": "https://prod-files-secure.s3.us-west-2.amazonaws.com/29b26582-476c-4221-baee-adf2ad16f913/1e52d4ef-7e13-4a46-950c-d02fce270098/Ripio-POI.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UTARABUQ%2F20251116%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251116T010324Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCsCpRWRxjGKfKrWzemoDZqfalDWpo7pcC4rTTXhrY7uwIhAOAF%2FeiyEZqD9fM0j%2BwYoSVOgwXevd6hbKtkmFaufgxtKogECIb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igz37zfQaI%2Fc%2BIXMaVAq3AN1WwYk6O7nT%2FLYpXk1WGCfggsEj5WwsLcYohKVemaYEDCqATPioXCqK7UxuSxMuNBEUEIEddIGmQiZ%2BqKRHqfO08KTwSqSzQq%2BPXk1F3KBR6zlJPpf2m%2BlPWm%2B7IfvFotEHAXcjBJ3%2FNdx8yBwsbXKf7vTn1gr1pM%2BtHJVKjOjtwIv%2FUOTnV9u53TKUiWbc88OPX7Lun175qTBkFgqdAQuRxHsdlwRpnUjrWAjRUd5Mr3gP9d%2F8saK5gwS0N3nj1uNOg7BmSMJpvtA16lfAylUZIKsqwla7TUx2dHTgzpcqUT9POtXQiq4Sgxc1SxIbNGokHuQix32u6yV6OtU1qVsdNSmBkGmNS%2FMvMAsIkFKx4sJoags5w5JGwLA2yhJV4dJ1UKu%2F0GRx7QZcGQ2AN9QvFVZEvQvYoJvSLFSGmGn80fFi4qvOPjmqlvHptFG1r%2BTY2IDlrWh4jIQQb7M3E7%2BCAycP7g%2BAdEdNTh7lGwM7ixd3aTSjsmh5QUdr%2FpBdTE9mkD5hkzQeJ7o0q34T4yBW0QnB7%2F%2Bxd7iUUENmMJa8%2BRmmhFs26cn9IdWwFwhTe9vfaBGNiCkp5Cqj%2FKIwv3HWoPHbFAuROOW96e0Q%2Boe0DgEGPf1a%2BqS6La9yDC8zOPIBjqkAVcfbMolsO5fP3LbFILeAUXujn1nGnmmGMtVZa5tyZuRic1TH0qj9zNb2vfxZAp7gSZt1p%2Bbo867Y8ZvsW7RrdFgKw6cC81o87FA1b4qSo45pxBVKJW4meYM6QjUWcDz7hyGQRJpPaf%2BornbkrQ1LN6Hq5lNPDqisXH8DSfvQtR4dY8eY7MZqioeHlJIpLjO%2FgARNMU7ZTijAj4JG5AmhjhfVPyQ&X-Amz-Signature=e0b54bbc3a6d04133c2f74538fe9bede76d3855ab36fa222cddb8f79d1fbfa7e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+    "description": "Onramp with the leading crypto company in LATAM. They’re building tools that bring DeFi to millions across the region, making automated yield accessible to everyone.",
+    "websiteLink": "https://www.ripio.com/en",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "14",
+    "groupId": "13"
+  },
+  {
     "name": "Social Onboarding",
     "layerName": "social-onboarding",
     "logo": "",
@@ -1295,7 +1379,7 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": "8",
     "locationId": null,
-    "groupId": "11"
+    "groupId": "12"
   },
   {
     "name": "Storage",
@@ -1319,23 +1403,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "14"
+    "groupId": "6"
   },
   {
-    "name": "Toilet 1",
-    "layerName": "toilet-1",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "12",
-    "groupId": "16"
-  },
-  {
-    "name": "Toilet 2",
-    "layerName": "toilet-2",
+    "name": "Toilet - Blue Pavilion",
+    "layerName": "toilet-blue-pavilion",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -1343,23 +1415,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "2",
-    "groupId": "16"
+    "groupId": "17"
   },
   {
-    "name": "Toilet 3",
-    "layerName": "toilet-3",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": "15",
-    "groupId": "16"
-  },
-  {
-    "name": "Toilet 4",
-    "layerName": "toilet-4",
+    "name": "Toilet - Green Pavilion",
+    "layerName": "toilet-green-pavilion",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -1367,11 +1427,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
-    "groupId": "16"
+    "groupId": "17"
   },
   {
-    "name": "Toilet 5",
-    "layerName": "toilet-5",
+    "name": "Toilet - Quiet Cowork 1",
+    "layerName": "toilet-quiet-cowork-1",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -1379,11 +1439,11 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "1"
+    "groupId": "17"
   },
   {
-    "name": "Toilet 6",
-    "layerName": "toilet-6",
+    "name": "Toilet - Quiet Cowork 2",
+    "layerName": "toilet-quiet-cowork-2",
     "logo": "",
     "description": "",
     "websiteLink": "",
@@ -1391,19 +1451,31 @@ export const poisData: POI[] = [
     "farcasterLink": "",
     "districtId": null,
     "locationId": "11",
-    "groupId": "16"
+    "groupId": "17"
   },
   {
-    "name": "Toilet 7",
-    "layerName": "toilet-7",
+    "name": "Toilet - Red Pavilion",
+    "layerName": "toilet-red-pavilion",
     "logo": "",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
-    "groupId": "1"
+    "locationId": "12",
+    "groupId": "17"
+  },
+  {
+    "name": "Toilet - Yellow Pavilion",
+    "layerName": "toilet-yellow-pavilion",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "15",
+    "groupId": "17"
   },
   {
     "name": "Women in Web3 Hub",
@@ -1422,7 +1494,7 @@ export const poisData: POI[] = [
     "layerName": "xl-stage",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/xl",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
@@ -1434,7 +1506,7 @@ export const poisData: POI[] = [
     "layerName": "xs-stage",
     "logo": "",
     "description": "",
-    "websiteLink": "",
+    "websiteLink": "https://app.devconnect.org/stages/xs",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,

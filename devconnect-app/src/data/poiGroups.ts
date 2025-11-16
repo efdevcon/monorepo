@@ -17,36 +17,39 @@ export const poiGroupsData: PoiGroups = {
     "name": "Entertainment"
   },
   "6": {
-    "name": "Food & Beverage"
+    "name": "Ethereum Swag"
   },
   "7": {
-    "name": "Interview rooms"
+    "name": "Food & Beverage"
   },
   "8": {
-    "name": "Meeting Rooms"
+    "name": "Interview rooms"
   },
   "9": {
-    "name": "Music Stage"
+    "name": "Meeting Rooms"
   },
   "10": {
-    "name": "Onboarding Area"
+    "name": "Music Stage"
   },
   "11": {
-    "name": "Onboarding desk"
+    "name": "Onboarding Area"
   },
   "12": {
-    "name": "Onramp"
+    "name": "Onboarding desk"
   },
   "13": {
-    "name": "QR-code"
+    "name": "Onramp"
   },
   "14": {
-    "name": "SWAG station"
+    "name": "QR-code"
   },
   "15": {
     "name": "Stages"
   },
   "16": {
     "name": "TBD"
+  },
+  "17": {
+    "name": "Toilets"
   }
 };
