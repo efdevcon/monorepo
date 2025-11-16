@@ -18,6 +18,10 @@ import {
   mdiCloseCircleOutline
 } from '@mdi/js';
 
+// Configuration
+const AVAILABLE_LINKS_WARNING_THRESHOLD = 500; // Show warnings when available links drop below this
+const AVAILABLE_LINKS_TARGET = 800; // Target number of available links to maintain
+
 interface StatsData {
   stats: {
     available_links: number;
@@ -213,7 +217,7 @@ export default function StatsPage() {
           <p className="text-sm text-gray-500 mb-3">
             Last updated: {new Date(stats.timestamp).toLocaleString()}
           </p>
-          
+
           {/* Access Notice */}
           <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <div className="flex items-start gap-2">
@@ -228,7 +232,8 @@ export default function StatsPage() {
                   Restricted Access
                 </p>
                 <p className="text-xs text-blue-700 mt-1">
-                  This page is only accessible to authenticated users with @ethereum.org email addresses.
+                  This page is only accessible to authenticated users with
+                  @ethereum.org email addresses.
                 </p>
               </div>
             </div>
@@ -249,16 +254,10 @@ export default function StatsPage() {
                 </p>
               </div>
               <div className="p-3 bg-green-100 rounded-full">
-                <Icon
-                  path={mdiCheckCircleOutline}
-                  size={1.3}
-                  color="#16A34A"
-                />
+                <Icon path={mdiCheckCircleOutline} size={1.3} color="#16A34A" />
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
-              Ready to be claimed
-            </p>
+            <p className="text-xs text-gray-500 mt-2">Ready to be claimed</p>
           </div>
 
           {/* Claimed Links */}
@@ -273,11 +272,7 @@ export default function StatsPage() {
                 </p>
               </div>
               <div className="p-3 bg-blue-100 rounded-full">
-                <Icon
-                  path={mdiAccountOutline}
-                  size={1.3}
-                  color="#2563EB"
-                />
+                <Icon path={mdiAccountOutline} size={1.3} color="#2563EB" />
               </div>
             </div>
             <p className="text-xs text-gray-500 mt-2">
@@ -297,16 +292,10 @@ export default function StatsPage() {
                 </p>
               </div>
               <div className="p-3 bg-gray-100 rounded-full">
-                <Icon
-                  path={mdiLinkVariant}
-                  size={1.3}
-                  color="#4B5563"
-                />
+                <Icon path={mdiLinkVariant} size={1.3} color="#4B5563" />
               </div>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
-              Total in the system
-            </p>
+            <p className="text-xs text-gray-500 mt-2">Total in the system</p>
           </div>
         </div>
 
@@ -316,16 +305,22 @@ export default function StatsPage() {
             <h3 className="text-lg font-semibold text-gray-900">
               Claim Progress
             </h3>
-            <span className={`text-2xl font-bold ${
-              stats.stats.available_links < 500 ? 'text-red-600' : 'text-green-600'
-            }`}>
+            <span
+              className={`text-2xl font-bold ${
+                stats.stats.available_links < AVAILABLE_LINKS_WARNING_THRESHOLD
+                  ? 'text-red-600'
+                  : 'text-green-600'
+              }`}
+            >
               {claimRate}%
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
             <div
               className={`h-4 rounded-full transition-all duration-500 ${
-                stats.stats.available_links < 500 ? 'bg-red-600' : 'bg-green-600'
+                stats.stats.available_links < AVAILABLE_LINKS_WARNING_THRESHOLD
+                  ? 'bg-red-600'
+                  : 'bg-green-600'
               }`}
               style={{ width: `${claimRate}%` }}
             ></div>
@@ -348,13 +343,11 @@ export default function StatsPage() {
           {/* Last imported file info */}
           <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
             <div className="flex items-center gap-2">
-              <Icon
-                path={mdiFileDocumentOutline}
-                size={0.65}
-                color="#4B5563"
-              />
+              <Icon path={mdiFileDocumentOutline} size={0.65} color="#4B5563" />
               <div className="flex-1">
-                <span className="text-xs text-gray-600">Last imported file: </span>
+                <span className="text-xs text-gray-600">
+                  Last imported file:{' '}
+                </span>
                 <span className="text-xs font-semibold text-gray-900 font-mono">
                   {lastImportedFile}
                 </span>
@@ -366,7 +359,7 @@ export default function StatsPage() {
           </div>
 
           {/* Refill commands suggestion */}
-          {stats.stats.total_links < 1000 && (
+          {stats.stats.available_links < AVAILABLE_LINKS_WARNING_THRESHOLD && (
             <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <div className="flex items-start gap-2">
                 <Icon
@@ -377,22 +370,33 @@ export default function StatsPage() {
                 />
                 <div className="flex-1">
                   <p className="text-sm font-semibold text-blue-900 mb-2">
-                    Refill to 1000 unclaimed Links
+                    Refill to {AVAILABLE_LINKS_TARGET} Available Links
                   </p>
                   <p className="text-xs text-blue-700 mb-2">
-                    Run these commands to add {1000 - stats.stats.total_links} more links:
+                    Run these commands to add{' '}
+                    {AVAILABLE_LINKS_TARGET - stats.stats.available_links} more
+                    links:
                   </p>
                   <div className="bg-gray-900 rounded p-2 font-mono text-xs text-green-400 space-y-1">
                     {Array.from(
-                      { length: Math.ceil((1000 - stats.stats.total_links) / 100) },
+                      {
+                        length: Math.ceil(
+                          (AVAILABLE_LINKS_TARGET -
+                            stats.stats.available_links) /
+                            100
+                        ),
+                      },
                       (_, i) => {
-                        const fileNum = Math.floor(stats.stats.total_links / 100) + 3 + i;
+                        const fileNum =
+                          Math.floor(stats.stats.total_links / 100) + 3 + i;
                         return (
                           <div key={i} className="flex items-center gap-2">
                             <span>pnpm l 2 prod_{fileNum}.csv</span>
                             <button
                               onClick={() => {
-                                navigator.clipboard.writeText(`pnpm l 2 prod_${fileNum}.csv`);
+                                navigator.clipboard.writeText(
+                                  `pnpm l 2 prod_${fileNum}.csv`
+                                );
                               }}
                               className="ml-auto px-2 py-0.5 bg-gray-800 hover:bg-gray-700 rounded text-gray-300 text-[10px]"
                               title="Copy to clipboard"
@@ -410,7 +414,7 @@ export default function StatsPage() {
           )}
 
           {/* Warning for low available links */}
-          {stats.stats.available_links < 500 && (
+          {stats.stats.available_links < AVAILABLE_LINKS_WARNING_THRESHOLD && (
             <div className="mt-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
               <div className="flex items-start gap-2">
                 <Icon
@@ -424,7 +428,10 @@ export default function StatsPage() {
                     Low Available Links
                   </p>
                   <p className="text-xs text-orange-700 mt-1">
-                    Only {stats.stats.available_links} claiming links remaining. Consider importing the next file ({`prod_${Math.floor(stats.stats.total_links / 100) + 3}.csv`}).
+                    Only {stats.stats.available_links} claiming links remaining.
+                    Consider importing the next file (
+                    {`prod_${Math.floor(stats.stats.total_links / 100) + 3}.csv`}
+                    ).
                   </p>
                 </div>
               </div>
@@ -442,7 +449,9 @@ export default function StatsPage() {
                 </h2>
                 {relayers.eth_price_usd && (
                   <div className="text-right">
-                    <span className="text-xs text-gray-500 block">ETH Price</span>
+                    <span className="text-xs text-gray-500 block">
+                      ETH Price
+                    </span>
                     <span className="text-sm font-semibold text-gray-900">
                       ${relayers.eth_price_usd.toLocaleString()}
                     </span>
@@ -465,14 +474,17 @@ export default function StatsPage() {
                       />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">Payment Relayer</h3>
+                      <h3 className="font-semibold text-gray-900">
+                        Payment Relayer
+                      </h3>
                       <a
                         href={`https://basescan.org/address/${relayers.payment.address}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-blue-600 hover:underline font-mono"
                       >
-                        {relayers.payment.address.slice(0, 6)}...{relayers.payment.address.slice(-4)}
+                        {relayers.payment.address.slice(0, 6)}...
+                        {relayers.payment.address.slice(-4)}
                       </a>
                     </div>
                   </div>
@@ -480,24 +492,32 @@ export default function StatsPage() {
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Balance:</span>
                       <div className="text-right">
-                        <span className={`font-semibold font-mono text-xs block ${
-                          parseFloat(relayers.payment.balance) < 0.0001 
-                            ? 'text-red-600' 
-                            : parseFloat(relayers.payment.balance) < 0.001 
-                            ? 'text-yellow-600' 
-                            : 'text-green-600'
-                        }`}>
+                        <span
+                          className={`font-semibold font-mono text-xs block ${
+                            parseFloat(relayers.payment.balance) < 0.0001
+                              ? 'text-red-600'
+                              : parseFloat(relayers.payment.balance) < 0.001
+                                ? 'text-yellow-600'
+                                : 'text-green-600'
+                          }`}
+                        >
                           {relayers.payment.balance} ETH
                         </span>
                         {relayers.payment.balance_usd && (
                           <span className="text-xs text-gray-500">
-                            ${parseFloat(relayers.payment.balance_usd).toLocaleString()} USD
+                            $
+                            {parseFloat(
+                              relayers.payment.balance_usd
+                            ).toLocaleString()}{' '}
+                            USD
                           </span>
                         )}
                       </div>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Transactions:</span>
+                      <span className="text-sm text-gray-600">
+                        Transactions:
+                      </span>
                       <span className="font-semibold text-gray-900">
                         {relayers.payment.transaction_count.toLocaleString()}
                       </span>
@@ -509,21 +529,20 @@ export default function StatsPage() {
                 <div className="border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="p-2 bg-indigo-100 rounded">
-                      <Icon
-                        path={mdiSendOutline}
-                        size={0.8}
-                        color="#4F46E5"
-                      />
+                      <Icon path={mdiSendOutline} size={0.8} color="#4F46E5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900">Send Relayer</h3>
+                      <h3 className="font-semibold text-gray-900">
+                        Send Relayer
+                      </h3>
                       <a
                         href={`https://basescan.org/address/${relayers.send.address}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-blue-600 hover:underline font-mono"
                       >
-                        {relayers.send.address.slice(0, 6)}...{relayers.send.address.slice(-4)}
+                        {relayers.send.address.slice(0, 6)}...
+                        {relayers.send.address.slice(-4)}
                       </a>
                     </div>
                   </div>
@@ -531,24 +550,32 @@ export default function StatsPage() {
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Balance:</span>
                       <div className="text-right">
-                        <span className={`font-semibold font-mono text-xs block ${
-                          parseFloat(relayers.send.balance) < 0.0001 
-                            ? 'text-red-600' 
-                            : parseFloat(relayers.send.balance) < 0.001 
-                            ? 'text-yellow-600' 
-                            : 'text-green-600'
-                        }`}>
+                        <span
+                          className={`font-semibold font-mono text-xs block ${
+                            parseFloat(relayers.send.balance) < 0.0001
+                              ? 'text-red-600'
+                              : parseFloat(relayers.send.balance) < 0.001
+                                ? 'text-yellow-600'
+                                : 'text-green-600'
+                          }`}
+                        >
                           {relayers.send.balance} ETH
                         </span>
                         {relayers.send.balance_usd && (
                           <span className="text-xs text-gray-500">
-                            ${parseFloat(relayers.send.balance_usd).toLocaleString()} USD
+                            $
+                            {parseFloat(
+                              relayers.send.balance_usd
+                            ).toLocaleString()}{' '}
+                            USD
                           </span>
                         )}
                       </div>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Transactions:</span>
+                      <span className="text-sm text-gray-600">
+                        Transactions:
+                      </span>
                       <span className="font-semibold text-gray-900">
                         {relayers.send.transaction_count.toLocaleString()}
                       </span>
@@ -558,7 +585,7 @@ export default function StatsPage() {
               </div>
 
               {/* Warning for low balance */}
-              {(parseFloat(relayers.payment.balance) < 0.0001 || 
+              {(parseFloat(relayers.payment.balance) < 0.0001 ||
                 parseFloat(relayers.send.balance) < 0.0001) && (
                 <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
                   <div className="flex items-start gap-2">
@@ -573,16 +600,18 @@ export default function StatsPage() {
                         Critical: Low Balance
                       </p>
                       <p className="text-xs text-red-700 mt-1">
-                        One or more relayers have critically low balance (&lt; 0.0001 ETH). Please refill 0.001 ETH immediately to ensure uninterrupted service.
+                        One or more relayers have critically low balance (&lt;
+                        0.0001 ETH). Please refill 0.001 ETH immediately to
+                        ensure uninterrupted service.
                       </p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {(parseFloat(relayers.payment.balance) >= 0.0001 && 
-                parseFloat(relayers.payment.balance) < 0.001) || 
-               (parseFloat(relayers.send.balance) >= 0.0001 && 
+              {(parseFloat(relayers.payment.balance) >= 0.0001 &&
+                parseFloat(relayers.payment.balance) < 0.001) ||
+              (parseFloat(relayers.send.balance) >= 0.0001 &&
                 parseFloat(relayers.send.balance) < 0.001) ? (
                 <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <div className="flex items-start gap-2">
@@ -597,7 +626,8 @@ export default function StatsPage() {
                         Balance Running Low
                       </p>
                       <p className="text-xs text-yellow-700 mt-1">
-                        Consider topping up relayer balance to 0.001 ETH to maintain healthy operation.
+                        Consider topping up relayer balance to 0.001 ETH to
+                        maintain healthy operation.
                       </p>
                     </div>
                   </div>
@@ -611,11 +641,7 @@ export default function StatsPage() {
         {hasRelayerError && (
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center gap-2 text-yellow-600">
-              <Icon
-                path={mdiAlertOutline}
-                size={0.8}
-                color="#CA8A04"
-              />
+              <Icon path={mdiAlertOutline} size={0.8} color="#CA8A04" />
               <p className="text-sm font-medium">
                 Unable to fetch relayer statistics
               </p>
