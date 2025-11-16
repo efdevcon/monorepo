@@ -10,7 +10,7 @@ export default function MapPage() {
   const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Show coming soon message if early access is not enabled
-  if (!hasEarlyAccessCookie) {
+  if (process.env.NODE_ENV !== 'development' && !hasEarlyAccessCookie) {
     return (
       // <PageLayout title="La Rural - Venue Map">
       <ComingSoonMessage />

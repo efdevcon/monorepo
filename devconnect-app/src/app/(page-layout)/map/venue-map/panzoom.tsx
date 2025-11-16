@@ -60,6 +60,9 @@ export const usePanzoom = (
   const [isPanning, setIsPanning] = React.useState(false);
 
   const zoomLevelRef = React.useRef(zoomLevel);
+  const recentlyInteractedRef = React.useRef(false);
+  const interactionTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const lastScaleRef = React.useRef<number | null>(null);
 
   zoomLevelRef.current = zoomLevel;
 
@@ -138,6 +141,36 @@ export const usePanzoom = (
         const transform = e.getTransform();
         // console.log('transform', transform);
 
+        // Check if scale changed significantly (threshold: 0.1)
+        const scaleChangeThreshold = 0.1;
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        // Initialize lastScaleRef on first transform
+        if (lastScaleRef.current === null) {
+          lastScaleRef.current = transform.scale;
+        } else {
+          const scaleDelta = Math.abs(transform.scale - lastScaleRef.current);
+
+          // Only track zoom changes, not x/y (pan) changes
+          if (scaleDelta > scaleChangeThreshold && isMobile) {
+            // Significant zoom detected on mobile
+            recentlyInteractedRef.current = true;
+
+            // Clear existing timeout
+            if (interactionTimeoutRef.current) {
+              clearTimeout(interactionTimeoutRef.current);
+            }
+
+            // Set new timeout to reset after 500ms
+            interactionTimeoutRef.current = setTimeout(() => {
+              recentlyInteractedRef.current = false;
+            }, 500);
+          }
+
+          // Update last scale
+          lastScaleRef.current = transform.scale;
+        }
+
         if (transform.scale > 3) {
           // console.log('zoomed in', zoomLevel);
           if (zoomLevelRef.current === 'zoomed-out') {
@@ -163,6 +196,11 @@ export const usePanzoom = (
       return () => {
         setPanzoomInstance(null);
         panzoomInstance.dispose();
+
+        // Clear timeout on cleanup
+        if (interactionTimeoutRef.current) {
+          clearTimeout(interactionTimeoutRef.current);
+        }
       };
     }
   }, [elementId]);
@@ -172,6 +210,7 @@ export const usePanzoom = (
     isZooming,
     isPanning,
     interactionsLocked: isZooming || isPanning,
+    recentlyInteractedRef,
   };
 };
 
