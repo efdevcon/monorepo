@@ -51,6 +51,7 @@ export const usePanzoom = (
   elementId: string,
   setZoomLevel: any,
   zoomLevel: string,
+  resetFilter: any,
   initialZoom?: number
 ) => {
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
@@ -179,7 +180,7 @@ export const usePanzoom = (
         } else {
           // console.log('zoomed out', zoomLevel);
           if (zoomLevelRef.current === 'zoomed-in') {
-            console.log('setting zoomed out', zoomLevel);
+            resetFilter();
             setZoomLevel('zoomed-out');
           }
         }

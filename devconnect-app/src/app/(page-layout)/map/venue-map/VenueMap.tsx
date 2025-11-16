@@ -60,18 +60,19 @@ export const VenueMap = () => {
 
   const selection = searchParams.get('filter');
 
+  const reset = () => {
+    setCurrentFilters(initialFilters);
+    setListFiltersOpen(false);
+  };
+
   const { panzoomInstance, interactionsLocked, recentlyInteractedRef } =
     usePanzoom(
       'venue-map',
       setZoomLevel,
       zoomLevel,
+      reset,
       selection ? baseZoomLevel : undefined
     );
-
-  const reset = () => {
-    setCurrentFilters(initialFilters);
-    setListFiltersOpen(false);
-  };
 
   useEffect(() => {
     const selection = searchParams.get('filter');
@@ -198,21 +199,21 @@ export const VenueMap = () => {
     }
   };
 
-  const zoomToElement = (id: string) => {
-    const svgElement = document.getElementById(id);
-    if (!svgElement || !panzoomInstance || !containerRef.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const targetCenterX = containerRect.left + containerRect.width / 2;
-    const targetCenterY = containerRect.top + containerRect.height / 2;
+  // const zoomToElement = (id: string) => {
+  //   const svgElement = document.getElementById(id);
+  //   if (!svgElement || !panzoomInstance || !containerRef.current) return;
+  //   const containerRect = containerRef.current.getBoundingClientRect();
+  //   const targetCenterX = containerRect.left + containerRect.width / 2;
+  //   const targetCenterY = containerRect.top + containerRect.height / 2;
 
-    const { scale: currentZoom } = panzoomInstance.getTransform();
+  //   const { scale: currentZoom } = panzoomInstance.getTransform();
 
-    panzoomInstance.zoomAbs(
-      targetCenterX,
-      targetCenterY,
-      Math.max(currentZoom, baseZoomLevel)
-    );
-  };
+  //   panzoomInstance.zoomAbs(
+  //     targetCenterX,
+  //     targetCenterY,
+  //     Math.max(currentZoom, baseZoomLevel)
+  //   );
+  // };
 
   const moveToElement = (id: string, smooth: boolean = true) => {
     const svgElement = document.getElementById(id);
