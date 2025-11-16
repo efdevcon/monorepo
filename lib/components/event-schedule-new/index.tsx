@@ -43,6 +43,267 @@ export const customUrlTransforms = [
   // { from: 'pacificonnect', to: '112' },
 ];
 
+/*
+  TODO: 
+  - Map all stages
+  - Solve DSS case (it has two separate stages - confirm with the team)
+  - Overide event location in event modal, add pin link to events
+*/
+export const stageNamesByEvent = {
+  // XL STAGE events
+  84: {
+    name: "Ethereum Day",
+    stageLabel: "La Rural - XL Stage",
+    mapUrl: "/map?filter=xl-stage",
+  },
+  82: {
+    name: "ETHCON ARGENTINA",
+    stageLabel: "La Rural - XL Stage",
+    mapUrl: "/map?filter=xl-stage",
+  },
+  110: {
+    name: "trustless://interop.landscape",
+    stageLabel: "La Rural - XL Stage",
+    mapUrl: "/map?filter=xl-stage",
+  },
+  71: {
+    name: "Agentic Zero",
+    stageLabel: "La Rural - XL Stage",
+    mapUrl: "/map?filter=xl-stage",
+  },
+  141: {
+    name: "Ethereum Privacy Stack",
+    stageLabel: "La Rural - XL Stage",
+    mapUrl: "/map?filter=xl-stage",
+  },
+
+  // XS STAGE events
+  168: {
+    name: "Newtro and Whabbit present 'The Creator Economy' powered by Crecimiento",
+    stageLabel: "La Rural - XS Stage",
+    mapUrl: "/map?filter=xs-stage",
+  },
+  98: {
+    name: "Zero to Dapp",
+    stageLabel: "La Rural - XS Stage",
+    mapUrl: "/map?filter=xs-stage",
+  },
+  162: {
+    name: "EIP Summit",
+    stageLabel: "La Rural - XS Stage",
+    mapUrl: "/map?filter=xs-stage",
+  },
+  91: {
+    name: "Bridge Atlas",
+    stageLabel: "La Rural - XS Stage",
+    mapUrl: "/map?filter=xs-stage",
+  },
+
+  // bootcamp
+  94: {
+    name: "BuidlGuidl's Builder Bootcamp: Beginner to Advanced",
+    stageLabel: "La Rural - Bootcamp",
+    mapUrl: "/map?filter=poi-buidIguidl-bootcamp",
+  },
+
+  // m1 stage
+  76: {
+    name: "Solidity Summit",
+    stageLabel: "La Rural - M1 Stage",
+    mapUrl: "/map?filter=m1-stage",
+  },
+  106: {
+    name: "Crecimiento World Cup",
+    stageLabel: "La Rural - M1 Stage",
+    mapUrl: "/map?filter=m1-stage",
+  },
+  104: {
+    name: "Crecimiento Regulation Day",
+    stageLabel: "La Rural - M1 Stage",
+    mapUrl: "/map?filter=m1-stage",
+  },
+  72: {
+    name: "DeFi Day del Sur",
+    stageLabel: "La Rural - M1 Stage",
+    mapUrl: "/map?filter=m1-stage",
+  },
+  // TODO: TRILLION DOLLAR SECURITY - WHICH EVENT IS THIS??
+
+  // m2 stage
+  136: {
+    name: "Trustless Agents Day",
+    stageLabel: "La Rural - M2 Stage",
+    mapUrl: "/map?filter=m2-stage",
+  },
+  113: {
+    name: "Ethereum Argentina Hackathon: Tierra de Buidlērs",
+    stageLabel: "La Rural - M2 Stage",
+    mapUrl: "/map?filter=m2-stage",
+  },
+  120: {
+    name: "Ethproofs Day",
+    stageLabel: "La Rural - M2 Stage",
+    mapUrl: "/map?filter=m2-stage",
+  },
+
+  // nogal stage
+  86: {
+    name: "Defi Security Summit",
+    stageLabel: "La Rural - Nogal Stage",
+    mapUrl: "/map?filter=nogal-hall",
+  },
+  // 156 TODO: Defi Security 101 by DSS - which stage is this?
+  193: {
+    name: "Applications to FHE",
+    stageLabel: "La Rural - Nogal Stage",
+    mapUrl: "/map?filter=nogal-hall",
+  },
+  194: {
+    name: "Obfuscation Day",
+    stageLabel: "La Rural - Nogal Stage",
+    mapUrl: "/map?filter=nogal-hall",
+  },
+
+  // ceibo
+  119: {
+    name: "ZKID Day",
+    stageLabel: "La Rural - Ceibo Stage",
+    mapUrl: "/map?filter=ceibo-hall",
+  },
+  112: {
+    name: "Noircon 3",
+    stageLabel: "La Rural - Ceibo Stage",
+    mapUrl: "/map?filter=ceibo-hall",
+  },
+  137: {
+    name: "Ethereum Community and Event Organizer Hangout",
+    stageLabel: "La Rural - Ceibo Stage",
+    mapUrl: "/map?filter=ceibo-hall",
+  },
+
+  // l stage
+  109: {
+    name: "Trustless Interop Layer",
+    stageLabel: "La Rural - L Stage",
+    mapUrl: "/map?filter=l-stage",
+  },
+  301: {
+    name: "<d/acc day>",
+    stageLabel: "La Rural - L Stage",
+    mapUrl: "/map?filter=l-stage",
+  },
+  // TODO: DSS would be here - which event is this??
+  118: {
+    name: "ETH/ACC DEMO DAY",
+    stageLabel: "La Rural - L Stage",
+    mapUrl: "/map?filter=l-stage",
+  },
+
+  // amphitheater stage
+  142: {
+    name: "App Town Hall ⌐◨-◨ ",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  124: {
+    name: "University Track - UCEMA",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  130: {
+    name: "University Track - UTN",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  129: {
+    name: "University Track - Austral/IAE",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  314: {
+    name: "University Track - UBA",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  170: {
+    name: "University Track - Red Uniblock",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  131: {
+    name: "University Track - Champagnat",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  132: {
+    name: "University Track - Fundacion Blockchain",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  128: {
+    name: "University Track - Trama (ITBA)",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  127: {
+    name: "University Track - Di Tella Club Blockchain",
+    stageLabel: "La Rural - Amphitheater Stage",
+    mapUrl: "/map?filter=amphitheater",
+  },
+  // TODO: university track, all of them need the reference to the stage?
+  164: {
+    name: "University Track",
+    stageLabel: "La Rural - University Track",
+    mapUrl: "/map?filter=amphitheater",
+  },
+};
+
+const stageUrlsByEvent = {
+  // xl stage
+  // ethday done
+  // ethcon argentina done
+  // trustless interop landscape done
+  // agentic zero done
+  // ethereum privacy stack done
+  // xs stage
+  // Newtro and Whabbit done
+  // Zero to dapp
+  // EIP summit at devconnect
+  // Bridge atlas
+  // bootcamp  stage
+  // buidlguidl
+  // m1 stage
+  // solidity summit
+  // crecimiento startup worldcup
+  // crecimiento regulation day 104
+  // defi day done
+  // trustx / trillion dollar security ??? Which event is this??
+  // m2 stage
+  // trustless agents day
+  // Ethereum hackathon tierrra de builders
+  // eth proofs
+  // nogal  stage
+  // dss (nov 21)
+  // + FHE
+  // obfuscation day
+  // ceibo stage
+  // zkid day
+  // noircon 3
+  // ethereum community and event organizer hangout
+  // l-stage
+  // trustless interop layer
+  // d/acc day
+  // DSS (nov 20+21)
+  // eth/acc demo day
+  // amphitheater stage
+  // app town hall
+  // university track
+  // "84": {
+  //   url: "/stages/ethday",
+  //   name: "EthDay",
+  // },
+};
+
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
   favoriteEvents?: string[];

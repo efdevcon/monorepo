@@ -60,12 +60,13 @@ export const VenueMap = () => {
 
   const selection = searchParams.get('filter');
 
-  const { panzoomInstance, interactionsLocked } = usePanzoom(
-    'venue-map',
-    setZoomLevel,
-    zoomLevel,
-    selection ? baseZoomLevel : undefined
-  );
+  const { panzoomInstance, interactionsLocked, recentlyInteractedRef } =
+    usePanzoom(
+      'venue-map',
+      setZoomLevel,
+      zoomLevel,
+      selection ? baseZoomLevel : undefined
+    );
 
   const reset = () => {
     setCurrentFilters(initialFilters);
@@ -376,6 +377,11 @@ export const VenueMap = () => {
       while (checkElement && checkElement.tagName !== 'svg') {
         if (checkElement.id && pavillions.includes(checkElement.id)) {
           console.log('focusing on pavilion', checkElement.id);
+          // Ignore clicks if user recently panned/zoomed
+          if (recentlyInteractedRef.current) {
+            return;
+          }
+
           focusOnElement(checkElement.id, 0);
           return;
         }
