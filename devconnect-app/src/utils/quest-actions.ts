@@ -93,12 +93,12 @@ export async function verifyPoap(
     const hasPoap = data.hasPoap;
     const mintedOn = data.mintedOn; // Unix timestamp from POAP API
 
-    // TETMP: return fake data for testing (unix timestamp)
-    toast.success('POAP Verification Successful! 🎉', {
-      description: 'Congratulations! You have completed this quest!',
-      duration: 6000,
-    });
-    return { completed: true, mintedOn: Math.floor(Date.now() / 1000) };
+    // TEMP: return fake data for testing (unix timestamp)
+    // toast.success('POAP Verification Successful! 🎉', {
+    //   description: 'Congratulations! You have completed this quest!',
+    //   duration: 6000,
+    // });
+    // return { completed: true, mintedOn: Math.floor(Date.now() / 1000) };
 
     if (hasPoap) {
       console.log(
