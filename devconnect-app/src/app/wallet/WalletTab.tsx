@@ -87,6 +87,7 @@ export default function WalletTab() {
     para,
     eoa,
     identity,
+    chainId,
     portfolioCache, // All cached portfolios by address (e.g., portfolioCache[address])
     portfolioRefreshTrigger, // Trigger to force useMemo recomputation
     portfolioLoading,
@@ -105,6 +106,23 @@ export default function WalletTab() {
 
   // Check if early access is enabled
   const hasEarlyAccessCookie = hasEarlyAccess();
+
+  // Get explorer URL and name for current network
+  const getExplorerInfo = () => {
+    if (!chainId || !portfolioError?.address) return null;
+
+    const networkConfig = getNetworkConfig(chainId);
+    const explorerUrl = networkConfig?.blockExplorers?.default?.url;
+
+    if (!explorerUrl) return null;
+
+    return {
+      name: networkConfig.name,
+      url: `${explorerUrl}/address/${portfolioError.address}`,
+    };
+  };
+
+  const explorerInfo = getExplorerInfo();
 
   // Debug: Log the refresh trigger value received from useWallet
   // console.log('🔍 [WALLET_TAB] Received from useWallet:', {
@@ -230,10 +248,20 @@ export default function WalletTab() {
 
   // Get identity map from localStorage to check both Para and EOA addresses
   const [identityMap] = useLocalStorage<
-    Record<string, { name: string | null; avatar: string | null } | null>
+    Record<
+      string,
+      {
+        name: string | null;
+        avatar: string | null;
+        worldfairName: string | null;
+      } | null
+    >
   >('wallet_identity_map', {});
 
   // Check both Para and EOA addresses for worldfair.eth names and save to localStorage
+  // Checks: 1) portfolio.worldfairDomain (NFT ownership from Zapper)
+  //         2) identity.worldfairName (L2 reverse lookup)
+  //         3) identity.name (if ends with .worldfair.eth)
   useEffect(() => {
     const addressesToCheck = [
       para.address?.toLowerCase(),
@@ -250,19 +278,28 @@ export default function WalletTab() {
 
     for (const addressKey of addressesToCheck) {
       const identity = identityMap[addressKey];
-      const ensName = identity?.name;
+      const portfolioData = portfolioCache[addressKey];
 
-      if (ensName && ensName.endsWith('.worldfair.eth')) {
+      // Check multiple sources for worldfair.eth name (in priority order):
+      // 1. Portfolio NFT ownership (most reliable, direct from Zapper API)
+      // 2. Identity worldfairName field (from L2 reverse lookup)
+      // 3. Primary name if it ends with .worldfair.eth
+      const worldfairName =
+        portfolioData?.worldfairDomain ||
+        identity?.worldfairName ||
+        (identity?.name?.endsWith('.worldfair.eth') ? identity.name : null);
+
+      if (worldfairName) {
         const existingClaim = worldfairClaimedMap[addressKey];
 
         // Only update if not already claimed or if the name changed
-        if (!existingClaim || existingClaim.name !== ensName) {
+        if (!existingClaim || existingClaim.name !== worldfairName) {
           console.log(
-            `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${ensName}`
+            `✅ [WALLET_TAB] Detected worldfair.eth name for ${addressKey.slice(0, 10)}: ${worldfairName}`
           );
           updates[addressKey] = {
             claimed: true,
-            name: ensName,
+            name: worldfairName,
             claimedAt: Date.now(),
           };
           hasUpdates = true;
@@ -281,8 +318,9 @@ export default function WalletTab() {
     para.address,
     eoa.address,
     identityMap,
-    worldfairClaimedMap,
-    setWorldfairClaimedMap,
+    portfolioCache,
+    // Note: worldfairClaimedMap and setWorldfairClaimedMap excluded from deps
+    // to prevent circular updates (useLocalStorage provides stable references)
   ]);
 
   // Get worldfair claim status - check both Para and EOA addresses
@@ -1063,6 +1101,8 @@ export default function WalletTab() {
                     <span className="text-[#20202b] text-[36px] font-bold tracking-[-0.1px] leading-[1.2]">
                       {portfolioLoading ? (
                         <div className="animate-pulse bg-gray-200 h-9 w-32 rounded"></div>
+                      ) : portfolioError ? (
+                        <span className="text-gray-500">Unknown</span>
                       ) : portfolio ? (
                         formatUSD(portfolio.totalValue)
                       ) : (
@@ -1589,15 +1629,77 @@ export default function WalletTab() {
                           ))}
                         </>
                       ) : portfolioError ? (
-                        <div className="text-center py-4">
-                          <p className="text-red-500 text-sm">
-                            Failed to load assets
-                          </p>
+                        <div className="py-4 px-3 bg-red-50 rounded-lg border border-red-200">
+                          <div className="flex items-start gap-2 mb-3">
+                            <svg
+                              className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                              />
+                            </svg>
+                            <div className="flex-1">
+                              <p className="text-red-700 text-sm font-medium mb-1">
+                                Unable to load portfolio data
+                              </p>
+                              <p className="text-red-600 text-xs">
+                                {portfolioError.message}
+                              </p>
+                            </div>
+                          </div>
+
+                          {explorerInfo && (
+                            <div className="mb-3">
+                              <a
+                                href={explorerInfo.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 px-3 py-2 bg-white rounded border border-red-200 hover:border-red-400 transition-colors text-sm text-gray-700 hover:text-gray-900 font-medium"
+                              >
+                                <span>
+                                  View on {explorerInfo.name} Explorer
+                                </span>
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                  />
+                                </svg>
+                              </a>
+                            </div>
+                          )}
+
                           <button
                             onClick={handleRefresh}
-                            className="text-blue-500 text-sm underline mt-2"
+                            className="w-full px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors flex items-center justify-center gap-1.5"
                           >
-                            Retry
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                              />
+                            </svg>
+                            Retry Loading
                           </button>
                         </div>
                       ) : portfolio && portfolio.tokenBalances.length > 0 ? (
@@ -1715,15 +1817,77 @@ export default function WalletTab() {
                           ))}
                         </>
                       ) : portfolioError ? (
-                        <div className="text-center py-4">
-                          <p className="text-red-500 text-sm">
-                            Failed to load activity
-                          </p>
+                        <div className="py-4 px-3 bg-red-50 rounded-lg border border-red-200">
+                          <div className="flex items-start gap-2 mb-3">
+                            <svg
+                              className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                              />
+                            </svg>
+                            <div className="flex-1">
+                              <p className="text-red-700 text-sm font-medium mb-1">
+                                Unable to load activity data
+                              </p>
+                              <p className="text-red-600 text-xs">
+                                {portfolioError.message}
+                              </p>
+                            </div>
+                          </div>
+
+                          {explorerInfo && (
+                            <div className="mb-3">
+                              <a
+                                href={explorerInfo.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 px-3 py-2 bg-white rounded border border-red-200 hover:border-red-400 transition-colors text-sm text-gray-700 hover:text-gray-900 font-medium"
+                              >
+                                <span>
+                                  View on {explorerInfo.name} Explorer
+                                </span>
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                  />
+                                </svg>
+                              </a>
+                            </div>
+                          )}
+
                           <button
                             onClick={handleRefresh}
-                            className="text-blue-500 text-sm underline mt-2"
+                            className="w-full px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors flex items-center justify-center gap-1.5"
                           >
-                            Retry
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                              />
+                            </svg>
+                            Retry Loading
                           </button>
                         </div>
                       ) : mergedActivity.length > 0 ? (

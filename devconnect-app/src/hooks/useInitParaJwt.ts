@@ -121,6 +121,9 @@ export function useInitParaJwt({
                 
                 console.log('✅ [PARA_JWT_INIT] Para JWT stored in localStorage - triggering data refresh');
                 
+                // Dispatch custom event to signal auth is ready (for portfolio auto-fetch, etc.)
+                window.dispatchEvent(new CustomEvent('paraJwtReady', { detail: { address: paraAddress } }));
+                
                 // Trigger SWR cache refresh for user data now that authentication is ready
                 mutate('/api/auth/user-data');
                 mutate('/api/auth/tickets');

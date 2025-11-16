@@ -5,6 +5,7 @@ import { Modal, ModalContent } from 'lib/components/modal';
 import { Button } from '@/components/ui/button';
 import { Wallet, TrendingUp, Activity, Coins, X } from 'lucide-react';
 import { useLocalStorage } from 'usehooks-ts';
+import { fetchAuth } from '@/services/apiClient';
 
 interface TokenBalance {
   tokenAddress: string;
@@ -31,25 +32,48 @@ interface PortfolioData {
   totalValue: number;
   tokenBalances: TokenBalance[];
   recentActivity: RecentActivity[];
+  worldfairDomain?: string | null; // The worldfair.eth domain name if owned (e.g., "didierkrux.worldfair.eth")
 }
 
 interface PortfolioModalProps {
   address: string;
+  chainId?: number | null;
 }
 
 import { chains, getNetworkConfig, getNetworkLogo } from '@/config/networks';
 
-export default function PortfolioModal({ address }: PortfolioModalProps) {
+export default function PortfolioModal({ address, chainId }: PortfolioModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(
     null
   );
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{
+    message: string;
+    address?: string;
+    errorType?: string;
+  } | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
   const lastLoadedAddress = useRef<string | null>(null);
   const isFetchingRef = useRef(false);
+
+  // Get explorer URL and name for current network
+  const getExplorerInfo = () => {
+    if (!chainId || !error?.address) return null;
+    
+    const networkConfig = getNetworkConfig(chainId);
+    const explorerUrl = networkConfig?.blockExplorers?.default?.url;
+    
+    if (!explorerUrl) return null;
+    
+    return {
+      name: networkConfig.name,
+      url: `${explorerUrl}/address/${error.address}`,
+    };
+  };
+
+  const explorerInfo = getExplorerInfo();
 
   // Global portfolio cache with address-based keys
   const [portfolioCache, setPortfolioCache] = useLocalStorage<
@@ -90,7 +114,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
       const addressKey = currentAddress.toLowerCase();
       console.log('🌐 [PORTFOLIO_MODAL] Fetching from API');
 
-      const response = await fetch('/api/portfolio', {
+      const response = await fetchAuth('/api/auth/portfolio', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,12 +122,18 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
         body: JSON.stringify({ address: addressKey }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch portfolio data');
+      if (!response.success) {
+        // Extract error details from API response
+        const errorData = response.data as any;
+        const errorInfo = {
+          message: response.error || 'Failed to fetch portfolio data',
+          address: errorData?.address || addressKey,
+          errorType: errorData?.errorType || 'UNKNOWN_ERROR',
+        };
+        throw errorInfo;
       }
 
-      const data = await response.json();
+      const data = response.data;
       setPortfolioData(data);
 
       // Save to global portfolio cache with address as key
@@ -113,11 +143,13 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
       }));
 
       lastLoadedAddress.current = currentAddress;
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching portfolio data:', err);
-      setError(
-        err instanceof Error ? err.message : 'Failed to fetch portfolio data'
-      );
+      setError({
+        message: err.message || (err instanceof Error ? err.message : 'Failed to fetch portfolio data'),
+        address: err.address || addressKey,
+        errorType: err.errorType || 'UNKNOWN_ERROR',
+      });
     } finally {
       setIsLoading(false);
       setIsFetching(false);
@@ -248,9 +280,42 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
           )}
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <p className="text-red-800 font-medium">Error</p>
-              <p className="text-red-600 text-sm">{error}</p>
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 space-y-3">
+              <div className="flex items-start gap-2">
+                <svg className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <div className="flex-1">
+                  <p className="text-red-800 font-medium">Unable to load portfolio data</p>
+                  <p className="text-red-600 text-sm mt-1">{error.message}</p>
+                </div>
+              </div>
+              
+              {explorerInfo && (
+                <div>
+                  <a 
+                    href={explorerInfo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-white rounded border border-red-200 hover:border-red-400 transition-colors text-sm text-gray-700 hover:text-gray-900 font-medium"
+                  >
+                    <span>View on {explorerInfo.name} Explorer</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              )}
+              
+              <button
+                onClick={handleRefresh}
+                className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors flex items-center justify-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Retry Loading
+              </button>
             </div>
           )}
 
@@ -266,6 +331,36 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                   {formatUSD(portfolioData.totalValue)}
                 </p>
               </div>
+
+              {/* Worldfair.eth Domain */}
+              {portfolioData.worldfairDomain && (
+                <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4 border-2 border-purple-300">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg
+                      className="h-5 w-5 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                    <h3 className="font-semibold text-lg text-purple-800">
+                      Worldfair Domain
+                    </h3>
+                  </div>
+                  <p className="text-xl font-bold text-purple-700">
+                    {portfolioData.worldfairDomain}
+                  </p>
+                  <p className="text-sm text-purple-600 mt-1">
+                    ✓ Verified NFT ownership
+                  </p>
+                </div>
+              )}
 
               {/* Token Balances */}
               <div>
