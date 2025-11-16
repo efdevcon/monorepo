@@ -147,7 +147,7 @@ export default function PortfolioModal({ address, chainId }: PortfolioModalProps
       console.error('Error fetching portfolio data:', err);
       setError({
         message: err.message || (err instanceof Error ? err.message : 'Failed to fetch portfolio data'),
-        address: err.address || addressKey,
+        address: err.address || currentAddress.toLowerCase(),
         errorType: err.errorType || 'UNKNOWN_ERROR',
       });
     } finally {

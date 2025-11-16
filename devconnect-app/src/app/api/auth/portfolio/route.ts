@@ -294,7 +294,7 @@ export async function POST(request: NextRequest) {
       console.log('Activity data fetched successfully');
     }
 
-    // Filter tokens with value >= $0.01 and calculate total from tokens only
+    // Filter tokens with value >= $0.001 and calculate total from tokens only
     const allTokenBalances = portfolio.tokenBalances?.byToken?.edges?.map((edge: any) => {
       const token = edge.node;
 
@@ -311,11 +311,11 @@ export async function POST(request: NextRequest) {
 
       return flattenedToken;
     }) || [];
-    const filteredTokenBalances = allTokenBalances.filter((token: any) => token.balanceUSD >= 0.01);
+    const filteredTokenBalances = allTokenBalances.filter((token: any) => token.balanceUSD >= 0.001);
     
     const totalValue = filteredTokenBalances.reduce((sum: number, token: any) => sum + token.balanceUSD, 0);
     
-    console.log(`Filtered ${filteredTokenBalances.length} tokens (${allTokenBalances.length} total, ${allTokenBalances.length - filteredTokenBalances.length} below $0.01)`);
+    console.log(`Filtered ${filteredTokenBalances.length} tokens (${allTokenBalances.length} total, ${allTokenBalances.length - filteredTokenBalances.length} below $0.001)`);
     console.log(`Total value: $${totalValue.toFixed(2)}`);
 
     // Process activity data
