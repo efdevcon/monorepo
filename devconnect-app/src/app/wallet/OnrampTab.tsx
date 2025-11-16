@@ -14,8 +14,11 @@ import {
   mdiClose,
   mdiChevronLeft,
   mdiArrowTopRight,
+  mdiContentCopy,
+  mdiCheck,
 } from '@mdi/js';
 import Link from 'next/link';
+import React from 'react';
 
 // Image assets
 const imgOnrampDigital = '/images/onramp-digital.svg';
@@ -29,6 +32,7 @@ type ProviderBase = {
   gradient: string;
   logoImage: string;
   fees: string;
+  showPassword?: boolean;
 };
 
 type ProviderWithOnClick = ProviderBase & {
@@ -45,6 +49,7 @@ export default function OnrampTab() {
   const { address } = useWallet();
   const router = useRouter();
   const [isDisclaimerModalOpen, setIsDisclaimerModalOpen] = useState(false);
+  const [passwordCopied, setPasswordCopied] = useState(false);
 
   // Detect device type for dynamic URLs
   const getDeviceStoreUrl = () => {
@@ -57,6 +62,26 @@ export default function OnrampTab() {
     const iosAppUrl = `https://apps.apple.com/app/peer-crypto-wallet/id6749191100`;
 
     return isIOS || isMacOS ? iosAppUrl : androidAppUrl;
+  };
+
+  // Copy password to clipboard
+  const handleCopyPassword = async () => {
+    const password = 'D3VC0N';
+    await navigator.clipboard.writeText(password);
+    setPasswordCopied(true);
+    setTimeout(() => setPasswordCopied(false), 2000);
+
+    // Create copy icon using MDI
+    const copyIcon = React.createElement(Icon, {
+      path: mdiContentCopy,
+      size: 0.67,
+      color: 'white',
+    });
+
+    toast.success('Password copied to clipboard', {
+      description: password,
+      icon: copyIcon,
+    });
   };
 
   // Handle hash-based scrolling on component mount
@@ -352,6 +377,7 @@ export default function OnrampTab() {
       logoImage: 'zkp2p-logo.png',
       fees: 'Based on rate/pool',
       href: getDeviceStoreUrl(),
+      showPassword: true,
     },
   ];
 
@@ -479,11 +505,11 @@ export default function OnrampTab() {
           <div className="space-y-2 pt-2">
             {digitalProviders.map((provider, index) => {
               const sharedClassName =
-                'w-full border border-[#f0f0f4] rounded p-4 flex items-center gap-3 hover:brightness-95 transition-all duration-200 cursor-pointer';
+                'w-full border border-[#f0f0f4] rounded p-4 hover:brightness-95 transition-all duration-200 cursor-pointer';
               const content = (
-                <>
+                <div className="flex items-start gap-3">
                   {/* Provider Icon */}
-                  <div className="w-8 h-8 rounded-[2px] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  <div className="w-8 h-8 rounded-[2px] flex items-center justify-center flex-shrink-0 overflow-hidden mt-0.5">
                     <img
                       src={`/images/${provider.logoImage}`}
                       alt={`${provider.name} logo`}
@@ -502,39 +528,84 @@ export default function OnrampTab() {
                     <div className="text-[#4b4b66] text-xs leading-[1.3] tracking-[-0.1px]">
                       <span className="font-bold">Fees:</span> {provider.fees}
                     </div>
+                    
+                    {/* Password Section (if showPassword is true) */}
+                    {provider.showPassword && (
+                      <div className="pt-2 mt-2 border-t border-white/30">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[#4b4b66] text-xs font-medium">
+                            Early Access Password:
+                          </span>
+                          <code className="text-[#20202b] text-xs font-bold tracking-wider px-2 py-0.5 bg-white/80 rounded border border-white/50">
+                            D3VC0N
+                          </code>
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleCopyPassword();
+                            }}
+                            className="p-1 hover:bg-white/40 rounded transition-colors"
+                            title={
+                              passwordCopied
+                                ? 'Copied!'
+                                : 'Click to copy password'
+                            }
+                          >
+                            {passwordCopied ? (
+                              <Icon
+                                path={mdiCheck}
+                                size={0.6}
+                                className="text-green-600"
+                              />
+                            ) : (
+                              <Icon
+                                path={mdiContentCopy}
+                                size={0.6}
+                                className="text-[#4b4b66]"
+                              />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Chevron Icon */}
-                  <div className="w-4 h-4 flex-shrink-0">
+                  <div className="w-4 h-4 flex-shrink-0 mt-1">
                     <Icon
                       path={mdiArrowTopRight}
                       size={0.67}
                       color="#0073de"
                     />
                   </div>
-                </>
+                </div>
               );
 
-              return 'href' in provider ? (
-                <a
+              return (
+                <div
                   key={index}
-                  href={provider.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={sharedClassName}
+                  className="w-full border border-[#f0f0f4] rounded"
                   style={{ background: provider.gradient }}
                 >
-                  {content}
-                </a>
-              ) : (
-                <button
-                  key={index}
-                  onClick={provider.onClick}
-                  className={sharedClassName}
-                  style={{ background: provider.gradient }}
-                >
-                  {content}
-                </button>
+                  {'href' in provider ? (
+                    <a
+                      href={provider.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block p-4 hover:brightness-95 transition-all duration-200"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <button
+                      onClick={provider.onClick}
+                      className="w-full text-left p-4 hover:brightness-95 transition-all duration-200"
+                    >
+                      {content}
+                    </button>
+                  )}
+                </div>
               );
             })}
           </div>
