@@ -96,7 +96,7 @@ const getTealBoxIcon = (
   // Map groupIds to icons
   const iconMap: Record<string, string> = {
     '7': mdiFoodOutline, // Food & Beverage
-    '14': mdiCoffeeOutline, // Power-up Station (Coffee)
+    // '14': mdiCoffeeOutline, // Power-up Station (Coffee)
     '9': mdiHandshakeOutline, // Meeting Rooms
     '6': mdiTshirtCrew, // SWAG station
     '10': mdiInformationOutline, // Onboarding Area
@@ -668,7 +668,7 @@ const MapPane = (props: {
 
         // Check if this POI is a stage and get its color
         const isStage =
-          selectionData.groupId === '15' ||
+          selectionData.groupId === '14' ||
           [
             'amphitheater',
             'nogal-hall',

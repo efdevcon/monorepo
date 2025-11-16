@@ -33,39 +33,39 @@ const streams = {
     youtube: 'https://www.youtube.com/embed/aLptf94VIxc?si=tEFsjIPrfjw5c_v-',
   },
   lightning: {
-    translations: '',
+    translations: 'https://stm.live/Stage-lightning/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/iGN3K8aa58I?si=6xmYNVo14n1h1GI3',
   },
   ceibo: {
-    translations: '',
+    translations: 'https://stm.live/stage-CEIBO/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/Mw5LZW2wICs?si=C4BiC_Q2V9EiVVm4',
   },
   nogal: {
-    translations: '',
+    translations: 'https://stm.live/stage-NOGAL/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/C-kF0gplCto?si=NCDndzxiDbawrnFK',
   },
   xs: {
-    translations: '',
+    translations: 'https://stm.live/Stage-XS/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
   },
   xl: {
-    translations: '',
+    translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
   },
   m1: {
-    translations: '',
+    translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
   },
   m2: {
-    translations: '',
+    translations: 'https://stm.live/Stage-M2/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
   },
   l: {
-    translations: '',
+    translations: 'https://stm.live/Stage-L/fullscreen?embed=true',
     youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
   },
   bootcamp: {
-    translations: '',
+    translations: 'https://stm.live/Stage-Bootcamp',
     youtube: 'https://www.youtube.com/embed/CjCii7U2GiY?si=zLDUGOn-Ygly3Z_5',
   },
 };
@@ -139,7 +139,7 @@ const MeerkatComponent = ({ stage }: { stage: string }) => {
   );
 };
 
-// const devconnectMoment = moment.utc('2025-11-17 11:30:00').subtract(3, 'hours');
+// const devconnectMoment = moment.utc('2025-11-18 11:30:00').subtract(3, 'hours');
 
 const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const [dates, setDates] = useState<Moment[]>([
