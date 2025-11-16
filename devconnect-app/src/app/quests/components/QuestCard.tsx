@@ -36,10 +36,7 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
     // For Setup Section (simple layout)
     if (!showExpandedActions) {
       return (
-        <div
-          ref={ref}
-          className="bg-white border border-[#e2e2e9] rounded"
-        >
+        <div ref={ref} className="bg-white border border-[#e2e2e9] rounded">
           <div className="flex items-start gap-3 p-4">
             {/* Quest Icon */}
             <div className="w-6 h-6 flex-shrink-0">
@@ -113,7 +110,7 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
           </div>
 
           {/* Action Button */}
-          {!isCompleted && (
+          {!isCompleted && quest.conditionValues && (
             <div className="w-full p-4 bg-gradient-to-br from-[#f6b513]/40 via-[#ff85a6]/40 via-32% to-[#74acdf]/40 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center">
               <div className="w-full flex justify-start items-center gap-3">
                 <button
@@ -269,27 +266,29 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   </button>
                   <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                 </div>
-                {(!isCompleted || verifyingQuestId === quest.id.toString()) && (
-                  <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
-                    <button
-                      onClick={() => onQuestAction(quest)}
-                      disabled={
-                        !address || verifyingQuestId === quest.id.toString()
-                      }
-                      className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3 disabled:cursor-not-allowed disabled:opacity-50"
-                      style={{
-                        fontVariationSettings: "'wdth' 100",
-                      }}
-                    >
-                      <p className="leading-none whitespace-pre">
-                        {verifyingQuestId === quest.id.toString()
-                          ? 'Verifying...'
-                          : 'Verify'}
-                      </p>
-                    </button>
-                    <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
-                  </div>
-                )}
+                {quest.conditionValues &&
+                  (!isCompleted ||
+                    verifyingQuestId === quest.id.toString()) && (
+                    <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
+                      <button
+                        onClick={() => onQuestAction(quest)}
+                        disabled={
+                          !address || verifyingQuestId === quest.id.toString()
+                        }
+                        className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3 disabled:cursor-not-allowed disabled:opacity-50"
+                        style={{
+                          fontVariationSettings: "'wdth' 100",
+                        }}
+                      >
+                        <p className="leading-none whitespace-pre">
+                          {verifyingQuestId === quest.id.toString()
+                            ? 'Verifying...'
+                            : 'Verify'}
+                        </p>
+                      </button>
+                      <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
+                    </div>
+                  )}
               </div>
             </div>
           </div>
