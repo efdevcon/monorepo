@@ -174,8 +174,7 @@ const Pane = ({
           {links && links.website && links.website.trim() !== '' && (
             <Link
               href={links.website}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(links.website.startsWith('http') ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2 cursor-pointer">
                 <span className="font-bold text-sm text-[#0073DE]">

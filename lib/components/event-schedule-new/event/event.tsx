@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Event as EventType } from "../model";
 import { getProgramming, Programming } from "./programming";
-import { customUrlTransforms } from "../index";
+import { customUrlTransforms, stageNamesByEvent } from "../index";
 const confetti = require("canvas-confetti");
 import moment from "moment";
 // import { format, parseISO } from "date-fns";
@@ -628,9 +628,42 @@ function Event({
                     <div className="text-sm flex gap-2 mb-2 flex-wrap overflow-hidden">
                       <div className="flex justify-center gap-1.5 items-center font-medium shrink-0 flex-wrap">
                         <MapPin className="w-4 h-4 mb-0.5" />
-                        {typeof event.location === "string"
-                          ? event.location
-                          : event.location.text}
+                        {stageNamesByEvent[
+                          parseInt(event.id) as keyof typeof stageNamesByEvent
+                        ] ? (
+                          <Link
+                            href={
+                              typeof window !== "undefined" &&
+                              !window.location.origin.includes("app.devconnect.org") &&
+                              !window.location.origin.includes("localhost")
+                                ? `https://app.devconnect.org${
+                                    stageNamesByEvent[
+                                      parseInt(
+                                        event.id
+                                      ) as keyof typeof stageNamesByEvent
+                                    ].mapUrl
+                                  }`
+                                : stageNamesByEvent[
+                                    parseInt(
+                                      event.id
+                                    ) as keyof typeof stageNamesByEvent
+                                  ].mapUrl
+                            }
+                            className="flex gap-1 items-center text-[#165a8d] hover:underline"
+                          >
+                            {
+                              stageNamesByEvent[
+                                parseInt(
+                                  event.id
+                                ) as keyof typeof stageNamesByEvent
+                              ].stageLabel
+                            }
+                          </Link>
+                        ) : typeof event.location === "string" ? (
+                          event.location
+                        ) : (
+                          event.location.text
+                        )}
                       </div>
                       {event.amountPeople && !isETHDay && (
                         <div className="flex items-center gap-1.5 font-medium">
