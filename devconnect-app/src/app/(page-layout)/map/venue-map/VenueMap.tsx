@@ -142,10 +142,9 @@ export const VenueMap = () => {
 
       const svgElement = element as SVGElement;
       if (isSelected || isHovered) {
-        // svgElement.style.opacity = '1';
-        // svgElement.style.filter = 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))';
-        // svgElement.style.transition = 'opacity 0.5s ease-in-out';
+        svgElement.classList.add(css['pulse']);
       } else if (hasActiveFilters) {
+        svgElement.classList.remove(css['pulse']);
         // Selected fallback
         // svgElement.style.opacity = '0.15';
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
@@ -156,6 +155,7 @@ export const VenueMap = () => {
         svgElement.style.filter = 'none';
       } */ else {
         // Reset fallback
+        svgElement.classList.remove(css['pulse']);
         if (svgElement.style.opacity) {
           svgElement.style.opacity = '';
         }
@@ -215,7 +215,7 @@ export const VenueMap = () => {
   //   );
   // };
 
-  const moveToElement = (id: string, smooth: boolean = true) => {
+  const moveToElement = (id: string, smooth: boolean = true, offset = 50) => {
     const svgElement = document.getElementById(id);
     if (!svgElement || !panzoomInstance || !containerRef.current) return;
     const elementRect = svgElement.getBoundingClientRect();
@@ -229,9 +229,9 @@ export const VenueMap = () => {
     const deltaY = targetCenterY - elementCenterY;
 
     if (smooth) {
-      panzoomInstance.moveBy(deltaX, deltaY - 50, true);
+      panzoomInstance.moveBy(deltaX, deltaY - offset, true);
     } else {
-      panzoomInstance.moveBy(deltaX, deltaY - 50, false);
+      panzoomInstance.moveBy(deltaX, deltaY - offset, false);
     }
   };
 
@@ -322,6 +322,12 @@ export const VenueMap = () => {
       }
 
       panzoomInstance.smoothZoomAbs(focalX, focalY, targetZoom);
+
+      if (zoomLevel === 'zoomed-out') {
+        setTimeout(() => {
+          moveToElement(id, true, 0);
+        }, 500);
+      }
     }
   };
 
