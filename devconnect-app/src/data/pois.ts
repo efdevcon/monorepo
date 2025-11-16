@@ -328,7 +328,7 @@ export const poisData: POI[] = [
   {
     "name": "Ethluminal Gallery",
     "layerName": "ethluminal-gallery",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T18-10-32-801Z-Ethluminal-POI.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-35-15-115Z-Ethluminal-POI.png",
     "description": "Ethluminal Gallery is a digital gallery space that showcases artworks selected by curators from within the vibrant Ethereum ecosystem.",
     "websiteLink": "",
     "twitterLink": "",
