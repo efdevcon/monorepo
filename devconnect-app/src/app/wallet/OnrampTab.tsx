@@ -22,10 +22,42 @@ const imgOnrampDigital = '/images/onramp-digital.svg';
 const imgOnrampCash = '/images/onramp-cash.svg';
 const imgLocationOn = '/images/imgLocation.svg';
 
+// Provider types
+type ProviderBase = {
+  name: string;
+  description: string | React.ReactNode;
+  gradient: string;
+  logoImage: string;
+  fees: string;
+};
+
+type ProviderWithOnClick = ProviderBase & {
+  onClick: () => void;
+};
+
+type ProviderWithHref = ProviderBase & {
+  href: string;
+};
+
+type Provider = ProviderWithOnClick | ProviderWithHref;
+
 export default function OnrampTab() {
   const { address } = useWallet();
   const router = useRouter();
   const [isDisclaimerModalOpen, setIsDisclaimerModalOpen] = useState(false);
+
+  // Detect device type for dynamic URLs
+  const getDeviceStoreUrl = () => {
+    if (typeof window === 'undefined') return '';
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    const isIOS = /iphone|ipad|ipod/.test(userAgent);
+    const isMacOS = /macintosh|mac os x/.test(userAgent);
+
+    const androidAppUrl = `https://play.google.com/store/apps/details?id=com.zkp2p.mobile.dev`;
+    const iosAppUrl = `https://apps.apple.com/app/peer-crypto-wallet/id6749191100`;
+
+    return isIOS || isMacOS ? iosAppUrl : androidAppUrl;
+  };
 
   // Handle hash-based scrolling on component mount
   useEffect(() => {
@@ -93,7 +125,7 @@ export default function OnrampTab() {
     });
   };
 
-  const digitalProviders = [
+  const digitalProviders: Provider[] = [
     {
       name: 'Peanut',
       description:
@@ -319,48 +351,7 @@ export default function OnrampTab() {
         'linear-gradient(114.577deg, rgba(254, 138, 103, 0.2) 2.546%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'zkp2p-logo.png',
       fees: 'Based on rate/pool',
-      onClick: () => {
-        // showErrorToast('❌ ZKP2P is not available yet');
-        // return;
-        if (!address) {
-          showErrorToast(
-            '❌ No Address Available',
-            'Please connect your wallet first'
-          );
-          return;
-        }
-        const popup = window.open(
-          'about:blank',
-          '_blank',
-          'width=470,height=750'
-        );
-
-        if (!popup) {
-          showErrorToast(
-            '❌ Popup Blocked',
-            'Please allow popups for this site'
-          );
-          return;
-        }
-        // const currentDomain = window.location.origin;
-        // const zkp2pUrl = `https://www.zkp2p.xyz/swap?referrer=Devconnect+App&referrerLogo=https%3A%2F%2Fpartner-assets.beta.getpara.com%2Ficons%2F7766a9b6-0afd-477e-9501-313f384e3e19%2Fkey-logos%2FDevconnect%2520Project-icon.jpg&callbackUrl=${encodeURIComponent(currentDomain + '/onramp?type=zkp2p&confirm=true')}&inputCurrency=USD&inputAmount=10&toToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&recipientAddress=${address}&tab=buy`;
-
-        // Detect iOS/macOS/Android device
-        const userAgent = window.navigator.userAgent.toLowerCase();
-        const isIOS = /iphone|ipad|ipod/.test(userAgent);
-        const isMacOS = /macintosh|mac os x/.test(userAgent);
-
-        const androidAppUrl = `https://play.google.com/store/apps/details?id=com.zkp2p.mobile.dev`;
-        const iosAppUrl = `https://apps.apple.com/app/peer-crypto-wallet/id6749191100`;
-
-        popup.location.href = isIOS || isMacOS ? iosAppUrl : androidAppUrl;
-
-        showInfoToast(
-          '🔒 ZKP2P Onramp Opened',
-          'Complete your purchase in the App',
-          8000
-        );
-      },
+      href: getDeviceStoreUrl(),
     },
   ];
 
@@ -486,41 +477,66 @@ export default function OnrampTab() {
 
           {/* Digital Provider Cards */}
           <div className="space-y-2 pt-2">
-            {digitalProviders.map((provider, index) => (
-              <button
-                key={index}
-                onClick={provider.onClick}
-                className="w-full border border-[#f0f0f4] rounded p-4 flex items-center gap-3 hover:brightness-95 transition-all duration-200 cursor-pointer"
-                style={{ background: provider.gradient }}
-              >
-                {/* Provider Icon */}
-                <div className="w-8 h-8 rounded-[2px] flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  <img
-                    src={`/images/${provider.logoImage}`}
-                    alt={`${provider.name} logo`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+            {digitalProviders.map((provider, index) => {
+              const sharedClassName =
+                'w-full border border-[#f0f0f4] rounded p-4 flex items-center gap-3 hover:brightness-95 transition-all duration-200 cursor-pointer';
+              const content = (
+                <>
+                  {/* Provider Icon */}
+                  <div className="w-8 h-8 rounded-[2px] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    <img
+                      src={`/images/${provider.logoImage}`}
+                      alt={`${provider.name} logo`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
 
-                {/* Provider Info */}
-                <div className="flex-1 text-left space-y-1">
-                  <div className="text-[#20202b] text-base font-bold leading-[1.2] tracking-[-0.1px]">
-                    {provider.name}
+                  {/* Provider Info */}
+                  <div className="flex-1 text-left space-y-1">
+                    <div className="text-[#20202b] text-base font-bold leading-[1.2] tracking-[-0.1px]">
+                      {provider.name}
+                    </div>
+                    <div className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
+                      {provider.description}
+                    </div>
+                    <div className="text-[#4b4b66] text-xs leading-[1.3] tracking-[-0.1px]">
+                      <span className="font-bold">Fees:</span> {provider.fees}
+                    </div>
                   </div>
-                  <div className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
-                    {provider.description}
-                  </div>
-                  <div className="text-[#4b4b66] text-xs leading-[1.3] tracking-[-0.1px]">
-                    <span className="font-bold">Fees:</span> {provider.fees}
-                  </div>
-                </div>
 
-                {/* Chevron Icon */}
-                <div className="w-4 h-4 flex-shrink-0">
-                  <Icon path={mdiArrowTopRight} size={0.67} color="#0073de" />
-                </div>
-              </button>
-            ))}
+                  {/* Chevron Icon */}
+                  <div className="w-4 h-4 flex-shrink-0">
+                    <Icon
+                      path={mdiArrowTopRight}
+                      size={0.67}
+                      color="#0073de"
+                    />
+                  </div>
+                </>
+              );
+
+              return 'href' in provider ? (
+                <a
+                  key={index}
+                  href={provider.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={sharedClassName}
+                  style={{ background: provider.gradient }}
+                >
+                  {content}
+                </a>
+              ) : (
+                <button
+                  key={index}
+                  onClick={provider.onClick}
+                  className={sharedClassName}
+                  style={{ background: provider.gradient }}
+                >
+                  {content}
+                </button>
+              );
+            })}
           </div>
         </div>
 
