@@ -252,8 +252,8 @@ export const useSessions = (stage: string) => {
     error: eventsError,
     isLoading: eventsLoading,
   } = useSWR<any>(
-    // `/api/sessions?stage=${stage}`,
-    `https://devconnect.pblvrt.com/sessions?stage=${stage}`,
+    `/api/sessions/${stage}`,
+    // `https://devconnect.pblvrt.com/sessions?stage=${stage}`,
     async (url: string) => {
       const res = await fetch(url);
 

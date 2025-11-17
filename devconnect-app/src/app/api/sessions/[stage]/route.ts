@@ -3,16 +3,13 @@ import { NextResponse } from 'next/server';
 // Route segment config - caches all fetch requests in this route for 5 minutes
 export const revalidate = 300;
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const stage = searchParams.get('stage');
+export async function GET(
+  request: Request,
+  { params }: { params: { stage: string } }
+) {
+  const { stage } = await params;
 
-  if (!stage) {
-    return NextResponse.json(
-      { error: 'Stage parameter is required' },
-      { status: 400 }
-    );
-  }
+  console.log(stage, 'stage');
 
   try {
     // Fetch will be cached according to route revalidate config above
@@ -28,8 +25,8 @@ export async function GET(request: Request) {
 
     return NextResponse.json(data, {
       headers: {
-        // CDN/Edge caching: cache for 5 min, serve stale for 10 min while revalidating
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        // CDN/Edge caching: cache for 5 min, serve stale for 5 min while revalidating
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=300',
       },
     });
   } catch (error) {
