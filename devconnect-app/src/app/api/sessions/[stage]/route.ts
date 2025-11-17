@@ -5,7 +5,7 @@ export const revalidate = 300;
 
 export async function GET(
   request: Request,
-  { params }: { params: { stage: string } }
+  { params }: { params: Promise<{ stage: string }> }
 ) {
   const { stage } = await params;
 
