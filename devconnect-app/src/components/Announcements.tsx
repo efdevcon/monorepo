@@ -80,7 +80,7 @@ export const NotificationCard = ({
         <p className={cn('text-base font-semibold', withoutContainer && '')}>
           {title}
         </p>
-        <p className={cn('text-sm pr-4', withoutContainer && '!text-sm')}>
+        <p className={cn('text-sm', withoutContainer && '!text-sm')}>
           {message}
         </p>
       </div>

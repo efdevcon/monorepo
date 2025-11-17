@@ -386,8 +386,8 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                   <div className="flex flex-col items-start">
                     <div className="font-semibold leading-tight flex items-center gap-1.5">
                       {translationsVisible
-                        ? 'Hide translations'
-                        : 'Live translations'}{' '}
+                        ? 'Hide Translations'
+                        : 'Live Translations'}{' '}
                       <LanguagesIcon className="w-4 h-4" />
                     </div>
                   </div>
