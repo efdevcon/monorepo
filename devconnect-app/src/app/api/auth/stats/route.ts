@@ -7,6 +7,14 @@ import { ethers } from 'ethers';
 const PAYMENT_RELAYER = '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD';
 const SEND_RELAYER = '0xf1e26ea8b039F4f6440494D448bd817A55137F9c';
 
+// Worldfare.eth domains contract on Base
+const WORLDFARE_CONTRACT = '0xd6a7dcdee200fa37f149323c0ad6b3698aa0e829';
+
+// ERC-721 ABI for totalSupply function
+const ERC721_ABI = [
+  'function totalSupply() view returns (uint256)',
+];
+
 export async function GET(request: NextRequest) {
   // Verify authentication
   const authResult = await verifyAuth(request);
@@ -181,6 +189,20 @@ export async function GET(request: NextRequest) {
       };
     }
 
+    // Fetch worldfare.eth domains count
+    let worldfareDomains = undefined;
+    try {
+      const rpcUrl = process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org';
+      const provider = new ethers.JsonRpcProvider(rpcUrl);
+      const contract = new ethers.Contract(WORLDFARE_CONTRACT, ERC721_ABI, provider);
+      
+      const totalSupply = await contract.totalSupply();
+      worldfareDomains = Number(totalSupply);
+    } catch (worldfareError) {
+      console.error('Error fetching worldfare domains:', worldfareError);
+      // Don't fail the whole request if worldfare stats fail
+    }
+
     // Return stats
     return NextResponse.json({
       stats: {
@@ -188,6 +210,7 @@ export async function GET(request: NextRequest) {
         claimed_links: claimedLinks ?? 0,
         total_links: (availableLinks ?? 0) + (claimedLinks ?? 0),
         total_users: totalUsers ?? 0,
+        worldfare_domains: worldfareDomains,
       },
       hourly_user_creation: hourlyUserCreation,
       relayers: relayerStats,

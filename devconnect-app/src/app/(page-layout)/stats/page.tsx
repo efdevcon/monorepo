@@ -18,6 +18,7 @@ import {
   mdiCloseCircleOutline,
   mdiAccountMultiple,
   mdiChartBar,
+  mdiWeb,
 } from '@mdi/js';
 import {
   BarChart,
@@ -39,6 +40,7 @@ interface StatsData {
     claimed_links: number;
     total_links: number;
     total_users: number;
+    worldfare_domains?: number;
   };
   hourly_user_creation: Array<{
     hour: string;
@@ -125,7 +127,7 @@ export default function StatsPage() {
     return (
       <div className="bg-[#74ACDF10] gradient-background grow pb-8 overflow-x-hidden">
         <div className="p-4">
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="animate-pulse">
               <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
               <div className="space-y-3">
@@ -143,7 +145,7 @@ export default function StatsPage() {
     return (
       <div className="bg-[#74ACDF10] gradient-background grow pb-8 overflow-x-hidden">
         <div className="p-4">
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="text-center">
               <div className="mb-4 flex justify-center">
                 <Icon path={mdiAlert} size={2} color="#EF4444" />
@@ -166,7 +168,7 @@ export default function StatsPage() {
     return (
       <div className="bg-[#74ACDF10] gradient-background grow pb-8 overflow-x-hidden">
         <div className="p-4">
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="text-center">
               <div className="mb-4 flex justify-center">
                 <Icon path={mdiCloseCircleOutline} size={2} color="#EF4444" />
@@ -214,7 +216,7 @@ export default function StatsPage() {
     <div className="bg-[#74ACDF10] gradient-background grow pb-8 overflow-x-hidden">
       <div className="p-4 space-y-4">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white rounded-lg shadow-sm p-4">
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-2xl font-bold text-gray-900">
               Claiming Links Statistics
@@ -262,9 +264,27 @@ export default function StatsPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+          {/* Total Users */}
+          <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600 mb-1">
+                  Total Users
+                </p>
+                <p className="text-3xl font-bold text-purple-600">
+                  {stats.stats.total_users}
+                </p>
+              </div>
+              <div className="p-3 bg-purple-100 rounded-full">
+                <Icon path={mdiAccountMultiple} size={1.3} color="#9333EA" />
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">Created accounts</p>
+          </div>
+
           {/* Available Links */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">
@@ -282,7 +302,7 @@ export default function StatsPage() {
           </div>
 
           {/* Claimed Links */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">
@@ -302,7 +322,7 @@ export default function StatsPage() {
           </div>
 
           {/* Total Links */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">
@@ -319,29 +339,38 @@ export default function StatsPage() {
             <p className="text-xs text-gray-500 mt-2">Total in the system</p>
           </div>
 
-          {/* Total Users */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">
-                  Total Users
-                </p>
-                <p className="text-3xl font-bold text-purple-600">
-                  {stats.stats.total_users}
-                </p>
+          {/* ENS */}
+          {stats.stats.worldfare_domains !== undefined && (
+            <div className="bg-white rounded-lg shadow-sm p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600 mb-1">ENS</p>
+                  <p className="text-3xl font-bold text-teal-600">
+                    {stats.stats.worldfare_domains}
+                  </p>
+                </div>
+                <div className="p-3 bg-teal-100 rounded-full">
+                  <Icon path={mdiWeb} size={1.3} color="#0D9488" />
+                </div>
               </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <Icon path={mdiAccountMultiple} size={1.3} color="#9333EA" />
-              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                <a
+                  href="https://opensea.io/collection/worldfair-eth"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-teal-600 underline"
+                >
+                  worldfair.eth minted
+                </a>
+              </p>
             </div>
-            <p className="text-xs text-gray-500 mt-2">Created accounts</p>
-          </div>
+          )}
         </div>
 
         {/* Hourly User Creation Chart */}
         {stats.hourly_user_creation &&
           stats.hourly_user_creation.length > 0 && (
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-lg shadow-sm p-4">
               <div className="flex items-center gap-2 mb-4">
                 <Icon path={mdiChartBar} size={0.9} color="#9333EA" />
                 <h2 className="text-xl font-bold text-gray-900">
@@ -453,7 +482,7 @@ export default function StatsPage() {
           )}
 
         {/* Progress Bar */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="bg-white rounded-lg shadow-sm p-4">
           <div className="mb-2 flex justify-between items-center">
             <h3 className="text-lg font-semibold text-gray-900">
               Claim Progress
@@ -595,7 +624,7 @@ export default function StatsPage() {
         {/* Relayer Stats */}
         {relayers && (
           <>
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-white rounded-lg shadow-sm p-4">
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-xl font-bold text-gray-900">
                   Gas Sponsoring Relayers
@@ -792,7 +821,7 @@ export default function StatsPage() {
 
         {/* Relayer Error */}
         {hasRelayerError && (
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="flex items-center gap-2 text-yellow-600">
               <Icon path={mdiAlertOutline} size={0.8} color="#CA8A04" />
               <p className="text-sm font-medium">
