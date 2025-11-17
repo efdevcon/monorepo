@@ -251,35 +251,38 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
           >
             <div className="bg-[#daebfb] box-border content-stretch flex flex-col items-center justify-center p-4 relative rounded-bl-[2px] rounded-br-[2px] size-full">
               <div className="content-stretch flex gap-3 items-center relative shrink-0 w-full">
-                <div
-                  className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shrink-0"
-                  onClick={(e) => e.stopPropagation()}
-                >
+                {/* Hide About button for Crypto Payment quests (groupId 2) */}
+                {quest.groupId !== 2 && (
                   <div
-                    aria-hidden="true"
-                    className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978] z-0"
-                  />
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      onAboutClick(quest);
-                    }}
-                    onMouseDown={(e) => {
-                      e.stopPropagation();
-                    }}
-                    onTouchStart={(e) => {
-                      e.stopPropagation();
-                    }}
-                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-[#44445d] text-sm text-center text-nowrap w-full h-full cursor-pointer z-10 flex items-center justify-center p-3"
-                    style={{
-                      fontVariationSettings: "'wdth' 100",
-                    }}
+                    className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shrink-0"
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    <p className="leading-none whitespace-pre">About</p>
-                  </button>
-                  <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
-                </div>
+                    <div
+                      aria-hidden="true"
+                      className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978] z-0"
+                    />
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onAboutClick(quest);
+                      }}
+                      onMouseDown={(e) => {
+                        e.stopPropagation();
+                      }}
+                      onTouchStart={(e) => {
+                        e.stopPropagation();
+                      }}
+                      className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-[#44445d] text-sm text-center text-nowrap w-full h-full cursor-pointer z-10 flex items-center justify-center p-3"
+                      style={{
+                        fontVariationSettings: "'wdth' 100",
+                      }}
+                    >
+                      <p className="leading-none whitespace-pre">About</p>
+                    </button>
+                    <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
+                  </div>
+                )}
                 {quest.conditionValues &&
                   (!isCompleted ||
                     verifyingQuestId === quest.id.toString()) && (
