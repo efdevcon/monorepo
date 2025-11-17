@@ -471,7 +471,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
                       <td className="p-4  py-3 border-b border-gray-200">
                         {session.speakers && session.speakers.length > 0
                           ? session.speakers
-                              .filter((s: string) => s !== 'TBD')
+                              .filter((s: string) => s !== 'TBD' && !s.includes('docs.google.com'))
                               .join(', ') || 'TBD'
                           : '-'}
                       </td>
