@@ -10,11 +10,11 @@ export const MERCHANTS: Record<string, Merchant> = {
     id: 'cafe-cuyo',
     name: 'Cafe Cuyo (Testing)',
   },
-  '6911fb470ce6a7a6a3c721d7': {
-    posNumber: '1',
-    id: 'barreto',
-    name: 'Barreto',
-  },
+  // '6911fb470ce6a7a6a3c721d7': {
+  //   posNumber: '1',
+  //   id: 'barreto',
+  //   name: 'Barreto',
+  // },
   '6911fb2f0ce6a7a6a3c721d6': {
     posNumber: '2',
     id: 'beer-house',

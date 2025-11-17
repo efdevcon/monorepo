@@ -1210,19 +1210,6 @@ export const questsData: Quest[] = [
     "groupId": 2
   },
   {
-    "id": 128,
-    "name": "I paid with Crypto at Barreto",
-    "order": 1,
-    "instructions": "Order something at this merchant and pay with crypto.",
-    "action": "claim-poap",
-    "button": "Verify",
-    "conditionType": "verifyPoap",
-    "conditionValues": "213893",
-    "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-barreto-2025-logo-1762804998118.png?size=large",
-    "groupId": 2
-  },
-  {
     "id": 129,
     "name": "I paid with Crypto at KOI",
     "order": 7,
