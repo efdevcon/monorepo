@@ -1229,7 +1229,7 @@ export const poisData: POI[] = [
     "name": "Quiet Cowork",
     "layerName": "quiet-cowork",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-52-19-713Z-Cowork.png",
-    "description": "",
+    "description": "The place for focus work. We respectfully ask that you turn your phone to silent in this space.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
