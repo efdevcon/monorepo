@@ -90,7 +90,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export const revalidate = 300; // 5 minutes
+export const revalidate = 1500; // 5 minutes
 
 export default async function RootLayout({
   children,
@@ -130,46 +130,52 @@ export default async function RootLayout({
   const atprotoEvents = await getAtprotoEvents();
   // const programming = await getProgramming();
   // const programmingEvents = await getStageEvents();
-  const announcementsRaw = await getNotionTable(
-    '295638cdc41580fe8d85ff5487f71277',
-    undefined,
-    undefined,
-    'Notification Send Time'
-  );
 
-  // Normalize announcements to match component props
-  const now = moment.utc(); // .subtract(3, 'hour'); // Argentina is 3 hours behind UTC
-  const announcements = announcementsRaw
-    .map((announcement) => {
-      // console.log(now.toISOString());
-      // console.log(
-      //   moment.utc(announcement['Notification Send Time']).toISOString()
-      // );
-      // console.log(
-      //   moment.utc(announcement['Notification Send Time']).isSameOrBefore(now)
-      // );
-      return {
-        id: announcement.id,
-        title:
-          announcement['Name'] || announcement['Call To Action Text'] || '',
-        message: announcement['Description'] || '',
-        sendAt: announcement['Notification Send Time'],
-        seen: false,
-        cta: announcement['Call To Action Text'] || undefined,
-        ctaLink: announcement['Call To Action URL'] || undefined,
-      };
-    })
-    .filter((announcement) => {
-      if (process.env.NODE_ENV === 'development') {
-        return true;
-      }
+  let announcements: any[] = [];
 
-      // Filter out announcements without titles and those scheduled for the future
-      return (
-        announcement.title !== '' &&
-        moment.utc(announcement.sendAt).isSameOrBefore(now)
-      );
-    });
+  try {
+  } catch (e: any) {
+    const announcementsRaw = await getNotionTable(
+      '295638cdc41580fe8d85ff5487f71277',
+      undefined,
+      undefined,
+      'Notification Send Time'
+    );
+
+    // Normalize announcements to match component props
+    const now = moment.utc(); // .subtract(3, 'hour'); // Argentina is 3 hours behind UTC
+    announcements = announcementsRaw
+      .map((announcement) => {
+        // console.log(now.toISOString());
+        // console.log(
+        //   moment.utc(announcement['Notification Send Time']).toISOString()
+        // );
+        // console.log(
+        //   moment.utc(announcement['Notification Send Time']).isSameOrBefore(now)
+        // );
+        return {
+          id: announcement.id,
+          title:
+            announcement['Name'] || announcement['Call To Action Text'] || '',
+          message: announcement['Description'] || '',
+          sendAt: announcement['Notification Send Time'],
+          seen: false,
+          cta: announcement['Call To Action Text'] || undefined,
+          ctaLink: announcement['Call To Action URL'] || undefined,
+        };
+      })
+      .filter((announcement) => {
+        if (process.env.NODE_ENV === 'development') {
+          return true;
+        }
+
+        // Filter out announcements without titles and those scheduled for the future
+        return (
+          announcement.title !== '' &&
+          moment.utc(announcement.sendAt).isSameOrBefore(now)
+        );
+      });
+  }
 
   return (
     <html lang="en">
