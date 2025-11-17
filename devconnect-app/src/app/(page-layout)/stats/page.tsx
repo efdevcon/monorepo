@@ -574,7 +574,7 @@ export default function StatsPage() {
             <div className="flex items-center gap-2 mb-4">
               <Icon path={mdiImageMultiple} size={0.9} color="#4F46E5" />
               <h2 className="text-xl font-bold text-gray-900">
-                POAP Drops in Collection
+                POAP Stats
               </h2>
             </div>
             <p className="text-sm text-gray-500 mb-4">
