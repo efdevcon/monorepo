@@ -531,6 +531,7 @@ export const PracticalInfo = () => {
     </div>
   );
 };
+// const devconnectMoment = moment.utc('2025-11-17 20:30:00').subtract(3, 'hours');
 
 export const TodaysSchedule = withParcnetProvider(() => {
   const { email } = useUserDataSWR();
@@ -538,12 +539,14 @@ export const TodaysSchedule = withParcnetProvider(() => {
   const [favorites] = useFavorites();
   const { tickets, sideTickets } = useTickets();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const now = useNow(); //devconnectMoment);
 
   if (!email) return null;
 
   const coworkingEventId = '23';
   const communityHubsEventId = '149';
   const ethereumDayEventId = '84';
+  // const discussionCornersEventId = '426';
 
   const ticketEventIds = tickets.map((ticket) => ticket.eventId?.toString());
   const sideTicketEventIds = sideTickets.map((ticket) =>
@@ -558,6 +561,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
       coworkingEventId,
       communityHubsEventId,
       ethereumDayEventId,
+      // discussionCornersEventId,
       ...favorites,
       ...allTicketEventIds,
     ]),
@@ -569,6 +573,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
 
   const filteredEvents = events
     .filter((event) => allEventIds.includes(event.id.toString()))
+    .filter((event) => {
+      const lastTimeblock = event.timeblocks[event.timeblocks.length - 1];
+      return moment.utc(lastTimeblock.end).isAfter(now);
+    })
     .sort((a, b) => {
       if (
         a.id.toString() === ethereumDayEventId &&
