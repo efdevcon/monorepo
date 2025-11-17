@@ -69,6 +69,7 @@ export default function QuestsPage() {
         // Clear the migration flag after sync effects have settled
         setTimeout(() => {
           justMigrated.current = false;
+          setMigrationComplete(true); // Trigger re-sync
         }, 2000);
       }
     } catch (e) {
@@ -79,6 +80,7 @@ export default function QuestsPage() {
 
       setTimeout(() => {
         justMigrated.current = false;
+        setMigrationComplete(true); // Trigger re-sync
       }, 2000);
     }
   }, []);
@@ -104,6 +106,9 @@ export default function QuestsPage() {
   const prevQuestCompletions = React.useRef<Record<string, number> | null>(
     null
   );
+
+  // Track when migration window closes to trigger re-sync
+  const [migrationComplete, setMigrationComplete] = useState(false);
 
   // Sync quest states from database (works across devices)
   // This effect runs whenever questCompletions from the database changes
@@ -191,7 +196,7 @@ export default function QuestsPage() {
       // Only update if there are actual changes to avoid unnecessary re-renders
       return hasChanges ? { ...prev, data: updated } : prev;
     });
-  }, [questCompletions]);
+  }, [questCompletions, migrationComplete]); // Re-run when migration completes
 
   // Function to update quest status
   const updateQuestStatus = (

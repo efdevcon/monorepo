@@ -33,6 +33,8 @@ export default function OnboardingPage() {
 
   // Track if we just performed a migration (to prevent immediate DB sync)
   const justMigrated = React.useRef(false);
+  // Track when migration window closes to trigger re-sync
+  const [migrationComplete, setMigrationComplete] = useState(false);
 
   // Check version and reset if necessary
   // Handles migration from ANY old format to versioned format
@@ -55,10 +57,11 @@ export default function OnboardingPage() {
         );
         justMigrated.current = true;
         setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
-
+        
         // Clear the migration flag after sync effects have settled
         setTimeout(() => {
           justMigrated.current = false;
+          setMigrationComplete(true); // Trigger re-sync
         }, 2000);
       }
     } catch (e) {
@@ -66,9 +69,10 @@ export default function OnboardingPage() {
       console.error('Error validating quest state, resetting:', e);
       justMigrated.current = true;
       setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
-
+      
       setTimeout(() => {
         justMigrated.current = false;
+        setMigrationComplete(true); // Trigger re-sync
       }, 2000);
     }
   }, []);
@@ -178,7 +182,7 @@ export default function OnboardingPage() {
       // Only update if there are actual changes to avoid unnecessary re-renders
       return hasChanges ? { ...prev, data: updated } : prev;
     });
-  }, [questCompletions]);
+  }, [questCompletions, migrationComplete]); // Re-run when migration completes
 
   // Function to update quest status
   const updateQuestStatus = (
