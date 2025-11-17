@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocalStorage } from 'usehooks-ts';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import Icon from '@mdi/react';
@@ -10,7 +9,7 @@ import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import PoapModal from '@/components/PoapModal';
 import { hasEarlyAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
-import { QUEST_STATE_VERSION } from '@/config/config';
+import { useQuestCompletions } from '@/app/store.hooks';
 
 // Fallback image for empty POAP links
 const FALLBACK_IMAGE =
@@ -44,54 +43,18 @@ export default function StampbookTab() {
     stampedDate?: string;
   } | null>(null);
 
-  // Get quest states from local storage with version control
-  // Using versioned key to prevent corruption during deployments
-  const STORAGE_KEY = `quest-states-v${QUEST_STATE_VERSION}`;
-
-  const [questStates, setQuestStates] = useLocalStorage<{
-    version: number;
-    data: Record<
-      string,
-      {
-        status: 'completed' | 'active' | 'locked';
-        completedAt?: number; // Timestamp when completed
-      }
-    >;
-  }>(STORAGE_KEY, { version: QUEST_STATE_VERSION, data: {} });
-
-  // Cleanup old versioned keys on mount
-  React.useEffect(() => {
-    const keysToClean = ['quest-states', 'ls-quest-states']; // Old keys
-    for (let v = 1; v < QUEST_STATE_VERSION; v++) {
-      keysToClean.push(`quest-states-v${v}`);
-    }
-    keysToClean.forEach((key) => {
-      try {
-        localStorage.removeItem(key);
-      } catch (e) {
-        // Ignore cleanup errors
-      }
-    });
-  }, []);
-
-  // Simple version check - no complex migration logic
-  useEffect(() => {
-    if (!questStates || questStates.version !== QUEST_STATE_VERSION) {
-      console.log('Initializing quest state structure');
-      setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
-    }
-  }, []);
+  // Get quest completions from database (via SWR)
+  const { questCompletions } = useQuestCompletions();
 
   // Helper function to check if a quest is completed
   const isQuestCompleted = (questId: number): boolean => {
-    const questState = questStates.data[questId.toString()];
-    return !!questState?.completedAt; // Quest is completed if completedAt exists
+    return !!questCompletions?.[questId.toString()];
   };
 
   // Helper function to get completion date (returns ISO string for display)
   const getCompletionDate = (questId: number): string | undefined => {
-    const questState = questStates.data[questId.toString()];
-    if (questState?.completedAt) {
+    const completedAt = questCompletions?.[questId.toString()];
+    if (completedAt) {
       // First check if we have POAP metadata with the actual minted date
       try {
         const poapMetadata = JSON.parse(
@@ -112,8 +75,8 @@ export default function StampbookTab() {
         console.error('Error reading POAP metadata:', e);
       }
 
-      // Fall back to the completedAt timestamp from quest-states
-      return new Date(questState.completedAt).toISOString();
+      // Fall back to the completedAt timestamp from quest completions
+      return new Date(completedAt).toISOString();
     }
     return undefined;
   };
