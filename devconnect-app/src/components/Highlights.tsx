@@ -81,7 +81,7 @@ export const Highlights = () => {
   const highlights = [
     {
       title: 'Ethereum Day - Nov 17th',
-      to: 'https://ethday.devconnect.org',
+      to: '/stages/xl',
       description:
         'The main Ethereum event and official opening of the week. Come early!',
       image: Image6,
