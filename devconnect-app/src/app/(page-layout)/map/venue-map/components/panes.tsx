@@ -231,7 +231,7 @@ const Pane = ({
             <div
               className={cn(
                 'shrink-0 w-[44px] h-[44px] overflow-hidden flex items-center justify-center',
-                districtBadge ? 'border-2 border-[#74ACDF] rounded-[4px]' : ''
+                districtBadge ? 'rounded-[4px]' : ''
               )}
             >
               <img
