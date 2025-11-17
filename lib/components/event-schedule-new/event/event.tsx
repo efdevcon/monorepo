@@ -761,7 +761,15 @@ function Event({
                           <>
                             {hasProgrammingUrl ? (
                               <Link
-                                href={hasProgrammingUrl}
+                                href={
+                                  typeof window !== "undefined" &&
+                                  !window.location.origin.includes(
+                                    "app.devconnect.org"
+                                  ) &&
+                                  !window.location.origin.includes("localhost")
+                                    ? `https://app.devconnect.org${hasProgrammingUrl}`
+                                    : hasProgrammingUrl
+                                }
                                 className="self-start"
                               >
                                 <VoxelButton
