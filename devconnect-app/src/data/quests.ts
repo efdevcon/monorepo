@@ -238,7 +238,7 @@ export const questsData: Quest[] = [
     "name": "Explore the Wallet tab",
     "order": 5,
     "instructions": "There might be a few perks to claim…",
-    "action": "visit-link",
+    "action": "connect-wallet",
     "button": "View Wallet",
     "conditionType": "verifyBalance",
     "conditionValues": "/wallet",
