@@ -214,6 +214,7 @@ const Pane = ({
 
   const paneContent = (
     <div
+      data-prevent-interaction-element="true"
       className="p-4"
       style={{
         ...backgroundStyle,

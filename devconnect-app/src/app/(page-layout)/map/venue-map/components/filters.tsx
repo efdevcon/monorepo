@@ -271,6 +271,7 @@ export const ListFilters = ({
       >
         <div
           className="flex flex-col"
+          data-prevent-interaction-element="true"
           style={{
             paddingBottom: 'calc(4px + max(0px, env(safe-area-inset-bottom)))',
           }}
