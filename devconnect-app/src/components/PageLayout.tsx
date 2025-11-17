@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { triggerHaptic } from 'tactus';
 // import WorldsFairLogo from '@/images/worlds-fair-logo.png';
 import EthereumWorldsFairLogo from '@/images/ethereum-worlds-fair-logo.png';
@@ -240,10 +240,15 @@ const PageLayout = React.memo(function PageLayout({
   needHelpPosition = 'right',
 }: PageLayoutProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showNeedHelpModal, setShowNeedHelpModal] = useState(false);
   const t = useTranslations();
+
+  // Check if return query parameter is true, if so treat it like hasBackButton
+  const shouldShowBackButton =
+    hasBackButton || searchParams.get('return') === 'true';
   // Use external state if provided, otherwise use internal state
   const activeIndex =
     externalActiveIndex !== undefined
@@ -298,10 +303,10 @@ const PageLayout = React.memo(function PageLayout({
                   >
                     {/* Left side: Back button or Need Help (if position is left) */}
                     <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
-                      {hasBackButton && <BackButton />}
+                      {shouldShowBackButton && <BackButton />}
                       {showNeedHelp &&
                         needHelpPosition === 'left' &&
-                        !hasBackButton && (
+                        !shouldShowBackButton && (
                           <button
                             onClick={() => setShowNeedHelpModal(true)}
                             className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
@@ -591,9 +596,12 @@ const PageLayout = React.memo(function PageLayout({
 
               {/* Content */}
               <div className="mb-4">
-                <h3 className="text-[#20202b] text-lg font-bold mb-2">Need help?</h3>
+                <h3 className="text-[#20202b] text-lg font-bold mb-2">
+                  Need help?
+                </h3>
                 <p className="text-[#353548] text-sm md:text-base leading-[1.3]">
-                  Find quick answers in our Support FAQ, or tell us if something's not working quite right.
+                  Find quick answers in our Support FAQ, or tell us if
+                  something's not working quite right.
                 </p>
               </div>
 
@@ -607,8 +615,14 @@ const PageLayout = React.memo(function PageLayout({
                   }}
                   className="w-full md:order-2 bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <span className="text-white text-base font-bold">Support FAQ</span>
-                  <Icon path={mdiArrowRight} size={0.67} className="text-white" />
+                  <span className="text-white text-base font-bold">
+                    Support FAQ
+                  </span>
+                  <Icon
+                    path={mdiArrowRight}
+                    size={0.67}
+                    className="text-white"
+                  />
                 </button>
 
                 {/* Send Feedback - Secondary button (second on mobile, first on desktop) */}
@@ -619,8 +633,14 @@ const PageLayout = React.memo(function PageLayout({
                   }}
                   className="w-full md:order-1 bg-[#eaf3fa] hover:bg-[#d8ebf7] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] flex items-center justify-center gap-2 transition-colors"
                 >
-                  <span className="text-[#44445d] text-base font-bold">Send feedback</span>
-                  <Icon path={mdiArrowRight} size={0.67} className="text-[#44445d]" />
+                  <span className="text-[#44445d] text-base font-bold">
+                    Send feedback
+                  </span>
+                  <Icon
+                    path={mdiArrowRight}
+                    size={0.67}
+                    className="text-[#44445d]"
+                  />
                 </button>
               </div>
             </div>

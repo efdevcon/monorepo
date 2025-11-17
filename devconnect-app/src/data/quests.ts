@@ -9,7 +9,7 @@ export const questsData: Quest[] = [
     "action": "associate-ticket",
     "button": "Link Ticket",
     "conditionType": "isTicketAssociated",
-    "conditionValues": "/tickets?return=true",
+    "conditionValues": "/tickets",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -22,7 +22,7 @@ export const questsData: Quest[] = [
     "action": "favorite-schedule",
     "button": "View Schedule",
     "conditionType": "isLinkVisited",
-    "conditionValues": "/schedule?return=true",
+    "conditionValues": "/schedule",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -35,7 +35,7 @@ export const questsData: Quest[] = [
     "action": "explore-map",
     "button": "View Map",
     "conditionType": "isLinkVisited",
-    "conditionValues": "/map?return=true",
+    "conditionValues": "/map",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -48,7 +48,7 @@ export const questsData: Quest[] = [
     "action": "try-qr",
     "button": "Open QR Code Scanner",
     "conditionType": "isLinkVisited",
-    "conditionValues": "/scan?return=true",
+    "conditionValues": "/scan",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -61,7 +61,7 @@ export const questsData: Quest[] = [
     "action": "visit-link",
     "button": "View Exchange options",
     "conditionType": "isLinkVisited",
-    "conditionValues": "/wallet/onramp?return=true",
+    "conditionValues": "/wallet/onramp",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -241,7 +241,7 @@ export const questsData: Quest[] = [
     "action": "connect-wallet",
     "button": "View Wallet",
     "conditionType": "isLinkVisited",
-    "conditionValues": "/wallet?return=true",
+    "conditionValues": "/wallet",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
