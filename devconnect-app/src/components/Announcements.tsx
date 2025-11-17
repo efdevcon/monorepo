@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
+import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native';
 import cn from 'classnames';
 import moment from 'moment';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
