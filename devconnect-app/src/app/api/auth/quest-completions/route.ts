@@ -8,6 +8,8 @@ const setQuestCompletions = async (
 ) => {
   const supabase = createServerClient();
 
+  console.log('userEmail in setQuestCompletions', userEmail);
+
   // Convert quest states to a map of questId: completedAt for completed quests
   const questCompletions: Record<string, number> = {};
   Object.entries(questStates).forEach(([questId, state]) => {

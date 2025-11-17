@@ -8,7 +8,7 @@ import { HEIGHT_HEADER } from '@/config/config';
  */
 export const getQuestIcon = (action: QuestAction): string => {
   const iconMap: Record<QuestAction, string> = {
-    'connect-wallet': '/images/icons/ticket.svg',
+    'connect-wallet': '/images/icons/wallet.svg',
     'associate-ticket': '/images/icons/ticket.svg',
     'setup-profile': '/images/icons/map.svg',
     'visit-link': '/images/icons/cash-plus.svg',

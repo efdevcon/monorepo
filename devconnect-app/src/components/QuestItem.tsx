@@ -99,7 +99,8 @@ const QuestItem = ({
         quest.conditionType as QuestConditionType,
         quest.conditionValues,
         userAddresses,
-        tickets
+        tickets,
+        quest.supporterId
       );
 
       if (result) {

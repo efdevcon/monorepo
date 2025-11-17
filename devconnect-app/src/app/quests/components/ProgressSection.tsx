@@ -1,5 +1,7 @@
 'use client';
 
+import { internalDebuging } from '@/utils/auth';
+import { useAccount as useParaAccount } from '@getpara/react-sdk';
 import React from 'react';
 
 interface ProgressSectionProps {
@@ -10,6 +12,10 @@ interface ProgressSectionProps {
 
 const ProgressSection = React.forwardRef<HTMLDivElement, ProgressSectionProps>(
   ({ progress, onViewStampbook, onReset }, ref) => {
+    // Get Para account to check for internal debugging access
+    const paraAccount = useParaAccount();
+    const paraEmail = (paraAccount as any)?.embedded?.email || null;
+
     return (
       <>
         {/* Progress Section */}
@@ -51,13 +57,13 @@ const ProgressSection = React.forwardRef<HTMLDivElement, ProgressSectionProps>(
         </div>
 
         {/* Debug Reset Button */}
-        {onReset && (
+        {onReset && internalDebuging(paraEmail) && (
           <div className="w-full px-4 pb-4 bg-white">
             <button
               onClick={onReset}
               className="w-full bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-[#36364c] font-medium hover:bg-gray-50 hover:border-[#d0d0d0] transition-colors"
             >
-              Debug: Reset All Progress
+              Internal EF Debug: Reset All Progress
             </button>
           </div>
         )}

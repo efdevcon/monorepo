@@ -1,5 +1,7 @@
 import type { QuestConditionType } from '@/types/quest';
 import { toast } from 'sonner';
+import React from 'react';
+import { getSupporterById } from '@/app/quests/utils/quest-helpers';
 
 /**
  * Quest action functions for each QuestConditionType
@@ -14,7 +16,7 @@ import { toast } from 'sonner';
  */
 export async function verifyBasename(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement basename verification logic
-  toast.info('🔧 Coming Soon', {
+  toast.info('Coming Soon', {
     description: 'Basename verification is not yet implemented.',
     duration: 3000,
   });
@@ -29,7 +31,7 @@ export async function verifyBasename(questId: string, conditionValues: string): 
  */
 export async function numberOfCryptoPayment(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement crypto payment verification logic
-  toast.info('🔧 Coming Soon', {
+  toast.info('Coming Soon', {
     description: 'Crypto payment verification is not yet implemented.',
     duration: 3000,
   });
@@ -41,16 +43,18 @@ export async function numberOfCryptoPayment(questId: string, conditionValues: st
  * @param questId - The ID of the quest
  * @param conditionValues - POAP drop ID to verify
  * @param userAddresses - Array of user addresses to check
+ * @param supporterId - Optional supporter ID for custom logo in toast
  * @returns Promise<{completed: boolean, mintedOn?: number}> - Verification result with minting date (Unix timestamp)
  */
 export async function verifyPoap(
   questId: string,
   conditionValues: string,
-  userAddresses?: string[]
+  userAddresses?: string[],
+  supporterId?: number | string
 ): Promise<{ completed: boolean; mintedOn?: number }> {
   try {
     if (!userAddresses || userAddresses.length === 0) {
-      toast.info('⚠️ No Addresses', {
+      toast.error('No Addresses', {
         description: 'No user addresses provided for POAP verification',
         duration: 3000,
       });
@@ -58,7 +62,7 @@ export async function verifyPoap(
     }
 
     if (!conditionValues) {
-      toast.info('⚠️ Missing Drop ID', {
+      toast.error('Missing Drop ID', {
         description: 'No POAP drop ID provided for verification',
         duration: 3000,
       });
@@ -93,12 +97,16 @@ export async function verifyPoap(
     const hasPoap = data.hasPoap;
     const mintedOn = data.mintedOn; // Unix timestamp from POAP API
 
-    // TETMP: return fake data for testing (unix timestamp)
-    toast.success('POAP Verification Successful! 🎉', {
-      description: 'Congratulations! You have completed this quest!',
-      duration: 6000,
-    });
-    return { completed: true, mintedOn: Math.floor(Date.now() / 1000) };
+    // TEMP: return fake data for testing (unix timestamp)
+    // toast.success('POAP Verification Successful! 🎉', {
+    //   description: 'Congratulations! You have completed this quest!',
+    //   duration: 6000,
+    // });
+    // return { completed: true, mintedOn: Math.floor(Date.now() / 1000) };
+
+    // Get supporter logo for toast icon
+    const supporter = supporterId ? getSupporterById(supporterId) : null;
+    const logoSrc = supporter?.logo || '/images/icons/poap.png';
 
     if (hasPoap) {
       console.log(
@@ -130,9 +138,14 @@ export async function verifyPoap(
       }
 
       // Show success feedback to user
-      toast.success('🎉 POAP Verified!', {
+      toast.success('POAP Verified!', {
         description: 'Congratulations! You have completed this quest!',
         duration: 6000,
+        icon: React.createElement('img', {
+          src: logoSrc,
+          alt: supporter?.name || 'POAP',
+          style: { width: '24px', height: '24px', borderRadius: '2px' },
+        }),
       });
 
       return { completed: true, mintedOn };
@@ -141,16 +154,20 @@ export async function verifyPoap(
         `❌ POAP verification failed for quest ${questId} with drop ID ${conditionValues}`
       );
       // Show helpful feedback to user
-      toast.warning('🔍 POAP Not Found', {
-        description: `You don't currently own the required POAP (ID: ${conditionValues}). Visit the quest location to claim it.`,
+      toast.error("It looks like you don't own the POAP needed to complete this quest.", {
         duration: 6000,
+        icon: React.createElement('img', {
+          src: logoSrc,
+          alt: supporter?.name || 'POAP',
+          style: { width: '24px', height: '24px', borderRadius: '2px' },
+        }),
       });
       return { completed: false };
     }
   } catch (error) {
     console.error(`Error verifying POAP for quest ${questId}:`, error);
     // Show error feedback to user
-    toast.error('⚠️ Verification Error', {
+    toast.error('Verification Error', {
       description:
         'Unable to verify POAP ownership at this time. Please try again later.',
       duration: 5000,
@@ -167,7 +184,7 @@ export async function verifyPoap(
  */
 export async function isWalletConnected(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement wallet connection check logic
-  toast.info('🔧 Coming Soon', {
+  toast.info('Coming Soon', {
     description: `Checking wallet connection with values: ${conditionValues}`,
     duration: 3000,
   });
@@ -202,7 +219,7 @@ export async function isTicketAssociated(
       const storeJson = localStorage.getItem('devconnect-store');
 
       if (!storeJson) {
-        toast.warning('🎫 No Tickets Found', {
+        toast.warning('No Tickets Found', {
           description: 'Please connect a ticket to your account first in the ticket tab.',
           action: {
             label: 'Go to Tickets',
@@ -244,13 +261,13 @@ export async function isTicketAssociated(
     console.log(`✅ Total tickets found: ${totalTickets}`);
 
     if (totalTickets > 0) {
-      toast.success('✅ Ticket Verified!', {
+      toast.success('Ticket Verified!', {
         description: `You have ${totalTickets} ticket${totalTickets > 1 ? 's' : ''} associated with your account.`,
         duration: 5000,
       });
       return true;
     } else {
-      toast.warning('🎫 No Tickets Found', {
+      toast.warning('No Tickets Found', {
         description: 'Please connect a ticket to your account first in the ticket tab.',
         action: {
           label: 'Go to Tickets',
@@ -266,7 +283,7 @@ export async function isTicketAssociated(
     }
   } catch (error) {
     console.error(`Error checking ticket association for quest ${questId}:`, error);
-    toast.error('⚠️ Verification Error', {
+    toast.error('Verification Error', {
       description: 'Unable to verify ticket association at this time.',
       duration: 5000,
     });
@@ -282,7 +299,7 @@ export async function isTicketAssociated(
  */
 export async function isProfileSetup(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement profile setup check logic
-  toast.info('🔧 Coming Soon', {
+  toast.info('Coming Soon', {
     description: `Checking profile setup with values: ${conditionValues}`,
     duration: 3000,
   });
@@ -296,7 +313,7 @@ export async function isProfileSetup(questId: string, conditionValues: string): 
  * @returns Promise<boolean> - True if link has been visited
  */
 export async function isLinkVisited(questId: string, conditionValues: string): Promise<boolean> {
-  toast.success('🎉 Quest Completed!', {
+  toast.success('Quest Completed!', {
     description: 'Congratulations! You have completed this quest!',
     duration: 6000,
   });
@@ -311,7 +328,7 @@ export async function isLinkVisited(questId: string, conditionValues: string): P
  */
 export async function isMiniQuizCompleted(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement mini quiz completion check logic
-  toast.info('🔧 Coming Soon', {
+  toast.info('Coming Soon', {
     description: `Checking mini quiz completion with values: ${conditionValues}`,
     duration: 3000,
   });
@@ -339,7 +356,7 @@ export async function verifyBalance(
 
     // Check if addresses are provided
     if (!userAddresses || userAddresses.length === 0) {
-      toast.warning('🥜 Connect Wallet', {
+      toast.warning('Connect Wallet', {
         description: 'Please connect a wallet to verify this quest.',
         duration: 5000,
       });
@@ -352,7 +369,7 @@ export async function verifyBalance(
     const portfolioCacheJson = localStorage.getItem('portfolio');
 
     if (!portfolioCacheJson) {
-      toast.warning('🥜 Claim Your Perk', {
+      toast.warning('Claim Your Perk', {
         description: 'Claim your $2 USDC in the Wallet tab to complete this quest.',
         action: {
           label: 'Go to Wallet',
@@ -382,7 +399,7 @@ export async function verifyBalance(
 
           // If any connected address has claimed the peanut, return true
           if (portfolio.peanutClaimingState.peanut_claimed === true) {
-            toast.success('✅ Peanut Claimed!', {
+            toast.success('Peanut Claimed!', {
               description: 'You have successfully claimed your $2 USDC perk.',
               duration: 5000,
             });
@@ -395,7 +412,7 @@ export async function verifyBalance(
     }
 
     // If not claimed in any connected address, show message to claim
-    toast.warning('🥜 Claim Your Perk', {
+    toast.warning('Claim Your Perk', {
       description: 'Claim your $2 USDC in the Wallet tab to complete this quest.',
       action: {
         label: 'Go to Wallet',
@@ -408,7 +425,7 @@ export async function verifyBalance(
     return false;
   } catch (error) {
     console.error(`Error verifying balance for quest ${questId}:`, error);
-    toast.error('⚠️ Verification Error', {
+    toast.error('Verification Error', {
       description: 'Unable to verify perk claim status at this time.',
       duration: 5000,
     });
@@ -423,6 +440,7 @@ export async function verifyBalance(
  * @param conditionValues - Values for the condition check
  * @param userAddresses - Optional array of user addresses for POAP verification and balance checks
  * @param tickets - Optional array of ticket orders from useTickets hook
+ * @param supporterId - Optional supporter ID for custom icons/logos
  * @returns Promise<boolean> - True if the condition is met
  */
 export async function executeQuestAction(
@@ -430,7 +448,8 @@ export async function executeQuestAction(
   conditionType: QuestConditionType,
   conditionValues: string,
   userAddresses?: string[],
-  tickets?: any[]
+  tickets?: any[],
+  supporterId?: number | string
 ): Promise<boolean> {
   switch (conditionType) {
     case 'verifyBasename':
@@ -439,7 +458,7 @@ export async function executeQuestAction(
       return numberOfCryptoPayment(questId, conditionValues);
     case 'verifyPoap': {
       // verifyPoap returns an object, extract the completed boolean
-      const result = await verifyPoap(questId, conditionValues, userAddresses);
+      const result = await verifyPoap(questId, conditionValues, userAddresses, supporterId);
       return result.completed;
     }
     case 'isWalletConnected':
@@ -456,13 +475,13 @@ export async function executeQuestAction(
       return verifyBalance(questId, conditionValues, userAddresses);
     case '':
       // Default case for empty condition type
-      toast.info('🔧 No Action Required', {
+      toast.info('No Action Required', {
         description: 'This quest has no specific verification requirements.',
         duration: 3000,
       });
       return true;
     default:
-      toast.warning('⚠️ Unknown Quest Type', {
+      toast.warning('Unknown Quest Type', {
         description: `Quest type "${conditionType}" is not yet supported.`,
         duration: 4000,
       });
