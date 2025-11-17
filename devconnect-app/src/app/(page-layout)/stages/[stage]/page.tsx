@@ -13,8 +13,6 @@ import {
 } from '@/app/store.hooks';
 import { toast } from 'sonner';
 import cn from 'classnames';
-import { hasEarlyAccess } from '@/utils/cookies';
-import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { StageBadge } from '@/components/StageBadge';
 import Image from 'next/image';
 import imgMeerkat from './meerkat.png';
@@ -167,11 +165,6 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
 
   // Fetch sessions using the apiSourceId
   const { sessions, isLoading } = useSessions(stageInfo?.apiSourceId || '');
-
-  const hasEarlyAccessCookie = hasEarlyAccess();
-  if (!hasEarlyAccessCookie) {
-    return <ComingSoonMessage />;
-  }
 
   // If stage doesn't exist, return null
   if (!stageInfo) {

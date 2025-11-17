@@ -38,7 +38,7 @@ import { useWallet } from '@/context/WalletContext';
 import { useGlobalStore } from '../store.provider';
 import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
 import { simulateUpdate } from '@/components/ServiceWorkerUpdateBanner';
-import { hasEarlyAccess } from '@/utils/cookies';
+// import { hasEarlyAccess } from '@/utils/cookies';
 import { internalDebuging } from '@/utils/auth';
 
 // Helper function to read cookie value
@@ -80,7 +80,7 @@ export default function SettingsTab() {
   const { disconnectAll, isDisconnecting, address } = useWallet();
 
   // Check if user has early access cookie
-  const hasEarlyAccessCookie = hasEarlyAccess();
+  // const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Extract Para wallet information
   const isParaConnected = paraAccount?.isConnected && !!paraWallet?.address;
@@ -153,64 +153,64 @@ export default function SettingsTab() {
     router.push('/wallet/debug');
   };
 
-  const handleResetEarlyAccess = async () => {
-    try {
-      // Call API to delete the cookie
-      const response = await fetch('/api/early-access/reset', {
-        method: 'POST',
-      });
+  // const handleResetEarlyAccess = async () => {
+  //   try {
+  //     // Call API to delete the cookie
+  //     const response = await fetch('/api/early-access/reset', {
+  //       method: 'POST',
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (data.success) {
-        toast.success('Early access cookie cleared');
+  //     if (data.success) {
+  //       toast.success('Early access cookie cleared');
 
-        // Refresh the page to apply changes
-        router.refresh();
-      } else {
-        toast.error('Failed to reset early access');
-      }
-    } catch (error) {
-      toast.error('Something went wrong');
-    }
-  };
+  //       // Refresh the page to apply changes
+  //       router.refresh();
+  //     } else {
+  //       toast.error('Failed to reset early access');
+  //     }
+  //   } catch (error) {
+  //     toast.error('Something went wrong');
+  //   }
+  // };
 
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [password, setPassword] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [showPasswordModal, setShowPasswordModal] = useState(false);
+  // const [password, setPassword] = useState('');
+  // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleAddPassword = async () => {
-    if (!password.trim()) {
-      toast.error('Please enter a password');
-      return;
-    }
+  // const handleAddPassword = async () => {
+  //   if (!password.trim()) {
+  //     toast.error('Please enter a password');
+  //     return;
+  //   }
 
-    setIsSubmitting(true);
-    try {
-      const response = await fetch('/api/early-access', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password: password.trim() }),
-      });
+  //   setIsSubmitting(true);
+  //   try {
+  //     const response = await fetch('/api/early-access', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ password: password.trim() }),
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (data.success) {
-        toast.success('Early access granted');
-        setShowPasswordModal(false);
-        setPassword('');
-        router.refresh();
-      } else {
-        toast.error(data.error || 'Incorrect password');
-      }
-    } catch (error) {
-      toast.error('Something went wrong');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  //     if (data.success) {
+  //       toast.success('Early access granted');
+  //       setShowPasswordModal(false);
+  //       setPassword('');
+  //       router.refresh();
+  //     } else {
+  //       toast.error(data.error || 'Incorrect password');
+  //     }
+  //   } catch (error) {
+  //     toast.error('Something went wrong');
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
 
   const handleSimulateUpdate = () => {
     // Trigger the simulated update - this will show the regular update toast
@@ -381,8 +381,7 @@ export default function SettingsTab() {
         )}
 
         {/* Conditional: Add Early Access Password OR Reset Early Access */}
-        {hasEarlyAccessCookie ? (
-          /* Reset Early Access */
+        {/* {hasEarlyAccessCookie ? (
           <button
             onClick={handleResetEarlyAccess}
             className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
@@ -400,7 +399,6 @@ export default function SettingsTab() {
             />
           </button>
         ) : (
-          /* Add Early Access Password */
           <button
             onClick={() => setShowPasswordModal(true)}
             className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
@@ -417,7 +415,7 @@ export default function SettingsTab() {
               className="text-[#4b4b66]"
             />
           </button>
-        )}
+        )} */}
 
         {/* DEBUG: Simulate Update - Available for ...otp@ethereum.org users */}
         {paraEmail && paraEmail.includes('otp@ethereum.org') && (
@@ -678,17 +676,14 @@ export default function SettingsTab() {
       )}
 
       {/* Password Modal */}
-      {showPasswordModal && (
+      {/* {showPasswordModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/30"
             onClick={() => !isSubmitting && setShowPasswordModal(false)}
           />
 
-          {/* Modal */}
           <div className="relative bg-white border border-[#c7c7d0] rounded p-5 max-w-[353px] w-[calc(100%-40px)] mx-5">
-            {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-[#20202b] text-lg font-bold">
                 Early Access Password
@@ -702,7 +697,6 @@ export default function SettingsTab() {
               </button>
             </div>
 
-            {/* Password Input */}
             <div className="mb-4">
               <input
                 type="text"
@@ -720,7 +714,6 @@ export default function SettingsTab() {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               onClick={handleAddPassword}
               disabled={isSubmitting || !password.trim()}
@@ -735,7 +728,7 @@ export default function SettingsTab() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

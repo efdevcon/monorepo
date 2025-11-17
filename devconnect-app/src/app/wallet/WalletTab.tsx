@@ -19,7 +19,6 @@ import { useLocalStorage } from 'usehooks-ts';
 import PaymentModal from '@/components/PaymentModal';
 import { fetchAuth } from '@/services/apiClient';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
-import { hasEarlyAccess } from '@/utils/cookies';
 import { RequiresAuthContent } from '@/components/RequiresAuth';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import Icon from '@mdi/react';
@@ -103,9 +102,6 @@ export default function WalletTab() {
 
   // Debug: Log hasMultipleWallets value
   // console.log('🎯 [WALLET_TAB] hasMultipleWallets:', hasMultipleWallets);
-
-  // Check if early access is enabled
-  const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Get explorer URL and name for current network
   const getExplorerInfo = () => {
@@ -1208,27 +1204,25 @@ export default function WalletTab() {
                   </div>
                 )}
 
-                {/* Add Button - Only when not in beta mode */}
-                {hasEarlyAccessCookie && (
-                  <div
-                    className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
-                    style={{ maxWidth: 'min(21vw, 100%)' }}
+                {/* Add Button */}
+                <div
+                  className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
+                  style={{ maxWidth: 'min(21vw, 100%)' }}
+                >
+                  <button
+                    onClick={handleDigitalClick}
+                    className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
                   >
-                    <button
-                      onClick={handleDigitalClick}
-                      className="bg-white border border-[#f0f0f4] rounded-[4px] p-3 md:p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
-                    >
-                      <Icon
-                        path={mdiCurrencyUsd}
-                        size={1.3}
-                        className="text-[#0073de]"
-                      />
-                    </button>
-                    <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
-                      Buy
-                    </span>
-                  </div>
-                )}
+                    <Icon
+                      path={mdiCurrencyUsd}
+                      size={1.3}
+                      className="text-[#0073de]"
+                    />
+                  </button>
+                  <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
+                    Buy
+                  </span>
+                </div>
 
                 {/* Scan Button - Mobile only */}
                 <div
@@ -1328,16 +1322,7 @@ export default function WalletTab() {
                 </div>
               )}
 
-              {/* Coming Soon State - User has ticket but no early access */}
-              {/* {hasTicket && !hasEarlyAccessCookie && (
-                <div className="bg-white border border-[#ededf0] rounded-[2px] p-4 flex items-center justify-center py-8">
-                  <p className="text-[#4b4b66] text-[16px] font-medium">
-                    Coming Soon™
-                  </p>
-                </div>
-              )} */}
-
-              {/* With Ticket State - Existing Perks (Early Access) */}
+              {/* With Ticket State - Existing Perks */}
               {hasTicket && (
                 <div className="flex flex-col md:flex-row gap-4">
                   {/* Peanut Claim Card */}
@@ -1763,14 +1748,12 @@ export default function WalletTab() {
                           <p className="text-[#353548] text-base font-bold tracking-[-0.1px]">
                             No assets to show
                           </p>
-                          {hasEarlyAccessCookie && (
-                            <button
-                              onClick={handleDigitalClick}
-                              className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
-                            >
-                              Add Funds
-                            </button>
-                          )}
+                          <button
+                            onClick={handleDigitalClick}
+                            className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                          >
+                            Add Funds
+                          </button>
                         </div>
                       )}
                     </div>

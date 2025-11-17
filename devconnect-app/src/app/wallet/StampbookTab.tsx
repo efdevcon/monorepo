@@ -7,8 +7,6 @@ import { questsData } from '@/data/quests';
 import Icon from '@mdi/react';
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import PoapModal from '@/components/PoapModal';
-import { hasEarlyAccess } from '@/utils/cookies';
-import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { useQuestCompletions } from '@/app/store.hooks';
 
 // Fallback image for empty POAP links
@@ -28,10 +26,6 @@ interface StampCategory {
 }
 
 export default function StampbookTab() {
-  const hasEarlyAccessCookie = hasEarlyAccess();
-  if (!hasEarlyAccessCookie) {
-    return <ComingSoonMessage />;
-  }
   const router = useRouter();
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null); // No category expanded by default
   const [selectedPoap, setSelectedPoap] = useState<{
@@ -169,7 +163,7 @@ export default function StampbookTab() {
     });
 
     return cats;
-  }, [questStates.data]); // Recalculate when quest states change
+  }, [questCompletions]); // Recalculate when quest completions change
 
   return (
     <div className="w-full flex-1 py-4 sm:py-5 px-4 sm:px-6 pb-6 gradient-background">

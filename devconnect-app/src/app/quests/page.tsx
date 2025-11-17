@@ -6,10 +6,8 @@ import PageLayout from '@/components/PageLayout';
 import AppShowcaseDetail, {
   type AppShowcaseDetailHandle,
 } from './AppShowcaseDetail';
-import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { questGroupsData } from '@/data/questGroups';
 import { NAV_ITEMS } from '@/config/nav-items';
-import { hasEarlyAccess } from '@/utils/cookies';
 import Image from 'next/image';
 import { useQuestCompletions } from '@/app/store.hooks';
 import { useQuestProgress } from '@/hooks/useQuestProgress';
@@ -24,9 +22,6 @@ export default function QuestsPage() {
   const [selectedGroup, setSelectedGroup] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const appShowcaseDetailRef = useRef<AppShowcaseDetailHandle>(null);
-
-  // Check if early access is enabled
-  const hasEarlyAccessCookie = hasEarlyAccess();
 
   // Clean up old localStorage keys (one-time migration)
   useEffect(() => {
@@ -224,20 +219,6 @@ export default function QuestsPage() {
       </div>
     </div>
   );
-
-  // Show coming soon message if early access is not enabled
-  if (!hasEarlyAccessCookie) {
-    return (
-      <PageLayout
-        title={title}
-        infoModalContent={questInfoModalContent}
-        questProgress={questProgress}
-        onQuestProgressClick={handleQuestProgressClick}
-      >
-        <ComingSoonMessage />
-      </PageLayout>
-    );
-  }
 
   // if (loading) {
   //   return (

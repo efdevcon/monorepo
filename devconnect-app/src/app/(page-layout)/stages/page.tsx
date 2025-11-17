@@ -1,8 +1,6 @@
 'use client';
 import React from 'react';
 import { Separator } from 'lib/components/ui/separator';
-import { hasEarlyAccess } from '@/utils/cookies';
-import ComingSoonMessage from '@/components/ComingSoonMessage';
 import Link from 'next/link';
 import Icon from '@mdi/react';
 import { mdiMicrophoneVariant } from '@mdi/js';
@@ -12,11 +10,6 @@ import { useAllStages } from '@/app/store.hooks';
 
 const StagesPage = () => {
   const { pavilions } = useAllStages();
-  const hasEarlyAccessCookie = hasEarlyAccess();
-
-  if (!hasEarlyAccessCookie) {
-    return <ComingSoonMessage />;
-  }
 
   const renderStageRow = (stage: {
     id: string;
