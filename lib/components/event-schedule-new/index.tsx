@@ -55,26 +55,31 @@ export const stageNamesByEvent = {
     name: "Ethereum Day",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
+    programming: "/stages/xl",
   },
   82: {
     name: "ETHCON ARGENTINA",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
+    programming: "/stages/xl",
   },
   110: {
     name: "trustless://interop.landscape",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
+    programming: "/stages/xl",
   },
   71: {
     name: "Agentic Zero",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
+    programming: "/stages/xl",
   },
   141: {
     name: "Ethereum Privacy Stack",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
+    programming: "/stages/xl",
   },
 
   // XS STAGE events
@@ -82,21 +87,25 @@ export const stageNamesByEvent = {
     name: "Newtro and Whabbit present 'The Creator Economy' powered by Crecimiento",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
+    programming: "/stages/xs",
   },
   98: {
     name: "Zero to Dapp",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
+    programming: "/stages/xs",
   },
   162: {
     name: "EIP Summit",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
+    programming: "/stages/xs",
   },
   91: {
     name: "Bridge Atlas",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
+    programming: "/stages/xs",
   },
 
   // bootcamp
@@ -104,6 +113,7 @@ export const stageNamesByEvent = {
     name: "BuidlGuidl's Builder Bootcamp: Beginner to Advanced",
     stageLabel: "La Rural - Bootcamp",
     mapUrl: "/map?filter=poi-buidIguidl-bootcamp",
+    programming: "/stages/bootcamp",
   },
 
   // m1 stage
@@ -111,21 +121,25 @@ export const stageNamesByEvent = {
     name: "Solidity Summit",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
+    programming: "/stages/m1",
   },
   106: {
     name: "Crecimiento World Cup",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
+    programming: "/stages/m1",
   },
   104: {
     name: "Crecimiento Regulation Day",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
+    programming: "/stages/m1",
   },
   72: {
     name: "DeFi Day del Sur",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
+    programming: "/stages/m1",
   },
   // TODO: TRILLION DOLLAR SECURITY - WHICH EVENT IS THIS??
 
@@ -134,16 +148,19 @@ export const stageNamesByEvent = {
     name: "Trustless Agents Day",
     stageLabel: "La Rural - M2 Stage",
     mapUrl: "/map?filter=m2-stage",
+    programming: "/stages/m2",
   },
   113: {
     name: "Ethereum Argentina Hackathon: Tierra de Buidlērs",
     stageLabel: "La Rural - M2 Stage",
     mapUrl: "/map?filter=m2-stage",
+    programming: "/stages/m2",
   },
   120: {
     name: "Ethproofs Day",
     stageLabel: "La Rural - M2 Stage",
     mapUrl: "/map?filter=m2-stage",
+    programming: "/stages/m2",
   },
 
   // nogal stage
@@ -151,17 +168,20 @@ export const stageNamesByEvent = {
     name: "Defi Security Summit",
     stageLabel: "La Rural - Nogal Stage",
     mapUrl: "/map?filter=nogal-hall",
+    programming: "/stages/nogal",
   },
   // 156 TODO: Defi Security 101 by DSS - which stage is this?
   193: {
     name: "Applications to FHE",
     stageLabel: "La Rural - Nogal Stage",
     mapUrl: "/map?filter=nogal-hall",
+    programming: "/stages/nogal",
   },
   194: {
     name: "Obfuscation Day",
     stageLabel: "La Rural - Nogal Stage",
     mapUrl: "/map?filter=nogal-hall",
+    programming: "/stages/nogal",
   },
 
   // ceibo
@@ -169,16 +189,19 @@ export const stageNamesByEvent = {
     name: "ZKID Day",
     stageLabel: "La Rural - Ceibo Stage",
     mapUrl: "/map?filter=ceibo-hall",
+    programming: "/stages/ceibo",
   },
   112: {
     name: "Noircon 3",
     stageLabel: "La Rural - Ceibo Stage",
     mapUrl: "/map?filter=ceibo-hall",
+    programming: "/stages/ceibo",
   },
   137: {
     name: "Ethereum Community and Event Organizer Hangout",
     stageLabel: "La Rural - Ceibo Stage",
     mapUrl: "/map?filter=ceibo-hall",
+    programming: "/stages/ceibo",
   },
 
   // l stage
@@ -186,17 +209,20 @@ export const stageNamesByEvent = {
     name: "Trustless Interop Layer",
     stageLabel: "La Rural - L Stage",
     mapUrl: "/map?filter=l-stage",
+    programming: "/stages/l",
   },
   301: {
     name: "<d/acc day>",
     stageLabel: "La Rural - L Stage",
     mapUrl: "/map?filter=l-stage",
+    programming: "/stages/l",
   },
   // TODO: DSS would be here - which event is this??
   118: {
     name: "ETH/ACC DEMO DAY",
     stageLabel: "La Rural - L Stage",
     mapUrl: "/map?filter=l-stage",
+    programming: "/stages/l",
   },
 
   // amphitheater stage
@@ -204,57 +230,68 @@ export const stageNamesByEvent = {
     name: "App Town Hall ⌐◨-◨ ",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   124: {
     name: "University Track - UCEMA",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   130: {
     name: "University Track - UTN",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   129: {
     name: "University Track - Austral/IAE",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   314: {
     name: "University Track - UBA",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   170: {
     name: "University Track - Red Uniblock",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   131: {
     name: "University Track - Champagnat",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   132: {
     name: "University Track - Fundacion Blockchain",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   128: {
     name: "University Track - Trama (ITBA)",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   127: {
     name: "University Track - Di Tella Club Blockchain",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
   // TODO: university track, all of them need the reference to the stage?
   164: {
     name: "University Track",
     stageLabel: "La Rural - University Track",
     mapUrl: "/map?filter=amphitheater",
+    programming: "/stages/amphitheater",
   },
 };
 

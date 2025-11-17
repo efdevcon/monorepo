@@ -394,7 +394,10 @@ export default function OnrampTab() {
         'linear-gradient(103.512deg, rgba(130, 39, 241, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'ripio-logo.png',
       fees: 'Low% - Based on rate',
-      locations: ['Green Pavilion', 'Pista Central'],
+      locations: [
+        { label: 'Green Pavilion', href: '/map?filter=ripio-green-pavilion' },
+        { label: 'The Hub', href: '/map?filter=ripio-the-hub' },
+      ],
     },
     {
       name: 'BitBase',
@@ -404,7 +407,7 @@ export default function OnrampTab() {
         'linear-gradient(103.512deg, rgba(40, 108, 255, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'bitbase-logo.png',
       fees: 'Based on rate/country',
-      locations: ['Green Pavilion', 'Pista Central'],
+      locations: [{ label: 'BitBase', href: '/map?filter=bitbase' }],
     },
   ];
 
@@ -528,7 +531,7 @@ export default function OnrampTab() {
                     <div className="text-[#4b4b66] text-xs leading-[1.3] tracking-[-0.1px]">
                       <span className="font-bold">Fees:</span> {provider.fees}
                     </div>
-                    
+
                     {/* Password Section (if showPassword is true) */}
                     {provider.showPassword && (
                       <div className="pt-2 mt-2 border-t border-white/30">
@@ -573,11 +576,7 @@ export default function OnrampTab() {
 
                   {/* Chevron Icon */}
                   <div className="w-4 h-4 flex-shrink-0 mt-1">
-                    <Icon
-                      path={mdiArrowTopRight}
-                      size={0.67}
-                      color="#0073de"
-                    />
+                    <Icon path={mdiArrowTopRight} size={0.67} color="#0073de" />
                   </div>
                 </div>
               );
@@ -667,13 +666,10 @@ export default function OnrampTab() {
                   {/* Location Links */}
                   <div className="flex gap-2">
                     {provider.locations.map((location, locIndex) => (
-                      <div
+                      <Link
                         key={locIndex}
+                        href={location.href}
                         className="flex-1 bg-white border border-[#1b6fae] rounded-[2px] px-2 py-1 flex flex-col items-center gap-0.5"
-                        onClick={() => {
-                          showErrorToast('❌ In-person is not available yet');
-                          return;
-                        }}
                       >
                         <div className="w-5 h-5">
                           <img
@@ -683,9 +679,9 @@ export default function OnrampTab() {
                           />
                         </div>
                         <div className="text-[#0073de] text-xs font-bold text-center tracking-[-0.1px] leading-[1.3]">
-                          {location}
+                          {location.label}
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -704,7 +700,7 @@ export default function OnrampTab() {
             <div className="font-normal">
               Head to the{' '}
               <Link
-                href="/map?filter=onboarding-area"
+                href="/map?filter=onboarding"
                 className="font-bold text-[#0073de]"
               >
                 Onboarding area
@@ -778,4 +774,3 @@ export default function OnrampTab() {
     </div>
   );
 }
-

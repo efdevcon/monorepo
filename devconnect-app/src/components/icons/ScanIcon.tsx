@@ -9,7 +9,7 @@ export default function ScanIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="24.5" cy="24" r="22" fill="#1B6FAE" />
+      <circle cx="24.5" cy="24" r="22" fill="#0173de" />
       <path d="M36.265 30.8127H35.0219V34.5259H36.265V30.8127Z" fill="white" />
       <path d="M36.265 13.4741H35.0219V17.1954H36.265V13.4741Z" fill="white" />
       <path d="M35.0219 12.239H31.3087V13.474H35.0219V12.239Z" fill="white" />

@@ -435,7 +435,11 @@ function Event({
     event.eventLink !== "https://devconnect.org/calendar" &&
     event.eventLink !== event.ticketsUrl;
   const showBuyTickets = event.ticketsUrl;
-  const showProgrammingButton = programming && !showMobileProgramming;
+  const hasProgrammingUrl =
+    stageNamesByEvent[parseInt(event.id) as keyof typeof stageNamesByEvent]
+      ?.programming;
+  const showProgrammingButton =
+    hasProgrammingUrl || (programming && !showMobileProgramming);
   const showTicketTag = event.ticketsAvailable || event.isCoreEvent;
   const isGated = eventShops.find(
     (shop) => shop.supabase_id === event.id.toString()
@@ -634,7 +638,9 @@ function Event({
                           <Link
                             href={
                               typeof window !== "undefined" &&
-                              !window.location.origin.includes("app.devconnect.org") &&
+                              !window.location.origin.includes(
+                                "app.devconnect.org"
+                              ) &&
                               !window.location.origin.includes("localhost")
                                 ? `https://app.devconnect.org${
                                     stageNamesByEvent[
@@ -752,15 +758,34 @@ function Event({
                         )}
 
                         {showProgrammingButton && (
-                          <VoxelButton
-                            color="blue-1"
-                            size="sm"
-                            fill
-                            className="shrink-0  mt-3 self-start block lg:hidden"
-                            onClick={() => setShowMobileProgramming(true)}
-                          >
-                            View Program
-                          </VoxelButton>
+                          <>
+                            {hasProgrammingUrl ? (
+                              <Link
+                                href={hasProgrammingUrl}
+                                className="self-start"
+                              >
+                                <VoxelButton
+                                  color="blue-1"
+                                  size="sm"
+                                  fill
+                                  className="shrink-0 mt-3 self-start block"
+                                >
+                                  View Programming
+                                  <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                                </VoxelButton>
+                              </Link>
+                            ) : (
+                              <VoxelButton
+                                color="blue-1"
+                                size="sm"
+                                fill
+                                className="shrink-0  mt-3 self-start block lg:hidden"
+                                onClick={() => setShowMobileProgramming(true)}
+                              >
+                                View Program
+                              </VoxelButton>
+                            )}
+                          </>
                         )}
                       </div>
 

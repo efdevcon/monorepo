@@ -59,7 +59,9 @@ const FlexibleDrawer = ({
         <div
           className={cn(
             "absolute left-0 bottom-0 right-0 w-full bg-white shadow-xl z-50 transition-transform duration-300 ease-in-out",
-            open ? "translate-y-0" : "translate-y-full",
+            open
+              ? "translate-y-0 !shadow-[1px_5px_5px_5px_black]"
+              : "translate-y-full",
             className
           )}
           style={{
