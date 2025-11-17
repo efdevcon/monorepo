@@ -20,6 +20,9 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(true);
 
   // Local storage for quest status with version control
+  // Using versioned key to prevent corruption during deployments
+  const STORAGE_KEY = `quest-states-v${QUEST_STATE_VERSION}`;
+
   const [questStates, setQuestStates] = useLocalStorage<{
     version: number;
     data: Record<
@@ -29,51 +32,28 @@ export default function OnboardingPage() {
         completedAt?: number;
       }
     >;
-  }>('quest-states', { version: QUEST_STATE_VERSION, data: {} });
+  }>(STORAGE_KEY, { version: QUEST_STATE_VERSION, data: {} });
 
-  // Track if we just performed a migration (to prevent immediate DB sync)
-  const justMigrated = React.useRef(false);
-  // Track when migration window closes to trigger re-sync
-  const [migrationComplete, setMigrationComplete] = useState(false);
-
-  // Check version and reset if necessary
-  // Handles migration from ANY old format to versioned format
+  // Cleanup old versioned keys on mount
   useEffect(() => {
-    try {
-      // Validate structure: must be an object with version and data
-      const isValidStructure =
-        questStates &&
-        typeof questStates === 'object' &&
-        !Array.isArray(questStates) &&
-        typeof questStates.version === 'number' &&
-        questStates.data &&
-        typeof questStates.data === 'object';
-
-      const isCorrectVersion = questStates.version === QUEST_STATE_VERSION;
-
-      if (!isValidStructure || !isCorrectVersion) {
-        console.log(
-          'Quest state migration needed (old format or wrong version), resetting...'
-        );
-        justMigrated.current = true;
-        setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
-        
-        // Clear the migration flag after sync effects have settled
-        setTimeout(() => {
-          justMigrated.current = false;
-          setMigrationComplete(true); // Trigger re-sync
-        }, 2000);
+    const keysToClean = ['quest-states', 'ls-quest-states']; // Old keys
+    for (let v = 1; v < QUEST_STATE_VERSION; v++) {
+      keysToClean.push(`quest-states-v${v}`);
+    }
+    keysToClean.forEach((key) => {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        // Ignore cleanup errors
       }
-    } catch (e) {
-      // If anything goes wrong reading the state, reset it
-      console.error('Error validating quest state, resetting:', e);
-      justMigrated.current = true;
+    });
+  }, []);
+
+  // Simple version check - no complex migration logic
+  useEffect(() => {
+    if (!questStates || questStates.version !== QUEST_STATE_VERSION) {
+      console.log('Initializing quest state structure');
       setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
-      
-      setTimeout(() => {
-        justMigrated.current = false;
-        setMigrationComplete(true); // Trigger re-sync
-      }, 2000);
     }
   }, []);
 
@@ -98,14 +78,12 @@ export default function OnboardingPage() {
 
   // Sync quest states from database (works across devices)
   // This effect runs whenever questCompletions from the database changes
-  // (on initial load, window focus, reconnect, etc. thanks to SWR)
   useEffect(() => {
-    // Skip sync if we just migrated (prevents re-populating with old server data)
-    if (justMigrated.current) {
-      console.log('Skipping DB sync - migration in progress');
-      return;
-    }
-
+    console.log('🔄 [Sync from DB] Effect triggered', {
+      hasQuestCompletions: Object.keys(questCompletions || {}).length > 0,
+      questCompletions,
+    });
+    
     isSyncingFromDB.current = true;
 
     setQuestStates((prev) => {
@@ -180,9 +158,15 @@ export default function OnboardingPage() {
       }, 100);
 
       // Only update if there are actual changes to avoid unnecessary re-renders
-      return hasChanges ? { ...prev, data: updated } : prev;
+      if (hasChanges) {
+        console.log('✅ [Sync from DB] Updating localStorage with DB data', { updated });
+        return { ...prev, data: updated };
+      } else {
+        console.log('⏭️ [Sync from DB] No changes needed');
+        return prev;
+      }
     });
-  }, [questCompletions, migrationComplete]); // Re-run when migration completes
+  }, [questCompletions]); // Re-run when DB data changes
 
   // Function to update quest status
   const updateQuestStatus = (

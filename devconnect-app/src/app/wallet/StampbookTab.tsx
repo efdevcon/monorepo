@@ -45,6 +45,9 @@ export default function StampbookTab() {
   } | null>(null);
 
   // Get quest states from local storage with version control
+  // Using versioned key to prevent corruption during deployments
+  const STORAGE_KEY = `quest-states-v${QUEST_STATE_VERSION}`;
+
   const [questStates, setQuestStates] = useLocalStorage<{
     version: number;
     data: Record<
@@ -54,32 +57,27 @@ export default function StampbookTab() {
         completedAt?: number; // Timestamp when completed
       }
     >;
-  }>('quest-states', { version: QUEST_STATE_VERSION, data: {} });
+  }>(STORAGE_KEY, { version: QUEST_STATE_VERSION, data: {} });
 
-  // Check version and reset if necessary
-  // Handles migration from ANY old format to versioned format
-  useEffect(() => {
-    try {
-      // Validate structure: must be an object with version and data
-      const isValidStructure =
-        questStates &&
-        typeof questStates === 'object' &&
-        !Array.isArray(questStates) &&
-        typeof questStates.version === 'number' &&
-        questStates.data &&
-        typeof questStates.data === 'object';
-
-      const isCorrectVersion = questStates.version === QUEST_STATE_VERSION;
-
-      if (!isValidStructure || !isCorrectVersion) {
-        console.log(
-          'Quest state migration needed (old format or wrong version), resetting...'
-        );
-        setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
+  // Cleanup old versioned keys on mount
+  React.useEffect(() => {
+    const keysToClean = ['quest-states', 'ls-quest-states']; // Old keys
+    for (let v = 1; v < QUEST_STATE_VERSION; v++) {
+      keysToClean.push(`quest-states-v${v}`);
+    }
+    keysToClean.forEach((key) => {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        // Ignore cleanup errors
       }
-    } catch (e) {
-      // If anything goes wrong reading the state, reset it
-      console.error('Error validating quest state, resetting:', e);
+    });
+  }, []);
+
+  // Simple version check - no complex migration logic
+  useEffect(() => {
+    if (!questStates || questStates.version !== QUEST_STATE_VERSION) {
+      console.log('Initializing quest state structure');
       setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
     }
   }, []);
