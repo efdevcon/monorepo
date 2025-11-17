@@ -63,7 +63,7 @@ const ProgressSection = React.forwardRef<HTMLDivElement, ProgressSectionProps>(
               onClick={onReset}
               className="w-full bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-[#36364c] font-medium hover:bg-gray-50 hover:border-[#d0d0d0] transition-colors"
             >
-              Debug: Reset All Progress
+              Internal EF Debug: Reset All Progress
             </button>
           </div>
         )}
