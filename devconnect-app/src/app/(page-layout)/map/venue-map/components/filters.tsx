@@ -4,7 +4,6 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native'
 import { ChevronDownIcon, TextSearch, XIcon } from 'lucide-react';
 import Icon from '@mdi/react';
 import {
-  mdiCoffeeOutline,
   mdiHubOutline,
   mdiBriefcaseOutline,
   mdiDomain,
@@ -15,6 +14,7 @@ import {
   mdiCashPlus,
   mdiHumanMaleFemale,
   mdiMicrophoneVariant,
+  mdiTshirtCrew,
 } from '@mdi/js';
 import { poisData } from '@/data/pois';
 import { districtsData } from '@/data/districts';
@@ -22,17 +22,35 @@ import cn from 'classnames';
 
 const filters = [
   {
+    icon: mdiMicrophoneVariant,
+    key: 'stages',
+    label: 'Stages',
+    pois: poisData.filter((poi) => poi.groupId === '14'), // Correct: Stages is groupId 15
+  },
+  {
+    icon: mdiFoodOutline,
+    key: 'food-beverage',
+    label: 'Food & Beverage',
+    pois: poisData.filter((poi) => poi.groupId === '7'), // Fixed: Food & Beverage is groupId 6
+  },
+  {
+    icon: mdiTshirtCrew,
+    key: 'Swag Station',
+    label: 'Swag',
+    pois: poisData.filter((poi) => poi.groupId === '6'), // Fixed: Swag Station is groupId 6
+  },
+  {
+    icon: mdiHumanMaleFemale,
+    key: 'toilets',
+    label: 'Toilets',
+    pois: poisData.filter((poi) => poi.groupId === '16'), // Fixed: Toilets is groupId 16
+  },
+  {
     icon: mdiHubOutline,
     key: 'community-hubs',
     label: 'Community Hubs',
     pois: poisData.filter((poi) => poi.groupId === '3'), // Fixed: Community Hubs is groupId 3
     size: 0.5,
-  },
-  {
-    icon: mdiMicrophoneVariant,
-    key: 'stages',
-    label: 'Stages',
-    pois: poisData.filter((poi) => poi.groupId === '14'), // Correct: Stages is groupId 15
   },
   {
     icon: mdiBriefcaseOutline,
@@ -65,12 +83,6 @@ const filters = [
     pois: poisData.filter((poi) => poi.groupId === '5'), // Fixed: Entertainment is groupId 5
   },
   {
-    icon: mdiFoodOutline,
-    key: 'food-beverage',
-    label: 'Food & Beverage',
-    pois: poisData.filter((poi) => poi.groupId === '7'), // Fixed: Food & Beverage is groupId 6
-  },
-  {
     icon: mdiHandshakeOutline,
     key: 'meeting-rooms',
     label: 'Meeting Rooms',
@@ -80,7 +92,9 @@ const filters = [
   //   icon: mdiInformationOutline,
   //   key: 'onboarding',
   //   label: 'Onboarding',
-  //   pois: poisData.filter((poi) => poi.groupId === '10' || poi.groupId === '11'), // Fixed: Onboarding Area (10) and Onboarding desk (11)
+  //   pois: poisData.filter(
+  //     (poi) => poi.groupId === '10' || poi.groupId === '11'
+  //   ), // Fixed: Onboarding Area (10) and Onboarding desk (11)
   // },
   {
     icon: mdiCashPlus,

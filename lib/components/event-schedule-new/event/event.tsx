@@ -297,6 +297,7 @@ function Event({
   const isClosingHours = event.id.toString() === "272";
   const isCoreEvent = event.isCoreEvent;
   const isCommunityHubs = event.id.toString() === "149";
+  const isDiscussionCorners = event.id.toString() === "426";
 
   // Type of event and resulting customization class
   const typeClass = (() => {
@@ -305,7 +306,7 @@ function Event({
     const isCommunityEvent = !isCoreEvent;
     // const isETHDay = event.id.toString() === "84";
 
-    if (isCommunityHubs) {
+    if (isCommunityHubs || isDiscussionCorners) {
       return "bg-[rgba(246,180,14,0.05)] hover:bg-[rgba(246,180,14,0.1)] !border-[rgba(246,180,14,1)] border-l-[4px]";
     }
 
@@ -732,7 +733,9 @@ function Event({
                               fill
                               className="shrink-0  mt-3 self-start"
                             >
-                              {isCommunityHubs
+                              {isDiscussionCorners
+                                ? "View Discussion Corners"
+                                : isCommunityHubs
                                 ? "View Community Hubs"
                                 : "Visit Site"}
                               <ArrowUpRight className="w-4 h-4 mb-0.5" />
