@@ -153,7 +153,7 @@ export const questsData: Quest[] = [
     "id": 32,
     "name": "elizaOS",
     "order": 0,
-    "instructions": "Come say 'Hi' at our booth!",
+    "instructions": "Come say ‘hey’ and join our community to complete the quest",
     "action": "claim-poap",
     "button": "",
     "conditionType": "verifyPoap",
