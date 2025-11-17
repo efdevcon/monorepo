@@ -105,6 +105,11 @@ export default function OnboardingPage() {
     isSyncingFromDB.current = true;
 
     setQuestStates((prev) => {
+      // Ensure prev has the expected structure
+      if (!prev || !prev.data) {
+        return { version: QUEST_STATE_VERSION, data: {} };
+      }
+
       const updated = { ...prev.data };
       let hasChanges = false;
 
@@ -117,7 +122,7 @@ export default function OnboardingPage() {
       if (hasCurrentData) {
         Object.entries(currentCompletions).forEach(
           ([questId, dbCompletedAt]) => {
-            const localState = prev.data[questId];
+            const localState = prev.data?.[questId];
 
             // If quest not in localStorage, add it as completed
             if (!localState) {
@@ -152,8 +157,8 @@ export default function OnboardingPage() {
       // Only clear local state if we previously had DB data and now it's empty
       // This prevents clearing on initial load or when DB is loading
       if (hadPreviousData && !hasCurrentData) {
-        Object.keys(prev.data).forEach((questId) => {
-          if (prev.data[questId]?.completedAt) {
+        Object.keys(prev.data || {}).forEach((questId) => {
+          if (prev.data?.[questId]?.completedAt) {
             updated[questId] = {
               status: 'locked',
             };
@@ -181,6 +186,11 @@ export default function OnboardingPage() {
     status: 'completed' | 'active' | 'locked'
   ) => {
     setQuestStates((prev) => {
+      // Ensure prev has the expected structure
+      if (!prev || !prev.data) {
+        return { version: QUEST_STATE_VERSION, data: {} };
+      }
+
       const newState: {
         status: 'completed' | 'active' | 'locked';
         completedAt?: number;
@@ -192,7 +202,7 @@ export default function OnboardingPage() {
       }
       // Remove completedAt when setting to locked (reset)
       // For active state, preserve existing completedAt if any
-      else if (status === 'active' && prev.data[questId]?.completedAt) {
+      else if (status === 'active' && prev.data?.[questId]?.completedAt) {
         newState.completedAt = prev.data[questId].completedAt;
       }
 
@@ -215,11 +225,11 @@ export default function OnboardingPage() {
     }
 
     const timeoutId = setTimeout(() => {
-      syncQuestStates(questStates.data);
+      syncQuestStates(questStates?.data || {});
     }, 1000); // Debounce for 1 second
 
     return () => clearTimeout(timeoutId);
-  }, [questStates.data, syncQuestStates]);
+  }, [questStates?.data, syncQuestStates]);
 
   // Handle back navigation
   const handleBackToGroups = () => {
@@ -265,7 +275,7 @@ export default function OnboardingPage() {
       <QuestGroupDetail
         group={selectedGroup}
         onBack={handleBackToGroups}
-        questStates={questStates.data}
+        questStates={questStates?.data || {}}
         updateQuestStatus={updateQuestStatus}
       />
     </PageLayout>

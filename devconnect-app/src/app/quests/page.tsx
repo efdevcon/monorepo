@@ -118,6 +118,11 @@ export default function QuestsPage() {
     isSyncingFromDB.current = true;
 
     setQuestStates((prev) => {
+      // Ensure prev has the expected structure
+      if (!prev || !prev.data) {
+        return { version: QUEST_STATE_VERSION, data: {} };
+      }
+
       const updated = { ...prev.data };
       let hasChanges = false;
 
@@ -130,7 +135,7 @@ export default function QuestsPage() {
       if (hasCurrentData) {
         Object.entries(currentCompletions).forEach(
           ([questId, dbCompletedAt]) => {
-            const localState = prev.data[questId];
+            const localState = prev.data?.[questId];
 
             // If quest not in localStorage, add it as completed
             if (!localState) {
@@ -165,8 +170,8 @@ export default function QuestsPage() {
       // Only clear local state if we previously had DB data and now it's empty
       // This prevents clearing on initial load or when DB is loading
       if (hadPreviousData && !hasCurrentData) {
-        Object.keys(prev.data).forEach((questId) => {
-          if (prev.data[questId]?.completedAt) {
+        Object.keys(prev.data || {}).forEach((questId) => {
+          if (prev.data?.[questId]?.completedAt) {
             updated[questId] = {
               status: 'locked',
             };
@@ -194,6 +199,11 @@ export default function QuestsPage() {
     status: 'completed' | 'active' | 'locked'
   ) => {
     setQuestStates((prev) => {
+      // Ensure prev has the expected structure
+      if (!prev || !prev.data) {
+        return { version: QUEST_STATE_VERSION, data: {} };
+      }
+
       const newState: {
         status: 'completed' | 'active' | 'locked';
         completedAt?: number;
@@ -205,7 +215,7 @@ export default function QuestsPage() {
       }
       // Remove completedAt when setting to locked (reset)
       // For active state, preserve existing completedAt if any
-      else if (status === 'active' && prev.data[questId]?.completedAt) {
+      else if (status === 'active' && prev.data?.[questId]?.completedAt) {
         newState.completedAt = prev.data[questId].completedAt;
       }
 
@@ -228,11 +238,11 @@ export default function QuestsPage() {
     }
 
     const timeoutId = setTimeout(() => {
-      syncQuestStates(questStates.data);
+      syncQuestStates(questStates?.data || {});
     }, 1000); // Debounce for 1 second
 
     return () => clearTimeout(timeoutId);
-  }, [questStates.data, syncQuestStates]);
+  }, [questStates?.data, syncQuestStates]);
 
   // Handle back navigation - not used anymore but keeping for AppShowcaseDetail compatibility
   const handleBackToGroups = () => {
@@ -253,7 +263,8 @@ export default function QuestsPage() {
   }, [router]);
 
   // Calculate quest progress using shared hook
-  const questProgressData = useQuestProgress(questStates.data);
+  // Ensure questStates.data exists before passing it
+  const questProgressData = useQuestProgress(questStates?.data || {});
   const questProgress = {
     completed: questProgressData.completed,
     total: questProgressData.total,
@@ -378,7 +389,7 @@ export default function QuestsPage() {
         ref={appShowcaseDetailRef}
         group={selectedGroup}
         onBack={handleBackToGroups}
-        questStates={questStates.data}
+        questStates={questStates?.data || {}}
         updateQuestStatus={updateQuestStatus}
         resetQuestCompletions={handleResetWithFlag}
       />
