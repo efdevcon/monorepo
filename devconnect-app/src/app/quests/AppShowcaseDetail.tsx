@@ -301,8 +301,41 @@ const AppShowcaseDetail = React.forwardRef<
 
     const isCompleted = isQuestCompleted(quest);
 
-    // If not completed, navigate to map with supporter filter
+    // If not completed, navigate to map based on quest type
     if (!isCompleted) {
+      // For district section (App Showcase quests with districtId)
+      if (quest.groupId === 4 && quest.districtId) {
+        const district = districtsData[quest.districtId];
+        if (district?.layerName) {
+          router.push(`/map?filter=${district.layerName}`);
+        }
+        return;
+      }
+
+      // For crypto payment quests (groupId 2)
+      if (quest.groupId === 2) {
+        // Mapping of quest IDs to POI slugs
+        const cryptoPaymentMapping: Record<number, string> = {
+          125: 'hamburgueseria-1',
+          126: 'beer-house',
+          127: 'le-ble',
+          128: 'barreto',
+          129: 'koi',
+          130: 'los-petersen',
+          131: 'persicco',
+          132: 'hamburgueseria-2',
+          133: 'guapaletas',
+          134: 'chicken-tenders',
+        };
+
+        const slug = cryptoPaymentMapping[quest.id];
+        if (slug) {
+          router.push(`/map?filter=${slug}`);
+        }
+        return;
+      }
+
+      // Default: navigate to map with supporter filter
       const supporterId = quest.supporterId?.toString();
       if (supporterId && supportersData[supporterId]) {
         const supporter = supportersData[supporterId];
