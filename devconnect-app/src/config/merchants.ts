@@ -5,78 +5,78 @@ export interface Merchant {
 }
 
 export const MERCHANTS: Record<string, Merchant> = {
-  '6603276727aaa6386588474d': {
-    posNumber: '0',
-    id: 'cafe-cuyo',
-    name: 'Cafe Cuyo (Testing)',
-  },
+  // '6603276727aaa6386588474d': {
+  //   posNumber: '0',
+  //   id: 'cafe-cuyo',
+  //   name: 'Cafe Cuyo (Testing)',
+  // },
   // '6911fb470ce6a7a6a3c721d7': {
   //   posNumber: '1',
   //   id: 'barreto',
   //   name: 'Barreto',
   // },
   '6911fb2f0ce6a7a6a3c721d6': {
-    posNumber: '2',
+    posNumber: '1',
     id: 'beer-house',
     name: 'Beer House',
   },
   '6911fbabea5ff64e14b83895': {
-    posNumber: '3',
+    posNumber: '2',
     id: 'chicken-ten',
     name: 'Chicken Tenders',
   },
   '6911fbd8ea5ff64e14b83897': {
-    posNumber: '4',
+    posNumber: '3',
     id: 'guapaletas',
     name: 'Guapaletas',
   },
   '6911faaeea5ff64e14b83893': {
-    posNumber: '5',
+    posNumber: '4',
     id: 'burgers-1',
     name: 'Hamburgueseria A',
   },
   '6914b29b0ce6a7a6a3c725a6': {
-    posNumber: '6',
+    posNumber: '5',
     id: 'burgers-1-b',
     name: 'Hamburgueseria B',
   },
   '6911fadb0ce6a7a6a3c721d5': {
-    posNumber: '7',
+    posNumber: '6',
     id: 'burgers-2',
     name: 'Hamburgueseria C',
   },
   '6914b2b30ce6a7a6a3c725a7': {
-    posNumber: '8',
+    posNumber: '7',
     id: 'burgers-2-b',
     name: 'Hamburgueseria D',
   },
   '6911fb810ce6a7a6a3c721d8': {
-    posNumber: '9',
+    posNumber: '8',
     id: 'koi',
     name: 'KOI',
   },
   '6911fb5dea5ff64e14b83894': {
-    posNumber: '10',
+    posNumber: '9',
     id: 'le-ble',
     name: 'Le Ble módulo',
   },
   '6911fc290ce6a7a6a3c721d9': {
-    posNumber: '11',
+    posNumber: '10',
     id: 'los-petersen',
     name: 'Los Petersen A',
   },
   '6914a123ea5ff64e14b83d74': {
-    posNumber: '12',
+    posNumber: '11',
     id: 'los-petersen-2',
     name: 'Los Petersen B',
   },
   '6911fbc5ea5ff64e14b83896': {
-    posNumber: '13',
+    posNumber: '12',
     id: 'persicco',
     name: 'Persicco',
   },
   '69138269ea5ff64e14b83b6f': {
-    posNumber: '14',
+    posNumber: '13',
     id: 'devcon-swag-shop',
     name: 'Swag Shop',
   },
