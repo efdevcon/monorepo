@@ -115,7 +115,10 @@ export default function StampbookTab() {
   const categories: StampCategory[] = useMemo(() => {
     // Get all Crypto payment quests (groupId === 2)
     const cryptoPaymentQuests = questsData.filter(
-      (quest) => quest.groupId === 2
+      (quest) =>
+        quest.groupId === 2 &&
+        quest.conditionValues &&
+        quest.conditionValues.trim() !== ''
     );
     const cryptoPaymentCompletedCount = cryptoPaymentQuests.filter((quest) =>
       isQuestCompleted(quest.id)
@@ -139,7 +142,10 @@ export default function StampbookTab() {
     // Add districts as categories
     Object.entries(districtsData).forEach(([districtId, district]) => {
       const questsInDistrict = questsData.filter(
-        (quest) => quest.districtId === districtId
+        (quest) =>
+          quest.districtId === districtId &&
+          quest.conditionValues &&
+          quest.conditionValues.trim() !== ''
       );
 
       if (questsInDistrict.length > 0) {
