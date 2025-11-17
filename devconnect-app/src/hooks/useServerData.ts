@@ -414,21 +414,31 @@ export function useQuestCompletions() {
     >
   ) => {
     if (!userData) {
-      // Silently skip sync if user is not authenticated
-      return;
+      console.warn('[syncQuestStates] Skipping sync - user not authenticated');
+      return { success: false, error: 'User not authenticated' };
     }
 
-    // Send to server
-    const response = await fetchAuth('/api/auth/quest-completions', {
-      method: 'POST',
-      body: JSON.stringify({ questStates }),
-    });
+    try {
+      // Send to server
+      const response = await fetchAuth('/api/auth/quest-completions', {
+        method: 'POST',
+        body: JSON.stringify({ questStates }),
+      });
 
-    if (!response.success) {
-      console.error('Failed to sync quest completions');
-    } else {
-      // Refresh user data to get updated quest completions
-      refresh();
+      if (!response.success) {
+        console.error('[syncQuestStates] Failed to sync quest completions');
+        return { success: false, error: 'Sync failed' };
+      }
+
+      console.log('[syncQuestStates] Successfully synced quest completions');
+      
+      // Refresh user data to get updated quest completions from DB
+      await refresh();
+      
+      return { success: true };
+    } catch (error) {
+      console.error('[syncQuestStates] Error syncing quest completions:', error);
+      return { success: false, error: 'Network error' };
     }
   };
 

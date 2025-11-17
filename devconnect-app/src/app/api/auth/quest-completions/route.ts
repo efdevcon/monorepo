@@ -8,7 +8,8 @@ const setQuestCompletions = async (
 ) => {
   const supabase = createServerClient();
 
-  console.log('userEmail in setQuestCompletions', userEmail);
+  console.log('[setQuestCompletions] Processing for user:', userEmail);
+  console.log('[setQuestCompletions] Received quest states:', Object.keys(questStates).length, 'quests');
 
   // Convert quest states to a map of questId: completedAt for completed quests
   const questCompletions: Record<string, number> = {};
@@ -18,15 +19,19 @@ const setQuestCompletions = async (
     }
   });
 
+  console.log('[setQuestCompletions] Saving to DB:', Object.keys(questCompletions).length, 'completed quests');
+
   const { data, error } = await supabase
     .from('devconnect_app_user')
     .update({ quests: questCompletions })
     .eq('email', userEmail);
 
   if (error) {
+    console.error('[setQuestCompletions] DB error:', error);
     throw new Error(`Failed to set quest completions: ${error.message}`);
   }
 
+  console.log('[setQuestCompletions] Successfully saved to DB');
   return true;
 };
 

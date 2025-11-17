@@ -80,7 +80,7 @@ export default function OnboardingPage() {
         }
       );
 
-      // Sync to database in the background
+      // Sync to database - syncQuestStates expects full quest states with status
       const updatedStates: Record<
         string,
         {
@@ -95,7 +95,16 @@ export default function OnboardingPage() {
         },
       };
 
-      await syncQuestStates(updatedStates);
+      const result = await syncQuestStates(updatedStates);
+
+      if (!result?.success) {
+        console.error(
+          '[updateQuestStatus] Failed to sync quest to DB:',
+          result?.error
+        );
+        // Note: We don't show a toast here since the quest actions already handle user feedback
+        // The optimistic update means the UI still shows as completed
+      }
     }
   };
 
