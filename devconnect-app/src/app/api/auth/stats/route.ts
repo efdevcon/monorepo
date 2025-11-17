@@ -203,6 +203,53 @@ export async function GET(request: NextRequest) {
       // Don't fail the whole request if worldfare stats fail
     }
 
+    // Fetch quest completion stats with pagination to get ALL users
+    let questCompletionStats: Record<string, number> = {};
+    try {
+      let allUsers: any[] = [];
+      let page = 0;
+      const pageSize = 1000;
+      let hasMore = true;
+
+      // Fetch all users with pagination
+      while (hasMore) {
+        const { data: users, error: questError } = await supabase
+          .from('devconnect_app_user')
+          .select('quests')
+          .range(page * pageSize, (page + 1) * pageSize - 1);
+
+        if (questError) {
+          console.error('Error fetching quest stats:', questError);
+          break;
+        }
+
+        if (users && users.length > 0) {
+          allUsers = allUsers.concat(users);
+          hasMore = users.length === pageSize;
+          page++;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      console.log(`[Quest Stats] Fetched ${allUsers.length} users for quest completion stats`);
+
+      // Count completions per quest ID
+      allUsers.forEach((user) => {
+        if (user.quests) {
+          Object.keys(user.quests).forEach((questId) => {
+            questCompletionStats[questId] = (questCompletionStats[questId] || 0) + 1;
+          });
+        }
+      });
+
+      console.log(`[Quest Stats] Found completions for ${Object.keys(questCompletionStats).length} unique quests`);
+      console.log('[Quest Stats] Top 5 completed quests:', Object.entries(questCompletionStats).sort((a, b) => b[1] - a[1]).slice(0, 5));
+    } catch (questStatsError) {
+      console.error('Error fetching quest completion stats:', questStatsError);
+      // Don't fail the whole request if quest stats fail
+    }
+
     // Return stats
     return NextResponse.json({
       stats: {
@@ -214,6 +261,7 @@ export async function GET(request: NextRequest) {
       },
       hourly_user_creation: hourlyUserCreation,
       relayers: relayerStats,
+      quest_completions: questCompletionStats,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
