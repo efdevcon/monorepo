@@ -60,6 +60,9 @@ export const ENTRYPOINT_ADDRESS = '0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789';
 
 export const REPORT_ISSUE_URL = 'http://devconnect.org/form/issue/new';
 
+// Quest state version - increment this to reset all users' quest progress
+export const QUEST_STATE_VERSION = 1;
+
 // Heights for the header and menu on mobile
 export const HEIGHT_HEADER = 52; // Displays page title
 export const HEIGHT_HEADER_TABS = 48; // HEIGHT_HEADER + HEIGHT_HEADER_TABS = 100

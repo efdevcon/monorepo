@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
 import { districtsData } from '@/data/districts';
@@ -10,6 +10,7 @@ import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import PoapModal from '@/components/PoapModal';
 import { hasEarlyAccess } from '@/utils/cookies';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
+import { QUEST_STATE_VERSION } from '@/config/config';
 
 // Fallback image for empty POAP links
 const FALLBACK_IMAGE =
@@ -43,26 +44,55 @@ export default function StampbookTab() {
     stampedDate?: string;
   } | null>(null);
 
-  // Get quest states from local storage (same as in AppShowcaseDetail)
-  const [questStates] = useLocalStorage<
-    Record<
+  // Get quest states from local storage with version control
+  const [questStates, setQuestStates] = useLocalStorage<{
+    version: number;
+    data: Record<
       string,
       {
         status: 'completed' | 'active' | 'locked';
         completedAt?: number; // Timestamp when completed
       }
-    >
-  >('quest-states', {});
+    >;
+  }>('quest-states', { version: QUEST_STATE_VERSION, data: {} });
+
+  // Check version and reset if necessary
+  // Handles migration from ANY old format to versioned format
+  useEffect(() => {
+    try {
+      // Validate structure: must be an object with version and data
+      const isValidStructure =
+        questStates &&
+        typeof questStates === 'object' &&
+        !Array.isArray(questStates) &&
+        typeof questStates.version === 'number' &&
+        questStates.data &&
+        typeof questStates.data === 'object';
+
+      const isCorrectVersion = questStates.version === QUEST_STATE_VERSION;
+
+      if (!isValidStructure || !isCorrectVersion) {
+        console.log(
+          'Quest state migration needed (old format or wrong version), resetting...'
+        );
+        setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
+      }
+    } catch (e) {
+      // If anything goes wrong reading the state, reset it
+      console.error('Error validating quest state, resetting:', e);
+      setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
+    }
+  }, []);
 
   // Helper function to check if a quest is completed
   const isQuestCompleted = (questId: number): boolean => {
-    const questState = questStates[questId.toString()];
+    const questState = questStates.data[questId.toString()];
     return !!questState?.completedAt; // Quest is completed if completedAt exists
   };
 
   // Helper function to get completion date (returns ISO string for display)
   const getCompletionDate = (questId: number): string | undefined => {
-    const questState = questStates[questId.toString()];
+    const questState = questStates.data[questId.toString()];
     if (questState?.completedAt) {
       // First check if we have POAP metadata with the actual minted date
       try {
@@ -178,7 +208,7 @@ export default function StampbookTab() {
     });
 
     return cats;
-  }, [questStates]); // Recalculate when quest states change
+  }, [questStates.data]); // Recalculate when quest states change
 
   return (
     <div className="w-full flex-1 py-4 sm:py-5 px-4 sm:px-6 pb-6 gradient-background">

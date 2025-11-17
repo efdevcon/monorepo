@@ -14,6 +14,7 @@ import { hasEarlyAccess } from '@/utils/cookies';
 import Image from 'next/image';
 import { useQuestCompletions } from '@/app/store.hooks';
 import { useQuestProgress } from '@/hooks/useQuestProgress';
+import { QUEST_STATE_VERSION } from '@/config/config';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/quests');
 const navLabel = navItem?.label || 'Quests';
@@ -28,16 +29,59 @@ export default function QuestsPage() {
   // Check if early access is enabled
   const hasEarlyAccessCookie = hasEarlyAccess();
 
-  // Local storage for quest status
-  const [questStates, setQuestStates] = useLocalStorage<
-    Record<
+  // Local storage for quest status with version control
+  const [questStates, setQuestStates] = useLocalStorage<{
+    version: number;
+    data: Record<
       string,
       {
         status: 'completed' | 'active' | 'locked';
         completedAt?: number;
       }
-    >
-  >('quest-states', {});
+    >;
+  }>('quest-states', { version: QUEST_STATE_VERSION, data: {} });
+
+  // Track if we just performed a migration (to prevent immediate DB sync)
+  const justMigrated = useRef(false);
+
+  // Check version and reset if necessary
+  // Handles migration from ANY old format to versioned format
+  useEffect(() => {
+    try {
+      // Validate structure: must be an object with version and data
+      const isValidStructure =
+        questStates &&
+        typeof questStates === 'object' &&
+        !Array.isArray(questStates) &&
+        typeof questStates.version === 'number' &&
+        questStates.data &&
+        typeof questStates.data === 'object';
+
+      const isCorrectVersion = questStates.version === QUEST_STATE_VERSION;
+
+      if (!isValidStructure || !isCorrectVersion) {
+        console.log(
+          'Quest state migration needed (old format or wrong version), resetting...'
+        );
+        justMigrated.current = true;
+        setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
+
+        // Clear the migration flag after sync effects have settled
+        setTimeout(() => {
+          justMigrated.current = false;
+        }, 2000);
+      }
+    } catch (e) {
+      // If anything goes wrong reading the state, reset it
+      console.error('Error validating quest state, resetting:', e);
+      justMigrated.current = true;
+      setQuestStates({ version: QUEST_STATE_VERSION, data: {} });
+
+      setTimeout(() => {
+        justMigrated.current = false;
+      }, 2000);
+    }
+  }, []);
 
   // Hook to sync quest completions to database
   const {
@@ -65,10 +109,16 @@ export default function QuestsPage() {
   // This effect runs whenever questCompletions from the database changes
   // (on initial load, window focus, reconnect, etc. thanks to SWR)
   useEffect(() => {
+    // Skip sync if we just migrated (prevents re-populating with old server data)
+    if (justMigrated.current) {
+      console.log('Skipping DB sync - migration in progress');
+      return;
+    }
+
     isSyncingFromDB.current = true;
 
     setQuestStates((prev) => {
-      const updated = { ...prev };
+      const updated = { ...prev.data };
       let hasChanges = false;
 
       const currentCompletions = questCompletions || {};
@@ -80,7 +130,7 @@ export default function QuestsPage() {
       if (hasCurrentData) {
         Object.entries(currentCompletions).forEach(
           ([questId, dbCompletedAt]) => {
-            const localState = prev[questId];
+            const localState = prev.data[questId];
 
             // If quest not in localStorage, add it as completed
             if (!localState) {
@@ -115,8 +165,8 @@ export default function QuestsPage() {
       // Only clear local state if we previously had DB data and now it's empty
       // This prevents clearing on initial load or when DB is loading
       if (hadPreviousData && !hasCurrentData) {
-        Object.keys(prev).forEach((questId) => {
-          if (prev[questId]?.completedAt) {
+        Object.keys(prev.data).forEach((questId) => {
+          if (prev.data[questId]?.completedAt) {
             updated[questId] = {
               status: 'locked',
             };
@@ -134,7 +184,7 @@ export default function QuestsPage() {
       }, 100);
 
       // Only update if there are actual changes to avoid unnecessary re-renders
-      return hasChanges ? updated : prev;
+      return hasChanges ? { ...prev, data: updated } : prev;
     });
   }, [questCompletions]);
 
@@ -155,13 +205,16 @@ export default function QuestsPage() {
       }
       // Remove completedAt when setting to locked (reset)
       // For active state, preserve existing completedAt if any
-      else if (status === 'active' && prev[questId]?.completedAt) {
-        newState.completedAt = prev[questId].completedAt;
+      else if (status === 'active' && prev.data[questId]?.completedAt) {
+        newState.completedAt = prev.data[questId].completedAt;
       }
 
       return {
         ...prev,
-        [questId]: newState,
+        data: {
+          ...prev.data,
+          [questId]: newState,
+        },
       };
     });
   };
@@ -175,11 +228,11 @@ export default function QuestsPage() {
     }
 
     const timeoutId = setTimeout(() => {
-      syncQuestStates(questStates);
+      syncQuestStates(questStates.data);
     }, 1000); // Debounce for 1 second
 
     return () => clearTimeout(timeoutId);
-  }, [questStates, syncQuestStates]);
+  }, [questStates.data, syncQuestStates]);
 
   // Handle back navigation - not used anymore but keeping for AppShowcaseDetail compatibility
   const handleBackToGroups = () => {
@@ -200,7 +253,7 @@ export default function QuestsPage() {
   }, [router]);
 
   // Calculate quest progress using shared hook
-  const questProgressData = useQuestProgress(questStates);
+  const questProgressData = useQuestProgress(questStates.data);
   const questProgress = {
     completed: questProgressData.completed,
     total: questProgressData.total,
@@ -325,7 +378,7 @@ export default function QuestsPage() {
         ref={appShowcaseDetailRef}
         group={selectedGroup}
         onBack={handleBackToGroups}
-        questStates={questStates}
+        questStates={questStates.data}
         updateQuestStatus={updateQuestStatus}
         resetQuestCompletions={handleResetWithFlag}
       />
