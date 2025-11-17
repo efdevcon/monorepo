@@ -787,7 +787,7 @@ export const supportersData: Record<string, Supporter> = {
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-42-21-949Z-Santiment.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-10-09-384Z-santiment_svg_1.png",
     "description": "A crypto investor's dream. Santiment helps you make smarter decisions by providing a suite of amazing tools for analyzing, tracking, and comparing social, on-chain, and financial data for all your favorite assets. ",
-    "websiteLink": "https://santiment.net/",
+    "websiteLink": "https://app.santiment.net",
     "twitterLink": "https://x.com/santimentfeed",
     "farcasterLink": "",
     "districtId": "3",

@@ -1,5 +1,7 @@
 'server only';
 import { Client } from '@notionhq/client';
+import { config } from 'dotenv';
+config();
 
 /**
  * Fetches all rows from a Notion database and resolves property values

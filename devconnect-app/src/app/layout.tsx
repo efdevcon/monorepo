@@ -19,6 +19,7 @@ import { SerwistProvider } from '@/app/serwist-provider';
 import { ServiceWorkerUpdateBanner } from '@/components/ServiceWorkerUpdateBanner';
 import { BigIntSerializer } from '@/components/BigIntSerializer';
 import { Roboto } from 'next/font/google';
+import announcementsRaw from '@/data/announcements.json';
 
 const roboto = Roboto({
   weight: ['400', '500', '600', '700'],
@@ -134,13 +135,12 @@ export default async function RootLayout({
   let announcements: any[] = [];
 
   try {
-  } catch (e: any) {
-    const announcementsRaw = await getNotionTable(
-      '295638cdc41580fe8d85ff5487f71277',
-      undefined,
-      undefined,
-      'Notification Send Time'
-    );
+    // const announcementsRaw = await getNotionTable(
+    //   '295638cdc41580fe8d85ff5487f71277',
+    //   undefined,
+    //   undefined,
+    //   'Notification Send Time'
+    // );
 
     // Normalize announcements to match component props
     const now = moment.utc(); // .subtract(3, 'hour'); // Argentina is 3 hours behind UTC
@@ -175,6 +175,8 @@ export default async function RootLayout({
           moment.utc(announcement.sendAt).isSameOrBefore(now)
         );
       });
+  } catch (e: any) {
+    console.log(e, 'announcements error');
   }
 
   return (
