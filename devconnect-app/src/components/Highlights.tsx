@@ -11,6 +11,7 @@ import VoxelImage from '@/images/voxel-car.jpg';
 import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
 import EthCon from '@/images/announcements/ethcon-arg.jpeg';
+import TranslationsPost from '@/images/announcements/translations_post.webp';
 import { StaticImageData } from 'next/image';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 import { useTranslations } from 'next-intl';
@@ -88,6 +89,12 @@ export const Highlights = () => {
       to: 'https://ethcon.ar/',
       description: t('ethconDescription'),
       image: EthCon,
+    },
+    {
+      title: t('translationsPost'),
+      to: '/wallet/settings',
+      description: t('translationsPostDescription'),
+      image: TranslationsPost,
     },
     {
       title: t('ethereumDay'),
