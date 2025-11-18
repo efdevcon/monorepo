@@ -27,6 +27,7 @@ import Link from 'next/link';
 import Icon from '@mdi/react';
 import { mdiExportVariant } from '@mdi/js';
 import { useTranslations } from 'next-intl';
+import { LanguageToggle } from '@/components/LanguageToggle';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -1667,7 +1668,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                        {isVerifyingNewAccount ? t('verifying') : t('verifyCode')}
+                        {isVerifyingNewAccount
+                          ? t('verifying')
+                          : t('verifyCode')}
                       </span>
                     </button>
 
@@ -1756,7 +1759,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
               {/* Title centered */}
               <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px] mb-6">
-                {authState.stage === 'signup' ? t('createAccount') : t('signIn')}
+                {authState.stage === 'signup'
+                  ? t('createAccount')
+                  : t('signIn')}
               </div>
 
               {/* Method selection */}
@@ -1845,10 +1850,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
           <div className="flex flex-col gap-0 items-start justify-start p-0 relative w-full">
-            {/* Header */}
-            <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3] mb-4">
-              {t('letsGetSetUp')}
-            </h1>
+            {/* Header with Language Toggle */}
+            <div className="flex items-center justify-between w-full mb-4">
+              <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] leading-[1.3]">
+                {t('letsGetSetUp')}
+              </h1>
+              <LanguageToggle languages={['en', 'es']} fontSize={14} />
+            </div>
 
             {/* First, enter your email address */}
             <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
@@ -2042,7 +2050,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           >
             <Icon path={mdiExportVariant} size={0.8} color="#36364C" />
             <span className="font-bold text-[#36364c] text-[16px] text-center text-nowrap tracking-[-0.1px] leading-none">
-              Install PWA
+              Install App
             </span>
           </button>
         )}
