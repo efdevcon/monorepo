@@ -29,6 +29,8 @@ import TAIKAIimage from './images/taikai-perk.png'
 import ProofOfTravelImage from './images/proof-of-travel.png'
 import CorpusImage from './images/corpus.jpg'
 import LNVPNImage from './images/lnvpn.jpg'
+import MinipayImage from './images/minipay.webp'
+import OlaggImage from './images/olagg.png'
 
 type Perk = {
   coupon_collection: string
@@ -358,6 +360,23 @@ const perks: Perk[] = [
     image: KoinxImage,
   },
   {
+    coupon_collection: 'olagg-2025',
+    name: 'Ola GG',
+    description: '25% OFF any gift card purchase - Pay with Crypto!',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code at checkout',
+    global_coupon: 'DEVCON',
+    urls: [
+      {
+        text: 'Visit Ola GG',
+        url: 'https://olagg.io/tienda',
+      },
+    ],
+    issuer: 'Ola GG',
+    image: OlaggImage,
+  },
+  {
     coupon_collection: 'argentinapoloday-2025',
     name: 'Argentina Polo Day',
     description: 'Get 10% off on any polo experience',
@@ -510,6 +529,23 @@ const perks: Perk[] = [
     issuer: 'Proof of Travel',
     image: ProofOfTravelImage,
   },
+
+  // {
+  //   coupon_collection: 'minipay-2025',
+  //   name: 'MiniPay',
+  //   description: 'Grab $10 of local flavor — by MiniPay!',
+  //   requires: 'Devconnect ARG ticket',
+  //   zupass_proof_id: 'Devconnect ARG',
+  //   instructions: 'Install MiniPay and claim in-app',
+  //   urls: [
+  //     {
+  //       text: 'Visit MiniPay',
+  //       url: 'https://minipay.to/cashlinks',
+  //     },
+  //   ],
+  //   issuer: 'MiniPay',
+  //   image: MinipayImage,
+  // },
 
   {
     coupon_collection: 'protocol-guild-free-ticket',
