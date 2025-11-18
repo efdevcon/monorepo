@@ -76,6 +76,7 @@ export default function ScanPage() {
       console.log('QR Scanner parsed EIP-681 data:', eip681Data);
       // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
       window.open(value, '_blank');
+      router.push('/wallet');
       return;
     }
 
@@ -145,11 +146,13 @@ export default function ScanPage() {
 
     if (
       value?.toLowerCase()?.startsWith('https://ef-events.notion.site/') ||
-      value?.toLowerCase()?.startsWith('https://devconnect.org/faq')
+      value?.toLowerCase()?.startsWith('https://devconnect.org/faq') ||
+      value?.toLowerCase()?.includes('poap.xyz')
     ) {
-      console.log('QR Scanner detected Devconnect URL:', value);
+      console.log('QR Scanner detected external URL:', value);
       // open in new tab
       window.open(value, '_blank');
+      router.push('/wallet');
       return;
     }
 
