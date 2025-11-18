@@ -4,7 +4,42 @@ interface PretixItem {
   description?: string | { en: string; [key: string]: string };
   category?: string;
   active?: boolean;
+  has_variations?: boolean;
+  variations?: Array<{
+    id: number;
+    value: string | { en: string;[key: string]: string };
+    [key: string]: any;
+  }>;
   [key: string]: any;
+}
+
+/**
+ * Extracts the variation value (e.g., t-shirt size) from an addon and its item details
+ * Returns the short form (e.g., "L" instead of "Large (L)")
+ */
+function getVariationValue(
+  addon: any,
+  itemDetails: PretixItem | undefined
+): string | null {
+  if (!addon.variation || !itemDetails?.has_variations || !itemDetails.variations) {
+    return null;
+  }
+
+  const variation = itemDetails.variations.find(
+    (v) => v.id === addon.variation
+  );
+
+  if (!variation) {
+    return null;
+  }
+
+  const fullValue = typeof variation.value === 'object'
+    ? variation.value.en
+    : variation.value;
+
+  // Extract short form from parentheses (e.g., "Large (L)" -> "L")
+  const match = fullValue.match(/\(([^)]+)\)/);
+  return match ? match[1] : fullValue;
 }
 
 export async function getPaidTicketsByEmail(
@@ -101,13 +136,23 @@ export async function getPaidTicketsByEmail(
               const itemDetails = itemsMap.get(addon.item);
               const name = itemDetails?.name;
               const description = itemDetails?.description;
+              const variationValue = getVariationValue(addon, itemDetails);
+              // console.log('addon', addon);
+              // console.log('itemDetails', JSON.stringify(itemDetails, null, 2));
+
+              // Build itemName with variation value if it exists
+              let itemName = typeof name === 'object'
+                ? name.en
+                : name || `Item ${addon.item}`;
+
+              if (variationValue) {
+                itemName = `${itemName} - ${variationValue}`;
+              }
+
               return {
                 id: addon.item,
                 secret: addon.secret,
-                itemName:
-                  typeof name === 'object'
-                    ? name.en
-                    : name || `Item ${addon.item}`,
+                itemName: itemName,
                 description:
                   typeof description === 'object'
                     ? description.en
