@@ -1,10 +1,11 @@
 'use client';
 import { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import Image from 'next/image';
 import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
+import { mdiArrowRight, mdiContentCopy } from '@mdi/js';
 import PageLayout from '@/components/PageLayout';
 import QRScanner from '@/components/QRScanner';
 import PaymentModal from '@/components/PaymentModal';
@@ -12,10 +13,11 @@ import { useWallet } from '@/context/WalletContext';
 import { poisData } from '@/data/pois';
 import { POI } from '@/types/api-data';
 import Button from 'lib/components/voxel-button/button';
+import { WalletDisplay } from '@/components/WalletDisplay';
 
 export default function ScanPage() {
   const router = useRouter();
-  const { isPara } = useWallet();
+  const { isPara, address } = useWallet();
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
   const [paymentRequestId, setPaymentRequestId] = useState<string>('');
   const [isExternalUrlModalOpen, setIsExternalUrlModalOpen] = useState(false);
@@ -250,7 +252,43 @@ export default function ScanPage() {
                     >
                       {externalUrl}
                     </a>
-                    <span className="mt-2">Would you like to open it?</span>
+                    {externalUrl.toLowerCase().includes('poap.xyz') && address && (
+                      <div className="flex flex-col gap-1 mt-1">
+                        <span className="text-[#20202b] text-xs font-medium">
+                          Copy your wallet address before minting:
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[#0073de] text-xs font-medium">
+                            <WalletDisplay address={address} />
+                          </span>
+                          <button
+                            onClick={() => {
+                              if (address) {
+                                navigator.clipboard.writeText(address);
+                                
+                                // Create copy icon using MDI
+                                const copyIcon = React.createElement(Icon, {
+                                  path: mdiContentCopy,
+                                  size: 0.67,
+                                  color: 'white',
+                                });
+
+                                toast.success('Address copied to clipboard', {
+                                  description: address,
+                                  icon: copyIcon,
+                                });
+                              }
+                            }}
+                            className="cursor-pointer hover:opacity-70 transition-opacity shrink-0"
+                          >
+                            <Icon path={mdiContentCopy} size={0.55} color="#0073de" />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {!externalUrl.toLowerCase().includes('poap.xyz') && (
+                      <span className="mt-2">Would you like to open it?</span>
+                    )}
                   </div>
                 </div>
 
