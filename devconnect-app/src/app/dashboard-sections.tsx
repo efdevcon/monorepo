@@ -152,7 +152,7 @@ export function WelcomeSection() {
         />
         // </div>
       )} */}
-      <LanguageToggle languages={['en', 'es']} />
+      {userIsConnected && <LanguageToggle languages={['en', 'es']} />}
 
       {/* <Image
         src={DevconnectLogoWhite}
