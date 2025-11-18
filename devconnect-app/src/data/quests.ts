@@ -110,9 +110,9 @@ export const questsData: Quest[] = [
   },
   {
     "id": 28,
-    "name": "Collect the Devconnect POAP",
+    "name": "Mint the Devconnect POAP",
     "order": 7,
-    "instructions": "Find the limited edition card at the entrance Onboarding area",
+    "instructions": "Scan the limited edition card, then verify in-app.",
     "action": "claim-poap",
     "button": "Verify POAP",
     "conditionType": "verifyPoap",
