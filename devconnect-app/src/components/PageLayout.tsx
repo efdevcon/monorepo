@@ -31,6 +31,69 @@ import {
   HEIGHT_HEADER_PWA_DIFF,
   HEIGHT_MENU,
 } from '@/config/config';
+import { validLocales } from '@/i18n/locales';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+// Helper function to read cookie value
+function getCookie(name: string): string | null {
+  if (typeof window === 'undefined') return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
+}
+
+// Helper function to detect browser language and set cookie if needed
+function detectAndSetLanguage(): void {
+  if (typeof window === 'undefined') return;
+
+  // Check if language detection has already been performed
+  const languageDetected = localStorage.getItem('language_detected');
+  if (languageDetected) {
+    return; // Already detected, skip
+  }
+
+  // Check if user already has a language preference set
+  const existingLocale = getCookie('NEXT_LOCALE');
+  if (existingLocale && validLocales.includes(existingLocale)) {
+    // User already has a preference, mark as detected and skip
+    localStorage.setItem('language_detected', 'true');
+    return;
+  }
+
+  // Initialize language detector
+  const languageDetector = new LanguageDetector();
+  languageDetector.init({
+    order: ['navigator', 'htmlTag'],
+    lookupQuerystring: 'lng',
+    lookupCookie: 'NEXT_LOCALE',
+    lookupLocalStorage: 'i18nextLng',
+    caches: [],
+    excludeCacheFor: ['cimode'],
+  });
+
+  // Detect browser language
+  const detectedLang = languageDetector.detect();
+  const langCode = Array.isArray(detectedLang)
+    ? detectedLang[0].split('-')[0]
+    : (detectedLang || 'en').split('-')[0];
+
+  // Check if detected language is in our valid locales
+  if (validLocales.includes(langCode)) {
+    // Set the cookie with detected language
+    document.cookie = `NEXT_LOCALE=${langCode}; path=/; max-age=31536000`;
+
+    // Mark detection as complete
+    localStorage.setItem('language_detected', 'true');
+
+    // Reload to apply the new language
+    window.location.reload();
+  } else {
+    // Default to 'en' if browser language is not supported
+    document.cookie = `NEXT_LOCALE=en; path=/; max-age=31536000`;
+    localStorage.setItem('language_detected', 'true');
+  }
+}
 
 interface TabItem {
   label: string;
@@ -261,6 +324,11 @@ const PageLayout = React.memo(function PageLayout({
   const [showNeedHelpModal, setShowNeedHelpModal] = useState(false);
   const t = useTranslations();
   const tLayout = useTranslations('pageLayout');
+
+  // Language detection - runs once on mount
+  useEffect(() => {
+    detectAndSetLanguage();
+  }, []);
 
   // Check if return query parameter is true, if so treat it like hasBackButton
   const shouldShowBackButton =

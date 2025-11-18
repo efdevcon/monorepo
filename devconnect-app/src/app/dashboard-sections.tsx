@@ -35,6 +35,7 @@ import {
 // import { QRCodeBox } from '@/app/(page-layout)/tickets/page';
 import { useAccount } from '@getpara/react-sdk';
 import { useTranslations } from 'next-intl';
+import { LanguageToggle } from '@/components/LanguageToggle';
 
 export const LoopingHeader = () => {
   const t = useTranslations('dashboard.header');
@@ -125,9 +126,7 @@ export function WelcomeSection() {
                 <div className="font-bold m:text-base leading-tight">
                   {t('unlockTitle')}
                 </div>
-                <div className="text-xs">
-                  {t('unlockDescription')}
-                </div>
+                <div className="text-xs">{t('unlockDescription')}</div>
               </div>
             </div>
             <Link
@@ -142,7 +141,7 @@ export function WelcomeSection() {
         )}
       </div>
 
-      {userIsConnected && (
+      {/* {userIsConnected && (
         // <div className="w-[120px] w[] md:block shrink-0">
         <Image
           src={DevconnectLogoWhite}
@@ -152,7 +151,8 @@ export function WelcomeSection() {
           // height={50}
         />
         // </div>
-      )}
+      )} */}
+      <LanguageToggle languages={['en', 'es']} />
 
       {/* <Image
         src={DevconnectLogoWhite}
