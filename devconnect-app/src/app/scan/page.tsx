@@ -14,6 +14,8 @@ export default function ScanPage() {
   const { isPara } = useWallet();
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
   const [paymentRequestId, setPaymentRequestId] = useState<string>('');
+  const [isExternalUrlModalOpen, setIsExternalUrlModalOpen] = useState(false);
+  const [externalUrl, setExternalUrl] = useState<string>('');
 
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {
@@ -71,16 +73,16 @@ export default function ScanPage() {
     console.log('QR Scanner received value:', value);
 
     // First, try to parse as EIP-681 URL
-    const eip681Data = parseEIP681Url(value);
-    if (eip681Data) {
-      console.log('QR Scanner parsed EIP-681 data:', eip681Data);
-      // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
-      window.open(value, '_blank');
-      router.push('/wallet');
-      return;
-    }
+    // const eip681Data = parseEIP681Url(value);
+    // if (eip681Data) {
+    //   console.log('QR Scanner parsed EIP-681 data:', eip681Data);
+    //   // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
+    //   window.open(value, '_blank');
+    //   router.push('/wallet');
+    //   return;
+    // }
 
-    // Then, try to parse as SimpleFi merchant URL
+    // SimpleFi merchant URLs
     const simpleFiMerchantUrl = parseSimpleFiMerchantUrl(value);
     if (simpleFiMerchantUrl) {
       console.log(
@@ -126,6 +128,7 @@ export default function ScanPage() {
       return;
     }
 
+    // send to address
     // Check if it's an Ethereum address (must be checked BEFORE payment ID)
     if (value?.toLowerCase()?.startsWith('0x') && value.length === 42) {
       console.log('QR Scanner detected Ethereum address:', value);
@@ -144,18 +147,20 @@ export default function ScanPage() {
       }
     }
 
+    // external urls
     if (
       value?.toLowerCase()?.startsWith('https://ef-events.notion.site/') ||
       value?.toLowerCase()?.startsWith('https://devconnect.org/faq') ||
       value?.toLowerCase()?.includes('poap.xyz')
     ) {
       console.log('QR Scanner detected external URL:', value);
-      // open in new tab
-      window.open(value, '_blank');
-      router.push('/wallet');
+      // Show modal instead of directly opening
+      setExternalUrl(value);
+      setIsExternalUrlModalOpen(true);
       return;
     }
 
+    // devconnect qr redirects
     if (value?.toLowerCase()?.startsWith('https://app.devconnect.org/')) {
       console.log('QR Scanner detected Devconnect URL:', value);
       // redirect to the url
@@ -176,11 +181,14 @@ export default function ScanPage() {
     }
 
     // If nothing matches, show error
-    console.log('QR code not recognized:', value);
-    toast.error('QR code not recognized', {
-      description: 'Please scan a valid payment QR code or Ethereum address',
-      duration: 4000,
-    });
+    // console.log('QR code not recognized:', value);
+    // toast.error('QR code not recognized', {
+    //   description: 'Please scan a valid payment QR code or Ethereum address',
+    //   duration: 4000,
+    // });
+    setExternalUrl(value);
+    setIsExternalUrlModalOpen(true);
+    return;
   };
 
   return (
@@ -205,10 +213,72 @@ export default function ScanPage() {
           {/* Payment Modal */}
           <PaymentModal
             isOpen={isManualPaymentOpen}
-            onClose={() => setIsManualPaymentOpen(false)}
+            onClose={() => {
+              setIsManualPaymentOpen(false);
+              router.push('/wallet');
+            }}
             isPara={Boolean(isPara)}
             paymentRequestId={paymentRequestId}
           />
+
+          {/* External URL Modal */}
+          {isExternalUrlModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-lg p-6 max-w-md w-full shadow-xl">
+                <h2 className="text-xl font-semibold mb-4">
+                  External URL Detected
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  This QR code contains the following URL:{' '}
+                  <a
+                    href={externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700"
+                  >
+                    {externalUrl}
+                  </a>
+                  .<br />
+                  Would you like to open it?
+                </p>
+                <div className="flex gap-3 justify-end">
+                  <button
+                    onClick={() => {
+                      setIsExternalUrlModalOpen(false);
+                      setExternalUrl('');
+                      router.push('/wallet');
+                    }}
+                    className="px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <a
+                    href={externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setIsExternalUrlModalOpen(false);
+                      setExternalUrl('');
+                      router.push('/wallet');
+                    }}
+                    className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                  >
+                    {externalUrl.toLowerCase().includes('poap.xyz')
+                      ? 'Mint POAP'
+                      : externalUrl
+                            .toLowerCase()
+                            .startsWith('https://devconnect.org/faq')
+                        ? 'Support FAQ'
+                        : externalUrl
+                              .toLowerCase()
+                              .startsWith('https://ef-events.notion.site/')
+                          ? 'Open Notion Documentation'
+                          : 'Open External Link'}
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </PageLayout>
