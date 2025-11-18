@@ -2,12 +2,16 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import Image from 'next/image';
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
 import PageLayout from '@/components/PageLayout';
 import QRScanner from '@/components/QRScanner';
 import PaymentModal from '@/components/PaymentModal';
 import { useWallet } from '@/context/WalletContext';
 import { poisData } from '@/data/pois';
 import { POI } from '@/types/api-data';
+import Button from 'lib/components/voxel-button/button';
 
 export default function ScanPage() {
   const router = useRouter();
@@ -224,57 +228,75 @@ export default function ScanPage() {
           {/* External URL Modal */}
           {isExternalUrlModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-              <div className="bg-white rounded-lg p-6 max-w-md w-full shadow-xl">
-                <h2 className="text-xl font-semibold mb-4">
-                  External URL Detected
-                </h2>
-                <p className="text-gray-600 mb-6">
-                  This QR code contains the following URL:{' '}
+              <div className="bg-white border border-[rgba(234,234,234,1)] mx-4 max-w-md w-full shadow-xl flex flex-col">
+                <div className="flex items-center gap-3 p-4 pb-0">
+                  <Image
+                    src="/images/qr-info.svg"
+                    alt="QR Info"
+                    width={48}
+                    height={48}
+                  />
+                  <h2 className="font-bold">External URL Detected</h2>
+                </div>
+
+                <div className="p-4 mx-4 my-2 mb-0 grow self-stretch bg-[#EAF4FB]">
+                  <div className="flex flex-col gap-2 text-sm">
+                    <span>This QR code contains the following URL:</span>
+                    <a
+                      href={externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[rgba(0,115,222,1)] font-semibold break-all"
+                    >
+                      {externalUrl}
+                    </a>
+                    <span className="mt-2">Would you like to open it?</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 p-4">
                   <a
                     href={externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-700"
+                    onClick={() => {
+                      setIsExternalUrlModalOpen(false);
+                      setExternalUrl('');
+                      router.push('/wallet');
+                    }}
+                    className="w-full bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
                   >
-                    {externalUrl}
+                    <span className="text-white text-base font-bold">
+                      {externalUrl.toLowerCase().includes('poap.xyz')
+                        ? 'Mint POAP'
+                        : externalUrl
+                              .toLowerCase()
+                              .startsWith('https://devconnect.org/faq')
+                          ? 'Support FAQ'
+                          : externalUrl
+                                .toLowerCase()
+                                .startsWith('https://ef-events.notion.site/')
+                            ? 'Open Notion Documentation'
+                            : 'Open External Link'}
+                    </span>
+                    <Icon
+                      path={mdiArrowRight}
+                      size={0.67}
+                      className="text-white"
+                    />
                   </a>
-                  .<br />
-                  Would you like to open it?
-                </p>
-                <div className="flex gap-3 justify-end">
                   <button
                     onClick={() => {
                       setIsExternalUrlModalOpen(false);
                       setExternalUrl('');
                       router.push('/wallet');
                     }}
-                    className="px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700 transition-colors"
+                    className="w-full bg-[#eaf3fa] hover:bg-[#d8ebf7] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors"
                   >
-                    Cancel
+                    <span className="text-[#44445d] text-base font-bold">
+                      Cancel
+                    </span>
                   </button>
-                  <a
-                    href={externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => {
-                      setIsExternalUrlModalOpen(false);
-                      setExternalUrl('');
-                      router.push('/wallet');
-                    }}
-                    className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                  >
-                    {externalUrl.toLowerCase().includes('poap.xyz')
-                      ? 'Mint POAP'
-                      : externalUrl
-                            .toLowerCase()
-                            .startsWith('https://devconnect.org/faq')
-                        ? 'Support FAQ'
-                        : externalUrl
-                              .toLowerCase()
-                              .startsWith('https://ef-events.notion.site/')
-                          ? 'Open Notion Documentation'
-                          : 'Open External Link'}
-                  </a>
                 </div>
               </div>
             </div>
