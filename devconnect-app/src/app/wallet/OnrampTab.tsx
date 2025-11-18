@@ -19,6 +19,7 @@ import {
 } from '@mdi/js';
 import Link from 'next/link';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 // Image assets
 const imgOnrampDigital = '/images/onramp-digital.svg';
@@ -46,6 +47,7 @@ type ProviderWithHref = ProviderBase & {
 type Provider = ProviderWithOnClick | ProviderWithHref;
 
 export default function OnrampTab() {
+  const t = useTranslations('onramp');
   const { address } = useWallet();
   const router = useRouter();
   const [isDisclaimerModalOpen, setIsDisclaimerModalOpen] = useState(false);
@@ -417,17 +419,17 @@ export default function OnrampTab() {
         <div className="text-center space-y-6">
           <div className="space-y-2">
             <h1 className="text-[#242436] text-2xl font-bold tracking-[-0.1px]">
-              Connect Your Wallet
+              {t('connectWallet')}
             </h1>
             <p className="text-[#36364c] text-base">
-              Connect your wallet to add funds
+              {t('connectToAddFunds')}
             </p>
           </div>
           <button
             onClick={() => router.push('/onboarding')}
             className="bg-[#165a8d] text-white px-8 py-3 rounded-[4px] font-semibold text-base hover:bg-[#0f4a73] transition-colors cursor-pointer"
           >
-            Login
+            {t('login')}
           </button>
         </div>
       </div>
@@ -452,7 +454,7 @@ export default function OnrampTab() {
             <Icon path={mdiChevronLeft} size={0.67} color="#36364c" />
           </button>
           <h1 className="text-[#353548] text-lg font-bold tracking-[-0.1px]">
-            Add Funds
+            {t('addFunds')}
           </h1>
           <div className="w-6 h-6" />
         </div>
@@ -467,19 +469,16 @@ export default function OnrampTab() {
           </div>
           <div className="flex-1 space-y-2">
             <div className="text-[#492e09] text-sm leading-[1.4] tracking-[0.1px] space-y-1">
-              <p className="font-bold">Important Disclaimer</p>
+              <p className="font-bold">{t('importantDisclaimer')}</p>
               <p className="font-normal">
-                Use of digital exchanges means you will leave the Devconnect App
-                and be redirected to a third-party which is not operated,
-                controlled by, or under the responsibility of the Ethereum
-                Foundation. You proceed at your own risk.
+                {t('disclaimerText')}
               </p>
             </div>
             <button
               onClick={() => setIsDisclaimerModalOpen(true)}
               className="text-[#0073de] text-sm font-bold hover:underline"
             >
-              Read full disclaimer
+              {t('readFullDisclaimer')}
             </button>
           </div>
         </div>
@@ -489,10 +488,10 @@ export default function OnrampTab() {
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 space-y-2">
               <h2 className="text-[#20202b] text-xl font-bold leading-[1.2] tracking-[-0.1px]">
-                Add crypto digitally
+                {t('addCryptoDigitally')}
               </h2>
               <p className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
-                Providers accept Card and Wire Transfer
+                {t('providersAcceptCard')}
               </p>
             </div>
             <div className="w-10 h-10 flex-shrink-0">
@@ -529,7 +528,7 @@ export default function OnrampTab() {
                       {provider.description}
                     </div>
                     <div className="text-[#4b4b66] text-xs leading-[1.3] tracking-[-0.1px]">
-                      <span className="font-bold">Fees:</span> {provider.fees}
+                      <span className="font-bold">{t('fees')}:</span> {provider.fees}
                     </div>
 
                     {/* Password Section (if showPassword is true) */}
@@ -537,7 +536,7 @@ export default function OnrampTab() {
                       <div className="pt-2 mt-2 border-t border-white/30">
                         <div className="flex items-center gap-2">
                           <span className="text-[#4b4b66] text-xs font-medium">
-                            Early Access Password:
+                            {t('earlyAccessPassword')}:
                           </span>
                           <code className="text-[#20202b] text-xs font-bold tracking-wider px-2 py-0.5 bg-white/80 rounded border border-white/50">
                             D3VC0N
@@ -615,10 +614,10 @@ export default function OnrampTab() {
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 space-y-2">
               <h2 className="text-[#20202b] text-xl font-bold leading-[1.2] tracking-[-0.1px]">
-                Add crypto in-person
+                {t('addCryptoInPerson')}
               </h2>
               <p className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
-                Providers accept Card and Wire Transfer
+                {t('providersAcceptCard')}
               </p>
             </div>
             <div className="w-10 h-10 flex-shrink-0">
@@ -659,7 +658,7 @@ export default function OnrampTab() {
                       {provider.description}
                     </div>
                     <div className="text-[#4b4b66] text-xs leading-[1.3] tracking-[-0.1px]">
-                      <span className="font-bold">Fees:</span> {provider.fees}
+                      <span className="font-bold">{t('fees')}:</span> {provider.fees}
                     </div>
                   </div>
 
@@ -696,17 +695,18 @@ export default function OnrampTab() {
             <Icon path={mdiInformation} size={1} color="#492e09" />
           </div>
           <div className="flex-1 text-[#492e09] text-sm leading-[1.4] tracking-[0.1px]">
-            <div className="font-bold mb-1">Need help?</div>
+            <div className="font-bold mb-1">{t('needHelp')}</div>
             <div className="font-normal">
-              Head to the{' '}
-              <Link
-                href="/map?filter=onboarding"
-                className="font-bold text-[#0073de]"
-              >
-                Onboarding area
-              </Link>{' '}
-              near the entrance and let one of our volunteer team know about the
-              technical issue.
+              {t.rich('needHelpDescription', {
+                onboardingLink: (chunks) => (
+                  <Link
+                    href="/map?filter=onboarding"
+                    className="font-bold text-[#0073de]"
+                  >
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </div>
           </div>
         </div>
@@ -734,37 +734,32 @@ export default function OnrampTab() {
             {/* Modal Content */}
             <div className="px-6 pt-3 pb-6 space-y-4">
               <div className="space-y-2">
-                <h2 className="text-[#20202b] text-lg font-bold leading-[1.3]">
-                  Using Digital Exchanges:
-                  <br />
-                  Legal Disclaimer from the Ethereum Foundation
+                <h2 className="text-[#20202b] text-lg font-bold leading-[1.3] whitespace-pre-line">
+                  {t('modalTitle')}
                 </h2>
                 <p className="text-[#353548] text-sm leading-[1.3]">
-                  The use of digital exchanges means you will leave the
-                  Devconnect App and be redirected to a third-party which{' '}
-                  <span className="font-bold">
-                    is not operated or controlled by the Ethereum Foundation
-                  </span>
-                  .
+                  {t.rich('modalParagraph1', {
+                    bold: () => (
+                      <span className="font-bold">{t('modalBold1')}</span>
+                    ),
+                  })}
                 </p>
                 <p className="text-[#353548] text-sm leading-[1.3]">
-                  The Ethereum Foundation is not responsible for the context,
-                  security, accuracy, or privacy practices of any third-party
-                  site.
+                  {t('modalParagraph2')}
                 </p>
                 <p className="text-[#353548] text-sm leading-[1.3]">
-                  <span className="font-bold">We strongly advise you</span> to
-                  review the third party&apos;s Terms and Conditions and Privacy
-                  Policy before creating an account, providing personal
-                  information, or conducting any transactions.
+                  {t.rich('modalParagraph3', {
+                    bold: () => (
+                      <span className="font-bold">{t('modalBold3')}</span>
+                    ),
+                  })}
                 </p>
                 <p className="text-[#353548] text-sm leading-[1.3]">
-                  If you decide to access any third party app,{' '}
-                  <span className="font-bold">
-                    you do so entirely at your own risk
-                  </span>
-                  . We reserve the right to withdraw any redirection to a third
-                  party app without notice.
+                  {t.rich('modalParagraph4', {
+                    bold: () => (
+                      <span className="font-bold">{t('modalBold4')}</span>
+                    ),
+                  })}
                 </p>
               </div>
             </div>

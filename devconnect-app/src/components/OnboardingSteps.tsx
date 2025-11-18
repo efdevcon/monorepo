@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import ChevronRightIcon from 'assets/icons/chevron_right.svg'
@@ -18,6 +19,7 @@ import PhoneIcon from './icons/onboarding-steps/phone.svg';
 import RocketIcon from './icons/onboarding-steps/rocket.svg';
 import Lottie from 'lottie-react';
 import WalletConnectedAnimation from '@/images/Wallet-Connected.json';
+import { useTranslations } from 'next-intl';
 interface OnboardingStepsProps {
   steps?: React.ReactNode[];
   rightContent?: React.ReactNode[];
@@ -69,129 +71,120 @@ const Block = ({
   );
 };
 
-const defaultSteps = [
-  <div key="step0" className="flex flex-col items-center text-center">
-    <div className="aspect-[480/480] relative w-full mb-3 sm:mb-6">
-      <Lottie
-        animationData={WalletConnectedAnimation}
-        loop={false}
-        className="w-full h-full object-contain mix-blend-multiply max-w-[240px] sm:max-w-[300px]"
-      />
-    </div>
-    <div className="leading-tight">
-      <div className="text-xl font-semibold leading-tight mb-2">
-        Your wallet is connected!
+const useDefaultSteps = () => {
+  const t = useTranslations('onboardingSteps');
+
+  return [
+    <div key="step0" className="flex flex-col items-center text-center">
+      <div className="aspect-[480/480] relative w-full mb-3 sm:mb-6">
+        <Lottie
+          animationData={WalletConnectedAnimation}
+          loop={false}
+          className="w-full h-full object-contain mix-blend-multiply max-w-[240px] sm:max-w-[300px]"
+        />
       </div>
-      <div className="text-sm sm:text-base">
-        Final steps: let's learn about the World's Fair!
-      </div>
-    </div>
-  </div>,
-  <Slide
-    key="step1"
-    title="Welcome to Devconnect ARG: the first Ethereum World's Fair"
-    image={WorldsFairImage}
-    description={
-      <div className="flex flex-col gap-2 mt-2 sm:mt-4 text-sm sm:text-base">
-        <div>
-          You're joining 15,000+ builders and users from around the world as we
-          imagine the city of the future, built on Ethereum.
+      <div className="leading-tight">
+        <div className="text-xl font-semibold leading-tight mb-2">
+          {t('walletConnected')}
         </div>
-        <div>
-          <span className="font-semibold">
-            Ethereum is ready for the real world
-          </span>{' '}
-          – we're excited to show you how.
+        <div className="text-sm sm:text-base">
+          {t('finalSteps')}
         </div>
       </div>
-    }
-  />,
-  <Slide
-    key="step2"
-    title="About The World's Fair"
-    image={EthDayImage}
-    description={
-      <div className="text-sm sm:text-base">
-        During Devconnect, La Rural will be transformed into the first Ethereum
-        World's Fair:
-        <div className="flex flex-col gap-2 mt-2 sm:mt-4 items-center">
-          <Block
-            icon={<MicrophoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description={
-              <div>
-                Join events featuring{' '}
-                <span className="font-semibold">industry leaders</span> and
-                builders working on Ethereum today
-              </div>
-            }
-          />
-          <Block
-            icon={<PhoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description={
-              <div>
-                Discover cutting-edge,
-                <span className="font-semibold">
-                  {' '}
-                  real-world Ethereum apps
-                </span>{' '}
-                at the App Showcase
-              </div>
-            }
-          />
-          <Block
-            icon={<CupIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description={
-              <div>
-                Recharge and refuel at the many local{' '}
-                <span className="font-semibold">
-                  coffee and food merchants on-site
-                </span>{' '}
-                (all accepting crypto as payment)
-              </div>
-            }
-          />
+    </div>,
+    <Slide
+      key="step1"
+      title={t('welcomeTitle')}
+      image={WorldsFairImage}
+      description={
+        <div className="flex flex-col gap-2 mt-2 sm:mt-4 text-sm sm:text-base">
+          <div>
+            {t('welcomeDescription1')}
+          </div>
+          <div>
+            <span className="font-semibold">
+              {t('welcomeDescription2Bold')}
+            </span>{' '}
+            {t('welcomeDescription2')}
+          </div>
         </div>
-      </div>
-    }
-  />,
-  <Slide
-    key="step3"
-    title="Take part in Quests and earn real rewards!"
-    image={CommunityEventsImage}
-    description={
-      <div className="text-sm sm:text-base">
-        <div>
-          We've created dedicated quest systems to help you explore the World's
-          Fair, regardless of your experience level.
+      }
+    />,
+    <Slide
+      key="step2"
+      title={t('aboutTitle')}
+      image={EthDayImage}
+      description={
+        <div className="text-sm sm:text-base">
+          {t('aboutDescription')}
+          <div className="flex flex-col gap-2 mt-2 sm:mt-4 items-center">
+            <Block
+              icon={<MicrophoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
+              description={
+                t.rich('aboutBlock1', {
+                  bold: (chunks) => <span className="font-semibold">{chunks}</span>
+                })
+              }
+            />
+            <Block
+              icon={<PhoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
+              description={
+                t.rich('aboutBlock2', {
+                  bold: (chunks) => <span className="font-semibold">{chunks}</span>
+                })
+              }
+            />
+            <Block
+              icon={<CupIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
+              description={
+                t.rich('aboutBlock3', {
+                  bold: (chunks) => <span className="font-semibold">{chunks}</span>
+                })
+              }
+            />
+          </div>
         </div>
-        <div className="flex flex-col gap-2 mt-2 sm:mt-4 items-center">
-          <Block
-            icon={<RocketIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description={
-              <div>
-                Master the basics of Ethereum through our{' '}
-                <span className="font-semibold">Onboarding</span> quests
-              </div>
-            }
-          />
-          <Block
-            icon={<LuggageIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description={
-              <div>
-                Grab your collectible 'Stamp' from each booth at the{' '}
-                <span className="font-semibold">App Showcase</span>
-              </div>
-            }
-          />
+      }
+    />,
+    <Slide
+      key="step3"
+      title={t('questsTitle')}
+      image={CommunityEventsImage}
+      description={
+        <div className="text-sm sm:text-base">
+          <div>
+            {t('questsDescription')}
+          </div>
+          <div className="flex flex-col gap-2 mt-2 sm:mt-4 items-center">
+            <Block
+              icon={<RocketIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
+              description={
+                t.rich('questsBlock1', {
+                  bold: (chunks) => <span className="font-semibold">{chunks}</span>
+                })
+              }
+            />
+            <Block
+              icon={<LuggageIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
+              description={
+                t.rich('questsBlock2', {
+                  bold: (chunks) => <span className="font-semibold">{chunks}</span>
+                })
+              }
+            />
+          </div>
         </div>
-      </div>
-    }
-  />,
-];
+      }
+    />,
+  ];
+};
 
 export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
-  steps = defaultSteps,
+  steps: customSteps,
 }) => {
+  const t = useTranslations('onboardingSteps');
+  const defaultSteps = useDefaultSteps();
+  const steps = customSteps || defaultSteps;
   const [currentStep, setCurrentStep] = useState(0);
   const router = useRouter();
 
@@ -249,10 +242,10 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
       <div className="flex flex-col flex-1 items-center py-3 sm:py-8">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">
-            {currentStep === 0 && 'Setup'}
-            {currentStep === 1 && 'Welcome'}
-            {currentStep === 2 && "World's Fair"}
-            {currentStep === 3 && 'Quests & rewards'}
+            {currentStep === 0 && t('setup')}
+            {currentStep === 1 && t('welcome')}
+            {currentStep === 2 && t('worldsFair')}
+            {currentStep === 3 && t('questsRewards')}
           </div>
           <DotsSelector
             items={stepItems}
@@ -296,7 +289,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             size="sm"
             onClick={backStep}
           >
-            Back
+            {t('back')}
           </Button>
 
           <Button
@@ -306,8 +299,8 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             onClick={nextStep}
           >
             {currentStep === steps.length - 1
-              ? "Enter the World's Fair →"
-              : 'Continue →'}
+              ? t('enterWorldsFair')
+              : t('continue')}
           </Button>
         </div>
       </div>

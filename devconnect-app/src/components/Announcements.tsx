@@ -7,6 +7,7 @@ import moment from 'moment';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 import { ChevronRight } from 'lucide-react';
 import { useAnnouncements } from '@/app/store.hooks';
+import { useTranslations } from 'next-intl';
 
 type NotificationCardProps = {
   withoutContainer?: boolean;
@@ -119,6 +120,7 @@ export const NotificationCard = ({
 };
 
 export const AnnouncementsWrapper = () => {
+  const t = useTranslations('announcements');
   const announcements = useAnnouncements();
 
   return (
@@ -126,17 +128,17 @@ export const AnnouncementsWrapper = () => {
       <div className="flex justify-between items-center gap-2 mb-4">
         <div className="flex flex-col">
           <div className="flex justify-between items-center gap-2 font-bold border-top ml-4">
-            Announcements
+            {t('title')}
           </div>
           <div className="text-[12px] ml-4 leading-none">
-            With ❤️ from the Devconnect Team
+            {t('fromTeam')}
           </div>
         </div>
         <Link
           href="/announcements"
           className="pr-4 text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 self-end cursor-pointer"
         >
-          View All →
+          {t('viewAll')} →
         </Link>
       </div>
       <div

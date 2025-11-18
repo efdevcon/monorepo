@@ -4,8 +4,10 @@ import { NotificationCard } from '@/components/Announcements';
 import { Fragment, useEffect, useMemo } from 'react';
 import moment from 'moment';
 import { Separator } from 'lib/components/ui/separator';
+import { useTranslations } from 'next-intl';
 
 export default function AnnouncementsPageContent() {
+  const t = useTranslations('announcements');
   const announcements = useAnnouncements();
 
   useEffect(() => {
@@ -30,9 +32,9 @@ export default function AnnouncementsPageContent() {
 
       let label: string;
       if (date.isSame(today, 'day')) {
-        label = 'Today';
+        label = t('today');
       } else if (date.isSame(yesterday, 'day')) {
-        label = 'Yesterday';
+        label = t('yesterday');
       } else {
         label = date.format('ddd DD MMM');
       }
@@ -60,7 +62,7 @@ export default function AnnouncementsPageContent() {
   return (
     <div className="pt-4 w-full pb-8 px-4 gradient-background grow">
       <div className="flex justify-center md:justify-start gap-1 mb-4 w-full text-center text-xs text-gray-600">
-        With ❤️ from the Devconnect Team
+        {t('fromTeam')}
       </div>
 
       <div className="flex flex-col gap-6">

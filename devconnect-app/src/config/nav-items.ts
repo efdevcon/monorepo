@@ -7,6 +7,7 @@ import { createElement } from 'react';
 import Icon from '@mdi/react';
 import { mdiWallet, mdiImageMultiple, mdiCog } from '@mdi/js';
 import { homeTabs } from '@/app/navigation';
+import { getTranslations } from 'next-intl/server';
 
 // Icon wrapper components for wallet tabs
 const WalletTabIcon = ({ color }: { color?: string }) =>

@@ -2,6 +2,7 @@
 import React from 'react';
 import type { NavItem, TabItem } from '@/config/nav-items';
 import cn from 'classnames';
+import { useTranslations } from 'next-intl';
 
 interface TabBarProps {
   navItem: NavItem;
@@ -16,8 +17,23 @@ export default function TabBar({
   onTabClick,
   showScrollArrows = false,
 }: TabBarProps) {
+  const t = useTranslations('navigation');
   const tabItems = navItem.tabItems || [];
   // const bgColor = navItem.backgroundColor || '#e8f3fb';
+
+  const getTranslatedLabel = (label: string) => {
+    const labelMap: Record<string, string> = {
+      "Home": t('home'),
+      "Schedule": t('schedule'),
+      "Stages": t('stages'),
+      "Tickets": t('tickets'),
+      "Announcements": t('announcements'),
+      "Wallet": t('wallet'),
+      "Stampbook": t('stampbook'),
+      "Settings": t('settings'),
+    };
+    return labelMap[label] || label;
+  };
 
   return (
     <div
@@ -52,7 +68,7 @@ export default function TabBar({
                 : 'text-[#4b4b66] cursor-pointer')
             }
           >
-            {item.label}
+            {getTranslatedLabel(item.label)}
           </div>
         </button>
       ))}

@@ -8,9 +8,22 @@ import { NAV_ITEMS } from '@/config/nav-items';
 import { useWallet } from '@/context/WalletContext';
 import css from './MobileMenu.module.scss';
 import cn from 'classnames';
+import { useTranslations } from 'next-intl';
 
 export default function Menu() {
+  const t = useTranslations('navigation');
   const pathname = usePathname();
+
+  const getTranslatedLabel = (label: string) => {
+    const labelMap: Record<string, string> = {
+      "World's Fair": t('worldsFair'),
+      "Map": t('map'),
+      "Scan": t('scan'),
+      "Quests": t('quests'),
+      "Wallet": t('wallet'),
+    };
+    return labelMap[label] || label;
+  };
 
   return (
     <>
@@ -84,7 +97,7 @@ export default function Menu() {
                     color: isActive ? '#242436' : '#4B4B66',
                   }}
                 >
-                  {item.label}
+                  {getTranslatedLabel(item.label)}
                 </span>
               )}
             </Link>

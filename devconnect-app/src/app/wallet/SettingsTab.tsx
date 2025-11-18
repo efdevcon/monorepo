@@ -32,6 +32,7 @@ import {
 import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
 import { openReportIssue } from '@/utils/reportIssue';
 import { useWallet } from '@/context/WalletContext';
@@ -61,6 +62,7 @@ const imgPara = '/images/paraLogo.png';
 const imgParaFullColor = '/images/PARA - logo Full Color 1.svg';
 
 export default function SettingsTab() {
+  const t = useTranslations('settings');
   // Always get Para wallet data directly from Para SDK
   const paraAccount = useParaAccount();
   const { data: paraWallet } = useParaWallet();
@@ -289,7 +291,7 @@ export default function SettingsTab() {
     >
       {/* App Section */}
       <div className="mb-6">
-        <h2 className="text-[#20202b] text-lg font-bold mb-3">App</h2>
+        <h2 className="text-[#20202b] text-lg font-bold mb-3">{t('app')}</h2>
 
         {/* App Update Available */}
         {updateAvailable && (
@@ -302,10 +304,10 @@ export default function SettingsTab() {
             </div>
             <div className="flex-1 text-left">
               <p className="text-[#0073de] text-base font-bold">
-                Update Available
+                {t('updateAvailable')}
               </p>
               <p className="text-[#0073de] text-xs">
-                Tap to install the latest version
+                {t('tapToInstall')}
               </p>
             </div>
             <Icon
@@ -317,7 +319,7 @@ export default function SettingsTab() {
         )}
 
         {/* Language */}
-        {/* <button
+        <button
           onClick={() => setShowLanguageModal(true)}
           className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
         >
@@ -325,7 +327,7 @@ export default function SettingsTab() {
             <Icon path={mdiTranslate} size={1} className="text-[#353548]" />
           </div>
           <p className="flex-1 text-left text-[#353548] text-base font-medium">
-            Language
+            {t('language')}
           </p>
           <div className="flex items-center gap-2">
             <div className="bg-white border border-[#353548] px-1.5 py-1">
@@ -339,7 +341,7 @@ export default function SettingsTab() {
               className="text-[#4b4b66]"
             />
           </div>
-        </button> */}
+        </button>
 
         {/* Provide Feedback */}
         <button
@@ -350,7 +352,7 @@ export default function SettingsTab() {
             <Icon path={mdiBug} size={1} className="text-[#353548]" />
           </div>
           <p className="flex-1 text-left text-[#353548] text-base font-medium">
-            Provide feedback
+            {t('provideFeedback')}
           </p>
           <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
         </button>
@@ -445,7 +447,7 @@ export default function SettingsTab() {
 
       {/* Wallet Section */}
       <div className="">
-        <h2 className="text-[#20202b] text-lg font-bold mb-3">Wallet</h2>
+        <h2 className="text-[#20202b] text-lg font-bold mb-3">{t('wallet')}</h2>
 
         {/* Account Details Card - Always shows Para wallet info */}
         <div className="bg-white border border-[#ededf0] rounded-[4px] p-4 mb-4">
@@ -462,9 +464,9 @@ export default function SettingsTab() {
 
             {/* Account Info */}
             <div className="flex-1 min-w-0">
-              <p className="text-[#4b4b66] text-xs mb-2">Para Wallet Account</p>
+              <p className="text-[#4b4b66] text-xs mb-2">{t('paraWalletAccount')}</p>
               <p className="text-[#20202b] text-sm font-medium mb-2 truncate">
-                {paraEmail || (isParaConnected ? 'Connected' : 'Not connected')}
+                {paraEmail || (isParaConnected ? t('connected') : t('notConnected'))}
               </p>
             </div>
           </div>
@@ -497,10 +499,10 @@ export default function SettingsTab() {
               <Icon path={mdiLogout} size={1} className="text-[#353548]" />
             </div>
             <p className="flex-1 text-left text-[#353548] text-base font-medium">
-              Logout
+              {t('logout')}
             </p>
             {isDisconnecting ? (
-              <span className="text-[#4b4b66] text-xs">Logging out...</span>
+              <span className="text-[#4b4b66] text-xs">{t('loggingOut')}</span>
             ) : (
               <Icon
                 path={mdiChevronRight}
@@ -515,7 +517,7 @@ export default function SettingsTab() {
             className="bg-[#0073de] w-full flex gap-2 items-center justify-center px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] cursor-pointer hover:bg-[#0060c0] transition-colors"
           >
             <span className="font-bold text-base text-center text-white">
-              Sign in
+              {t('signIn')}
             </span>
           </button>
         )}
@@ -535,10 +537,10 @@ export default function SettingsTab() {
             <Icon path={mdiKeyArrowRight} size={1} className="text-[#353548]" />
           </div>
           <p className="flex-1 text-left text-[#353548] text-base font-medium">
-            Export Private Key
+            {t('exportPrivateKey')}
           </p>
           {isExportingKey ? (
-            <span className="text-[#4b4b66] text-xs">Opening...</span>
+            <span className="text-[#4b4b66] text-xs">{t('opening')}</span>
           ) : (
             <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
           )}
@@ -604,7 +606,7 @@ export default function SettingsTab() {
 
         {/* Provided by Para */}
         <div className="flex items-center justify-center gap-3 mt-4">
-          <p className="text-xs text-black">Provided by</p>
+          <p className="text-xs text-black">{t('providedBy')}</p>
           <img src={imgParaFullColor} alt="Para" className="h-4 w-auto" />
         </div>
       </div>
@@ -623,7 +625,7 @@ export default function SettingsTab() {
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-[#20202b] text-lg font-bold">
-                Select a language
+                {t('selectLanguage')}
               </h3>
               <button
                 onClick={() => setShowLanguageModal(false)}

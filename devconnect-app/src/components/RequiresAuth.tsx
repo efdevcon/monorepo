@@ -3,16 +3,19 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export const RequiresAuthContent = ({
   message,
   onSkip,
   asModal,
 }: {
-  message: string;
+  message?: string;
   onSkip?: () => void;
   asModal?: boolean;
 }) => {
+  const t = useTranslations('requiresAuth');
+
   return (
     <div
       className={`flex items-center justify-center gradient-background px-4 w-full ${
@@ -25,7 +28,7 @@ export const RequiresAuthContent = ({
           <div className="relative h-[100px] w-[100px] content-center items-center justify-center flex">
             <img
               src={'/images/key-illustration.svg'}
-              alt="Sign in required"
+              alt={t('signInRequired')}
               className="w-full h-full object-contain"
             />
           </div>
@@ -33,11 +36,11 @@ export const RequiresAuthContent = ({
           {/* Content */}
           <div className="flex flex-col gap-4 items-center w-full">
             <h2 className="font-bold text-2xl text-[#20202b] text-center tracking-[-0.1px] leading-[1.2] w-full">
-              Sign in required
+              {t('signInRequired')}
             </h2>
             <div className="flex flex-col gap-3 items-start w-full">
               <p className="font-normal text-base text-[#353548] text-center tracking-[-0.1px] leading-[1.3] w-full">
-                {message || 'To access this page, sign in to your account.'}
+                {message || t('defaultMessage')}
               </p>
             </div>
 
@@ -45,7 +48,7 @@ export const RequiresAuthContent = ({
             <Link href="/onboarding" className="w-full">
               <button className="bg-[#0073de] w-full flex gap-2 items-center justify-center px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] cursor-pointer hover:bg-[#0060c0] transition-colors">
                 <span className="font-bold text-base text-center text-white">
-                  Sign in
+                  {t('signIn')}
                 </span>
               </button>
             </Link>
@@ -55,7 +58,7 @@ export const RequiresAuthContent = ({
                 onClick={onSkip}
                 className="text-[#0073de] text-sm font-medium underline cursor-pointer"
               >
-                Skip
+                {t('skip')}
               </button>
             )}
           </div>

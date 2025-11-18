@@ -24,6 +24,7 @@ import {
 } from 'lib/components/ui/dialog';
 import Loader from '@/components/Loader';
 import { useUserData } from '@/hooks/useServerData';
+import { useTranslations } from 'next-intl';
 
 // Additional types not in store
 interface Addon {
@@ -45,9 +46,10 @@ const TicketWrapper = () => {
 };
 
 const QRCodeBox = () => {
+  const t = useTranslations('tickets');
   return (
     <div className="flex gap-2 p-1 items-center bg-white border border-solid border-gray-200">
-      <Icon path={mdiQrcode} size={0.95} /> QR CODE
+      <Icon path={mdiQrcode} size={0.95} /> {t('qrCode')}
     </div>
   );
 };
@@ -102,6 +104,7 @@ const SwagItems = ({
 };
 
 const ConnectedEmails = () => {
+  const t = useTranslations('tickets');
   // const additionalTicketEmails = useAdditionalTicketEmails();
   // const setUserData = useGlobalStore((state) => state.setUserData);
   const email = useGlobalStore((state) => state.userData?.email);
@@ -134,7 +137,7 @@ const ConnectedEmails = () => {
         >
           <div className="flex flex-col">
             <div className="text-sm font-medium mb-1 select-none">
-              Connected emails ({(additionalTicketEmails.length || 0) + 1})
+              {t('connectedEmails')} ({(additionalTicketEmails.length || 0) + 1})
             </div>
             <div>{email}</div>
             {expanded &&
@@ -191,13 +194,13 @@ const ConnectedEmails = () => {
               >
                 <Mail className="w-4 h-4" />
                 {loadingAdditionalEmail
-                  ? 'Sending...'
-                  : 'Got tickets on another email?'}
+                  ? t('sending')
+                  : t('addEmail')}
               </button>
               {checkYourEmail && (
                 <div className="text-sm text-gray-800 text-center mt-6 flex flex-col items-center w-full">
                   <div className="text-xs">
-                    We sent a code to:{' '}
+                    {t('weSentCodeTo')}{' '}
                     <span className="font-bold">{checkYourEmail}</span>
                   </div>
                   <input
@@ -226,7 +229,7 @@ const ConnectedEmails = () => {
                       );
 
                       if (response.success) {
-                        toast.success('Email verified successfully!');
+                        toast.success(t('emailVerifiedSuccessfully'));
                         // await ensureUserData(setUserData);
                         await refreshUserData();
                         setExpanded(false);
@@ -243,7 +246,7 @@ const ConnectedEmails = () => {
                     }}
                   >
                     <LockKeyhole className="w-4 h-4" />
-                    {verifyingCode ? 'Verifying...' : 'Verify code'}{' '}
+                    {verifyingCode ? t('verifying') : t('verifyCode')}{' '}
                     {verificationCode.length !== 6 && '(6 digits required)'}
                   </button>
                 </div>
@@ -431,6 +434,7 @@ const QRCodeModal = ({
 };
 
 const Ticket = ({ ticket, qrCodes }: { ticket: Ticket; qrCodes: QRCodes }) => {
+  const t = useTranslations('tickets');
   const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
 
   return (
@@ -444,9 +448,7 @@ const Ticket = ({ ticket, qrCodes }: { ticket: Ticket; qrCodes: QRCodes }) => {
             </div>
           </div>
 
-          <div className="text-sm mt-1">
-            Ethereum World's Fair <br /> Attendee Ticket
-          </div>
+          <div className="text-sm mt-1" dangerouslySetInnerHTML={{ __html: t.raw('ethereumWorldsFairAttendeeTicket') }} />
         </div>
 
         <img
@@ -476,6 +478,7 @@ const SideEventTickets = ({
   orders: Order[];
   qrCodes: QRCodes;
 }) => {
+  const t = useTranslations('tickets');
   const [dates, setDates] = useState<Moment[]>([
     moment.utc('2025-11-17'),
     moment.utc('2025-11-18'),
@@ -545,7 +548,7 @@ const SideEventTickets = ({
         id="event-tickets"
       ></div>
       <div className="flex flex-col gap-1 mb-3">
-        <div className="text-lg font-semibold">Event Tickets</div>
+        <div className="text-lg font-semibold">{t('eventTickets')}</div>
         <div className="text-sm">
           Entrance tickets for events hosted at La Rural.
         </div>
@@ -580,7 +583,7 @@ const SideEventTickets = ({
             >
               <div className="flex flex-col">
                 <div className="text-sm font-medium mb-1 select-none">
-                  {isToday ? 'Today' : date.format('MMMM D, YYYY')}
+                  {isToday ? t('today') : date.format('MMMM D, YYYY')}
                 </div>
                 <div className="text-xs text-gray-600 select-none">
                   {hasTicketsForDate
@@ -589,9 +592,11 @@ const SideEventTickets = ({
                           (sum, order) => sum + (order.tickets?.length || 0),
                           0
                         );
-                        return `${ticketCount} ticket${ticketCount > 1 ? 's' : ''}`;
+                        return ticketCount > 1
+                          ? t('ticketCountPlural', { count: ticketCount })
+                          : t('ticketCount', { count: ticketCount });
                       })()
-                    : 'You have no tickets for this date'}
+                    : t('noTicketsForDate')}
                 </div>
               </div>
               <ChevronDown
@@ -625,6 +630,7 @@ const SideEventTickets = ({
 };
 
 const TicketTab = RequiresAuthHOC(() => {
+  const t = useTranslations('tickets');
   // Use the tickets hook from store
   const {
     tickets: orders,
@@ -650,7 +656,7 @@ const TicketTab = RequiresAuthHOC(() => {
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <div className="flex flex-col gap-1 order-2 sm:order-1">
               <div className="text-lg font-semibold flex items-center gap-2 justify-between lg:justify-start">
-                Your Devconnect Ticket
+                {t('yourDevconnectTicket')}
                 <button
                   className="text-sm basic-button white-button small-button !gap-1.5 text-gray-600 hover:text-gray-900 flex items-center !p-1 !px-1.5 !h-auto"
                   onClick={async () => {
@@ -662,10 +668,10 @@ const TicketTab = RequiresAuthHOC(() => {
                     await refresh();
                     setLoadingInternal(false);
 
-                    toast.success('Tickets refreshed successfully!');
+                    toast.success(t('ticketsRefreshedSuccessfully'));
                   }}
                 >
-                  <div>Refresh Tickets</div>
+                  <div>{t('refreshTickets')}</div>
                   <RefreshCw
                     className={`w-3.5 h-3.5 ${loadingInternal || loading ? 'animate-spin' : ''}`}
                   />
@@ -674,16 +680,13 @@ const TicketTab = RequiresAuthHOC(() => {
 
               {hasTickets && (
                 <div className="text-sm">
-                  Grants access to La Rural, the Ethereum World’s Fair, and any
-                  included side events for Nov 17–22, 2025.
+                  {t('ticketDescription')}
                 </div>
               )}
 
               {!hasTickets && (
                 <div className="text-sm">
-                  You can load your tickets into the World's Fair app by
-                  connecting the email addresses you used to purchase your
-                  tickets.
+                  {t('loadTicketsDescription')}
                 </div>
               )}
             </div>
@@ -693,13 +696,13 @@ const TicketTab = RequiresAuthHOC(() => {
 
           {isLoading && (
             <div className="my-4">
-              <Loader>Refreshing Tickets...</Loader>
+              <Loader>{t('refreshingTickets')}</Loader>
             </div>
           )}
 
           {!isLoading && !hasTickets && (
             <div className="italic flex flex-col items-center gap-2 mt-6 mb-2 font-medium">
-              No tickets found on your currently connected email address(es).
+              {t('noTicketsFound')}
             </div>
           )}
 
@@ -729,10 +732,9 @@ const TicketTab = RequiresAuthHOC(() => {
 
           {hasTickets && (
             <div className="flex flex-col gap-1 order-2 sm:order-1 mt-8">
-              <div className="text-lg font-semibold">Swag Items</div>
+              <div className="text-lg font-semibold">{t('swagItems')}</div>
               <div className="text-sm">
-                Got swag with your Devconnect ticket? Claim it at the Swag
-                Station using the QR codes below.
+                {t('swagDescription')}
               </div>
             </div>
           )}

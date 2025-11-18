@@ -10,8 +10,10 @@ import PhoneImage from '@/images/announcements/phones.jpg';
 import VoxelImage from '@/images/voxel-car.jpg';
 import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
+import EthCon from '@/images/announcements/ethcon-arg.jpeg';
 import { StaticImageData } from 'next/image';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
+import { useTranslations } from 'next-intl';
 
 // Placeholder images - you can replace these with actual highlight images
 // const PlaceholderImage = '/images/quest-app-showcase.png';
@@ -78,12 +80,19 @@ const HighlightCard = ({
 };
 
 export const Highlights = () => {
+  const t = useTranslations('highlights');
+
   const highlights = [
     {
-      title: 'Ethereum Day - Nov 17th',
+      title: t('ethcon'),
+      to: 'https://ethcon.ar/',
+      description: t('ethconDescription'),
+      image: EthCon,
+    },
+    {
+      title: t('ethereumDay'),
       to: '/stages/xl',
-      description:
-        'The main Ethereum event and official opening of the week. Come early!',
+      description: t('ethereumDayDescription'),
       image: Image6,
     },
 
@@ -96,16 +105,15 @@ export const Highlights = () => {
     // },
 
     {
-      title: 'Install the Devconnect App',
+      title: t('installApp'),
       to: '/wallet',
-      description: `Install the app, claim your perks, and setup your wallets to get started`,
+      description: t('installAppDescription'),
       image: PhoneImage,
     },
     {
-      title: 'Devconnect Perks',
+      title: t('devconnectPerks'),
       to: 'https://devconnect.org/perks',
-      description:
-        'Need an e-sim, a crypto card, cheap accommodation, interesting activations or activities? Check out the perks page.',
+      description: t('devconnectPerksDescription'),
       image: VoxelImage,
     },
     // {
@@ -127,7 +135,7 @@ export const Highlights = () => {
   return (
     <div className="flex flex-col w-screen md:w-auto overflow-hidden md:overflow-visible mb-4 [mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-32px),transparent_100%)]">
       <div className="flex justify-between font-bold border-top mb-3 ml-4">
-        Highlights
+        {t('title')}
       </div>
       <SwipeToScroll>
         <div className="flex no-wrap gap-2 ml-4 pr-4 ">

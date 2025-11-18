@@ -34,14 +34,15 @@ import {
 } from '@/components/EventCTAs';
 // import { QRCodeBox } from '@/app/(page-layout)/tickets/page';
 import { useAccount } from '@getpara/react-sdk';
+import { useTranslations } from 'next-intl';
 
 export const LoopingHeader = () => {
-  // const t = useTranslations();
+  const t = useTranslations('dashboard.header');
   const items = [
-    { label: 'Nov 17 - 22, 2025', icon: CalendarIcon },
-    { label: 'La Rural, Buenos Aires, Argentina', icon: PinIcon },
-    { label: '80+ Applications', icon: PhoneIcon },
-    { label: '40+ Events', icon: CameraIcon },
+    { label: t('dates'), icon: CalendarIcon },
+    { label: t('location'), icon: PinIcon },
+    { label: t('applications'), icon: PhoneIcon },
+    { label: t('events'), icon: CameraIcon },
   ];
 
   return (
@@ -63,6 +64,7 @@ export const LoopingHeader = () => {
 };
 
 export function WelcomeSection() {
+  const t = useTranslations('dashboard.welcome');
   // Get email from localStorage (set during onboarding) - instant, no loading
   const [email] = useLocalStorage('email', '');
   const [ensName] = useLocalStorage('ens_name', '');
@@ -121,11 +123,10 @@ export function WelcomeSection() {
               <Image src={Lock} alt="Lock" className="w-10 shrink-0" />
               <div className="flex flex-col">
                 <div className="font-bold m:text-base leading-tight">
-                  Unlock the Ethereum World's Fair
+                  {t('unlockTitle')}
                 </div>
                 <div className="text-xs">
-                  Log in to sync your event tickets, take part in fun quests,
-                  access exclusive perks, and more!
+                  {t('unlockDescription')}
                 </div>
               </div>
             </div>
@@ -134,7 +135,7 @@ export function WelcomeSection() {
               className="shrink-0 relative flex sm:justify-center sm:items-center"
             >
               <Button color="blue-2" size="sm" className="!py-1 !px-6 w-full">
-                Login
+                {t('loginButton')}
               </Button>
             </Link>
           </div>
@@ -168,6 +169,7 @@ export function WelcomeSection() {
 }
 
 export const PracticalInfo = () => {
+  const t = useTranslations('dashboard.info');
   const [openSection, setOpenSection] = useState<string | null>('essentials');
 
   const sections = [
@@ -227,21 +229,20 @@ export const PracticalInfo = () => {
     // },
     {
       id: 'city',
-      title: 'City Guide 🔖',
+      title: t('cityGuideTitle'),
       content: (
         <div className="text-sm space-y-3">
           <ul className="ml-2 space-y-2 mt-1">
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong> City Guide:</strong> Check out our guide to learn more
-                about{' '}
+                <strong> {t('cityGuideText')}</strong> {t('cityGuideDescription')}{' '}
                 <Link
                   href="https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  navigating Buenos Aires
+                  {t('cityGuideLinkText')}
                 </Link>
               </div>
             </li>
@@ -251,21 +252,21 @@ export const PracticalInfo = () => {
     },
     {
       id: 'perks',
-      title: 'Perks 🎁',
+      title: t('perksTitle'),
       content: (
         <div className="text-sm space-y-3">
           <ul className="ml-2 space-y-2 mt-1">
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong> Attendee Perks:</strong> Discover the cool{' '}
+                <strong> {t('perksText')}</strong> {t('perksDescription')}{' '}
                 <Link
                   href="https://devconnect.org/perks"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  Perks you can claim
+                  {t('perksLinkText')}
                 </Link>{' '}
-                with your Devconnect ticket
+                {t('perksWithTicket')}
               </div>
             </li>
           </ul>
@@ -274,59 +275,59 @@ export const PracticalInfo = () => {
     },
     {
       id: 'community',
-      title: 'Community 🌍',
+      title: t('communityTitle'),
       content: (
         <div className="text-sm space-y-3">
           <ul className="ml-2 space-y-2 mt-1">
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Prove your ticket ownership and join the{' '}
+                {t('communityTelegram')}{' '}
                 <Link
                   href="https://t.me/DevconPodBot?text=%2Fstart"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  Official Devconnect Telegram
+                  {t('communityTelegramLink')}
                 </Link>
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Follow us{' '}
+                {t('communityFollowTwitter')}{' '}
                 <Link
                   href="https://x.com/efdevcon"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  on Twitter
+                  {t('communityTwitterLink')}
                 </Link>
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Follow us{' '}
+                {t('communityFollowInstagram')}{' '}
                 <Link
                   href="https://www.instagram.com/efdevcon/#"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  on Instagram
+                  {t('communityInstagramLink')}
                 </Link>
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Follow us{' '}
+                {t('communityFollowFarcaster')}{' '}
                 <Link
                   href="https://farcaster.xyz/efdevconnect"
                   target="_blank"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  on Farcaster
+                  {t('communityFarcasterLink')}
                 </Link>
               </div>
             </li>
@@ -336,54 +337,52 @@ export const PracticalInfo = () => {
     },
     {
       id: 'safety',
-      title: 'Safety & Conduct ⚠️',
+      title: t('safetyTitle'),
       content: (
         <div className="text-sm space-y-3">
           <ul className="ml-2 space-y-2 mt-1">
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong>In Emergency:</strong> reach out immediately to the
-                closest Security Staff, Volunteer or Devconnect Staff.
+                <strong>{t('safetyEmergency')}</strong> {t('safetyEmergencyText')}
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                In case of conflict, harassment or danger, please report it to
-                the{' '}
+                {t('safetyIncidentText')}{' '}
                 <Link
                   href="https://app.formbricks.com/s/cmhpckiio00q5ad01s1g0r1jp"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Devconnect Arg Incident Report Form
+                  {t('safetyIncidentLink')}
                 </Link>
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Reach out to{' '}
+                {t('safetyEmailText')}{' '}
                 <Link
                   href="mailto:emergency@devconnect.org"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
                   emergency@devconnect.org
                 </Link>{' '}
-                if needed.
+                {t('safetyEmailIfNeeded')}
               </div>
             </li>
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                Familiarize yourself with our{' '}
+                {t('safetyCodeText')}{' '}
                 <Link
                   href="https://devconnect.org/devconnect-code-of-conduct.pdf"
                   className="text-[rgba(0,115,222,1)] font-semibold"
                 >
-                  Code of Conduct
+                  {t('safetyCodeLink')}
                 </Link>{' '}
                 .
               </div>
@@ -396,66 +395,59 @@ export const PracticalInfo = () => {
 
   return (
     <div className="flex flex-col items-start justify-start bg-white border mx-4 border-[rgba(234,234,234,1)] mt-4">
-      <h2 className="font-bold p-4 pb-0">Event information</h2>
+      <h2 className="font-bold p-4 pb-0">{t('title')}</h2>
 
       <div className="p-4 mx-4 my-2 mb-0 grow self-stretch bg-[#EAF4FB]">
         <div className="flex flex-col lg:flex-row lg:gap-24">
           {/* left col on desktop, top on mobile */}
           <div className="flex flex-col gap-1 lg:flex-1 lg:gap-0.5 text-sm">
-            <span className="font-semibold mb-1">Venue Opening Hours</span>
+            <span className="font-semibold mb-1">{t('venueHours')}</span>
             <div className="text-sm flex flex-col gap-0.5">
               <div className="flex items-center justify-between ">
-                <span className="font-semibold">Pre-registration:</span>
-                <span className="">Nov 16, 10:00 - 18:00</span>
+                <span className="font-semibold">{t('preRegistration')}</span>
+                <span className="">{t('preRegistrationTime')}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-semibold">First day:</span>
-                <span className="">Nov 17, 8:30 - 18:00</span>
+                <span className="font-semibold">{t('firstDay')}</span>
+                <span className="">{t('firstDayTime')}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="font-semibold">Other days:</span>
-                <span className="">9:00 - 18:00</span>
+                <span className="font-semibold">{t('otherDays')}</span>
+                <span className="">{t('otherDaysTime')}</span>
               </div>
             </div>
 
             <Separator className="mb-3 mt-2 w-full" />
 
             <div className="flex justify-between items-center">
-              <span className="font-semibold">Venue Address:</span>
+              <span className="font-semibold">{t('venueAddress')}</span>
               <Link
                 target="_blank"
                 href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
                 className="text-sm text-[rgba(0,115,222,1)] font-semibold"
               >
-                <span>View on map</span>
+                <span>{t('viewOnMap')}</span>
               </Link>
             </div>
 
             <div className="flex justify-between items-center group">
-              <span className="font-semibold">Wi-Fi:</span>
+              <span className="font-semibold">{t('wifi')}</span>
               <div
-                // onClick={() => {
-                //   navigator.clipboard.writeText('Bring Argentina');
-                //   toast('Copied wifi name to clipboard', {
-                //     position: 'bottom-center',
-                //   });
-                // }}
                 className="text-sm flex items-center gap-1"
               >
-                <span>Bring Argentina</span>
-                {/* <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" /> */}
+                <span>{t('wifiName')}</span>
               </div>
             </div>
             <div className="flex justify-between items-center group">
-              <span className="font-semibold">Wi-Fi Password:</span>
+              <span className="font-semibold">{t('wifiPassword')}</span>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText('onchain25');
-                  toast('Copied wifi password to clipboard');
+                  navigator.clipboard.writeText(t('wifiPasswordValue'));
+                  toast(t('copiedWifiPassword'));
                 }}
                 className="text-sm flex items-center gap-1 text-[rgba(0,115,222,1)] hover:text-[rgba(0,115,222,1)] cursor-pointer"
               >
-                <span className="font-semibold">onchain25</span>
+                <span className="font-semibold">{t('wifiPasswordValue')}</span>
                 <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
               </button>
             </div>
@@ -465,18 +457,8 @@ export const PracticalInfo = () => {
 
           {/* right col on desktop, below on mobile */}
           <div className="flex flex-col mt-4 lg:mt-0 text-sm lg:flex-1">
-            <span className="font-semibold mb-1">Need help?</span>
-            {/* <span>
-              Find quick answers in our Support FAQ, or speak with us at the{' '}
-              <Link
-                href="/map?filter=onboarding"
-                className="text-[rgba(0,115,222,1)] font-semibold "
-              >
-                Onboarding Area
-              </Link>
-              .
-            </span> */}
-            <span>Find quick answers in our Support FAQ.</span>
+            <span className="font-semibold mb-1">{t('needHelp')}</span>
+            <span>{t('needHelpDescription')}</span>
 
             <Link
               target="_blank"
@@ -484,7 +466,7 @@ export const PracticalInfo = () => {
               className="mt-3"
             >
               <Button size="sm" className="w-full font-medium" color="blue-2">
-                View Support FAQ
+                {t('viewSupportFAQ')}
               </Button>
             </Link>
             {/* <span>
@@ -534,6 +516,7 @@ export const PracticalInfo = () => {
 // const devconnectMoment = moment.utc('2025-11-17 20:30:00').subtract(3, 'hours');
 
 export const TodaysSchedule = withParcnetProvider(() => {
+  const t = useTranslations('dashboard.schedule');
   const { email } = useUserDataSWR();
   const events = useEvents();
   const [favorites] = useFavorites();
@@ -608,12 +591,10 @@ export const TodaysSchedule = withParcnetProvider(() => {
       <div className="flex w-full items-center justify-between gap-2 shrink-0 mb-1">
         <div className="flex flex-col">
           <div className="font-bold text-base mb-1">
-            My Events {/* - {moment().format('dddd, D MMMM')} */}
+            {t('title')}
           </div>
           <p className="text-sm mb-2 shrink-0">
-            These are your recommended events based on your favorites and
-            tickets connected in the app. Build your own schedule by adding
-            events to your favorites.
+            {t('description')}
           </p>
         </div>
         <Link
@@ -621,7 +602,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
           className="w-full md:w-auto shrink-0 hidden md:block"
         >
           <Button size="sm" className="w-full font-medium px-5" color="white-2">
-            View Full Schedule
+            {t('viewFullSchedule')}
           </Button>
         </Link>
       </div>
@@ -704,7 +685,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
       <div className="flex flex-col md:hidden items-center justify-center w-full shrink-0 mt-4 gap-4">
         <Link href="/schedule" className="w-full md:w-auto self-start shrink-0">
           <Button size="sm" className="w-full font-medium px-8" color="white-2">
-            View Full Schedule
+            {t('viewFullSchedule')}
           </Button>
         </Link>
 

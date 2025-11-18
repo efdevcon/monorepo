@@ -3,8 +3,10 @@ import { useUser } from '@/hooks/useUser';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
+import { useTranslations } from 'next-intl';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
+  const t = useTranslations('auth');
   const { user, loading, error, hasInitialized, sendOtp, verifyOtp } =
     useUser();
   const [email, setEmail] = useLocalStorage(
@@ -53,7 +55,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
           {/* Main border with shadow */}
           <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
           <h1 className="text-[#36364c] text-[24px] font-bold text-center">
-            Account Login
+            {t('title')}
           </h1>
           {/* Email Input */}
           <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
@@ -74,7 +76,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
               </div>
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t('emailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
@@ -92,7 +94,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
               className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                Send OTP
+                {t('sendOtp')}
               </span>
             </button>
           ) : (
@@ -115,7 +117,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
                   </div>
                   <input
                     type="text"
-                    placeholder="Enter 6-digit OTP"
+                    placeholder={t('otpPlaceholder')}
                     value={otp}
                     onChange={(e) =>
                       setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))
@@ -134,7 +136,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
                 className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                  Verify OTP
+                  {t('verifyOtp')}
                 </span>
               </button>
 
@@ -146,7 +148,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
                 className="bg-white flex flex-row gap-2 items-center justify-center p-[12px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_2px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors"
               >
                 <span className="font-bold text-[#36364c] text-[14px] text-center tracking-[-0.1px] leading-none">
-                  Resend OTP
+                  {t('resendOtp')}
                 </span>
               </button>
 
@@ -158,7 +160,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
                 }}
                 className="font-bold text-[#1b6fae] text-[14px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
               >
-                Back to email
+                {t('backToEmail')}
               </button>
             </>
           )}
@@ -172,7 +174,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
                 router.push('/');
               }}
             >
-              Skip for now
+              {t('skipForNow')}
             </button>{' '}
           </div>
         </div>

@@ -26,6 +26,7 @@ import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
 import Link from 'next/link';
 import Icon from '@mdi/react';
 import { mdiExportVariant } from '@mdi/js';
+import { useTranslations } from 'next-intl';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -70,6 +71,7 @@ export function useOnboardingLoading() {
 }
 
 export default function Onboarding({ onConnect }: OnboardingProps) {
+  const t = useTranslations('onboarding');
   const { open } = useAppKit();
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut, sendOtp, verifyOtp, loading, error } = useUser();
@@ -1279,7 +1281,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
                     >
                       <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                        Connect Wallet
+                        {t('connectWallet')}
                       </span>
                     </button>
                   )}
@@ -1289,10 +1291,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 {otpVerified && (
                   <div className="flex flex-col gap-[5px] items-center justify-start text-center w-full">
                     <div className="font-normal text-[#16a34a] text-[14px] w-full">
-                      ✓ Email verified successfully!
+                      {t('emailVerifiedSuccessfully')}
                     </div>
                     <div className="font-normal text-[#4b4b66] text-[12px] w-full">
-                      Now connect your wallet to continue
+                      {t('nowConnectWallet')}
                     </div>
                   </div>
                 )}
@@ -1319,7 +1321,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     onClick={handleBackToWallet}
                     className="font-bold text-[#0073de] text-[14px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
                   >
-                    Back to wallet connection
+                    {t('backToWalletConnection')}
                   </button>
                 )}
 
@@ -1665,7 +1667,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       className="bg-[#0073de] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                        {isVerifyingNewAccount ? 'Verifying...' : 'Verify Code'}
+                        {isVerifyingNewAccount ? t('verifying') : t('verifyCode')}
                       </span>
                     </button>
 
@@ -1754,7 +1756,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
               {/* Title centered */}
               <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px] mb-6">
-                {authState.stage === 'signup' ? 'Create Account' : 'Sign In'}
+                {authState.stage === 'signup' ? t('createAccount') : t('signIn')}
               </div>
 
               {/* Method selection */}
@@ -1767,10 +1769,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   >
                     <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                       {isWaitingForLogin || isWaitingForWalletCreation
-                        ? 'Setting up...'
+                        ? t('settingUp')
                         : authState.stage === 'login'
-                          ? 'Login with Passkey'
-                          : 'Signup with Passkey'}
+                          ? t('loginWithPasskey')
+                          : t('signupWithPasskey')}
                     </span>
                   </button>
                 )}
@@ -1783,10 +1785,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   >
                     <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
                       {isWaitingForLogin || isWaitingForWalletCreation
-                        ? 'Setting up...'
+                        ? t('settingUp')
                         : authState.stage === 'login'
-                          ? 'Login with Password'
-                          : 'Signup with Password'}
+                          ? t('loginWithPassword')
+                          : t('signupWithPassword')}
                     </span>
                   </button>
                 )}
@@ -1799,10 +1801,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   >
                     <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
                       {isWaitingForLogin || isWaitingForWalletCreation
-                        ? 'Setting up...'
+                        ? t('settingUp')
                         : authState.stage === 'login'
-                          ? 'Login with PIN'
-                          : 'Signup with PIN'}
+                          ? t('loginWithPin')
+                          : t('signupWithPin')}
                     </span>
                   </button>
                 )}
@@ -1845,18 +1847,17 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           <div className="flex flex-col gap-0 items-start justify-start p-0 relative w-full">
             {/* Header */}
             <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3] mb-4">
-              Let's get set up
+              {t('letsGetSetUp')}
             </h1>
 
             {/* First, enter your email address */}
             <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
               <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
                 <h2 className="font-normal text-[16px] tracking-[-0.1px] w-full leading-[1.3]">
-                  Import your event tickets, enable easy crypto payments, and
-                  take part in quests.
+                  {t('importTicketsDescription')}
                 </h2>
                 <p className="font-normal text-[16px] w-full leading-[1.3]">
-                  Use the email you used to order your ticket for instant setup.
+                  {t('useEmailForSetup')}
                 </p>
               </div>
 
@@ -1883,7 +1884,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   </div>
                   <input
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder={t('emailPlaceholder') || 'Enter your email'}
                     value={mounted ? email : ''}
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={(e) => {
@@ -1950,8 +1951,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               >
                 <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                   {isSigningUpOrLoggingIn
-                    ? 'Sending...'
-                    : 'Continue with Email'}
+                    ? t('sending')
+                    : t('continueWithEmail')}
                 </span>
               </button>
 
@@ -1966,7 +1967,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
               {/* Wallet creation text */}
               <p className="font-normal text-[#4b4b66] text-[12px] text-center w-full leading-[1.3]">
-                A wallet will be created for you during setup
+                {t('walletWillBeCreated')}
               </p>
 
               {!EOA_FLOW && renderFooter()}
@@ -1984,7 +1985,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   }
                 >
                   <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
-                    Continue with External Wallet
+                    {t('continueWithExternalWallet')}
                   </span>
                 </button>
               )}
@@ -2015,7 +2016,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               onClick={handleSkip}
               className="font-bold text-[#0073de] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-4"
             >
-              Skip for now
+              {t('skipForNow')}
             </button>
 
             {/* Logout Button - Only show when user is logged in */}

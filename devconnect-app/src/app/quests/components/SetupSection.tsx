@@ -3,6 +3,7 @@
 import React, { forwardRef } from 'react';
 import type { Quest } from '@/types';
 import QuestCard from './QuestCard';
+import { useTranslations } from 'next-intl';
 
 interface SetupSectionProps {
   setupQuests: Quest[];
@@ -35,6 +36,8 @@ const SetupSection = forwardRef<HTMLDivElement, SetupSectionProps>(
     },
     ref
   ) => {
+    const t = useTranslations('quests.setupSection');
+
     return (
       <div id="setup-section" ref={ref} className="bg-[#cbdfec] w-full">
         {/* Setup Section Header - Clickable */}
@@ -45,7 +48,7 @@ const SetupSection = forwardRef<HTMLDivElement, SetupSectionProps>(
           <div className="flex gap-3 items-center w-full">
             <div className="flex-1 flex flex-col gap-2">
               <h3 className="text-[20px] font-bold text-[#20202b] tracking-[-0.1px] leading-none">
-                Setup & app tour
+                {t('title')}
               </h3>
               <div className="flex flex-col gap-2 w-full">
                 <p
@@ -53,8 +56,8 @@ const SetupSection = forwardRef<HTMLDivElement, SetupSectionProps>(
                   style={{ fontFamily: 'Roboto Mono, monospace' }}
                 >
                   {progress.completed === progress.total
-                    ? 'Completed 🥳'
-                    : `${progress.completed}/${progress.total} completed`}
+                    ? t('completed')
+                    : t('progress', { completed: progress.completed, total: progress.total })}
                 </p>
                 <div className="w-full h-[6px] bg-white overflow-hidden rounded-full">
                   <div

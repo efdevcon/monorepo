@@ -3,6 +3,7 @@
 import React, { forwardRef } from 'react';
 import type { Quest } from '@/types';
 import QuestCard from './QuestCard';
+import { useTranslations } from 'next-intl';
 
 interface District {
   id: string;
@@ -49,6 +50,8 @@ const DistrictSection = forwardRef<HTMLDivElement, DistrictSectionProps>(
     },
     ref
   ) => {
+    const t = useTranslations('quests.districtSection');
+
     return (
       <div
         id={`district-${district.id}`}
@@ -86,8 +89,8 @@ const DistrictSection = forwardRef<HTMLDivElement, DistrictSectionProps>(
                   style={{ fontFamily: 'Roboto Mono, monospace' }}
                 >
                   {progress.completed === progress.total
-                    ? 'Completed 🥳'
-                    : `${progress.completed}/${progress.total} completed`}
+                    ? t('completed')
+                    : t('progress', { completed: progress.completed, total: progress.total })}
                 </p>
                 <div className="w-full h-[6px] bg-[#f6fafe] rounded-full overflow-hidden">
                   <div

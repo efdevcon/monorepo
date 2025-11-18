@@ -127,6 +127,7 @@ const Tabs = React.memo(
     onTabClick,
     className,
   }: TabsProps) => {
+    const t = useTranslations('navigation');
     const router = useRouter();
     const pathname = usePathname();
     const announcements = useAnnouncements(true);
@@ -134,6 +135,20 @@ const Tabs = React.memo(
     const numberUnseenAnnouncements = announcements.filter(
       (announcement) => !announcement.seen
     ).length;
+
+    const getTranslatedLabel = (label: string) => {
+      const labelMap: Record<string, string> = {
+        "Home": t('home'),
+        "Schedule": t('schedule'),
+        "Stages": t('stages'),
+        "Tickets": t('tickets'),
+        "Announcements": t('announcements'),
+        "Wallet": t('wallet'),
+        "Stampbook": t('stampbook'),
+        "Settings": t('settings'),
+      };
+      return labelMap[label] || label;
+    };
 
     const handleTabClick = (tab: TabItem, idx: number) => {
       triggerHaptic(200);
@@ -196,7 +211,7 @@ const Tabs = React.memo(
                   {tab.labelIcon && (
                     <tab.labelIcon color={isActive ? '#165a8d' : '#4b4b66'} />
                   )}
-                  {tab.label}{' '}
+                  {getTranslatedLabel(tab.label)}{' '}
                   {numberUnseenAnnouncements > 0 &&
                     tab.href === '/announcements' &&
                     `(${numberUnseenAnnouncements})`}
@@ -245,6 +260,7 @@ const PageLayout = React.memo(function PageLayout({
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showNeedHelpModal, setShowNeedHelpModal] = useState(false);
   const t = useTranslations();
+  const tLayout = useTranslations('pageLayout');
 
   // Check if return query parameter is true, if so treat it like hasBackButton
   const shouldShowBackButton =
@@ -597,11 +613,10 @@ const PageLayout = React.memo(function PageLayout({
               {/* Content */}
               <div className="mb-4">
                 <h3 className="text-[#20202b] text-lg font-bold mb-2">
-                  Need help?
+                  {tLayout('needHelp')}
                 </h3>
                 <p className="text-[#353548] text-sm md:text-base leading-[1.3]">
-                  Find quick answers in our Support FAQ, or tell us if
-                  something's not working quite right.
+                  {tLayout('needHelpDescription')}
                 </p>
               </div>
 
@@ -616,7 +631,7 @@ const PageLayout = React.memo(function PageLayout({
                   className="w-full md:order-2 bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
                 >
                   <span className="text-white text-base font-bold">
-                    Support FAQ
+                    {tLayout('supportFAQ')}
                   </span>
                   <Icon
                     path={mdiArrowRight}
@@ -634,7 +649,7 @@ const PageLayout = React.memo(function PageLayout({
                   className="w-full md:order-1 bg-[#eaf3fa] hover:bg-[#d8ebf7] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] flex items-center justify-center gap-2 transition-colors"
                 >
                   <span className="text-[#44445d] text-base font-bold">
-                    Send feedback
+                    {tLayout('sendFeedback')}
                   </span>
                   <Icon
                     path={mdiArrowRight}
