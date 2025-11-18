@@ -9,6 +9,8 @@ import { Search } from 'lucide-react';
 import { useWallet } from '@/context/WalletContext';
 import { PAYMENT_CONFIG } from '@/config/config';
 import { MERCHANTS } from '@/config/merchants';
+import { internalDebuging } from '@/utils/auth';
+import { useAccount } from '@getpara/react-sdk';
 
 interface PaymentRequest {
   id: string;
@@ -55,6 +57,8 @@ export default function ScanPage() {
   const [merchantPaymentError, setMerchantPaymentError] = useState<
     string | null
   >(null);
+  const paraAccount = useAccount();
+  const paraEmail = (paraAccount as any)?.embedded?.email || null;
 
   // Function to handle manual payment request ID submission
   const handleManualPaymentRequest = async () => {
@@ -189,15 +193,24 @@ export default function ScanPage() {
                   <option value="" className="text-[#868698]">
                     Select merchant
                   </option>
-                  {Object.values(MERCHANTS).map((merchant) => (
-                    <option
-                      key={merchant.id}
-                      value={merchant.id}
-                      className="text-[#353548]"
-                    >
-                      [{merchant.posNumber}] {merchant.name}
-                    </option>
-                  ))}
+                  {Object.values(MERCHANTS).map((merchant) => {
+                    if (
+                      merchant.id !== 'cafe-cuyo' ||
+                      (internalDebuging(paraEmail) &&
+                        merchant.id === 'cafe-cuyo')
+                    ) {
+                      return (
+                        <option
+                          key={merchant.id}
+                          value={merchant.id}
+                          className="text-[#353548]"
+                        >
+                          {merchant.name}
+                        </option>
+                      );
+                    }
+                    return null;
+                  })}
                 </select>
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
                   <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">

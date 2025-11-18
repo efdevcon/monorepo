@@ -5,11 +5,11 @@ export interface Merchant {
 }
 
 export const MERCHANTS: Record<string, Merchant> = {
-  // '6603276727aaa6386588474d': {
-  //   posNumber: '0',
-  //   id: 'cafe-cuyo',
-  //   name: 'Cafe Cuyo (Testing)',
-  // },
+  '6603276727aaa6386588474d': {
+    posNumber: '0',
+    id: 'cafe-cuyo',
+    name: 'Cafe Cuyo (Testing)',
+  },
   // '6911fb470ce6a7a6a3c721d7': {
   //   posNumber: '1',
   //   id: 'barreto',
