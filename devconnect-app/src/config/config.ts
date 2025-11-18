@@ -65,3 +65,6 @@ export const HEIGHT_HEADER = 52; // Displays page title
 export const HEIGHT_HEADER_TABS = 48; // HEIGHT_HEADER + HEIGHT_HEADER_TABS = 100
 export const HEIGHT_HEADER_PWA_DIFF = -12; // in PWA we remove the top padding of 12px
 export const HEIGHT_MENU = 59;
+
+export const PAYMENT_RELAYER = '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD';
+export const SEND_RELAYER = '0xf1e26ea8b039F4f6440494D448bd817A55137F9c';

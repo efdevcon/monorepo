@@ -4,8 +4,7 @@ import { createServerClient } from '../supabaseServerClient';
 import { ethers } from 'ethers';
 
 // Relayer addresses
-const PAYMENT_RELAYER = '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD';
-const SEND_RELAYER = '0xf1e26ea8b039F4f6440494D448bd817A55137F9c';
+import { PAYMENT_RELAYER, SEND_RELAYER } from '@/config/config';
 
 // Worldfare.eth domains contract on Base
 const WORLDFARE_CONTRACT = '0xd6a7dcdee200fa37f149323c0ad6b3698aa0e829';

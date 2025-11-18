@@ -3,6 +3,7 @@ import { chains, convertNetworkToChainId } from '@/config/networks';
 import { ENTRYPOINT_ADDRESS } from '@/config/config';
 import { createServerClient } from '../auth/supabaseServerClient';
 import peanut from '@squirrel-labs/peanut-sdk';
+import { PAYMENT_RELAYER, SEND_RELAYER } from '@/config/config';
 
 const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
@@ -218,10 +219,81 @@ export async function POST(request: NextRequest) {
 
     const activityResult = await activityResponse.json();
 
+    // Helper function to get actual sender/receiver from Alchemy for sponsored transactions
+    const getTransactionDetails = async (txHash: string, chainId: number) => {
+      try {
+        // Only fetch for Base chain (8453) where our relayers operate
+        if (chainId !== 8453) return null;
+
+        const rpcUrl = process.env.ALCHEMY_RPC_URL || 'https://mainnet.base.org';
+        
+        const response = await fetch(rpcUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            id: 1,
+            method: 'eth_getTransactionByHash',
+            params: [txHash],
+          }),
+        });
+
+        const data = await response.json();
+        
+        if (data.result && data.result.input) {
+          const input = data.result.input;
+
+          // Parse USDC transfer data from transaction input
+          // transfer(address,uint256) = 0xa9059cbb
+          // transferFrom(address,address,uint256) = 0x23b872dd
+          // receiveWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32) = 0xe3ee160e
+
+          if (input.startsWith('0xa9059cbb')) {
+            // transfer(address to, uint256 amount)
+            const toAddress = '0x' + input.slice(34, 74);
+            return {
+              from: data.result.from.toLowerCase(),
+              to: toAddress.toLowerCase(),
+            };
+          } else if (input.startsWith('0x23b872dd')) {
+            // transferFrom(address from, address to, uint256 amount)
+            const fromAddress = '0x' + input.slice(34, 74);
+            const toAddress = '0x' + input.slice(74, 114);
+            return {
+              from: fromAddress.toLowerCase(),
+              to: toAddress.toLowerCase(),
+            };
+          } else if (input.startsWith('0xe3ee160e')) {
+            // receiveWithAuthorization(address from, address to, uint256 value, ...)
+            // NOTE: Despite the name "receive", the first param is the sender (from) and second is receiver (to)
+            // Each parameter is 32 bytes (64 hex chars), addresses are right-aligned
+            // First param (from/sender): starts at position 10, is 64 hex chars, address is last 40
+            // Second param (to/receiver): starts at position 74, is 64 hex chars, address is last 40
+            
+            const fromAddressParam = input.slice(10, 74); // 64 chars - first param (sender)
+            const toAddressParam = input.slice(74, 138); // 64 chars - second param (receiver)
+            
+            // Extract last 40 chars (20 bytes) as the actual address
+            const fromAddress = '0x' + fromAddressParam.slice(-40);
+            const toAddress = '0x' + toAddressParam.slice(-40);
+            
+            return {
+              from: fromAddress.toLowerCase(),
+              to: toAddress.toLowerCase(),
+            };
+          }
+        }
+        return null;
+      } catch (error) {
+        console.error('Error fetching transaction details from Alchemy:', error);
+        return null;
+      }
+    };
 
     // Process the transaction data to create descriptions and apply the "Received" to "Sent" replacement
     if (activityResult.data?.transactionHistoryV2?.edges) {
-      activityResult.data.transactionHistoryV2.edges.forEach((edge: any) => {
+      // Use for...of to support async operations
+      for (const edge of activityResult.data.transactionHistoryV2.edges) {
         const node = edge.node;
 
         // Create description from the transaction data using fungibleDeltas (if available)
@@ -230,17 +302,58 @@ export async function POST(request: NextRequest) {
           const symbol = tokenInfo.token?.symbol || 'Unknown Token';
           const amount = Math.abs(tokenInfo.amount);
 
-          // Check if this is a sponsored transaction (to EntryPoint)
-          if (node.subject?.toLowerCase() === address.toLowerCase() && node.to?.address?.toLowerCase() === ENTRYPOINT_ADDRESS.toLowerCase()) {
-            // This is a sponsored send transaction
+          // Check if this is a sponsored transaction (from payment or send relayer)
+          const isFromSendRelayer = node.from?.address?.toLowerCase() === SEND_RELAYER.toLowerCase();
+          const isFromPaymentRelayer = node.from?.address?.toLowerCase() === PAYMENT_RELAYER.toLowerCase();
+          const isUserSubject = node.subject?.toLowerCase() === address.toLowerCase();
+          const isUserSender = node.from?.address?.toLowerCase() === address.toLowerCase();
+
+          if (isFromSendRelayer && isUserSubject) {
+            // This is a SEND RELAYER sponsored transaction - need to check actual tx data from Alchemy
+            const hash = node.transactionHash || node.transaction?.hash;
+            const networkValue = node.transaction?.network || node.networkObject?.chainId || node.network;
+            const chainId = convertNetworkToChainId(networkValue);
+
+            const txDetails = await getTransactionDetails(hash, chainId);
+
+            if (txDetails) {
+              // Use Alchemy data to determine actual sender/receiver
+              const userAddress = address.toLowerCase();
+              const isActualSender = txDetails.from === userAddress;
+              const isActualReceiver = txDetails.to === userAddress;
+
+              if (isActualSender) {
+                node.interpretation = {
+                  processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
+                };
+              } else if (isActualReceiver) {
+                node.interpretation = {
+                  processedDescription: `Received ${amount.toFixed(4)} ${symbol}`
+                };
+              } else {
+                // Fallback if user is neither sender nor receiver
+                node.interpretation = {
+                  processedDescription: `${amount.toFixed(4)} ${symbol}`
+                };
+              }
+            } else {
+              // Fallback if we can't get Alchemy data
+              node.interpretation = {
+                processedDescription: `${amount.toFixed(4)} ${symbol}`
+              };
+            }
+          } else if (isFromPaymentRelayer && isUserSubject) {
+            // Payment relayer - user is receiving a payment
             node.interpretation = {
               processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
             };
-          } else if (node.from?.address?.toLowerCase() === address.toLowerCase()) {
+          } else if (isUserSender) {
+            // User sent directly (not sponsored)
             node.interpretation = {
               processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
             };
           } else {
+            // User received
             node.interpretation = {
               processedDescription: `Received ${amount.toFixed(4)} ${symbol}`
             };
@@ -271,7 +384,7 @@ export async function POST(request: NextRequest) {
 
         // Replace the original node with cleaned version
         edge.node = cleanedNode;
-      });
+      }
     }
     // console.log('Processed edges:', activityResult.data?.transactionHistoryV2?.edges);
 
