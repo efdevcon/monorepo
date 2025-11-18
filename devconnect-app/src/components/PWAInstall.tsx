@@ -45,8 +45,8 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose, forceMobile }) => {
   const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    // Never show on /pos route
-    if (pathname === '/pos') {
+    // Never show on /pos route or /merchant/[secret] routes
+    if (pathname === '/pos' || pathname?.startsWith('/merchant/')) {
       return;
     }
     const handleBeforeInstallPrompt = (e: Event) => {
