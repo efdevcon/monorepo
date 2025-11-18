@@ -130,9 +130,7 @@ export const AnnouncementsWrapper = () => {
           <div className="flex justify-between items-center gap-2 font-bold border-top ml-4">
             {t('title')}
           </div>
-          <div className="text-[12px] ml-4 leading-none">
-            {t('fromTeam')}
-          </div>
+          <div className="text-[12px] ml-4 leading-none">{t('fromTeam')}</div>
         </div>
         <Link
           href="/announcements"
@@ -149,7 +147,7 @@ export const AnnouncementsWrapper = () => {
       >
         <SwipeToScroll>
           <div className="flex no-wrap gap-2 ml-4">
-            {announcements.map((announcement, index) => (
+            {announcements.slice(0, 4).map((announcement, index) => (
               <NotificationCard
                 key={announcement.id}
                 title={announcement.title}
