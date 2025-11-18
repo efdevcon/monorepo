@@ -619,10 +619,19 @@ export default function StatsPage() {
                         className="border-b border-gray-100 hover:bg-gray-50"
                       >
                         <td className="py-2 px-3 text-gray-500">{index + 1}</td>
-                        <td className="py-2 px-3 text-gray-900">{drop.name}</td>
+                        <td className="py-2 px-3 text-gray-900">
+                          <a
+                            href={`https://moments.poap.xyz/drops/${drop.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-600 hover:underline font-mono text-xs"
+                          >
+                            {drop.name}
+                          </a>
+                        </td>
                         <td className="py-2 px-3 text-center">
                           <a
-                            href={`https://collectors.poap.xyz/drop/${drop.id}`}
+                            href={`https://poap.gallery/drops/${drop.id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-indigo-600 hover:underline font-mono text-xs"
