@@ -19,6 +19,7 @@ import {
   mdiAccountMultiple,
   mdiChartBar,
   mdiWeb,
+  mdiImageMultiple,
 } from '@mdi/js';
 import {
   BarChart,
@@ -63,7 +64,147 @@ interface StatsData {
         eth_price_usd: number | null;
       }
     | { error: string };
+  quest_completions?: Record<string, number>;
   timestamp: string;
+}
+
+interface POAPDrop {
+  id: number;
+  name: string;
+  mintCount: number;
+  questId?: string;
+  verifiedInApp?: number;
+}
+
+interface POAPMintStats {
+  totalMints: number;
+  drops: POAPDrop[];
+}
+
+// Function to fetch POAP mint statistics for drops from quests
+async function fetchPOAPMintStats(): Promise<POAPMintStats | null> {
+  try {
+    // Fetch quests from the API
+    const questsResponse = await fetch('/api/quests');
+    if (!questsResponse.ok) {
+      console.error(
+        'Failed to fetch quests:',
+        questsResponse.status,
+        questsResponse.statusText
+      );
+      return null;
+    }
+
+    const questsData = await questsResponse.json();
+    if (!questsData.success || !questsData.quests) {
+      console.error('Invalid quests response');
+      return null;
+    }
+
+    // Extract POAP drop IDs from quests where conditionType is "verifyPoap"
+    // Create a map of dropId -> questId for later use
+    const dropIdToQuestId: Record<number, string> = {};
+    const poapDropIds = questsData.quests
+      .filter(
+        (quest: any) =>
+          quest.conditionType === 'verifyPoap' && quest.conditionValues
+      )
+      .map((quest: any) => {
+        const dropId = parseInt(quest.conditionValues);
+        if (!isNaN(dropId)) {
+          dropIdToQuestId[dropId] = quest.id.toString();
+        }
+        return dropId;
+      })
+      .filter((id: number) => !isNaN(id));
+
+    if (poapDropIds.length === 0) {
+      console.log('No POAP drops found in quests');
+      return { totalMints: 0, drops: [] };
+    }
+
+    // Query POAP API for these specific drop IDs
+    const query = `
+      query GetPOAPDrops($ids: [Int!]!) {
+        drops(where: {id: {_in: $ids}}) {
+          id
+          name
+          stats_by_chain_aggregate {
+            aggregate {
+              sum {
+                poap_count
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const variables = {
+      ids: poapDropIds,
+    };
+
+    const response = await fetch(
+      'https://public.compass.poap.tech/v1/graphql',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      console.error(
+        'Failed to fetch POAP mint stats:',
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+
+    const data = await response.json();
+
+    if (data.errors) {
+      console.error('GraphQL errors:', data.errors);
+      return null;
+    }
+
+    // Collect all drops and sum up all the POAP counts
+    let totalMints = 0;
+    const drops: POAPDrop[] = [];
+
+    if (data.data?.drops) {
+      data.data.drops.forEach((drop: any) => {
+        const poapCount =
+          drop?.stats_by_chain_aggregate?.aggregate?.sum?.poap_count || 0;
+
+        if (drop) {
+          // Add to total regardless of count
+          totalMints += poapCount;
+          // Add to array (including 0 count drops to show all quest POAPs)
+          drops.push({
+            id: drop.id,
+            name: drop.name,
+            mintCount: poapCount,
+            questId: dropIdToQuestId[drop.id],
+          });
+        }
+      });
+    }
+
+    return {
+      totalMints,
+      drops,
+    };
+  } catch (error) {
+    console.error('Error fetching POAP mint stats:', error);
+    return null;
+  }
 }
 
 export default function StatsPage() {
@@ -72,6 +213,10 @@ export default function StatsPage() {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [accessDenied, setAccessDenied] = useState(false);
+  const [poapMintStats, setPoapMintStats] = useState<POAPMintStats | null>(
+    null
+  );
+  const [showAllDrops, setShowAllDrops] = useState(false);
 
   const fetchStats = async (isRefresh = false) => {
     if (isRefresh) {
@@ -83,7 +228,11 @@ export default function StatsPage() {
     setAccessDenied(false);
 
     try {
-      const response = await fetchAuth<StatsData>('/api/auth/stats');
+      // Fetch stats and POAP mint count in parallel
+      const [response, poapMints] = await Promise.all([
+        fetchAuth<StatsData>('/api/auth/stats'),
+        fetchPOAPMintStats(),
+      ]);
 
       if (!response.success) {
         // Check if it's an access denied error
@@ -102,6 +251,35 @@ export default function StatsPage() {
 
       if (response.data) {
         setStats(response.data);
+      }
+
+      if (poapMints !== null && response.data) {
+        // Enrich POAP drops with verification counts from quest completions
+        const questCompletions = response.data.quest_completions || {};
+        const enrichedDrops = poapMints.drops.map((drop) => ({
+          ...drop,
+          verifiedInApp:
+            drop.questId && questCompletions[drop.questId]
+              ? questCompletions[drop.questId]
+              : 0,
+        }));
+
+        // Log mapping for debugging
+        console.log('Quest completions:', questCompletions);
+        console.log(
+          'Sample drops with mapping:',
+          enrichedDrops.slice(0, 5).map((d) => ({
+            id: d.id,
+            name: d.name,
+            questId: d.questId,
+            verified: d.verifiedInApp,
+          }))
+        );
+
+        setPoapMintStats({
+          ...poapMints,
+          drops: enrichedDrops,
+        });
       }
     } catch (err) {
       console.error('Error fetching stats:', err);
@@ -365,7 +543,139 @@ export default function StatsPage() {
               </p>
             </div>
           )}
+
+          {/* POAP Mints */}
+          {poapMintStats !== null && (
+            <div className="bg-white rounded-lg shadow-sm p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600 mb-1">
+                    POAP Mints
+                  </p>
+                  <p className="text-3xl font-bold text-indigo-600">
+                    {poapMintStats.totalMints.toLocaleString()}
+                  </p>
+                </div>
+                <div className="p-3 bg-indigo-100 rounded-full">
+                  <Icon path={mdiImageMultiple} size={1.3} color="#4F46E5" />
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                Total POAPs from {poapMintStats.drops.length} quest
+                {poapMintStats.drops.length !== 1 ? 's' : ''}
+              </p>
+            </div>
+          )}
         </div>
+
+        {/* POAP Drops List */}
+        {poapMintStats && poapMintStats.drops.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="flex items-center gap-2 mb-4">
+              <Icon path={mdiImageMultiple} size={0.9} color="#4F46E5" />
+              <h2 className="text-xl font-bold text-gray-900">
+                POAP Stats
+              </h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-4">
+              All POAP drops from Devconnect quests with their mint counts
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      #
+                    </th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      Name
+                    </th>
+                    <th className="text-center py-2 px-3 font-semibold text-gray-900">
+                      Drop ID
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Total Mints
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Verified in App
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(() => {
+                    // Sort drops by mint count (highest first)
+                    const sortedDrops = [...poapMintStats.drops].sort(
+                      (a, b) => b.mintCount - a.mintCount
+                    );
+                    // Show first 10 or all depending on toggle
+                    const dropsToShow = showAllDrops
+                      ? sortedDrops
+                      : sortedDrops.slice(0, 10);
+
+                    return dropsToShow.map((drop, index) => (
+                      <tr
+                        key={drop.id}
+                        className="border-b border-gray-100 hover:bg-gray-50"
+                      >
+                        <td className="py-2 px-3 text-gray-500">{index + 1}</td>
+                        <td className="py-2 px-3 text-gray-900">{drop.name}</td>
+                        <td className="py-2 px-3 text-center">
+                          <a
+                            href={`https://collectors.poap.xyz/drop/${drop.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-600 hover:underline font-mono text-xs"
+                          >
+                            {drop.id}
+                          </a>
+                        </td>
+                        <td className="py-2 px-3 text-right font-semibold text-gray-900">
+                          {drop.mintCount.toLocaleString()}
+                        </td>
+                        <td className="py-2 px-3 text-right font-semibold text-green-600">
+                          {drop.verifiedInApp?.toLocaleString() || '0'}
+                        </td>
+                      </tr>
+                    ));
+                  })()}
+                </tbody>
+                <tfoot>
+                  <tr className="border-t-2 border-gray-300 font-semibold">
+                    <td className="py-2 px-3 text-gray-900" colSpan={3}>
+                      Total
+                    </td>
+                    <td className="py-2 px-3 text-right text-indigo-600">
+                      {poapMintStats.totalMints.toLocaleString()}
+                    </td>
+                    <td className="py-2 px-3 text-right text-green-600">
+                      {poapMintStats.drops
+                        .reduce(
+                          (sum, drop) => sum + (drop.verifiedInApp || 0),
+                          0
+                        )
+                        .toLocaleString()}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            {/* Show More/Less Button */}
+            {poapMintStats.drops.length > 10 && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => setShowAllDrops(!showAllDrops)}
+                  className="px-4 py-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors"
+                >
+                  {showAllDrops
+                    ? `Show Less (Top 10)`
+                    : `Show All ${poapMintStats.drops.length} Drops`}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Hourly User Creation Chart */}
         {stats.hourly_user_creation &&

@@ -254,9 +254,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             onActiveIndexChange={setCurrentStep}
           />
         </div>
-        <div
-          className="flex flex-col items-center relative flex-1 w-[500px] max-w-[calc(100%-32px)] min-h-0"
-        >
+        <div className="flex flex-col items-center relative flex-1 w-[500px] max-w-[calc(100%-32px)] min-h-0 mt-4 sm:mt-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -264,7 +262,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.5 }}
-              className="w-full flex justify-center sm:items-center mt-4 sm:mt-16"
+              className="w-full flex flex-col items-center"
             >
               {steps[currentStep]}
             </motion.div>
@@ -273,7 +271,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
       </div>
 
       {/* Fixed navigation at bottom */}
-      <div 
+      <div
         className="fixed bottom-0 left-0 right-0 px-4 sm:px-16 py-4 bg-gradient-to-t from-white/90 to-transparent backdrop-blur-sm"
         style={{
           paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
