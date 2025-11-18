@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import { QRCodeSVG } from 'qrcode.react';
 import { MERCHANTS, getMerchantById } from '@/config/merchants';
@@ -103,6 +103,9 @@ export default function MerchantPage() {
   const [iframeKey, setIframeKey] = useState<number>(0);
   const [useStatusEndpoint, setUseStatusEndpoint] = useState<boolean>(false);
   
+  // Use ref to track the current payment ID for status polling
+  const currentPaymentIdRef = useRef<string | null>(null);
+  
   const paraAccount = useAccount();
   const paraEmail = (paraAccount as any)?.embedded?.email || null;
 
@@ -146,14 +149,17 @@ export default function MerchantPage() {
 
       if (paymentStatusData && paymentStatusData.id) {
         console.log('Payment status updated:', paymentStatusData.status, 'for payment:', paymentStatusData.id);
-        // Only update the payment request if it matches the current payment ID
+        // Only update the payment request if it matches the current payment ID from ref
+        const isCurrentPayment = currentPaymentIdRef.current === paymentStatusData.id;
+        
+        if (!isCurrentPayment) {
+          console.log('Ignoring status update for old payment:', paymentStatusData.id, 'current:', currentPaymentIdRef.current);
+          return;
+        }
+        
+        // Merge status data with existing payment data
         setPaymentRequest(prev => {
-          // Don't update if this status is for a different payment
-          if (!prev || prev.id !== paymentStatusData.id) {
-            console.log('Ignoring status update for old payment:', paymentStatusData.id, 'current:', prev?.id);
-            return prev;
-          }
-          // Merge status data with existing payment data
+          if (!prev) return paymentStatusData;
           return {
             ...prev,
             ...paymentStatusData,
@@ -210,12 +216,17 @@ export default function MerchantPage() {
 
       if (paymentRequestData && paymentRequestData.id) {
         // Check if this is a new order (different ID)
-        if (paymentRequest?.id && paymentRequestData.id !== paymentRequest.id) {
-          console.log('New order detected! Switching from', paymentRequest.id, 'to', paymentRequestData.id);
+        if (currentPaymentIdRef.current && paymentRequestData.id !== currentPaymentIdRef.current) {
+          console.log('New order detected! Switching from', currentPaymentIdRef.current, 'to', paymentRequestData.id);
           // Reset to using last payment endpoint for the new order
           setUseStatusEndpoint(false);
         }
+        
         console.log('Last payment request loaded:', paymentRequestData.id);
+        
+        // Update the ref with the new payment ID
+        currentPaymentIdRef.current = paymentRequestData.id;
+        
         setPaymentRequest(paymentRequestData);
         
         // Update selected merchant if it's in the payment data and different from current
@@ -255,6 +266,7 @@ export default function MerchantPage() {
     setSelectedMerchant(merchantIdValue);
     // Reset payment state when changing merchants
     setPaymentRequest(null);
+    currentPaymentIdRef.current = null; // Reset ref
     setError(null);
     setUseStatusEndpoint(false);
     
@@ -284,21 +296,19 @@ export default function MerchantPage() {
   useEffect(() => {
     if (!selectedMerchant || !isValidated) return;
 
-    // Capture the current payment ID
-    const currentPaymentId = paymentRequest?.id;
-
     const intervalId = setInterval(() => {
       // Always fetch last payment to detect new orders
       fetchLastPayment(selectedMerchant, false);
       
       // Also fetch payment status if we have a payment ID
-      if (currentPaymentId) {
-        fetchPaymentStatus(currentPaymentId, false);
+      // Use the ref which always has the current value
+      if (currentPaymentIdRef.current) {
+        fetchPaymentStatus(currentPaymentIdRef.current, false);
       }
     }, 2000);
 
     return () => clearInterval(intervalId);
-  }, [selectedMerchant, paymentRequest?.id, isValidated]);
+  }, [selectedMerchant, isValidated]);
 
   // Don't render until validated
   if (!isValidated) {
