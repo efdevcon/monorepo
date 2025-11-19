@@ -2,6 +2,7 @@ export interface Merchant {
   posNumber: string;
   id: string;
   name: string;
+  isPrivate?: boolean;
 }
 
 export const MERCHANTS: Record<string, Merchant> = {
@@ -9,6 +10,7 @@ export const MERCHANTS: Record<string, Merchant> = {
     posNumber: '0',
     id: 'cafe-cuyo',
     name: 'Cafe Cuyo (Testing)',
+    isPrivate: true
   },
   // '6911fb470ce6a7a6a3c721d7': {
   //   posNumber: '1',
@@ -71,11 +73,11 @@ export const MERCHANTS: Record<string, Merchant> = {
     name: 'Los Petersen 2',
   },
   // TODO: replace with real merchant
-  '6914a123ea5ff64e14b83d75': {
-    posNumber: '14',
-    id: 'los-petersen-3',
-    name: 'Los Petersen 3',
-  },
+  // '6914a123ea5ff64e14b83d75': {
+  //   posNumber: '14',
+  //   id: 'los-petersen-3',
+  //   name: 'Los Petersen 3',
+  // },
   '6911fbc5ea5ff64e14b83896': {
     posNumber: '12',
     id: 'persicco',
@@ -85,6 +87,12 @@ export const MERCHANTS: Record<string, Merchant> = {
     posNumber: '13',
     id: 'devcon-swag-shop',
     name: 'Swag Shop',
+  },
+  '691b89031d11ac342995cb00': {
+    posNumber: '13',
+    id: 'devconnect',
+    name: 'Ticket Shop',
+    isPrivate: true
   },
 };
 
