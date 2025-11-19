@@ -157,31 +157,53 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Get hourly user creation data (only after Nov 3, 2025)
-    const nov3Date = '2025-11-03T00:00:00Z';
-    const { data: hourlyData, error: hourlyError } = await supabase
-      .from('devconnect_app_user')
-      .select('created_at')
-      .gte('created_at', nov3Date)
-      .order('created_at', { ascending: true });
+    // Get hourly user creation data (fetch all records with pagination, after Nov 14, 2024)
+    const nov14Date = '2025-11-14T00:00:00Z';
+    let hourlyData: any[] = [];
+    let page = 0;
+    const pageSize = 1000;
+    let hasMore = true;
 
-    if (hourlyError) {
-      console.error('Error fetching hourly user data:', hourlyError);
-      return NextResponse.json(
-        {
-          error: 'Database error',
-          message: 'Failed to fetch hourly user data',
-        },
-        { status: 500 }
-      );
+    while (hasMore) {
+      const { data: pageData, error: hourlyError } = await supabase
+        .from('devconnect_app_user')
+        .select('created_at')
+        .gte('created_at', nov14Date)
+        .order('created_at', { ascending: true })
+        .range(page * pageSize, (page + 1) * pageSize - 1);
+
+      if (hourlyError) {
+        console.error('Error fetching hourly user data:', hourlyError);
+        return NextResponse.json(
+          {
+            error: 'Database error',
+            message: 'Failed to fetch hourly user data',
+          },
+          { status: 500 }
+        );
+      }
+
+      if (pageData && pageData.length > 0) {
+        hourlyData = hourlyData.concat(pageData);
+        hasMore = pageData.length === pageSize;
+        page++;
+      } else {
+        hasMore = false;
+      }
     }
 
-    // Process hourly data into buckets
+    console.log(`[Stats] Fetched ${hourlyData.length} user records (${page} pages)`);
+    if (hourlyData.length > 0) {
+      const lastUser = hourlyData[hourlyData.length - 1];
+      console.log(`[Stats] Latest user created_at: ${lastUser.created_at}`);
+    }
+
+    // Process hourly data into buckets (using UTC)
     const hourlyBuckets: { [key: string]: number } = {};
-    hourlyData?.forEach((user) => {
+    hourlyData.forEach((user) => {
       if (user.created_at) {
         const date = new Date(user.created_at);
-        const hourKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:00`;
+        const hourKey = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')} ${String(date.getUTCHours()).padStart(2, '0')}:00`;
         hourlyBuckets[hourKey] = (hourlyBuckets[hourKey] || 0) + 1;
       }
     });
@@ -190,6 +212,68 @@ export async function GET(request: NextRequest) {
     const hourlyUserCreation = Object.entries(hourlyBuckets)
       .map(([hour, count]) => ({ hour, count }))
       .sort((a, b) => a.hour.localeCompare(b.hour));
+
+    if (hourlyUserCreation.length > 0) {
+      console.log(`[Stats] User creation buckets: ${hourlyUserCreation[0].hour} to ${hourlyUserCreation[hourlyUserCreation.length - 1].hour}`);
+    }
+
+    // Get hourly claimed link data (fetch all records with pagination)
+    let claimedLinksData: any[] = [];
+    page = 0;
+    hasMore = true;
+
+    while (hasMore) {
+      const { data: pageData, error: claimedLinksError } = await supabase
+        .from('devconnect_app_claiming_links')
+        .select('claimed_date')
+        .not('claimed_date', 'is', null)
+        .order('claimed_date', { ascending: true })
+        .range(page * pageSize, (page + 1) * pageSize - 1);
+
+      if (claimedLinksError) {
+        console.error('Error fetching claimed links data:', claimedLinksError);
+        return NextResponse.json(
+          {
+            error: 'Database error',
+            message: 'Failed to fetch claimed links data',
+          },
+          { status: 500 }
+        );
+      }
+
+      if (pageData && pageData.length > 0) {
+        claimedLinksData = claimedLinksData.concat(pageData);
+        hasMore = pageData.length === pageSize;
+        page++;
+      } else {
+        hasMore = false;
+      }
+    }
+
+    console.log(`[Stats] Fetched ${claimedLinksData.length} claimed link records (${page} pages)`);
+    if (claimedLinksData.length > 0) {
+      const lastLink = claimedLinksData[claimedLinksData.length - 1];
+      console.log(`[Stats] Latest link claimed_date: ${lastLink.claimed_date}`);
+    }
+
+    // Process claimed links into hourly buckets (using UTC)
+    const claimedLinksBuckets: { [key: string]: number } = {};
+    claimedLinksData.forEach((link) => {
+      if (link.claimed_date) {
+        const date = new Date(link.claimed_date);
+        const hourKey = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')} ${String(date.getUTCHours()).padStart(2, '0')}:00`;
+        claimedLinksBuckets[hourKey] = (claimedLinksBuckets[hourKey] || 0) + 1;
+      }
+    });
+
+    // Convert to sorted array
+    const hourlyClaimedLinks = Object.entries(claimedLinksBuckets)
+      .map(([hour, count]) => ({ hour, count }))
+      .sort((a, b) => a.hour.localeCompare(b.hour));
+
+    if (hourlyClaimedLinks.length > 0) {
+      console.log(`[Stats] Claimed links buckets: ${hourlyClaimedLinks[0].hour} to ${hourlyClaimedLinks[hourlyClaimedLinks.length - 1].hour}`);
+    }
 
     // Fetch ETH price from CoinGecko
     let ethPriceUsd = null;
@@ -934,6 +1018,7 @@ export async function GET(request: NextRequest) {
         worldfare_domains: worldfareDomains,
       },
       hourly_user_creation: hourlyUserCreation,
+      hourly_claimed_links: hourlyClaimedLinks,
       relayers: relayerStats,
       daily_relayer_transactions: dailyRelayerTransactions,
       transactions_by_address: transactionsByAddress,
