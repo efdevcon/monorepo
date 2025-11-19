@@ -1,19 +1,27 @@
 'use client';
 import { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import Image from 'next/image';
+import Icon from '@mdi/react';
+import { mdiArrowRight, mdiContentCopy } from '@mdi/js';
 import PageLayout from '@/components/PageLayout';
 import QRScanner from '@/components/QRScanner';
 import PaymentModal from '@/components/PaymentModal';
 import { useWallet } from '@/context/WalletContext';
 import { poisData } from '@/data/pois';
 import { POI } from '@/types/api-data';
+import Button from 'lib/components/voxel-button/button';
+import { WalletDisplay } from '@/components/WalletDisplay';
 
 export default function ScanPage() {
   const router = useRouter();
-  const { isPara } = useWallet();
+  const { isPara, address } = useWallet();
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
   const [paymentRequestId, setPaymentRequestId] = useState<string>('');
+  const [isExternalUrlModalOpen, setIsExternalUrlModalOpen] = useState(false);
+  const [externalUrl, setExternalUrl] = useState<string>('');
 
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {
@@ -71,16 +79,16 @@ export default function ScanPage() {
     console.log('QR Scanner received value:', value);
 
     // First, try to parse as EIP-681 URL
-    const eip681Data = parseEIP681Url(value);
-    if (eip681Data) {
-      console.log('QR Scanner parsed EIP-681 data:', eip681Data);
-      // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
-      window.open(value, '_blank');
-      router.push('/wallet');
-      return;
-    }
+    // const eip681Data = parseEIP681Url(value);
+    // if (eip681Data) {
+    //   console.log('QR Scanner parsed EIP-681 data:', eip681Data);
+    //   // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
+    //   window.open(value, '_blank');
+    //   router.push('/wallet');
+    //   return;
+    // }
 
-    // Then, try to parse as SimpleFi merchant URL
+    // SimpleFi merchant URLs
     const simpleFiMerchantUrl = parseSimpleFiMerchantUrl(value);
     if (simpleFiMerchantUrl) {
       console.log(
@@ -126,6 +134,7 @@ export default function ScanPage() {
       return;
     }
 
+    // send to address
     // Check if it's an Ethereum address (must be checked BEFORE payment ID)
     if (value?.toLowerCase()?.startsWith('0x') && value.length === 42) {
       console.log('QR Scanner detected Ethereum address:', value);
@@ -144,18 +153,20 @@ export default function ScanPage() {
       }
     }
 
+    // external urls
     if (
       value?.toLowerCase()?.startsWith('https://ef-events.notion.site/') ||
       value?.toLowerCase()?.startsWith('https://devconnect.org/faq') ||
       value?.toLowerCase()?.includes('poap.xyz')
     ) {
       console.log('QR Scanner detected external URL:', value);
-      // open in new tab
-      window.open(value, '_blank');
-      router.push('/wallet');
+      // Show modal instead of directly opening
+      setExternalUrl(value);
+      setIsExternalUrlModalOpen(true);
       return;
     }
 
+    // devconnect qr redirects
     if (value?.toLowerCase()?.startsWith('https://app.devconnect.org/')) {
       console.log('QR Scanner detected Devconnect URL:', value);
       // redirect to the url
@@ -176,11 +187,14 @@ export default function ScanPage() {
     }
 
     // If nothing matches, show error
-    console.log('QR code not recognized:', value);
-    toast.error('QR code not recognized', {
-      description: 'Please scan a valid payment QR code or Ethereum address',
-      duration: 4000,
-    });
+    // console.log('QR code not recognized:', value);
+    // toast.error('QR code not recognized', {
+    //   description: 'Please scan a valid payment QR code or Ethereum address',
+    //   duration: 4000,
+    // });
+    setExternalUrl(value);
+    setIsExternalUrlModalOpen(true);
+    return;
   };
 
   return (
@@ -205,10 +219,126 @@ export default function ScanPage() {
           {/* Payment Modal */}
           <PaymentModal
             isOpen={isManualPaymentOpen}
-            onClose={() => setIsManualPaymentOpen(false)}
+            onClose={() => {
+              setIsManualPaymentOpen(false);
+              router.push('/wallet');
+            }}
             isPara={Boolean(isPara)}
             paymentRequestId={paymentRequestId}
           />
+
+          {/* External URL Modal */}
+          {isExternalUrlModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white border border-[rgba(234,234,234,1)] mx-4 max-w-md w-full shadow-xl flex flex-col">
+                <div className="flex items-center gap-3 p-4 pb-0">
+                  <Image
+                    src="/images/qr-info.svg"
+                    alt="QR Info"
+                    width={48}
+                    height={48}
+                  />
+                  <h2 className="font-bold">External URL Detected</h2>
+                </div>
+
+                <div className="p-4 mx-4 my-2 mb-0 grow self-stretch bg-[#EAF4FB]">
+                  <div className="flex flex-col gap-2 text-sm">
+                    <span>This QR code contains the following URL:</span>
+                    <a
+                      href={externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[rgba(0,115,222,1)] font-semibold break-all"
+                    >
+                      {externalUrl}
+                    </a>
+                    {externalUrl.toLowerCase().includes('poap.xyz') && address && (
+                      <div className="flex flex-col gap-1 mt-1">
+                        <span className="text-[#20202b] text-xs font-medium">
+                          Copy your wallet address before minting:
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[#0073de] text-xs font-medium">
+                            <WalletDisplay address={address} />
+                          </span>
+                          <button
+                            onClick={() => {
+                              if (address) {
+                                navigator.clipboard.writeText(address);
+                                
+                                // Create copy icon using MDI
+                                const copyIcon = React.createElement(Icon, {
+                                  path: mdiContentCopy,
+                                  size: 0.67,
+                                  color: 'white',
+                                });
+
+                                toast.success('Address copied to clipboard', {
+                                  description: address,
+                                  icon: copyIcon,
+                                });
+                              }
+                            }}
+                            className="cursor-pointer hover:opacity-70 transition-opacity shrink-0"
+                          >
+                            <Icon path={mdiContentCopy} size={0.55} color="#0073de" />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                    {!externalUrl.toLowerCase().includes('poap.xyz') && (
+                      <span className="mt-2">Would you like to open it?</span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 p-4">
+                  <a
+                    href={externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setIsExternalUrlModalOpen(false);
+                      setExternalUrl('');
+                      router.push('/wallet');
+                    }}
+                    className="w-full bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
+                  >
+                    <span className="text-white text-base font-bold">
+                      {externalUrl.toLowerCase().includes('poap.xyz')
+                        ? 'Mint POAP'
+                        : externalUrl
+                              .toLowerCase()
+                              .startsWith('https://devconnect.org/faq')
+                          ? 'Support FAQ'
+                          : externalUrl
+                                .toLowerCase()
+                                .startsWith('https://ef-events.notion.site/')
+                            ? 'Open Notion Documentation'
+                            : 'Open External Link'}
+                    </span>
+                    <Icon
+                      path={mdiArrowRight}
+                      size={0.67}
+                      className="text-white"
+                    />
+                  </a>
+                  <button
+                    onClick={() => {
+                      setIsExternalUrlModalOpen(false);
+                      setExternalUrl('');
+                      router.push('/wallet');
+                    }}
+                    className="w-full bg-[#eaf3fa] hover:bg-[#d8ebf7] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors"
+                  >
+                    <span className="text-[#44445d] text-base font-bold">
+                      Cancel
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </PageLayout>

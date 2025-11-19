@@ -76,29 +76,30 @@ export async function GET(request: NextRequest) {
 
     // Fetch tickets for all user emails
     console.log('Fetching tickets for emails:', allEmails);
-    const allTickets = await Promise.all(
+    const allTicketsByEmail = await Promise.all(
       allEmails.map((email) => getPaidTicketsByEmail(email, mainStore))
     );
 
-    // Extract all ticket secrets from all orders
-    const ticketSecrets: string[] = [];
-    for (const orders of allTickets) {
+    // Extract all checked-in ticket secrets from all orders
+    const checkedInTicketSecrets: string[] = [];
+    for (const orders of allTicketsByEmail) {
       for (const order of orders) {
         for (const ticket of order.tickets) {
-          if (ticket.secret) {
-            ticketSecrets.push(ticket.secret);
+          if (ticket.secret && ticket.hasCheckedIn) {
+            checkedInTicketSecrets.push(ticket.secret);
           }
         }
       }
     }
 
-    console.log('Found ticket secrets:', ticketSecrets.length);
+    console.log('Found checked-in ticket secrets:', checkedInTicketSecrets.length);
 
-    if (ticketSecrets.length === 0) {
+    if (checkedInTicketSecrets.length === 0) {
       return NextResponse.json(
         {
-          error: 'No valid ticket found',
-          message: 'Add your devconnect ticket here to claim this perk',
+          error: 'No checked-in ticket found',
+          message:
+            'You need to check in with your Devconnect ticket before claiming this perk.',
         },
         { status: 403 }
       );
@@ -172,7 +173,7 @@ export async function GET(request: NextRequest) {
       claimedSecrets?.map((c) => c.ticket_secret_proof) || []
     );
 
-    const availableSecret = ticketSecrets.find(
+    const availableSecret = checkedInTicketSecrets.find(
       (secret) => !usedSecrets.has(secret)
     );
 

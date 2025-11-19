@@ -64,6 +64,42 @@ interface StatsData {
         eth_price_usd: number | null;
       }
     | { error: string };
+  daily_relayer_transactions?: Array<{
+    date: string;
+    payment: number;
+    send: number;
+    payment_test: number;
+    send_test: number;
+    total: number;
+    total_test: number;
+    payment_value?: number;
+    send_value?: number;
+    total_value?: number;
+  }>;
+  transactions_by_address?: Array<{
+    address: string;
+    payment: number;
+    send: number;
+    payment_test: number;
+    send_test: number;
+    total: number;
+    total_test: number;
+    payment_value?: number;
+    send_value?: number;
+    total_value?: number;
+  }>;
+  suspicious_addresses?: Array<{
+    address: string;
+    payment: number;
+    send: number;
+    payment_test: number;
+    send_test: number;
+    total: number;
+    total_test: number;
+    payment_value?: number;
+    send_value?: number;
+    total_value?: number;
+  }>;
   quest_completions?: Record<string, number>;
   timestamp: string;
 }
@@ -216,6 +252,7 @@ export default function StatsPage() {
   const [poapMintStats, setPoapMintStats] = useState<POAPMintStats | null>(
     null
   );
+  const [showAllRegularAddresses, setShowAllRegularAddresses] = useState(false);
   const [showAllDrops, setShowAllDrops] = useState(false);
 
   const fetchStats = async (isRefresh = false) => {
@@ -382,6 +419,12 @@ export default function StatsPage() {
     !hasRelayerError && stats.relayers && 'payment' in stats.relayers
       ? stats.relayers
       : null;
+  const regularAddresses = stats.transactions_by_address ?? [];
+  const suspiciousAddresses = stats.suspicious_addresses ?? [];
+  const totalRegularValue = regularAddresses.reduce(
+    (sum, addr) => sum + (addr.total_value ?? 0),
+    0
+  );
 
   // Calculate last imported CSV file (each file has 100 links, first 200 skipped for testing)
   // 800 links = prod_3 through prod_10 (skipped prod_1 and prod_2)
@@ -573,9 +616,7 @@ export default function StatsPage() {
           <div className="bg-white rounded-lg shadow-sm p-4">
             <div className="flex items-center gap-2 mb-4">
               <Icon path={mdiImageMultiple} size={0.9} color="#4F46E5" />
-              <h2 className="text-xl font-bold text-gray-900">
-                POAP Stats
-              </h2>
+              <h2 className="text-xl font-bold text-gray-900">POAP Stats</h2>
             </div>
             <p className="text-sm text-gray-500 mb-4">
               All POAP drops from Devconnect quests with their mint counts
@@ -1146,6 +1187,353 @@ export default function StatsPage() {
               <p className="text-sm font-medium">
                 Unable to fetch relayer statistics
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* Daily Relayer Transactions Chart */}
+        {stats.daily_relayer_transactions &&
+          stats.daily_relayer_transactions.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm p-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Icon path={mdiChartBar} size={0.9} color="#4F46E5" />
+                <h2 className="text-xl font-bold text-gray-900">
+                  Daily Gas Sponsoring Transactions
+                </h2>
+              </div>
+              <p className="text-sm text-gray-500 mb-4">
+                Number of gas-sponsored transactions per day by relayer type
+              </p>
+
+              <div className="w-full h-80 mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={stats.daily_relayer_transactions}
+                    margin={{ top: 10, right: 10, left: 0, bottom: 60 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                    <XAxis
+                      dataKey="date"
+                      angle={-45}
+                      textAnchor="end"
+                      height={80}
+                      tick={{ fontSize: 11, fill: '#6b7280' }}
+                      tickFormatter={(value) => {
+                        const date = new Date(value);
+                        return date.toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                        });
+                      }}
+                    />
+                    <YAxis
+                      tick={{ fontSize: 12, fill: '#6b7280' }}
+                      label={{
+                        value: 'Transactions',
+                        angle: -90,
+                        position: 'insideLeft',
+                        style: { fontSize: 12, fill: '#6b7280' },
+                      }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1f2937',
+                        border: 'none',
+                        borderRadius: '8px',
+                        color: '#fff',
+                      }}
+                      labelFormatter={(value) => {
+                        const date = new Date(value);
+                        return date.toLocaleDateString('en-US', {
+                          month: 'long',
+                          day: 'numeric',
+                          year: 'numeric',
+                        });
+                      }}
+                      formatter={(value: number, name: string) => {
+                        const displayName =
+                          name === 'payment'
+                            ? 'Payment Relayer'
+                            : name === 'send'
+                              ? 'Send Relayer'
+                              : 'Total';
+                        return [`${value} tx`, displayName];
+                      }}
+                    />
+                    <Bar
+                      dataKey="payment"
+                      fill="#9333EA"
+                      radius={[4, 4, 0, 0]}
+                      stackId="stack"
+                    />
+                    <Bar
+                      dataKey="send"
+                      fill="#4F46E5"
+                      radius={[4, 4, 0, 0]}
+                      stackId="stack"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Summary stats */}
+              <div className="mt-4 p-3 bg-indigo-50 border border-indigo-200 rounded-lg">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                  <div>
+                    <span className="text-gray-600">Total Days:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {stats.daily_relayer_transactions.length}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Total Txs (≥1 USDC):</span>
+                    <span className="ml-2 font-semibold text-indigo-600">
+                      {stats.daily_relayer_transactions
+                        .reduce((sum, day) => sum + day.total, 0)
+                        .toLocaleString()}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Payment Relayer:</span>
+                    <span className="ml-2 font-semibold text-purple-600">
+                      {stats.daily_relayer_transactions
+                        .reduce((sum, day) => sum + day.payment, 0)
+                        .toLocaleString()}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Send Relayer:</span>
+                    <span className="ml-2 font-semibold text-indigo-600">
+                      {stats.daily_relayer_transactions
+                        .reduce((sum, day) => sum + day.send, 0)
+                        .toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-3 pt-3 border-t border-indigo-200">
+                  <p className="text-xs text-gray-600">
+                    Total USDC value routed (non-suspicious):{' '}
+                    <span className="font-semibold text-gray-700">
+                      {totalRegularValue.toLocaleString(undefined, {
+                        maximumFractionDigits: 2,
+                      })}{' '}
+                      USDC
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+        {/* Transactions by Address - Only show if we have address data */}
+        {regularAddresses.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="flex items-center gap-2 mb-4">
+              <Icon path={mdiAccountMultiple} size={0.9} color="#9333EA" />
+              <h2 className="text-xl font-bold text-gray-900">
+                Gas-Sponsored Addresses
+              </h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-4">
+              All addresses with ≤10 sponsored transactions as
+              senders/recipients
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      #
+                    </th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      Address
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Payment
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Send
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Total
+                    </th>
+                      <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                        Total Value (USDC)
+                      </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(showAllRegularAddresses
+                    ? regularAddresses
+                    : regularAddresses.slice(0, 10)
+                  ).map((addr, index) => (
+                    <tr
+                      key={addr.address}
+                      className="border-b border-gray-100 hover:bg-gray-50"
+                    >
+                      <td className="py-2 px-3 text-gray-500">{index + 1}</td>
+                      <td className="py-2 px-3">
+                        <a
+                          href={`https://basescan.org/address/${addr.address}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-indigo-600 hover:underline font-mono text-xs"
+                        >
+                          {addr.address.slice(0, 8)}...
+                          {addr.address.slice(-6)}
+                        </a>
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-purple-600">
+                        {addr.payment.toLocaleString()}
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-indigo-600">
+                        {addr.send.toLocaleString()}
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-gray-900">
+                        {addr.total.toLocaleString()}
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-gray-900">
+                        {(addr.total_value ?? 0).toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="border-t-2 border-gray-300 font-semibold">
+                    <td className="py-2 px-3 text-gray-900" colSpan={2}>
+                      Total ({showAllRegularAddresses ? 'All' : 'Top 10'})
+                    </td>
+                    <td className="py-2 px-3 text-right text-purple-600">
+                      {(showAllRegularAddresses
+                        ? regularAddresses
+                        : regularAddresses.slice(0, 10)
+                      )
+                        .reduce((sum, addr) => sum + addr.payment, 0)
+                        .toLocaleString()}
+                    </td>
+                    <td className="py-2 px-3 text-right text-indigo-600">
+                      {(showAllRegularAddresses
+                        ? regularAddresses
+                        : regularAddresses.slice(0, 10)
+                      )
+                        .reduce((sum, addr) => sum + addr.send, 0)
+                        .toLocaleString()}
+                    </td>
+                    <td className="py-2 px-3 text-right text-gray-900">
+                      {(showAllRegularAddresses
+                        ? regularAddresses
+                        : regularAddresses.slice(0, 10)
+                      )
+                        .reduce((sum, addr) => sum + addr.total, 0)
+                        .toLocaleString()}
+                    </td>
+                      <td className="py-2 px-3 text-right text-gray-900">
+                      {(showAllRegularAddresses
+                        ? regularAddresses
+                        : regularAddresses.slice(0, 10)
+                      )
+                          .reduce((sum, addr) => sum + (addr.total_value ?? 0), 0)
+                          .toLocaleString(undefined, {
+                            maximumFractionDigits: 2,
+                          })}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            {regularAddresses.length > 10 && (
+              <div className="mt-4 flex justify-end">
+                <button
+                  className="text-sm text-indigo-600 hover:underline"
+                  onClick={() =>
+                    setShowAllRegularAddresses(!showAllRegularAddresses)
+                  }
+                >
+                  {showAllRegularAddresses ? 'Show Top 10' : 'Show All'}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
+        {suspiciousAddresses.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4 mt-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Icon path={mdiAlertOutline} size={0.9} color="#DC2626" />
+              <h2 className="text-xl font-bold text-gray-900">
+                Suspicious Addresses (&gt;10 Sponsored Transactions)
+              </h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-4">
+              Addresses excluded from the main totals due to unusually high
+              activity as either sender or recipient.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      #
+                    </th>
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      Address
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Payment
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Send
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Total
+                    </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Total Value (USDC)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {suspiciousAddresses.map((addr, index) => (
+                    <tr
+                      key={addr.address}
+                      className="border-b border-gray-100 hover:bg-gray-50"
+                    >
+                      <td className="py-2 px-3 text-gray-500">{index + 1}</td>
+                      <td className="py-2 px-3">
+                        <a
+                          href={`https://basescan.org/address/${addr.address}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-red-600 hover:underline font-mono text-xs"
+                        >
+                          {addr.address.slice(0, 8)}...
+                          {addr.address.slice(-6)}
+                        </a>
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-purple-600">
+                        {addr.payment.toLocaleString()}
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-indigo-600">
+                        {addr.send.toLocaleString()}
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-gray-900">
+                        {addr.total.toLocaleString()}
+                      </td>
+                      <td className="py-2 px-3 text-right font-semibold text-gray-900">
+                        {(addr.total_value ?? 0).toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         )}

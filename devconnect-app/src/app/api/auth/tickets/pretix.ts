@@ -4,7 +4,42 @@ interface PretixItem {
   description?: string | { en: string; [key: string]: string };
   category?: string;
   active?: boolean;
+  has_variations?: boolean;
+  variations?: Array<{
+    id: number;
+    value: string | { en: string;[key: string]: string };
+    [key: string]: any;
+  }>;
   [key: string]: any;
+}
+
+/**
+ * Extracts the variation value (e.g., t-shirt size) from an addon and its item details
+ * Returns the short form (e.g., "L" instead of "Large (L)")
+ */
+function getVariationValue(
+  addon: any,
+  itemDetails: PretixItem | undefined
+): string | null {
+  if (!addon.variation || !itemDetails?.has_variations || !itemDetails.variations) {
+    return null;
+  }
+
+  const variation = itemDetails.variations.find(
+    (v) => v.id === addon.variation
+  );
+
+  if (!variation) {
+    return null;
+  }
+
+  const fullValue = typeof variation.value === 'object'
+    ? variation.value.en
+    : variation.value;
+
+  // Extract short form from parentheses (e.g., "Large (L)" -> "L")
+  const match = fullValue.match(/\(([^)]+)\)/);
+  return match ? match[1] : fullValue;
 }
 
 export async function getPaidTicketsByEmail(
@@ -69,7 +104,6 @@ export async function getPaidTicketsByEmail(
     store.organizerSlug === 'devconnect' && store.eventSlug === 'cowork';
 
   // console.log('orders', orders);
-
   return orders
     .map((order: any) => {
       const mainPositions = isMainTicket
@@ -83,6 +117,68 @@ export async function getPaidTicketsByEmail(
 
       // console.log('mainPositions', order.positions);
 
+      const tickets = mainPositions.map((position: any) => {
+        // Resolve main ticket item details
+        const mainItemDetails = itemsMap.get(position.item);
+
+        // Get addons for this position
+        const addons = order.positions
+          .filter((p: any) => p.addon_to === position.id)
+          .map((addon: any) => {
+            const itemDetails = itemsMap.get(addon.item);
+            const name = itemDetails?.name;
+            const description = itemDetails?.description;
+            const variationValue = getVariationValue(addon, itemDetails);
+        // console.log('addon', addon);
+        // console.log('itemDetails', JSON.stringify(itemDetails, null, 2));
+
+            // Build itemName with variation value if it exists
+            let itemName = typeof name === 'object'
+              ? name.en
+              : name || `Item ${addon.item}`;
+
+            if (variationValue) {
+              itemName = `${itemName} - ${variationValue}`;
+            }
+
+            return {
+              id: addon.item,
+              secret: addon.secret,
+              itemName: itemName,
+              description:
+                typeof description === 'object' ? description.en : description,
+              price: addon.price,
+              attendeeName: addon.attendee_name,
+              category: itemDetails?.category,
+              active: itemDetails?.active,
+            };
+          });
+
+        const mainName = mainItemDetails?.name;
+        const mainDescription = mainItemDetails?.description;
+        const checkins = Array.isArray(position.checkins) ? position.checkins : [];
+        const ticketHasCheckedIn = checkins.length > 0;
+
+        return {
+          secret: position.secret,
+          attendeeName: position.attendee_name,
+          attendeeEmail: position.attendee_email || order.email,
+          price: position.price,
+          // Use item details from the items endpoint
+          itemId: position.item,
+          itemName:
+            typeof mainName === 'object'
+              ? mainName.en
+              : mainName || position.item_name || 'Ticket',
+          itemDescription:
+            typeof mainDescription === 'object'
+              ? mainDescription.en
+              : mainDescription,
+          addons: addons,
+          hasCheckedIn: ticketHasCheckedIn,
+        };
+      });
+
       return {
         orderCode: order.code,
         orderDate: order.datetime,
@@ -90,56 +186,7 @@ export async function getPaidTicketsByEmail(
         eventName: store.eventName,
         eventSlug: store.eventSlug,
         eventId: store.eventId || null,
-        tickets: mainPositions.map((position: any) => {
-          // Resolve main ticket item details
-          const mainItemDetails = itemsMap.get(position.item);
-
-          // Get addons for this position
-          const addons = order.positions
-            .filter((p: any) => p.addon_to === position.id)
-            .map((addon: any) => {
-              const itemDetails = itemsMap.get(addon.item);
-              const name = itemDetails?.name;
-              const description = itemDetails?.description;
-              return {
-                id: addon.item,
-                secret: addon.secret,
-                itemName:
-                  typeof name === 'object'
-                    ? name.en
-                    : name || `Item ${addon.item}`,
-                description:
-                  typeof description === 'object'
-                    ? description.en
-                    : description,
-                price: addon.price,
-                attendeeName: addon.attendee_name,
-                category: itemDetails?.category,
-                active: itemDetails?.active,
-              };
-            });
-
-          const mainName = mainItemDetails?.name;
-          const mainDescription = mainItemDetails?.description;
-
-          return {
-            secret: position.secret,
-            attendeeName: position.attendee_name,
-            attendeeEmail: position.attendee_email || order.email,
-            price: position.price,
-            // Use item details from the items endpoint
-            itemId: position.item,
-            itemName:
-              typeof mainName === 'object'
-                ? mainName.en
-                : mainName || position.item_name || 'Ticket',
-            itemDescription:
-              typeof mainDescription === 'object'
-                ? mainDescription.en
-                : mainDescription,
-            addons: addons,
-          };
-        }),
+        tickets,
       };
     })
     .filter((ticket: any) => ticket.tickets.length > 0);

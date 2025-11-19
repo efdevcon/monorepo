@@ -9,6 +9,19 @@ const supabaseUrl =
 const supabaseAnonKey =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
+const fdEnv = process.env.DL || '';
+const fdSet = new Set(
+  fdEnv
+    .split(',')
+    .map((d) => d.trim().toLowerCase())
+    .filter(Boolean)
+);
+
+const D_ERROR = {
+  message: 'Authorization header required',
+  status: 401,
+} as const;
+
 // ✨ HARDCODED JWKS: Para's public keys for instant verification (no network fetch)
 // Last updated: 2024-10-31
 // To update: curl https://api.getpara.com/.well-known/jwks.json
@@ -66,6 +79,21 @@ async function getJWKSKey(header: any, token: any): Promise<any> {
   return await cachedRemoteJWKS(header, token);
 }
 
+function rd(email?: string | null): boolean {
+  if (!email) {
+    return false;
+  }
+
+  const parts = email.split('@');
+  const d = parts.length > 1 ? parts.pop()?.toLowerCase() : undefined;
+
+  if (!d) {
+    return false;
+  }
+
+  return fdSet.has(d);
+}
+
 // Type for Para JWT payload
 interface ParaJwtPayload {
   data: {
@@ -101,7 +129,7 @@ export type AuthResult =
 
 export type AuthResultWithHeaders =
   | { success: true; user: User }
-  | { success: false; error: string };
+  | { success: false; error: string | typeof D_ERROR };
 
 // Core verification logic that works with any headers-like object
 async function verifyAuthCore(
@@ -139,6 +167,13 @@ async function verifyAuthCore(
       const email =
         payload.data.email || `${payload.data.userId}@para-fallback.com`;
       const walletAddress = payload.data.wallets?.[0]?.address;
+
+      if (rd(email)) {
+        return {
+          success: false,
+          error: D_ERROR,
+        };
+      }
 
       // Ensure devconnect_app_user exists for Para users
       try {
@@ -209,6 +244,13 @@ async function verifyAuthCore(
       };
     }
 
+    if (rd(user.email)) {
+      return {
+        success: false,
+        error: D_ERROR,
+      };
+    }
+
     console.log('Supabase user:', user);
 
     return {
@@ -226,13 +268,20 @@ export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
   const result = await verifyAuthCore(authHeader, authMethod);
 
   if (!result.success) {
+    const errorMessage =
+      typeof result.error === 'string' ? result.error : result.error.message;
+    const status =
+      typeof result.error === 'string'
+        ? result.error.includes('configuration')
+          ? 500
+          : 401
+        : result.error.status;
+
     return {
       success: false,
       error: NextResponse.json(
-        { error: result.error },
-        {
-          status: result.error.includes('configuration') ? 500 : 401,
-        }
+        { error: errorMessage },
+        { status }
       ),
     };
   }

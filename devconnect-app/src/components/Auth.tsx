@@ -26,7 +26,9 @@ export default function Auth({ children }: { children: React.ReactNode }) {
 
   // Skip authentication
   const authSkipPaths = ['/pos', '/para'];
-  if (authSkipPaths.includes(pathname)) {
+  const authSkipPatterns = [/^\/merchant\/.+$/]; // Match /merchant/[secret]
+  
+  if (authSkipPaths.includes(pathname) || authSkipPatterns.some(pattern => pattern.test(pathname))) {
     return children;
   }
 
