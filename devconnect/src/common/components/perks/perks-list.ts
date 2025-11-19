@@ -530,22 +530,22 @@ const perks: Perk[] = [
     image: ProofOfTravelImage,
   },
 
-  // {
-  //   coupon_collection: 'minipay-2025',
-  //   name: 'MiniPay',
-  //   description: 'Grab $10 of local flavor — by MiniPay!',
-  //   requires: 'Devconnect ARG ticket',
-  //   zupass_proof_id: 'Devconnect ARG',
-  //   instructions: 'Install MiniPay and claim in-app',
-  //   urls: [
-  //     {
-  //       text: 'Visit MiniPay',
-  //       url: 'https://minipay.to/cashlinks',
-  //     },
-  //   ],
-  //   issuer: 'MiniPay',
-  //   image: MinipayImage,
-  // },
+  {
+    coupon_collection: 'minipay-2025',
+    name: 'MiniPay',
+    description: 'Grab $10 of local flavor — by MiniPay!',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Install MiniPay and claim in-app',
+    urls: [
+      {
+        text: 'Visit MiniPay',
+        url: 'https://minipay.to/cashlinks',
+      },
+    ],
+    issuer: 'MiniPay',
+    image: MinipayImage,
+  },
 
   {
     coupon_collection: 'protocol-guild-free-ticket',
