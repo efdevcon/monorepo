@@ -18,5 +18,11 @@ export const questGroupsData: QuestGroup[] = [
     name: "Crypto payment",
     description: "Pay with crypto at participating merchants.",
     image: "/images/quest-worlds-fair-interactions.png"
+  },
+  {
+    id: 3,
+    name: "Community Quests",
+    description: "Complete more quests from the community.",
+    image: "/images/quest-worlds-fair-interactions.png"
   }
 ];

@@ -49,6 +49,7 @@ export type QuestGroupName =
   | 'Setup & app tour'
   | 'App Showcase'
   | 'Crypto payment'
+  | 'Community Quests'
 
 /**
  * Quest group object
