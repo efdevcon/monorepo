@@ -764,7 +764,7 @@ export const supportersData: Record<string, Supporter> = {
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-09-58-659Z-Rise-Logotype.png",
     "description": "The World Markets Engine — a High Speed Layer 2 with a native, fully onchain Orderbook Infrastructure, bringing Capital Velocity to Ethereum",
     "websiteLink": "https://risechain.com/",
-    "twitterLink": "https://x.com/RISE_chain",
+    "twitterLink": "https://x.com/risechain",
     "farcasterLink": "",
     "districtId": "6",
     "locationId": null

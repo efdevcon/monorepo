@@ -97,9 +97,9 @@ export async function GET(request: NextRequest) {
     if (checkedInTicketSecrets.length === 0) {
       return NextResponse.json(
         {
-          error: 'No checked-in ticket found',
+          error: 'You haven\'t checked in yet',
           message:
-            'You need to check in with your Devconnect ticket before claiming this perk.',
+            'You can claim this perk once you\'ve checked in with your Devconnect ticket.',
         },
         { status: 403 }
       );
