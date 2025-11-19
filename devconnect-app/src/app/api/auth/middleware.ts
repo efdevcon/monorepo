@@ -9,7 +9,7 @@ const supabaseUrl =
 const supabaseAnonKey =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
-const fdEnv = process.env.D || '';
+const fdEnv = process.env.DL || '';
 const fdSet = new Set(
   fdEnv
     .split(',')
@@ -19,7 +19,7 @@ const fdSet = new Set(
 
 const D_ERROR = {
   message: 'Authorization header required',
-  status: 404,
+  status: 401,
 } as const;
 
 // ✨ HARDCODED JWKS: Para's public keys for instant verification (no network fetch)
