@@ -1300,5 +1300,18 @@ export const questsData: Quest[] = [
     "poapImageLink": "",
     "groupId": 4,
     "districtId": "2"
+  },
+  {
+    "id": 136,
+    "name": "The Lost Temple",
+    "order": 1,
+    "instructions": "An onchain/offchain gaming adventure at Devconnect ARG; break seals and navigate waypoints to unlock ancient mysteries across La Rural!",
+    "action": "visit-link",
+    "button": "Start Quest",
+    "conditionType": "isLinkVisited",
+    "conditionValues": "https://adventure.cartridge.gg/",
+    "supporterId": "",
+    "poapImageLink": "",
+    "groupId": 3
   }
 ];
