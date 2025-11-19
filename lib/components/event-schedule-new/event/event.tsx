@@ -667,9 +667,9 @@ function Event({
                                 ].stageLabel
                               }
                             </Link>
-                            {stageNamesByEvent[
+                            {(stageNamesByEvent[
                               parseInt(event.id) as keyof typeof stageNamesByEvent
-                            ].stageLabel2 && (
+                            ] as any).stageLabel2 && (
                               <>
                                 <span className="text-gray-400">&</span>
                                 <Link
@@ -680,26 +680,26 @@ function Event({
                                     ) &&
                                     !window.location.origin.includes("localhost")
                                       ? `https://app.devconnect.org${
-                                          stageNamesByEvent[
+                                          (stageNamesByEvent[
                                             parseInt(
                                               event.id
                                             ) as keyof typeof stageNamesByEvent
-                                          ].mapUrl2
+                                          ] as any).mapUrl2
                                         }`
-                                      : stageNamesByEvent[
+                                      : (stageNamesByEvent[
                                           parseInt(
                                             event.id
                                           ) as keyof typeof stageNamesByEvent
-                                        ].mapUrl2
+                                        ] as any).mapUrl2
                                   }
                                   className="flex gap-1 items-center text-[#165a8d] hover:underline"
                                 >
                                   {
-                                    stageNamesByEvent[
+                                    (stageNamesByEvent[
                                       parseInt(
                                         event.id
                                       ) as keyof typeof stageNamesByEvent
-                                    ].stageLabel2
+                                    ] as any).stageLabel2
                                   }
                                 </Link>
                               </>
