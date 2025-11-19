@@ -80,43 +80,52 @@ const MultiLink = (props: any) => {
 
 const menuItems = (pathname: string, ticketsUrl: string) => [
   {
-    text: (globalThis as any).translations.about,
-    url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
+    text: 'Devconnect',
+    url: '/',
   },
   {
-    text: 'FAQ',
-    url: pathname === '/' ? '#faq' : '/#faq', // Smoothscrolling if already on the page, otherwise hard link
+    text: 'Devcon',
+    url: 'https://devcon.org',
+    external: true,
   },
-  {
-    text: 'Tickets',
-    url: ticketsUrl,
-  },
-  {
-    text: 'Perks',
-    url: '/perks',
-  },
-  {
-    text: 'Calendar',
-    url: '/calendar',
-  },
-  {
-    text: () => {
-      return (
-        <div className={cn(css['ethday-rainbo'], 'flex items-center gap-1.5')}>
-          <div>Ethereum Day</div>
-          <Image src={EthDayLogo} alt="Ethereum Day" width={22} />
-        </div>
-      )
-    },
-    // customClass: css['ethday-rainbow'],
-    hideIndicator: true,
-    url: 'https://ethday.devconnect.org' /*/calendar?event=ethday',
-    onClick: () => {
-      // Hacky but works
-      // @ts-ignore
-      if (typeof window !== 'undefined' && window.selectEthDay) window.selectEthDay()
-    },*/,
-  },
+  // {
+  //   text: (globalThis as any).translations.about,
+  //   url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
+  // },
+  // {
+  //   text: 'FAQ',
+  //   url: pathname === '/' ? '#faq' : '/#faq', // Smoothscrolling if already on the page, otherwise hard link
+  // },
+  // {
+  //   text: 'Tickets',
+  //   url: ticketsUrl,
+  // },
+  // {
+  //   text: 'Perks',
+  //   url: '/perks',
+  // },
+  // {
+  //   text: 'Calendar',
+  //   url: '/calendar',
+  // },
+  // {
+  //   text: () => {
+  //     return (
+  //       <div className={cn(css['ethday-rainbo'], 'flex items-center gap-1.5')}>
+  //         <div>Ethereum Day</div>
+  //         <Image src={EthDayLogo} alt="Ethereum Day" width={22} />
+  //       </div>
+  //     )
+  //   },
+  //   // customClass: css['ethday-rainbow'],
+  //   hideIndicator: true,
+  //   url: 'https://ethday.devconnect.org' /*/calendar?event=ethday',
+  //   onClick: () => {
+  //     // Hacky but works
+  //     // @ts-ignore
+  //     if (typeof window !== 'undefined' && window.selectEthDay) window.selectEthDay()
+  //   },*/,
+  // },
   // {
   //   text: 'Destino Support',
   //   customClass: css['destino-rainbow'],

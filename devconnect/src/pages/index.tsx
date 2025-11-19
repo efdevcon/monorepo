@@ -447,14 +447,11 @@ const Home: NextPage = (props: any) => {
                       {data.pages.what_is_devconnect}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6 mb-2">
+                    {/* <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6 mb-2">
                       <Link href={ticketsUrl} className="pointer-events-auto">
                         <Button
                           color="blue-1"
                           className="w-full sm:w-auto"
-                          // className={cn(
-                          //   'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
-                          // )}
                         >
                           <div className="transition-transform uppercase flex items-center gap-2 font-medium">
                             {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
@@ -466,9 +463,6 @@ const Home: NextPage = (props: any) => {
                         <Button
                           color="white-1"
                           className="w-full sm:w-auto"
-                          // className={cn(
-                          //   'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
-                          // )}
                         >
                           <div className="transition-transform uppercase flex items-center gap-2 font-medium">
                             <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[20px]" />{' '}
@@ -476,10 +470,10 @@ const Home: NextPage = (props: any) => {
                           </div>
                         </Button>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
 
-                  <div className="flex items-center gap-8">
+                  <div className="flex items-center gap-8 mt-6">
                     <Image
                       src={DevconnectCubeLogo}
                       alt="Devconnect Cube Logo"
@@ -592,9 +586,9 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative bg-[#FAFCFF] overflow-hidden">
+          {/* <div className="section relative bg-[#FAFCFF] overflow-hidden">
             <Venue />
-          </div>
+          </div> */}
 
           <div className="z-10" style={{ background: 'linear-gradient(180deg, #EDF6FF 51.02%, #FFFFFF 100%)' }}>
             <div className="section relative !overflow-visible" id="about">
@@ -668,7 +662,7 @@ const Home: NextPage = (props: any) => {
               </svg>
 
               <div className="flex flex-row gap-4 py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
-                <div className="basis-full lg:basis-[500px] mt-8 lg:mt-0 shrink-0 flex gap-8 flex-col justify-center">
+                {/* <div className="basis-full lg:basis-[500px] mt-8 lg:mt-0 shrink-0 flex gap-8 flex-col justify-center">
                   <h1 className="section-header">{data.pages.why_join_devconnect_arg_title}</h1>
 
                   {data.pages.why_join_devconnect_arg_list.map((item: any, index: number) => {
@@ -679,10 +673,10 @@ const Home: NextPage = (props: any) => {
                       </div>
                     )
                   })}
-                </div>
+                </div> */}
 
-                <div className="basis-full lg:basis-auto grow flex justify-end items-center relative lg:p-4 py-8 lg:pr-16">
-                  <div className="aspect-video bg-white border-2 border-solid border-[white] w-[700px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
+                <div className="basis-full lg:basis-auto grow flex justify-center items-center relative py-16 lg:pr-16">
+                  <div className="aspect-video bg-white border-2 border-solid border-[white] w-[800px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
                     {/* <Image
                       src={VideoImage}
                       alt="Video Preview"
@@ -707,7 +701,7 @@ const Home: NextPage = (props: any) => {
               </div>
             </div>
 
-            <div className="section relative !hidden lg:!grid">
+            {/* <div className="section relative !hidden lg:!grid">
               <div className="max-w-[1300px] flex justify-center items-center mx-auto py-4">
                 <motion.div
                   className={`${css['topics']} mt-6 font-secondary`}
@@ -756,10 +750,10 @@ const Home: NextPage = (props: any) => {
                   })}
                 </motion.div>
               </div>
-            </div>
+            </div> */}
           </div>
 
-          <div className={cn('section relative lg:mt-12 pb-8', css['gradient-pink'])}>
+          {/* <div className={cn('section relative lg:mt-12 pb-8', css['gradient-pink'])}>
             <RichText content={data.pages.ethereum_worlds_fair} className="cms-markdown mt-6 mb-6" />
 
             <div>
@@ -908,9 +902,9 @@ const Home: NextPage = (props: any) => {
                 </motion.div>
               </motion.div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="section relative pt-16 bg-white">
+          {/* <div className="section relative pt-16 bg-white">
             <div className="flex flex-col items-center md:flex-row bg-[#FDF9EC] rounded-md border border-solid border-[#1B6FAE]">
               <div className="relative w-full md:w-1/2 lg:w-[min(650px,50%)] md:shrink-0 h-full">
                 <Image
@@ -1156,7 +1150,7 @@ const Home: NextPage = (props: any) => {
                 </button>
               </Link>
             </div>
-          </div>
+          </div> */}
 
           <div
             className="section relative py-8 md:py-12"
@@ -1172,16 +1166,16 @@ const Home: NextPage = (props: any) => {
             <Supporters />
           </div>
 
-          <div className="section relative py-8 md:py-12 bg-white">
+          {/* <div className="section relative py-8 md:py-12 bg-white">
             <div className="mb-8">
               <h2 className="section-header black mb-6">OUR MEDIA PARTNERS</h2>
 
               <RichText content={data.pages.media_partners} className="cms-markdown" />
             </div>
 
-            {/* Desktop grid layout - 4 + 3 centered */}
+            
             <div className="hidden lg:block">
-              {/* First row - 4 logos */}
+              
               <div className="grid grid-cols-4 gap-2 items-center justify-items-center mb-12">
                 <div className="flex items-center justify-center p-6">
                   <Link href="https://thedefiant.io/" target="_blank" rel="noopener noreferrer">
@@ -1204,7 +1198,7 @@ const Home: NextPage = (props: any) => {
                   </Link>
                 </div>
               </div>
-              {/* Second row - 3 logos centered */}
+              
               <div className="flex justify-center">
                 <div className="grid grid-cols-3 gap-20 items-center justify-items-center">
                   <div className="flex items-center justify-center p-6">
@@ -1226,7 +1220,6 @@ const Home: NextPage = (props: any) => {
               </div>
             </div>
 
-            {/* Mobile/Tablet flexbox layout - natural wrapping */}
             <div className="flex flex-wrap justify-center items-center gap-8 lg:hidden">
               <div className="flex items-center justify-center p-4">
                 <Image src={TheDefiantLogo} alt="The Defiant" className="max-h-12 w-auto" />
@@ -1362,7 +1355,7 @@ const Home: NextPage = (props: any) => {
                 )
               })}
             </motion.div>
-          </div>
+          </div> */}
 
           <div className="section relative pb-8 md:pb-12 bg-black overflow-hidden">
             <Image
