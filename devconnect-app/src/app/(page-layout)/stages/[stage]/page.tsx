@@ -3,6 +3,7 @@ import React, { use, useState, useEffect } from 'react';
 import { Separator } from 'lib/components/ui/separator';
 import { useNow } from 'lib/hooks/useNow';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import {
   useAdditionalTicketEmails,
   ensureUserData,
@@ -146,6 +147,8 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [translationsVisible, setTranslationsVisible] = useState(false);
   const { stage } = use(params);
+  const searchParams = useSearchParams();
+  const dayParam = searchParams.get('day');
   const now = useNow();
   const today = now.format('YYYY-MM-DD');
 
@@ -197,10 +200,19 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
     return grouped;
   }, [sessions]);
 
-  // Auto-select day: current day if it has sessions, otherwise first day with sessions
+  // Auto-select day: query param, current day if it has sessions, otherwise first day with sessions
   useEffect(() => {
     if (!selectedDay && sessions && sessions.length > 0) {
       const datesWithSessions = Object.keys(sessionsByDate).sort();
+
+      // Check if day query param exists and construct the date
+      if (dayParam) {
+        const targetDate = moment.utc(`2025-11-${dayParam}`).format('YYYY-MM-DD');
+        if (sessionsByDate[targetDate] && sessionsByDate[targetDate].length > 0) {
+          setSelectedDay(targetDate);
+          return;
+        }
+      }
 
       // Check if today has sessions
       if (sessionsByDate[today] && sessionsByDate[today].length > 0) {
@@ -210,7 +222,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
         setSelectedDay(datesWithSessions[0]);
       }
     }
-  }, [sessions, today, selectedDay, sessionsByDate]);
+  }, [sessions, today, selectedDay, sessionsByDate, dayParam]);
 
   const selectedDaySessions = selectedDay
     ? sessionsByDate[selectedDay] || []

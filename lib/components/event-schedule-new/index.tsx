@@ -55,31 +55,31 @@ export const stageNamesByEvent = {
     name: "Ethereum Day",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
-    programming: "/stages/xl",
+    programming: "/stages/xl?day=17",
   },
   82: {
     name: "ETHCON ARGENTINA",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
-    programming: "/stages/xl",
+    programming: "/stages/xl?day=18",
   },
   110: {
     name: "trustless://interop.landscape",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
-    programming: "/stages/xl",
+    programming: "/stages/xl?day=19",
   },
   71: {
     name: "Agentic Zero",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
-    programming: "/stages/xl",
+    programming: "/stages/xl?day=20",
   },
   141: {
     name: "Ethereum Privacy Stack",
     stageLabel: "La Rural - XL Stage",
     mapUrl: "/map?filter=xl-stage",
-    programming: "/stages/xl",
+    programming: "/stages/xl?day=21",
   },
 
   // XS STAGE events
@@ -87,25 +87,25 @@ export const stageNamesByEvent = {
     name: "Newtro and Whabbit present 'The Creator Economy' powered by Crecimiento",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
-    programming: "/stages/xs",
+    programming: "/stages/xs?day=19",
   },
   98: {
     name: "Zero to Dapp",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
-    programming: "/stages/xs",
+    programming: "/stages/xs?day=20",
   },
   162: {
     name: "EIP Summit",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
-    programming: "/stages/xs",
+    programming: "/stages/xs?day=21",
   },
   91: {
     name: "Bridge Atlas",
     stageLabel: "La Rural - XS Stage",
     mapUrl: "/map?filter=xs-stage",
-    programming: "/stages/xs",
+    programming: "/stages/xs?day=22",
   },
 
   // bootcamp
@@ -121,33 +121,39 @@ export const stageNamesByEvent = {
     name: "Solidity Summit",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
-    programming: "/stages/m1",
+    programming: "/stages/m1?day=18",
   },
   106: {
     name: "Crecimiento World Cup",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
-    programming: "/stages/m1",
+    programming: "/stages/m1?day=19",
+  },
+  107: {
+    name: "Defi Day",
+    stageLabel: "La Rural - M1 Stage",
+    mapUrl: "/map?filter=m1-stage",
+    programming: "/stages/m1?day=21",
   },
   104: {
     name: "Crecimiento Regulation Day",
     stageLabel: "La Rural - M1 Stage",
     mapUrl: "/map?filter=m1-stage",
-    programming: "/stages/m1",
+    programming: "/stages/m1?day=20",
   },
-  72: {
-    name: "DeFi Day del Sur",
-    stageLabel: "La Rural - M1 Stage",
-    mapUrl: "/map?filter=m1-stage",
-    programming: "/stages/m1",
-  },
+  // 72: {
+  //   name: "DeFi Day del Sur",
+  //   stageLabel: "La Rural - M1 Stage",
+  //   mapUrl: "/map?filter=m1-stage",
+  //   programming: "/stages/m1?day=21",
+  // },
 
   // m2 stage
   136: {
     name: "Trustless Agents Day",
     stageLabel: "La Rural - M2 Stage",
     mapUrl: "/map?filter=m2-stage",
-    programming: "/stages/m2",
+    programming: "/stages/m2?day=21",
   },
   113: {
     name: "Ethereum Argentina Hackathon: Tierra de Buidlērs",
@@ -159,7 +165,7 @@ export const stageNamesByEvent = {
     name: "Ethproofs Day",
     stageLabel: "La Rural - M2 Stage",
     mapUrl: "/map?filter=m2-stage",
-    programming: "/stages/m2",
+    programming: "/stages/m2?day=22",
   },
 
   // nogal stage
@@ -177,13 +183,13 @@ export const stageNamesByEvent = {
     name: "Applications to FHE",
     stageLabel: "La Rural - Nogal Stage",
     mapUrl: "/map?filter=nogal-hall",
-    programming: "/stages/nogal",
+    programming: "/stages/nogal?day=22",
   },
   194: {
     name: "Obfuscation Day",
     stageLabel: "La Rural - Nogal Stage",
     mapUrl: "/map?filter=nogal-hall",
-    programming: "/stages/nogal",
+    programming: "/stages/nogal?day=22",
   },
 
   // ceibo
@@ -191,19 +197,19 @@ export const stageNamesByEvent = {
     name: "ZKID Day",
     stageLabel: "La Rural - Ceibo Stage",
     mapUrl: "/map?filter=ceibo-hall",
-    programming: "/stages/ceibo",
+    programming: "/stages/ceibo?day=19",
   },
   112: {
     name: "Noircon 3",
     stageLabel: "La Rural - Ceibo Stage",
     mapUrl: "/map?filter=ceibo-hall",
-    programming: "/stages/ceibo",
+    programming: "/stages/ceibo?day=20",
   },
   137: {
     name: "Ethereum Community and Event Organizer Hangout",
     stageLabel: "La Rural - Ceibo Stage",
     mapUrl: "/map?filter=ceibo-hall",
-    programming: "/stages/ceibo",
+    programming: "/stages/ceibo?day=21",
   },
 
   // l stage
@@ -211,20 +217,20 @@ export const stageNamesByEvent = {
     name: "Trustless Interop Layer",
     stageLabel: "La Rural - L Stage",
     mapUrl: "/map?filter=l-stage",
-    programming: "/stages/l",
+    programming: "/stages/l?day=18",
   },
   301: {
     name: "<d/acc day>",
     stageLabel: "La Rural - L Stage",
     mapUrl: "/map?filter=l-stage",
-    programming: "/stages/l",
+    programming: "/stages/l?day=19",
   },
   // TODO: DSS would be here - which event is this??
   118: {
     name: "ETH/ACC DEMO DAY",
     stageLabel: "La Rural - L Stage",
     mapUrl: "/map?filter=l-stage",
-    programming: "/stages/l",
+    programming: "/stages/l?day=22",
   },
 
   // amphitheater stage
@@ -232,7 +238,7 @@ export const stageNamesByEvent = {
     name: "App Town Hall ⌐◨-◨ ",
     stageLabel: "La Rural - Amphitheater Stage",
     mapUrl: "/map?filter=amphitheater",
-    programming: "/stages/amphitheater",
+    programming: "/stages/amphitheater?day=18",
   },
   124: {
     name: "University Track - UCEMA",
