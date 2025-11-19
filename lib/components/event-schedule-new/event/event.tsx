@@ -636,36 +636,75 @@ function Event({
                         {stageNamesByEvent[
                           parseInt(event.id) as keyof typeof stageNamesByEvent
                         ] ? (
-                          <Link
-                            href={
-                              typeof window !== "undefined" &&
-                              !window.location.origin.includes(
-                                "app.devconnect.org"
-                              ) &&
-                              !window.location.origin.includes("localhost")
-                                ? `https://app.devconnect.org${
-                                    stageNamesByEvent[
+                          <>
+                            <Link
+                              href={
+                                typeof window !== "undefined" &&
+                                !window.location.origin.includes(
+                                  "app.devconnect.org"
+                                ) &&
+                                !window.location.origin.includes("localhost")
+                                  ? `https://app.devconnect.org${
+                                      stageNamesByEvent[
+                                        parseInt(
+                                          event.id
+                                        ) as keyof typeof stageNamesByEvent
+                                      ].mapUrl
+                                    }`
+                                  : stageNamesByEvent[
                                       parseInt(
                                         event.id
                                       ) as keyof typeof stageNamesByEvent
                                     ].mapUrl
-                                  }`
-                                : stageNamesByEvent[
-                                    parseInt(
-                                      event.id
-                                    ) as keyof typeof stageNamesByEvent
-                                  ].mapUrl
-                            }
-                            className="flex gap-1 items-center text-[#165a8d] hover:underline"
-                          >
-                            {
-                              stageNamesByEvent[
-                                parseInt(
-                                  event.id
-                                ) as keyof typeof stageNamesByEvent
-                              ].stageLabel
-                            }
-                          </Link>
+                              }
+                              className="flex gap-1 items-center text-[#165a8d] hover:underline"
+                            >
+                              {
+                                stageNamesByEvent[
+                                  parseInt(
+                                    event.id
+                                  ) as keyof typeof stageNamesByEvent
+                                ].stageLabel
+                              }
+                            </Link>
+                            {(stageNamesByEvent[
+                              parseInt(event.id) as keyof typeof stageNamesByEvent
+                            ] as any).stageLabel2 && (
+                              <>
+                                <span className="text-gray-400">&</span>
+                                <Link
+                                  href={
+                                    typeof window !== "undefined" &&
+                                    !window.location.origin.includes(
+                                      "app.devconnect.org"
+                                    ) &&
+                                    !window.location.origin.includes("localhost")
+                                      ? `https://app.devconnect.org${
+                                          (stageNamesByEvent[
+                                            parseInt(
+                                              event.id
+                                            ) as keyof typeof stageNamesByEvent
+                                          ] as any).mapUrl2
+                                        }`
+                                      : (stageNamesByEvent[
+                                          parseInt(
+                                            event.id
+                                          ) as keyof typeof stageNamesByEvent
+                                        ] as any).mapUrl2
+                                  }
+                                  className="flex gap-1 items-center text-[#165a8d] hover:underline"
+                                >
+                                  {
+                                    (stageNamesByEvent[
+                                      parseInt(
+                                        event.id
+                                      ) as keyof typeof stageNamesByEvent
+                                    ] as any).stageLabel2
+                                  }
+                                </Link>
+                              </>
+                            )}
+                          </>
                         ) : typeof event.location === "string" ? (
                           event.location
                         ) : (
