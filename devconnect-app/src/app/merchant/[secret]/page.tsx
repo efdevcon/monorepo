@@ -95,11 +95,11 @@ const getExplorerUrl = (chainId: number, txHash: string): string => {
 export default function MerchantPage() {
   const params = useParams();
   const [isValidated, setIsValidated] = useState(false);
-  const [selectedMerchant, setSelectedMerchant] = useState<string>('69138269ea5ff64e14b83b6f');
+  const [selectedMerchant, setSelectedMerchant] = useState<string>('');
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(null);
   const [isLoadingPayment, setIsLoadingPayment] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [merchantSlug, setMerchantSlug] = useState<string>('devcon-swag-shop');
+  const [merchantSlug, setMerchantSlug] = useState<string>('');
   const [iframeKey, setIframeKey] = useState<number>(0);
   const [useStatusEndpoint, setUseStatusEndpoint] = useState<boolean>(false);
   
@@ -284,13 +284,13 @@ export default function MerchantPage() {
     setUseStatusEndpoint(false);
   };
 
-  // Initial load - default to Swag Shop
-  useEffect(() => {
-    if (!isValidated) return;
-    
-    setSelectedMerchant('69138269ea5ff64e14b83b6f');
-    fetchLastPayment('69138269ea5ff64e14b83b6f');
-  }, [isValidated]);
+  // Initial load - no default merchant selected
+  // useEffect(() => {
+  //   if (!isValidated) return;
+  //   
+  //   setSelectedMerchant('69138269ea5ff64e14b83b6f');
+  //   fetchLastPayment('69138269ea5ff64e14b83b6f');
+  // }, [isValidated]);
 
   // Auto-refresh payment every 2 seconds
   useEffect(() => {
