@@ -141,7 +141,6 @@ export const stageNamesByEvent = {
     mapUrl: "/map?filter=m1-stage",
     programming: "/stages/m1",
   },
-  // TODO: TRILLION DOLLAR SECURITY - WHICH EVENT IS THIS??
 
   // m2 stage
   136: {
@@ -168,6 +167,9 @@ export const stageNamesByEvent = {
     name: "Defi Security Summit",
     stageLabel: "La Rural - Nogal Stage",
     mapUrl: "/map?filter=nogal-hall",
+    // lazy fix for edge case with 2 stages for one event
+    stageLabel2: "La Rural - L Stage",
+    mapUrl2: "/map?filter=l-stage",
     programming: "/stages/nogal",
   },
   // 156 TODO: Defi Security 101 by DSS - which stage is this?
