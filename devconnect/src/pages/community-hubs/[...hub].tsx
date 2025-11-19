@@ -195,7 +195,7 @@ const CommunityHubsPage = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden flex flex-col h-screen">
+      <div className="lg:hidden flex flex-col" style={{ height: '100dvh' }}>
         {/* Main Content - Iframe */}
         <div className="flex-1 bg-white overflow-hidden">
           {selectedHub && (
