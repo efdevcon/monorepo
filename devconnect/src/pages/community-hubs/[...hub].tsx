@@ -51,7 +51,7 @@ const hubData = [
     name: 'Node Operators Hub',
     slug: 'node-operators-hub',
     iframeUrl:
-      'https://sheets.fileverse.io/0x899194fecd8f75866078786bf5f404282740f5ef/0#key=RrRV1ylcFQYCP9wy36ksEPh4JZKVodQvuGrix3_kaHdgkLwHGBOLX1krDxvDptuK',
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vSpwTbX0xBlnYR6IGfSjXONN5vOsBSwisVW7KNZqgW1Zkc3rfmmN19jC4jZ1wNs6xN3a6WkOkoMdBtO/pubhtml?widget=true&amp;headers=false',
   },
   {
     name: 'Onchain Art Hub',
