@@ -482,13 +482,13 @@ const Perk = ({
         body: serializePodData(verified),
       })
 
+      const { coupon, coupon_status, ticket_type, error } = await response.json()
+
       if (!response.ok) {
         console.error(response.statusText)
-        setCouponStatus({ success: false, error: 'Failed to claim coupon' })
+        setCouponStatus({ success: false, error: error || 'Failed to claim coupon' })
         return
       }
-
-      const { coupon, coupon_status, ticket_type } = await response.json()
 
       setCouponStatus(coupon_status)
 
@@ -503,9 +503,13 @@ const Perk = ({
           [perk.coupon_collection]: coupon,
         })
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.log('error', error)
       console.error('Error claiming coupon:', error)
-      setCouponStatus({ success: false, error: 'Failed to claim coupon' })
+      setCouponStatus({
+        success: false,
+        error: (error as any).error ? (error as any).error : 'Failed to claim coupon',
+      })
     } finally {
       setFetchingCoupon(false)
     }

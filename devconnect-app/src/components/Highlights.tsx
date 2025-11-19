@@ -10,6 +10,7 @@ import PhoneImage from '@/images/announcements/phones.jpg';
 import VoxelImage from '@/images/voxel-car.jpg';
 import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
+import Coffee from '@/images/announcements/coffee-announcement.jpg';
 import EthCon from '@/images/announcements/ethcon-arg.jpeg';
 import TranslationsPost from '@/images/announcements/translations_post.webp';
 import { StaticImageData } from 'next/image';
@@ -84,6 +85,12 @@ export const Highlights = () => {
   const t = useTranslations('highlights');
 
   const highlights = [
+    {
+      title: t('coffeePost'),
+      to: '/map',
+      description: t('coffeePostDescription'),
+      image: Coffee,
+    },
     {
       title: t('ethcon'),
       to: 'https://ethcon.ar/',

@@ -56,6 +56,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Collection is required' })
   }
 
+  // Some people...
+  const requireCheckin = ['minipay-2025', 'ready-lite'].includes(collection ?? '')
+
   const perk =
     perksList.find(perk => perk.coupon_collection === collection) ||
     eventShops.find(event => event.coupon_collection === collection)
@@ -91,12 +94,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'User email is required' })
     }
 
-    const tickets = await getPaidTicketsByEmail(claimedBy)
+    const tickets = await getPaidTicketsByEmail(claimedBy, requireCheckin)
 
-    const hasTickets = tickets && tickets.length > 0
-
-    if (!hasTickets) {
-      return res.status(400).json({ error: 'User does not have a Devconnect ticket' })
+    if (!tickets || tickets.length === 0) {
+      return res.status(400).json({
+        error: requireCheckin
+          ? 'This perk requires check-in. Check in at the venue to unlock this perk.'
+          : 'No tickets found for this email',
+      })
     }
 
     // Flatten tickets array to get all ticket secrets
@@ -214,11 +219,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (isDevcon) {
     tickets = [{ tickets: [{ secret: 'devcon_sea_email_fixed_' + ticketOwner }] }]
   } else {
-    tickets = await getPaidTicketsByEmail(ticketOwner)
+    tickets = await getPaidTicketsByEmail(ticketOwner, requireCheckin)
   }
 
   if (!tickets || tickets.length === 0) {
-    return res.status(400).json({ error: 'No tickets found for this email' })
+    return res.status(400).json({
+      error: requireCheckin
+        ? 'This perk requires check-in. Check in at the venue to unlock this perk.'
+        : 'No tickets found for this email',
+    })
   }
 
   // Flatten tickets array to get all ticket secrets

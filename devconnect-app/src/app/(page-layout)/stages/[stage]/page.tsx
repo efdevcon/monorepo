@@ -49,7 +49,8 @@ const streams = {
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
+    // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
+    youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
   },
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
@@ -207,8 +208,13 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
 
       // Check if day query param exists and construct the date
       if (dayParam) {
-        const targetDate = moment.utc(`2025-11-${dayParam}`).format('YYYY-MM-DD');
-        if (sessionsByDate[targetDate] && sessionsByDate[targetDate].length > 0) {
+        const targetDate = moment
+          .utc(`2025-11-${dayParam}`)
+          .format('YYYY-MM-DD');
+        if (
+          sessionsByDate[targetDate] &&
+          sessionsByDate[targetDate].length > 0
+        ) {
           setSelectedDay(targetDate);
           return;
         }
