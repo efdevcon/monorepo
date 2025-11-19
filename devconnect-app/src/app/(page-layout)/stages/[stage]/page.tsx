@@ -50,7 +50,7 @@ const streams = {
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
     // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
-    youtube: 'https://www.youtube.com/live/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
+    youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
   },
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
