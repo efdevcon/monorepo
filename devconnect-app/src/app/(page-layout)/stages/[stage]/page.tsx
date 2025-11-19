@@ -1,7 +1,6 @@
 'use client';
 import React, { use, useState, useEffect } from 'react';
 import { Separator } from 'lib/components/ui/separator';
-import { fetchAuth } from '@/services/apiClient';
 import { useNow } from 'lib/hooks/useNow';
 import Link from 'next/link';
 import {
