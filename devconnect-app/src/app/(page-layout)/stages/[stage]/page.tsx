@@ -185,6 +185,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const currentDay = now.date();
   const isOpenAirCinemaClosed =
     stageInfo.id === 'outdoor-cinema' && currentDay === 20;
+  const isDSSNogalOn20th = stageInfo.id === 'nogal' && currentDay === 20;
 
   // Group sessions by date - memoized to prevent infinite loop
   const sessionsByDate = React.useMemo(() => {
@@ -484,7 +485,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
           })}
         </div>
 
-        {selectedDay && (
+        {selectedDay && !isDSSNogalOn20th && (
           <div className="overflow-x-auto">
             {isLoading ? (
               <div className="text-center py-8">Loading sessions...</div>
