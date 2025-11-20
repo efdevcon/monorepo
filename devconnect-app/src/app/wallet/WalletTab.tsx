@@ -285,7 +285,10 @@ export default function WalletTab() {
         identity?.worldfairName ||
         (identity?.name?.endsWith('.worldfair.eth') ? identity.name : null);
 
-      if (worldfairName) {
+      // IMPORTANT: Only show worldfair.eth names, filter out any other ENS names
+      const isWorldfairEth = worldfairName?.endsWith('.worldfair.eth');
+
+      if (worldfairName && isWorldfairEth) {
         const existingClaim = worldfairClaimedMap[addressKey];
 
         // Only update if not already claimed or if the name changed
@@ -1463,9 +1466,14 @@ export default function WalletTab() {
                   <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
                     <button
                       onClick={handleEnsClaim}
-                      disabled={isEnsPopupOpen || !!worldfairClaimed}
+                      disabled={
+                        isEnsPopupOpen ||
+                        (!!worldfairClaimed &&
+                          worldfairClaimed.name?.endsWith('.worldfair.eth'))
+                      }
                       className={`w-full rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 transition-colors ${
-                        worldfairClaimed
+                        worldfairClaimed &&
+                        worldfairClaimed.name?.endsWith('.worldfair.eth')
                           ? 'bg-green-100 cursor-not-allowed'
                           : isEnsPopupOpen
                             ? 'bg-[#247cff] opacity-60 cursor-not-allowed'
@@ -1474,10 +1482,14 @@ export default function WalletTab() {
                     >
                       <p
                         className={`text-[16px] font-bold leading-none ${
-                          worldfairClaimed ? 'text-green-700' : 'text-white'
+                          worldfairClaimed &&
+                          worldfairClaimed.name?.endsWith('.worldfair.eth')
+                            ? 'text-green-700'
+                            : 'text-white'
                         }`}
                       >
-                        {worldfairClaimed
+                        {worldfairClaimed &&
+                        worldfairClaimed.name?.endsWith('.worldfair.eth')
                           ? `✓ Claimed: ${worldfairClaimed.name}`
                           : isEnsPopupOpen
                             ? 'Popup open...'
@@ -1499,29 +1511,30 @@ export default function WalletTab() {
                         </svg>
                       )}
                     </button>
-                    {worldfairClaimed && (
-                      <a
-                        href={`http://worldfair.id/${worldfairClaimed.name?.replace('.worldfair.eth', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
-                      >
-                        Edit {worldfairClaimed.name}
-                        <svg
-                          className="w-3 h-3"
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          stroke="currentColor"
+                    {worldfairClaimed &&
+                      worldfairClaimed.name?.endsWith('.worldfair.eth') && (
+                        <a
+                          href={`http://worldfair.id/${worldfairClaimed.name?.replace('.worldfair.eth', '')}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#0073de] text-[12px] font-medium hover:underline flex items-center gap-1"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M3 9l6-6m0 0H4.5M9 3v4.5"
-                          />
-                        </svg>
-                      </a>
-                    )}
+                          Edit {worldfairClaimed.name}
+                          <svg
+                            className="w-3 h-3"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M3 9l6-6m0 0H4.5M9 3v4.5"
+                            />
+                          </svg>
+                        </a>
+                      )}
                     <div className="flex items-center gap-3">
                       <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
                         Sponsored by
