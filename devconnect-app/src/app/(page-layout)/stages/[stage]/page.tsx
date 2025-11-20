@@ -66,7 +66,10 @@ const streams = {
   },
   l: {
     translations: 'https://stm.live/Stage-L/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
+    // ef
+    // youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
+    // dss
+    youtube: 'https://www.youtube.com/embed/fGmtSSpoXm8?si=I_rDk3sQpkoGbZvL',
   },
   bootcamp: {
     translations: 'https://stm.live/Stage-Bootcamp/fullscreen?embed=true',
