@@ -298,6 +298,7 @@ function Event({
   const isCoreEvent = event.isCoreEvent;
   const isCommunityHubs = event.id.toString() === "149";
   const isDiscussionCorners = event.id.toString() === "426";
+  const isClosingHappyHour = event.id.toString() === "devconnect-happy-hour";
 
   // Type of event and resulting customization class
   const typeClass = (() => {
@@ -310,7 +311,7 @@ function Event({
       return "bg-[rgba(246,180,14,0.05)] hover:bg-[rgba(246,180,14,0.1)] !border-[rgba(246,180,14,1)] border-l-[4px]";
     }
 
-    if (isCoworking || isETHDay || isClosingHours) {
+    if (isCoworking || isETHDay || isClosingHours || isClosingHappyHour) {
       return "bg-[rgba(255,133,166,0.05)] hover:bg-[rgba(255,133,166,0.1)] !border-[rgba(255,133,166,1)] border-l-[4px]";
     } else if (isETHDay) {
       // Not used atm looks cool though
@@ -667,9 +668,13 @@ function Event({
                                 ].stageLabel
                               }
                             </Link>
-                            {(stageNamesByEvent[
-                              parseInt(event.id) as keyof typeof stageNamesByEvent
-                            ] as any).stageLabel2 && (
+                            {(
+                              stageNamesByEvent[
+                                parseInt(
+                                  event.id
+                                ) as keyof typeof stageNamesByEvent
+                              ] as any
+                            ).stageLabel2 && (
                               <>
                                 <span className="text-gray-400">&</span>
                                 <Link
@@ -678,28 +683,36 @@ function Event({
                                     !window.location.origin.includes(
                                       "app.devconnect.org"
                                     ) &&
-                                    !window.location.origin.includes("localhost")
+                                    !window.location.origin.includes(
+                                      "localhost"
+                                    )
                                       ? `https://app.devconnect.org${
-                                          (stageNamesByEvent[
+                                          (
+                                            stageNamesByEvent[
+                                              parseInt(
+                                                event.id
+                                              ) as keyof typeof stageNamesByEvent
+                                            ] as any
+                                          ).mapUrl2
+                                        }`
+                                      : (
+                                          stageNamesByEvent[
                                             parseInt(
                                               event.id
                                             ) as keyof typeof stageNamesByEvent
-                                          ] as any).mapUrl2
-                                        }`
-                                      : (stageNamesByEvent[
-                                          parseInt(
-                                            event.id
-                                          ) as keyof typeof stageNamesByEvent
-                                        ] as any).mapUrl2
+                                          ] as any
+                                        ).mapUrl2
                                   }
                                   className="flex gap-1 items-center text-[#165a8d] hover:underline"
                                 >
                                   {
-                                    (stageNamesByEvent[
-                                      parseInt(
-                                        event.id
-                                      ) as keyof typeof stageNamesByEvent
-                                    ] as any).stageLabel2
+                                    (
+                                      stageNamesByEvent[
+                                        parseInt(
+                                          event.id
+                                        ) as keyof typeof stageNamesByEvent
+                                      ] as any
+                                    ).stageLabel2
                                   }
                                 </Link>
                               </>
