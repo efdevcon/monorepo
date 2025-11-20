@@ -485,7 +485,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
           })}
         </div>
 
-        {selectedDay && !isDSSNogalOn20th && (
+        {selectedDay && (
           <div className="overflow-x-auto">
             {isLoading ? (
               <div className="text-center py-8">Loading sessions...</div>
