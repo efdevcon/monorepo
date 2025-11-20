@@ -123,7 +123,7 @@ export const questsData: Quest[] = [
   },
   {
     "id": 30,
-    "name": "Base",
+    "name": "Base (in the Cave)",
     "order": 0,
     "instructions": "Come say 'Hi' at our booth!",
     "action": "",
@@ -282,7 +282,7 @@ export const questsData: Quest[] = [
     "action": "",
     "button": "",
     "conditionType": "",
-    "conditionValues": "",
+    "conditionValues": "214460",
     "supporterId": "241638cdc415806ba33fe5f130141655",
     "poapImageLink": "",
     "groupId": 4,
