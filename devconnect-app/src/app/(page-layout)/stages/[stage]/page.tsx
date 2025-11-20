@@ -37,7 +37,7 @@ const streams = {
   },
   ceibo: {
     translations: 'https://stm.live/stage-CEIBO/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/Mw5LZW2wICs?si=C4BiC_Q2V9EiVVm4',
+    // youtube: 'https://www.youtube.com/embed/Mw5LZW2wICs?si=C4BiC_Q2V9EiVVm4',
   },
   nogal: {
     translations: 'https://stm.live/stage-NOGAL/fullscreen?embed=true',
