@@ -51,6 +51,7 @@ const streams = {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
     // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
     youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
+    x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
   },
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
@@ -385,16 +386,33 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
           </div>
         ) : null}
       </div>
-      {(streams as any)[stageInfo.id]?.youtube && (
+      {((streams as any)[stageInfo.id]?.x ||
+        (streams as any)[stageInfo.id]?.youtube) && (
         <div className="flex flex-col mx-6 gap-4">
-          <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
-            <iframe
-              className="w-full h-full"
-              src={(streams as any)[stageInfo.id]?.youtube}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-          </div>
+          {(streams as any)[stageInfo.id]?.x ? (
+            <Link
+              href={(streams as any)[stageInfo.id].x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aspect-[16/9] bg-blue-500 grow shrink-0 border border-solid border-neutral-200 flex items-center justify-center transition-colors"
+            >
+              <div className="text-white text-center">
+                <div className="text-2xl font-bold mb-2">Watch Live on X</div>
+                <div className="text-sm opacity-90">
+                  Click here to open stream
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
+              <iframe
+                className="w-full h-full"
+                src={(streams as any)[stageInfo.id]?.youtube}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
           <div className="flex flex-col gap-2 shrink-0">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <MeerkatComponent stage={stageInfo.id} />
