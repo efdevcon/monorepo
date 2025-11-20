@@ -729,7 +729,7 @@ const MapPane = (props: {
               <Link
                 href={
                   fromQuests
-                    ? `/map?filter=${supporterDistrict?.layerName}`
+                    ? `/map?filter=${supporterQuest.id === 30 ? 'base' : supporterDistrict?.layerName}`
                     : `/quests#${supporterQuest.id}`
                 }
               >
@@ -739,9 +739,11 @@ const MapPane = (props: {
                     boxShadow: '0px 4px 0px 0px #005493',
                   }}
                 >
-                  {fromQuests
-                    ? `View ${supporterDistrict?.name} District`
-                    : 'View Quest'}
+                  {supporterQuest.id === 30
+                    ? 'View Base'
+                    : fromQuests
+                      ? `View ${supporterDistrict?.name} District`
+                      : 'View Quest'}
                 </button>
               </Link>
             )}
