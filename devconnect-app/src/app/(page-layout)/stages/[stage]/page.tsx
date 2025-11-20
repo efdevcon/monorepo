@@ -174,6 +174,11 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
     return null;
   }
 
+  // Check if Open Air Cinema is closed on day 20
+  const currentDay = now.date();
+  const isOpenAirCinemaClosed =
+    stageInfo.id === 'outdoor-cinema' && currentDay === 20;
+
   // Group sessions by date - memoized to prevent infinite loop
   const sessionsByDate = React.useMemo(() => {
     const grouped: Record<string, any[]> = {};
@@ -333,6 +338,12 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
         </div>
 
         <Separator className="my-2 grow w-auto" />
+
+        {isOpenAirCinemaClosed && (
+          <div className="mt-2 p-4 bg-yellow-50 mb-4 border border-yellow-200 rounded text-sm">
+            Open Air Cinema is closed today due to rain.
+          </div>
+        )}
 
         {currentSession || nextSession ? (
           <div className="flex flex-col lg:flex-row justify-between mt-1">
