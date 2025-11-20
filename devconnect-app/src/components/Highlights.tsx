@@ -12,6 +12,7 @@ import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
 import Coffee from '@/images/announcements/coffee-announcement.jpg';
 import EthCon from '@/images/announcements/ethcon-arg.jpeg';
+import Leaderboard from '@/images/announcements/quest-leaderboard.png';
 import TranslationsPost from '@/images/announcements/translations_post.webp';
 import { StaticImageData } from 'next/image';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
@@ -85,6 +86,12 @@ export const Highlights = () => {
   const t = useTranslations('highlights');
 
   const highlights = [
+    {
+      title: t('leaderboardPost'),
+      to: 'https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors',
+      description: t('leaderboardPostDescription'),
+      image: Leaderboard,
+    },
     {
       title: t('coffeePost'),
       to: '/map',
