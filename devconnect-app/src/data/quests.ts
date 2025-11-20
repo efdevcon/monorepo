@@ -123,7 +123,7 @@ export const questsData: Quest[] = [
   },
   {
     "id": 30,
-    "name": "Base (in the Cave)",
+    "name": "Base",
     "order": 0,
     "instructions": "Come say 'Hi' at our booth!",
     "action": "",

@@ -98,8 +98,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "6"
   },
   "241638cdc415809d9909ea3bbcb6d327": {
-    "name": "Base",
-    "layerName": "base",
+    "name": "Base (moved to THE CAVE)",
+    "layerName": "base-moved-to-the-cave",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-40-32-746Z-Base.png",
     "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-06-11-677Z-Base.png",
     "description": "",

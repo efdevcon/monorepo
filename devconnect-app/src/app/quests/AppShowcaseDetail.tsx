@@ -343,6 +343,10 @@ const AppShowcaseDetail = React.forwardRef<
     if (!isCompleted) {
       // For district section (App Showcase quests with districtId)
       if (quest.groupId === 4 && quest.districtId) {
+        if (quest.id === 30) {
+          router.push(`/map?filter=base`);
+          return;
+        }
         const district = districtsData[quest.districtId];
         if (district?.layerName) {
           router.push(`/map?filter=${district.layerName}`);
