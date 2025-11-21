@@ -176,7 +176,7 @@ export const stageNamesByEvent = {
     // lazy fix for edge case with 2 stages for one event
     stageLabel2: "La Rural - L Stage",
     mapUrl2: "/map?filter=l-stage",
-    programming: "/stages/nogal",
+    programming: "/stages/l",
   },
   // 156 TODO: Defi Security 101 by DSS - which stage is this?
   193: {
