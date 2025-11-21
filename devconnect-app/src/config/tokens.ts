@@ -14,7 +14,7 @@ const tokenAddresses: Record<string, Record<number, string>> = {
   // https://app.zerion.io/tokens/USDC-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
   // https://zapper.xyz/token/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/USDC/details
   USDC: {
-    1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // Ethereum mainnet
+    // 1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // Ethereum mainnet
     8453: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913', // Base
     10: '0x0b2c639c533813f4aa9d7837caf62653d097ff85', // Optimism
     42161: '0xaf88d065e77c8cc2239327c5edb3a432268e5831', // Arbitrum
