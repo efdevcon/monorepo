@@ -8,6 +8,7 @@ import Image9 from '@/images/announcements/09.jpg';
 import Image6 from '@/images/announcements/06.jpg';
 import PhoneImage from '@/images/announcements/phones.jpg';
 import VoxelImage from '@/images/voxel-car.jpg';
+import Payment from '@/images/announcements/payment-post.png';
 import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
 import Coffee from '@/images/announcements/coffee-announcement.jpg';
@@ -87,6 +88,12 @@ export const Highlights = () => {
 
   const highlights = [
     {
+      title: t('paymentPost'),
+      to: 'https://x.com/EFDevcon/status/1990823077840892131',
+      description: t('paymentPostDescription'),
+      image: Payment,
+    },
+    {
       title: t('leaderboardPost'),
       to: 'https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors',
       description: t('leaderboardPostDescription'),
@@ -94,7 +101,7 @@ export const Highlights = () => {
     },
     {
       title: t('coffeePost'),
-      to: '/map',
+      to: '/map?filter=coffee-station-2',
       description: t('coffeePostDescription'),
       image: Coffee,
     },
