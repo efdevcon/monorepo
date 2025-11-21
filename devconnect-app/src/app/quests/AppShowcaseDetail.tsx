@@ -581,20 +581,6 @@ const AppShowcaseDetail = React.forwardRef<
   const handleQuestAction = async (quest: Quest) => {
     triggerHaptic(200);
 
-    // For group 3 (Community quests), always open the link even if completed
-    if (quest.groupId === 3 && isQuestCompleted(quest)) {
-      if (quest.conditionType === 'isLinkVisited' && quest.conditionValues) {
-        if (quest.conditionValues.startsWith('http')) {
-          // Open external link in new tab
-          window.open(quest.conditionValues, '_blank', 'noopener,noreferrer');
-        } else if (quest.conditionValues.startsWith('/')) {
-          // Navigate to internal route
-          router.push(quest.conditionValues);
-        }
-      }
-      return;
-    }
-
     if (isQuestCompleted(quest)) return;
 
     try {
@@ -612,6 +598,19 @@ const AppShowcaseDetail = React.forwardRef<
         tickets,
         quest.supporterId
       );
+
+      // For group 3 (Community quests), always open the link even if completed
+      if (quest.groupId === 3) {
+        if (quest.conditionType === 'isLinkVisited' && quest.conditionValues) {
+          if (quest.conditionValues.startsWith('http')) {
+            // Open external link in new tab
+            window.open(quest.conditionValues, '_blank', 'noopener,noreferrer');
+          } else if (quest.conditionValues.startsWith('/')) {
+            // Navigate to internal route
+            router.push(quest.conditionValues);
+          }
+        }
+      }
 
       // For groupId 1 (Setup & app tour), also open links if conditionValues is a URL or path
       if (quest.conditionType === 'isLinkVisited' && quest.conditionValues) {
