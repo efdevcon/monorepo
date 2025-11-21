@@ -236,7 +236,8 @@ export const PracticalInfo = () => {
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong> {t('cityGuideText')}</strong> {t('cityGuideDescription')}{' '}
+                <strong> {t('cityGuideText')}</strong>{' '}
+                {t('cityGuideDescription')}{' '}
                 <Link
                   href="https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx"
                   target="_blank"
@@ -344,7 +345,8 @@ export const PracticalInfo = () => {
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
-                <strong>{t('safetyEmergency')}</strong> {t('safetyEmergencyText')}
+                <strong>{t('safetyEmergency')}</strong>{' '}
+                {t('safetyEmergencyText')}
               </div>
             </li>
             <li className="flex gap-2">
@@ -432,9 +434,7 @@ export const PracticalInfo = () => {
 
             <div className="flex justify-between items-center group">
               <span className="font-semibold">{t('wifi')}</span>
-              <div
-                className="text-sm flex items-center gap-1"
-              >
+              <div className="text-sm flex items-center gap-1">
                 <span>{t('wifiName')}</span>
               </div>
             </div>
@@ -529,6 +529,8 @@ export const TodaysSchedule = withParcnetProvider(() => {
   const coworkingEventId = '23';
   const communityHubsEventId = '149';
   const ethereumDayEventId = '84';
+  const closingHoursEventId = '272';
+  const happyHourEventId = 'devconnect-happy-hour';
   // const discussionCornersEventId = '426';
 
   const ticketEventIds = tickets.map((ticket) => ticket.eventId?.toString());
@@ -544,6 +546,8 @@ export const TodaysSchedule = withParcnetProvider(() => {
       coworkingEventId,
       communityHubsEventId,
       ethereumDayEventId,
+      closingHoursEventId,
+      happyHourEventId,
       // discussionCornersEventId,
       ...favorites,
       ...allTicketEventIds,
@@ -590,12 +594,8 @@ export const TodaysSchedule = withParcnetProvider(() => {
     >
       <div className="flex w-full items-center justify-between gap-2 shrink-0 mb-1">
         <div className="flex flex-col">
-          <div className="font-bold text-base mb-1">
-            {t('title')}
-          </div>
-          <p className="text-sm mb-2 shrink-0">
-            {t('description')}
-          </p>
+          <div className="font-bold text-base mb-1">{t('title')}</div>
+          <p className="text-sm mb-2 shrink-0">{t('description')}</p>
         </div>
         <Link
           href="/schedule"

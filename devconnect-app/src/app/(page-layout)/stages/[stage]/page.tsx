@@ -45,20 +45,23 @@ const streams = {
   },
   xs: {
     translations: 'https://stm.live/Stage-XS/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    // ef
+    // youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    youtube: 'https://youtube.com/embed/3mU5r4LW_ik?feature=share',
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
+    // youtube: 'https://youtube.com/@web3privacynow'
     // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
-    youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
-    x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
+    // youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
+    // x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
   },
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
     // ef
-    // youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
+    youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
     // creciemiento
-    youtube: 'https://www.youtube.com/embed/TXvMTXlS_uc?si=TXvMTXlS_uc',
+    // youtube: 'https://www.youtube.com/embed/TXvMTXlS_uc?si=TXvMTXlS_uc',
   },
   m2: {
     translations: 'https://stm.live/Stage-M2/fullscreen?embed=true',
