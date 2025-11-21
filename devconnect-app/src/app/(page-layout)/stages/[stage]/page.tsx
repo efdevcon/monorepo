@@ -41,6 +41,7 @@ const streams = {
   },
   nogal: {
     translations: 'https://stm.live/stage-NOGAL/fullscreen?embed=true',
+    youtube: 'https://youtube.com/embed/4XpdA_In-fM?feature=share',
     // youtube: 'https://www.youtube.com/embed/C-kF0gplCto?si=NCDndzxiDbawrnFK',
   },
   xs: {
@@ -72,7 +73,8 @@ const streams = {
     // ef
     // youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
     // dss
-    youtube: 'https://www.youtube.com/embed/fGmtSSpoXm8?si=I_rDk3sQpkoGbZvL',
+    // youtube: 'https://www.youtube.com/embed/fGmtSSpoXm8?si=I_rDk3sQpkoGbZvL',
+    youtube: 'https://youtube.com/embed/t-GKO64eQyI?feature=share',
   },
   bootcamp: {
     translations: 'https://stm.live/Stage-Bootcamp/fullscreen?embed=true',
