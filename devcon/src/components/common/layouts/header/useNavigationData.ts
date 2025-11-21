@@ -51,11 +51,11 @@ const useNavigationData = () => {
             url: '/past-events',
             type: 'page',
           },
-          {
-            title: 'FAQ',
-            url: '/faq',
-            type: 'page',
-          },
+          // {
+          //   title: 'FAQ',
+          //   url: '/faq',
+          //   type: 'page',
+          // },
           {
             title: 'Forum',
             url: 'https://forum.devcon.org/',
@@ -124,11 +124,11 @@ const useNavigationData = () => {
             url: '#',
             type: 'header',
           },
-          {
-            title: 'Road to Devcon',
-            url: '/road-to-devcon',
-            type: 'page',
-          },
+          // {
+          //   title: 'Road to Devcon',
+          //   url: '/road-to-devcon',
+          //   type: 'page',
+          // },
           {
             title: 'DIPs',
             url: '/dips',
@@ -321,13 +321,13 @@ const useNavigationData = () => {
       //   type: 'link',
       // },
       {
-        title: 'Archive',
+        title: 'Devcon Archive',
         url: 'https://archive.devcon.org',
         type: 'page',
         // highlight: 'archive',
       },
       {
-        title: 'Devconnect 2025',
+        title: 'Devconnect',
         url: 'https://devconnect.org',
         type: 'link',
       },
@@ -338,12 +338,12 @@ const useNavigationData = () => {
       //     setAppState({ ...appState, devabotVisible: !appState.devabotVisible })
       //   },
       // },
-      {
-        title: 'Devcon App',
-        url: 'https://app.devcon.org',
-        type: 'page',
-        highlight: 'app',
-      },
+      // {
+      //   title: 'Devcon App',
+      //   url: 'https://app.devcon.org',
+      //   type: 'page',
+      //   highlight: 'app',
+      // },
     ],
     footer: {
       bottom: [
@@ -353,13 +353,13 @@ const useNavigationData = () => {
         //   type: 'page',
         // },
       ],
-      highlights: [
-        {
-          title: 'FAQ',
-          url: '/faq',
-          type: 'page',
-        },
-      ],
+      // highlights: [
+      //   {
+      //     title: 'FAQ',
+      //     url: '/faq',
+      //     type: 'page',
+      //   },
+      // ],
       left: [
         {
           title: 'About',
@@ -397,11 +397,11 @@ const useNavigationData = () => {
         //   url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
         //   type: 'url',
         // },
-        {
-          title: 'FAQ',
-          url: '/faq',
-          type: 'page',
-        },
+        // {
+        //   title: 'FAQ',
+        //   url: '/faq',
+        //   type: 'page',
+        // },
         {
           title: 'Blog',
           url: '/blogs',
@@ -424,11 +424,11 @@ const useNavigationData = () => {
         },
       ],
       right: [
-        {
-          title: 'RTD',
-          url: '/road-to-devcon#events',
-          type: 'page',
-        },
+        // {
+        //   title: 'RTD',
+        //   url: '/road-to-devcon#events',
+        //   type: 'page',
+        // },
         // {
         //   title: 'Devcon Week',
         //   url: '/devcon-week',

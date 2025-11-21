@@ -87,13 +87,13 @@ const TopSection = () => {
   return (
     <div className={css['top-section']}>
       <div className="section relative">
-        <div className="hidden lg:flex absolute right-0 top-0 h-full w-full overflow-hidden">
+        {/* <div className="hidden lg:flex absolute right-0 top-0 h-full w-full overflow-hidden">
           <Image
             src={DC7Background}
             alt="Devcon 7 logo faded in background"
             className="object-contain object-right h-full w-full opacity-70"
           />
-        </div>
+        </div> */}
 
         <div className={css['content']}>
           <div className={css['col-1']}>

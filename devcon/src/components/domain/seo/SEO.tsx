@@ -25,7 +25,7 @@ export function SEO(props: SEOProps) {
   const pageContext = usePageContext()
   const separator = props.separator ?? '—'
 
-  let title = 'Devcon 2024' // Bogotá, Oct 11 → 14'
+  let title = `Devcon ${new Date().getFullYear()}` // Bogotá, Oct 11 → 14'
   if (pageContext?.current?.title && pageContext?.current?.title !== title) {
     title = `${pageContext?.current.title} ${separator} ${title}`
   } else if (props.title) {

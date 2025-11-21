@@ -312,6 +312,8 @@ async function startFirehose() {
       console.log("Using cursor with 5 second buffer:", cursorForConnection);
     }
 
+    cursorForConnection = BigInt("1763683200000").toString();
+
     // Add cursor as a query parameter if it exists
     const wsUrl = cursorForConnection
       ? `wss://jetstream2.us-east.bsky.network/subscribe?cursor=${cursorForConnection}&wantedCollections=${COLLECTION_NAME}`
@@ -691,7 +693,7 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 
   if (process.env.NODE_ENV !== "development") {
-    startFirehose();
+    // startFirehose();
   } else {
     // backfillData();
   }
