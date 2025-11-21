@@ -33,7 +33,9 @@ const streams = {
   },
   lightning: {
     translations: 'https://stm.live/Stage-lightning/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/iGN3K8aa58I?si=6xmYNVo14n1h1GI3',
+    youtube: 'https://www.youtube.com/embed/Q3MogrrDdcA?si=6xmYNVo14n1h1GI3',
+    // youtube: '',
+    // https://www.youtube.com/watch?v=Q3MogrrDdcA
   },
   ceibo: {
     translations: 'https://stm.live/stage-CEIBO/fullscreen?embed=true',
