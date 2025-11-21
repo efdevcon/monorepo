@@ -54,7 +54,8 @@ const streams = {
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
-    youtube: 'https://youtube.com/embed/2z0I6ONlKlU?feature=share',
+    // youtube: 'https://youtube.com/embed/2z0I6ONlKlU?feature=share',
+    youtube: 'https://www.youtube.com/embed/76rjTtRdQhM?si=76rjTtRdQhM',
     // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
     // youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
     // x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
