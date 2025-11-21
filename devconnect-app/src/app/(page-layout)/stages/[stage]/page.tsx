@@ -52,7 +52,7 @@ const streams = {
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
-    // youtube: 'https://youtube.com/@web3privacynow'
+    youtube: 'https://youtube.com/@web3privacynow',
     // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
     // youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
     // x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
@@ -190,7 +190,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const currentDay = now.date();
   const isOpenAirCinemaClosed =
     stageInfo.id === 'outdoor-cinema' && currentDay === 20;
-  const isDSSNogalOn20th = stageInfo.id === 'nogal' && currentDay === 20;
+  const isDSSNogalOn21th = stageInfo.id === 'nogal' && currentDay === 21;
 
   // Group sessions by date - memoized to prevent infinite loop
   const sessionsByDate = React.useMemo(() => {
