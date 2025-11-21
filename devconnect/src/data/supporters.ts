@@ -23,7 +23,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "254638cdc41580cf8c7ed2b6327a89ad": {
     "name": "1inch",
@@ -71,7 +71,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/arbitrum",
     "farcasterLink": "",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "25d638cdc415806097ded8fddaae1f33": {
     "name": "Axie / Ronin",
@@ -83,7 +83,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/Ronin_Network",
     "farcasterLink": "",
     "districtId": "4",
-    "locationId": "9"
+    "locationId": "10"
   },
   "241638cdc41580858795dfc9f5630277": {
     "name": "Aztec",
@@ -95,7 +95,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/aztecnetwork",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "25d638cdc415804c8099e0415b0c4169": {
     "name": "Barter",
@@ -119,7 +119,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "25d638cdc41580cca6f1f46af6e30c95": {
     "name": "Beam",
@@ -179,7 +179,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/celo",
     "farcasterLink": "https://farcaster.xyz/celo",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "25d638cdc415801e9439fd63fd5c6ea7": {
     "name": "Chrom.AR",
@@ -227,7 +227,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/darkforest_punk",
     "farcasterLink": "https://farcaster.xyz/cherryblue",
     "districtId": "4",
-    "locationId": "9"
+    "locationId": "10"
   },
   "25d638cdc41580bd9e2ce3ec369ee233": {
     "name": "DeFi Saver",
@@ -287,7 +287,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/espressosys",
     "farcasterLink": "https://farcaster.xyz/espressosys",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "25d638cdc41580a798dddcbb06526414": {
     "name": "Ethereum Follow Protocol (EFP)",
@@ -359,7 +359,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/fileverse",
     "farcasterLink": "https://farcaster.xyz/fileverse",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "25d638cdc4158070972cfd5538ea6247": {
     "name": "Fluidkey",
@@ -371,7 +371,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/fluidkey",
     "farcasterLink": "https://farcaster.xyz/fluidkey",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "254638cdc41580cf8b99ccba5531dcf3": {
     "name": "Franklin",
@@ -467,7 +467,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/0xHolonym",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "25d638cdc41580958aebf62fc2047ece": {
     "name": "IDRISS",
@@ -575,7 +575,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/nym",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "254638cdc41580fc88aff47f153f0674": {
     "name": "Obol",
@@ -587,7 +587,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/Obol_Collective",
     "farcasterLink": "",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "254638cdc41580bbb285dfd0c726271a": {
     "name": "Octant",
@@ -695,7 +695,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "256638cdc4158003aadde80270c59050": {
     "name": "R3al Blocks",
@@ -731,7 +731,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/railgun_project",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "25d638cdc41580bdb769f95a7058adfa": {
     "name": "Rarimo (Unforgettable)",
@@ -743,7 +743,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/unforgetapp",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "25d638cdc41580c79339dfd968171fbc": {
     "name": "Replicats",
@@ -839,7 +839,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/Starknet",
     "farcasterLink": "",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "241638cdc41580428e05c81e9c9337b7": {
     "name": "Status/Keycard",
@@ -935,7 +935,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "6",
-    "locationId": "10"
+    "locationId": "11"
   },
   "277638cdc41580c3b573d427ba91668e": {
     "name": "XMTP",
@@ -971,7 +971,7 @@ export const supportersData: Record<string, Supporter> = {
     "twitterLink": "https://x.com/ZKPassport",
     "farcasterLink": "",
     "districtId": "7",
-    "locationId": "9"
+    "locationId": "10"
   },
   "279638cdc41580a09c58f82b8156d26a": {
     "name": "Zora",

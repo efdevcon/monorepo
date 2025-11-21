@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react';
 import useSVGProps from './event-listeners';
-import Map from './map-rain-25.svg';
+import Map from './map-nov-21-fixed.svg';
 
 // import Map from './map-20.svg';
 

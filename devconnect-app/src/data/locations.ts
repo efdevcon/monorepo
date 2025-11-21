@@ -34,30 +34,34 @@ export const locationsData: Locations = {
     "layerName": "music-stage"
   },
   "9": {
+    "name": "Pavilion 8",
+    "layerName": "pavilion-8"
+  },
+  "10": {
     "name": "Pavilion 9",
     "layerName": "pavilion-9"
   },
-  "10": {
+  "11": {
     "name": "Pista Central",
     "layerName": "pista-central"
   },
-  "11": {
+  "12": {
     "name": "Quiet Cowork",
     "layerName": "quiet-cowork"
   },
-  "12": {
+  "13": {
     "name": "Red Pavilion",
     "layerName": "red-pavilion"
   },
-  "13": {
+  "14": {
     "name": "The Cave",
     "layerName": "the-cave"
   },
-  "14": {
+  "15": {
     "name": "The Hub",
     "layerName": "the-hub"
   },
-  "15": {
+  "16": {
     "name": "Yellow Pavilion",
     "layerName": "yellow-pavilion"
   }
