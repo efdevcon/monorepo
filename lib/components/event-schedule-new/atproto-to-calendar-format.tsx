@@ -154,10 +154,5 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
     })
   );
 
-  console.log(
-    formattedAtprotoEvents.slice(0, 5),
-    "lets see if this is working"
-  );
-
   return formattedAtprotoEvents;
 };
