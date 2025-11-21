@@ -130,6 +130,7 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
     atprotoToCalendarFormat({
       id: "devconnect-happy-hour",
       rkey: "245524",
+      image_url: "/images/closing_party.png",
       isCoreEvent: true,
       $type: "org.devcon.event",
       title: "Devconnect Happy Hour + Big announcement",

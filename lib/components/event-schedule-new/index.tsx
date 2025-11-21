@@ -39,6 +39,7 @@ export const customUrlTransforms = [
   { from: "creator-economy", to: "168" },
   { from: "applications-to-fhe", to: "193" },
   { from: "obfuscation-day", to: "194" },
+  { from: "closing-party", to: "245524" },
   // { from: 'stableconnect', to: '112' },
   // { from: 'pacificonnect', to: '112' },
 ];
