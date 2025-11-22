@@ -1313,5 +1313,18 @@ export const questsData: Quest[] = [
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 3
+  },
+  {
+    "id": 137,
+    "name": "Agora Citizen Network",
+    "order": 2,
+    "instructions": "A collective sense-making project to gather perspectives on key themes at Devconnect - from Ethereum’s direction, its role in LATAM, to d/acc, future cities, and more.",
+    "action": "visit-link",
+    "button": "Start Quest",
+    "conditionType": "isLinkVisited",
+    "conditionValues": "https://www.agoracitizen.app/",
+    "supporterId": "",
+    "poapImageLink": "",
+    "groupId": 3
   }
 ];

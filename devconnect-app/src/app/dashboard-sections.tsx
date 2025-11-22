@@ -36,6 +36,8 @@ import {
 import { useAccount } from '@getpara/react-sdk';
 import { useTranslations } from 'next-intl';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { useUser } from '@/hooks/useUser';
+import { internalDebuging } from '@/utils/auth';
 
 export const LoopingHeader = () => {
   const t = useTranslations('dashboard.header');
@@ -167,6 +169,43 @@ export function WelcomeSection() {
     </div>
   );
 }
+
+export const LeaderboardCard = () => {
+  return (
+    <Link
+      href="/leaderboard"
+      className="block mx-4 my-4 bg-[#fce7b0] border border-[#fbdb89] rounded-[2px] transition-opacity hover:opacity-90"
+    >
+      <div className="p-[16px] flex gap-[12px] items-center">
+        <div className="flex gap-[12px] items-start flex-1">
+          <div className="bg-[rgba(255,255,255,0.6)] p-[8px] flex gap-[8px] items-center overflow-clip shrink-0">
+            <div className="relative shrink-0 w-[24px] h-[24px]">
+              <Image
+                src="/images/top-1.svg"
+                alt="Trophy"
+                width={24}
+                height={24}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col gap-[4px] items-start flex-1 text-[#353548]">
+            <p className="font-bold text-[18px] leading-normal w-full">
+              Quest leaderboard
+            </p>
+            <p className="font-normal text-[12px] leading-[1.3] w-full">
+              See your ranking and come claim your prize at{' '}
+              <span className="font-bold">5PM</span> during the closing
+              ceremony!
+            </p>
+          </div>
+        </div>
+        <div className="overflow-clip relative shrink-0 w-[16px] h-[16px]">
+          <ChevronDownIcon className="w-4 h-4 -rotate-90 text-[#353548]" />
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 export const PracticalInfo = () => {
   const t = useTranslations('dashboard.info');

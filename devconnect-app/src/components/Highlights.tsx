@@ -18,6 +18,7 @@ import TranslationsPost from '@/images/announcements/translations_post.webp';
 import { StaticImageData } from 'next/image';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 import { useTranslations } from 'next-intl';
+import ClosingParty from '@/images/announcements/closing_party_2.png';
 
 // Placeholder images - you can replace these with actual highlight images
 // const PlaceholderImage = '/images/quest-app-showcase.png';
@@ -87,6 +88,12 @@ export const Highlights = () => {
   const t = useTranslations('highlights');
 
   const highlights = [
+    {
+      title: t('closingParty'),
+      to: '/schedule?event=closing-party',
+      description: t('closingPartyDescription'),
+      image: ClosingParty,
+    },
     {
       title: t('paymentPost'),
       to: 'https://x.com/EFDevcon/status/1990823077840892131',

@@ -43,19 +43,22 @@ const streams = {
   },
   nogal: {
     translations: 'https://stm.live/stage-NOGAL/fullscreen?embed=true',
-    youtube: 'https://youtube.com/embed/4XpdA_In-fM?feature=share',
+    // youtube: 'https://youtube.com/embed/4XpdA_In-fM?feature=share',
+    youtube: 'https://www.youtube.com/embed/C-kF0gplCto?feature=share',
     // youtube: 'https://www.youtube.com/embed/C-kF0gplCto?si=NCDndzxiDbawrnFK',
   },
   xs: {
     translations: 'https://stm.live/Stage-XS/fullscreen?embed=true',
     // ef
     // youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
-    youtube: 'https://youtube.com/embed/3mU5r4LW_ik?feature=share',
+    // youtube: 'https://youtube.com/embed/3mU5r4LW_ik?feature=share',
+    youtube: 'https://www.youtube.com/live/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    // youtube: 'https://www.youtube.com/@protocoltownhall', // temporary broken link (on purpose until we get real one)
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
     // youtube: 'https://youtube.com/embed/2z0I6ONlKlU?feature=share',
-    youtube: 'https://www.youtube.com/embed/76rjTtRdQhM?si=76rjTtRdQhM',
+    // youtube: 'https://www.youtube.com/embed/76rjTtRdQhM?si=76rjTtRdQhM',
     // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
     // youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
     // x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
@@ -63,13 +66,14 @@ const streams = {
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
     // ef
-    youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
+    // youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
     // creciemiento
     // youtube: 'https://www.youtube.com/embed/TXvMTXlS_uc?si=TXvMTXlS_uc',
   },
   m2: {
     translations: 'https://stm.live/Stage-M2/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+    // youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+    youtube: 'https://www.youtube.com/embed/IbXLIcCK-6Y?feature=share',
   },
   l: {
     translations: 'https://stm.live/Stage-L/fullscreen?embed=true',
@@ -77,7 +81,8 @@ const streams = {
     // youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
     // dss
     // youtube: 'https://www.youtube.com/embed/fGmtSSpoXm8?si=I_rDk3sQpkoGbZvL',
-    youtube: 'https://youtube.com/embed/t-GKO64eQyI?feature=share',
+    // youtube: 'https://youtube.com/embed/t-GKO64eQyI?feature=share',
+    youtube: 'https://www.youtube.com/tbd', // temporary broken link (on purpose until we get real one)
   },
   bootcamp: {
     translations: 'https://stm.live/Stage-Bootcamp/fullscreen?embed=true',

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import AppShowcaseDetail, {
@@ -10,8 +10,9 @@ import { questGroupsData } from '@/data/questGroups';
 import { NAV_ITEMS } from '@/config/nav-items';
 import Image from 'next/image';
 import { useQuestCompletions } from '@/app/store.hooks';
-import { useQuestProgress } from '@/hooks/useQuestProgress';
 import { useUserData } from '@/hooks/useServerData';
+import { questsData } from '@/data/quests';
+import { calculateProgress } from './utils/quest-helpers';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/quests');
 const navLabel = navItem?.label || 'Quests';
@@ -151,12 +152,25 @@ export default function QuestsPage() {
     setLoading(false);
   }, [router]);
 
-  // Calculate quest progress using shared hook
-  const questProgressData = useQuestProgress(questStates || {});
-  const questProgress = {
-    completed: questProgressData.completed,
-    total: questProgressData.total,
-  };
+  // Calculate quest progress - match AppShowcaseDetail.tsx logic
+  // Only count quests from the 4 groups displayed: Setup (1), Crypto Payment (2), Community (3), App Showcase (4)
+  const questProgress = useMemo(() => {
+    const setupQuests = questsData.filter((quest) => quest.groupId === 1);
+    const cryptoPaymentQuests = questsData.filter(
+      (quest) => quest.groupId === 2
+    );
+    const communityQuests = questsData.filter((quest) => quest.groupId === 3);
+    const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
+
+    const allQuests = [
+      ...setupQuests,
+      ...cryptoPaymentQuests,
+      ...communityQuests,
+      ...appShowcaseQuests,
+    ];
+
+    return calculateProgress(allQuests, questStates);
+  }, [questStates]);
 
   // Reset all quest completions
   const handleResetWithFlag = async () => {

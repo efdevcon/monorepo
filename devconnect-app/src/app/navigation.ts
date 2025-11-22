@@ -1,5 +1,6 @@
 import { createElement } from 'react';
 import Icon from '@mdi/react';
+import Image from 'next/image';
 import {
   mdiHome,
   mdiCalendarRangeOutline,
@@ -46,6 +47,15 @@ const StageTabIcon = ({ color }: { color?: string }) =>
     className: 'mt-0.5',
   });
 
+const LeaderboardTabIcon = ({ color }: { color?: string }) =>
+  createElement(Image, {
+    src: '/images/top-1.svg',
+    alt: 'Leaderboard',
+    width: 20,
+    height: 20,
+    className: 'mt-0.5',
+  });
+
 export const homeTabs = () => [
   {
     label: 'Home',
@@ -82,4 +92,11 @@ export const homeTabs = () => [
     component: () => null,
     isActive: (pathname: string) => pathname === '/announcements',
   },
+  // {
+  //   label: 'Leaderboard',
+  //   labelIcon: LeaderboardTabIcon,
+  //   href: '/leaderboard',
+  //   component: () => null,
+  //   isActive: (pathname: string) => pathname === '/leaderboard',
+  // },
 ];
