@@ -133,7 +133,7 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
       image_url: "/images/closing_party.png",
       isCoreEvent: true,
       $type: "org.devcon.event",
-      title: "Devconnect Happy Hour + Big announcement",
+      title: "Devconnect Closing + Big Announcement",
       end_utc: "2025-11-22T20:30:00Z",
       location: {
         name: "La Rural - Music Stage",
