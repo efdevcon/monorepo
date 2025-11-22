@@ -63,7 +63,7 @@ const streams = {
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
     // ef
-    youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
+    // youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
     // creciemiento
     // youtube: 'https://www.youtube.com/embed/TXvMTXlS_uc?si=TXvMTXlS_uc',
   },
