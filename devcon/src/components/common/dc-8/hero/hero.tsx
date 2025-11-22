@@ -56,10 +56,10 @@ const NewsletterForm = () => {
   const [email, setEmail] = useState('')
 
   return (
-    <div className="glass">
+    <div className="glass mt-3 md:mt-4">
       <Link
-        href="https://waitlist.devcon.org"
-        className="font-semibold font-primary mb-1 bg-[#6871CA] rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
+        href="https://paragraph.com/@efevents/subscribe"
+        className="font-semibold font-primary mb-1 bg-[#6871CA] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
         style={{
           textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)',
           // boxShadow: '0 2px 8px 0 rgba(58, 54, 94, 0.15), 0 1px 2px 0 rgba(255, 255, 255, 0.30) inset',
@@ -83,22 +83,25 @@ const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => 
     <div ref={ref} className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black">
       <div className="flex font-secondary text-white flex-col items-center justify-center gap-0">
         <Image src={Logo} alt="Devcon 8 Logo" className="w-[500px]" />
-        <div className="text-xl font-medium mb-1.5" style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}>
-          DEVCON 8 INDIA
+        <div
+          className="text-2xl font-medium mb-1.5 translate-y-[-22px]"
+          style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
+        >
+          DEVCON 8
         </div>
         <div
-          className="text-xl leading-tight text-center mb-3"
+          className="text-xl leading-tight text-center mb-0 translate-y-[-22px]"
           style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
         >
           Ethereum's global community <br /> and developer conference
         </div>
         <div
-          className="text-2xl font-semibold mb-2 text-center mt-2 mb-4 leading-tight"
+          className="text-3xl font-medium text-center mb-4 leading-tight"
           style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
         >
           MUMBAI, INDIA
           <br />
-          Q4, 2026
+          <span className="font-normal">Q4 2026</span>
         </div>
 
         <NewsletterForm />
@@ -130,7 +133,12 @@ export const Hero = () => {
       <div className="fixed h-screen w-screen z-[10]">
         <Fireflies id="lower-fireflies" />
         <CenteredOverlayContent ref={overlayRef} />
-        <Image src={DC8Background} alt="Devcon 8 Background" fill className="w-full h-full object-cover" />
+        <Image
+          src={DC8Background}
+          alt="Devcon 8 Background"
+          fill
+          className="w-full h-full object-cover object-[calc(50%-160px)_center] md:object-center"
+        />
       </div>
     </div>
   )

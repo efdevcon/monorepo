@@ -16,7 +16,8 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import IconLens from 'assets/icons/lens.svg'
 import { Modal } from 'components/common/modal'
-import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+// import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import LogoFooter from 'assets/images/dc-8/footer-logo.png'
 import DC7Background from 'assets/images/dc-7/footer-bg.png'
 import { Button } from 'lib/components/button'
 import Image from 'next/image'
@@ -98,7 +99,7 @@ const TopSection = () => {
           <div className={css['col-1']}>
             <Link to={`/${lang}/`} style={{ maxWidth: '225px', minWidth: '130px', display: 'block' }}>
               <Image
-                src={LogoFlowers}
+                src={LogoFooter}
                 alt="Devcon 7 Logo"
                 className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
               />
