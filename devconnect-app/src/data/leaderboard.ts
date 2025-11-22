@@ -9,24 +9,24 @@ export interface LeaderboardEntry {
 export const leaderboardData: LeaderboardEntry[] = [
   {
     "position": 1,
+    "address": "0xe46fbf16ce92ced16a5b4823856843af903fd97b",
+    "ensName": "leo7c.eth",
+    "avatar": "",
+    "score": 72
+  },
+  {
+    "position": 2,
     "address": "0x2d9a7e9b88e9708819c922812037d0483692df6a",
     "ensName": "bilgin.worldfair.eth",
     "avatar": "",
     "score": 72
   },
   {
-    "position": 2,
+    "position": 3,
     "address": "0x44b99561cbbf699a440efa22e42b91bb72d0ed9f",
     "ensName": "errmac.poap.xyz",
     "avatar": "",
     "score": 72
-  },
-  {
-    "position": 3,
-    "address": "0xe46fbf16ce92ced16a5b4823856843af903fd97b",
-    "ensName": "leo7c.eth",
-    "avatar": "",
-    "score": 71
   },
   {
     "position": 4,
@@ -310,58 +310,58 @@ export const leaderboardData: LeaderboardEntry[] = [
   },
   {
     "position": 44,
+    "address": "0x0ed77f695e878cd60d9d66cd4845482d7af52dcc",
+    "ensName": "",
+    "avatar": "",
+    "score": 43
+  },
+  {
+    "position": 45,
     "address": "0xec689ddc1d033b71472354f79a8b5ff3e2a218db",
     "ensName": "pablosnoo.poap.xyz",
     "avatar": "",
     "score": 43
   },
   {
-    "position": 45,
+    "position": 46,
     "address": "0x572b4de5be467f6e7210f77940d462b9b8ef3ea5",
     "ensName": "jeroen.eth",
     "avatar": "",
     "score": 43
   },
   {
-    "position": 46,
+    "position": 47,
     "address": "0x4c1ad7e34f927acb530974914cc4e2d14138be04",
     "ensName": "",
     "avatar": "",
     "score": 43
   },
   {
-    "position": 47,
+    "position": 48,
     "address": "0x1fe5844315ba92e86eb64c8317cdb2f11c8fe544",
     "ensName": "santiagogr78.eth",
     "avatar": "https://profiles.poap.tech/avatar/santiagogr78.eth",
     "score": 42
   },
   {
-    "position": 48,
+    "position": 49,
     "address": "0xb1944e629b3ba97a67ad1661b02906e18f1ac76f",
     "ensName": "",
     "avatar": "",
     "score": 42
   },
   {
-    "position": 49,
+    "position": 50,
     "address": "0x2f5040505477a46ba7049795ad95024da6720afa",
     "ensName": "ollo.eth",
     "avatar": "",
     "score": 41
   },
   {
-    "position": 50,
+    "position": 51,
     "address": "0x62151949668f97bd99778a985940cb9d1e7190bf",
     "ensName": "karlita.eth",
     "avatar": "https://profiles.poap.tech/avatar/karlita.eth",
-    "score": 41
-  },
-  {
-    "position": 51,
-    "address": "0x0ed77f695e878cd60d9d66cd4845482d7af52dcc",
-    "ensName": "",
-    "avatar": "",
     "score": 41
   },
   {
@@ -450,30 +450,30 @@ export const leaderboardData: LeaderboardEntry[] = [
   },
   {
     "position": 64,
+    "address": "0x43b3a88e27fa33c59567ef3dd52f002c78f49233",
+    "ensName": "goldendylan.eth",
+    "avatar": "",
+    "score": 39
+  },
+  {
+    "position": 65,
     "address": "0x5555021611a0555ac87a2208b67c40e933ae5c3a",
     "ensName": "dubs.poap.xyz",
     "avatar": "",
     "score": 38
   },
   {
-    "position": 65,
+    "position": 66,
     "address": "0x8c775808fffbb99208452698bc619cf9d07d8b2e",
     "ensName": "arlequin.eth",
     "avatar": "https://profiles.poap.tech/avatar/arlequin.eth",
     "score": 38
   },
   {
-    "position": 66,
+    "position": 67,
     "address": "0xd3f7e0316971578d3b805c295253f6d2f965a8be",
     "ensName": "chechu.eth",
     "avatar": "https://profiles.poap.tech/avatar/chechu.eth",
-    "score": 38
-  },
-  {
-    "position": 67,
-    "address": "0x43b3a88e27fa33c59567ef3dd52f002c78f49233",
-    "ensName": "goldendylan.eth",
-    "avatar": "",
     "score": 38
   },
   {
@@ -499,58 +499,58 @@ export const leaderboardData: LeaderboardEntry[] = [
   },
   {
     "position": 71,
+    "address": "0x2681a08d156be6db2acbbc20b1374c114dabd7af",
+    "ensName": "arqostro.eth",
+    "avatar": "https://profiles.poap.tech/avatar/arqostro.eth",
+    "score": 37
+  },
+  {
+    "position": 72,
     "address": "0xcb7f8a0164632ca4db8f12a7d42b073346e5ee99",
     "ensName": "kudibos.eth",
     "avatar": "https://profiles.poap.tech/avatar/kudibos.eth",
     "score": 36
   },
   {
-    "position": 72,
+    "position": 73,
     "address": "0x1146dda2581e43802c201155bd6d4ae6bc59eea0",
     "ensName": "photopiola.eth",
     "avatar": "",
     "score": 36
   },
   {
-    "position": 73,
+    "position": 74,
     "address": "0x8f37ed67014c38d5ebe794daa878b55a62e3ac76",
     "ensName": "",
     "avatar": "",
     "score": 36
   },
   {
-    "position": 74,
+    "position": 75,
     "address": "0xb2ca3e1a392c69050fc0ae29c2d07b8d640cd289",
     "ensName": "",
     "avatar": "",
     "score": 36
   },
   {
-    "position": 75,
+    "position": 76,
     "address": "0xc0ffeef55acb4309540f0f08a8c58f497dcbf1d5",
     "ensName": "ryndon.eth",
     "avatar": "https://profiles.poap.tech/avatar/ryndon.eth",
     "score": 36
   },
   {
-    "position": 76,
+    "position": 77,
     "address": "0x17a91203a9e9c3519c2f76210497ef7f4be2352f",
     "ensName": "nicobilinkis.eth",
     "avatar": "https://profiles.poap.tech/avatar/nicobilinkis.eth",
     "score": 36
   },
   {
-    "position": 77,
+    "position": 78,
     "address": "0xc4f71ea45eea6984b82322060911ca3b3520841c",
     "ensName": "",
     "avatar": "",
-    "score": 36
-  },
-  {
-    "position": 78,
-    "address": "0x2681a08d156be6db2acbbc20b1374c114dabd7af",
-    "ensName": "arqostro.eth",
-    "avatar": "https://profiles.poap.tech/avatar/arqostro.eth",
     "score": 36
   },
   {
@@ -800,100 +800,100 @@ export const leaderboardData: LeaderboardEntry[] = [
   },
   {
     "position": 114,
+    "address": "0x9ec255f1af4d3e4a813aadab8ff0497398037d56",
+    "ensName": "5h4m4n.eth",
+    "avatar": "https://profiles.poap.tech/avatar/5h4m4n.eth",
+    "score": 29
+  },
+  {
+    "position": 115,
     "address": "0xa5da562b6434e9afd4d616b621494b538e28c061",
     "ensName": "trestres.worldfair.eth",
     "avatar": "",
     "score": 28
   },
   {
-    "position": 115,
+    "position": 116,
     "address": "0x6fe3929606e37e27f6a4db5b6d396f4568f25f16",
     "ensName": "leogm99.poap.xyz",
     "avatar": "",
     "score": 28
   },
   {
-    "position": 116,
+    "position": 117,
     "address": "0xc6ed8696c4885dcafdc73c5ef28511e02568b472",
     "ensName": "cryptonautas.eth",
     "avatar": "https://profiles.poap.tech/avatar/cryptonautas.eth",
     "score": 28
   },
   {
-    "position": 117,
+    "position": 118,
+    "address": "0x0ebbbaae85c499c2d1063ec47e546701f1c32a62",
+    "ensName": "ivanus.eth",
+    "avatar": "",
+    "score": 28
+  },
+  {
+    "position": 119,
     "address": "0xe72185a9f4ce3500d6dc7ccdcfc64cf66d823be8",
     "ensName": "cruzdanilo.eth",
     "avatar": "https://profiles.poap.tech/avatar/cruzdanilo.eth",
     "score": 28
   },
   {
-    "position": 118,
+    "position": 120,
     "address": "0xe72ca0f47d274e93be746f7194a37295b668a7e5",
     "ensName": "",
     "avatar": "",
     "score": 28
   },
   {
-    "position": 119,
+    "position": 121,
     "address": "0x2f602b50d8014f36ba42d335346c7e18b8c340d7",
     "ensName": "thiagois.onpoap.eth",
     "avatar": "",
     "score": 28
   },
   {
-    "position": 120,
+    "position": 122,
     "address": "0xbf2d29d47805b30fc7b67af3821d13da188704f2",
     "ensName": "",
     "avatar": "",
     "score": 28
   },
   {
-    "position": 121,
-    "address": "0x0ebbbaae85c499c2d1063ec47e546701f1c32a62",
-    "ensName": "ivanus.eth",
-    "avatar": "",
-    "score": 27
-  },
-  {
-    "position": 122,
+    "position": 123,
     "address": "0xa322bd417154d04d5704952e550288f0f91044bd",
     "ensName": "",
     "avatar": "",
     "score": 27
   },
   {
-    "position": 123,
+    "position": 124,
     "address": "0xf0d96226e7d653d7cfbfef513664fb0dbacf4f92",
     "ensName": "",
     "avatar": "",
     "score": 27
   },
   {
-    "position": 124,
+    "position": 125,
     "address": "0xbbc1f3d0d27194b2122c4637f98cd00e09b6a3c3",
     "ensName": "",
     "avatar": "",
     "score": 27
   },
   {
-    "position": 125,
+    "position": 126,
     "address": "0x790f3a29f20009157eeb9b2e68576d93de177e95",
     "ensName": "viancca.worldfair.eth",
     "avatar": "",
     "score": 27
   },
   {
-    "position": 126,
+    "position": 127,
     "address": "0x52679134f866d07dc774894a8720cb4e03ac1235",
     "ensName": "wilowispi.onpoap.eth",
     "avatar": "",
-    "score": 27
-  },
-  {
-    "position": 127,
-    "address": "0x9ec255f1af4d3e4a813aadab8ff0497398037d56",
-    "ensName": "5h4m4n.eth",
-    "avatar": "https://profiles.poap.tech/avatar/5h4m4n.eth",
     "score": 27
   },
   {
@@ -996,247 +996,247 @@ export const leaderboardData: LeaderboardEntry[] = [
   },
   {
     "position": 142,
+    "address": "0x5506cb0e9223a27da0fdf9c8309ee700cb82440b",
+    "ensName": "",
+    "avatar": "",
+    "score": 25
+  },
+  {
+    "position": 143,
     "address": "0x1fd5e71a081da9a1693d8ea75752d59f6947ec86",
     "ensName": "soysebastian.eth",
     "avatar": "https://profiles.poap.tech/avatar/soysebastian.eth",
     "score": 24
   },
   {
-    "position": 143,
+    "position": 144,
     "address": "0xacf4c2950107ef9b1c37faa1f9a866c8f0da88b9",
     "ensName": "jamescarnley.eth",
     "avatar": "https://profiles.poap.tech/avatar/jamescarnley.eth",
     "score": 24
   },
   {
-    "position": 144,
+    "position": 145,
     "address": "0x1df428833f2c9fb1ef098754e5d710432450d706",
     "ensName": "0xjoshua.eth",
     "avatar": "https://profiles.poap.tech/avatar/0xjoshua.eth",
     "score": 24
   },
   {
-    "position": 145,
+    "position": 146,
     "address": "0x3f22f740d41518f5017b76eed3a63eb14d2e1b07",
     "ensName": "shutterblock.eth",
     "avatar": "https://profiles.poap.tech/avatar/shutterblock.eth",
     "score": 24
   },
   {
-    "position": 146,
+    "position": 147,
     "address": "0xbb739c1f10370f81b73811d5379304e5626e2e41",
     "ensName": "",
     "avatar": "",
     "score": 24
   },
   {
-    "position": 147,
+    "position": 148,
+    "address": "0xf57a3148a562e1cf607747f0446c831c6a9a47e4",
+    "ensName": "",
+    "avatar": "",
+    "score": 24
+  },
+  {
+    "position": 149,
     "address": "0xda85bc2bac8e2a2e082febc72fd6c7bc8d0962cd",
     "ensName": "dazly.eth",
     "avatar": "https://profiles.poap.tech/avatar/dazly.eth",
     "score": 24
   },
   {
-    "position": 148,
+    "position": 150,
     "address": "0x6a66599f55b4bba4f4aafdd73eb63d7a9893ae5a",
     "ensName": "morph.dev.eth",
     "avatar": "",
     "score": 23
   },
   {
-    "position": 149,
+    "position": 151,
     "address": "0xe9e1d14cbbfe02f49285fdff72c751159444ceef",
     "ensName": "iñaky.onpoap.eth",
     "avatar": "",
     "score": 23
   },
   {
-    "position": 150,
+    "position": 152,
     "address": "0x1fcb80677fc6201e798a2acbca9233e2aa138048",
     "ensName": "❤‍🩹.eth",
     "avatar": "",
     "score": 23
   },
   {
-    "position": 151,
+    "position": 153,
     "address": "0x2a04542ccd7ed83cd72d40bbdb77c79b351541c7",
     "ensName": "",
     "avatar": "",
     "score": 23
   },
   {
-    "position": 152,
-    "address": "0xf57a3148a562e1cf607747f0446c831c6a9a47e4",
-    "ensName": "",
-    "avatar": "",
-    "score": 23
-  },
-  {
-    "position": 153,
+    "position": 154,
     "address": "0x051d3d96cdff6ef8c07544172717e43ae87945ef",
     "ensName": "",
     "avatar": "",
     "score": 23
   },
   {
-    "position": 154,
+    "position": 155,
     "address": "0x41cf2f9308e6e3aae6dd787bf1e26168e4d146b0",
     "ensName": "pranavsan.eth",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 155,
+    "position": 156,
     "address": "0x6f40da63d4e8b49f45a7a15fa8ebaab97fb08e9c",
     "ensName": "mpavan.eth",
     "avatar": "https://profiles.poap.tech/avatar/mpavan.eth",
     "score": 22
   },
   {
-    "position": 156,
+    "position": 157,
     "address": "0xaedfe29208967d22e122114db8beaaf83eb350b0",
     "ensName": "laoganbu.eth",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 157,
+    "position": 158,
     "address": "0xfacef700458d4fc9746f7f3e0d37b462711ff09e",
     "ensName": "0xface.eth",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 158,
+    "position": 159,
     "address": "0xfae7891f21ed622835d63e834e023ceb3c810068",
     "ensName": "mispoaps.eth",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 159,
+    "position": 160,
     "address": "0xd85cc9056c1d55a94468acad30f6f470c7267735",
     "ensName": "anedi.eth",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 160,
+    "position": 161,
     "address": "0xe35183f1eeff358d271e6818987b37ff1ce4df84",
     "ensName": "vincent66.eth",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 161,
+    "position": 162,
     "address": "0x9cab0bd57e308daff28011d6c6d9b45867afe33e",
     "ensName": "0xahmet.eth",
     "avatar": "https://profiles.poap.tech/avatar/0xahmet.eth",
     "score": 22
   },
   {
-    "position": 162,
+    "position": 163,
     "address": "0x59d4f5d580a69941e234d2824d8837f3e0681900",
     "ensName": "",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 163,
+    "position": 164,
     "address": "0x187089b33e5812310ed32a57f53b3fad0383a19d",
     "ensName": "",
     "avatar": "",
     "score": 22
   },
   {
-    "position": 164,
+    "position": 165,
     "address": "0x92ef2b78252f86b840a5d283ae4796e20958d461",
     "ensName": "blueavm.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 165,
+    "position": 166,
     "address": "0xbdb8d7e479c7434e5db8cd95f12391a338e97d26",
     "ensName": "meistersinger.eth",
     "avatar": "https://profiles.poap.tech/avatar/meistersinger.eth",
     "score": 21
   },
   {
-    "position": 166,
+    "position": 167,
     "address": "0x2117bf88b4cb0186eaa87500a045fc998290e42a",
     "ensName": "gramajo.eth",
     "avatar": "https://profiles.poap.tech/avatar/gramajo.eth",
     "score": 21
   },
   {
-    "position": 167,
+    "position": 168,
     "address": "0x067a3f4e5f94db949d0f565b0fa7cbc91db71d69",
     "ensName": "tommyr8.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 168,
+    "position": 169,
     "address": "0xa679a45e9fde61846afac70c321248ad097b47b7",
     "ensName": "seanode.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 169,
+    "position": 170,
     "address": "0x4f57c97f76e8d1c889eaa74a02e150be1e0ede25",
     "ensName": "romispectrum.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 170,
+    "position": 171,
     "address": "0xc5869ddf544620b377cf2c79458f51070683ca37",
     "ensName": "matut.eth",
     "avatar": "https://profiles.poap.tech/avatar/matut.eth",
     "score": 21
   },
   {
-    "position": 171,
+    "position": 172,
     "address": "0x74199ddac9607a3a694011793f674fa1e0d0fe2d",
     "ensName": "jaybuidl.eth",
     "avatar": "https://profiles.poap.tech/avatar/jaybuidl.eth",
     "score": 21
   },
   {
-    "position": 172,
+    "position": 173,
     "address": "0x3a8c0181845c2c183ffe1bd92a0c676d1b523596",
     "ensName": "n1trog3n.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 173,
+    "position": 174,
     "address": "0xdf0a689a22b64c455ae212dbc13af35f1b1dfd55",
     "ensName": "khemmieray.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 174,
+    "position": 175,
     "address": "0xc5c56d2e22e7cceef5bd3283b02a3b53ac30f801",
     "ensName": "jons.onpoap.eth",
     "avatar": "",
     "score": 21
   },
   {
-    "position": 175,
+    "position": 176,
     "address": "0x4263df45b2958650542edc7abdf89ef7994d317a",
     "ensName": "danimonclou.eth",
     "avatar": "https://profiles.poap.tech/avatar/danimonclou.eth",
-    "score": 21
-  },
-  {
-    "position": 176,
-    "address": "0x5506cb0e9223a27da0fdf9c8309ee700cb82440b",
-    "ensName": "",
-    "avatar": "",
     "score": 21
   },
   {
@@ -1409,702 +1409,702 @@ export const leaderboardData: LeaderboardEntry[] = [
   },
   {
     "position": 201,
+    "address": "0xc955ec5d521dd94f437ecd760041dc491c145c72",
+    "ensName": "purpleratatouille.uni.eth",
+    "avatar": "",
+    "score": 19
+  },
+  {
+    "position": 202,
     "address": "0x381dc7e2300e7e0dbac0ddf93049a64c497b5859",
     "ensName": "",
     "avatar": "",
     "score": 19
   },
   {
-    "position": 202,
+    "position": 203,
     "address": "0x9b7d70f9cbda29955ef629fb64cee7b4e2c23fe4",
     "ensName": "ana.worldfair.eth",
     "avatar": "",
     "score": 19
   },
   {
-    "position": 203,
+    "position": 204,
     "address": "0xdf0737612ce63c8707adbbf97d9cf989582647bc",
     "ensName": "",
     "avatar": "",
     "score": 19
   },
   {
-    "position": 204,
+    "position": 205,
     "address": "0x4954795f2eac674fe30d385d523900e8b0fbf0d5",
     "ensName": "",
     "avatar": "",
     "score": 19
   },
   {
-    "position": 205,
+    "position": 206,
     "address": "0x472cade746560419a407ca7103c87c79c794c418",
     "ensName": "marsian83.eth",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 206,
+    "position": 207,
     "address": "0x9b28c43d4526202c316b9ab0eccb757c4d9c5155",
     "ensName": "riyajain.eth",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 207,
+    "position": 208,
     "address": "0xfa731c3f64bf97f528292b137faf0abb14da3b42",
     "ensName": "greywizard.eth",
     "avatar": "https://profiles.poap.tech/avatar/greywizard.eth",
     "score": 18
   },
   {
-    "position": 208,
+    "position": 209,
     "address": "0x6677256dbd01c2b21a9286ab5c850834365c35de",
     "ensName": "otonashi.onpoap.eth",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 209,
+    "position": 210,
     "address": "0x21e5fc1efc822f25e1dff11f81214c9c65032d79",
     "ensName": "kathonejo.uni.eth",
     "avatar": "https://profiles.poap.tech/avatar/kathonejo.uni.eth",
     "score": 18
   },
   {
-    "position": 210,
+    "position": 211,
     "address": "0xe04885c3f1419c6e8495c33bdcf5f8387cd88846",
     "ensName": "skydao.eth",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 211,
+    "position": 212,
     "address": "0x54319e41affd0211fe22c34c2c7fe3905f87cf75",
     "ensName": "argonstark.eth",
     "avatar": "https://profiles.poap.tech/avatar/argonstark.eth",
     "score": 18
   },
   {
-    "position": 212,
+    "position": 213,
     "address": "0x47c425fe20d136009604e2bda1e6afdbd62e543a",
     "ensName": "",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 213,
+    "position": 214,
     "address": "0x6d9b3aedfee88bddb00d6dc33b5ec7f7ec958748",
     "ensName": "",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 214,
+    "position": 215,
     "address": "0x61060d8ba5883f047c7b0a3bf7c5e4e1a314bfc2",
     "ensName": "lanechain.eth",
     "avatar": "https://profiles.poap.tech/avatar/lanechain.eth",
     "score": 18
   },
   {
-    "position": 215,
+    "position": 216,
     "address": "0x0d3013502863a2d452693ab7ea7dd360addd98f9",
     "ensName": "",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 216,
+    "position": 217,
     "address": "0x4fbbe5599c06e846d2742014c9eb04a8a3d1de8c",
     "ensName": "",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 217,
+    "position": 218,
     "address": "0x1b371a0d9073df75d03926f2ef5907a91c9fcc89",
     "ensName": "hazardkrypto.eth",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 218,
+    "position": 219,
     "address": "0xa998dc971066afa8777d040f1ecf25c636e4e993",
     "ensName": "",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 219,
+    "position": 220,
     "address": "0x2e5d6d4a52a5f728ac05d73f32a6d2d0d26a77b9",
     "ensName": "maxo.worldfair.eth",
     "avatar": "",
     "score": 18
   },
   {
-    "position": 220,
+    "position": 221,
     "address": "0x77c68f2ff6238b5f4ed16900452a432cc4bda642",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 221,
+    "position": 222,
+    "address": "0x56d74cf0d0387e84557a3e3f55f96b66e413c140",
+    "ensName": "",
+    "avatar": "",
+    "score": 17
+  },
+  {
+    "position": 223,
     "address": "0x1fb1c91438de9fddf3fff4ddcf2ccc81897d4067",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 222,
+    "position": 224,
     "address": "0x76764f8de65f6d2cd00987d9791b8c6af00c1911",
     "ensName": "mhiskall.worldfair.eth",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 223,
+    "position": 225,
     "address": "0xaa29989a258c51271418549c4e41e2faa086524c",
     "ensName": "stefan0x0.eth",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 224,
+    "position": 226,
     "address": "0x5a858fdfeb85d800753cb35b7ed254efa7d1f8f2",
     "ensName": "shreyaspapi.eth",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 225,
+    "position": 227,
     "address": "0x30ee93fce9c3a8959e8799565d873fa0c2e2b06a",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 226,
+    "position": 228,
     "address": "0xeab666625651755009e306505a49777e8777f4f4",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 227,
+    "position": 229,
     "address": "0xdf5183d518b33f5db9b994716e7730a469b66481",
     "ensName": "luoyingjie.eth",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 228,
+    "position": 230,
     "address": "0xc7cf87e60ef4bc30aab2437f60650b4cea76ddb5",
     "ensName": "vipser.poap.xyz",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 229,
-    "address": "0x10014715af8e2c093c80d43a8dfa08d9d0016dd6",
-    "ensName": "",
-    "avatar": "",
-    "score": 17
-  },
-  {
-    "position": 230,
-    "address": "0x0a25c91209a158d0a4922837cdd590ace0d13f0d",
-    "ensName": "camilosaka.eth",
-    "avatar": "https://profiles.poap.tech/avatar/camilosaka.eth",
-    "score": 17
-  },
-  {
     "position": 231,
-    "address": "0xe2d5a59f69a2012f7f2daa300c33584177a60666",
+    "address": "0x86219c19c42b3147e01ec21a162cc048dae6d15f",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
     "position": 232,
-    "address": "0x3baf04a1daccb03f4806694cf1a266e1c4df1310",
-    "ensName": "marcvlad.eth",
-    "avatar": "https://profiles.poap.tech/avatar/marcvlad.eth",
-    "score": 17
-  },
-  {
-    "position": 233,
-    "address": "0x0ad796f9ca32f715ae4da305c224c081f98048be",
+    "address": "0x10014715af8e2c093c80d43a8dfa08d9d0016dd6",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
+    "position": 233,
+    "address": "0x0a25c91209a158d0a4922837cdd590ace0d13f0d",
+    "ensName": "camilosaka.eth",
+    "avatar": "https://profiles.poap.tech/avatar/camilosaka.eth",
+    "score": 17
+  },
+  {
     "position": 234,
-    "address": "0xf7bc9b5dcec46458eff737dc6d7d0d0e44ba822b",
+    "address": "0xe2d5a59f69a2012f7f2daa300c33584177a60666",
     "ensName": "",
     "avatar": "",
     "score": 17
   },
   {
     "position": 235,
+    "address": "0x3baf04a1daccb03f4806694cf1a266e1c4df1310",
+    "ensName": "marcvlad.eth",
+    "avatar": "https://profiles.poap.tech/avatar/marcvlad.eth",
+    "score": 17
+  },
+  {
+    "position": 236,
+    "address": "0x0ad796f9ca32f715ae4da305c224c081f98048be",
+    "ensName": "",
+    "avatar": "",
+    "score": 17
+  },
+  {
+    "position": 237,
+    "address": "0xf7bc9b5dcec46458eff737dc6d7d0d0e44ba822b",
+    "ensName": "",
+    "avatar": "",
+    "score": 17
+  },
+  {
+    "position": 238,
     "address": "0x12917ea7fee0b11cfdea0760d26d06a5663dde55",
     "ensName": "ppzly.eth",
     "avatar": "",
     "score": 17
   },
   {
-    "position": 236,
+    "position": 239,
     "address": "0x64defa36cd321a44adddad64414a9060d1d98599",
     "ensName": "luksgrin.eth",
     "avatar": "https://profiles.poap.tech/avatar/luksgrin.eth",
     "score": 16
   },
   {
-    "position": 237,
+    "position": 240,
     "address": "0xd894de705b1fa1548c8c7ad1b827b32f6ca36475",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 238,
+    "position": 241,
     "address": "0x9240d4b5b51fe17091d74e8bb5be6655eaab794b",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 239,
+    "position": 242,
     "address": "0x4ce6388e1711d0cb67b7bb92bb75516494cd0c24",
     "ensName": "jessfo.eth",
     "avatar": "https://profiles.poap.tech/avatar/jessfo.eth",
     "score": 16
   },
   {
-    "position": 240,
+    "position": 243,
     "address": "0xd6ff4d28699527b7eda372a4946f0c97ade0cc00",
     "ensName": "jairo.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 241,
+    "position": 244,
     "address": "0x44eedeb725612e1b6fd43b81f46bebbd3baaab95",
     "ensName": "maximilian0.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 242,
+    "position": 245,
     "address": "0x97eb37a680ad57bc584bce942eb3990cb11bfdc1",
     "ensName": "fernandezdiego.eth",
     "avatar": "https://profiles.poap.tech/avatar/fernandezdiego.eth",
     "score": 16
   },
   {
-    "position": 243,
+    "position": 246,
     "address": "0x7a9208a793c538f3c131b06847f7fe1c8854f4d0",
     "ensName": "nicolasm.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 244,
+    "position": 247,
     "address": "0x5200ecd38595ac1559b89059c743a5a493aa9625",
     "ensName": "lozaxpixel.onpoap.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 245,
+    "position": 248,
     "address": "0x2447a530df1e6b7fd8f493645c0e958c4bcca06a",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 246,
+    "position": 249,
     "address": "0x7f76766dc56e9ac7f74fbc846b801843b77c5a18",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 247,
+    "position": 250,
     "address": "0xba9d7cbbd34777a6eb787894778e75603cf56eb3",
     "ensName": "stkux.eth",
     "avatar": "https://profiles.poap.tech/avatar/stkux.eth",
     "score": 16
   },
   {
-    "position": 248,
+    "position": 251,
+    "address": "0xdc40d73640f275004f54f82896032aff0ddee44d",
+    "ensName": "",
+    "avatar": "",
+    "score": 16
+  },
+  {
+    "position": 252,
     "address": "0x3d791800a9aad32c6d8f9811c0dfa6dd7dda0650",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 249,
+    "position": 253,
     "address": "0xd4ff57bcc40f3aae8c4d21289e9a63a2a4622851",
     "ensName": "gaelgonzalez.onpoap.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 250,
+    "position": 254,
     "address": "0x546457bbddf5e09929399768ab5a9d588cb0334d",
     "ensName": "ses.eth",
     "avatar": "https://profiles.poap.tech/avatar/ses.eth",
     "score": 16
   },
   {
-    "position": 251,
+    "position": 255,
+    "address": "0x5a3e28c2bf04989e6a7506a9ef845ae2dbc6d90a",
+    "ensName": "😶‍🌫😶‍🌫😶‍🌫.eth",
+    "avatar": "",
+    "score": 16
+  },
+  {
+    "position": 256,
     "address": "0x8cade5538044757cb40a75dbdc592cea11627297",
     "ensName": "yuhwen.onpoap.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 252,
+    "position": 257,
     "address": "0x074c5e5ebc7accace25d04fc9e2b61d1c5613226",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 253,
+    "position": 258,
     "address": "0x0ce522cad66fa4d6529b2db76e0a91d53296d58b",
     "ensName": "ximemonclou.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 254,
+    "position": 259,
     "address": "0x2cda4759594ff9999cebfd03b3f168265f2cb12e",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 255,
+    "position": 260,
     "address": "0xeac9ba3d882a8e6c7256e588f61a9d9bc36c29c8",
     "ensName": "rohan.worldfair.eth",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 256,
+    "position": 261,
     "address": "0x3301a01a9547209dbd78db2eee861930e631782d",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 257,
+    "position": 262,
     "address": "0x85947a7fae40f2bec652a1a3a1b5c59856b674c3",
     "ensName": "",
     "avatar": "",
     "score": 16
   },
   {
-    "position": 258,
+    "position": 263,
     "address": "0x2e70f8a381efd5142474e8ce61fa3d05d3ce0576",
     "ensName": "ministryofmemes.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 259,
+    "position": 264,
     "address": "0x410f66099309c2379921f12e0b387f6f7e519136",
     "ensName": "captaincode.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 260,
+    "position": 265,
     "address": "0x0374f0273e01841f594a4c0becdf7bfbd9b13a42",
     "ensName": "pumbi.eth",
     "avatar": "https://profiles.poap.tech/avatar/pumbi.eth",
     "score": 15
   },
   {
-    "position": 261,
+    "position": 266,
     "address": "0xa775c775feb740d15da78d572a1caccbccc7a0f6",
     "ensName": "solyacuariana.eth",
     "avatar": "https://profiles.poap.tech/avatar/solyacuariana.eth",
     "score": 15
   },
   {
-    "position": 262,
+    "position": 267,
     "address": "0x358e25cd4d7631eb874d25f4e1ae4a14b0abb56e",
     "ensName": "mexi.wtf",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 263,
+    "position": 268,
     "address": "0xcc28e5c773fa0984ded1d8bc705616aaaca57912",
     "ensName": "koji.onpoap.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 264,
+    "position": 269,
     "address": "0xf2067ccd06fddf3dd90d3a850244434214c6143d",
     "ensName": "nicod.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 265,
+    "position": 270,
     "address": "0xde8da96b368d2a4d75259b6923abe927dcd6a14e",
     "ensName": "tekkac.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 266,
+    "position": 271,
     "address": "0xae5a48e555f5dc7300896b7a12ac64813bccad8c",
     "ensName": "",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 267,
+    "position": 272,
     "address": "0x2e54d912361f6a4b1e57e239138ff4c1344940ae",
     "ensName": "",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 268,
+    "position": 273,
     "address": "0xeca9ae8c2083ddb42b0bc55ae103b078af947de3",
     "ensName": "krlosmata.eth",
     "avatar": "https://profiles.poap.tech/avatar/krlosmata.eth",
     "score": 15
   },
   {
-    "position": 269,
+    "position": 274,
     "address": "0x24e765fcd00106d7175837848ec9073f9feb9d8e",
     "ensName": "superfranky.eth",
     "avatar": "https://profiles.poap.tech/avatar/superfranky.eth",
     "score": 15
   },
   {
-    "position": 270,
+    "position": 275,
     "address": "0x6de87e5be3cc5cf4c8019996e0040f592170da7f",
     "ensName": "dianamonclou.onpoap.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 271,
+    "position": 276,
     "address": "0xf5d29a6359e938c4e0c4d440e582e426ff9a0eb9",
     "ensName": "nastitasuper.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 272,
+    "position": 277,
     "address": "0x6053700a315b63c8efa3f919afce74b3862d2d11",
     "ensName": "juan.onpoap.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 273,
+    "position": 278,
     "address": "0x1747097549264ba1bbd793c0bdd5b7dad54076dc",
     "ensName": "gauf10.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 274,
+    "position": 279,
     "address": "0xde753f1a3f114d3238564ab430dff38dbd8b4694",
     "ensName": "",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 275,
+    "position": 280,
     "address": "0x55bf3a00ffabaaa4d42d4b74b9b1d0f571ecd03d",
     "ensName": "spn.worldfair.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 276,
+    "position": 281,
     "address": "0xb8dab7461c3cc60a3833f483cfbec6576957ea33",
     "ensName": "",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 277,
+    "position": 282,
     "address": "0xb73b9d43c0b96b9dec7dfd2f1487eb508bf8cda1",
     "ensName": "nejoout.eth",
     "avatar": "https://profiles.poap.tech/avatar/nejoout.eth",
     "score": 15
   },
   {
-    "position": 278,
+    "position": 283,
     "address": "0xdea3c06eee614bf84e74d505173822236c8ad135",
     "ensName": "kernelkennethg.eth",
     "avatar": "https://profiles.poap.tech/avatar/kernelkennethg.eth",
     "score": 15
   },
   {
-    "position": 279,
+    "position": 284,
     "address": "0x469959ec80e80f2ba4d9a27afe32cc396ca883ae",
     "ensName": "alecsgarza.worldfair.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 280,
+    "position": 285,
+    "address": "0x70eedf0210663bc43174e231c8d8305a83d1ea8e",
+    "ensName": "",
+    "avatar": "",
+    "score": 15
+  },
+  {
+    "position": 286,
     "address": "0xd755009842a6ca12d0cfdc730fc8af2ff537a5c9",
     "ensName": "whykingdavid.worldfair.eth",
     "avatar": "",
     "score": 15
   },
   {
-    "position": 281,
+    "position": 287,
     "address": "0xc75a699c2b271e959a7bf37af66a9bc940a72525",
     "ensName": "pmprojectz.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 282,
+    "position": 288,
     "address": "0x9b18e9e9aa3dd35100b385b7035c0b1e44afca14",
     "ensName": "heeckhau.eth",
     "avatar": "https://profiles.poap.tech/avatar/heeckhau.eth",
     "score": 14
   },
   {
-    "position": 283,
+    "position": 289,
     "address": "0x332e43696a505ef45b9319973785f837ce5267b9",
     "ensName": "pk910.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 284,
+    "position": 290,
     "address": "0x8ae6422631292c31aeeb2efe154d6326f703f46b",
     "ensName": "mysticryuujin.eth",
     "avatar": "https://profiles.poap.tech/avatar/mysticryuujin.eth",
     "score": 14
   },
   {
-    "position": 285,
+    "position": 291,
     "address": "0x8233f44dc1d843391ff836acc1636199fa2f35dd",
     "ensName": "dor.worldfair.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 286,
+    "position": 292,
     "address": "0xdf3f35bed840a5ffdce0fa383217a19a7c34e0b4",
     "ensName": "fase5.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 287,
+    "position": 293,
     "address": "0xa77d7d909e3a57f887097742310398ffe246c3d1",
     "ensName": "",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 288,
+    "position": 294,
     "address": "0x7b48296da31040915c0001d3c560096d5d7abbec",
     "ensName": "",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 289,
+    "position": 295,
     "address": "0xc1368eddce8b581a03a13d58ac730deff950689c",
     "ensName": "0xcryptocharly.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 290,
+    "position": 296,
     "address": "0x304eb9063fa42bd7841dc7cd6644b12385caa891",
     "ensName": "bolijos.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 291,
+    "position": 297,
     "address": "0xbcc8a018275c82ff7b60e26722bd38b0134a5585",
     "ensName": "el3esrojo.poap.xyz",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 292,
+    "position": 298,
     "address": "0xd3ecfb0c4766d715e5baf6e9594ae3d7853d87ad",
     "ensName": "joeld.eth",
     "avatar": "",
     "score": 14
   },
   {
-    "position": 293,
+    "position": 299,
     "address": "0xb0145ae156d201d6e371d07265fe3c045071c967",
     "ensName": "maraoz.eth",
     "avatar": "https://profiles.poap.tech/avatar/maraoz.eth",
     "score": 14
   },
   {
-    "position": 294,
+    "position": 300,
     "address": "0x005f16f017aa933bb41965b52848ceb8ee48b171",
     "ensName": "",
     "avatar": "",
-    "score": 14
-  },
-  {
-    "position": 295,
-    "address": "0xa13e9683706b633f64286088658285b8514d9b2f",
-    "ensName": "matthiasang.eth",
-    "avatar": "",
-    "score": 14
-  },
-  {
-    "position": 296,
-    "address": "0x30f2ca7b43a4f13533db7cc5deee0d3ee953b1c0",
-    "ensName": "",
-    "avatar": "",
-    "score": 14
-  },
-  {
-    "position": 297,
-    "address": "0xfd7deee275d9ba41ac3b6511fdf923103ae6fe0d",
-    "ensName": "",
-    "avatar": "",
-    "score": 14
-  },
-  {
-    "position": 298,
-    "address": "0xa879eb55aad088a8a19e06610129d4cdb4f2c99b",
-    "ensName": "",
-    "avatar": "",
-    "score": 14
-  },
-  {
-    "position": 299,
-    "address": "0x460c899eae8afca4e8d3e5f9a743f32f0a102c57",
-    "ensName": "",
-    "avatar": "",
-    "score": 14
-  },
-  {
-    "position": 300,
-    "address": "0x748240f1f57ff6b48c91ebb010205341a6de8cf8",
-    "ensName": "awstian.eth",
-    "avatar": "https://profiles.poap.tech/avatar/awstian.eth",
     "score": 14
   }
 ];
