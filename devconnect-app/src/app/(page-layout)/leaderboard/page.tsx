@@ -7,6 +7,7 @@ import { mdiStarCircle, mdiOpenInNew } from '@mdi/js';
 import { useWallet } from '@/context/WalletContext';
 import Image from 'next/image';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
+import Link from 'next/link';
 
 // ==================== CONFIGURATION ====================
 const TOP_N_THRESHOLD = 300; // Show special highlight for users in top N
@@ -119,7 +120,13 @@ export default function LeaderboardPage() {
                   You're ranked #{userEntry.position}! Come claim your prize
                   <span className="font-bold">
                     {' '}
-                    at the Closing Ceremony at 5PM
+                    at the Closing Ceremony at 5PM inside the{' '}
+                    <Link
+                      className="text-[#0073de] underline"
+                      href="/map?filter=amphitheater"
+                    >
+                      Amphitheater
+                    </Link>
                   </span>
                   . First-come, first-served.
                 </p>
