@@ -110,8 +110,58 @@ const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => 
   )
 })
 
+const useCursorTracker = (ref: any) => {
+  const [delta, setDelta] = React.useState({ x: 0, y: 0 })
+
+  React.useEffect(() => {
+    const handleMouseMove = (event: any) => {
+      if (ref.current) {
+        const { left, top, width, height } = ref.current.getBoundingClientRect()
+        const centerX = left + width / 2
+        const centerY = top + height / 2
+        const deltaX = event.clientX - centerX
+        const deltaY = event.clientY - centerY
+        setDelta({ x: deltaX, y: deltaY })
+      }
+    }
+
+    const element = ref.current
+
+    if (element) {
+      element.addEventListener('mousemove', handleMouseMove)
+    }
+
+    return () => {
+      if (element) {
+        element.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
+  }, [ref.current])
+
+  return delta
+}
+
 export const Hero = () => {
   const overlayRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const delta = useCursorTracker(containerRef)
+  const [objectPosition, setObjectPosition] = React.useState({ x: 50, y: 50 })
+
+  React.useEffect(() => {
+    if (!containerRef.current) return
+
+    const containerRect = containerRef.current.getBoundingClientRect()
+
+    // Pan calculation based on mouse delta with higher multiplier
+    const panX = (delta.x / containerRect.width) * 50
+    const panY = (delta.y / containerRect.height) * 50
+
+    // Allow panning to the edges (0% to 100%)
+    const newX = Math.max(0, Math.min(100, 50 - panX))
+    const newY = Math.max(0, Math.min(100, 50 - panY))
+
+    setObjectPosition({ x: newX, y: newY })
+  }, [delta])
 
   useGSAP(() => {
     if (overlayRef.current) {
@@ -130,14 +180,17 @@ export const Hero = () => {
 
   return (
     <div className="relative h-screen w-screen">
-      <div className="fixed h-screen w-screen z-[10]">
+      <div ref={containerRef} className="fixed h-screen w-screen z-[10]">
         <Fireflies id="lower-fireflies" />
         <CenteredOverlayContent ref={overlayRef} />
         <Image
           src={DC8Background}
           alt="Devcon 8 Background"
           fill
-          className="w-full h-full object-cover object-[calc(50%-160px)_center] md:object-center"
+          className="object-cover object-[50%,80%]"
+          // style={{
+          //   objectPosition: `${objectPosition.x}% ${objectPosition.y}%`,
+          // }}
         />
       </div>
     </div>
