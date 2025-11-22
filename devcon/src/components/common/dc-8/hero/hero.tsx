@@ -2,13 +2,15 @@ import React, { useState, useRef } from 'react'
 import { Fireflies } from './fireflies'
 import Image from 'next/image'
 import DC8Background from './images/dc8-bg.png'
-import Logo from './images/dc8-logo.png'
+// import Logo from './images/dc8-logo.png'
+import Logo from 'assets/images/dc-8/dc8-logo-glow.png'
 import css from './hero.module.scss'
 import cn from 'classnames'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Link from 'next/link'
+import { useSpring, useMotionValue, useMotionTemplate, motion } from 'framer-motion'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -80,17 +82,20 @@ const NewsletterForm = () => {
 
 const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div ref={ref} className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black">
+    <div
+      ref={ref}
+      className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black translate-y-[-6%]  md:translate-y-0"
+    >
       <div className="flex font-secondary text-white flex-col items-center justify-center gap-0">
-        <Image src={Logo} alt="Devcon 8 Logo" className="w-[500px]" />
+        <Image src={Logo} alt="Devcon 8 Logo" className="w-[575px] max-w-[100vw] mb-2 md:mb-0" />
         <div
-          className="text-2xl font-medium mb-1.5 translate-y-[-22px]"
+          className="text-2xl font-medium mb-1.5 translate-y-[-16px] md:translate-y-[-26px]"
           style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
         >
           DEVCON 8
         </div>
         <div
-          className="text-xl leading-tight text-center mb-0 translate-y-[-22px]"
+          className="text-xl leading-tight text-center mb-0 translate-y-[-16px] md:translate-y-[-26px]"
           style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
         >
           Ethereum's global community <br /> and developer conference
@@ -114,6 +119,11 @@ const useCursorTracker = (ref: any) => {
   const [delta, setDelta] = React.useState({ x: 0, y: 0 })
 
   React.useEffect(() => {
+    // Only enable on devices with a pointer (not touch)
+    const hasPointer = window.matchMedia('(pointer: fine)').matches
+
+    if (!hasPointer) return
+
     const handleMouseMove = (event: any) => {
       if (ref.current) {
         const { left, top, width, height } = ref.current.getBoundingClientRect()
@@ -125,18 +135,12 @@ const useCursorTracker = (ref: any) => {
       }
     }
 
-    const element = ref.current
-
-    if (element) {
-      element.addEventListener('mousemove', handleMouseMove)
-    }
+    window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
-      if (element) {
-        element.removeEventListener('mousemove', handleMouseMove)
-      }
+      window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [ref.current])
+  }, [ref])
 
   return delta
 }
@@ -145,53 +149,69 @@ export const Hero = () => {
   const overlayRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const delta = useCursorTracker(containerRef)
-  const [objectPosition, setObjectPosition] = React.useState({ x: 50, y: 50 })
+
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const transformX = useSpring(x, { damping: 25 })
+  const transformY = useSpring(y, { damping: 25 })
 
   React.useEffect(() => {
-    if (!containerRef.current) return
+    // Pan calculation - simple multiplier of delta with negative to pan opposite direction
+    const panX = -delta.x * 0.02
+    const panY = -delta.y * 0.02
 
-    const containerRect = containerRef.current.getBoundingClientRect()
+    x.set(panX)
+    y.set(panY)
+  }, [delta, x, y])
 
-    // Pan calculation based on mouse delta with higher multiplier
-    const panX = (delta.x / containerRect.width) * 50
-    const panY = (delta.y / containerRect.height) * 50
-
-    // Allow panning to the edges (0% to 100%)
-    const newX = Math.max(0, Math.min(100, 50 - panX))
-    const newY = Math.max(0, Math.min(100, 50 - panY))
-
-    setObjectPosition({ x: newX, y: newY })
-  }, [delta])
-
-  useGSAP(() => {
-    if (overlayRef.current) {
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: `+=${window.innerHeight / 2}`,
-          scrub: true,
-        },
-      })
+  React.useEffect(() => {
+    const handleResize = () => {
+      x.set(0)
+      y.set(0)
     }
-  }, [])
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [x, y])
+
+  // useGSAP(() => {
+  //   if (overlayRef.current) {
+  //     gsap.to(overlayRef.current, {
+  //       opacity: 0,
+  //       ease: 'none',
+  //       scrollTrigger: {
+  //         trigger: document.body,
+  //         start: 'top top',
+  //         end: `+=${window.innerHeight / 2}`,
+  //         scrub: true,
+  //       },
+  //     })
+  //   }
+  // }, [])
 
   return (
     <div className="relative h-screen w-screen">
       <div ref={containerRef} className="fixed h-screen w-screen z-[10]">
-        <Fireflies id="lower-fireflies" />
         <CenteredOverlayContent ref={overlayRef} />
-        <Image
-          src={DC8Background}
-          alt="Devcon 8 Background"
-          fill
-          className="object-cover object-[50%,80%]"
-          // style={{
-          //   objectPosition: `${objectPosition.x}% ${objectPosition.y}%`,
-          // }}
-        />
+        <motion.div
+          className="w-full h-full absolute top-0 left-0 "
+          style={{
+            x: transformX,
+            y: transformY,
+            scale: 1.02,
+          }}
+        >
+          <Fireflies id="lower-fireflies" />
+          <Image
+            src={DC8Background}
+            alt="Devcon 8 Background"
+            fill
+            className="object-cover object-[65%,50%] md:object-[50%,80%]"
+          />
+        </motion.div>
       </div>
     </div>
   )
