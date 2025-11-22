@@ -36,6 +36,7 @@ import {
 import { useAccount } from '@getpara/react-sdk';
 import { useTranslations } from 'next-intl';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { useUser } from '@/hooks/useUser';
 import { internalDebuging } from '@/utils/auth';
 
 export const LoopingHeader = () => {
@@ -170,41 +171,36 @@ export function WelcomeSection() {
 }
 
 export const LeaderboardCard = () => {
-  const [userIsConnected] = useLocalStorage<boolean | null>(
-    'userIsConnected',
-    false
-  );
-  const { email } = useUserDataSWR();
-  const isInternalDebug = internalDebuging(email);
-
-  if (!userIsConnected || !isInternalDebug) return null;
-
   return (
     <Link
       href="/leaderboard"
-      className="block mx-4 my-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+      className="block mx-4 my-4 bg-[#fce7b0] border border-[#fbdb89] rounded-[2px] transition-opacity hover:opacity-90"
     >
-      <div className="p-4 text-white">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="bg-white/20 p-2 rounded-lg">
+      <div className="p-[16px] flex gap-[12px] items-center">
+        <div className="flex gap-[12px] items-start flex-1">
+          <div className="bg-[rgba(255,255,255,0.6)] p-[8px] flex gap-[8px] items-center overflow-clip shrink-0">
+            <div className="relative shrink-0 w-[24px] h-[24px]">
               <Image
                 src="/images/top-1.svg"
                 alt="Trophy"
-                width={40}
-                height={40}
+                width={24}
+                height={24}
               />
             </div>
-            <div>
-              <h3 className="font-bold text-lg">Quest Leaderboard</h3>
-              <p className="text-sm text-purple-100">
-                See your ranking and come claim your prize at{' '}
-                <span className="font-bold">5PM</span> during the closing
-                ceremony!
-              </p>
-            </div>
           </div>
-          <ChevronDownIcon className="w-5 h-5 -rotate-90" />
+          <div className="flex flex-col gap-[4px] items-start flex-1 text-[#353548]">
+            <p className="font-bold text-[18px] leading-normal w-full">
+              Quest leaderboard
+            </p>
+            <p className="font-normal text-[12px] leading-[1.3] w-full">
+              See your ranking and come claim your prize at{' '}
+              <span className="font-bold">5PM</span> during the closing
+              ceremony!
+            </p>
+          </div>
+        </div>
+        <div className="overflow-clip relative shrink-0 w-[16px] h-[16px]">
+          <ChevronDownIcon className="w-4 h-4 -rotate-90 text-[#353548]" />
         </div>
       </div>
     </Link>
