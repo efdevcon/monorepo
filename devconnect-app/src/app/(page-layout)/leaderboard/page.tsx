@@ -3,13 +3,13 @@
 import { leaderboardData } from '@/data/leaderboard';
 import { useState, useMemo } from 'react';
 import Icon from '@mdi/react';
-import { mdiStarCircle } from '@mdi/js';
+import { mdiStarCircle, mdiOpenInNew } from '@mdi/js';
 import { useWallet } from '@/context/WalletContext';
 import Image from 'next/image';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
 
 // ==================== CONFIGURATION ====================
-const TOP_N_THRESHOLD = 100; // Show special highlight for users in top N
+const TOP_N_THRESHOLD = 300; // Show special highlight for users in top N
 const DEFAULT_AVATAR =
   'https://lqwa3qcuyuliiaeu.public.blob.vercel-storage.com/boring-avatars/avatar-0.svg';
 // ======================================================
@@ -147,20 +147,32 @@ export default function LeaderboardPage() {
             </div>
           )}
           {isUserInTopN ? (
-            <button
-              onClick={scrollToUserEntry}
-              className="mt-3 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors"
-            >
-              Jump to My Position
-            </button>
+            <>
+              <button
+                onClick={scrollToUserEntry}
+                className="mt-3 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors"
+              >
+                Jump to My Position
+              </button>
+              <a
+                href="https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                See Full Leaderboard
+                <Icon path={mdiOpenInNew} size={0.6} />
+              </a>
+            </>
           ) : (
             <a
               href="https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors block text-center"
+              className="mt-3 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors flex items-center justify-center gap-2"
             >
-              See Full Leaderboard →
+              See Full Leaderboard
+              <Icon path={mdiOpenInNew} size={0.6} />
             </a>
           )}
         </div>
