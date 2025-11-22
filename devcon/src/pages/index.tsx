@@ -252,7 +252,7 @@ export default function Index(props: any) {
           className="max-w-[700px] absolute right-[-100px] -top-[350px] rotate-180 -z-10 opacity-10"
         /> */}
 
-        <div className="section">
+        {/* <div className="section">
           <div className="flex flex-col justify-center gap-2 border-bottom mt-8 pb-8">
             <div className="text-2xl font-semibold">What is Devcon?</div>
             <div>Devcon is the gathering for the global Ethereum community to build and use decentralized systems.</div>
@@ -261,13 +261,10 @@ export default function Index(props: any) {
               profoundly human. Each edition moves to a new region and brings together developers, researchers,
               community organizers, students, and creators from around the world
             </div>
-            {/* <div className="grow">
-              <RichText content={pages.section1?.body}></RichText>
-            </div> */}
           </div>
-        </div>
+        </div> */}
 
-        <div className="section">
+        {/* <div className="section">
           <div className="relative pt-9">
             <div className="mb-7">
               <RichText content={pages.section5?.title}></RichText>
@@ -332,16 +329,16 @@ export default function Index(props: any) {
               </InfiniteScroller>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="relative">
+        {/* <div className="relative">
           <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
             <InfiniteScroller nDuplications={2} reverse speed="100s">
               <p className="bold">BLOG POSTS&nbsp;</p>
             </InfiniteScroller>
           </div>
           <BlogReel blogs={props.blogs} />
-        </div>
+        </div> */}
 
         {/* <div className="section mt-4">
           <div className="my-4 h2">Frequently Asked</div>
@@ -374,9 +371,9 @@ export default function Index(props: any) {
           </div>
         </div> */}
 
-        <div className="mb-8"></div>
+        {/* <div className="mb-8"></div> */}
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   )
