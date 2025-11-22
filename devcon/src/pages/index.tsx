@@ -33,6 +33,11 @@ import Coordination from 'assets/images/programming/Coordination.png'
 import DeveloperExperience from 'assets/images/programming/DeveloperExperience.png'
 import Security from 'assets/images/programming/Security.png'
 import Layer2 from 'assets/images/programming/Layer2.png'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const videos = [
   {
@@ -114,6 +119,22 @@ export default function Index(props: any) {
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
   const [cal, setCal] = React.useState<any>(null)
   const draggableLinkAttributes = useDraggableLink()
+  const gradientRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    if (gradientRef.current) {
+      gsap.to(gradientRef.current, {
+        opacity: 0.95,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: `+=${window.innerHeight * 0.7}`,
+          scrub: true,
+        },
+      })
+    }
+  }, [])
 
   const { data: programmingData } = useTina<PagesQuery>(props.programming)
   const programming = programmingData.pages as PagesProgramming
@@ -201,110 +222,48 @@ export default function Index(props: any) {
   }, [])
 
   return (
-    <div className={`${css['layout-default']} ${themes['index']}`}>
+    <div className={`${css['layout-default']} ${themes['index']} overflow-hidden`}>
       <Header withStrip withHero />
       <Hero />
 
+      <style jsx global>{`
+        body {
+          overflow: hidden;
+        }
+      `}</style>
+
       {/* <DevconnectHighlight /> */}
 
-      <div className="bg-gradient-to-b text-[rgba(255,255,255,0.8)] from-[#1F296C] to-[#101537] z-10 overflow-hidden w-full relative">
-        <ImageNew
+      <div className="text-[rgba(255,255,255,0.8)] z-[11] overflow-hidden w-full relative translate-y-[-200px] pt-[200px]">
+        <div
+          ref={gradientRef}
+          className="bg-gradient-to-b from-[#1F296C] to-[#101537] absolute inset-0 w-full h-full -z-10 opacity-0"
+          data-type="gradient-background"
+          style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 200px)' }}
+        ></div>
+        {/* <ImageNew
           src={CircleBackground}
           alt="Circle background"
           className="max-w-[700px] absolute right-[-100px] -top-[350px] rotate-180 -z-10 opacity-10"
-        />
+        /> */}
 
         <div className="section">
-          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-8 pb-8">
-            <div className="grow">
-              <RichText content={pages.section1?.body}></RichText>
+          <div className="flex flex-col justify-center gap-2 border-bottom mt-8 pb-8">
+            <div className="text-2xl font-semibold">What is Devcon?</div>
+            <div>Devcon is the gathering for the global Ethereum community to build and use decentralized systems.</div>
+            <div>
+              It's a conference for builders of all kinds, with content ranging from the deeply technical to the
+              profoundly human. Each edition moves to a new region and brings together developers, researchers,
+              community organizers, students, and creators from around the world
             </div>
+            {/* <div className="grow">
+              <RichText content={pages.section1?.body}></RichText>
+            </div> */}
           </div>
         </div>
 
         <div className="section">
-          {/* <div className="flex flex-col h-full lg:mt-2">
-            <RichText content={pages.section3?.body}></RichText>
-          </div> */}
-          {/* <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 mt-8">
-            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8">
-              <div className="flex flex-col h-full lg:mt-2">
-                <RichText content={pages.section3?.body}></RichText>
-              </div>
-
-              <div className="flex flex-col items-center justify-center">
-                <div className="flex grow shrink-0 items-center justify-center self-center">
-                  <ImageNew
-                    src={LogoFlowers}
-                    alt="Devcon 7 Logo"
-                    className="w-[85%] max-w-[250px] lg:w-auto lg:max-w-[315px]"
-                  />
-                </div>
-                <div className="flex flex-col justify-center items-center w-full">
-                  <div className="uppercase">
-                    <TextMorph
-                      texts={[
-                        'Southeast Asia',
-                        'เอเชียตะวันออกเฉียงใต้',
-                        'Timog-silangang Asya',
-                        'អាស៊ី​អា​គ្នេ​យ៏',
-                        'Sudeste da Ásia',
-                        'အရှေ့တောင်အာရှ',
-                        'Đông Nam Á',
-                        'தென்கிழக்கு ஆசியா',
-                        'Asia Tenggara',
-                        'ఆగ్నేయ ఆసియా',
-                        '东南亚',
-                        'ອາຊີຕາເວັນອອກສ່ຽງໃຕ້',
-                      ]}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
-          {/* <div className="relative pb-4 border-bottom" id="featured-speakers">
-            <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
-              <InfiniteScroller nDuplications={2} speed="140s" reverse>
-                <p className="bold">FEATURED SPEAKERS&nbsp;</p>
-              </InfiniteScroller>
-            </div>
-
-            <FeaturedSpeakers />
-          </div> */}
-
-          {/* <div className="pt-8 z-[1]">
-            <CLSSection
-              title={pages.community_led_sessions?.title}
-              body={pages.community_led_sessions?.body}
-              sessions={pages.community_led_sessions?.sessions}
-            />
-          </div> */}
-
-          {/* <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
-            <div className={`z-10 ${css['background-text']}`}>
-              <RichText content={pages.section4?.body}></RichText>
-            </div>
-
-            <div className="sm:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto" ref={scrollRef}>
-              {isInView && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
-                  <StatsAnimation />
-                </motion.div>
-              )}
-            </div>
-          </div> */}
-        </div>
-
-        <div className="section">
           <div className="relative pt-9">
-            {/* <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
-              <InfiniteScroller nDuplications={2} speed="150s">
-                <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
-              </InfiniteScroller>
-            </div> */}
-
             <div className="mb-7">
               <RichText content={pages.section5?.title}></RichText>
             </div>
@@ -419,30 +378,13 @@ export default function Index(props: any) {
 }
 
 export async function getStaticProps(context: any) {
-  // const sections = await GetContentSections(
-  //   [
-  //     'devcon-about',
-  //     'road-to-devcon-grants',
-  //     'devcon-recap',
-  //     'cta-speaker-applications',
-  //     'cta-ticket-presale',
-  //     'cta-scholar-applications',
-  //     'tickets-on-sale-now',
-  //   ],
-  //   context.locale
-  // )
-
   const content = await client.queries.pages({ relativePath: 'index.mdx' })
   const faq = await client.queries.pages({ relativePath: 'faq.mdx' })
   const programming = await client.queries.pages({ relativePath: 'programming.mdx' })
 
   return {
     props: {
-      // ...globalData,
-      // page: DEFAULT_APP_PAGE,
-      // news: await getNews(context.locale),
       blogs: await GetBlogs(),
-      // sections,
       cms: {
         variables: content.variables,
         data: content.data,

@@ -10,13 +10,18 @@ export default class AppDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
           {/* Adding the specific font weights for bold (e.g. 700) makes the font look so much worse :-P Bit of a mystery, since bolding works fine without it (probably just a fallback that happens to look good) */}
-          <link
+          {/* <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          /> */}
+
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
           />
 
           {/* {process.env.NODE_ENV === 'production' && (
-            <script
+            <scriptz
               type="text/javascript"
               dangerouslySetInnerHTML={{
                 __html: `<!-- Matomo -->

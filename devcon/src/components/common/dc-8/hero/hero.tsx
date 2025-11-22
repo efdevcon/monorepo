@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Fireflies } from './fireflies'
 import Image from 'next/image'
-import DC8Background from './images/wow.png'
-import Logo from './images/logo.png'
+import DC8Background from './images/dc8-bg.png'
+import Logo from './images/dc8-logo.png'
 import css from './hero.module.scss'
 import cn from 'classnames'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import Link from 'next/link'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 // TODO: Move to lib later
 const GlassInput = ({
@@ -50,44 +56,80 @@ const NewsletterForm = () => {
   const [email, setEmail] = useState('')
 
   return (
-    <div className="glass w-[300px]">
-      <div className="font-semibold font-primary mb-1" style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}>
+    <div className="glass">
+      <Link
+        href="https://waitlist.devcon.org"
+        className="font-semibold font-primary mb-1 bg-[#6871CA] rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
+        style={{
+          textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)',
+          // boxShadow: '0 2px 8px 0 rgba(58, 54, 94, 0.15), 0 1px 2px 0 rgba(255, 255, 255, 0.30) inset',
+        }}
+      >
         Join the waitlist
-      </div>
-      <GlassInput
+      </Link>
+      {/* <GlassInput
         value={email}
         onChange={setEmail}
         placeholder="Email address"
         type="email"
         className="text-[#4B4B66]"
-      />
+      /> */}
     </div>
   )
 }
 
-const CenteredOverlayContent = () => {
+const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black">
-      <div className="flex font-secondary text-white flex-col items-center justify-center gap-3">
-        <Image src={Logo} alt="Devcon 8 Logo" />
-        <div className="text-3xl font-bold text-center" style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}>
+    <div ref={ref} className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black">
+      <div className="flex font-secondary text-white flex-col items-center justify-center gap-0">
+        <Image src={Logo} alt="Devcon 8 Logo" className="w-[500px]" />
+        <div className="text-xl font-medium mb-1.5" style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}>
+          DEVCON 8 INDIA
+        </div>
+        <div
+          className="text-xl leading-tight text-center mb-3"
+          style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
+        >
           Ethereum's global community <br /> and developer conference
         </div>
-        <div className="text-2xl font-semibold mb-2" style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}>
+        <div
+          className="text-2xl font-semibold mb-2 text-center mt-2 mb-4 leading-tight"
+          style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
+        >
           MUMBAI, INDIA
+          <br />
+          Q4, 2026
         </div>
+
         <NewsletterForm />
       </div>
     </div>
   )
-}
+})
 
 export const Hero = () => {
+  const overlayRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    if (overlayRef.current) {
+      gsap.to(overlayRef.current, {
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: `+=${window.innerHeight / 2}`,
+          scrub: true,
+        },
+      })
+    }
+  }, [])
+
   return (
     <div className="relative h-screen w-screen">
       <div className="fixed h-screen w-screen z-[10]">
         <Fireflies id="lower-fireflies" />
-        <CenteredOverlayContent />
+        <CenteredOverlayContent ref={overlayRef} />
         <Image src={DC8Background} alt="Devcon 8 Background" fill className="w-full h-full object-cover" />
       </div>
     </div>
