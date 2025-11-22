@@ -71,7 +71,8 @@ const streams = {
   },
   m2: {
     translations: 'https://stm.live/Stage-M2/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+    // youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+    youtube: 'https://www.youtube.com/embed/IbXLIcCK-6Y?feature=share',
   },
   l: {
     translations: 'https://stm.live/Stage-L/fullscreen?embed=true',
