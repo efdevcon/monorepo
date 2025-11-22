@@ -36,6 +36,7 @@ import {
 import { useAccount } from '@getpara/react-sdk';
 import { useTranslations } from 'next-intl';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { internalDebuging } from '@/utils/auth';
 
 export const LoopingHeader = () => {
   const t = useTranslations('dashboard.header');
@@ -167,6 +168,48 @@ export function WelcomeSection() {
     </div>
   );
 }
+
+export const LeaderboardCard = () => {
+  const [userIsConnected] = useLocalStorage<boolean | null>(
+    'userIsConnected',
+    false
+  );
+  const { email } = useUserDataSWR();
+  const isInternalDebug = internalDebuging(email);
+
+  if (!userIsConnected || !isInternalDebug) return null;
+
+  return (
+    <Link
+      href="/leaderboard"
+      className="block mx-4 my-4 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+    >
+      <div className="p-4 text-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="bg-white/20 p-2 rounded-lg">
+              <Image
+                src="/images/top-1.svg"
+                alt="Trophy"
+                width={40}
+                height={40}
+              />
+            </div>
+            <div>
+              <h3 className="font-bold text-lg">Quest Leaderboard</h3>
+              <p className="text-sm text-purple-100">
+                See your ranking and come claim your prize at{' '}
+                <span className="font-bold">5PM</span> during the closing
+                ceremony!
+              </p>
+            </div>
+          </div>
+          <ChevronDownIcon className="w-5 h-5 -rotate-90" />
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 export const PracticalInfo = () => {
   const t = useTranslations('dashboard.info');
