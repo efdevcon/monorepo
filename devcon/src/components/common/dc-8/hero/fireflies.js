@@ -113,8 +113,9 @@ export const Fireflies = props => {
       count: 75,
       // color: 'rgba(236, 196, 94, 1)',
       color: 'rgba(221, 221, 184, 1)',
+      // color: 'rgba(91, 255, 255, 0.61)',
       speed: 0.2,
-      radius: 2.5,
+      radius: 3,
       ...props.settings,
     })
 

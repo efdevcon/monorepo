@@ -326,11 +326,11 @@ const useNavigationData = () => {
         type: 'page',
         // highlight: 'archive',
       },
-      {
-        title: 'Devconnect',
-        url: 'https://devconnect.org',
-        type: 'link',
-      },
+      // {
+      //   title: 'Devconnect',
+      //   url: 'https://devconnect.org',
+      //   type: 'link',
+      // },
       // {
       //   title: 'DevAI 🦄',
       //   type: 'button',
