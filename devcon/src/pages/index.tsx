@@ -102,62 +102,6 @@ const videos = [
   },
 ]
 
-interface CLSSectionProps {
-  title: any
-  body: any
-  sessions: any
-}
-
-export const CLSSection: React.FC<CLSSectionProps> = ({ title, body, sessions }) => {
-  return (
-    <div className="relative flex flex-col items-start">
-      <div className="h2 mb-7" id="cls">
-        {title}
-      </div>
-
-      <div className="border border-solid border-[#E2E3FF] rounded-2xl flex flex-col gap-2 max-w-full overflow-hidden pb-2">
-        <p className="text-[100px] leading-[0.8em] font-bold text-[#EFEFFE] mt-5 mx-4 font-secondary">CLS</p>
-
-        <div className="flex flex-col">
-          <div className="m-4 mb-4 mt-3">
-            <RichText content={body}></RichText>
-          </div>
-
-          <div className="border-t border-solid border-[#E2E3FF]"></div>
-
-          <div className="mb-4 relative grow-0 mx-4">{sessions && <CLSReel sessions={sessions} />}</div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export const RoadToDevconGrants = ({ pages, down }: any) => {
-  return (
-    <div className="flex-col md:flex-row flex relative pt-12 gap-8 items-center" data-type="rtd-container">
-      <div
-        className={`${css['scrolling-text-background']} ${down ? '' : css['alternate']}`}
-        data-type="scrolling-background"
-      >
-        <InfiniteScroller nDuplications={2} reverse speed="150s">
-          <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
-        </InfiniteScroller>
-      </div>
-
-      <div className="md:basis-[800px] shrink">
-        <RichText content={pages.section3?.body}></RichText>
-      </div>
-      <div className="flex grow shrink-0 items-center justify-center self-center">
-        <Link to={pages.section3?.graphic_url}>
-          <div className={css['tilt-hover-image']}>
-            <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
-          </div>
-        </Link>
-      </div>
-    </div>
-  )
-}
-
 export default function Index(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesIndex
@@ -263,7 +207,7 @@ export default function Index(props: any) {
 
       {/* <DevconnectHighlight /> */}
 
-      <div className="bg-white z-10 overflow-hidden w-full relative z<">
+      <div className="bg-gradient-to-b text-[rgba(255,255,255,0.8)] from-[#1F296C] to-[#101537] z-10 overflow-hidden w-full relative">
         <ImageNew
           src={CircleBackground}
           alt="Circle background"
