@@ -52,7 +52,8 @@ const streams = {
     // ef
     // youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
     // youtube: 'https://youtube.com/embed/3mU5r4LW_ik?feature=share',
-    youtube: 'https://www.youtube.com/@protocoltownhall', // temporary broken link (on purpose until we get real one)
+    youtube: 'https://www.youtube.com/live/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    // youtube: 'https://www.youtube.com/@protocoltownhall', // temporary broken link (on purpose until we get real one)
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
