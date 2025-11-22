@@ -58,7 +58,7 @@ const NewsletterForm = () => {
   const [email, setEmail] = useState('')
 
   return (
-    <div className="glass mt-3 md:mt-4">
+    <div className="glass mt-3 md:mt-3">
       <Link
         href="https://paragraph.com/@efevents/subscribe"
         className="font-semibold font-primary mb-1 bg-[#6871CA] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
@@ -84,29 +84,30 @@ const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => 
   return (
     <div
       ref={ref}
-      className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black translate-y-[-6%]  md:translate-y-0"
+      className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black translate-y-[-6%]  md:translate-y-[-4%]"
     >
       <div className="flex font-secondary text-white flex-col items-center justify-center gap-0">
         <Image src={Logo} alt="Devcon 8 Logo" className="w-[575px] max-w-[100vw] mb-2 md:mb-0" />
-        <div
+        {/* <div
           className="text-2xl font-medium mb-1.5 translate-y-[-16px] md:translate-y-[-26px]"
           style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
         >
           DEVCON 8
-        </div>
+        </div> */}
+
         <div
-          className="text-xl leading-tight text-center mb-0 translate-y-[-16px] md:translate-y-[-26px]"
-          style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
-        >
-          Ethereum's global community <br /> and developer conference
-        </div>
-        <div
-          className="text-3xl font-medium text-center mb-4 leading-tight"
-          style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
+          className="text-3xl text-center leading-tighter translate-y-[-16px] md:translate-y-[-26px]"
+          style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
         >
           MUMBAI, INDIA
           <br />
           <span className="font-normal">Q4 2026</span>
+        </div>
+        <div
+          className="text-xl leading-tight text-center mt-5 translate-y-[-16px] md:translate-y-[-26px]"
+          style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
+        >
+          Ethereum's global community <br /> and developer conference
         </div>
 
         <NewsletterForm />
@@ -209,7 +210,7 @@ export const Hero = () => {
             src={DC8Background}
             alt="Devcon 8 Background"
             fill
-            className="object-cover object-[65%,50%] md:object-[50%,80%]"
+            className="object-cover object-[64.5%,50%] md:object-[50%,80%]"
           />
         </motion.div>
       </div>

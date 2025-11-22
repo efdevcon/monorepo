@@ -93,6 +93,9 @@ export function SEO(props: SEOProps) {
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         {image && <meta name="twitter:image" key="twitter:image" content={image} />}
+
+        <meta name="theme-color" content="#000000" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
       {/* <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} /> */}
     </>

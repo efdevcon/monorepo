@@ -230,6 +230,11 @@ export default function Index(props: any) {
         body {
           overflow: hidden;
         }
+        @media (max-width: 768px) {
+          [data-type='devcon-header-logo'] * {
+            fill: black;
+          }
+        }
       `}</style>
 
       {/* <DevconnectHighlight /> */}

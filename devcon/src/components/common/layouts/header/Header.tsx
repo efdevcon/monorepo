@@ -5,6 +5,7 @@ import { Menu } from './menu'
 import css from './header.module.scss'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import HeaderLogo from './HeaderLogo'
+import cn from 'classnames'
 // import DevaBot from 'lib/components/ai/overlay'
 // import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
 // import { useRecoilState, useRecoilValue } from 'recoil'
@@ -57,7 +58,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
       <div id="header" className={headerClass} ref={ref}>
         <div className="section">
           <div className={`${css['menu-container']} ${isApp ? css['no-overflow'] : ''}`}>
-            <Link to={`/${router.locale}`}>
+            <Link to={`/${router.locale}`} data-type="devcon-header-logo">
               <HeaderLogo />
             </Link>
 
@@ -92,7 +93,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
     }
 
     return (
-      <div className={headerContainerClass} id="header-strip">
+      <div className={cn(headerContainerClass, 'md:mt-1')} id="header-strip">
         {body}
       </div>
     )

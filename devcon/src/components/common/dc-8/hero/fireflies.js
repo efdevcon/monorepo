@@ -109,13 +109,14 @@ function setOpacity(color, opacity) {
 
 export const Fireflies = props => {
   React.useEffect(() => {
+    const isMobile = window.innerWidth < 768
     const animation = new Animation(`#${props.id}`, {
-      count: 100,
+      count: isMobile ? 50 : 100,
       // color: 'rgba(236, 196, 94, 1)',
       // color: 'rgba(221, 221, 184, 1)',
       color: 'rgba(139, 255, 255, 0.5)',
       speed: 0.2,
-      radius: 3,
+      radius: isMobile ? 2 : 3,
       ...props.settings,
     })
 
