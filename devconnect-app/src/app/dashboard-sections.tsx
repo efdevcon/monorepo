@@ -174,6 +174,7 @@ export const LeaderboardCard = () => {
   return (
     <Link
       href="/leaderboard"
+      prefetch={true}
       className="block mx-4 my-4 bg-[#fce7b0] border border-[#fbdb89] rounded-[2px] transition-opacity hover:opacity-90"
     >
       <div className="p-[16px] flex gap-[12px] items-center">
