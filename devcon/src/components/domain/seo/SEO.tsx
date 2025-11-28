@@ -25,7 +25,8 @@ export function SEO(props: SEOProps) {
   const pageContext = usePageContext()
   const separator = props.separator ?? '—'
 
-  let title = `Devcon ${new Date().getFullYear()}` // Bogotá, Oct 11 → 14'
+  // let title = `Devcon ${new Date().getFullYear()}` // Bogotá, Oct 11 → 14'
+  let title = `Devcon 2026` // Bogotá, Oct 11 → 14'
   if (pageContext?.current?.title && pageContext?.current?.title !== title) {
     title = `${pageContext?.current.title} ${separator} ${title}`
   } else if (props.title) {
@@ -34,9 +35,9 @@ export function SEO(props: SEOProps) {
 
   // console.log(pageContext, 'page contxt hello')
 
-  const globalTitle = 'Devcon 2025' // Bogotá, Oct 11 → 14'
+  const globalTitle = 'Devcon 2026' // Bogotá, Oct 11 → 14'
   const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
-  const globalImage = 'https://www.devcon.org/assets/images/og-india.png'
+  const globalImage = 'https://www.devcon.org/assets/images/og-india.jpg'
   const canonical = props.canonicalUrl || ''
 
   let description = globalDescription

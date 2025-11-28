@@ -13,8 +13,8 @@ export const EVENT_DAYS = [11, 12, 13, 14]
 export const DEFAULT_REVALIDATE_PERIOD = 3600
 
 export const DEFAULT_APP_PAGE = {
-  title: 'Devcon 2024',
-  description: 'Devcon 2024',
+  title: 'Devcon 2026',
+  description: 'Devcon 2026',
   template: 'index',
   tags: [],
   lang: 'en',
