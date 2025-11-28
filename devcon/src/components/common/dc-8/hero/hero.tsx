@@ -61,6 +61,7 @@ const NewsletterForm = () => {
     <div className="glass mt-3 md:mt-3">
       <Link
         href="https://paragraph.com/@efevents/subscribe"
+        target="_blank"
         className="font-semibold font-primary mb-1 bg-[#6871CA] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
         style={{
           textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)',
@@ -198,7 +199,7 @@ export const Hero = () => {
       <div ref={containerRef} className="fixed h-screen w-screen z-[10]">
         <CenteredOverlayContent ref={overlayRef} />
         <motion.div
-          className="w-full h-full absolute top-0 left-0 "
+          className="w-full h-full absolute top-0 left-0 z-[5]"
           style={{
             x: transformX,
             y: transformY,
