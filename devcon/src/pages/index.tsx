@@ -242,20 +242,20 @@ export default function Index(props: any) {
 
       {/* <DevconnectHighlight /> */}
 
-      <div className="text-[rgba(255,255,255,0.8)] z-[11] overflow-hidden w-full relative translate-y-[-200px] pt-[200px]">
+      {/* <div className="text-[rgba(255,255,255,0.8)] z-[11] overflow-hidden w-full relative translate-y-[-200px] pt-[200px]">
         <div
           ref={gradientRef}
           className="bg-gradient-to-b from-[#1F296C] to-[#101537] absolute inset-0 w-full h-full -z-10 opacity-0"
           data-type="gradient-background"
           style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 200px)' }}
-        ></div>
-        {/* <ImageNew
+        ></div> */}
+      {/* <ImageNew
           src={CircleBackground}
           alt="Circle background"
           className="max-w-[700px] absolute right-[-100px] -top-[350px] rotate-180 -z-10 opacity-10"
         /> */}
 
-        {/* <div className="section">
+      {/* <div className="section">
           <div className="flex flex-col justify-center gap-2 border-bottom mt-8 pb-8">
             <div className="text-2xl font-semibold">What is Devcon?</div>
             <div>Devcon is the gathering for the global Ethereum community to build and use decentralized systems.</div>
@@ -267,7 +267,7 @@ export default function Index(props: any) {
           </div>
         </div> */}
 
-        {/* <div className="section">
+      {/* <div className="section">
           <div className="relative pt-9">
             <div className="mb-7">
               <RichText content={pages.section5?.title}></RichText>
@@ -334,7 +334,7 @@ export default function Index(props: any) {
           </div>
         </div> */}
 
-        {/* <div className="relative">
+      {/* <div className="relative">
           <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
             <InfiniteScroller nDuplications={2} reverse speed="100s">
               <p className="bold">BLOG POSTS&nbsp;</p>
@@ -343,7 +343,7 @@ export default function Index(props: any) {
           <BlogReel blogs={props.blogs} />
         </div> */}
 
-        {/* <div className="section mt-4">
+      {/* <div className="section mt-4">
           <div className="my-4 h2">Frequently Asked</div>
           <div className="flex flex-col">
             {faq?.questions?.map(({ question, answer }: any) => {
@@ -374,10 +374,10 @@ export default function Index(props: any) {
           </div>
         </div> */}
 
-        {/* <div className="mb-8"></div> */}
+      {/* <div className="mb-8"></div> */}
 
-        {/* <Footer /> */}
-      </div>
+      {/* <Footer /> */}
+      {/* </div> */}
     </div>
   )
 }
