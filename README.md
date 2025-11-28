@@ -12,6 +12,7 @@ This is the main repository for events organized by the Ethereum Foundation
 - [devcon-api](/devcon-api/README.md) - API for all Devcon-related apps @ [api.devcon.org](https://api.devcon.org/)
 - [devcon-app](/devcon-app/README.md) - Devcon conference scheduling App @ [app.devcon.org](https://app.devcon.org/)
 - [devconnect](/devconnect/README.md) - main Devconnect website @ [devconnect.org](https://devconnect.org/)
+- [devconnect-app](/devconnect-app/README.md) - Devconnect conference App @ [app.devconnect.org](https://app.devconnect.org/)
 - [data](/devcon-api/data) - all Devcon data, recorded talks, sessions, speaker info, etc.
 - [lib](/lib/README.md) - shared components for all projects
 
