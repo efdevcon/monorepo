@@ -58,7 +58,7 @@ const NewsletterForm = () => {
   const [email, setEmail] = useState('')
 
   return (
-    <div className="glass mt-3 md:mt-3">
+    <div className="glass mt-3 md:mt-3 relative z-[20]">
       <Link
         href="https://paragraph.com/@efevents/subscribe"
         target="_blank"
