@@ -68,7 +68,7 @@ const NewsletterForm = () => {
           // boxShadow: '0 2px 8px 0 rgba(58, 54, 94, 0.15), 0 1px 2px 0 rgba(255, 255, 255, 0.30) inset',
         }}
       >
-        Join the waitlist
+        Subscribe to Newsletter
       </Link>
       {/* <GlassInput
         value={email}
@@ -211,6 +211,7 @@ export const Hero = () => {
             src={DC8Background}
             alt="Devcon 8 Background"
             fill
+            placeholder="blur"
             className="object-cover object-[64.5%,50%] md:object-[50%,80%]"
           />
         </motion.div>
