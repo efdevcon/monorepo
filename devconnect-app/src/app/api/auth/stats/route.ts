@@ -1008,6 +1008,101 @@ export async function GET(request: NextRequest) {
       // Don't fail the whole request if quest stats fail
     }
 
+    // Fetch favorite events stats
+    let favoriteEventsStats: { users_with_favorites: number; total_favorites: number; top_events: Array<{ event_id: string; event_name: string; count: number }> } = {
+      users_with_favorites: 0,
+      total_favorites: 0,
+      top_events: [],
+    };
+    try {
+      // Count users with favorites and aggregate event counts
+      let allFavorites: any[] = [];
+      let page = 0;
+      const pageSize = 1000;
+      let hasMore = true;
+
+      while (hasMore) {
+        const { data: users, error: favError } = await supabase
+          .from('devconnect_app_user')
+          .select('favorite_events')
+          .not('favorite_events', 'is', null)
+          .range(page * pageSize, (page + 1) * pageSize - 1);
+
+        if (favError) {
+          console.error('Error fetching favorite events:', favError);
+          break;
+        }
+
+        if (users && users.length > 0) {
+          allFavorites = allFavorites.concat(users);
+          hasMore = users.length === pageSize;
+          page++;
+        } else {
+          hasMore = false;
+        }
+      }
+
+      // Count users with at least one favorite
+      const usersWithFavorites = allFavorites.filter(
+        (u) => u.favorite_events && u.favorite_events.length > 0
+      ).length;
+
+      // Count total favorites and aggregate by event
+      const eventCounts: Record<string, number> = {};
+      let totalFavorites = 0;
+      allFavorites.forEach((user) => {
+        if (user.favorite_events && Array.isArray(user.favorite_events)) {
+          totalFavorites += user.favorite_events.length;
+          user.favorite_events.forEach((eventId: string) => {
+            eventCounts[eventId] = (eventCounts[eventId] || 0) + 1;
+          });
+        }
+      });
+
+      // Fetch event names from the calendar API
+      let eventNames: Record<string, string> = {};
+      try {
+        const eventsResponse = await fetch('https://at-slurper.onrender.com/calendar-events', {
+          next: { revalidate: 300 },
+        });
+        if (eventsResponse.ok) {
+          const eventsData = await eventsResponse.json();
+          // Map event IDs to names (title is nested in record_passed_review.title)
+          if (Array.isArray(eventsData)) {
+            eventsData.forEach((event: any) => {
+              if (event.id && event.record_passed_review?.title) {
+                eventNames[event.id.toString()] = event.record_passed_review.title;
+              }
+            });
+          }
+          console.log(`[Favorites Stats] Loaded ${Object.keys(eventNames).length} event names`);
+        }
+      } catch (eventsFetchError) {
+        console.warn('[Favorites Stats] Failed to fetch event names:', eventsFetchError);
+      }
+
+      // Get top 10 favorited events with names
+      const topEvents = Object.entries(eventCounts)
+        .map(([event_id, count]) => ({
+          event_id,
+          event_name: eventNames[event_id] || `Event ${event_id}`,
+          count,
+        }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10);
+
+      favoriteEventsStats = {
+        users_with_favorites: usersWithFavorites,
+        total_favorites: totalFavorites,
+        top_events: topEvents,
+      };
+
+      console.log(`[Favorites Stats] ${usersWithFavorites} users with favorites, ${totalFavorites} total favorites, ${Object.keys(eventCounts).length} unique events`);
+    } catch (favStatsError) {
+      console.error('Error fetching favorite events stats:', favStatsError);
+      // Don't fail the whole request if favorites stats fail
+    }
+
     // Return stats
     return NextResponse.json({
       stats: {
@@ -1024,6 +1119,7 @@ export async function GET(request: NextRequest) {
       transactions_by_address: transactionsByAddress,
       suspicious_addresses: suspiciousAddresses,
       quest_completions: questCompletionStats,
+      favorite_events: favoriteEventsStats,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {

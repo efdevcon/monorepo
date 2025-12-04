@@ -20,6 +20,7 @@ import {
   mdiChartBar,
   mdiWeb,
   mdiImageMultiple,
+  mdiHeartOutline,
 } from '@mdi/js';
 import {
   BarChart,
@@ -29,7 +30,13 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
 } from 'recharts';
+import { supportersData } from '@/data/supporters';
+import { districtsData } from '@/data/districts';
 
 // Configuration
 const AVAILABLE_LINKS_WARNING_THRESHOLD = 500; // Show warnings when available links drop below this
@@ -105,6 +112,11 @@ interface StatsData {
     total_value?: number;
   }>;
   quest_completions?: Record<string, number>;
+  favorite_events?: {
+    users_with_favorites: number;
+    total_favorites: number;
+    top_events: Array<{ event_id: string; event_name: string; count: number }>;
+  };
   timestamp: string;
 }
 
@@ -114,12 +126,36 @@ interface POAPDrop {
   mintCount: number;
   questId?: string;
   verifiedInApp?: number;
+  supporterId?: string;
+  districtId?: string;
 }
 
 interface POAPMintStats {
   totalMints: number;
   drops: POAPDrop[];
 }
+
+interface DistrictPOAPStats {
+  districtId: string;
+  districtName: string;
+  totalMints: number;
+  verifiedInApp: number;
+  dropCount: number;
+  backgroundColor: string;
+}
+
+// Unique colors for each district
+const DISTRICT_COLORS: Record<string, string> = {
+  '1': '#F59E0B', // AI - Amber
+  '2': '#EC4899', // Collectibles - Pink
+  '3': '#8B5CF6', // DeFi - Purple
+  '4': '#10B981', // Gaming - Emerald
+  '5': '#F97316', // Hardware & Wallets - Orange
+  '6': '#3B82F6', // L2 - Blue
+  '7': '#14B8A6', // Privacy - Teal
+  '8': '#EF4444', // Social - Red
+  unknown: '#6B7280', // Unknown - Gray
+};
 
 // Function to fetch POAP mint statistics for drops from quests
 async function fetchPOAPMintStats(): Promise<POAPMintStats | null> {
@@ -142,8 +178,9 @@ async function fetchPOAPMintStats(): Promise<POAPMintStats | null> {
     }
 
     // Extract POAP drop IDs from quests where conditionType is "verifyPoap"
-    // Create a map of dropId -> questId for later use
+    // Create maps for dropId -> questId and dropId -> supporterId
     const dropIdToQuestId: Record<number, string> = {};
+    const dropIdToSupporterId: Record<number, string> = {};
     const poapDropIds = questsData.quests
       .filter(
         (quest: any) =>
@@ -153,6 +190,9 @@ async function fetchPOAPMintStats(): Promise<POAPMintStats | null> {
         const dropId = parseInt(quest.conditionValues);
         if (!isNaN(dropId)) {
           dropIdToQuestId[dropId] = quest.id.toString();
+          if (quest.supporterId) {
+            dropIdToSupporterId[dropId] = quest.supporterId;
+          }
         }
         return dropId;
       })
@@ -226,12 +266,20 @@ async function fetchPOAPMintStats(): Promise<POAPMintStats | null> {
         if (drop) {
           // Add to total regardless of count
           totalMints += poapCount;
+
+          // Get supporter and district IDs
+          const supporterId = dropIdToSupporterId[drop.id];
+          const supporter = supporterId ? supportersData[supporterId] : null;
+          const districtId = supporter?.districtId || undefined;
+
           // Add to array (including 0 count drops to show all quest POAPs)
           drops.push({
             id: drop.id,
             name: drop.name,
             mintCount: poapCount,
             questId: dropIdToQuestId[drop.id],
+            supporterId,
+            districtId,
           });
         }
       });
@@ -258,6 +306,41 @@ export default function StatsPage() {
   );
   const [showAllRegularAddresses, setShowAllRegularAddresses] = useState(false);
   const [showAllDrops, setShowAllDrops] = useState(false);
+
+  // Compute district POAP stats from drops
+  const districtPoapStats: DistrictPOAPStats[] = (() => {
+    if (!poapMintStats) return [];
+
+    const districtMap: Record<string, DistrictPOAPStats> = {};
+
+    poapMintStats.drops.forEach((drop) => {
+      const districtId = drop.districtId || 'unknown';
+      const district =
+        districtId !== 'unknown' ? districtsData[districtId] : null;
+
+      if (!districtMap[districtId]) {
+        districtMap[districtId] = {
+          districtId,
+          districtName: district?.name || 'Unknown / No District',
+          totalMints: 0,
+          verifiedInApp: 0,
+          dropCount: 0,
+          backgroundColor:
+            district?.backgroundColor ||
+            'linear-gradient(90deg, rgb(156, 163, 175) 0%, rgb(107, 114, 128) 100%)',
+        };
+      }
+
+      districtMap[districtId].totalMints += drop.mintCount;
+      districtMap[districtId].verifiedInApp += drop.verifiedInApp || 0;
+      districtMap[districtId].dropCount += 1;
+    });
+
+    // Sort by total mints descending
+    return Object.values(districtMap).sort(
+      (a, b) => b.totalMints - a.totalMints
+    );
+  })();
 
   const fetchStats = async (isRefresh = false) => {
     if (isRefresh) {
@@ -613,7 +696,92 @@ export default function StatsPage() {
               </p>
             </div>
           )}
+
+          {/* Favorited Events */}
+          {stats.favorite_events &&
+            stats.favorite_events.total_favorites > 0 && (
+              <div className="bg-white rounded-lg shadow-sm p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 mb-1">
+                      Event Favorites
+                    </p>
+                    <p className="text-3xl font-bold text-pink-600">
+                      {stats.favorite_events.total_favorites.toLocaleString()}
+                    </p>
+                  </div>
+                  <div className="p-3 bg-pink-100 rounded-full">
+                    <Icon path={mdiHeartOutline} size={1.3} color="#DB2777" />
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  By {stats.favorite_events.users_with_favorites} users
+                </p>
+              </div>
+            )}
         </div>
+
+        {/* Top Favorited Events */}
+        {stats.favorite_events &&
+          stats.favorite_events.top_events.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm p-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Icon path={mdiHeartOutline} size={0.9} color="#DB2777" />
+                <h2 className="text-xl font-bold text-gray-900">
+                  Top Favorited Events
+                </h2>
+              </div>
+              <p className="text-sm text-gray-500 mb-4">
+                Most favorited events by users
+              </p>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                        #
+                      </th>
+                      <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                        Event Name
+                      </th>
+                      <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                        Favorites
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {stats.favorite_events.top_events.map((event, index) => (
+                      <tr
+                        key={event.event_id}
+                        className="border-b border-gray-100 hover:bg-gray-50"
+                      >
+                        <td className="py-2 px-3 text-gray-500">{index + 1}</td>
+                        <td className="py-2 px-3 text-gray-900">
+                          {event.event_name}
+                        </td>
+                        <td className="py-2 px-3 text-right font-semibold text-pink-600">
+                          {event.count.toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr className="border-t-2 border-gray-300 font-semibold">
+                      <td className="py-2 px-3 text-gray-900" colSpan={2}>
+                        Total (Top 10)
+                      </td>
+                      <td className="py-2 px-3 text-right text-pink-600">
+                        {stats.favorite_events.top_events
+                          .reduce((sum, e) => sum + e.count, 0)
+                          .toLocaleString()}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          )}
 
         {/* POAP Drops List */}
         {poapMintStats && poapMintStats.drops.length > 0 && (
@@ -636,8 +804,8 @@ export default function StatsPage() {
                     <th className="text-left py-2 px-3 font-semibold text-gray-900">
                       Name
                     </th>
-                    <th className="text-center py-2 px-3 font-semibold text-gray-900">
-                      Drop ID
+                    <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                      District
                     </th>
                     <th className="text-right py-2 px-3 font-semibold text-gray-900">
                       Total Mints
@@ -658,40 +826,59 @@ export default function StatsPage() {
                       ? sortedDrops
                       : sortedDrops.slice(0, 10);
 
-                    return dropsToShow.map((drop, index) => (
-                      <tr
-                        key={drop.id}
-                        className="border-b border-gray-100 hover:bg-gray-50"
-                      >
-                        <td className="py-2 px-3 text-gray-500">{index + 1}</td>
-                        <td className="py-2 px-3 text-gray-900">
-                          <a
-                            href={`https://moments.poap.xyz/drops/${drop.id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-indigo-600 hover:underline font-mono text-xs"
-                          >
-                            {drop.name}
-                          </a>
-                        </td>
-                        <td className="py-2 px-3 text-center">
-                          <a
-                            href={`https://poap.gallery/drops/${drop.id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-indigo-600 hover:underline font-mono text-xs"
-                          >
-                            {drop.id}
-                          </a>
-                        </td>
-                        <td className="py-2 px-3 text-right font-semibold text-gray-900">
-                          {drop.mintCount.toLocaleString()}
-                        </td>
-                        <td className="py-2 px-3 text-right font-semibold text-green-600">
-                          {drop.verifiedInApp?.toLocaleString() || '0'}
-                        </td>
-                      </tr>
-                    ));
+                    return dropsToShow.map((drop, index) => {
+                      const district = drop.districtId
+                        ? districtsData[drop.districtId]
+                        : null;
+                      const districtColor = drop.districtId
+                        ? DISTRICT_COLORS[drop.districtId]
+                        : DISTRICT_COLORS.unknown;
+                      const supporter = drop.supporterId
+                        ? supportersData[drop.supporterId]
+                        : null;
+
+                      return (
+                        <tr
+                          key={drop.id}
+                          className="border-b border-gray-100 hover:bg-gray-50"
+                        >
+                          <td className="py-2 px-3 text-gray-500">{index}</td>
+                          <td className="py-2 px-3 text-gray-900">
+                            <a
+                              href={`https://moments.poap.xyz/drops/${drop.id}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-indigo-600 hover:underline text-xs"
+                            >
+                              {supporter?.name || drop.name}
+                            </a>
+                          </td>
+                          <td className="py-2 px-3">
+                            {district ? (
+                              <div className="flex items-center gap-1.5">
+                                <div
+                                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                  style={{
+                                    backgroundColor: districtColor,
+                                  }}
+                                />
+                                <span className="text-xs text-gray-700">
+                                  {district.name}
+                                </span>
+                              </div>
+                            ) : (
+                              <span className="text-xs text-gray-400">—</span>
+                            )}
+                          </td>
+                          <td className="py-2 px-3 text-right font-semibold text-gray-900">
+                            {drop.mintCount.toLocaleString()}
+                          </td>
+                          <td className="py-2 px-3 text-right font-semibold text-green-600">
+                            {drop.verifiedInApp?.toLocaleString() || '0'}
+                          </td>
+                        </tr>
+                      );
+                    });
                   })()}
                 </tbody>
                 <tfoot>
@@ -728,6 +915,133 @@ export default function StatsPage() {
                 </button>
               </div>
             )}
+          </div>
+        )}
+
+        {/* POAP Stats by District */}
+        {districtPoapStats.filter((d) => d.districtId !== 'unknown').length >
+          0 && (
+          <div className="bg-white rounded-lg shadow-sm p-4">
+            <div className="flex items-center gap-2 mb-4">
+              <Icon path={mdiChartBar} size={0.9} color="#4F46E5" />
+              <h2 className="text-xl font-bold text-gray-900">
+                POAP Mints by District
+              </h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-4">
+              Breakdown of POAP mints grouped by district
+            </p>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* District Chart */}
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={
+                        districtPoapStats.filter(
+                          (d) => d.districtId !== 'unknown'
+                        ) as any[]
+                      }
+                      dataKey="totalMints"
+                      nameKey="districtName"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      label={(props: any) =>
+                        `${props.name || ''}: ${((props.percent ?? 0) * 100).toFixed(0)}%`
+                      }
+                      labelLine={true}
+                    >
+                      {districtPoapStats
+                        .filter((d) => d.districtId !== 'unknown')
+                        .map((entry, index) => {
+                          const color =
+                            DISTRICT_COLORS[entry.districtId] ||
+                            DISTRICT_COLORS.unknown;
+                          return <Cell key={`cell-${index}`} fill={color} />;
+                        })}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value: number, name: string) => [
+                        `${value.toLocaleString()} mints`,
+                        name,
+                      ]}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* District Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-2 px-3 font-semibold text-gray-900">
+                        District
+                      </th>
+                      <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                        Drops
+                      </th>
+                      <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                        Total Mints
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {districtPoapStats
+                      .filter((d) => d.districtId !== 'unknown')
+                      .map((district) => {
+                        const color =
+                          DISTRICT_COLORS[district.districtId] ||
+                          DISTRICT_COLORS.unknown;
+
+                        return (
+                          <tr
+                            key={district.districtId}
+                            className="border-b border-gray-100 hover:bg-gray-50"
+                          >
+                            <td className="py-2 px-3">
+                              <div className="flex items-center gap-2">
+                                <div
+                                  className="w-3 h-3 rounded-full flex-shrink-0"
+                                  style={{ backgroundColor: color }}
+                                />
+                                <span className="font-medium text-gray-900">
+                                  {district.districtName}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="py-2 px-3 text-right text-gray-600">
+                              {district.dropCount}
+                            </td>
+                            <td className="py-2 px-3 text-right font-semibold text-indigo-600">
+                              {district.totalMints.toLocaleString()}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                  <tfoot>
+                    <tr className="border-t-2 border-gray-300 font-semibold">
+                      <td className="py-2 px-3 text-gray-900">Total</td>
+                      <td className="py-2 px-3 text-right text-gray-600">
+                        {districtPoapStats
+                          .filter((d) => d.districtId !== 'unknown')
+                          .reduce((sum, d) => sum + d.dropCount, 0)}
+                      </td>
+                      <td className="py-2 px-3 text-right text-indigo-600">
+                        {districtPoapStats
+                          .filter((d) => d.districtId !== 'unknown')
+                          .reduce((sum, d) => sum + d.totalMints, 0)
+                          .toLocaleString()}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
           </div>
         )}
 
