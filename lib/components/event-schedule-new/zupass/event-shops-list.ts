@@ -13,129 +13,121 @@ const zupassGatingFallbackOn =
   process.env.NEXT_PUBLIC_ZUPASS_FALLBACK_ON === "true";
 
 export const eventShops: EventShop[] = [
-  {
-    supabase_id: "86",
-    custom_url_id: "DSS",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "dss-voucher-gating",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
   // {
-  //   supabase_id: "71",
+  //   supabase_id: "86",
+  //   custom_url_id: "DSS",
   //   zupass_proof_id: "Devconnect ARG",
-  //   coupon_collection: "agenticzero",
+  //   coupon_collection: "dss-voucher-gating",
   //   zupass_disabled: zupassGatingFallbackOn,
   // },
-  {
-    supabase_id: "109",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "trustless-eil",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "110",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "trustless-interop-fixed",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "104",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "crecimiento",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "108", // money rails event
-    zupass_proof_id: "Devconnect ARG",
-    gate_link_only: true,
-    // hide_visit_site: true,
-    // coupon_collection: "moneyrails",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "76", // ethereum argentina
-    zupass_proof_id: "Devconnect ARG",
-    gate_link_only: true,
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "91", // ethereum argentina
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "bridge-atlas",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "111",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "zktls-gating",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "119",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "zkid-day",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "136",
-    zupass_proof_id: "Devconnect ARG",
-    gate_link_only: true,
-    hide_visit_site: true,
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "141",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "privacy-stack",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "137",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "organizer-hangout",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "98",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "zero-to-dapp",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "142",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "apptownhall",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "162",
-    zupass_proof_id: "Devconnect ARG",
-    gate_link_only: true,
-    hide_visit_site: true,
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "107",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "defi-today",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "193",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "fhe",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "194",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "obfuscation",
-    zupass_disabled: zupassGatingFallbackOn,
-  },
-  {
-    supabase_id: "168",
-    zupass_proof_id: "Devconnect ARG",
-    gate_link_only: true,
-    zupass_disabled: zupassGatingFallbackOn,
-  },
+  // {
+  //   supabase_id: "109",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "trustless-eil",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "110",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "trustless-interop-fixed",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "104",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "crecimiento",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "108", // money rails event
+  //   zupass_proof_id: "Devconnect ARG",
+  //   gate_link_only: true,
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "76", // ethereum argentina
+  //   zupass_proof_id: "Devconnect ARG",
+  //   gate_link_only: true,
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "91", // ethereum argentina
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "bridge-atlas",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "111",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "zktls-gating",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "119",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "zkid-day",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "136",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   gate_link_only: true,
+  //   hide_visit_site: true,
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "141",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "privacy-stack",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "137",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "organizer-hangout",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "98",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "zero-to-dapp",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "142",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "apptownhall",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "162",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   gate_link_only: true,
+  //   hide_visit_site: true,
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "107",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "defi-today",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "193",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "fhe",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "194",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "obfuscation",
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
+  // {
+  //   supabase_id: "168",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   gate_link_only: true,
+  //   zupass_disabled: zupassGatingFallbackOn,
+  // },
 ];

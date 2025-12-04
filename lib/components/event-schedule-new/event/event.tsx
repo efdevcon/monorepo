@@ -1044,7 +1044,7 @@ function Event({
                   </div>
                 )}
               </div>
-              {showTicketTag && compact && (
+              {/* {showTicketTag && compact && (
                 <div className="flex gap-1 items-start mt-2">
                   <TicketTag
                     event={event}
@@ -1052,7 +1052,7 @@ function Event({
                     renderTicketsCTA={renderTicketsCTA}
                   />
                 </div>
-              )}
+              )} */}
 
               {isETHDay && !compact && (
                 <div className="hidden md:flex items-center justify-center mt-2">

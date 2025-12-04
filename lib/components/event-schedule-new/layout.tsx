@@ -49,9 +49,9 @@ const Layout = (props: CalendarLayoutProps) => {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col">
+                <div className="flex flex-col uppercase text-black">
                   <b>Devconnect ARG schedule </b>
-                  <div className="text-base font-secondary">
+                  {/* <div className="text-base font-secondary">
                     Events held within La Rural require a{` `}
                     <Link
                       href={ticketsUrl}
@@ -60,11 +60,11 @@ const Layout = (props: CalendarLayoutProps) => {
                       world's fair ticket{` `}
                     </Link>
                     to enter.
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>
-            <div
+            {/* <div
               className={cn(
                 "text-sm overflow-hidden px-4 py-2 text-[#36364C] self-center",
                 props.isCommunityCalendar
@@ -104,9 +104,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   </div>
                 </div>
               )}
-
-              {/* <RichText content={data.pages.calendar_disclaimer} /> */}
-            </div>
+            </div> */}
           </div>
 
           <ActionBar
@@ -152,6 +150,7 @@ const Layout = (props: CalendarLayoutProps) => {
           {...props}
           events={filteredEvents}
           viewMode={viewMode}
+          noUrlRouting
         />
       </div>
     </div>

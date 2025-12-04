@@ -10,6 +10,7 @@ import Link from 'common/components/link/Link'
 import Modal from 'common/components/modal'
 import { CodeOfConduct } from 'common/components/code-of-conduct/CodeOfConduct'
 import FAQComponent from 'common/components/faq/faq'
+import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format'
 import Observer from 'common/components/observer'
 import ErrorBoundary from 'common/components/error-boundary/ErrorBoundary'
 import FooterBackground from 'assets/images/footer-background-triangles.png'
@@ -29,7 +30,7 @@ import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
 import cn from 'classnames'
 import ScrollVideo from 'common/components/ba/scroll-video'
 import Venue from 'common/components/ba/venue/venue'
-import { Ticket, ExternalLink, Calendar, MapPin, SparklesIcon } from 'lucide-react'
+import { Ticket, ExternalLink, Calendar, MapPin, SparklesIcon, ArrowDown } from 'lucide-react'
 import InstagramIcon from 'assets/icons/instagram.svg'
 import HeroText from 'assets/images/ba/header-text-hq.png'
 import TicketExample from 'assets/images/ba/ticket-hero.png'
@@ -55,6 +56,7 @@ import EthGlyph from 'assets/images/ba/eth-glyph.png'
 import { useTicketsUrl } from 'common/constants'
 import EthDayCTA from 'assets/images/ba/ethday-new.webp'
 import { CMSButtons } from 'common/components/voxel-button/button'
+import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import BanklessLogo from 'assets/images/ba/media-partners/bankless.png'
 import BeInCryptoLogo from 'assets/images/ba/media-partners/beincrypto.png'
 import CriptoLogo from 'assets/images/ba/media-partners/cripto.png'
@@ -65,6 +67,17 @@ import TheRollupLogo from 'assets/images/ba/media-partners/the_rollup.png'
 import Supporters from 'common/components/ba/supporters'
 import Button from 'lib/components/voxel-button/button'
 import PhonesApp from 'assets/images/ba/devconnect-phones-super-new.png'
+import CalendarLayout from 'lib/components/event-schedule-new/layout'
+import Hero from 'common/components/hero/Hero'
+import RecapPhoto1 from 'assets/images/ba/recap-gallery/ARG-Photo-1.png'
+import RecapPhoto2 from 'assets/images/ba/recap-gallery/ARG-Photo-2.png'
+import RecapPhoto3 from 'assets/images/ba/recap-gallery/ARG-Photo-3.png'
+import RecapPhoto4 from 'assets/images/ba/recap-gallery/ARG-Photo-4.png'
+import RecapPhoto5 from 'assets/images/ba/recap-gallery/ARG-Photo-5.png'
+import RecapPhoto6 from 'assets/images/ba/recap-gallery/ARG-Photo-6.png'
+import RecapPhoto7 from 'assets/images/ba/recap-gallery/ARG-Photo-7.png'
+import RecapPhoto8 from 'assets/images/ba/recap-gallery/ARG-Photo-8.png'
+import RecapPhoto9 from 'assets/images/ba/recap-gallery/ARG-Photo-9.png'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -320,9 +333,107 @@ const TicketButton = ({
   )
 }
 
+const RecapStrip = () => {
+  return (
+    <div className="section relative py-6 [background:linear-gradient(316.53deg,rgba(246,182,19,0.7)_0.96%,rgba(255,133,166,0.7)_32.37%,rgba(152,148,255,0.7)_77.17%,rgba(116,172,223,0.7)_98.55%)]">
+      <svg
+        width="101"
+        height="102"
+        viewBox="0 0 101 102"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute bottom-0 left-0 expand hidden md:block translate-y-[100%]"
+      >
+        <g opacity="0.5">
+          <path
+            d="M48.2721 101.179L7.62939e-06 101.179L3.40185e-06 52.8212L48.2721 52.8212L48.2721 101.179Z"
+            fill="#FF85A6"
+          />
+          <path d="M101 48.3575L52.7279 48.3575L52.7279 -2.62975e-05L101 -3.05176e-05L101 48.3575Z" fill="#FF85A6" />
+          <path
+            d="M48.2721 48.3575L3.01161e-06 48.3575L-1.21593e-06 -2.16879e-05L48.2721 -2.5908e-05L48.2721 48.3575Z"
+            fill="#FF85A6"
+          />
+        </g>
+      </svg>
+      <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-3xl md:text-4xl font-bold">14,000+</span>
+          <span className="text-sm uppercase tracking-wider">Attendees</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-3xl md:text-4xl font-bold">130+</span>
+          <span className="text-sm uppercase tracking-wider">Countries</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-3xl md:text-4xl font-bold">80+</span>
+          <span className="text-sm uppercase tracking-wider">Exhibitors</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-3xl md:text-4xl font-bold">40+</span>
+          <span className="text-sm uppercase tracking-wider">Events</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const recapPhotos = [
+  RecapPhoto1,
+  RecapPhoto2,
+  RecapPhoto3,
+  RecapPhoto4,
+  RecapPhoto5,
+  RecapPhoto6,
+  RecapPhoto7,
+  RecapPhoto8,
+  RecapPhoto9,
+]
+
+const RecapGallery = () => {
+  return (
+    <div className="section mt-4">
+      <div className="relative py-8 pt-10 pb-8 border-bottom">
+        <div className="section-header mb-4">CATCH THE DEVCONNECT VIBE</div>
+        <div className="mb-8">
+          The first Ethereum World's Fair was hosted in Buenos Aires, Argentina. Check out the photos below to get a
+          feel for this pivotal moment in Ethereum's history.
+        </div>
+
+        <div
+          style={{
+            width: '100%',
+            overflow: 'hidden',
+            maskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)',
+          }}
+        >
+          <InfiniteScroll speed="190s" nDuplications={2}>
+            <div className="flex gap-4">
+              {recapPhotos.map((photo, index) => (
+                <div
+                  key={index}
+                  className="w-[300px] md:w-[400px] aspect-[4/3] relative overflow-hidden rounded-lg shrink-0"
+                >
+                  <Image src={photo} alt={`Devconnect Argentina Photo ${index + 1}`} fill className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </InfiniteScroll>
+        </div>
+
+        <Button size="sm" className="mt-8">
+          View More Photos <ArrowRight className="w-4 h-4" />
+        </Button>
+      </div>
+    </div>
+  )
+}
+
 const Home: NextPage = (props: any) => {
   const { data }: { data: any } = useTina(props.cms)
   const [playerClicked, setPlayerClicked] = useState(false)
+  const [calendarExpanded, setCalendarExpanded] = useState(false)
   const ticketsUrl = useTicketsUrl()
   // const { data: translations } = useTina(props.translations)
   // const translations = JSON.parse(translations.data.global_translations)
@@ -365,7 +476,25 @@ const Home: NextPage = (props: any) => {
           className={cn(css.main, 'text-[rgba(54,54,76,1)]')}
           style={{ '--content-width': '1440px' } as any}
         >
-          <div
+          {/* <Header noGradient fadeOutOnScroll keepMenuOnScroll active={true} /> */}
+
+          <Hero
+            className={`${css['hero-gradient']} flex-col ${props.edition}`}
+            autoHeight
+            backgroundTitle="Devconnect ARG Recap"
+          >
+            <div className={cn(css['hero-content'], '')}>
+              <p className="uppercase extra-large-text font-secondary title text-left">BUENOS AIRES 2025</p>
+              {/* <Link
+            href="https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022"
+            className={`button orange-fill sm margin-top-much-less`}
+            indicateExternal
+          >
+            Host An Event
+          </Link> */}
+            </div>
+          </Hero>
+          {/* <div
             id="hero"
             ref={heroRef}
             className={cn('w-screen relative bg-[#bbddee] h-[100vh]', css.hero, {
@@ -375,8 +504,8 @@ const Home: NextPage = (props: any) => {
               // [css.gradient]: fadeInArgentina || userHasInterruptedPlayback,
             })}
           >
-            {/* <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} /> */}
-            <Header noGradient fadeOutOnScroll keepMenuOnScroll active={true} />
+            {/* <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} /> 
+            {/* <Header noGradient fadeOutOnScroll keepMenuOnScroll active={true} /> 
 
             <div
               className={cn(
@@ -433,21 +562,21 @@ const Home: NextPage = (props: any) => {
                     )}
                   >
                     <p className={cn('self-start font-secondary font-normal mb-1', css['text-highlight'])}>
-                      17-22 November / Buenos Aires, Argentina
+                      17-22 November, 2025 | Buenos Aires, Argentina
                     </p>
 
                     <Image src={HeroText} alt="Hero text" className={cn('translate-x-[-2%]')} />
 
-                    <p
+                    {/* <p
                       className={cn(
                         'self-start text-normal text-base sm:text-xl font-secondary font-normal',
                         css['text-highlight']
                       )}
                     >
                       {data.pages.what_is_devconnect}
-                    </p>
+                    </p> */}
 
-                    {/* <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6 mb-2">
+          {/* <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6 mb-2">
                       <Link href={ticketsUrl} className="pointer-events-auto">
                         <Button
                           color="blue-1"
@@ -470,7 +599,7 @@ const Home: NextPage = (props: any) => {
                           </div>
                         </Button>
                       </Link>
-                    </div> */}
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-8 mt-6">
@@ -487,7 +616,7 @@ const Home: NextPage = (props: any) => {
               </div>
 
               <div className={cn('absolute section bottom-4 right-0 z-10 pointer-events-none')}>
-                <div
+                {/* <div
                   className={cn('hidden xl:flex justify-end gap-4 opacity-0 transition-opacity duration-[1500ms]', {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
@@ -584,7 +713,7 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* <div className="section relative bg-[#FAFCFF] overflow-hidden">
             <Venue />
@@ -637,34 +766,12 @@ const Home: NextPage = (props: any) => {
               </svg>
 
               {/* Squares Bottom Left Pink */}
-              <svg
-                width="101"
-                height="102"
-                viewBox="0 0 101 102"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute bottom-0 left-0 translate-y-[53%] expand"
-              >
-                <g opacity="0.5">
-                  <path
-                    d="M48.2721 101.179L7.62939e-06 101.179L3.40185e-06 52.8212L48.2721 52.8212L48.2721 101.179Z"
-                    fill="#FF85A6"
-                  />
-                  <path
-                    d="M101 48.3575L52.7279 48.3575L52.7279 -2.62975e-05L101 -3.05176e-05L101 48.3575Z"
-                    fill="#FF85A6"
-                  />
-                  <path
-                    d="M48.2721 48.3575L3.01161e-06 48.3575L-1.21593e-06 -2.16879e-05L48.2721 -2.5908e-05L48.2721 48.3575Z"
-                    fill="#FF85A6"
-                  />
-                </g>
-              </svg>
 
-              <div className="flex flex-row gap-4 py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
-                {/* <div className="basis-full lg:basis-[500px] mt-8 lg:mt-0 shrink-0 flex gap-8 flex-col justify-center">
+              <div className="flex flex-row py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
+                <div className="basis-full lg:basis-[500px] lg:mt-0 shrink-0 flex gap-4 flex-col justify-center">
                   <h1 className="section-header">{data.pages.why_join_devconnect_arg_title}</h1>
-
+                  <RichText content={data.pages.ethereum_worlds_fair} />
+                  {/* 
                   {data.pages.why_join_devconnect_arg_list.map((item: any, index: number) => {
                     return (
                       <div key={index} className="flex flex-col gap-2 text-lg">
@@ -672,11 +779,11 @@ const Home: NextPage = (props: any) => {
                         <p className="text-lg">{item.description}</p>
                       </div>
                     )
-                  })}
-                </div> */}
+                  })} */}
+                </div>
 
-                <div className="basis-full lg:basis-auto grow flex justify-center items-center relative py-16 lg:pr-16">
-                  <div className="aspect-video bg-white border-2 border-solid border-[white] w-[800px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
+                <div className="basis-full lg:basis-auto grow flex justify-center  relative py-12 lg:pr-16 lg:ml-4">
+                  <div className="aspect-video bg-white border-2 border-solid border-[white] w-[650px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
                     {/* <Image
                       src={VideoImage}
                       alt="Video Preview"
@@ -700,6 +807,9 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
             </div>
+
+            <RecapStrip />
+            <RecapGallery />
 
             {/* <div className="section relative !hidden lg:!grid">
               <div className="max-w-[1300px] flex justify-center items-center mx-auto py-4">
@@ -1152,6 +1262,29 @@ const Home: NextPage = (props: any) => {
             </div>
           </div> */}
 
+          <div className="relative mb-16 mt-6">
+            <div
+              className={cn('overflow-hidden transition-all duration-500 contents md:block', {
+                'max-h-[60vh]': !calendarExpanded,
+              })}
+            >
+              <CalendarLayout
+                events={props.events} // .filter((event: any) => event.isCoreEvent)}
+                isCommunityCalendar={false}
+              />
+            </div>
+            {!calendarExpanded && (
+              <>
+                <div className="absolute hidden md:block bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                <div className="absolute hidden md:flex bottom-4 left-0 right-0 justify-center">
+                  <Button size="sm" onClick={() => setCalendarExpanded(true)}>
+                    Show Entire Calendar (It's big!) <ArrowDown className="w-4 h-4" />
+                  </Button>
+                </div>
+              </>
+            )}
+          </div>
+
           <div
             className="section relative py-8 md:py-12"
             style={{
@@ -1160,23 +1293,23 @@ const Home: NextPage = (props: any) => {
             }}
           >
             <div className="mb-3" id="supporters">
-              <h2 className="section-header black mb-4">OUR SUPPORTERS</h2>
+              <h2 className="section-header black mb-4">OUR SUPPORTERS...</h2>
             </div>
 
             <Supporters />
           </div>
 
-          {/* <div className="section relative py-8 md:py-12 bg-white">
-            <div className="mb-8">
-              <h2 className="section-header black mb-6">OUR MEDIA PARTNERS</h2>
+          <div className="section relative py-8 md:py-12 bg-white">
+            {/* <div className="mb-4">
+              <h2 className="section-header black mb-2">OUR MEDIA PARTNERS</h2>
 
               <RichText content={data.pages.media_partners} className="cms-markdown" />
-            </div>
+            </div> */}
 
-            
+            <h2 className="section-header black mb-6">...AND OUR MEDIA PARTNERS</h2>
+
             <div className="hidden lg:block">
-              
-              <div className="grid grid-cols-4 gap-2 items-center justify-items-center mb-12">
+              <div className="grid grid-cols-4 gap-2 items-center justify-items-center mb-6">
                 <div className="flex items-center justify-center p-6">
                   <Link href="https://thedefiant.io/" target="_blank" rel="noopener noreferrer">
                     <Image src={TheDefiantLogo} alt="The Defiant" className="max-h-20 w-auto" />
@@ -1198,7 +1331,7 @@ const Home: NextPage = (props: any) => {
                   </Link>
                 </div>
               </div>
-              
+
               <div className="flex justify-center">
                 <div className="grid grid-cols-3 gap-20 items-center justify-items-center">
                   <div className="flex items-center justify-center p-6">
@@ -1245,6 +1378,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
+          {/* 
           <div className={`section relative bg-[#74ACDF]  bg-opacity-50`}>
             <div
               className="absolute top-[-50px] left-0 w-full h-[1px] bg-black pointer-events-none opacity-0"
@@ -1410,9 +1544,22 @@ export async function getStaticProps({ locale }: { locale: string }) {
   const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const translations = await client.queries.global_translations({ relativePath: translationPath })
 
+  // const calendarPath = locale === 'en' ? 'calendar.mdx' : locale + '/calendar.mdx'
+  // const calendarContent = await client.queries.pages({ relativePath: calendarPath })
+
+  const atprotoEvents = await fetch(
+    process.env.NODE_ENV === 'development'
+      ? 'https://at-slurper.onrender.com/calendar-events'
+      : 'https://at-slurper.onrender.com/calendar-events'
+  )
+  const atprotoEventsData = await atprotoEvents.json()
+
+  const formattedAtprotoEvents = apiResultToCalendarFormat(atprotoEventsData)
+
   return {
     props: {
       blogs: await getBlogPosts(),
+      events: formattedAtprotoEvents,
       cms: {
         variables: content.variables,
         data: content.data,

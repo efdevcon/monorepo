@@ -914,12 +914,13 @@ const NewScheduleIndexInner = ({
                         noZupass={noZupass}
                         event={placement.event}
                         isDialog={false}
+                        compact
                         // className={
                         //   isEventHighlighted(placement)
                         //     ? "!border-neutral-500"
                         //     : ""
                         // }
-                        compact={isMobile}
+                        // compact={isMobile}
                         selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
                         setExports={setExports}

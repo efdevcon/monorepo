@@ -38,9 +38,9 @@ const Hero = (props: HeroProps) => {
           <p className={`background-title clear-vertical !justify-end !items-end`}>{props.backgroundTitle}</p>
         )} */}
         <div
-          className={`${css['children']} ${
+          className={`${css['children']} text-white ${
             props.autoHeight ? css['auto-height'] : ' '
-          } clear-vertical !justify-end !items-end min-h-[200px]`}
+          } clear-vertical !items-end min-h-[200px]`}
         >
           {props.children}
         </div>

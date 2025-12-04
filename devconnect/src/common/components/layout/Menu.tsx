@@ -29,6 +29,7 @@ import { useTicketsUrl } from 'common/constants'
 import EthDayLogo from 'assets/images/eth-day-logo.png'
 import Image from 'next/image'
 import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
+import Devcon8Logo from 'assets/images/devcon-8-logo-mini.png'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
@@ -80,14 +81,14 @@ const MultiLink = (props: any) => {
 
 const menuItems = (pathname: string, ticketsUrl: string) => [
   {
-    text: 'Devconnect',
+    text: 'Devconnect ARG Recap',
     url: '/',
   },
-  {
-    text: 'Devcon',
-    url: 'https://devcon.org',
-    external: true,
-  },
+  // {
+  //   text: 'Devcon',
+  //   url: 'https://devcon.org',
+  //   external: true,
+  // },
   // {
   //   text: (globalThis as any).translations.about,
   //   url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
@@ -100,10 +101,10 @@ const menuItems = (pathname: string, ticketsUrl: string) => [
   //   text: 'Tickets',
   //   url: ticketsUrl,
   // },
-  // {
-  //   text: 'Perks',
-  //   url: '/perks',
-  // },
+  {
+    text: 'Perks',
+    url: '/perks',
+  },
   // {
   //   text: 'Calendar',
   //   url: '/calendar',
@@ -177,23 +178,36 @@ const menuItems = (pathname: string, ticketsUrl: string) => [
       {
         text: 'Devcon',
         // onlyFooter: true,
-        url: 'https://devcon.org',
+        url: 'https://devcon.org/past-events',
       },
     ],
   },
   {
     text: () => {
       return (
-        <div className={cn(css['devconnect-app'], 'flex items-center gap-1.5')}>
-          <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" width={22} />
-          <div>Devconnect App</div>
+        <div className={cn(css['devconnect-app'], 'flex items-center justify-center gap-1.5')}>
+          <Image src={Devcon8Logo} alt="Devcon 8 Logo" width={13} className="object-contain" quality={100} />
+          <div>Devcon 8</div>
         </div>
       )
     },
     customClass: css['devconnect-app'],
     hideIndicator: true,
-    url: 'https://app.devconnect.org',
+    url: 'https://devcon.org',
   },
+  // {
+  //   text: () => {
+  //     return (
+  //       <div className={cn(css['devconnect-app'], 'flex items-center gap-1.5')}>
+  //         <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" width={22} />
+  //         <div>Devconnect App</div>
+  //       </div>
+  //     )
+  //   },
+  //   customClass: css['devconnect-app'],
+  //   hideIndicator: true,
+  //   url: 'https://app.devconnect.org',
+  // },
   // {
   //   text: 'Devcon',
   //   // onlyFooter: true,
