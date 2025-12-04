@@ -68,7 +68,7 @@ const NewsletterForm = () => {
           // boxShadow: '0 2px 8px 0 rgba(58, 54, 94, 0.15), 0 1px 2px 0 rgba(255, 255, 255, 0.30) inset',
         }}
       >
-        Join the waitlist
+        Subscribe to upddates
       </Link>
       {/* <GlassInput
         value={email}
