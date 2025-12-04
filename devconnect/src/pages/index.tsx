@@ -422,9 +422,11 @@ const RecapGallery = () => {
           </InfiniteScroll>
         </div>
 
-        <Button size="sm" className="mt-8">
-          View More Photos <ArrowRight className="w-4 h-4" />
-        </Button>
+        <Link href="https://drive.google.com/drive/folders/1thiBFwgz2mXns9hHgBOC3xOAIkadPyRk" target="_blank">
+          <Button size="sm" className="mt-8">
+            View More Photos <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   )
