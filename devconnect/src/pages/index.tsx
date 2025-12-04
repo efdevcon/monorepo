@@ -409,7 +409,7 @@ const RecapGallery = () => {
           }}
         >
           <InfiniteScroll speed="190s" nDuplications={2}>
-            <div className="flex gap-4">
+            <div className="flex gap-4 pr-4">
               {recapPhotos.map((photo, index) => (
                 <div
                   key={index}
@@ -485,8 +485,13 @@ const Home: NextPage = (props: any) => {
             autoHeight
             backgroundTitle="Devconnect ARG Recap"
           >
+            <Image
+              src={HeroImage}
+              alt="Hero Image"
+              className="w-full h-full object-cover absolute top-0 left-0 opacity-80 object-[50%_80%]"
+            />
             <div className={cn(css['hero-content'], '')}>
-              <p className="uppercase extra-large-text font-secondary title text-left">BUENOS AIRES 2025</p>
+              {/* <p className="uppercase extra-large-text font-secondary title text-left">BUENOS AIRES 2025</p> */}
               {/* <Link
             href="https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022"
             className={`button orange-fill sm margin-top-much-less`}
@@ -498,7 +503,7 @@ const Home: NextPage = (props: any) => {
           </Hero>
           {/* <div
             id="hero"
-            ref={heroRef}
+            ref={heroRef}https://www.youtube.com/watch?v=BzZbxKp1cDI
             className={cn('w-screen relative bg-[#bbddee] h-[100vh]', css.hero, {
               '!h-[100vh]': userHasInterruptedPlayback, // !hasStableConnection,
               [css.gradient]: userHasInterruptedPlayback || fadeInArgentina,
@@ -799,7 +804,7 @@ const Home: NextPage = (props: any) => {
                     /> */}
 
                     <iframe
-                      src="https://www.youtube.com/embed/6EXTlJr_yjc?modestbranding=1"
+                      src="https://www.youtube.com/embed/BzZbxKp1cDI?modestbranding=1"
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

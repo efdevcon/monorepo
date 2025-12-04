@@ -15,7 +15,6 @@
   }
 
   &:before {
-
     content: '';
     width: 100%;
     top: 0px;
@@ -23,8 +22,8 @@
     height: 150px;
     z-index: 1;
     opacity: 1;
-    background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #F93B3B 59.35%, #29F4C1 100%);
-    -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+    // background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #F93B3B 59.35%, #29F4C1 100%);
+    // -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
   }
 
   .background {
@@ -42,7 +41,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #8999B3;
+    background: #8999b3;
 
     img {
       width: 100%;
@@ -63,16 +62,19 @@
       // linear-gradient(555deg, rgb(134, 45, 139) 10%, hsla(297, 83%, 60%, 0) 80%),
       // linear-gradient(25deg, hsla(171, 100%, 52%, 1) 10%, hsla(171, 100%, 52%, 0) 80%),
       // linear-gradient(335deg, hsla(240, 86%, 47%, 1) 100%, hsla(240, 86%, 47%, 0) 70%);
-      background: linear-gradient(120deg, #226497 0%, rgba(231, 175, 35, 0) 70%), linear-gradient(555deg, #a54da9 10%, rgba(229, 68, 238, 0) 80%), linear-gradient(25deg, #0affda 10%, rgba(10, 255, 218, 0) 80%), linear-gradient(335deg, #acdf11 100%, rgba(17, 17, 223, 0) 70%);
+      background: linear-gradient(120deg, #226497 0%, rgba(231, 175, 35, 0) 70%),
+        linear-gradient(555deg, #a54da9 10%, rgba(229, 68, 238, 0) 80%),
+        linear-gradient(25deg, #0affda 10%, rgba(10, 255, 218, 0) 80%),
+        linear-gradient(335deg, #acdf11 100%, rgba(17, 17, 223, 0) 70%);
     }
   }
 
   &:global(.amsterdam) {
     .background {
       background: linear-gradient(120deg, hsla(43, 88%, 52%, 1) 0%, hsla(43, 80%, 52%, 0) 70%),
-      linear-gradient(555deg, hsla(297, 83%, 60%, 1) 10%, hsla(297, 83%, 60%, 0) 80%),
-      linear-gradient(25deg, hsla(171, 100%, 52%, 1) 10%, hsla(171, 100%, 52%, 0) 80%),
-      linear-gradient(335deg, hsla(240, 86%, 47%, 1) 100%, hsla(240, 86%, 47%, 0) 70%);
+        linear-gradient(555deg, hsla(297, 83%, 60%, 1) 10%, hsla(297, 83%, 60%, 0) 80%),
+        linear-gradient(25deg, hsla(171, 100%, 52%, 1) 10%, hsla(171, 100%, 52%, 0) 80%),
+        linear-gradient(335deg, hsla(240, 86%, 47%, 1) 100%, hsla(240, 86%, 47%, 0) 70%);
     }
   }
 
