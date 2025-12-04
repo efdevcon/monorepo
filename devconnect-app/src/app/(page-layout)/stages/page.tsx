@@ -60,6 +60,17 @@ const StagesPage = () => {
   ) => {
     if (!pavilionStages || pavilionStages.length === 0) return null;
 
+    // if (type === 'entertainment') {
+    //   return (
+    //     <div className="mb-6">
+    //       <StageBadge type={type} label={label} />
+    //       <div className="mt-2">
+    //         Open Air Cinema will be closed for the day due to rain.
+    //       </div>
+    //     </div>
+    //   );
+    // }
+
     return (
       <div className="mb-6">
         <StageBadge type={type} label={label} />

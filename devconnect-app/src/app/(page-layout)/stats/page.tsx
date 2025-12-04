@@ -47,6 +47,10 @@ interface StatsData {
     hour: string;
     count: number;
   }>;
+  hourly_claimed_links: Array<{
+    hour: string;
+    count: number;
+  }>;
   relayers?:
     | {
         payment: {
@@ -738,7 +742,8 @@ export default function StatsPage() {
                 </h2>
               </div>
               <p className="text-sm text-gray-500 mb-4">
-                Number of accounts created per hour (since Nov 3, 2024)
+                Number of accounts created per hour (your local time, since Nov
+                14, 2025)
               </p>
 
               <div className="w-full h-80 mt-4">
@@ -755,8 +760,8 @@ export default function StatsPage() {
                       height={80}
                       tick={{ fontSize: 11, fill: '#6b7280' }}
                       tickFormatter={(value) => {
-                        const date = new Date(value);
-                        return date.toLocaleDateString('en-US', {
+                        const date = new Date(value + 'Z');
+                        return date.toLocaleString('en-US', {
                           month: 'short',
                           day: 'numeric',
                           hour: 'numeric',
@@ -780,7 +785,7 @@ export default function StatsPage() {
                         color: '#fff',
                       }}
                       labelFormatter={(value) => {
-                        const date = new Date(value);
+                        const date = new Date(value + 'Z');
                         return date.toLocaleString('en-US', {
                           month: 'short',
                           day: 'numeric',
@@ -834,6 +839,120 @@ export default function StatsPage() {
                     <span className="text-gray-600">Total:</span>
                     <span className="ml-2 font-semibold text-purple-600">
                       {stats.stats.total_users} users
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+        {/* Hourly Claimed Links Chart */}
+        {stats.hourly_claimed_links &&
+          stats.hourly_claimed_links.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm p-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Icon path={mdiLinkVariant} size={0.9} color="#2563EB" />
+                <h2 className="text-xl font-bold text-gray-900">
+                  Peanut Link Claims Timeline
+                </h2>
+              </div>
+              <p className="text-sm text-gray-500 mb-4">
+                Number of peanut links claimed per hour (your local time)
+              </p>
+
+              <div className="w-full h-80 mt-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={stats.hourly_claimed_links}
+                    margin={{ top: 10, right: 10, left: 0, bottom: 60 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                    <XAxis
+                      dataKey="hour"
+                      angle={-45}
+                      textAnchor="end"
+                      height={80}
+                      tick={{ fontSize: 11, fill: '#6b7280' }}
+                      tickFormatter={(value) => {
+                        const date = new Date(value + 'Z');
+                        return date.toLocaleString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: 'numeric',
+                        });
+                      }}
+                    />
+                    <YAxis
+                      tick={{ fontSize: 12, fill: '#6b7280' }}
+                      label={{
+                        value: 'Claims',
+                        angle: -90,
+                        position: 'insideLeft',
+                        style: { fontSize: 12, fill: '#6b7280' },
+                      }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1f2937',
+                        border: 'none',
+                        borderRadius: '8px',
+                        color: '#fff',
+                      }}
+                      labelFormatter={(value) => {
+                        const date = new Date(value + 'Z');
+                        return date.toLocaleString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: 'numeric',
+                        });
+                      }}
+                      formatter={(value: number) => [
+                        `${value} claim${value !== 1 ? 's' : ''}`,
+                        'Claimed',
+                      ]}
+                    />
+                    <Bar dataKey="count" fill="#2563EB" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Summary stats */}
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                  <div>
+                    <span className="text-gray-600">Peak Hour:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {
+                        stats.hourly_claimed_links.reduce((max, curr) =>
+                          curr.count > max.count ? curr : max
+                        ).count
+                      }{' '}
+                      claims
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Average:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {(
+                        stats.hourly_claimed_links.reduce(
+                          (sum, curr) => sum + curr.count,
+                          0
+                        ) / stats.hourly_claimed_links.length
+                      ).toFixed(1)}{' '}
+                      /hr
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Time Range:</span>
+                    <span className="ml-2 font-semibold text-gray-900">
+                      {stats.hourly_claimed_links.length}h
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Total:</span>
+                    <span className="ml-2 font-semibold text-blue-600">
+                      {stats.stats.claimed_links} claims
                     </span>
                   </div>
                 </div>
@@ -1198,17 +1317,20 @@ export default function StatsPage() {
               <div className="flex items-center gap-2 mb-4">
                 <Icon path={mdiChartBar} size={0.9} color="#4F46E5" />
                 <h2 className="text-xl font-bold text-gray-900">
-                  Daily Gas Sponsoring Transactions
+                  Daily Gas Sponsoring Transactions (≥1 USDC)
                 </h2>
               </div>
               <p className="text-sm text-gray-500 mb-4">
-                Number of gas-sponsored transactions per day by relayer type
+                Number of gas-sponsored transactions per day by relayer type (≥1
+                USDC only, excluding test transactions, since Nov 16, 2025)
               </p>
 
               <div className="w-full h-80 mt-4">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
-                    data={stats.daily_relayer_transactions}
+                    data={stats.daily_relayer_transactions.filter(
+                      (day) => day.date >= '2025-11-16'
+                    )}
                     margin={{ top: 10, right: 10, left: 0, bottom: 60 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -1282,13 +1404,18 @@ export default function StatsPage() {
                   <div>
                     <span className="text-gray-600">Total Days:</span>
                     <span className="ml-2 font-semibold text-gray-900">
-                      {stats.daily_relayer_transactions.length}
+                      {
+                        stats.daily_relayer_transactions.filter(
+                          (day) => day.date >= '2025-11-16'
+                        ).length
+                      }
                     </span>
                   </div>
                   <div>
                     <span className="text-gray-600">Total Txs (≥1 USDC):</span>
                     <span className="ml-2 font-semibold text-indigo-600">
                       {stats.daily_relayer_transactions
+                        .filter((day) => day.date >= '2025-11-16')
                         .reduce((sum, day) => sum + day.total, 0)
                         .toLocaleString()}
                     </span>
@@ -1297,6 +1424,7 @@ export default function StatsPage() {
                     <span className="text-gray-600">Payment Relayer:</span>
                     <span className="ml-2 font-semibold text-purple-600">
                       {stats.daily_relayer_transactions
+                        .filter((day) => day.date >= '2025-11-16')
                         .reduce((sum, day) => sum + day.payment, 0)
                         .toLocaleString()}
                     </span>
@@ -1305,6 +1433,7 @@ export default function StatsPage() {
                     <span className="text-gray-600">Send Relayer:</span>
                     <span className="ml-2 font-semibold text-indigo-600">
                       {stats.daily_relayer_transactions
+                        .filter((day) => day.date >= '2025-11-16')
                         .reduce((sum, day) => sum + day.send, 0)
                         .toLocaleString()}
                     </span>
@@ -1359,9 +1488,9 @@ export default function StatsPage() {
                     <th className="text-right py-2 px-3 font-semibold text-gray-900">
                       Total
                     </th>
-                      <th className="text-right py-2 px-3 font-semibold text-gray-900">
-                        Total Value (USDC)
-                      </th>
+                    <th className="text-right py-2 px-3 font-semibold text-gray-900">
+                      Total Value (USDC)
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1431,15 +1560,15 @@ export default function StatsPage() {
                         .reduce((sum, addr) => sum + addr.total, 0)
                         .toLocaleString()}
                     </td>
-                      <td className="py-2 px-3 text-right text-gray-900">
+                    <td className="py-2 px-3 text-right text-gray-900">
                       {(showAllRegularAddresses
                         ? regularAddresses
                         : regularAddresses.slice(0, 10)
                       )
-                          .reduce((sum, addr) => sum + (addr.total_value ?? 0), 0)
-                          .toLocaleString(undefined, {
-                            maximumFractionDigits: 2,
-                          })}
+                        .reduce((sum, addr) => sum + (addr.total_value ?? 0), 0)
+                        .toLocaleString(undefined, {
+                          maximumFractionDigits: 2,
+                        })}
                     </td>
                   </tr>
                 </tfoot>

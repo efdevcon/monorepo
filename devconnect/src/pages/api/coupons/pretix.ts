@@ -1,4 +1,4 @@
-export async function getPaidTicketsByEmail(email: string) {
+export async function getPaidTicketsByEmail(email: string, requireCheckin: boolean = false) {
   const apiKey = process.env.PRETIX_API_KEY
   const baseUrl = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
   const organizerSlug = 'devconnect'
@@ -36,7 +36,7 @@ export async function getPaidTicketsByEmail(email: string) {
   const data = await response.json()
   const orders = data.results || []
 
-  // Return simplified ticket data, filtering out positions without attendee names
+  // Return simplified ticket data
   const tickets = orders
     .map((order: any) => ({
       orderCode: order.code,
@@ -44,6 +44,14 @@ export async function getPaidTicketsByEmail(email: string) {
       email: order.email,
       tickets: order.positions
         .filter((position: any) => {
+          const checkins = Array.isArray(position.checkins) ? position.checkins : []
+          const ticketHasCheckedIn = checkins.length > 0
+
+          // If we require check-in and the ticket hasn't been checked in, skip it
+          if (requireCheckin && !ticketHasCheckedIn) {
+            return false
+          }
+
           return position.attendee_email?.toLowerCase() === email.toLowerCase()
         })
         .map((position: any) => ({

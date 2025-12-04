@@ -59,6 +59,14 @@
   --header-shadow: none;
   --button-border: none;
 
+  :global(.lucide-chevron-down), :global(.lucide-chevron-up) {
+    stroke: white !important;
+
+    * {
+      stroke: white !important;
+    }
+  }
+
   &.scrolled {
     @include fill-header;
 

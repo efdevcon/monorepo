@@ -8,13 +8,17 @@ import Image9 from '@/images/announcements/09.jpg';
 import Image6 from '@/images/announcements/06.jpg';
 import PhoneImage from '@/images/announcements/phones.jpg';
 import VoxelImage from '@/images/voxel-car.jpg';
+import Payment from '@/images/announcements/payment-post.png';
 import Image1 from '@/images/announcements/01.jpg';
 import Image12 from '@/images/announcements/12.jpg';
+import Coffee from '@/images/announcements/coffee-announcement.jpg';
 import EthCon from '@/images/announcements/ethcon-arg.jpeg';
+import Leaderboard from '@/images/announcements/quest-leaderboard.png';
 import TranslationsPost from '@/images/announcements/translations_post.webp';
 import { StaticImageData } from 'next/image';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 import { useTranslations } from 'next-intl';
+import ClosingParty from '@/images/announcements/closing_party_2.png';
 
 // Placeholder images - you can replace these with actual highlight images
 // const PlaceholderImage = '/images/quest-app-showcase.png';
@@ -84,6 +88,30 @@ export const Highlights = () => {
   const t = useTranslations('highlights');
 
   const highlights = [
+    {
+      title: t('closingParty'),
+      to: '/schedule?event=closing-party',
+      description: t('closingPartyDescription'),
+      image: ClosingParty,
+    },
+    {
+      title: t('paymentPost'),
+      to: 'https://x.com/EFDevcon/status/1990823077840892131',
+      description: t('paymentPostDescription'),
+      image: Payment,
+    },
+    {
+      title: t('leaderboardPost'),
+      to: 'https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors',
+      description: t('leaderboardPostDescription'),
+      image: Leaderboard,
+    },
+    {
+      title: t('coffeePost'),
+      to: '/map?filter=coffee-station-2',
+      description: t('coffeePostDescription'),
+      image: Coffee,
+    },
     {
       title: t('ethcon'),
       to: 'https://ethcon.ar/',

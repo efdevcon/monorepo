@@ -117,6 +117,7 @@ export default function ScanPage() {
             } else {
               toast.error('Failed to fetch payment request');
             }
+            router.push('/wallet');
             return;
           }
 
@@ -129,6 +130,7 @@ export default function ScanPage() {
         } catch (error) {
           console.error('Error fetching payment request:', error);
           toast.error('Failed to load payment request');
+          router.push('/scan/manual');
         }
       }
       return;
@@ -149,6 +151,7 @@ export default function ScanPage() {
             'Use the send button in your external wallet to send funds.',
           duration: 8000,
         });
+        router.push('/wallet');
         return;
       }
     }
@@ -161,7 +164,11 @@ export default function ScanPage() {
     ) {
       console.log('QR Scanner detected external URL:', value);
       // Show modal instead of directly opening
-      setExternalUrl(value);
+      setExternalUrl(
+        value?.includes('poap.xyz') && address
+          ? `${value?.replace('poap.xyz/mint/', 'collectors.poap.xyz/mint-v2/')}?collector=${address}`
+          : value
+      );
       setIsExternalUrlModalOpen(true);
       return;
     }
@@ -220,8 +227,8 @@ export default function ScanPage() {
           <PaymentModal
             isOpen={isManualPaymentOpen}
             onClose={() => {
-              setIsManualPaymentOpen(false);
               router.push('/wallet');
+              setIsManualPaymentOpen(false);
             }}
             isPara={Boolean(isPara)}
             paymentRequestId={paymentRequestId}
@@ -252,7 +259,7 @@ export default function ScanPage() {
                     >
                       {externalUrl}
                     </a>
-                    {externalUrl.toLowerCase().includes('poap.xyz') && address && (
+                    {/* {externalUrl.toLowerCase().includes('poap.xyz') && address && (
                       <div className="flex flex-col gap-1 mt-1">
                         <span className="text-[#20202b] text-xs font-medium">
                           Copy your wallet address before minting:
@@ -285,7 +292,7 @@ export default function ScanPage() {
                           </button>
                         </div>
                       </div>
-                    )}
+                    )} */}
                     {!externalUrl.toLowerCase().includes('poap.xyz') && (
                       <span className="mt-2">Would you like to open it?</span>
                     )}
@@ -298,9 +305,9 @@ export default function ScanPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {
+                      router.push('/wallet');
                       setIsExternalUrlModalOpen(false);
                       setExternalUrl('');
-                      router.push('/wallet');
                     }}
                     className="w-full bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
                   >
@@ -325,9 +332,9 @@ export default function ScanPage() {
                   </a>
                   <button
                     onClick={() => {
+                      router.push('/wallet');
                       setIsExternalUrlModalOpen(false);
                       setExternalUrl('');
-                      router.push('/wallet');
                     }}
                     className="w-full bg-[#eaf3fa] hover:bg-[#d8ebf7] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors"
                   >

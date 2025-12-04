@@ -20,6 +20,7 @@ import {
 import InfoCard from './components/InfoCard';
 import SetupSection from './components/SetupSection';
 import CryptoPaymentSection from './components/CryptoPaymentSection';
+import CommunityQuestsSection from './components/CommunityQuestsSection';
 import DistrictSection from './components/DistrictSection';
 import ProgressSection from './components/ProgressSection';
 
@@ -70,10 +71,15 @@ const AppShowcaseDetail = React.forwardRef<
     useState<boolean>(false);
   const [isCryptoPaymentSectionExpanded, setIsCryptoPaymentSectionExpanded] =
     useState<boolean>(false);
+  const [
+    isCommunityQuestsSectionExpanded,
+    setIsCommunityQuestsSectionExpanded,
+  ] = useState<boolean>(false);
   const hasInitialized = useRef(false);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const setupSectionRef = useRef<HTMLDivElement | null>(null);
   const cryptoPaymentSectionRef = useRef<HTMLDivElement | null>(null);
+  const communityQuestsSectionRef = useRef<HTMLDivElement | null>(null);
   const districtRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const progressSectionRef = useRef<HTMLDivElement | null>(null);
   const [selectedPoap, setSelectedPoap] = useState<{
@@ -105,6 +111,11 @@ const AppShowcaseDetail = React.forwardRef<
   // Get all Crypto payment quests (groupId === 2)
   const cryptoPaymentQuests = questsData
     .filter((quest) => quest.groupId === 2)
+    .sort((a, b) => a.order - b.order);
+
+  // Get all Community quests (groupId === 3)
+  const communityQuests = questsData
+    .filter((quest) => quest.groupId === 3)
     .sort((a, b) => a.order - b.order);
 
   // Group quests by district
@@ -161,6 +172,7 @@ const AppShowcaseDetail = React.forwardRef<
         ...appShowcaseQuests,
         ...setupQuests,
         ...cryptoPaymentQuests,
+        ...communityQuests,
       ];
       const quest = allQuests.find((q) => q.id.toString() === hash);
 
@@ -209,6 +221,18 @@ const AppShowcaseDetail = React.forwardRef<
             }
           }, 200);
         }
+        // Check if it's a community quest (groupId === 3)
+        else if (quest.groupId === 3) {
+          setIsCommunityQuestsSectionExpanded(true);
+
+          // Scroll to the quest after a delay
+          setTimeout(() => {
+            const questElement = questRefs.current[quest.id];
+            if (questElement) {
+              scrollToElement(questElement);
+            }
+          }, 200);
+        }
 
         hasInitialized.current = true;
         return;
@@ -222,6 +246,7 @@ const AppShowcaseDetail = React.forwardRef<
     appShowcaseQuests,
     setupQuests,
     cryptoPaymentQuests,
+    communityQuests,
     expandedDistrict,
   ]);
 
@@ -243,16 +268,29 @@ const AppShowcaseDetail = React.forwardRef<
     questStates
   );
 
+  // Calculate community quests progress
+  const communityQuestsProgress = calculateProgress(
+    communityQuests,
+    questStates
+  );
+
   // Calculate overall progress
-  // Note: Order matters for consistency - Setup, Crypto Payment, App Showcase
+  // Note: Order matters for consistency - Setup, Crypto Payment, Community Quests, App Showcase
   const overallProgress = useMemo(() => {
     const allQuests = [
       ...setupQuests,
       ...cryptoPaymentQuests,
+      ...communityQuests,
       ...appShowcaseQuests,
     ];
     return calculateProgress(allQuests, questStates);
-  }, [setupQuests, cryptoPaymentQuests, appShowcaseQuests, questStates]);
+  }, [
+    setupQuests,
+    cryptoPaymentQuests,
+    communityQuests,
+    appShowcaseQuests,
+    questStates,
+  ]);
 
   // Get quest status
   const getQuestStatus = (quest: Quest) => {
@@ -305,6 +343,10 @@ const AppShowcaseDetail = React.forwardRef<
     if (!isCompleted) {
       // For district section (App Showcase quests with districtId)
       if (quest.groupId === 4 && quest.districtId) {
+        if (quest.id === 30) {
+          router.push(`/map?filter=base`);
+          return;
+        }
         const district = districtsData[quest.districtId];
         if (district?.layerName) {
           router.push(`/map?filter=${district.layerName}`);
@@ -390,10 +432,11 @@ const AppShowcaseDetail = React.forwardRef<
         }
       }, 100);
     } else {
-      // Expand the district and collapse any expanded setup section or crypto payment section
+      // Expand the district and collapse any expanded setup section, crypto payment section, or community quests section
       setExpandedDistrict(districtId);
       setIsSetupSectionExpanded(false);
       setIsCryptoPaymentSectionExpanded(false);
+      setIsCommunityQuestsSectionExpanded(false);
 
       // Find the first uncompleted quest in this district
       const quests = questsByDistrict[districtId] || [];
@@ -434,10 +477,11 @@ const AppShowcaseDetail = React.forwardRef<
         }
       }, 100);
     } else {
-      // Expand the setup section and collapse any expanded district or crypto payment section
+      // Expand the setup section and collapse any expanded district, crypto payment section, or community quests section
       setIsSetupSectionExpanded(true);
       setExpandedDistrict(''); // Collapse any expanded district
       setIsCryptoPaymentSectionExpanded(false); // Collapse crypto payment section
+      setIsCommunityQuestsSectionExpanded(false); // Collapse community quests section
 
       // Find the first uncompleted quest in setup quests
       const firstUncompletedQuest = setupQuests.find((quest) => {
@@ -476,10 +520,11 @@ const AppShowcaseDetail = React.forwardRef<
         }
       }, 100);
     } else {
-      // Expand the crypto payment section and collapse any expanded district or setup section
+      // Expand the crypto payment section and collapse any expanded district, setup section, or community quests section
       setIsCryptoPaymentSectionExpanded(true);
       setExpandedDistrict(''); // Collapse any expanded district
       setIsSetupSectionExpanded(false); // Collapse setup section
+      setIsCommunityQuestsSectionExpanded(false); // Collapse community quests section
 
       // Find the first uncompleted quest in crypto payment quests
       const firstUncompletedQuest = cryptoPaymentQuests.find((quest) => {
@@ -503,8 +548,39 @@ const AppShowcaseDetail = React.forwardRef<
     }
   };
 
+  const toggleCommunityQuestsSectionExpansion = () => {
+    const isCurrentlyExpanded = isCommunityQuestsSectionExpanded;
+
+    if (isCurrentlyExpanded) {
+      // Collapse the community quests section
+      setIsCommunityQuestsSectionExpanded(false);
+      setExpandedQuests(new Set());
+
+      // Scroll to the community quests section after collapse
+      setTimeout(() => {
+        if (communityQuestsSectionRef.current) {
+          scrollToElement(communityQuestsSectionRef.current, true);
+        }
+      }, 100);
+    } else {
+      // Expand the community quests section and collapse any expanded district, setup section, or crypto payment section
+      setIsCommunityQuestsSectionExpanded(true);
+      setExpandedDistrict(''); // Collapse any expanded district
+      setIsSetupSectionExpanded(false); // Collapse setup section
+      setIsCryptoPaymentSectionExpanded(false); // Collapse crypto payment section
+
+      // Scroll to the community quests section after expansion
+      setTimeout(() => {
+        if (communityQuestsSectionRef.current) {
+          scrollToElement(communityQuestsSectionRef.current, true);
+        }
+      }, 100);
+    }
+  };
+
   const handleQuestAction = async (quest: Quest) => {
     triggerHaptic(200);
+
     if (isQuestCompleted(quest)) return;
 
     try {
@@ -522,6 +598,19 @@ const AppShowcaseDetail = React.forwardRef<
         tickets,
         quest.supporterId
       );
+
+      // For group 3 (Community quests), always open the link even if completed
+      if (quest.groupId === 3) {
+        if (quest.conditionType === 'isLinkVisited' && quest.conditionValues) {
+          if (quest.conditionValues.startsWith('http')) {
+            // Open external link in new tab
+            window.open(quest.conditionValues, '_blank', 'noopener,noreferrer');
+          } else if (quest.conditionValues.startsWith('/')) {
+            // Navigate to internal route
+            router.push(quest.conditionValues);
+          }
+        }
+      }
 
       // For groupId 1 (Setup & app tour), also open links if conditionValues is a URL or path
       if (quest.conditionType === 'isLinkVisited' && quest.conditionValues) {
@@ -577,13 +666,14 @@ const AppShowcaseDetail = React.forwardRef<
     setSelectedSupporter(supporter.layerName);
   };
 
-  // Reset function to clear all quest states for App Showcase, Setup, and Crypto Payment quests
+  // Reset function to clear all quest states for App Showcase, Setup, Crypto Payment, and Community quests
   const handleReset = async () => {
     // Reset local UI states first
     setExpandedQuests(new Set());
     setExpandedDistrict('');
     setIsSetupSectionExpanded(false);
     setIsCryptoPaymentSectionExpanded(false);
+    setIsCommunityQuestsSectionExpanded(false);
 
     // If we were on a specific quest/district, clear the hash
     if (window.location.hash) {
@@ -685,6 +775,24 @@ const AppShowcaseDetail = React.forwardRef<
           </div>
         );
       })}
+
+      {/* Community Quests Section */}
+      <div className="w-full pb-1">
+        <CommunityQuestsSection
+          ref={communityQuestsSectionRef}
+          communityQuests={communityQuests}
+          isExpanded={isCommunityQuestsSectionExpanded}
+          progress={communityQuestsProgress}
+          isQuestCompleted={isQuestCompleted}
+          verifyingQuestId={verifyingQuestId}
+          address={address || undefined}
+          onQuestAction={handleQuestAction}
+          onAboutClick={handleAboutClick}
+          onPoapClick={handlePoapClick}
+          onToggleExpansion={toggleCommunityQuestsSectionExpansion}
+          questRefs={questRefs}
+        />
+      </div>
 
       {/* Progress Section */}
       <ProgressSection

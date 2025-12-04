@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getTokenInfo } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
+import { MERCHANTS } from '@/config/merchants';
 import { useLocalStorage } from 'usehooks-ts';
 import { useClearEIP7702 } from '@/hooks/useClearEIP7702';
 import Lottie from 'lottie-react';
@@ -21,6 +22,14 @@ import {
 } from '@mdi/js';
 import Image from 'next/image';
 import SimpleFiLogo from '@/images/simplefi-logo.png';
+
+// Helper function to find merchant ID by merchant name
+const getMerchantIdByName = (merchantName: string): string | null => {
+  const merchant = Object.values(MERCHANTS).find(
+    (m) => m.name === merchantName
+  );
+  return merchant?.id || null;
+};
 
 // Helper function to get the correct explorer URL for a transaction
 // Prefers UserOp Hash when available (for ERC-4337 transactions)
@@ -606,16 +615,49 @@ export default function StatusStep({
                 </svg>
               </a>
             )}
-            <button
-              onClick={onDone}
-              className="flex-1 bg-[#0073DE] hover:bg-[#005DAC] transition-colors flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] border-none cursor-pointer"
-              style={{
-                fontFamily: 'Roboto, sans-serif',
-                boxShadow: '0px 4px 0px 0px #005493',
-              }}
-            >
-              Return to App
-            </button>
+            {(() => {
+              const merchantId = getMerchantIdByName(merchantName);
+              const hasPoapUrl = merchantId && paymentId;
+
+              if (hasPoapUrl) {
+                const poapUrl = `https://pay.simplefi.tech/${merchantId}/${paymentId}`;
+                return (
+                  <a
+                    href={poapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={onDone}
+                    className="flex-1 bg-[#0073DE] hover:bg-[#005DAC] transition-colors flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] no-underline cursor-pointer"
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      boxShadow: '0px 4px 0px 0px #005493',
+                    }}
+                  >
+                    <Image
+                      src={'/images/poap-logo.svg'}
+                      alt="POAP"
+                      height={24}
+                      width={24}
+                      className="mr-2"
+                    />
+                    Mint POAP
+                  </a>
+                );
+              }
+
+              return (
+                <button
+                  onClick={onDone}
+                  className="flex-1 bg-[#0073DE] hover:bg-[#005DAC] transition-colors flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] border-none cursor-pointer"
+                  style={{
+                    fontFamily: 'Roboto, sans-serif',
+                    boxShadow: '0px 4px 0px 0px #005493',
+                  }}
+                >
+                  Return to App
+                </button>
+              );
+            })()}
           </div>
 
           {/* User Operation link on separate line */}

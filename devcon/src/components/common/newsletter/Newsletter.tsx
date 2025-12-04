@@ -8,10 +8,16 @@ interface Props {
 
 export const Newsletter = (props: Props) => {
   return (
-    <div>
+    <div className="flex flex-col items-start">
       <p className="semi-bold">Subscribe to our newsletter</p>
       <Link href="https://paragraph.com/@efevents/subscribe">
-        <Button color="black-1" className="!flex w-full mt-2 !justify-start" fill fat type="submit">
+        <Button
+          color="black-1"
+          className="!flex w-full mt-2 !justify-start self-start px-8 font-bold"
+          fill
+          fat
+          type="submit"
+        >
           Subscribe
         </Button>
       </Link>

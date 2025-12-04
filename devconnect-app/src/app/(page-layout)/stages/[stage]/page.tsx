@@ -3,6 +3,7 @@ import React, { use, useState, useEffect } from 'react';
 import { Separator } from 'lib/components/ui/separator';
 import { useNow } from 'lib/hooks/useNow';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import {
   useAdditionalTicketEmails,
   ensureUserData,
@@ -28,43 +29,64 @@ import {
 const streams = {
   amphitheater: {
     translations: 'https://stm.live/stage-Amphitheatre/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/aLptf94VIxc?si=tEFsjIPrfjw5c_v-',
+    // youtube: 'https://www.youtube.com/embed/aLptf94VIxc?si=tEFsjIPrfjw5c_v-',
   },
   lightning: {
     translations: 'https://stm.live/Stage-lightning/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/iGN3K8aa58I?si=6xmYNVo14n1h1GI3',
+    youtube: 'https://www.youtube.com/embed/Q3MogrrDdcA?si=6xmYNVo14n1h1GI3',
+    // youtube: '',
+    // https://www.youtube.com/watch?v=Q3MogrrDdcA
   },
   ceibo: {
     translations: 'https://stm.live/stage-CEIBO/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/Mw5LZW2wICs?si=C4BiC_Q2V9EiVVm4',
+    // youtube: 'https://www.youtube.com/embed/Mw5LZW2wICs?si=C4BiC_Q2V9EiVVm4',
   },
   nogal: {
     translations: 'https://stm.live/stage-NOGAL/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/C-kF0gplCto?si=NCDndzxiDbawrnFK',
+    // youtube: 'https://youtube.com/embed/4XpdA_In-fM?feature=share',
+    youtube: 'https://www.youtube.com/embed/C-kF0gplCto?feature=share',
+    // youtube: 'https://www.youtube.com/embed/C-kF0gplCto?si=NCDndzxiDbawrnFK',
   },
   xs: {
     translations: 'https://stm.live/Stage-XS/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    // ef
+    // youtube: 'https://www.youtube.com/embed/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    // youtube: 'https://youtube.com/embed/3mU5r4LW_ik?feature=share',
+    youtube: 'https://www.youtube.com/live/szklyKbIiuk?si=KvVcEKzBACsgkhDn',
+    // youtube: 'https://www.youtube.com/@protocoltownhall', // temporary broken link (on purpose until we get real one)
   },
   xl: {
     translations: 'https://stm.live/XL-Devconnect-Stage/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
+    // youtube: 'https://youtube.com/embed/2z0I6ONlKlU?feature=share',
+    // youtube: 'https://www.youtube.com/embed/76rjTtRdQhM?si=76rjTtRdQhM',
+    // youtube: 'https://www.youtube.com/embed/duyTQ281fv8?si=wTsQq0_RnOC7GIvu',
+    // youtube: 'https://www.youtube.com/embed/mHogyTNraE0?si=1Y01REE6N5ZUS4XI',
+    // x: 'https://x.com/i/broadcasts/1eaKbjmYrlVKX',
   },
   m1: {
     translations: 'https://stm.live/Stage-M1/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
+    // ef
+    // youtube: 'https://www.youtube.com/embed/j-suy3GGyow?si=cPCcfOCv7nQ-S85Z',
+    // creciemiento
+    // youtube: 'https://www.youtube.com/embed/TXvMTXlS_uc?si=TXvMTXlS_uc',
   },
   m2: {
     translations: 'https://stm.live/Stage-M2/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+    // youtube: 'https://www.youtube.com/embed/XL_Nn4oep6M?si=T-8vbpZYb_J6uG5Q',
+    youtube: 'https://www.youtube.com/embed/IbXLIcCK-6Y?feature=share',
   },
   l: {
     translations: 'https://stm.live/Stage-L/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
+    // ef
+    // youtube: 'https://www.youtube.com/embed/LaUkhyb5Gw0?si=RaPUyXDGE1a82FXF',
+    // dss
+    // youtube: 'https://www.youtube.com/embed/fGmtSSpoXm8?si=I_rDk3sQpkoGbZvL',
+    // youtube: 'https://youtube.com/embed/t-GKO64eQyI?feature=share',
+    youtube: 'https://www.youtube.com/tbd', // temporary broken link (on purpose until we get real one)
   },
   bootcamp: {
     translations: 'https://stm.live/Stage-Bootcamp/fullscreen?embed=true',
-    youtube: 'https://www.youtube.com/embed/CjCii7U2GiY?si=zLDUGOn-Ygly3Z_5',
+    // youtube: 'https://www.youtube.com/embed/CjCii7U2GiY?si=zLDUGOn-Ygly3Z_5',
   },
 };
 
@@ -146,6 +168,8 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [translationsVisible, setTranslationsVisible] = useState(false);
   const { stage } = use(params);
+  const searchParams = useSearchParams();
+  const dayParam = searchParams.get('day');
   const now = useNow();
   const today = now.format('YYYY-MM-DD');
 
@@ -169,6 +193,12 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
   if (!stageInfo) {
     return null;
   }
+
+  // Check if Open Air Cinema is closed on day 20
+  const currentDay = now.date();
+  const isOpenAirCinemaClosed =
+    stageInfo.id === 'outdoor-cinema' && currentDay === 20;
+  const isDSSNogalOn21th = stageInfo.id === 'nogal' && currentDay === 21;
 
   // Group sessions by date - memoized to prevent infinite loop
   const sessionsByDate = React.useMemo(() => {
@@ -197,10 +227,24 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
     return grouped;
   }, [sessions]);
 
-  // Auto-select day: current day if it has sessions, otherwise first day with sessions
+  // Auto-select day: query param, current day if it has sessions, otherwise first day with sessions
   useEffect(() => {
     if (!selectedDay && sessions && sessions.length > 0) {
       const datesWithSessions = Object.keys(sessionsByDate).sort();
+
+      // Check if day query param exists and construct the date
+      if (dayParam) {
+        const targetDate = moment
+          .utc(`2025-11-${dayParam}`)
+          .format('YYYY-MM-DD');
+        if (
+          sessionsByDate[targetDate] &&
+          sessionsByDate[targetDate].length > 0
+        ) {
+          setSelectedDay(targetDate);
+          return;
+        }
+      }
 
       // Check if today has sessions
       if (sessionsByDate[today] && sessionsByDate[today].length > 0) {
@@ -210,7 +254,7 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
         setSelectedDay(datesWithSessions[0]);
       }
     }
-  }, [sessions, today, selectedDay, sessionsByDate]);
+  }, [sessions, today, selectedDay, sessionsByDate, dayParam]);
 
   const selectedDaySessions = selectedDay
     ? sessionsByDate[selectedDay] || []
@@ -316,6 +360,12 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
 
         <Separator className="my-2 grow w-auto" />
 
+        {isOpenAirCinemaClosed && (
+          <div className="mt-2 p-4 bg-yellow-50 mb-4 border border-yellow-200 rounded text-sm">
+            Open Air Cinema is closed today due to rain.
+          </div>
+        )}
+
         {currentSession || nextSession ? (
           <div className="flex flex-col lg:flex-row justify-between mt-1">
             <div className="flex flex-col">
@@ -356,16 +406,33 @@ const StagesPage = ({ params }: { params: Promise<{ stage: string }> }) => {
           </div>
         ) : null}
       </div>
-      {(streams as any)[stageInfo.id]?.youtube && (
+      {((streams as any)[stageInfo.id]?.x ||
+        (streams as any)[stageInfo.id]?.youtube) && (
         <div className="flex flex-col mx-6 gap-4">
-          <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
-            <iframe
-              className="w-full h-full"
-              src={(streams as any)[stageInfo.id]?.youtube}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-          </div>
+          {(streams as any)[stageInfo.id]?.x ? (
+            <Link
+              href={(streams as any)[stageInfo.id].x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aspect-[16/9] bg-blue-500 grow shrink-0 border border-solid border-neutral-200 flex items-center justify-center transition-colors"
+            >
+              <div className="text-white text-center">
+                <div className="text-2xl font-bold mb-2">Watch Live on X</div>
+                <div className="text-sm opacity-90">
+                  Click here to open stream
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="aspect-[16/9] bg-neutral-300 grow shrink-0 border border-solid border-neutral-200">
+              <iframe
+                className="w-full h-full"
+                src={(streams as any)[stageInfo.id]?.youtube}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
           <div className="flex flex-col gap-2 shrink-0">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <MeerkatComponent stage={stageInfo.id} />

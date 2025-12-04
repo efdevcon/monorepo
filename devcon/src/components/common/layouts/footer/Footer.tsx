@@ -8,7 +8,6 @@ import { Newsletter } from 'components/common/newsletter'
 import { EMAIL_DEVCON, LINK_ETHEREUM_FOUNDATION } from 'utils/constants'
 import { Copyright } from '../Copyright'
 import { useRouter } from 'next/router'
-import { useTranslations } from 'next-intl'
 import useNavigationData from 'components/common/layouts/header/useNavigationData'
 import IconGithub from 'assets/icons/github.svg'
 import IconTwitter from 'assets/icons/twitter.svg'
@@ -17,7 +16,8 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import IconLens from 'assets/icons/lens.svg'
 import { Modal } from 'components/common/modal'
-import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+// import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import LogoFooter from 'assets/images/dc-8/dc8-logo.png'
 import DC7Background from 'assets/images/dc-7/footer-bg.png'
 import { Button } from 'lib/components/button'
 import Image from 'next/image'
@@ -87,19 +87,19 @@ const TopSection = () => {
   return (
     <div className={css['top-section']}>
       <div className="section relative">
-        <div className="hidden lg:flex absolute right-0 top-0 h-full w-full overflow-hidden">
+        {/* <div className="hidden lg:flex absolute right-0 top-0 h-full w-full overflow-hidden">
           <Image
             src={DC7Background}
             alt="Devcon 7 logo faded in background"
             className="object-contain object-right h-full w-full opacity-70"
           />
-        </div>
+        </div> */}
 
         <div className={css['content']}>
           <div className={css['col-1']}>
             <Link to={`/${lang}/`} style={{ maxWidth: '225px', minWidth: '130px', display: 'block' }}>
               <Image
-                src={LogoFlowers}
+                src={LogoFooter}
                 alt="Devcon 7 Logo"
                 className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
               />

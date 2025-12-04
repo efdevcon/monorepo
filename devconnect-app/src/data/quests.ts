@@ -282,7 +282,7 @@ export const questsData: Quest[] = [
     "action": "",
     "button": "",
     "conditionType": "",
-    "conditionValues": "",
+    "conditionValues": "214460",
     "supporterId": "241638cdc415806ba33fe5f130141655",
     "poapImageLink": "",
     "groupId": 4,
@@ -1300,5 +1300,31 @@ export const questsData: Quest[] = [
     "poapImageLink": "",
     "groupId": 4,
     "districtId": "2"
+  },
+  {
+    "id": 136,
+    "name": "The Lost Temple",
+    "order": 1,
+    "instructions": "An onchain/offchain gaming adventure at Devconnect ARG; break seals and navigate waypoints to unlock ancient mysteries across La Rural!",
+    "action": "visit-link",
+    "button": "Start Quest",
+    "conditionType": "isLinkVisited",
+    "conditionValues": "https://adventure.cartridge.gg/",
+    "supporterId": "",
+    "poapImageLink": "",
+    "groupId": 3
+  },
+  {
+    "id": 137,
+    "name": "Agora Citizen Network",
+    "order": 2,
+    "instructions": "A collective sense-making project to gather perspectives on key themes at Devconnect - from Ethereum’s direction, its role in LATAM, to d/acc, future cities, and more.",
+    "action": "visit-link",
+    "button": "Start Quest",
+    "conditionType": "isLinkVisited",
+    "conditionValues": "https://www.agoracitizen.app/",
+    "supporterId": "",
+    "poapImageLink": "",
+    "groupId": 3
   }
 ];

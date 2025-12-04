@@ -114,5 +114,46 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
     });
   });
 
+  /*
+    4.30 
+    Music stage
+
+    Tittle: Devconnect Happy Hour + Big announcement
+
+    Description: Join us to celebrate the end of Devconnect ARG for drinks and a big announcement.
+
+    4:30 pm: Words from the Ethereum ecosystem & a big announcement  
+
+  */
+
+  formattedAtprotoEvents.push(
+    atprotoToCalendarFormat({
+      id: "devconnect-happy-hour",
+      rkey: "245524",
+      image_url: "/images/closing_party.png",
+      isCoreEvent: true,
+      $type: "org.devcon.event",
+      title: "Devconnect Closing + Big Announcement",
+      end_utc: "2025-11-22T20:30:00Z",
+      location: {
+        name: "La Rural - Music Stage",
+        address: "Music Stage",
+      },
+      main_url: "https://devconnect.org/calendar",
+      sold_out: false,
+      expertise: "all welcome",
+      organizer: {
+        name: "Devconnect",
+        contact: "",
+      },
+      start_utc: "2025-11-22T20:00:00Z",
+      event_type: "social",
+      description:
+        "Join us to celebrate the end of Devconnect ARG for drinks and a big announcement.",
+      requires_ticket: false,
+      show_time_of_day: true,
+    })
+  );
+
   return formattedAtprotoEvents;
 };

@@ -3,6 +3,8 @@
 import React, { forwardRef } from 'react';
 import type { Quest } from '@/types';
 import { getQuestIcon, getSupporterById } from '../utils/quest-helpers';
+import Icon from '@mdi/react';
+import { mdiArrowTopRight } from '@mdi/js';
 
 interface QuestCardProps {
   quest: Quest;
@@ -39,8 +41,15 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
         <div ref={ref} className="bg-white border border-[#e2e2e9] rounded">
           <div className="flex items-start gap-3 p-4">
             {/* Quest Icon */}
-            <div className="w-6 h-6 flex-shrink-0">
-              {quest.supporterId ? (
+            <div className="w-8 h-8 flex-shrink-0">
+              {quest.groupId === 3 ? (
+                // Community Quests use quest ID-based images
+                <img
+                  src={`/images/quests/${quest.id}.png`}
+                  alt={quest.name}
+                  className="w-full h-full object-cover rounded"
+                />
+              ) : quest.supporterId ? (
                 (() => {
                   const supporter = getSupporterById(quest.supporterId);
                   return supporter?.logo ? (
@@ -68,22 +77,20 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
 
             {/* Quest Content */}
             <div className="flex-1 min-w-0">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 min-w-0">
                   <h3 className="text-base font-bold text-[#242436] tracking-[-0.1px] mb-1 leading-[1.3]">
                     {quest.name}
                   </h3>
-                  {!isCompleted && (
-                    <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3] line-clamp-2">
-                      {quest.instructions || 'Quest instructions missing...'}
-                    </p>
-                  )}
+                  <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3] line-clamp-2">
+                    {quest.instructions || 'Quest instructions missing...'}
+                  </p>
                 </div>
 
                 {/* Completion Status */}
                 {isCompleted && (
                   <div
-                    className={`w-6 h-6 flex-shrink-0 ml-2 ${
+                    className={`w-6 h-6 flex-shrink-0 ${
                       quest.poapImageLink ? 'cursor-pointer' : ''
                     }`}
                     onClick={
@@ -112,7 +119,7 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
           </div>
 
           {/* Action Button */}
-          {!isCompleted && quest.conditionValues && (
+          {quest.conditionValues && (
             <div
               className="w-full p-4 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center"
               style={{
@@ -137,8 +144,15 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   onClick={() => onQuestAction(quest)}
                   disabled={!address}
                 >
-                  <div className="text-center justify-start text-sm font-bold font-['Roboto'] leading-[14px]">
-                    {quest.button || 'Verify'}
+                  <div className="flex items-center justify-center gap-2 text-sm font-bold font-['Roboto'] leading-[14px]">
+                    <span>{quest.button || 'Verify'}</span>
+                    {quest.groupId === 3 && (
+                      <Icon
+                        path={mdiArrowTopRight}
+                        size={0.65}
+                        className="shrink-0"
+                      />
+                    )}
                   </div>
                 </button>
               </div>

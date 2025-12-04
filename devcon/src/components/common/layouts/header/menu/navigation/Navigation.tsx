@@ -11,6 +11,7 @@ import IconCalendar from 'assets/icons/calendar.svg'
 import IconWatch from 'assets/icons/on_demand_video.svg'
 import { Button } from 'lib/components/button'
 import AppIcons from 'assets/icons/app-icons.svg'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 
 const Mobile = (props: any) => {
   const [openItem, setOpenItem] = React.useState<string | undefined>()
@@ -211,7 +212,7 @@ export const Navigation = (props: any) => {
               {hasChildren ? (
                 <>
                   {i.title}
-                  <IconArrowDown style={{ width: '10px', height: '5px', margin: '8px' }} />
+                  <ChevronDown size={16} style={{ margin: '8px' }} color="black" />
                   <div className={`${css['foldout']} rounded shadow-lg`}>
                     {i.logo && (
                       <div className={css['foldout-background']}>

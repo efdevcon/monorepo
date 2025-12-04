@@ -195,9 +195,8 @@ export default function ScanPage() {
                   </option>
                   {Object.values(MERCHANTS).map((merchant) => {
                     if (
-                      merchant.id !== 'cafe-cuyo' ||
-                      (internalDebuging(paraEmail) &&
-                        merchant.id === 'cafe-cuyo')
+                      !merchant?.isPrivate ||
+                      (internalDebuging(paraEmail) && merchant?.isPrivate)
                     ) {
                       return (
                         <option

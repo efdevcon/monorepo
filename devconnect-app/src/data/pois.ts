@@ -74,10 +74,22 @@ export const poisData: POI[] = [
     "groupId": "11"
   },
   {
+    "name": "Base (L2)",
+    "layerName": "base",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-20T12-48-11-494Z-base-square.png",
+    "description": "Base is a strategic L2 built by Coinbase that lowers barriers to entry for Ethereum-based dApps by combining scalability, low fees, EVM compatibility and access to a large user base — making it well-suited for the next wave of Web3 adoption.",
+    "websiteLink": "https://www.base.org/",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "14",
+    "groupId": "15"
+  },
+  {
     "name": "Beer House",
     "layerName": "beer-house",
     "logo": "",
-    "description": "",
+    "description": "Cold refreshing beers served here at the venue!",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -166,7 +178,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "14",
+    "locationId": "15",
     "groupId": "4"
   },
   {
@@ -190,7 +202,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "14"
   },
   {
@@ -202,19 +214,19 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "13",
     "groupId": "14"
   },
   {
     "name": "Chicken Tenders",
     "layerName": "chicken-tenders",
     "logo": "",
-    "description": "",
+    "description": "Delicious chicken pieces and  burgers cooked to perfection – cold drinks also available.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "12",
     "groupId": "7"
   },
   {
@@ -226,20 +238,44 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "12",
     "groupId": "15"
   },
   {
     "name": "Chillout Area",
     "layerName": "chillout-area",
     "logo": "",
-    "description": "Rest, relax, decompress. A place to get away from the crowd for a moment.",
+    "description": "Beach recliners in perfect view of the Open Air Cinema – grab some snacks from the local power up stations.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
     "groupId": "5"
+  },
+  {
+    "name": "Coffee Station - Quiet Cowork 1",
+    "layerName": "coffee-station-1",
+    "logo": "",
+    "description": "git push fixes! Grab some delicious barista-made coffee to fuel your work.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "9",
+    "groupId": "7"
+  },
+  {
+    "name": "Coffee Station - Quiet Cowork 2",
+    "layerName": "coffee-station-2",
+    "logo": "",
+    "description": "git push fixes! Grab some delicious barista-made coffee to fuel your work.",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": "9",
+    "groupId": "7"
   },
   {
     "name": "Collectibles Onboarding",
@@ -257,7 +293,7 @@ export const poisData: POI[] = [
     "name": "Cowork - Main Arena 1",
     "layerName": "cowork-main-arena-1",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-30-971Z-Cowork.png",
-    "description": "",
+    "description": "Now reopen! Enjoy the good Buenos Aires weather whilst getting in some work.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -269,7 +305,7 @@ export const poisData: POI[] = [
     "name": "Cowork - Main Arena 2",
     "layerName": "cowork-main-arena-2",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-16T22-51-35-968Z-Cowork.png",
-    "description": "",
+    "description": "Now reopen! Enjoy the good Buenos Aires weather whilst getting in some work.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -286,7 +322,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "14",
+    "locationId": "15",
     "groupId": "2"
   },
   {
@@ -329,7 +365,7 @@ export const poisData: POI[] = [
     "name": "Futbol Field",
     "layerName": "futbol-field",
     "logo": "",
-    "description": "",
+    "description": "Get a little movement in at the venue.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -358,8 +394,8 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "13",
-    "groupId": "4"
+    "locationId": "14",
+    "groupId": "15"
   },
   {
     "name": "Gaming Onboarding",
@@ -389,12 +425,12 @@ export const poisData: POI[] = [
     "name": "Guapaletas",
     "layerName": "guapaletas",
     "logo": "",
-    "description": "",
+    "description": "Delicious local ice cream for a sweet treat here at Devconnect.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "14",
+    "locationId": "15",
     "groupId": "7"
   },
   {
@@ -454,7 +490,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "8"
   },
   {
@@ -466,7 +502,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "12",
     "groupId": "7"
   },
   {
@@ -478,7 +514,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "13",
     "groupId": "14"
   },
   {
@@ -514,7 +550,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "13",
+    "locationId": "14",
     "groupId": "7"
   },
   {
@@ -562,7 +598,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "14"
   },
   {
@@ -574,7 +610,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "14"
   },
   {
@@ -622,7 +658,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "1"
   },
   {
@@ -634,7 +670,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "13",
     "groupId": "1"
   },
   {
@@ -790,7 +826,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "9"
   },
   {
@@ -802,7 +838,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "9"
   },
   {
@@ -821,7 +857,7 @@ export const poisData: POI[] = [
     "name": "Music Stage",
     "layerName": "music-stage",
     "logo": "",
-    "description": "",
+    "description": "Now reopen! Come relax and enjoy the sounds of Devconnect throughout the entire day.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -850,7 +886,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "14"
   },
   {
@@ -862,7 +898,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "15"
   },
   {
@@ -905,7 +941,7 @@ export const poisData: POI[] = [
     "name": "Open Air Cinema",
     "layerName": "open-air-cinema",
     "logo": "",
-    "description": "Watch a curated schedule of programming on Ethereum, decentralization, finance, culture and blockchain.",
+    "description": "Now reopen! Watch a curated schedule of programming of content on Ethereum, decentralization, finance, hackers, and culture.",
     "websiteLink": "/stages/outdoor-cinema",
     "twitterLink": "",
     "farcasterLink": "",
@@ -934,7 +970,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "14",
+    "locationId": "15",
     "groupId": "4"
   },
   {
@@ -977,7 +1013,7 @@ export const poisData: POI[] = [
     "name": "Power Up - Entertainment 1",
     "layerName": "power-up-station-entertainment-1",
     "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "description": "Now reopen! Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -989,7 +1025,7 @@ export const poisData: POI[] = [
     "name": "Power Up - Entertainment 2",
     "layerName": "power-up-station-entertainment-2",
     "logo": "",
-    "description": "Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
+    "description": "Now reopen! Power-up and recharge for the Ethereum World’s Fair at our dedicated coffee & snack stations.",
     "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
@@ -1126,7 +1162,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "13",
     "groupId": "7"
   },
   {
@@ -1138,7 +1174,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "13",
+    "locationId": "14",
     "groupId": "7"
   },
   {
@@ -1150,7 +1186,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "7"
   },
   {
@@ -1174,7 +1210,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "13",
+    "locationId": "14",
     "groupId": "3"
   },
   {
@@ -1234,7 +1270,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "12",
     "groupId": "2"
   },
   {
@@ -1282,7 +1318,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "15"
   },
   {
@@ -1294,7 +1330,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "15"
   },
   {
@@ -1306,7 +1342,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "15"
   },
   {
@@ -1318,7 +1354,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "15"
   },
   {
@@ -1330,7 +1366,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "15"
   },
   {
@@ -1354,7 +1390,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "14",
+    "locationId": "15",
     "groupId": "12"
   },
   {
@@ -1426,7 +1462,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "12",
     "groupId": "16"
   },
   {
@@ -1438,7 +1474,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "11",
+    "locationId": "12",
     "groupId": "16"
   },
   {
@@ -1450,7 +1486,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "12",
+    "locationId": "13",
     "groupId": "16"
   },
   {
@@ -1462,7 +1498,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "16"
   },
   {
@@ -1486,7 +1522,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "14"
   },
   {
@@ -1498,7 +1534,7 @@ export const poisData: POI[] = [
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": null,
-    "locationId": "15",
+    "locationId": "16",
     "groupId": "14"
   }
 ];

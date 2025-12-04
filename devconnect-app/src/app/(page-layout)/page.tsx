@@ -6,6 +6,7 @@ import {
   TodaysSchedule,
   LoopingHeader,
   PracticalInfo,
+  LeaderboardCard,
 } from '../dashboard-sections';
 import HighlightsContainer from '@/components/Highlights';
 import AnnouncementsWrapper from '@/components/Announcements';
@@ -41,6 +42,7 @@ export default function HomePageContent() {
       <WelcomeSection />
 
       <Separator className="mt-0 mb-3 mx-4 !w-auto" />
+      <LeaderboardCard />
       <HighlightsContainer />
       {/* <Separator className="mt-4 mb-3 mx-4 !w-auto" /> */}
       <AnnouncementsWrapper />

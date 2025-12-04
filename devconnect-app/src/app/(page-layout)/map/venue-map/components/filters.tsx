@@ -15,6 +15,7 @@ import {
   mdiHumanMaleFemale,
   mdiMicrophoneVariant,
   mdiTshirtCrew,
+  mdiForumOutline,
 } from '@mdi/js';
 import { poisData } from '@/data/pois';
 import { districtsData } from '@/data/districts';
@@ -75,6 +76,12 @@ const filters = [
       { name: 'L2', layerName: 'l2-district' },
       { name: 'Privacy', layerName: 'privacy-district' },
     ],
+  },
+  {
+    icon: mdiForumOutline,
+    key: 'discussion-corner',
+    label: 'Discussion Corners',
+    pois: poisData.filter((poi) => poi.groupId === '4'), // Fixed: Co-work is groupId 2
   },
   {
     icon: mdiSoccer,
