@@ -194,9 +194,7 @@ export const LeaderboardCard = () => {
               Quest leaderboard
             </p>
             <p className="font-normal text-[12px] leading-[1.3] w-full">
-              See your ranking and come claim your prize at{' '}
-              <span className="font-bold">5PM</span> during the closing
-              ceremony!
+              See your ranking
             </p>
           </div>
         </div>
@@ -267,30 +265,30 @@ export const PracticalInfo = () => {
     //     </div>
     //   ),
     // },
-    {
-      id: 'city',
-      title: t('cityGuideTitle'),
-      content: (
-        <div className="text-sm space-y-3">
-          <ul className="ml-2 space-y-2 mt-1">
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                <strong> {t('cityGuideText')}</strong>{' '}
-                {t('cityGuideDescription')}{' '}
-                <Link
-                  href="https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx"
-                  target="_blank"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  {t('cityGuideLinkText')}
-                </Link>
-              </div>
-            </li>
-          </ul>
-        </div>
-      ),
-    },
+    // {
+    //   id: 'city',
+    //   title: t('cityGuideTitle'),
+    //   content: (
+    //     <div className="text-sm space-y-3">
+    //       <ul className="ml-2 space-y-2 mt-1">
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             <strong> {t('cityGuideText')}</strong>{' '}
+    //             {t('cityGuideDescription')}{' '}
+    //             <Link
+    //               href="https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx"
+    //               target="_blank"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               {t('cityGuideLinkText')}
+    //             </Link>
+    //           </div>
+    //         </li>
+    //       </ul>
+    //     </div>
+    //   ),
+    // },
     {
       id: 'perks',
       title: t('perksTitle'),
@@ -320,7 +318,7 @@ export const PracticalInfo = () => {
       content: (
         <div className="text-sm space-y-3">
           <ul className="ml-2 space-y-2 mt-1">
-            <li className="flex gap-2">
+            {/* <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
                 {t('communityTelegram')}{' '}
@@ -332,7 +330,7 @@ export const PracticalInfo = () => {
                   {t('communityTelegramLink')}
                 </Link>
               </div>
-            </li>
+            </li> */}
             <li className="flex gap-2">
               <div className="shrink-0">•</div>
               <div>
@@ -376,155 +374,101 @@ export const PracticalInfo = () => {
         </div>
       ),
     },
-    {
-      id: 'safety',
-      title: t('safetyTitle'),
-      content: (
-        <div className="text-sm space-y-3">
-          <ul className="ml-2 space-y-2 mt-1">
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                <strong>{t('safetyEmergency')}</strong>{' '}
-                {t('safetyEmergencyText')}
-              </div>
-            </li>
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                {t('safetyIncidentText')}{' '}
-                <Link
-                  href="https://app.formbricks.com/s/cmhpckiio00q5ad01s1g0r1jp"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t('safetyIncidentLink')}
-                </Link>
-              </div>
-            </li>
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                {t('safetyEmailText')}{' '}
-                <Link
-                  href="mailto:emergency@devconnect.org"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  emergency@devconnect.org
-                </Link>{' '}
-                {t('safetyEmailIfNeeded')}
-              </div>
-            </li>
-            <li className="flex gap-2">
-              <div className="shrink-0">•</div>
-              <div>
-                {t('safetyCodeText')}{' '}
-                <Link
-                  href="https://devconnect.org/devconnect-code-of-conduct.pdf"
-                  className="text-[rgba(0,115,222,1)] font-semibold"
-                >
-                  {t('safetyCodeLink')}
-                </Link>{' '}
-                .
-              </div>
-            </li>
-          </ul>
-        </div>
-      ),
-    },
+    // {
+    //   id: 'safety',
+    //   title: t('safetyTitle'),
+    //   content: (
+    //     <div className="text-sm space-y-3">
+    //       <ul className="ml-2 space-y-2 mt-1">
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             <strong>{t('safetyEmergency')}</strong>{' '}
+    //             {t('safetyEmergencyText')}
+    //           </div>
+    //         </li>
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             {t('safetyIncidentText')}{' '}
+    //             <Link
+    //               href="https://app.formbricks.com/s/cmhpckiio00q5ad01s1g0r1jp"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //               target="_blank"
+    //               rel="noopener noreferrer"
+    //             >
+    //               {t('safetyIncidentLink')}
+    //             </Link>
+    //           </div>
+    //         </li>
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             {t('safetyEmailText')}{' '}
+    //             <Link
+    //               href="mailto:emergency@devconnect.org"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               emergency@devconnect.org
+    //             </Link>{' '}
+    //             {t('safetyEmailIfNeeded')}
+    //           </div>
+    //         </li>
+    //         <li className="flex gap-2">
+    //           <div className="shrink-0">•</div>
+    //           <div>
+    //             {t('safetyCodeText')}{' '}
+    //             <Link
+    //               href="https://devconnect.org/devconnect-code-of-conduct.pdf"
+    //               className="text-[rgba(0,115,222,1)] font-semibold"
+    //             >
+    //               {t('safetyCodeLink')}
+    //             </Link>{' '}
+    //             .
+    //           </div>
+    //         </li>
+    //       </ul>
+    //     </div>
+    //   ),
+    // },
   ];
 
   return (
-    <div className="flex flex-col items-start justify-start bg-white border mx-4 border-[rgba(234,234,234,1)] mt-4">
-      <h2 className="font-bold p-4 pb-0">{t('title')}</h2>
+    <div className="flex flex-col items-start justify-start bg-white border mx-4 border-[rgba(234,234,234,1)] rounded-[4px] p-5 mt-4 gap-4">
+      <h2 className="font-bold text-[18px] text-[#20202b] leading-[1.2] tracking-[-0.1px]">
+        Event information
+      </h2>
 
-      <div className="p-4 mx-4 my-2 mb-0 grow self-stretch bg-[#EAF4FB]">
-        <div className="flex flex-col lg:flex-row lg:gap-24">
-          {/* left col on desktop, top on mobile */}
-          <div className="flex flex-col gap-1 lg:flex-1 lg:gap-0.5 text-sm">
-            <span className="font-semibold mb-1">{t('venueHours')}</span>
-            <div className="text-sm flex flex-col gap-0.5">
-              <div className="flex items-center justify-between ">
-                <span className="font-semibold">{t('preRegistration')}</span>
-                <span className="">{t('preRegistrationTime')}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold">{t('firstDay')}</span>
-                <span className="">{t('firstDayTime')}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="font-semibold">{t('otherDays')}</span>
-                <span className="">{t('otherDaysTime')}</span>
-              </div>
-            </div>
-
-            <Separator className="mb-3 mt-2 w-full" />
-
-            <div className="flex justify-between items-center">
-              <span className="font-semibold">{t('venueAddress')}</span>
-              <Link
-                target="_blank"
-                href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
-                className="text-sm text-[rgba(0,115,222,1)] font-semibold"
-              >
-                <span>{t('viewOnMap')}</span>
-              </Link>
-            </div>
-
-            <div className="flex justify-between items-center group">
-              <span className="font-semibold">{t('wifi')}</span>
-              <div className="text-sm flex items-center gap-1">
-                <span>{t('wifiName')}</span>
-              </div>
-            </div>
-            <div className="flex justify-between items-center group">
-              <span className="font-semibold">{t('wifiPassword')}</span>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(t('wifiPasswordValue'));
-                  toast(t('copiedWifiPassword'));
-                }}
-                className="text-sm flex items-center gap-1 text-[rgba(0,115,222,1)] hover:text-[rgba(0,115,222,1)] cursor-pointer"
-              >
-                <span className="font-semibold">{t('wifiPasswordValue')}</span>
-                <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
-              </button>
-            </div>
-          </div>
-
-          <Separator className="mb-0 mt-4 w-full lg:hidden" />
-
-          {/* right col on desktop, below on mobile */}
-          <div className="flex flex-col mt-4 lg:mt-0 text-sm lg:flex-1">
-            <span className="font-semibold mb-1">{t('needHelp')}</span>
-            <span>{t('needHelpDescription')}</span>
-
-            <Link
-              target="_blank"
-              href="https://devconnect.org/faq"
-              className="mt-3"
-            >
-              <Button size="sm" className="w-full font-medium" color="blue-2">
-                {t('viewSupportFAQ')}
-              </Button>
-            </Link>
-            {/* <span>
-              Read our{' '}
-              <Link
-                target="_blank"
-                href="https://devconnect.org/faq"
-                className="text-[rgba(0,115,222,1)] font-semibold"
-              >
-                Support FAQ
-              </Link>{' '}
-              or visit
-            </span> */}
-          </div>
-        </div>
+      {/* Thank you message box */}
+      <div className="bg-[#EAF4FB] px-3 py-4 flex flex-col gap-3 w-full">
+        <p className="font-bold text-[16px] text-[#353548] leading-[1.3] tracking-[-0.1px]">
+          Thank you to everyone who attended Devconnect ARG ❤️
+        </p>
+        <p className="text-[14px] text-[#353548] leading-[1.4] tracking-[-0.1px]">
+          With over 15,000+ attendees across the week, Devconnect ARG was a
+          record-breaker. The team would like to say thank you to everyone in
+          attendance, and we hope to see you in Mumbai next year for Devcon 8!
+        </p>
+        <Link href="https://devcon.org" target="_blank" className="w-full">
+          <Button size="sm" className="w-full font-bold" color="blue-2" fill>
+            Visit Devcon
+          </Button>
+        </Link>
       </div>
 
-      <div className="flex flex-col w-full p-4 pt-2">
+      {/* Need Help section */}
+      <div className="bg-[#EAF4FB] px-3 py-4 flex flex-col gap-3 w-full">
+        <span className="font-semibold text-[14px]">{t('needHelp')}</span>
+        <span className="text-[14px]">{t('needHelpDescription')}</span>
+
+        <Link target="_blank" href="https://devconnect.org/faq">
+          <Button size="sm" className="w-full font-medium" color="blue-2">
+            {t('viewSupportFAQ')}
+          </Button>
+        </Link>
+      </div>
+
+      <div className="flex flex-col w-full">
         {sections.map((section) => (
           <div
             key={section.id}
