@@ -19,6 +19,7 @@ import { StaticImageData } from 'next/image';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 import { useTranslations } from 'next-intl';
 import ClosingParty from '@/images/announcements/closing_party_2.png';
+import Devcon8Highlight from '@/images/announcements/devcon-8-highlight.png';
 
 // Placeholder images - you can replace these with actual highlight images
 // const PlaceholderImage = '/images/quest-app-showcase.png';
@@ -88,6 +89,12 @@ export const Highlights = () => {
   const t = useTranslations('highlights');
 
   const highlights = [
+    {
+      title: t('devcon8Highlight'),
+      to: 'https://devcon.org/',
+      description: t('devcon8HighlightDescription'),
+      image: Devcon8Highlight,
+    },
     {
       title: t('closingParty'),
       to: '/schedule?event=closing-party',
