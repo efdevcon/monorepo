@@ -82,7 +82,7 @@ export default function LeaderboardPage() {
               Quest Leaderboard
             </h1>
             <p className="text-[14px] font-normal leading-[1.3] text-[#353548]">
-              Join us at the Closing Ceremony at 5PM!
+              Thank you to everyone who took part in Quests at Devconnect ARG!
             </p>
           </div>
           <div className="w-10 h-10 flex-shrink-0">
@@ -117,18 +117,7 @@ export default function LeaderboardPage() {
                   🎉 Congratulations!
                 </h3>
                 <p className="text-sm text-gray-800">
-                  You're ranked #{userEntry.position}! Come claim your prize
-                  <span className="font-bold">
-                    {' '}
-                    at the Closing Ceremony at 5PM inside the{' '}
-                    <Link
-                      className="text-[#0073de] underline"
-                      href="/map?filter=amphitheater"
-                    >
-                      Amphitheater
-                    </Link>
-                  </span>
-                  . First-come, first-served.
+                  You're ranked #{userEntry.position}!
                 </p>
               </div>
             </div>
