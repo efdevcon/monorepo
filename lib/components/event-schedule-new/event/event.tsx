@@ -795,7 +795,7 @@ function Event({
                           </Link>
                         )}
 
-                        {showBuyTickets && !isGated && (
+                        {/* {showBuyTickets && !isGated && (
                           <Link
                             href={processedTicketsUrl}
                             className="self-start"
@@ -810,7 +810,7 @@ function Event({
                               <ArrowUpRight className="w-4 h-4 mb-0.5" />
                             </VoxelButton>
                           </Link>
-                        )}
+                        )} */}
 
                         {showProgrammingButton && (
                           <>
@@ -881,7 +881,7 @@ function Event({
 
                     <Separator className="my-3" />
 
-                    {eventShops.some(
+                    {/* {eventShops.some(
                       (shop) => shop.supabase_id === event.id.toString()
                     ) && (
                       <>
@@ -915,7 +915,7 @@ function Event({
 
                         <Separator className="my-4" />
                       </>
-                    )}
+                    )} */}
 
                     <div className="flex gap-2 justify-between shrink-0">
                       {event.eventType && (
