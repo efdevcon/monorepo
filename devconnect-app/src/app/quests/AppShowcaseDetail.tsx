@@ -705,10 +705,10 @@ const AppShowcaseDetail = React.forwardRef<
       )}
 
       {/* Info Card: Using wallets to complete Quests */}
-      <InfoCard />
+      {/* <InfoCard /> */}
 
       {/* Setup & app tour Section */}
-      <div className="w-full pb-1">
+      <div className="w-full pb-1 mt-4">
         <SetupSection
           ref={setupSectionRef}
           setupQuests={setupQuests}

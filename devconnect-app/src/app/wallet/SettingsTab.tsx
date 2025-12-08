@@ -306,9 +306,7 @@ export default function SettingsTab() {
               <p className="text-[#0073de] text-base font-bold">
                 {t('updateAvailable')}
               </p>
-              <p className="text-[#0073de] text-xs">
-                {t('tapToInstall')}
-              </p>
+              <p className="text-[#0073de] text-xs">{t('tapToInstall')}</p>
             </div>
             <Icon
               path={mdiChevronRight}
@@ -344,7 +342,7 @@ export default function SettingsTab() {
         </button>
 
         {/* Provide Feedback */}
-        <button
+        {/* <button
           onClick={handleProvideFeedback}
           className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
         >
@@ -355,7 +353,7 @@ export default function SettingsTab() {
             {t('provideFeedback')}
           </p>
           <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
-        </button>
+        </button> */}
 
         {/* Admin Stats - Available for @ethereum.org users */}
         {internalDebuging(paraEmail) && (
@@ -464,9 +462,12 @@ export default function SettingsTab() {
 
             {/* Account Info */}
             <div className="flex-1 min-w-0">
-              <p className="text-[#4b4b66] text-xs mb-2">{t('paraWalletAccount')}</p>
+              <p className="text-[#4b4b66] text-xs mb-2">
+                {t('paraWalletAccount')}
+              </p>
               <p className="text-[#20202b] text-sm font-medium mb-2 truncate">
-                {paraEmail || (isParaConnected ? t('connected') : t('notConnected'))}
+                {paraEmail ||
+                  (isParaConnected ? t('connected') : t('notConnected'))}
               </p>
             </div>
           </div>

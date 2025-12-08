@@ -949,6 +949,34 @@ export default function WalletTab() {
         <div className="flex-1 w-full">
           {/* Main Content */}
           <div className="px-6 pt-6 space-y-6">
+            {/* Export Private Key Info */}
+            <div className="bg-[#eaf4fb] flex flex-col gap-2 p-4 rounded">
+              <div className="flex flex-col gap-2">
+                <p className="font-bold text-[#20202b] text-base leading-none tracking-[-0.1px]">
+                  Exporting your Private Key
+                </p>
+                <p className="text-[#353548] text-sm leading-[1.3]">
+                  Devconnect ARG has concluded. If you still hold funds within{' '}
+                  <span className="font-bold">your Para wallet</span>, you can
+                  export your private key via Settings if you want to manage
+                  your funds via a different wallet.
+                </p>
+              </div>
+              <button
+                onClick={() => router.push('/wallet/settings')}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <span className="font-bold text-[#0073de] text-sm leading-none">
+                  Go to Settings
+                </span>
+                <Icon
+                  path={mdiArrowRight}
+                  size={0.65}
+                  className="text-[#0073de]"
+                />
+              </button>
+            </div>
+
             {/* Profile Section */}
             <div className="space-y-4">
               {/* Profile Info */}
@@ -1208,7 +1236,7 @@ export default function WalletTab() {
                 )}
 
                 {/* Add Button */}
-                <div
+                {/* <div
                   className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
                   style={{ maxWidth: 'min(21vw, 100%)' }}
                 >
@@ -1225,7 +1253,7 @@ export default function WalletTab() {
                   <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
                     Buy
                   </span>
-                </div>
+                </div> */}
 
                 {/* Scan Button - Mobile only */}
                 <div
@@ -1761,12 +1789,12 @@ export default function WalletTab() {
                           <p className="text-[#353548] text-base font-bold tracking-[-0.1px]">
                             No assets to show
                           </p>
-                          <button
+                          {/* <button
                             onClick={handleDigitalClick}
                             className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
                           >
                             Add Funds
-                          </button>
+                          </button> */}
                         </div>
                       )}
                     </div>
