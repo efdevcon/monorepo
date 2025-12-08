@@ -27,13 +27,6 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, { isServer }) => {
-    // Force pino to use its browser version (which doesn't use thread-stream)
-    // This fixes Next.js 16 bundling issues with thread-stream test files
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      pino: require.resolve('pino/browser.js'),
-    };
-
     if (!isServer) {
       // Fallbacks for Node.js modules in client-side code
       config.resolve.fallback = {
@@ -55,10 +48,14 @@ const nextConfig: NextConfig = {
       // Provide a mock fastfile module for client-side builds
       config.resolve.alias = {
         ...config.resolve.alias,
-        pino: require.resolve('pino/browser.js'),
         fastfile: require.resolve('./webpack/fastfile-mock.js'),
       };
     }
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      pino: require.resolve('pino/browser.js'),
+    };
 
     // Apply specific config for maps folder SVGs
     config.module.rules.push({
@@ -88,7 +85,6 @@ const nextConfig: NextConfig = {
     return config;
   },
   turbopack: {
-    // Force pino to use its browser version (which doesn't use thread-stream)
     resolveAlias: {
       pino: 'pino/browser.js',
     },
