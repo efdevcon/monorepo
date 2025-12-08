@@ -1311,13 +1311,13 @@ importers:
         version: 1.0.0(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@wagmi/core@2.22.1(@tanstack/query-core@5.83.0)(@types/react@19.2.2)(immer@10.2.0)(react@19.2.0)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11)))(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))
       '@getpara/graz':
         specifier: 2.0.0-alpha.20
-        version: 2.0.0-alpha.20(6caa1262f80e81cc3d084d4ca69134eb)
+        version: 2.0.0-alpha.20(3cf277263094920f4c33df61a590c226)
       '@getpara/react-common':
         specifier: 2.0.0-alpha.70
         version: 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/react-sdk':
         specifier: 2.0.0-alpha.70
-        version: 2.0.0-alpha.70(80450563960c73053a0c28c5efae78c3)
+        version: 2.0.0-alpha.70(bf607b06ec41af587ace8710468a2ba6)
       '@getpara/viem-v2-integration':
         specifier: 2.0.0-alpha.70
         version: 2.0.0-alpha.70(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))
@@ -1326,16 +1326,13 @@ importers:
         version: 2.0.0-alpha.70(@emotion/is-prop-valid@1.2.2)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(encoding@0.1.13)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(wagmi@2.18.1(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.2(@babel/core@7.28.0)(@types/react@19.2.2)(bufferutil@4.0.9)(react@19.2.0)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.83.0)(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(bufferutil@4.0.9)(encoding@0.1.13)(immer@10.2.0)(react@19.2.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.38.2(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(zod@4.1.11))
       '@leapwallet/cosmos-social-login-capsule-provider':
         specifier: ^0.0.44
-        version: 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
+        version: 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
       '@mdi/react':
         specifier: ^1.6.1
         version: 1.6.1
-      '@netlify/plugin-nextjs':
-        specifier: ^5.13.5
-        version: 5.13.5
       '@notionhq/client':
         specifier: ^4.0.1
         version: 4.0.1
@@ -1535,6 +1532,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.3.1
+      '@netlify/plugin-nextjs':
+        specifier: ^5.15.1
+        version: 5.15.1
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.11
@@ -5198,8 +5198,8 @@ packages:
     resolution: {integrity: sha512-F+HiQaUpISBmooALpwDULoCCwUhI6MugEEBstjuxOL2rh2ROFhK4abv87f4GxVXRSmw0AtXAp2eiP8vHcZ3NKQ==}
     engines: {node: '>=18.0.0'}
 
-  '@netlify/plugin-nextjs@5.13.5':
-    resolution: {integrity: sha512-zuP4sqckaeJ8rtiNYwoOpQnEb/8E4Ewf+FJDxts2s6gfgmXGuk4W5ViKZtITWWjuzxqbxG+p4t20PXltIyeJBA==}
+  '@netlify/plugin-nextjs@5.15.1':
+    resolution: {integrity: sha512-HXm94tteOuA0FYwhkxjYIPe0zta+Dsu0wz7LnhfqVlaYcRaOLjHtd2vgfmpz3np/fx9TQg3gCfqGkXt2a9i7Aw==}
     engines: {node: '>=18.0.0'}
 
   '@netlify/runtime-utils@2.1.0':
@@ -23890,7 +23890,7 @@ snapshots:
 
   '@celo/base@7.0.3': {}
 
-  '@celo/utils@3.2.0(fp-ts@2.16.9)':
+  '@celo/utils@3.2.0(fp-ts@2.1.1)':
     dependencies:
       '@celo/base': 3.2.0
       '@types/bn.js': 5.2.0
@@ -23900,7 +23900,7 @@ snapshots:
       bignumber.js: 9.3.1
       elliptic: 6.6.1
       ethereumjs-util: 5.2.1
-      io-ts: 2.0.1(fp-ts@2.16.9)
+      io-ts: 2.0.1(fp-ts@2.1.1)
       web3-eth-abi: 1.3.6
       web3-utils: 1.3.6
     transitivePeerDependencies:
@@ -25440,12 +25440,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@getpara/graz@2.0.0-alpha.20(6caa1262f80e81cc3d084d4ca69134eb))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.16.9)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@getpara/graz@2.0.0-alpha.20(3cf277263094920f4c33df61a590c226))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.1.1)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
-      '@getpara/graz': 2.0.0-alpha.20(6caa1262f80e81cc3d084d4ca69134eb)
+      '@getpara/graz': 2.0.0-alpha.20(3cf277263094920f4c33df61a590c226)
       '@getpara/react-common': 2.0.0-alpha.64(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/web-sdk': 2.0.0-alpha.64(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(encoding@0.1.13)
-      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
+      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
       starknet: 6.24.1(encoding@0.1.13)
@@ -25461,12 +25461,12 @@ snapshots:
       - fp-ts
       - immer
 
-  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.70(381f8335439c2df2e5a74ca73d39a619)':
+  '@getpara/cosmos-wallet-connectors@2.0.0-alpha.70(34d3f2cac6458668520bd64828e1fef7)':
     dependencies:
       '@getpara/graz-connector': 2.0.0-alpha.70(16873fefabb5392e36142edc6ae261fc)
       '@getpara/react-common': 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(encoding@0.1.13)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/web-sdk': 2.0.0-alpha.70(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(encoding@0.1.13)
-      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
+      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
       graz: 0.4.2(@cosmjs/amino@0.31.3)(@cosmjs/cosmwasm-stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.2(@babel/core@7.28.0)(@types/react@19.2.2)(bufferutil@4.0.9)(react@19.2.0)(utf-8-validate@5.0.10)))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(bufferutil@4.0.9)(encoding@0.1.13)(immer@10.2.0)(react@19.2.0)(starknet@7.6.4)(typescript@5.8.3)(use-sync-external-store@1.4.0(react@19.2.0))(utf-8-validate@5.0.10)(zod@4.1.11)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
@@ -25569,7 +25569,7 @@ snapshots:
       - debug
       - encoding
 
-  '@getpara/graz@2.0.0-alpha.20(6caa1262f80e81cc3d084d4ca69134eb)':
+  '@getpara/graz@2.0.0-alpha.20(3cf277263094920f4c33df61a590c226)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@cosmjs/cosmwasm-stargate': 0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10)
@@ -25580,10 +25580,10 @@ snapshots:
       '@cosmsnap/snapper': 0.1.29
       '@dao-dao/cosmiframe': 0.1.0(@cosmjs/amino@0.31.3)(@cosmjs/proto-signing@0.34.0)
       '@getpara/cosmjs-v0-integration': 2.0.0-alpha.64(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))
-      '@getpara/react-sdk': 2.0.0-alpha.64(45d938cabf24e61a621d570b2dcc0f17)
+      '@getpara/react-sdk': 2.0.0-alpha.64(39243d5701c503c72c1bb61fdc02d739)
       '@keplr-wallet/cosmos': 0.12.156(starknet@7.6.4)
       '@keplr-wallet/types': 0.12.156(starknet@7.6.4)
-      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
+      '@leapwallet/cosmos-social-login-capsule-provider': 0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
       '@metamask/providers': 12.0.0
       '@tanstack/react-query': 5.83.0(react@19.2.0)
       '@terra-money/station-connector': 1.1.0(@cosmjs/amino@0.31.3)(@terra-money/feather.js@3.0.0-beta.3)(axios@1.11.0)
@@ -25745,10 +25745,10 @@ snapshots:
       - encoding
       - immer
 
-  '@getpara/react-sdk@2.0.0-alpha.64(45d938cabf24e61a621d570b2dcc0f17)':
+  '@getpara/react-sdk@2.0.0-alpha.64(39243d5701c503c72c1bb61fdc02d739)':
     dependencies:
       '@getpara/cosmjs-v0-integration': 2.0.0-alpha.64(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))
-      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@getpara/graz@2.0.0-alpha.20(6caa1262f80e81cc3d084d4ca69134eb))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.16.9)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.64(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@getpara/graz@2.0.0-alpha.20(3cf277263094920f4c33df61a590c226))(@types/react@19.2.2)(encoding@0.1.13)(fp-ts@2.1.1)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/evm-wallet-connectors': 2.0.0-alpha.64(e119abe6d8bf16b496be26567cf6e64e)
       '@getpara/react-sdk-lite': 2.0.0-alpha.64(@emotion/is-prop-valid@1.2.2)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(encoding@0.1.13)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/solana-signers-v2-integration': 2.0.0-alpha.64(@solana/addresses@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/keys@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-api@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-spec@2.3.0(typescript@5.8.3))(@solana/signers@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/transactions@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))
@@ -25785,10 +25785,10 @@ snapshots:
       - viem
       - wagmi
 
-  '@getpara/react-sdk@2.0.0-alpha.70(80450563960c73053a0c28c5efae78c3)':
+  '@getpara/react-sdk@2.0.0-alpha.70(bf607b06ec41af587ace8710468a2ba6)':
     dependencies:
       '@getpara/cosmjs-v0-integration': 2.0.0-alpha.70(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(@cosmjs/stargate@0.34.0(bufferutil@4.0.9)(encoding@0.1.13)(utf-8-validate@5.0.10))
-      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.70(381f8335439c2df2e5a74ca73d39a619)
+      '@getpara/cosmos-wallet-connectors': 2.0.0-alpha.70(34d3f2cac6458668520bd64828e1fef7)
       '@getpara/evm-wallet-connectors': 2.0.0-alpha.70(6fd1f6f55c7ac3ad267906b1fcd127e2)
       '@getpara/react-sdk-lite': 2.0.0-alpha.70(@emotion/is-prop-valid@1.2.2)(@farcaster/miniapp-sdk@0.1.8(bufferutil@4.0.9)(encoding@0.1.13)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@4.1.11))(@tanstack/react-query@5.83.0(react@19.2.0))(@types/react@19.2.2)(encoding@0.1.13)(immer@10.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@getpara/solana-signers-v2-integration': 2.0.0-alpha.70(@solana/addresses@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/keys@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-api@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/rpc-spec@2.3.0(typescript@5.8.3))(@solana/signers@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))(@solana/transactions@2.3.0(fastestsmallesttextencoderdecoder@1.0.22)(typescript@5.8.3))
@@ -27029,12 +27029,12 @@ snapshots:
     transitivePeerDependencies:
       - starknet
 
-  '@leapwallet/cosmos-social-login-capsule-provider@0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
+  '@leapwallet/cosmos-social-login-capsule-provider@0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@leapwallet/cosmos-social-login-core': 0.0.1
       '@usecapsule/cosmjs-v0-integration': 1.24.1(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)
-      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.16.9)
+      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.1.1)
       long: 5.2.3
     transitivePeerDependencies:
       - '@cosmjs/encoding'
@@ -27042,12 +27042,12 @@ snapshots:
       - debug
       - fp-ts
 
-  '@leapwallet/cosmos-social-login-capsule-provider@0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
+  '@leapwallet/cosmos-social-login-capsule-provider@0.0.44(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@leapwallet/cosmos-social-login-core': 0.0.1
-      '@usecapsule/cosmjs-v0-integration': 1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)
-      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.16.9)
+      '@usecapsule/cosmjs-v0-integration': 1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)
+      '@usecapsule/web-sdk': 1.23.0(fp-ts@2.1.1)
       long: 5.2.3
     transitivePeerDependencies:
       - '@cosmjs/encoding'
@@ -27587,7 +27587,7 @@ snapshots:
 
   '@netlify/plugin-nextjs@5.11.6': {}
 
-  '@netlify/plugin-nextjs@5.13.5': {}
+  '@netlify/plugin-nextjs@5.15.1': {}
 
   '@netlify/runtime-utils@2.1.0': {}
 
@@ -37211,9 +37211,9 @@ snapshots:
       '@use-gesture/core': 10.3.1
       react: 19.1.0
 
-  '@usecapsule/core-sdk@1.21.0(fp-ts@2.16.9)':
+  '@usecapsule/core-sdk@1.21.0(fp-ts@2.1.1)':
     dependencies:
-      '@celo/utils': 3.2.0(fp-ts@2.16.9)
+      '@celo/utils': 3.2.0(fp-ts@2.1.1)
       '@usecapsule/user-management-client': 1.18.0
       base64url: 3.0.1
       buffer: 6.0.3
@@ -37238,12 +37238,12 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@usecapsule/cosmjs-v0-integration@1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
+  '@usecapsule/cosmjs-v0-integration@1.21.0(@cosmjs/amino@0.31.3)(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.1.1)':
     dependencies:
       '@cosmjs/amino': 0.31.3
       '@cosmjs/encoding': 0.34.0
       '@cosmjs/proto-signing': 0.34.0
-      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.16.9)
+      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.1.1)
     transitivePeerDependencies:
       - debug
       - fp-ts
@@ -37271,9 +37271,9 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@usecapsule/web-sdk@1.23.0(fp-ts@2.16.9)':
+  '@usecapsule/web-sdk@1.23.0(fp-ts@2.1.1)':
     dependencies:
-      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.16.9)
+      '@usecapsule/core-sdk': 1.21.0(fp-ts@2.1.1)
       '@usecapsule/user-management-client': 1.18.0
       assert: 2.1.0
       base64url: 3.0.1
