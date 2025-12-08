@@ -7,7 +7,14 @@ const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
   transpilePackages: ['lib'],
-  serverExternalPackages: ['esbuild', 'esbuild-wasm', '@esbuild/linux-x64'],
+  serverExternalPackages: [
+    'esbuild',
+    'esbuild-wasm',
+    '@esbuild/linux-x64',
+    'pino',
+    'pino-pretty',
+    'thread-stream',
+  ],
   logging: {
     fetches: {
       fullUrl: true,
@@ -82,12 +89,19 @@ const nextConfig: NextConfig = {
       ],
     });
 
+    config.module.rules.push({
+      test: /\.svg$/,
+      exclude: /\/maps\//,
+      use: [
+        {
+          loader: '@svgr/webpack',
+        },
+      ],
+    });
+
     return config;
   },
   turbopack: {
-    resolveAlias: {
-      pino: 'pino/browser.js',
-    },
     rules: {
       // Prevent ID cleanup for SVGs in maps folder
       '**/maps/**/*.svg': {
