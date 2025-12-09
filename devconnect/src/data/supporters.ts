@@ -481,18 +481,6 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "8",
     "locationId": "6"
   },
-  "254638cdc41580e69a97f635ca4a9099": {
-    "name": "Ledger",
-    "layerName": "ledger",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-10T19-41-42-201Z-Ledger.png",
-    "largeLogo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-11-05T22-08-26-696Z-LEDGER-WORDMARK-BLACK-RGB_1.png",
-    "description": "Ledger is one of the leading hardware wallet providers globally — trusted, mature, security-centric — and forms a foundational component for any design or product effort where private-key security, self-custody and connecting to Web3 services matter.",
-    "websiteLink": "https://www.ledger.com/",
-    "twitterLink": "https://x.com/Ledger",
-    "farcasterLink": "",
-    "districtId": "5",
-    "locationId": "6"
-  },
   "254638cdc41580e8b906c4188f51042e": {
     "name": "Lemon",
     "layerName": "lemon",

@@ -178,20 +178,6 @@ export const questsData: Quest[] = [
     "districtId": "7"
   },
   {
-    "id": 35,
-    "name": "Ledger",
-    "order": 0,
-    "instructions": "Download our app and try a feature. Learn more at our booth",
-    "action": "claim-poap",
-    "button": "",
-    "conditionType": "verifyPoap",
-    "conditionValues": "211536",
-    "supporterId": "254638cdc41580e69a97f635ca4a9099",
-    "poapImageLink": "https://assets.poap.xyz/942704e2-7e2a-48bc-9d3c-328466628642.png?size=large",
-    "groupId": 4,
-    "districtId": "5"
-  },
-  {
     "id": 36,
     "name": "Farcaster",
     "order": 0,
