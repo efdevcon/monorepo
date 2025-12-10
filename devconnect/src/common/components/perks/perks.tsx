@@ -349,7 +349,7 @@ function Perks(props: any) {
         Showing 4 out of 4 
       </div> */}
       </div>
-      <div
+      {/* <div
         className={cn('flex justify-between items-center bg-[#C6E1F9] text-[#36364C] overflow-hidden')}
         id="yourperk"
       >
@@ -369,7 +369,7 @@ function Perks(props: any) {
             </motion.div>
           </motion.div>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
