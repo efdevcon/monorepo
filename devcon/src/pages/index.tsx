@@ -11,7 +11,8 @@ import css from './index.module.scss'
 import TrackList from 'components/domain/index/track-list'
 import themes from './themes.module.scss'
 import ImageNew from 'next/image'
-import CircleBackground from 'assets/images/background-circles.png'
+// import CircleBackground from 'assets/images/background-circles.png'
+import MumbaiBackground from 'assets/images/dc-8/bg-graphic.png'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesQuery, PagesIndex, PagesFaq_General, PagesProgramming } from '../../tina/__generated__/types'
@@ -126,12 +127,34 @@ export default function Index(props: any) {
   useGSAP(() => {
     if (gradientRef.current) {
       gsap.to(gradientRef.current, {
-        opacity: 0.95,
+        opacity: 1,
         ease: 'none',
         scrollTrigger: {
           trigger: document.body,
           start: 'top top',
-          end: `+=${window.innerHeight * 0.7}`,
+          end: `+=${window.innerHeight * 0.3}`,
+          scrub: true,
+        },
+      })
+
+      gsap.to(gradientRef.current.children[0], {
+        opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: `+=${window.innerHeight * 0.3}`,
+          scrub: true,
+        },
+      })
+
+      gsap.to(gradientRef.current, {
+        '--mask-stop': '0px',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: `+=${window.innerHeight * 1}`,
           scrub: true,
         },
       })
@@ -230,9 +253,9 @@ export default function Index(props: any) {
 
       {/* @ts-ignore */}
       <style jsx global>{`
-        body {
-          overflow: hidden;
-        }
+        // body {
+        //   overflow: hidden;
+        // }
         @media (max-width: 768px) {
           [data-type='devcon-header-logo'] * {
             fill: black;
@@ -242,21 +265,34 @@ export default function Index(props: any) {
 
       {/* <DevconnectHighlight /> */}
 
-      {/* <div className="text-[rgba(255,255,255,0.8)] z-[11] overflow-hidden w-full relative translate-y-[-200px] pt-[200px]">
+      <div className="z-[11] text-[rgba(255,255,255,0.8)] overflow-hidden w-full relative pt-4">
         <div
           ref={gradientRef}
-          className="bg-gradient-to-b from-[#1F296C] to-[#101537] absolute inset-0 w-full h-full -z-10 opacity-0"
+          className="bg-gradient-to-b from-[#1F296C] to-[#0E122F] absolute inset-0 w-full h-full opacity-60"
           data-type="gradient-background"
-          style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 200px)' }}
-        ></div> */}
-      {/* <ImageNew
-          src={CircleBackground}
-          alt="Circle background"
-          className="max-w-[700px] absolute right-[-100px] -top-[350px] rotate-180 -z-10 opacity-10"
-        /> */}
+          style={
+            {
+              '--mask-stop': '300px',
+              maskImage: 'linear-gradient(to bottom, transparent 0%, #1F296C var(--mask-stop))',
+            } as React.CSSProperties
+          }
+        >
+          <div
+            className="absolute w-full top-0 left-0 right-0 h-[500px] translate-y-[-20%] opacity-60"
+            style={{
+              background: 'radial-gradient(49.97% 43.6% at 50.03% 0%, #2C639B 57.53%, transparent 100%)',
+            }}
+          ></div>
+        </div>
 
-      {/* <div className="section">
-          <div className="flex flex-col justify-center gap-2 border-bottom mt-8 pb-8">
+        <ImageNew
+          src={MumbaiBackground}
+          alt="Flower"
+          className="max-w-[600px] absolute right-[-100px] top-[200px] rotate-180 z-[110]"
+        />
+
+        <div className="section my-4 mb-0">
+          <div className="flex flex-col justify-center gap-2 border-bottom !border-[rgba(34,68,144,0.8)] mt-8 pb-8 z-10                                                          ">
             <div className="text-2xl font-semibold">What is Devcon?</div>
             <div>Devcon is the gathering for the global Ethereum community to build and use decentralized systems.</div>
             <div>
@@ -265,9 +301,9 @@ export default function Index(props: any) {
               community organizers, students, and creators from around the world
             </div>
           </div>
-        </div> */}
+        </div>
 
-      {/* <div className="section">
+        <div className="section">
           <div className="relative pt-9">
             <div className="mb-7">
               <RichText content={pages.section5?.title}></RichText>
@@ -289,11 +325,11 @@ export default function Index(props: any) {
                 </div>
               </div>
               <div className="h-[30vh] lg:h-auto relative grow shrink-0 border-solid border border-[#E2E3FF] bg-[#F8F9FE] rounded-xl overflow-hidden shadow-lg">
-                <div className="absolute top-0 w-full h-full opacity-15 flex justify-end">
+                {/* <div className="absolute top-0 w-full h-full opacity-15 flex justify-end">
                   <ImageNew src={ArchiveBackground} alt="Devcon RTD Grants" className="h-[120%] object-cover" />
-                </div>
+                </div> */}
                 <div
-                  className={`absolute top-0 w-full h-full flex flex-col overflow-auto no-scrollbar ${css['archive-list']}`}
+                  className={`absolute top-0 w-full h-full flex flex-col overflow-auto no-scrollbar ${css['archive-list']} text-[rgb(48,53,75)]`}
                 >
                   {(() => {
                     return videos.map(videoEntry => {
@@ -317,24 +353,32 @@ export default function Index(props: any) {
             <RichText content={pages.section5?.body}></RichText>
           </div>
 
-          <div className="relative border-bottom !border-gray-400 pb-8">
+          <div className="relative pb-20 pt-4 z-10 flex flex-col">
             <TrackList title="Devcon Tracks" tracks={formattedTracks} />
 
-            <Link to={pages.section5?.button_info?.link}>
-              <Button fat color="purple-1" fill className="mt-8">
-                {pages.section5?.button_info?.text}
-              </Button>
+            <div className="mt-4">
+              The Devcon Tracks are a reflection of what is relevant in Ethereum "today", by focus area, at the moment
+              of each conference.
+            </div>
+
+            <Link
+              to={pages.section5?.button_info?.link}
+              className="font-semibold flex self-start font-primary mt-8 mb-1 bg-[rgba(77,89,199,1)] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
+            >
+              {/* <Button fat color="purple-1" fill className="mt-8"> */}
+              {pages.section5?.button_info?.text}
+              {/* </Button> */}
             </Link>
 
-            <div className={`${css['scrolling-text-background']}`}>
-              <InfiniteScroller nDuplications={2} speed="70s">
+            <div className={`${css['scrolling-text-background']} text-[rgb(48,53,75)]`}>
+              <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">DEVCON ARCHIVE&nbsp;</p>
               </InfiniteScroller>
             </div>
           </div>
-        </div> */}
+        </div>
 
-      {/* <div className="relative">
+        {/* <div className="relative">
           <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
             <InfiniteScroller nDuplications={2} reverse speed="100s">
               <p className="bold">BLOG POSTS&nbsp;</p>
@@ -343,7 +387,7 @@ export default function Index(props: any) {
           <BlogReel blogs={props.blogs} />
         </div> */}
 
-      {/* <div className="section mt-4">
+        {/* <div className="section mt-4">
           <div className="my-4 h2">Frequently Asked</div>
           <div className="flex flex-col">
             {faq?.questions?.map(({ question, answer }: any) => {
@@ -374,10 +418,10 @@ export default function Index(props: any) {
           </div>
         </div> */}
 
-      {/* <div className="mb-8"></div> */}
+        {/* <div className="mb-8"></div> */}
 
-      {/* <Footer /> */}
-      {/* </div> */}
+        <Footer dark />
+      </div>
     </div>
   )
 }

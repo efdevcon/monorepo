@@ -34,7 +34,8 @@
 
 .scrolling-text-background {
   height: fit-content;
-  color: var(--custom-text-color, #7958a5);
+  color: var(--custom-text-color, white);
+  --custom-fade-color: rgb(6, 6, 77, 0.5);
   font-size: 220px;
   line-height: 1em;
   z-index: -1;

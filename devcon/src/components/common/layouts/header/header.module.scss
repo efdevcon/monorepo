@@ -38,15 +38,6 @@
       --button-border: none;
     }
   }
-
-
-  @media (max-width: $breakpoints-lg) {
-    // @include fill-header;
-  }
-
-  @media (min-width: $breakpoints-lg + 1) {
-    // display: contents;$
-  }
 }
 
 .header-fixed-container {
@@ -59,19 +50,23 @@
   --header-shadow: none;
   --button-border: none;
 
-  :global(.lucide-chevron-down), :global(.lucide-chevron-up) {
-    stroke: white !important;
-
-    * {
-      stroke: white !important;
-    }
-  }
-
   &.scrolled {
     @include fill-header;
 
+    :global(.lucide-chevron-down),
+    :global(.lucide-chevron-up) {
+      color: black;
+    }
+
     :global(#strip) {
       @include fill-strip;
+    }
+  }
+
+  &:not(.scrolled) {
+    :global(.lucide-chevron-down),
+    :global(.lucide-chevron-up) {
+      stroke: white !important;
     }
   }
 }

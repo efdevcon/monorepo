@@ -3,8 +3,8 @@ import IconArrowDown from 'assets/icons/arrow_drop_down.svg'
 import { Link } from 'components/common/link'
 import css from './navigation.module.scss'
 import { Link as LinkType } from 'types/Link'
-import ArrowCollapse from 'assets/icons/arrow_collapse.svg'
-import ArrowDropdown from 'assets/icons/arrow_drop_down.svg'
+// import ArrowCollapse from 'assets/icons/arrow_collapse.svg'
+// import ArrowDropdown from 'assets/icons/arrow_drop_down.svg'
 import Image from 'next/legacy/image'
 import useNavigationData from '../../useNavigationData'
 import IconCalendar from 'assets/icons/calendar.svg'
@@ -55,7 +55,7 @@ const Mobile = (props: any) => {
                   }}
                 >
                   {i.title}
-                  {hasChildren && (open ? <ArrowCollapse /> : <ArrowDropdown />)}
+                  {hasChildren && (open ? <ChevronUp /> : <ChevronDown />)}
                 </div>
               ) : (
                 <div className={`${css['accordion-toggle']} ${css['no-children']}`}>

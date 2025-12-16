@@ -152,8 +152,9 @@ const TopSection = () => {
               <p className="semi-bold">Get in touch</p>
               <p className={css['email-1']}>{EMAIL_DEVCON}</p>
 
-              <div className={css['newsletter']}>
+              <div className={`${css['newsletter']} mt-8`}>
                 <Newsletter id="footer_newsletter_email" />
+                {/* Subscribe for updates */}
               </div>
             </div>
           </div>
@@ -281,13 +282,13 @@ const TopSection = () => {
 //   )
 // }
 
-export const Footer = () => {
+export const Footer = ({ dark }: { dark?: boolean }) => {
   return (
-    <footer className={`footer ${css['container']} ${css['archive']}`}>
+    <footer className={`footer ${css['container']} ${css['archive']} ${dark ? css['dark'] : ''}`}>
       <TopSection />
 
       <div className={css['bottom-section']}>
-        <div className="section bg-white">
+        <div className={`section ${dark ? 'bg-none' : 'bg-white'}`}>
           <div className={css['content']}>
             <div className={css['col-1']}>
               <Link external className={css['small-logo']} to={LINK_ETHEREUM_FOUNDATION}>

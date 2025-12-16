@@ -131,9 +131,33 @@
   border-top: 1px solid $colors-monochrome-5;
   position: relative;
 
+  &.dark {
+    .top-section {
+      &:after {
+        display: none !important;
+        background-image: none;
+      }
+
+      * {
+        fill: rgba(199, 199, 208, 1) !important;
+      }
+    }
+
+    .bottom-section {
+      border-top: 1px solid rgba(34, 68, 144, 0.4);
+
+      :global(.st0) {
+        // Footer logo svg text
+        fill: rgba(199, 199, 208, 1) !important;
+      }
+    }
+
+    border-top: 1px solid rgba(34, 68, 144, 0.5);
+  }
+
   .top-section {
     position: relative;
-    background: white;
+    // background: white;
     z-index: 2;
 
     .col-2 {
@@ -378,7 +402,7 @@
 .small-logo {
   margin-right: 16px;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: 1500px) {
     margin-right: 0px;
   }
 

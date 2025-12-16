@@ -93,7 +93,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
     }
 
     return (
-      <div className={cn(headerContainerClass, 'md:mt-1')} id="header-strip">
+      <div className={cn(headerContainerClass, '')} id="header-strip">
         {body}
       </div>
     )
