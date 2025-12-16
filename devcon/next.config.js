@@ -257,6 +257,63 @@ const nextConfig = {
   env: {
     RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED: 'false',
   },
+  turbopack: {
+    rules: {
+      '**/images/**/*.svg': {
+        loaders: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                        cleanupIds: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        as: '*.js',
+      },
+      '**/icons/**/*.svg': {
+        loaders: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+              svgProps: {
+                className: 'icon',
+              },
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        as: '*.js',
+      },
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
 }
 
 module.exports = nextConfig
