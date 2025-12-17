@@ -18,8 +18,22 @@
 import { createStore, StateCreator } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export type TicketType = 'attendee' | 'addon' | 'swag' | 'event';
+
+export interface TicketProof {
+  /** Hash of the ticket secret - uniquely identifies the ticket without revealing the code */
+  identifier: string;
+  /** Type of ticket (attendee, addon, swag, event) - cryptographically bound to the proof */
+  ticketType: TicketType;
+  /** Signature of (identifier + ticketType) - proves authenticity and type */
+  proof: string;
+  /** Public address of the signer for verification */
+  signerAddress: string;
+}
+
 export interface Ticket {
   secret: string;
+  ticketProof?: TicketProof | null;
   attendeeName: string | null;
   attendeeEmail: string;
   price: string;

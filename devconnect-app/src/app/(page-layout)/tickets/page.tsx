@@ -5,10 +5,10 @@ import { fetchAuth } from '@/services/apiClient';
 import { toast } from 'sonner';
 import TicketImage from '@/images/devconnect-arg-ticket.png';
 import Image from 'next/image';
-import { ChevronDown, LockKeyhole, Mail } from 'lucide-react';
+import { ChevronDown, LockKeyhole, Mail, ShieldCheck } from 'lucide-react';
 import { useTickets } from '@/app/store.hooks';
 import { useGlobalStore } from '@/app/store.provider';
-import type { Ticket, Order } from '@/app/store';
+import type { Ticket, Order, TicketProof } from '@/app/store';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import moment, { Moment } from 'moment';
 import cn from 'classnames';
@@ -31,11 +31,71 @@ interface Addon {
   id: string;
   itemName: string;
   secret: string;
+  ticketProof?: TicketProof | null;
 }
 
 interface QRCodes {
   [secret: string]: string;
 }
+
+/**
+ * Generates a verification URL for a ticket proof
+ */
+function generateProofUrl(
+  ticketProof: TicketProof,
+  ticketName?: string,
+  eventName?: string
+): string {
+  const params = new URLSearchParams({
+    id: ticketProof.identifier,
+    type: ticketProof.ticketType,
+    proof: ticketProof.proof,
+    signer: ticketProof.signerAddress,
+  });
+  
+  if (ticketName) {
+    params.set('name', ticketName);
+  }
+  if (eventName) {
+    params.set('event', eventName);
+  }
+  
+  return `/verify?${params.toString()}`;
+}
+
+/**
+ * Button component to view ticket proof
+ */
+const ViewProofButton = ({ 
+  ticketProof, 
+  ticketName, 
+  eventName,
+  className = '',
+}: { 
+  ticketProof: TicketProof | null | undefined;
+  ticketName?: string;
+  eventName?: string;
+  className?: string;
+}) => {
+  if (!ticketProof) return null;
+  
+  const proofUrl = generateProofUrl(ticketProof, ticketName, eventName);
+  
+  return (
+    <a
+      href={proofUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        'inline-flex items-center gap-1.5 text-xs font-medium text-purple-600 hover:text-purple-700 transition-colors',
+        className
+      )}
+    >
+      <ShieldCheck className="w-3.5 h-3.5" />
+      <span>View Proof</span>
+    </a>
+  );
+};
 
 const TicketWrapper = () => {
   return (
@@ -63,7 +123,7 @@ const SwagItems = ({
   ticket: Ticket;
   qrCodes: QRCodes;
 }) => {
-  const addons = ticket.addons;
+  const addons = ticket.addons as Addon[];
   const [selectedAddon, setSelectedAddon] = useState<Addon | null>(null);
 
   // Guard against undefined addons
@@ -73,8 +133,8 @@ const SwagItems = ({
     <div className="mt-1 grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,150px)] gap-2 justify-center sm:justify-start">
       {addons.map((addon) => (
         <div className="shrink-0" key={addon.id}>
-          <div className="flex flex-col gap-4 p-3 items-center bg-white rounded-sm border border-solid border-gray-200">
-            <div className="text-sm font-medium">{addon.itemName}</div>
+          <div className="flex flex-col gap-3 p-3 items-center bg-white rounded-sm border border-solid border-gray-200">
+            <div className="text-sm font-medium text-center">{addon.itemName}</div>
             <div>
               <img
                 src={qrCodes[addon.secret]}
@@ -83,6 +143,13 @@ const SwagItems = ({
                 onClick={() => setSelectedAddon(addon)}
               />
             </div>
+            {addon.ticketProof && (
+              <ViewProofButton 
+                ticketProof={addon.ticketProof} 
+                ticketName={addon.itemName}
+                eventName="Devconnect"
+              />
+            )}
           </div>
         </div>
       ))}
@@ -347,8 +414,17 @@ const EventTicketCard = ({
           <div className="text-sm mb-2 text-gray-900 break-words leading-tight mt-1">
             {ticket.itemName}
           </div>
-          <div className="text-xs uppercase tracking-wide">
-            {order.event?.organizer}
+          <div className="flex items-center gap-2">
+            <div className="text-xs uppercase tracking-wide">
+              {order.event?.organizer}
+            </div>
+            {ticket.ticketProof && (
+              <ViewProofButton 
+                ticketProof={ticket.ticketProof} 
+                ticketName={ticket.itemName}
+                eventName={order.event?.name}
+              />
+            )}
           </div>
         </div>
         <div
@@ -433,7 +509,7 @@ const QRCodeModal = ({
   );
 };
 
-const Ticket = ({ ticket, qrCodes }: { ticket: Ticket; qrCodes: QRCodes }) => {
+const Ticket = ({ ticket, qrCodes, eventName }: { ticket: Ticket; qrCodes: QRCodes; eventName?: string }) => {
   const t = useTranslations('tickets');
   const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
 
@@ -457,6 +533,17 @@ const Ticket = ({ ticket, qrCodes }: { ticket: Ticket; qrCodes: QRCodes }) => {
           className="absolute bottom-[15%] right-[8.5%] h-[22%] aspect-square p-1 border border-solid border-gray-300 rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => setIsQRCodeModalOpen(true)}
         />
+        
+        {/* Proof verification link */}
+        {ticket.ticketProof && (
+          <div className="absolute bottom-[5%] left-[9%]">
+            <ViewProofButton 
+              ticketProof={ticket.ticketProof} 
+              ticketName={ticket.itemName}
+              eventName={eventName || 'Devconnect'}
+            />
+          </div>
+        )}
       </div>
 
       {qrCodes[ticket.secret] && (
@@ -715,6 +802,7 @@ const TicketTab = RequiresAuthHOC(() => {
                       <Ticket
                         ticket={ticket}
                         qrCodes={qrCodes}
+                        eventName={order.event?.name || 'Devconnect'}
                         key={ticket.secret}
                       />
                     ))}

@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 interface PretixItem {
   id: number;
   name: string | { en: string; [key: string]: string };
@@ -11,6 +13,133 @@ interface PretixItem {
     [key: string]: any;
   }>;
   [key: string]: any;
+}
+
+/**
+ * Ticket types for categorizing different kinds of tickets
+ */
+export type TicketType = 'attendee' | 'addon' | 'swag' | 'event';
+
+/**
+ * Ticket proof structure for privacy-preserving ticket verification.
+ * 
+ * The identifier is a hash of the original ticket secret - it uniquely identifies
+ * the ticket without revealing the original code.
+ * 
+ * The proof is a signature of (identifier + ticketType) using the relayer's private key.
+ * Anyone with the public key can verify the proof is valid for the identifier AND type,
+ * confirming the ticket was validated by our system.
+ */
+export interface TicketProof {
+  /** Hash of the ticket secret - uniquely identifies the ticket without revealing the code */
+  identifier: string;
+  /** Type of ticket (attendee, addon, swag, event) - cryptographically bound to the proof */
+  ticketType: TicketType;
+  /** Signature of (identifier + ticketType) - proves authenticity and type */
+  proof: string;
+  /** Public address of the signer for verification */
+  signerAddress: string;
+}
+
+/**
+ * Creates the message to be signed for a ticket proof.
+ * Includes both the identifier and ticket type to cryptographically bind them.
+ */
+function createProofMessage(identifier: string, ticketType: TicketType): Uint8Array {
+  // Concatenate identifier hash with ticket type for signing
+  // This ensures the type cannot be changed without invalidating the signature
+  const messageHash = ethers.keccak256(
+    ethers.solidityPacked(
+      ['bytes32', 'string'],
+      [identifier, ticketType]
+    )
+  );
+  return ethers.getBytes(messageHash);
+}
+
+/**
+ * Generates a cryptographic proof for a ticket secret.
+ * 
+ * Flow:
+ * 1. Hash the ticket secret to create a unique identifier (commitment)
+ * 2. Create a message combining identifier + ticket type
+ * 3. Sign the combined message with the relayer's private key
+ * 
+ * Verification:
+ * - Anyone can verify: ecrecover(hash(identifier + type), proof) === signerAddress
+ * - The original ticket secret cannot be derived from the identifier
+ * - The ticket type is cryptographically bound and cannot be tampered with
+ * - Each ticket has a unique, verifiable proof of authenticity
+ */
+export async function generateTicketProof(
+  secret: string,
+  ticketType: TicketType = 'attendee'
+): Promise<TicketProof> {
+  const privateKey = process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY;
+
+  if (!privateKey) {
+    throw new Error('ETH_RELAYER_PAYMENT_PRIVATE_KEY is not configured');
+  }
+
+  const wallet = new ethers.Wallet(privateKey);
+
+  // Create identifier: hash of the secret
+  // This uniquely identifies the ticket without revealing the original code
+  const identifier = ethers.keccak256(ethers.toUtf8Bytes(secret));
+
+  // Create message that includes both identifier and type
+  const message = createProofMessage(identifier, ticketType);
+
+  // Sign the combined message to create the proof
+  // This cryptographically binds the identifier to the ticket type
+  const proof = await wallet.signMessage(message);
+
+  return {
+    identifier,
+    ticketType,
+    proof,
+    signerAddress: wallet.address,
+  };
+}
+
+/**
+ * Verifies a ticket proof is valid.
+ * 
+ * @param identifier - The ticket identifier (hash of original secret)
+ * @param ticketType - The ticket type to verify
+ * @param proof - The signature to verify
+ * @param expectedSigner - The expected signer address (optional, defaults to relayer)
+ * @returns true if the proof is valid
+ */
+export function verifyTicketProof(
+  identifier: string,
+  ticketType: TicketType,
+  proof: string,
+  expectedSigner?: string
+): boolean {
+  try {
+    // Recreate the message that was signed
+    const message = createProofMessage(identifier, ticketType);
+
+    // Recover the signer from the proof
+    const recoveredAddress = ethers.verifyMessage(message, proof);
+
+    // If expected signer provided, check it matches
+    if (expectedSigner) {
+      return recoveredAddress.toLowerCase() === expectedSigner.toLowerCase();
+    }
+
+    // Otherwise check against configured relayer
+    const privateKey = process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY;
+    if (!privateKey) {
+      throw new Error('ETH_RELAYER_PAYMENT_PRIVATE_KEY is not configured');
+    }
+
+    const wallet = new ethers.Wallet(privateKey);
+    return recoveredAddress.toLowerCase() === wallet.address.toLowerCase();
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -104,8 +233,8 @@ export async function getPaidTicketsByEmail(
     store.organizerSlug === 'devconnect' && store.eventSlug === 'cowork';
 
   // console.log('orders', orders);
-  return orders
-    .map((order: any) => {
+  const results = await Promise.all(orders
+    .map(async (order: any) => {
       const mainPositions = isMainTicket
         ? order.positions.filter(
             (position: any) =>
@@ -117,14 +246,14 @@ export async function getPaidTicketsByEmail(
 
       // console.log('mainPositions', order.positions);
 
-      const tickets = mainPositions.map((position: any) => {
+      const tickets = await Promise.all(mainPositions.map(async (position: any) => {
         // Resolve main ticket item details
         const mainItemDetails = itemsMap.get(position.item);
 
         // Get addons for this position
-        const addons = order.positions
+        const addons = await Promise.all(order.positions
           .filter((p: any) => p.addon_to === position.id)
-          .map((addon: any) => {
+          .map(async (addon: any) => {
             const itemDetails = itemsMap.get(addon.item);
             const name = itemDetails?.name;
             const description = itemDetails?.description;
@@ -141,9 +270,20 @@ export async function getPaidTicketsByEmail(
               itemName = `${itemName} - ${variationValue}`;
             }
 
+            // Generate proof for addon ticket
+            // Determine if it's swag (t-shirt, etc.) or a regular addon
+            const addonType: TicketType = variationValue ? 'swag' : 'addon';
+            let ticketProof: TicketProof | null = null;
+            try {
+              ticketProof = await generateTicketProof(addon.secret, addonType);
+            } catch (e) {
+              console.warn('Failed to generate proof for addon:', e);
+            }
+
             return {
               id: addon.item,
               secret: addon.secret,
+              ticketProof,
               itemName: itemName,
               description:
                 typeof description === 'object' ? description.en : description,
@@ -152,15 +292,26 @@ export async function getPaidTicketsByEmail(
               category: itemDetails?.category,
               active: itemDetails?.active,
             };
-          });
+          }));
 
         const mainName = mainItemDetails?.name;
         const mainDescription = mainItemDetails?.description;
         const checkins = Array.isArray(position.checkins) ? position.checkins : [];
         const ticketHasCheckedIn = checkins.length > 0;
 
+        // Generate proof for main ticket
+        // Use 'attendee' for main cowork tickets, 'event' for side event tickets
+        const mainTicketType: TicketType = isMainTicket ? 'attendee' : 'event';
+        let ticketProof: TicketProof | null = null;
+        try {
+          ticketProof = await generateTicketProof(position.secret, mainTicketType);
+        } catch (e) {
+          console.warn('Failed to generate proof for ticket:', e);
+        }
+
         return {
           secret: position.secret,
+          ticketProof,
           attendeeName: position.attendee_name,
           attendeeEmail: position.attendee_email || order.email,
           price: position.price,
@@ -177,7 +328,7 @@ export async function getPaidTicketsByEmail(
           addons: addons,
           hasCheckedIn: ticketHasCheckedIn,
         };
-      });
+      }));
 
       return {
         orderCode: order.code,
@@ -188,6 +339,7 @@ export async function getPaidTicketsByEmail(
         eventId: store.eventId || null,
         tickets,
       };
-    })
-    .filter((ticket: any) => ticket.tickets.length > 0);
+    }));
+
+  return results.filter((ticket: any) => ticket.tickets.length > 0);
 }
