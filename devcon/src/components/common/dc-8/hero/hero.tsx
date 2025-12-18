@@ -11,6 +11,7 @@ import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import Link from 'next/link'
 import { useSpring, useMotionValue, useMotionTemplate, motion } from 'framer-motion'
+import { MapPinIcon } from 'lucide-react'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -62,7 +63,7 @@ const NewsletterForm = () => {
       <Link
         href="https://paragraph.com/@efevents/subscribe"
         target="_blank"
-        className="font-semibold font-primary mb-1 bg-[#6871CA] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
+        className="font-semibold font-primary mb-1 bg-[rgba(77,89,199,1)] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
         style={{
           textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)',
           // boxShadow: '0 2px 8px 0 rgba(58, 54, 94, 0.15), 0 1px 2px 0 rgba(255, 255, 255, 0.30) inset',
@@ -102,8 +103,16 @@ const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => 
         >
           MUMBAI, INDIA
           <br />
-          <span className="font-normal">Q4 2026</span>
+          <span className="font-normal">3–6 NOV 2026</span>
         </div>
+
+        <div
+          className="text-xl leading-tight text-center mt-5 translate-y-[-16px] md:translate-y-[-26px] flex items-center gap-2"
+          style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
+        >
+          <MapPinIcon className="w-6 h-6" /> Jio World Centre
+        </div>
+
         <div
           className="text-xl leading-tight text-center mt-5 translate-y-[-16px] md:translate-y-[-26px]"
           style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
@@ -112,6 +121,27 @@ const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => 
         </div>
 
         <NewsletterForm />
+
+        <div
+          className="absolute center w-full bottom-[-16px] justify-center hidden xl:flex z-[50]"
+          data-type="scroll-indicator"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
+            <g className="nc-icon-wrapper" fill="#ffffff">
+              <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
+                <path
+                  d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
+                  fill="#ffffff"
+                ></path>
+                <path
+                  d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
+                  fill="#ffffff"
+                  data-color="color-2"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
   )
@@ -159,8 +189,8 @@ export const Hero = () => {
 
   React.useEffect(() => {
     // Pan calculation - simple multiplier of delta with negative to pan opposite direction
-    const panX = -delta.x * 0.02
-    const panY = -delta.y * 0.02
+    const panX = Math.max(-delta.x * 0.02, -8)
+    const panY = Math.max(-delta.y * 0.02, -8)
 
     x.set(panX)
     y.set(panY)
@@ -196,7 +226,7 @@ export const Hero = () => {
 
   return (
     <div className="relative h-screen w-screen">
-      <div ref={containerRef} className="fixed h-screen w-screen z-[10]">
+      <div ref={containerRef} className="h-screen w-screen z-[10]">
         <CenteredOverlayContent ref={overlayRef} />
         <motion.div
           className="w-full h-full absolute top-0 left-0 z-[5]"
@@ -215,6 +245,10 @@ export const Hero = () => {
             className="object-cover object-[64.5%,50%] md:object-[50%,80%]"
           />
         </motion.div>
+        <div
+          className="absolute inset-0 z-[6] pointer-events-none"
+          style={{ boxShadow: 'inset 0 0 150px 50px rgba(0, 0, 0, 0.5)' }}
+        />
       </div>
     </div>
   )

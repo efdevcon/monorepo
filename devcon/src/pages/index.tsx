@@ -11,12 +11,13 @@ import css from './index.module.scss'
 import TrackList from 'components/domain/index/track-list'
 import themes from './themes.module.scss'
 import ImageNew from 'next/image'
+import Image from 'next/image'
 // import CircleBackground from 'assets/images/background-circles.png'
 import MumbaiBackground from 'assets/images/dc-8/bg-graphic.png'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesQuery, PagesIndex, PagesFaq_General, PagesProgramming } from '../../tina/__generated__/types'
-import InfiniteScroller from 'lib/components/infinite-scroll'
+import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
 import ArchiveBackground from 'assets/images/archive/archive-logo.png'
 import { motion, useInView } from 'framer-motion'
@@ -36,9 +37,17 @@ import Coordination from 'assets/images/programming/Coordination.png'
 import DeveloperExperience from 'assets/images/programming/DeveloperExperience.png'
 import Security from 'assets/images/programming/Security.png'
 import Layer2 from 'assets/images/programming/Layer2.png'
+import DevconSEA01 from 'assets/images/dc-8/gallery/Devcon-SEA-01.png'
+import DevconSEA02 from 'assets/images/dc-8/gallery/Devcon-SEA-02.png'
+import DevconSEA03 from 'assets/images/dc-8/gallery/Devcon-SEA-03.png'
+import DevconSEA05 from 'assets/images/dc-8/gallery/Devcon-SEA-05.png'
+import DevconSEA06 from 'assets/images/dc-8/gallery/Devcon-SEA-06.png'
+import DevconSEA07 from 'assets/images/dc-8/gallery/Devcon-SEA-07.png'
+import DevconSEA08 from 'assets/images/dc-8/gallery/Devcon-SEA-08.png'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { ArrowRight } from 'lucide-react'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -110,6 +119,73 @@ const videos = [
   },
 ]
 
+const recapPhotos = [DevconSEA01, DevconSEA02, DevconSEA03, DevconSEA05, DevconSEA06, DevconSEA07, DevconSEA08]
+
+const RecapGallery = () => {
+  return (
+    <div className="section z-[10000] relative">
+      <div className="relative py-8 pt-10 pb-8 border-bottom !border-[rgba(34,68,144,0.8)] flex flex-col gap-2">
+        <div className="text-2xl font-semibold">
+          Devcon 8 will take place in Mumbai, India from 3 - 6 November 2026.
+        </div>
+        <div>
+          We're bringing Devcon to India to highlight its fast-growing builder ecosystem and rising crypto adoption,
+          with strong regional communities like ETHMumbai, Devfolio, and Polygon, and the unique ways crypto is used
+          across the region for savings, payments, and accessing financial stability.
+        </div>
+        <div className="mb-4">
+          Speaker applications, community involvement, and ticket information will be announced over the next months.
+          Sign up for the newsletter to be the first to hear when the Road to Devcon begins.
+        </div>
+
+        <div
+          className="mb-4"
+          style={{
+            width: '100%',
+            overflow: 'hidden',
+            maskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)',
+          }}
+        >
+          <InfiniteScroll speed="190s" nDuplications={2}>
+            <div className="flex gap-4 pr-4">
+              {recapPhotos.map((photo, index) => (
+                <div
+                  key={index}
+                  className="w-[300px] md:w-[400px] aspect-[4/3] relative overflow-hidden rounded-lg shrink-0"
+                >
+                  <Image src={photo} alt={`Devconnect Argentina Photo ${index + 1}`} fill className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </InfiniteScroll>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const PastEvents = () => {
+  return (
+    <div className="section z-[10000] relative">
+      <div className="relative py-8 pt-10 pb-8 border-bottom !border-[rgba(34,68,144,0.8)] flex flex-col gap-4">
+        <div className="text-2xl font-semibold">Past events</div>
+        <div>Devcon and Devconnect are the major annual gatherings organized by the Ethereum Foundation.</div>
+        <div>
+          Devcon has taken place across multiple regions and has grown from a meetup for early Ethereum developers into
+          a large global community gathering.
+        </div>
+        <div className="w-full h-[150px] bg-red-500">Hello World</div>
+        <div>
+          Devconnect, launched in 2022, has grown into the second bi-annual anchor event. Devconnect Argentina in
+          November 2025 brought together 14,000 people in Buenos Aires, with around 60% attending for the first time and
+          ~50% coming from Argentina.
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Index(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesIndex
@@ -126,38 +202,36 @@ export default function Index(props: any) {
 
   useGSAP(() => {
     if (gradientRef.current) {
-      gsap.to(gradientRef.current, {
-        opacity: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: `+=${window.innerHeight * 0.3}`,
-          scrub: true,
-        },
-      })
-
-      gsap.to(gradientRef.current.children[0], {
-        opacity: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: `+=${window.innerHeight * 0.3}`,
-          scrub: true,
-        },
-      })
-
-      gsap.to(gradientRef.current, {
-        '--mask-stop': '0px',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: document.body,
-          start: 'top top',
-          end: `+=${window.innerHeight * 1}`,
-          scrub: true,
-        },
-      })
+      // gsap.to(gradientRef.current, {
+      //   opacity: 1,
+      //   ease: 'none',
+      //   scrollTrigger: {
+      //     trigger: document.body,
+      //     start: 'top top',
+      //     end: `+=${window.innerHeight * 0.3}`,
+      //     scrub: true,
+      //   },
+      // })
+      // gsap.to(gradientRef.current.children[0], {
+      //   opacity: 1,
+      //   ease: 'none',
+      //   scrollTrigger: {
+      //     trigger: document.body,
+      //     start: 'top top',
+      //     end: `+=${window.innerHeight * 0.3}`,
+      //     scrub: true,
+      //   },
+      // })
+      // gsap.to(gradientRef.current, {
+      //   '--mask-stop': '0px',
+      //   ease: 'none',
+      //   scrollTrigger: {
+      //     trigger: document.body,
+      //     start: 'top top',
+      //     end: `+=${window.innerHeight * 1}`,
+      //     scrub: true,
+      //   },
+      // })
     }
   }, [])
 
@@ -265,20 +339,20 @@ export default function Index(props: any) {
 
       {/* <DevconnectHighlight /> */}
 
-      <div className="z-[11] text-[rgba(255,255,255,0.8)] overflow-hidden w-full relative pt-4">
+      <div className="z-[11] text-[rgba(255,255,255,0.8)] w-full relative">
         <div
           ref={gradientRef}
-          className="bg-gradient-to-b from-[#1F296C] to-[#0E122F] absolute inset-0 w-full h-full opacity-60"
+          className="bg-gradient-to-b from-[#1F296C] to-[#0E122F] absolute inset-0 w-full h-[calc(100%+50px)] translate-y-[-50px] overflow-hidden"
           data-type="gradient-background"
           style={
             {
-              '--mask-stop': '300px',
+              '--mask-stop': '50px',
               maskImage: 'linear-gradient(to bottom, transparent 0%, #1F296C var(--mask-stop))',
             } as React.CSSProperties
           }
         >
           <div
-            className="absolute w-full top-0 left-0 right-0 h-[500px] translate-y-[-20%] opacity-60"
+            className="absolute w-full top-0 left-0 right-0 h-[500px] translate-y-[-26%]"
             style={{
               background: 'radial-gradient(49.97% 43.6% at 50.03% 0%, #2C639B 57.53%, transparent 100%)',
             }}
@@ -291,17 +365,23 @@ export default function Index(props: any) {
           className="max-w-[600px] absolute right-[-100px] top-[200px] rotate-180 z-[110]"
         />
 
-        <div className="section my-4 mb-0">
-          <div className="flex flex-col justify-center gap-2 border-bottom !border-[rgba(34,68,144,0.8)] mt-8 pb-8 z-10                                                          ">
+        <div className="section my-4 mt-6 mb-0">
+          <div className="flex flex-col justify-center gap-2 border-bottom !border-[rgba(34,68,144,0.8)] pb-8 z-10">
             <div className="text-2xl font-semibold">What is Devcon?</div>
-            <div>Devcon is the gathering for the global Ethereum community to build and use decentralized systems.</div>
-            <div>
+            <div className="text-xl font-semibold">
+              Devcon is the gathering for the global Ethereum community to build and use decentralized systems.
+            </div>
+            <div className="">
               It's a conference for builders of all kinds, with content ranging from the deeply technical to the
               profoundly human. Each edition moves to a new region and brings together developers, researchers,
               community organizers, students, and creators from around the world
             </div>
           </div>
         </div>
+
+        <RecapGallery />
+
+        <PastEvents />
 
         <div className="section">
           <div className="relative pt-9">
@@ -371,9 +451,9 @@ export default function Index(props: any) {
             </Link>
 
             <div className={`${css['scrolling-text-background']} text-[rgb(48,53,75)]`}>
-              <InfiniteScroller nDuplications={2} speed="120s">
+              <InfiniteScroll nDuplications={2} speed="120s">
                 <p className="bold">DEVCON ARCHIVE&nbsp;</p>
-              </InfiniteScroller>
+              </InfiniteScroll>
             </div>
           </div>
         </div>

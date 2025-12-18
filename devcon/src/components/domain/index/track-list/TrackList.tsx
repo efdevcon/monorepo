@@ -13,7 +13,7 @@ interface Props {
 }
 
 const settings = {
-  infinite: true,
+  infinite: false,
   touchThreshold: 100,
   speed: 500,
   variableWidth: true,
