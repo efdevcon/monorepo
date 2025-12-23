@@ -48,6 +48,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
+import { TimelineSlider } from 'components/common/timeline-slider'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -125,7 +126,7 @@ const RecapGallery = () => {
   return (
     <div className="section z-[10000] relative">
       <div className="relative py-8 pt-10 pb-8 border-bottom !border-[rgba(34,68,144,0.8)] flex flex-col gap-2">
-        <div className="text-2xl font-semibold">
+        <div className="text-2xl font-semibold text-white">
           Devcon 8 will take place in Mumbai, India from 3 - 6 November 2026.
         </div>
         <div>
@@ -134,8 +135,11 @@ const RecapGallery = () => {
           across the region for savings, payments, and accessing financial stability.
         </div>
         <div className="mb-4">
-          Speaker applications, community involvement, and ticket information will be announced over the next months.
-          Sign up for the newsletter to be the first to hear when the Road to Devcon begins.
+          Speaker applications, community involvement, and ticket information will be announced over the next months.{' '}
+          <Link to="https://paragraph.com/@efevents/subscribe" target="_blank">
+            <span className="text-white font-semibold text-underline">Sign up for the newsletter</span>
+          </Link>{' '}
+          to be the first to hear when the Road to Devcon begins.
         </div>
 
         <div
@@ -168,18 +172,24 @@ const RecapGallery = () => {
 const PastEvents = () => {
   return (
     <div className="section z-[10000] relative">
-      <div className="relative py-8 pt-10 pb-8 border-bottom !border-[rgba(34,68,144,0.8)] flex flex-col gap-4">
-        <div className="text-2xl font-semibold">Past events</div>
-        <div>Devcon and Devconnect are the major annual gatherings organized by the Ethereum Foundation.</div>
-        <div>
+      <div className="relative py-8 pt-10 pb-8 border-bottom !border-[rgba(34,68,144,0.8)] flex flex-col gap-2">
+        <div className="text-2xl font-semibold text-white">Past Events</div>
+        <div className="text-xl font-semibold text-white">
+          Devcon and Devconnect are the major annual gatherings organized by the Ethereum Foundation.
+        </div>
+        <div className="mb-4">
           Devcon has taken place across multiple regions and has grown from a meetup for early Ethereum developers into
           a large global community gathering.
         </div>
-        <div className="w-full h-[150px] bg-red-500">Hello World</div>
-        <div>
-          Devconnect, launched in 2022, has grown into the second bi-annual anchor event. Devconnect Argentina in
-          November 2025 brought together 14,000 people in Buenos Aires, with around 60% attending for the first time and
-          ~50% coming from Argentina.
+        <TimelineSlider />
+        <div className="mt-4 text-sm">
+          <Link to="https://devconnect.org" target="_blank">
+            <span className="text-white font-semibold text-underline">Devconnect</span>
+          </Link>
+          , launched in 2022, has grown into the second bi-annual anchor event.{' '}
+          <span className="text-white font-semibold">Devconnect Argentina</span> in November 2025 brought together{' '}
+          <span className="text-white font-semibold">14,000 people in Buenos Aires</span>, with around 60% attending for
+          the first time and ~50% coming from Argentina.
         </div>
       </div>
     </div>
@@ -367,8 +377,8 @@ export default function Index(props: any) {
 
         <div className="section my-4 mt-6 mb-0">
           <div className="flex flex-col justify-center gap-2 border-bottom !border-[rgba(34,68,144,0.8)] pb-8 z-10">
-            <div className="text-2xl font-semibold">What is Devcon?</div>
-            <div className="text-xl font-semibold">
+            <div className="text-2xl font-semibold text-white">What is Devcon?</div>
+            <div className="text-xl font-semibold text-white">
               Devcon is the gathering for the global Ethereum community to build and use decentralized systems.
             </div>
             <div className="">
