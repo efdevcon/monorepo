@@ -455,7 +455,7 @@ const Navigation = () => {
           </PopoverContent>
         </Popover> */}
 
-        <Popover open={openPopover === '/more'} onOpenChange={open => setOpenPopover(open ? '/more' : null)}>
+        <Popover open={openPopover === '/more'} onOpenChange={(open: boolean) => setOpenPopover(open ? '/more' : null)}>
           <PopoverTrigger className="plain outline-none" onClick={() => setDevaBotVisible(true)}>
             <div
               onMouseEnter={() => setOpenPopover('/more')}
