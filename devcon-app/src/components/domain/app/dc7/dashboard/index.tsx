@@ -9,8 +9,7 @@ import PhonePreview from 'assets/images/dc-7/phone-preview.png'
 import PassportLogoBlack from 'assets/images/dc-7/passport-logo-black.png'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { PersonalizedSuggestions } from 'components/domain/app/dc7/sessions/recommendations'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { devaBotVisibleAtom, notificationsAtom, sessionsAtom, speakersAtom, useSeenNotifications } from 'pages/_app'
+import { useAppStore, useSeenNotifications } from 'store/app-store'
 import FoodIcon from 'assets/icons/food-beverage.svg'
 import CityGuideIcon from 'assets/icons/city-guide.svg'
 import VideoIcon from 'assets/icons/video-play.svg'
@@ -155,7 +154,7 @@ const LoggedIn = () => {
 }
 
 const Notifications = () => {
-  const notifications = useRecoilValue(notificationsAtom)
+  const notifications = useAppStore((state) => state.notifications)
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
 
   return (
@@ -218,10 +217,10 @@ const DaySchedule = ({
 export const Dashboard = () => {
   const { now } = useAppContext()
   const accountContext = useAccountContext()
-  const sessions = useRecoilValue(sessionsAtom)
+  const sessions = useAppStore((state) => state.sessions)
   const speakers = useSpeakerData()
   const draggableLink = useDraggableLink()
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const { account, loading } = accountContext
 
   return (

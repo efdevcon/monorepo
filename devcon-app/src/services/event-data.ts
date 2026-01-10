@@ -5,8 +5,7 @@ import { Speaker } from 'types/Speaker'
 import { Room } from 'types/Room'
 import { defaultSlugify } from 'utils/formatting'
 import { APP_CONFIG } from 'utils/config'
-import { useRecoilState } from 'recoil'
-import { sessionsAtom, speakersAtom } from 'pages/_app'
+import { useAppStore } from 'store/app-store'
 
 const cache = new Map()
 const baseUrl = APP_CONFIG.API_BASE_URL
@@ -18,28 +17,29 @@ const organizationQuestionId = 23 // not used
 const roleQuestionId = 24 // not used
 
 export const useSessionData = (): SessionType[] | null => {
-  // const [sessions, setSessions] = useState<SessionType[] | null>(null)
-  const [sessions, setSessions] = useRecoilState(sessionsAtom)
+  const sessions = useAppStore(state => state.sessions)
+  const setSessions = useAppStore(state => state.setSessions)
   const version = useEventVersion()
 
   useEffect(() => {
     if (version) {
       fetchSessions(version).then(setSessions)
     }
-  }, [version])
+  }, [version, setSessions])
 
   return sessions
 }
 
 export const useSpeakerData = (): Speaker[] | null => {
-  const [speakers, setSpeakers] = useRecoilState(speakersAtom)
+  const speakers = useAppStore(state => state.speakers)
+  const setSpeakers = useAppStore(state => state.setSpeakers)
   const version = useEventVersion()
 
   useEffect(() => {
     if (version) {
       fetchSpeakers(version).then(setSpeakers)
     }
-  }, [version])
+  }, [version, setSpeakers])
 
   return speakers
 }
@@ -112,12 +112,13 @@ export const useSpeakersWithSessions = () => {
       const speakersWithSessions = speakers.map(speaker => {
         return {
           ...speaker,
-          sessions: sessionsBySpeakerId[speaker.id] ? sessionsBySpeakerId[speaker.id]
-            .map((session: SessionType) => {
-              if (!session.slot_start || !session.slot_end) return null
-                return session
-              })
-              .filter(Boolean)
+          sessions: sessionsBySpeakerId[speaker.id]
+            ? sessionsBySpeakerId[speaker.id]
+                .map((session: SessionType) => {
+                  if (!session.slot_start || !session.slot_end) return null
+                  return session
+                })
+                .filter(Boolean)
             : [],
         }
       })
@@ -165,8 +166,6 @@ export const fetchSessions = async (version?: string): Promise<SessionType[]> =>
 
       // const startTS = moment.utc(session.slot_start).add(7, 'hours')
       // const endTS = moment.utc(session.slot_end).add(7, 'hours')
-
-
 
       return {
         ...modifySessionEndTime(session),
@@ -230,7 +229,7 @@ export const fetchSessionsBySpeaker = async (id: string): Promise<Array<SessionT
 }
 
 export const fetchSessionsByRoom = async (id: string): Promise<Array<SessionType>> => {
-  const sessions =  await get(`/sessions?room=${id}&event=${eventName}&size=1000&version=${Math.random()}`)
+  const sessions = await get(`/sessions?room=${id}&event=${eventName}&size=1000&version=${Math.random()}`)
 
   return sessions
     .map((session: SessionType) => {

@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Button } from 'lib/components/button'
-import { useAppKit } from '@reown/appkit/react'
 import { useAccount, useSignMessage } from 'wagmi'
 import { useAccountContext } from 'context/account-context'
 import { createSiweMessage } from 'viem/siwe'
 import { useRouter } from 'next/router'
+import { getAppKitModal } from 'context/web3'
 
 interface Props {
   onError?: (error: string) => void
@@ -14,8 +14,15 @@ interface Props {
 
 export function WalletLoginButton({ onError }: Props) {
   const { address } = useAccount()
-  const { open } = useAppKit()
   const { signMessageAsync } = useSignMessage()
+  
+  // Use the global modal instance instead of useAppKit hook
+  const openAppKit = useCallback(async () => {
+    const modal = getAppKitModal()
+    if (modal) {
+      await modal.open()
+    }
+  }, [])
   const [state, setState] = useState('')
   const accountContext = useAccountContext()
   const router = useRouter()
@@ -91,7 +98,7 @@ export function WalletLoginButton({ onError }: Props) {
 
   const connectWeb3AndLogin = async () => {
     if (!address) {
-      await open()
+      await openAppKit()
     }
     setLoginWeb3(Date.now())
   }

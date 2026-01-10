@@ -11,11 +11,11 @@ interface SpinnerProps {
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({ className }) => {
-  const ring1Ref = useRef<THREE.Mesh>(null)
-  const ring2Ref = useRef<THREE.Mesh>(null)
-  const cone1Ref = useRef<THREE.Mesh>(null)
-  const cone2Ref = useRef<THREE.Mesh>(null)
-  const groupRef = useRef<THREE.Group>(null)
+  const ring1Ref = useRef<any>(null)
+  const ring2Ref = useRef<any>(null)
+  const cone1Ref = useRef<any>(null)
+  const cone2Ref = useRef<any>(null)
+  const groupRef = useRef<any>(null)
 
   const [mounted, setMounted] = useState(false)
 

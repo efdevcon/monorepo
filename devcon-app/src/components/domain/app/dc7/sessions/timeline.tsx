@@ -4,14 +4,13 @@ import { Event } from 'types/Event'
 import moment, { now } from 'moment'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import { SessionCard, getTrackLogo } from './index'
-import { useRecoilState } from 'recoil'
-import { sessionFilterAtom } from 'pages/_app'
+import { useAppStore } from 'store/app-store'
 import useDimensions from 'react-cool-dimensions'
 import { cn } from 'lib/shadcn/lib/utils'
 import { useAppContext } from 'context/app-context'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
-  const [sessionFilter] = useRecoilState(sessionFilterAtom)
+  const sessionFilter = useAppStore((state) => state.sessionFilter)
   const [isNativeScroll, setIsNativeScroll] = useState(false)
   // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
   // const { observe } = useDimensions({

@@ -8,7 +8,7 @@ import InfoIcon from 'assets/icons/info-icon.svg'
 import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'lib/components/ui/input-otp'
 import { Separator } from 'lib/components/ui/separator'
-import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
+// import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
 import DC7Logo from './dc-7-images/dc7-logo.png'
 import cn from 'classnames'
 import css from './index.module.scss'
@@ -477,8 +477,9 @@ const Index = (props: any) => {
               />
             </div>
 
-            <div className="w-[250px] h-[250px] md:w-[310px] md:h-[310px] absolute top-[45.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-              <Spinner className="-translate-y-[15vh] lg:translate-y-0" />
+            <div className="w-[250px] h-[250px] md:w-[310px] md:h-[310px] absolute top-[45.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center">
+              {/* 3D Spinner disabled due to React version conflict - using simple loader */}
+              <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin -translate-y-[15vh] lg:translate-y-0" />
             </div>
 
             <div className="lg:hidden absolute bottom-0 left-0 right-0 h-[40vh] overflow-hidden">

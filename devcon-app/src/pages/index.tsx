@@ -5,11 +5,10 @@ import { SEO } from 'components/domain/seo'
 import { Dashboard } from 'components/domain/app/dc7/dashboard'
 import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
-import { sessionsAtom } from './_app'
-import { useRecoilValue } from 'recoil'
+import { useAppStore } from 'store/app-store'
 
 const Index = (props: any) => {
-  const sessions = useRecoilValue(sessionsAtom)
+  const sessions = useAppStore((state) => state.sessions)
   const accountContext = useAccountContext()
   const router = useRouter()
 

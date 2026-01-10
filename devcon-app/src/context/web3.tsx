@@ -7,25 +7,34 @@ import { mainnet } from '@reown/appkit/networks'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
 import { APP_CONFIG } from 'utils/config'
 
-createAppKit({
-  adapters: [wagmiAdapter],
-  projectId: APP_CONFIG.WC_PROJECT_ID,
-  networks: [mainnet],
-  defaultNetwork: mainnet,
-  metadata: {
-    name: 'Devcon App',
-    description: 'Customize your Devcon experience.',
-    url: 'https://app.devcon.org',
-    icons: ['https://avatars.githubusercontent.com/u/40744488'],
-  },
-  features: {
-    swaps: false,
-    onramp: false,
-    analytics: true,
-    history: false,
-    socials: [],
-  },
-})
+// Store the modal instance globally
+let appKitModal: ReturnType<typeof createAppKit> | null = null
+
+// Only initialize on client side
+if (typeof window !== 'undefined') {
+  appKitModal = createAppKit({
+    adapters: [wagmiAdapter],
+    projectId: APP_CONFIG.WC_PROJECT_ID,
+    networks: [mainnet],
+    defaultNetwork: mainnet,
+    metadata: {
+      name: 'Devcon App',
+      description: 'Customize your Devcon experience.',
+      url: 'https://app.devcon.org',
+      icons: ['https://avatars.githubusercontent.com/u/40744488'],
+    },
+    features: {
+      swaps: false,
+      onramp: false,
+      analytics: true,
+      history: false,
+      socials: [],
+    },
+  })
+}
+
+// Export helper to get modal instance
+export const getAppKitModal = () => appKitModal
 
 interface Props extends PropsWithChildren {
   cookies?: string

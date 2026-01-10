@@ -3,16 +3,16 @@ import React from 'react'
 import { fetchEvent, fetchRooms, fetchSessionsByRoom } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import cn from 'classnames'
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { selectedEventTabAtom } from 'pages/_app'
 import { Venue, VenueInformation } from 'components/domain/app/dc7/event'
+import { useAppStore } from 'store/app-store'
 
 const activeClass = '!border-[#7D52F4] !text-[#7D52F4] '
 const tabClass =
   'cursor-pointer pb-2 px-0.5 border-b-2 border-solid border-transparent transition-all duration-300 select-none'
 
 const Tabs = () => {
-  const [selectedEventTab, setSelectedEventTab] = useRecoilState(selectedEventTabAtom)
+  const selectedEventTab = useAppStore((state) => state.selectedEventTab)
+  const setSelectedEventTab = useAppStore((state) => state.setSelectedEventTab)
 
   //   return null
 
@@ -47,7 +47,7 @@ const Tabs = () => {
 }
 
 const VenuePage = (props: any) => {
-  const [selectedEventTab, setSelectedEventTab] = useRecoilState(selectedEventTabAtom)
+  const selectedEventTab = useAppStore((state) => state.selectedEventTab)
   const floorOrder: any = { G: 0, '1': 1, '2': 2 }
   const uniqueFloors = [...new Set(props.rooms.map((room: any) => room.info))].sort(
     (a: any, b: any) => floorOrder[a] - floorOrder[b]

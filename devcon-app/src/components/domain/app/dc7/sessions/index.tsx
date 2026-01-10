@@ -20,7 +20,7 @@ import IconSpeaker from 'assets/icons/dc-7/speaker.svg'
 import IconClock from 'assets/icons/icon_clock.svg'
 import Image from 'next/image'
 import css from './sessions.module.scss'
-import { useRecoilState } from 'recoil'
+import { useAppStore, initialFilterState } from 'store/app-store'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
@@ -38,15 +38,6 @@ import CollapsedIcon from 'assets/icons/collapsed.svg'
 import ExpandedIcon from 'assets/icons/expanded.svg'
 import DevaAwards from 'assets/images/dc-7/dashboard-highlights/deva-awards.png'
 import PlayIcon from 'assets/icons/play.svg'
-import {
-  devaBotVisibleAtom,
-  initialFilterState,
-  selectedSessionAtom,
-  selectedSessionSelector,
-  sessionFilterAtom,
-  sessionFilterOpenAtom,
-  sessionTimelineViewAtom,
-} from 'pages/_app'
 import { usePathname, useSearchParams } from 'next/navigation'
 import FilterIcon from 'assets/icons/filter-tract.svg'
 import StarIcon from 'assets/icons/dc-7/star.svg'
@@ -59,7 +50,6 @@ import { SpeakerCard } from '../speakers'
 import { CircleIcon } from 'lib/components/circle-icon'
 import ScrollDownIcon from 'lib/assets/icons/scroll-down.svg'
 import CityGuide from 'assets/images/dc-7/city-guide.png'
-import { useRecoilValue } from 'recoil'
 import { Popup } from 'lib/components/pop-up'
 import LivestreamIcon from 'assets/icons/livestream.svg'
 import IconStar from 'assets/icons/star.svg'
@@ -104,8 +94,10 @@ export const matchSessionFilter = (session: SessionType, filter: string) => {
 
 const useSessionFilter = (sessions: SessionType[], event: any) => {
   const { account } = useAccountContext()
-  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
-  const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
+  const sessionFilter = useAppStore((state) => state.sessionFilter)
+  const setSessionFilter = useAppStore((state) => state.setSessionFilter)
+  const timelineView = useAppStore((state) => state.sessionTimelineView)
+  const setTimelineView = useAppStore((state) => state.setSessionTimelineView)
   const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, cls, other } = sessionFilter
@@ -471,8 +463,9 @@ export const SessionCard = ({
 }) => {
   const { account, setSessionBookmark } = useAccountContext()
   const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
+  const selectedSession = useAppStore((state) => state.selectedSession)
+  const setSelectedSession = useAppStore((state) => state.setSelectedSession)
   //   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
   const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
   const { now } = useAppContext()
@@ -729,15 +722,18 @@ const filterTagClass = (selected: boolean) => {
 }
 
 export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
-  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
-  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
+  const sessionFilter = useAppStore((state) => state.sessionFilter)
+  const setSessionFilter = useAppStore((state) => state.setSessionFilter)
+  const sessionFilterOpen = useAppStore((state) => state.sessionFilterOpen)
+  const setSessionFilterOpen = useAppStore((state) => state.setSessionFilterOpen)
 
-  const toggleFilter = (category: string, value: string) => {
-    const isSelected = sessionFilter[category][value]
-    const nextFilter = { ...sessionFilter, [category]: { ...sessionFilter[category], [value]: !isSelected } }
+  const toggleFilter = (category: keyof typeof sessionFilter, value: string) => {
+    const filterCategory = sessionFilter[category] as Record<string, boolean>
+    const isSelected = filterCategory[value]
+    const nextFilter = { ...sessionFilter, [category]: { ...filterCategory, [value]: !isSelected } } as typeof sessionFilter
 
     if (isSelected) {
-      delete nextFilter[category][value]
+      delete (nextFilter[category] as Record<string, boolean>)[value]
     }
 
     setSessionFilter(nextFilter)
@@ -955,8 +951,10 @@ export const isAdvancedFilterApplied = (sessionFilter: any) => {
 
 export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   const draggableLink = useDraggableLink()
-  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
-  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const sessionFilterOpen = useAppStore((state) => state.sessionFilterOpen)
+  const setSessionFilterOpen = useAppStore((state) => state.setSessionFilterOpen)
+  const sessionFilter = useAppStore((state) => state.sessionFilter)
+  const setSessionFilter = useAppStore((state) => state.setSessionFilter)
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState(false)
@@ -1348,14 +1346,16 @@ export const SessionList = ({
   filteredSessions: SessionType[]
   filterOptions: any
 }) => {
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const { now } = useAppContext()
-  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const sessionFilter = useAppStore((state) => state.sessionFilter)
+  const setSessionFilter = useAppStore((state) => state.setSessionFilter)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
     typeof window !== 'undefined' ? scrollRestorationTracker[window.history.state?.key]?.page ?? 1 : 1
   )
-  const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
+  const timelineView = useAppStore((state) => state.sessionTimelineView)
+  const setTimelineView = useAppStore((state) => state.setSessionTimelineView)
   const { isPersonalizedSchedule } = usePersonalized()
 
   if (typeof window !== 'undefined') {
@@ -1627,7 +1627,7 @@ export const Livestream = ({
   className?: string
   minimal?: boolean
 }) => {
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
 
   const playback = (session.sources_youtubeId || session.sources_streamethId) && !session.doNotRecord
   const [openTabs, setOpenTabs] = React.useState<any>({})
@@ -1826,10 +1826,11 @@ export const Livestream = ({
 
 export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
   const { account, setSessionBookmark } = useAccountContext()
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const [cal, setCal] = React.useState<any>(null)
-  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  const selectedSession = useAppStore((state) => state.selectedSession)
+  const setSelectedSession = useAppStore((state) => state.setSelectedSession)
   const { now } = useAppContext()
   const sessionViewRef = React.useRef<HTMLDivElement>(null)
 
@@ -2197,10 +2198,13 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   )
 }
 
-export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | null; event: any }) => {
-  const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  const selectedSession = useRecoilValue(selectedSessionSelector)
-  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
+export const SessionLayout = ({ sessions: propSessions, event }: { sessions: SessionType[] | null; event: any }) => {
+  const setSelectedSession = useAppStore((state) => state.setSelectedSession)
+  const sessions = useAppStore((state) => state.sessions) ?? propSessions
+  const selectedSessionPartial = useAppStore((state) => state.selectedSession)
+  const selectedSession = selectedSessionPartial ? sessions?.find(s => s.sourceId === selectedSessionPartial.sourceId) || null : null
+  const sessionFilterOpen = useAppStore((state) => state.sessionFilterOpen)
+  const setSessionFilterOpen = useAppStore((state) => state.setSessionFilterOpen)
   const { filteredSessions, filterOptions } = useSessionFilter(sessions || [], event)
 
   useEffect(() => {

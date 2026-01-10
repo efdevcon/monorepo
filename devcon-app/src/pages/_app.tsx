@@ -9,7 +9,6 @@ import { Web3Provider } from 'context/web3'
 import { AppContext } from 'context/app-context'
 import { AccountContextProvider } from 'context/account-context-provider'
 import DevaBot from 'lib/components/ai/overlay'
-import { RecoilRoot, atom, useRecoilState, useRecoilValue, selector } from 'recoil'
 import { useSessionData } from 'services/event-data'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { useAccountContext } from 'context/account-context'
@@ -21,257 +20,14 @@ import { Toaster } from 'lib/components/ui/toaster'
 import { usePathname } from 'next/navigation'
 import { DataProvider } from 'context/data'
 import { init } from '@socialgouv/matomo-next'
+import { useAppStore, useSeenNotifications, initialFilterState, initialSpeakerFilterState } from 'store/app-store'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = process.env.PUBLIC_MATOMO_SITE_ID || '38'
 let matomoAdded = false
 
-export const selectedEventTabAtom = atom<'venue' | 'information' | 'contact' | 'directions'>({
-  key: 'selectedEventTab',
-  default: 'venue',
-})
-
-// This selector is used to get the full speaker object from the selectedSpeakerAtom - useful for /speakers pages where the full object is needed - this can be impartial if the speaker was linked from a session (where the speakers don't recursively have the session objects)
-export const selectedSpeakerSelector = selector({
-  key: 'selectedSpeakerSelector',
-  get: ({ get }) => {
-    const selectedSpeakerPotentiallyPartial = get(selectedSpeakerAtom)
-    const allSpeakers = get(speakersAtom)
-
-    if (!selectedSpeakerPotentiallyPartial) return null
-
-    return allSpeakers?.find(speaker => speaker.id === selectedSpeakerPotentiallyPartial?.id) || null
-  },
-})
-
-export const selectedSessionAtom = atom<SessionType | null>({
-  key: 'selectedSession',
-  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSession') || 'null') : null,
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('selectedSession', JSON.stringify(newValue))
-        }
-      })
-    },
-  ],
-})
-
-export const sessionTimelineViewAtom = atom<boolean>({
-  key: 'sessionTimelineView',
-  default: false,
-})
-
-export const sessionFilterOpenAtom = atom<boolean>({
-  key: 'sessionFilterOpen',
-  default: false,
-})
-
-export const initialFilterState = {
-  text: '',
-  attending: false,
-  favorited: false,
-  type: {},
-  track: {},
-  expertise: {},
-  day: {},
-  room: {},
-  cls: {},
-  other: {},
-}
-
-export const sessionFilterAtom = atom<any>({
-  key: 'sessionFilter',
-  default: initialFilterState,
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        if (typeof window !== 'undefined') {
-          const searchParams = new URLSearchParams()
-
-          Object.entries(newValue).forEach(([key, value]: any) => {
-            // Skip if it's the default value
-            // @ts-ignore
-            if (JSON.stringify(value) === JSON.stringify(initialFilterState[key])) return
-
-            // Handle different value types
-            if (typeof value === 'object' && Object.keys(value).length > 0) {
-              // For objects (like type, track, expertise), use keys that are true
-              const activeKeys = Object.entries(value)
-                .filter(([_, isActive]) => isActive)
-                .map(([k]) => encodeURIComponent(k))
-              if (activeKeys.length) searchParams.set(key, activeKeys.join(','))
-            } else if (typeof value === 'boolean' && value) {
-              // For boolean flags (like attending, favorited), just include if true
-              searchParams.set(key, '1')
-            } else if (value) {
-              // For simple values (like text, letter), include if non-empty
-              searchParams.set(key, encodeURIComponent(value))
-            }
-          })
-
-          const { pathname } = window.location
-          const query = searchParams.toString() ? `${searchParams.toString()}` : ''
-          router.replace({ pathname, query }, undefined, { shallow: true })
-        }
-      })
-    },
-  ],
-})
-
-export const speakerFilterOpenAtom = atom<boolean>({
-  key: 'speakerFilterOpen',
-  default: false,
-})
-
-export const initialSpeakerFilterState = {
-  ...initialFilterState,
-  letter: '',
-}
-
-export const speakerFilterAtom = atom<any>({
-  key: 'speakerFilter',
-  default: initialSpeakerFilterState,
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('speakerFilter', JSON.stringify(newValue))
-        }
-      })
-    },
-  ],
-})
-
-// Short on time so just doing global state here.. extract later
-export const selectedSpeakerAtom = atom<SpeakerType | null>({
-  key: 'selectedSpeaker',
-  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSpeaker') || 'null') : null,
-  // effects: [
-  //   ({ onSet }) => {
-  //     onSet(newValue => {
-  //       if (typeof window !== 'undefined') {
-  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
-  //       }
-  //     })
-  //   },
-  // ],
-})
-
-// This selector is used to get the full session object from the selectedSessionAtom - useful for /sessions pages where the full object is needed - this can be impartial if the session was linked from a speaker (where the sessions don't recursively have the speaker objects)
-export const selectedSessionSelector = selector({
-  key: 'selectedSessionSelector',
-  get: ({ get }) => {
-    const selectedSessionPotentiallyPartial = get(selectedSessionAtom)
-    const allSessions = get(sessionsAtom)
-
-    if (!selectedSessionPotentiallyPartial) return null
-
-    return allSessions?.find(session => session.sourceId === selectedSessionPotentiallyPartial?.sourceId) || null
-  },
-})
-
-export const devaBotVisibleAtom = atom<boolean | string>({
-  key: 'devaBotVisible',
-  default: false,
-})
-
-export const sessionIdAtom = atom<string | null>({
-  key: 'sessionId',
-  default: null,
-})
-
-export const speakersAtom = atom<SpeakerType[] | null>({
-  key: 'speakers',
-  default: null,
-})
-
-export const sessionsAtom = atom<SessionType[] | null>({
-  key: 'sessions',
-  default: null,
-})
-
-export const roomsAtom = atom<any[] | null>({
-  key: 'rooms',
-  default: null,
-})
-
-export const notificationsAtom = atom<any[]>({
-  key: 'notifications',
-  default: [],
-})
-
-export const notificationsCountSelector = selector({
-  key: 'notificationsCountSelector',
-  get: ({ get }) => {
-    if (typeof window === 'undefined') return 0
-
-    const notifications = get(notificationsAtom)
-    const seenNotifications = JSON.parse(localStorage.getItem('seenNotifications') || '[]')
-    const threeDaysAgo = new Date()
-    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
-
-    return notifications.filter(notification => {
-      const notificationDate = new Date(notification.sendAt)
-      return notificationDate >= threeDaysAgo && !seenNotifications.includes(notification.id)
-    }).length
-  },
-})
-
-export const markAllAsRead = (notifications: any[]) => {
-  const notificationIds = notifications.map(notification => notification.id)
-  localStorage.setItem('seenNotifications', JSON.stringify(notificationIds))
-  // Optionally, you can update the Recoil state to trigger a re-render
-  // setNotifications([...notifications]);
-}
-
-const seenNotificationsAtom = atom<Set<string>>({
-  key: 'seenNotificationsAtom',
-  default:
-    typeof window !== 'undefined' ? new Set(JSON.parse(localStorage.getItem('seenNotifications') || '[]')) : new Set(),
-})
-
-export const useSeenNotifications = () => {
-  const [notifications, setNotifications] = useRecoilState(notificationsAtom)
-  const notificationsCount = useRecoilValue(notificationsCountSelector)
-  const [seenNotifications, setSeenNotifications] = useRecoilState(seenNotificationsAtom)
-
-  const syncWithLocalStorage = useCallback(() => {
-    const storedNotifications = JSON.parse(localStorage.getItem('seenNotifications') || '[]')
-    setSeenNotifications(new Set(storedNotifications))
-  }, [setSeenNotifications])
-
-  useEffect(() => {
-    // Initial sync
-    syncWithLocalStorage()
-
-    // Listen for storage events
-    const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === 'seenNotifications') {
-        syncWithLocalStorage()
-      }
-    }
-
-    window.addEventListener('storage', handleStorageChange)
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-    }
-  }, [syncWithLocalStorage])
-
-  const markAllAsRead = useCallback(() => {
-    setSeenNotifications(() => {
-      const updated = new Set([...notifications.map(n => n.id)])
-      localStorage.setItem('seenNotifications', JSON.stringify(Array.from(updated)))
-      return updated
-    })
-
-    setNotifications([...notifications])
-  }, [notifications, setSeenNotifications])
-
-  return { seenNotifications, markAllAsRead, notificationsCount }
-}
+// Re-export for backwards compatibility with other files
+export { initialFilterState, initialSpeakerFilterState }
 
 // @ts-ignore
 if (
@@ -303,42 +59,32 @@ if (
   }
 
   wb.addEventListener('waiting', promptNewVersionAvailable)
-
-  // document.addEventListener('visibilitychange', () => {
-  //   if (document.visibilityState === 'visible') {
-  //     navigator.serviceWorker.getRegistration().then(registration => {
-  //       if (registration) {
-  //         registration.update()
-  //       }
-  //     })
-  //   }
-  // })
 }
 
 const withProviders = (Component: React.ComponentType<AppProps>) => {
   return (props: AppProps) => (
-    <RecoilRoot>
-      <DataProvider>
+    <DataProvider>
+      <Web3Provider>
         <AccountContextProvider>
-          <Web3Provider>
-            <ZupassProvider>
-              <Component {...props} />
-            </ZupassProvider>
-          </Web3Provider>
+          <ZupassProvider>
+            <Component {...props} />
+          </ZupassProvider>
         </AccountContextProvider>
-      </DataProvider>
-    </RecoilRoot>
+      </Web3Provider>
+    </DataProvider>
   )
 }
 
 function App({ Component, pageProps }: AppProps) {
-  const [devaBotVisible, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const devaBotVisible = useAppStore(state => state.devaBotVisible)
+  const setDevaBotVisible = useAppStore(state => state.setDevaBotVisible)
   const sessions = useSessionData()
-  const [notifications, setNotifications] = useRecoilState(notificationsAtom)
-  const [rooms, setRooms] = useRecoilState(roomsAtom)
+  const notifications = useAppStore(state => state.notifications)
+  const setNotifications = useAppStore(state => state.setNotifications)
+  const setRooms = useAppStore(state => state.setRooms)
   const accountContext = useAccountContext()
-  const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
-  const router = useRouter()
+  const { seenNotifications, markAllAsRead, notificationsCount, syncWithLocalStorage } = useSeenNotifications()
+  const routerInstance = useRouter()
   const pathname = usePathname()
 
   React.useEffect(() => {
@@ -348,11 +94,27 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [])
 
+  // Sync seen notifications with localStorage on mount and storage events
+  useEffect(() => {
+    syncWithLocalStorage()
+
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === 'seenNotifications') {
+        syncWithLocalStorage()
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [syncWithLocalStorage])
+
   useEffect(() => {
     if (pageProps.rooms) {
       setRooms(pageProps.rooms)
     }
-  }, [pageProps])
+  }, [pageProps, setRooms])
 
   useEffect(() => {
     fetchNotifications()
@@ -361,7 +123,7 @@ function App({ Component, pageProps }: AppProps) {
   const fetchNotifications = async () => {
     try {
       const response = await fetch(
-        `${process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'}/notifications`,
+        `${process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'https://api.devcon.org'}/notifications`,
         { credentials: 'include' }
       )
       if (response.ok) {
@@ -391,9 +153,6 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="apple-mobile-web-app-title" content="Devcon Passport" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        {/* <meta name="msapplication-config" content="/browserconfig.xml" />
-        <meta name="msapplication-TileColor" content="#2B5797" />
-        <meta name="msapplication-tap-highlight" content="no" /> */}
         <meta name="theme-color" content="#000000" />
 
         <SEO />
@@ -404,7 +163,7 @@ function App({ Component, pageProps }: AppProps) {
 
         <Component {...pageProps} />
 
-        {sessions && (
+        {/* {sessions && (
           <DevaBot
             botVersion="devcon-app"
             sessions={sessions}
@@ -417,7 +176,7 @@ function App({ Component, pageProps }: AppProps) {
             markNotificationsAsRead={markAllAsRead}
             SessionComponent={SessionCard}
             renderNotifications={() => {
-              const groupNotificationsByDay = (notifications: any[]) => {
+              const groupNotificationsByDay = (notifications: any[]): [string, any[]][] => {
                 const grouped = notifications.reduce((acc, notification) => {
                   const date = new Date(notification.sendAt)
                   const today = new Date()
@@ -438,9 +197,9 @@ function App({ Component, pageProps }: AppProps) {
                   }
                   acc[key].push(notification)
                   return acc
-                }, {})
+                }, {} as Record<string, any[]>)
 
-                return Object.entries(grouped).sort(([a], [b]) => {
+                return (Object.entries(grouped) as [string, any[]][]).sort(([a], [b]) => {
                   if (a === 'Today') return -1
                   if (b === 'Today') return 1
                   if (a === 'Yesterday') return -1
@@ -453,7 +212,7 @@ function App({ Component, pageProps }: AppProps) {
 
               return (
                 <>
-                  {groupedNotifications.map(([date, notificationsForDay]: any) => (
+                  {groupedNotifications.map(([date, notificationsForDay]: [string, any[]]) => (
                     <div key={date} className="w-full">
                       <p className="font-semibold my-2">{date}</p>
                       {notificationsForDay.map((notification: any) => (
@@ -469,7 +228,7 @@ function App({ Component, pageProps }: AppProps) {
               )
             }}
           />
-        )}
+        )} */}
       </AppContext>
       <Toaster />
     </>

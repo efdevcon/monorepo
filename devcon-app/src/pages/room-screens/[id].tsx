@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { RoomScreen } from 'components/domain/app/dc7/room-screen/room-screen'
-import { sessionsAtom } from 'pages/_app'
-import { useRecoilState } from 'recoil'
 import { fetchEvent, fetchRooms, fetchSessions, fetchSessionsByRoom } from 'services/event-data'
 import { Session } from 'types/Session'
+import { useAppStore } from 'store/app-store'
 
 const VenuePage = (props: any) => {
-  const [sessions, setSessions] = useRecoilState(sessionsAtom)
+  const sessions = useAppStore(state => state.sessions)
+  const setSessions = useAppStore(state => state.setSessions)
 
   useEffect(() => {
     // Set up polling every  minutes
@@ -24,7 +24,7 @@ const VenuePage = (props: any) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId)
-  }, [])
+  }, [setSessions])
 
   if (!sessions) return null
 

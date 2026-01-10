@@ -10,13 +10,11 @@ import Image from 'next/image'
 import css from './speakers.module.scss'
 import NoResults from 'assets/images/state/no-results.png'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { devaBotVisibleAtom, selectedSpeakerSelector, sessionsAtom, speakerFilterAtom } from 'pages/_app'
+import { useAppStore, useSelectedSpeakerFull } from 'store/app-store'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
 import { SessionCard, tagClassTwo } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
-import { selectedSpeakerAtom } from 'pages/_app'
 import { useWindowWidth } from '../../Layout'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { usePathname } from 'next/navigation'
@@ -91,8 +89,9 @@ export const cardClass =
 
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
   const { account } = useAccountContext()
-  const sessions = useRecoilValue(sessionsAtom)
-  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
+  const sessions = useAppStore((state) => state.sessions)
+  const speakerFilter = useAppStore((state) => state.speakerFilter)
+  const setSpeakerFilter = useAppStore((state) => state.setSpeakerFilter)
 
   const filterOptions = useMemo(() => {
     return {
@@ -169,8 +168,9 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 
 export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
   const { account, setSpeakerFavorite } = useAccountContext()
-  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
+  const setSelectedSpeaker = useAppStore((state) => state.setSelectedSpeaker)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const pathname = usePathname()
   const windowWidth = useWindowWidth()
   const isLargeScreen = windowWidth > 1024
@@ -246,7 +246,8 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
 }
 
 export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
-  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
+  const speakerFilter = useAppStore((state) => state.speakerFilter)
+  const setSpeakerFilter = useAppStore((state) => state.setSpeakerFilter)
   const draggableLink = useDraggableLink()
 
   const updateTypeFilter = (type: string) => {
@@ -356,10 +357,12 @@ const SPEAKERS_PER_PAGE = 30
 const scrollRestorationTracker = {} as any
 
 export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) => {
-  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
-  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
+  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
+  const setSelectedSpeaker = useAppStore((state) => state.setSelectedSpeaker)
+  const speakerFilter = useAppStore((state) => state.speakerFilter)
+  const setSpeakerFilter = useAppStore((state) => state.setSpeakerFilter)
   const { filteredSpeakers, filterOptions } = useSpeakerFilter(speakers)
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const draggableLink = useDraggableLink()
   const pathname = usePathname()
   const windowWidth = useWindowWidth()
@@ -565,8 +568,9 @@ export const SpeakerSessions = ({
 
 export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | null; standalone?: boolean }) => {
   const { account, setSpeakerFavorite } = useAccountContext()
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
+  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
+  const setSelectedSpeaker = useAppStore((state) => state.setSelectedSpeaker)
   const { toast } = useToast()
 
   if (!speaker) return null
@@ -757,10 +761,10 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
 }
 
 export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) => {
-  const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const setSelectedSpeaker = useAppStore((state) => state.setSelectedSpeaker)
   const [speakerFilterOpen, setSpeakerFilterOpen] = useState(false)
   // Important to use the selector here to get the full speaker object
-  const selectedSpeaker = useRecoilValue(selectedSpeakerSelector)
+  const selectedSpeaker = useSelectedSpeakerFull()
 
   if (!speakers) return null
 

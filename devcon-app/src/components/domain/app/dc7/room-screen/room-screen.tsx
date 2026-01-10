@@ -32,8 +32,7 @@ import Stage12 from 'assets/images/dc-7/venue/stages/stage-1-2.png'
 import Stage34 from 'assets/images/dc-7/venue/stages/stage-3-4.png'
 import Stage56 from 'assets/images/dc-7/venue/stages/main-stage.png'
 import cn from 'classnames'
-import { notificationsAtom, sessionsAtom } from 'pages/_app'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useAppStore } from 'store/app-store'
 import NoResults from 'assets/images/state/no-results.png'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import CoreProtocol from 'assets/images/dc-7/venue/tracks-hd/core.png'
@@ -168,7 +167,7 @@ const SessionBar = ({ session }: { session: Session }) => {
 
 export const RoomScreen = (props: ScreenProps) => {
   const { now } = useAppContext()
-  const [notifications, setNotifications] = useRecoilState(notificationsAtom)
+  const notifications = useAppStore((state) => state.notifications)
   // const sessions = useRecoilValue(sessionsAtom)
 
   // const pz = usePanzoom()

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import css from './settings.module.scss'
 import { useAccountContext } from 'context/account-context'
 import Alert from 'lib/components/alert'
@@ -13,11 +13,17 @@ import { useRouter } from 'next/router'
 import { useAccount, useSignMessage } from 'wagmi'
 import { createSiweMessage } from 'viem/siwe'
 import { cn } from 'lib/shadcn/lib/utils'
-import { useAppKit } from '@reown/appkit/react'
+import { getAppKitModal } from 'context/web3'
 import Tabs from 'components/domain/app/account/tabs'
 
 export default function WalletSettings() {
-  const { open } = useAppKit()
+  // Use global modal instance instead of useAppKit hook
+  const openAppKit = useCallback(async () => {
+    const modal = getAppKitModal()
+    if (modal) {
+      await modal.open()
+    }
+  }, [])
   const router = useRouter()
   const accountContext = useAccountContext()
   const activeAddress = useActiveAddress()
@@ -30,7 +36,7 @@ export default function WalletSettings() {
 
   const addWallet = async () => {
     if (!address) {
-      await open()
+      await openAppKit()
     }
 
     setLoginWeb3(true)

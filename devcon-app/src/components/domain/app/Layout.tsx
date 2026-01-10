@@ -19,14 +19,12 @@ import UserFillIcon from 'assets/icons/dc-7/account-fill.svg'
 import Link from 'next/link'
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { useRecoilState } from 'recoil'
 import ChevronRightIcon from 'assets/icons/chevron_right.svg'
-import { devaBotVisibleAtom, selectedSessionAtom, sessionIdAtom, useSeenNotifications } from 'pages/_app'
 import { useAccountContext } from 'context/account-context'
 import IconVenue from 'assets/icons/dc-7/location.svg'
 import IconFilledVenue from 'assets/icons/dc-7/location-fill.svg'
 import ArrowBackIcon from 'assets/icons/arrow_left.svg'
-import { selectedSpeakerAtom } from 'pages/_app'
+import { useAppStore, useSeenNotifications } from 'store/app-store'
 
 type HeaderProps = {
   breadcrumbs: {
@@ -124,7 +122,8 @@ const LocationInformation = ({
 const BackButton = () => {
   const router = useRouter()
   const pathname = usePathname()
-  const [sessionId, setSessionId] = useRecoilState(sessionIdAtom)
+  const sessionId = useAppStore((state) => state.sessionId)
+  const setSessionId = useAppStore((state) => state.setSessionId)
 
   useEffect(() => {
     if (history.state.key && !sessionId) {
@@ -364,9 +363,10 @@ const Navigation = () => {
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const windowWidth = useWindowWidth()
   const isSmallScreen = windowWidth < 1280
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const { notificationsCount } = useSeenNotifications()
-  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
+  const setSelectedSpeaker = useAppStore((state) => state.setSelectedSpeaker)
 
   return (
     <div
@@ -499,8 +499,8 @@ export const AppLayout = (
   // const lowerNavHeight = useGetElementHeight('bottom-nav')
   // const layoutContainerRef = useRef<HTMLDivElement>(null)
 
-  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
-  const [selectedSession, __] = useRecoilState(selectedSessionAtom)
+  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
+  const selectedSession = useAppStore((state) => state.selectedSession)
   const pathname = usePathname()
 
   const deprioritizeHeader =

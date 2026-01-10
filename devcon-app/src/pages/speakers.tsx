@@ -4,15 +4,15 @@ import { useSpeakerData } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { SpeakerLayout } from 'components/domain/app/dc7/speakers/index'
-import { useRecoilState } from 'recoil'
-import { speakerFilterAtom } from 'pages/_app'
 import HeartIcon from 'assets/icons/heart.svg'
 import HeartIconFill from 'assets/icons/dc-7/heart-fill.svg'
 import cn from 'classnames'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
+import { useAppStore } from 'store/app-store'
 
 const FilterTrigger = () => {
-  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
+  const speakerFilter = useAppStore((state) => state.speakerFilter)
+  const setSpeakerFilter = useAppStore((state) => state.setSpeakerFilter)
 
   return (
     <div data-type="speaker-filter-actions" className="flex flex-row gap-3 items-center text-2xl">

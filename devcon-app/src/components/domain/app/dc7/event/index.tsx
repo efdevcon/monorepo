@@ -8,13 +8,12 @@ import Image from 'next/image'
 import css from './event.module.scss'
 import { usePanzoom, PanzoomControls } from './panzoom'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
-import { useRecoilState } from 'recoil'
-import { devaBotVisibleAtom } from 'pages/_app'
 import { Link } from 'components/common/link'
 import { CollapsedSection, CollapsedSectionHeader, CollapsedSectionContent } from 'components/common/collapsed-section'
 import Floor1 from 'assets/images/dc-7/venue/floors/level-1.png'
 import Floor2 from 'assets/images/dc-7/venue/floors/level-2.png'
 import FloorG from 'assets/images/dc-7/venue/floors/level-g.png'
+import { useAppStore } from 'store/app-store'
 
 // import Panzoom, { PanZoom } from 'panzoom'
 
@@ -318,7 +317,7 @@ const List = (props: any) => {
 
 export const Venue = (props: any) => {
   const pz = usePanzoom()
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
   const [floor, setFloor] = useState('')
 
   const getFloorImage = () => {
@@ -682,7 +681,7 @@ const sections = (setDevaBotVisible: (prompt: string) => void) => [
 
 export const VenueInformation = (props: any) => {
   const [openTabs, setOpenTabs] = useState<any>({ 'important-info': true })
-  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
 
   return (
     <div className={cn(cardClass, 'p-4 flex flex-col gap-3 text-sm')}>

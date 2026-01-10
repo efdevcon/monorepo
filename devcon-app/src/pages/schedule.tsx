@@ -3,17 +3,16 @@ import React from 'react'
 import { fetchRooms, fetchEvent } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import { SessionLayout, isAdvancedFilterApplied, advancedFilterKeys } from 'components/domain/app/dc7/sessions'
-import { sessionsAtom } from './_app'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import { usePersonalized } from './schedule/u/[id]'
 import { cn } from 'lib/shadcn/lib/utils'
 import FilterIcon from 'assets/icons/filter-tract.svg'
-import { sessionFilterOpenAtom, sessionFilterAtom } from 'pages/_app'
+import { useAppStore } from 'store/app-store'
 
 const FilterTrigger = () => {
   const { isPersonalizedSchedule } = usePersonalized()
-  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
-  const sessionFilter = useRecoilValue(sessionFilterAtom)
+  const sessionFilterOpen = useAppStore((state) => state.sessionFilterOpen)
+  const setSessionFilterOpen = useAppStore((state) => state.setSessionFilterOpen)
+  const sessionFilter = useAppStore((state) => state.sessionFilter)
   const advancedFilterApplied = isAdvancedFilterApplied(sessionFilter)
 
   if (isPersonalizedSchedule) return null
@@ -77,7 +76,7 @@ const FilterTrigger = () => {
 }
 
 const SessionPage = (props: any) => {
-  const sessions = useRecoilValue(sessionsAtom)
+  const sessions = useAppStore((state) => state.sessions)
 
   return (
     <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]} renderActions={() => <FilterTrigger />}>

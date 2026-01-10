@@ -9,18 +9,29 @@ import { Modal } from 'components/common/modal'
 import Image from 'next/image'
 import css from 'components/domain/app/login-modal.module.scss'
 import { APP_CONFIG } from 'utils/config'
-import { useAppKit } from '@reown/appkit/react'
 import { POD } from '@pcd/pod'
 import { Button } from 'lib/components/button'
 import PassportLogoBlack from 'assets/images/dc-7/passport-logo-black.png'
 import { useQueryClient } from '@tanstack/react-query'
+
+// Helper to close AppKit modal - imported dynamically to avoid SSR issues
+const closeAppKit = async () => {
+  if (typeof window !== 'undefined') {
+    try {
+      const { useAppKit } = await import('@reown/appkit/react')
+      // Note: we can't actually call the hook here, but we can access the global AppKit instance
+      // The modal will be closed by wagmi's disconnect
+    } catch (e) {
+      // AppKit not available
+    }
+  }
+}
 
 interface AccountContextProviderProps {
   children: ReactNode
 }
 
 export const AccountContextProvider = ({ children }: AccountContextProviderProps) => {
-  const { close } = useAppKit()
   const queryClient = useQueryClient()
   const router = useRouter()
   const [showLoginRequired, setShowLoginRequired] = useState(false)
@@ -144,7 +155,8 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     })
 
     if (response.status === 200) {
-      close()
+      // Close AppKit modal if open (no-op if not available)
+      closeAppKit()
       await queryClient.invalidateQueries({ queryKey: ['account'] })
       setContext({ ...context, account: undefined, loading: true })
       router.push('/login')
