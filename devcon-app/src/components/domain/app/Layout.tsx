@@ -122,8 +122,8 @@ const LocationInformation = ({
 const BackButton = () => {
   const router = useRouter()
   const pathname = usePathname()
-  const sessionId = useAppStore((state) => state.sessionId)
-  const setSessionId = useAppStore((state) => state.setSessionId)
+  const sessionId = useAppStore(state => state.sessionId)
+  const setSessionId = useAppStore(state => state.setSessionId)
 
   useEffect(() => {
     if (history.state.key && !sessionId) {
@@ -363,10 +363,10 @@ const Navigation = () => {
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const windowWidth = useWindowWidth()
   const isSmallScreen = windowWidth < 1280
-  const setDevaBotVisible = useAppStore((state) => state.setDevaBotVisible)
+  const setDevaBotVisible = useAppStore(state => state.setDevaBotVisible)
   const { notificationsCount } = useSeenNotifications()
-  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
-  const setSelectedSpeaker = useAppStore((state) => state.setSelectedSpeaker)
+  const selectedSpeaker = useAppStore(state => state.selectedSpeaker)
+  const setSelectedSpeaker = useAppStore(state => state.setSelectedSpeaker)
 
   return (
     <div
@@ -399,7 +399,7 @@ const Navigation = () => {
               <Popover
                 key={index}
                 open={openPopover === item.label}
-                onOpenChange={open => setOpenPopover(open ? item.label : null)}
+                onOpenChange={(open: boolean) => setOpenPopover(open ? item.label : null)}
               >
                 <PopoverTrigger className="plain outline-none cursor-pointer">
                   <Link
@@ -499,8 +499,8 @@ export const AppLayout = (
   // const lowerNavHeight = useGetElementHeight('bottom-nav')
   // const layoutContainerRef = useRef<HTMLDivElement>(null)
 
-  const selectedSpeaker = useAppStore((state) => state.selectedSpeaker)
-  const selectedSession = useAppStore((state) => state.selectedSession)
+  const selectedSpeaker = useAppStore(state => state.selectedSpeaker)
+  const selectedSession = useAppStore(state => state.selectedSession)
   const pathname = usePathname()
 
   const deprioritizeHeader =
