@@ -189,8 +189,8 @@ importers:
         specifier: ^7.13.0
         version: 7.120.3(encoding@0.1.13)(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))(react@19.2.1)(webpack@5.100.2(@swc/core@1.13.5))
       '@socialgouv/matomo-next':
-        specifier: ^1.8.0
-        version: 1.9.2(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))
+        specifier: ^1.11.0
+        version: 1.11.0(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))
       '@tanstack/react-query':
         specifier: ^5.49.2
         version: 5.83.0(react@19.2.1)
@@ -7245,6 +7245,11 @@ packages:
 
   '@socialgouv/matomo-next@1.10.0':
     resolution: {integrity: sha512-Cp4EMnpzPO2JAinW56QrT6t+AJnM7pxUS3RUmfBWs9SIxHsqxivdmb+wSS8bUd/lkUXtLgBVw9dGOaK0EMwSEg==}
+    peerDependencies:
+      next: '>= 9.5.5'
+
+  '@socialgouv/matomo-next@1.11.0':
+    resolution: {integrity: sha512-48XLGnq4LzwOHf2wgm76UXFnGGKOKeOal4+QHeewQH+VY/gxJiIZ1k0o8LuUvKOHThW5Mqco8yAGNe25f7s28g==}
     peerDependencies:
       next: '>= 9.5.5'
 
@@ -32440,6 +32445,10 @@ snapshots:
     dependencies:
       next: 16.0.7(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0)
 
+  '@socialgouv/matomo-next@1.11.0(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))':
+    dependencies:
+      next: 16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0)
+
   '@socialgouv/matomo-next@1.9.2(next@15.4.8(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))':
     dependencies:
       next: 15.4.8(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0)
@@ -32447,10 +32456,6 @@ snapshots:
   '@socialgouv/matomo-next@1.9.2(next@16.1.1(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))':
     dependencies:
       next: 16.1.1(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0)
-
-  '@socialgouv/matomo-next@1.9.2(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0))':
-    dependencies:
-      next: 16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.44.0)
 
   '@socket.io/component-emitter@3.1.2': {}
 
