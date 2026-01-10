@@ -173,8 +173,8 @@ const PastEvents = () => {
   return (
     <div className="section z-[10000] relative">
       <div className="relative py-8 pt-10 pb-8 border-bottom !border-[rgba(34,68,144,0.8)] flex flex-col gap-2">
-        <div className="text-2xl font-semibold text-white">Past Events</div>
-        <div className="text-xl font-semibold text-white">
+        <div className="text-3xl font-semibold text-white">Past Events</div>
+        <div className="text-xl font-semibold text-white font-secondary">
           Devcon and Devconnect are the major annual gatherings organized by the Ethereum Foundation.
         </div>
         <div className="mb-4">
@@ -377,8 +377,8 @@ export default function Index(props: any) {
 
         <div className="section my-4 mt-6 mb-0">
           <div className="flex flex-col justify-center gap-2 border-bottom !border-[rgba(34,68,144,0.8)] pb-8 z-10">
-            <div className="text-2xl font-semibold text-white">What is Devcon?</div>
-            <div className="text-xl font-semibold text-white">
+            <div className="text-3xl font-semibold text-white">What is Devcon?</div>
+            <div className="text-xl font-semibold text-white font-secondary">
               Devcon is the gathering for the global Ethereum community to build and use decentralized systems.
             </div>
             <div className="">
@@ -395,9 +395,7 @@ export default function Index(props: any) {
 
         <div className="section">
           <div className="relative pt-9">
-            <div className="mb-7">
-              <RichText content={pages.section5?.title}></RichText>
-            </div>
+            <div className="mb-7 text-3xl font-semibold text-white">Devcon Archive</div>
 
             <div className="flex flex-col lg:flex-row gap-4 w-full mt-4 mb-4">
               <div className="basis-[51%] relative">

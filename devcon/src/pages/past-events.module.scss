@@ -42,11 +42,18 @@
   }
 }
 
+.scrolling-text {
+  --custom-fade-color: #bde48a !important;
+  --custom-text-color: #719355;
+  color: #719355;
+
+  &:before {
+    background: #bde48a !important;
+  }
+}
+
 .about {
   justify-content: space-between;
-
-  --custom-fade-color: #bde48a;
-  --custom-text-color: rgb(113, 147, 85);
 
   .left {
     display: flex;

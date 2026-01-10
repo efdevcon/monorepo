@@ -119,7 +119,7 @@ export const Slider = (props: SliderProps) => {
     <div data-type="slider-container" className={`${props.containerClassName} ${css['container']}`} style={props.style}>
       {!props.onlySlider && (
         <div className={css['top-section']} data-type="slider-top-section">
-          <h2 className="bold mb-4" data-type="slider-title">
+          <h2 className="bold mb-4 text-3xl" data-type="slider-title">
             {props.title}
           </h2>
 
