@@ -43,19 +43,13 @@ module.exports = {
   images: {
     domains: [
       'speak.devcon.org',
-      'storage.googleapis.com',
       'avatars.githubusercontent.com',
       'camo.githubusercontent.com',
       'blog.ethereum.org',
       'img.youtube.com',
       'www.gravatar.com',
       'mealmslwugsqqyoesrxd.supabase.co',
-    ],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '*',
-      },
+      'assets.tina.io',
     ],
   },
   webpack: (config, { webpack, isServer }) => {
@@ -158,6 +152,20 @@ module.exports = {
     }
 
     return newConfig
+  },
+  async headers() {
+    return [
+      {
+        // Prevent SVG XSS attacks via Next.js Image optimization
+        source: '/_next/image',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'none'; frame-src 'none'; sandbox;",
+          },
+        ],
+      },
+    ]
   },
   env: {
     SUPABASE_URL: process.env.SUPABASE_URL,

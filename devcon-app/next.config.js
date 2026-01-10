@@ -16,15 +16,8 @@ const nextConfig = {
   transpilePackages: ['@parcnet-js/podspec', '@pcd/pod', 'lib'],
   staticPageGenerationTimeout: 300,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
     domains: [
       'speak.devcon.org',
-      'storage.googleapis.com',
       'avatars.githubusercontent.com',
       'camo.githubusercontent.com',
       'blog.ethereum.org',
@@ -149,6 +142,16 @@ const nextConfig = {
           {
             key: 'X-Frame-Options',
             value: 'DENY',
+          },
+        ],
+      },
+      {
+        // Prevent SVG XSS attacks via Next.js Image optimization
+        source: '/_next/image',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'none'; frame-src 'none'; sandbox;",
           },
         ],
       },

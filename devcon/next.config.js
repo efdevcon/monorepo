@@ -12,7 +12,6 @@ const nextConfig = {
   images: {
     domains: [
       'speak.devcon.org',
-      'storage.googleapis.com',
       'avatars.githubusercontent.com',
       'camo.githubusercontent.com',
       'blog.ethereum.org',
@@ -106,15 +105,16 @@ const nextConfig = {
   },
   async headers() {
     return [
-      // {
-      //   source: '/(.*)',
-      //   headers: [
-      //     {
-      //       key: 'X-Frame-Options',
-      //       value: 'DENY',
-      //     },
-      //   ],
-      // },
+      {
+        // Prevent SVG XSS attacks via Next.js Image optimization
+        source: '/_next/image',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'none'; frame-src 'none'; sandbox;",
+          },
+        ],
+      },
     ]
   },
   async rewrites() {
