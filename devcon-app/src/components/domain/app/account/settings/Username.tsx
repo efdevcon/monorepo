@@ -61,7 +61,7 @@ export default function UsernameSettings() {
                   className={css['input']}
                   placeholder="Username"
                   defaultValue={username}
-                  onChange={value => setUsername(value)}
+                  onChange={(value: string) => setUsername(value)}
                   onSubmit={updateProfile}
                 />
 

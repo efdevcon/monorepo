@@ -113,7 +113,7 @@ export default function EmailSettings() {
                       className={css['input']}
                       placeholder="Verification code"
                       defaultValue={nonce}
-                      onChange={value => setNonce(value)}
+                      onChange={(value: string) => setNonce(value)}
                       onSubmit={verifyEmail}
                     />
                     <div className="flex flex-row gap-4 items-center">
@@ -134,7 +134,7 @@ export default function EmailSettings() {
                       className={css['input']}
                       placeholder="Email"
                       defaultValue={email}
-                      onChange={value => setEmail(value)}
+                      onChange={(value: string) => setEmail(value)}
                       onSubmit={connectEmail}
                     />
 

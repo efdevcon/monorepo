@@ -347,7 +347,7 @@ const TrustModels = (props: any) => {
           <div className="text-sm text-[#939393] my-2 mb-4">
             We&apos;ve sent a verification code to your email address.
           </div>
-          <InputOTP maxLength={8} value={nonce} onChange={value => setNonce(value)} onSubmit={verifyEmail}>
+          <InputOTP maxLength={8} value={nonce} onChange={(value: string) => setNonce(value)} onSubmit={verifyEmail}>
             <InputOTPGroup>
               <InputOTPSlot index={0} />
               <InputOTPSlot index={1} />
