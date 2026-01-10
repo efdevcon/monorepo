@@ -56,11 +56,11 @@ const nextConfig = {
           ...config.resolve.plugins,
           // new PriorityNodeModulesResolverPlugin(),
         ],
-        modules: [
-          path.resolve(__dirname, 'src'),
-          'node_modules',
-          path.resolve(__dirname, 'node_modules'),
-        ],
+        // modules: [
+        //   path.resolve(__dirname, 'src'),
+        //   'node_modules',
+        //   path.resolve(__dirname, 'node_modules'),
+        // ],
         // fallback: {
         //   tls: false,
         //   net: false,
