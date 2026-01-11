@@ -10,8 +10,6 @@ import { Link } from 'components/common/link'
 import { useActiveAddress } from 'hooks/useActiveAddress'
 import { Tooltip } from 'components/common/tooltip'
 import { useRouter } from 'next/router'
-import { useAccount, useSignMessage } from 'wagmi'
-import { createSiweMessage } from 'viem/siwe'
 import { cn } from 'lib/shadcn/lib/utils'
 import { getAppKitModal } from 'context/web3'
 
@@ -28,9 +26,41 @@ export default function WalletSettings() {
   const [error, setError] = useState('')
   const [promptRemove, setPromptRemove] = useState('')
   const [tooltipVisible, setTooltipVisible] = useState(false)
-  const { address } = useAccount()
+  const [address, setAddress] = useState<string | undefined>(undefined)
   const [loginWeb3, setLoginWeb3] = useState(false)
-  const { signMessageAsync } = useSignMessage()
+  const [wagmiLoaded, setWagmiLoaded] = useState(false)
+
+  // Load wagmi and poll for address
+  useEffect(() => {
+    const loadAndPoll = async () => {
+      try {
+        await import('wagmi')
+        setWagmiLoaded(true)
+      } catch {
+        // Ignore
+      }
+    }
+    loadAndPoll()
+  }, [])
+
+  useEffect(() => {
+    if (!wagmiLoaded) return
+    
+    const checkAddress = async () => {
+      try {
+        const wagmi = await import('wagmi')
+        const config = await import('utils/wallet').then(m => m.wagmiAdapter.wagmiConfig)
+        const account = wagmi.getAccount(config)
+        setAddress(account.address)
+      } catch {
+        // Ignore
+      }
+    }
+    
+    checkAddress()
+    const interval = setInterval(checkAddress, 1000)
+    return () => clearInterval(interval)
+  }, [wagmiLoaded])
 
   const addWallet = async () => {
     if (!address) {
@@ -53,8 +83,15 @@ export default function WalletSettings() {
         return
       }
 
+      // Dynamic imports
+      const [{ signMessage }, { createSiweMessage }, walletModule] = await Promise.all([
+        import('wagmi/actions'),
+        import('viem/siwe'),
+        import('utils/wallet'),
+      ])
+
       const message = createSiweMessage({
-        address: address,
+        address: address as `0x${string}`,
         chainId: 1,
         domain: 'app.devcon.org',
         nonce: token.nonce.toString(),
@@ -63,7 +100,7 @@ export default function WalletSettings() {
         version: '1',
       })
 
-      const signature = await signMessageAsync({ message })
+      const signature = await signMessage(walletModule.wagmiAdapter.wagmiConfig, { message })
       const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
       if (userAccount) {
         router.push('/account')
@@ -74,7 +111,7 @@ export default function WalletSettings() {
     }
 
     if (address && loginWeb3) LoginWithWallet()
-  }, [address, loginWeb3])
+  }, [address, loginWeb3, accountContext, router])
 
   const removeWallet = async () => {
     if (!accountContext.account) return

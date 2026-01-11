@@ -1,10 +1,8 @@
 import makeBlockie from 'ethereum-blockies-base64'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useActiveAddress } from './useActiveAddress'
 import { isEmail } from 'utils/validators'
 import { useLocalStorage } from './useLocalStorage'
-import { useEnsAvatar, useEnsName } from 'wagmi'
-import { normalize } from 'viem/ens'
 import defaultImage from 'assets/images/account_circle.png'
 
 export const defaultAvatarValue = { connection: '', name: '', url: defaultImage.src, ens: false, status: 'Loading' }
@@ -12,12 +10,46 @@ const isBrowser = typeof window !== 'undefined'
 
 export function useAvatar() {
   const activeAddress = useActiveAddress()
-  const { data: ensName } = useEnsName({
-    address: activeAddress as `0x${string}`,
-    chainId: 1,
-  })
-  const { data: ensAvatar } = useEnsAvatar({ name: normalize(ensName as string), chainId: 1 })
   const [avatar, setAvatar] = useLocalStorage(activeAddress, defaultAvatarValue)
+  const [ensData, setEnsData] = useState<{ name: string | null; avatar: string | null }>({ name: null, avatar: null })
+
+  // Fetch ENS data dynamically to avoid wagmi imports at build time
+  useEffect(() => {
+    if (!activeAddress || isEmail(activeAddress)) return
+
+    const fetchEnsData = async () => {
+      try {
+        // Dynamic imports to avoid server-side bundling
+        const [wagmiActions, viemModule, walletModule] = await Promise.all([
+          import('wagmi/actions'),
+          import('viem/ens'),
+          import('utils/wallet'),
+        ])
+
+        const config = walletModule.wagmiAdapter.wagmiConfig
+
+        const name = await wagmiActions.getEnsName(config, {
+          address: activeAddress as `0x${string}`,
+          chainId: 1,
+        })
+
+        let avatar = null
+        if (name) {
+          avatar = await wagmiActions.getEnsAvatar(config, {
+            name: viemModule.normalize(name),
+            chainId: 1,
+          })
+        }
+
+        setEnsData({ name, avatar })
+      } catch (error) {
+        // ENS lookup failed, will use default avatar
+        setEnsData({ name: null, avatar: null })
+      }
+    }
+
+    fetchEnsData()
+  }, [activeAddress])
 
   useEffect(() => {
     async function getAvatar() {
@@ -39,7 +71,7 @@ export function useAvatar() {
         return
       }
 
-      if (!ensName) {
+      if (!ensData.name) {
         setAvatar({
           connection: 'ETHEREUM',
           name: activeAddress,
@@ -52,15 +84,15 @@ export function useAvatar() {
 
       setAvatar({
         connection: 'ETHEREUM',
-        name: ensName,
-        url: ensAvatar ?? makeBlockie(activeAddress ?? ''),
+        name: ensData.name,
+        url: ensData.avatar ?? makeBlockie(activeAddress ?? ''),
         ens: true,
         status: 'Connected',
       })
     }
 
     getAvatar()
-  }, [activeAddress, ensName, ensAvatar])
+  }, [activeAddress, ensData.name, ensData.avatar, setAvatar])
 
   return avatar
 }
