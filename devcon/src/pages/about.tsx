@@ -183,7 +183,7 @@ export default function AboutPage(props: any) {
             />
           </div>
 
-          <div className={`${indexCss['scrolling-text-background']}`}>
+          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`}>
             <InfiniteScroller nDuplications={2} speed="120s">
               <p className="bold">DEVCON&nbsp;</p>
             </InfiniteScroller>

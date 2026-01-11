@@ -157,7 +157,7 @@ export const Contribute = (props: ContributeProps) => {
             </div>
           </div>
 
-          <div className={`${indexCss['scrolling-text-background']}`}>
+          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`}>
             <InfiniteScroller nDuplications={2} speed="240s" reverse>
               <p className="bold uppercase">Devcon Improvement Proposals&nbsp;</p>
             </InfiniteScroller>

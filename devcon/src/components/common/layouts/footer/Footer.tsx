@@ -78,7 +78,7 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
   )
 }
 
-const TopSection = () => {
+const TopSection = ({ dark }: { dark?: boolean }) => {
   const router = useRouter()
   const lang = router.locale
   const navigationData = useNavigationData()
@@ -153,7 +153,7 @@ const TopSection = () => {
               <p className={css['email-1']}>{EMAIL_DEVCON}</p>
 
               <div className={`${css['newsletter']} mt-8`}>
-                <Newsletter id="footer_newsletter_email" />
+                <Newsletter id="footer_newsletter_email" dark={dark} />
                 {/* Subscribe for updates */}
               </div>
             </div>
@@ -285,7 +285,7 @@ const TopSection = () => {
 export const Footer = ({ dark }: { dark?: boolean }) => {
   return (
     <footer className={`footer ${css['container']} ${css['archive']} ${dark ? css['dark'] : ''}`}>
-      <TopSection />
+      <TopSection dark={dark} />
 
       <div className={css['bottom-section']}>
         <div className={`section ${dark ? 'bg-none' : 'bg-white'}`}>
