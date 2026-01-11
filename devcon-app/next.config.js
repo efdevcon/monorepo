@@ -15,6 +15,17 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@parcnet-js/podspec', '@pcd/pod', 'lib'],
   staticPageGenerationTimeout: 300,
+  // Exclude wallet packages from serverless functions to avoid runtime errors
+  serverExternalPackages: [
+    '@reown/appkit',
+    '@reown/appkit-wallet', 
+    '@reown/appkit-polyfills',
+    '@reown/appkit-adapter-wagmi',
+    'wagmi',
+    'viem',
+    '@wagmi/core',
+    '@wagmi/connectors',
+  ],
   images: {
     domains: [
       'speak.devcon.org',

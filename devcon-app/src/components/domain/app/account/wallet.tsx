@@ -16,7 +16,6 @@ export function WalletLoginButton({ onError }: Props) {
   const { address } = useAccount()
   const { signMessageAsync } = useSignMessage()
   
-  // Use the global modal instance instead of useAppKit hook
   const openAppKit = useCallback(async () => {
     const modal = getAppKitModal()
     if (modal) {
@@ -104,23 +103,21 @@ export function WalletLoginButton({ onError }: Props) {
   }
 
   return (
-    <>
-      <Button
-        fat
-        fill
-        className="w-full plain mt-4"
-        color="purple-2"
-        disabled={state !== ''}
-        onClick={(e: any) => {
-          e.preventDefault()
-          setTimeout(() => {
-            connectWeb3AndLogin()
-          }, 0)
-        }}
-      >
-        {state || 'Continue With Ethereum'}
-      </Button>
-    </>
+    <Button
+      fat
+      fill
+      className="w-full plain mt-4"
+      color="purple-2"
+      disabled={state !== ''}
+      onClick={(e: any) => {
+        e.preventDefault()
+        setTimeout(() => {
+          connectWeb3AndLogin()
+        }, 0)
+      }}
+    >
+      {state || 'Continue With Ethereum'}
+    </Button>
   )
 }
 

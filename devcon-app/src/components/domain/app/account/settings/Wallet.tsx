@@ -14,10 +14,8 @@ import { useAccount, useSignMessage } from 'wagmi'
 import { createSiweMessage } from 'viem/siwe'
 import { cn } from 'lib/shadcn/lib/utils'
 import { getAppKitModal } from 'context/web3'
-import Tabs from 'components/domain/app/account/tabs'
 
 export default function WalletSettings() {
-  // Use global modal instance instead of useAppKit hook
   const openAppKit = useCallback(async () => {
     const modal = getAppKitModal()
     if (modal) {
