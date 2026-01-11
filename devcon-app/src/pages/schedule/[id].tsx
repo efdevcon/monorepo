@@ -134,13 +134,10 @@ const SessionPage = (props: any) => {
 export default SessionPage
 
 export async function getStaticPaths() {
-  const sessions = await fetchSessions()
-  const paths = sessions.map(i => {
-    return { params: { id: i.sourceId } }
-  })
-
+  // Return empty paths to avoid pre-generating 600+ pages at build time
+  // Pages will be generated on-demand with fallback: 'blocking'
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   }
 }

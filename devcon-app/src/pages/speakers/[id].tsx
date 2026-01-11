@@ -88,13 +88,10 @@ const SpeakerPage = (props: any) => {
 export default SpeakerPage
 
 export async function getStaticPaths() {
-  const speakers = await fetchSpeakers()
-  const paths = speakers.map(i => {
-    return { params: { id: i.sourceId } }
-  })
-
+  // Return empty paths to avoid pre-generating 700+ pages at build time
+  // Pages will be generated on-demand with fallback: 'blocking'
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   }
 }
