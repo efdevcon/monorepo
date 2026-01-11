@@ -5,7 +5,8 @@ import { PWAPrompt } from 'components/domain/app/pwa-prompt'
 import 'assets/css/index.scss'
 import { Session as SessionType } from 'types/Session'
 import { SEO } from 'components/domain/seo'
-import { Web3Provider } from 'context/web3'
+// Wallet disabled temporarily - causing Netlify serverless function issues (EMFILE: too many open files)
+// import { Web3Provider } from 'context/web3'
 import { AppContext } from 'context/app-context'
 import { AccountContextProvider } from 'context/account-context-provider'
 import DevaBot from 'lib/components/ai/overlay'
@@ -96,13 +97,12 @@ if (
 const withProviders = (Component: React.ComponentType<AppProps>) => {
   return (props: AppProps) => (
     <DataProvider>
-      <Web3Provider>
-        <AccountContextProvider>
-          <ZupassProvider>
-            <Component {...props} />
-          </ZupassProvider>
-        </AccountContextProvider>
-      </Web3Provider>
+      {/* Web3Provider disabled - causing Netlify issues */}
+      <AccountContextProvider>
+        <ZupassProvider>
+          <Component {...props} />
+        </ZupassProvider>
+      </AccountContextProvider>
     </DataProvider>
   )
 }

@@ -1,134 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React from 'react'
 import css from './settings.module.scss'
 import { useAccountContext } from 'context/account-context'
-import Alert from 'lib/components/alert'
 import AccountFooter from '../AccountFooter'
-import NotFound from './NotFound'
-import IconCross from 'assets/icons/cross.svg'
-import { Button } from 'lib/components/button'
-import { Link } from 'components/common/link'
-import { useActiveAddress } from 'hooks/useActiveAddress'
-import { Tooltip } from 'components/common/tooltip'
-import { useRouter } from 'next/router'
 import { cn } from 'lib/shadcn/lib/utils'
-import { getAppKitModal } from 'context/web3'
+import Alert from 'lib/components/alert'
 
+// Wallet functionality temporarily disabled - causing Netlify serverless function issues
 export default function WalletSettings() {
-  const openAppKit = useCallback(async () => {
-    const modal = getAppKitModal()
-    if (modal) {
-      await modal.open()
-    }
-  }, [])
-  const router = useRouter()
   const accountContext = useAccountContext()
-  const activeAddress = useActiveAddress()
-  const [error, setError] = useState('')
-  const [promptRemove, setPromptRemove] = useState('')
-  const [tooltipVisible, setTooltipVisible] = useState(false)
-  const [address, setAddress] = useState<string | undefined>(undefined)
-  const [loginWeb3, setLoginWeb3] = useState(false)
-  const [wagmiLoaded, setWagmiLoaded] = useState(false)
-
-  // Load wagmi and poll for address
-  useEffect(() => {
-    const loadAndPoll = async () => {
-      try {
-        await import('wagmi')
-        setWagmiLoaded(true)
-      } catch {
-        // Ignore
-      }
-    }
-    loadAndPoll()
-  }, [])
-
-  useEffect(() => {
-    if (!wagmiLoaded) return
-    
-    const checkAddress = async () => {
-      try {
-        const wagmi = await import('wagmi')
-        const config = await import('utils/wallet').then(m => m.wagmiAdapter.wagmiConfig)
-        const account = wagmi.getAccount(config)
-        setAddress(account.address)
-      } catch {
-        // Ignore
-      }
-    }
-    
-    checkAddress()
-    const interval = setInterval(checkAddress, 1000)
-    return () => clearInterval(interval)
-  }, [wagmiLoaded])
-
-  const addWallet = async () => {
-    if (!address) {
-      await openAppKit()
-    }
-
-    setLoginWeb3(true)
-  }
-
-  useEffect(() => {
-    async function LoginWithWallet() {
-      if (!address) {
-        setError('No address.')
-        return
-      }
-
-      const token = await accountContext.getToken(address.toLowerCase(), false)
-      if (!token) {
-        setError('Unable to create verification token')
-        return
-      }
-
-      // Dynamic imports
-      const [{ signMessage }, { createSiweMessage }, walletModule] = await Promise.all([
-        import('wagmi/actions'),
-        import('viem/siwe'),
-        import('utils/wallet'),
-      ])
-
-      const message = createSiweMessage({
-        address: address as `0x${string}`,
-        chainId: 1,
-        domain: 'app.devcon.org',
-        nonce: token.nonce.toString(),
-        statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
-        uri: 'https://app.devcon.org/',
-        version: '1',
-      })
-
-      const signature = await signMessage(walletModule.wagmiAdapter.wagmiConfig, { message })
-      const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
-      if (userAccount) {
-        router.push('/account')
-      }
-      if (!userAccount) {
-        setError('Unable to login with web3')
-      }
-    }
-
-    if (address && loginWeb3) LoginWithWallet()
-  }, [address, loginWeb3, accountContext, router])
-
-  const removeWallet = async () => {
-    if (!accountContext.account) return
-
-    await accountContext.updateAccount(accountContext.account.id, {
-      ...accountContext.account,
-      addresses: accountContext.account.addresses.filter(i => i !== promptRemove),
-    })
-
-    setPromptRemove('')
-  }
 
   if (!accountContext.account) {
     return <></>
   }
-
-  const canDelete = accountContext.account?.addresses?.length > 0 && !!accountContext.account.email
 
   return (
     <>
@@ -136,95 +19,26 @@ export default function WalletSettings() {
         <div className={cn('basis-[60%] grow')}>
           <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] lg:bg-[#fbfbfb] rounded-3xl relative">
             <div className="flex flex-col gap-3 pb-4 px-4">
-              <div className={css['alert']}>
-                {error && (
-                  <Alert title="Error" color="orange">
-                    {error}
-                  </Alert>
-                )}
-              </div>
-
               <div className={css['form']}>
                 <p className={`${css['title']} text-lg font-bold`}>Manage Wallets</p>
-                <p className={css['content']}>Add or update the wallets associated with your Devcon account.</p>
-
-                {accountContext.account.addresses?.length === 0 && (
-                  <div className={css['wallet-not-found']}>
-                    <NotFound type="wallet" />
-                  </div>
-                )}
+                
+                <Alert title="Temporarily Unavailable" color="orange">
+                  Wallet management is temporarily unavailable while we prepare for Devcon 8. 
+                  Your existing wallet connections are preserved and will be accessible again soon.
+                </Alert>
 
                 {accountContext.account.addresses?.length > 0 && (
-                  <ul className={css['items']}>
-                    {accountContext.account.addresses.map(i => {
-                      const isActive = activeAddress === i.toLowerCase()
-
-                      return (
-                        <li key={i}>
-                          <Link to={`https://etherscan.io/address/${i}`}>
-                            <>
-                              <span className={isActive ? 'semi-bold' : ''}>{i}</span>
-                              {isActive && <> (active)</>}
-                            </>
-                          </Link>
-
-                          {canDelete && (
-                            <span role="button" className={css['delete']} onClick={() => setPromptRemove(i)}>
-                              <IconCross />
-                            </span>
-                          )}
-
-                          {!canDelete && (
-                            <Tooltip
-                              arrow={false}
-                              visible={tooltipVisible}
-                              content={
-                                <p>
-                                  Can&apos;t delete this address. You need at least 1 wallet or email address connected.
-                                </p>
-                              }
-                            >
-                              <span
-                                role="button"
-                                className={css['disabled']}
-                                onClick={() => setTooltipVisible(!tooltipVisible)}
-                              >
-                                <IconCross />
-                              </span>
-                            </Tooltip>
-                          )}
+                  <div className="mt-4">
+                    <p className="text-sm text-gray-500 mb-2">Connected wallets:</p>
+                    <ul className={css['items']}>
+                      {accountContext.account.addresses.map(i => (
+                        <li key={i} className="text-gray-600">
+                          {i.slice(0, 6)}...{i.slice(-4)}
                         </li>
-                      )
-                    })}
-                  </ul>
+                      ))}
+                    </ul>
+                  </div>
                 )}
-
-                <div className="mt-4">
-                  {promptRemove && (
-                    <>
-                      <p>
-                        Are you sure you want to remove <strong>{promptRemove}</strong> from your account?
-                      </p>
-
-                      <div className="flex flex-row gap-4 mt-4">
-                        <Button color="black-1" fill onClick={() => setPromptRemove('')}>
-                          No, keep address
-                        </Button>
-                        <Button color="purple-2" fill onClick={removeWallet}>
-                          Yes, delete address
-                        </Button>
-                      </div>
-                    </>
-                  )}
-
-                  {!promptRemove && (
-                    <div className="flex flex-row gap-4">
-                      <Button color="purple-2" fill onClick={addWallet}>
-                        Add Ethereum Wallet
-                      </Button>
-                    </div>
-                  )}
-                </div>
               </div>
               <AccountFooter />
             </div>

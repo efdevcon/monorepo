@@ -16,7 +16,8 @@ import { CircleIcon } from 'lib/components/circle-icon'
 import IconCross from 'assets/icons/cross.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect } from 'react'
-import { WalletLoginButton } from 'components/domain/app/account/wallet'
+// Wallet disabled temporarily - causing Netlify serverless function issues
+// import { WalletLoginButton } from 'components/domain/app/account/wallet'
 import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
 import { isEmail } from 'utils/validators'
@@ -312,19 +313,13 @@ const TrustModels = (props: any) => {
           </div>
 
           <div>
-            <p className="font-semibold">Wallet — For Web 3 Experiences</p>
+            <p className="font-semibold text-gray-400">Wallet — For Web 3 Experiences</p>
             <p className="text-sm text-[#939393] mt-2">
-              {/* <Popover>
-                <PopoverTrigger className="plain">
-                  <InfoIcon2 className="translate-y-[2px] text-[#8C72AE]" style={{ '--color-icon': '#8C72AE' }} />
-                </PopoverTrigger>
-                <PopoverContent>
-                  <div className="text-sm"></div>
-                </PopoverContent>
-              </Popover>{' '} */}
-              To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
+              Wallet login is temporarily unavailable while we prepare for Devcon 8. Please use email login for now.
             </p>
-            <WalletLoginButton onError={setError} />
+            <Button fat fill disabled className="w-full plain mt-4 opacity-50 cursor-not-allowed" color="purple-2">
+              Wallet Login Coming Soon
+            </Button>
           </div>
 
           <p
