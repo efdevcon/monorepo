@@ -25,8 +25,7 @@
 [[headers]]
   for = "/_next/image/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none';"
-    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = '''default-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none';'''
 
 [[redirects]]
   from = "/host"
