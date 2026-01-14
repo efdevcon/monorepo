@@ -9,6 +9,10 @@
   path = "/api/ticket/*"
   function = "api-ticket"
 
+[[edge_functions]]
+  path = "/_next/image/*"
+  function = "image-csp"
+
 [[headers]]
   for = "/argentina/ticket/*"
   [headers.values]
@@ -21,11 +25,6 @@
   for = "/api/ticket/*"
   [headers.values]
     Content-Encoding = "identity"
-
-[[headers]]
-  for = "/_next/image/*"
-  [headers.values]
-    Content-Security-Policy = '''default-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none';'''
 
 [[redirects]]
   from = "/host"
