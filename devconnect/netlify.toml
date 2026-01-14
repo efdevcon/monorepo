@@ -22,6 +22,12 @@
   [headers.values]
     Content-Encoding = "identity"
 
+[[headers]]
+  for = "/_next/image/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none';"
+    X-Content-Type-Options = "nosniff"
+
 [[redirects]]
   from = "/host"
   to = "https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022"
