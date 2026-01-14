@@ -46,41 +46,46 @@ function generateProofUrl(
   ticketName?: string,
   eventName?: string
 ): string {
+  const normalizedPartner =
+    (ticketProof.partner || 'ens').trim().toLowerCase() || 'ens';
+  const normalizedEventName =
+    (ticketProof.eventName || eventName || 'Devconnect ARG').trim() ||
+    'Devconnect ARG';
+
   const params = new URLSearchParams({
     id: ticketProof.identifier,
     type: ticketProof.ticketType,
+    partner: normalizedPartner,
+    event: normalizedEventName,
     proof: ticketProof.proof,
     signer: ticketProof.signerAddress,
   });
-  
+
   if (ticketName) {
     params.set('name', ticketName);
   }
-  if (eventName) {
-    params.set('event', eventName);
-  }
-  
+
   return `/verify?${params.toString()}`;
 }
 
 /**
  * Button component to view ticket proof
  */
-const ViewProofButton = ({ 
-  ticketProof, 
-  ticketName, 
+const ViewProofButton = ({
+  ticketProof,
+  ticketName,
   eventName,
   className = '',
-}: { 
+}: {
   ticketProof: TicketProof | null | undefined;
   ticketName?: string;
   eventName?: string;
   className?: string;
 }) => {
   if (!ticketProof) return null;
-  
+
   const proofUrl = generateProofUrl(ticketProof, ticketName, eventName);
-  
+
   return (
     <a
       href={proofUrl}
@@ -134,7 +139,9 @@ const SwagItems = ({
       {addons.map((addon) => (
         <div className="shrink-0" key={addon.id}>
           <div className="flex flex-col gap-3 p-3 items-center bg-white rounded-sm border border-solid border-gray-200">
-            <div className="text-sm font-medium text-center">{addon.itemName}</div>
+            <div className="text-sm font-medium text-center">
+              {addon.itemName}
+            </div>
             <div>
               <img
                 src={qrCodes[addon.secret]}
@@ -144,10 +151,10 @@ const SwagItems = ({
               />
             </div>
             {addon.ticketProof && (
-              <ViewProofButton 
-                ticketProof={addon.ticketProof} 
+              <ViewProofButton
+                ticketProof={addon.ticketProof}
                 ticketName={addon.itemName}
-                eventName="Devconnect"
+                eventName="Devconnect ARG"
               />
             )}
           </div>
@@ -204,7 +211,8 @@ const ConnectedEmails = () => {
         >
           <div className="flex flex-col">
             <div className="text-sm font-medium mb-1 select-none">
-              {t('connectedEmails')} ({(additionalTicketEmails.length || 0) + 1})
+              {t('connectedEmails')} ({(additionalTicketEmails.length || 0) + 1}
+              )
             </div>
             <div>{email}</div>
             {expanded &&
@@ -260,9 +268,7 @@ const ConnectedEmails = () => {
                 }}
               >
                 <Mail className="w-4 h-4" />
-                {loadingAdditionalEmail
-                  ? t('sending')
-                  : t('addEmail')}
+                {loadingAdditionalEmail ? t('sending') : t('addEmail')}
               </button>
               {checkYourEmail && (
                 <div className="text-sm text-gray-800 text-center mt-6 flex flex-col items-center w-full">
@@ -419,8 +425,8 @@ const EventTicketCard = ({
               {order.event?.organizer}
             </div>
             {ticket.ticketProof && (
-              <ViewProofButton 
-                ticketProof={ticket.ticketProof} 
+              <ViewProofButton
+                ticketProof={ticket.ticketProof}
                 ticketName={ticket.itemName}
                 eventName={order.event?.name}
               />
@@ -509,7 +515,15 @@ const QRCodeModal = ({
   );
 };
 
-const Ticket = ({ ticket, qrCodes, eventName }: { ticket: Ticket; qrCodes: QRCodes; eventName?: string }) => {
+const Ticket = ({
+  ticket,
+  qrCodes,
+  eventName,
+}: {
+  ticket: Ticket;
+  qrCodes: QRCodes;
+  eventName?: string;
+}) => {
   const t = useTranslations('tickets');
   const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
 
@@ -524,7 +538,12 @@ const Ticket = ({ ticket, qrCodes, eventName }: { ticket: Ticket; qrCodes: QRCod
             </div>
           </div>
 
-          <div className="text-sm mt-1" dangerouslySetInnerHTML={{ __html: t.raw('ethereumWorldsFairAttendeeTicket') }} />
+          <div
+            className="text-sm mt-1"
+            dangerouslySetInnerHTML={{
+              __html: t.raw('ethereumWorldsFairAttendeeTicket'),
+            }}
+          />
         </div>
 
         <img
@@ -533,14 +552,14 @@ const Ticket = ({ ticket, qrCodes, eventName }: { ticket: Ticket; qrCodes: QRCod
           className="absolute bottom-[15%] right-[8.5%] h-[22%] aspect-square p-1 border border-solid border-gray-300 rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
           onClick={() => setIsQRCodeModalOpen(true)}
         />
-        
+
         {/* Proof verification link */}
         {ticket.ticketProof && (
           <div className="absolute bottom-[5%] left-[9%]">
-            <ViewProofButton 
-              ticketProof={ticket.ticketProof} 
+            <ViewProofButton
+              ticketProof={ticket.ticketProof}
               ticketName={ticket.itemName}
-              eventName={eventName || 'Devconnect'}
+              eventName={eventName || 'Devconnect ARG'}
             />
           </div>
         )}
@@ -766,15 +785,11 @@ const TicketTab = RequiresAuthHOC(() => {
               </div>
 
               {hasTickets && (
-                <div className="text-sm">
-                  {t('ticketDescription')}
-                </div>
+                <div className="text-sm">{t('ticketDescription')}</div>
               )}
 
               {!hasTickets && (
-                <div className="text-sm">
-                  {t('loadTicketsDescription')}
-                </div>
+                <div className="text-sm">{t('loadTicketsDescription')}</div>
               )}
             </div>
 
@@ -802,7 +817,7 @@ const TicketTab = RequiresAuthHOC(() => {
                       <Ticket
                         ticket={ticket}
                         qrCodes={qrCodes}
-                        eventName={order.event?.name || 'Devconnect'}
+                        eventName={order.event?.name || 'Devconnect ARG'}
                         key={ticket.secret}
                       />
                     ))}
@@ -821,9 +836,7 @@ const TicketTab = RequiresAuthHOC(() => {
           {hasTickets && (
             <div className="flex flex-col gap-1 order-2 sm:order-1 mt-8">
               <div className="text-lg font-semibold">{t('swagItems')}</div>
-              <div className="text-sm">
-                {t('swagDescription')}
-              </div>
+              <div className="text-sm">{t('swagDescription')}</div>
             </div>
           )}
           <div className="flex flex-col gap-1 mt-4">

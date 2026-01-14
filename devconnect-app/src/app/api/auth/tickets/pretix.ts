@@ -19,6 +19,20 @@ interface PretixItem {
  * Ticket types for categorizing different kinds of tickets
  */
 export type TicketType = 'attendee' | 'addon' | 'swag' | 'event';
+export type TicketPartner = string;
+
+export const DEFAULT_TICKET_PARTNER = 'ens';
+export const DEFAULT_TICKET_EVENT_NAME = 'Devconnect ARG';
+
+function normalizeTicketPartner(partner?: string): string {
+  const normalized = (partner ?? DEFAULT_TICKET_PARTNER).trim().toLowerCase();
+  return normalized || DEFAULT_TICKET_PARTNER;
+}
+
+function normalizeTicketEventName(eventName?: string): string {
+  const normalized = (eventName ?? DEFAULT_TICKET_EVENT_NAME).trim();
+  return normalized || DEFAULT_TICKET_EVENT_NAME;
+}
 
 /**
  * Ticket proof structure for privacy-preserving ticket verification.
@@ -26,7 +40,7 @@ export type TicketType = 'attendee' | 'addon' | 'swag' | 'event';
  * The identifier is a hash of the original ticket secret - it uniquely identifies
  * the ticket without revealing the original code.
  * 
- * The proof is a signature of (identifier + ticketType) using the relayer's private key.
+ * The proof is a signature of (identifier + ticketType + partner + eventName) using the relayer's private key.
  * Anyone with the public key can verify the proof is valid for the identifier AND type,
  * confirming the ticket was validated by our system.
  */
@@ -35,7 +49,11 @@ export interface TicketProof {
   identifier: string;
   /** Type of ticket (attendee, addon, swag, event) - cryptographically bound to the proof */
   ticketType: TicketType;
-  /** Signature of (identifier + ticketType) - proves authenticity and type */
+  /** Partner namespace for this proof (normalized) - cryptographically bound to the proof */
+  partner: TicketPartner;
+  /** Event name for this proof (trimmed) - cryptographically bound to the proof */
+  eventName: string;
+  /** Signature of (identifier + ticketType + partner + eventName) - proves authenticity, type, partner, and event */
   proof: string;
   /** Public address of the signer for verification */
   signerAddress: string;
@@ -43,15 +61,23 @@ export interface TicketProof {
 
 /**
  * Creates the message to be signed for a ticket proof.
- * Includes both the identifier and ticket type to cryptographically bind them.
+ * Includes the identifier, ticket type, partner, and event name to cryptographically bind them.
  */
-function createProofMessage(identifier: string, ticketType: TicketType): Uint8Array {
-  // Concatenate identifier hash with ticket type for signing
-  // This ensures the type cannot be changed without invalidating the signature
+function createProofMessage(
+  identifier: string,
+  ticketType: TicketType,
+  partner?: string,
+  eventName?: string
+): Uint8Array {
+  const normalizedPartner = normalizeTicketPartner(partner);
+  const normalizedEventName = normalizeTicketEventName(eventName);
+
+  // Concatenate identifier hash with ticket type + partner + eventName for signing
+  // This ensures the type/partner/eventName cannot be changed without invalidating the signature
   const messageHash = ethers.keccak256(
     ethers.solidityPacked(
-      ['bytes32', 'string'],
-      [identifier, ticketType]
+      ['bytes32', 'string', 'string', 'string'],
+      [identifier, ticketType, normalizedPartner, normalizedEventName]
     )
   );
   return ethers.getBytes(messageHash);
@@ -73,7 +99,9 @@ function createProofMessage(identifier: string, ticketType: TicketType): Uint8Ar
  */
 export async function generateTicketProof(
   secret: string,
-  ticketType: TicketType = 'attendee'
+  ticketType: TicketType = 'attendee',
+  partner: string = DEFAULT_TICKET_PARTNER,
+  eventName: string = DEFAULT_TICKET_EVENT_NAME
 ): Promise<TicketProof> {
   const privateKey = process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY;
 
@@ -87,8 +115,16 @@ export async function generateTicketProof(
   // This uniquely identifies the ticket without revealing the original code
   const identifier = ethers.keccak256(ethers.toUtf8Bytes(secret));
 
-  // Create message that includes both identifier and type
-  const message = createProofMessage(identifier, ticketType);
+  const normalizedPartner = normalizeTicketPartner(partner);
+  const normalizedEventName = normalizeTicketEventName(eventName);
+
+  // Create message that includes identifier + type + partner + eventName
+  const message = createProofMessage(
+    identifier,
+    ticketType,
+    normalizedPartner,
+    normalizedEventName
+  );
 
   // Sign the combined message to create the proof
   // This cryptographically binds the identifier to the ticket type
@@ -97,6 +133,8 @@ export async function generateTicketProof(
   return {
     identifier,
     ticketType,
+    partner: normalizedPartner,
+    eventName: normalizedEventName,
     proof,
     signerAddress: wallet.address,
   };
@@ -115,11 +153,21 @@ export function verifyTicketProof(
   identifier: string,
   ticketType: TicketType,
   proof: string,
-  expectedSigner?: string
+  expectedSigner?: string,
+  partner: string = DEFAULT_TICKET_PARTNER,
+  eventName: string = DEFAULT_TICKET_EVENT_NAME
 ): boolean {
   try {
+    const normalizedPartner = normalizeTicketPartner(partner);
+    const normalizedEventName = normalizeTicketEventName(eventName);
+
     // Recreate the message that was signed
-    const message = createProofMessage(identifier, ticketType);
+    const message = createProofMessage(
+      identifier,
+      ticketType,
+      normalizedPartner,
+      normalizedEventName
+    );
 
     // Recover the signer from the proof
     const recoveredAddress = ethers.verifyMessage(message, proof);
@@ -275,7 +323,12 @@ export async function getPaidTicketsByEmail(
             const addonType: TicketType = variationValue ? 'swag' : 'addon';
             let ticketProof: TicketProof | null = null;
             try {
-              ticketProof = await generateTicketProof(addon.secret, addonType);
+              ticketProof = await generateTicketProof(
+                addon.secret,
+                addonType,
+                DEFAULT_TICKET_PARTNER,
+                store.eventName
+              );
             } catch (e) {
               console.warn('Failed to generate proof for addon:', e);
             }
@@ -304,7 +357,12 @@ export async function getPaidTicketsByEmail(
         const mainTicketType: TicketType = isMainTicket ? 'attendee' : 'event';
         let ticketProof: TicketProof | null = null;
         try {
-          ticketProof = await generateTicketProof(position.secret, mainTicketType);
+          ticketProof = await generateTicketProof(
+            position.secret,
+            mainTicketType,
+            DEFAULT_TICKET_PARTNER,
+            store.eventName
+          );
         } catch (e) {
           console.warn('Failed to generate proof for ticket:', e);
         }

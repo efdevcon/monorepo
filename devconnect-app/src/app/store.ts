@@ -25,7 +25,11 @@ export interface TicketProof {
   identifier: string;
   /** Type of ticket (attendee, addon, swag, event) - cryptographically bound to the proof */
   ticketType: TicketType;
-  /** Signature of (identifier + ticketType) - proves authenticity and type */
+  /** Partner namespace for this proof (normalized) - cryptographically bound to the proof */
+  partner: string;
+  /** Event name for this proof (trimmed) - cryptographically bound to the proof */
+  eventName: string;
+  /** Signature of (identifier + ticketType + partner + eventName) - proves authenticity, type, partner, and event */
   proof: string;
   /** Public address of the signer for verification */
   signerAddress: string;
