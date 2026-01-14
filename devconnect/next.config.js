@@ -50,6 +50,7 @@ module.exports = {
       'www.gravatar.com',
       'mealmslwugsqqyoesrxd.supabase.co',
       'assets.tina.io',
+      "storage.googleapis.com",
     ],
   },
   webpack: (config, { webpack, isServer }) => {

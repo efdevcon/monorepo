@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --webpack\"",
     "dev-inspect": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "tinacms build && next build --webpack",
-    "start": "next start",
+    "start": "next start --webpack",
     "ai-content-sync": "ts-node src/ai/sync-vector-store",
     "ai-translations": "ts-node src/ai/translate.ts",
     "lint": "next lint"
