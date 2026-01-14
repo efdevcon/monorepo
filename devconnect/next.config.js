@@ -158,11 +158,16 @@ module.exports = {
     return [
       {
         // Prevent SVG XSS attacks via Next.js Image optimization
-        source: '/_next/image',
+        // Use wildcard pattern to match both /_next/image and /_next/image/
+        source: '/_next/image/:path*',
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "script-src 'none'; frame-src 'none'; sandbox;",
+            value: "default-src 'none'; script-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none';",
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
           },
         ],
       },
