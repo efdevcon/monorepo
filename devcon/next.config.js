@@ -19,6 +19,7 @@ const nextConfig = {
       'www.gravatar.com',
       'assets.tina.io',
       'cfp.ticketh.xyz',
+      'storage.googleapis.com',
     ],
   },
   i18n: {
@@ -102,20 +103,6 @@ const nextConfig = {
         ],
       },
     }
-  },
-  async headers() {
-    return [
-      {
-        // Prevent SVG XSS attacks via Next.js Image optimization
-        source: '/_next/image',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "script-src 'none'; frame-src 'none'; sandbox;",
-          },
-        ],
-      },
-    ]
   },
   async rewrites() {
     return [

@@ -9,6 +9,10 @@
 [[plugins]]
     package = "@netlify/plugin-nextjs"
 
+[[edge_functions]]
+  path = "/_next/image/*"
+  function = "image-csp"
+
 [[redirects]]
   from = "/grants"
   to = "https://esp.ethereum.foundation/devcon-grants"
