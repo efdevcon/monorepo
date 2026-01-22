@@ -6,6 +6,7 @@ import {
   SpeakerSchema,
   UserSchema,
 } from "../models";
+import { validateWithToast } from "./validation";
 
 // ============================================================================
 // FILTER AND QUERY TYPES
@@ -23,17 +24,17 @@ export interface SessionFilters {
 }
 
 // ============================================================================
-// DATA ADAPTER INTERFACE
+// DATA PROVIDER INTERFACE
 // ============================================================================
 
 /**
- * IEventDataAdapter - The contract that any data layer implementation must fulfill
+ * IEventDataProvider - The contract that any data layer implementation must fulfill
  *
  * This interface defines all the methods needed to power the event app frontend.
  * Implementations can fetch from APIs (Pretix, Pretalx), databases, static files, etc.
  * All returned data is validated using Zod schemas to ensure type safety.
  */
-export interface IEventDataAdapter {
+export interface IEventDataProvider {
   // --------------------------------------------------------------------------
   // SESSION METHODS
   // --------------------------------------------------------------------------
@@ -118,58 +119,46 @@ export interface IEventDataAdapter {
 }
 
 // ============================================================================
-// BASE ADAPTER CLASS
+// BASE PROVIDER CLASS
 // ============================================================================
 
 /**
- * Base adapter class that provides common validation logic
- * Extend this class to create specific adapter implementations
+ * Base provider class that provides common validation logic
+ * Extend this class to create specific provider implementations
+ *
+ * Validation errors will fire a toast notification when RUNTIME_VALIDATION is enabled
  */
-export abstract class BaseAdapter implements IEventDataAdapter {
+export abstract class BaseProvider implements IEventDataProvider {
   /**
-   * Enable/disable validation for performance.
-   * Set to false for trusted data sources or when performance is critical.
-   * Default: false (validation disabled)
-   */
-  protected validateData: boolean = false;
-
-  /**
-   * Validate and parse data using Zod schemas
-   * Skips validation if validateData is false (for performance with large datasets)
+   * Validate and parse data using Zod schemas with toast notifications
+   * Skips validation if RUNTIME_VALIDATION is false in CONFIG
    */
   protected validateRoom(data: unknown): Room {
-    if (!this.validateData) return data as Room;
-    return RoomSchema.parse(data);
+    return validateWithToast(() => RoomSchema.parse(data), data, "Room");
   }
 
   protected validateRooms(data: unknown): Room[] {
-    if (!this.validateData) return data as Room[];
-    return z.array(RoomSchema).parse(data);
+    return validateWithToast(() => z.array(RoomSchema).parse(data), data, "Rooms");
   }
 
   protected validateSession(data: unknown): Session {
-    if (!this.validateData) return data as Session;
-    return SessionSchema.parse(data);
+    return validateWithToast(() => SessionSchema.parse(data), data, "Session");
   }
 
   protected validateSessions(data: unknown): Session[] {
-    if (!this.validateData) return data as Session[];
-    return z.array(SessionSchema).parse(data);
+    return validateWithToast(() => z.array(SessionSchema).parse(data), data, "Sessions");
   }
 
   protected validateSpeaker(data: unknown): Speaker {
-    if (!this.validateData) return data as Speaker;
-    return SpeakerSchema.parse(data);
+    return validateWithToast(() => SpeakerSchema.parse(data), data, "Speaker");
   }
 
   protected validateSpeakers(data: unknown): Speaker[] {
-    if (!this.validateData) return data as Speaker[];
-    return z.array(SpeakerSchema).parse(data);
+    return validateWithToast(() => z.array(SpeakerSchema).parse(data), data, "Speakers");
   }
 
   protected validateUser(data: unknown): User {
-    if (!this.validateData) return data as User;
-    return UserSchema.parse(data);
+    return validateWithToast(() => UserSchema.parse(data), data, "User");
   }
 
   // Abstract methods that must be implemented by subclasses

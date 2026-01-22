@@ -1,12 +1,12 @@
 import useSWR from "swr";
-import { adapter } from "../providers/adapter";
+import { provider } from "../providers/provider";
 import type { Speaker } from "../models";
 
 /**
  * Fetcher function for SWR
  */
 async function speakersFetcher(): Promise<Speaker[]> {
-  return adapter.getSpeakers();
+  return provider.getSpeakers();
 }
 
 /**
@@ -37,7 +37,7 @@ export function useSpeakers() {
 export function useSpeaker(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
     id ? ["speaker", id] : null,
-    () => adapter.getSpeaker(id),
+    () => provider.getSpeaker(id),
     {
       revalidateOnFocus: false,
     }
@@ -58,7 +58,7 @@ export function useSpeaker(id: string) {
 export function useSearchSpeakers(query: string) {
   const { data, error, isLoading, mutate } = useSWR(
     query ? ["speakers", "search", query] : null,
-    () => adapter.searchSpeakers(query),
+    () => provider.searchSpeakers(query),
     {
       revalidateOnFocus: false,
     }

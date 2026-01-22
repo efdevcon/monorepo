@@ -1,10 +1,10 @@
-import { BaseAdapter, type SessionFilters } from "./adapter-interface";
+import { BaseProvider, type SessionFilters } from "./provider-interface";
 import type { Room, Session, Speaker } from "../models";
 
 /**
- * Dummy adapter with sample data for development and testing
+ * Dummy provider with sample data for development and testing
  */
-export class DummyAdapter extends BaseAdapter {
+export class DummyProvider extends BaseProvider {
   private dummyRooms: Room[] = [
     {
       id: "room-1",
@@ -72,7 +72,7 @@ export class DummyAdapter extends BaseAdapter {
     {
       id: "session-1",
       speakers: [this.dummySpeakers[0], this.dummySpeakers[1]],
-      title: "Introduction to Web3",
+      title: 'I am test', // { test: "Introduction to Web3" } as any, // throw 
       track: "Web3",
       duration: 60,
       start: 1699000000, // Unix timestamp

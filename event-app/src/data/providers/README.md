@@ -1,38 +1,37 @@
 # Data Providers
 
-The adapter system enforces data contracts and optionally validates responses using Zod schemas.
+The provider system enforces data contracts and optionally validates responses using Zod schemas.
 
 ## Purpose
 
-Adapters fetch data from various sources (APIs, databases, static files) and ensure all data conforms to the defined models through (optional) runtime validation.
+Providers fetch data from various sources (APIs, databases, static files) and ensure all data conforms to the defined models through (optional) runtime validation.
 
 The structure allows us to easily switch out the data provider so long as it conforms to the models, with the goal of democraticing the event app/let users easily fork and run the app for their own events using their own data sources.
 
 ## Architecture
 
-- **`adapter.types.ts`** - Defines the `IEventDataAdapter` interface
-- **`base.adapter.ts`** - Base class with Zod validation helpers
-- **`adapter.ts`** - Singleton adapter instance (currently `DummyAdapter`)
-- **`dummy.adapter.ts`** - Sample implementation with hardcoded data
+- **`provider-interface.ts`** - Defines the `IEventDataProvider` interface and `BaseProvider` class
+- **`provider.ts`** - Singleton provider instance (currently `DummyProvider`)
+- **`dummy.provider.ts`** - Sample implementation with hardcoded data
 
 ## Usage
 
-Components don't use adapters directly. Instead, use the hooks from `@/data/hooks`:
+Components don't use providers directly. Instead, use the hooks from `@/data/hooks`:
 
 ```typescript
 import { useSessions, useSpeakers, useRooms } from "@/data/hooks";
 ```
 
-The hooks handle adapter interaction, caching, and data fetching automatically.
+The hooks handle provider interaction, caching, and data fetching automatically.
 
-## Creating a New Adapter
+## Creating a New Provider
 
-Extend `BaseAdapter` and implement the required methods:
+Extend `BaseProvider` and implement the required methods:
 
 ```typescript
-import { BaseAdapter, type SessionFilters } from "./adapter-interface";
+import { BaseProvider, type SessionFilters } from "./provider-interface";
 
-class MyAdapter extends BaseAdapter {
+class MyProvider extends BaseProvider {
   async getSessions(filters?: SessionFilters) {
     const rawData = await fetch("/api/sessions").then((r) => r.json());
     return this.validateSessions(rawData); // Zod validation
@@ -42,8 +41,8 @@ class MyAdapter extends BaseAdapter {
 }
 ```
 
-Then update `adapter.ts` to use your new adapter:
+Then update `provider.ts` to use your new provider:
 
 ```typescript
-export const adapter = new MyAdapter();
+export const provider = new MyProvider();
 ```

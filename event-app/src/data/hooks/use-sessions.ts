@@ -1,7 +1,7 @@
 import useSWR from "swr";
-import { adapter } from "../providers/adapter";
+import { provider } from "../providers/provider";
 import type { Session } from "../models";
-import type { SessionFilters } from "../providers/adapter-interface";
+import type { SessionFilters } from "../providers/provider-interface";
 
 /**
  * Fetcher function for SWR
@@ -9,7 +9,7 @@ import type { SessionFilters } from "../providers/adapter-interface";
 async function sessionsFetcher(
   filters?: SessionFilters
 ): Promise<Session[]> {
-  return adapter.getSessions(filters);
+  return provider.getSessions(filters);
 }
 
 /**
@@ -42,7 +42,7 @@ export function useSessions(filters?: SessionFilters) {
 export function useSession(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
     id ? ["session", id] : null,
-    () => adapter.getSession(id),
+    () => provider.getSession(id),
     {
       revalidateOnFocus: false,
     }
@@ -63,7 +63,7 @@ export function useSession(id: string) {
 export function useSessionsBySpeaker(speakerId: string) {
   const { data, error, isLoading, mutate } = useSWR(
     speakerId ? ["sessions", "speaker", speakerId] : null,
-    () => adapter.getSessionsBySpeaker(speakerId),
+    () => provider.getSessionsBySpeaker(speakerId),
     {
       revalidateOnFocus: false,
     }
@@ -84,7 +84,7 @@ export function useSessionsBySpeaker(speakerId: string) {
 export function useSessionsByTrack(track: string) {
   const { data, error, isLoading, mutate } = useSWR(
     track ? ["sessions", "track", track] : null,
-    () => adapter.getSessionsByTrack(track),
+    () => provider.getSessionsByTrack(track),
     {
       revalidateOnFocus: false,
     }
@@ -105,7 +105,7 @@ export function useSessionsByTrack(track: string) {
 export function useSessionsByDay(day: string) {
   const { data, error, isLoading, mutate } = useSWR(
     day ? ["sessions", "day", day] : null,
-    () => adapter.getSessionsByDay(day),
+    () => provider.getSessionsByDay(day),
     {
       revalidateOnFocus: false,
     }

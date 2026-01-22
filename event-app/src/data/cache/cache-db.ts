@@ -17,4 +17,6 @@ class CacheDB extends Dexie {
   }
 }
 
-export const cacheDB = new CacheDB();
+// Only create Dexie instance in browser environment
+export const cacheDB =
+  typeof window !== "undefined" ? new CacheDB() : (null as unknown as CacheDB);

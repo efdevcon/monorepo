@@ -4,14 +4,26 @@ import { cacheDB } from "./cache-db";
 const MAX_CACHE_AGE = 24 * 60 * 60 * 1000; // 24 hours
 
 /**
+ * Check if we're in a browser environment
+ */
+const isBrowser = typeof window !== "undefined";
+
+/**
  * Create an SWR-compatible cache provider using Dexie for IndexedDB persistence
  * Uses a hybrid approach: memory cache for fast reads, Dexie for persistence
+ * Falls back to memory-only cache on server (SSR)
  */
 export function createDexieCacheProvider(): () => Cache<any> {
   const memoryCache = new Map<string, any>();
+
+  // SSR: return simple memory cache
+  if (!isBrowser || !cacheDB) {
+    return () => memoryCache;
+  }
+
   let initialized = false;
 
-  // Load from Dexie on init
+  // Load from Dexie on init (browser only)
   const initPromise = cacheDB.cache
     .where("timestamp")
     .above(Date.now() - MAX_CACHE_AGE)
@@ -81,6 +93,8 @@ export function createDexieCacheProvider(): () => Cache<any> {
  * Can be called periodically or on app startup
  */
 export async function cleanupOldCacheEntries(): Promise<void> {
+  if (!isBrowser || !cacheDB) return;
+
   try {
     const cutoff = Date.now() - MAX_CACHE_AGE;
     await cacheDB.cache.where("timestamp").below(cutoff).delete();

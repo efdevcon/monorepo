@@ -1,12 +1,12 @@
 import useSWR from "swr";
-import { adapter } from "../providers/adapter";
+import { provider } from "../providers/provider";
 import type { Room } from "../models";
 
 /**
  * Fetcher function for SWR
  */
 async function roomsFetcher(): Promise<Room[]> {
-  return adapter.getRooms();
+  return provider.getRooms();
 }
 
 /**
@@ -33,7 +33,7 @@ export function useRooms() {
 export function useRoom(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
     id ? ["room", id] : null,
-    () => adapter.getRoom(id),
+    () => provider.getRoom(id),
     {
       revalidateOnFocus: false,
     }
