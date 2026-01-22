@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSessions } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { notFound } from "next/navigation";
@@ -24,7 +25,7 @@ export default function SchedulePage() {
       <h1 className="text-2xl font-bold mb-4">Schedule</h1>
       <div className="space-y-4">
         {sessions.map((session) => (
-          <a
+          <Link
             key={session.id}
             href={`/schedule/${session.id}`}
             className="block p-4 border rounded-lg hover:bg-gray-50 transition-colors"
@@ -38,7 +39,7 @@ export default function SchedulePage() {
                 {session.speakers.map((s) => s.name).join(", ")}
               </p>
             )}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

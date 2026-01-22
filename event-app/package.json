@@ -4,12 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --webpack",
+    "build:static": "STATIC_EXPORT=true next build --webpack",
+    "cap:init": "pnpm build:static && cap add ios && cap add android",
+    "cap:sync": "pnpm build:static && cap sync",
+    "cap:ios": "pnpm build:static && cap sync ios && cap open ios",
+    "cap:android": "pnpm build:static && cap sync android && cap open android",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@capacitor/android": "^8.0.1",
+    "@capacitor/cli": "^8.0.1",
+    "@capacitor/core": "^8.0.1",
+    "@capacitor/ios": "^8.0.1",
+    "@serwist/next": "^9.5.0",
     "dexie": "^4.2.1",
     "lib": "workspace:*",
     "next": "16.0.7",
@@ -26,6 +36,7 @@
     "@types/react-dom": "^19.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
+    "serwist": "^9.5.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

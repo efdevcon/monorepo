@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRooms } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { notFound } from "next/navigation";
@@ -23,10 +24,10 @@ export default function RoomScreensPage() {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Room Screens</h1>
       <p className="text-gray-600 mb-4">Select a room to view its schedule display</p>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {rooms.map((room) => (
-          <a
+          <Link
             key={room.id}
             href={`/room-screens/${room.id}`}
             className="block p-4 border rounded-lg hover:bg-gray-50 transition-colors"
@@ -38,7 +39,7 @@ export default function RoomScreensPage() {
             {room.capacity && (
               <p className="text-sm text-gray-500">Capacity: {room.capacity}</p>
             )}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

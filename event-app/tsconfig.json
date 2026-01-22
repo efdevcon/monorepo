@@ -2,6 +2,8 @@
   "extends": "../base.tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "WebWorker"],
+    "types": ["@serwist/next/typings"],
     "plugins": [
       {
         "name": "next"

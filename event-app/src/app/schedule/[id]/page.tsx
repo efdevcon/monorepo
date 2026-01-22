@@ -1,5 +1,10 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ id: "_" }];
+}
+
+import Link from "next/link";
 import { useSession } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { notFound } from "next/navigation";
@@ -23,14 +28,18 @@ export default function SessionPage({
   }
 
   if (isError || !session) {
-    return <div className="p-4 text-red-500">{error?.message || "Session not found"}</div>;
+    return (
+      <div className="p-4 text-red-500">
+        {error?.message || "Session not found"}
+      </div>
+    );
   }
 
   return (
     <div className="p-4">
-      <a href="/schedule" className="text-blue-500 hover:underline mb-4 block">
+      <Link href="/schedule" className="text-blue-500 hover:underline mb-4 block">
         ← Back to Schedule
-      </a>
+      </Link>
 
       <h1 className="text-2xl font-bold mb-2">{session.title}</h1>
 
@@ -55,7 +64,7 @@ export default function SessionPage({
           <h2 className="font-semibold mb-2">Speakers</h2>
           <div className="space-y-2">
             {session.speakers.map((speaker) => (
-              <a
+              <Link
                 key={speaker.id}
                 href={`/speakers/${speaker.id}`}
                 className="block p-2 border rounded hover:bg-gray-50"
@@ -64,7 +73,7 @@ export default function SessionPage({
                 {speaker.company && (
                   <span className="text-gray-500"> • {speaker.company}</span>
                 )}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

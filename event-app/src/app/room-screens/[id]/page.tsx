@@ -1,5 +1,9 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ id: "_" }];
+}
+
 import { useRoom, useSessions } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { notFound } from "next/navigation";
@@ -16,7 +20,12 @@ export default function RoomScreenPage({
     notFound();
   }
 
-  const { room, isLoading: roomLoading, isError: roomError, error: roomErrorObj } = useRoom(id);
+  const {
+    room,
+    isLoading: roomLoading,
+    isError: roomError,
+    error: roomErrorObj,
+  } = useRoom(id);
   const { sessions, isLoading: sessionsLoading } = useSessions({ roomId: id });
 
   const sortedSessions = useMemo(() => {
@@ -28,7 +37,11 @@ export default function RoomScreenPage({
   }
 
   if (roomError || !room) {
-    return <div className="p-4 text-red-500">{roomErrorObj?.message || "Room not found"}</div>;
+    return (
+      <div className="p-4 text-red-500">
+        {roomErrorObj?.message || "Room not found"}
+      </div>
+    );
   }
 
   return (

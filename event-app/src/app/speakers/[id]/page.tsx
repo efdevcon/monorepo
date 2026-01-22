@@ -1,5 +1,10 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ id: "_" }];
+}
+
+import Link from "next/link";
 import { useSpeaker, useSessionsBySpeaker } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { notFound } from "next/navigation";
@@ -24,14 +29,18 @@ export default function SpeakerPage({
   }
 
   if (isError || !speaker) {
-    return <div className="p-4 text-red-500">{error?.message || "Speaker not found"}</div>;
+    return (
+      <div className="p-4 text-red-500">
+        {error?.message || "Speaker not found"}
+      </div>
+    );
   }
 
   return (
     <div className="p-4">
-      <a href="/speakers" className="text-blue-500 hover:underline mb-4 block">
+      <Link href="/speakers" className="text-blue-500 hover:underline mb-4 block">
         ← Back to Speakers
-      </a>
+      </Link>
 
       <h1 className="text-2xl font-bold mb-2">{speaker.name}</h1>
 
@@ -85,7 +94,7 @@ export default function SpeakerPage({
           <h2 className="font-semibold mb-2">Sessions</h2>
           <div className="space-y-2">
             {sessions.map((session) => (
-              <a
+              <Link
                 key={session.id}
                 href={`/schedule/${session.id}`}
                 className="block p-2 border rounded hover:bg-gray-50"
@@ -94,7 +103,7 @@ export default function SpeakerPage({
                 <p className="text-sm text-gray-500">
                   {session.day} • {session.room?.name}
                 </p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
