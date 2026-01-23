@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   transpilePackages: ["lib"],
   ...(isStaticExport && { output: "export" }),
+  // Static export: only .native-app.tsx (single catch-all router for Capacitor)
+  // Web build: normal .tsx files with full Next.js routing
+  pageExtensions: isStaticExport
+    ? ["native-app.tsx", "native-app.ts"]
+    : ["tsx", "ts", "jsx", "js"],
 };
 
 // Skip Serwist wrapper entirely for static export
