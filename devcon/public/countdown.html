@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devcon India - Countdown</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      min-height: max(200px, 100vh);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background image */
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 64.5% 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Dark overlay for better text readability */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: clamp(0.5rem, 2vh, 2rem);
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .logo {
+      margin-bottom: clamp(0.5rem, 2vh, 1.5rem);
+      display: flex;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: clamp(250px, 50vw, 575px);
+      max-width: 100%;
+      height: auto;
+      max-height: clamp(100px, 35vh, 120px);
+      object-fit: contain;
+    }
+
+    /* Larger logo on big viewports */
+    @media (min-width: 1200px) {
+      .logo img {
+        width: clamp(575px, 60vw, 800px);
+        max-height: clamp(120px, 40vh, 180px);
+      }
+    }
+
+    @media (min-width: 1600px) {
+      .logo img {
+        width: clamp(700px, 65vw, 1000px);
+        max-height: clamp(150px, 45vh, 220px);
+      }
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.5rem, 2vw, 2rem);
+      flex-wrap: wrap;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: clamp(50px, 12vw, 120px);
+    }
+
+    .countdown-value {
+      font-size: clamp(2rem, 10vw, 4rem);
+      font-weight: 600;
+      line-height: 1;
+      color: white;
+      margin-bottom: clamp(0.125rem, 0.5vh, 0.5rem);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .countdown-label {
+      font-size: clamp(0.6rem, 2vw, 0.875rem);
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+
+
+    /* Maximize elements at very small heights */
+    @media (max-height: 300px) {
+      .container {
+        padding: 0.5rem;
+      }
+
+      .logo {
+        margin-bottom: 0.5rem;
+      }
+
+      .logo img {
+        max-height: 110px;
+        width: auto;
+        max-width: 95%;
+      }
+
+      .countdown {
+        gap: 0.5rem;
+      }
+
+      .countdown-item {
+        min-width: 50px;
+        flex: 1 1 auto;
+      }
+
+      .countdown-value {
+        font-size: 2rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .countdown-label {
+        font-size: 0.65rem;
+      }
+    }
+
+    /* Maximize for 200px height specifically */
+    @media (max-height: 250px) {
+      .logo img {
+        max-height: 100px;
+      }
+
+      .countdown-value {
+        font-size: 1.75rem;
+      }
+
+      .countdown-label {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .background-image {
+        object-position: 50% 80%;
+      }
+
+      .logo img {
+        max-height: clamp(120px, 40vh, 150px);
+      }
+    }
+
+    /* Animation for number changes */
+    .countdown-value {
+      transition: transform 0.3s ease;
+    }
+
+    .countdown-value.updating {
+      transform: scale(1.1);
+    }
+
+    /* Easter egg particles */
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 32px;
+      animation: particle-float 2s ease-out forwards;
+    }
+
+    @keyframes particle-float {
+      0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) translateX(var(--tx, 0)) rotate(360deg) scale(0.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="/dc8-bg.png" alt="Devcon 8 Background" class="background-image" />
+  <div class="background-overlay"></div>
+  <div class="container">
+    <div class="logo">
+      <img src="/dc8-logo-glow.png" alt="Devcon 8 Logo" />
+    </div>
+    
+    <div class="countdown" id="countdown">
+      <div class="countdown-item">
+        <div class="countdown-value" id="days">0</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="hours">0</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="minutes">0</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="seconds">0</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Target date: November 3, 2026 at 8:00 AM Mumbai time (IST, UTC+5:30)
+    // 8:00 AM IST = 2:30 AM UTC
+    const targetDate = new Date('2026-11-03T02:30:00Z').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        // Event has passed
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Update with animation
+      updateValue('days', days);
+      updateValue('hours', hours);
+      updateValue('minutes', minutes);
+      updateValue('seconds', seconds);
+    }
+
+    function updateValue(id, value) {
+      const element = document.getElementById(id);
+      const currentValue = parseInt(element.textContent) || 0;
+      
+      if (currentValue !== value) {
+        element.classList.add('updating');
+        element.textContent = value.toString().padStart(2, '0');
+        
+        setTimeout(() => {
+          element.classList.remove('updating');
+        }, 300);
+      } else {
+        element.textContent = value.toString().padStart(2, '0');
+      }
+    }
+
+    // Update immediately and then every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Easter egg: Create particles on click
+    const particles = ['✨', '⭐', '💫', '🌟', '⚡', '🦄'];
+    let clickCount = 0;
+
+    document.addEventListener('click', function(e) {
+      clickCount++;
+      
+      // Create 5-8 particles at click location
+      const particleCount = 5 + Math.floor(Math.random() * 4);
+      
+      for (let i = 0; i < particleCount; i++) {
+        createParticle(e.clientX, e.clientY);
+      }
+
+      // Special effect every 3 clicks
+      if (clickCount % 3 === 0) {
+        createParticleBurst(e.clientX, e.clientY);
+      }
+    });
+
+    function createParticle(x, y) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+      particle.style.left = x + 'px';
+      particle.style.top = y + 'px';
+      particle.style.setProperty('--tx', (Math.random() * 200 - 100) + 'px');
+      particle.style.animationDuration = (1 + Math.random() * 1.5) + 's';
+      
+      document.body.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 3000);
+    }
+
+    function createParticleBurst(x, y) {
+      // Create a burst of particles
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          createParticle(
+            x + (Math.random() * 100 - 50),
+            y + (Math.random() * 100 - 50)
+          );
+        }, i * 20);
+      }
+    }
+  </script>
+</body>
+</html>
