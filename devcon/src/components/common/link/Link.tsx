@@ -3,8 +3,6 @@ import { default as NextLink } from 'next/link'
 import NorthEast from 'assets/icons/north_east.svg'
 import LinkIndicator from 'assets/icons/link-indicator.svg'
 import css from './link.module.scss'
-// @ts-ignore
-import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 type LinkProps = {
   children: ReactNode
@@ -72,10 +70,22 @@ const Link = React.forwardRef<any, LinkProps>(
     }
 
     if (to.startsWith('#')) {
+      const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        const targetId = to.slice(1)
+        const element = document.getElementById(targetId)
+        if (element) {
+          const offset = 125
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY
+          window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' })
+        }
+        if (linkAttributes.onClick) linkAttributes.onClick(e)
+      }
+
       return (
-        <AnchorLink href={to} {...linkAttributes} offset={125}>
+        <a href={to} {...linkAttributes} onClick={handleAnchorClick}>
           {children}
-        </AnchorLink>
+        </a>
       )
     }
 
