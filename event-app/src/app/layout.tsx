@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { Toaster } from "sonner";
+import APP_CONFIG from "@/CONFIG";
 
 export const metadata: Metadata = {
-  title: "Event App",
-  description: "Hello World Event App",
+  title: APP_CONFIG.APP_NAME,
+  description: APP_CONFIG.APP_DESCRIPTION,
+  icons: {
+    icon: "/app-icon.png",
+    apple: "/app-icon.png",
+  },
 };
 
 export default function RootLayout({

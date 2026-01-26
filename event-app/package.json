@@ -6,8 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --webpack",
     "build:static": "STATIC_EXPORT=true next build --webpack",
-    "cap:init": "pnpm build:static && cap add ios && cap add android",
+    "cap:init": "pnpm build:static && cap add ios && cap add android && pnpm cap:assets",
     "cap:sync": "pnpm build:static && cap sync",
+    "cap:assets": "capacitor-assets generate",
     "cap:ios": "pnpm build:static && cap sync ios && cap open ios",
     "cap:android": "pnpm build:static && cap sync android && cap open android",
     "start": "next start",
@@ -30,6 +31,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19.2.2",

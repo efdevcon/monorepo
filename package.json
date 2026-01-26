@@ -33,7 +33,12 @@
       "devconnect>@reown/appkit-adapter-wagmi": "1.7.17",
       "react": "19.2.3",
       "react-dom": "19.2.3"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "canvas",
+      "protobufjs",
+      "sharp"
+    ]
   },
   "devDependencies": {
     "typescript": "^5.9.3"
