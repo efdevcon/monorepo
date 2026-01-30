@@ -9,6 +9,7 @@ interface NativeNavigationContextValue {
   navigate: (href: string) => void;
   goBack: () => void;
   canGoBack: boolean;
+  prefetch: boolean;
 }
 
 export const NativeNavigationContext = createContext<NativeNavigationContextValue | null>(null);
@@ -20,7 +21,7 @@ interface LinkProps {
   className?: string;
 }
 
-export function Link({ href, children, className }: LinkProps) {
+export function Link({ href, children, className, ...nextLinkProps }: LinkProps & React.ComponentProps<typeof NextLink>) {
   const nativeNav = useContext(NativeNavigationContext);
 
   if (nativeNav) {
@@ -38,7 +39,7 @@ export function Link({ href, children, className }: LinkProps) {
   }
 
   return (
-    <NextLink href={href} className={className}>
+    <NextLink href={href} className={className} {...nextLinkProps}>
       {children}
     </NextLink>
   );

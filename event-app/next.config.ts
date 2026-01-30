@@ -18,6 +18,21 @@ const nextConfig: NextConfig = {
   pageExtensions: isStaticExport
     ? ["native-app.tsx", "native-app.ts"]
     : ["tsx", "ts", "jsx", "js"],
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+    return config;
+  },
 };
 
 // Skip Serwist wrapper entirely for static export

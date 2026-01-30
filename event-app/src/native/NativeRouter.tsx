@@ -30,7 +30,7 @@ export function NativeRouter({ children }: NativeRouterProps) {
   const canGoBack = history.length > 0;
 
   return (
-    <NativeNavigationContext.Provider value={{ navigate, goBack, canGoBack }}>
+    <NativeNavigationContext.Provider value={{ navigate, goBack, canGoBack, prefetch: true }}>
       {children(href)}
     </NativeNavigationContext.Provider>
   );

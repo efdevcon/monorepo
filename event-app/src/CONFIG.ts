@@ -12,7 +12,7 @@
 
 const APP_CONFIG = {
   // App metadata
-  APP_NAME: "Devcon App",
+  APP_NAME: "Devcon App v2",
   APP_DESCRIPTION: "Ethereum knitting club.",
 
   // Feature flags - enable/disable routes

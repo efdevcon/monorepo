@@ -38,6 +38,7 @@ export function Menu() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch
               className="block w-full p-4 border rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <span className="font-semibold">{item.label}</span>
