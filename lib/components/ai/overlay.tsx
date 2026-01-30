@@ -288,7 +288,7 @@ const DevaBot = ({
 
   const setThread = (threadID: string) => {
     const url =
-      process.env.NODE_ENV === "development"
+      (process.env.NODE_ENV === "development" && false)
         ? `http://localhost:4000/devabot/threads/${threadID}`
         : `https://api.devcon.org/devabot/threads/${threadID}`;
 
@@ -332,7 +332,7 @@ const DevaBot = ({
 
     try {
       let url =
-        process.env.NODE_ENV === "development"
+        (process.env.NODE_ENV === "development" && false)
           ? "http://localhost:4000/devabot"
           : "https://api.devcon.org/devabot";
 
