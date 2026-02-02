@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import DevaBot from "lib/components/ai/overlay";
+import DevaBot from "@/components/ai/DevaBot";
 
 export default function PageLayout({
   children,
@@ -24,9 +24,8 @@ export default function PageLayout({
         )}
       </button>
       <DevaBot
-        botVersion="devcon-app"
         toggled={devaBotOpen}
-        onToggle={(visible) => setDevaBotOpen(Boolean(visible))}
+        onToggle={(visible) => setDevaBotOpen(visible)}
       />
     </>
   );

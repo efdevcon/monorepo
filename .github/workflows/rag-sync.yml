@@ -1,0 +1,105 @@
+name: RAG Document Sync
+
+on:
+  # Trigger on push to content directories
+  push:
+    branches: [main]
+    paths:
+      - 'devcon/cms/**'
+      - 'devconnect/cms/**'
+
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      source_repo:
+        description: 'Source repo to sync'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - devcon
+          - devconnect
+
+  # Cron for future Google Docs sync (disabled by default)
+  # schedule:
+  #   - cron: '0 */6 * * *'  # Every 6 hours
+
+jobs:
+  sync-devcon:
+    name: Sync Devcon Content
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' && (github.event.inputs.source_repo == 'all' || github.event.inputs.source_repo == 'devcon') ||
+      github.event_name == 'push' && contains(github.event.head_commit.modified, 'devcon/cms/') ||
+      github.event_name == 'schedule'
+
+    steps:
+      - name: Checkout monorepo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: |
+          cd devcon-ai
+          pnpm install
+
+      - name: Sync Devcon documents
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cd devcon-ai
+          npx tsx scripts/sync-documents.ts \
+            --source-type github \
+            --source-repo devcon \
+            --path ../devcon/cms
+
+  sync-devconnect:
+    name: Sync Devconnect Content
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' && (github.event.inputs.source_repo == 'all' || github.event.inputs.source_repo == 'devconnect') ||
+      github.event_name == 'push' && contains(github.event.head_commit.modified, 'devconnect/cms/') ||
+      github.event_name == 'schedule'
+
+    steps:
+      - name: Checkout monorepo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: |
+          cd devcon-ai
+          pnpm install
+
+      - name: Sync Devconnect documents
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          cd devcon-ai
+          npx tsx scripts/sync-documents.ts \
+            --source-type github \
+            --source-repo devconnect \
+            --path ../devconnect/cms
