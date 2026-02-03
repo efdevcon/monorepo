@@ -417,7 +417,29 @@ const SORTED_VIDEO_RECORDINGS = (() => {
   return first ? [first, ...rest] : rest
 })()
 
+const MOBILE_RECORDINGS_INITIAL = 6
+
 const RecordingsSection = () => {
+  const [showAllMobile, setShowAllMobile] = React.useState(false)
+  const recordings = SORTED_VIDEO_RECORDINGS
+  const mobileSlice = showAllMobile ? recordings : recordings.slice(0, MOBILE_RECORDINGS_INITIAL)
+  const hasMoreMobile = recordings.length > MOBILE_RECORDINGS_INITIAL
+
+  const recordingCard = ({ name, url }: { name: string; url: string }) => (
+    <a
+      key={url}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-nowrap items-center gap-4 p-4 md:p-5 rounded-lg border border-[#EDEDF0] bg-white hover:border-[#0073DE] hover:shadow-md transition-all duration-200"
+    >
+      <span className="font-bold text-[#20202B] group-hover:text-[#0073DE] transition-colors flex-1 min-w-0">
+        {name}
+      </span>
+      <ArrowRight className="w-5 h-5 shrink-0 text-[#0073DE] opacity-80 group-hover:translate-x-0.5 transition-transform" />
+    </a>
+  )
+
   return (
     <div id="videos" className="section mt-4">
       <div className="relative py-8 pt-10 pb-8 border-bottom">
@@ -425,21 +447,20 @@ const RecordingsSection = () => {
         <div className="mb-8 max-w-xl">
           Watch full playlists from key events at the first Ethereum World&apos;s Fair.
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {SORTED_VIDEO_RECORDINGS.map(({ name, url }) => (
-            <a
-              key={url}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-nowrap items-center gap-4 p-4 md:p-5 rounded-lg border border-[#EDEDF0] bg-white hover:border-[#0073DE] hover:shadow-md transition-all duration-200"
-            >
-              <span className="font-bold text-[#20202B] group-hover:text-[#0073DE] transition-colors flex-1 min-w-0">
-                {name}
-              </span>
-              <ArrowRight className="w-5 h-5 shrink-0 text-[#0073DE] opacity-80 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          ))}
+        {/* 2 columns or less: first 6 then Load more */}
+        <div className="lg:hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            {mobileSlice.map(recordingCard)}
+          </div>
+          {hasMoreMobile && !showAllMobile && (
+            <Button size="sm" className="w-full" onClick={() => setShowAllMobile(true)}>
+              Load more
+            </Button>
+          )}
+        </div>
+        {/* 3 columns: show all */}
+        <div className="hidden lg:grid grid-cols-3 gap-4 mb-8">
+          {recordings.map(recordingCard)}
         </div>
       </div>
     </div>
