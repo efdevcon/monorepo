@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/legacy/image'
 import ImageNew from 'next/image'
 import css from './hero.module.scss'
-import { Header } from 'pages/index'
 
 type HeroProps = {
   imageProps?: {
@@ -25,7 +24,6 @@ const Hero = (props: HeroProps) => {
 
   return (
     <div className={className}>
-      <Header active />
       <div className={props.backgroundClassName || css['background']} />
       {props.imageProps && props.backgroundStyle === 'fill' && (
         <div data-type="background" className={css['background-fill']}>
