@@ -176,14 +176,14 @@ const Pane = ({
         <div className="flex items-start gap-2">
           {links && links.website && links.website.trim() !== '' && (
             <Link
-              href={links.website}
-              {...(links.website.startsWith('http')
+              href={isStage ? 'https://devconnect.org/#videos' : links.website}
+              {...(isStage || links.website.startsWith('http')
                 ? { target: '_blank', rel: 'noopener noreferrer' }
                 : {})}
             >
               <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2 cursor-pointer">
                 <span className="font-bold text-sm text-[#0073DE]">
-                  {linkText || (isStage ? 'View Programming' : 'Visit Website')}
+                  {linkText || (isStage ? 'View Recordings' : 'Visit Website')}
                 </span>
                 <ArrowUpRightIcon className="w-4 h-4 shrink-0 text-[#0073DE]" />
               </button>

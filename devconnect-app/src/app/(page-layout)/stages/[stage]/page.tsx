@@ -12,7 +12,7 @@ export default function StagePage() {
         rel="noopener noreferrer"
       >
         <Button size="sm" className="font-medium px-6" color="blue-2">
-          Watch recordings
+          Watch Recordings
         </Button>
       </Link>
     </div>

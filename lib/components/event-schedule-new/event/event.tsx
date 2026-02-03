@@ -813,42 +813,22 @@ function Event({
                         )} */}
 
                         {showProgrammingButton && (
-                          <>
-                            {hasProgrammingUrl ? (
-                              <Link
-                                href={
-                                  typeof window !== "undefined" &&
-                                  !window.location.origin.includes(
-                                    "app.devconnect.org"
-                                  ) &&
-                                  !window.location.origin.includes("localhost")
-                                    ? `https://app.devconnect.org${hasProgrammingUrl}`
-                                    : hasProgrammingUrl
-                                }
-                                className="self-start"
-                              >
-                                <VoxelButton
-                                  color="blue-1"
-                                  size="sm"
-                                  fill
-                                  className="shrink-0 mt-3 self-start block"
-                                >
-                                  View Programming
-                                  <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                                </VoxelButton>
-                              </Link>
-                            ) : (
-                              <VoxelButton
-                                color="blue-1"
-                                size="sm"
-                                fill
-                                className="shrink-0  mt-3 self-start block lg:hidden"
-                                onClick={() => setShowMobileProgramming(true)}
-                              >
-                                View Program
-                              </VoxelButton>
-                            )}
-                          </>
+                          <Link
+                            href="https://devconnect.org/#videos"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="self-start"
+                          >
+                            <VoxelButton
+                              color="blue-1"
+                              size="sm"
+                              fill
+                              className="shrink-0 mt-3 self-start block"
+                            >
+                              View Recordings
+                              <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                            </VoxelButton>
+                          </Link>
                         )}
                       </div>
 
