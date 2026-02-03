@@ -825,7 +825,7 @@ function Event({
                               fill
                               className="shrink-0 mt-3 self-start block"
                             >
-                              View Recordings
+                              Watch Recordings
                               <ArrowUpRight className="w-4 h-4 mb-0.5" />
                             </VoxelButton>
                           </Link>
