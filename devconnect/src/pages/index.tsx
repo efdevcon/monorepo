@@ -83,69 +83,46 @@ import RecapPhoto9 from 'assets/images/ba/recap-gallery/ARG-Photo-9.png'
 //   ssr: false,
 // })
 
+const HEADER_SCROLL_THRESHOLD = 200
+
 export const Header = ({
   noGradient,
   active,
   fadeOutOnScroll,
   keepMenuOnScroll,
+  hasScrolled,
 }: {
   noGradient?: boolean
   active?: boolean
   fadeOutOnScroll?: boolean
   keepMenuOnScroll?: boolean
+  hasScrolled?: boolean
 }) => {
-  const { scrollY } = useScroll()
-  const [hasScrolled, setHasScrolled] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
-
-  React.useEffect(() => {
-    return scrollY.onChange(latest => {
-      setHasScrolled(latest > 0)
-    })
-  }, [scrollY])
-
-  // const hideGradient = hasScrolled || noGradient
-
   const fadeoutMenu = hasScrolled && fadeOutOnScroll && !keepMenuOnScroll
+  const hideLogo = fadeOutOnScroll && hasScrolled && !menuOpen
 
   return (
-    <div
-      className={cn('section z-[100] transition-opacity opacity-100 duration-[1000ms]', {
-        // '!opacity-0': hasScrolled && fadeOutOnScroll,
-      })}
-    >
+    <div className="section z-[100] transition-opacity opacity-100 duration-[1000ms]">
       <header
         className={cn(
           css['header'],
           'py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none transition-all duration-[700ms]'
-          // {
-          //   'opacity-0': hasScrolled && fadeOutOnScroll,
-          // }
         )}
-        // style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
       >
         <div className={cn('section')}>
           <div className="flex w-full justify-between items-center">
-            <Link
-              href="/"
-              className={cn(
-                css['logo'],
-                'transition-all ease duration-500 pointer-events-auto',
-                {
-                  '!pointer-events-none': fadeOutOnScroll && hasScrolled && !menuOpen,
-                },
-                {
-                  'opacity-0': hasScrolled && fadeOutOnScroll && !menuOpen,
-                }
-                // hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
-              )}
-            >
-              <Image
-                src={HeaderLogo}
-                alt="Devconnect Logo"
-                className="w-[105px] lg:w-[120px] h-auto [filter:drop-shadow(1px_1px_0px_rgba(0,0,0,1))]"
-              />
-            </Link>
+            {hideLogo ? (
+              <div className="w-[105px] lg:w-[120px] shrink-0" aria-hidden />
+            ) : (
+              <Link href="/" className={cn(css['logo'], 'transition-all ease duration-500 pointer-events-auto')}>
+                <Image
+                  src={HeaderLogo}
+                  alt="Devconnect Logo"
+                  className="w-[105px] lg:w-[120px] h-auto [filter:drop-shadow(1px_1px_0px_rgba(0,0,0,1))]"
+                />
+              </Link>
+            )}
 
             <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} hasScrolled={fadeoutMenu} />
           </div>
@@ -390,6 +367,106 @@ const recapPhotos = [
   RecapPhoto9,
 ]
 
+const VIDEO_RECORDINGS: { name: string; url: string }[] = [
+  { name: 'Ethereum Day', url: 'https://www.youtube.com/playlist?list=PLaM7G4Llrb7xL3wI2aEVEtTNcq5bE1bq4' },
+  {
+    name: 'trustless://',
+    url: 'https://www.youtube.com/playlist?list=PLMf-2qLTukXoyHFmJr5D6XRTEyh_-9z17',
+  },
+  {
+    name: 'Solidity Summit',
+    url: 'https://www.youtube.com/playlist?list=PLX8x7Zj6Vezk5rQhE0g1f32m6-Y_UtoG3',
+  },
+  { name: '<d/acc day>', url: 'https://www.youtube.com/playlist?list=PLxKCaSfRwN5fbDAbySPkbXdmFx5MKsMhY' },
+  { name: 'Bridge Atlas', url: 'https://www.youtube.com/playlist?list=PLIk0EtKZjVltdB39Tzin_NqRyDxsapYGG' },
+  {
+    name: 'DeFi Security Summit',
+    url: 'https://www.youtube.com/@defisecuritysummit/playlists',
+  },
+  { name: 'NoirCon 3', url: 'https://www.youtube.com/playlist?list=PLabpoAlaCBY3336tiSwP8uRsDWTkBcrGj' },
+  { name: 'EIP Summit', url: 'https://www.youtube.com/playlist?list=PL4cwHXAawZxoPEaPPAMB-fOJgFVmbQeH7' },
+  { name: 'DeFi Today', url: 'https://www.youtube.com/playlist?list=PLuJEXvb15WGrDwBFBKKyYB0A3e73vVemx' },
+  { name: 'Ethproofs day', url: 'https://www.youtube.com/playlist?list=PLJqWcTqh_zKF-gamT-xOEQD7BbrrIGlcH' },
+  {
+    name: 'zkID and Client-Side Proving Day',
+    url: 'https://streameth.org/6918e24caaaed07b949bbdd1/playlists/69446a85e505fdb0fa31a760',
+  },
+  { name: 'Money Rails', url: 'https://www.youtube.com/playlist?list=PLslsfan1R_z33l-Wsa_PCkKzYWP8Ysb3c' },
+  {
+    name: "BuidlGuidl's Builder Bootcamp",
+    url: 'https://www.youtube.com/playlist?list=PLnVqcyNGbH038rW1_uBfFcbzLuA7nhcsE',
+  },
+  { name: 'Ethereum Argentina Hackathon: Tierra de Buidlers', url: 'https://www.youtube.com/watch?v=8rUzMPTk9Fk' },
+  {
+    name: 'Crecimiento Regulation Day',
+    url: 'https://www.youtube.com/playlist?list=PL0Jb2_9xzReIkswFszCltPsa1kz4WyOyC',
+  },
+  { name: 'Agentic Zero', url: 'https://www.youtube.com/playlist?list=PLUn5GUfXj7h6DvzgerxZV9RdKzAcbJW9K' },
+  { name: 'The Creator Economy', url: 'https://www.youtube.com/playlist?list=PLF6juw5w9Hxl5szSje9N325tZN1o-YgoF' },
+  { name: 'ETHCon Argentina', url: 'https://www.youtube.com/playlist?list=PLojmJsMWwB0aepSDBnTQG6HOcIbbu-ilW' },
+  { name: 'Applications To FHE', url: 'https://www.youtube.com/watch?v=C-kF0gplCto' },
+  { name: 'Ethereum Privacy Stack', url: 'https://www.youtube.com/playlist?list=PLSsVHWrO8Yh2ZGBLyQRJAZNymvVCOlJJl' },
+  { name: 'zkTLS Day', url: 'https://www.youtube.com/playlist?list=PL_mbTxtri1CwCZ6CaelJY_gVvSAh9jp68' },
+]
+
+const SORTED_VIDEO_RECORDINGS = (() => {
+  const first = VIDEO_RECORDINGS.find(r => r.name === 'Ethereum Day')
+  const rest = VIDEO_RECORDINGS.filter(r => r.name !== 'Ethereum Day').sort((a, b) =>
+    a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+  )
+  return first ? [first, ...rest] : rest
+})()
+
+const MOBILE_RECORDINGS_INITIAL = 6
+
+const RecordingsSection = () => {
+  const [showAllMobile, setShowAllMobile] = React.useState(false)
+  const recordings = SORTED_VIDEO_RECORDINGS
+  const mobileSlice = showAllMobile ? recordings : recordings.slice(0, MOBILE_RECORDINGS_INITIAL)
+  const hasMoreMobile = recordings.length > MOBILE_RECORDINGS_INITIAL
+
+  const recordingCard = ({ name, url }: { name: string; url: string }) => (
+    <a
+      key={url}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-nowrap items-center gap-4 p-4 md:p-5 rounded-lg border border-[#EDEDF0] bg-white hover:border-[#0073DE] hover:shadow-md transition-all duration-200"
+    >
+      <span className="font-bold text-[#20202B] group-hover:text-[#0073DE] transition-colors flex-1 min-w-0">
+        {name}
+      </span>
+      <ArrowRight className="w-5 h-5 shrink-0 text-[#0073DE] opacity-80 group-hover:translate-x-0.5 transition-transform" />
+    </a>
+  )
+
+  return (
+    <div id="videos" className="section mt-4">
+      <div className="relative py-8 pt-10 pb-8 border-bottom">
+        <div className="section-header mb-4">RECORDINGS</div>
+        <div className="mb-8 max-w-xl">
+          Watch full playlists from key events at the first Ethereum World&apos;s Fair.
+        </div>
+        {/* 2 columns or less: first 6 then Load more */}
+        <div className="lg:hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            {mobileSlice.map(recordingCard)}
+          </div>
+          {hasMoreMobile && !showAllMobile && (
+            <Button size="sm" className="w-full" onClick={() => setShowAllMobile(true)}>
+              Load more
+            </Button>
+          )}
+        </div>
+        {/* 3 columns: show all */}
+        <div className="hidden lg:grid grid-cols-3 gap-4 mb-8">
+          {recordings.map(recordingCard)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const RecapGallery = () => {
   return (
     <div className="section mt-4">
@@ -441,6 +518,7 @@ const Home: NextPage = (props: any) => {
   // const translations = JSON.parse(translations.data.global_translations)
 
   const heroRef = useRef<HTMLDivElement | null>(null)
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null)
   // const [scrollProgress, setScrollProgress] = useState(0)
   // const [fadeInBA, setFadeInBA] = useState(false)
   const [fadeInArgentina, setFadeInArgentina] = useState(false)
@@ -452,33 +530,86 @@ const Home: NextPage = (props: any) => {
 
   // const hasStableConnection = true
 
-  // Add an effect to detect user scrolling
+  const [headerHasScrolled, setHeaderHasScrolled] = useState(false)
+
+  // Add an effect to detect user scrolling (and drive header logo hide)
   React.useEffect(() => {
+    let scrollEl: HTMLElement | null = null
+    const getScrollTop = () => {
+      const win =
+        typeof window !== 'undefined'
+          ? window.scrollY ?? document.documentElement.scrollTop ?? document.body.scrollTop ?? 0
+          : 0
+      const containerScroll = scrollEl?.scrollTop ?? scrollContainerRef.current?.scrollTop ?? 0
+      return Math.max(win, containerScroll)
+    }
+    const updateScroll = () => {
+      setHeaderHasScrolled(getScrollTop() > HEADER_SCROLL_THRESHOLD)
+    }
     const handleScroll = () => {
+      updateScroll()
       if (!userHasInterruptedPlayback) {
         setUserHasInterruptedPlayback(true)
-        // When user scrolls, immediately show UI elements that would normally wait for video progress
         if (!fadeInArgentina) setFadeInArgentina(true)
         if (!fadeInDate) setFadeInDate(true)
       }
     }
-
+    updateScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    document.addEventListener('scroll', handleScroll, { passive: true })
+    const raf = requestAnimationFrame(() => {
+      scrollEl = scrollContainerRef.current
+      if (scrollEl) {
+        scrollEl.addEventListener('scroll', handleScroll, { passive: true })
+      }
+    })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('scroll', handleScroll)
+      if (scrollEl) scrollEl.removeEventListener('scroll', handleScroll)
+      cancelAnimationFrame(raf)
+    }
   }, [userHasInterruptedPlayback, fadeInArgentina, fadeInDate])
+
+  // Smooth scroll to #videos section when loading with /#videos (override browser's instant jump)
+  React.useEffect(() => {
+    if (typeof window === 'undefined' || window.location.hash !== '#videos') return
+    const timeoutId = window.setTimeout(() => {
+      const el = document.getElementById('videos')
+      if (!el) return
+      // Reset to top so we can animate from a known position (browser may have already jumped)
+      window.scrollTo(0, 0)
+      requestAnimationFrame(() => {
+        const start = 0
+        const top = el.getBoundingClientRect().top + window.scrollY
+        const distance = top - start
+        const duration = 1000
+        const startTime = performance.now()
+        const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
+        const tick = (now: number) => {
+          const elapsed = now - startTime
+          const progress = Math.min(elapsed / duration, 1)
+          window.scrollTo(0, start + distance * easeOutCubic(progress))
+          if (progress < 1) requestAnimationFrame(tick)
+        }
+        requestAnimationFrame(tick)
+      })
+    }, 300)
+    return () => window.clearTimeout(timeoutId)
+  }, [])
 
   // return <div className="text-black">Coming soon</div>
 
   return (
     <>
       <SEO />
-      <div className={css.container} style={{ '--content-width': '1440px' } as any}>
+      <div ref={scrollContainerRef} className={css.container} style={{ '--content-width': '1440px' } as any}>
         <main
           id="main"
           className={cn(css.main, 'text-[rgba(54,54,76,1)]')}
           style={{ '--content-width': '1440px' } as any}
         >
-          {/* <Header noGradient fadeOutOnScroll keepMenuOnScroll active={true} /> */}
+          <Header noGradient fadeOutOnScroll keepMenuOnScroll active={true} hasScrolled={headerHasScrolled} />
 
           <Hero
             className={`${css['hero-gradient']} flex-col ${props.edition}`}
@@ -816,6 +947,7 @@ const Home: NextPage = (props: any) => {
             </div>
 
             <RecapStrip />
+            <RecordingsSection />
             <RecapGallery />
 
             {/* <div className="section relative !hidden lg:!grid">

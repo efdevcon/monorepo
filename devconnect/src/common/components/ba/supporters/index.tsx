@@ -73,9 +73,9 @@ const SupportersComponent = () => {
     >
       <InfiniteScroll speed={speed1} nDuplications={3}>
         <div style={{ display: 'flex', gap: '20px', padding: '10px 0', paddingRight: '20px' }}>
-          {row1.map(supporter => (
+          {row1.map((supporter, index) => (
             <a
-              key={`row1-${supporter.id}`}
+              key={`row1-${supporter.id}-${index}`}
               href={supporter.websiteLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -101,9 +101,9 @@ const SupportersComponent = () => {
 
       <InfiniteScroll speed={speed2} reverse nDuplications={3}>
         <div style={{ display: 'flex', gap: '20px', padding: '10px 0', paddingRight: '20px' }}>
-          {row2.map(supporter => (
+          {row2.map((supporter, index) => (
             <a
-              key={`row2-${supporter.id}`}
+              key={`row2-${supporter.id}-${index}`}
               href={supporter.websiteLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -129,9 +129,9 @@ const SupportersComponent = () => {
 
       <InfiniteScroll speed={speed3} nDuplications={3}>
         <div style={{ display: 'flex', gap: '20px', padding: '10px 0', paddingRight: '20px' }}>
-          {row3.map(supporter => (
+          {row3.map((supporter, index) => (
             <a
-              key={`row3-${supporter.id}`}
+              key={`row3-${supporter.id}-${index}`}
               href={supporter.websiteLink}
               target="_blank"
               rel="noopener noreferrer"
