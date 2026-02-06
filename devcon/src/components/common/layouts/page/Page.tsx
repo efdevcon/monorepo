@@ -9,9 +9,10 @@ type LayoutProps = {
   style?: {
     [key: string]: any
   }
+  hideFooter?: boolean
 }
 
-export default function PageLayout({ children, theme, style }: LayoutProps) {
+export default function PageLayout({ children, theme, style, hideFooter }: LayoutProps) {
   let className = ''
 
   if (theme) className += ` ${theme}`
@@ -23,7 +24,7 @@ export default function PageLayout({ children, theme, style }: LayoutProps) {
 
       {children}
 
-      <Footer />
+      {!hideFooter && <Footer />}
     </div>
   )
 }
