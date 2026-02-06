@@ -1,20 +1,28 @@
 /**
- * Patches @anon-aadhaar/core prover.ts (ArrayBuffer -> Buffer type error).
+ * Patches @anon-aadhaar/core prover.ts (strict TypeScript cast errors).
  * Runs after install so the fix is applied before build.
  */
 const fs = require('fs')
 const path = require('path')
 
+const REPLACEMENTS = [
+  ['return data as Buffer', 'return data as unknown as Buffer'],
+  [') as ArrayBuffer', ') as unknown as ArrayBuffer'],
+]
+
 function findAndPatch(cwd) {
   const proverPath = path.join(cwd, 'src', 'prover.ts')
   if (!fs.existsSync(proverPath)) return false
   let content = fs.readFileSync(proverPath, 'utf8')
-  if (!content.includes('return data as Buffer') || content.includes('return data as unknown as Buffer')) {
-    return false
+  let changed = false
+  for (const [from, to] of REPLACEMENTS) {
+    if (content.includes(from) && !content.includes(to)) {
+      content = content.split(from).join(to)
+      changed = true
+    }
   }
-  content = content.replace('return data as Buffer', 'return data as unknown as Buffer')
-  fs.writeFileSync(proverPath, content)
-  return true
+  if (changed) fs.writeFileSync(proverPath, content)
+  return changed
 }
 
 // Resolve package location (works with pnpm symlinks)
