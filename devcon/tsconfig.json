@@ -15,9 +15,5 @@
     }
   },
   "include": ["next-env.d.ts", "src", "tina"],
-  "exclude": [
-    "node_modules",
-    "node_modules/**/@anon-aadhaar/core/**",
-    "../node_modules/**/@anon-aadhaar/core/**"
-  ]
+  "exclude": ["node_modules"]
 }
