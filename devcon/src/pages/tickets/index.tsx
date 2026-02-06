@@ -34,11 +34,18 @@ type TicketsContentProps = {
   useTestAadhaar: boolean
   setUseTestAadhaar: (value: boolean) => void
   setProviderResetKey: React.Dispatch<React.SetStateAction<number>>
+  verificationOpen: boolean
+  setVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function TicketsContent({ useTestAadhaar, setUseTestAadhaar, setProviderResetKey }: TicketsContentProps) {
+function TicketsContent({
+  useTestAadhaar,
+  setUseTestAadhaar,
+  setProviderResetKey,
+  verificationOpen,
+  setVerificationOpen,
+}: TicketsContentProps) {
   const [quantity, setQuantity] = useState(1)
-  const [verificationOpen, setVerificationOpen] = useState(false)
 
   return (
     <>
@@ -142,6 +149,8 @@ function TicketsContent({ useTestAadhaar, setUseTestAadhaar, setProviderResetKey
 export default function TicketsPage() {
   const [useTestAadhaar, setUseTestAadhaar] = useState(false)
   const [providerResetKey, setProviderResetKey] = useState(0)
+  // Modal state lives here so it survives provider re-renders/remounts (e.g. after proof on mobile)
+  const [verificationOpen, setVerificationOpen] = useState(false)
 
   return (
     <Page theme={themes['tickets']}>
@@ -164,6 +173,8 @@ export default function TicketsPage() {
           useTestAadhaar={useTestAadhaar}
           setUseTestAadhaar={setUseTestAadhaar}
           setProviderResetKey={setProviderResetKey}
+          verificationOpen={verificationOpen}
+          setVerificationOpen={setVerificationOpen}
         />
       </AnonAadhaarProvider>
     </Page>
