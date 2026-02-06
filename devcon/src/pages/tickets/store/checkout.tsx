@@ -25,6 +25,8 @@ const GOALS = [
   'Immerse in the culture',
 ]
 
+const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
+
 const FAQ_ITEMS = [
   {
     q: 'I plan on bringing my child to Devcon with me. Do they need a ticket?',
@@ -49,10 +51,28 @@ export default function CheckoutPage() {
   const [swag2Size, setSwag2Size] = useState('Size Male M')
   const [premium1Qty, setPremium1Qty] = useState(1)
   const [premium2Qty, setPremium2Qty] = useState(0)
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [confirmEmail, setConfirmEmail] = useState('')
 
   const toggleSection = (id: string) => {
     setOpenSection((s) => (s === id ? null : id))
   }
+
+  const goToNextSection = (currentSectionId: string) => {
+    const i = SECTION_ORDER.indexOf(currentSectionId as (typeof SECTION_ORDER)[number])
+    if (i >= 0 && i < SECTION_ORDER.length - 1) {
+      setOpenSection(SECTION_ORDER[i + 1])
+    }
+  }
+
+  const contactDetailsFilled =
+    firstName.trim() !== '' &&
+    lastName.trim() !== '' &&
+    email.trim() !== '' &&
+    confirmEmail.trim() !== '' &&
+    email.trim() === confirmEmail.trim()
 
   const toggleGoal = (goal: string) => {
     setSelectedGoals((prev) => {
@@ -194,7 +214,11 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                 </div>
-                <button type="button" className={css['btn-primary']}>
+                <button
+                  type="button"
+                  className={css['btn-primary']}
+                  onClick={() => goToNextSection('swag')}
+                >
                   Continue
                 </button>
               </div>
@@ -220,28 +244,61 @@ export default function CheckoutPage() {
                 <div className={css['field-row']}>
                   <div className={css['field']}>
                     <label htmlFor="first-name">First name</label>
-                    <input id="first-name" type="text" className={css['text-input']} placeholder="First name" />
+                    <input
+                      id="first-name"
+                      type="text"
+                      className={css['text-input']}
+                      placeholder="First name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
                   </div>
                   <div className={css['field']}>
                     <label htmlFor="last-name">Last name</label>
-                    <input id="last-name" type="text" className={css['text-input']} placeholder="Last name" />
+                    <input
+                      id="last-name"
+                      type="text"
+                      className={css['text-input']}
+                      placeholder="Last name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
                   </div>
                 </div>
                 <div className={css['field-row']}>
                   <div className={css['field']}>
                     <label htmlFor="email">Enter email</label>
-                    <input id="email" type="email" className={css['text-input']} placeholder="Enter email" />
+                    <input
+                      id="email"
+                      type="email"
+                      className={css['text-input']}
+                      placeholder="Enter email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
                   <div className={css['field']}>
                     <label htmlFor="confirm-email">Confirm email</label>
-                    <input id="confirm-email" type="email" className={css['text-input']} placeholder="Confirm email" />
+                    <input
+                      id="confirm-email"
+                      type="email"
+                      className={css['text-input']}
+                      placeholder="Confirm email"
+                      value={confirmEmail}
+                      onChange={(e) => setConfirmEmail(e.target.value)}
+                    />
                   </div>
                 </div>
                 <label className={css['checkbox-label']}>
                   <input type="checkbox" />
                   <span>Subscribe to the Devcon newsletter</span>
                 </label>
-                <button type="button" className={css['btn-secondary']}>
+                <button
+                  type="button"
+                  className={css['btn-primary']}
+                  disabled={!contactDetailsFilled}
+                  onClick={() => goToNextSection('contact')}
+                >
                   Continue
                 </button>
               </div>
@@ -312,7 +369,11 @@ export default function CheckoutPage() {
                     ))}
                   </div>
                 </div>
-                <button type="button" className={css['btn-secondary']}>
+                <button
+                  type="button"
+                  className={css['btn-primary']}
+                  onClick={() => goToNextSection('attendee')}
+                >
                   Continue
                 </button>
               </div>

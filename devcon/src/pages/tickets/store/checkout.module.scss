@@ -25,7 +25,9 @@ $checkout-secondary-text: #616161;
 
   @media (min-width: $breakpoints-lg) {
     padding: 2rem 2.5rem 4rem;
-    max-width: 720px;
+    width: 720px;
+    max-width: 100%;
+    justify-self: center;
   }
 }
 
@@ -314,8 +316,13 @@ $checkout-secondary-text: #616161;
   cursor: pointer;
   margin-top: 0.5rem;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: #000;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }
 
@@ -332,6 +339,11 @@ $checkout-secondary-text: #616161;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 0.5rem;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .btn-checkout {

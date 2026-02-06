@@ -91,14 +91,6 @@ export default function TicketsPage() {
       />
 
       <div className={css['landing']}>
-        <nav className={css['nav-tabs']} aria-label="Ticket sections">
-          {NAV_LINKS.map(link => (
-            <Link key={link.to} to={link.to}>
-              {link.title.toUpperCase()}
-            </Link>
-          ))}
-        </nav>
-
         <section id="early-bird" className={css['early-bird-section']}>
           <div className={css['early-bird-content']}>
             <h2>Early Bird tickets on sale!</h2>
@@ -204,7 +196,7 @@ export default function TicketsPage() {
             <p className={css['section-subtitle']}>DISCOUNTS.</p>
             <h2 className={css['section-heading']}>Self-claiming.</h2>
             <p className={css['section-body']}>Our self-claiming discounts for Indian locals are now live!</p>
-            <Link to="/tickets/store#discounts" className={css['btn-secondary']}>
+            <Link to="/tickets/store#discounts" className={css['btn-eligibility']}>
               Check my eligibility
               <ChevronRightIcon />
             </Link>

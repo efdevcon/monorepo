@@ -30,6 +30,28 @@
   }
 }
 
+.sidebar-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+.back-arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* Right column: very light grey – vertical splitter (Figma 2899-1374) */
 .content-wrapper {
   display: flex;

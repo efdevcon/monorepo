@@ -65,6 +65,14 @@ function ArrowRightIcon() {
   )
 }
 
+function ArrowLeftIcon() {
+  return (
+    <svg className={css['back-arrow']} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M19 12H5M12 19l-7-7 7-7" />
+    </svg>
+  )
+}
+
 type StoreContentProps = {
   useTestAadhaar: boolean
   setUseTestAadhaar: (value: boolean) => void
@@ -91,11 +99,15 @@ function StoreContent({
     <>
       <div className={css['store-layout']}>
         <aside className={css['sidebar']}>
-          <div className={css['sidebar-logo']}>DEV CON INDIA</div>
+          <Link to="/tickets" className={css['sidebar-back']}>
+            <ArrowLeftIcon />
+            Back to tickets
+          </Link>
+          <div className={css['sidebar-logo']}>DEVCON INDIA</div>
           <h1 className={css['sidebar-title']}>Devcon Tickets</h1>
           <p className={css['sidebar-description']}>
-            Secure your Devcon India ticket and join thousands of builders, creators, and thinkers at the world's biggest
-            Ethereum conference.
+            Secure your Devcon India ticket and join thousands of builders, creators, and thinkers at the world's
+            biggest Ethereum conference.
           </p>
           <ul className={css['sidebar-details']}>
             <li>3-6 November 2026</li>
@@ -106,135 +118,124 @@ function StoreContent({
         <div className={css['content-wrapper']}>
           <div className={css['content']}>
             <div className={css['countdown-banner']}>
-            <div className={css['countdown-grid']}>
-              <div className={css['countdown-item']}>
-                <span className={css['countdown-value']}>{countdown.days}</span>
-                <span className={css['countdown-label']}>Days</span>
-              </div>
-              <div className={css['countdown-item']}>
-                <span className={css['countdown-value']}>{String(countdown.hours).padStart(2, '0')}</span>
-                <span className={css['countdown-label']}>Hours</span>
-              </div>
-              <div className={css['countdown-item']}>
-                <span className={css['countdown-value']}>{String(countdown.minutes).padStart(2, '0')}</span>
-                <span className={css['countdown-label']}>Minutes</span>
-              </div>
-              <div className={css['countdown-item']}>
-                <span className={css['countdown-value']}>{String(countdown.seconds).padStart(2, '0')}</span>
-                <span className={css['countdown-label']}>Seconds</span>
-              </div>
-            </div>
-          </div>
-
-          <section className={css['section']} id="general-admission">
-            <h2 className={css['section-title']}>General admission</h2>
-            <p className={css['section-subtitle']}>Our General admission tickets are now live!</p>
-
-            <div className={css['card']}>
-              <div className={css['card-main']}>
-                <div className={css['card-body']}>
-                  <h3 className={css['card-title']}>Early Bird Tickets</h3>
-                  <p className={css['card-meta']}>Price increases 30 March</p>
-                  <p className={css['card-description']}>
-                    Full conference access, swag bag, plus coffee, lunch and snacks all week!
-                  </p>
+              <div className={css['countdown-grid']}>
+                <div className={css['countdown-item']}>
+                  <span className={css['countdown-value']}>{countdown.days}</span>
+                  <span className={css['countdown-label']}>Days</span>
                 </div>
-                <div className={css['card-right']}>
-                  <div className={css['pricing']}>
-                    <span className={css['price-current']}>$349</span>
-                    <span className={css['price-original']}>$599</span>
-                  </div>
-                  <div className={css['quantity']}>
-                    <button
-                      type="button"
-                      className={css['quantity-btn']}
-                      onClick={() => setEarlyBirdQty((q) => Math.max(0, q - 1))}
-                      aria-label="Decrease quantity"
-                    >
-                      −
-                    </button>
-                    <input
-                      type="number"
-                      className={css['quantity-input']}
-                      value={earlyBirdQty}
-                      min={0}
-                      onChange={(e) =>
-                        setEarlyBirdQty(Math.max(0, parseInt(e.target.value, 10) || 0))
-                      }
-                      aria-label="Quantity"
-                    />
-                    <button
-                      type="button"
-                      className={css['quantity-btn']}
-                      onClick={() => setEarlyBirdQty((q) => q + 1)}
-                      aria-label="Increase quantity"
-                    >
-                      +
-                    </button>
-                  </div>
+                <div className={css['countdown-item']}>
+                  <span className={css['countdown-value']}>{String(countdown.hours).padStart(2, '0')}</span>
+                  <span className={css['countdown-label']}>Hours</span>
+                </div>
+                <div className={css['countdown-item']}>
+                  <span className={css['countdown-value']}>{String(countdown.minutes).padStart(2, '0')}</span>
+                  <span className={css['countdown-label']}>Minutes</span>
+                </div>
+                <div className={css['countdown-item']}>
+                  <span className={css['countdown-value']}>{String(countdown.seconds).padStart(2, '0')}</span>
+                  <span className={css['countdown-label']}>Seconds</span>
                 </div>
               </div>
             </div>
-          </section>
 
-          <section className={css['section']} id="discounts">
-            <h2 className={css['section-title']}>Discounts</h2>
-            <p className={css['section-subtitle']}>Check if you qualify for a general admission discount</p>
+            <section className={css['section']} id="general-admission">
+              <h2 className={css['section-title']}>General admission</h2>
+              <p className={css['section-subtitle']}>Our General admission tickets are now live!</p>
 
-            <div className={css['discounts-grid']}>
               <div className={css['card']}>
                 <div className={css['card-main']}>
                   <div className={css['card-body']}>
-                    <h3 className={css['card-title']}>Locals</h3>
-                    <p className={css['card-meta']}>Via AnonAadhaar</p>
+                    <h3 className={css['card-title']}>Early Bird Tickets</h3>
+                    <p className={css['card-meta']}>Price increases 30 March</p>
                     <p className={css['card-description']}>
-                      Verify you're based in India (via AnonAadhaar) to get this discount
+                      Full conference access, swag bag, plus coffee, lunch and snacks all week!
                     </p>
                   </div>
                   <div className={css['card-right']}>
                     <div className={css['pricing']}>
-                      <span className={css['price-current']}>$99</span>
-                      <span className={css['price-original']}>$349</span>
+                      <span className={css['price-current']}>$349</span>
+                      <span className={css['price-original']}>$599</span>
                     </div>
-                    <button
-                      type="button"
-                      className={css['verify-btn']}
-                      onClick={() => setVerificationOpen(true)}
-                    >
-                      <VerifyIcon />
-                      Verify
-                    </button>
+                    <div className={css['quantity']}>
+                      <button
+                        type="button"
+                        className={css['quantity-btn']}
+                        onClick={() => setEarlyBirdQty(q => Math.max(0, q - 1))}
+                        aria-label="Decrease quantity"
+                      >
+                        −
+                      </button>
+                      <input
+                        type="number"
+                        className={css['quantity-input']}
+                        value={earlyBirdQty}
+                        min={0}
+                        onChange={e => setEarlyBirdQty(Math.max(0, parseInt(e.target.value, 10) || 0))}
+                        aria-label="Quantity"
+                      />
+                      <button
+                        type="button"
+                        className={css['quantity-btn']}
+                        onClick={() => setEarlyBirdQty(q => q + 1)}
+                        aria-label="Increase quantity"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className={css['card']}>
-                <div className={css['card-main']}>
-                  <div className={css['card-body']}>
-                    <h3 className={css['card-title']}>Local Builders</h3>
-                    <p className={css['card-meta']}>Via AnonAadhaar</p>
-                    <p className={css['card-description']}>
-                      Verify you're based in India (via AnonAadhaar) to get this discount
-                    </p>
-                  </div>
-                  <div className={css['card-right']}>
-                    <div className={css['pricing']}>
-                      <span className={css['price-current']}>$99</span>
-                      <span className={css['price-original']}>$349</span>
-                    </div>
-                    <button
-                      type="button"
-                      className={css['verify-btn']}
-                      onClick={() => setVerificationOpen(true)}
-                    >
-                      <VerifyIcon />
-                      Verify
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
+            <section className={css['section']} id="discounts">
+              <h2 className={css['section-title']}>Discounts</h2>
+              <p className={css['section-subtitle']}>Check if you qualify for a general admission discount</p>
+
+              <div className={css['discounts-grid']}>
+                <div className={css['card']}>
+                  <div className={css['card-main']}>
+                    <div className={css['card-body']}>
+                      <h3 className={css['card-title']}>Locals</h3>
+                      <p className={css['card-meta']}>Via AnonAadhaar</p>
+                      <p className={css['card-description']}>
+                        Verify you're based in India (via AnonAadhaar) to get this discount
+                      </p>
+                    </div>
+                    <div className={css['card-right']}>
+                      <div className={css['pricing']}>
+                        <span className={css['price-current']}>$99</span>
+                        <span className={css['price-original']}>$349</span>
+                      </div>
+                      <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
+                        <VerifyIcon />
+                        Verify
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className={css['card']}>
+                  <div className={css['card-main']}>
+                    <div className={css['card-body']}>
+                      <h3 className={css['card-title']}>Local Builders</h3>
+                      <p className={css['card-meta']}>Via AnonAadhaar</p>
+                      <p className={css['card-description']}>
+                        Verify you're based in India (via AnonAadhaar) to get this discount
+                      </p>
+                    </div>
+                    <div className={css['card-right']}>
+                      <div className={css['pricing']}>
+                        <span className={css['price-current']}>$99</span>
+                        <span className={css['price-original']}>$349</span>
+                      </div>
+                      <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
+                        <VerifyIcon />
+                        Verify
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
           <div className={css['summary-sticky']}>
             <div className={css['summary-sticky-inner']}>
@@ -242,9 +243,7 @@ function StoreContent({
                 <div>
                   <p className={css['summary-label']}>Your selection</p>
                   <p className={css['summary-selection']}>
-                    {totalQty === 0
-                      ? 'No tickets selected'
-                      : `${totalQty} x Global Early Bird Ticket`}
+                    {totalQty === 0 ? 'No tickets selected' : `${totalQty} x Global Early Bird Ticket`}
                   </p>
                 </div>
                 <div>
@@ -275,7 +274,7 @@ function StoreContent({
         onClose={() => setVerificationOpen(false)}
         useTestAadhaar={useTestAadhaar}
         setUseTestAadhaar={setUseTestAadhaar}
-        onReset={() => setProviderResetKey((k) => k + 1)}
+        onReset={() => setProviderResetKey(k => k + 1)}
       />
     </>
   )
