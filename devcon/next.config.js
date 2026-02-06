@@ -6,10 +6,6 @@ const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    // Ignore type errors in dependencies (e.g. @anon-aadhaar/core ArrayBuffer cast)
-    ignoreBuildErrors: true,
-  },
   transpilePackages: ['lib'],
   reactStrictMode: true,
   staticPageGenerationTimeout: 300,
