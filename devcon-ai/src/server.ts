@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { searchRouter } from "./routes/search.js";
 import { chatRouter } from "./routes/chat.js";
+import { fuzzyRouter } from "./routes/fuzzy.js";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -19,6 +20,7 @@ app.get("/health", (_req, res) => {
 // API routes
 app.use("/api/search", searchRouter);
 app.use("/api/chat", chatRouter);
+app.use("/api/fuzzy", fuzzyRouter);
 
 // Start server
 app.listen(port, () => {

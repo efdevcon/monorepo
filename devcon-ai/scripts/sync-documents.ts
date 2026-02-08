@@ -16,8 +16,8 @@ import * as path from "path";
 import * as crypto from "crypto";
 
 // Configuration
-const CHUNK_SIZE = 1500; // Characters per chunk
-const CHUNK_OVERLAP = 200; // Overlap between chunks
+const CHUNK_SIZE = 500; // Characters per chunk (smaller = better semantic focus per chunk)
+const CHUNK_OVERLAP = 100; // Overlap between chunks
 
 interface DocumentChunk {
   content: string;

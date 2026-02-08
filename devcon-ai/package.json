@@ -9,7 +9,9 @@
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
     "sync:devcon": "tsx scripts/sync-documents.ts --source-type github --source-repo devcon --path ../devcon/cms",
-    "sync:devconnect": "tsx scripts/sync-documents.ts --source-type github --source-repo devconnect --path ../devconnect/cms"
+    "sync:devconnect": "tsx scripts/sync-documents.ts --source-type github --source-repo devconnect --path ../devconnect/cms",
+    "sync:devcon-api": "tsx scripts/sync-devcon-api.ts",
+    "test:providers": "tsx scripts/test-providers.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
