@@ -89,9 +89,9 @@ export async function searchAndExpandDocuments(
 ): Promise<ExpandedDocument[]> {
   const { maxDocuments = 5, sourceType, sourceRepo } = options;
   const {
-    chunksBefore = 4,
-    chunksAfter = 4,
-    maxCharsPerDocument = 15000,
+    chunksBefore = 2,
+    chunksAfter = 2,
+    maxCharsPerDocument = 6000,
   } = expansionOptions;
 
   // First, find matching chunks
@@ -565,7 +565,7 @@ export function formatDocumentsForContext(documents: MatchedDocument[]): string 
 }
 
 // Max context size in characters (~4 chars per token, target ~8K tokens)
-const MAX_CONTEXT_CHARS = 64000;
+const MAX_CONTEXT_CHARS = 24000;
 
 export function formatExpandedDocumentsForContext(
   documents: ExpandedDocument[],

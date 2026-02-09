@@ -103,7 +103,7 @@ chatRouter.post("/", async (req, res) => {
     // Initial search - expand to full documents
     const expandedDocs = await searchAndExpandDocuments(message, {
       matchThreshold: 0.2,
-      maxDocuments: 8,
+      maxDocuments: 5,
       sourceType,
       sourceRepo,
     });
