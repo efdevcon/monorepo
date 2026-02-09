@@ -5,8 +5,31 @@ import themes from '../../themes.module.scss'
 import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import css from './store.module.scss'
+import { TicketInfo, QuestionInfo } from 'types/pretix'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
+
+interface CartItem {
+  ticketId: number
+  name: string
+  price: string
+  quantity: number
+}
+
+interface PaymentInfo {
+  network: string
+  chainId: number
+  tokenAddress: string
+  tokenSymbol: string
+  tokenDecimals: number
+  discountForCrypto: string
+}
+
+interface CartData {
+  items: CartItem[]
+  paymentInfo: PaymentInfo
+  savedAt: number
+}
 
 function useCountdown() {
   const [diff, setDiff] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
@@ -88,12 +111,85 @@ function StoreContent({
   verificationOpen,
   setVerificationOpen,
 }: StoreContentProps) {
-  const [earlyBirdQty, setEarlyBirdQty] = useState(0)
   const countdown = useCountdown()
 
-  const totalQty = earlyBirdQty
-  const totalCents = earlyBirdQty * 34900
+  const [tickets, setTickets] = useState<TicketInfo[]>([])
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [cart, setCart] = useState<CartItem[]>([])
+
+  useEffect(() => {
+    async function fetchTickets() {
+      try {
+        const res = await fetch('/api/x402/tickets')
+        const data = await res.json()
+        if (data.success) {
+          setTickets(data.data.tickets)
+          setPaymentInfo(data.data.paymentInfo)
+        } else {
+          setError(data.error || 'Failed to load tickets')
+        }
+      } catch {
+        setError('Failed to load tickets')
+      }
+      setLoading(false)
+    }
+    fetchTickets()
+  }, [])
+
+  const updateCartQuantity = (ticket: TicketInfo, delta: number) => {
+    setCart(prev => {
+      const existing = prev.find(c => c.ticketId === ticket.id)
+      if (existing) {
+        const newQty = Math.max(0, existing.quantity + delta)
+        if (newQty === 0) return prev.filter(c => c.ticketId !== ticket.id)
+        return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
+      }
+      if (delta > 0) {
+        return [...prev, { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: delta }]
+      }
+      return prev
+    })
+  }
+
+  const setCartQuantity = (ticket: TicketInfo, qty: number) => {
+    const newQty = Math.max(0, qty)
+    setCart(prev => {
+      const existing = prev.find(c => c.ticketId === ticket.id)
+      if (newQty === 0) return prev.filter(c => c.ticketId !== ticket.id)
+      if (existing) {
+        return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
+      }
+      return [...prev, { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: newQty }]
+    })
+  }
+
+  const getQuantity = (ticketId: number) => cart.find(c => c.ticketId === ticketId)?.quantity || 0
+
+  const totalQty = cart.reduce((sum, c) => sum + c.quantity, 0)
+  const totalCents = cart.reduce((sum, c) => sum + Math.round(parseFloat(c.price) * 100) * c.quantity, 0)
   const totalFormatted = `$${(totalCents / 100).toFixed(2)} USD`
+
+  const selectionText =
+    totalQty === 0
+      ? 'No tickets selected'
+      : cart
+          .filter(c => c.quantity > 0)
+          .map(c => `${c.quantity} x ${c.name}`)
+          .join(', ')
+
+  const saveCartAndNavigate = () => {
+    if (!paymentInfo) return
+    const cartData: CartData = {
+      items: cart.filter(c => c.quantity > 0),
+      paymentInfo,
+      savedAt: Date.now(),
+    }
+    localStorage.setItem('devcon-ticket-cart', JSON.stringify(cartData))
+  }
+
+  const admissionTickets = tickets.filter(t => t.isAdmission && t.available)
 
   return (
     <>
@@ -138,53 +234,93 @@ function StoreContent({
               </div>
             </div>
 
-            <section className={css['section']} id="general-admission">
-              <h2 className={css['section-title']}>General admission</h2>
-              <p className={css['section-subtitle']}>Our General admission tickets are now live!</p>
+            <section className={css['section']} id="local-launch">
+              <h2 className={css['section-title']}>Local ticket launch</h2>
+              <p className={css['section-subtitle']}>Check if you qualify for the Local Early Bird discount</p>
 
               <div className={css['card']}>
                 <div className={css['card-main']}>
                   <div className={css['card-body']}>
-                    <h3 className={css['card-title']}>Early Bird Tickets</h3>
-                    <p className={css['card-meta']}>Price increases 30 March</p>
+                    <h3 className={css['card-title']}>Local Early Bird</h3>
+                    <p className={css['card-meta']}>Via AnonAadhaar &middot; Price increases 31 March</p>
                     <p className={css['card-description']}>
-                      Full conference access, swag bag, plus coffee, lunch and snacks all week!
+                      Full conference access, swag bag, plus coffee, lunch and snacks all week.
                     </p>
                   </div>
                   <div className={css['card-right']}>
                     <div className={css['pricing']}>
-                      <span className={css['price-current']}>$349</span>
-                      <span className={css['price-original']}>$599</span>
+                      <span className={css['price-current']}>$149</span>
+                      <span className={css['price-original']}>$249</span>
                     </div>
-                    <div className={css['quantity']}>
-                      <button
-                        type="button"
-                        className={css['quantity-btn']}
-                        onClick={() => setEarlyBirdQty(q => Math.max(0, q - 1))}
-                        aria-label="Decrease quantity"
-                      >
-                        −
-                      </button>
-                      <input
-                        type="number"
-                        className={css['quantity-input']}
-                        value={earlyBirdQty}
-                        min={0}
-                        onChange={e => setEarlyBirdQty(Math.max(0, parseInt(e.target.value, 10) || 0))}
-                        aria-label="Quantity"
-                      />
-                      <button
-                        type="button"
-                        className={css['quantity-btn']}
-                        onClick={() => setEarlyBirdQty(q => q + 1)}
-                        aria-label="Increase quantity"
-                      >
-                        +
-                      </button>
-                    </div>
+                    <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
+                      <VerifyIcon />
+                      Verify
+                    </button>
                   </div>
                 </div>
               </div>
+            </section>
+
+            <section className={css['section']} id="general-admission">
+              <h2 className={css['section-title']}>General admission</h2>
+              <p className={css['section-subtitle']}>Our General admission tickets are now live!</p>
+
+              {loading && <p>Loading tickets...</p>}
+              {error && <p style={{ color: '#c00' }}>{error}</p>}
+
+              {admissionTickets.map(ticket => (
+                <div key={ticket.id} className={css['card']}>
+                  <div className={css['card-main']}>
+                    <div className={css['card-body']}>
+                      <h3 className={css['card-title']}>{ticket.name}</h3>
+                      {ticket.description && <p className={css['card-meta']}>{ticket.description}</p>}
+                      <p className={css['card-description']}>
+                        Full conference access, swag bag, plus coffee, lunch and snacks all week!
+                        {ticket.availableCount !== null && (
+                          <span style={{ display: 'block', marginTop: '0.25rem', fontSize: '0.8125rem', color: '#666' }}>
+                            {ticket.availableCount} remaining
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                    <div className={css['card-right']}>
+                      <div className={css['pricing']}>
+                        <span className={css['price-current']}>${ticket.price}</span>
+                      </div>
+                      <div className={css['quantity']}>
+                        <button
+                          type="button"
+                          className={css['quantity-btn']}
+                          onClick={() => updateCartQuantity(ticket, -1)}
+                          aria-label="Decrease quantity"
+                        >
+                          −
+                        </button>
+                        <input
+                          type="number"
+                          className={css['quantity-input']}
+                          value={getQuantity(ticket.id)}
+                          min={0}
+                          onChange={e => setCartQuantity(ticket, parseInt(e.target.value, 10) || 0)}
+                          aria-label="Quantity"
+                        />
+                        <button
+                          type="button"
+                          className={css['quantity-btn']}
+                          onClick={() => updateCartQuantity(ticket, 1)}
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {!loading && admissionTickets.length === 0 && !error && (
+                <p style={{ color: '#666' }}>No tickets currently available.</p>
+              )}
             </section>
 
             <section className={css['section']} id="discounts">
@@ -242,9 +378,7 @@ function StoreContent({
               <div className={css['summary-row']}>
                 <div>
                   <p className={css['summary-label']}>Your selection</p>
-                  <p className={css['summary-selection']}>
-                    {totalQty === 0 ? 'No tickets selected' : `${totalQty} x Global Early Bird Ticket`}
-                  </p>
+                  <p className={css['summary-selection']}>{selectionText}</p>
                 </div>
                 <div>
                   <p className={css['summary-total-label']}>Total</p>
@@ -253,7 +387,7 @@ function StoreContent({
               </div>
               <div className={css['summary-actions']}>
                 {totalQty > 0 ? (
-                  <Link to="/tickets/store/checkout" className={css['checkout-btn']}>
+                  <Link to="/tickets/store/checkout" className={css['checkout-btn']} onClick={saveCartAndNavigate}>
                     Checkout
                     <ArrowRightIcon />
                   </Link>
