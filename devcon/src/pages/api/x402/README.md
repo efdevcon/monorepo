@@ -2,6 +2,22 @@
 
 This API implements the x402 payment protocol for purchasing Devcon tickets with USDC on Base network.
 
+## Last change recap
+
+**Commit:** dynamic checkout with x402 crypto payment + gas sponsoring — USDC on Base (3% discount), Pretix integration, gasless EIP-3009 relayer.
+
+## File reference
+
+| Area | Path |
+|------|------|
+| **API – tickets** | `src/pages/api/x402/tickets/index.ts`, `purchase.ts`, `fiat-purchase.ts`, `verify.ts`, `status.ts`, `order-status.ts`, `order/[code].ts` |
+| **API – relayer** | `src/pages/api/x402/tickets/relayer/prepare-authorization.ts`, `execute-transfer.ts` |
+| **Pages – store** | `src/pages/tickets/index.tsx`, `store/index.tsx`, `store/checkout.tsx`, `store/checkout.module.scss`, `store/order/[code]/[secret].tsx`, `store/order/[code]/confirmation.module.scss`, `tickets-landing.module.scss` |
+| **Pages – test** | `src/pages/x402-test.tsx` |
+| **Services** | `src/services/pretix.ts`, `src/services/relayer.ts`, `src/services/ticketStore.ts`, `src/services/x402.ts` |
+| **Types** | `src/types/pretix.ts`, `src/types/x402.ts` |
+| **Scripts** | `src/scripts/pretix/test-all.ts`, `test-categories.ts`, `test-event.ts`, `test-items.ts`, `test-questions.ts`, `test-quotas.ts`, `test-x402-flow.ts` |
+
 ## Overview
 
 The x402 protocol uses HTTP 402 (Payment Required) responses to facilitate cryptocurrency payments. This implementation:
