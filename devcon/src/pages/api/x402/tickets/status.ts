@@ -66,7 +66,7 @@ export default async function handler(
     // Check by payment reference
     if (paymentReference && typeof paymentReference === 'string') {
       // Check completed orders first
-      const completed = getCompletedOrder(paymentReference)
+      const completed = await getCompletedOrder(paymentReference)
       if (completed) {
         return res.status(200).json({
           success: true,
@@ -84,7 +84,7 @@ export default async function handler(
       }
 
       // Check pending orders
-      const pending = getPendingOrder(paymentReference)
+      const pending = await getPendingOrder(paymentReference)
       if (pending) {
         return res.status(200).json({
           success: true,
@@ -107,7 +107,7 @@ export default async function handler(
 
     // Check by order code
     if (orderCode && typeof orderCode === 'string') {
-      const completed = getCompletedOrderByPretixCode(orderCode)
+      const completed = await getCompletedOrderByPretixCode(orderCode)
       if (completed) {
         return res.status(200).json({
           success: true,

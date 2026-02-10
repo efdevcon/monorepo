@@ -1,14 +1,11 @@
 /**
  * Ticket Order Store Service
- * Manages pending ticket orders between payment request and verification
- *
- * Uses file-based persistence in development to survive hot reloads.
- * In production, replace this with a proper database (PostgreSQL, Redis, etc.)
+ * Manages pending ticket orders between payment request and verification.
+ * Uses Supabase (Postgres) for persistence across serverless invocations.
  */
 
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { PretixOrderCreateRequest } from '../types/pretix'
-import fs from 'fs'
-import path from 'path'
 
 export interface PendingTicketOrder {
   paymentReference: string
@@ -31,149 +28,179 @@ export interface CompletedTicketOrder {
   completedAt: number
 }
 
-// File-based persistence for development (survives hot reloads)
-const STORE_FILE = path.join(process.cwd(), '.ticket-store.json')
-
-interface StoreData {
-  pending: Record<string, PendingTicketOrder>
-  completed: Record<string, CompletedTicketOrder>
+interface PendingRow {
+  payment_reference: string
+  order_data: PretixOrderCreateRequest
+  total_usd: string
+  created_at: number
+  expires_at: number
+  metadata: Record<string, unknown> | null
 }
 
-function loadStore(): StoreData {
-  try {
-    if (fs.existsSync(STORE_FILE)) {
-      const data = fs.readFileSync(STORE_FILE, 'utf-8')
-      return JSON.parse(data)
-    }
-  } catch (e) {
-    console.error('Failed to load ticket store:', e)
-  }
-  return { pending: {}, completed: {} }
+interface CompletedRow {
+  payment_reference: string
+  pretix_order_code: string
+  tx_hash: string
+  payer: string
+  completed_at: number
 }
 
-function saveStore(data: StoreData): void {
-  try {
-    fs.writeFileSync(STORE_FILE, JSON.stringify(data, null, 2))
-  } catch (e) {
-    console.error('Failed to save ticket store:', e)
+function getSupabase(): SupabaseClient {
+  const url = process.env.SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) {
+    throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for ticket store')
+  }
+  return createClient(url, key)
+}
+
+function rowToPending(row: PendingRow): PendingTicketOrder {
+  return {
+    paymentReference: row.payment_reference,
+    orderData: row.order_data,
+    totalUsd: row.total_usd,
+    createdAt: row.created_at,
+    expiresAt: row.expires_at,
+    metadata: row.metadata as PendingTicketOrder['metadata'] ?? undefined,
   }
 }
 
-// Load initial state from file
-let storeData = loadStore()
-const pendingOrders = new Map<string, PendingTicketOrder>(Object.entries(storeData.pending))
-const completedOrders = new Map<string, CompletedTicketOrder>(Object.entries(storeData.completed))
-
-function persistStore(): void {
-  const data: StoreData = {
-    pending: Object.fromEntries(pendingOrders),
-    completed: Object.fromEntries(completedOrders),
+function rowToCompleted(row: CompletedRow): CompletedTicketOrder {
+  return {
+    paymentReference: row.payment_reference,
+    pretixOrderCode: row.pretix_order_code,
+    txHash: row.tx_hash,
+    payer: row.payer,
+    completedAt: row.completed_at,
   }
-  saveStore(data)
 }
 
 /**
  * Store a pending ticket order
  */
-export function storePendingOrder(order: PendingTicketOrder): void {
-  pendingOrders.set(order.paymentReference, order)
-  persistStore()
+export async function storePendingOrder(order: PendingTicketOrder): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase.from('x402_pending_orders').upsert({
+    payment_reference: order.paymentReference,
+    order_data: order.orderData,
+    total_usd: order.totalUsd,
+    created_at: Math.floor(Number(order.createdAt)),
+    expires_at: Math.floor(Number(order.expiresAt)),
+    metadata: order.metadata ?? null,
+  }, { onConflict: 'payment_reference' })
+  if (error) throw new Error(`ticketStore storePendingOrder: ${error.message}`)
 }
 
 /**
- * Get a pending order by payment reference
+ * Get a pending order by payment reference (returns undefined if expired or not found)
  */
-export function getPendingOrder(paymentReference: string): PendingTicketOrder | undefined {
-  // Always reload from file to handle hot reloads in development
-  const freshData = loadStore()
-  const order = freshData.pending[paymentReference]
-  if (!order) return undefined
-
-  // Check if expired
+export async function getPendingOrder(paymentReference: string): Promise<PendingTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_pending_orders')
+    .select('*')
+    .eq('payment_reference', paymentReference)
+    .maybeSingle()
+  if (error) throw new Error(`ticketStore getPendingOrder: ${error.message}`)
+  if (!data) return undefined
+  const order = rowToPending(data as PendingRow)
   if (Date.now() / 1000 > order.expiresAt) {
-    pendingOrders.delete(paymentReference)
-    persistStore()
+    await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference)
     return undefined
   }
-
-  // Update in-memory cache
-  pendingOrders.set(paymentReference, order)
   return order
 }
 
 /**
  * Remove a pending order (after completion or cancellation)
  */
-export function removePendingOrder(paymentReference: string): boolean {
-  const result = pendingOrders.delete(paymentReference)
-  persistStore()
-  return result
+export async function removePendingOrder(paymentReference: string): Promise<boolean> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_pending_orders')
+    .delete()
+    .eq('payment_reference', paymentReference)
+    .select('payment_reference')
+  if (error) throw new Error(`ticketStore removePendingOrder: ${error.message}`)
+  return (data?.length ?? 0) > 0
 }
 
 /**
- * Store a completed order
+ * Store a completed order and remove from pending
  */
-export function storeCompletedOrder(order: CompletedTicketOrder): void {
-  completedOrders.set(order.paymentReference, order)
-  // Remove from pending
-  pendingOrders.delete(order.paymentReference)
-  persistStore()
+export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<void> {
+  const supabase = getSupabase()
+  const { error: errCompleted } = await supabase.from('x402_completed_orders').insert({
+    payment_reference: order.paymentReference,
+    pretix_order_code: order.pretixOrderCode,
+    tx_hash: order.txHash,
+    payer: order.payer,
+    completed_at: Math.floor(Number(order.completedAt)),
+  })
+  if (errCompleted) throw new Error(`ticketStore storeCompletedOrder: ${errCompleted.message}`)
+  await supabase.from('x402_pending_orders').delete().eq('payment_reference', order.paymentReference)
 }
 
 /**
  * Get a completed order by payment reference
  */
-export function getCompletedOrder(paymentReference: string): CompletedTicketOrder | undefined {
-  return completedOrders.get(paymentReference)
+export async function getCompletedOrder(paymentReference: string): Promise<CompletedTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_completed_orders')
+    .select('*')
+    .eq('payment_reference', paymentReference)
+    .maybeSingle()
+  if (error) throw new Error(`ticketStore getCompletedOrder: ${error.message}`)
+  return data ? rowToCompleted(data as CompletedRow) : undefined
 }
 
 /**
  * Get completed order by Pretix order code
  */
-export function getCompletedOrderByPretixCode(pretixOrderCode: string): CompletedTicketOrder | undefined {
-  for (const order of completedOrders.values()) {
-    if (order.pretixOrderCode === pretixOrderCode) {
-      return order
-    }
-  }
-  return undefined
+export async function getCompletedOrderByPretixCode(pretixOrderCode: string): Promise<CompletedTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_completed_orders')
+    .select('*')
+    .eq('pretix_order_code', pretixOrderCode)
+    .maybeSingle()
+  if (error) throw new Error(`ticketStore getCompletedOrderByPretixCode: ${error.message}`)
+  return data ? rowToCompleted(data as CompletedRow) : undefined
 }
 
 /**
  * Clean up expired pending orders
  */
-export function cleanupExpiredOrders(): void {
-  const now = Date.now() / 1000
-  let changed = false
-  for (const [ref, order] of pendingOrders.entries()) {
-    if (now > order.expiresAt) {
-      pendingOrders.delete(ref)
-      changed = true
-    }
-  }
-  if (changed) {
-    persistStore()
-  }
+export async function cleanupExpiredOrders(): Promise<void> {
+  const supabase = getSupabase()
+  const now = Math.floor(Date.now() / 1000)
+  await supabase.from('x402_pending_orders').delete().lt('expires_at', now)
 }
 
 /**
  * Get all pending orders (for debugging)
  */
-export function getAllPendingOrders(): PendingTicketOrder[] {
-  return Array.from(pendingOrders.values())
+export async function getAllPendingOrders(): Promise<PendingTicketOrder[]> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase.from('x402_pending_orders').select('*')
+  if (error) throw new Error(`ticketStore getAllPendingOrders: ${error.message}`)
+  return (data ?? []).map((row) => rowToPending(row as PendingRow))
 }
 
 /**
  * Get store stats (for debugging)
  */
-export function getStoreStats(): { pending: number; completed: number } {
+export async function getStoreStats(): Promise<{ pending: number; completed: number }> {
+  const supabase = getSupabase()
+  const [pendingRes, completedRes] = await Promise.all([
+    supabase.from('x402_pending_orders').select('payment_reference', { count: 'exact', head: true }),
+    supabase.from('x402_completed_orders').select('payment_reference', { count: 'exact', head: true }),
+  ])
+  if (pendingRes.error) throw new Error(`ticketStore getStoreStats pending: ${pendingRes.error.message}`)
+  if (completedRes.error) throw new Error(`ticketStore getStoreStats completed: ${completedRes.error.message}`)
   return {
-    pending: pendingOrders.size,
-    completed: completedOrders.size,
+    pending: pendingRes.count ?? 0,
+    completed: completedRes.count ?? 0,
   }
-}
-
-// Run cleanup every 5 minutes
-if (typeof setInterval !== 'undefined') {
-  setInterval(cleanupExpiredOrders, 5 * 60 * 1000)
 }

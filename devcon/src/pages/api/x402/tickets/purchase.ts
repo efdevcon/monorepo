@@ -288,7 +288,7 @@ export default async function handler(
         email: body.email,
       },
     }
-    storePendingOrder(pendingOrder)
+    await storePendingOrder(pendingOrder)
 
     // Return 402 Payment Required
     const response: PurchaseResponse = {

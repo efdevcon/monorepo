@@ -92,7 +92,7 @@ export default async function handler(
     }
 
     // Check if already completed
-    const existingCompleted = getCompletedOrder(body.paymentReference)
+    const existingCompleted = await getCompletedOrder(body.paymentReference)
     if (existingCompleted) {
       // Return existing order info
       return res.status(200).json({
@@ -116,7 +116,7 @@ export default async function handler(
 
     // Get pending order
     console.log('[Verify] Looking up pending order for:', body.paymentReference)
-    const pendingOrder = getPendingOrder(body.paymentReference)
+    const pendingOrder = await getPendingOrder(body.paymentReference)
     if (!pendingOrder) {
       console.log('[Verify] Pending order not found in ticketStore')
       return res.status(404).json({
@@ -205,7 +205,7 @@ export default async function handler(
       payer: body.payer,
       completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
     }
-    storeCompletedOrder(completedOrder)
+    await storeCompletedOrder(completedOrder)
 
     // Return success response
     const response: VerifySuccessResponse = {

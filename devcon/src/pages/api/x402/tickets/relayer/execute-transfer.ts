@@ -49,7 +49,7 @@ export default async function handler(
 
     // Get pending order
     console.log('[ExecuteTransfer] Looking up pending order for:', body.paymentReference)
-    const pendingOrder = getPendingOrder(body.paymentReference)
+    const pendingOrder = await getPendingOrder(body.paymentReference)
     if (!pendingOrder) {
       return res.status(404).json({
         success: false,
