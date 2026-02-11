@@ -39,14 +39,30 @@ function typedDataToJson(typedData: { domain: unknown; types: unknown; primaryTy
   }
 }
 
-/** Zapper token balance node (byToken edge) */
+/** Zapper token balance node (byToken edge). API often returns network.name only, not chainId. */
 interface ZapperTokenNode {
   tokenAddress: string
   symbol: string
   balance?: number
   balanceRaw?: string
-  network?: { chainId: number }
+  network?: { chainId?: number; name?: string }
   decimals?: number
+}
+
+/** Map Zapper network name/slug to chain ID (normalize to lowercase, spaces→hyphens for lookup) */
+const NETWORK_NAME_TO_CHAIN_ID: Record<string, number> = {
+  ethereum: 1,
+  'ethereum mainnet': 1,
+  mainnet: 1,
+  optimism: 10,
+  'optimism mainnet': 10,
+  arbitrum: 42161,
+  'arbitrum one': 42161,
+  'arbitrum mainnet': 42161,
+  base: 8453,
+  'base mainnet': 8453,
+  'base-sepolia': 84532,
+  'base sepolia': 84532,
 }
 
 export interface PaymentOptionSigningRequest {
@@ -115,7 +131,7 @@ async function fetchZapperBalances(walletAddress: string, chainIds: number[]): P
                 tokenAddress
                 symbol
                 balanceRaw
-                network { chainId }
+                network { chainId name }
               }
             }
           }
@@ -139,20 +155,25 @@ async function fetchZapperBalances(walletAddress: string, chainIds: number[]): P
     }),
   })
   const json = await res.json()
-  if (json.errors) {
-    console.error('[payment-options] Zapper errors:', json.errors)
-    return new Map()
-  }
+  if (json.errors) return new Map()
 
   const edges = json?.data?.portfolioV2?.tokenBalances?.byToken?.edges ?? []
   const map = new Map<string, string>()
   for (const edge of edges) {
     const node: ZapperTokenNode = edge.node
-    const chainId = node.network?.chainId
+    let chainId = node.network?.chainId
+    if (chainId == null && node.network?.name) {
+      const name = String(node.network.name).toLowerCase().trim()
+      chainId = NETWORK_NAME_TO_CHAIN_ID[name] ?? NETWORK_NAME_TO_CHAIN_ID[name.replace(/\s+/g, '-')]
+    }
     const addr = (node.tokenAddress || '').toLowerCase()
     const raw = node.balanceRaw ?? '0'
+    const symbol = (node.symbol || '').toUpperCase()
     if (chainId != null) {
       map.set(`${chainId}-${addr}`, raw)
+      if (symbol) {
+        map.set(`symbol:${chainId}:${symbol}`, raw)
+      }
       if (addr === '0x0000000000000000000000000000000000000000') {
         map.set(`${chainId}-${NATIVE_ETH_PLACEHOLDER.toLowerCase()}`, raw)
       }
@@ -208,7 +229,9 @@ export default async function handler(
       const balanceKey2 = isNativeEth(supported.asset)
         ? `${chainId}-0x0000000000000000000000000000000000000000`
         : ''
-      const balanceRaw = balanceMap.get(balanceKey1) ?? balanceMap.get(balanceKey2) ?? '0'
+      const balanceSymbolKey = `symbol:${chainId}:${supported.symbol}`
+      const balanceRaw =
+        balanceMap.get(balanceKey1) ?? balanceMap.get(balanceSymbolKey) ?? balanceMap.get(balanceKey2) ?? '0'
       const amount = supported.symbol === 'ETH' ? ethAmountWei : usdcAmount
       const sufficient = BigInt(balanceRaw) >= BigInt(amount)
 
@@ -269,10 +292,9 @@ export default async function handler(
 
     return res.status(200).json({ options })
   } catch (e) {
-    console.error('[payment-options]', e)
     return res.status(500).json({
       error: 'Failed to load payment options',
-      details: (e as Error).message,
+      details: e instanceof Error ? e.message : undefined,
     })
   }
 }

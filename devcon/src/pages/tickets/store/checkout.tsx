@@ -279,6 +279,7 @@ function CheckoutContent() {
   const [fiatOrderSecret, setFiatOrderSecret] = useState<string | null>(null)
   const [showFiatModal, setShowFiatModal] = useState(false)
   const fiatPollRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
 
   // Wagmi hooks
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
@@ -342,6 +343,23 @@ function CheckoutContent() {
     }
     fetchQuestions()
   }, [])
+
+  // ── Auto-load payment options when crypto tab is active and we have payment ref + wallet (e.g. user connected after 402)
+  useEffect(() => {
+    const ref = paymentDetails?.paymentReference
+    if (
+      paymentMethod === 'crypto' &&
+      ref &&
+      address &&
+      paymentOptions.length === 0 &&
+      !paymentOptionsLoading &&
+      paymentOptionsAutoLoadedRef.current !== ref
+    ) {
+      paymentOptionsAutoLoadedRef.current = ref
+      fetchPaymentOptions()
+    }
+    if (!ref) paymentOptionsAutoLoadedRef.current = null
+  }, [paymentMethod, paymentDetails?.paymentReference, address, paymentOptions.length, paymentOptionsLoading])
 
   // ── Handle direct payment tx success ──
   useEffect(() => {
@@ -516,6 +534,30 @@ function CheckoutContent() {
     setPurchaseLoading(false)
   }
 
+  async function fetchPaymentOptions(overrides?: { paymentReference: string; walletAddress: string }) {
+    const ref = overrides?.paymentReference ?? paymentDetails?.paymentReference
+    const addr = overrides?.walletAddress ?? address
+    if (!ref || !addr) return
+    setPaymentOptionsLoading(true)
+    try {
+      const optRes = await fetch('/api/x402/tickets/payment-options', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paymentReference: ref,
+          walletAddress: addr,
+        }),
+      })
+      const optData = await optRes.json()
+      if (optData.options) {
+        setPaymentOptions(optData.options)
+      }
+    } catch {
+      // keep existing options on error
+    }
+    setPaymentOptionsLoading(false)
+  }
+
   async function handleCryptoCheckout() {
     try {
       const formattedAnswers = buildFormattedAnswers()
@@ -542,27 +584,13 @@ function CheckoutContent() {
         setOrderSummary(data.orderSummary)
         setPaymentStatus('Awaiting payment...')
         setSelectedOption(null)
+        setPaymentOptions([])
 
         if (isConnected && address) {
-          setPaymentOptionsLoading(true)
-          setPaymentOptions([])
-          try {
-            const optRes = await fetch('/api/x402/tickets/payment-options', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                paymentReference: payment.paymentReference,
-                walletAddress: address,
-              }),
-            })
-            const optData = await optRes.json()
-            if (optData.options) {
-              setPaymentOptions(optData.options)
-            }
-          } catch {
-            // keep options empty; user can still use legacy flow
-          }
-          setPaymentOptionsLoading(false)
+          await fetchPaymentOptions({
+            paymentReference: payment.paymentReference,
+            walletAddress: address,
+          })
         }
       } else {
         setPurchaseError(data.error || 'Failed to create purchase')
@@ -826,6 +854,7 @@ function CheckoutContent() {
           paymentReference: paymentDetails.paymentReference,
           payer: address,
           chainId: paymentDetails.chainId,
+          symbol: paymentDetails.tokenSymbol,
         }),
       })
 
@@ -1255,31 +1284,60 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {paymentDetails && address && (
+                {paymentMethod === 'crypto' && paymentDetails && address && (
                   <div className={css['payment-options-block']}>
-                    {paymentOptionsLoading ? (
-                      <p className={css['status-text']}>Loading payment options...</p>
-                    ) : (
+                    <div className={css['payment-options-header']}>
+                      <span className={css['payment-options-title']}>
+                        {paymentOptionsLoading ? 'Loading payment options...' : 'Pay with'}
+                      </span>
+                      {paymentDetails?.paymentReference && (
+                        <button
+                          type="button"
+                          className={css['payment-options-reload']}
+                          onClick={() => fetchPaymentOptions()}
+                          disabled={paymentOptionsLoading}
+                          title="Refresh balances"
+                        >
+                          Refresh balances
+                        </button>
+                      )}
+                    </div>
+                    {paymentOptionsLoading ? null : (
                       <>
-                        {paymentOptions.filter(o => o.sufficient).length > 0 && !selectedOption && (
+                        {paymentOptions.length > 0 && !selectedOption && (
                           <div className={css['payment-options-list']}>
-                            <p className={css['payment-options-title']}>Pay with</p>
-                            {paymentOptions
-                              .filter(o => o.sufficient && o.signingRequest)
-                              .map(opt => (
+                            {paymentOptions.map(opt => {
+                              const canPay = Boolean(opt.signingRequest) && opt.sufficient
+                              const sufficient = opt.sufficient
+                              const balanceFormatted =
+                                opt.decimals >= 18
+                                  ? (Number(opt.balance) / 1e18).toFixed(4)
+                                  : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
+                              return (
                                 <button
                                   key={opt.asset}
                                   type="button"
-                                  className={css['payment-option-btn']}
-                                  onClick={() => selectPaymentOption(opt)}
+                                  className={[
+                                    css['payment-option-btn'],
+                                    canPay ? css['payment-option-btn--sufficient'] : css['payment-option-btn--insufficient'],
+                                  ]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                  disabled={!canPay}
+                                  title={!canPay && opt.symbol === 'USDC' && sufficient ? 'Gasless USDC only on Base' : undefined}
+                                  onClick={() => canPay && selectPaymentOption(opt)}
                                 >
                                   <span className={css['payment-option-symbol']}>{opt.symbol}</span>
                                   <span className={css['payment-option-chain']}>{opt.chain}</span>
                                   <span className={css['payment-option-balance']}>
-                                    Balance: {opt.decimals >= 18 ? (Number(opt.balance) / 1e18).toFixed(4) : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)} {opt.symbol}
+                                    Balance: {balanceFormatted} {opt.symbol}
                                   </span>
+                                  {sufficient && !canPay && opt.symbol === 'USDC' && (
+                                    <span className={css['payment-option-note']}>(Base only for gasless)</span>
+                                  )}
                                 </button>
-                              ))}
+                              )
+                            })}
                           </div>
                         )}
                         {selectedOption && (
@@ -1306,8 +1364,8 @@ function CheckoutContent() {
                             </button>
                           </div>
                         )}
-                        {!paymentOptionsLoading && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (
-                          <p className={css['status-text']}>No sufficient balance. Connect a wallet with USDC or ETH on supported chains.</p>
+                        {!paymentOptionsLoading && paymentOptions.length > 0 && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (
+                          <p className={css['status-text']}>No option with sufficient balance. Connect a wallet with more USDC or ETH on supported chains.</p>
                         )}
                       </>
                     )}

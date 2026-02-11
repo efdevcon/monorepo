@@ -48,6 +48,8 @@ interface VerifyRequest {
   payer: string
   /** Chain ID where the transaction was sent (e.g. 8453 for Base). Required for multi-chain so we look up the tx on the correct chain. */
   chainId?: number
+  /** Payment asset symbol ('ETH' | 'USDC'). When 'ETH', we may try native ETH verification; when 'USDC' we only verify USDC transfer. */
+  symbol?: string
 }
 
 interface VerifySuccessResponse {
@@ -194,10 +196,10 @@ export default async function handler(
     console.log('[Verify] Attempting primary verification via x402 service', body.chainId != null ? `(chain ${body.chainId})` : '')
     let verification = await verifyPayment(paymentProof)
 
-    // If primary verification found no USDC transfer (e.g. user paid with native ETH), try native ETH verification
-    // Use server-stored expected amount only (never trust client for ETH value)
+    // Only try native ETH when client indicates ETH payment; otherwise we'd wrongly run it for USDC and fail (from/to mismatch)
     if (
       !verification.verified &&
+      body.symbol === 'ETH' &&
       body.chainId != null &&
       (verification.error === 'No matching transfer found in transaction' || verification.error === 'Invalid payment reference')
     ) {

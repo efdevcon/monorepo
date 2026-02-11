@@ -671,17 +671,44 @@ $checkout-accent: #4d59c7;
   margin: 0.75rem 0;
 }
 
-.payment-options-list {
+.payment-options-header {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .payment-options-title {
   font-size: 0.875rem;
   font-weight: 600;
   color: #0a0a0a;
-  margin: 0 0 0.25rem;
+  margin: 0;
+}
+
+.payment-options-reload {
+  font-size: 0.8125rem;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  text-decoration: underline;
+
+  &:hover:not(:disabled) {
+    color: #0a0a0a;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.payment-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .payment-option-btn {
@@ -698,10 +725,38 @@ $checkout-accent: #4d59c7;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: #f8f8f8;
     border-color: rgba(0, 0, 0, 0.15);
   }
+
+  &:disabled {
+    cursor: default;
+    &:hover {
+      background: #fff;
+    }
+  }
+
+  &--sufficient {
+    border-color: rgba(34, 197, 94, 0.4);
+    background: rgba(34, 197, 94, 0.06);
+  }
+
+  &--sufficient:hover:not(:disabled) {
+    border-color: rgba(34, 197, 94, 0.6);
+    background: rgba(34, 197, 94, 0.1);
+  }
+
+  &--insufficient {
+    opacity: 0.75;
+    border-color: rgba(0, 0, 0, 0.08);
+    background: #fafafa;
+  }
+}
+
+.payment-option-note {
+  font-size: 0.75rem;
+  color: #c2410c;
 }
 
 .payment-option-symbol {
@@ -716,7 +771,7 @@ $checkout-accent: #4d59c7;
 
 .payment-option-balance {
   font-size: 0.8125rem;
-  color: #888;
+  color: #555;
   margin-left: auto;
 }
 
