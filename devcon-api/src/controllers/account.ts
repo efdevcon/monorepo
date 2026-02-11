@@ -1,7 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { API_INFO } from '@/utils/config'
 import { PrismaClient } from '@/db/clients/account'
-import { PrismaClient as ScheduleClient } from '@prisma/client'
 import { AccountProfileData, UserAccount } from '@/types/accounts'
 import { sendMail } from '@/services/email'
 import { isValidSignature } from '@/utils/web3'
@@ -13,9 +12,9 @@ import { ValidateTicketPod } from '@/utils/zupass'
 import { GenerateRandomUsername, GetEnsAddress, GetEnsAvatar, GetEnsName } from '@/utils/account'
 import { apikeyHandler } from '@/middleware/apikey'
 import dayjs from 'dayjs'
+import * as store from '@/data/store'
 
 const client = new PrismaClient()
-const scheduleClient = new ScheduleClient()
 
 export const accountRouter = Router()
 accountRouter.get(`/account`, GetAccount)
@@ -102,18 +101,13 @@ async function GetAccountSchedule(req: Request, res: Response) {
   }
 
   const sessionIds = account.attending_sessions?.length > 0 ? account.attending_sessions : account.interested_sessions || []
-  const schedule = await scheduleClient.session.findMany({
-    where: {
-      sourceId: { in: sessionIds },
-    },
-    include: {
-      speakers: true,
-      slot_room: true,
-    },
-    orderBy: {
-      slot_start: 'asc',
-    },
-  })
+  const schedule = store.getSessionsBySourceIds(sessionIds)
+    .sort((a: any, b: any) => {
+      if (!a.slot_start && !b.slot_start) return 0
+      if (!a.slot_start) return 1
+      if (!b.slot_start) return -1
+      return a.slot_start < b.slot_start ? -1 : 1
+    })
 
   res.status(200).send({
     code: 200,
@@ -634,11 +628,7 @@ async function FollowedSpeakers(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'No user account found.' })
   }
 
-  const speakers = await scheduleClient.speaker.findMany({
-    where: {
-      OR: [{ id: { in: account.favorite_speakers } }, { sourceId: { in: account.favorite_speakers } }],
-    },
-  })
+  const speakers = store.getSpeakersByIds(account.favorite_speakers)
 
   return res.status(200).send({ code: 200, message: '', data: speakers })
 }
@@ -688,12 +678,8 @@ async function FollowedSessions(req: Request, res: Response) {
 
   // TODO: Include event filter?
 
-  const interestedSessions = await scheduleClient.session.findMany({
-    where: { sourceId: { in: account.interested_sessions } },
-  })
-  const attendingSessions = await scheduleClient.session.findMany({
-    where: { sourceId: { in: account.attending_sessions } },
-  })
+  const interestedSessions = store.getSessionsBySourceIds(account.interested_sessions)
+  const attendingSessions = store.getSessionsBySourceIds(account.attending_sessions)
 
   return res.status(200).send({
     code: 200,

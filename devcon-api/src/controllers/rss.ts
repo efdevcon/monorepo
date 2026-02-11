@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client'
 import { GetAudioData } from '@/clients/filesystem'
 import { Request, Response, Router } from 'express'
 import { API_DEFAULTS, API_INFO, DEVCON_INFO } from '@/utils/config'
-
-const client = new PrismaClient()
+import * as store from '@/data/store'
 
 export const rssRouter = Router()
 rssRouter.get(`/rss/podcast`, GetPodcasts)
@@ -12,7 +10,7 @@ async function GetPodcasts(req: Request, res: Response) {
   // #swagger.tags = ['RSS']
 
   const audioTracks = GetAudioData()
-  const sessions = await client.session.findMany()
+  const sessions = store.getAllSessions()
 
   const feed = `<?xml version="1.0"?>
   <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
@@ -31,7 +29,7 @@ async function GetPodcasts(req: Request, res: Response) {
     </itunes:owner>
   </channel>
   ${audioTracks.map((i) => {
-    const session = sessions.find((s) => s.id === i.id)
+    const session = sessions.find((s: any) => s.id === i.id)
     if (!session) return ''
 
     // Other recommended, but not required fields/metadata

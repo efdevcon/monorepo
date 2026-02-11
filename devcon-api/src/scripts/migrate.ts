@@ -1,6 +1,5 @@
 import { GetData } from '@/clients/filesystem'
 import { PrismaClient } from '@/db/clients/account'
-import { PrismaClient as ScheduleClient } from '@prisma/client'
 
 async function main() {
   console.log('Migrate user profile data...')

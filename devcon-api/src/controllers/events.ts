@@ -1,9 +1,7 @@
 import { Request, Response, Router } from 'express'
 import { GetSessions } from './sessions'
-import { PrismaClient } from '@prisma/client'
 import { GetSpeakers } from './speakers'
-
-const client = new PrismaClient()
+import * as store from '@/data/store'
 
 export const eventsRouter = Router()
 eventsRouter.get(`/events`, GetEvents)
@@ -15,9 +13,7 @@ eventsRouter.get(`/events/:id/rooms`, GetRooms)
 
 export async function GetEventVersion(req: Request, res: Response) {
   // #swagger.tags = ['Events']
-  const data = await client.event.findFirst({
-    where: { id: req.params.id },
-  })
+  const data = store.getEvent(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
@@ -27,35 +23,19 @@ export async function GetEventVersion(req: Request, res: Response) {
 export async function GetEvents(req: Request, res: Response) {
   // #swagger.tags = ['Events']
 
-  const data = await client.event
-    .findMany({
-      include: {
-        _count: {
-          select: {
-            sessions: true,
-          },
-        },
-      },
-    })
-    .then((events) =>
-      events.map(({ _count, ...event }) => ({
-        ...event,
-        nrOfSessions: _count.sessions,
-      }))
-    )
+  const data = store.getEvents()
 
   res.status(200).send({ status: 200, message: '', data: data })
 }
 
 export async function GetEvent(req: Request, res: Response) {
   // #swagger.tags = ['Events']
-  const data = await client.event.findFirst({
-    where: { id: req.params.id },
-  })
+  const data = store.getEvent(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
-  res.status(200).send({ status: 200, message: '', data: data })
+  const { rooms, ...event } = data
+  res.status(200).send({ status: 200, message: '', data: event })
 }
 
 export async function GetEventSessions(req: Request, res: Response) {
@@ -76,14 +56,9 @@ export async function GetEventSpeakers(req: Request, res: Response) {
 
 export async function GetRooms(req: Request, res: Response) {
   // #swagger.tags = ['Events']
-  const data = await client.event.findFirst({
-    where: { id: req.params.id },
-    include: {
-      rooms: true,
-    },
-  })
+  const rooms = store.getEventRooms(req.params.id)
 
-  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+  if (!rooms) return res.status(404).send({ status: 404, message: 'Not Found' })
 
-  res.status(200).send({ status: 200, message: '', data: data.rooms })
+  res.status(200).send({ status: 200, message: '', data: rooms })
 }

@@ -1,7 +1,7 @@
 import { GetData } from '@/clients/filesystem'
 import { GetLastcheduleUpdate, GetRooms, GetSession, GetSessions, GetSpeakers } from '@/clients/pretalx'
 import { CreatePresentationFromTemplate, RunPermissions } from '@/clients/slides'
-import { pretalxToSessionData } from '@/types/schedule'
+
 import fs from 'fs'
 
 async function main() {

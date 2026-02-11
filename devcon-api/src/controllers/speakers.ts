@@ -1,8 +1,6 @@
 import { Request, Response, Router } from 'express'
-import { PrismaClient } from '@prisma/client'
 import { API_DEFAULTS } from '@/utils/config'
-
-const client = new PrismaClient()
+import * as store from '@/data/store'
 
 export const speakersRouter = Router()
 speakersRouter.get(`/speakers`, GetSpeakers)
@@ -12,55 +10,32 @@ speakersRouter.get(`/speakers/:id/sessions`, GetSpeakerSessions)
 export async function GetSpeakers(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']
   const currentPage = req.query.from && req.query.size ? Math.ceil((Number(req.query.from) + 1) / Number(req.query.size)) : 1
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const args: any = {
-    skip: 0,
-    take: API_DEFAULTS.SIZE,
-    where: {},
-  }
-  if (req.query.from) args.skip = parseInt(req.query.from as string)
-  if (req.query.size) args.take = parseInt(req.query.size as string)
-  if (req.query.sort) args.orderBy = { [req.query.sort as string]: req.query.order || API_DEFAULTS.ORDER }
 
-  // Note: filters are case sensitive
-  if (req.query.event) {
-    args.where = {
-      sessions: {
-        some: {
-          eventId: {
-            in: [req.query.event].flat() as string[],
-          },
-        },
-      },
-    }
-  }
+  const skip = req.query.from ? parseInt(req.query.from as string) : 0
+  const take = req.query.size ? parseInt(req.query.size as string) : API_DEFAULTS.SIZE
 
-  const data = await client.$transaction([client.speaker.count({ where: args.where }), client.speaker.findMany(args)])
+  const data = store.getSpeakers({
+    event: req.query.event as string | string[] | undefined,
+    sort: req.query.sort as string | undefined,
+    order: (req.query.order as string) || API_DEFAULTS.ORDER,
+    skip,
+    take,
+  })
+
   res.status(200).send({
     status: 200,
     message: '',
     data: {
-      total: data[0],
+      total: data.total,
       currentPage: currentPage,
-      items: data[1],
+      items: data.items,
     },
   })
 }
 
 export async function GetSpeaker(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']
-  const data = await client.speaker.findFirst({
-    where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }, { hash: req.params.id }],
-    },
-    include: {
-      sessions: {
-        include: {
-          slot_room: true,
-        },
-      },
-    },
-  })
+  const data = store.getSpeaker(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
@@ -70,24 +45,12 @@ export async function GetSpeaker(req: Request, res: Response) {
 export async function GetSpeakerSessions(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']
 
-  const data = await client.speaker.findFirst({
-    where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }, { hash: req.params.id }],
-    },
-    include: {
-      sessions: {
-        include: {
-          slot_room: true,
-        },
-      },
-    },
-  })
+  const data = store.getSpeaker(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
   if (req.query.event) {
-    // TODO: filter from prisma query? didnt seem to work properly
-    data.sessions = data.sessions.filter((session) => session.eventId === req.query.event)
+    data.sessions = data.sessions.filter((session: any) => session.eventId === req.query.event)
   }
 
   res.status(200).send({ status: 200, message: '', data: data })

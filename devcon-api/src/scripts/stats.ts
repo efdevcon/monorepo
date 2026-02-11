@@ -1,11 +1,12 @@
 import { Account, PrismaClient } from '@/db/clients/account'
-import { PrismaClient as ScheduleClient } from '@prisma/client'
+import { initStore } from '@/data/store'
+import * as store from '@/data/store'
 
 const LIMIT = 15
 
 async function main() {
+  initStore()
   const client = new PrismaClient()
-  const scheduleClient = new ScheduleClient()
 
   const totalAccounts = await client.account.count()
   console.log('Total nr. of accounts', totalAccounts)
@@ -77,26 +78,13 @@ async function main() {
     ORDER BY count DESC 
     LIMIT ${LIMIT * 2}
   `
-  const dbSpeakers = await scheduleClient.speaker.findMany({
-    where: {
-      OR: [
-        {
-          id: {
-            in: favoriteSpeakers.map((i) => i.speaker),
-          },
-        },
-        {
-          sourceId: {
-            in: favoriteSpeakers.map((i) => i.speaker),
-          },
-        },
-      ],
-    },
-    include: {
-      sessions: true,
-    },
-  })
-  const dc7Speakers = dbSpeakers.filter((i) => i.sessions.some((s) => s.eventId === 'devcon-7'))
+  const dbSpeakers = store.getSpeakersByIds(favoriteSpeakers.map((i) => i.speaker))
+    .map((s) => {
+      const sp = store.getSpeaker(s.id)
+      return sp
+    })
+    .filter(Boolean)
+  const dc7Speakers = dbSpeakers.filter((i: any) => i.sessions.some((s: any) => s.eventId === 'devcon-7'))
   console.log(`\nTop ${LIMIT} Favorite Speakers:`)
   for (const data of favoriteSpeakers.filter((i) => dc7Speakers.find((j) => j.id === i.speaker)).slice(0, LIMIT)) {
     console.log(Number(data.count), data.speaker)
@@ -114,11 +102,7 @@ async function main() {
   `
   console.log(`\nTop ${LIMIT} Attending Sessions:`)
   for (const data of attendingSessions) {
-    const session = await scheduleClient.session.findFirst({
-      where: {
-        sourceId: data.session,
-      },
-    })
+    const session = store.getSession(data.session)
 
     console.log(Number(data.count), session?.title, `[${data.session}]`)
   }
@@ -135,11 +119,7 @@ async function main() {
   `
   console.log(`\nTop ${LIMIT} Interested Sessions:`)
   for (const data of interestedSessions) {
-    const session = await scheduleClient.session.findFirst({
-      where: {
-        sourceId: data.session,
-      },
-    })
+    const session = store.getSession(data.session)
 
     console.log(Number(data.count), session?.title, `[${data.session}]`)
   }
