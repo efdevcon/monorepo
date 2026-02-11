@@ -25,7 +25,7 @@ export const Newsletter = (props: Props) => {
 
   return (
     <div>
-      <p className="semi-bold mb-2">Subscribe to our newsletter</p>
+      <p className="bold mb-2">Subscribe to our newsletter</p>
       <Link href="https://paragraph.com/@efevents/subscribe" target="_blank">
         <Button className={`white ${css["button"]}`} type="submit">
           Subscribe

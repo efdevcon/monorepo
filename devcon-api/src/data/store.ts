@@ -1,4 +1,5 @@
 import { GetData, GetSpeakerData } from '@/clients/filesystem'
+import { vectorizeSession, buildDictionary, GetRecommendedVectorSearch, VectorizedSession } from '@/clients/recommendation'
 
 // In-memory data loaded from JSON files at startup
 let events: any[] = []
@@ -10,6 +11,10 @@ let sessions: any[] = []
 let speakerMap: Map<string, any> = new Map()
 let roomMap: Map<string, any> = new Map()
 let sessionMap: Map<string, any> = new Map()
+
+// Vectorized sessions for related sessions lookup
+let vectorizedSessionsMap: Map<string, VectorizedSession> = new Map()
+let allVectorizedSessions: VectorizedSession[] = []
 
 export function initStore() {
   console.log('Loading data into memory...')
@@ -70,6 +75,20 @@ export function initStore() {
   })
 
   console.log(`Loaded ${events.length} events, ${rooms.length} rooms, ${speakers.length} speakers, ${sessions.length} sessions`)
+
+  // Build vectors for related sessions (using raw sessions with string speaker IDs)
+  const dictionary = buildDictionary(rawSessions, true)
+  vectorizedSessionsMap = new Map()
+  allVectorizedSessions = rawSessions.map((session: any) => {
+    const vs: VectorizedSession = {
+      session,
+      vector: vectorizeSession(session, dictionary),
+    }
+    vectorizedSessionsMap.set(session.id, vs)
+    return vs
+  })
+
+  console.log(`Vectorized ${allVectorizedSessions.length} sessions for related lookup`)
 }
 
 // --- Event queries ---
@@ -180,6 +199,20 @@ export function getAllSessions() {
 
 export function getSessionsBySourceIds(sourceIds: string[]) {
   return sessions.filter((s) => sourceIds.includes(s.sourceId))
+}
+
+export function getRelatedSessions(id: string) {
+  const vs = vectorizedSessionsMap.get(id)
+  if (!vs) return null
+
+  const recommendations = GetRecommendedVectorSearch(vs.vector, allVectorizedSessions, 11)
+  const filtered = recommendations.filter((rec) => rec.id !== id)
+
+  // Return resolved sessions (with full speaker objects) instead of raw ones
+  return filtered.slice(0, 10).map((rec) => {
+    const resolved = sessionMap.get(rec.id)
+    return resolved ? { ...resolved, similarity: rec.similarity } : { ...rec }
+  })
 }
 
 // --- Speaker queries ---

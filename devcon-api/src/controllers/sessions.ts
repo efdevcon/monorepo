@@ -12,6 +12,7 @@ import * as store from '@/data/store'
 
 export const sessionsRouter = Router()
 sessionsRouter.get(`/sessions`, GetSessions)
+sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 sessionsRouter.get(`/sessions/:id`, GetSession)
 sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
 sessionsRouter.put(`/sessions/sources/:id`, apikeyHandler, UpdateSessionSources)
@@ -51,6 +52,15 @@ export async function GetSessions(req: Request, res: Response) {
 export async function GetSession(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
   const data = store.getSession(req.params.id)
+
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+
+  res.status(200).send({ status: 200, message: '', data })
+}
+
+export async function GetSessionRelated(req: Request, res: Response) {
+  // #swagger.tags = ['Sessions']
+  const data = store.getRelatedSessions(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 

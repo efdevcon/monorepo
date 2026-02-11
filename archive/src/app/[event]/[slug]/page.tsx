@@ -2,7 +2,7 @@ import { Video } from "@/components/domain/archive";
 import { getRelatedSessions, getSessionBySlug } from "@/services/devcon";
 
 export default async function Index({ params }: any) {
-  const { event, slug } = params;
+  const { event, slug } = await params;
 
   const session = await getSessionBySlug(
     slug,
