@@ -422,7 +422,7 @@ function CheckoutContent() {
       return
     }
 
-    if (paymentMethod === 'crypto' && !isConnected) {
+    if (paymentMethod === 'crypto' && (!isConnected || !address)) {
       setPurchaseError('Please connect your wallet first')
       return
     }
@@ -449,6 +449,7 @@ function CheckoutContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
+          intendedPayer: address!,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
           answers: formattedAnswers,
           attendee: {

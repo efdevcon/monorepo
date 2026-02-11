@@ -16,6 +16,7 @@ import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import { executeTransferWithAuthorization, getRelayerAddress } from 'services/relayer'
 import { ExecuteTransferRequest, ExecuteTransferResponse } from 'types/x402'
+import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
   success: false
@@ -47,6 +48,11 @@ export default async function handler(
       return res.status(400).json({ success: false, error: 'Valid signature is required' })
     }
 
+    const fromValidation = validateAddressEIP55(body.authorization.from)
+    if (!fromValidation.valid) {
+      return res.status(400).json({ success: false, error: fromValidation.error })
+    }
+
     // Get pending order
     console.log('[ExecuteTransfer] Looking up pending order for:', body.paymentReference)
     const pendingOrder = await getPendingOrder(body.paymentReference)
@@ -64,6 +70,15 @@ export default async function handler(
         success: false,
         error: 'Payment reference has expired',
         details: 'Please create a new purchase request',
+      })
+    }
+
+    // Only accept authorization for this order's intended payer (reject if not our payment)
+    if (!addressesEqual(body.authorization.from, pendingOrder.intendedPayer)) {
+      return res.status(403).json({
+        success: false,
+        error: 'Authorization from address does not match the wallet that created this order',
+        details: 'Only the wallet used at purchase can complete this payment',
       })
     }
 

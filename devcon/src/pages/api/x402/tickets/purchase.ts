@@ -24,9 +24,12 @@ import { createPaymentRequirements, getPaymentRecipient } from 'services/x402'
 import { storePendingOrder, PendingTicketOrder } from 'services/ticketStore'
 import { X402PaymentRequirements } from 'types/x402'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
+import { validateAddressEIP55 } from 'utils/x402Validation'
 
 interface PurchaseRequest {
   email: string
+  /** Wallet address that will pay (required; prevents tx reuse attack) */
+  intendedPayer: string
   tickets: {
     itemId: number
     variationId?: number
@@ -282,6 +285,10 @@ export default async function handler(
       totalUsd: total.toFixed(2),
       createdAt: Date.now() / 1000,
       expiresAt: paymentRequirements.payment.expiresAt,
+      intendedPayer: (() => {
+        const v = validateAddressEIP55(body.intendedPayer.trim())
+        return v.valid ? v.checksummed : body.intendedPayer.trim()
+      })(),
       metadata: {
         ticketIds: orderTickets.map((t) => t.item.id),
         addonIds: orderAddons.map((a) => a.item.id),
@@ -347,6 +354,13 @@ function validatePurchaseRequest(body: PurchaseRequest): string[] {
 
   if (!body.answers || !Array.isArray(body.answers)) {
     errors.push('Answers array is required')
+  }
+
+  if (!body.intendedPayer || typeof body.intendedPayer !== 'string') {
+    errors.push('intendedPayer (wallet address) is required')
+  } else {
+    const v = validateAddressEIP55(body.intendedPayer)
+    if (!v.valid) errors.push(`intendedPayer: ${v.error}`)
   }
 
   return errors

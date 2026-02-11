@@ -128,6 +128,7 @@ Creates a pending order and returns payment requirements.
 ```json
 {
   "email": "attendee@example.com",
+  "intendedPayer": "0x...",
   "tickets": [
     { "itemId": 1, "variationId": null, "quantity": 1 }
   ],
@@ -149,6 +150,8 @@ Creates a pending order and returns payment requirements.
   }
 }
 ```
+
+`intendedPayer` (required) is the wallet address that will pay (must use EIP-55 mixed-case checksum); only this address can verify the payment (prevents tx reuse attack).
 
 **Response (HTTP 402):**
 ```json
@@ -207,6 +210,8 @@ Verifies the on-chain payment and creates the Pretix order.
   "payer": "0x..."
 }
 ```
+
+**Validation:** `txHash` must be `0x` + 64 hex characters. `payer` must be a valid Ethereum address with EIP-55 mixed-case checksum (use `getAddress(addr)` from viem before sending).
 
 **Response (Success):**
 ```json
@@ -370,12 +375,13 @@ const API_BASE = 'https://your-api.com';
 const ticketsRes = await fetch(`${API_BASE}/api/x402/tickets`);
 const { data: ticketData } = await ticketsRes.json();
 
-// 2. Create purchase request
+// 2. Create purchase request (intendedPayer = wallet that will pay)
 const purchaseRes = await fetch(`${API_BASE}/api/x402/tickets/purchase`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     email: 'user@example.com',
+    intendedPayer: userAddress, // wallet address that will send USDC
     tickets: [{ itemId: ticketData.tickets[0].id, quantity: 1 }],
     answers: [/* ... */],
     attendee: {

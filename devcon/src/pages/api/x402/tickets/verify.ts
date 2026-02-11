@@ -18,11 +18,16 @@ import { verifyPayment, verifyPaymentDirect, getPaymentRecipient, usdToUsdcAmoun
 import { createOrder, markOrderPaid } from 'services/pretix'
 import {
   getPendingOrder,
+  storePendingOrder,
   storeCompletedOrder,
   getCompletedOrder,
+  getCompletedOrderByTxHash,
+  checkAndRecordVerifyAttempt,
+  claimPendingOrder,
   CompletedTicketOrder,
 } from 'services/ticketStore'
 import { X402PaymentProof } from 'types/x402'
+import { isValidTxHash, validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 // Build ticket URL from env vars
 const PRETIX_BASE_URL = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
@@ -91,6 +96,43 @@ export default async function handler(
       return res.status(400).json({ success: false, error: 'Payer address is required' })
     }
 
+    if (!isValidTxHash(body.txHash)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid transaction hash format',
+        details: 'Must be 0x followed by 64 hexadecimal characters',
+      })
+    }
+
+    const payerValidation = validateAddressEIP55(body.payer)
+    if (!payerValidation.valid) {
+      return res.status(400).json({
+        success: false,
+        error: payerValidation.error,
+      })
+    }
+
+    // One-time use of txHash: reject if this transaction already completed an order
+    const existingByTx = await getCompletedOrderByTxHash(body.txHash)
+    if (existingByTx) {
+      return res.status(400).json({
+        success: false,
+        error: 'This transaction has already been used to complete an order',
+        details: 'Each payment can only complete one order',
+      })
+    }
+
+    // Rate limit
+    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+    const { allowed } = await checkAndRecordVerifyAttempt(body.paymentReference, clientIp)
+    if (!allowed) {
+      return res.status(429).json({
+        success: false,
+        error: 'Too many verify attempts',
+        details: 'Please try again later',
+      })
+    }
+
     // Check if already completed
     const existingCompleted = await getCompletedOrder(body.paymentReference)
     if (existingCompleted) {
@@ -129,6 +171,15 @@ export default async function handler(
       totalUsd: pendingOrder.totalUsd,
       expiresAt: pendingOrder.expiresAt
     })
+
+    // Intended payer must match (prevents tx reuse attack)
+    if (!pendingOrder.intendedPayer || !addressesEqual(pendingOrder.intendedPayer, body.payer)) {
+      return res.status(403).json({
+        success: false,
+        error: 'Payer address does not match the wallet that created this order',
+        details: 'Only the wallet used at purchase can verify this payment',
+      })
+    }
 
     // Verify payment on-chain
     const paymentProof: X402PaymentProof = {
@@ -171,14 +222,25 @@ export default async function handler(
     }
     console.log('[Verify] Payment verified successfully')
 
+    // Atomically claim the pending order so only one request can create a Pretix order (prevents race)
+    const claimedOrder = await claimPendingOrder(body.paymentReference)
+    if (!claimedOrder) {
+      return res.status(409).json({
+        success: false,
+        error: 'Order already completed or in progress',
+        details: 'Another request may have completed this order. Check status or try again in a moment.',
+      })
+    }
+
     // Create order in Pretix
     console.log('[Verify] Creating Pretix order for payment ref:', body.paymentReference)
     let pretixOrder
     try {
-      pretixOrder = await createOrder(pendingOrder.orderData)
+      pretixOrder = await createOrder(claimedOrder.orderData)
       console.log('[Verify] Pretix order created:', pretixOrder.code)
     } catch (error) {
       console.error('[Verify] Failed to create Pretix order:', error)
+      await storePendingOrder(claimedOrder)
       return res.status(500).json({
         success: false,
         error: 'Failed to create ticket order',

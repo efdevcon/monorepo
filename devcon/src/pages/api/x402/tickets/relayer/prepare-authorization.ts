@@ -20,6 +20,7 @@ import {
   getUsdcConfig,
 } from 'services/relayer'
 import { PrepareAuthorizationRequest, PrepareAuthorizationResponse, EIP3009Authorization } from 'types/x402'
+import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
   success: false
@@ -47,9 +48,9 @@ export default async function handler(
       return res.status(400).json({ success: false, error: 'From address is required' })
     }
 
-    // Validate Ethereum address format
-    if (!/^0x[a-fA-F0-9]{40}$/.test(body.from)) {
-      return res.status(400).json({ success: false, error: 'Invalid from address format' })
+    const fromValidation = validateAddressEIP55(body.from)
+    if (!fromValidation.valid) {
+      return res.status(400).json({ success: false, error: fromValidation.error })
     }
 
     // Get pending order
@@ -72,6 +73,15 @@ export default async function handler(
       })
     }
 
+    // Only the intended payer for this order can get the authorization (reject if not our payment)
+    if (!addressesEqual(body.from, pendingOrder.intendedPayer)) {
+      return res.status(403).json({
+        success: false,
+        error: 'From address does not match the wallet that created this order',
+        details: 'Only the wallet used at purchase can request authorization for this payment',
+      })
+    }
+
     // Get payment recipient and amount
     const recipient = getPaymentRecipient()
     const amount = usdToUsdcAmount(pendingOrder.totalUsd)
@@ -83,7 +93,7 @@ export default async function handler(
     const validBefore = pendingOrder.expiresAt // Use same expiry as payment reference
 
     const authorization: EIP3009Authorization = {
-      from: body.from,
+      from: fromValidation.checksummed,
       to: recipient,
       value: amount,
       validAfter,

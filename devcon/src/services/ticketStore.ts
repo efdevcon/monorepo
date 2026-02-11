@@ -13,6 +13,8 @@ export interface PendingTicketOrder {
   totalUsd: string
   createdAt: number
   expiresAt: number
+  /** Wallet address that must submit the payment (prevents tx reuse attack) */
+  intendedPayer: string
   metadata?: {
     ticketIds: number[]
     addonIds?: number[]
@@ -34,6 +36,7 @@ interface PendingRow {
   total_usd: string
   created_at: number
   expires_at: number
+  intended_payer: string | null
   metadata: Record<string, unknown> | null
 }
 
@@ -61,6 +64,7 @@ function rowToPending(row: PendingRow): PendingTicketOrder {
     totalUsd: row.total_usd,
     createdAt: row.created_at,
     expiresAt: row.expires_at,
+    intendedPayer: row.intended_payer ?? '',
     metadata: row.metadata as PendingTicketOrder['metadata'] ?? undefined,
   }
 }
@@ -86,6 +90,7 @@ export async function storePendingOrder(order: PendingTicketOrder): Promise<void
     total_usd: order.totalUsd,
     created_at: Math.floor(Number(order.createdAt)),
     expires_at: Math.floor(Number(order.expiresAt)),
+    intended_payer: order.intendedPayer,
     metadata: order.metadata ?? null,
   }, { onConflict: 'payment_reference' })
   if (error) throw new Error(`ticketStore storePendingOrder: ${error.message}`)
@@ -109,6 +114,25 @@ export async function getPendingOrder(paymentReference: string): Promise<Pending
     return undefined
   }
   return order
+}
+
+/**
+ * Atomically claim a pending order (delete and return it). Only one caller can succeed.
+ * Use before createOrder to prevent double Pretix order creation under concurrent verify.
+ * Returns the order if claimed, undefined if already claimed/expired/not found.
+ */
+export async function claimPendingOrder(paymentReference: string): Promise<PendingTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_pending_orders')
+    .delete()
+    .eq('payment_reference', paymentReference)
+    .select()
+  if (error) throw new Error(`ticketStore claimPendingOrder: ${error.message}`)
+  if (!data || data.length === 0) return undefined
+  const row = data[0] as PendingRow
+  if (Date.now() / 1000 > row.expires_at) return undefined
+  return rowToPending(row)
 }
 
 /**
@@ -167,6 +191,56 @@ export async function getCompletedOrderByPretixCode(pretixOrderCode: string): Pr
     .maybeSingle()
   if (error) throw new Error(`ticketStore getCompletedOrderByPretixCode: ${error.message}`)
   return data ? rowToCompleted(data as CompletedRow) : undefined
+}
+
+/**
+ * Get completed order by txHash (for one-time-use check)
+ */
+export async function getCompletedOrderByTxHash(txHash: string): Promise<CompletedTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_completed_orders')
+    .select('*')
+    .eq('tx_hash', txHash)
+    .maybeSingle()
+  if (error) throw new Error(`ticketStore getCompletedOrderByTxHash: ${error.message}`)
+  return data ? rowToCompleted(data as CompletedRow) : undefined
+}
+
+const RATE_LIMIT_REF_WINDOW_HOURS = 1
+const RATE_LIMIT_REF_MAX = 10
+const RATE_LIMIT_REF_COOLDOWN_SECONDS = 10
+const RATE_LIMIT_IP_WINDOW_MINUTES = 1
+const RATE_LIMIT_IP_MAX = 30
+
+/**
+ * Check verify rate limits and record this attempt. Returns true if allowed.
+ * - Per payment reference: max 10 attempts per hour; no two attempts within 10 seconds.
+ * - Per IP: max 30 attempts per minute.
+ */
+export async function checkAndRecordVerifyAttempt(paymentReference: string, clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const refSince = new Date(now.getTime() - RATE_LIMIT_REF_WINDOW_HOURS * 60 * 60 * 1000).toISOString()
+  const refCooldownSince = new Date(now.getTime() - RATE_LIMIT_REF_COOLDOWN_SECONDS * 1000).toISOString()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_IP_WINDOW_MINUTES * 60 * 1000).toISOString()
+
+  const refKey = `verify_ref:${paymentReference}`
+  const ipKey = `verify_ip:${clientIp}`
+
+  const [refCount, refRecentCount, ipCount] = await Promise.all([
+    supabase.from('x402_verify_attempts').select('id', { count: 'exact', head: true }).eq('key', refKey).gte('created_at', refSince),
+    supabase.from('x402_verify_attempts').select('id', { count: 'exact', head: true }).eq('key', refKey).gte('created_at', refCooldownSince),
+    supabase.from('x402_verify_attempts').select('id', { count: 'exact', head: true }).eq('key', ipKey).gte('created_at', ipSince),
+  ])
+
+  if ((refCount.count ?? 0) >= RATE_LIMIT_REF_MAX) return { allowed: false }
+  if ((refRecentCount.count ?? 0) >= 1) return { allowed: false }
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: refKey }, { key: ipKey }])
+  await supabase.from('x402_verify_attempts').delete().lt('created_at', new Date(now.getTime() - 2 * 60 * 60 * 1000).toISOString())
+  return { allowed: true }
 }
 
 /**
