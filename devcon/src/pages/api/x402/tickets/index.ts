@@ -11,7 +11,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { TicketPurchaseInfo } from 'types/pretix'
-import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG } from 'types/x402'
+import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
 
 interface TicketsResponse {
   success: true
@@ -23,6 +23,8 @@ interface TicketsResponse {
       tokenAddress: string
       tokenDecimals: number
       discountForCrypto: string
+      /** x402 v2: USDC + ETH on Ethereum, OP, Arbitrum, Base (or testnet) */
+      supportedAssets: SupportedAsset[]
     }
   }
 }
@@ -48,6 +50,7 @@ export default async function handler(
     // NEXT_PUBLIC_CHAIN_ENV=mainnet for production, otherwise testnet
     const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
     const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
+    const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
 
     const response: TicketsResponse = {
       success: true,
@@ -60,6 +63,7 @@ export default async function handler(
           tokenAddress: usdcConfig.tokenAddress,
           tokenDecimals: usdcConfig.tokenDecimals,
           discountForCrypto: '3%', // 3% discount for crypto payment
+          supportedAssets,
         },
       },
     }

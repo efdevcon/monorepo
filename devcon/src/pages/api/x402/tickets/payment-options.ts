@@ -1,0 +1,278 @@
+/**
+ * Payment options API – list payable assets with balances and signing requests
+ * POST /api/x402/tickets/payment-options
+ * Body: { paymentReference: string, walletAddress: string }
+ *
+ * Uses Zapper for balances (ZAPPER_API_KEY), Coinbase for ETH price.
+ * Returns options from SUPPORTED_ASSETS where user has sufficient balance.
+ */
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { getPendingOrder } from 'services/ticketStore'
+import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
+import {
+  getUsdcConfig,
+  generateNonce,
+  createAuthorizationTypedData,
+} from 'services/relayer'
+import {
+  SUPPORTED_ASSETS_MAINNET,
+  SUPPORTED_ASSETS_TESTNET,
+  NATIVE_ETH_PLACEHOLDER,
+  type SupportedAsset,
+} from 'types/x402'
+
+const ZAPPER_GRAPHQL = 'https://public.zapper.xyz/graphql'
+const COINBASE_ETH_SPOT = 'https://api.coinbase.com/v2/prices/ETH-USD/spot'
+
+/** Convert typed data to JSON-serializable form (BigInt -> string) */
+function typedDataToJson(typedData: { domain: unknown; types: unknown; primaryType: string; message: Record<string, unknown> }) {
+  return {
+    domain: typedData.domain,
+    types: typedData.types,
+    primaryType: typedData.primaryType,
+    message: {
+      ...typedData.message,
+      value: String(typedData.message.value),
+      validAfter: String(typedData.message.validAfter),
+      validBefore: String(typedData.message.validBefore),
+    },
+  }
+}
+
+/** Zapper token balance node (byToken edge) */
+interface ZapperTokenNode {
+  tokenAddress: string
+  symbol: string
+  balance?: number
+  balanceRaw?: string
+  network?: { chainId: number }
+  decimals?: number
+}
+
+export interface PaymentOptionSigningRequest {
+  method: 'eth_signTypedData_v4' | 'eth_sendTransaction'
+  params: unknown[]
+}
+
+export interface PaymentOption {
+  asset: string
+  symbol: string
+  name: string
+  chain: string
+  chainId: string
+  decimals: number
+  amount: string
+  balance: string
+  sufficient: boolean
+  signingRequest?: PaymentOptionSigningRequest
+  priceUsd?: number
+  expiresAt: number
+}
+
+interface PaymentOptionsResponse {
+  options: PaymentOption[]
+}
+
+interface ErrorResponse {
+  error: string
+  details?: string
+}
+
+function parseChainIdFromAsset(asset: string): number {
+  const m = asset.match(/^eip155:(\d+)/)
+  return m ? parseInt(m[1], 10) : 0
+}
+
+function parseTokenAddressFromAsset(asset: string): string {
+  const m = asset.match(/\/erc20:(0x[a-fA-F0-9]+)$/)
+  return m ? m[1].toLowerCase() : ''
+}
+
+function isNativeEth(asset: string): boolean {
+  return parseTokenAddressFromAsset(asset).toLowerCase() === NATIVE_ETH_PLACEHOLDER.toLowerCase()
+}
+
+async function fetchEthPriceUsd(): Promise<number> {
+  const res = await fetch(COINBASE_ETH_SPOT)
+  if (!res.ok) throw new Error('Failed to fetch ETH price')
+  const data = await res.json()
+  const price = parseFloat(data?.data?.amount)
+  if (!Number.isFinite(price)) throw new Error('Invalid ETH price')
+  return price
+}
+
+async function fetchZapperBalances(walletAddress: string, chainIds: number[]): Promise<Map<string, string>> {
+  const key = process.env.ZAPPER_API_KEY
+  if (!key) return new Map()
+
+  const query = `
+    query PaymentOptionsBalances($addresses: [Address!]!, $chainIds: [Int!], $first: Int) {
+      portfolioV2(addresses: $addresses, chainIds: $chainIds) {
+        tokenBalances {
+          byToken(first: $first) {
+            edges {
+              node {
+                tokenAddress
+                symbol
+                balanceRaw
+                network { chainId }
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+  const res = await fetch(ZAPPER_GRAPHQL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-zapper-api-key': key,
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        addresses: [walletAddress],
+        chainIds,
+        first: 200,
+      },
+    }),
+  })
+  const json = await res.json()
+  if (json.errors) {
+    console.error('[payment-options] Zapper errors:', json.errors)
+    return new Map()
+  }
+
+  const edges = json?.data?.portfolioV2?.tokenBalances?.byToken?.edges ?? []
+  const map = new Map<string, string>()
+  for (const edge of edges) {
+    const node: ZapperTokenNode = edge.node
+    const chainId = node.network?.chainId
+    const addr = (node.tokenAddress || '').toLowerCase()
+    const raw = node.balanceRaw ?? '0'
+    if (chainId != null) {
+      map.set(`${chainId}-${addr}`, raw)
+      if (addr === '0x0000000000000000000000000000000000000000') {
+        map.set(`${chainId}-${NATIVE_ETH_PLACEHOLDER.toLowerCase()}`, raw)
+      }
+    }
+  }
+  return map
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<PaymentOptionsResponse | ErrorResponse>
+) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' })
+  }
+
+  try {
+    const { paymentReference, walletAddress } = req.body ?? {}
+    if (!paymentReference || !walletAddress) {
+      return res.status(400).json({ error: 'paymentReference and walletAddress are required' })
+    }
+
+    const pendingOrder = await getPendingOrder(paymentReference)
+    if (!pendingOrder) {
+      return res.status(404).json({ error: 'Payment reference not found or expired' })
+    }
+    if (Date.now() / 1000 > pendingOrder.expiresAt) {
+      return res.status(400).json({ error: 'Payment has expired' })
+    }
+
+    const totalUsd = parseFloat(pendingOrder.totalUsd)
+    const recipient = getPaymentRecipient()
+    const expiresAt = pendingOrder.expiresAt
+    const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
+    const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+    const usdcConfig = getUsdcConfig()
+    const chainIds = [...new Set(supportedAssets.map((a) => parseChainIdFromAsset(a.asset)))]
+
+    const [ethPriceUsd, balanceMap] = await Promise.all([
+      fetchEthPriceUsd(),
+      fetchZapperBalances(walletAddress, chainIds),
+    ])
+
+    const usdcAmount = usdToUsdcAmount(totalUsd)
+    const ethAmountWei = BigInt(Math.ceil((totalUsd / ethPriceUsd) * 1e18)).toString()
+
+    const options: PaymentOption[] = []
+
+    for (const supported of supportedAssets) {
+      const chainId = parseChainIdFromAsset(supported.asset)
+      const tokenAddr = parseTokenAddressFromAsset(supported.asset)
+      const balanceKey1 = `${chainId}-${tokenAddr}`
+      const balanceKey2 = isNativeEth(supported.asset)
+        ? `${chainId}-0x0000000000000000000000000000000000000000`
+        : ''
+      const balanceRaw = balanceMap.get(balanceKey1) ?? balanceMap.get(balanceKey2) ?? '0'
+      const amount = supported.symbol === 'ETH' ? ethAmountWei : usdcAmount
+      const sufficient = BigInt(balanceRaw) >= BigInt(amount)
+
+      const opt: PaymentOption = {
+        asset: supported.asset,
+        symbol: supported.symbol,
+        name: supported.name,
+        chain: supported.chain,
+        chainId: supported.chainId,
+        decimals: supported.decimals,
+        amount,
+        balance: balanceRaw,
+        sufficient,
+        expiresAt,
+      }
+
+      if (supported.symbol === 'ETH') {
+        opt.priceUsd = ethPriceUsd
+      }
+
+      if (sufficient) {
+        if (supported.symbol === 'USDC' && chainId === usdcConfig.chainId) {
+          const validAfter = 0
+          const validBefore = expiresAt
+          const nonce = generateNonce()
+          const authorization = {
+            from: walletAddress,
+            to: recipient,
+            value: usdcAmount,
+            validAfter,
+            validBefore,
+            nonce,
+          }
+          const typedData = createAuthorizationTypedData(authorization)
+          opt.signingRequest = {
+            method: 'eth_signTypedData_v4',
+            params: [walletAddress, JSON.stringify(typedDataToJson(typedData))],
+          }
+        } else if (supported.symbol === 'ETH') {
+          const chainIdHex = `0x${chainId.toString(16)}`
+          opt.signingRequest = {
+            method: 'eth_sendTransaction',
+            params: [
+              {
+                from: walletAddress,
+                to: recipient,
+                value: `0x${BigInt(amount).toString(16)}`,
+                data: '0x',
+                chainId: chainIdHex,
+              },
+            ],
+          }
+        }
+      }
+
+      options.push(opt)
+    }
+
+    return res.status(200).json({ options })
+  } catch (e) {
+    console.error('[payment-options]', e)
+    return res.status(500).json({
+      error: 'Failed to load payment options',
+      details: (e as Error).message,
+    })
+  }
+}

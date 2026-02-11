@@ -644,6 +644,127 @@ $checkout-accent: #4d59c7;
   color: #b91c1c;
   font-size: 0.875rem;
   line-height: 1.4;
+
+  .retry-verify-btn {
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #b91c1c;
+    background: #fff;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #fef2f2;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.payment-options-block {
+  margin: 0.75rem 0;
+}
+
+.payment-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.payment-options-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  margin: 0 0 0.25rem;
+}
+
+.payment-option-btn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid $checkout-border;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 0.9375rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: #f8f8f8;
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.payment-option-symbol {
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.payment-option-chain {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.payment-option-balance {
+  font-size: 0.8125rem;
+  color: #888;
+  margin-left: auto;
+}
+
+.selected-option {
+  padding: 0.75rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+
+  span {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #0a0a0a;
+  }
+}
+
+.btn-confirm-pay {
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  background: $checkout-accent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.payment-option-back {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  color: #666;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: #0a0a0a;
+  }
 }
 
 .tx-status {

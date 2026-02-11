@@ -14,20 +14,35 @@ import {
   useWaitForTransactionReceipt,
   useSwitchChain,
   useSignTypedData,
+  useSendTransaction,
 } from 'wagmi'
 import { createConfig, http } from 'wagmi'
-import { baseSepolia, base } from 'wagmi/chains'
+import { baseSepolia, base, mainnet, optimism, arbitrum } from 'wagmi/chains'
 import { injected, walletConnect } from 'wagmi/connectors'
 import { QuestionInfo } from 'types/pretix'
 
 const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
 
+// Optional RPC URLs to avoid hitting public endpoints (e.g. sepolia.base.org) on every poll.
+// Wagmi/viem poll the connected chain for block number / tx receipts, so without custom URLs
+// you'll see constant calls to the chain's default RPC.
+const RPC_URLS = {
+  [baseSepolia.id]: process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL,
+  [base.id]: process.env.NEXT_PUBLIC_BASE_RPC_URL,
+  [mainnet.id]: process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL,
+  [optimism.id]: process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL,
+  [arbitrum.id]: process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL,
+}
+
 const wagmiConfig = createConfig({
-  chains: [baseSepolia, base],
+  chains: [baseSepolia, base, mainnet, optimism, arbitrum],
   connectors: [injected(), ...(WC_PROJECT_ID ? [walletConnect({ projectId: WC_PROJECT_ID })] : [])],
   transports: {
-    [baseSepolia.id]: http(),
-    [base.id]: http(),
+    [baseSepolia.id]: RPC_URLS[baseSepolia.id] ? http(RPC_URLS[baseSepolia.id]) : http(),
+    [base.id]: RPC_URLS[base.id] ? http(RPC_URLS[base.id]) : http(),
+    [mainnet.id]: RPC_URLS[mainnet.id] ? http(RPC_URLS[mainnet.id]) : http(),
+    [optimism.id]: RPC_URLS[optimism.id] ? http(RPC_URLS[optimism.id]) : http(),
+    [arbitrum.id]: RPC_URLS[arbitrum.id] ? http(RPC_URLS[arbitrum.id]) : http(),
   },
 })
 
@@ -80,6 +95,32 @@ interface PaymentDetails {
   recipient: string
   paymentReference: string
   expiresAt: number
+}
+
+/** Payment option from POST /api/x402/tickets/payment-options */
+interface PaymentOptionSigningRequest {
+  method: 'eth_signTypedData_v4' | 'eth_sendTransaction'
+  params: unknown[]
+}
+interface PaymentOption {
+  asset: string
+  symbol: string
+  name: string
+  chain: string
+  chainId: string
+  decimals: number
+  amount: string
+  balance: string
+  sufficient: boolean
+  signingRequest?: PaymentOptionSigningRequest
+  priceUsd?: number
+  expiresAt: number
+}
+
+// ── Helpers ──
+function tokenAddressFromOption(option: PaymentOption): string {
+  const m = option.asset.match(/\/erc20:(0x[a-fA-F0-9]+)$/)
+  return m ? m[1] : ''
 }
 
 // ── Icons ──
@@ -227,6 +268,11 @@ function CheckoutContent() {
   const [authorizationData, setAuthorizationData] = useState<any>(null)
   const [isExecutingGasless, setIsExecutingGasless] = useState(false)
 
+  // Payment options (multi-chain)
+  const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
+  const [paymentOptionsLoading, setPaymentOptionsLoading] = useState(false)
+  const [selectedOption, setSelectedOption] = useState<PaymentOption | null>(null)
+
   // Fiat/Stripe state
   const [fiatPaymentUrl, setFiatPaymentUrl] = useState<string | null>(null)
   const [fiatOrderCode, setFiatOrderCode] = useState<string | null>(null)
@@ -238,6 +284,8 @@ function CheckoutContent() {
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
   const { signTypedData, data: signatureData, isPending: isSignPending, error: signError } = useSignTypedData()
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
+  const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
+  const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
 
   // ── Load cart from localStorage ──
   useEffect(() => {
@@ -303,10 +351,38 @@ function CheckoutContent() {
     }
   }, [isTxSuccess, writeData])
 
-  // ── Handle gasless signature ──
+  // ── Handle native ETH send tx success ──
   useEffect(() => {
-    if (signatureData && authorizationData && paymentDetails) {
-      executeGaslessTransfer(signatureData)
+    if (isSendTxSuccess && sendTxHash && paymentDetails) {
+      setTxHash(sendTxHash)
+      verifyPayment(sendTxHash)
+    }
+  }, [isSendTxSuccess, sendTxHash])
+
+  // ── Handle gasless signature (from prepare-authorization or from payment-option typed data) ──
+  useEffect(() => {
+    if (!signatureData || !paymentDetails) return
+    const auth = authorizationData?.authorization
+    const fromOption =
+      selectedOption?.signingRequest?.method === 'eth_signTypedData_v4' &&
+      selectedOption.signingRequest?.params?.[1]
+    const authToUse = auth || (fromOption && (() => {
+      try {
+        const typed = JSON.parse(fromOption as string)
+        return typed?.message ? {
+          from: typed.message.from,
+          to: typed.message.to,
+          value: String(typed.message.value),
+          validAfter: Number(typed.message.validAfter),
+          validBefore: Number(typed.message.validBefore),
+          nonce: typed.message.nonce,
+        } : null
+      } catch {
+        return null
+      }
+    })())
+    if (authToUse) {
+      executeGaslessTransfer(signatureData, authToUse)
     }
   }, [signatureData])
 
@@ -461,13 +537,32 @@ function CheckoutContent() {
 
       const data = await res.json()
       if (data.success && data.paymentRequired) {
-        setPaymentDetails(data.paymentDetails.payment)
+        const payment = data.paymentDetails.payment
+        setPaymentDetails(payment)
         setOrderSummary(data.orderSummary)
         setPaymentStatus('Awaiting payment...')
+        setSelectedOption(null)
 
-        // Auto-initiate gasless payment if wallet connected
-        if (isConnected) {
-          await initiateGaslessPayment(data.paymentDetails.payment)
+        if (isConnected && address) {
+          setPaymentOptionsLoading(true)
+          setPaymentOptions([])
+          try {
+            const optRes = await fetch('/api/x402/tickets/payment-options', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                paymentReference: payment.paymentReference,
+                walletAddress: address,
+              }),
+            })
+            const optData = await optRes.json()
+            if (optData.options) {
+              setPaymentOptions(optData.options)
+            }
+          } catch {
+            // keep options empty; user can still use legacy flow
+          }
+          setPaymentOptionsLoading(false)
         }
       } else {
         setPurchaseError(data.error || 'Failed to create purchase')
@@ -563,8 +658,19 @@ function CheckoutContent() {
     }
   }
 
-  async function executeGaslessTransfer(signature: string) {
-    if (!authorizationData || !paymentDetails) return
+  async function executeGaslessTransfer(
+    signature: string,
+    authorizationOverride?: {
+      from: string
+      to: string
+      value: string
+      validAfter: number
+      validBefore: number
+      nonce: string
+    }
+  ) {
+    const auth = authorizationOverride ?? authorizationData?.authorization
+    if (!auth || !paymentDetails) return
 
     setIsExecutingGasless(true)
     setPurchaseError(null)
@@ -580,7 +686,7 @@ function CheckoutContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           paymentReference: paymentDetails.paymentReference,
-          authorization: authorizationData.authorization,
+          authorization: auth,
           signature: { v, r, s },
         }),
       })
@@ -598,6 +704,87 @@ function CheckoutContent() {
       setPaymentStatus(null)
     }
     setIsExecutingGasless(false)
+  }
+
+  function selectPaymentOption(option: PaymentOption) {
+    if (!paymentDetails || !option.sufficient || !option.signingRequest) return
+    setSelectedOption(option)
+    const tokenAddress = tokenAddressFromOption(option)
+    const chainIdNum = parseInt(option.chainId.replace(/^eip155:/, ''), 10)
+    const amountFormatted =
+      option.decimals >= 18
+        ? (Number(option.amount) / 1e18).toFixed(4)
+        : (Number(option.amount) / 10 ** option.decimals).toFixed(2)
+    setPaymentDetails({
+      ...paymentDetails,
+      network: option.chain,
+      chainId: chainIdNum,
+      tokenAddress: tokenAddress || paymentDetails.tokenAddress,
+      tokenSymbol: option.symbol,
+      tokenDecimals: option.decimals,
+      amount: option.amount,
+      amountFormatted,
+    })
+  }
+
+  async function payWithSelectedOption() {
+    if (!selectedOption?.signingRequest || !paymentDetails || !address) return
+    const req = selectedOption.signingRequest
+    setPurchaseError(null)
+
+    if (req.method === 'eth_signTypedData_v4') {
+      try {
+        const typedJson = req.params[1] as string
+        const typed = JSON.parse(typedJson)
+        setPaymentStatus('Sign in your wallet...')
+        signTypedData({
+          domain: {
+            ...typed.domain,
+            verifyingContract: typed.domain.verifyingContract as `0x${string}`,
+          },
+          types: typed.types,
+          primaryType: typed.primaryType,
+          message: {
+            from: typed.message.from as `0x${string}`,
+            to: typed.message.to as `0x${string}`,
+            value: BigInt(typed.message.value),
+            validAfter: BigInt(typed.message.validAfter),
+            validBefore: BigInt(typed.message.validBefore),
+            nonce: typed.message.nonce as `0x${string}`,
+          },
+        })
+      } catch (e) {
+        setPurchaseError('Invalid signing data')
+        setPaymentStatus(null)
+      }
+      return
+    }
+
+    if (req.method === 'eth_sendTransaction') {
+      const tx = req.params[0] as { to: string; value: string; data?: string; chainId?: string }
+      if (!tx?.to || tx?.value === undefined) {
+        setPurchaseError('Invalid transaction request')
+        return
+      }
+      const targetChainId = tx.chainId ? parseInt(tx.chainId.replace('0x', ''), 16) : paymentDetails.chainId
+      if (chain?.id !== targetChainId && switchChain) {
+        setPaymentStatus('Switch network in your wallet...')
+        await switchChain({ chainId: targetChainId })
+        setPaymentStatus(null)
+        return
+      }
+      setPaymentStatus('Confirm in wallet...')
+      try {
+        await sendTransactionAsync({
+          to: tx.to as `0x${string}`,
+          value: BigInt(tx.value),
+          data: (tx.data as `0x${string}`) || '0x',
+        })
+      } catch (e) {
+        setPurchaseError((e as Error).message || 'Failed to send transaction')
+        setPaymentStatus(null)
+      }
+    }
   }
 
   async function executeDirectPayment() {
@@ -638,6 +825,7 @@ function CheckoutContent() {
           txHash: hash,
           paymentReference: paymentDetails.paymentReference,
           payer: address,
+          chainId: paymentDetails.chainId,
         }),
       })
 
@@ -646,7 +834,13 @@ function CheckoutContent() {
         setPaymentStatus(null)
         localStorage.removeItem('devcon-ticket-cart')
         // Redirect to confirmation page
-        const confirmUrl = `/tickets/store/order/${data.order.code}/${data.order.secret}?tx=${hash}&chainId=${paymentDetails.chainId}`
+        const params = new URLSearchParams({
+          tx: hash,
+          chainId: String(paymentDetails.chainId),
+          symbol: paymentDetails.tokenSymbol,
+          network: paymentDetails.network,
+        })
+        const confirmUrl = `/tickets/store/order/${data.order.code}/${data.order.secret}?${params.toString()}`
         router.push(confirmUrl)
         return
       } else {
@@ -660,7 +854,15 @@ function CheckoutContent() {
   }
 
   // ── Checkout button state ──
-  const isProcessing = purchaseLoading || isSignPending || isExecutingGasless || isWritePending || isTxLoading || showFiatModal
+  const isProcessing =
+    purchaseLoading ||
+    isSignPending ||
+    isExecutingGasless ||
+    isWritePending ||
+    isTxLoading ||
+    isSendTxPending ||
+    isSendTxReceiptLoading ||
+    showFiatModal
   const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
 
   return (
@@ -1053,7 +1255,80 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {purchaseError && <div className={css['error-box']}>{purchaseError}</div>}
+                {paymentDetails && address && (
+                  <div className={css['payment-options-block']}>
+                    {paymentOptionsLoading ? (
+                      <p className={css['status-text']}>Loading payment options...</p>
+                    ) : (
+                      <>
+                        {paymentOptions.filter(o => o.sufficient).length > 0 && !selectedOption && (
+                          <div className={css['payment-options-list']}>
+                            <p className={css['payment-options-title']}>Pay with</p>
+                            {paymentOptions
+                              .filter(o => o.sufficient && o.signingRequest)
+                              .map(opt => (
+                                <button
+                                  key={opt.asset}
+                                  type="button"
+                                  className={css['payment-option-btn']}
+                                  onClick={() => selectPaymentOption(opt)}
+                                >
+                                  <span className={css['payment-option-symbol']}>{opt.symbol}</span>
+                                  <span className={css['payment-option-chain']}>{opt.chain}</span>
+                                  <span className={css['payment-option-balance']}>
+                                    Balance: {opt.decimals >= 18 ? (Number(opt.balance) / 1e18).toFixed(4) : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)} {opt.symbol}
+                                  </span>
+                                </button>
+                              ))}
+                          </div>
+                        )}
+                        {selectedOption && (
+                          <div className={css['selected-option']}>
+                            <span>
+                              Pay with {selectedOption.symbol} ({selectedOption.chain})
+                            </span>
+                            <button
+                              type="button"
+                              className={css['btn-confirm-pay']}
+                              disabled={isProcessing}
+                              onClick={payWithSelectedOption}
+                            >
+                              {selectedOption.signingRequest?.method === 'eth_signTypedData_v4'
+                                ? 'Sign to pay'
+                                : 'Send transaction'}
+                            </button>
+                            <button
+                              type="button"
+                              className={css['payment-option-back']}
+                              onClick={() => setSelectedOption(null)}
+                            >
+                              Change option
+                            </button>
+                          </div>
+                        )}
+                        {!paymentOptionsLoading && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (
+                          <p className={css['status-text']}>No sufficient balance. Connect a wallet with USDC or ETH on supported chains.</p>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {purchaseError && (
+                  <div className={css['error-box']}>
+                    <div>{purchaseError}</div>
+                    {txHash && paymentDetails && (
+                      <button
+                        type="button"
+                        className={css['retry-verify-btn']}
+                        onClick={() => verifyPayment(txHash)}
+                        disabled={isProcessing}
+                      >
+                        Retry verification
+                      </button>
+                    )}
+                  </div>
+                )}
 
                 {(writeError || signError) && (
                   <div className={css['error-box']}>{(writeError || signError)?.message}</div>

@@ -14,7 +14,7 @@
  * - Ticket details
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { verifyPayment, verifyPaymentDirect, getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
+import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import { createOrder, markOrderPaid } from 'services/pretix'
 import {
   getPendingOrder,
@@ -46,6 +46,8 @@ interface VerifyRequest {
   txHash: string
   paymentReference: string
   payer: string
+  /** Chain ID where the transaction was sent (e.g. 8453 for Base). Required for multi-chain so we look up the tx on the correct chain. */
+  chainId?: number
 }
 
 interface VerifySuccessResponse {
@@ -186,12 +188,39 @@ export default async function handler(
       txHash: body.txHash,
       paymentReference: body.paymentReference,
       payer: body.payer,
+      ...(body.chainId != null && { chainId: body.chainId }),
     }
 
-    console.log('[Verify] Attempting primary verification via x402 service')
+    console.log('[Verify] Attempting primary verification via x402 service', body.chainId != null ? `(chain ${body.chainId})` : '')
     let verification = await verifyPayment(paymentProof)
 
-    // If x402 service doesn't have the payment reference, try direct verification
+    // If primary verification found no USDC transfer (e.g. user paid with native ETH), try native ETH verification
+    // Use server-stored expected amount only (never trust client for ETH value)
+    if (
+      !verification.verified &&
+      body.chainId != null &&
+      (verification.error === 'No matching transfer found in transaction' || verification.error === 'Invalid payment reference')
+    ) {
+      const expectedAmountWei = pendingOrder.expectedEthAmountWeiByChain?.[String(body.chainId)]
+      if (!expectedAmountWei) {
+        return res.status(400).json({
+          success: false,
+          error: 'Cannot verify native ETH payment',
+          details: 'Expected ETH amount for this chain was not recorded at order creation. Please try again or use USDC.',
+        })
+      }
+      const recipient = getPaymentRecipient()
+      console.log('[Verify] Trying native ETH verification (chain', body.chainId + ', expected wei from DB)')
+      verification = await verifyPaymentNativeEth(
+        body.txHash,
+        body.payer,
+        recipient,
+        expectedAmountWei,
+        body.chainId
+      )
+    }
+
+    // If x402 service doesn't have the payment reference, try direct verification (USDC)
     // using the ticket store data (for recovery from hot reloads)
     if (!verification.verified && verification.error === 'Invalid payment reference') {
       console.log('[Verify] x402 payment ref not found, trying direct verification with ticketStore data')
@@ -207,7 +236,8 @@ export default async function handler(
         body.txHash,
         body.payer,
         recipient,
-        expectedAmount
+        expectedAmount,
+        body.chainId
       )
       console.log('[Verify] Direct verification result:', verification)
     }

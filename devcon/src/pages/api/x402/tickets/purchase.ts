@@ -20,9 +20,9 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getItems, getQuestions, getTicketPurchaseInfo } from 'services/pretix'
-import { createPaymentRequirements, getPaymentRecipient } from 'services/x402'
+import { createPaymentRequirements, getPaymentRecipient, buildX402PaymentRequiredSpec } from 'services/x402'
 import { storePendingOrder, PendingTicketOrder } from 'services/ticketStore'
-import { X402PaymentRequirements } from 'types/x402'
+import { X402PaymentRequirements, X402PaymentBlockV2, type PaymentRequired, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET } from 'types/x402'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 import { validateAddressEIP55 } from 'utils/x402Validation'
 
@@ -57,6 +57,10 @@ interface PurchaseRequest {
 interface PurchaseResponse {
   success: true
   paymentRequired: true
+  /** x402 PaymentRequired (@x402/core) for SDK-compliant clients */
+  x402: PaymentRequired
+  /** x402 v2–style payment block (multi-chain, CAIP assets) */
+  payment: X402PaymentBlockV2
   paymentDetails: X402PaymentRequirements
   orderSummary: {
     tickets: { name: string; price: string; quantity: number }[]
@@ -76,6 +80,32 @@ interface ErrorResponse {
 
 // 3% discount for crypto payments
 const CRYPTO_DISCOUNT_PERCENT = 3
+
+const COINBASE_ETH_SPOT = 'https://api.coinbase.com/v2/prices/ETH-USD/spot'
+
+async function fetchEthPriceUsd(): Promise<number> {
+  const res = await fetch(COINBASE_ETH_SPOT)
+  if (!res.ok) throw new Error('Failed to fetch ETH price')
+  const data = await res.json()
+  const price = parseFloat(data?.data?.amount)
+  if (!Number.isFinite(price)) throw new Error('Invalid ETH price')
+  return price
+}
+
+/** Build expected ETH amount in wei per chain ID (for secure native ETH verification) */
+function buildExpectedEthWeiByChain(
+  totalUsd: number,
+  ethPriceUsd: number,
+  chainIdsWithEth: number[]
+): Record<string, string> {
+  const weiPerChain: Record<string, string> = {}
+  const weiAmount = BigInt(Math.ceil((totalUsd / ethPriceUsd) * 1e18))
+  const weiStr = weiAmount.toString()
+  for (const chainId of chainIdsWithEth) {
+    weiPerChain[String(chainId)] = weiStr
+  }
+  return weiPerChain
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -278,7 +308,24 @@ export default async function handler(
       }
     )
 
-    // Store pending order
+    const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
+    const supportedAssetsForOrder = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+    const chainIdsWithEth = [
+      ...new Set(
+        supportedAssetsForOrder
+          .filter((a) => a.symbol === 'ETH')
+          .map((a) => parseInt(a.chainId.replace(/^eip155:/, ''), 10))
+      ),
+    ]
+    let expectedEthAmountWeiByChain: Record<string, string> = {}
+    try {
+      const ethPriceUsd = await fetchEthPriceUsd()
+      expectedEthAmountWeiByChain = buildExpectedEthWeiByChain(total, ethPriceUsd, chainIdsWithEth)
+    } catch (e) {
+      console.warn('[purchase] Could not fetch ETH price for expectedEthAmountWeiByChain:', (e as Error).message)
+    }
+
+    // Store pending order (includes server-computed ETH wei per chain for secure verification)
     const pendingOrder: PendingTicketOrder = {
       paymentReference: paymentRequirements.payment.paymentReference,
       orderData: pretixOrder,
@@ -289,6 +336,7 @@ export default async function handler(
         const v = validateAddressEIP55(body.intendedPayer.trim())
         return v.valid ? v.checksummed : body.intendedPayer.trim()
       })(),
+      expectedEthAmountWeiByChain: Object.keys(expectedEthAmountWeiByChain).length > 0 ? expectedEthAmountWeiByChain : undefined,
       metadata: {
         ticketIds: orderTickets.map((t) => t.item.id),
         addonIds: orderAddons.map((a) => a.item.id),
@@ -297,10 +345,27 @@ export default async function handler(
     }
     await storePendingOrder(pendingOrder)
 
+    const supportedAssets = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+    const x402Spec = buildX402PaymentRequiredSpec(paymentRequirements, {
+      error: 'PAYMENT-SIGNATURE header or payment payload required',
+      resourceDescription: 'Devcon ticket purchase',
+    })
+    const paymentBlock: X402PaymentBlockV2 = {
+      paymentId: paymentRequirements.payment.paymentReference,
+      amount: total,
+      currency: ticketInfo.event.currency,
+      referenceId: paymentRequirements.payment.paymentReference,
+      status: 'pending',
+      createdAt: Math.floor(Date.now() / 1000),
+      supportedAssets,
+    }
+
     // Return 402 Payment Required
     const response: PurchaseResponse = {
       success: true,
       paymentRequired: true,
+      x402: x402Spec,
+      payment: paymentBlock,
       paymentDetails: paymentRequirements,
       orderSummary: {
         tickets: orderTickets.map((t) => ({ name: t.name, price: t.price, quantity: t.quantity })),
@@ -312,7 +377,8 @@ export default async function handler(
       },
     }
 
-    // Set x402 headers
+    // Set x402 headers (v2: Payment-Required; legacy: X-Payment-*)
+    res.setHeader('Payment-Required', 'true')
     res.setHeader('X-Payment-Required', 'true')
     res.setHeader('X-Payment-Network', paymentRequirements.payment.network)
     res.setHeader('X-Payment-Token', paymentRequirements.payment.tokenAddress)

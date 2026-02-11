@@ -2,10 +2,14 @@
  * Ticket Order Store Service
  * Manages pending ticket orders between payment request and verification.
  * Uses Supabase (Postgres) for persistence across serverless invocations.
+ * Schema: run devcon-api src/supabase/migrations/ (e.g. expected_eth_amount_wei_by_chain).
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { PretixOrderCreateRequest } from '../types/pretix'
+
+/** Expected ETH amount in wei per chain ID (server-computed at order creation for secure verification) */
+export type ExpectedEthAmountWeiByChain = Record<string, string>
 
 export interface PendingTicketOrder {
   paymentReference: string
@@ -15,6 +19,8 @@ export interface PendingTicketOrder {
   expiresAt: number
   /** Wallet address that must submit the payment (prevents tx reuse attack) */
   intendedPayer: string
+  /** Server-computed expected ETH amount in wei per chainId (e.g. { "8453": "..." }) for native ETH verification */
+  expectedEthAmountWeiByChain?: ExpectedEthAmountWeiByChain
   metadata?: {
     ticketIds: number[]
     addonIds?: number[]
@@ -37,6 +43,7 @@ interface PendingRow {
   created_at: number
   expires_at: number
   intended_payer: string | null
+  expected_eth_amount_wei_by_chain: ExpectedEthAmountWeiByChain | null
   metadata: Record<string, unknown> | null
 }
 
@@ -65,6 +72,7 @@ function rowToPending(row: PendingRow): PendingTicketOrder {
     createdAt: row.created_at,
     expiresAt: row.expires_at,
     intendedPayer: row.intended_payer ?? '',
+    expectedEthAmountWeiByChain: row.expected_eth_amount_wei_by_chain ?? undefined,
     metadata: row.metadata as PendingTicketOrder['metadata'] ?? undefined,
   }
 }
@@ -91,6 +99,7 @@ export async function storePendingOrder(order: PendingTicketOrder): Promise<void
     created_at: Math.floor(Number(order.createdAt)),
     expires_at: Math.floor(Number(order.expiresAt)),
     intended_payer: order.intendedPayer,
+    expected_eth_amount_wei_by_chain: order.expectedEthAmountWeiByChain ?? null,
     metadata: order.metadata ?? null,
   }, { onConflict: 'payment_reference' })
   if (error) throw new Error(`ticketStore storePendingOrder: ${error.message}`)

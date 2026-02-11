@@ -1,7 +1,50 @@
 /**
  * x402 Payment Protocol Types
- * Used for HTTP 402 Payment Required responses
+ * Used for HTTP 402 Payment Required responses.
+ * Aligned with x402 v2: multi-chain, CAIP-style asset IDs, PAYMENT-REQUIRED header.
  */
+
+/** CAIP-19 style asset (eip155:chainId/erc20:address or native ETH placeholder) */
+export interface SupportedAsset {
+  asset: string
+  symbol: string
+  name: string
+  chain: string
+  chainId: string
+  decimals: number
+}
+
+/** Sentinel address used to denote native ETH in supportedAssets */
+export const NATIVE_ETH_PLACEHOLDER = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+
+/** Mainnet chains: Ethereum, Optimism, Arbitrum, Base — USDC + native ETH per chain */
+export const SUPPORTED_ASSETS_MAINNET: SupportedAsset[] = [
+  { asset: 'eip155:1/erc20:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', symbol: 'USDC', name: 'USD Coin', chain: 'Ethereum', chainId: 'eip155:1', decimals: 6 },
+  { asset: `eip155:1/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Ethereum', chainId: 'eip155:1', decimals: 18 },
+  { asset: 'eip155:10/erc20:0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85', symbol: 'USDC', name: 'USD Coin', chain: 'Optimism', chainId: 'eip155:10', decimals: 6 },
+  { asset: `eip155:10/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Optimism', chainId: 'eip155:10', decimals: 18 },
+  { asset: 'eip155:42161/erc20:0xaf88d065e77c8cC2239327C5EDb3A432268e5831', symbol: 'USDC', name: 'USD Coin', chain: 'Arbitrum', chainId: 'eip155:42161', decimals: 6 },
+  { asset: `eip155:42161/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Arbitrum', chainId: 'eip155:42161', decimals: 18 },
+  { asset: 'eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', symbol: 'USDC', name: 'USD Coin', chain: 'Base', chainId: 'eip155:8453', decimals: 6 },
+  { asset: `eip155:8453/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Base', chainId: 'eip155:8453', decimals: 18 },
+]
+
+/** Base Sepolia (testnet) – USDC + ETH */
+export const SUPPORTED_ASSETS_TESTNET: SupportedAsset[] = [
+  { asset: 'eip155:84532/erc20:0x036CbD53842c5426634e7929541eC2318f3dCF7e', symbol: 'USDC', name: 'USD Coin', chain: 'Base Sepolia', chainId: 'eip155:84532', decimals: 6 },
+  { asset: `eip155:84532/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Base Sepolia', chainId: 'eip155:84532', decimals: 18 },
+]
+
+/** x402 v2–style payment block returned when user reaches crypto payment (402 response) */
+export interface X402PaymentBlockV2 {
+  paymentId: string
+  amount: number
+  currency: string
+  referenceId: string
+  status: 'pending'
+  createdAt: number
+  supportedAssets: SupportedAsset[]
+}
 
 export interface X402PaymentRequirements {
   /** The resource being requested */
@@ -40,6 +83,8 @@ export interface X402PaymentProof {
   paymentReference: string
   /** Payer address */
   payer: string
+  /** Chain ID where the transaction was sent (e.g. 8453 for Base). Required for multi-chain so verify looks up the tx on the correct chain. */
+  chainId?: number
 }
 
 export interface X402PaymentVerification {
@@ -141,3 +186,45 @@ export interface ExecuteTransferResponse {
   /** Transaction hash of the relayer's transaction */
   txHash: string
 }
+
+// ============== x402 Protocol – use @x402/core types ==============
+
+export { x402Version as X402_VERSION } from '@x402/core'
+export type {
+  PaymentRequired,
+  PaymentRequirements,
+  ResourceInfo,
+  PaymentPayload,
+  VerifyResponse,
+  SettleResponse,
+  SupportedResponse,
+  VerifyRequest,
+  SettleRequest,
+} from '@x402/core/types'
+
+import type { PaymentPayload, PaymentRequirements } from '@x402/core/types'
+
+/** Facilitator verify/settle request body (SDK sends paymentPayload + paymentRequirements) */
+export interface X402FacilitatorVerifyRequest {
+  paymentPayload: PaymentPayload
+  paymentRequirements: PaymentRequirements
+}
+
+/** Spec error codes (§9) */
+export const X402_ERROR_CODES = {
+  INSUFFICIENT_FUNDS: 'insufficient_funds',
+  INVALID_EXACT_EVM_PAYLOAD_AUTHORIZATION_VALID_AFTER: 'invalid_exact_evm_payload_authorization_valid_after',
+  INVALID_EXACT_EVM_PAYLOAD_AUTHORIZATION_VALID_BEFORE: 'invalid_exact_evm_payload_authorization_valid_before',
+  INVALID_EXACT_EVM_PAYLOAD_AUTHORIZATION_VALUE: 'invalid_exact_evm_payload_authorization_value',
+  INVALID_EXACT_EVM_PAYLOAD_SIGNATURE: 'invalid_exact_evm_payload_signature',
+  INVALID_EXACT_EVM_PAYLOAD_RECIPIENT_MISMATCH: 'invalid_exact_evm_payload_recipient_mismatch',
+  INVALID_NETWORK: 'invalid_network',
+  INVALID_PAYLOAD: 'invalid_payload',
+  INVALID_PAYMENT_REQUIREMENTS: 'invalid_payment_requirements',
+  INVALID_SCHEME: 'invalid_scheme',
+  UNSUPPORTED_SCHEME: 'unsupported_scheme',
+  INVALID_X402_VERSION: 'invalid_x402_version',
+  INVALID_TRANSACTION_STATE: 'invalid_transaction_state',
+  UNEXPECTED_VERIFY_ERROR: 'unexpected_verify_error',
+  UNEXPECTED_SETTLE_ERROR: 'unexpected_settle_error',
+} as const

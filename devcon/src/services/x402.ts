@@ -1,14 +1,20 @@
 /**
- * x402 Payment Service for USDC on Base
+ * x402 Payment Service for USDC on Base (and multi-chain verification)
  */
-import { createPublicClient, http, parseAbi, formatUnits } from 'viem'
-import { base, baseSepolia } from 'viem/chains'
+import { createPublicClient, http, parseAbi, formatUnits, type Chain } from 'viem'
+import { base, baseSepolia, mainnet, optimism, arbitrum } from 'viem/chains'
 import {
   X402PaymentRequirements,
   X402PaymentProof,
   X402PaymentVerification,
   BASE_USDC_CONFIG,
   BASE_SEPOLIA_USDC_CONFIG,
+  SUPPORTED_ASSETS_MAINNET,
+  SUPPORTED_ASSETS_TESTNET,
+  X402_VERSION,
+  type PaymentRequired,
+  type ResourceInfo,
+  type PaymentRequirements as PaymentRequirementsSpec,
 } from '../types/x402'
 import crypto from 'crypto'
 import fs from 'fs'
@@ -20,11 +26,35 @@ const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
 const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
 const chain = isTestnet ? baseSepolia : base
 
-// Create public client for reading blockchain state
+const CHAIN_ID_TO_CHAIN: Record<number, Chain> = {
+  [mainnet.id]: mainnet,
+  [optimism.id]: optimism,
+  [arbitrum.id]: arbitrum,
+  [base.id]: base,
+  [baseSepolia.id]: baseSepolia,
+}
+
+const supportedAssets = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+function getUsdcAddressForChainId(chainId: number): string | null {
+  const asset = supportedAssets.find(
+    (a) => a.symbol === 'USDC' && parseInt(a.chainId.replace(/^eip155:/, ''), 10) === chainId
+  )
+  if (!asset) return null
+  const m = asset.asset.match(/\/erc20:(0x[a-fA-F0-9]+)$/)
+  return m ? m[1] : null
+}
+
+// Create public client for reading blockchain state (default chain)
 const publicClient = createPublicClient({
   chain,
   transport: http(),
 })
+
+function getPublicClientForChainId(chainId: number) {
+  const c = CHAIN_ID_TO_CHAIN[chainId]
+  if (!c) return null
+  return createPublicClient({ chain: c, transport: http() })
+}
 
 // ERC20 Transfer event ABI
 const erc20Abi = parseAbi([
@@ -154,10 +184,50 @@ export function createPaymentRequirements(
 }
 
 /**
+ * Build x402 PaymentRequired payload from our payment requirements.
+ * Uses @x402/core types for SDK compatibility (HTTPFacilitatorClient, etc.).
+ * Includes paymentReference in extra for facilitator verify/settle.
+ */
+export function buildX402PaymentRequiredSpec(
+  requirements: X402PaymentRequirements,
+  options?: { error?: string; resourceDescription?: string; resourceUrl?: string }
+): PaymentRequired {
+  const p = requirements.payment
+  const now = Math.floor(Date.now() / 1000)
+  const maxTimeoutSeconds = Math.max(0, p.expiresAt - now)
+  const resourceUrl = options?.resourceUrl ?? requirements.resource
+  const resource: ResourceInfo = {
+    url: resourceUrl.startsWith('http') ? resourceUrl : resourceUrl,
+    description: options?.resourceDescription ?? '',
+    mimeType: 'application/json',
+  }
+  const accept: PaymentRequirementsSpec = {
+    scheme: 'exact',
+    network: `eip155:${p.chainId}`,
+    amount: p.amount,
+    asset: p.tokenAddress,
+    payTo: p.recipient,
+    maxTimeoutSeconds,
+    extra: {
+      name: p.tokenSymbol,
+      version: '2',
+      paymentReference: p.paymentReference,
+    },
+  }
+  return {
+    x402Version: X402_VERSION,
+    ...(options?.error && { error: options.error }),
+    resource,
+    accepts: [accept],
+    extensions: {},
+  }
+}
+
+/**
  * Verify a payment on-chain
  */
 export async function verifyPayment(proof: X402PaymentProof): Promise<X402PaymentVerification> {
-  const { txHash, paymentReference, payer } = proof
+  const { txHash, paymentReference, payer, chainId: proofChainId } = proof
 
   // Always reload from file to handle hot reloads in development
   const freshRefs = loadPaymentRefs()
@@ -178,6 +248,16 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
     return { verified: false, error: 'Payment reference has expired' }
   }
 
+  const client = proofChainId != null ? getPublicClientForChainId(proofChainId) : publicClient
+  const tokenAddress =
+    proofChainId != null ? getUsdcAddressForChainId(proofChainId) : usdcConfig.tokenAddress
+  if (!client) {
+    return { verified: false, error: `Unsupported chain ID for verification: ${proofChainId}` }
+  }
+  if (proofChainId != null && !tokenAddress) {
+    return { verified: false, error: `No USDC config for chain ID: ${proofChainId}` }
+  }
+
   try {
     // Wait for transaction receipt with retries (transaction may still be mining)
     let receipt
@@ -187,7 +267,7 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
 
     while (attempts < maxAttempts) {
       try {
-        receipt = await publicClient.getTransactionReceipt({
+        receipt = await client.getTransactionReceipt({
           hash: txHash as `0x${string}`,
         })
         if (receipt) break
@@ -195,7 +275,7 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
         // Transaction not found yet, retry
         if (e.name === 'TransactionReceiptNotFoundError' || e.shortMessage?.includes('could not be found')) {
           attempts++
-          console.log(`[x402] Transaction not found yet, attempt ${attempts}/${maxAttempts}, waiting...`)
+          console.log(`[x402] Transaction not found yet (chain ${proofChainId ?? chain.id}), attempt ${attempts}/${maxAttempts}, waiting...`)
           if (attempts < maxAttempts) {
             await new Promise(resolve => setTimeout(resolve, delayMs))
           }
@@ -213,10 +293,10 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
       return { verified: false, error: 'Transaction failed' }
     }
 
-    // Look for Transfer events to our recipient
+    // Look for Transfer events to our recipient (USDC on the tx chain)
     const transferLogs = receipt.logs.filter(
       (log) =>
-        log.address.toLowerCase() === usdcConfig.tokenAddress.toLowerCase() &&
+        log.address.toLowerCase() === tokenAddress!.toLowerCase() &&
         log.topics[0] === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef' // Transfer event signature
     )
 
@@ -265,10 +345,21 @@ export async function verifyPaymentDirect(
   txHash: string,
   payer: string,
   expectedRecipient: string,
-  expectedAmount: string
+  expectedAmount: string,
+  chainId?: number
 ): Promise<X402PaymentVerification> {
+  const client = chainId != null ? getPublicClientForChainId(chainId) : publicClient
+  const tokenAddress =
+    chainId != null ? getUsdcAddressForChainId(chainId) : usdcConfig.tokenAddress
+  if (!client) {
+    return { verified: false, error: `Unsupported chain ID for verification: ${chainId}` }
+  }
+  if (chainId != null && !tokenAddress) {
+    return { verified: false, error: `No USDC config for chain ID: ${chainId}` }
+  }
+
   try {
-    console.log('[x402] Direct verification for tx:', txHash)
+    console.log('[x402] Direct verification for tx:', txHash, chainId != null ? `(chain ${chainId})` : '')
 
     // Wait for transaction receipt with retries
     let receipt
@@ -278,7 +369,7 @@ export async function verifyPaymentDirect(
 
     while (attempts < maxAttempts) {
       try {
-        receipt = await publicClient.getTransactionReceipt({
+        receipt = await client.getTransactionReceipt({
           hash: txHash as `0x${string}`,
         })
         if (receipt) break
@@ -303,10 +394,10 @@ export async function verifyPaymentDirect(
       return { verified: false, error: 'Transaction failed' }
     }
 
-    // Look for Transfer events to our recipient
+    // Look for Transfer events to our recipient (USDC on the tx chain)
     const transferLogs = receipt.logs.filter(
       (log) =>
-        log.address.toLowerCase() === usdcConfig.tokenAddress.toLowerCase() &&
+        log.address.toLowerCase() === tokenAddress!.toLowerCase() &&
         log.topics[0] === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef' // Transfer event signature
     )
 
@@ -334,6 +425,79 @@ export async function verifyPaymentDirect(
     return { verified: false, error: 'No matching transfer found in transaction' }
   } catch (error) {
     console.error('[x402] Error in direct verification:', error)
+    return { verified: false, error: `Verification error: ${(error as Error).message}` }
+  }
+}
+
+/**
+ * Verify a native ETH payment (value transfer) on-chain
+ */
+export async function verifyPaymentNativeEth(
+  txHash: string,
+  payer: string,
+  expectedRecipient: string,
+  expectedAmountWei: string,
+  chainId: number
+): Promise<X402PaymentVerification> {
+  const client = getPublicClientForChainId(chainId)
+  if (!client) {
+    return { verified: false, error: `Unsupported chain ID for verification: ${chainId}` }
+  }
+
+  try {
+    console.log('[x402] Native ETH verification for tx:', txHash, '(chain', chainId + ')')
+
+    let receipt
+    let attempts = 0
+    const maxAttempts = 10
+    const delayMs = 3000
+
+    while (attempts < maxAttempts) {
+      try {
+        receipt = await client.getTransactionReceipt({ hash: txHash as `0x${string}` })
+        if (receipt) break
+      } catch (e: any) {
+        if (e.name === 'TransactionReceiptNotFoundError' || e.shortMessage?.includes('could not be found')) {
+          attempts++
+          console.log(`[x402] Native ETH: Transaction not found yet, attempt ${attempts}/${maxAttempts}, waiting...`)
+          if (attempts < maxAttempts) {
+            await new Promise(resolve => setTimeout(resolve, delayMs))
+          }
+          continue
+        }
+        throw e
+      }
+    }
+
+    if (!receipt) {
+      return { verified: false, error: 'Transaction not found after waiting. Please try again in a few moments.' }
+    }
+
+    if (receipt.status !== 'success') {
+      return { verified: false, error: 'Transaction failed' }
+    }
+
+    const tx = await client.getTransaction({ hash: txHash as `0x${string}` })
+    if (!tx) {
+      return { verified: false, error: 'Transaction not found' }
+    }
+
+    const recipientLower = expectedRecipient.toLowerCase()
+    const toMatch = tx.to && tx.to.toLowerCase() === recipientLower
+    if (!toMatch || tx.from?.toLowerCase() !== payer.toLowerCase()) {
+      return { verified: false, error: 'Transaction from/to does not match payment' }
+    }
+    if (tx.value < BigInt(expectedAmountWei)) {
+      return { verified: false, error: 'Transaction value is less than required amount' }
+    }
+
+    return {
+      verified: true,
+      blockNumber: Number(receipt.blockNumber),
+      confirmedAt: Math.floor(Date.now() / 1000),
+    }
+  } catch (error) {
+    console.error('Error verifying native ETH payment:', error)
     return { verified: false, error: `Verification error: ${(error as Error).message}` }
   }
 }
