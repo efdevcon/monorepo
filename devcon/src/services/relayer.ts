@@ -109,37 +109,22 @@ export function generateNonce(): string {
 // ── Per-chain EIP-712 domain cache ──
 
 type UsdcDomain = { name: string; version: string; chainId: number; verifyingContract: `0x${string}` }
-const domainCache = new Map<number, UsdcDomain>()
-
 /**
  * Get the USDC EIP-712 domain for a specific chain.
- * Fetches name() and version() on-chain to guarantee the domain matches the contract's DOMAIN_SEPARATOR.
+ * All Circle native USDC contracts use name="USD Coin", version="2" — these are
+ * compile-time constants in the contract so we don't need RPC calls.
  */
-export async function getUsdcDomain(chainId?: number): Promise<UsdcDomain> {
+export function getUsdcDomain(chainId?: number): UsdcDomain {
   const cid = chainId ?? defaultChainId
-  const cached = domainCache.get(cid)
-  if (cached) return cached
-
   const config = getUsdcConfigForChainId(cid)
   if (!config) throw new Error(`No USDC config for chain ${cid}`)
 
-  const client = getPublicClientForChain(cid)
-  const contractAddr = config.tokenAddress as `0x${string}`
-
-  const [name, version] = await Promise.all([
-    client.readContract({ address: contractAddr, abi: usdcAbi, functionName: 'name' }),
-    client.readContract({ address: contractAddr, abi: usdcAbi, functionName: 'version' }),
-  ])
-
-  const domain: UsdcDomain = {
-    name: name as string,
-    version: version as string,
+  return {
+    name: 'USD Coin',
+    version: '2',
     chainId: cid,
-    verifyingContract: contractAddr,
+    verifyingContract: config.tokenAddress as `0x${string}`,
   }
-  domainCache.set(cid, domain)
-  console.log(`[Relayer] USDC EIP-712 domain fetched for chain ${cid}:`, domain)
-  return domain
 }
 
 /**
