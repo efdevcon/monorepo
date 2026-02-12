@@ -346,7 +346,7 @@ function X402TestContent() {
           verifyingContract: domain.verifyingContract as `0x${string}`,
         },
         types,
-        primaryType: 'TransferWithAuthorization',
+        primaryType: 'ReceiveWithAuthorization',
         message: {
           from: message.from as `0x${string}`,
           to: message.to as `0x${string}`,
