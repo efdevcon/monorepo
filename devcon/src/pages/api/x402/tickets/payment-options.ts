@@ -9,6 +9,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
+import { fetchEthPriceUsd } from 'services/ethPrice'
 import {
   generateNonce,
   createAuthorizationTypedData,
@@ -22,7 +23,6 @@ import {
 } from 'types/x402'
 
 const ZAPPER_GRAPHQL = 'https://public.zapper.xyz/graphql'
-const COINBASE_ETH_SPOT = 'https://api.coinbase.com/v2/prices/ETH-USD/spot'
 
 /** Convert typed data to JSON-serializable form (BigInt -> string) */
 function typedDataToJson(typedData: { domain: unknown; types: unknown; primaryType: string; message: Record<string, unknown> }) {
@@ -106,15 +106,6 @@ function parseTokenAddressFromAsset(asset: string): string {
 
 function isNativeEth(asset: string): boolean {
   return parseTokenAddressFromAsset(asset).toLowerCase() === NATIVE_ETH_PLACEHOLDER.toLowerCase()
-}
-
-async function fetchEthPriceUsd(): Promise<number> {
-  const res = await fetch(COINBASE_ETH_SPOT)
-  if (!res.ok) throw new Error('Failed to fetch ETH price')
-  const data = await res.json()
-  const price = parseFloat(data?.data?.amount)
-  if (!Number.isFinite(price)) throw new Error('Invalid ETH price')
-  return price
 }
 
 async function fetchZapperBalances(walletAddress: string, chainIds: number[]): Promise<Map<string, string>> {
@@ -211,17 +202,24 @@ export default async function handler(
     const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
     const chainIds = [...new Set(supportedAssets.map((a) => parseChainIdFromAsset(a.asset)))]
 
-    const [ethPriceUsd, balanceMap] = await Promise.all([
+    const [ethPriceResult, balanceMap] = await Promise.all([
       fetchEthPriceUsd(),
       fetchZapperBalances(walletAddress, chainIds),
     ])
 
     const usdcAmount = usdToUsdcAmount(totalUsd)
-    const ethAmountWei = BigInt(Math.ceil((totalUsd / ethPriceUsd) * 1e18)).toString()
+    // If oracles diverge, ethPriceResult is null — ETH options will be skipped
+    const ethPriceUsd = ethPriceResult?.price ?? null
+    const ethAmountWei = ethPriceUsd != null
+      ? BigInt(Math.ceil((totalUsd / ethPriceUsd) * 1e18)).toString()
+      : null
 
     const options: PaymentOption[] = []
 
     for (const supported of supportedAssets) {
+      // Skip ETH options when price oracle is unavailable/divergent
+      if (supported.symbol === 'ETH' && ethAmountWei == null) continue
+
       const chainId = parseChainIdFromAsset(supported.asset)
       const tokenAddr = parseTokenAddressFromAsset(supported.asset)
       const balanceKey1 = `${chainId}-${tokenAddr}`
@@ -231,7 +229,7 @@ export default async function handler(
       const balanceSymbolKey = `symbol:${chainId}:${supported.symbol}`
       const balanceRaw =
         balanceMap.get(balanceKey1) ?? balanceMap.get(balanceSymbolKey) ?? balanceMap.get(balanceKey2) ?? '0'
-      const amount = supported.symbol === 'ETH' ? ethAmountWei : usdcAmount
+      const amount = supported.symbol === 'ETH' ? ethAmountWei! : usdcAmount
       const sufficient = BigInt(balanceRaw) >= BigInt(amount)
 
       const opt: PaymentOption = {
@@ -248,7 +246,7 @@ export default async function handler(
       }
 
       if (supported.symbol === 'ETH') {
-        opt.priceUsd = ethPriceUsd
+        opt.priceUsd = ethPriceUsd!
       }
 
       if (sufficient) {

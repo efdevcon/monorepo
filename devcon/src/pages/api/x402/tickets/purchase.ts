@@ -31,6 +31,7 @@ import {
   usdToUsdcAmount,
   verifyPayment,
 } from 'services/x402'
+import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
 import { executeTransferWithAuthorization, getUsdcDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
 import {
@@ -102,17 +103,6 @@ interface ErrorResponse {
 
 // 3% discount for crypto payments
 const CRYPTO_DISCOUNT_PERCENT = 3
-
-const COINBASE_ETH_SPOT = 'https://api.coinbase.com/v2/prices/ETH-USD/spot'
-
-async function fetchEthPriceUsd(): Promise<number> {
-  const res = await fetch(COINBASE_ETH_SPOT)
-  if (!res.ok) throw new Error('Failed to fetch ETH price')
-  const data = await res.json()
-  const price = parseFloat(data?.data?.amount)
-  if (!Number.isFinite(price)) throw new Error('Invalid ETH price')
-  return price
-}
 
 /** Build expected ETH amount in wei per chain ID (for secure native ETH verification) */
 function buildExpectedEthWeiByChain(
@@ -357,8 +347,10 @@ export default async function handler(
     ]
     let expectedEthAmountWeiByChain: Record<string, string> = {}
     try {
-      const ethPriceUsd = await fetchEthPriceUsd()
-      expectedEthAmountWeiByChain = buildExpectedEthWeiByChain(total, ethPriceUsd, chainIdsWithEth)
+      const ethPriceResult = await fetchEthPriceUsd()
+      if (ethPriceResult) {
+        expectedEthAmountWeiByChain = buildExpectedEthWeiByChain(total, ethPriceResult.price, chainIdsWithEth)
+      }
     } catch (e) {
       console.warn('[purchase] Could not fetch ETH price for expectedEthAmountWeiByChain:', (e as Error).message)
     }
