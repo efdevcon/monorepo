@@ -570,6 +570,12 @@ async function handlePaymentSignatureRetry(
     return res.status(400).json({ success: false, error: 'Authorization is not yet valid' })
   }
 
+  // Cap validBefore: reject authorizations with no expiry (0) or expiry beyond order expiry + 5 min buffer
+  const maxValidBefore = pendingOrder.expiresAt + 5 * 60
+  if (validBefore === 0 || validBefore > maxValidBefore) {
+    return res.status(400).json({ success: false, error: `Authorization validBefore too far in the future or unlimited (must be before ${maxValidBefore})` })
+  }
+
   // 9. Verify EIP-712 signature (chain-specific domain)
   const domain = await getUsdcDomain(networkChainId)
   const types = getTransferWithAuthorizationTypes()

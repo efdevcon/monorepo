@@ -193,6 +193,18 @@ export default async function handler(
       })
     }
 
+    // Reject unlimited or excessively long-lived authorizations (max 1 hour from now)
+    const maxValidBefore = now + 60 * 60
+    if (auth.validBefore === 0 || auth.validBefore > maxValidBefore) {
+      return res.status(400).json({
+        success: false,
+        transaction: '',
+        network,
+        payer: auth.from,
+        errorReason: X402_ERROR_CODES.INVALID_EXACT_EVM_PAYLOAD_AUTHORIZATION_VALID_BEFORE,
+      })
+    }
+
     // Verify EIP-712 signature (chain-specific domain)
     const domain = await getUsdcDomain(networkChainId)
     const types = getTransferWithAuthorizationTypes()
