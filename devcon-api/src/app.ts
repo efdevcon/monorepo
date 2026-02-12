@@ -2,16 +2,13 @@ import express, { json, urlencoded, Response, NextFunction, Request, Router } fr
 import path from 'path'
 import cors from 'cors'
 import helmet from 'helmet'
-import session, { SessionOptions } from 'express-session'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from '@/swagger/definition.json'
 import { errorHandler } from '@/middleware/error'
 import { notFoundHandler } from '@/middleware/notfound'
 import { logHandler } from '@/middleware/log'
 import { router } from './routes'
-import { SERVER_CONFIG, SESSION_CONFIG } from '@/utils/config'
-import pgSession from 'connect-pg-simple'
-import { getDbPool } from './utils/db'
+import { SERVER_CONFIG } from '@/utils/config'
 import { existsSync } from 'fs'
 
 const app = express()
@@ -57,37 +54,6 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
   })
 )
-
-const pgSessionStore = pgSession(session)
-const sessionConfig: SessionOptions = {
-  name: SESSION_CONFIG.cookieName,
-  secret: SESSION_CONFIG.password,
-  cookie: {},
-  resave: false,
-  saveUninitialized: false,
-  store: new pgSessionStore({
-    pool: getDbPool(),
-    tableName: 'Session',
-    ttl: 30 * 24 * 60 * 60,
-  }),
-}
-
-if (SERVER_CONFIG.NODE_ENV === 'production') {
-  sessionConfig.cookie = {
-    ...sessionConfig.cookie,
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    sameSite: 'none',
-    secure: true,
-    path: '/',
-    domain: '.devcon.org',
-    partitioned: true,
-  }
-
-  sessionConfig.proxy = true
-  app.set('trust proxy', 1)
-}
-app.use(session(sessionConfig))
 
 // static endpoints
 app.use('/static', express.static(path.join(__dirname, '..', 'public')))

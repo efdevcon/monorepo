@@ -1,11 +1,8 @@
-import { PrismaClient as AccountClient } from '@/db/clients/account'
-import { SERVER_CONFIG } from '@/utils/config'
 import { Session } from '@/types/schedule'
 import { STOPWORDS } from '@/utils/stopwords'
 import { writeFileSync } from 'fs'
 import dictionary from '../../data/vectors/dictionary.json'
 import vectorizedSessions from '../../data/vectors/devcon-7.json'
-import * as store from '@/data/store'
 
 export const WEIGHTS = {
   track: 6,
@@ -29,95 +26,7 @@ export interface VectorDictionary {
   audiences: string[]
 }
 
-export interface LensFollower {
-  id: string
-  fullHandle: string
-  handle: string
-  address: string
-  ens: string
-}
-
 let cachedDictionary: VectorDictionary = dictionary
-
-const accountClient = new AccountClient()
-
-export async function GetRecommendedSpeakers(id: string) {
-  console.log('Get Recommended Speakers', id)
-  const farcasterProfile = await GetFarcasterProfile(id)
-  const lensProfileId = await GetLensProfileId(id)
-
-  const [farcaster, lens, efp] = await Promise.all([
-    farcasterProfile ? GetFarcasterFollowing(farcasterProfile.fid) : Promise.resolve([]),
-    lensProfileId ? GetLensFollowing(lensProfileId) : Promise.resolve([]),
-    GetEFPFollowing(id),
-  ])
-
-  // Filter speakers in-memory instead of via Prisma
-  const allSpeakers = store.getSpeakers({ take: 100000 }).items
-  const lensHandles = new Set(lens.filter((i) => i.handle).map((i) => i.handle))
-  const lensEns = new Set(lens.filter((i) => i.ens).map((i) => i.ens))
-  const efpSet = new Set(efp.filter((i: string) => i))
-  const farcasterUsernames = new Set(farcaster.filter((i) => i.username).map((i) => i.username))
-
-  // Get speaker IDs that have sessions in devcon-7
-  const devcon7SpeakerIds = new Set<string>()
-  for (const session of store.getAllSessions()) {
-    if (session.eventId === 'devcon-7') {
-      for (const sp of session.speakers || []) {
-        devcon7SpeakerIds.add(sp.id)
-      }
-    }
-  }
-
-  const speakers = allSpeakers.filter((s: any) => {
-    if (!devcon7SpeakerIds.has(s.id)) return false
-    if (s.lens && lensHandles.has(s.lens)) return true
-    if (s.ens && lensEns.has(s.ens)) return true
-    if (s.ens && efpSet.has(s.ens)) return true
-    if (s.farcaster && farcasterUsernames.has(s.farcaster)) return true
-    return false
-  })
-
-  return speakers
-}
-
-export async function GetRecommendedSessions(id: string, includeFeatured?: boolean) {
-  console.log('Get Recommended Sessions', id)
-
-  const account = await accountClient.account.findFirst({
-    where: {
-      id: id,
-    },
-  })
-
-  if (!account) {
-    return []
-  }
-
-  const userVector = vectorizeUser(account)
-  const personalizedRecommendations = GetRecommendedVectorSearch(userVector, vectorizedSessions as VectorizedSession[], 20)
-
-  // Filter sessions in-memory instead of via Prisma
-  const recommendedIds = new Set(personalizedRecommendations.map((r) => r.id))
-  const favSpeakerIds = new Set(account.favorite_speakers)
-
-  const sessions = store.getAllSessions().filter((s: any) => {
-    if (s.eventId !== 'devcon-7') return false
-    if (recommendedIds.has(s.id)) return true
-    if (s.speakers?.some((sp: any) => favSpeakerIds.has(sp.id))) return true
-    return false
-  })
-
-  // Sort by slot_start ascending
-  sessions.sort((a: any, b: any) => {
-    if (!a.slot_start && !b.slot_start) return 0
-    if (!a.slot_start) return 1
-    if (!b.slot_start) return -1
-    return a.slot_start < b.slot_start ? -1 : 1
-  })
-
-  return sessions
-}
 
 export function GetRecommendedVectorSearch(sessionVector: number[], allSessions: VectorizedSession[], limit: number = 10): Session[] {
   const similarities = allSessions
@@ -144,207 +53,6 @@ export function GetRecommendedVectorSearch(sessionVector: number[], allSessions:
     })
 
   return recommendations
-}
-
-export async function GetFarcasterFollowing(profileId: string, cursor?: string): Promise<any[]> {
-  console.log('Get Farcaster Following', profileId, cursor)
-
-  const uri = `https://api.neynar.com/v2/farcaster/following?fid=${profileId}&limit=10${cursor ? `&cursor=${cursor}` : ''}`
-  const response = await fetch(uri, {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      api_key: SERVER_CONFIG.NEYNAR_API_KEY ?? '',
-    },
-  })
-
-  try {
-    const data = await response.json()
-    const items = data?.users?.map((i: any) => i.user)
-
-    if (data?.next?.cursor) {
-      return [...items, ...(await GetFarcasterFollowing(profileId, data.next.cursor))]
-    } else {
-      return items
-    }
-  } catch (error) {
-    console.warn('Error fetching Farcaster following:', error)
-    return []
-  }
-}
-
-export async function GetFarcasterProfile(address: string) {
-  const response = await fetch(`https://api.neynar.com/v2/farcaster/user/bulk-by-address?addresses=${address}`, {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      api_key: SERVER_CONFIG.NEYNAR_API_KEY ?? '',
-    },
-  })
-
-  const data = await response.json()
-  if (data && data[address]?.length > 0) {
-    return data[address][0] // TODO: Support for multiple profiles
-  }
-
-  return null
-}
-
-export async function GetLensFollowers(profileId: string, cursor?: string): Promise<LensFollower[]> {
-  console.log('Get Lens Followers', profileId, cursor)
-
-  const query = `
-        query Query {
-            followers(request: { of: "${profileId}", limit: Fifty ${cursor ? `, cursor: "${cursor}"` : ''}}) {
-                pageInfo {
-                    prev
-                    next
-                }
-                items {
-                    id
-                    handle {
-                        fullHandle
-                        localName
-                        ownedBy
-                    }
-                    ownedBy {
-                        address
-                    }
-                }
-            }
-        }`
-
-  try {
-    const response = await fetch('https://api-v2.lens.dev', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: query }),
-    })
-
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
-
-    const data = await response.json()
-    const items = data.data.followers.items.map((item: any) => {
-      return {
-        id: item.id,
-        fullHandle: item.handle?.fullHandle ?? '',
-        handle: item.handle?.localName ?? '',
-        address: item.handle?.ownedBy ?? item.ownedBy?.address,
-      }
-    })
-
-    if (data.data.followers.pageInfo.next) {
-      return [...items, ...(await GetLensFollowers(profileId, data.data.followers.pageInfo.next))]
-    } else {
-      return items
-    }
-  } catch (error) {
-    console.warn('Error fetching Lens followers:', error)
-    return []
-  }
-}
-
-export async function GetLensFollowing(profileId: string, cursor?: string): Promise<LensFollower[]> {
-  console.log('Get Lens Following', profileId, cursor)
-
-  const query = `
-        query Query {
-            following(request: { for: "${profileId}", limit: Fifty ${cursor ? `, cursor: "${cursor}"` : ''}}) {
-                pageInfo {
-                    prev
-                    next
-                }
-                items {
-                    id
-                    handle {
-                        fullHandle
-                        localName
-                        ownedBy
-                    }
-                    ownedBy {
-                        address
-                    }
-                    onchainIdentity {
-                        ens {
-                            name
-                        }
-                    }
-                }
-            }
-        }`
-
-  try {
-    const response = await fetch('https://api-v2.lens.dev', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: query }),
-    })
-
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
-
-    const data = await response.json()
-    const items = data.data.following.items.map((item: any) => {
-      return {
-        id: item.id,
-        fullHandle: item.handle?.fullHandle,
-        handle: item.handle?.localName,
-        address: item.handle?.ownedBy ?? item.ownedBy?.address,
-        ens: item.onchainIdentity?.ens?.name,
-      }
-    })
-
-    if (data.data.following.pageInfo.next) {
-      return [...items, ...(await GetLensFollowing(profileId, data.data.following.pageInfo.next))]
-    } else {
-      return items
-    }
-  } catch (error) {
-    console.warn('Error fetching Lens following:', error)
-    return []
-  }
-}
-
-export async function GetLensProfileId(id: string) {
-  console.log('Get Lens Profile Id', id)
-
-  const query = `
-        query Query {
-            defaultProfile(request: { for: "${id}"}) {
-                id
-            }
-        }`
-
-  try {
-    const response = await fetch('https://api-v2.lens.dev', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query: query }),
-    })
-
-    const data = await response.json()
-    return data.data.defaultProfile.id
-  } catch (error) {
-    console.warn('Error fetching social followers:', error)
-  }
-}
-
-export async function GetEFPFollowing(address: string): Promise<string[]> {
-  console.log('Get EFP Following', address)
-
-  try {
-    const response = await fetch(`https://api.ethfollow.xyz/api/v1/users/${address}/searchFollowing?limit=1000&term=0`)
-    const data = await response.json()
-    return data?.following?.map((i: any) => i.ens?.name || i.data || i.address) || []
-  } catch (error) {
-    console.warn('Error fetching EFP following:', error)
-    return []
-  }
 }
 
 export function buildDictionary(sessions: Session[], rebuild: boolean = false) {
@@ -401,20 +109,6 @@ export function vectorizeSession(session: Session, dictionary: VectorDictionary)
   return getVectorWeight(vector, dictionary)
 }
 
-export function vectorizeUser(user: any, dic: VectorDictionary = dictionary): number[] {
-  const vector = [
-    ...dictionary.tracks.map((track: any) => (user.tracks.includes(track) ? 1 : 0)),
-    ...dictionary.speakers.map((speaker: any) => (user.favorite_speakers.includes(speaker) ? 1 : 0)),
-    ...dictionary.tags.map((tag: any) => (user.tags.includes(tag) ? 1 : 0)),
-    // @ts-ignore
-    ...dictionary.expertise.map((exp: any) => (getExpertiseLevel(user?.since).includes(exp) ? 1 : 0)),
-    // @ts-ignore
-    ...dictionary.audiences.map((aud: any) => (user.roles.includes(aud) ? 1 : 0)),
-  ]
-
-  return getVectorWeight(vector, dictionary)
-}
-
 export function getVectorWeight(vector: number[], dictionary: VectorDictionary) {
   const trackLength = dictionary.tracks.length
   const expertiseLength = dictionary.expertise.length
@@ -453,15 +147,4 @@ export function getSimilarity(vector1: number[], vector2: number[]): number {
   }
 
   return dotProduct / (magnitude1 * magnitude2)
-}
-
-export function getExpertiseLevel(since?: number | null) {
-  if (!since) return []
-
-  if (since >= 2023) return ['Beginner']
-  if (since >= 2021) return ['Beginner', 'Intermediate']
-  if (since >= 2019) return ['Intermediate']
-  if (since >= 2017) return ['Intermediate', 'Advanced']
-
-  return ['Advanced']
 }

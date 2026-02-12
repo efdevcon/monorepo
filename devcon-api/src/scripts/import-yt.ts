@@ -147,6 +147,7 @@ async function main() {
 
   let totalImported = 0
   let totalSkipped = 0
+  const seenYoutubeIds = new Set<string>()
 
   for (const entry of playlists) {
     const playlistId = extractPlaylistId(entry.url)
@@ -166,6 +167,11 @@ async function main() {
       for (const item of items) {
         const vid = item.snippet?.resourceId?.videoId
         if (!vid) continue
+        if (seenYoutubeIds.has(vid)) {
+          totalSkipped++
+          continue
+        }
+        seenYoutubeIds.add(vid)
 
         const title = item.snippet.title || 'Untitled'
         const slug = defaultSlugify(title)
@@ -200,6 +206,12 @@ async function main() {
       }
     } else if (videoId) {
       console.log(`Fetching single video "${entry.name}" (${videoId})...`)
+      if (seenYoutubeIds.has(videoId)) {
+        totalSkipped++
+        continue
+      }
+      seenYoutubeIds.add(videoId)
+
       const video = await fetchSingleVideo(youtube, videoId)
       if (!video) {
         console.warn(`  Could not fetch video ${videoId}`)
