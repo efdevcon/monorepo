@@ -22,8 +22,6 @@ import {
 } from '../types/x402'
 import { getUsdcDomain } from './relayer'
 import crypto from 'crypto'
-import fs from 'fs'
-import path from 'path'
 
 // Use testnet unless explicitly set to mainnet
 // NEXT_PUBLIC_CHAIN_ENV=mainnet for production, otherwise testnet
@@ -66,41 +64,6 @@ const erc20Abi = parseAbi([
   'event Transfer(address indexed from, address indexed to, uint256 value)',
   'function balanceOf(address owner) view returns (uint256)',
 ])
-
-// File-based persistence for payment references (survives hot reloads)
-const PAYMENT_STORE_FILE = path.join(process.cwd(), '.x402-payments.json')
-
-interface PaymentRefData {
-  amount: string
-  recipient: string
-  expiresAt: number
-  resource: string
-  metadata?: Record<string, unknown>
-}
-
-function loadPaymentRefs(): Map<string, PaymentRefData> {
-  try {
-    if (fs.existsSync(PAYMENT_STORE_FILE)) {
-      const data = fs.readFileSync(PAYMENT_STORE_FILE, 'utf-8')
-      const parsed = JSON.parse(data)
-      return new Map(Object.entries(parsed))
-    }
-  } catch (e) {
-    console.error('Failed to load payment references:', e)
-  }
-  return new Map()
-}
-
-function savePaymentRefs(refs: Map<string, PaymentRefData>): void {
-  try {
-    fs.writeFileSync(PAYMENT_STORE_FILE, JSON.stringify(Object.fromEntries(refs), null, 2))
-  } catch (e) {
-    console.error('Failed to save payment references:', e)
-  }
-}
-
-// Load initial state from file
-const paymentReferences = loadPaymentRefs()
 
 /**
  * Get the payment recipient address from environment
@@ -160,15 +123,8 @@ export function createPaymentRequirements(
   const amount = usdToUsdcAmount(usdAmount)
   const expiresAt = Math.floor(Date.now() / 1000) + expiresInSeconds
 
-  // Store the payment reference
-  paymentReferences.set(paymentReference, {
-    amount,
-    recipient,
-    expiresAt,
-    resource,
-    metadata,
-  })
-  savePaymentRefs(paymentReferences)
+  // Payment references are persisted via Supabase ticketStore (storePendingOrder)
+  // No file-based storage needed
 
   return {
     resource,
@@ -240,30 +196,14 @@ export async function buildX402PaymentRequiredSpec(
 }
 
 /**
- * Verify a payment on-chain
+ * Verify a payment on-chain.
+ * All payment data (amount, recipient) comes from the Supabase ticketStore,
+ * not from a local file store.
  */
 export async function verifyPayment(proof: X402PaymentProof): Promise<X402PaymentVerification> {
-  const { txHash, paymentReference, payer, chainId: proofChainId } = proof
+  const { txHash, payer, chainId: proofChainId } = proof
 
-  // Always reload from file to handle hot reloads in development
-  const freshRefs = loadPaymentRefs()
-  let paymentData = freshRefs.get(paymentReference)
-
-  // Update in-memory cache if found
-  if (paymentData) {
-    paymentReferences.set(paymentReference, paymentData)
-  }
-
-  // Check if payment reference exists and is valid
-  if (!paymentData) {
-    return { verified: false, error: 'Invalid payment reference' }
-  }
-
-  // Check if expired
-  if (Date.now() / 1000 > paymentData.expiresAt) {
-    return { verified: false, error: 'Payment reference has expired' }
-  }
-
+  const recipient = getPaymentRecipient()
   const client = proofChainId != null ? getPublicClientForChainId(proofChainId) : publicClient
   const tokenAddress =
     proofChainId != null ? getUsdcAddressForChainId(proofChainId) : usdcConfig.tokenAddress
@@ -319,8 +259,8 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
 
     // Verify transfer details (transferWithAuthorization sends directly from payer to recipient)
     console.log('[x402 verify] Transfer logs found:', transferLogs.length,
-      '| expected recipient:', paymentData.recipient,
-      '| expected amount:', paymentData.amount,
+      '| expected recipient:', recipient,
+      '| expected amount:', proof.expectedAmount,
       '| payer:', payer)
     for (const log of transferLogs) {
       const from = `0x${log.topics[1]?.slice(26)}`.toLowerCase()
@@ -330,12 +270,9 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
 
       if (
         from === payer.toLowerCase() &&
-        to === paymentData.recipient.toLowerCase() &&
-        value >= BigInt(paymentData.amount)
+        to === recipient.toLowerCase() &&
+        (!proof.expectedAmount || value >= BigInt(proof.expectedAmount))
       ) {
-        paymentReferences.delete(paymentReference)
-        savePaymentRefs(paymentReferences)
-
         return {
           verified: true,
           blockNumber: Number(receipt.blockNumber),
@@ -349,13 +286,6 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
     console.error('Error verifying payment:', error)
     return { verified: false, error: `Verification error: ${(error as Error).message}` }
   }
-}
-
-/**
- * Get pending payment data by reference
- */
-export function getPendingPayment(paymentReference: string) {
-  return paymentReferences.get(paymentReference)
 }
 
 /**
@@ -521,37 +451,6 @@ export async function verifyPaymentNativeEth(
     console.error('Error verifying native ETH payment:', error)
     return { verified: false, error: `Verification error: ${(error as Error).message}` }
   }
-}
-
-/**
- * Check if a payment reference is still valid
- */
-export function isPaymentReferenceValid(paymentReference: string): boolean {
-  const payment = paymentReferences.get(paymentReference)
-  if (!payment) return false
-  return Date.now() / 1000 <= payment.expiresAt
-}
-
-/**
- * Clean up expired payment references
- */
-export function cleanupExpiredReferences(): void {
-  const now = Date.now() / 1000
-  let changed = false
-  for (const [ref, data] of paymentReferences.entries()) {
-    if (now > data.expiresAt) {
-      paymentReferences.delete(ref)
-      changed = true
-    }
-  }
-  if (changed) {
-    savePaymentRefs(paymentReferences)
-  }
-}
-
-// Run cleanup every 5 minutes
-if (typeof setInterval !== 'undefined') {
-  setInterval(cleanupExpiredReferences, 5 * 60 * 1000)
 }
 
 // ============== x402 v2 header encoding/decoding ==============

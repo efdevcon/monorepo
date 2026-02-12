@@ -235,6 +235,23 @@ export async function executeTransferWithAuthorization(
     throw new Error('Authorization nonce has already been used')
   }
 
+  // Check the payer actually has sufficient USDC balance (prevents gas griefing)
+  try {
+    const balance = await client.readContract({
+      address: tokenAddress,
+      abi: parseAbi(['function balanceOf(address) view returns (uint256)']),
+      functionName: 'balanceOf',
+      args: [authorization.from as `0x${string}`],
+    })
+    if ((balance as bigint) < BigInt(authorization.value)) {
+      throw new Error(`Insufficient USDC balance: payer has ${balance}, needs ${authorization.value}`)
+    }
+  } catch (error) {
+    // If the balance check itself throws (not our insufficient balance error), log and continue
+    if ((error as Error).message.startsWith('Insufficient USDC balance')) throw error
+    console.warn('[Relayer] USDC balance check failed, proceeding anyway:', (error as Error).message)
+  }
+
   try {
     const hash = await walletClient.writeContract({
       address: tokenAddress,

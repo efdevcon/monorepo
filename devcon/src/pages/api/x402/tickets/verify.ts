@@ -26,6 +26,7 @@ import {
   getCompletedOrderByTxHash,
   checkAndRecordVerifyAttempt,
   claimPendingOrder,
+  TxHashAlreadyUsedError,
   CompletedTicketOrder,
 } from 'services/ticketStore'
 import { X402PaymentProof } from 'types/x402'
@@ -187,11 +188,22 @@ export default async function handler(
       })
     }
 
+    // Validate chain ID matches what was recorded at purchase (prevents cross-chain tx reuse)
+    if (pendingOrder.expectedChainId != null && body.chainId != null && body.chainId !== pendingOrder.expectedChainId) {
+      return res.status(400).json({
+        success: false,
+        error: 'Chain ID does not match the expected chain for this order',
+        details: `Expected chain ${pendingOrder.expectedChainId}, got ${body.chainId}`,
+      })
+    }
+
     // Verify payment on-chain
+    const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
     const paymentProof: X402PaymentProof = {
       txHash: body.txHash,
       paymentReference: body.paymentReference,
       payer: body.payer,
+      expectedAmount,
       ...(body.chainId != null && { chainId: body.chainId }),
     }
 
@@ -293,7 +305,7 @@ export default async function handler(
       // Continue anyway as the order exists
     }
 
-    // Store completed order
+    // Store completed order (unique tx_hash constraint prevents double-spend)
     const completedOrder: CompletedTicketOrder = {
       paymentReference: body.paymentReference,
       pretixOrderCode: pretixOrder.code,
@@ -301,7 +313,18 @@ export default async function handler(
       payer: body.payer,
       completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
     }
-    await storeCompletedOrder(completedOrder)
+    try {
+      await storeCompletedOrder(completedOrder)
+    } catch (error) {
+      if (error instanceof TxHashAlreadyUsedError) {
+        return res.status(409).json({
+          success: false,
+          error: 'This transaction has already been used to complete an order',
+          details: 'Each payment can only complete one order',
+        })
+      }
+      throw error
+    }
 
     // Set PAYMENT-RESPONSE header (x402 v2 spec)
     const usdcConf = getUsdcConfig()

@@ -21,6 +21,8 @@ export interface PendingTicketOrder {
   intendedPayer: string
   /** Server-computed expected ETH amount in wei per chainId (e.g. { "8453": "..." }) for native ETH verification */
   expectedEthAmountWeiByChain?: ExpectedEthAmountWeiByChain
+  /** Expected chain ID for payment verification (prevents cross-chain tx reuse) */
+  expectedChainId?: number
   metadata?: {
     ticketIds: number[]
     addonIds?: number[]
@@ -44,6 +46,7 @@ interface PendingRow {
   expires_at: number
   intended_payer: string | null
   expected_eth_amount_wei_by_chain: ExpectedEthAmountWeiByChain | null
+  expected_chain_id: number | null
   metadata: Record<string, unknown> | null
 }
 
@@ -73,6 +76,7 @@ function rowToPending(row: PendingRow): PendingTicketOrder {
     expiresAt: row.expires_at,
     intendedPayer: row.intended_payer ?? '',
     expectedEthAmountWeiByChain: row.expected_eth_amount_wei_by_chain ?? undefined,
+    expectedChainId: row.expected_chain_id ?? undefined,
     metadata: row.metadata as PendingTicketOrder['metadata'] ?? undefined,
   }
 }
@@ -100,6 +104,7 @@ export async function storePendingOrder(order: PendingTicketOrder): Promise<void
     expires_at: Math.floor(Number(order.expiresAt)),
     intended_payer: order.intendedPayer,
     expected_eth_amount_wei_by_chain: order.expectedEthAmountWeiByChain ?? null,
+    expected_chain_id: order.expectedChainId ?? null,
     metadata: order.metadata ?? null,
   }, { onConflict: 'payment_reference' })
   if (error) throw new Error(`ticketStore storePendingOrder: ${error.message}`)
@@ -159,8 +164,17 @@ export async function removePendingOrder(paymentReference: string): Promise<bool
 }
 
 /**
- * Store a completed order and remove from pending
+ * Store a completed order and remove from pending.
+ * Throws TxHashAlreadyUsedError if the tx_hash unique constraint is violated
+ * (another order already used this transaction — prevents double-spend).
  */
+export class TxHashAlreadyUsedError extends Error {
+  constructor(txHash: string) {
+    super(`Transaction ${txHash} has already been used to complete an order`)
+    this.name = 'TxHashAlreadyUsedError'
+  }
+}
+
 export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<void> {
   const supabase = getSupabase()
   const { error: errCompleted } = await supabase.from('x402_completed_orders').insert({
@@ -170,7 +184,13 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
     payer: order.payer,
     completed_at: Math.floor(Number(order.completedAt)),
   })
-  if (errCompleted) throw new Error(`ticketStore storeCompletedOrder: ${errCompleted.message}`)
+  if (errCompleted) {
+    // Unique constraint on tx_hash — another request already completed with this tx
+    if (errCompleted.code === '23505' && errCompleted.message?.includes('tx_hash')) {
+      throw new TxHashAlreadyUsedError(order.txHash)
+    }
+    throw new Error(`ticketStore storeCompletedOrder: ${errCompleted.message}`)
+  }
   await supabase.from('x402_pending_orders').delete().eq('payment_reference', order.paymentReference)
 }
 
@@ -249,6 +269,31 @@ export async function checkAndRecordVerifyAttempt(paymentReference: string, clie
 
   await supabase.from('x402_verify_attempts').insert([{ key: refKey }, { key: ipKey }])
   await supabase.from('x402_verify_attempts').delete().lt('created_at', new Date(now.getTime() - 2 * 60 * 60 * 1000).toISOString())
+  return { allowed: true }
+}
+
+const RATE_LIMIT_PURCHASE_IP_WINDOW_MINUTES = 1
+const RATE_LIMIT_PURCHASE_IP_MAX = 5
+
+/**
+ * Check purchase rate limits. Returns true if allowed.
+ * Per IP: max 5 purchase requests per minute.
+ */
+export async function checkPurchaseRateLimit(clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_PURCHASE_IP_WINDOW_MINUTES * 60 * 1000).toISOString()
+  const ipKey = `purchase_ip:${clientIp}`
+
+  const ipCount = await supabase
+    .from('x402_verify_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('key', ipKey)
+    .gte('created_at', ipSince)
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_PURCHASE_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
   return { allowed: true }
 }
 

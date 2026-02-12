@@ -31,7 +31,7 @@ import {
   usdToUsdcAmount,
   verifyPayment,
 } from 'services/x402'
-import { storePendingOrder, getPendingOrder, claimPendingOrder, storeCompletedOrder, PendingTicketOrder, CompletedTicketOrder } from 'services/ticketStore'
+import { storePendingOrder, getPendingOrder, claimPendingOrder, storeCompletedOrder, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder, CompletedTicketOrder } from 'services/ticketStore'
 import { executeTransferWithAuthorization, getUsdcDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
 import {
   X402PaymentRequirements,
@@ -144,6 +144,16 @@ export default async function handler(
   }
 
   try {
+    // Rate limit purchases per IP
+    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+    const { allowed } = await checkPurchaseRateLimit(clientIp)
+    if (!allowed) {
+      return res.status(429).json({
+        success: false,
+        error: 'Too many purchase requests. Please try again later.',
+      })
+    }
+
     const body = req.body as PurchaseRequest
 
     // Validate request
@@ -360,10 +370,7 @@ export default async function handler(
       totalUsd: total.toFixed(2),
       createdAt: Date.now() / 1000,
       expiresAt: paymentRequirements.payment.expiresAt,
-      intendedPayer: (() => {
-        const v = validateAddressEIP55(body.intendedPayer.trim())
-        return v.valid ? v.checksummed : body.intendedPayer.trim()
-      })(),
+      intendedPayer: (validateAddressEIP55(body.intendedPayer.trim()) as { valid: true; checksummed: string }).checksummed,
       expectedEthAmountWeiByChain: Object.keys(expectedEthAmountWeiByChain).length > 0 ? expectedEthAmountWeiByChain : undefined,
       metadata: {
         ticketIds: orderTickets.map((t) => t.item.id),
@@ -626,6 +633,7 @@ async function handlePaymentSignatureRetry(
     paymentReference,
     payer: authorization.from,
     chainId: networkChainId,
+    expectedAmount,
   })
 
   if (!verification.verified) {
@@ -657,7 +665,7 @@ async function handlePaymentSignatureRetry(
     })
   }
 
-  // 14. Store completed order
+  // 14. Store completed order (unique tx_hash constraint prevents double-spend)
   const completedOrder: CompletedTicketOrder = {
     paymentReference,
     pretixOrderCode: pretixOrder.code,
@@ -665,7 +673,17 @@ async function handlePaymentSignatureRetry(
     payer: authorization.from,
     completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
   }
-  await storeCompletedOrder(completedOrder)
+  try {
+    await storeCompletedOrder(completedOrder)
+  } catch (error) {
+    if (error instanceof TxHashAlreadyUsedError) {
+      return res.status(409).json({
+        success: false,
+        error: 'This transaction has already been used to complete an order',
+      })
+    }
+    throw error
+  }
 
   // 15. Build PAYMENT-RESPONSE header (x402 v2 spec)
   const settlementResponse: SettleResponse = {

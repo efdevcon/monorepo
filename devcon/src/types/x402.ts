@@ -85,6 +85,8 @@ export interface X402PaymentProof {
   payer: string
   /** Chain ID where the transaction was sent (e.g. 8453 for Base). Required for multi-chain so verify looks up the tx on the correct chain. */
   chainId?: number
+  /** Expected USDC amount in smallest unit (6 decimals). Used by verifyPayment to check the transfer value. */
+  expectedAmount?: string
 }
 
 export interface X402PaymentVerification {
