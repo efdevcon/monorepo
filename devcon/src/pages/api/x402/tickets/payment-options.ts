@@ -10,7 +10,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import {
-  getUsdcConfig,
   generateNonce,
   createAuthorizationTypedData,
   getRelayerAddress,
@@ -19,6 +18,7 @@ import {
   SUPPORTED_ASSETS_MAINNET,
   SUPPORTED_ASSETS_TESTNET,
   NATIVE_ETH_PLACEHOLDER,
+  getUsdcConfigForChainId,
   type SupportedAsset,
 } from 'types/x402'
 
@@ -210,7 +210,6 @@ export default async function handler(
     const expiresAt = pendingOrder.expiresAt
     const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
     const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
-    const usdcConfig = getUsdcConfig()
     const chainIds = [...new Set(supportedAssets.map((a) => parseChainIdFromAsset(a.asset)))]
 
     const [ethPriceUsd, balanceMap] = await Promise.all([
@@ -254,7 +253,7 @@ export default async function handler(
       }
 
       if (sufficient) {
-        if (supported.symbol === 'USDC' && chainId === usdcConfig.chainId) {
+        if (supported.symbol === 'USDC' && getUsdcConfigForChainId(chainId)) {
           const validAfter = 0
           const validBefore = expiresAt
           const nonce = generateNonce()
@@ -267,7 +266,7 @@ export default async function handler(
             validBefore,
             nonce,
           }
-          const typedData = await createAuthorizationTypedData(authorization)
+          const typedData = await createAuthorizationTypedData(authorization, chainId)
           opt.signingRequest = {
             method: 'eth_signTypedData_v4',
             params: [walletAddress, JSON.stringify(typedDataToJson(typedData))],

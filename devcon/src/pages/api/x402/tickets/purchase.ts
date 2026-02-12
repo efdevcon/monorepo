@@ -32,7 +32,7 @@ import {
   verifyPayment,
 } from 'services/x402'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, storeCompletedOrder, PendingTicketOrder, CompletedTicketOrder } from 'services/ticketStore'
-import { executeTransferWithAuthorization, getUsdcDomain, getUsdcConfig, getReceiveWithAuthorizationTypes, getRelayerAddress } from 'services/relayer'
+import { executeTransferWithAuthorization, getUsdcDomain, getReceiveWithAuthorizationTypes, getRelayerAddress } from 'services/relayer'
 import {
   X402PaymentRequirements,
   X402PaymentBlockV2,
@@ -43,6 +43,7 @@ import {
   EIP3009Authorization,
   SUPPORTED_ASSETS_MAINNET,
   SUPPORTED_ASSETS_TESTNET,
+  getUsdcConfigForChainId,
 } from 'types/x402'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
@@ -499,10 +500,15 @@ async function handlePaymentSignatureRetry(
     return res.status(400).json({ success: false, error: `Unsupported x402 version: ${paymentPayload.x402Version}` })
   }
 
-  // 3. Extract accepted requirements and payment reference
+  // 3. Extract accepted requirements, network chain, and payment reference
   const accepted = paymentPayload.accepted
   if (!accepted || accepted.scheme !== 'exact') {
     return res.status(400).json({ success: false, error: 'Unsupported or missing payment scheme' })
+  }
+
+  const networkChainId = parseInt(accepted.network.replace('eip155:', ''), 10)
+  if (!getUsdcConfigForChainId(networkChainId)) {
+    return res.status(400).json({ success: false, error: `Unsupported chain: ${accepted.network}` })
   }
 
   const paymentReference = (accepted.extra as Record<string, unknown>)?.paymentReference as string | undefined
@@ -558,8 +564,8 @@ async function handlePaymentSignatureRetry(
     return res.status(400).json({ success: false, error: 'Authorization is not yet valid' })
   }
 
-  // 9. Verify EIP-712 signature
-  const domain = await getUsdcDomain()
+  // 9. Verify EIP-712 signature (chain-specific domain)
+  const domain = await getUsdcDomain(networkChainId)
   const types = getReceiveWithAuthorizationTypes()
   const message = {
     from: authorization.from as Hex,
@@ -605,7 +611,8 @@ async function handlePaymentSignatureRetry(
         nonce: authorization.nonce,
       },
       { v, r, s },
-      finalRecipient
+      finalRecipient,
+      networkChainId
     )
     txHash = result.txHash
   } catch (error) {
@@ -620,6 +627,7 @@ async function handlePaymentSignatureRetry(
     txHash,
     paymentReference,
     payer: authorization.from,
+    chainId: networkChainId,
   })
 
   if (!verification.verified) {
@@ -662,12 +670,10 @@ async function handlePaymentSignatureRetry(
   await storeCompletedOrder(completedOrder)
 
   // 15. Build PAYMENT-RESPONSE header (x402 v2 spec)
-  const usdcConf = getUsdcConfig()
-  const network = `eip155:${usdcConf.chainId}`
   const settlementResponse: SettleResponse = {
     success: true,
     transaction: txHash,
-    network: network as `${string}:${string}`,
+    network: `eip155:${networkChainId}` as `${string}:${string}`,
     payer: authorization.from,
   }
   res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))

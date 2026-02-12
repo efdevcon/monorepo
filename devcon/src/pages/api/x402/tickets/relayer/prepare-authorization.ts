@@ -17,10 +17,9 @@ import {
   generateNonce,
   getUsdcDomain,
   getReceiveWithAuthorizationTypes,
-  getUsdcConfig,
   getRelayerAddress,
 } from 'services/relayer'
-import { PrepareAuthorizationRequest, PrepareAuthorizationResponse, EIP3009Authorization } from 'types/x402'
+import { PrepareAuthorizationRequest, PrepareAuthorizationResponse, EIP3009Authorization, getUsdcConfigForChainId } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
@@ -83,10 +82,18 @@ export default async function handler(
       })
     }
 
+    // Validate optional chainId for multi-chain gasless
+    const requestedChainId = body.chainId
+    if (requestedChainId !== undefined && !getUsdcConfigForChainId(requestedChainId)) {
+      return res.status(400).json({
+        success: false,
+        error: `Unsupported chain for gasless USDC: ${requestedChainId}`,
+      })
+    }
+
     // Get relayer address (used as `to` for receiveWithAuthorization) and amount
     const relayerAddr = getRelayerAddress()
     const amount = usdToUsdcAmount(pendingOrder.totalUsd)
-    const usdcConfig = getUsdcConfig()
 
     // Generate authorization
     const nonce = generateNonce()
@@ -102,8 +109,8 @@ export default async function handler(
       nonce,
     }
 
-    // Build EIP-712 typed data
-    const domain = await getUsdcDomain()
+    // Build EIP-712 typed data (chain-specific domain)
+    const domain = await getUsdcDomain(requestedChainId)
     const types = getReceiveWithAuthorizationTypes()
 
     console.log('[PrepareAuth] Authorization generated for ref:', body.paymentReference)

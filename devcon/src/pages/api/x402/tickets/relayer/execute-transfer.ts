@@ -15,7 +15,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
 import { executeTransferWithAuthorization, getRelayerAddress, getUsdcConfig } from 'services/relayer'
-import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse } from 'types/x402'
+import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse, getUsdcConfigForChainId } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
@@ -119,19 +119,28 @@ export default async function handler(
       })
     }
 
-    console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference)
+    // Validate optional chainId for multi-chain gasless
+    const requestedChainId = body.chainId
+    if (requestedChainId !== undefined && !getUsdcConfigForChainId(requestedChainId)) {
+      return res.status(400).json({
+        success: false,
+        error: `Unsupported chain for gasless USDC: ${requestedChainId}`,
+      })
+    }
+
+    console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference, requestedChainId ? `(chain ${requestedChainId})` : '')
 
     // Execute the transfer (receive via relayer, then forward to final recipient)
-    const result = await executeTransferWithAuthorization(body.authorization, body.signature, finalRecipient)
+    const result = await executeTransferWithAuthorization(body.authorization, body.signature, finalRecipient, requestedChainId)
 
     console.log('[ExecuteTransfer] Transaction submitted:', result.txHash)
 
     // Set PAYMENT-RESPONSE header (x402 v2 spec)
-    const usdcConf = getUsdcConfig()
+    const settleChainId = requestedChainId ?? getUsdcConfig().chainId
     const settlementResponse: SettleResponse = {
       success: true,
       transaction: result.txHash,
-      network: `eip155:${usdcConf.chainId}` as `${string}:${string}`,
+      network: `eip155:${settleChainId}` as `${string}:${string}`,
       payer: body.authorization.from,
     }
     res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))

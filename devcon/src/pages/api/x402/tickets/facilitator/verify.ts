@@ -8,7 +8,6 @@ import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import { getPendingOrder } from 'services/ticketStore'
 import {
   getUsdcDomain,
-  getUsdcConfig,
   getReceiveWithAuthorizationTypes,
   getRelayerAddress,
 } from 'services/relayer'
@@ -18,6 +17,7 @@ import {
   X402_ERROR_CODES,
   EIP3009Authorization,
   X402_VERSION,
+  getUsdcConfigForChainId,
 } from 'types/x402'
 import { addressesEqual } from 'utils/x402Validation'
 
@@ -83,9 +83,8 @@ export default async function handler(
       })
     }
 
-    const usdcConfig = getUsdcConfig()
-    const expectedNetwork = `eip155:${usdcConfig.chainId}`
-    if (reqRequirements.network !== expectedNetwork) {
+    const networkChainId = parseInt(reqRequirements.network.replace('eip155:', ''), 10)
+    if (!getUsdcConfigForChainId(networkChainId)) {
       return res.status(400).json({
         isValid: false,
         invalidReason: X402_ERROR_CODES.INVALID_NETWORK,
@@ -166,7 +165,7 @@ export default async function handler(
       })
     }
 
-    const domain = await getUsdcDomain()
+    const domain = await getUsdcDomain(networkChainId)
     const types = getReceiveWithAuthorizationTypes()
     const message = {
       from: auth.from as Hex,

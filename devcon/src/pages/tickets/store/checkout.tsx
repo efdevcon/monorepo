@@ -741,6 +741,7 @@ function CheckoutContent() {
           paymentReference: paymentDetails.paymentReference,
           authorization: auth,
           signature: { v, r, s },
+          chainId: paymentDetails.chainId,
         }),
       })
 
@@ -1261,7 +1262,7 @@ function CheckoutContent() {
                           <span className={css['payment-icon-more']}>+20</span>
                         </div>
                       </div>
-                      <p className={css['payment-option-desc']}>USDC on Base (gasless)</p>
+                      <p className={css['payment-option-desc']}>USDC (gasless) &amp; ETH</p>
                     </div>
                   </label>
                   <label
@@ -1367,7 +1368,6 @@ function CheckoutContent() {
                                     .filter(Boolean)
                                     .join(' ')}
                                   disabled={!canPay}
-                                  title={!canPay && opt.symbol === 'USDC' && sufficient ? 'Gasless USDC only on Base' : undefined}
                                   onClick={() => canPay && selectPaymentOption(opt)}
                                 >
                                   <span className={css['payment-option-symbol']}>{opt.symbol}</span>
@@ -1375,9 +1375,6 @@ function CheckoutContent() {
                                   <span className={css['payment-option-balance']}>
                                     Balance: {balanceFormatted} {opt.symbol}
                                   </span>
-                                  {sufficient && !canPay && opt.symbol === 'USDC' && (
-                                    <span className={css['payment-option-note']}>(Base only for gasless)</span>
-                                  )}
                                 </button>
                               )
                             })}

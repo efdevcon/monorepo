@@ -12,6 +12,8 @@ import {
   SUPPORTED_ASSETS_MAINNET,
   SUPPORTED_ASSETS_TESTNET,
   X402_VERSION,
+  getGaslessUsdcChainIds,
+  getUsdcConfigForChainId,
   type PaymentRequired,
   type ResourceInfo,
   type PaymentRequirements as PaymentRequirementsSpec,
@@ -208,26 +210,33 @@ export async function buildX402PaymentRequiredSpec(
   // x402 agents will set authorization.to = payTo, which must be the relayer.
   // The relayer forwards USDC to the final recipient internally.
   const relayerAddr = getRelayerAddress()
-  // Fetch the actual USDC EIP-712 domain (name, version) so agents can build a matching domain
-  const usdcDomain = await getUsdcDomain()
-  const accept: PaymentRequirementsSpec = {
-    scheme: 'exact',
-    network: `eip155:${p.chainId}`,
-    amount: p.amount,
-    asset: p.tokenAddress,
-    payTo: relayerAddr,
-    maxTimeoutSeconds,
-    extra: {
-      name: usdcDomain.name,
-      version: usdcDomain.version,
-      paymentReference: p.paymentReference,
-    },
+
+  // Build one accepts[] entry per supported gasless USDC chain
+  const chainIds = getGaslessUsdcChainIds()
+  const accepts: PaymentRequirementsSpec[] = []
+  for (const chainId of chainIds) {
+    const config = getUsdcConfigForChainId(chainId)!
+    const domain = await getUsdcDomain(chainId)
+    accepts.push({
+      scheme: 'exact',
+      network: `eip155:${chainId}`,
+      amount: p.amount,
+      asset: config.tokenAddress,
+      payTo: relayerAddr,
+      maxTimeoutSeconds,
+      extra: {
+        name: domain.name,
+        version: domain.version,
+        paymentReference: p.paymentReference,
+      },
+    })
   }
+
   return {
     x402Version: X402_VERSION,
     ...(options?.error && { error: options.error }),
     resource,
-    accepts: [accept],
+    accepts,
     extensions: {},
   }
 }

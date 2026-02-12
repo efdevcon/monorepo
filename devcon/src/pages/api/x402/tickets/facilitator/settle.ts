@@ -12,7 +12,6 @@ import { getPendingOrder } from 'services/ticketStore'
 import {
   executeTransferWithAuthorization,
   getUsdcDomain,
-  getUsdcConfig,
   getReceiveWithAuthorizationTypes,
   getRelayerAddress,
 } from 'services/relayer'
@@ -22,6 +21,7 @@ import {
   X402_ERROR_CODES,
   EIP3009Authorization,
   X402_VERSION,
+  getUsdcConfigForChainId,
 } from 'types/x402'
 import { addressesEqual } from 'utils/x402Validation'
 
@@ -42,10 +42,10 @@ export default async function handler(
     return res.status(405).setHeader('Allow', 'POST').end()
   }
 
-  const usdcConf = getUsdcConfig()
-  const network = `eip155:${usdcConf.chainId}` as `${string}:${string}`
-
   type ExactEvmPayload = { signature: string; authorization: EIP3009Authorization }
+
+  // Network is derived from the request's paymentRequirements; fallback for early errors
+  let network = '' as `${string}:${string}`
 
   try {
     const body = req.body as X402FacilitatorVerifyRequest
@@ -63,6 +63,7 @@ export default async function handler(
     }
 
     const { paymentPayload, paymentRequirements: reqRequirements } = body
+    network = reqRequirements.network as `${string}:${string}`
 
     if (paymentPayload.x402Version !== X402_VERSION) {
       return res.status(400).json({
@@ -84,8 +85,8 @@ export default async function handler(
       })
     }
 
-    const expectedNetwork = `eip155:${usdcConf.chainId}`
-    if (reqRequirements.network !== expectedNetwork) {
+    const networkChainId = parseInt(reqRequirements.network.replace('eip155:', ''), 10)
+    if (!getUsdcConfigForChainId(networkChainId)) {
       return res.status(400).json({
         success: false,
         transaction: '',
@@ -187,8 +188,8 @@ export default async function handler(
       })
     }
 
-    // Verify EIP-712 signature
-    const domain = await getUsdcDomain()
+    // Verify EIP-712 signature (chain-specific domain)
+    const domain = await getUsdcDomain(networkChainId)
     const types = getReceiveWithAuthorizationTypes()
     const message = {
       from: auth.from as Hex,
@@ -245,7 +246,8 @@ export default async function handler(
         nonce: auth.nonce,
       },
       { v, r, s },
-      finalRecipient
+      finalRecipient,
+      networkChainId
     )
 
     return res.status(200).json({

@@ -156,6 +156,12 @@ async function createPurchase(ticketData: any, payerAddress: string) {
       if (!Array.isArray(decoded.accepts) || decoded.accepts.length === 0) {
         fail('PAYMENT-REQUIRED: missing or empty accepts[]')
       } else {
+        pass(`PAYMENT-REQUIRED accepts[]: ${decoded.accepts.length} chain(s)`)
+        for (let i = 0; i < decoded.accepts.length; i++) {
+          const a = decoded.accepts[i]
+          info(`  accepts[${i}]: network=${a.network}, asset=${a.asset?.slice(0, 10)}...`)
+        }
+        // Validate first entry structure (all entries share the same shape)
         const accept = decoded.accepts[0]
         const checks = [
           ['scheme', accept.scheme === 'exact'],
@@ -222,8 +228,10 @@ async function testFacilitatorSupported() {
   const data = await res.json()
 
   if (Array.isArray(data.kinds) && data.kinds.length > 0) {
-    const k = data.kinds[0]
-    pass(`kinds[0]: x402Version=${k.x402Version}, scheme=${k.scheme}, network=${k.network}`)
+    pass(`kinds[]: ${data.kinds.length} chain(s)`)
+    for (const k of data.kinds) {
+      info(`  kind: x402Version=${k.x402Version}, scheme=${k.scheme}, network=${k.network}`)
+    }
   } else {
     fail('kinds[] empty or missing')
   }

@@ -98,23 +98,81 @@ export interface X402PaymentVerification {
   confirmedAt?: number
 }
 
-// Base Mainnet USDC configuration
-export const BASE_USDC_CONFIG = {
-  network: 'base',
-  chainId: 8453,
-  tokenAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC on Base
+// Per-chain USDC configurations (all Circle native USDC with EIP-3009 support)
+export const ETHEREUM_USDC_CONFIG = {
+  network: 'ethereum',
+  chainId: 1,
+  tokenAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
   tokenSymbol: 'USDC',
   tokenDecimals: 6,
 } as const
 
-// Base Sepolia USDC configuration (for testing)
-export const BASE_SEPOLIA_USDC_CONFIG = {
-  network: 'base-sepolia',
-  chainId: 84532,
-  tokenAddress: '0x036CbD53842c5426634e7929541eC2318f3dCF7e', // USDC on Base Sepolia
+export const OPTIMISM_USDC_CONFIG = {
+  network: 'optimism',
+  chainId: 10,
+  tokenAddress: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
   tokenSymbol: 'USDC',
   tokenDecimals: 6,
 } as const
+
+export const ARBITRUM_USDC_CONFIG = {
+  network: 'arbitrum',
+  chainId: 42161,
+  tokenAddress: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
+  tokenSymbol: 'USDC',
+  tokenDecimals: 6,
+} as const
+
+export const BASE_USDC_CONFIG = {
+  network: 'base',
+  chainId: 8453,
+  tokenAddress: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+  tokenSymbol: 'USDC',
+  tokenDecimals: 6,
+} as const
+
+export const BASE_SEPOLIA_USDC_CONFIG = {
+  network: 'base-sepolia',
+  chainId: 84532,
+  tokenAddress: '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
+  tokenSymbol: 'USDC',
+  tokenDecimals: 6,
+} as const
+
+export interface UsdcChainConfig {
+  readonly network: string
+  readonly chainId: number
+  readonly tokenAddress: string
+  readonly tokenSymbol: string
+  readonly tokenDecimals: number
+}
+
+/** All mainnet chains supporting gasless USDC (EIP-3009) */
+export const USDC_CONFIGS_MAINNET: UsdcChainConfig[] = [
+  ETHEREUM_USDC_CONFIG,
+  OPTIMISM_USDC_CONFIG,
+  ARBITRUM_USDC_CONFIG,
+  BASE_USDC_CONFIG,
+]
+
+/** All testnet chains supporting gasless USDC (EIP-3009) */
+export const USDC_CONFIGS_TESTNET: UsdcChainConfig[] = [
+  BASE_SEPOLIA_USDC_CONFIG,
+]
+
+/** Look up USDC config by chain ID. Returns undefined if chain doesn't support gasless. */
+export function getUsdcConfigForChainId(chainId: number): UsdcChainConfig | undefined {
+  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
+  const configs = isTestnet ? USDC_CONFIGS_TESTNET : USDC_CONFIGS_MAINNET
+  return configs.find(c => c.chainId === chainId)
+}
+
+/** Get all chain IDs that support gasless USDC */
+export function getGaslessUsdcChainIds(): number[] {
+  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
+  const configs = isTestnet ? USDC_CONFIGS_TESTNET : USDC_CONFIGS_MAINNET
+  return configs.map(c => c.chainId)
+}
 
 /**
  * EIP-3009 ReceiveWithAuthorization types for gasless USDC transfers
@@ -148,6 +206,8 @@ export interface PrepareAuthorizationRequest {
   paymentReference: string
   /** Address that will sign the authorization */
   from: string
+  /** Chain ID for multi-chain gasless USDC. Defaults to Base if omitted. */
+  chainId?: number
 }
 
 export interface PrepareAuthorizationResponse {
@@ -179,6 +239,8 @@ export interface ExecuteTransferRequest {
     r: string
     s: string
   }
+  /** Chain ID for multi-chain gasless USDC. Defaults to Base if omitted. */
+  chainId?: number
 }
 
 export interface ExecuteTransferResponse {
