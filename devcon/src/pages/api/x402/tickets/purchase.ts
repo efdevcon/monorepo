@@ -31,7 +31,7 @@ import {
   usdToUsdcAmount,
   verifyPayment,
 } from 'services/x402'
-import { storePendingOrder, getPendingOrder, claimPendingOrder, storeCompletedOrder, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder, CompletedTicketOrder } from 'services/ticketStore'
+import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
 import { executeTransferWithAuthorization, getUsdcDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
 import {
   X402PaymentRequirements,
@@ -652,31 +652,17 @@ async function handlePaymentSignatureRetry(
     })
   }
 
-  // 13. Create Pretix order + mark as paid
-  let pretixOrder
+  // 13. Reserve tx_hash BEFORE creating Pretix order (prevents orphaned tickets on double-spend race)
   try {
-    pretixOrder = await createOrder(claimedOrder.orderData)
-    await markOrderPaid(pretixOrder.code)
-  } catch (error) {
-    await storePendingOrder(claimedOrder)
-    return res.status(500).json({
-      success: false,
-      error: `Failed to create ticket order: ${(error as Error).message}`,
-    })
-  }
-
-  // 14. Store completed order (unique tx_hash constraint prevents double-spend)
-  const completedOrder: CompletedTicketOrder = {
-    paymentReference,
-    pretixOrderCode: pretixOrder.code,
-    txHash,
-    payer: authorization.from,
-    completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
-  }
-  try {
-    await storeCompletedOrder(completedOrder)
+    await reserveCompletedOrder(
+      txHash,
+      paymentReference,
+      authorization.from,
+      verification.confirmedAt || Math.floor(Date.now() / 1000)
+    )
   } catch (error) {
     if (error instanceof TxHashAlreadyUsedError) {
+      await storePendingOrder(claimedOrder)
       return res.status(409).json({
         success: false,
         error: 'This transaction has already been used to complete an order',
@@ -684,6 +670,24 @@ async function handlePaymentSignatureRetry(
     }
     throw error
   }
+
+  // 14. Create Pretix order + mark as paid
+  let pretixOrder
+  try {
+    pretixOrder = await createOrder(claimedOrder.orderData)
+    await markOrderPaid(pretixOrder.code)
+  } catch (error) {
+    // Remove reservation and restore pending order so user can retry
+    await removeCompletedOrderReservation(paymentReference)
+    await storePendingOrder(claimedOrder)
+    return res.status(500).json({
+      success: false,
+      error: `Failed to create ticket order: ${(error as Error).message}`,
+    })
+  }
+
+  // 15. Finalize: replace placeholder with real Pretix order code
+  await finalizeCompletedOrder(paymentReference, pretixOrder.code)
 
   // 15. Build PAYMENT-RESPONSE header (x402 v2 spec)
   const settlementResponse: SettleResponse = {

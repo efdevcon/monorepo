@@ -21,13 +21,14 @@ import { createOrder, markOrderPaid } from 'services/pretix'
 import {
   getPendingOrder,
   storePendingOrder,
-  storeCompletedOrder,
   getCompletedOrder,
   getCompletedOrderByTxHash,
   checkAndRecordVerifyAttempt,
   claimPendingOrder,
+  reserveCompletedOrder,
+  finalizeCompletedOrder,
+  removeCompletedOrderReservation,
   TxHashAlreadyUsedError,
-  CompletedTicketOrder,
 } from 'services/ticketStore'
 import { X402PaymentProof } from 'types/x402'
 import { isValidTxHash, validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
@@ -278,6 +279,27 @@ export default async function handler(
       })
     }
 
+    // Reserve tx_hash BEFORE creating Pretix order (prevents orphaned tickets on double-spend race)
+    try {
+      await reserveCompletedOrder(
+        body.txHash,
+        body.paymentReference,
+        body.payer,
+        verification.confirmedAt || Math.floor(Date.now() / 1000)
+      )
+    } catch (error) {
+      if (error instanceof TxHashAlreadyUsedError) {
+        // Restore pending order so the user can retry with a different tx
+        await storePendingOrder(claimedOrder)
+        return res.status(409).json({
+          success: false,
+          error: 'This transaction has already been used to complete an order',
+          details: 'Each payment can only complete one order',
+        })
+      }
+      throw error
+    }
+
     // Create order in Pretix
     console.log('[Verify] Creating Pretix order for payment ref:', body.paymentReference)
     let pretixOrder
@@ -286,6 +308,8 @@ export default async function handler(
       console.log('[Verify] Pretix order created:', pretixOrder.code)
     } catch (error) {
       console.error('[Verify] Failed to create Pretix order:', error)
+      // Remove reservation and restore pending order so user can retry
+      await removeCompletedOrderReservation(body.paymentReference)
       await storePendingOrder(claimedOrder)
       return res.status(500).json({
         success: false,
@@ -305,26 +329,8 @@ export default async function handler(
       // Continue anyway as the order exists
     }
 
-    // Store completed order (unique tx_hash constraint prevents double-spend)
-    const completedOrder: CompletedTicketOrder = {
-      paymentReference: body.paymentReference,
-      pretixOrderCode: pretixOrder.code,
-      txHash: body.txHash,
-      payer: body.payer,
-      completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
-    }
-    try {
-      await storeCompletedOrder(completedOrder)
-    } catch (error) {
-      if (error instanceof TxHashAlreadyUsedError) {
-        return res.status(409).json({
-          success: false,
-          error: 'This transaction has already been used to complete an order',
-          details: 'Each payment can only complete one order',
-        })
-      }
-      throw error
-    }
+    // Finalize: replace placeholder with real Pretix order code
+    await finalizeCompletedOrder(body.paymentReference, pretixOrder.code)
 
     // Set PAYMENT-RESPONSE header (x402 v2 spec)
     const usdcConf = getUsdcConfig()

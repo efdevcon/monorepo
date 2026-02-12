@@ -194,6 +194,68 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
   await supabase.from('x402_pending_orders').delete().eq('payment_reference', order.paymentReference)
 }
 
+const RESERVED_PRETIX_CODE = '__RESERVED__'
+
+/**
+ * Reserve a tx_hash atomically BEFORE creating a Pretix order.
+ * Inserts a row with a placeholder pretix_order_code. The unique constraint
+ * on tx_hash ensures only one request can reserve a given transaction.
+ * Throws TxHashAlreadyUsedError if the tx_hash is already taken.
+ */
+export async function reserveCompletedOrder(
+  txHash: string,
+  paymentReference: string,
+  payer: string,
+  completedAt: number
+): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase.from('x402_completed_orders').insert({
+    payment_reference: paymentReference,
+    pretix_order_code: RESERVED_PRETIX_CODE,
+    tx_hash: txHash,
+    payer,
+    completed_at: Math.floor(Number(completedAt)),
+  })
+  if (error) {
+    if (error.code === '23505' && error.message?.includes('tx_hash')) {
+      throw new TxHashAlreadyUsedError(txHash)
+    }
+    throw new Error(`ticketStore reserveCompletedOrder: ${error.message}`)
+  }
+}
+
+/**
+ * Finalize a reserved completed order with the real Pretix order code.
+ * Also deletes the pending order row.
+ */
+export async function finalizeCompletedOrder(
+  paymentReference: string,
+  pretixOrderCode: string
+): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase
+    .from('x402_completed_orders')
+    .update({ pretix_order_code: pretixOrderCode })
+    .eq('payment_reference', paymentReference)
+    .eq('pretix_order_code', RESERVED_PRETIX_CODE)
+  if (error) {
+    throw new Error(`ticketStore finalizeCompletedOrder: ${error.message}`)
+  }
+  await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference)
+}
+
+/**
+ * Remove a reservation (e.g. if Pretix order creation fails, allow retry).
+ */
+export async function removeCompletedOrderReservation(paymentReference: string): Promise<void> {
+  const supabase = getSupabase()
+  await supabase
+    .from('x402_completed_orders')
+    .delete()
+    .eq('payment_reference', paymentReference)
+    .eq('pretix_order_code', RESERVED_PRETIX_CODE)
+}
+
 /**
  * Get a completed order by payment reference
  */
