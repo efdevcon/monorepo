@@ -20,7 +20,7 @@ import {
   type PaymentPayload,
   type SettleResponse,
 } from '../types/x402'
-import { getRelayerAddress, getUsdcDomain } from './relayer'
+import { getUsdcDomain } from './relayer'
 import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
@@ -206,10 +206,8 @@ export async function buildX402PaymentRequiredSpec(
     description: options?.resourceDescription ?? '',
     mimeType: 'application/json',
   }
-  // payTo = relayer address because we use receiveWithAuthorization (msg.sender == to).
-  // x402 agents will set authorization.to = payTo, which must be the relayer.
-  // The relayer forwards USDC to the final recipient internally.
-  const relayerAddr = getRelayerAddress()
+  // payTo = payment recipient address (transferWithAuthorization sends directly to recipient)
+  const recipientAddr = getPaymentRecipient()
 
   // Build one accepts[] entry per supported gasless USDC chain
   const chainIds = getGaslessUsdcChainIds()
@@ -222,7 +220,7 @@ export async function buildX402PaymentRequiredSpec(
       network: `eip155:${chainId}`,
       amount: p.amount,
       asset: config.tokenAddress,
-      payTo: relayerAddr,
+      payTo: recipientAddr,
       maxTimeoutSeconds,
       extra: {
         name: domain.name,
@@ -319,14 +317,11 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
         log.topics[0] === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef' // Transfer event signature
     )
 
-    // Verify transfer details
-    // Accept transfers from the payer directly OR from the relayer (forwarded receiveWithAuthorization)
-    const relayerAddr = getRelayerAddress().toLowerCase()
+    // Verify transfer details (transferWithAuthorization sends directly from payer to recipient)
     console.log('[x402 verify] Transfer logs found:', transferLogs.length,
       '| expected recipient:', paymentData.recipient,
       '| expected amount:', paymentData.amount,
-      '| payer:', payer,
-      '| relayer:', relayerAddr)
+      '| payer:', payer)
     for (const log of transferLogs) {
       const from = `0x${log.topics[1]?.slice(26)}`.toLowerCase()
       const to = `0x${log.topics[2]?.slice(26)}`.toLowerCase()
@@ -334,11 +329,10 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
       console.log('[x402 verify] Transfer event: from=', from, 'to=', to, 'value=', value.toString())
 
       if (
-        (from === payer.toLowerCase() || from === relayerAddr) &&
-        (to === paymentData.recipient.toLowerCase() || to === relayerAddr) &&
+        from === payer.toLowerCase() &&
+        to === paymentData.recipient.toLowerCase() &&
         value >= BigInt(paymentData.amount)
       ) {
-        // Payment verified — accepts transfers to final recipient OR to relayer (who forwards later)
         paymentReferences.delete(paymentReference)
         savePaymentRefs(paymentReferences)
 
@@ -430,17 +424,15 @@ export async function verifyPaymentDirect(
 
     console.log('[x402] Found', transferLogs.length, 'USDC transfer logs')
 
-    // Verify transfer details
-    // Accept transfers from the payer directly OR from the relayer (forwarded receiveWithAuthorization)
-    const relayerAddr = getRelayerAddress().toLowerCase()
+    // Verify transfer details (transferWithAuthorization sends directly from payer to recipient)
     for (const log of transferLogs) {
       const from = `0x${log.topics[1]?.slice(26)}`.toLowerCase()
       const to = `0x${log.topics[2]?.slice(26)}`.toLowerCase()
       const value = BigInt(log.data)
 
       if (
-        (from === payer.toLowerCase() || from === relayerAddr) &&
-        (to === expectedRecipient.toLowerCase() || to === relayerAddr) &&
+        from === payer.toLowerCase() &&
+        to === expectedRecipient.toLowerCase() &&
         value >= BigInt(expectedAmount)
       ) {
         return {

@@ -277,7 +277,7 @@ async function testFacilitatorVerify(purchaseData: any, privateKey: string) {
   }
 
   const types = {
-    ReceiveWithAuthorization: [
+    TransferWithAuthorization: [
       { name: 'from', type: 'address' },
       { name: 'to', type: 'address' },
       { name: 'value', type: 'uint256' },
@@ -300,7 +300,7 @@ async function testFacilitatorVerify(purchaseData: any, privateKey: string) {
   const signature = await account.signTypedData({
     domain,
     types,
-    primaryType: 'ReceiveWithAuthorization',
+    primaryType: 'TransferWithAuthorization',
     message,
   })
   pass(`Signed EIP-712 payload (from ${account.address})`)
@@ -360,7 +360,7 @@ async function testPaymentSignatureFlow(
   }
 
   const types = {
-    ReceiveWithAuthorization: [
+    TransferWithAuthorization: [
       { name: 'from', type: 'address' },
       { name: 'to', type: 'address' },
       { name: 'value', type: 'uint256' },
@@ -391,7 +391,7 @@ async function testPaymentSignatureFlow(
   const signature = await account.signTypedData({
     domain,
     types,
-    primaryType: 'ReceiveWithAuthorization',
+    primaryType: 'TransferWithAuthorization',
     message,
   })
 

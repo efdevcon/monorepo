@@ -12,8 +12,7 @@ import { getPendingOrder } from 'services/ticketStore'
 import {
   executeTransferWithAuthorization,
   getUsdcDomain,
-  getReceiveWithAuthorizationTypes,
-  getRelayerAddress,
+  getTransferWithAuthorizationTypes,
 } from 'services/relayer'
 import {
   X402FacilitatorVerifyRequest,
@@ -142,10 +141,9 @@ export default async function handler(
       })
     }
 
-    // Verify recipient is the relayer (receiveWithAuthorization requires msg.sender == to)
-    const relayerAddr = getRelayerAddress()
-    const finalRecipient = getPaymentRecipient()
-    if (!addressesEqual(auth.to, relayerAddr)) {
+    // Verify recipient is the payment recipient (transferWithAuthorization sends directly)
+    const paymentRecipient = getPaymentRecipient()
+    if (!addressesEqual(auth.to, paymentRecipient)) {
       return res.status(400).json({
         success: false,
         transaction: '',
@@ -190,7 +188,7 @@ export default async function handler(
 
     // Verify EIP-712 signature (chain-specific domain)
     const domain = await getUsdcDomain(networkChainId)
-    const types = getReceiveWithAuthorizationTypes()
+    const types = getTransferWithAuthorizationTypes()
     const message = {
       from: auth.from as Hex,
       to: auth.to as Hex,
@@ -214,7 +212,7 @@ export default async function handler(
       address: auth.from as Hex,
       domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
       types,
-      primaryType: 'ReceiveWithAuthorization',
+      primaryType: 'TransferWithAuthorization',
       message,
       signature: rawSignature as Hex,
     })
@@ -246,7 +244,6 @@ export default async function handler(
         nonce: auth.nonce,
       },
       { v, r, s },
-      finalRecipient,
       networkChainId
     )
 

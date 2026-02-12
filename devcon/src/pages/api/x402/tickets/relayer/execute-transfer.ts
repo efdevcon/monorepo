@@ -14,7 +14,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
-import { executeTransferWithAuthorization, getRelayerAddress, getUsdcConfig } from 'services/relayer'
+import { executeTransferWithAuthorization, getUsdcConfig } from 'services/relayer'
 import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse, getUsdcConfigForChainId } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
@@ -82,16 +82,15 @@ export default async function handler(
       })
     }
 
-    // Validate authorization `to` is the relayer (receiveWithAuthorization requires msg.sender == to)
-    const relayerAddr = getRelayerAddress()
-    const finalRecipient = getPaymentRecipient()
+    // Validate authorization `to` is the payment recipient
+    const paymentRecipient = getPaymentRecipient()
     const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
 
-    if (!addressesEqual(body.authorization.to, relayerAddr)) {
+    if (!addressesEqual(body.authorization.to, paymentRecipient)) {
       return res.status(400).json({
         success: false,
-        error: 'Authorization recipient must be the relayer address',
-        details: `Expected: ${relayerAddr}, Got: ${body.authorization.to}`,
+        error: 'Authorization recipient must be the payment recipient address',
+        details: `Expected: ${paymentRecipient}, Got: ${body.authorization.to}`,
       })
     }
 
@@ -130,8 +129,8 @@ export default async function handler(
 
     console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference, requestedChainId ? `(chain ${requestedChainId})` : '')
 
-    // Execute the transfer (receive via relayer, then forward to final recipient)
-    const result = await executeTransferWithAuthorization(body.authorization, body.signature, finalRecipient, requestedChainId)
+    // Execute the transfer (single tx: user → payment recipient via transferWithAuthorization)
+    const result = await executeTransferWithAuthorization(body.authorization, body.signature, requestedChainId)
 
     console.log('[ExecuteTransfer] Transaction submitted:', result.txHash)
 

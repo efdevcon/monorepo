@@ -12,7 +12,6 @@ import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import {
   generateNonce,
   createAuthorizationTypedData,
-  getRelayerAddress,
 } from 'services/relayer'
 import {
   SUPPORTED_ASSETS_MAINNET,
@@ -257,10 +256,9 @@ export default async function handler(
           const validAfter = 0
           const validBefore = expiresAt
           const nonce = generateNonce()
-          const relayerAddr = getRelayerAddress()
           const authorization = {
             from: walletAddress,
-            to: relayerAddr,
+            to: recipient,
             value: usdcAmount,
             validAfter,
             validBefore,

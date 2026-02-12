@@ -32,7 +32,7 @@ import {
   verifyPayment,
 } from 'services/x402'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, storeCompletedOrder, PendingTicketOrder, CompletedTicketOrder } from 'services/ticketStore'
-import { executeTransferWithAuthorization, getUsdcDomain, getReceiveWithAuthorizationTypes, getRelayerAddress } from 'services/relayer'
+import { executeTransferWithAuthorization, getUsdcDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
 import {
   X402PaymentRequirements,
   X402PaymentBlockV2,
@@ -542,12 +542,11 @@ async function handlePaymentSignatureRetry(
   }
 
   // 8. Verify authorization params match expected values
-  const relayerAddr = getRelayerAddress()
-  const finalRecipient = getPaymentRecipient()
+  const paymentRecipient = getPaymentRecipient()
   const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
 
-  if (!addressesEqual(authorization.to, relayerAddr)) {
-    return res.status(400).json({ success: false, error: 'Authorization recipient must be the relayer address' })
+  if (!addressesEqual(authorization.to, paymentRecipient)) {
+    return res.status(400).json({ success: false, error: 'Authorization recipient must be the payment recipient address' })
   }
   if (BigInt(String(authorization.value)) < BigInt(expectedAmount)) {
     return res.status(400).json({ success: false, error: 'Authorization amount insufficient' })
@@ -566,7 +565,7 @@ async function handlePaymentSignatureRetry(
 
   // 9. Verify EIP-712 signature (chain-specific domain)
   const domain = await getUsdcDomain(networkChainId)
-  const types = getReceiveWithAuthorizationTypes()
+  const types = getTransferWithAuthorizationTypes()
   const message = {
     from: authorization.from as Hex,
     to: authorization.to as Hex,
@@ -581,7 +580,7 @@ async function handlePaymentSignatureRetry(
       address: authorization.from as Hex,
       domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
       types,
-      primaryType: 'ReceiveWithAuthorization',
+      primaryType: 'TransferWithAuthorization',
       message,
       signature: rawSignature as Hex,
     })
@@ -611,7 +610,6 @@ async function handlePaymentSignatureRetry(
         nonce: authorization.nonce,
       },
       { v, r, s },
-      finalRecipient,
       networkChainId
     )
     txHash = result.txHash

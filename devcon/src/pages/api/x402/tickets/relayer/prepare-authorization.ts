@@ -12,12 +12,11 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
-import { usdToUsdcAmount } from 'services/x402'
+import { usdToUsdcAmount, getPaymentRecipient } from 'services/x402'
 import {
   generateNonce,
   getUsdcDomain,
-  getReceiveWithAuthorizationTypes,
-  getRelayerAddress,
+  getTransferWithAuthorizationTypes,
 } from 'services/relayer'
 import { PrepareAuthorizationRequest, PrepareAuthorizationResponse, EIP3009Authorization, getUsdcConfigForChainId } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
@@ -91,8 +90,8 @@ export default async function handler(
       })
     }
 
-    // Get relayer address (used as `to` for receiveWithAuthorization) and amount
-    const relayerAddr = getRelayerAddress()
+    // Get payment recipient (used as `to` for transferWithAuthorization) and amount
+    const recipient = getPaymentRecipient()
     const amount = usdToUsdcAmount(pendingOrder.totalUsd)
 
     // Generate authorization
@@ -102,7 +101,7 @@ export default async function handler(
 
     const authorization: EIP3009Authorization = {
       from: fromValidation.checksummed,
-      to: relayerAddr,
+      to: recipient,
       value: amount,
       validAfter,
       validBefore,
@@ -111,7 +110,7 @@ export default async function handler(
 
     // Build EIP-712 typed data (chain-specific domain)
     const domain = await getUsdcDomain(requestedChainId)
-    const types = getReceiveWithAuthorizationTypes()
+    const types = getTransferWithAuthorizationTypes()
 
     console.log('[PrepareAuth] Authorization generated for ref:', body.paymentReference)
 
@@ -125,7 +124,7 @@ export default async function handler(
           verifyingContract: domain.verifyingContract,
         },
         types,
-        primaryType: 'ReceiveWithAuthorization',
+        primaryType: 'TransferWithAuthorization',
         message: authorization,
       },
       authorization,

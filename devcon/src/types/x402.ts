@@ -149,10 +149,10 @@ export interface UsdcChainConfig {
 
 /** All mainnet chains supporting gasless USDC (EIP-3009) */
 export const USDC_CONFIGS_MAINNET: UsdcChainConfig[] = [
+  BASE_USDC_CONFIG,
   ETHEREUM_USDC_CONFIG,
   OPTIMISM_USDC_CONFIG,
   ARBITRUM_USDC_CONFIG,
-  BASE_USDC_CONFIG,
 ]
 
 /** All testnet chains supporting gasless USDC (EIP-3009) */
