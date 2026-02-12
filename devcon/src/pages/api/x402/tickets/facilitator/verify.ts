@@ -9,7 +9,8 @@ import { getPendingOrder } from 'services/ticketStore'
 import {
   getUsdcDomain,
   getUsdcConfig,
-  getTransferWithAuthorizationTypes,
+  getReceiveWithAuthorizationTypes,
+  getRelayerAddress,
 } from 'services/relayer'
 import {
   X402FacilitatorVerifyRequest,
@@ -110,8 +111,9 @@ export default async function handler(
       })
     }
 
-    const expectedRecipient = getPaymentRecipient()
-    if (reqRequirements.payTo.toLowerCase() !== expectedRecipient.toLowerCase()) {
+    // payTo must be the relayer (receiveWithAuthorization requires msg.sender == to)
+    const relayerAddrForPayTo = getRelayerAddress()
+    if (reqRequirements.payTo.toLowerCase() !== relayerAddrForPayTo.toLowerCase()) {
       return res.status(400).json({
         isValid: false,
         invalidReason: X402_ERROR_CODES.INVALID_EXACT_EVM_PAYLOAD_RECIPIENT_MISMATCH,
@@ -131,7 +133,8 @@ export default async function handler(
       })
     }
 
-    if (auth.to.toLowerCase() !== expectedRecipient.toLowerCase()) {
+    const relayerAddr = getRelayerAddress()
+    if (!addressesEqual(auth.to, relayerAddr)) {
       return res.status(400).json({
         isValid: false,
         invalidReason: X402_ERROR_CODES.INVALID_EXACT_EVM_PAYLOAD_RECIPIENT_MISMATCH,
@@ -163,8 +166,8 @@ export default async function handler(
       })
     }
 
-    const domain = getUsdcDomain()
-    const types = getTransferWithAuthorizationTypes()
+    const domain = await getUsdcDomain()
+    const types = getReceiveWithAuthorizationTypes()
     const message = {
       from: auth.from as Hex,
       to: auth.to as Hex,
@@ -186,7 +189,7 @@ export default async function handler(
       address: auth.from as Hex,
       domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
       types,
-      primaryType: 'TransferWithAuthorization',
+      primaryType: 'ReceiveWithAuthorization',
       message,
       signature: rawSig as Hex,
     })

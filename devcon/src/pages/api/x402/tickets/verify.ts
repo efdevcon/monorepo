@@ -14,7 +14,9 @@
  * - Ticket details
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
+import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
+import { getUsdcConfig } from 'services/relayer'
+import type { SettleResponse } from 'types/x402'
 import { createOrder, markOrderPaid } from 'services/pretix'
 import {
   getPendingOrder,
@@ -300,6 +302,17 @@ export default async function handler(
       completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
     }
     await storeCompletedOrder(completedOrder)
+
+    // Set PAYMENT-RESPONSE header (x402 v2 spec)
+    const usdcConf = getUsdcConfig()
+    const verifyChainId = body.chainId || usdcConf.chainId
+    const settlementResponse: SettleResponse = {
+      success: true,
+      transaction: body.txHash,
+      network: `eip155:${verifyChainId}` as `${string}:${string}`,
+      payer: body.payer,
+    }
+    res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))
 
     // Return success response
     const response: VerifySuccessResponse = {

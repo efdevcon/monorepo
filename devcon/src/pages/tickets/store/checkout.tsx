@@ -13,7 +13,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
   useSwitchChain,
-  useSignTypedData,
+  useWalletClient,
   useSendTransaction,
 } from 'wagmi'
 import { createConfig, http } from 'wagmi'
@@ -283,7 +283,9 @@ function CheckoutContent() {
 
   // Wagmi hooks
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
-  const { signTypedData, data: signatureData, isPending: isSignPending, error: signError } = useSignTypedData()
+  const { data: walletClient } = useWalletClient()
+  const [isSigningDirect, setIsSigningDirect] = useState(false)
+  const [directSignError, setDirectSignError] = useState<string | null>(null)
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
   const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
   const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
@@ -377,32 +379,54 @@ function CheckoutContent() {
     }
   }, [isSendTxSuccess, sendTxHash])
 
-  // ── Handle gasless signature (from prepare-authorization or from payment-option typed data) ──
-  useEffect(() => {
-    if (!signatureData || !paymentDetails) return
-    const auth = authorizationData?.authorization
-    const fromOption =
-      selectedOption?.signingRequest?.method === 'eth_signTypedData_v4' &&
-      selectedOption.signingRequest?.params?.[1]
-    const authToUse = auth || (fromOption && (() => {
-      try {
-        const typed = JSON.parse(fromOption as string)
-        return typed?.message ? {
-          from: typed.message.from,
-          to: typed.message.to,
-          value: String(typed.message.value),
-          validAfter: Number(typed.message.validAfter),
-          validBefore: Number(typed.message.validBefore),
-          nonce: typed.message.nonce,
-        } : null
-      } catch {
-        return null
-      }
-    })())
-    if (authToUse) {
-      executeGaslessTransfer(signatureData, authToUse)
+  /**
+   * Sign EIP-712 typed data directly via eth_signTypedData_v4.
+   * Formats data for optimal wallet interpretation (hex chainId, EIP712Domain type, string values).
+   * Matches the format used by devconnect-app's createReceiveAuthorizationMessage.
+   */
+  async function signEIP712Direct(typedData: {
+    domain: { name?: string; version?: string; chainId?: number | string; verifyingContract?: string }
+    types: Record<string, Array<{ name: string; type: string }>>
+    primaryType: string
+    message: Record<string, unknown>
+  }): Promise<string> {
+    if (!walletClient || !address) throw new Error('Wallet not connected')
+
+    const chainIdNum = typeof typedData.domain.chainId === 'string'
+      ? parseInt(typedData.domain.chainId, (typedData.domain.chainId as string).startsWith('0x') ? 16 : 10)
+      : Number(typedData.domain.chainId ?? 0)
+
+    // Include EIP712Domain type explicitly and put primaryType first for better wallet recognition
+    const types: Record<string, Array<{ name: string; type: string }>> = {
+      [typedData.primaryType]: typedData.types[typedData.primaryType],
+      EIP712Domain: [
+        { name: 'name', type: 'string' },
+        { name: 'version', type: 'string' },
+        { name: 'chainId', type: 'uint256' },
+        { name: 'verifyingContract', type: 'address' },
+      ],
     }
-  }, [signatureData])
+
+    const jsonStr = JSON.stringify({
+      types,
+      primaryType: typedData.primaryType,
+      domain: {
+        ...typedData.domain,
+        chainId: `0x${chainIdNum.toString(16)}`,
+      },
+      message: Object.fromEntries(
+        Object.entries(typedData.message).map(([k, v]) => [
+          k,
+          typeof v === 'bigint' ? v.toString() : String(v),
+        ])
+      ),
+    })
+
+    return walletClient.request({
+      method: 'eth_signTypedData_v4',
+      params: [address, jsonStr],
+    } as any)
+  }
 
   // ── Poll fiat order status ──
   const pollFiatStatus = useCallback(async () => {
@@ -638,10 +662,12 @@ function CheckoutContent() {
   }
 
   async function initiateGaslessPayment(details: PaymentDetails) {
-    if (!address) return
+    if (!address || !walletClient) return
 
     setPaymentStatus('Preparing authorization...')
     setPurchaseError(null)
+    setDirectSignError(null)
+    setIsSigningDirect(true)
 
     try {
       const prepareRes = await fetch('/api/x402/tickets/relayer/prepare-authorization', {
@@ -657,32 +683,31 @@ function CheckoutContent() {
       if (!prepareData.success) {
         setPurchaseError(prepareData.error || 'Failed to prepare authorization')
         setPaymentStatus(null)
+        setIsSigningDirect(false)
         return
       }
 
       setAuthorizationData(prepareData)
+
+      const { domain, types, primaryType, message } = prepareData.typedData
+      const domainChainId = typeof domain.chainId === 'string'
+        ? parseInt(domain.chainId, domain.chainId.startsWith('0x') ? 16 : 10)
+        : domain.chainId
+      if (domainChainId && chain?.id !== domainChainId && switchChain) {
+        setPaymentStatus('Switch network in your wallet...')
+        await switchChain({ chainId: domainChainId })
+      }
       setPaymentStatus('Sign in your wallet...')
 
-      const { domain, types, message } = prepareData.typedData
-      signTypedData({
-        domain: {
-          ...domain,
-          verifyingContract: domain.verifyingContract as `0x${string}`,
-        },
-        types,
-        primaryType: 'TransferWithAuthorization',
-        message: {
-          from: message.from as `0x${string}`,
-          to: message.to as `0x${string}`,
-          value: BigInt(message.value),
-          validAfter: BigInt(message.validAfter),
-          validBefore: BigInt(message.validBefore),
-          nonce: message.nonce as `0x${string}`,
-        },
-      })
-    } catch {
-      setPurchaseError('Failed to prepare payment')
+      const signature = await signEIP712Direct({ domain, types, primaryType, message })
+
+      setIsSigningDirect(false)
+      await executeGaslessTransfer(signature, prepareData.authorization)
+    } catch (e) {
+      setDirectSignError((e as Error).message || 'Failed to prepare payment')
+      setPurchaseError((e as Error).message || 'Failed to prepare payment')
       setPaymentStatus(null)
+      setIsSigningDirect(false)
     }
   }
 
@@ -761,29 +786,47 @@ function CheckoutContent() {
     setPurchaseError(null)
 
     if (req.method === 'eth_signTypedData_v4') {
+      if (!walletClient) {
+        setPurchaseError('Wallet not connected')
+        return
+      }
+      setIsSigningDirect(true)
+      setDirectSignError(null)
       try {
         const typedJson = req.params[1] as string
         const typed = JSON.parse(typedJson)
+        const domainChainId = typeof typed.domain.chainId === 'string'
+          ? parseInt(typed.domain.chainId, typed.domain.chainId.startsWith('0x') ? 16 : 10)
+          : typed.domain.chainId
+        if (domainChainId && chain?.id !== domainChainId && switchChain) {
+          setPaymentStatus('Switch network in your wallet...')
+          await switchChain({ chainId: domainChainId })
+        }
         setPaymentStatus('Sign in your wallet...')
-        signTypedData({
-          domain: {
-            ...typed.domain,
-            verifyingContract: typed.domain.verifyingContract as `0x${string}`,
-          },
+
+        const signature = await signEIP712Direct({
+          domain: typed.domain,
           types: typed.types,
           primaryType: typed.primaryType,
-          message: {
-            from: typed.message.from as `0x${string}`,
-            to: typed.message.to as `0x${string}`,
-            value: BigInt(typed.message.value),
-            validAfter: BigInt(typed.message.validAfter),
-            validBefore: BigInt(typed.message.validBefore),
-            nonce: typed.message.nonce as `0x${string}`,
-          },
+          message: typed.message,
         })
+
+        setIsSigningDirect(false)
+        // Extract authorization and execute
+        const auth = {
+          from: typed.message.from,
+          to: typed.message.to,
+          value: String(typed.message.value),
+          validAfter: Number(typed.message.validAfter),
+          validBefore: Number(typed.message.validBefore),
+          nonce: typed.message.nonce,
+        }
+        await executeGaslessTransfer(signature, auth)
       } catch (e) {
-        setPurchaseError('Invalid signing data')
+        setDirectSignError((e as Error).message || 'Invalid signing data')
+        setPurchaseError((e as Error).message || 'Invalid signing data')
         setPaymentStatus(null)
+        setIsSigningDirect(false)
       }
       return
     }
@@ -885,7 +928,7 @@ function CheckoutContent() {
   // ── Checkout button state ──
   const isProcessing =
     purchaseLoading ||
-    isSignPending ||
+    isSigningDirect ||
     isExecutingGasless ||
     isWritePending ||
     isTxLoading ||
@@ -1388,8 +1431,8 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {(writeError || signError) && (
-                  <div className={css['error-box']}>{(writeError || signError)?.message}</div>
+                {(writeError || directSignError) && (
+                  <div className={css['error-box']}>{writeError?.message || directSignError}</div>
                 )}
 
                 {paymentStatus && <p className={css['status-text']}>{paymentStatus}</p>}

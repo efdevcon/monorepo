@@ -28,10 +28,12 @@ const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
 const chain = isTestnet ? baseSepolia : base
 
 // USDC contract ABI for EIP-3009 functions
-// Note: We use transferWithAuthorization (not receiveWithAuthorization) because
-// receiveWithAuthorization requires the caller to be the payee, but we want any relayer to execute
+// We use receiveWithAuthorization (requires msg.sender == to) so wallets can
+// decode the signing request and show a human-readable "Authorize USDC transfer" UI.
+// The relayer address is set as `to`, then forwards USDC to the final recipient.
 const usdcAbi = parseAbi([
-  'function transferWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, uint8 v, bytes32 r, bytes32 s) external',
+  'function receiveWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, uint8 v, bytes32 r, bytes32 s) external',
+  'function transfer(address to, uint256 value) external returns (bool)',
   'function authorizationState(address authorizer, bytes32 nonce) external view returns (bool)',
   'function name() external view returns (string)',
   'function version() external view returns (string)',
@@ -81,25 +83,37 @@ export function generateNonce(): string {
 }
 
 /**
- * Get EIP-712 domain for USDC contract
+ * Cached EIP-712 domain fetched from the USDC contract.
+ * Fetching name() and version() on-chain guarantees the domain matches
+ * the contract's DOMAIN_SEPARATOR so wallets can decode the signing request.
  */
-export function getUsdcDomain() {
-  return {
-    name: 'USD Coin', // USDC contract name
-    version: '2', // USDC version
+let cachedDomain: { name: string; version: string; chainId: number; verifyingContract: `0x${string}` } | null = null
+
+export async function getUsdcDomain() {
+  if (cachedDomain) return cachedDomain
+
+  const contractAddr = usdcConfig.tokenAddress as `0x${string}`
+  const [name, version] = await Promise.all([
+    publicClient.readContract({ address: contractAddr, abi: usdcAbi, functionName: 'name' }),
+    publicClient.readContract({ address: contractAddr, abi: usdcAbi, functionName: 'version' }),
+  ])
+
+  cachedDomain = {
+    name: name as string,
+    version: version as string,
     chainId: usdcConfig.chainId,
-    verifyingContract: usdcConfig.tokenAddress as `0x${string}`,
+    verifyingContract: contractAddr,
   }
+  console.log('[Relayer] USDC EIP-712 domain fetched:', cachedDomain)
+  return cachedDomain
 }
 
 /**
- * Get EIP-712 types for TransferWithAuthorization
- * Note: We use TransferWithAuthorization instead of ReceiveWithAuthorization
- * because the latter requires the caller to be the payee
+ * Get EIP-712 types for ReceiveWithAuthorization (EIP-3009)
  */
-export function getTransferWithAuthorizationTypes() {
+export function getReceiveWithAuthorizationTypes() {
   return {
-    TransferWithAuthorization: [
+    ReceiveWithAuthorization: [
       { name: 'from', type: 'address' },
       { name: 'to', type: 'address' },
       { name: 'value', type: 'uint256' },
@@ -110,14 +124,18 @@ export function getTransferWithAuthorizationTypes() {
   }
 }
 
+/** @deprecated Use getReceiveWithAuthorizationTypes instead */
+export const getTransferWithAuthorizationTypes = getReceiveWithAuthorizationTypes
+
 /**
- * Create typed data for EIP-712 signing
+ * Create typed data for EIP-712 signing (ReceiveWithAuthorization)
  */
-export function createAuthorizationTypedData(authorization: EIP3009Authorization) {
+export async function createAuthorizationTypedData(authorization: EIP3009Authorization) {
+  const domain = await getUsdcDomain()
   return {
-    domain: getUsdcDomain(),
-    types: getTransferWithAuthorizationTypes(),
-    primaryType: 'TransferWithAuthorization' as const,
+    domain,
+    types: getReceiveWithAuthorizationTypes(),
+    primaryType: 'ReceiveWithAuthorization' as const,
     message: {
       from: authorization.from as `0x${string}`,
       to: authorization.to as `0x${string}`,
@@ -148,18 +166,23 @@ export async function isNonceUsed(authorizer: string, nonce: string): Promise<bo
 }
 
 /**
- * Execute a TransferWithAuthorization transaction
- * The relayer pays gas fees and the USDC is transferred from `from` to `to`
- * Note: We use transferWithAuthorization (not receiveWithAuthorization) because
- * the latter requires the caller to be the payee
+ * Execute a ReceiveWithAuthorization transaction, then forward USDC to the final recipient.
+ *
+ * receiveWithAuthorization requires msg.sender == to, so the relayer address is used as `to`
+ * in the user's signature. After receiving, the relayer transfers USDC to `finalRecipient`.
+ *
+ * @param authorization  The signed EIP-3009 authorization (to = relayer address)
+ * @param signature      The EIP-712 signature split into v, r, s
+ * @param finalRecipient The actual payment recipient to forward USDC to (if different from relayer)
  */
 export async function executeTransferWithAuthorization(
   authorization: EIP3009Authorization,
-  signature: { v: number; r: string; s: string }
-): Promise<{ txHash: string }> {
+  signature: { v: number; r: string; s: string },
+  finalRecipient?: string
+): Promise<{ txHash: string; receiveTxHash?: string }> {
   const { walletClient, account } = getRelayerWallet()
 
-  console.log('[Relayer] Executing transferWithAuthorization on', chain.name, '(', chain.id, ')')
+  console.log('[Relayer] Executing receiveWithAuthorization on', chain.name, '(', chain.id, ')')
 
   // Check if nonce has already been used
   const nonceUsed = await isNonceUsed(authorization.from, authorization.nonce)
@@ -167,12 +190,17 @@ export async function executeTransferWithAuthorization(
     throw new Error('Authorization nonce has already been used')
   }
 
+  // Verify the authorization's `to` matches the relayer (required by receiveWithAuthorization)
+  if (authorization.to.toLowerCase() !== account.address.toLowerCase()) {
+    throw new Error(`Authorization 'to' must be the relayer address (${account.address})`)
+  }
+
   try {
-    // Execute the transaction
+    // Step 1: Receive USDC from the user via receiveWithAuthorization
     const hash = await walletClient.writeContract({
       address: usdcConfig.tokenAddress as `0x${string}`,
       abi: usdcAbi,
-      functionName: 'transferWithAuthorization',
+      functionName: 'receiveWithAuthorization',
       args: [
         authorization.from as `0x${string}`,
         authorization.to as `0x${string}`,
@@ -186,7 +214,41 @@ export async function executeTransferWithAuthorization(
       ],
     })
 
-    console.log('[Relayer] Transaction submitted:', hash)
+    console.log('[Relayer] receiveWithAuthorization tx:', hash)
+
+    // Wait for the receive tx to be mined before forwarding (avoids nonce collision)
+    console.log('[Relayer] Waiting for receiveWithAuthorization confirmation...')
+    const receipt = await publicClient.waitForTransactionReceipt({ hash })
+    console.log('[Relayer] receiveWithAuthorization confirmed, status:', receipt.status)
+
+    if (receipt.status !== 'success') {
+      throw new Error(`receiveWithAuthorization reverted (tx: ${hash})`)
+    }
+
+    // Step 2: Forward USDC to the final recipient if different from relayer
+    if (finalRecipient && finalRecipient.toLowerCase() !== account.address.toLowerCase()) {
+      console.log('[Relayer] Forwarding USDC to final recipient:', finalRecipient)
+      try {
+        // Fetch fresh nonce including pending txs — the wallet client cache is stale after waitForTransactionReceipt
+        // Using 'pending' blockTag avoids "replacement transaction underpriced" when prior forward attempts are still in mempool
+        const nonce = await publicClient.getTransactionCount({ address: account.address, blockTag: 'pending' })
+        const forwardHash = await walletClient.writeContract({
+          address: usdcConfig.tokenAddress as `0x${string}`,
+          abi: usdcAbi,
+          functionName: 'transfer',
+          args: [finalRecipient as `0x${string}`, BigInt(authorization.value)],
+          nonce,
+        })
+        console.log('[Relayer] Forward tx:', forwardHash)
+        return { txHash: forwardHash, receiveTxHash: hash }
+      } catch (forwardError) {
+        // Log but don't fail — the user's payment was received successfully.
+        // The forward can be retried manually.
+        console.error('[Relayer] Forward to recipient failed (funds held by relayer):', forwardError)
+        return { txHash: hash }
+      }
+    }
+
     return { txHash: hash }
   } catch (error) {
     console.error('[Relayer] Error executing authorization:', error)

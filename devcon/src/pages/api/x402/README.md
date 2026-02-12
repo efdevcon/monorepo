@@ -16,7 +16,7 @@ Run migrations in **devcon-api** at `src/supabase/migrations/`
 |------|------|
 | **API – tickets** | `src/pages/api/x402/tickets/index.ts`, `purchase.ts`, `fiat-purchase.ts`, `verify.ts`, `status.ts`, `order-status.ts`, `order/[code].ts` |
 | **API – relayer** | `src/pages/api/x402/tickets/relayer/prepare-authorization.ts`, `execute-transfer.ts` |
-| **API – facilitator** | `src/pages/api/x402/tickets/facilitator/supported.ts`, `verify.ts` |
+| **API – facilitator** | `src/pages/api/x402/tickets/facilitator/supported.ts`, `verify.ts`, `settle.ts` |
 | **Pages – store** | `src/pages/tickets/index.tsx`, `store/index.tsx`, `store/checkout.tsx`, `store/checkout.module.scss`, `store/order/[code]/[secret].tsx`, `store/order/[code]/confirmation.module.scss`, `tickets-landing.module.scss` |
 | **Pages – test** | `src/pages/x402-test.tsx` |
 | **Services** | `src/services/pretix.ts`, `src/services/relayer.ts`, `src/services/ticketStore.ts`, `src/services/x402.ts` |
@@ -44,94 +44,51 @@ This implementation uses the official [x402](https://github.com/coinbase/x402) S
   - Endpoints: `POST .../verify`, `POST .../settle`, `GET .../supported`
   - Request/response shapes match the [x402 facilitator interface](https://docs.cdp.coinbase.com/x402/welcome) (e.g. verify/settle request body: `paymentPayload`, `paymentRequirements`).
 
-## x402 v2 alignment
+## x402 v2 compliance
 
-This API follows x402 v2 conventions where applicable:
+This API is **dual-mode**: fully x402 v2 compliant for SDK/agent consumers while also providing a richer multi-step checkout flow for the frontend.
 
-- **Payment-Required header** – Responses that require payment set `Payment-Required: true` (and legacy `X-Payment-Required: true`).
-- **Payment block** – When the user reaches the crypto payment step (402 from purchase), the body includes a `payment` object:
-  - `paymentId` – Same as the payment reference (used to verify and complete the order).
-  - `amount`, `currency`, `referenceId`, `status: "pending"`, `createdAt` (Unix time).
-  - `supportedAssets` – Array of assets the user can pay with: **USDC** and **ETH** (native) on **Ethereum (1), Optimism (10), Arbitrum (42161), Base (8453)** (mainnet), or Base Sepolia (84532) in testnet. Each entry uses CAIP-style `asset` (e.g. `eip155:1/erc20:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`) and `chainId` (`eip155:1`), plus `symbol`, `name`, `chain`, `decimals`.
-- **GET /api/x402/tickets** – Includes `paymentInfo.supportedAssets` so clients can show supported chains and assets before starting a purchase.
-- **Verify / relayer** – Still use the single configured chain (Base or Base Sepolia). Extending verify to accept `chainId` (and optionally asset) for multi-chain is a possible follow-up.
+### Spec-compliant features
 
-## x402 Protocol Specification v2 – alignment
+| Spec area | Implementation |
+|-----------|----------------|
+| **PAYMENT-REQUIRED header (§5.1)** | 402 responses set `PAYMENT-REQUIRED` header with base64-encoded `PaymentRequired` JSON (`x402Version: 2`, `resource`, `accepts[]`, `extensions`). Legacy `Payment-Required: true` and `X-Payment-*` headers are also set for backward compatibility. |
+| **PaymentRequired body (§5.1)** | The 402 response body includes an `x402` field containing a spec-compliant `PaymentRequired` object with `accepts[]` array. Each entry has `scheme: "exact"`, `network` (CAIP-2, e.g. `eip155:8453`), `amount` (atomic string), `asset` (token address), `payTo`, `maxTimeoutSeconds`, and `extra` (includes `paymentReference`). |
+| **PAYMENT-SIGNATURE retry flow (§5.2)** | SDK clients can retry the same `POST /purchase` with a `PAYMENT-SIGNATURE` header containing a base64-encoded `PaymentPayload`. The server verifies the EIP-712 signature, settles on-chain via the relayer, creates the Pretix order, and returns the resource with a `PAYMENT-RESPONSE` header. |
+| **PAYMENT-RESPONSE header (§5.3)** | Success responses from verify, execute-transfer, and the PAYMENT-SIGNATURE flow include a `PAYMENT-RESPONSE` header with base64-encoded `SettlementResponse` (`success`, `transaction`, `network`, `payer`). |
+| **Exact scheme (EIP-3009)** | Uses EIP-3009 `transferWithAuthorization` for gasless USDC; authorization shape matches spec (from, to, value, validAfter, validBefore, nonce). |
+| **EIP-712 signature verification** | Relayer and facilitator verify EIP-712 typed data signatures before execution. |
+| **Replay protection** | Per-auth nonce, time bounds (`validAfter`/`validBefore`), and blockchain-level nonce enforcement. |
+| **CAIP-style identifiers** | `network` uses CAIP-2 (`eip155:8453`), `supportedAssets` use CAIP-19 (`eip155:8453/erc20:0x...`). |
+| **Facilitator API (§7)** | Full facilitator at `/api/x402/tickets/facilitator/`: `POST /verify` (accepts `{ paymentPayload, paymentRequirements }`, returns `VerifyResponse` with spec error codes), `POST /settle` (same request, executes via relayer, returns `SettleResponse`), `GET /supported` (returns `kinds`, `extensions`, `signers`). |
+| **Error codes (§9)** | Facilitator endpoints return spec error codes: `insufficient_funds`, `invalid_exact_evm_payload_signature`, `invalid_network`, etc. |
 
-This implementation is **not fully compliant** with the [X402 Protocol Specification (Protocol Version 2)](https://github.com/coinbase/x402). Below is what we follow and what we do differently.
+### Dual-mode design
 
-### What we follow
+The API serves two audiences:
 
-| Spec area | Our implementation |
-|-----------|---------------------|
-| **Exact scheme (EIP-3009)** | We use EIP-3009 `transferWithAuthorization` for gasless USDC; authorization shape matches (from, to, value, validAfter, validBefore, nonce). |
-| **EIP-3009 verification** | Relayer validates signature, amount, recipient, time window; we simulate/execute via `transferWithAuthorization`. |
-| **Replay protection** | Per-auth nonce, time bounds, and signature verification. |
-| **CAIP-style identifiers** | We use CAIP-style `asset` and `chainId` in `supportedAssets` (e.g. `eip155:8453`). |
-| **Payment-Required signal** | We set `Payment-Required: true` (and legacy `X-Payment-Required`) on 402. |
+1. **SDK/agent clients** (`@x402/fetch`, `HTTPFacilitatorClient`) — Use the standard x402 v2 flow:
+   - `POST /purchase` → 402 + `PAYMENT-REQUIRED` header
+   - Client signs → retries same POST + `PAYMENT-SIGNATURE` header
+   - Server settles → 200 + `PAYMENT-RESPONSE` header + order resource
 
-### Where we differ from the spec
+2. **Frontend checkout** — Uses the richer multi-step flow for better UX:
+   - `POST /purchase` → 402 + payment details, order summary, supported assets
+   - `POST /payment-options` → balances across chains
+   - `POST /relayer/prepare-authorization` → EIP-712 typed data
+   - Client signs → `POST /relayer/execute-transfer` → txHash
+   - `POST /verify` → Pretix order created
 
-**1. PaymentRequired schema (§5.1)**  
-The spec defines a single JSON payload for “payment required”:
+Both flows produce the same result (a paid Pretix order) and share the same payment infrastructure.
 
-- **Spec:** Top-level `x402Version: 2`, `error` (optional), `resource` (ResourceInfo: url, description, mimeType), **`accepts`** (array of PaymentRequirements), `extensions`.
-- **Each PaymentRequirements in accepts:** `scheme`, `network` (CAIP-2 string, e.g. `eip155:84532`), `amount` (string, atomic), `asset` (address), `payTo`, `maxTimeoutSeconds`, `extra`.
+### What is not implemented
 
-We do **not** return that shape. We return:
-
-- `success`, `paymentRequired`, **`payment`** (our v2-style block: paymentId, amount, currency, referenceId, status, createdAt, supportedAssets), **`paymentDetails`** (resource + nested `payment` with `network`, `chainId` (number), `tokenAddress`, `amount`, `recipient`, `paymentReference`, `expiresAt`, etc.), `orderSummary`.
-- No top-level `x402Version`.
-- No top-level `resource` as ResourceInfo.
-- No **`accepts`** array of spec PaymentRequirements (we have one effective option in `paymentDetails` and list assets in `payment.supportedAssets`).
-
-So a spec-compliant client expecting **PaymentRequired** (with `accepts[]`) would not find it.
-
-**2. PaymentRequirements field names**  
-Spec uses `payTo`, `network` (CAIP-2 string), `maxTimeoutSeconds`. We use `recipient`, `network` (e.g. `"base"`), `chainId` (number), `expiresAt` (Unix), and no `scheme` or `maxTimeoutSeconds`.
-
-**3. PaymentPayload and retry flow (§5.2)**  
-Spec: client retries the resource request with a **PaymentPayload** in the body (or transport-defined header): `x402Version`, `resource`, **`accepted`** (one PaymentRequirements), **`payload`** (e.g. `signature` + `authorization` for exact EVM).
-
-We do **not** use that flow. We use a **multi-step** flow:
-
-- POST purchase → 402 + payment details.
-- POST **prepare-authorization** (paymentReference, from) → EIP-712 typed data.
-- Client signs; POST **execute-transfer** (paymentReference, authorization, signature) → we settle and return txHash.
-- Alternatively, client pays on-chain (USDC transfer) then POST **verify** (txHash, paymentReference, payer) to complete the order.
-
-So we have no single “retry with PaymentPayload” request; we have separate prepare / execute / verify endpoints.
-
-**4. Facilitator API (§7)**  
-Spec defines a **facilitator** with:
-
-- **POST /verify** – Request: `paymentPayload` + `paymentRequirements`. Response: **VerifyResponse** (`isValid`, `invalidReason?`, `payer?`). Verifies authorization **without** executing.
-- **POST /settle** – Same request. Response: **SettlementResponse** (`success`, `transaction`, `network`, `payer`, `errorReason?`).
-- **GET /supported** – Response: `kinds` (x402Version, scheme, network), `extensions`, `signers`.
-
-We do **not** implement that facilitator interface:
-
-- Our **verify** is different: it accepts **txHash + paymentReference + payer** (proof of an already-executed transfer), then verifies on-chain and creates the Pretix order. It is not “verify this PaymentPayload”.
-- Our **execute-transfer** is similar to “settle” but takes our own request shape (paymentReference, authorization, signature), not `paymentPayload` + `paymentRequirements`. Response is `{ success, txHash }` (no `network` or `payer` in the spec shape).
-- We have **no GET /supported** endpoint.
-
-**5. SettlementResponse / VerifyResponse shapes (§5.3, 5.4)**  
-Spec: SettlementResponse includes `transaction`, `network` (CAIP-2), `payer`. We return only `success` and `txHash`.  
-Spec: VerifyResponse is `isValid`, `invalidReason?`, `payer?`. Our verify returns order + payment info, not that schema.
-
-**6. Discovery (§8)**  
-We do not implement **GET /discovery/resources** or any Bazaar discovery.
-
-**7. Error codes (§9)**  
-Spec defines standard codes (e.g. `insufficient_funds`, `invalid_exact_evm_payload_signature`). We return generic `error` strings, not these codes.
-
-### Summary
-
-We implement an **x402-inspired** ticket payment flow with EIP-3009, 402 signaling, and a v2-style payment block with `supportedAssets`, but we do **not** implement the spec’s exact **PaymentRequired** / **PaymentPayload** schemas, the single-retry-with-payload flow, or the facilitator **/verify**, **/settle**, **/supported** APIs. To align fully with the spec we would need to:
-
-1. Add a spec-compliant **PaymentRequired** payload (e.g. `x402Version`, `resource`, `accepts[]` with scheme, network in CAIP-2, amount, asset, payTo, maxTimeoutSeconds, extra) alongside or instead of the current body.
-2. Optionally support the **PaymentPayload** retry flow (client sends `accepted` + `payload` on retry) and/or expose facilitator-style **POST /verify** and **POST /settle** that accept and return the spec request/response shapes.
-3. Add **GET /supported** and, if desired, discovery and spec error codes.
+| Spec area | Status |
+|-----------|--------|
+| **Discovery (§8)** | Not implemented (`GET /discovery/resources`, Bazaar). Optional in the spec. |
+| **Multi-chain settlement** | The `accepts[]` array offers USDC on the configured chain (Base or Base Sepolia). The relayer only operates on one chain. Multi-chain settlement is a future enhancement; the frontend supports multi-chain via the custom payment-options flow. |
+| **Permit2 scheme** | Not implemented. Only EIP-3009 exact scheme is supported. |
+| **sign-in-with-x extension** | Not implemented. |
 
 ## Environment Variables
 

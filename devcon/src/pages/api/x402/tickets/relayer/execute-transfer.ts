@@ -13,9 +13,9 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
-import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
-import { executeTransferWithAuthorization, getRelayerAddress } from 'services/relayer'
-import { ExecuteTransferRequest, ExecuteTransferResponse } from 'types/x402'
+import { getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
+import { executeTransferWithAuthorization, getRelayerAddress, getUsdcConfig } from 'services/relayer'
+import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
@@ -82,15 +82,16 @@ export default async function handler(
       })
     }
 
-    // Validate authorization matches expected values
-    const expectedRecipient = getPaymentRecipient()
+    // Validate authorization `to` is the relayer (receiveWithAuthorization requires msg.sender == to)
+    const relayerAddr = getRelayerAddress()
+    const finalRecipient = getPaymentRecipient()
     const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
 
-    if (body.authorization.to.toLowerCase() !== expectedRecipient.toLowerCase()) {
+    if (!addressesEqual(body.authorization.to, relayerAddr)) {
       return res.status(400).json({
         success: false,
-        error: 'Authorization recipient does not match expected recipient',
-        details: `Expected: ${expectedRecipient}, Got: ${body.authorization.to}`,
+        error: 'Authorization recipient must be the relayer address',
+        details: `Expected: ${relayerAddr}, Got: ${body.authorization.to}`,
       })
     }
 
@@ -120,10 +121,20 @@ export default async function handler(
 
     console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference)
 
-    // Execute the transfer
-    const result = await executeTransferWithAuthorization(body.authorization, body.signature)
+    // Execute the transfer (receive via relayer, then forward to final recipient)
+    const result = await executeTransferWithAuthorization(body.authorization, body.signature, finalRecipient)
 
     console.log('[ExecuteTransfer] Transaction submitted:', result.txHash)
+
+    // Set PAYMENT-RESPONSE header (x402 v2 spec)
+    const usdcConf = getUsdcConfig()
+    const settlementResponse: SettleResponse = {
+      success: true,
+      transaction: result.txHash,
+      network: `eip155:${usdcConf.chainId}` as `${string}:${string}`,
+      payer: body.authorization.from,
+    }
+    res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))
 
     const response: ExecuteTransferResponse = {
       success: true,

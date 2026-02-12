@@ -13,6 +13,7 @@ import {
   getUsdcConfig,
   generateNonce,
   createAuthorizationTypedData,
+  getRelayerAddress,
 } from 'services/relayer'
 import {
   SUPPORTED_ASSETS_MAINNET,
@@ -257,15 +258,16 @@ export default async function handler(
           const validAfter = 0
           const validBefore = expiresAt
           const nonce = generateNonce()
+          const relayerAddr = getRelayerAddress()
           const authorization = {
             from: walletAddress,
-            to: recipient,
+            to: relayerAddr,
             value: usdcAmount,
             validAfter,
             validBefore,
             nonce,
           }
-          const typedData = createAuthorizationTypedData(authorization)
+          const typedData = await createAuthorizationTypedData(authorization)
           opt.signingRequest = {
             method: 'eth_signTypedData_v4',
             params: [walletAddress, JSON.stringify(typedDataToJson(typedData))],

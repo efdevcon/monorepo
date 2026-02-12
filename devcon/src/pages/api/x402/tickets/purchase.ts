@@ -19,12 +19,33 @@
  * Returns HTTP 402 Payment Required with payment details
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getItems, getQuestions, getTicketPurchaseInfo } from 'services/pretix'
-import { createPaymentRequirements, getPaymentRecipient, buildX402PaymentRequiredSpec } from 'services/x402'
-import { storePendingOrder, PendingTicketOrder } from 'services/ticketStore'
-import { X402PaymentRequirements, X402PaymentBlockV2, type PaymentRequired, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET } from 'types/x402'
+import { verifyTypedData, type Hex } from 'viem'
+import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, markOrderPaid } from 'services/pretix'
+import {
+  createPaymentRequirements,
+  getPaymentRecipient,
+  buildX402PaymentRequiredSpec,
+  encodePaymentRequiredHeader,
+  decodePaymentSignatureHeader,
+  encodeSettlementResponseHeader,
+  usdToUsdcAmount,
+  verifyPayment,
+} from 'services/x402'
+import { storePendingOrder, getPendingOrder, claimPendingOrder, storeCompletedOrder, PendingTicketOrder, CompletedTicketOrder } from 'services/ticketStore'
+import { executeTransferWithAuthorization, getUsdcDomain, getUsdcConfig, getReceiveWithAuthorizationTypes, getRelayerAddress } from 'services/relayer'
+import {
+  X402PaymentRequirements,
+  X402PaymentBlockV2,
+  type PaymentRequired,
+  type PaymentPayload,
+  type SettleResponse,
+  X402_VERSION,
+  EIP3009Authorization,
+  SUPPORTED_ASSETS_MAINNET,
+  SUPPORTED_ASSETS_TESTNET,
+} from 'types/x402'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
-import { validateAddressEIP55 } from 'utils/x402Validation'
+import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface PurchaseRequest {
   email: string
@@ -113,6 +134,12 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
+  }
+
+  // x402 v2: If PAYMENT-SIGNATURE header is present, handle payment retry flow (spec §5.2)
+  const paymentSigHeader = (req.headers['payment-signature'] ?? req.headers['PAYMENT-SIGNATURE']) as string | undefined
+  if (paymentSigHeader) {
+    return handlePaymentSignatureRetry(req, res, paymentSigHeader)
   }
 
   try {
@@ -346,7 +373,7 @@ export default async function handler(
     await storePendingOrder(pendingOrder)
 
     const supportedAssets = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
-    const x402Spec = buildX402PaymentRequiredSpec(paymentRequirements, {
+    const x402Spec = await buildX402PaymentRequiredSpec(paymentRequirements, {
       error: 'PAYMENT-SIGNATURE header or payment payload required',
       resourceDescription: 'Devcon ticket purchase',
     })
@@ -377,8 +404,9 @@ export default async function handler(
       },
     }
 
-    // Set x402 headers (v2: Payment-Required; legacy: X-Payment-*)
-    res.setHeader('Payment-Required', 'true')
+    // Set x402 headers (v2: PAYMENT-REQUIRED base64-encoded PaymentRequired; legacy: X-Payment-*)
+    res.setHeader('PAYMENT-REQUIRED', encodePaymentRequiredHeader(x402Spec))
+    // Legacy header (X-Payment-Required, NOT Payment-Required which would overwrite PAYMENT-REQUIRED)
     res.setHeader('X-Payment-Required', 'true')
     res.setHeader('X-Payment-Network', paymentRequirements.payment.network)
     res.setHeader('X-Payment-Token', paymentRequirements.payment.tokenAddress)
@@ -430,4 +458,236 @@ function validatePurchaseRequest(body: PurchaseRequest): string[] {
   }
 
   return errors
+}
+
+// ============== x402 v2 PAYMENT-SIGNATURE retry flow ==============
+
+const PRETIX_BASE_URL = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
+const PRETIX_ORGANIZER = process.env.PRETIX_ORGANIZER || 'devcon'
+const PRETIX_EVENT = process.env.PRETIX_EVENT || '7'
+
+function getTicketUrl(orderCode: string, secret?: string): string {
+  const baseUrl = PRETIX_BASE_URL.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
+  if (secret) {
+    return `${baseUrl}/${PRETIX_ORGANIZER}/${PRETIX_EVENT}/order/${orderCode}/${secret}/`
+  }
+  return `${baseUrl}/${PRETIX_ORGANIZER}/${PRETIX_EVENT}/order/${orderCode}/`
+}
+
+/**
+ * Handle x402 v2 PAYMENT-SIGNATURE retry flow (spec §5.2).
+ * Client retries the same POST with a PAYMENT-SIGNATURE header containing
+ * a base64-encoded PaymentPayload. We verify the signature, settle on-chain
+ * via the relayer, create the Pretix order, and return the resource with
+ * a PAYMENT-RESPONSE header.
+ */
+async function handlePaymentSignatureRetry(
+  _req: NextApiRequest,
+  res: NextApiResponse,
+  paymentSigHeader: string
+) {
+  // 1. Decode PAYMENT-SIGNATURE header (base64 → PaymentPayload)
+  let paymentPayload: PaymentPayload
+  try {
+    paymentPayload = decodePaymentSignatureHeader(paymentSigHeader)
+  } catch {
+    return res.status(400).json({ success: false, error: 'Invalid PAYMENT-SIGNATURE header encoding' })
+  }
+
+  // 2. Validate x402 version
+  if (paymentPayload.x402Version !== X402_VERSION) {
+    return res.status(400).json({ success: false, error: `Unsupported x402 version: ${paymentPayload.x402Version}` })
+  }
+
+  // 3. Extract accepted requirements and payment reference
+  const accepted = paymentPayload.accepted
+  if (!accepted || accepted.scheme !== 'exact') {
+    return res.status(400).json({ success: false, error: 'Unsupported or missing payment scheme' })
+  }
+
+  const paymentReference = (accepted.extra as Record<string, unknown>)?.paymentReference as string | undefined
+  if (!paymentReference) {
+    return res.status(400).json({ success: false, error: 'Missing paymentReference in accepted.extra' })
+  }
+
+  // 4. Get pending order
+  const pendingOrder = await getPendingOrder(paymentReference)
+  if (!pendingOrder) {
+    return res.status(404).json({ success: false, error: 'Payment reference not found or expired' })
+  }
+
+  // 5. Check expiry
+  if (Date.now() / 1000 > pendingOrder.expiresAt) {
+    return res.status(400).json({ success: false, error: 'Payment reference has expired' })
+  }
+
+  // 6. Extract authorization and signature from payload (exact EVM scheme)
+  const exactPayload = paymentPayload.payload as { signature: string; authorization: EIP3009Authorization } | undefined
+  if (!exactPayload?.signature || !exactPayload?.authorization) {
+    return res.status(400).json({ success: false, error: 'Missing signature or authorization in payload' })
+  }
+
+  const { authorization } = exactPayload
+  const rawSignature = exactPayload.signature
+
+  // 7. Verify payer matches intended payer (prevents tx reuse attack)
+  if (!addressesEqual(authorization.from, pendingOrder.intendedPayer)) {
+    return res.status(403).json({ success: false, error: 'Payer does not match intended payer for this order' })
+  }
+
+  // 8. Verify authorization params match expected values
+  const relayerAddr = getRelayerAddress()
+  const finalRecipient = getPaymentRecipient()
+  const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
+
+  if (!addressesEqual(authorization.to, relayerAddr)) {
+    return res.status(400).json({ success: false, error: 'Authorization recipient must be the relayer address' })
+  }
+  if (BigInt(String(authorization.value)) < BigInt(expectedAmount)) {
+    return res.status(400).json({ success: false, error: 'Authorization amount insufficient' })
+  }
+
+  const now = Math.floor(Date.now() / 1000)
+  const validBefore = typeof authorization.validBefore === 'string' ? parseInt(authorization.validBefore, 10) : Number(authorization.validBefore)
+  const validAfter = typeof authorization.validAfter === 'string' ? parseInt(authorization.validAfter, 10) : Number(authorization.validAfter)
+
+  if (validBefore > 0 && now > validBefore) {
+    return res.status(400).json({ success: false, error: 'Authorization has expired' })
+  }
+  if (now < validAfter) {
+    return res.status(400).json({ success: false, error: 'Authorization is not yet valid' })
+  }
+
+  // 9. Verify EIP-712 signature
+  const domain = await getUsdcDomain()
+  const types = getReceiveWithAuthorizationTypes()
+  const message = {
+    from: authorization.from as Hex,
+    to: authorization.to as Hex,
+    value: BigInt(String(authorization.value)),
+    validAfter: BigInt(validAfter),
+    validBefore: BigInt(validBefore),
+    nonce: authorization.nonce as Hex,
+  }
+
+  try {
+    const sigValid = await verifyTypedData({
+      address: authorization.from as Hex,
+      domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
+      types,
+      primaryType: 'ReceiveWithAuthorization',
+      message,
+      signature: rawSignature as Hex,
+    })
+    if (!sigValid) {
+      return res.status(402).json({ success: false, error: 'Invalid payment signature' })
+    }
+  } catch {
+    return res.status(402).json({ success: false, error: 'Signature verification failed' })
+  }
+
+  // 10. Execute transfer via relayer (gas-sponsored)
+  const sigHex = rawSignature.startsWith('0x') ? rawSignature : `0x${rawSignature}`
+  const r = sigHex.slice(0, 66)
+  const s = `0x${sigHex.slice(66, 130)}`
+  let v = parseInt(sigHex.slice(130, 132), 16)
+  if (v < 27) v += 27
+
+  let txHash: string
+  try {
+    const result = await executeTransferWithAuthorization(
+      {
+        from: authorization.from,
+        to: authorization.to,
+        value: String(authorization.value),
+        validAfter,
+        validBefore,
+        nonce: authorization.nonce,
+      },
+      { v, r, s },
+      finalRecipient
+    )
+    txHash = result.txHash
+  } catch (error) {
+    return res.status(402).json({
+      success: false,
+      error: `Settlement failed: ${(error as Error).message}`,
+    })
+  }
+
+  // 11. Verify on-chain (wait for receipt)
+  const verification = await verifyPayment({
+    txHash,
+    paymentReference,
+    payer: authorization.from,
+  })
+
+  if (!verification.verified) {
+    return res.status(500).json({
+      success: false,
+      error: `On-chain verification failed: ${verification.error}`,
+    })
+  }
+
+  // 12. Claim pending order atomically (prevents race conditions)
+  const claimedOrder = await claimPendingOrder(paymentReference)
+  if (!claimedOrder) {
+    return res.status(409).json({
+      success: false,
+      error: 'Order already completed or in progress',
+    })
+  }
+
+  // 13. Create Pretix order + mark as paid
+  let pretixOrder
+  try {
+    pretixOrder = await createOrder(claimedOrder.orderData)
+    await markOrderPaid(pretixOrder.code)
+  } catch (error) {
+    await storePendingOrder(claimedOrder)
+    return res.status(500).json({
+      success: false,
+      error: `Failed to create ticket order: ${(error as Error).message}`,
+    })
+  }
+
+  // 14. Store completed order
+  const completedOrder: CompletedTicketOrder = {
+    paymentReference,
+    pretixOrderCode: pretixOrder.code,
+    txHash,
+    payer: authorization.from,
+    completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
+  }
+  await storeCompletedOrder(completedOrder)
+
+  // 15. Build PAYMENT-RESPONSE header (x402 v2 spec)
+  const usdcConf = getUsdcConfig()
+  const network = `eip155:${usdcConf.chainId}`
+  const settlementResponse: SettleResponse = {
+    success: true,
+    transaction: txHash,
+    network: network as `${string}:${string}`,
+    payer: authorization.from,
+  }
+  res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))
+
+  // 16. Return resource (order confirmation)
+  return res.status(200).json({
+    success: true,
+    order: {
+      code: pretixOrder.code,
+      secret: pretixOrder.secret,
+      email: pretixOrder.email,
+      total: pretixOrder.total,
+      status: 'paid',
+      ticketUrl: getTicketUrl(pretixOrder.code, pretixOrder.secret),
+    },
+    payment: {
+      txHash,
+      payer: authorization.from,
+      confirmedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
+      blockNumber: verification.blockNumber || 0,
+    },
+  })
 }

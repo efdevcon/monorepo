@@ -15,7 +15,10 @@ import {
   type PaymentRequired,
   type ResourceInfo,
   type PaymentRequirements as PaymentRequirementsSpec,
+  type PaymentPayload,
+  type SettleResponse,
 } from '../types/x402'
+import { getRelayerAddress, getUsdcDomain } from './relayer'
 import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
@@ -188,10 +191,10 @@ export function createPaymentRequirements(
  * Uses @x402/core types for SDK compatibility (HTTPFacilitatorClient, etc.).
  * Includes paymentReference in extra for facilitator verify/settle.
  */
-export function buildX402PaymentRequiredSpec(
+export async function buildX402PaymentRequiredSpec(
   requirements: X402PaymentRequirements,
   options?: { error?: string; resourceDescription?: string; resourceUrl?: string }
-): PaymentRequired {
+): Promise<PaymentRequired> {
   const p = requirements.payment
   const now = Math.floor(Date.now() / 1000)
   const maxTimeoutSeconds = Math.max(0, p.expiresAt - now)
@@ -201,16 +204,22 @@ export function buildX402PaymentRequiredSpec(
     description: options?.resourceDescription ?? '',
     mimeType: 'application/json',
   }
+  // payTo = relayer address because we use receiveWithAuthorization (msg.sender == to).
+  // x402 agents will set authorization.to = payTo, which must be the relayer.
+  // The relayer forwards USDC to the final recipient internally.
+  const relayerAddr = getRelayerAddress()
+  // Fetch the actual USDC EIP-712 domain (name, version) so agents can build a matching domain
+  const usdcDomain = await getUsdcDomain()
   const accept: PaymentRequirementsSpec = {
     scheme: 'exact',
     network: `eip155:${p.chainId}`,
     amount: p.amount,
     asset: p.tokenAddress,
-    payTo: p.recipient,
+    payTo: relayerAddr,
     maxTimeoutSeconds,
     extra: {
-      name: p.tokenSymbol,
-      version: '2',
+      name: usdcDomain.name,
+      version: usdcDomain.version,
       paymentReference: p.paymentReference,
     },
   }
@@ -294,6 +303,7 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
     }
 
     // Look for Transfer events to our recipient (USDC on the tx chain)
+    console.log('[x402 verify] Checking receipt logs. tokenAddress:', tokenAddress, 'total logs:', receipt.logs.length)
     const transferLogs = receipt.logs.filter(
       (log) =>
         log.address.toLowerCase() === tokenAddress!.toLowerCase() &&
@@ -301,17 +311,25 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
     )
 
     // Verify transfer details
+    // Accept transfers from the payer directly OR from the relayer (forwarded receiveWithAuthorization)
+    const relayerAddr = getRelayerAddress().toLowerCase()
+    console.log('[x402 verify] Transfer logs found:', transferLogs.length,
+      '| expected recipient:', paymentData.recipient,
+      '| expected amount:', paymentData.amount,
+      '| payer:', payer,
+      '| relayer:', relayerAddr)
     for (const log of transferLogs) {
       const from = `0x${log.topics[1]?.slice(26)}`.toLowerCase()
       const to = `0x${log.topics[2]?.slice(26)}`.toLowerCase()
       const value = BigInt(log.data)
+      console.log('[x402 verify] Transfer event: from=', from, 'to=', to, 'value=', value.toString())
 
       if (
-        from === payer.toLowerCase() &&
-        to === paymentData.recipient.toLowerCase() &&
+        (from === payer.toLowerCase() || from === relayerAddr) &&
+        (to === paymentData.recipient.toLowerCase() || to === relayerAddr) &&
         value >= BigInt(paymentData.amount)
       ) {
-        // Payment verified - remove from pending
+        // Payment verified — accepts transfers to final recipient OR to relayer (who forwards later)
         paymentReferences.delete(paymentReference)
         savePaymentRefs(paymentReferences)
 
@@ -404,14 +422,16 @@ export async function verifyPaymentDirect(
     console.log('[x402] Found', transferLogs.length, 'USDC transfer logs')
 
     // Verify transfer details
+    // Accept transfers from the payer directly OR from the relayer (forwarded receiveWithAuthorization)
+    const relayerAddr = getRelayerAddress().toLowerCase()
     for (const log of transferLogs) {
       const from = `0x${log.topics[1]?.slice(26)}`.toLowerCase()
       const to = `0x${log.topics[2]?.slice(26)}`.toLowerCase()
       const value = BigInt(log.data)
 
       if (
-        from === payer.toLowerCase() &&
-        to === expectedRecipient.toLowerCase() &&
+        (from === payer.toLowerCase() || from === relayerAddr) &&
+        (to === expectedRecipient.toLowerCase() || to === relayerAddr) &&
         value >= BigInt(expectedAmount)
       ) {
         return {
@@ -531,4 +551,27 @@ export function cleanupExpiredReferences(): void {
 // Run cleanup every 5 minutes
 if (typeof setInterval !== 'undefined') {
   setInterval(cleanupExpiredReferences, 5 * 60 * 1000)
+}
+
+// ============== x402 v2 header encoding/decoding ==============
+
+/**
+ * Encode a PaymentRequired object for the PAYMENT-REQUIRED header (base64 JSON, x402 v2 spec)
+ */
+export function encodePaymentRequiredHeader(pr: PaymentRequired): string {
+  return Buffer.from(JSON.stringify(pr)).toString('base64')
+}
+
+/**
+ * Decode a PAYMENT-SIGNATURE header value (base64 JSON → PaymentPayload, x402 v2 spec)
+ */
+export function decodePaymentSignatureHeader(header: string): PaymentPayload {
+  return JSON.parse(Buffer.from(header, 'base64').toString('utf-8'))
+}
+
+/**
+ * Encode a SettleResponse for the PAYMENT-RESPONSE header (base64 JSON, x402 v2 spec)
+ */
+export function encodeSettlementResponseHeader(sr: SettleResponse): string {
+  return Buffer.from(JSON.stringify(sr)).toString('base64')
 }
