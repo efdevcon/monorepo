@@ -426,6 +426,16 @@
         }
       }
     },
+    "/account/accreditation/email": {
+      "post": {
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/dips": {
       "get": {
         "tags": [
@@ -622,16 +632,6 @@
             "type": "string"
           },
           {
-            "name": "sort",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "type": "string"
-          },
-          {
             "name": "q",
             "in": "query",
             "type": "string"
@@ -660,11 +660,45 @@
             "name": "room",
             "in": "query",
             "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/sessions/{id}/related": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -934,30 +968,6 @@
         }
       }
     },
-    "/sessions/{id}/related": {
-      "get": {
-        "tags": [
-          "Sessions"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/speakers": {
       "get": {
         "tags": [
@@ -976,17 +986,17 @@
             "type": "string"
           },
           {
+            "name": "event",
+            "in": "query",
+            "type": "string"
+          },
+          {
             "name": "sort",
             "in": "query",
             "type": "string"
           },
           {
             "name": "order",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "event",
             "in": "query",
             "type": "string"
           }
@@ -1230,16 +1240,6 @@
           },
           "403": {
             "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "{{where{id:data.id}}": {
-      "delete": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }
