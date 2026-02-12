@@ -7,7 +7,7 @@ import IconCross from "@/assets/icons/cross.svg";
 import SearchIcon from "@/assets/icons/search.svg";
 import css from "./menu.module.scss";
 import { BLOG_URL } from "@/utils/site";
-import { DEVCON_URL, FORUM_URL } from "@/utils/site";
+import { DEVCON_URL, DEVCONNECT_URL, FORUM_URL } from "@/utils/site";
 
 interface MenuProps {
   searchOpen: boolean;
@@ -31,6 +31,11 @@ export const NavigationItems = [
     key: "devcon",
     title: "Devcon",
     url: DEVCON_URL,
+  },
+  {
+    key: "devconnect",
+    title: "Devconnect",
+    url: DEVCONNECT_URL,
   },
   {
     key: "forum",

@@ -5,113 +5,62 @@ import puppeteer from 'puppeteer'
 import { ogImageTemplate } from '@/templates/og'
 import { templateStyles } from '@/templates/styles'
 import { GetEventDay, GetTrackId, GetTrackImage } from '@/utils/templates'
-import { PrismaClient } from '@prisma/client'
 import { API_DEFAULTS } from '@/utils/config'
 import { CommitSession } from '@/services/github'
 import { apikeyHandler } from '@/middleware/apikey'
-import path from 'path'
-import { existsSync } from 'fs'
-
-const client = new PrismaClient()
+import * as store from '@/data/store'
 
 export const sessionsRouter = Router()
 sessionsRouter.get(`/sessions`, GetSessions)
+sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 sessionsRouter.get(`/sessions/:id`, GetSession)
 sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
 sessionsRouter.put(`/sessions/sources/:id`, apikeyHandler, UpdateSessionSources)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
-sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 
 export async function GetSessions(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
 
   const currentPage = req.query.from && req.query.size ? Math.ceil((Number(req.query.from) + 1) / Number(req.query.size)) : 1
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const args: any = {
-    skip: 0,
-    take: API_DEFAULTS.SIZE,
-    where: {},
-    include: {
-      speakers: true,
-      slot_room: true,
-    },
-  }
-  if (req.query.from) args.skip = parseInt(req.query.from as string)
-  if (req.query.size) args.take = parseInt(req.query.size as string)
-  if (req.query.sort) args.orderBy = { [req.query.sort as string]: req.query.order || API_DEFAULTS.ORDER }
+  const skip = req.query.from ? parseInt(req.query.from as string) : 0
+  const take = req.query.size ? parseInt(req.query.size as string) : API_DEFAULTS.SIZE
 
-  // Note: filters are case sensitive
-  if (req.query.q) {
-    const query = req.query.q as string
-    args.where.OR = [
-      {
-        title: {
-          contains: query,
-        },
-      },
-      {
-        description: {
-          contains: query,
-        },
-      },
-      {
-        speakers: {
-          some: {
-            name: {
-              contains: query,
-            },
-          },
-        },
-      },
-    ]
-  }
-  if (req.query.event) {
-    args.where.eventId = {
-      in: [req.query.event].flat() as string[],
-    }
-  }
-  if (req.query.expertise) {
-    args.where.expertise = {
-      in: [req.query.expertise].flat() as string[],
-    }
-  }
-  if (req.query.type) {
-    args.where.type = {
-      in: [req.query.type].flat() as string[],
-    }
-  }
-  if (req.query.tags) {
-    args.where.track = {
-      in: [req.query.tags].flat() as string[],
-    }
-  }
-  if (req.query.room) {
-    args.where.slot_roomId = req.query.room as string
-  }
+  const data = store.getSessions({
+    q: req.query.q as string | undefined,
+    event: req.query.event as string | string[] | undefined,
+    expertise: req.query.expertise as string | string[] | undefined,
+    type: req.query.type as string | string[] | undefined,
+    tags: req.query.tags as string | string[] | undefined,
+    room: req.query.room as string | undefined,
+    sort: req.query.sort as string | undefined,
+    order: (req.query.order as string) || API_DEFAULTS.ORDER,
+    skip,
+    take,
+  })
 
-  const data = await client.$transaction([client.session.count({ where: args.where }), client.session.findMany(args)])
   res.status(200).send({
     status: 200,
     message: '',
     data: {
-      total: data[0],
+      total: data.total,
       currentPage: currentPage,
-      items: data[1],
+      items: data.items,
     },
   })
 }
 
 export async function GetSession(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
-  const data = await client.session.findFirst({
-    where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
-    },
-    include: {
-      speakers: true,
-      slot_room: true,
-    },
-  })
+  const data = store.getSession(req.params.id)
+
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+
+  res.status(200).send({ status: 200, message: '', data })
+}
+
+export async function GetSessionRelated(req: Request, res: Response) {
+  // #swagger.tags = ['Sessions']
+  const data = store.getRelatedSessions(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
@@ -129,11 +78,7 @@ export async function UpdateSession(req: Request, res: Response) {
     return res.status(400).send({ status: 400, message: 'Invalid Id' })
   }
 
-  const data = await client.session.findFirst({
-    where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
-    },
-  })
+  const data = store.getSession(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
   if (Object.keys(body).some((key) => !(key in data))) {
@@ -141,16 +86,7 @@ export async function UpdateSession(req: Request, res: Response) {
   }
 
   try {
-    const updatedData = await client.session.update({
-      where: { id: data.id },
-      include: {
-        speakers: true,
-      },
-      data: {
-        ...data,
-        ...body,
-      },
-    })
+    const updatedData = store.updateSession(data.id, body)
 
     await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
@@ -169,43 +105,25 @@ export async function UpdateSessionSources(req: Request, res: Response) {
   const body = req.body
   if (!body) return res.status(400).send({ status: 400, message: 'No Body' })
 
-  const data = await client.session.findFirst({
-    where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
-    },
-  })
+  const data = store.getSession(req.params.id)
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
-  let newSessionData = {
-    ...data,
-    sources_ipfsHash: body.sources_ipfsHash ?? '',
-    sources_youtubeId: body.sources_youtubeId ?? '',
-    sources_swarmHash: body.sources_swarmHash ?? '',
-    sources_livepeerId: body.sources_livepeerId ?? '',
-    sources_streamethId: body.sources_streamethId ?? '',
-    transcript_vtt: body.transcript_vtt ?? '',
-    transcript_text: body.transcript_text ?? '',
-    duration: body.duration ?? 0,
-  }
-
   try {
-    const updatedData = await client.session.update({
-      where: { id: data.id },
-      include: {
-        speakers: true,
-      },
-      data: newSessionData,
+    const updatedData = store.updateSession(data.id, {
+      sources_ipfsHash: body.sources_ipfsHash ?? '',
+      sources_youtubeId: body.sources_youtubeId ?? '',
+      sources_swarmHash: body.sources_swarmHash ?? '',
+      sources_livepeerId: body.sources_livepeerId ?? '',
+      sources_streamethId: body.sources_streamethId ?? '',
+      transcript_vtt: body.transcript_vtt ?? '',
+      transcript_text: body.transcript_text ?? '',
+      duration: body.duration ?? 0,
     })
     console.log('Updated session', updatedData.id)
 
     const version = Date.now().toString()
     console.log('Updating event version...', version)
-    await client.event.update({
-      where: { id: 'devcon-7' },
-      data: {
-        version,
-      },
-    })
+    store.updateEventVersion('devcon-7', version)
 
     // TODO: update AI transcripts
 
@@ -218,32 +136,9 @@ export async function UpdateSessionSources(req: Request, res: Response) {
   }
 }
 
-export async function GetSessionRelated(req: Request, res: Response) {
-  // #swagger.tags = ['Sessions']
-  const data = await client.relatedSession.findMany({
-    where: {
-      OR: [{ sessionId: req.params.id }, { sourceId: req.params.id }],
-    },
-    orderBy: { similarity: 'desc' },
-    include: { other: true },
-    take: 10,
-  })
-
-  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
-
-  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.other) })
-}
-
 export async function GetSessionImage(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
-  const data = await client.session.findFirst({
-    where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
-    },
-    include: {
-      speakers: true,
-    },
-  })
+  const data = store.getSession(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
@@ -298,14 +193,14 @@ export async function GetSessionImage(req: Request, res: Response) {
       await Promise.all([
         document.fonts.ready,
         ...selectors.map((img) => {
-          // Image has already finished loading, let’s see if it worked
+          // Image has already finished loading, let's see if it worked
           if (img.complete) {
             // Image loaded and has presence
             if (img.naturalHeight !== 0) return
             // Image failed, so it has no height
             throw new Error('Image failed to load')
           }
-          // Image hasn’t loaded yet, added an event listener to know when it does
+          // Image hasn't loaded yet, added an event listener to know when it does
           return new Promise((resolve, reject) => {
             img.addEventListener('load', resolve)
             img.addEventListener('error', reject)

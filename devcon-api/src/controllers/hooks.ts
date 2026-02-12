@@ -3,10 +3,8 @@ import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG } from '@/utils/config'
 import { TriggerWorkflow } from '@/services/github'
 import { GetSession, GetSpeaker } from '@/clients/pretalx'
-import { PrismaClient } from '@prisma/client'
-import { pretalxToSessionData } from '@/types/schedule'
-
-const client = new PrismaClient()
+import * as store from '@/data/store'
+import dayjs from 'dayjs'
 
 export const hooksRouter = Router()
 hooksRouter.post(`/hooks/pretalx/schedule`, UpdateSchedule)
@@ -32,6 +30,19 @@ export async function UpdateSchedule(req: Request, res: Response) {
   }
 }
 
+function pretalxToStoreData(item: any) {
+  return {
+    ...item,
+    tags: item.tags?.join(',') || '',
+    keywords: item.keywords?.join(',') || '',
+    slot_start: item.slot_start ? dayjs(item.slot_start).toISOString() : null,
+    slot_end: item.slot_end ? dayjs(item.slot_end).toISOString() : null,
+    eventId: 'devcon-7',
+    speakers: (item.speakers || []).map((i: any) => i.id ?? i),
+    slot_roomId: item.slot_roomId || null,
+  }
+}
+
 async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTalks: string[]) {
   console.log('Syncing Pretalx...')
 
@@ -46,9 +57,7 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
       await SyncSpeakers(session.speakers)
 
       console.log('Creating session', id)
-      await client.session.create({
-        data: pretalxToSessionData(session),
-      })
+      store.createSession(pretalxToStoreData(session))
     } catch (error) {
       console.error(`Error creating session ${id}`, error)
     }
@@ -56,20 +65,14 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
 
   for (const id of canceledTalks) {
     try {
-      const data = await client.session.findFirst({
-        where: {
-          OR: [{ id: id }, { sourceId: id }],
-        },
-      })
+      const data = store.getSession(id)
       if (!data) {
         console.error(`Session ${id} not found. Skip deleting...`)
         continue
       }
 
       console.log('Deleting session', data.id)
-      await client.session.delete({
-        where: { id: data.id },
-      })
+      store.deleteSession(data.id)
     } catch (error) {
       console.error(`Error deleting session ${id}`, error)
     }
@@ -85,20 +88,13 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
 
       await SyncSpeakers(session.speakers)
 
-      const data = await client.session.findFirst({
-        where: {
-          OR: [{ id: id }, { sourceId: id }],
-        },
-      })
+      const data = store.getSession(id)
       if (!data) {
-        console.error(`Session ${id} not found on DB. Skip updating...`)
+        console.error(`Session ${id} not found in store. Skip updating...`)
         continue
       }
 
-      await client.session.update({
-        where: { id: data.id },
-        data: pretalxToSessionData(session),
-      })
+      store.updateSession(data.id, pretalxToStoreData(session))
     } catch (error) {
       console.error(`Error updating session ${id}`, error)
     }
@@ -106,12 +102,7 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
 
   const version = Date.now().toString()
   console.log('Updating event version...', version)
-  await client.event.update({
-    where: { id: 'devcon-7' },
-    data: {
-      version,
-    },
-  })
+  store.updateEventVersion('devcon-7', version)
 
   console.log('Triggering Github action to sync all systems...')
   await TriggerWorkflow('sync-pretalx.yml')
@@ -122,11 +113,7 @@ async function SyncSpeakers(speakers: any[]) {
   for (const speaker of speakers) {
     console.log('Speaker', speaker?.sourceId ?? speaker)
     let id = speaker?.sourceId ?? speaker
-    let speakerData = await client.speaker.findFirst({
-      where: {
-        OR: [{ id: id }, { sourceId: id }],
-      },
-    })
+    let speakerData = store.findSpeaker(id)
 
     if (speakerData) {
       console.log('Speaker already exists', speakerData.id)
@@ -140,8 +127,6 @@ async function SyncSpeakers(speakers: any[]) {
     }
 
     console.log('Creating speaker', speakerData.id)
-    await client.speaker.create({
-      data: speakerData,
-    })
+    store.createSpeaker(speakerData)
   }
 }

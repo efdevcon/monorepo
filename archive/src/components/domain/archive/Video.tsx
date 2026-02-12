@@ -96,8 +96,11 @@ const Suggested = ({ video, relatedVideos, playlists }: any) => {
 
 const Labels = ({ tags, playlists }: any) => {
   const hasPlaylists = playlists?.length > 0;
-  const tagsArray =
-    typeof tags === "string" ? tags.split(",").filter(Boolean) : tags;
+  const tagsArray = [
+    ...new Set(
+      typeof tags === "string" ? tags.split(",").filter(Boolean) : tags ?? []
+    ),
+  ];
   const hasTags = tagsArray?.length > 0;
 
   if (!hasTags && !hasPlaylists) return null;

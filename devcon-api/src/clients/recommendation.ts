@@ -1,11 +1,11 @@
-import { PrismaClient as ScheduleClient } from '@prisma/client'
-import { Account, PrismaClient as AccountClient } from '@/db/clients/account'
+import { PrismaClient as AccountClient } from '@/db/clients/account'
 import { SERVER_CONFIG } from '@/utils/config'
 import { Session } from '@/types/schedule'
 import { STOPWORDS } from '@/utils/stopwords'
 import { writeFileSync } from 'fs'
 import dictionary from '../../data/vectors/dictionary.json'
 import vectorizedSessions from '../../data/vectors/devcon-7.json'
+import * as store from '@/data/store'
 
 export const WEIGHTS = {
   track: 6,
@@ -39,7 +39,6 @@ export interface LensFollower {
 
 let cachedDictionary: VectorDictionary = dictionary
 
-const scheduleClient = new ScheduleClient()
 const accountClient = new AccountClient()
 
 export async function GetRecommendedSpeakers(id: string) {
@@ -53,26 +52,30 @@ export async function GetRecommendedSpeakers(id: string) {
     GetEFPFollowing(id),
   ])
 
-  const speakers = await scheduleClient.speaker.findMany({
-    where: {
-      AND: [
-        {
-          sessions: {
-            some: {
-              eventId: 'devcon-7',
-            },
-          },
-        },
-        {
-          OR: [
-            { lens: { in: lens.filter((i) => i.handle).map((i) => i.handle) } },
-            { ens: { in: lens.filter((i) => i.ens).map((i) => i.ens) } },
-            { ens: { in: efp.filter((i: string) => i) } },
-            { farcaster: { in: farcaster.filter((i) => i.username).map((i) => i.username) } },
-          ],
-        },
-      ],
-    },
+  // Filter speakers in-memory instead of via Prisma
+  const allSpeakers = store.getSpeakers({ take: 100000 }).items
+  const lensHandles = new Set(lens.filter((i) => i.handle).map((i) => i.handle))
+  const lensEns = new Set(lens.filter((i) => i.ens).map((i) => i.ens))
+  const efpSet = new Set(efp.filter((i: string) => i))
+  const farcasterUsernames = new Set(farcaster.filter((i) => i.username).map((i) => i.username))
+
+  // Get speaker IDs that have sessions in devcon-7
+  const devcon7SpeakerIds = new Set<string>()
+  for (const session of store.getAllSessions()) {
+    if (session.eventId === 'devcon-7') {
+      for (const sp of session.speakers || []) {
+        devcon7SpeakerIds.add(sp.id)
+      }
+    }
+  }
+
+  const speakers = allSpeakers.filter((s: any) => {
+    if (!devcon7SpeakerIds.has(s.id)) return false
+    if (s.lens && lensHandles.has(s.lens)) return true
+    if (s.ens && lensEns.has(s.ens)) return true
+    if (s.ens && efpSet.has(s.ens)) return true
+    if (s.farcaster && farcasterUsernames.has(s.farcaster)) return true
+    return false
   })
 
   return speakers
@@ -93,22 +96,24 @@ export async function GetRecommendedSessions(id: string, includeFeatured?: boole
 
   const userVector = vectorizeUser(account)
   const personalizedRecommendations = GetRecommendedVectorSearch(userVector, vectorizedSessions as VectorizedSession[], 20)
-  const sessions = await scheduleClient.session.findMany({
-    where: {
-      AND: [
-        { eventId: 'devcon-7' },
-        {
-          OR: [{ speakers: { some: { id: { in: account.favorite_speakers } } } }, { id: { in: personalizedRecommendations.map((r) => r.id) } }],
-        },
-      ],
-    },
-    include: {
-      speakers: true,
-      slot_room: true,
-    },
-    orderBy: {
-      slot_start: 'asc',
-    },
+
+  // Filter sessions in-memory instead of via Prisma
+  const recommendedIds = new Set(personalizedRecommendations.map((r) => r.id))
+  const favSpeakerIds = new Set(account.favorite_speakers)
+
+  const sessions = store.getAllSessions().filter((s: any) => {
+    if (s.eventId !== 'devcon-7') return false
+    if (recommendedIds.has(s.id)) return true
+    if (s.speakers?.some((sp: any) => favSpeakerIds.has(sp.id))) return true
+    return false
+  })
+
+  // Sort by slot_start ascending
+  sessions.sort((a: any, b: any) => {
+    if (!a.slot_start && !b.slot_start) return 0
+    if (!a.slot_start) return 1
+    if (!b.slot_start) return -1
+    return a.slot_start < b.slot_start ? -1 : 1
   })
 
   return sessions
@@ -396,7 +401,7 @@ export function vectorizeSession(session: Session, dictionary: VectorDictionary)
   return getVectorWeight(vector, dictionary)
 }
 
-export function vectorizeUser(user: Account, dic: VectorDictionary = dictionary): number[] {
+export function vectorizeUser(user: any, dic: VectorDictionary = dictionary): number[] {
   const vector = [
     ...dictionary.tracks.map((track: any) => (user.tracks.includes(track) ? 1 : 0)),
     ...dictionary.speakers.map((speaker: any) => (user.favorite_speakers.includes(speaker) ? 1 : 0)),
