@@ -33,12 +33,19 @@ function normalizeAuth(a: EIP3009Authorization) {
   }
 }
 
+const FACILITATOR_API_KEY = process.env.X402_FACILITATOR_API_KEY
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SettleResponse>
 ) {
   if (req.method !== 'POST') {
     return res.status(405).setHeader('Allow', 'POST').end()
+  }
+
+  // Gate behind API key when configured (prevents unauthenticated gas griefing)
+  if (FACILITATOR_API_KEY && req.headers['x-facilitator-key'] !== FACILITATOR_API_KEY) {
+    return res.status(401).json({ success: false, transaction: '', network: '' as `${string}:${string}`, errorReason: 'unauthorized' as any })
   }
 
   type ExactEvmPayload = { signature: string; authorization: EIP3009Authorization }

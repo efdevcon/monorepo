@@ -7,12 +7,18 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getRelayerAddress } from 'services/relayer'
 import { X402_VERSION, type SupportedResponse, getGaslessUsdcChainIds, getUsdcConfigForChainId } from 'types/x402'
 
+const FACILITATOR_API_KEY = process.env.X402_FACILITATOR_API_KEY
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SupportedResponse>
 ) {
   if (req.method !== 'GET') {
     return res.status(405).setHeader('Allow', 'GET').end()
+  }
+
+  if (FACILITATOR_API_KEY && req.headers['x-facilitator-key'] !== FACILITATOR_API_KEY) {
+    return res.status(401).json({ kinds: [] } as any)
   }
 
   try {
