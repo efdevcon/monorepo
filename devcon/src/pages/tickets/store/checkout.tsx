@@ -73,6 +73,7 @@ const NETWORK_LOGOS: Record<number, string> = {
   10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
   42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
   8453: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+  137: 'https://storage.googleapis.com/zapper-fi-assets/networks/polygon-icon.png',
   84532: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
 }
 

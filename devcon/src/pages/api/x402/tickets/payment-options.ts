@@ -61,6 +61,10 @@ const NETWORK_NAME_TO_CHAIN_ID: Record<string, number> = {
   'arbitrum mainnet': 42161,
   base: 8453,
   'base mainnet': 8453,
+  polygon: 137,
+  'polygon mainnet': 137,
+  'polygon-mainnet': 137,
+  'matic mainnet': 137,
   'base-sepolia': 84532,
   'base sepolia': 84532,
 }

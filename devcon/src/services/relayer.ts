@@ -17,7 +17,7 @@ import {
   type Chain,
 } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
-import { base, baseSepolia, mainnet, optimism, arbitrum } from 'viem/chains'
+import { base, baseSepolia, mainnet, optimism, arbitrum, polygon } from 'viem/chains'
 import crypto from 'crypto'
 import {
   EIP3009Authorization,
@@ -37,6 +37,7 @@ const CHAIN_ID_TO_CHAIN: Record<number, Chain> = {
   [optimism.id]: optimism,
   [arbitrum.id]: arbitrum,
   [base.id]: base,
+  [polygon.id]: polygon,
   [baseSepolia.id]: baseSepolia,
 }
 

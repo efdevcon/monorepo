@@ -27,6 +27,9 @@ export const SUPPORTED_ASSETS_MAINNET: SupportedAsset[] = [
   { asset: `eip155:42161/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Arbitrum', chainId: 'eip155:42161', decimals: 18 },
   { asset: 'eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', symbol: 'USDC', name: 'USD Coin', chain: 'Base', chainId: 'eip155:8453', decimals: 6 },
   { asset: `eip155:8453/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'Ether', chain: 'Base', chainId: 'eip155:8453', decimals: 18 },
+  // Polygon — USDC + native ETH (MATIC/POL)
+  { asset: 'eip155:137/erc20:0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', symbol: 'USDC', name: 'USD Coin', chain: 'Polygon', chainId: 'eip155:137', decimals: 6 },
+  { asset: `eip155:137/erc20:${NATIVE_ETH_PLACEHOLDER}`, symbol: 'ETH', name: 'POL', chain: 'Polygon', chainId: 'eip155:137', decimals: 18 },
   // USDT0 (gasless via EIP-3009) — Optimism & Arbitrum only
   { asset: 'eip155:10/erc20:0x01bFF41798a0BcF287b996046Ca68b395DbC1071', symbol: 'USDT0', name: 'Tether USD', chain: 'Optimism', chainId: 'eip155:10', decimals: 6 },
   { asset: 'eip155:42161/erc20:0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9', symbol: 'USDT0', name: 'Tether USD', chain: 'Arbitrum', chainId: 'eip155:42161', decimals: 6 },
@@ -147,6 +150,13 @@ export const BASE_USDC_CONFIG: GaslessTokenConfig = {
   eip712Name: 'USD Coin', eip712Version: '2',
 }
 
+export const POLYGON_USDC_CONFIG: GaslessTokenConfig = {
+  network: 'polygon', chainId: 137,
+  tokenAddress: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+  tokenSymbol: 'USDC', tokenDecimals: 6,
+  eip712Name: 'USD Coin', eip712Version: '2',
+}
+
 export const BASE_SEPOLIA_USDC_CONFIG: GaslessTokenConfig = {
   network: 'base-sepolia', chainId: 84532,
   tokenAddress: '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
@@ -175,6 +185,7 @@ export const USDC_CONFIGS_MAINNET: GaslessTokenConfig[] = [
   ETHEREUM_USDC_CONFIG,
   OPTIMISM_USDC_CONFIG,
   ARBITRUM_USDC_CONFIG,
+  POLYGON_USDC_CONFIG,
 ]
 
 /** All testnet USDC configs */
