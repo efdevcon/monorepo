@@ -10,9 +10,9 @@
  *   5. Full PAYMENT-SIGNATURE retry flow (needs funded wallet — pass --settle)
  *
  * Usage:
- *   pnpm x402:test-v2-agent                        # Protocol format tests only
- *   TEST_PAYER_PRIVATE_KEY=0x... pnpm x402:test-v2-agent           # + signature tests
- *   TEST_PAYER_PRIVATE_KEY=0x... pnpm x402:test-v2-agent --settle  # + full settlement
+ *   pnpm run x402:test-v2-agent                        # Protocol format tests only
+ *   TEST_PAYER_PRIVATE_KEY=0x... pnpm run x402:test-v2-agent           # + signature tests
+ *   TEST_PAYER_PRIVATE_KEY=0x... pnpm run x402:test-v2-agent --settle  # + full settlement
  *
  * Requires the dev server running: pnpm dev
  */

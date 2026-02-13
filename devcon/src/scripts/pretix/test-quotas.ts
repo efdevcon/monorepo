@@ -1,6 +1,6 @@
 /**
  * Test script to fetch Pretix quotas (availability)
- * Run with: npx ts-node src/scripts/pretix/test-quotas.ts
+ * Run with: pnpm run pretix:test-quotas
  */
 import 'dotenv/config'
 

@@ -10,8 +10,8 @@
  * For native ETH assets: just check balance.
  *
  * Usage:
- *   npx ts-node src/scripts/pretix/simulate-transfers.ts
- *   TEST_PAYER_PRIVATE_KEY=0x... npx ts-node src/scripts/pretix/simulate-transfers.ts
+ *   pnpm run x402:simulate
+ *   TEST_PAYER_PRIVATE_KEY=0x... pnpm run x402:simulate
  *
  * Env:
  *   TEST_WALLET – wallet address to check balances (default: 0xBD19a3F0A9CaCE18513A1e2863d648D13975CB30)

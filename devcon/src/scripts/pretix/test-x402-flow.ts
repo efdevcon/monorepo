@@ -1,6 +1,6 @@
 /**
  * Test script to simulate the full x402 ticket purchase flow
- * Run with: npx ts-node src/scripts/pretix/test-x402-flow.ts
+ * Run with: pnpm run x402:test-flow
  *
  * This script simulates:
  * 1. Fetching available tickets and questions

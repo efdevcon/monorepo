@@ -1,6 +1,6 @@
 /**
  * Test script to fetch Pretix event information
- * Run with: npx ts-node src/scripts/pretix/test-event.ts
+ * Run with: pnpm run pretix:test-event
  */
 import 'dotenv/config'
 
