@@ -19,7 +19,7 @@ import {
 import { createConfig, http } from 'wagmi'
 import { baseSepolia, base, mainnet, optimism, arbitrum, polygon } from 'wagmi/chains'
 import { injected, walletConnect } from 'wagmi/connectors'
-import { QuestionInfo } from 'types/pretix'
+import { QuestionInfo, TicketInfo } from 'types/pretix'
 
 const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
 
@@ -261,7 +261,7 @@ function CheckoutContent() {
   }, [])
 
   // ── Section accordion ──
-  const [openSection, setOpenSection] = useState<string | null>('swag')
+  const [openSection, setOpenSection] = useState<string | null>('contact')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
   const [paymentMethod, setPaymentMethod] = useState<'crypto' | 'fiat'>('crypto')
 
@@ -269,8 +269,12 @@ function CheckoutContent() {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null)
 
-  // ── Questions from API ──
+  // ── Questions & tickets (add-ons) from API ──
   const [questions, setQuestions] = useState<QuestionInfo[]>([])
+  const [tickets, setTickets] = useState<TicketInfo[]>([])
+
+  // ── Add-on selections: Map<addonItemId, quantity> ──
+  const [selectedAddons, setSelectedAddons] = useState<Map<number, number>>(new Map())
 
   // ── Form state ──
   const [firstName, setFirstName] = useState('')
@@ -279,8 +283,6 @@ function CheckoutContent() {
   const [confirmEmail, setConfirmEmail] = useState('')
   const [newsletter, setNewsletter] = useState(false)
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({})
-  const [swag1Size, setSwag1Size] = useState('Size: Male M')
-
   // ── Payment flow state ──
   const [purchaseLoading, setPurchaseLoading] = useState(false)
   const [purchaseError, setPurchaseError] = useState<string | null>(null)
@@ -358,20 +360,21 @@ function CheckoutContent() {
     localStorage.setItem('devcon-checkout-form', JSON.stringify(data))
   }, [firstName, lastName, email, confirmEmail, answers, mounted])
 
-  // ── Fetch questions from API ──
+  // ── Fetch questions & tickets (with add-ons) from API ──
   useEffect(() => {
-    async function fetchQuestions() {
+    async function fetchTicketData() {
       try {
         const res = await fetch('/api/x402/tickets')
         const data = await res.json()
         if (data.success) {
           setQuestions(data.data.questions || [])
+          setTickets(data.data.tickets || [])
         }
       } catch {
-        // questions will just be empty
+        // questions/tickets will just be empty
       }
     }
-    fetchQuestions()
+    fetchTicketData()
   }, [])
 
   // ── Auto-load payment options when crypto tab is active and we have payment ref + wallet (e.g. user connected after 402)
@@ -531,8 +534,42 @@ function CheckoutContent() {
     }
   }, [showFiatModal, fiatOrderCode, pollFiatStatus])
 
+  // ── Get applicable questions for selected tickets ──
+  const ticketIds = cartItems.map(c => c.ticketId)
+  const applicableQuestions = questions.filter(
+    q => !q.dependsOn && (q.appliesToItems.length === 0 || q.appliesToItems.some(id => ticketIds.includes(id)))
+  )
+
+  // ── Get available add-ons for selected tickets ──
+  // Collect all add-on categories across selected tickets (deduplicated by categoryId)
+  const availableAddons = (() => {
+    const seen = new Set<number>()
+    const result: TicketInfo['addons'] = []
+    for (const cartItem of cartItems) {
+      const ticket = tickets.find(t => t.id === cartItem.ticketId)
+      if (!ticket) continue
+      for (const addon of ticket.addons) {
+        if (!seen.has(addon.categoryId)) {
+          seen.add(addon.categoryId)
+          result.push(addon)
+        }
+      }
+    }
+    return result
+  })()
+
+  // Flat list of all available add-on items (for price lookup in summary)
+  const allAddonItems = availableAddons.flatMap(a => a.items)
+
+  // Add-on subtotal
+  const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, qty]) => {
+    const item = allAddonItems.find(i => i.id === itemId)
+    return sum + (item ? parseFloat(item.price) * qty : 0)
+  }, 0)
+
   // ── Derived cart values ──
-  const subtotal = cartItems.reduce((sum, c) => sum + parseFloat(c.price) * c.quantity, 0)
+  const ticketSubtotal = cartItems.reduce((sum, c) => sum + parseFloat(c.price) * c.quantity, 0)
+  const subtotal = ticketSubtotal + addonSubtotal
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : 3
   const cryptoDiscount = paymentMethod === 'crypto' ? +(subtotal * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - cryptoDiscount).toFixed(2)
@@ -545,7 +582,13 @@ function CheckoutContent() {
   const goToNextSection = (currentSectionId: string) => {
     const i = SECTION_ORDER.indexOf(currentSectionId as (typeof SECTION_ORDER)[number])
     if (i >= 0 && i < SECTION_ORDER.length - 1) {
-      setOpenSection(SECTION_ORDER[i + 1])
+      let next = SECTION_ORDER[i + 1]
+      // Skip 'swag' section if no add-ons available
+      if (next === 'swag' && availableAddons.length === 0) {
+        const j = SECTION_ORDER.indexOf('swag')
+        if (j < SECTION_ORDER.length - 1) next = SECTION_ORDER[j + 1]
+      }
+      setOpenSection(next)
     }
   }
 
@@ -556,11 +599,30 @@ function CheckoutContent() {
     confirmEmail.trim() !== '' &&
     email.trim() === confirmEmail.trim()
 
-  // ── Get applicable questions for selected tickets ──
-  const ticketIds = cartItems.map(c => c.ticketId)
-  const applicableQuestions = questions.filter(
-    q => !q.dependsOn && (q.appliesToItems.length === 0 || q.appliesToItems.some(id => ticketIds.includes(id)))
-  )
+  // Add-on selection helpers
+  const toggleAddon = (itemId: number) => {
+    setSelectedAddons(prev => {
+      const next = new Map(prev)
+      if (next.has(itemId)) {
+        next.delete(itemId)
+      } else {
+        next.set(itemId, 1)
+      }
+      return next
+    })
+  }
+
+  const setAddonQuantity = (itemId: number, qty: number) => {
+    setSelectedAddons(prev => {
+      const next = new Map(prev)
+      if (qty <= 0) {
+        next.delete(itemId)
+      } else {
+        next.set(itemId, qty)
+      }
+      return next
+    })
+  }
 
   // ── Answer update helper ──
   const updateAnswer = (questionId: number, value: string | string[]) => {
@@ -646,6 +708,11 @@ function CheckoutContent() {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
+      // Build add-ons array from selections
+      const addons = Array.from(selectedAddons.entries())
+        .filter(([_, qty]) => qty > 0)
+        .map(([itemId, quantity]) => ({ itemId, quantity }))
+
       const res = await fetch('/api/x402/tickets/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -653,6 +720,7 @@ function CheckoutContent() {
           email,
           intendedPayer: address!,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
+          ...(addons.length > 0 && { addons }),
           answers: formattedAnswers,
           attendee: {
             name: { given_name: firstName, family_name: lastName },
@@ -692,12 +760,18 @@ function CheckoutContent() {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
+      // Build add-ons array from selections
+      const addons = Array.from(selectedAddons.entries())
+        .filter(([_, qty]) => qty > 0)
+        .map(([itemId, quantity]) => ({ itemId, quantity }))
+
       const res = await fetch('/api/x402/tickets/fiat-purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
+          ...(addons.length > 0 && { addons }),
           answers: formattedAnswers,
           attendee: {
             name: { given_name: firstName, family_name: lastName },
@@ -1012,57 +1086,80 @@ function CheckoutContent() {
           </Link>
           <h1 className={css['page-title']}>Checkout</h1>
 
-          {/* Swag & Add-ons */}
-          <div className={css['section-card']}>
-            <button
-              type="button"
-              className={css['section-header']}
-              onClick={() => toggleSection('swag')}
-              aria-expanded={openSection === 'swag'}
-            >
-              <span>Swag & Add-ons</span>
-              {openSection === 'swag' ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-            {openSection === 'swag' && (
-              <div className={css['section-body']}>
-                <div className={css['swag-grid']}>
-                  <div className={css['swag-card']}>
-                    <div className={css['swag-image']} />
-                    <div className={css['swag-info']}>
-                      <h4>Swag item 1</h4>
-                      <p>Lorem ipsum dolor sit amet consectetur. Luctus quis augue sed adipiscing sapien aliquam.</p>
+          {/* Add-ons (dynamic from Pretix) */}
+          {availableAddons.length > 0 && (
+            <div className={css['section-card']}>
+              <button
+                type="button"
+                className={css['section-header']}
+                onClick={() => toggleSection('swag')}
+                aria-expanded={openSection === 'swag'}
+              >
+                <span>Add-ons</span>
+                {openSection === 'swag' ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </button>
+              {openSection === 'swag' && (
+                <div className={css['section-body']}>
+                  {availableAddons.map(category => (
+                    <div key={category.categoryId} className={css['swag-grid']}>
+                      {category.categoryName && (
+                        <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
+                      )}
+                      {category.items.filter(i => i.available).map(item => {
+                        const qty = selectedAddons.get(item.id) || 0
+                        const isFree = parseFloat(item.price) === 0
+                        return (
+                          <div key={item.id} className={css['swag-card']}>
+                            <div className={css['swag-info']}>
+                              <h4>{item.name}</h4>
+                            </div>
+                            <div className={css['swag-right']}>
+                              {category.maxCount > 1 ? (
+                                <div className={css['addon-qty']}>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty - 1)}
+                                    disabled={qty <= 0}
+                                  >
+                                    &minus;
+                                  </button>
+                                  <span className={css['addon-qty-value']}>{qty}</span>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty + 1)}
+                                    disabled={qty >= category.maxCount}
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              ) : (
+                                <label className={css['addon-toggle']}>
+                                  <input
+                                    type="checkbox"
+                                    checked={qty > 0}
+                                    onChange={() => toggleAddon(item.id)}
+                                  />
+                                  <span>{qty > 0 ? 'Added' : 'Add'}</span>
+                                </label>
+                              )}
+                              <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
+                                {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
+                              </span>
+                            </div>
+                          </div>
+                        )
+                      })}
                     </div>
-                    <div className={css['swag-right']}>
-                      <select
-                        className={css['select-input']}
-                        value={swag1Size}
-                        onChange={e => setSwag1Size(e.target.value)}
-                      >
-                        <option>Size: Male M</option>
-                        <option>Size: Male S</option>
-                        <option>Size: Male L</option>
-                        <option>Size: Female M</option>
-                      </select>
-                      <span className={css['swag-price-free']}>FREE</span>
-                    </div>
-                  </div>
-                  <div className={css['swag-card']}>
-                    <div className={css['swag-image']} />
-                    <div className={css['swag-info']}>
-                      <h4>Swag item 2</h4>
-                      <p>Lorem ipsum dolor sit amet consectetur. Luctus quis augue sed adipiscing sapien aliquam.</p>
-                    </div>
-                    <div className={css['swag-right']}>
-                      <span className={css['swag-price-free']}>FREE</span>
-                    </div>
-                  </div>
+                  ))}
+                  <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
+                    Continue
+                  </button>
                 </div>
-                <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
-                  Continue
-                </button>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* Contact details */}
           <div className={css['section-card']}>
@@ -1641,26 +1738,21 @@ function CheckoutContent() {
                     </div>
                   </div>
                 )}
-                <div className={css['panel-item']}>
-                  <div>
-                    <span className={css['panel-item-name']}>Swag item one</span>
-                    <div className={css['panel-item-meta']}>Size: Male M</div>
-                  </div>
-                  <div className={css['panel-item-right']}>
-                    <span>x1</span>
-                    <span className={css['panel-item-price']}>FREE</span>
-                  </div>
-                </div>
-                <div className={css['panel-item']}>
-                  <div>
-                    <span className={css['panel-item-name']}>Swag item two</span>
-                    <div className={css['panel-item-meta']}>Size: Male M</div>
-                  </div>
-                  <div className={css['panel-item-right']}>
-                    <span>x1</span>
-                    <span className={css['panel-item-price']}>FREE</span>
-                  </div>
-                </div>
+                {Array.from(selectedAddons.entries()).map(([itemId, qty]) => {
+                  const item = allAddonItems.find(i => i.id === itemId)
+                  if (!item || qty <= 0) return null
+                  const isFree = parseFloat(item.price) === 0
+                  const lineTotal = parseFloat(item.price) * qty
+                  return (
+                    <div key={itemId} className={css['panel-item']}>
+                      <span className={css['panel-item-name']}>{item.name}</span>
+                      <div className={css['panel-item-right']}>
+                        <span>x{qty}</span>
+                        <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
               <div className={css['discount-row']}>
                 <input type="text" className={css['discount-input']} placeholder="Discount or Voucher Code" />

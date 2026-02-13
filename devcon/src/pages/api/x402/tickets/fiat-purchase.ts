@@ -17,6 +17,10 @@ interface FiatPurchaseRequest {
     variationId?: number
     quantity?: number
   }[]
+  addons?: {
+    itemId: number
+    quantity?: number
+  }[]
   answers: {
     questionId: number
     answer: string | number | string[]
@@ -161,6 +165,38 @@ export default async function handler(
           seat: null,
           voucher: null,
         })
+      }
+    }
+
+    // Process add-ons
+    if (body.addons) {
+      for (const addon of body.addons) {
+        const item = itemsById.get(addon.itemId)
+        if (!item) {
+          return res.status(400).json({ success: false, error: `Invalid addon ID: ${addon.itemId}` })
+        }
+        const quantity = addon.quantity || 1
+        for (let i = 0; i < quantity; i++) {
+          positions.push({
+            item: item.id,
+            variation: null,
+            price: item.price,
+            attendee_name: null,
+            attendee_name_parts: {},
+            attendee_email: null,
+            company: null,
+            street: null,
+            zipcode: null,
+            city: null,
+            country: null,
+            state: null,
+            addon_to: 0, // linked to first ticket position
+            subevent: null,
+            answers: [],
+            seat: null,
+            voucher: null,
+          })
+        }
       }
     }
 

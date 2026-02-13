@@ -133,20 +133,13 @@ $checkout-accent: #4d59c7;
 
 .swag-card {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 1fr auto;
   gap: 1rem;
   align-items: center;
   padding: 1rem;
   background: #fff;
   border: 1px solid $checkout-border;
   border-radius: 8px;
-}
-
-.swag-image {
-  width: 64px;
-  height: 64px;
-  background: #f0f0f0;
-  border-radius: 4px;
 }
 
 .swag-info h4 {
@@ -175,6 +168,71 @@ $checkout-accent: #4d59c7;
   font-size: 1rem;
   font-weight: 700;
   color: #000;
+}
+
+.addon-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.addon-category-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.addon-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addon-qty-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $checkout-border;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &:hover:not(:disabled) {
+    background: #f5f5f5;
+  }
+}
+
+.addon-qty-value {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.addon-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.7);
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
 }
 
 .select-input {
