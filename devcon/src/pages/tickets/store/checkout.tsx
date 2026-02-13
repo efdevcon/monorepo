@@ -261,7 +261,7 @@ function CheckoutContent() {
   }, [])
 
   // ── Section accordion ──
-  const [openSection, setOpenSection] = useState<string | null>('contact')
+  const [openSection, setOpenSection] = useState<string | null>('swag')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
   const [paymentMethod, setPaymentMethod] = useState<'crypto' | 'fiat'>('crypto')
 
@@ -273,8 +273,8 @@ function CheckoutContent() {
   const [questions, setQuestions] = useState<QuestionInfo[]>([])
   const [tickets, setTickets] = useState<TicketInfo[]>([])
 
-  // ── Add-on selections: Map<addonItemId, quantity> ──
-  const [selectedAddons, setSelectedAddons] = useState<Map<number, number>>(new Map())
+  // ── Add-on selections: Map<addonItemId, { quantity, variationId? }> ──
+  const [selectedAddons, setSelectedAddons] = useState<Map<number, { quantity: number; variationId?: number }>>(new Map())
 
   // ── Form state ──
   const [firstName, setFirstName] = useState('')
@@ -562,9 +562,16 @@ function CheckoutContent() {
   const allAddonItems = availableAddons.flatMap(a => a.items)
 
   // Add-on subtotal
-  const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, qty]) => {
+  const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, data]) => {
     const item = allAddonItems.find(i => i.id === itemId)
-    return sum + (item ? parseFloat(item.price) * qty : 0)
+    if (!item || data.quantity <= 0) return sum
+    // If a variation is selected, use variation price; otherwise use item price
+    let price = parseFloat(item.price)
+    if (data.variationId) {
+      const variation = item.variations.find(v => v.id === data.variationId)
+      if (variation) price = parseFloat(variation.price)
+    }
+    return sum + price * data.quantity
   }, 0)
 
   // ── Derived cart values ──
@@ -606,7 +613,7 @@ function CheckoutContent() {
       if (next.has(itemId)) {
         next.delete(itemId)
       } else {
-        next.set(itemId, 1)
+        next.set(itemId, { quantity: 1 })
       }
       return next
     })
@@ -618,7 +625,20 @@ function CheckoutContent() {
       if (qty <= 0) {
         next.delete(itemId)
       } else {
-        next.set(itemId, qty)
+        const existing = next.get(itemId)
+        next.set(itemId, { quantity: qty, variationId: existing?.variationId })
+      }
+      return next
+    })
+  }
+
+  const setAddonVariation = (itemId: number, variationId: number | undefined) => {
+    setSelectedAddons(prev => {
+      const next = new Map(prev)
+      if (!variationId) {
+        next.delete(itemId)
+      } else {
+        next.set(itemId, { quantity: 1, variationId })
       }
       return next
     })
@@ -710,8 +730,8 @@ function CheckoutContent() {
 
       // Build add-ons array from selections
       const addons = Array.from(selectedAddons.entries())
-        .filter(([_, qty]) => qty > 0)
-        .map(([itemId, quantity]) => ({ itemId, quantity }))
+        .filter(([_, data]) => data.quantity > 0)
+        .map(([itemId, data]) => ({ itemId, quantity: data.quantity, ...(data.variationId && { variationId: data.variationId }) }))
 
       const res = await fetch('/api/x402/tickets/purchase', {
         method: 'POST',
@@ -762,8 +782,8 @@ function CheckoutContent() {
 
       // Build add-ons array from selections
       const addons = Array.from(selectedAddons.entries())
-        .filter(([_, qty]) => qty > 0)
-        .map(([itemId, quantity]) => ({ itemId, quantity }))
+        .filter(([_, data]) => data.quantity > 0)
+        .map(([itemId, data]) => ({ itemId, quantity: data.quantity, ...(data.variationId && { variationId: data.variationId }) }))
 
       const res = await fetch('/api/x402/tickets/fiat-purchase', {
         method: 'POST',
@@ -1106,15 +1126,36 @@ function CheckoutContent() {
                         <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
                       )}
                       {category.items.filter(i => i.available).map(item => {
-                        const qty = selectedAddons.get(item.id) || 0
+                        const sel = selectedAddons.get(item.id)
+                        const qty = sel?.quantity || 0
                         const isFree = parseFloat(item.price) === 0
+                        const hasVariations = item.variations.length > 0
                         return (
                           <div key={item.id} className={css['swag-card']}>
                             <div className={css['swag-info']}>
                               <h4>{item.name}</h4>
+                              {item.description && (
+                                <p className={css['addon-description']}>{item.description}</p>
+                              )}
                             </div>
                             <div className={css['swag-right']}>
-                              {category.maxCount > 1 ? (
+                              {hasVariations ? (
+                                /* Items with variations: size dropdown */
+                                <select
+                                  className={css['addon-size-select']}
+                                  value={sel?.variationId || ''}
+                                  onChange={e => {
+                                    const val = e.target.value
+                                    setAddonVariation(item.id, val ? Number(val) : undefined)
+                                  }}
+                                >
+                                  <option value="">Select size</option>
+                                  {item.variations.map(v => (
+                                    <option key={v.id} value={v.id}>{v.name}</option>
+                                  ))}
+                                </select>
+                              ) : category.maxCount > 1 ? (
+                                /* Paid items without variations: quantity +/- */
                                 <div className={css['addon-qty']}>
                                   <button
                                     type="button"
@@ -1135,6 +1176,7 @@ function CheckoutContent() {
                                   </button>
                                 </div>
                               ) : (
+                                /* Simple toggle */
                                 <label className={css['addon-toggle']}>
                                   <input
                                     type="checkbox"
@@ -1738,16 +1780,25 @@ function CheckoutContent() {
                     </div>
                   </div>
                 )}
-                {Array.from(selectedAddons.entries()).map(([itemId, qty]) => {
+                {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                   const item = allAddonItems.find(i => i.id === itemId)
-                  if (!item || qty <= 0) return null
-                  const isFree = parseFloat(item.price) === 0
-                  const lineTotal = parseFloat(item.price) * qty
+                  if (!item || data.quantity <= 0) return null
+                  let price = parseFloat(item.price)
+                  let varLabel = ''
+                  if (data.variationId) {
+                    const variation = item.variations.find(v => v.id === data.variationId)
+                    if (variation) {
+                      price = parseFloat(variation.price)
+                      varLabel = ` (${variation.name})`
+                    }
+                  }
+                  const isFree = price === 0
+                  const lineTotal = price * data.quantity
                   return (
                     <div key={itemId} className={css['panel-item']}>
-                      <span className={css['panel-item-name']}>{item.name}</span>
+                      <span className={css['panel-item-name']}>{item.name}{varLabel}</span>
                       <div className={css['panel-item-right']}>
-                        <span>x{qty}</span>
+                        <span>x{data.quantity}</span>
                         <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
                       </div>
                     </div>

@@ -19,6 +19,7 @@ interface FiatPurchaseRequest {
   }[]
   addons?: {
     itemId: number
+    variationId?: number
     quantity?: number
   }[]
   answers: {
@@ -175,12 +176,23 @@ export default async function handler(
         if (!item) {
           return res.status(400).json({ success: false, error: `Invalid addon ID: ${addon.itemId}` })
         }
+        let addonPrice = item.price
+        if (addon.variationId) {
+          const variation = item.variations.find((v) => v.id === addon.variationId)
+          if (!variation) {
+            return res.status(400).json({
+              success: false,
+              error: `Invalid variation ID: ${addon.variationId} for addon ${addon.itemId}`,
+            })
+          }
+          addonPrice = variation.price
+        }
         const quantity = addon.quantity || 1
         for (let i = 0; i < quantity; i++) {
           positions.push({
             item: item.id,
-            variation: null,
-            price: item.price,
+            variation: addon.variationId || null,
+            price: addonPrice,
             attendee_name: null,
             attendee_name_parts: {},
             attendee_email: null,

@@ -235,6 +235,28 @@ $checkout-accent: #4d59c7;
   }
 }
 
+.addon-description {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.55);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.addon-size-select {
+  min-width: 140px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid $checkout-border;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: $checkout-accent;
+  }
+}
+
 .select-input {
   min-width: 140px;
   padding: 0.5rem 0.75rem;

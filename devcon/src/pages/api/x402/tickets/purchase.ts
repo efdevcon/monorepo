@@ -61,6 +61,7 @@ interface PurchaseRequest {
   }[]
   addons?: {
     itemId: number
+    variationId?: number
     quantity?: number
   }[]
   answers: {
@@ -163,7 +164,7 @@ export default async function handler(
 
     // Calculate order items and prices
     const orderTickets: { name: string; price: string; quantity: number; item: any }[] = []
-    const orderAddons: { name: string; price: string; quantity: number; item: any }[] = []
+    const orderAddons: { name: string; price: string; quantity: number; item: any; variationId?: number }[] = []
 
     // Process tickets
     for (const ticket of body.tickets) {
@@ -213,8 +214,22 @@ export default async function handler(
           })
         }
 
+        let addonPrice = item.price
+        let addonName = item.name
+        if (addon.variationId) {
+          const variation = item.variations.find((v) => v.id === addon.variationId)
+          if (!variation) {
+            return res.status(400).json({
+              success: false,
+              error: `Invalid variation ID: ${addon.variationId} for addon ${addon.itemId}`,
+            })
+          }
+          addonPrice = variation.price
+          addonName = `${item.name} - ${variation.name}`
+        }
+
         const quantity = addon.quantity || 1
-        orderAddons.push({ name: item.name, price: item.price, quantity, item })
+        orderAddons.push({ name: addonName, price: addonPrice, quantity, item, variationId: addon.variationId })
       }
     }
 
@@ -295,7 +310,7 @@ export default async function handler(
       for (let i = 0; i < addon.quantity; i++) {
         positions.push({
           item: addon.item.id,
-          variation: null,
+          variation: addon.variationId || null,
           price: addon.price,
           attendee_name: null,
           attendee_name_parts: {},
