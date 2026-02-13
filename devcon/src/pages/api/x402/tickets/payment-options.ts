@@ -287,6 +287,17 @@ export default async function handler(
       options.push(opt)
     }
 
+    // Sort by USD balance descending so highest-value options appear first
+    options.sort((a, b) => {
+      const usdA = a.symbol === 'ETH' && ethPriceUsd
+        ? (Number(a.balance) / 1e18) * ethPriceUsd
+        : Number(a.balance) / 10 ** a.decimals
+      const usdB = b.symbol === 'ETH' && ethPriceUsd
+        ? (Number(b.balance) / 1e18) * ethPriceUsd
+        : Number(b.balance) / 10 ** b.decimals
+      return usdB - usdA
+    })
+
     return res.status(200).json({ options })
   } catch (e) {
     return res.status(500).json({

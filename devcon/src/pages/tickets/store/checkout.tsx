@@ -60,6 +60,21 @@ const ERC20_ABI = [
   },
 ] as const
 
+// ── Token & network icons ──
+
+const TOKEN_ICONS: Record<string, string> = {
+  USDC: 'https://storage.googleapis.com/zapper-fi-assets/tokens/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png',
+  ETH: 'https://storage.googleapis.com/zapper-fi-assets/tokens/ethereum/0x0000000000000000000000000000000000000000.png',
+}
+
+const NETWORK_LOGOS: Record<number, string> = {
+  1: 'https://storage.googleapis.com/zapper-fi-assets/networks/ethereum-icon.png',
+  10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
+  42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
+  8453: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+  84532: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+}
+
 // ── Cart types (must match store page) ──
 
 interface CartItem {
@@ -272,6 +287,7 @@ function CheckoutContent() {
   const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
   const [paymentOptionsLoading, setPaymentOptionsLoading] = useState(false)
   const [selectedOption, setSelectedOption] = useState<PaymentOption | null>(null)
+  const [showInsufficient, setShowInsufficient] = useState(false)
 
   // Fiat/Stripe state
   const [fiatPaymentUrl, setFiatPaymentUrl] = useState<string | null>(null)
@@ -694,7 +710,7 @@ function CheckoutContent() {
         ? parseInt(domain.chainId, domain.chainId.startsWith('0x') ? 16 : 10)
         : domain.chainId
       if (domainChainId && chain?.id !== domainChainId && switchChain) {
-        setPaymentStatus('Switch network in your wallet...')
+        setPaymentStatus(`Switching to ${details.network}...`)
         await switchChain({ chainId: domainChainId })
       }
       setPaymentStatus('Sign in your wallet...')
@@ -800,7 +816,7 @@ function CheckoutContent() {
           ? parseInt(typed.domain.chainId, typed.domain.chainId.startsWith('0x') ? 16 : 10)
           : typed.domain.chainId
         if (domainChainId && chain?.id !== domainChainId && switchChain) {
-          setPaymentStatus('Switch network in your wallet...')
+          setPaymentStatus(`Switching to ${selectedOption.chain}...`)
           await switchChain({ chainId: domainChainId })
         }
         setPaymentStatus('Sign in your wallet...')
@@ -840,9 +856,9 @@ function CheckoutContent() {
       }
       const targetChainId = tx.chainId ? parseInt(tx.chainId.replace('0x', ''), 16) : paymentDetails.chainId
       if (chain?.id !== targetChainId && switchChain) {
-        setPaymentStatus('Switch network in your wallet...')
+        setPaymentStatus(`Switching to ${selectedOption.chain}...`)
         await switchChain({ chainId: targetChainId })
-        setPaymentStatus(null)
+        setPaymentStatus(`Switched to ${selectedOption.chain} — click Pay again`)
         return
       }
       setPaymentStatus('Confirm in wallet...')
@@ -1348,61 +1364,82 @@ function CheckoutContent() {
                     </div>
                     {paymentOptionsLoading ? null : (
                       <>
-                        {paymentOptions.length > 0 && !selectedOption && (
-                          <div className={css['payment-options-list']}>
-                            {paymentOptions.map(opt => {
-                              const canPay = Boolean(opt.signingRequest) && opt.sufficient
-                              const sufficient = opt.sufficient
-                              const balanceFormatted =
-                                opt.decimals >= 18
-                                  ? (Number(opt.balance) / 1e18).toFixed(4)
-                                  : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
-                              return (
+                        {paymentOptions.length > 0 && (() => {
+                          const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
+                          const insufficient = paymentOptions.filter(o => !(Boolean(o.signingRequest) && o.sufficient))
+                          const visible = sufficient.length === 0 || showInsufficient ? paymentOptions : sufficient
+                          return (
+                            <>
+                              <div className={css['payment-options-list']}>
+                                {visible.map(opt => {
+                                  const canPay = Boolean(opt.signingRequest) && opt.sufficient
+                                  const isSelected = selectedOption?.asset === opt.asset
+                                  const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
+                                  const balanceFormatted =
+                                    opt.decimals >= 18
+                                      ? (Number(opt.balance) / 1e18).toFixed(4)
+                                      : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
+                                  return (
+                                    <button
+                                      key={opt.asset}
+                                      type="button"
+                                      className={[
+                                        css['payment-option-btn'],
+                                        canPay ? css['payment-option-btn--sufficient'] : css['payment-option-btn--insufficient'],
+                                        isSelected ? css['payment-option-btn--selected'] : '',
+                                      ]
+                                        .filter(Boolean)
+                                        .join(' ')}
+                                      disabled={!canPay}
+                                      onClick={() => canPay && selectPaymentOption(opt)}
+                                    >
+                                      <span className={css['payment-option-icon']}>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={TOKEN_ICONS[opt.symbol]} alt={opt.symbol} className={css['token-icon']} />
+                                        {NETWORK_LOGOS[chainIdNum] && (
+                                          /* eslint-disable-next-line @next/next/no-img-element */
+                                          <img src={NETWORK_LOGOS[chainIdNum]} alt={opt.chain} className={css['network-badge']} />
+                                        )}
+                                      </span>
+                                      <span className={css['payment-option-info']}>
+                                        <span className={css['payment-option-symbol']}>{opt.symbol}</span>
+                                        <span className={css['payment-option-chain']}>on {opt.chain}</span>
+                                      </span>
+                                      <span className={css['payment-option-balance']}>
+                                        {balanceFormatted} {opt.symbol}
+                                      </span>
+                                      {isSelected && <span className={css['payment-option-check']}>✓</span>}
+                                    </button>
+                                  )
+                                })}
+                              </div>
+                              {insufficient.length > 0 && (
                                 <button
-                                  key={opt.asset}
                                   type="button"
-                                  className={[
-                                    css['payment-option-btn'],
-                                    canPay ? css['payment-option-btn--sufficient'] : css['payment-option-btn--insufficient'],
-                                  ]
-                                    .filter(Boolean)
-                                    .join(' ')}
-                                  disabled={!canPay}
-                                  onClick={() => canPay && selectPaymentOption(opt)}
+                                  className={css['toggle-insufficient']}
+                                  onClick={() => setShowInsufficient(v => !v)}
                                 >
-                                  <span className={css['payment-option-symbol']}>{opt.symbol}</span>
-                                  <span className={css['payment-option-chain']}>{opt.chain}</span>
-                                  <span className={css['payment-option-balance']}>
-                                    Balance: {balanceFormatted} {opt.symbol}
-                                  </span>
+                                  {showInsufficient
+                                    ? 'Hide insufficient balances'
+                                    : `Show ${insufficient.length} more with insufficient balance`}
                                 </button>
-                              )
-                            })}
-                          </div>
-                        )}
+                              )}
+                            </>
+                          )
+                        })()}
                         {selectedOption && (
-                          <div className={css['selected-option']}>
-                            <span>
-                              Pay with {selectedOption.symbol} ({selectedOption.chain})
-                            </span>
-                            <button
-                              type="button"
-                              className={css['btn-confirm-pay']}
-                              disabled={isProcessing}
-                              onClick={payWithSelectedOption}
-                            >
-                              {selectedOption.signingRequest?.method === 'eth_signTypedData_v4'
-                                ? 'Sign to pay'
-                                : 'Send transaction'}
-                            </button>
-                            <button
-                              type="button"
-                              className={css['payment-option-back']}
-                              onClick={() => setSelectedOption(null)}
-                            >
-                              Change option
-                            </button>
-                          </div>
+                          <button
+                            type="button"
+                            className={css['btn-pay-now']}
+                            disabled={isProcessing}
+                            onClick={payWithSelectedOption}
+                          >
+                            {isProcessing
+                              ? paymentStatus || 'Processing...'
+                              : selectedOption.signingRequest?.method === 'eth_signTypedData_v4'
+                                ? `Sign to pay — ${selectedOption.symbol} on ${selectedOption.chain}`
+                                : `Pay — ${selectedOption.symbol} on ${selectedOption.chain}`}
+                          </button>
                         )}
                         {!paymentOptionsLoading && paymentOptions.length > 0 && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (
                           <p className={css['status-text']}>No option with sufficient balance. Connect a wallet with more USDC or ETH on supported chains.</p>
@@ -1438,19 +1475,21 @@ function CheckoutContent() {
                   <div className={css['tx-status']}>Transaction: {txHash.slice(0, 16)}...</div>
                 )}
 
-                <button
-                  type="button"
-                  className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
-                  disabled={!checkoutEnabled}
-                  onClick={handleCheckout}
-                >
-                  <span className={css['btn-checkout-left']}>
-                    <LockIcon />
-                    {isProcessing ? paymentStatus || 'Processing...' : 'Checkout'}
-                  </span>
-                  <span className={css['btn-checkout-divider']} />
-                  <span>${totalUsd} USD</span>
-                </button>
+                {!(paymentDetails && paymentMethod === 'crypto') && (
+                  <button
+                    type="button"
+                    className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
+                    disabled={!checkoutEnabled}
+                    onClick={handleCheckout}
+                  >
+                    <span className={css['btn-checkout-left']}>
+                      <LockIcon />
+                      {isProcessing ? paymentStatus || 'Processing...' : 'Checkout'}
+                    </span>
+                    <span className={css['btn-checkout-divider']} />
+                    <span>${totalUsd} USD</span>
+                  </button>
+                )}
 
                 {paymentMethod !== 'crypto' && (
                   <div className={css['stripe-note']}>
