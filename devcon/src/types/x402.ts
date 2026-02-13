@@ -92,6 +92,8 @@ export interface X402PaymentProof {
   chainId?: number
   /** Expected USDC amount in smallest unit (6 decimals). Used by verifyPayment to check the transfer value. */
   expectedAmount?: string
+  /** Token contract address. Required for multi-token chains (e.g. USDC vs USDT0 on Arbitrum). Falls back to USDC if omitted. */
+  tokenAddress?: string
 }
 
 export interface X402PaymentVerification {

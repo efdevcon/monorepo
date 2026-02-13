@@ -48,6 +48,16 @@ function getUsdcAddressForChainId(chainId: number): string | null {
   return m ? m[1] : null
 }
 
+/**
+ * Resolve the token address for verification.
+ * If an explicit tokenAddress is given, use it; otherwise fall back to USDC for the chain.
+ */
+function resolveTokenAddress(chainId: number | undefined, tokenAddress?: string): string | null {
+  if (tokenAddress) return tokenAddress
+  if (chainId != null) return getUsdcAddressForChainId(chainId)
+  return usdcConfig.tokenAddress
+}
+
 // Create public client for reading blockchain state (default chain)
 const publicClient = createPublicClient({
   chain,
@@ -205,13 +215,12 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
 
   const recipient = getPaymentRecipient()
   const client = proofChainId != null ? getPublicClientForChainId(proofChainId) : publicClient
-  const tokenAddress =
-    proofChainId != null ? getUsdcAddressForChainId(proofChainId) : usdcConfig.tokenAddress
+  const tokenAddress = resolveTokenAddress(proofChainId, proof.tokenAddress)
   if (!client) {
     return { verified: false, error: `Unsupported chain ID for verification: ${proofChainId}` }
   }
   if (proofChainId != null && !tokenAddress) {
-    return { verified: false, error: `No USDC config for chain ID: ${proofChainId}` }
+    return { verified: false, error: `No token config for chain ID: ${proofChainId}` }
   }
 
   try {
@@ -297,11 +306,11 @@ export async function verifyPaymentDirect(
   payer: string,
   expectedRecipient: string,
   expectedAmount: string,
-  chainId?: number
+  chainId?: number,
+  tokenAddr?: string
 ): Promise<X402PaymentVerification> {
   const client = chainId != null ? getPublicClientForChainId(chainId) : publicClient
-  const tokenAddress =
-    chainId != null ? getUsdcAddressForChainId(chainId) : usdcConfig.tokenAddress
+  const tokenAddress = resolveTokenAddress(chainId, tokenAddr)
   if (!client) {
     return { verified: false, error: `Unsupported chain ID for verification: ${chainId}` }
   }

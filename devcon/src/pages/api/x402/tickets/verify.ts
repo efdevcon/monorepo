@@ -52,8 +52,10 @@ interface VerifyRequest {
   payer: string
   /** Chain ID where the transaction was sent (e.g. 8453 for Base). Required for multi-chain so we look up the tx on the correct chain. */
   chainId?: number
-  /** Payment asset symbol ('ETH' | 'USDC'). When 'ETH', we may try native ETH verification; when 'USDC' we only verify USDC transfer. */
+  /** Payment asset symbol ('ETH' | 'USDC' | 'USDT0'). When 'ETH', we may try native ETH verification. */
   symbol?: string
+  /** Token contract address. Required for multi-token chains (e.g. USDC vs USDT0 on Arbitrum). Falls back to USDC if omitted. */
+  tokenAddress?: string
 }
 
 interface VerifySuccessResponse {
@@ -206,6 +208,7 @@ export default async function handler(
       payer: body.payer,
       expectedAmount,
       ...(body.chainId != null && { chainId: body.chainId }),
+      ...(body.tokenAddress && { tokenAddress: body.tokenAddress }),
     }
 
     console.log('[Verify] Attempting primary verification via x402 service', body.chainId != null ? `(chain ${body.chainId})` : '')
@@ -254,7 +257,8 @@ export default async function handler(
         body.payer,
         recipient,
         expectedAmount,
-        body.chainId
+        body.chainId,
+        body.tokenAddress
       )
       console.log('[Verify] Direct verification result:', verification)
     }

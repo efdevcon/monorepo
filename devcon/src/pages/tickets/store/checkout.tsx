@@ -804,6 +804,7 @@ function CheckoutContent() {
           authorization: auth,
           signature: { v, r, s },
           chainId: paymentDetails.chainId,
+          tokenAddress: paymentDetails.tokenAddress,
         }),
       })
 
@@ -961,6 +962,7 @@ function CheckoutContent() {
           payer: address,
           chainId: paymentDetails.chainId,
           symbol: paymentDetails.tokenSymbol,
+          tokenAddress: paymentDetails.tokenAddress,
         }),
       })
 
