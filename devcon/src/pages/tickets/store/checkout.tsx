@@ -17,7 +17,7 @@ import {
   useSendTransaction,
 } from 'wagmi'
 import { createConfig, http } from 'wagmi'
-import { baseSepolia, base, mainnet, optimism, arbitrum } from 'wagmi/chains'
+import { baseSepolia, base, mainnet, optimism, arbitrum, polygon } from 'wagmi/chains'
 import { injected, walletConnect } from 'wagmi/connectors'
 import { QuestionInfo } from 'types/pretix'
 
@@ -32,10 +32,11 @@ const RPC_URLS = {
   [mainnet.id]: process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL,
   [optimism.id]: process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL,
   [arbitrum.id]: process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL,
+  [polygon.id]: process.env.NEXT_PUBLIC_POLYGON_RPC_URL,
 }
 
 const wagmiConfig = createConfig({
-  chains: [baseSepolia, base, mainnet, optimism, arbitrum],
+  chains: [baseSepolia, base, mainnet, optimism, arbitrum, polygon],
   connectors: [injected(), ...(WC_PROJECT_ID ? [walletConnect({ projectId: WC_PROJECT_ID })] : [])],
   transports: {
     [baseSepolia.id]: RPC_URLS[baseSepolia.id] ? http(RPC_URLS[baseSepolia.id]) : http(),
@@ -43,6 +44,7 @@ const wagmiConfig = createConfig({
     [mainnet.id]: RPC_URLS[mainnet.id] ? http(RPC_URLS[mainnet.id]) : http(),
     [optimism.id]: RPC_URLS[optimism.id] ? http(RPC_URLS[optimism.id]) : http(),
     [arbitrum.id]: RPC_URLS[arbitrum.id] ? http(RPC_URLS[arbitrum.id]) : http(),
+    [polygon.id]: RPC_URLS[polygon.id] ? http(RPC_URLS[polygon.id]) : http(),
   },
 })
 
@@ -290,6 +292,7 @@ function CheckoutContent() {
   const [paymentOptionsLoading, setPaymentOptionsLoading] = useState(false)
   const [selectedOption, setSelectedOption] = useState<PaymentOption | null>(null)
   const [showInsufficient, setShowInsufficient] = useState(false)
+  const [tokenFilter, setTokenFilter] = useState<string | null>(null)
 
   // Fiat/Stripe state
   const [fiatPaymentUrl, setFiatPaymentUrl] = useState<string | null>(null)
@@ -298,6 +301,7 @@ function CheckoutContent() {
   const [showFiatModal, setShowFiatModal] = useState(false)
   const fiatPollRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
+  const tokenFilterAutoSelectedRef = useRef(false)
 
   // Wagmi hooks
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
@@ -380,6 +384,39 @@ function CheckoutContent() {
     }
     if (!ref) paymentOptionsAutoLoadedRef.current = null
   }, [paymentMethod, paymentDetails?.paymentReference, address, paymentOptions.length, paymentOptionsLoading])
+
+  // ── Auto-select token filter tab for symbol with highest USD value ──
+  useEffect(() => {
+    if (tokenFilterAutoSelectedRef.current) return
+    if (paymentOptions.length === 0) return
+
+    const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
+    const base = sufficient.length > 0 ? sufficient : paymentOptions
+    const uniqueSymbols = [...new Set(base.map(o => o.symbol))]
+    if (base.length <= 4 || uniqueSymbols.length <= 1) return
+
+    const usdBySymbol = new Map<string, number>()
+    for (const opt of base) {
+      const usdValue = opt.symbol === 'ETH' && opt.priceUsd
+        ? (Number(opt.balance) / 1e18) * opt.priceUsd
+        : Number(opt.balance) / 10 ** opt.decimals
+      usdBySymbol.set(opt.symbol, (usdBySymbol.get(opt.symbol) ?? 0) + usdValue)
+    }
+
+    let bestSymbol: string | null = null
+    let bestValue = -1
+    for (const [sym, val] of usdBySymbol) {
+      if (val > bestValue) {
+        bestValue = val
+        bestSymbol = sym
+      }
+    }
+
+    if (bestSymbol) {
+      tokenFilterAutoSelectedRef.current = true
+      setTokenFilter(bestSymbol)
+    }
+  }, [paymentOptions])
 
   // ── Handle direct payment tx success ──
   useEffect(() => {
@@ -627,6 +664,8 @@ function CheckoutContent() {
         setPaymentStatus('Awaiting payment...')
         setSelectedOption(null)
         setPaymentOptions([])
+        setTokenFilter(null)
+        tokenFilterAutoSelectedRef.current = false
 
         if (isConnected && address) {
           await fetchPaymentOptions({
@@ -1369,13 +1408,45 @@ function CheckoutContent() {
                         {paymentOptions.length > 0 && (() => {
                           const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
                           const insufficient = paymentOptions.filter(o => !(Boolean(o.signingRequest) && o.sufficient))
-                          const visible = sufficient.length === 0 || showInsufficient ? paymentOptions : sufficient
+                          const base = sufficient.length === 0 || showInsufficient ? paymentOptions : sufficient
+                          const visible = tokenFilter ? base.filter(o => o.symbol === tokenFilter) : base
+
+                          // Token tabs: show when >4 options in base list
+                          const uniqueSymbols = [...new Set(base.map(o => o.symbol))]
+                          const showTabs = base.length > 4 && uniqueSymbols.length > 1
+
                           return (
                             <>
+                              {showTabs && (
+                                <div className={css['token-tabs']}>
+                                  <button
+                                    type="button"
+                                    className={`${css['token-tab']} ${tokenFilter === null ? css['token-tab--active'] : ''}`}
+                                    onClick={() => setTokenFilter(null)}
+                                  >
+                                    All
+                                  </button>
+                                  {uniqueSymbols.map(sym => (
+                                    <button
+                                      key={sym}
+                                      type="button"
+                                      className={`${css['token-tab']} ${tokenFilter === sym ? css['token-tab--active'] : ''}`}
+                                      onClick={() => setTokenFilter(tokenFilter === sym ? null : sym)}
+                                    >
+                                      {TOKEN_ICONS[sym] && (
+                                        /* eslint-disable-next-line @next/next/no-img-element */
+                                        <img src={TOKEN_ICONS[sym]} alt={sym} className={css['token-tab-icon']} />
+                                      )}
+                                      {sym}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
                               <div className={css['payment-options-list']}>
                                 {visible.map(opt => {
                                   const canPay = Boolean(opt.signingRequest) && opt.sufficient
                                   const isSelected = selectedOption?.asset === opt.asset
+                                  const isGasless = opt.signingRequest?.method === 'eth_signTypedData_v4' || ['USDC', 'USDT0'].includes(opt.symbol)
                                   const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
                                   const balanceFormatted =
                                     opt.decimals >= 18
@@ -1404,7 +1475,10 @@ function CheckoutContent() {
                                         )}
                                       </span>
                                       <span className={css['payment-option-info']}>
-                                        <span className={css['payment-option-symbol']}>{opt.symbol}</span>
+                                        <span className={css['payment-option-symbol']}>
+                                          {opt.symbol}
+                                          {isGasless && <span className={css['gasless-badge']}>Gasless</span>}
+                                        </span>
                                         <span className={css['payment-option-chain']}>on {opt.chain}</span>
                                       </span>
                                       <span className={css['payment-option-balance']}>
