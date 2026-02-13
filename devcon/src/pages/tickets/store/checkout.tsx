@@ -70,6 +70,12 @@ const TOKEN_ICONS: Record<string, string> = {
   USDT0: 'https://storage.googleapis.com/zapper-fi-assets/tokens/optimism/0x01bff41798a0bcf287b996046ca68b395dbc1071.png',
 }
 
+/** Map API symbol to display name (e.g. USDT0 → USD₮0) */
+const SYMBOL_DISPLAY: Record<string, string> = {
+  USDT0: 'USD₮0',
+}
+const displaySymbol = (sym: string) => SYMBOL_DISPLAY[sym] ?? sym
+
 const NETWORK_LOGOS: Record<number, string> = {
   1: 'https://storage.googleapis.com/zapper-fi-assets/networks/ethereum-icon.png',
   10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
@@ -437,7 +443,6 @@ function CheckoutContent() {
   /**
    * Sign EIP-712 typed data directly via eth_signTypedData_v4.
    * Formats data for optimal wallet interpretation (hex chainId, EIP712Domain type, string values).
-   * Matches the format used by devconnect-app's createReceiveAuthorizationMessage.
    */
   async function signEIP712Direct(typedData: {
     domain: { name?: string; version?: string; chainId?: number | string; verifyingContract?: string }
@@ -1437,7 +1442,7 @@ function CheckoutContent() {
                                         /* eslint-disable-next-line @next/next/no-img-element */
                                         <img src={TOKEN_ICONS[sym]} alt={sym} className={css['token-tab-icon']} />
                                       )}
-                                      {sym}
+                                      {displaySymbol(sym)}
                                     </button>
                                   ))}
                                 </div>
@@ -1476,13 +1481,13 @@ function CheckoutContent() {
                                       </span>
                                       <span className={css['payment-option-info']}>
                                         <span className={css['payment-option-symbol']}>
-                                          {opt.symbol}
+                                          {displaySymbol(opt.symbol)}
                                           {isGasless && <span className={css['gasless-badge']}>Gasless</span>}
                                         </span>
                                         <span className={css['payment-option-chain']}>on {opt.chain}</span>
                                       </span>
                                       <span className={css['payment-option-balance']}>
-                                        {balanceFormatted} {opt.symbol}
+                                        {balanceFormatted} {displaySymbol(opt.symbol)}
                                       </span>
                                       {isSelected && <span className={css['payment-option-check']}>✓</span>}
                                     </button>
@@ -1513,8 +1518,8 @@ function CheckoutContent() {
                             {isProcessing
                               ? paymentStatus || 'Processing...'
                               : selectedOption.signingRequest?.method === 'eth_signTypedData_v4'
-                                ? `Sign to pay — ${selectedOption.symbol} on ${selectedOption.chain}`
-                                : `Pay — ${selectedOption.symbol} on ${selectedOption.chain}`}
+                                ? `Sign to pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`
+                                : `Pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
                           </button>
                         )}
                         {!paymentOptionsLoading && paymentOptions.length > 0 && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (

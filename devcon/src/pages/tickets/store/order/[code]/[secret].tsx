@@ -54,7 +54,9 @@ export default function OrderConfirmationPage() {
   // Extra context from query params (set by checkout redirect)
   const txHash = (router.query.tx as string) || null
   const chainId = router.query.chainId ? parseInt(router.query.chainId as string) : null
-  const paymentSymbol = (router.query.symbol as string) || 'USDC'
+  const paymentSymbolRaw = (router.query.symbol as string) || 'USDC'
+  const SYMBOL_DISPLAY: Record<string, string> = { USDT0: 'USD₮0' }
+  const paymentSymbol = SYMBOL_DISPLAY[paymentSymbolRaw] ?? paymentSymbolRaw
   const paymentNetwork = (router.query.network as string) || null
 
   useEffect(() => {
