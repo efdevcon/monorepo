@@ -24,6 +24,7 @@ import {
   BASE_USDC_CONFIG,
   BASE_SEPOLIA_USDC_CONFIG,
   getUsdcConfigForChainId,
+  type GaslessTokenConfig,
 } from '../types/x402'
 
 // Default chain (backward compat: Base mainnet or Base Sepolia)
@@ -106,25 +107,34 @@ export function generateNonce(): string {
   return `0x${crypto.randomBytes(32).toString('hex')}`
 }
 
-// ── Per-chain EIP-712 domain cache ──
+// ── Per-chain EIP-712 domain ──
 
-type UsdcDomain = { name: string; version: string; chainId: number; verifyingContract: `0x${string}` }
+type TokenDomain = { name: string; version: string; chainId: number; verifyingContract: `0x${string}` }
+/** @deprecated Use TokenDomain */
+type UsdcDomain = TokenDomain
+
+/**
+ * Get the EIP-712 domain for a gasless token config.
+ * Domain params (name, version) are compile-time constants in the token contracts.
+ */
+export function getTokenDomain(config: GaslessTokenConfig): TokenDomain {
+  return {
+    name: config.eip712Name,
+    version: config.eip712Version,
+    chainId: config.chainId,
+    verifyingContract: config.tokenAddress as `0x${string}`,
+  }
+}
+
 /**
  * Get the USDC EIP-712 domain for a specific chain.
- * All Circle native USDC contracts use name="USD Coin", version="2" — these are
- * compile-time constants in the contract so we don't need RPC calls.
+ * @deprecated Use getTokenDomain(config) for multi-token support
  */
-export function getUsdcDomain(chainId?: number): UsdcDomain {
+export function getUsdcDomain(chainId?: number): TokenDomain {
   const cid = chainId ?? defaultChainId
   const config = getUsdcConfigForChainId(cid)
   if (!config) throw new Error(`No USDC config for chain ${cid}`)
-
-  return {
-    name: 'USD Coin',
-    version: '2',
-    chainId: cid,
-    verifyingContract: config.tokenAddress as `0x${string}`,
-  }
+  return getTokenDomain(config)
 }
 
 /**
@@ -148,10 +158,13 @@ export function getTransferWithAuthorizationTypes() {
 export const getReceiveWithAuthorizationTypes = getTransferWithAuthorizationTypes
 
 /**
- * Create typed data for EIP-712 signing (TransferWithAuthorization)
+ * Create typed data for EIP-712 signing (TransferWithAuthorization).
+ * Accepts a GaslessTokenConfig or a chain ID (backward compat: defaults to USDC on that chain).
  */
-export async function createAuthorizationTypedData(authorization: EIP3009Authorization, chainId?: number) {
-  const domain = await getUsdcDomain(chainId)
+export async function createAuthorizationTypedData(authorization: EIP3009Authorization, chainIdOrConfig?: number | GaslessTokenConfig) {
+  const domain = typeof chainIdOrConfig === 'object'
+    ? getTokenDomain(chainIdOrConfig)
+    : getUsdcDomain(chainIdOrConfig)
   return {
     domain,
     types: getTransferWithAuthorizationTypes(),
@@ -168,12 +181,15 @@ export async function createAuthorizationTypedData(authorization: EIP3009Authori
 }
 
 /**
- * Check if an authorization nonce has been used
+ * Check if an authorization nonce has been used.
+ * Accepts a GaslessTokenConfig or chain ID (backward compat: defaults to USDC).
  */
-export async function isNonceUsed(authorizer: string, nonce: string, chainId?: number): Promise<boolean> {
-  const cid = chainId ?? defaultChainId
-  const config = getUsdcConfigForChainId(cid)
+export async function isNonceUsed(authorizer: string, nonce: string, chainIdOrConfig?: number | GaslessTokenConfig): Promise<boolean> {
+  const config = typeof chainIdOrConfig === 'object'
+    ? chainIdOrConfig
+    : getUsdcConfigForChainId(chainIdOrConfig ?? defaultChainId)
   if (!config) return false
+  const cid = config.chainId
   try {
     const client = getPublicClientForChain(cid)
     const result = await client.readContract({
@@ -192,21 +208,24 @@ export async function isNonceUsed(authorizer: string, nonce: string, chainId?: n
 /**
  * Execute a TransferWithAuthorization transaction.
  *
- * transferWithAuthorization sends USDC directly from the user to the `to` address
+ * transferWithAuthorization sends tokens directly from the user to the `to` address
  * (PAYMENT_RECIPIENT_ADDRESS) in a single transaction. Any msg.sender can call it.
+ * Works with any EIP-3009 token (USDC, USDT0).
  *
  * @param authorization  The signed EIP-3009 authorization (to = payment recipient)
  * @param signature      The EIP-712 signature split into v, r, s
- * @param chainId        Chain to execute on (defaults to Base)
+ * @param chainIdOrConfig  Chain ID (backward compat: USDC) or GaslessTokenConfig
  */
 export async function executeTransferWithAuthorization(
   authorization: EIP3009Authorization,
   signature: { v: number; r: string; s: string },
-  chainId?: number
+  chainIdOrConfig?: number | GaslessTokenConfig
 ): Promise<{ txHash: string }> {
-  const cid = chainId ?? defaultChainId
-  const config = getUsdcConfigForChainId(cid)
-  if (!config) throw new Error(`No USDC config for chain ${cid}`)
+  const config = typeof chainIdOrConfig === 'object'
+    ? chainIdOrConfig
+    : getUsdcConfigForChainId(chainIdOrConfig ?? defaultChainId)
+  if (!config) throw new Error(`No gasless token config for chain ${typeof chainIdOrConfig === 'number' ? chainIdOrConfig : 'unknown'}`)
+  const cid = config.chainId
 
   const { walletClient } = getWalletClientForChain(cid)
   const client = getPublicClientForChain(cid)
@@ -215,12 +234,12 @@ export async function executeTransferWithAuthorization(
   console.log(`[Relayer] Executing transferWithAuthorization on chain ${cid} (${CHAIN_ID_TO_CHAIN[cid]?.name ?? 'unknown'})`)
 
   // Check if nonce has already been used
-  const nonceUsed = await isNonceUsed(authorization.from, authorization.nonce, cid)
+  const nonceUsed = await isNonceUsed(authorization.from, authorization.nonce, config)
   if (nonceUsed) {
     throw new Error('Authorization nonce has already been used')
   }
 
-  // Check the payer actually has sufficient USDC balance (prevents gas griefing)
+  // Check the payer actually has sufficient balance (prevents gas griefing)
   try {
     const balance = await client.readContract({
       address: tokenAddress,
@@ -229,12 +248,11 @@ export async function executeTransferWithAuthorization(
       args: [authorization.from as `0x${string}`],
     })
     if ((balance as bigint) < BigInt(authorization.value)) {
-      throw new Error(`Insufficient USDC balance: payer has ${balance}, needs ${authorization.value}`)
+      throw new Error(`Insufficient ${config.tokenSymbol} balance: payer has ${balance}, needs ${authorization.value}`)
     }
   } catch (error) {
-    // If the balance check itself throws (not our insufficient balance error), log and continue
-    if ((error as Error).message.startsWith('Insufficient USDC balance')) throw error
-    console.warn('[Relayer] USDC balance check failed, proceeding anyway:', (error as Error).message)
+    if ((error as Error).message.startsWith('Insufficient ')) throw error
+    console.warn(`[Relayer] ${config.tokenSymbol} balance check failed, proceeding anyway:`, (error as Error).message)
   }
 
   try {

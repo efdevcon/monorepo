@@ -5,7 +5,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getRelayerAddress } from 'services/relayer'
-import { X402_VERSION, type SupportedResponse, getGaslessUsdcChainIds, getUsdcConfigForChainId } from 'types/x402'
+import { X402_VERSION, type SupportedResponse, getAllGaslessConfigs } from 'types/x402'
 
 const FACILITATOR_API_KEY = process.env.X402_FACILITATOR_API_KEY
 
@@ -23,17 +23,14 @@ export default async function handler(
 
   try {
     const relayerAddress = getRelayerAddress()
-    const chainIds = getGaslessUsdcChainIds()
+    const configs = getAllGaslessConfigs()
 
-    const kinds = chainIds.map(chainId => {
-      const config = getUsdcConfigForChainId(chainId)!
-      return {
-        x402Version: X402_VERSION,
-        scheme: 'exact' as const,
-        network: `eip155:${chainId}` as `${string}:${string}`,
-        extra: { name: config.tokenSymbol, version: '2' },
-      }
-    })
+    const kinds = configs.map(config => ({
+      x402Version: X402_VERSION,
+      scheme: 'exact' as const,
+      network: `eip155:${config.chainId}` as `${string}:${string}`,
+      extra: { name: config.eip712Name, version: config.eip712Version },
+    }))
 
     const response: SupportedResponse = {
       kinds,

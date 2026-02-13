@@ -12,7 +12,7 @@ import {
   SUPPORTED_ASSETS_MAINNET,
   SUPPORTED_ASSETS_TESTNET,
   X402_VERSION,
-  getGaslessUsdcChainIds,
+  getAllGaslessConfigs,
   getUsdcConfigForChainId,
   type PaymentRequired,
   type ResourceInfo,
@@ -20,7 +20,7 @@ import {
   type PaymentPayload,
   type SettleResponse,
 } from '../types/x402'
-import { getUsdcDomain } from './relayer'
+import { getTokenDomain } from './relayer'
 import crypto from 'crypto'
 
 // Use testnet unless explicitly set to mainnet
@@ -165,15 +165,14 @@ export async function buildX402PaymentRequiredSpec(
   // payTo = payment recipient address (transferWithAuthorization sends directly to recipient)
   const recipientAddr = getPaymentRecipient()
 
-  // Build one accepts[] entry per supported gasless USDC chain
-  const chainIds = getGaslessUsdcChainIds()
+  // Build one accepts[] entry per supported gasless token (USDC + USDT0)
+  const configs = getAllGaslessConfigs()
   const accepts: PaymentRequirementsSpec[] = []
-  for (const chainId of chainIds) {
-    const config = getUsdcConfigForChainId(chainId)!
-    const domain = await getUsdcDomain(chainId)
+  for (const config of configs) {
+    const domain = getTokenDomain(config)
     accepts.push({
       scheme: 'exact',
-      network: `eip155:${chainId}`,
+      network: `eip155:${config.chainId}`,
       amount: p.amount,
       asset: config.tokenAddress,
       payTo: recipientAddr,

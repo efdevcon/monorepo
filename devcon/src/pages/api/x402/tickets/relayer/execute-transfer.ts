@@ -14,8 +14,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
-import { executeTransferWithAuthorization, getUsdcConfig } from 'services/relayer'
-import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse, getUsdcConfigForChainId } from 'types/x402'
+import { executeTransferWithAuthorization } from 'services/relayer'
+import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse, getGaslessTokenConfig, getGaslessConfigsForChain } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
@@ -120,22 +120,36 @@ export default async function handler(
 
     // Validate optional chainId for multi-chain gasless
     const requestedChainId = body.chainId
-    if (requestedChainId !== undefined && !getUsdcConfigForChainId(requestedChainId)) {
+    if (requestedChainId !== undefined && getGaslessConfigsForChain(requestedChainId).length === 0) {
       return res.status(400).json({
         success: false,
-        error: `Unsupported chain for gasless USDC: ${requestedChainId}`,
+        error: `Unsupported chain for gasless payment: ${requestedChainId}`,
       })
     }
 
-    console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference, requestedChainId ? `(chain ${requestedChainId})` : '')
+    // Resolve token config (by chainId + tokenAddress, or first config for chain)
+    const tokenAddress = (body as any).tokenAddress as string | undefined
+    const tokenConfig = requestedChainId !== undefined
+      ? (tokenAddress
+          ? getGaslessTokenConfig(requestedChainId, tokenAddress)
+          : getGaslessConfigsForChain(requestedChainId)[0])
+      : getGaslessConfigsForChain(8453)[0] // default to Base USDC
+    if (!tokenConfig) {
+      return res.status(400).json({
+        success: false,
+        error: `No gasless token config found for chain ${requestedChainId}${tokenAddress ? ` and token ${tokenAddress}` : ''}`,
+      })
+    }
+
+    console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference, `(chain ${tokenConfig.chainId}, ${tokenConfig.tokenSymbol})`)
 
     // Execute the transfer (single tx: user → payment recipient via transferWithAuthorization)
-    const result = await executeTransferWithAuthorization(body.authorization, body.signature, requestedChainId)
+    const result = await executeTransferWithAuthorization(body.authorization, body.signature, tokenConfig)
 
     console.log('[ExecuteTransfer] Transaction submitted:', result.txHash)
 
     // Set PAYMENT-RESPONSE header (x402 v2 spec)
-    const settleChainId = requestedChainId ?? getUsdcConfig().chainId
+    const settleChainId = tokenConfig.chainId
     const settlementResponse: SettleResponse = {
       success: true,
       transaction: result.txHash,

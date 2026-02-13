@@ -7,7 +7,7 @@ import { verifyTypedData, type Hex } from 'viem'
 import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import { getPendingOrder } from 'services/ticketStore'
 import {
-  getUsdcDomain,
+  getTokenDomain,
   getTransferWithAuthorizationTypes,
 } from 'services/relayer'
 import {
@@ -16,7 +16,8 @@ import {
   X402_ERROR_CODES,
   EIP3009Authorization,
   X402_VERSION,
-  getUsdcConfigForChainId,
+  getGaslessTokenConfig,
+  getGaslessConfigsForChain,
 } from 'types/x402'
 import { addressesEqual } from 'utils/x402Validation'
 
@@ -89,7 +90,10 @@ export default async function handler(
     }
 
     const networkChainId = parseInt(reqRequirements.network.replace('eip155:', ''), 10)
-    if (!getUsdcConfigForChainId(networkChainId)) {
+    const tokenConfig = reqRequirements.asset
+      ? getGaslessTokenConfig(networkChainId, reqRequirements.asset)
+      : getGaslessConfigsForChain(networkChainId)[0]
+    if (!tokenConfig) {
       return res.status(400).json({
         isValid: false,
         invalidReason: X402_ERROR_CODES.INVALID_NETWORK,
@@ -179,7 +183,7 @@ export default async function handler(
       })
     }
 
-    const domain = await getUsdcDomain(networkChainId)
+    const domain = getTokenDomain(tokenConfig)
     const types = getTransferWithAuthorizationTypes()
     const message = {
       from: auth.from as Hex,

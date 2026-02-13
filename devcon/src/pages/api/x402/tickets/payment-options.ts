@@ -18,7 +18,7 @@ import {
   SUPPORTED_ASSETS_MAINNET,
   SUPPORTED_ASSETS_TESTNET,
   NATIVE_ETH_PLACEHOLDER,
-  getUsdcConfigForChainId,
+  getGaslessTokenConfig,
   type SupportedAsset,
 } from 'types/x402'
 
@@ -250,7 +250,8 @@ export default async function handler(
       }
 
       if (sufficient) {
-        if (supported.symbol === 'USDC' && getUsdcConfigForChainId(chainId)) {
+        const gaslessConfig = getGaslessTokenConfig(chainId, tokenAddr)
+        if ((supported.symbol === 'USDC' || supported.symbol === 'USDT0') && gaslessConfig) {
           const validAfter = 0
           const validBefore = expiresAt
           const nonce = generateNonce()
@@ -262,7 +263,7 @@ export default async function handler(
             validBefore,
             nonce,
           }
-          const typedData = await createAuthorizationTypedData(authorization, chainId)
+          const typedData = await createAuthorizationTypedData(authorization, gaslessConfig)
           opt.signingRequest = {
             method: 'eth_signTypedData_v4',
             params: [walletAddress, JSON.stringify(typedDataToJson(typedData))],

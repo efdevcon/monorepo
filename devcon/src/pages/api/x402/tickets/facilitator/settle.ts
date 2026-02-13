@@ -11,7 +11,7 @@ import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import { getPendingOrder } from 'services/ticketStore'
 import {
   executeTransferWithAuthorization,
-  getUsdcDomain,
+  getTokenDomain,
   getTransferWithAuthorizationTypes,
 } from 'services/relayer'
 import {
@@ -20,7 +20,8 @@ import {
   X402_ERROR_CODES,
   EIP3009Authorization,
   X402_VERSION,
-  getUsdcConfigForChainId,
+  getGaslessTokenConfig,
+  getGaslessConfigsForChain,
 } from 'types/x402'
 import { addressesEqual } from 'utils/x402Validation'
 
@@ -92,7 +93,10 @@ export default async function handler(
     }
 
     const networkChainId = parseInt(reqRequirements.network.replace('eip155:', ''), 10)
-    if (!getUsdcConfigForChainId(networkChainId)) {
+    const tokenConfig = reqRequirements.asset
+      ? getGaslessTokenConfig(networkChainId, reqRequirements.asset)
+      : getGaslessConfigsForChain(networkChainId)[0]
+    if (!tokenConfig) {
       return res.status(400).json({
         success: false,
         transaction: '',
@@ -205,8 +209,8 @@ export default async function handler(
       })
     }
 
-    // Verify EIP-712 signature (chain-specific domain)
-    const domain = await getUsdcDomain(networkChainId)
+    // Verify EIP-712 signature (token-specific domain)
+    const domain = getTokenDomain(tokenConfig)
     const types = getTransferWithAuthorizationTypes()
     const message = {
       from: auth.from as Hex,
@@ -263,7 +267,7 @@ export default async function handler(
         nonce: auth.nonce,
       },
       { v, r, s },
-      networkChainId
+      tokenConfig
     )
 
     return res.status(200).json({

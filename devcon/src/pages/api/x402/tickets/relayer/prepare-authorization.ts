@@ -15,10 +15,10 @@ import { getPendingOrder } from 'services/ticketStore'
 import { usdToUsdcAmount, getPaymentRecipient } from 'services/x402'
 import {
   generateNonce,
-  getUsdcDomain,
+  getTokenDomain,
   getTransferWithAuthorizationTypes,
 } from 'services/relayer'
-import { PrepareAuthorizationRequest, PrepareAuthorizationResponse, EIP3009Authorization, getUsdcConfigForChainId } from 'types/x402'
+import { PrepareAuthorizationRequest, PrepareAuthorizationResponse, EIP3009Authorization, getGaslessTokenConfig, getGaslessConfigsForChain } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface ErrorResponse {
@@ -83,10 +83,24 @@ export default async function handler(
 
     // Validate optional chainId for multi-chain gasless
     const requestedChainId = body.chainId
-    if (requestedChainId !== undefined && !getUsdcConfigForChainId(requestedChainId)) {
+    if (requestedChainId !== undefined && getGaslessConfigsForChain(requestedChainId).length === 0) {
       return res.status(400).json({
         success: false,
-        error: `Unsupported chain for gasless USDC: ${requestedChainId}`,
+        error: `Unsupported chain for gasless payment: ${requestedChainId}`,
+      })
+    }
+
+    // Resolve token config (by chainId + tokenAddress, or first config for chain)
+    const tokenAddress = (body as any).tokenAddress as string | undefined
+    const tokenConfig = requestedChainId !== undefined
+      ? (tokenAddress
+          ? getGaslessTokenConfig(requestedChainId, tokenAddress)
+          : getGaslessConfigsForChain(requestedChainId)[0])
+      : getGaslessConfigsForChain(8453)[0] // default to Base USDC
+    if (!tokenConfig) {
+      return res.status(400).json({
+        success: false,
+        error: `No gasless token config found for chain ${requestedChainId}${tokenAddress ? ` and token ${tokenAddress}` : ''}`,
       })
     }
 
@@ -108,8 +122,8 @@ export default async function handler(
       nonce,
     }
 
-    // Build EIP-712 typed data (chain-specific domain)
-    const domain = await getUsdcDomain(requestedChainId)
+    // Build EIP-712 typed data (token-specific domain)
+    const domain = getTokenDomain(tokenConfig)
     const types = getTransferWithAuthorizationTypes()
 
     console.log('[PrepareAuth] Authorization generated for ref:', body.paymentReference)

@@ -33,7 +33,7 @@ import {
 } from 'services/x402'
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
-import { executeTransferWithAuthorization, getUsdcDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
+import { executeTransferWithAuthorization, getTokenDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
 import {
   X402PaymentRequirements,
   X402PaymentBlockV2,
@@ -44,7 +44,8 @@ import {
   EIP3009Authorization,
   SUPPORTED_ASSETS_MAINNET,
   SUPPORTED_ASSETS_TESTNET,
-  getUsdcConfigForChainId,
+  getGaslessTokenConfig,
+  getGaslessConfigsForChain,
 } from 'types/x402'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
@@ -506,9 +507,13 @@ async function handlePaymentSignatureRetry(
   }
 
   const networkChainId = parseInt(accepted.network.replace('eip155:', ''), 10)
-  if (!getUsdcConfigForChainId(networkChainId)) {
+  if (getGaslessConfigsForChain(networkChainId).length === 0) {
     return res.status(400).json({ success: false, error: `Unsupported chain: ${accepted.network}` })
   }
+
+  // Determine which token config to use (from accepted.asset or fallback)
+  const tokenConfig = (accepted.asset ? getGaslessTokenConfig(networkChainId, accepted.asset) : null)
+    ?? getGaslessConfigsForChain(networkChainId)[0]
 
   const paymentReference = (accepted.extra as Record<string, unknown>)?.paymentReference as string | undefined
   if (!paymentReference) {
@@ -568,8 +573,8 @@ async function handlePaymentSignatureRetry(
     return res.status(400).json({ success: false, error: `Authorization validBefore too far in the future or unlimited (must be before ${maxValidBefore})` })
   }
 
-  // 9. Verify EIP-712 signature (chain-specific domain)
-  const domain = await getUsdcDomain(networkChainId)
+  // 9. Verify EIP-712 signature (token-specific domain)
+  const domain = getTokenDomain(tokenConfig)
   const types = getTransferWithAuthorizationTypes()
   const message = {
     from: authorization.from as Hex,
@@ -615,7 +620,7 @@ async function handlePaymentSignatureRetry(
         nonce: authorization.nonce,
       },
       { v, r, s },
-      networkChainId
+      tokenConfig
     )
     txHash = result.txHash
   } catch (error) {
