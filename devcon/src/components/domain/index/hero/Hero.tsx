@@ -95,7 +95,7 @@ const useCursorTracker = (ref: any) => {
   return delta
 }
 
-export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?: string; talk?: SpeakerProps }) => {
+export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?: string; talk?: SpeakerProps; imageUrl?: string }) => {
   const [currentUrl, setCurrentUrl] = useState('https://devcon.org/tickets/')
   const searchParams = useSearchParams()
   // const router = useRouter()
@@ -164,7 +164,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
 
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
-  let imageUrl = `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
+  let imageUrl = props.imageUrl ?? `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
   if (props.speakerMode) {
     imageUrl = `https://devcon-social.netlify.app/schedule/${props.talk?.id}/opengraph-image`
   }
