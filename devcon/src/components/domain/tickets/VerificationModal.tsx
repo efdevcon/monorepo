@@ -66,15 +66,14 @@ export function VerificationModal({
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const handleRedeem = async () => {
-    if (!proofCore) return
+  const handleRedeem = async (proof: AnonAadhaarCore) => {
     setIsRedeeming(true)
     setError(null)
     try {
       const res = await fetch('/api/tickets/redeem', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ anonAadhaarProof: proofCore }),
+        body: JSON.stringify({ anonAadhaarProof: proof }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Redeem failed')
@@ -85,6 +84,13 @@ export function VerificationModal({
       setIsRedeeming(false)
     }
   }
+
+  // Auto-redeem as soon as proof is available
+  useEffect(() => {
+    if (proofCore && !voucher && !isRedeeming) {
+      handleRedeem(proofCore)
+    }
+  }, [proofCore])
 
   if (!isOpen) return null
 
@@ -204,6 +210,7 @@ export function VerificationModal({
               <div className={css['continue-wrap']}>
                 <LaunchProveModal
                   nullifierSeed={NULLIFIER_SEED}
+                  fieldsToReveal={['revealAgeAbove18']}
                   buttonStyle={{
                     borderRadius: '8px',
                     border: 'none',
@@ -222,14 +229,7 @@ export function VerificationModal({
             ) : (
               <div className={css['redeem-wrap']}>
                 {error && <p className={css['error']}>{error}</p>}
-                <button
-                  type="button"
-                  className={css['redeem-btn']}
-                  onClick={handleRedeem}
-                  disabled={!proofCore || isRedeeming}
-                >
-                  {isRedeeming ? 'Redeeming…' : 'Redeem voucher'}
-                </button>
+                {isRedeeming && <p>Redeeming voucher…</p>}
                 {onReset && (
                   <button type="button" className={css['reset-btn']} onClick={handleReset}>
                     Test another QR code

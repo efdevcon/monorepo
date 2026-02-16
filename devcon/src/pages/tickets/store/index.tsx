@@ -4,6 +4,7 @@ import { Link } from 'components/common/link'
 import themes from '../../themes.module.scss'
 import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 import { VerificationModal } from 'components/domain/tickets/VerificationModal'
+import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import css from './store.module.scss'
 import { TicketInfo, QuestionInfo } from 'types/pretix'
 
@@ -102,6 +103,10 @@ type StoreContentProps = {
   setProviderResetKey: React.Dispatch<React.SetStateAction<number>>
   verificationOpen: boolean
   setVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
+  selfVerificationOpen: boolean
+  setSelfVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
+  useSelfStaging: boolean
+  setUseSelfStaging: (value: boolean) => void
 }
 
 function StoreContent({
@@ -110,6 +115,10 @@ function StoreContent({
   setProviderResetKey,
   verificationOpen,
   setVerificationOpen,
+  selfVerificationOpen,
+  setSelfVerificationOpen,
+  useSelfStaging,
+  setUseSelfStaging,
 }: StoreContentProps) {
   const countdown = useCountdown()
 
@@ -277,7 +286,9 @@ function StoreContent({
                       <p className={css['card-description']}>
                         Full conference access, swag bag, plus coffee, lunch and snacks all week!
                         {ticket.availableCount !== null && (
-                          <span style={{ display: 'block', marginTop: '0.25rem', fontSize: '0.8125rem', color: '#666' }}>
+                          <span
+                            style={{ display: 'block', marginTop: '0.25rem', fontSize: '0.8125rem', color: '#666' }}
+                          >
                             {ticket.availableCount} remaining
                           </span>
                         )}
@@ -331,7 +342,7 @@ function StoreContent({
                 <div className={css['card']}>
                   <div className={css['card-main']}>
                     <div className={css['card-body']}>
-                      <h3 className={css['card-title']}>Locals</h3>
+                      <h3 className={css['card-title']}>Local Early Bird</h3>
                       <p className={css['card-meta']}>Via AnonAadhaar</p>
                       <p className={css['card-description']}>
                         Verify you're based in India (via AnonAadhaar) to get this discount
@@ -352,10 +363,10 @@ function StoreContent({
                 <div className={css['card']}>
                   <div className={css['card-main']}>
                     <div className={css['card-body']}>
-                      <h3 className={css['card-title']}>Local Builders</h3>
-                      <p className={css['card-meta']}>Via AnonAadhaar</p>
+                      <h3 className={css['card-title']}>Local Early Bird</h3>
+                      <p className={css['card-meta']}>Via SELF</p>
                       <p className={css['card-description']}>
-                        Verify you're based in India (via AnonAadhaar) to get this discount
+                        Verify you're based in India (via SELF) to get this discount
                       </p>
                     </div>
                     <div className={css['card-right']}>
@@ -363,7 +374,7 @@ function StoreContent({
                         <span className={css['price-current']}>$99</span>
                         <span className={css['price-original']}>$349</span>
                       </div>
-                      <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
+                      <button type="button" className={css['verify-btn']} onClick={() => setSelfVerificationOpen(true)}>
                         <VerifyIcon />
                         Verify
                       </button>
@@ -410,6 +421,13 @@ function StoreContent({
         setUseTestAadhaar={setUseTestAadhaar}
         onReset={() => setProviderResetKey(k => k + 1)}
       />
+
+      <SelfVerificationModal
+        isOpen={selfVerificationOpen}
+        onClose={() => setSelfVerificationOpen(false)}
+        useStaging={useSelfStaging}
+        setUseStaging={setUseSelfStaging}
+      />
     </>
   )
 }
@@ -418,6 +436,8 @@ export default function TicketsStorePage() {
   const [useTestAadhaar, setUseTestAadhaar] = useState(false)
   const [providerResetKey, setProviderResetKey] = useState(0)
   const [verificationOpen, setVerificationOpen] = useState(false)
+  const [selfVerificationOpen, setSelfVerificationOpen] = useState(false)
+  const [useSelfStaging, setUseSelfStaging] = useState(process.env.NEXT_PUBLIC_SELF_STAGING === 'true')
 
   return (
     <Page theme={themes['tickets']} hideFooter>
@@ -432,6 +452,10 @@ export default function TicketsStorePage() {
           setProviderResetKey={setProviderResetKey}
           verificationOpen={verificationOpen}
           setVerificationOpen={setVerificationOpen}
+          selfVerificationOpen={selfVerificationOpen}
+          setSelfVerificationOpen={setSelfVerificationOpen}
+          useSelfStaging={useSelfStaging}
+          setUseSelfStaging={setUseSelfStaging}
         />
       </AnonAadhaarProvider>
     </Page>

@@ -28,6 +28,7 @@ const nextConfig = {
     localeDetection: false,
   },
   trailingSlash: true,
+  serverExternalPackages: ['@selfxyz/qrcode'],
   webpack: (config, { buildId, webpack }) => {
     return {
       ...config,

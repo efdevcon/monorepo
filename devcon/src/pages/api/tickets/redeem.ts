@@ -24,6 +24,7 @@ type ProofPayload = {
     pubkeyHash: string
     timestamp: string
     nullifierSeed: number
+    ageAbove18: string
   }
   [key: string]: unknown
 }
@@ -88,6 +89,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!verified) {
     return res.status(401).json({ error: 'Unauthorized, your proof is not valid.' })
+  }
+
+  // Require that the proof reveals age >= 18
+  if (anonAadhaarProof.proof.ageAbove18 !== '1') {
+    return res.status(401).json({ error: 'You must be 18 or older to purchase a ticket.' })
   }
 
   // No database yet: return a fake random voucher code for valid proofs
