@@ -8,7 +8,7 @@ export default async function handler(req: NextRequest) {
   const segments = url.pathname.split('/')
   const name = decodeURIComponent(segments[segments.length - 1]) || 'Anon'
 
-  const siteUrl = process.env.SITE_URL || 'http://localhost:3000'
+  const siteUrl = `${url.protocol}//${url.host}`
 
   const heroes = ['Aria.png', 'Cat.png', 'Doggo.png', 'Deva.png', 'Lyra.png']
   const firstLetter = name[0].toUpperCase()

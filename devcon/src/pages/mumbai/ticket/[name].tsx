@@ -2,13 +2,10 @@ import React from 'react'
 import { Hero } from 'components/domain/index/hero'
 import { SITE_URL } from 'utils/constants'
 
-const Ticket = (props: any) => {
+const Ticket = (props: { params: { name: string }; imageUrl: string }) => {
   if (!props.params) return null
 
-  const name = props.params.name || 'Anon'
-  const imageUrl = `${SITE_URL}api/mumbai/ticket/${encodeURIComponent(name)}`
-
-  return <Hero name={name} ticketMode imageUrl={imageUrl}></Hero>
+  return <Hero name={props.params.name} ticketMode imageUrl={props.imageUrl}></Hero>
 }
 
 export async function getStaticPaths() {
@@ -19,9 +16,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
+  const name = context.params.name || 'Anon'
+  const baseUrl = process.env.DEPLOY_PRIME_URL || SITE_URL
+  const imageUrl = `${baseUrl.replace(/\/$/, '')}/api/mumbai/ticket/${encodeURIComponent(name)}`
+
   return {
     props: {
       params: context.params,
+      imageUrl,
     },
   }
 }
