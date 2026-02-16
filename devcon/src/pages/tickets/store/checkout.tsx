@@ -1899,7 +1899,7 @@ function CheckoutContent() {
                     const variation = item.variations.find(v => v.id === data.variationId)
                     if (variation) {
                       price = parseFloat(variation.price)
-                      varLabel = ` (${variation.name})`
+                      varLabel = ` – ${variation.name}`
                     }
                   }
                   const isFree = price === 0

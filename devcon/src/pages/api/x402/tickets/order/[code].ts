@@ -68,22 +68,31 @@ export default async function handler(
       return res.status(403).json({ success: false, error: 'Invalid order secret' })
     }
 
-    // Build item name lookup and category addon lookup
+    // Build item name, variation name, and category addon lookups
     const itemNameMap = new Map<number, string>()
     const itemCategoryMap = new Map<number, number | null>()
+    const variationNameMap = new Map<string, string>() // "itemId-variationId" -> name
     for (const item of items) {
       itemNameMap.set(item.id, getLocalizedString(item.name))
       itemCategoryMap.set(item.id, item.category)
+      for (const v of item.variations || []) {
+        variationNameMap.set(`${item.id}-${v.id}`, getLocalizedString(v.value))
+      }
     }
     const addonCategoryIds = new Set(categories.filter(c => c.is_addon).map(c => c.id))
 
-    // Map positions with item names and addon status
+    // Map positions with item names (including variation) and addon status
     const positions: OrderPosition[] = (order.positions || []).map((p: any) => {
       const categoryId = itemCategoryMap.get(p.item)
+      let name = itemNameMap.get(p.item) || `Item #${p.item}`
+      if (p.variation) {
+        const varName = variationNameMap.get(`${p.item}-${p.variation}`)
+        if (varName) name = `${name} – ${varName}`
+      }
       return {
         id: p.id,
         item: p.item,
-        itemName: itemNameMap.get(p.item) || `Item #${p.item}`,
+        itemName: name,
         variation: p.variation,
         price: p.price,
         attendee_name: p.attendee_name,
