@@ -1,6 +1,6 @@
 /**
  * Test script to fetch Pretix categories (item groupings)
- * Run with: npx ts-node src/scripts/pretix/test-categories.ts
+ * Run with: pnpm run pretix:test-categories
  */
 import 'dotenv/config'
 

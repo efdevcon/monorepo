@@ -1,35 +1,47 @@
 /**
- * Relayer Service for Gas-Sponsored USDC Transfers
+ * Relayer Service for Gas-Sponsored USDC Transfers (Multi-Chain)
  *
- * Uses EIP-3009 (ReceiveWithAuthorization) to enable gasless USDC transfers.
- * The user signs an authorization, and the relayer executes the transaction,
- * paying the gas fees from ETH_RELAYER_PAYMENT_PRIVATE_KEY.
+ * Uses EIP-3009 (TransferWithAuthorization) to enable gasless USDC transfers
+ * on all supported chains (Ethereum, Optimism, Arbitrum, Base).
+ * The user signs an authorization with `to` = PAYMENT_RECIPIENT_ADDRESS,
+ * and the relayer executes the transaction on-chain, paying gas fees.
+ *
+ * The same private key (and thus the same address) is used on all chains.
  */
 import {
   createPublicClient,
   createWalletClient,
   http,
   parseAbi,
-  encodeFunctionData,
   type Hex,
+  type Chain,
 } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
-import { base, baseSepolia } from 'viem/chains'
+import { base, baseSepolia, mainnet, optimism, arbitrum, polygon } from 'viem/chains'
 import crypto from 'crypto'
 import {
   EIP3009Authorization,
   BASE_USDC_CONFIG,
   BASE_SEPOLIA_USDC_CONFIG,
+  getUsdcConfigForChainId,
+  type GaslessTokenConfig,
 } from '../types/x402'
 
-// Use testnet unless explicitly set to mainnet
+// Default chain (backward compat: Base mainnet or Base Sepolia)
 const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
-const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
-const chain = isTestnet ? baseSepolia : base
+const defaultChainId = isTestnet ? baseSepolia.id : base.id
+
+// Map chain IDs to viem Chain objects
+const CHAIN_ID_TO_CHAIN: Record<number, Chain> = {
+  [mainnet.id]: mainnet,
+  [optimism.id]: optimism,
+  [arbitrum.id]: arbitrum,
+  [base.id]: base,
+  [polygon.id]: polygon,
+  [baseSepolia.id]: baseSepolia,
+}
 
 // USDC contract ABI for EIP-3009 functions
-// Note: We use transferWithAuthorization (not receiveWithAuthorization) because
-// receiveWithAuthorization requires the caller to be the payee, but we want any relayer to execute
 const usdcAbi = parseAbi([
   'function transferWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, uint8 v, bytes32 r, bytes32 s) external',
   'function authorizationState(address authorizer, bytes32 nonce) external view returns (bool)',
@@ -38,38 +50,54 @@ const usdcAbi = parseAbi([
   'function DOMAIN_SEPARATOR() external view returns (bytes32)',
 ])
 
-// Create public client for reading blockchain state
-const publicClient = createPublicClient({
-  chain,
-  transport: http(),
-})
+// ── Per-chain client caches ──
 
-/**
- * Get the relayer wallet from private key
- */
-export function getRelayerWallet() {
+const publicClientCache = new Map<number, ReturnType<typeof createPublicClient>>()
+
+function getPublicClientForChain(chainId: number): ReturnType<typeof createPublicClient> {
+  let client = publicClientCache.get(chainId)
+  if (client) return client
+  const viemChain = CHAIN_ID_TO_CHAIN[chainId]
+  if (!viemChain) throw new Error(`Unsupported chain ID for relayer: ${chainId}`)
+  client = createPublicClient({ chain: viemChain, transport: http() })
+  publicClientCache.set(chainId, client)
+  return client
+}
+
+function getRelayerAccount() {
   const privateKey = process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY
   if (!privateKey) {
     throw new Error('ETH_RELAYER_PAYMENT_PRIVATE_KEY environment variable must be set')
   }
-
   const formattedKey = privateKey.startsWith('0x') ? privateKey : `0x${privateKey}`
-  const account = privateKeyToAccount(formattedKey as Hex)
+  return privateKeyToAccount(formattedKey as Hex)
+}
 
+function getWalletClientForChain(chainId: number) {
+  const account = getRelayerAccount()
+  const viemChain = CHAIN_ID_TO_CHAIN[chainId]
+  if (!viemChain) throw new Error(`Unsupported chain ID for relayer: ${chainId}`)
   const walletClient = createWalletClient({
     account,
-    chain,
+    chain: viemChain,
     transport: http(),
   })
-
   return { account, walletClient }
 }
 
 /**
- * Get relayer address
+ * Get the relayer wallet for a specific chain.
+ * Same private key on all chains — only the chain context differs.
+ */
+export function getRelayerWallet(chainId?: number) {
+  return getWalletClientForChain(chainId ?? defaultChainId)
+}
+
+/**
+ * Get relayer address (same on all chains — derived from the single private key)
  */
 export function getRelayerAddress(): string {
-  const { account } = getRelayerWallet()
+  const account = getRelayerAccount()
   return account.address
 }
 
@@ -80,22 +108,39 @@ export function generateNonce(): string {
   return `0x${crypto.randomBytes(32).toString('hex')}`
 }
 
+// ── Per-chain EIP-712 domain ──
+
+type TokenDomain = { name: string; version: string; chainId: number; verifyingContract: `0x${string}` }
+/** @deprecated Use TokenDomain */
+type UsdcDomain = TokenDomain
+
 /**
- * Get EIP-712 domain for USDC contract
+ * Get the EIP-712 domain for a gasless token config.
+ * Domain params (name, version) are compile-time constants in the token contracts.
  */
-export function getUsdcDomain() {
+export function getTokenDomain(config: GaslessTokenConfig): TokenDomain {
   return {
-    name: 'USD Coin', // USDC contract name
-    version: '2', // USDC version
-    chainId: usdcConfig.chainId,
-    verifyingContract: usdcConfig.tokenAddress as `0x${string}`,
+    name: config.eip712Name,
+    version: config.eip712Version,
+    chainId: config.chainId,
+    verifyingContract: config.tokenAddress as `0x${string}`,
   }
 }
 
 /**
- * Get EIP-712 types for TransferWithAuthorization
- * Note: We use TransferWithAuthorization instead of ReceiveWithAuthorization
- * because the latter requires the caller to be the payee
+ * Get the USDC EIP-712 domain for a specific chain.
+ * @deprecated Use getTokenDomain(config) for multi-token support
+ */
+export function getUsdcDomain(chainId?: number): TokenDomain {
+  const cid = chainId ?? defaultChainId
+  const config = getUsdcConfigForChainId(cid)
+  if (!config) throw new Error(`No USDC config for chain ${cid}`)
+  return getTokenDomain(config)
+}
+
+/**
+ * Get EIP-712 types for TransferWithAuthorization (EIP-3009).
+ * Same on all chains.
  */
 export function getTransferWithAuthorizationTypes() {
   return {
@@ -110,12 +155,19 @@ export function getTransferWithAuthorizationTypes() {
   }
 }
 
+/** @deprecated Use getTransferWithAuthorizationTypes instead */
+export const getReceiveWithAuthorizationTypes = getTransferWithAuthorizationTypes
+
 /**
- * Create typed data for EIP-712 signing
+ * Create typed data for EIP-712 signing (TransferWithAuthorization).
+ * Accepts a GaslessTokenConfig or a chain ID (backward compat: defaults to USDC on that chain).
  */
-export function createAuthorizationTypedData(authorization: EIP3009Authorization) {
+export async function createAuthorizationTypedData(authorization: EIP3009Authorization, chainIdOrConfig?: number | GaslessTokenConfig) {
+  const domain = typeof chainIdOrConfig === 'object'
+    ? getTokenDomain(chainIdOrConfig)
+    : getUsdcDomain(chainIdOrConfig)
   return {
-    domain: getUsdcDomain(),
+    domain,
     types: getTransferWithAuthorizationTypes(),
     primaryType: 'TransferWithAuthorization' as const,
     message: {
@@ -130,12 +182,19 @@ export function createAuthorizationTypedData(authorization: EIP3009Authorization
 }
 
 /**
- * Check if an authorization nonce has been used
+ * Check if an authorization nonce has been used.
+ * Accepts a GaslessTokenConfig or chain ID (backward compat: defaults to USDC).
  */
-export async function isNonceUsed(authorizer: string, nonce: string): Promise<boolean> {
+export async function isNonceUsed(authorizer: string, nonce: string, chainIdOrConfig?: number | GaslessTokenConfig): Promise<boolean> {
+  const config = typeof chainIdOrConfig === 'object'
+    ? chainIdOrConfig
+    : getUsdcConfigForChainId(chainIdOrConfig ?? defaultChainId)
+  if (!config) return false
+  const cid = config.chainId
   try {
-    const result = await publicClient.readContract({
-      address: usdcConfig.tokenAddress as `0x${string}`,
+    const client = getPublicClientForChain(cid)
+    const result = await client.readContract({
+      address: config.tokenAddress as `0x${string}`,
       abi: usdcAbi,
       functionName: 'authorizationState',
       args: [authorizer as `0x${string}`, nonce as `0x${string}`],
@@ -148,29 +207,58 @@ export async function isNonceUsed(authorizer: string, nonce: string): Promise<bo
 }
 
 /**
- * Execute a TransferWithAuthorization transaction
- * The relayer pays gas fees and the USDC is transferred from `from` to `to`
- * Note: We use transferWithAuthorization (not receiveWithAuthorization) because
- * the latter requires the caller to be the payee
+ * Execute a TransferWithAuthorization transaction.
+ *
+ * transferWithAuthorization sends tokens directly from the user to the `to` address
+ * (PAYMENT_RECIPIENT_ADDRESS) in a single transaction. Any msg.sender can call it.
+ * Works with any EIP-3009 token (USDC, USDT0).
+ *
+ * @param authorization  The signed EIP-3009 authorization (to = payment recipient)
+ * @param signature      The EIP-712 signature split into v, r, s
+ * @param chainIdOrConfig  Chain ID (backward compat: USDC) or GaslessTokenConfig
  */
 export async function executeTransferWithAuthorization(
   authorization: EIP3009Authorization,
-  signature: { v: number; r: string; s: string }
+  signature: { v: number; r: string; s: string },
+  chainIdOrConfig?: number | GaslessTokenConfig
 ): Promise<{ txHash: string }> {
-  const { walletClient, account } = getRelayerWallet()
+  const config = typeof chainIdOrConfig === 'object'
+    ? chainIdOrConfig
+    : getUsdcConfigForChainId(chainIdOrConfig ?? defaultChainId)
+  if (!config) throw new Error(`No gasless token config for chain ${typeof chainIdOrConfig === 'number' ? chainIdOrConfig : 'unknown'}`)
+  const cid = config.chainId
 
-  console.log('[Relayer] Executing transferWithAuthorization on', chain.name, '(', chain.id, ')')
+  const { walletClient } = getWalletClientForChain(cid)
+  const client = getPublicClientForChain(cid)
+  const tokenAddress = config.tokenAddress as `0x${string}`
+
+  console.log(`[Relayer] Executing transferWithAuthorization on chain ${cid} (${CHAIN_ID_TO_CHAIN[cid]?.name ?? 'unknown'})`)
 
   // Check if nonce has already been used
-  const nonceUsed = await isNonceUsed(authorization.from, authorization.nonce)
+  const nonceUsed = await isNonceUsed(authorization.from, authorization.nonce, config)
   if (nonceUsed) {
     throw new Error('Authorization nonce has already been used')
   }
 
+  // Check the payer actually has sufficient balance (prevents gas griefing)
   try {
-    // Execute the transaction
+    const balance = await client.readContract({
+      address: tokenAddress,
+      abi: parseAbi(['function balanceOf(address) view returns (uint256)']),
+      functionName: 'balanceOf',
+      args: [authorization.from as `0x${string}`],
+    })
+    if ((balance as bigint) < BigInt(authorization.value)) {
+      throw new Error(`Insufficient ${config.tokenSymbol} balance: payer has ${balance}, needs ${authorization.value}`)
+    }
+  } catch (error) {
+    if ((error as Error).message.startsWith('Insufficient ')) throw error
+    console.warn(`[Relayer] ${config.tokenSymbol} balance check failed, proceeding anyway:`, (error as Error).message)
+  }
+
+  try {
     const hash = await walletClient.writeContract({
-      address: usdcConfig.tokenAddress as `0x${string}`,
+      address: tokenAddress,
       abi: usdcAbi,
       functionName: 'transferWithAuthorization',
       args: [
@@ -186,7 +274,16 @@ export async function executeTransferWithAuthorization(
       ],
     })
 
-    console.log('[Relayer] Transaction submitted:', hash)
+    console.log('[Relayer] transferWithAuthorization tx:', hash)
+
+    // Wait for confirmation
+    const receipt = await client.waitForTransactionReceipt({ hash })
+    console.log('[Relayer] transferWithAuthorization confirmed, status:', receipt.status)
+
+    if (receipt.status !== 'success') {
+      throw new Error(`transferWithAuthorization reverted (tx: ${hash})`)
+    }
+
     return { txHash: hash }
   } catch (error) {
     console.error('[Relayer] Error executing authorization:', error)
@@ -195,17 +292,19 @@ export async function executeTransferWithAuthorization(
 }
 
 /**
- * Get the current USDC configuration
+ * Get the default USDC configuration (Base mainnet or Base Sepolia).
+ * For chain-specific config, use getUsdcConfigForChainId() from types/x402.
  */
 export function getUsdcConfig() {
-  return usdcConfig
+  return isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
 }
 
 /**
- * Check relayer ETH balance for gas
+ * Check relayer ETH balance for gas on a specific chain
  */
-export async function getRelayerBalance(): Promise<bigint> {
-  const { account } = getRelayerWallet()
-  const balance = await publicClient.getBalance({ address: account.address })
-  return balance
+export async function getRelayerBalance(chainId?: number): Promise<bigint> {
+  const cid = chainId ?? defaultChainId
+  const client = getPublicClientForChain(cid)
+  const account = getRelayerAccount()
+  return client.getBalance({ address: account.address })
 }

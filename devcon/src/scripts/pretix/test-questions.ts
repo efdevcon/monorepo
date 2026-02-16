@@ -1,6 +1,6 @@
 /**
  * Test script to fetch Pretix questions (attendee information fields)
- * Run with: npx ts-node src/scripts/pretix/test-questions.ts
+ * Run with: pnpm run pretix:test-questions
  */
 import 'dotenv/config'
 

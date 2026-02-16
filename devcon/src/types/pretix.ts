@@ -266,8 +266,14 @@ export interface TicketInfo {
     items: {
       id: number
       name: string
+      description: string | null
       price: string
       available: boolean
+      variations: {
+        id: number
+        name: string
+        price: string
+      }[]
     }[]
   }[]
 }

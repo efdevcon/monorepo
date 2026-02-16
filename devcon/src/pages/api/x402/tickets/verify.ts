@@ -14,15 +14,24 @@
  * - Ticket details
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { verifyPayment, verifyPaymentDirect, getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
+import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
+import { getUsdcConfig } from 'services/relayer'
+import type { SettleResponse } from 'types/x402'
 import { createOrder, markOrderPaid } from 'services/pretix'
 import {
   getPendingOrder,
-  storeCompletedOrder,
+  storePendingOrder,
   getCompletedOrder,
-  CompletedTicketOrder,
+  getCompletedOrderByTxHash,
+  checkAndRecordVerifyAttempt,
+  claimPendingOrder,
+  reserveCompletedOrder,
+  finalizeCompletedOrder,
+  removeCompletedOrderReservation,
+  TxHashAlreadyUsedError,
 } from 'services/ticketStore'
 import { X402PaymentProof } from 'types/x402'
+import { isValidTxHash, validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 // Build ticket URL from env vars
 const PRETIX_BASE_URL = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
@@ -41,6 +50,12 @@ interface VerifyRequest {
   txHash: string
   paymentReference: string
   payer: string
+  /** Chain ID where the transaction was sent (e.g. 8453 for Base). Required for multi-chain so we look up the tx on the correct chain. */
+  chainId?: number
+  /** Payment asset symbol ('ETH' | 'USDC' | 'USDT0'). When 'ETH', we may try native ETH verification. */
+  symbol?: string
+  /** Token contract address. Required for multi-token chains (e.g. USDC vs USDT0 on Arbitrum). Falls back to USDC if omitted. */
+  tokenAddress?: string
 }
 
 interface VerifySuccessResponse {
@@ -91,6 +106,43 @@ export default async function handler(
       return res.status(400).json({ success: false, error: 'Payer address is required' })
     }
 
+    if (!isValidTxHash(body.txHash)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid transaction hash format',
+        details: 'Must be 0x followed by 64 hexadecimal characters',
+      })
+    }
+
+    const payerValidation = validateAddressEIP55(body.payer)
+    if (!payerValidation.valid) {
+      return res.status(400).json({
+        success: false,
+        error: payerValidation.error,
+      })
+    }
+
+    // One-time use of txHash: reject if this transaction already completed an order
+    const existingByTx = await getCompletedOrderByTxHash(body.txHash)
+    if (existingByTx) {
+      return res.status(400).json({
+        success: false,
+        error: 'This transaction has already been used to complete an order',
+        details: 'Each payment can only complete one order',
+      })
+    }
+
+    // Rate limit
+    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+    const { allowed } = await checkAndRecordVerifyAttempt(body.paymentReference, clientIp)
+    if (!allowed) {
+      return res.status(429).json({
+        success: false,
+        error: 'Too many verify attempts',
+        details: 'Please try again later',
+      })
+    }
+
     // Check if already completed
     const existingCompleted = await getCompletedOrder(body.paymentReference)
     if (existingCompleted) {
@@ -130,17 +182,65 @@ export default async function handler(
       expiresAt: pendingOrder.expiresAt
     })
 
+    // Intended payer must match (prevents tx reuse attack)
+    if (!pendingOrder.intendedPayer || !addressesEqual(pendingOrder.intendedPayer, body.payer)) {
+      return res.status(403).json({
+        success: false,
+        error: 'Payer address does not match the wallet that created this order',
+        details: 'Only the wallet used at purchase can verify this payment',
+      })
+    }
+
+    // Validate chain ID matches what was recorded at purchase (prevents cross-chain tx reuse)
+    if (pendingOrder.expectedChainId != null && body.chainId != null && body.chainId !== pendingOrder.expectedChainId) {
+      return res.status(400).json({
+        success: false,
+        error: 'Chain ID does not match the expected chain for this order',
+        details: `Expected chain ${pendingOrder.expectedChainId}, got ${body.chainId}`,
+      })
+    }
+
     // Verify payment on-chain
+    const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
     const paymentProof: X402PaymentProof = {
       txHash: body.txHash,
       paymentReference: body.paymentReference,
       payer: body.payer,
+      expectedAmount,
+      ...(body.chainId != null && { chainId: body.chainId }),
+      ...(body.tokenAddress && { tokenAddress: body.tokenAddress }),
     }
 
-    console.log('[Verify] Attempting primary verification via x402 service')
+    console.log('[Verify] Attempting primary verification via x402 service', body.chainId != null ? `(chain ${body.chainId})` : '')
     let verification = await verifyPayment(paymentProof)
 
-    // If x402 service doesn't have the payment reference, try direct verification
+    // Only try native ETH when client indicates ETH payment; otherwise we'd wrongly run it for USDC and fail (from/to mismatch)
+    if (
+      !verification.verified &&
+      body.symbol === 'ETH' &&
+      body.chainId != null &&
+      (verification.error === 'No matching transfer found in transaction' || verification.error === 'Invalid payment reference')
+    ) {
+      const expectedAmountWei = pendingOrder.expectedEthAmountWeiByChain?.[String(body.chainId)]
+      if (!expectedAmountWei) {
+        return res.status(400).json({
+          success: false,
+          error: 'Cannot verify native ETH payment',
+          details: 'Expected ETH amount for this chain was not recorded at order creation. Please try again or use USDC.',
+        })
+      }
+      const recipient = getPaymentRecipient()
+      console.log('[Verify] Trying native ETH verification (chain', body.chainId + ', expected wei from DB)')
+      verification = await verifyPaymentNativeEth(
+        body.txHash,
+        body.payer,
+        recipient,
+        expectedAmountWei,
+        body.chainId
+      )
+    }
+
+    // If x402 service doesn't have the payment reference, try direct verification (USDC)
     // using the ticket store data (for recovery from hot reloads)
     if (!verification.verified && verification.error === 'Invalid payment reference') {
       console.log('[Verify] x402 payment ref not found, trying direct verification with ticketStore data')
@@ -156,7 +256,9 @@ export default async function handler(
         body.txHash,
         body.payer,
         recipient,
-        expectedAmount
+        expectedAmount,
+        body.chainId,
+        body.tokenAddress
       )
       console.log('[Verify] Direct verification result:', verification)
     }
@@ -171,14 +273,48 @@ export default async function handler(
     }
     console.log('[Verify] Payment verified successfully')
 
+    // Atomically claim the pending order so only one request can create a Pretix order (prevents race)
+    const claimedOrder = await claimPendingOrder(body.paymentReference)
+    if (!claimedOrder) {
+      return res.status(409).json({
+        success: false,
+        error: 'Order already completed or in progress',
+        details: 'Another request may have completed this order. Check status or try again in a moment.',
+      })
+    }
+
+    // Reserve tx_hash BEFORE creating Pretix order (prevents orphaned tickets on double-spend race)
+    try {
+      await reserveCompletedOrder(
+        body.txHash,
+        body.paymentReference,
+        body.payer,
+        verification.confirmedAt || Math.floor(Date.now() / 1000)
+      )
+    } catch (error) {
+      if (error instanceof TxHashAlreadyUsedError) {
+        // Restore pending order so the user can retry with a different tx
+        await storePendingOrder(claimedOrder)
+        return res.status(409).json({
+          success: false,
+          error: 'This transaction has already been used to complete an order',
+          details: 'Each payment can only complete one order',
+        })
+      }
+      throw error
+    }
+
     // Create order in Pretix
     console.log('[Verify] Creating Pretix order for payment ref:', body.paymentReference)
     let pretixOrder
     try {
-      pretixOrder = await createOrder(pendingOrder.orderData)
+      pretixOrder = await createOrder(claimedOrder.orderData)
       console.log('[Verify] Pretix order created:', pretixOrder.code)
     } catch (error) {
       console.error('[Verify] Failed to create Pretix order:', error)
+      // Remove reservation and restore pending order so user can retry
+      await removeCompletedOrderReservation(body.paymentReference)
+      await storePendingOrder(claimedOrder)
       return res.status(500).json({
         success: false,
         error: 'Failed to create ticket order',
@@ -197,15 +333,19 @@ export default async function handler(
       // Continue anyway as the order exists
     }
 
-    // Store completed order
-    const completedOrder: CompletedTicketOrder = {
-      paymentReference: body.paymentReference,
-      pretixOrderCode: pretixOrder.code,
-      txHash: body.txHash,
+    // Finalize: replace placeholder with real Pretix order code
+    await finalizeCompletedOrder(body.paymentReference, pretixOrder.code)
+
+    // Set PAYMENT-RESPONSE header (x402 v2 spec)
+    const usdcConf = getUsdcConfig()
+    const verifyChainId = body.chainId || usdcConf.chainId
+    const settlementResponse: SettleResponse = {
+      success: true,
+      transaction: body.txHash,
+      network: `eip155:${verifyChainId}` as `${string}:${string}`,
       payer: body.payer,
-      completedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
     }
-    await storeCompletedOrder(completedOrder)
+    res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))
 
     // Return success response
     const response: VerifySuccessResponse = {

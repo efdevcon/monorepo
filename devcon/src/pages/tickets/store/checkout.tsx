@@ -13,21 +13,38 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
   useSwitchChain,
-  useSignTypedData,
+  useWalletClient,
+  useSendTransaction,
 } from 'wagmi'
 import { createConfig, http } from 'wagmi'
-import { baseSepolia, base } from 'wagmi/chains'
+import { baseSepolia, base, mainnet, optimism, arbitrum, polygon } from 'wagmi/chains'
 import { injected, walletConnect } from 'wagmi/connectors'
-import { QuestionInfo } from 'types/pretix'
+import { QuestionInfo, TicketInfo } from 'types/pretix'
 
 const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
 
+// Optional RPC URLs to avoid hitting public endpoints (e.g. sepolia.base.org) on every poll.
+// Wagmi/viem poll the connected chain for block number / tx receipts, so without custom URLs
+// you'll see constant calls to the chain's default RPC.
+const RPC_URLS = {
+  [baseSepolia.id]: process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL,
+  [base.id]: process.env.NEXT_PUBLIC_BASE_RPC_URL,
+  [mainnet.id]: process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL,
+  [optimism.id]: process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL,
+  [arbitrum.id]: process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL,
+  [polygon.id]: process.env.NEXT_PUBLIC_POLYGON_RPC_URL,
+}
+
 const wagmiConfig = createConfig({
-  chains: [baseSepolia, base],
+  chains: [baseSepolia, base, mainnet, optimism, arbitrum, polygon],
   connectors: [injected(), ...(WC_PROJECT_ID ? [walletConnect({ projectId: WC_PROJECT_ID })] : [])],
   transports: {
-    [baseSepolia.id]: http(),
-    [base.id]: http(),
+    [baseSepolia.id]: RPC_URLS[baseSepolia.id] ? http(RPC_URLS[baseSepolia.id]) : http(),
+    [base.id]: RPC_URLS[base.id] ? http(RPC_URLS[base.id]) : http(),
+    [mainnet.id]: RPC_URLS[mainnet.id] ? http(RPC_URLS[mainnet.id]) : http(),
+    [optimism.id]: RPC_URLS[optimism.id] ? http(RPC_URLS[optimism.id]) : http(),
+    [arbitrum.id]: RPC_URLS[arbitrum.id] ? http(RPC_URLS[arbitrum.id]) : http(),
+    [polygon.id]: RPC_URLS[polygon.id] ? http(RPC_URLS[polygon.id]) : http(),
   },
 })
 
@@ -44,6 +61,29 @@ const ERC20_ABI = [
     outputs: [{ name: '', type: 'bool' }],
   },
 ] as const
+
+// ── Token & network icons ──
+
+const TOKEN_ICONS: Record<string, string> = {
+  USDC: 'https://storage.googleapis.com/zapper-fi-assets/tokens/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png',
+  ETH: 'https://storage.googleapis.com/zapper-fi-assets/tokens/ethereum/0x0000000000000000000000000000000000000000.png',
+  USDT0: 'https://storage.googleapis.com/zapper-fi-assets/tokens/optimism/0x01bff41798a0bcf287b996046ca68b395dbc1071.png',
+}
+
+/** Map API symbol to display name (e.g. USDT0 → USD₮0) */
+const SYMBOL_DISPLAY: Record<string, string> = {
+  USDT0: 'USD₮0',
+}
+const displaySymbol = (sym: string) => SYMBOL_DISPLAY[sym] ?? sym
+
+const NETWORK_LOGOS: Record<number, string> = {
+  1: 'https://storage.googleapis.com/zapper-fi-assets/networks/ethereum-icon.png',
+  10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
+  42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
+  8453: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+  137: 'https://storage.googleapis.com/zapper-fi-assets/networks/polygon-icon.png',
+  84532: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+}
 
 // ── Cart types (must match store page) ──
 
@@ -80,6 +120,32 @@ interface PaymentDetails {
   recipient: string
   paymentReference: string
   expiresAt: number
+}
+
+/** Payment option from POST /api/x402/tickets/payment-options */
+interface PaymentOptionSigningRequest {
+  method: 'eth_signTypedData_v4' | 'eth_sendTransaction'
+  params: unknown[]
+}
+interface PaymentOption {
+  asset: string
+  symbol: string
+  name: string
+  chain: string
+  chainId: string
+  decimals: number
+  amount: string
+  balance: string
+  sufficient: boolean
+  signingRequest?: PaymentOptionSigningRequest
+  priceUsd?: number
+  expiresAt: number
+}
+
+// ── Helpers ──
+function tokenAddressFromOption(option: PaymentOption): string {
+  const m = option.asset.match(/\/erc20:(0x[a-fA-F0-9]+)$/)
+  return m ? m[1] : ''
 }
 
 // ── Icons ──
@@ -203,8 +269,12 @@ function CheckoutContent() {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null)
 
-  // ── Questions from API ──
+  // ── Questions & tickets (add-ons) from API ──
   const [questions, setQuestions] = useState<QuestionInfo[]>([])
+  const [tickets, setTickets] = useState<TicketInfo[]>([])
+
+  // ── Add-on selections: Map<addonItemId, { quantity, variationId? }> ──
+  const [selectedAddons, setSelectedAddons] = useState<Map<number, { quantity: number; variationId?: number }>>(new Map())
 
   // ── Form state ──
   const [firstName, setFirstName] = useState('')
@@ -213,8 +283,6 @@ function CheckoutContent() {
   const [confirmEmail, setConfirmEmail] = useState('')
   const [newsletter, setNewsletter] = useState(false)
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({})
-  const [swag1Size, setSwag1Size] = useState('Size: Male M')
-
   // ── Payment flow state ──
   const [purchaseLoading, setPurchaseLoading] = useState(false)
   const [purchaseError, setPurchaseError] = useState<string | null>(null)
@@ -227,17 +295,30 @@ function CheckoutContent() {
   const [authorizationData, setAuthorizationData] = useState<any>(null)
   const [isExecutingGasless, setIsExecutingGasless] = useState(false)
 
+  // Payment options (multi-chain)
+  const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
+  const [paymentOptionsLoading, setPaymentOptionsLoading] = useState(false)
+  const [selectedOption, setSelectedOption] = useState<PaymentOption | null>(null)
+  const [showInsufficient, setShowInsufficient] = useState(false)
+  const [tokenFilter, setTokenFilter] = useState<string | null>(null)
+
   // Fiat/Stripe state
   const [fiatPaymentUrl, setFiatPaymentUrl] = useState<string | null>(null)
   const [fiatOrderCode, setFiatOrderCode] = useState<string | null>(null)
   const [fiatOrderSecret, setFiatOrderSecret] = useState<string | null>(null)
   const [showFiatModal, setShowFiatModal] = useState(false)
   const fiatPollRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
+  const tokenFilterAutoSelectedRef = useRef(false)
 
   // Wagmi hooks
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
-  const { signTypedData, data: signatureData, isPending: isSignPending, error: signError } = useSignTypedData()
+  const { data: walletClient } = useWalletClient()
+  const [isSigningDirect, setIsSigningDirect] = useState(false)
+  const [directSignError, setDirectSignError] = useState<string | null>(null)
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
+  const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
+  const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
 
   // ── Load cart from localStorage ──
   useEffect(() => {
@@ -279,21 +360,72 @@ function CheckoutContent() {
     localStorage.setItem('devcon-checkout-form', JSON.stringify(data))
   }, [firstName, lastName, email, confirmEmail, answers, mounted])
 
-  // ── Fetch questions from API ──
+  // ── Fetch questions & tickets (with add-ons) from API ──
   useEffect(() => {
-    async function fetchQuestions() {
+    async function fetchTicketData() {
       try {
         const res = await fetch('/api/x402/tickets')
         const data = await res.json()
         if (data.success) {
           setQuestions(data.data.questions || [])
+          setTickets(data.data.tickets || [])
         }
       } catch {
-        // questions will just be empty
+        // questions/tickets will just be empty
       }
     }
-    fetchQuestions()
+    fetchTicketData()
   }, [])
+
+  // ── Auto-load payment options when crypto tab is active and we have payment ref + wallet (e.g. user connected after 402)
+  useEffect(() => {
+    const ref = paymentDetails?.paymentReference
+    if (
+      paymentMethod === 'crypto' &&
+      ref &&
+      address &&
+      paymentOptions.length === 0 &&
+      !paymentOptionsLoading &&
+      paymentOptionsAutoLoadedRef.current !== ref
+    ) {
+      paymentOptionsAutoLoadedRef.current = ref
+      fetchPaymentOptions()
+    }
+    if (!ref) paymentOptionsAutoLoadedRef.current = null
+  }, [paymentMethod, paymentDetails?.paymentReference, address, paymentOptions.length, paymentOptionsLoading])
+
+  // ── Auto-select token filter tab for symbol with highest USD value ──
+  useEffect(() => {
+    if (tokenFilterAutoSelectedRef.current) return
+    if (paymentOptions.length === 0) return
+
+    const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
+    const base = sufficient.length > 0 ? sufficient : paymentOptions
+    const uniqueSymbols = [...new Set(base.map(o => o.symbol))]
+    if (base.length <= 4 || uniqueSymbols.length <= 1) return
+
+    const usdBySymbol = new Map<string, number>()
+    for (const opt of base) {
+      const usdValue = opt.symbol === 'ETH' && opt.priceUsd
+        ? (Number(opt.balance) / 1e18) * opt.priceUsd
+        : Number(opt.balance) / 10 ** opt.decimals
+      usdBySymbol.set(opt.symbol, (usdBySymbol.get(opt.symbol) ?? 0) + usdValue)
+    }
+
+    let bestSymbol: string | null = null
+    let bestValue = -1
+    for (const [sym, val] of usdBySymbol) {
+      if (val > bestValue) {
+        bestValue = val
+        bestSymbol = sym
+      }
+    }
+
+    if (bestSymbol) {
+      tokenFilterAutoSelectedRef.current = true
+      setTokenFilter(bestSymbol)
+    }
+  }, [paymentOptions])
 
   // ── Handle direct payment tx success ──
   useEffect(() => {
@@ -303,12 +435,61 @@ function CheckoutContent() {
     }
   }, [isTxSuccess, writeData])
 
-  // ── Handle gasless signature ──
+  // ── Handle native ETH send tx success ──
   useEffect(() => {
-    if (signatureData && authorizationData && paymentDetails) {
-      executeGaslessTransfer(signatureData)
+    if (isSendTxSuccess && sendTxHash && paymentDetails) {
+      setTxHash(sendTxHash)
+      verifyPayment(sendTxHash)
     }
-  }, [signatureData])
+  }, [isSendTxSuccess, sendTxHash])
+
+  /**
+   * Sign EIP-712 typed data directly via eth_signTypedData_v4.
+   * Formats data for optimal wallet interpretation (hex chainId, EIP712Domain type, string values).
+   */
+  async function signEIP712Direct(typedData: {
+    domain: { name?: string; version?: string; chainId?: number | string; verifyingContract?: string }
+    types: Record<string, Array<{ name: string; type: string }>>
+    primaryType: string
+    message: Record<string, unknown>
+  }): Promise<string> {
+    if (!walletClient || !address) throw new Error('Wallet not connected')
+
+    const chainIdNum = typeof typedData.domain.chainId === 'string'
+      ? parseInt(typedData.domain.chainId, (typedData.domain.chainId as string).startsWith('0x') ? 16 : 10)
+      : Number(typedData.domain.chainId ?? 0)
+
+    // Include EIP712Domain type explicitly and put primaryType first for better wallet recognition
+    const types: Record<string, Array<{ name: string; type: string }>> = {
+      [typedData.primaryType]: typedData.types[typedData.primaryType],
+      EIP712Domain: [
+        { name: 'name', type: 'string' },
+        { name: 'version', type: 'string' },
+        { name: 'chainId', type: 'uint256' },
+        { name: 'verifyingContract', type: 'address' },
+      ],
+    }
+
+    const jsonStr = JSON.stringify({
+      types,
+      primaryType: typedData.primaryType,
+      domain: {
+        ...typedData.domain,
+        chainId: `0x${chainIdNum.toString(16)}`,
+      },
+      message: Object.fromEntries(
+        Object.entries(typedData.message).map(([k, v]) => [
+          k,
+          typeof v === 'bigint' ? v.toString() : String(v),
+        ])
+      ),
+    })
+
+    return walletClient.request({
+      method: 'eth_signTypedData_v4',
+      params: [address, jsonStr],
+    } as any)
+  }
 
   // ── Poll fiat order status ──
   const pollFiatStatus = useCallback(async () => {
@@ -353,8 +534,49 @@ function CheckoutContent() {
     }
   }, [showFiatModal, fiatOrderCode, pollFiatStatus])
 
+  // ── Get applicable questions for selected tickets ──
+  const ticketIds = cartItems.map(c => c.ticketId)
+  const applicableQuestions = questions.filter(
+    q => !q.dependsOn && (q.appliesToItems.length === 0 || q.appliesToItems.some(id => ticketIds.includes(id)))
+  )
+
+  // ── Get available add-ons for selected tickets ──
+  // Collect all add-on categories across selected tickets (deduplicated by categoryId)
+  const availableAddons = (() => {
+    const seen = new Set<number>()
+    const result: TicketInfo['addons'] = []
+    for (const cartItem of cartItems) {
+      const ticket = tickets.find(t => t.id === cartItem.ticketId)
+      if (!ticket) continue
+      for (const addon of ticket.addons) {
+        if (!seen.has(addon.categoryId)) {
+          seen.add(addon.categoryId)
+          result.push(addon)
+        }
+      }
+    }
+    return result
+  })()
+
+  // Flat list of all available add-on items (for price lookup in summary)
+  const allAddonItems = availableAddons.flatMap(a => a.items)
+
+  // Add-on subtotal
+  const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, data]) => {
+    const item = allAddonItems.find(i => i.id === itemId)
+    if (!item || data.quantity <= 0) return sum
+    // If a variation is selected, use variation price; otherwise use item price
+    let price = parseFloat(item.price)
+    if (data.variationId) {
+      const variation = item.variations.find(v => v.id === data.variationId)
+      if (variation) price = parseFloat(variation.price)
+    }
+    return sum + price * data.quantity
+  }, 0)
+
   // ── Derived cart values ──
-  const subtotal = cartItems.reduce((sum, c) => sum + parseFloat(c.price) * c.quantity, 0)
+  const ticketSubtotal = cartItems.reduce((sum, c) => sum + parseFloat(c.price) * c.quantity, 0)
+  const subtotal = ticketSubtotal + addonSubtotal
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : 3
   const cryptoDiscount = paymentMethod === 'crypto' ? +(subtotal * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - cryptoDiscount).toFixed(2)
@@ -367,7 +589,13 @@ function CheckoutContent() {
   const goToNextSection = (currentSectionId: string) => {
     const i = SECTION_ORDER.indexOf(currentSectionId as (typeof SECTION_ORDER)[number])
     if (i >= 0 && i < SECTION_ORDER.length - 1) {
-      setOpenSection(SECTION_ORDER[i + 1])
+      let next = SECTION_ORDER[i + 1]
+      // Skip 'swag' section if no add-ons available
+      if (next === 'swag' && availableAddons.length === 0) {
+        const j = SECTION_ORDER.indexOf('swag')
+        if (j < SECTION_ORDER.length - 1) next = SECTION_ORDER[j + 1]
+      }
+      setOpenSection(next)
     }
   }
 
@@ -378,11 +606,43 @@ function CheckoutContent() {
     confirmEmail.trim() !== '' &&
     email.trim() === confirmEmail.trim()
 
-  // ── Get applicable questions for selected tickets ──
-  const ticketIds = cartItems.map(c => c.ticketId)
-  const applicableQuestions = questions.filter(
-    q => !q.dependsOn && (q.appliesToItems.length === 0 || q.appliesToItems.some(id => ticketIds.includes(id)))
-  )
+  // Add-on selection helpers
+  const toggleAddon = (itemId: number) => {
+    setSelectedAddons(prev => {
+      const next = new Map(prev)
+      if (next.has(itemId)) {
+        next.delete(itemId)
+      } else {
+        next.set(itemId, { quantity: 1 })
+      }
+      return next
+    })
+  }
+
+  const setAddonQuantity = (itemId: number, qty: number) => {
+    setSelectedAddons(prev => {
+      const next = new Map(prev)
+      if (qty <= 0) {
+        next.delete(itemId)
+      } else {
+        const existing = next.get(itemId)
+        next.set(itemId, { quantity: qty, variationId: existing?.variationId })
+      }
+      return next
+    })
+  }
+
+  const setAddonVariation = (itemId: number, variationId: number | undefined) => {
+    setSelectedAddons(prev => {
+      const next = new Map(prev)
+      if (!variationId) {
+        next.delete(itemId)
+      } else {
+        next.set(itemId, { quantity: 1, variationId })
+      }
+      return next
+    })
+  }
 
   // ── Answer update helper ──
   const updateAnswer = (questionId: number, value: string | string[]) => {
@@ -422,7 +682,7 @@ function CheckoutContent() {
       return
     }
 
-    if (paymentMethod === 'crypto' && !isConnected) {
+    if (paymentMethod === 'crypto' && (!isConnected || !address)) {
       setPurchaseError('Please connect your wallet first')
       return
     }
@@ -440,16 +700,47 @@ function CheckoutContent() {
     setPurchaseLoading(false)
   }
 
+  async function fetchPaymentOptions(overrides?: { paymentReference: string; walletAddress: string }) {
+    const ref = overrides?.paymentReference ?? paymentDetails?.paymentReference
+    const addr = overrides?.walletAddress ?? address
+    if (!ref || !addr) return
+    setPaymentOptionsLoading(true)
+    try {
+      const optRes = await fetch('/api/x402/tickets/payment-options', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paymentReference: ref,
+          walletAddress: addr,
+        }),
+      })
+      const optData = await optRes.json()
+      if (optData.options) {
+        setPaymentOptions(optData.options)
+      }
+    } catch {
+      // keep existing options on error
+    }
+    setPaymentOptionsLoading(false)
+  }
+
   async function handleCryptoCheckout() {
     try {
       const formattedAnswers = buildFormattedAnswers()
+
+      // Build add-ons array from selections
+      const addons = Array.from(selectedAddons.entries())
+        .filter(([_, data]) => data.quantity > 0)
+        .map(([itemId, data]) => ({ itemId, quantity: data.quantity, ...(data.variationId && { variationId: data.variationId }) }))
 
       const res = await fetch('/api/x402/tickets/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
+          intendedPayer: address!,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
+          ...(addons.length > 0 && { addons }),
           answers: formattedAnswers,
           attendee: {
             name: { given_name: firstName, family_name: lastName },
@@ -460,13 +751,20 @@ function CheckoutContent() {
 
       const data = await res.json()
       if (data.success && data.paymentRequired) {
-        setPaymentDetails(data.paymentDetails.payment)
+        const payment = data.paymentDetails.payment
+        setPaymentDetails(payment)
         setOrderSummary(data.orderSummary)
         setPaymentStatus('Awaiting payment...')
+        setSelectedOption(null)
+        setPaymentOptions([])
+        setTokenFilter(null)
+        tokenFilterAutoSelectedRef.current = false
 
-        // Auto-initiate gasless payment if wallet connected
-        if (isConnected) {
-          await initiateGaslessPayment(data.paymentDetails.payment)
+        if (isConnected && address) {
+          await fetchPaymentOptions({
+            paymentReference: payment.paymentReference,
+            walletAddress: address,
+          })
         }
       } else {
         setPurchaseError(data.error || 'Failed to create purchase')
@@ -482,12 +780,18 @@ function CheckoutContent() {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
+      // Build add-ons array from selections
+      const addons = Array.from(selectedAddons.entries())
+        .filter(([_, data]) => data.quantity > 0)
+        .map(([itemId, data]) => ({ itemId, quantity: data.quantity, ...(data.variationId && { variationId: data.variationId }) }))
+
       const res = await fetch('/api/x402/tickets/fiat-purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
+          ...(addons.length > 0 && { addons }),
           answers: formattedAnswers,
           attendee: {
             name: { given_name: firstName, family_name: lastName },
@@ -514,10 +818,12 @@ function CheckoutContent() {
   }
 
   async function initiateGaslessPayment(details: PaymentDetails) {
-    if (!address) return
+    if (!address || !walletClient) return
 
     setPaymentStatus('Preparing authorization...')
     setPurchaseError(null)
+    setDirectSignError(null)
+    setIsSigningDirect(true)
 
     try {
       const prepareRes = await fetch('/api/x402/tickets/relayer/prepare-authorization', {
@@ -533,37 +839,47 @@ function CheckoutContent() {
       if (!prepareData.success) {
         setPurchaseError(prepareData.error || 'Failed to prepare authorization')
         setPaymentStatus(null)
+        setIsSigningDirect(false)
         return
       }
 
       setAuthorizationData(prepareData)
+
+      const { domain, types, primaryType, message } = prepareData.typedData
+      const domainChainId = typeof domain.chainId === 'string'
+        ? parseInt(domain.chainId, domain.chainId.startsWith('0x') ? 16 : 10)
+        : domain.chainId
+      if (domainChainId && chain?.id !== domainChainId && switchChain) {
+        setPaymentStatus(`Switching to ${details.network}...`)
+        await switchChain({ chainId: domainChainId })
+      }
       setPaymentStatus('Sign in your wallet...')
 
-      const { domain, types, message } = prepareData.typedData
-      signTypedData({
-        domain: {
-          ...domain,
-          verifyingContract: domain.verifyingContract as `0x${string}`,
-        },
-        types,
-        primaryType: 'TransferWithAuthorization',
-        message: {
-          from: message.from as `0x${string}`,
-          to: message.to as `0x${string}`,
-          value: BigInt(message.value),
-          validAfter: BigInt(message.validAfter),
-          validBefore: BigInt(message.validBefore),
-          nonce: message.nonce as `0x${string}`,
-        },
-      })
-    } catch {
-      setPurchaseError('Failed to prepare payment')
+      const signature = await signEIP712Direct({ domain, types, primaryType, message })
+
+      setIsSigningDirect(false)
+      await executeGaslessTransfer(signature, prepareData.authorization)
+    } catch (e) {
+      setDirectSignError((e as Error).message || 'Failed to prepare payment')
+      setPurchaseError((e as Error).message || 'Failed to prepare payment')
       setPaymentStatus(null)
+      setIsSigningDirect(false)
     }
   }
 
-  async function executeGaslessTransfer(signature: string) {
-    if (!authorizationData || !paymentDetails) return
+  async function executeGaslessTransfer(
+    signature: string,
+    authorizationOverride?: {
+      from: string
+      to: string
+      value: string
+      validAfter: number
+      validBefore: number
+      nonce: string
+    }
+  ) {
+    const auth = authorizationOverride ?? authorizationData?.authorization
+    if (!auth || !paymentDetails) return
 
     setIsExecutingGasless(true)
     setPurchaseError(null)
@@ -579,8 +895,10 @@ function CheckoutContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           paymentReference: paymentDetails.paymentReference,
-          authorization: authorizationData.authorization,
+          authorization: auth,
           signature: { v, r, s },
+          chainId: paymentDetails.chainId,
+          tokenAddress: paymentDetails.tokenAddress,
         }),
       })
 
@@ -597,6 +915,105 @@ function CheckoutContent() {
       setPaymentStatus(null)
     }
     setIsExecutingGasless(false)
+  }
+
+  function selectPaymentOption(option: PaymentOption) {
+    if (!paymentDetails || !option.sufficient || !option.signingRequest) return
+    setSelectedOption(option)
+    const tokenAddress = tokenAddressFromOption(option)
+    const chainIdNum = parseInt(option.chainId.replace(/^eip155:/, ''), 10)
+    const amountFormatted =
+      option.decimals >= 18
+        ? (Number(option.amount) / 1e18).toFixed(4)
+        : (Number(option.amount) / 10 ** option.decimals).toFixed(2)
+    setPaymentDetails({
+      ...paymentDetails,
+      network: option.chain,
+      chainId: chainIdNum,
+      tokenAddress: tokenAddress || paymentDetails.tokenAddress,
+      tokenSymbol: option.symbol,
+      tokenDecimals: option.decimals,
+      amount: option.amount,
+      amountFormatted,
+    })
+  }
+
+  async function payWithSelectedOption() {
+    if (!selectedOption?.signingRequest || !paymentDetails || !address) return
+    const req = selectedOption.signingRequest
+    setPurchaseError(null)
+
+    if (req.method === 'eth_signTypedData_v4') {
+      if (!walletClient) {
+        setPurchaseError('Wallet not connected')
+        return
+      }
+      setIsSigningDirect(true)
+      setDirectSignError(null)
+      try {
+        const typedJson = req.params[1] as string
+        const typed = JSON.parse(typedJson)
+        const domainChainId = typeof typed.domain.chainId === 'string'
+          ? parseInt(typed.domain.chainId, typed.domain.chainId.startsWith('0x') ? 16 : 10)
+          : typed.domain.chainId
+        if (domainChainId && chain?.id !== domainChainId && switchChain) {
+          setPaymentStatus(`Switching to ${selectedOption.chain}...`)
+          await switchChain({ chainId: domainChainId })
+        }
+        setPaymentStatus('Sign in your wallet...')
+
+        const signature = await signEIP712Direct({
+          domain: typed.domain,
+          types: typed.types,
+          primaryType: typed.primaryType,
+          message: typed.message,
+        })
+
+        setIsSigningDirect(false)
+        // Extract authorization and execute
+        const auth = {
+          from: typed.message.from,
+          to: typed.message.to,
+          value: String(typed.message.value),
+          validAfter: Number(typed.message.validAfter),
+          validBefore: Number(typed.message.validBefore),
+          nonce: typed.message.nonce,
+        }
+        await executeGaslessTransfer(signature, auth)
+      } catch (e) {
+        setDirectSignError((e as Error).message || 'Invalid signing data')
+        setPurchaseError((e as Error).message || 'Invalid signing data')
+        setPaymentStatus(null)
+        setIsSigningDirect(false)
+      }
+      return
+    }
+
+    if (req.method === 'eth_sendTransaction') {
+      const tx = req.params[0] as { to: string; value: string; data?: string; chainId?: string }
+      if (!tx?.to || tx?.value === undefined) {
+        setPurchaseError('Invalid transaction request')
+        return
+      }
+      const targetChainId = tx.chainId ? parseInt(tx.chainId.replace('0x', ''), 16) : paymentDetails.chainId
+      if (chain?.id !== targetChainId && switchChain) {
+        setPaymentStatus(`Switching to ${selectedOption.chain}...`)
+        await switchChain({ chainId: targetChainId })
+        setPaymentStatus(`Switched to ${selectedOption.chain} — click Pay again`)
+        return
+      }
+      setPaymentStatus('Confirm in wallet...')
+      try {
+        await sendTransactionAsync({
+          to: tx.to as `0x${string}`,
+          value: BigInt(tx.value),
+          data: (tx.data as `0x${string}`) || '0x',
+        })
+      } catch (e) {
+        setPurchaseError((e as Error).message || 'Failed to send transaction')
+        setPaymentStatus(null)
+      }
+    }
   }
 
   async function executeDirectPayment() {
@@ -637,6 +1054,9 @@ function CheckoutContent() {
           txHash: hash,
           paymentReference: paymentDetails.paymentReference,
           payer: address,
+          chainId: paymentDetails.chainId,
+          symbol: paymentDetails.tokenSymbol,
+          tokenAddress: paymentDetails.tokenAddress,
         }),
       })
 
@@ -645,7 +1065,13 @@ function CheckoutContent() {
         setPaymentStatus(null)
         localStorage.removeItem('devcon-ticket-cart')
         // Redirect to confirmation page
-        const confirmUrl = `/tickets/store/order/${data.order.code}/${data.order.secret}?tx=${hash}&chainId=${paymentDetails.chainId}`
+        const params = new URLSearchParams({
+          tx: hash,
+          chainId: String(paymentDetails.chainId),
+          symbol: paymentDetails.tokenSymbol,
+          network: paymentDetails.network,
+        })
+        const confirmUrl = `/tickets/store/order/${data.order.code}/${data.order.secret}?${params.toString()}`
         router.push(confirmUrl)
         return
       } else {
@@ -659,7 +1085,15 @@ function CheckoutContent() {
   }
 
   // ── Checkout button state ──
-  const isProcessing = purchaseLoading || isSignPending || isExecutingGasless || isWritePending || isTxLoading || showFiatModal
+  const isProcessing =
+    purchaseLoading ||
+    isSigningDirect ||
+    isExecutingGasless ||
+    isWritePending ||
+    isTxLoading ||
+    isSendTxPending ||
+    isSendTxReceiptLoading ||
+    showFiatModal
   const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
 
   return (
@@ -672,57 +1106,102 @@ function CheckoutContent() {
           </Link>
           <h1 className={css['page-title']}>Checkout</h1>
 
-          {/* Swag & Add-ons */}
-          <div className={css['section-card']}>
-            <button
-              type="button"
-              className={css['section-header']}
-              onClick={() => toggleSection('swag')}
-              aria-expanded={openSection === 'swag'}
-            >
-              <span>Swag & Add-ons</span>
-              {openSection === 'swag' ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </button>
-            {openSection === 'swag' && (
-              <div className={css['section-body']}>
-                <div className={css['swag-grid']}>
-                  <div className={css['swag-card']}>
-                    <div className={css['swag-image']} />
-                    <div className={css['swag-info']}>
-                      <h4>Swag item 1</h4>
-                      <p>Lorem ipsum dolor sit amet consectetur. Luctus quis augue sed adipiscing sapien aliquam.</p>
+          {/* Add-ons (dynamic from Pretix) */}
+          {availableAddons.length > 0 && (
+            <div className={css['section-card']}>
+              <button
+                type="button"
+                className={css['section-header']}
+                onClick={() => toggleSection('swag')}
+                aria-expanded={openSection === 'swag'}
+              >
+                <span>Add-ons</span>
+                {openSection === 'swag' ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </button>
+              {openSection === 'swag' && (
+                <div className={css['section-body']}>
+                  {availableAddons.map(category => (
+                    <div key={category.categoryId} className={css['swag-grid']}>
+                      {category.categoryName && (
+                        <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
+                      )}
+                      {category.items.filter(i => i.available).map(item => {
+                        const sel = selectedAddons.get(item.id)
+                        const qty = sel?.quantity || 0
+                        const isFree = parseFloat(item.price) === 0
+                        const hasVariations = item.variations.length > 0
+                        return (
+                          <div key={item.id} className={css['swag-card']}>
+                            <div className={css['swag-info']}>
+                              <h4>{item.name}</h4>
+                              {item.description && (
+                                <p className={css['addon-description']}>{item.description}</p>
+                              )}
+                            </div>
+                            <div className={css['swag-right']}>
+                              {hasVariations ? (
+                                /* Items with variations: size dropdown */
+                                <select
+                                  className={css['addon-size-select']}
+                                  value={sel?.variationId || ''}
+                                  onChange={e => {
+                                    const val = e.target.value
+                                    setAddonVariation(item.id, val ? Number(val) : undefined)
+                                  }}
+                                >
+                                  <option value="">Select size</option>
+                                  {item.variations.map(v => (
+                                    <option key={v.id} value={v.id}>{v.name}</option>
+                                  ))}
+                                </select>
+                              ) : category.maxCount > 1 ? (
+                                /* Paid items without variations: quantity +/- */
+                                <div className={css['addon-qty']}>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty - 1)}
+                                    disabled={qty <= 0}
+                                  >
+                                    &minus;
+                                  </button>
+                                  <span className={css['addon-qty-value']}>{qty}</span>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty + 1)}
+                                    disabled={qty >= category.maxCount}
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              ) : (
+                                /* Simple toggle */
+                                <label className={css['addon-toggle']}>
+                                  <input
+                                    type="checkbox"
+                                    checked={qty > 0}
+                                    onChange={() => toggleAddon(item.id)}
+                                  />
+                                  <span>{qty > 0 ? 'Added' : 'Add'}</span>
+                                </label>
+                              )}
+                              <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
+                                {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
+                              </span>
+                            </div>
+                          </div>
+                        )
+                      })}
                     </div>
-                    <div className={css['swag-right']}>
-                      <select
-                        className={css['select-input']}
-                        value={swag1Size}
-                        onChange={e => setSwag1Size(e.target.value)}
-                      >
-                        <option>Size: Male M</option>
-                        <option>Size: Male S</option>
-                        <option>Size: Male L</option>
-                        <option>Size: Female M</option>
-                      </select>
-                      <span className={css['swag-price-free']}>FREE</span>
-                    </div>
-                  </div>
-                  <div className={css['swag-card']}>
-                    <div className={css['swag-image']} />
-                    <div className={css['swag-info']}>
-                      <h4>Swag item 2</h4>
-                      <p>Lorem ipsum dolor sit amet consectetur. Luctus quis augue sed adipiscing sapien aliquam.</p>
-                    </div>
-                    <div className={css['swag-right']}>
-                      <span className={css['swag-price-free']}>FREE</span>
-                    </div>
-                  </div>
+                  ))}
+                  <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
+                    Continue
+                  </button>
                 </div>
-                <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
-                  Continue
-                </button>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {/* Contact details */}
           <div className={css['section-card']}>
@@ -986,7 +1465,7 @@ function CheckoutContent() {
                           <span className={css['payment-icon-more']}>+20</span>
                         </div>
                       </div>
-                      <p className={css['payment-option-desc']}>USDC on Base (gasless)</p>
+                      <p className={css['payment-option-desc']}>USDC (gasless) &amp; ETH</p>
                     </div>
                   </label>
                   <label
@@ -1052,10 +1531,164 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {purchaseError && <div className={css['error-box']}>{purchaseError}</div>}
+                {paymentMethod === 'crypto' && paymentDetails && address && (
+                  <div className={css['payment-options-block']}>
+                    <div className={css['payment-options-header']}>
+                      <span className={css['payment-options-title']}>
+                        {paymentOptionsLoading ? 'Loading payment options...' : 'Pay with'}
+                      </span>
+                      {paymentDetails?.paymentReference && (
+                        <button
+                          type="button"
+                          className={css['payment-options-reload']}
+                          onClick={() => fetchPaymentOptions()}
+                          disabled={paymentOptionsLoading}
+                          title="Refresh balances"
+                        >
+                          Refresh balances
+                        </button>
+                      )}
+                    </div>
+                    {paymentOptionsLoading ? null : (
+                      <>
+                        {paymentOptions.length > 0 && (() => {
+                          const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
+                          const insufficient = paymentOptions.filter(o => !(Boolean(o.signingRequest) && o.sufficient))
+                          const base = sufficient.length === 0 || showInsufficient ? paymentOptions : sufficient
+                          const visible = tokenFilter ? base.filter(o => o.symbol === tokenFilter) : base
 
-                {(writeError || signError) && (
-                  <div className={css['error-box']}>{(writeError || signError)?.message}</div>
+                          // Token tabs: show when >4 options in base list
+                          const uniqueSymbols = [...new Set(base.map(o => o.symbol))]
+                          const showTabs = base.length > 4 && uniqueSymbols.length > 1
+
+                          return (
+                            <>
+                              {showTabs && (
+                                <div className={css['token-tabs']}>
+                                  <button
+                                    type="button"
+                                    className={`${css['token-tab']} ${tokenFilter === null ? css['token-tab--active'] : ''}`}
+                                    onClick={() => setTokenFilter(null)}
+                                  >
+                                    All
+                                  </button>
+                                  {uniqueSymbols.map(sym => (
+                                    <button
+                                      key={sym}
+                                      type="button"
+                                      className={`${css['token-tab']} ${tokenFilter === sym ? css['token-tab--active'] : ''}`}
+                                      onClick={() => setTokenFilter(tokenFilter === sym ? null : sym)}
+                                    >
+                                      {TOKEN_ICONS[sym] && (
+                                        /* eslint-disable-next-line @next/next/no-img-element */
+                                        <img src={TOKEN_ICONS[sym]} alt={sym} className={css['token-tab-icon']} />
+                                      )}
+                                      {displaySymbol(sym)}
+                                    </button>
+                                  ))}
+                                </div>
+                              )}
+                              <div className={css['payment-options-list']}>
+                                {visible.map(opt => {
+                                  const canPay = Boolean(opt.signingRequest) && opt.sufficient
+                                  const isSelected = selectedOption?.asset === opt.asset
+                                  const isGasless = opt.signingRequest?.method === 'eth_signTypedData_v4' || ['USDC', 'USDT0'].includes(opt.symbol)
+                                  const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
+                                  const balanceFormatted =
+                                    opt.decimals >= 18
+                                      ? (Number(opt.balance) / 1e18).toFixed(4)
+                                      : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
+                                  return (
+                                    <button
+                                      key={opt.asset}
+                                      type="button"
+                                      className={[
+                                        css['payment-option-btn'],
+                                        canPay ? css['payment-option-btn--sufficient'] : css['payment-option-btn--insufficient'],
+                                        isSelected ? css['payment-option-btn--selected'] : '',
+                                      ]
+                                        .filter(Boolean)
+                                        .join(' ')}
+                                      disabled={!canPay}
+                                      onClick={() => canPay && selectPaymentOption(opt)}
+                                    >
+                                      <span className={css['payment-option-icon']}>
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={TOKEN_ICONS[opt.symbol]} alt={opt.symbol} className={css['token-icon']} />
+                                        {NETWORK_LOGOS[chainIdNum] && (
+                                          /* eslint-disable-next-line @next/next/no-img-element */
+                                          <img src={NETWORK_LOGOS[chainIdNum]} alt={opt.chain} className={css['network-badge']} />
+                                        )}
+                                      </span>
+                                      <span className={css['payment-option-info']}>
+                                        <span className={css['payment-option-symbol']}>
+                                          {displaySymbol(opt.symbol)}
+                                          {isGasless && <span className={css['gasless-badge']}>Gasless</span>}
+                                        </span>
+                                        <span className={css['payment-option-chain']}>on {opt.chain}</span>
+                                      </span>
+                                      <span className={css['payment-option-balance']}>
+                                        {balanceFormatted} {displaySymbol(opt.symbol)}
+                                      </span>
+                                      {isSelected && <span className={css['payment-option-check']}>✓</span>}
+                                    </button>
+                                  )
+                                })}
+                              </div>
+                              {insufficient.length > 0 && (
+                                <button
+                                  type="button"
+                                  className={css['toggle-insufficient']}
+                                  onClick={() => setShowInsufficient(v => !v)}
+                                >
+                                  {showInsufficient
+                                    ? 'Hide insufficient balances'
+                                    : `Show ${insufficient.length} more with insufficient balance`}
+                                </button>
+                              )}
+                            </>
+                          )
+                        })()}
+                        {selectedOption && (
+                          <button
+                            type="button"
+                            className={css['btn-pay-now']}
+                            disabled={isProcessing}
+                            onClick={payWithSelectedOption}
+                          >
+                            {isProcessing
+                              ? paymentStatus || 'Processing...'
+                              : selectedOption.signingRequest?.method === 'eth_signTypedData_v4'
+                                ? `Sign to pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`
+                                : `Pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
+                          </button>
+                        )}
+                        {!paymentOptionsLoading && paymentOptions.length > 0 && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (
+                          <p className={css['status-text']}>No option with sufficient balance. Connect a wallet with more USDC or ETH on supported chains.</p>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {purchaseError && (
+                  <div className={css['error-box']}>
+                    <div>{purchaseError}</div>
+                    {txHash && paymentDetails && (
+                      <button
+                        type="button"
+                        className={css['retry-verify-btn']}
+                        onClick={() => verifyPayment(txHash)}
+                        disabled={isProcessing}
+                      >
+                        Retry verification
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {(writeError || directSignError) && (
+                  <div className={css['error-box']}>{writeError?.message || directSignError}</div>
                 )}
 
                 {paymentStatus && <p className={css['status-text']}>{paymentStatus}</p>}
@@ -1064,19 +1697,21 @@ function CheckoutContent() {
                   <div className={css['tx-status']}>Transaction: {txHash.slice(0, 16)}...</div>
                 )}
 
-                <button
-                  type="button"
-                  className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
-                  disabled={!checkoutEnabled}
-                  onClick={handleCheckout}
-                >
-                  <span className={css['btn-checkout-left']}>
-                    <LockIcon />
-                    {isProcessing ? paymentStatus || 'Processing...' : 'Checkout'}
-                  </span>
-                  <span className={css['btn-checkout-divider']} />
-                  <span>${totalUsd} USD</span>
-                </button>
+                {!(paymentDetails && paymentMethod === 'crypto') && (
+                  <button
+                    type="button"
+                    className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
+                    disabled={!checkoutEnabled}
+                    onClick={handleCheckout}
+                  >
+                    <span className={css['btn-checkout-left']}>
+                      <LockIcon />
+                      {isProcessing ? paymentStatus || 'Processing...' : 'Checkout'}
+                    </span>
+                    <span className={css['btn-checkout-divider']} />
+                    <span>${totalUsd} USD</span>
+                  </button>
+                )}
 
                 {paymentMethod !== 'crypto' && (
                   <div className={css['stripe-note']}>
@@ -1145,26 +1780,30 @@ function CheckoutContent() {
                     </div>
                   </div>
                 )}
-                <div className={css['panel-item']}>
-                  <div>
-                    <span className={css['panel-item-name']}>Swag item one</span>
-                    <div className={css['panel-item-meta']}>Size: Male M</div>
-                  </div>
-                  <div className={css['panel-item-right']}>
-                    <span>x1</span>
-                    <span className={css['panel-item-price']}>FREE</span>
-                  </div>
-                </div>
-                <div className={css['panel-item']}>
-                  <div>
-                    <span className={css['panel-item-name']}>Swag item two</span>
-                    <div className={css['panel-item-meta']}>Size: Male M</div>
-                  </div>
-                  <div className={css['panel-item-right']}>
-                    <span>x1</span>
-                    <span className={css['panel-item-price']}>FREE</span>
-                  </div>
-                </div>
+                {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
+                  const item = allAddonItems.find(i => i.id === itemId)
+                  if (!item || data.quantity <= 0) return null
+                  let price = parseFloat(item.price)
+                  let varLabel = ''
+                  if (data.variationId) {
+                    const variation = item.variations.find(v => v.id === data.variationId)
+                    if (variation) {
+                      price = parseFloat(variation.price)
+                      varLabel = ` (${variation.name})`
+                    }
+                  }
+                  const isFree = price === 0
+                  const lineTotal = price * data.quantity
+                  return (
+                    <div key={itemId} className={css['panel-item']}>
+                      <span className={css['panel-item-name']}>{item.name}{varLabel}</span>
+                      <div className={css['panel-item-right']}>
+                        <span>x{data.quantity}</span>
+                        <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
               <div className={css['discount-row']}>
                 <input type="text" className={css['discount-input']} placeholder="Discount or Voucher Code" />

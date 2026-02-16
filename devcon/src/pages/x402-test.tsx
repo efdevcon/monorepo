@@ -227,6 +227,10 @@ function X402TestContent() {
       setError('Please fill in all required fields')
       return
     }
+    if (!isConnected || !address) {
+      setError('Please connect your wallet first (required for intended payer)')
+      return
+    }
 
     setLoading(true)
     setError(null)
@@ -237,6 +241,7 @@ function X402TestContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
+          intendedPayer: address,
           tickets: [{ itemId: selectedTicket.id, quantity }],
           answers: Object.entries(answers).map(([qId, answer]) => ({
             questionId: parseInt(qId),
@@ -341,7 +346,7 @@ function X402TestContent() {
           verifyingContract: domain.verifyingContract as `0x${string}`,
         },
         types,
-        primaryType: 'TransferWithAuthorization',
+        primaryType: 'ReceiveWithAuthorization',
         message: {
           from: message.from as `0x${string}`,
           to: message.to as `0x${string}`,

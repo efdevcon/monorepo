@@ -54,6 +54,10 @@ export default function OrderConfirmationPage() {
   // Extra context from query params (set by checkout redirect)
   const txHash = (router.query.tx as string) || null
   const chainId = router.query.chainId ? parseInt(router.query.chainId as string) : null
+  const paymentSymbolRaw = (router.query.symbol as string) || 'USDC'
+  const SYMBOL_DISPLAY: Record<string, string> = { USDT0: 'USD₮0' }
+  const paymentSymbol = SYMBOL_DISPLAY[paymentSymbolRaw] ?? paymentSymbolRaw
+  const paymentNetwork = (router.query.network as string) || null
 
   useEffect(() => {
     if (!code || !secret) return
@@ -107,7 +111,18 @@ export default function OrderConfirmationPage() {
 
   const isPaid = order.status === 'p'
   const isCrypto = !!txHash
-  const explorerBase = chainId === 8453 ? 'https://basescan.org' : 'https://sepolia.basescan.org'
+
+  const BLOCK_EXPLORERS: Record<number, string> = {
+    1: 'https://etherscan.io',
+    10: 'https://optimistic.etherscan.io',
+    42161: 'https://arbiscan.io',
+    8453: 'https://basescan.org',
+    84532: 'https://sepolia.basescan.org',
+  }
+  const explorerBase = (chainId != null && BLOCK_EXPLORERS[chainId]) ? BLOCK_EXPLORERS[chainId] : 'https://etherscan.io'
+  const paymentLabel = isCrypto
+    ? (paymentNetwork ? `Crypto (${paymentSymbol} on ${paymentNetwork})` : `Crypto (${paymentSymbol})`)
+    : 'Card (Stripe)'
 
   // Group positions by item name for display
   const ticketGroups = new Map<string, { name: string; price: string; quantity: number }>()
@@ -180,7 +195,7 @@ export default function OrderConfirmationPage() {
               </div>
               <div className={css['detail-row']}>
                 <span className={css['detail-label']}>Payment</span>
-                <span className={css['detail-value']}>{isCrypto ? 'Crypto (USDC)' : 'Card (Stripe)'}</span>
+                <span className={css['detail-value']}>{paymentLabel}</span>
               </div>
               {txHash && (
                 <div className={css['detail-row']}>

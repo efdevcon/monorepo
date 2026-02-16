@@ -23,7 +23,9 @@
     "pretix:test-quotas": "ts-node src/scripts/pretix/test-quotas.ts",
     "pretix:test-categories": "ts-node src/scripts/pretix/test-categories.ts",
     "pretix:test-all": "ts-node src/scripts/pretix/test-all.ts",
-    "x402:test-flow": "ts-node src/scripts/pretix/test-x402-flow.ts"
+    "x402:test-flow": "ts-node src/scripts/pretix/test-x402-flow.ts",
+    "x402:test-v2-agent": "ts-node src/scripts/pretix/test-x402-v2-agent.ts",
+    "x402:simulate": "ts-node src/scripts/pretix/simulate-transfers.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
@@ -40,6 +42,8 @@
     "@tanstack/react-query": "^5.49.2",
     "@tippyjs/react": "^4.2.6",
     "@web3modal/wagmi": "^5.0.5",
+    "@x402/core": "^2.3.0",
+    "@x402/evm": "^2.3.0",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",

@@ -11,7 +11,6 @@ import {
   getCompletedOrder,
   getCompletedOrderByPretixCode,
 } from 'services/ticketStore'
-import { isPaymentReferenceValid } from 'services/x402'
 
 // Build ticket URL from env vars
 const PRETIX_BASE_URL = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'

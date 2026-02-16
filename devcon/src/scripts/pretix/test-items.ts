@@ -1,6 +1,6 @@
 /**
  * Test script to fetch Pretix items (products/tickets)
- * Run with: npx ts-node src/scripts/pretix/test-items.ts
+ * Run with: pnpm run pretix:test-items
  */
 import 'dotenv/config'
 

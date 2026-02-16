@@ -2,10 +2,14 @@
  * Ticket Order Store Service
  * Manages pending ticket orders between payment request and verification.
  * Uses Supabase (Postgres) for persistence across serverless invocations.
+ * Schema: run devcon-api src/supabase/migrations/ (e.g. expected_eth_amount_wei_by_chain).
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { PretixOrderCreateRequest } from '../types/pretix'
+
+/** Expected ETH amount in wei per chain ID (server-computed at order creation for secure verification) */
+export type ExpectedEthAmountWeiByChain = Record<string, string>
 
 export interface PendingTicketOrder {
   paymentReference: string
@@ -13,6 +17,12 @@ export interface PendingTicketOrder {
   totalUsd: string
   createdAt: number
   expiresAt: number
+  /** Wallet address that must submit the payment (prevents tx reuse attack) */
+  intendedPayer: string
+  /** Server-computed expected ETH amount in wei per chainId (e.g. { "8453": "..." }) for native ETH verification */
+  expectedEthAmountWeiByChain?: ExpectedEthAmountWeiByChain
+  /** Expected chain ID for payment verification (prevents cross-chain tx reuse) */
+  expectedChainId?: number
   metadata?: {
     ticketIds: number[]
     addonIds?: number[]
@@ -34,6 +44,9 @@ interface PendingRow {
   total_usd: string
   created_at: number
   expires_at: number
+  intended_payer: string | null
+  expected_eth_amount_wei_by_chain: ExpectedEthAmountWeiByChain | null
+  expected_chain_id: number | null
   metadata: Record<string, unknown> | null
 }
 
@@ -61,6 +74,9 @@ function rowToPending(row: PendingRow): PendingTicketOrder {
     totalUsd: row.total_usd,
     createdAt: row.created_at,
     expiresAt: row.expires_at,
+    intendedPayer: row.intended_payer ?? '',
+    expectedEthAmountWeiByChain: row.expected_eth_amount_wei_by_chain ?? undefined,
+    expectedChainId: row.expected_chain_id ?? undefined,
     metadata: row.metadata as PendingTicketOrder['metadata'] ?? undefined,
   }
 }
@@ -86,6 +102,9 @@ export async function storePendingOrder(order: PendingTicketOrder): Promise<void
     total_usd: order.totalUsd,
     created_at: Math.floor(Number(order.createdAt)),
     expires_at: Math.floor(Number(order.expiresAt)),
+    intended_payer: order.intendedPayer,
+    expected_eth_amount_wei_by_chain: order.expectedEthAmountWeiByChain ?? null,
+    expected_chain_id: order.expectedChainId ?? null,
     metadata: order.metadata ?? null,
   }, { onConflict: 'payment_reference' })
   if (error) throw new Error(`ticketStore storePendingOrder: ${error.message}`)
@@ -112,6 +131,25 @@ export async function getPendingOrder(paymentReference: string): Promise<Pending
 }
 
 /**
+ * Atomically claim a pending order (delete and return it). Only one caller can succeed.
+ * Use before createOrder to prevent double Pretix order creation under concurrent verify.
+ * Returns the order if claimed, undefined if already claimed/expired/not found.
+ */
+export async function claimPendingOrder(paymentReference: string): Promise<PendingTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_pending_orders')
+    .delete()
+    .eq('payment_reference', paymentReference)
+    .select()
+  if (error) throw new Error(`ticketStore claimPendingOrder: ${error.message}`)
+  if (!data || data.length === 0) return undefined
+  const row = data[0] as PendingRow
+  if (Date.now() / 1000 > row.expires_at) return undefined
+  return rowToPending(row)
+}
+
+/**
  * Remove a pending order (after completion or cancellation)
  */
 export async function removePendingOrder(paymentReference: string): Promise<boolean> {
@@ -126,8 +164,17 @@ export async function removePendingOrder(paymentReference: string): Promise<bool
 }
 
 /**
- * Store a completed order and remove from pending
+ * Store a completed order and remove from pending.
+ * Throws TxHashAlreadyUsedError if the tx_hash unique constraint is violated
+ * (another order already used this transaction — prevents double-spend).
  */
+export class TxHashAlreadyUsedError extends Error {
+  constructor(txHash: string) {
+    super(`Transaction ${txHash} has already been used to complete an order`)
+    this.name = 'TxHashAlreadyUsedError'
+  }
+}
+
 export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<void> {
   const supabase = getSupabase()
   const { error: errCompleted } = await supabase.from('x402_completed_orders').insert({
@@ -137,8 +184,76 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
     payer: order.payer,
     completed_at: Math.floor(Number(order.completedAt)),
   })
-  if (errCompleted) throw new Error(`ticketStore storeCompletedOrder: ${errCompleted.message}`)
+  if (errCompleted) {
+    // Unique constraint on tx_hash — another request already completed with this tx
+    if (errCompleted.code === '23505' && errCompleted.message?.includes('tx_hash')) {
+      throw new TxHashAlreadyUsedError(order.txHash)
+    }
+    throw new Error(`ticketStore storeCompletedOrder: ${errCompleted.message}`)
+  }
   await supabase.from('x402_pending_orders').delete().eq('payment_reference', order.paymentReference)
+}
+
+const RESERVED_PRETIX_CODE = '__RESERVED__'
+
+/**
+ * Reserve a tx_hash atomically BEFORE creating a Pretix order.
+ * Inserts a row with a placeholder pretix_order_code. The unique constraint
+ * on tx_hash ensures only one request can reserve a given transaction.
+ * Throws TxHashAlreadyUsedError if the tx_hash is already taken.
+ */
+export async function reserveCompletedOrder(
+  txHash: string,
+  paymentReference: string,
+  payer: string,
+  completedAt: number
+): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase.from('x402_completed_orders').insert({
+    payment_reference: paymentReference,
+    pretix_order_code: RESERVED_PRETIX_CODE,
+    tx_hash: txHash,
+    payer,
+    completed_at: Math.floor(Number(completedAt)),
+  })
+  if (error) {
+    if (error.code === '23505' && error.message?.includes('tx_hash')) {
+      throw new TxHashAlreadyUsedError(txHash)
+    }
+    throw new Error(`ticketStore reserveCompletedOrder: ${error.message}`)
+  }
+}
+
+/**
+ * Finalize a reserved completed order with the real Pretix order code.
+ * Also deletes the pending order row.
+ */
+export async function finalizeCompletedOrder(
+  paymentReference: string,
+  pretixOrderCode: string
+): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase
+    .from('x402_completed_orders')
+    .update({ pretix_order_code: pretixOrderCode })
+    .eq('payment_reference', paymentReference)
+    .eq('pretix_order_code', RESERVED_PRETIX_CODE)
+  if (error) {
+    throw new Error(`ticketStore finalizeCompletedOrder: ${error.message}`)
+  }
+  await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference)
+}
+
+/**
+ * Remove a reservation (e.g. if Pretix order creation fails, allow retry).
+ */
+export async function removeCompletedOrderReservation(paymentReference: string): Promise<void> {
+  const supabase = getSupabase()
+  await supabase
+    .from('x402_completed_orders')
+    .delete()
+    .eq('payment_reference', paymentReference)
+    .eq('pretix_order_code', RESERVED_PRETIX_CODE)
 }
 
 /**
@@ -167,6 +282,81 @@ export async function getCompletedOrderByPretixCode(pretixOrderCode: string): Pr
     .maybeSingle()
   if (error) throw new Error(`ticketStore getCompletedOrderByPretixCode: ${error.message}`)
   return data ? rowToCompleted(data as CompletedRow) : undefined
+}
+
+/**
+ * Get completed order by txHash (for one-time-use check)
+ */
+export async function getCompletedOrderByTxHash(txHash: string): Promise<CompletedTicketOrder | undefined> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_completed_orders')
+    .select('*')
+    .eq('tx_hash', txHash)
+    .maybeSingle()
+  if (error) throw new Error(`ticketStore getCompletedOrderByTxHash: ${error.message}`)
+  return data ? rowToCompleted(data as CompletedRow) : undefined
+}
+
+const RATE_LIMIT_REF_WINDOW_HOURS = 1
+const RATE_LIMIT_REF_MAX = 10
+const RATE_LIMIT_REF_COOLDOWN_SECONDS = 10
+const RATE_LIMIT_IP_WINDOW_MINUTES = 1
+const RATE_LIMIT_IP_MAX = 30
+
+/**
+ * Check verify rate limits and record this attempt. Returns true if allowed.
+ * - Per payment reference: max 10 attempts per hour; no two attempts within 10 seconds.
+ * - Per IP: max 30 attempts per minute.
+ */
+export async function checkAndRecordVerifyAttempt(paymentReference: string, clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const refSince = new Date(now.getTime() - RATE_LIMIT_REF_WINDOW_HOURS * 60 * 60 * 1000).toISOString()
+  const refCooldownSince = new Date(now.getTime() - RATE_LIMIT_REF_COOLDOWN_SECONDS * 1000).toISOString()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_IP_WINDOW_MINUTES * 60 * 1000).toISOString()
+
+  const refKey = `verify_ref:${paymentReference}`
+  const ipKey = `verify_ip:${clientIp}`
+
+  const [refCount, refRecentCount, ipCount] = await Promise.all([
+    supabase.from('x402_verify_attempts').select('id', { count: 'exact', head: true }).eq('key', refKey).gte('created_at', refSince),
+    supabase.from('x402_verify_attempts').select('id', { count: 'exact', head: true }).eq('key', refKey).gte('created_at', refCooldownSince),
+    supabase.from('x402_verify_attempts').select('id', { count: 'exact', head: true }).eq('key', ipKey).gte('created_at', ipSince),
+  ])
+
+  if ((refCount.count ?? 0) >= RATE_LIMIT_REF_MAX) return { allowed: false }
+  if ((refRecentCount.count ?? 0) >= 1) return { allowed: false }
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: refKey }, { key: ipKey }])
+  await supabase.from('x402_verify_attempts').delete().lt('created_at', new Date(now.getTime() - 2 * 60 * 60 * 1000).toISOString())
+  return { allowed: true }
+}
+
+const RATE_LIMIT_PURCHASE_IP_WINDOW_MINUTES = 1
+const RATE_LIMIT_PURCHASE_IP_MAX = 5
+
+/**
+ * Check purchase rate limits. Returns true if allowed.
+ * Per IP: max 5 purchase requests per minute.
+ */
+export async function checkPurchaseRateLimit(clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_PURCHASE_IP_WINDOW_MINUTES * 60 * 1000).toISOString()
+  const ipKey = `purchase_ip:${clientIp}`
+
+  const ipCount = await supabase
+    .from('x402_verify_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('key', ipKey)
+    .gte('created_at', ipSince)
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_PURCHASE_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
+  return { allowed: true }
 }
 
 /**

@@ -205,8 +205,16 @@ export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurcha
           items: addonItems.map((ai) => ({
             id: ai.id,
             name: getLocalizedString(ai.name, locale),
+            description: getLocalizedString(ai.description, locale) || null,
             price: ai.default_price,
             available: itemAvailability.get(ai.id)?.available ?? true,
+            variations: ai.variations
+              .filter((v) => v.active)
+              .map((v) => ({
+                id: v.id,
+                name: getLocalizedString(v.value, locale),
+                price: v.default_price || ai.default_price,
+              })),
           })),
         }
       })

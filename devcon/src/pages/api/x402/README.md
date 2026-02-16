@@ -1,10 +1,14 @@
 # x402 Ticket Purchase API
 
-This API implements the x402 payment protocol for purchasing Devcon tickets with USDC on Base network.
+This API implements the x402 payment protocol for purchasing Devcon tickets with crypto. It is aligned with **x402 v2**: multi-chain, CAIP-style asset IDs, and a v2-style payment block when the user reaches the crypto payment step.
 
 ## Last change recap
 
 **Commit:** dynamic checkout with x402 crypto payment + gas sponsoring — USDC on Base (3% discount), Pretix integration, gasless EIP-3009 relayer.
+
+## Database (Supabase)
+
+Run migrations in **devcon-api** at `src/supabase/migrations/`
 
 ## File reference
 
@@ -12,6 +16,7 @@ This API implements the x402 payment protocol for purchasing Devcon tickets with
 |------|------|
 | **API – tickets** | `src/pages/api/x402/tickets/index.ts`, `purchase.ts`, `fiat-purchase.ts`, `verify.ts`, `status.ts`, `order-status.ts`, `order/[code].ts` |
 | **API – relayer** | `src/pages/api/x402/tickets/relayer/prepare-authorization.ts`, `execute-transfer.ts` |
+| **API – facilitator** | `src/pages/api/x402/tickets/facilitator/supported.ts`, `verify.ts`, `settle.ts` |
 | **Pages – store** | `src/pages/tickets/index.tsx`, `store/index.tsx`, `store/checkout.tsx`, `store/checkout.module.scss`, `store/order/[code]/[secret].tsx`, `store/order/[code]/confirmation.module.scss`, `tickets-landing.module.scss` |
 | **Pages – test** | `src/pages/x402-test.tsx` |
 | **Services** | `src/services/pretix.ts`, `src/services/relayer.ts`, `src/services/ticketStore.ts`, `src/services/x402.ts` |
@@ -22,9 +27,68 @@ This API implements the x402 payment protocol for purchasing Devcon tickets with
 
 The x402 protocol uses HTTP 402 (Payment Required) responses to facilitate cryptocurrency payments. This implementation:
 
-- Accepts USDC payments on **Base mainnet** (production) or **Base Sepolia** (development)
+- Supports **USDC and ETH** on **Ethereum, Optimism, Arbitrum, Base** (mainnet) or **Base Sepolia** (testnet)
+- Returns a **v2-style payment block** with `paymentId`, `supportedAssets` (CAIP-19 style), and `Payment-Required` header
 - Provides a **3% discount** for crypto payments
 - Integrates with **Pretix** for ticket management
+- Verification and relayer currently use the configured default chain (Base / Base Sepolia); multi-chain verify can be added later
+
+## x402 libraries
+
+This implementation uses the official [x402](https://github.com/coinbase/x402) SDK types and is compatible with the ecosystem:
+
+- **@x402/core** – We use and re-export protocol types: `PaymentRequired`, `PaymentRequirements`, `ResourceInfo`, `PaymentPayload`, `VerifyResponse`, `SettleResponse`, `SupportedResponse`, etc. (from `@x402/core/types`). The 402 response includes an `x402` field that is a `PaymentRequired` so spec-compliant and SDK-based clients can consume it.
+- **@x402/evm** – Available for future use (e.g. ExactEvmScheme, client helpers).
+- **Facilitator URL for buyers** – Our API acts as its own facilitator. Buyers or SDKs (e.g. `HTTPFacilitatorClient`, `@x402/fetch`) can point to this app’s facilitator base URL so that **verify**, **settle**, and **supported** are called on our server:
+  - Base URL: `https://<your-app-origin>/api/x402/tickets/facilitator`
+  - Endpoints: `POST .../verify`, `POST .../settle`, `GET .../supported`
+  - Request/response shapes match the [x402 facilitator interface](https://docs.cdp.coinbase.com/x402/welcome) (e.g. verify/settle request body: `paymentPayload`, `paymentRequirements`).
+
+## x402 v2 compliance
+
+This API is **dual-mode**: fully x402 v2 compliant for SDK/agent consumers while also providing a richer multi-step checkout flow for the frontend.
+
+### Spec-compliant features
+
+| Spec area | Implementation |
+|-----------|----------------|
+| **PAYMENT-REQUIRED header (§5.1)** | 402 responses set `PAYMENT-REQUIRED` header with base64-encoded `PaymentRequired` JSON (`x402Version: 2`, `resource`, `accepts[]`, `extensions`). Legacy `Payment-Required: true` and `X-Payment-*` headers are also set for backward compatibility. |
+| **PaymentRequired body (§5.1)** | The 402 response body includes an `x402` field containing a spec-compliant `PaymentRequired` object with `accepts[]` array. Each entry has `scheme: "exact"`, `network` (CAIP-2, e.g. `eip155:8453`), `amount` (atomic string), `asset` (token address), `payTo`, `maxTimeoutSeconds`, and `extra` (includes `paymentReference`). |
+| **PAYMENT-SIGNATURE retry flow (§5.2)** | SDK clients can retry the same `POST /purchase` with a `PAYMENT-SIGNATURE` header containing a base64-encoded `PaymentPayload`. The server verifies the EIP-712 signature, settles on-chain via the relayer, creates the Pretix order, and returns the resource with a `PAYMENT-RESPONSE` header. |
+| **PAYMENT-RESPONSE header (§5.3)** | Success responses from verify, execute-transfer, and the PAYMENT-SIGNATURE flow include a `PAYMENT-RESPONSE` header with base64-encoded `SettlementResponse` (`success`, `transaction`, `network`, `payer`). |
+| **Exact scheme (EIP-3009)** | Uses EIP-3009 `transferWithAuthorization` for gasless USDC; authorization shape matches spec (from, to, value, validAfter, validBefore, nonce). |
+| **EIP-712 signature verification** | Relayer and facilitator verify EIP-712 typed data signatures before execution. |
+| **Replay protection** | Per-auth nonce, time bounds (`validAfter`/`validBefore`), and blockchain-level nonce enforcement. |
+| **CAIP-style identifiers** | `network` uses CAIP-2 (`eip155:8453`), `supportedAssets` use CAIP-19 (`eip155:8453/erc20:0x...`). |
+| **Facilitator API (§7)** | Full facilitator at `/api/x402/tickets/facilitator/`: `POST /verify` (accepts `{ paymentPayload, paymentRequirements }`, returns `VerifyResponse` with spec error codes), `POST /settle` (same request, executes via relayer, returns `SettleResponse`), `GET /supported` (returns `kinds`, `extensions`, `signers`). |
+| **Error codes (§9)** | Facilitator endpoints return spec error codes: `insufficient_funds`, `invalid_exact_evm_payload_signature`, `invalid_network`, etc. |
+
+### Dual-mode design
+
+The API serves two audiences:
+
+1. **SDK/agent clients** (`@x402/fetch`, `HTTPFacilitatorClient`) — Use the standard x402 v2 flow:
+   - `POST /purchase` → 402 + `PAYMENT-REQUIRED` header
+   - Client signs → retries same POST + `PAYMENT-SIGNATURE` header
+   - Server settles → 200 + `PAYMENT-RESPONSE` header + order resource
+
+2. **Frontend checkout** — Uses the richer multi-step flow for better UX:
+   - `POST /purchase` → 402 + payment details, order summary, supported assets
+   - `POST /payment-options` → balances across chains
+   - `POST /relayer/prepare-authorization` → EIP-712 typed data
+   - Client signs → `POST /relayer/execute-transfer` → txHash
+   - `POST /verify` → Pretix order created
+
+Both flows produce the same result (a paid Pretix order) and share the same payment infrastructure.
+
+### What is not implemented
+
+| Spec area | Status |
+|-----------|--------|
+| **Discovery (§8)** | Not implemented (`GET /discovery/resources`, Bazaar). Optional in the spec. |
+| **Multi-chain settlement** | The `accepts[]` array offers USDC on the configured chain (Base or Base Sepolia). The relayer only operates on one chain. Multi-chain settlement is a future enhancement; the frontend supports multi-chain via the custom payment-options flow. |
+| **Permit2 scheme** | Not implemented. Only EIP-3009 exact scheme is supported. |
+| **sign-in-with-x extension** | Not implemented. |
 
 ## Environment Variables
 
@@ -110,7 +174,11 @@ Returns complete ticket information including:
       "chainId": 8453,
       "tokenSymbol": "USDC",
       "tokenAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
-      "discountForCrypto": "3%"
+      "discountForCrypto": "3%",
+      "supportedAssets": [
+        { "asset": "eip155:1/erc20:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "symbol": "USDC", "name": "USD Coin", "chain": "Ethereum", "chainId": "eip155:1", "decimals": 6 },
+        { "asset": "eip155:1/erc20:0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", "symbol": "ETH", "name": "Ether", "chain": "Ethereum", "chainId": "eip155:1", "decimals": 18 }
+      ]
     }
   }
 }
@@ -128,6 +196,7 @@ Creates a pending order and returns payment requirements.
 ```json
 {
   "email": "attendee@example.com",
+  "intendedPayer": "0x...",
   "tickets": [
     { "itemId": 1, "variationId": null, "quantity": 1 }
   ],
@@ -150,11 +219,28 @@ Creates a pending order and returns payment requirements.
 }
 ```
 
+`intendedPayer` (required) is the wallet address that will pay (must use EIP-55 mixed-case checksum); only this address can verify the payment (prevents tx reuse attack).
+
 **Response (HTTP 402):**
 ```json
 {
   "success": true,
   "paymentRequired": true,
+  "payment": {
+    "paymentId": "x402_abc123...",
+    "amount": 581.03,
+    "currency": "USD",
+    "referenceId": "x402_abc123...",
+    "status": "pending",
+    "createdAt": 1770834183,
+    "supportedAssets": [
+      { "asset": "eip155:1/erc20:0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "symbol": "USDC", "name": "USD Coin", "chain": "Ethereum", "chainId": "eip155:1", "decimals": 6 },
+      { "asset": "eip155:1/erc20:0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", "symbol": "ETH", "name": "Ether", "chain": "Ethereum", "chainId": "eip155:1", "decimals": 18 },
+      { "asset": "eip155:10/erc20:0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85", "symbol": "USDC", "name": "USD Coin", "chain": "Optimism", "chainId": "eip155:10", "decimals": 6 },
+      { "asset": "eip155:42161/erc20:0xaf88d065e77c8cC2239327C5EDb3A432268e5831", "symbol": "USDC", "name": "USD Coin", "chain": "Arbitrum", "chainId": "eip155:42161", "decimals": 6 },
+      { "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", "symbol": "USDC", "name": "USD Coin", "chain": "Base", "chainId": "eip155:8453", "decimals": 6 }
+    ]
+  },
   "paymentDetails": {
     "resource": "/api/x402/tickets/purchase",
     "payment": {
@@ -183,6 +269,7 @@ Creates a pending order and returns payment requirements.
 
 **Response Headers:**
 ```
+Payment-Required: true
 X-Payment-Required: true
 X-Payment-Network: base
 X-Payment-Token: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
@@ -207,6 +294,8 @@ Verifies the on-chain payment and creates the Pretix order.
   "payer": "0x..."
 }
 ```
+
+**Validation:** `txHash` must be `0x` + 64 hex characters. `payer` must be a valid Ethereum address with EIP-55 mixed-case checksum (use `getAddress(addr)` from viem before sending).
 
 **Response (Success):**
 ```json
@@ -370,12 +459,13 @@ const API_BASE = 'https://your-api.com';
 const ticketsRes = await fetch(`${API_BASE}/api/x402/tickets`);
 const { data: ticketData } = await ticketsRes.json();
 
-// 2. Create purchase request
+// 2. Create purchase request (intendedPayer = wallet that will pay)
 const purchaseRes = await fetch(`${API_BASE}/api/x402/tickets/purchase`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     email: 'user@example.com',
+    intendedPayer: userAddress, // wallet address that will send USDC
     tickets: [{ itemId: ticketData.tickets[0].id, quantity: 1 }],
     answers: [/* ... */],
     attendee: {

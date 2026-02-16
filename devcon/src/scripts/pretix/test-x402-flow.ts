@@ -1,6 +1,6 @@
 /**
  * Test script to simulate the full x402 ticket purchase flow
- * Run with: npx ts-node src/scripts/pretix/test-x402-flow.ts
+ * Run with: pnpm run x402:test-flow
  *
  * This script simulates:
  * 1. Fetching available tickets and questions
@@ -151,6 +151,7 @@ async function createPurchase(ticketData: any) {
 
   const purchaseRequest = {
     email: 'test@example.com',
+    intendedPayer: process.env.TEST_PAYER_ADDRESS || '0x0000000000000000000000000000000000000001',
     tickets: [{ itemId: ticket.id, quantity: 1 }],
     answers,
     attendee: {

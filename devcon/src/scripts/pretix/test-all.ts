@@ -1,6 +1,6 @@
 /**
  * Comprehensive test script to fetch all relevant Pretix API data
- * Run with: npx ts-node src/scripts/pretix/test-all.ts
+ * Run with: pnpm run pretix:test-all
  */
 import 'dotenv/config'
 
