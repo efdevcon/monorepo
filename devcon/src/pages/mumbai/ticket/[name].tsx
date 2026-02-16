@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const name = context.params.name || 'Anon'
-  const baseUrl = process.env.DEPLOY_PRIME_URL || SITE_URL
+  const baseUrl = 'https://dev--devcon-monorepo.netlify.app'
   const imageUrl = `${baseUrl.replace(/\/$/, '')}/api/mumbai/ticket/${encodeURIComponent(name)}`
 
   return {

@@ -6,7 +6,7 @@ const Ticket = (props: { imageUrl: string }) => {
 }
 
 export async function getStaticProps() {
-  const baseUrl = process.env.DEPLOY_PRIME_URL || SITE_URL
+  const baseUrl = 'https://dev--devcon-monorepo.netlify.app'
   const imageUrl = `${baseUrl.replace(/\/$/, '')}/api/mumbai/ticket/Anon`
 
   return {
