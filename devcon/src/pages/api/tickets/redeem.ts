@@ -29,15 +29,6 @@ type ProofPayload = {
   [key: string]: unknown
 }
 
-function generateFakeVoucherCode(): string {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-  let code = ''
-  for (let i = 0; i < 10; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length))
-  }
-  return code
-}
-
 async function verifyAnonAadhaarProof(proofPayload: ProofPayload): Promise<boolean> {
   const useTestAadhaar = proofPayload.proof.pubkeyHash === testPublicKeyHash
   // verify() from @anon-aadhaar/core validates the ZK proof; pass test flag for test Aadhaar proofs
@@ -96,7 +87,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ error: 'You must be 18 or older to purchase a ticket.' })
   }
 
-  // No database yet: return a fake random voucher code for valid proofs
-  const voucherCode = generateFakeVoucherCode()
+  // Hardcoded Pretix voucher code (will be dynamically assigned in production)
+  const voucherCode = '22QD2ETT2HEGPZZ8'
   return res.status(200).json({ voucherCode })
 }

@@ -94,8 +94,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Generate and store voucher for this user
-    const voucherCode = generateFakeVoucherCode()
+    // Hardcoded Pretix voucher code (will be dynamically assigned in production)
+    const voucherCode = '22QD2ETT2HEGPZZ8'
     voucherStore.set(userId, voucherCode)
 
     // Auto-expire after 30 minutes
