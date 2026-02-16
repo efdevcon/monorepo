@@ -243,7 +243,7 @@ function StoreContent({
               </div>
             </div>
 
-            <section className={css['section']} id="local-launch">
+            {/* <section className={css['section']} id="local-launch">
               <h2 className={css['section-title']}>Local ticket launch</h2>
               <p className={css['section-subtitle']}>Check if you qualify for the Local Early Bird discount</p>
 
@@ -268,7 +268,7 @@ function StoreContent({
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
 
             <section className={css['section']} id="general-admission">
               <h2 className={css['section-title']}>General admission</h2>

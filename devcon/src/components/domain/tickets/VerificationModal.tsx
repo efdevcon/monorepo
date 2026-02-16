@@ -136,9 +136,7 @@ export function VerificationModal({
                 </button>
               </div>
               <a
-                href={`https://tickets.devcon.org/redeem?voucher=${voucher}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/en/tickets/store/redeem?voucher=${voucher}`}
                 className={css['voucher-cta']}
               >
                 Go to Ticket Store

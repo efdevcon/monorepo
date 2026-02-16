@@ -35,6 +35,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   const [copied, setCopied] = useState(false)
   const [selfApp, setSelfApp] = useState<SelfApp | null>(null)
   const [universalLink, setUniversalLink] = useState('')
+  const [pollingForVoucher, setPollingForVoucher] = useState(false)
   const isMobile = useIsMobile()
 
   useEffect(() => {
@@ -153,9 +154,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 </button>
               </div>
               <a
-                href={`https://tickets.devcon.org/redeem?voucher=${voucher}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/en/tickets/store/redeem?voucher=${voucher}`}
                 className={css['voucher-cta']}
               >
                 Go to Ticket Store
@@ -254,9 +253,36 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     pointerEvents: universalLink ? 'auto' : 'none',
                     opacity: universalLink ? 1 : 0.6,
                   }}
+                  onClick={() => {
+                    // Start polling after a short delay to give Self app time to process
+                    setPollingForVoucher(true)
+                    setError(null)
+                    setTimeout(() => {
+                      handleSuccess().finally(() => setPollingForVoucher(false))
+                    }, 3000)
+                  }}
                 >
                   Open Self App
                 </a>
+                {pollingForVoucher && (
+                  <p style={{ textAlign: 'center', margin: '1rem 0 0', fontSize: '0.9rem', color: '#666' }}>
+                    Checking verification status...
+                  </p>
+                )}
+                {!pollingForVoucher && !voucher && (
+                  <button
+                    type="button"
+                    className={css['reset-btn']}
+                    style={{ marginTop: '0.75rem' }}
+                    onClick={() => {
+                      setPollingForVoucher(true)
+                      setError(null)
+                      handleSuccess().finally(() => setPollingForVoucher(false))
+                    }}
+                  >
+                    I&apos;ve verified — check status
+                  </button>
+                )}
               </div>
             ) : (
               <>

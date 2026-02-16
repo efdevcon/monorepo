@@ -14,6 +14,7 @@ interface OrderPosition {
   attendee_name: string | null
   attendee_email: string | null
   secret: string
+  isAddon: boolean
 }
 
 interface OrderData {
@@ -124,18 +125,26 @@ export default function OrderConfirmationPage() {
     ? (paymentNetwork ? `Crypto (${paymentSymbol} on ${paymentNetwork})` : `Crypto (${paymentSymbol})`)
     : 'Card (Stripe)'
 
-  // Group positions by item name for display
-  const ticketGroups = new Map<string, { name: string; price: string; quantity: number }>()
-  for (const pos of order.positions) {
-    const key = `${pos.item}-${pos.variation || ''}`
-    const existing = ticketGroups.get(key)
-    if (existing) {
-      existing.quantity += 1
-    } else {
-      ticketGroups.set(key, { name: pos.itemName, price: pos.price, quantity: 1 })
+  // Separate positions into tickets and add-ons, group by item for display
+  const ticketPositions = order.positions.filter(p => !p.isAddon)
+  const addonPositions = order.positions.filter(p => p.isAddon)
+
+  function groupPositions(positions: OrderPosition[]) {
+    const groups = new Map<string, { name: string; price: string; quantity: number }>()
+    for (const pos of positions) {
+      const key = `${pos.item}-${pos.variation || ''}`
+      const existing = groups.get(key)
+      if (existing) {
+        existing.quantity += 1
+      } else {
+        groups.set(key, { name: pos.itemName, price: pos.price, quantity: 1 })
+      }
     }
+    return Array.from(groups.values())
   }
-  const tickets = Array.from(ticketGroups.values())
+
+  const tickets = groupPositions(ticketPositions)
+  const addons = groupPositions(addonPositions)
 
   const orderDate = new Date(order.datetime)
   const formattedDate = orderDate.toLocaleDateString('en-US', {
@@ -252,20 +261,25 @@ export default function OrderConfirmationPage() {
             </div>
           )}
 
-          {/* Swag */}
-          <div className={css['section']}>
-            <h3 className={css['section-title']}>Swag</h3>
-            <div className={css['details-card']}>
-              <div className={css['item-row']}>
-                <span className={css['item-name']}>Swag item one</span>
-                <span className={css['item-price']}>FREE</span>
-              </div>
-              <div className={css['item-row']}>
-                <span className={css['item-name']}>Swag item two</span>
-                <span className={css['item-price']}>FREE</span>
+          {/* Add-ons */}
+          {addons.length > 0 && (
+            <div className={css['section']}>
+              <h3 className={css['section-title']}>Add-ons</h3>
+              <div className={css['details-card']}>
+                {addons.map((addon, i) => (
+                  <div key={i} className={css['item-row']}>
+                    <div className={css['item-info']}>
+                      <span className={css['item-name']}>{addon.name}</span>
+                      {addon.quantity > 1 && <span className={css['item-qty']}>x{addon.quantity}</span>}
+                    </div>
+                    <span className={css['item-price']}>
+                      {parseFloat(addon.price) === 0 ? 'FREE' : `$${(parseFloat(addon.price) * addon.quantity).toFixed(2)}`}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
 
           {/* Actions */}
           <div className={css['actions']}>

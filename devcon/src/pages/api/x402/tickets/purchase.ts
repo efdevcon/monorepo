@@ -20,7 +20,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { verifyTypedData, type Hex } from 'viem'
-import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, markOrderPaid } from 'services/pretix'
+import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, markOrderPaid, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import {
   createPaymentRequirements,
   getPaymentRecipient,
@@ -77,6 +77,7 @@ interface PurchaseRequest {
     company?: string
     country?: string
   }
+  voucher?: string
 }
 
 interface PurchaseResponse {
@@ -203,6 +204,24 @@ export default async function handler(
       orderTickets.push({ name, price, quantity, item })
     }
 
+    // Validate and apply voucher if provided
+    let voucherInfo: VoucherInfo | null = null
+    if (body.voucher) {
+      voucherInfo = await validateVoucher(body.voucher)
+      if (!voucherInfo.valid) {
+        return res.status(400).json({
+          success: false,
+          error: `Invalid voucher: ${voucherInfo.error}`,
+        })
+      }
+      // Apply voucher discount to applicable ticket prices
+      for (const ticket of orderTickets) {
+        if (!voucherInfo.itemId || voucherInfo.itemId === ticket.item.id) {
+          ticket.price = applyVoucherDiscount(ticket.price, voucherInfo)
+        }
+      }
+    }
+
     // Process addons
     if (body.addons) {
       for (const addon of body.addons) {
@@ -300,7 +319,7 @@ export default async function handler(
           subevent: null,
           answers,
           seat: null,
-          voucher: null,
+          voucher: (voucherInfo && (!voucherInfo.itemId || voucherInfo.itemId === ticket.item.id)) ? body.voucher || null : null,
         })
       }
     }

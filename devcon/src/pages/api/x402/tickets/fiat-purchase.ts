@@ -7,7 +7,7 @@
  * No crypto discount is applied for fiat payments.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getTicketPurchaseInfo, createOrder } from 'services/pretix'
+import { getTicketPurchaseInfo, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 
 interface FiatPurchaseRequest {
@@ -35,6 +35,7 @@ interface FiatPurchaseRequest {
     company?: string
     country?: string
   }
+  voucher?: string
 }
 
 interface FiatPurchaseResponse {
@@ -89,6 +90,18 @@ export default async function handler(
     const ticketInfo = await getTicketPurchaseInfo()
     const itemsById = new Map(ticketInfo.tickets.map((t) => [t.id, t]))
 
+    // Validate voucher if provided
+    let voucherInfo: VoucherInfo | null = null
+    if (body.voucher) {
+      voucherInfo = await validateVoucher(body.voucher)
+      if (!voucherInfo.valid) {
+        return res.status(400).json({
+          success: false,
+          error: `Invalid voucher: ${voucherInfo.error}`,
+        })
+      }
+    }
+
     // Build order positions
     const positions: PretixOrderPosition[] = []
 
@@ -114,6 +127,11 @@ export default async function handler(
         }
         price = variation.price
         name = `${item.name} - ${variation.name}`
+      }
+
+      // Apply voucher discount to applicable tickets
+      if (voucherInfo && (!voucherInfo.itemId || voucherInfo.itemId === item.id)) {
+        price = applyVoucherDiscount(price, voucherInfo)
       }
 
       const quantity = ticket.quantity || 1
@@ -164,7 +182,7 @@ export default async function handler(
           subevent: null,
           answers,
           seat: null,
-          voucher: null,
+          voucher: (voucherInfo && (!voucherInfo.itemId || voucherInfo.itemId === item.id)) ? body.voucher || null : null,
         })
       }
     }

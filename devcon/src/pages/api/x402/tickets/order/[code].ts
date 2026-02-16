@@ -6,7 +6,7 @@
  * The secret acts as authentication — only someone with the secret can view the order.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getOrder, getItems } from 'services/pretix'
+import { getOrder, getItems, getCategories } from 'services/pretix'
 
 interface OrderPosition {
   id: number
@@ -17,6 +17,7 @@ interface OrderPosition {
   attendee_name: string | null
   attendee_email: string | null
   secret: string
+  isAddon: boolean
 }
 
 interface OrderDetailsResponse {
@@ -60,30 +61,37 @@ export default async function handler(
   }
 
   try {
-    const [order, items] = await Promise.all([getOrder(code), getItems()])
+    const [order, items, categories] = await Promise.all([getOrder(code), getItems(), getCategories()])
 
     // Verify secret matches
     if (order.secret !== secret) {
       return res.status(403).json({ success: false, error: 'Invalid order secret' })
     }
 
-    // Build item name lookup
+    // Build item name lookup and category addon lookup
     const itemNameMap = new Map<number, string>()
+    const itemCategoryMap = new Map<number, number | null>()
     for (const item of items) {
       itemNameMap.set(item.id, getLocalizedString(item.name))
+      itemCategoryMap.set(item.id, item.category)
     }
+    const addonCategoryIds = new Set(categories.filter(c => c.is_addon).map(c => c.id))
 
-    // Map positions with item names
-    const positions: OrderPosition[] = (order.positions || []).map((p: any) => ({
-      id: p.id,
-      item: p.item,
-      itemName: itemNameMap.get(p.item) || `Item #${p.item}`,
-      variation: p.variation,
-      price: p.price,
-      attendee_name: p.attendee_name,
-      attendee_email: p.attendee_email,
-      secret: p.secret,
-    }))
+    // Map positions with item names and addon status
+    const positions: OrderPosition[] = (order.positions || []).map((p: any) => {
+      const categoryId = itemCategoryMap.get(p.item)
+      return {
+        id: p.id,
+        item: p.item,
+        itemName: itemNameMap.get(p.item) || `Item #${p.item}`,
+        variation: p.variation,
+        price: p.price,
+        attendee_name: p.attendee_name,
+        attendee_email: p.attendee_email,
+        secret: p.secret,
+        isAddon: p.addon_to != null || (categoryId != null && addonCategoryIds.has(categoryId)),
+      }
+    })
 
     return res.status(200).json({
       success: true,

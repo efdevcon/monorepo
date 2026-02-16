@@ -288,3 +288,93 @@ export function calculateOrderTotal(
   const total = items.reduce((sum, item) => sum + parseFloat(item.price), 0)
   return total.toFixed(2)
 }
+
+/**
+ * Voucher validation result
+ */
+export interface VoucherInfo {
+  valid: boolean
+  code: string
+  priceMode: 'none' | 'set' | 'subtract' | 'percent'
+  value: string
+  itemId: number | null
+  maxUsages: number
+  redeemed: number
+  error?: string
+}
+
+/**
+ * Validate a voucher code against the Pretix API
+ */
+export async function validateVoucher(code: string): Promise<VoucherInfo> {
+  const invalid = (error: string): VoucherInfo => ({
+    valid: false,
+    code,
+    priceMode: 'none',
+    value: '0',
+    itemId: null,
+    maxUsages: 0,
+    redeemed: 0,
+    error,
+  })
+
+  try {
+    const data = await fetchPretix<{ count: number; results: any[] }>(
+      `vouchers/?code=${encodeURIComponent(code)}`
+    )
+
+    if (!data.results || data.results.length === 0) {
+      return invalid('Voucher code not found')
+    }
+
+    const voucher = data.results[0]
+
+    // Check expiration
+    if (voucher.valid_until) {
+      const expiresAt = new Date(voucher.valid_until).getTime()
+      if (Date.now() > expiresAt) {
+        return invalid('Voucher has expired')
+      }
+    }
+
+    // Check usage limits
+    if (voucher.max_usages > 0 && voucher.redeemed >= voucher.max_usages) {
+      return invalid('Voucher has been fully redeemed')
+    }
+
+    return {
+      valid: true,
+      code: voucher.code,
+      priceMode: voucher.price_mode || 'none',
+      value: voucher.value || '0',
+      itemId: voucher.item || null,
+      maxUsages: voucher.max_usages || 0,
+      redeemed: voucher.redeemed || 0,
+    }
+  } catch (e) {
+    return invalid(`Failed to validate voucher: ${(e as Error).message}`)
+  }
+}
+
+/**
+ * Compute the discounted price for an item given a voucher
+ */
+export function applyVoucherDiscount(
+  originalPrice: string,
+  voucher: VoucherInfo
+): string {
+  const price = parseFloat(originalPrice)
+  const value = parseFloat(voucher.value)
+
+  switch (voucher.priceMode) {
+    case 'set':
+      return value.toFixed(2)
+    case 'subtract':
+      return Math.max(0, price - value).toFixed(2)
+    case 'percent':
+      return Math.max(0, price - (price * value) / 100).toFixed(2)
+    case 'none':
+    default:
+      return originalPrice
+  }
+}

@@ -107,6 +107,7 @@ interface CartData {
   items: CartItem[]
   paymentInfo: PaymentInfo
   savedAt: number
+  voucher?: string
 }
 
 interface PaymentDetails {
@@ -311,6 +312,20 @@ function CheckoutContent() {
   const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
   const tokenFilterAutoSelectedRef = useRef(false)
 
+  // Voucher state
+  const [voucherInput, setVoucherInput] = useState('')
+  const [voucherData, setVoucherData] = useState<{
+    valid: boolean
+    code?: string
+    priceMode?: string
+    value?: string
+    itemId?: number | null
+    applicableTickets?: { id: number; name: string; originalPrice: string; discountedPrice: string }[]
+  } | null>(null)
+  const [voucherError, setVoucherError] = useState<string | null>(null)
+  const [voucherLoading, setVoucherLoading] = useState(false)
+  const voucherValidationRef = useRef(0)
+
   // Wagmi hooks
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
   const { data: walletClient } = useWalletClient()
@@ -319,6 +334,32 @@ function CheckoutContent() {
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
   const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
   const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
+
+  // ── Voucher validation ──
+  async function validateVoucherCode(code: string) {
+    const generation = ++voucherValidationRef.current
+    setVoucherLoading(true)
+    setVoucherError(null)
+    setVoucherData(null)
+    try {
+      const resp = await fetch('/api/x402/tickets/validate-voucher', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      })
+      const data = await resp.json()
+      if (generation !== voucherValidationRef.current) return
+      if (data.valid) {
+        setVoucherData(data)
+      } else {
+        setVoucherError(data.error || 'Invalid voucher code')
+      }
+    } catch {
+      if (generation !== voucherValidationRef.current) return
+      setVoucherError('Failed to validate voucher')
+    }
+    setVoucherLoading(false)
+  }
 
   // ── Load cart from localStorage ──
   useEffect(() => {
@@ -329,11 +370,25 @@ function CheckoutContent() {
         const data: CartData = JSON.parse(raw)
         setCartItems(data.items || [])
         setPaymentInfo(data.paymentInfo || null)
+        if (data.voucher) {
+          setVoucherInput(data.voucher)
+          validateVoucherCode(data.voucher)
+        }
       }
     } catch {
       // ignore
     }
   }, [])
+
+  // ── Auto-read voucher from URL query param (overrides cart voucher) ──
+  useEffect(() => {
+    if (!router.isReady) return
+    const urlVoucher = router.query.voucher as string
+    if (urlVoucher) {
+      setVoucherInput(urlVoucher)
+      validateVoucherCode(urlVoucher)
+    }
+  }, [router.isReady])
 
   // ── Load saved form data from localStorage ──
   useEffect(() => {
@@ -577,9 +632,71 @@ function CheckoutContent() {
   // ── Derived cart values ──
   const ticketSubtotal = cartItems.reduce((sum, c) => sum + parseFloat(c.price) * c.quantity, 0)
   const subtotal = ticketSubtotal + addonSubtotal
+
+  // Voucher discount (computed from server-provided discounted prices)
+  const voucherDiscount = (() => {
+    if (!voucherData?.valid || !voucherData.applicableTickets) return 0
+    let discount = 0
+    for (const cartItem of cartItems) {
+      const applicable = voucherData.applicableTickets.find(t => t.id === cartItem.ticketId)
+      if (applicable) {
+        discount += (parseFloat(applicable.originalPrice) - parseFloat(applicable.discountedPrice)) * cartItem.quantity
+      }
+    }
+    return +discount.toFixed(2)
+  })()
+
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : 3
-  const cryptoDiscount = paymentMethod === 'crypto' ? +(subtotal * cryptoDiscountPercent / 100).toFixed(2) : 0
-  const totalUsd = (subtotal - cryptoDiscount).toFixed(2)
+  const cryptoDiscount = paymentMethod === 'crypto' ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
+  const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
+
+  // ── Payment state invalidation ──
+  // Clears all payment-in-progress state so the user must re-initiate checkout.
+  // Called whenever order inputs change after checkout has been started.
+  function resetPaymentState() {
+    setPaymentDetails(null)
+    setPaymentOptions([])
+    setSelectedOption(null)
+    setOrderSummary(null)
+    setPaymentStatus(null)
+    setTxHash(null)
+    setAuthorizationData(null)
+    setPurchaseError(null)
+    setDirectSignError(null)
+    setTokenFilter(null)
+    tokenFilterAutoSelectedRef.current = false
+    paymentOptionsAutoLoadedRef.current = null
+    setFiatPaymentUrl(null)
+    setFiatOrderCode(null)
+    setFiatOrderSecret(null)
+    setShowFiatModal(false)
+  }
+
+  const isProcessing =
+    purchaseLoading ||
+    isSigningDirect ||
+    isExecutingGasless ||
+    isWritePending ||
+    isTxLoading ||
+    isSendTxPending ||
+    isSendTxReceiptLoading ||
+    showFiatModal
+
+  // Invalidate stale payment when user navigates away from payment section
+  // (e.g. goes back to edit add-ons, contact details, etc.)
+  useEffect(() => {
+    if (openSection !== 'payment' && !isProcessing && (paymentDetails || fiatOrderCode)) {
+      resetPaymentState()
+    }
+  }, [openSection])
+
+  // Invalidate stale payment when the order total changes
+  // (e.g. voucher applied/removed from sidebar, payment method switched)
+  useEffect(() => {
+    if (!isProcessing && (paymentDetails || fiatOrderCode)) {
+      resetPaymentState()
+    }
+  }, [totalUsd])
 
   // ── Section helpers ──
   const toggleSection = (id: string) => {
@@ -741,6 +858,7 @@ function CheckoutContent() {
           intendedPayer: address!,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
           ...(addons.length > 0 && { addons }),
+          ...(voucherData?.valid && voucherInput && { voucher: voucherInput }),
           answers: formattedAnswers,
           attendee: {
             name: { given_name: firstName, family_name: lastName },
@@ -792,6 +910,7 @@ function CheckoutContent() {
           email,
           tickets: cartItems.map(c => ({ itemId: c.ticketId, quantity: c.quantity })),
           ...(addons.length > 0 && { addons }),
+          ...(voucherData?.valid && voucherInput && { voucher: voucherInput }),
           answers: formattedAnswers,
           attendee: {
             name: { given_name: firstName, family_name: lastName },
@@ -1085,15 +1204,6 @@ function CheckoutContent() {
   }
 
   // ── Checkout button state ──
-  const isProcessing =
-    purchaseLoading ||
-    isSigningDirect ||
-    isExecutingGasless ||
-    isWritePending ||
-    isTxLoading ||
-    isSendTxPending ||
-    isSendTxReceiptLoading ||
-    showFiatModal
   const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
 
   return (
@@ -1806,16 +1916,55 @@ function CheckoutContent() {
                 })}
               </div>
               <div className={css['discount-row']}>
-                <input type="text" className={css['discount-input']} placeholder="Discount or Voucher Code" />
-                <button type="button" className={css['discount-btn']}>
-                  Apply
-                </button>
+                <input
+                  type="text"
+                  className={css['discount-input']}
+                  placeholder="Discount or Voucher Code"
+                  value={voucherInput}
+                  onChange={e => { setVoucherInput(e.target.value); setVoucherError(null) }}
+                  disabled={voucherLoading || voucherData?.valid === true}
+                />
+                {voucherData?.valid ? (
+                  <button
+                    type="button"
+                    className={css['discount-btn']}
+                    onClick={() => { setVoucherInput(''); setVoucherData(null); setVoucherError(null) }}
+                  >
+                    Remove
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className={css['discount-btn']}
+                    onClick={() => voucherInput && validateVoucherCode(voucherInput)}
+                    disabled={voucherLoading || !voucherInput}
+                  >
+                    {voucherLoading ? 'Checking...' : 'Apply'}
+                  </button>
+                )}
               </div>
+              {voucherError && (
+                <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0.25rem 0 0' }}>{voucherError}</p>
+              )}
+              {voucherData?.valid && (
+                <p style={{ color: '#2e7d32', fontSize: '0.85rem', margin: '0.25rem 0 0' }}>
+                  Voucher applied!
+                  {voucherData.priceMode === 'percent' && ` ${parseFloat(voucherData.value || '0')}% off`}
+                  {voucherData.priceMode === 'subtract' && ` $${parseFloat(voucherData.value || '0').toFixed(2)} off`}
+                  {voucherData.priceMode === 'set' && ` Price set to $${parseFloat(voucherData.value || '0').toFixed(2)}`}
+                </p>
+              )}
               <div className={css['summary-lines']}>
                 <div className={css['summary-line']}>
                   <span>Subtotal</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
+                {voucherDiscount > 0 && (
+                  <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                    <span>Voucher discount</span>
+                    <span>&ndash;${voucherDiscount.toFixed(2)}</span>
+                  </div>
+                )}
                 {paymentMethod === 'crypto' && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                     <span>Crypto discount (&ndash;3%)</span>
