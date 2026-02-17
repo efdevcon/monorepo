@@ -225,10 +225,13 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
 
   try {
     // Wait for transaction receipt with retries (transaction may still be mining)
+    // L2s (Base, Optimism, Arbitrum, Polygon) confirm in 1-2s; mainnet needs ~12s per block
+    const isL2 = proofChainId != null && [10, 42161, 8453, 84532, 137].includes(proofChainId)
+    const maxAttempts = isL2 ? 10 : 20
+    const delayMs = isL2 ? 3000 : 6000
+
     let receipt
     let attempts = 0
-    const maxAttempts = 10
-    const delayMs = 3000
 
     while (attempts < maxAttempts) {
       try {
@@ -322,10 +325,13 @@ export async function verifyPaymentDirect(
     console.log('[x402] Direct verification for tx:', txHash, chainId != null ? `(chain ${chainId})` : '')
 
     // Wait for transaction receipt with retries
+    // L2s confirm fast; mainnet needs more time
+    const isL2 = chainId != null && [10, 42161, 8453, 84532, 137].includes(chainId)
+    const maxAttempts = isL2 ? 10 : 20
+    const delayMs = isL2 ? 3000 : 6000
+
     let receipt
     let attempts = 0
-    const maxAttempts = 10
-    const delayMs = 3000
 
     while (attempts < maxAttempts) {
       try {

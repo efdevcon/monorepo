@@ -276,14 +276,10 @@ export async function executeTransferWithAuthorization(
 
     console.log('[Relayer] transferWithAuthorization tx:', hash)
 
-    // Wait for confirmation
-    const receipt = await client.waitForTransactionReceipt({ hash })
-    console.log('[Relayer] transferWithAuthorization confirmed, status:', receipt.status)
-
-    if (receipt.status !== 'success') {
-      throw new Error(`transferWithAuthorization reverted (tx: ${hash})`)
-    }
-
+    // Return txHash immediately without waiting for receipt.
+    // Receipt verification happens independently in the verify endpoint,
+    // which has its own chain-aware retry loop. This prevents timeouts
+    // on slow chains (e.g. mainnet ~12s blocks) from losing the txHash.
     return { txHash: hash }
   } catch (error) {
     console.error('[Relayer] Error executing authorization:', error)

@@ -186,6 +186,15 @@ function LockIcon() {
 
 // ── Constants ──
 
+const BLOCK_EXPLORERS: Record<number, string> = {
+  1: 'https://etherscan.io',
+  10: 'https://optimistic.etherscan.io',
+  42161: 'https://arbiscan.io',
+  8453: 'https://basescan.org',
+  84532: 'https://sepolia.basescan.org',
+  137: 'https://polygonscan.com',
+}
+
 const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
 
 const FAQ_ITEMS = [
@@ -1159,10 +1168,15 @@ function CheckoutContent() {
     }
   }
 
-  async function verifyPayment(hash: string) {
+  async function verifyPayment(hash: string, attempt = 1) {
     if (!paymentDetails || !address) return
 
-    setPaymentStatus('Verifying payment...')
+    const maxAttempts = 5
+    const retryDelay = 8000
+
+    setPaymentStatus(attempt > 1
+      ? `Waiting for on-chain confirmation... (${attempt}/${maxAttempts})`
+      : 'Verifying payment...')
     setPurchaseError(null)
 
     try {
@@ -1193,11 +1207,25 @@ function CheckoutContent() {
         const confirmUrl = `/tickets/store/order/${data.order.code}/${data.order.secret}?${params.toString()}`
         router.push(confirmUrl)
         return
-      } else {
-        setPurchaseError(data.error || 'Payment verification failed')
-        setPaymentStatus(null)
       }
+
+      // Auto-retry on transient errors (tx not confirmed yet)
+      const isRetryable = data.details?.includes('not found') ||
+        data.details?.includes('try again') ||
+        data.error?.includes('not found')
+      if (attempt < maxAttempts && isRetryable) {
+        await new Promise(r => setTimeout(r, retryDelay))
+        return verifyPayment(hash, attempt + 1)
+      }
+
+      setPurchaseError(data.error || 'Payment verification failed')
+      setPaymentStatus(null)
     } catch {
+      // Network error — auto-retry
+      if (attempt < maxAttempts) {
+        await new Promise(r => setTimeout(r, retryDelay))
+        return verifyPayment(hash, attempt + 1)
+      }
       setPurchaseError('Failed to verify payment')
       setPaymentStatus(null)
     }
@@ -1804,7 +1832,27 @@ function CheckoutContent() {
                 {paymentStatus && <p className={css['status-text']}>{paymentStatus}</p>}
 
                 {txHash && (
-                  <div className={css['tx-status']}>Transaction: {txHash.slice(0, 16)}...</div>
+                  <div className={css['tx-status']}>
+                    Transaction:{' '}
+                    <a
+                      href={`${(paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) || 'https://etherscan.io'}/tx/${txHash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#4a90d9', textDecoration: 'underline' }}
+                    >
+                      {txHash.slice(0, 10)}...{txHash.slice(-8)}
+                    </a>
+                    {!isProcessing && paymentDetails && (
+                      <button
+                        type="button"
+                        className={css['retry-verify-btn']}
+                        onClick={() => verifyPayment(txHash)}
+                        style={{ marginLeft: '0.75rem' }}
+                      >
+                        Retry verification
+                      </button>
+                    )}
+                  </div>
                 )}
 
                 {!(paymentDetails && paymentMethod === 'crypto') && (
