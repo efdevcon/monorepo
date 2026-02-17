@@ -139,6 +139,32 @@ export async function markOrderPaid(orderCode: string): Promise<PretixOrder> {
 }
 
 /**
+ * Confirm an existing payment on an order and attach info data.
+ * This confirms the payment created by the order's payment_provider (e.g. daimo_pay)
+ * instead of creating a new manual payment via mark_paid/.
+ */
+export async function confirmOrderPayment(
+  orderCode: string,
+  paymentLocalId: number,
+  info?: Record<string, unknown>
+): Promise<void> {
+  const paymentUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/payments/${paymentLocalId}/confirm/`
+  const body: Record<string, unknown> = { force: true }
+  if (info) body.info = JSON.stringify(info)
+
+  const response = await fetch(paymentUrl, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(body),
+  })
+
+  if (!response.ok) {
+    const text = await response.text()
+    throw new Error(`Failed to confirm payment ${paymentLocalId} on order ${orderCode} (${response.status}): ${text}`)
+  }
+}
+
+/**
  * Get complete ticket purchase information including items, questions, and availability
  */
 export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurchaseInfo> {

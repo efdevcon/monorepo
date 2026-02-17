@@ -208,6 +208,7 @@ export interface PretixOrderCreateRequest {
     tax_rule?: number
   }[]
   comment?: string
+  payment_info?: Record<string, unknown>
   checkin_attention?: boolean
   custom_followup_at?: string
   testmode?: boolean

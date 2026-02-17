@@ -17,7 +17,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
 import { getUsdcConfig } from 'services/relayer'
 import type { SettleResponse } from 'types/x402'
-import { createOrder, markOrderPaid } from 'services/pretix'
+import { createOrder, confirmOrderPayment } from 'services/pretix'
 import {
   getPendingOrder,
   storePendingOrder,
@@ -304,7 +304,20 @@ export default async function handler(
       throw error
     }
 
-    // Create order in Pretix
+    // Attach crypto payment details to order (visible in Pretix admin via daimo_pay plugin)
+    const verifyChainIdNum = body.chainId || getUsdcConfig().chainId
+    claimedOrder.orderData.comment = `x402 crypto | Tx: ${body.txHash} | Chain: eip155:${verifyChainIdNum} | Payer: ${body.payer}`
+    claimedOrder.orderData.payment_info = {
+      source_tx_hash: body.txHash,
+      dest_tx_hash: body.txHash,
+      source_chain_id: verifyChainIdNum,
+      dest_chain_id: verifyChainIdNum,
+      amount: claimedOrder.totalUsd,
+      time: Math.floor(Date.now() / 1000),
+      payer: body.payer,
+    }
+
+    // Create order in Pretix with daimo_pay payment provider
     console.log('[Verify] Creating Pretix order for payment ref:', body.paymentReference)
     let pretixOrder
     try {
@@ -322,14 +335,19 @@ export default async function handler(
       })
     }
 
-    // Mark order as paid in Pretix
+    // Confirm the daimo_pay payment with tx details (instead of mark_paid which creates a new manual payment)
     try {
-      console.log('[Verify] Marking order as paid:', pretixOrder.code)
-      await markOrderPaid(pretixOrder.code)
-      console.log('[Verify] Order marked as paid')
+      const daimoPayment = pretixOrder.payments.find((p: any) => p.provider === 'daimo_pay' && p.state !== 'canceled')
+      if (daimoPayment) {
+        console.log('[Verify] Confirming daimo_pay payment:', daimoPayment.local_id)
+        await confirmOrderPayment(pretixOrder.code, daimoPayment.local_id, claimedOrder.orderData.payment_info)
+        console.log('[Verify] Payment confirmed with tx details')
+      } else {
+        console.warn(`[Verify] No daimo_pay payment found on order ${pretixOrder.code}`)
+      }
     } catch (error) {
-      console.error('[Verify] Failed to mark order as paid:', error)
-      // Order was created but not marked paid - log for manual resolution
+      console.error('[Verify] Failed to confirm payment:', error)
+      // Order was created but payment not confirmed - log for manual resolution
       // Continue anyway as the order exists
     }
 

@@ -20,7 +20,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { verifyTypedData, type Hex } from 'viem'
-import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, markOrderPaid, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import {
   createPaymentRequirements,
   getPaymentRecipient,
@@ -354,7 +354,7 @@ export default async function handler(
       email: body.email,
       locale: 'en',
       sales_channel: 'web',
-      payment_provider: 'manual', // We handle payment via x402
+      payment_provider: 'daimo_pay', // Reuse daimo_pay plugin to display tx details in Pretix admin
       positions,
       send_email: true,
     }
@@ -708,11 +708,30 @@ async function handlePaymentSignatureRetry(
     throw error
   }
 
-  // 14. Create Pretix order + mark as paid
+  // 14. Attach crypto payment details to order (visible in Pretix admin via daimo_pay plugin)
+  claimedOrder.orderData.comment = `x402 crypto | Tx: ${txHash} | Chain: eip155:${networkChainId} | Payer: ${authorization.from}`
+  claimedOrder.orderData.payment_info = {
+    source_tx_hash: txHash,
+    dest_tx_hash: txHash,
+    source_chain_id: networkChainId,
+    dest_chain_id: networkChainId,
+    amount: claimedOrder.totalUsd,
+    time: Math.floor(Date.now() / 1000),
+    payer: authorization.from,
+  }
+
+  // 15. Create Pretix order + confirm the daimo_pay payment with tx details
   let pretixOrder
   try {
     pretixOrder = await createOrder(claimedOrder.orderData)
-    await markOrderPaid(pretixOrder.code)
+    // Find the pending daimo_pay payment created by order creation and confirm it
+    const daimoPayment = pretixOrder.payments.find(p => p.provider === 'daimo_pay' && p.state !== 'canceled')
+    if (daimoPayment) {
+      await confirmOrderPayment(pretixOrder.code, daimoPayment.local_id, claimedOrder.orderData.payment_info)
+    } else {
+      // Fallback: shouldn't happen, but log a warning
+      console.warn(`[purchase] No daimo_pay payment found on order ${pretixOrder.code}, order is pending`)
+    }
   } catch (error) {
     // Remove reservation and restore pending order so user can retry
     await removeCompletedOrderReservation(paymentReference)
