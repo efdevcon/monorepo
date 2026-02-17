@@ -1,8 +1,9 @@
 /**
  * x402 Payment Service for USDC on Base (and multi-chain verification)
  */
-import { createPublicClient, http, parseAbi, formatUnits, type Chain } from 'viem'
+import { createPublicClient, parseAbi, formatUnits, type Chain } from 'viem'
 import { base, baseSepolia, mainnet, optimism, arbitrum, polygon } from 'viem/chains'
+import { getTransport } from './rpc'
 import {
   X402PaymentRequirements,
   X402PaymentProof,
@@ -61,13 +62,13 @@ function resolveTokenAddress(chainId: number | undefined, tokenAddress?: string)
 // Create public client for reading blockchain state (default chain)
 const publicClient = createPublicClient({
   chain,
-  transport: http(),
+  transport: getTransport(chain.id),
 })
 
 function getPublicClientForChainId(chainId: number) {
   const c = CHAIN_ID_TO_CHAIN[chainId]
   if (!c) return null
-  return createPublicClient({ chain: c, transport: http() })
+  return createPublicClient({ chain: c, transport: getTransport(chainId) })
 }
 
 // ERC20 Transfer event ABI

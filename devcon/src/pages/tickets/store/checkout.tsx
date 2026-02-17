@@ -16,35 +16,51 @@ import {
   useWalletClient,
   useSendTransaction,
 } from 'wagmi'
-import { createConfig, http } from 'wagmi'
+import { createConfig, http, fallback } from 'wagmi'
 import { baseSepolia, base, mainnet, optimism, arbitrum, polygon } from 'wagmi/chains'
 import { injected, walletConnect } from 'wagmi/connectors'
 import { QuestionInfo, TicketInfo } from 'types/pretix'
 
 const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
+const ALCHEMY_KEY = process.env.NEXT_PUBLIC_ALCHEMY_APIKEY || ''
+const INFURA_KEY = process.env.NEXT_PUBLIC_INFURA_APIKEY || ''
 
-// Optional RPC URLs to avoid hitting public endpoints (e.g. sepolia.base.org) on every poll.
-// Wagmi/viem poll the connected chain for block number / tx receipts, so without custom URLs
-// you'll see constant calls to the chain's default RPC.
-const RPC_URLS = {
-  [baseSepolia.id]: process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL,
-  [base.id]: process.env.NEXT_PUBLIC_BASE_RPC_URL,
-  [mainnet.id]: process.env.NEXT_PUBLIC_ETHEREUM_RPC_URL,
-  [optimism.id]: process.env.NEXT_PUBLIC_OPTIMISM_RPC_URL,
-  [arbitrum.id]: process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL,
-  [polygon.id]: process.env.NEXT_PUBLIC_POLYGON_RPC_URL,
+// Build RPC transports: Alchemy (primary) → Infura (fallback) → public default
+const ALCHEMY_URLS: Record<number, string> = {
+  [mainnet.id]: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+  [base.id]: `https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+  [optimism.id]: `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+  [arbitrum.id]: `https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+  [polygon.id]: `https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+  [baseSepolia.id]: `https://base-sepolia.g.alchemy.com/v2/${ALCHEMY_KEY}`,
+}
+
+const INFURA_URLS: Record<number, string> = {
+  [mainnet.id]: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
+  [optimism.id]: `https://optimism-mainnet.infura.io/v3/${INFURA_KEY}`,
+  [arbitrum.id]: `https://arbitrum-mainnet.infura.io/v3/${INFURA_KEY}`,
+  [polygon.id]: `https://polygon-mainnet.infura.io/v3/${INFURA_KEY}`,
+  [baseSepolia.id]: `https://base-sepolia.infura.io/v3/${INFURA_KEY}`,
+}
+
+function chainTransport(chainId: number) {
+  const transports = []
+  if (ALCHEMY_KEY && ALCHEMY_URLS[chainId]) transports.push(http(ALCHEMY_URLS[chainId]))
+  if (INFURA_KEY && INFURA_URLS[chainId]) transports.push(http(INFURA_URLS[chainId]))
+  transports.push(http()) // public fallback
+  return fallback(transports)
 }
 
 const wagmiConfig = createConfig({
   chains: [baseSepolia, base, mainnet, optimism, arbitrum, polygon],
   connectors: [injected(), ...(WC_PROJECT_ID ? [walletConnect({ projectId: WC_PROJECT_ID })] : [])],
   transports: {
-    [baseSepolia.id]: RPC_URLS[baseSepolia.id] ? http(RPC_URLS[baseSepolia.id]) : http(),
-    [base.id]: RPC_URLS[base.id] ? http(RPC_URLS[base.id]) : http(),
-    [mainnet.id]: RPC_URLS[mainnet.id] ? http(RPC_URLS[mainnet.id]) : http(),
-    [optimism.id]: RPC_URLS[optimism.id] ? http(RPC_URLS[optimism.id]) : http(),
-    [arbitrum.id]: RPC_URLS[arbitrum.id] ? http(RPC_URLS[arbitrum.id]) : http(),
-    [polygon.id]: RPC_URLS[polygon.id] ? http(RPC_URLS[polygon.id]) : http(),
+    [baseSepolia.id]: chainTransport(baseSepolia.id),
+    [base.id]: chainTransport(base.id),
+    [mainnet.id]: chainTransport(mainnet.id),
+    [optimism.id]: chainTransport(optimism.id),
+    [arbitrum.id]: chainTransport(arbitrum.id),
+    [polygon.id]: chainTransport(polygon.id),
   },
 })
 

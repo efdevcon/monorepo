@@ -11,13 +11,13 @@
 import {
   createPublicClient,
   createWalletClient,
-  http,
   parseAbi,
   type Hex,
   type Chain,
 } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { base, baseSepolia, mainnet, optimism, arbitrum, polygon } from 'viem/chains'
+import { getTransport } from './rpc'
 import crypto from 'crypto'
 import {
   EIP3009Authorization,
@@ -59,7 +59,7 @@ function getPublicClientForChain(chainId: number): ReturnType<typeof createPubli
   if (client) return client
   const viemChain = CHAIN_ID_TO_CHAIN[chainId]
   if (!viemChain) throw new Error(`Unsupported chain ID for relayer: ${chainId}`)
-  client = createPublicClient({ chain: viemChain, transport: http() })
+  client = createPublicClient({ chain: viemChain, transport: getTransport(chainId) })
   publicClientCache.set(chainId, client)
   return client
 }
@@ -80,7 +80,7 @@ function getWalletClientForChain(chainId: number) {
   const walletClient = createWalletClient({
     account,
     chain: viemChain,
-    transport: http(),
+    transport: getTransport(chainId),
   })
   return { account, walletClient }
 }
