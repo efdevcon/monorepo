@@ -14,7 +14,7 @@
  *   TEST_PAYER_PRIVATE_KEY=0x... pnpm run x402:simulate
  *
  * Env:
- *   TEST_WALLET – wallet address to check balances (default: 0xBD19a3F0A9CaCE18513A1e2863d648D13975CB30)
+ *   TEST_WALLET – wallet address to check balances (default: 0x957E6583bb0513A3B044DfdAC05A757a53B2Ec49)
  *   TEST_PAYER_PRIVATE_KEY – private key for signing (enables signature + simulation tests)
  *   PAYMENT_RECIPIENT – recipient for simulated transfers (default: relayer address or zero)
  */
@@ -41,8 +41,8 @@ import {
 
 // ── Config ──
 
-const TEST_WALLET = process.env.TEST_WALLET || '0xBD19a3F0A9CaCE18513A1e2863d648D13975CB30'
-const RECIPIENT = process.env.PAYMENT_RECIPIENT || '0x0000000000000000000000000000000000000001'
+const TEST_WALLET = process.env.TEST_WALLET || '0x957E6583bb0513A3B044DfdAC05A757a53B2Ec49'
+const RECIPIENT = process.env.PAYMENT_RECIPIENT || '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD'
 const PRIVATE_KEY = process.env.TEST_PAYER_PRIVATE_KEY
 const SIMULATE_AMOUNT = '1000000' // 1 USDC/USDT0 (6 decimals)
 

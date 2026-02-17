@@ -151,7 +151,7 @@ async function createPurchase(ticketData: any) {
 
   const purchaseRequest = {
     email: 'test@example.com',
-    intendedPayer: process.env.TEST_PAYER_ADDRESS || '0x0000000000000000000000000000000000000001',
+    intendedPayer: process.env.TEST_PAYER_ADDRESS || '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
     tickets: [{ itemId: ticket.id, quantity: 1 }],
     answers,
     attendee: {
