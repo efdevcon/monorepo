@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
+import IconX from 'assets/icons/twitter.svg'
+import IconInstagram from 'assets/icons/instagram.svg'
+import IconFarcaster from 'assets/icons/farcaster.svg'
+import DevconLogo from 'assets/images/dc-8/dc8-logo.png'
 import themes from '../themes.module.scss'
 import HeroBackground from 'assets/images/pages/hero-bgs/ticketing.jpeg'
 import css from './tickets-landing.module.scss'
@@ -12,7 +17,7 @@ const NAV_LINKS = [
   { title: 'General Admission', to: '#general-admission' },
   { title: 'Discounts', to: '#discounts' },
   { title: 'FAQ', to: '#faq' },
-]
+].map(link => ({ ...link, title: link.title.toUpperCase() }))
 
 const OVERVIEW_CARDS = [
   {
@@ -43,10 +48,10 @@ const OVERVIEW_CARDS = [
 ]
 
 const WAVES = [
-  { name: 'Global Early Bird', price: '$349', date: 'Opens 2 April', live: true },
-  { name: 'Waves 1-4', price: 'TBD', date: 'TBD', live: false },
-  { name: 'Waves 5-8', price: 'TBD', date: 'TBD', live: false },
-  { name: 'Waves 9-10', price: 'TBD', date: 'TBD', live: false },
+  { name: 'Global Early Bird', price: '$249', date: 'Opens 2 April', live: true },
+  { name: 'Waves 1-5', price: 'TBD', date: 'TBD', live: false },
+  { name: 'Waves 5-9', price: 'TBD', date: 'TBD', live: false },
+  { name: 'Waves 9-13', price: 'TBD', date: 'TBD', live: false },
 ]
 
 const SELF_CLAIMING = [
@@ -135,32 +140,6 @@ function ChevronRightIcon() {
   )
 }
 
-function XIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  )
-}
-
-function InstagramIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="5" />
-      <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-
-function FarcasterIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M5.315 2.1c.791-.39 1.718-.583 2.685-.583h8c.967 0 1.894.194 2.685.583C19.477 2.49 20.06 3.058 20.455 3.68c.395.623.545 1.262.545 1.82v13c0 .558-.15 1.197-.545 1.82-.395.622-.978 1.19-1.77 1.58-.791.39-1.718.583-2.685.583H8c-.967 0-1.894-.194-2.685-.583-.792-.39-1.375-.958-1.77-1.58C3.15 19.697 3 19.058 3 18.5v-13c0-.558.15-1.197.545-1.82.395-.622.978-1.19 1.77-1.58z" />
-    </svg>
-  )
-}
-
 export default function TicketsPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
 
@@ -198,7 +177,7 @@ export default function TicketsPage() {
             </div>
             <div className={css['early-bird-ctas']}>
               <Link to="/tickets/store" className={css['btn-primary-pill']}>
-                Get my ticket
+                Get My ticket
                 <ArrowRightIcon />
               </Link>
               <a href="#discounts" className={css['btn-secondary-pill']}>
@@ -211,10 +190,10 @@ export default function TicketsPage() {
             <div className={css['ticket-stub-inner']}>
               <div className={css['ticket-stub-left']}>
                 <div className={css['ticket-stub-logo']}>
-                  <img src="/assets/images/dc-8/logo.png" alt="Devcon" />
+                  <Image src={DevconLogo} alt="Devcon" height={40} width={120} />
                 </div>
                 <div className={css['ticket-stub-title']}>Local Early Bird</div>
-                <div className={css['ticket-stub-subtitle']}>DEVCON TICKET LAUNCH</div>
+                <div className={css['ticket-stub-subtitle']}>GENERAL ADMISSION TICKET</div>
                 <div className={css['ticket-stub-location']}>
                   <div>
                     <span className={css['ticket-label']}>LOCATION</span>
@@ -232,7 +211,7 @@ export default function TicketsPage() {
                 <span className={css['ticket-price']}>$149</span>
                 <span className={css['ticket-price-original']}>$249</span>
                 <span className={css['ticket-savings']}>Save $100</span>
-                <span className={css['ticket-note']}>Price increases 31 March</span>
+                <span className={css['ticket-note']}>Ends 31 March</span>
               </div>
             </div>
           </div>
@@ -298,7 +277,7 @@ export default function TicketsPage() {
                   rel="noopener noreferrer"
                   className={css['social-icon']}
                 >
-                  <XIcon />
+                  <IconX />
                 </a>
                 <a
                   href="https://www.instagram.com/efdevcon/"
@@ -306,7 +285,7 @@ export default function TicketsPage() {
                   rel="noopener noreferrer"
                   className={css['social-icon']}
                 >
-                  <InstagramIcon />
+                  <IconInstagram />
                 </a>
                 <a
                   href="https://warpcast.com/devcon"
@@ -314,7 +293,7 @@ export default function TicketsPage() {
                   rel="noopener noreferrer"
                   className={css['social-icon']}
                 >
-                  <FarcasterIcon />
+                  <IconFarcaster />
                 </a>
               </div>
             </div>
