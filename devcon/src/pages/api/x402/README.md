@@ -18,10 +18,10 @@ Run migrations in **devcon-api** at `src/supabase/migrations/`
 
 | Area | Path |
 |------|------|
-| **API – tickets** | `src/pages/api/x402/tickets/index.ts`, `purchase.ts`, `fiat-purchase.ts`, `verify.ts`, `status.ts`, `order-status.ts`, `order/[code].ts` |
+| **API – tickets** | `src/pages/api/x402/tickets/index.ts`, `purchase.ts`, `fiat-purchase.ts`, `verify.ts`, `status.ts`, `order-status.ts`, `order/[code].ts`, `payment-options.ts`, `validate-voucher.ts` |
 | **API – relayer** | `src/pages/api/x402/tickets/relayer/prepare-authorization.ts`, `execute-transfer.ts` |
 | **API – facilitator** | `src/pages/api/x402/tickets/facilitator/supported.ts`, `verify.ts`, `settle.ts` |
-| **Pages – store** | `src/pages/tickets/index.tsx`, `store/index.tsx`, `store/checkout.tsx`, `store/checkout.module.scss`, `store/order/[code]/[secret].tsx`, `store/order/[code]/confirmation.module.scss`, `tickets-landing.module.scss` |
+| **Pages – store** | `src/pages/tickets/index.tsx`, `store/index.tsx`, `store/checkout.tsx`, `store/checkout.module.scss`, `store/redeem.tsx`, `store/order/[code]/[secret].tsx`, `store/order/[code]/confirmation.module.scss`, `tickets-landing.module.scss` |
 | **Pages – test** | `src/pages/x402-test.tsx` |
 | **Services** | `src/services/pretix.ts`, `src/services/relayer.ts`, `src/services/ticketStore.ts`, `src/services/x402.ts` |
 | **Types** | `src/types/pretix.ts`, `src/types/x402.ts` |
@@ -31,11 +31,11 @@ Run migrations in **devcon-api** at `src/supabase/migrations/`
 
 The x402 protocol uses HTTP 402 (Payment Required) responses to facilitate cryptocurrency payments. This implementation:
 
-- Supports **USDC and ETH** on **Ethereum, Optimism, Arbitrum, Base** (mainnet) or **Base Sepolia** (testnet)
+- Supports **USDC, USDT0, and ETH** on **Ethereum, Optimism, Arbitrum, Base** (mainnet) or **Base Sepolia** (testnet). USDT0 is available on Optimism and Arbitrum only.
 - Returns a **v2-style payment block** with `paymentId`, `supportedAssets` (CAIP-19 style), and `Payment-Required` header
 - Provides a **3% discount** for crypto payments
 - Integrates with **Pretix** for ticket management
-- Verification and relayer currently use the configured default chain (Base / Base Sepolia); multi-chain verify can be added later
+- Multi-chain verification: `verify.ts` accepts a `chainId` parameter to verify transactions on any supported chain. The gasless relayer operates on the configured default chain (Base / Base Sepolia).
 
 ## x402 libraries
 
@@ -90,7 +90,7 @@ Both flows produce the same result (a paid Pretix order) and share the same paym
 | Spec area | Status |
 |-----------|--------|
 | **Discovery (§8)** | Not implemented (`GET /discovery/resources`, Bazaar). Optional in the spec. |
-| **Multi-chain settlement** | The `accepts[]` array offers USDC on the configured chain (Base or Base Sepolia). The relayer only operates on one chain. Multi-chain settlement is a future enhancement; the frontend supports multi-chain via the custom payment-options flow. |
+| **Multi-chain gasless relayer** | The gasless relayer (EIP-3009) only operates on the configured default chain (Base or Base Sepolia). Direct payments (ETH, USDC, USDT0) are verified on any supported chain via the `chainId` parameter in `verify.ts`. |
 | **Permit2 scheme** | Not implemented. Only EIP-3009 exact scheme is supported. |
 | **sign-in-with-x extension** | Not implemented. |
 
@@ -307,10 +307,11 @@ Verifies the on-chain payment and creates the Pretix order.
   "success": true,
   "order": {
     "code": "ABC12",
+    "secret": "orderSecret123",
     "email": "attendee@example.com",
     "total": "581.03",
     "status": "paid",
-    "ticketUrl": "https://ticketh.xyz/devcon/7/order/ABC12/secret/"
+    "ticketUrl": "https://ticketh.xyz/devcon/7/order/ABC12/orderSecret123/"
   },
   "payment": {
     "txHash": "0x...",
@@ -661,8 +662,6 @@ A minimal Pretix payment provider plugin (`pretix-x402-payment`) that stores and
 ```
 
 `token_address` is omitted for native ETH payments. `amount` always includes the crypto amount, symbol, and USD value in parentheses.
-
-```
 
 ## Security Considerations
 
