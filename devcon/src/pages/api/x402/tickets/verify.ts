@@ -304,20 +304,29 @@ export default async function handler(
       throw error
     }
 
-    // Attach crypto payment details to order (visible in Pretix admin via daimo_pay plugin)
+    // Attach crypto payment details to order (visible in Pretix admin via x402_crypto plugin)
     const verifyChainIdNum = body.chainId || getUsdcConfig().chainId
-    claimedOrder.orderData.comment = `x402 crypto | Tx: ${body.txHash} | Chain: eip155:${verifyChainIdNum} | Payer: ${body.payer}`
+    const tokenSymbol = body.symbol || getUsdcConfig().tokenSymbol
+    const tokenAddress = body.symbol === 'ETH' ? null : (body.tokenAddress || getUsdcConfig().tokenAddress)
+    let cryptoAmount: string
+    if (body.symbol === 'ETH') {
+      const expectedWei = pendingOrder.expectedEthAmountWeiByChain?.[String(body.chainId)] || '0'
+      cryptoAmount = String(Number(BigInt(expectedWei)) / 1e18)
+    } else {
+      cryptoAmount = claimedOrder.totalUsd
+    }
     claimedOrder.orderData.payment_info = {
-      source_tx_hash: body.txHash,
-      dest_tx_hash: body.txHash,
-      source_chain_id: verifyChainIdNum,
-      dest_chain_id: verifyChainIdNum,
-      amount: claimedOrder.totalUsd,
-      time: Math.floor(Date.now() / 1000),
+      tx_hash: body.txHash,
+      chain_id: verifyChainIdNum,
+      token_symbol: tokenSymbol,
+      ...(tokenAddress && { token_address: tokenAddress }),
+      amount: `${cryptoAmount} ${tokenSymbol} ($${claimedOrder.totalUsd})`,
       payer: body.payer,
+      payment_reference: body.paymentReference,
+      block_number: verification.blockNumber || null,
     }
 
-    // Create order in Pretix with daimo_pay payment provider
+    // Create order in Pretix with x402_crypto payment provider
     console.log('[Verify] Creating Pretix order for payment ref:', body.paymentReference)
     let pretixOrder
     try {
@@ -335,15 +344,15 @@ export default async function handler(
       })
     }
 
-    // Confirm the daimo_pay payment with tx details (instead of mark_paid which creates a new manual payment)
+    // Confirm the x402_crypto payment with tx details (instead of mark_paid which creates a new manual payment)
     try {
-      const daimoPayment = pretixOrder.payments.find((p: any) => p.provider === 'daimo_pay' && p.state !== 'canceled')
-      if (daimoPayment) {
-        console.log('[Verify] Confirming daimo_pay payment:', daimoPayment.local_id)
-        await confirmOrderPayment(pretixOrder.code, daimoPayment.local_id, claimedOrder.orderData.payment_info)
+      const x402Payment = pretixOrder.payments.find((p: any) => p.provider === 'x402_crypto' && p.state !== 'canceled')
+      if (x402Payment) {
+        console.log('[Verify] Confirming x402_crypto payment:', x402Payment.local_id)
+        await confirmOrderPayment(pretixOrder.code, x402Payment.local_id, claimedOrder.orderData.payment_info)
         console.log('[Verify] Payment confirmed with tx details')
       } else {
-        console.warn(`[Verify] No daimo_pay payment found on order ${pretixOrder.code}`)
+        console.warn(`[Verify] No x402_crypto payment found on order ${pretixOrder.code}`)
       }
     } catch (error) {
       console.error('[Verify] Failed to confirm payment:', error)

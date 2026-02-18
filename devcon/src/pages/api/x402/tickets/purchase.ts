@@ -354,7 +354,7 @@ export default async function handler(
       email: body.email,
       locale: 'en',
       sales_channel: 'web',
-      payment_provider: 'daimo_pay', // Reuse daimo_pay plugin to display tx details in Pretix admin
+      payment_provider: 'x402_crypto',
       positions,
       send_email: true,
     }
@@ -708,29 +708,29 @@ async function handlePaymentSignatureRetry(
     throw error
   }
 
-  // 14. Attach crypto payment details to order (visible in Pretix admin via daimo_pay plugin)
-  claimedOrder.orderData.comment = `x402 crypto | Tx: ${txHash} | Chain: eip155:${networkChainId} | Payer: ${authorization.from}`
+  // 14. Attach crypto payment details to order (visible in Pretix admin via x402_crypto plugin)
+  const cryptoAmount = Number(BigInt(String(authorization.value))) / 1e6
   claimedOrder.orderData.payment_info = {
-    source_tx_hash: txHash,
-    dest_tx_hash: txHash,
-    source_chain_id: networkChainId,
-    dest_chain_id: networkChainId,
-    amount: claimedOrder.totalUsd,
-    time: Math.floor(Date.now() / 1000),
+    tx_hash: txHash,
+    chain_id: networkChainId,
+    token_symbol: tokenConfig.tokenSymbol,
+    token_address: tokenConfig.tokenAddress,
+    amount: `${cryptoAmount} ${tokenConfig.tokenSymbol} ($${claimedOrder.totalUsd})`,
     payer: authorization.from,
+    payment_reference: paymentReference,
+    block_number: verification.blockNumber || null,
   }
 
-  // 15. Create Pretix order + confirm the daimo_pay payment with tx details
+  // 15. Create Pretix order + confirm the x402_crypto payment with tx details
   let pretixOrder
   try {
     pretixOrder = await createOrder(claimedOrder.orderData)
-    // Find the pending daimo_pay payment created by order creation and confirm it
-    const daimoPayment = pretixOrder.payments.find(p => p.provider === 'daimo_pay' && p.state !== 'canceled')
-    if (daimoPayment) {
-      await confirmOrderPayment(pretixOrder.code, daimoPayment.local_id, claimedOrder.orderData.payment_info)
+    // Find the pending x402_crypto payment created by order creation and confirm it
+    const x402Payment = pretixOrder.payments.find(p => p.provider === 'x402_crypto' && p.state !== 'canceled')
+    if (x402Payment) {
+      await confirmOrderPayment(pretixOrder.code, x402Payment.local_id, claimedOrder.orderData.payment_info)
     } else {
-      // Fallback: shouldn't happen, but log a warning
-      console.warn(`[purchase] No daimo_pay payment found on order ${pretixOrder.code}, order is pending`)
+      console.warn(`[purchase] No x402_crypto payment found on order ${pretixOrder.code}, order is pending`)
     }
   } catch (error) {
     // Remove reservation and restore pending order so user can retry

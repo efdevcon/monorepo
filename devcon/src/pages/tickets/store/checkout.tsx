@@ -1213,15 +1213,8 @@ function CheckoutContent() {
       if (data.success) {
         setPaymentStatus(null)
         localStorage.removeItem('devcon-ticket-cart')
-        // Redirect to confirmation page
-        const params = new URLSearchParams({
-          tx: hash,
-          chainId: String(paymentDetails.chainId),
-          symbol: paymentDetails.tokenSymbol,
-          network: paymentDetails.network,
-        })
-        const confirmUrl = `/tickets/store/order/${data.order.code}/${data.order.secret}?${params.toString()}`
-        router.push(confirmUrl)
+        // Redirect to confirmation page (payment details are fetched from the API)
+        router.push(`/tickets/store/order/${data.order.code}/${data.order.secret}`)
         return
       }
 

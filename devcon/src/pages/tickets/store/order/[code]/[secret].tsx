@@ -17,6 +17,17 @@ interface OrderPosition {
   isAddon: boolean
 }
 
+interface PaymentInfo {
+  tx_hash?: string
+  chain_id?: number
+  token_symbol?: string
+  token_address?: string
+  amount?: string
+  payer?: string
+  payment_reference?: string
+  block_number?: number | null
+}
+
 interface OrderData {
   code: string
   status: string
@@ -26,6 +37,7 @@ interface OrderData {
   payment_provider: string | null
   positions: OrderPosition[]
   url: string
+  payment_info: PaymentInfo | null
 }
 
 function CheckIcon() {
@@ -51,14 +63,6 @@ export default function OrderConfirmationPage() {
   const [order, setOrder] = useState<OrderData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
-  // Extra context from query params (set by checkout redirect)
-  const txHash = (router.query.tx as string) || null
-  const chainId = router.query.chainId ? parseInt(router.query.chainId as string) : null
-  const paymentSymbolRaw = (router.query.symbol as string) || 'USDC'
-  const SYMBOL_DISPLAY: Record<string, string> = { USDT0: 'USD₮0' }
-  const paymentSymbol = SYMBOL_DISPLAY[paymentSymbolRaw] ?? paymentSymbolRaw
-  const paymentNetwork = (router.query.network as string) || null
 
   useEffect(() => {
     if (!code || !secret) return
@@ -111,7 +115,8 @@ export default function OrderConfirmationPage() {
   }
 
   const isPaid = order.status === 'p'
-  const isCrypto = !!txHash
+  const pi = order.payment_info
+  const isCrypto = !!pi?.tx_hash
 
   const BLOCK_EXPLORERS: Record<number, string> = {
     1: 'https://etherscan.io',
@@ -120,9 +125,16 @@ export default function OrderConfirmationPage() {
     8453: 'https://basescan.org',
     84532: 'https://sepolia.basescan.org',
   }
+  const CHAIN_NAMES: Record<number, string> = {
+    1: 'Ethereum', 10: 'Optimism', 42161: 'Arbitrum', 8453: 'Base', 84532: 'Base Sepolia',
+  }
+  const SYMBOL_DISPLAY: Record<string, string> = { USDT0: 'USD₮0' }
+  const chainId = pi?.chain_id ?? null
   const explorerBase = (chainId != null && BLOCK_EXPLORERS[chainId]) ? BLOCK_EXPLORERS[chainId] : 'https://etherscan.io'
+  const tokenSymbol = pi?.token_symbol ? (SYMBOL_DISPLAY[pi.token_symbol] ?? pi.token_symbol) : null
+  const networkName = chainId != null ? CHAIN_NAMES[chainId] ?? null : null
   const paymentLabel = isCrypto
-    ? (paymentNetwork ? `Crypto (${paymentSymbol} on ${paymentNetwork})` : `Crypto (${paymentSymbol})`)
+    ? (networkName ? `Crypto (${tokenSymbol} on ${networkName})` : `Crypto (${tokenSymbol})`)
     : 'Card (Stripe)'
 
   // Separate positions into tickets and add-ons, group by item for display
@@ -206,22 +218,22 @@ export default function OrderConfirmationPage() {
                 <span className={css['detail-label']}>Payment</span>
                 <span className={css['detail-value']}>{paymentLabel}</span>
               </div>
-              {txHash && (
+              {pi?.tx_hash && (
                 <div className={css['detail-row']}>
                   <span className={css['detail-label']}>Transaction</span>
                   <a
-                    href={`${explorerBase}/tx/${txHash}`}
+                    href={`${explorerBase}/tx/${pi.tx_hash}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={css['detail-link']}
                   >
-                    {txHash.slice(0, 10)}...{txHash.slice(-8)}
+                    {pi.tx_hash.slice(0, 10)}...{pi.tx_hash.slice(-8)}
                   </a>
                 </div>
               )}
               <div className={css['detail-row']}>
                 <span className={css['detail-label']}>Total</span>
-                <span className={css['detail-value-bold']}>${order.total}</span>
+                <span className={css['detail-value-bold']}>{pi?.amount || `$${order.total}`}</span>
               </div>
             </div>
           </div>

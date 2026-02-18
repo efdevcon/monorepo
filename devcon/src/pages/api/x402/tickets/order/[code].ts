@@ -20,6 +20,17 @@ interface OrderPosition {
   isAddon: boolean
 }
 
+interface PaymentInfo {
+  tx_hash?: string
+  chain_id?: number
+  token_symbol?: string
+  token_address?: string
+  amount?: string
+  payer?: string
+  payment_reference?: string
+  block_number?: number | null
+}
+
 interface OrderDetailsResponse {
   success: true
   order: {
@@ -31,6 +42,7 @@ interface OrderDetailsResponse {
     payment_provider: string | null
     positions: OrderPosition[]
     url: string
+    payment_info: PaymentInfo | null
   }
 }
 
@@ -102,6 +114,26 @@ export default async function handler(
       }
     })
 
+    // Extract payment info from the x402_crypto payment (if any)
+    // Pretix REST API exposes provider-specific data via the `details` field
+    const x402Payment = (order.payments || []).find(
+      (p) => p.provider === 'x402_crypto' && p.state !== 'canceled'
+    )
+    let paymentInfo: PaymentInfo | null = null
+    if (x402Payment?.details) {
+      const d = x402Payment.details
+      paymentInfo = {
+        tx_hash: d.tx_hash as string | undefined,
+        chain_id: d.chain_id as number | undefined,
+        token_symbol: d.token_symbol as string | undefined,
+        token_address: d.token_address as string | undefined,
+        amount: d.amount as string | undefined,
+        payer: d.payer as string | undefined,
+        payment_reference: d.payment_reference as string | undefined,
+        block_number: d.block_number as number | null | undefined,
+      }
+    }
+
     return res.status(200).json({
       success: true,
       order: {
@@ -113,6 +145,7 @@ export default async function handler(
         payment_provider: order.payment_provider,
         positions,
         url: order.url,
+        payment_info: paymentInfo,
       },
     })
   } catch (error) {

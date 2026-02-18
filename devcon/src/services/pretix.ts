@@ -140,7 +140,7 @@ export async function markOrderPaid(orderCode: string): Promise<PretixOrder> {
 
 /**
  * Confirm an existing payment on an order and attach info data.
- * This confirms the payment created by the order's payment_provider (e.g. daimo_pay)
+ * This confirms the payment created by the order's payment_provider (e.g. x402_crypto)
  * instead of creating a new manual payment via mark_paid/.
  */
 export async function confirmOrderPayment(
@@ -163,6 +163,7 @@ export async function confirmOrderPayment(
     throw new Error(`Failed to confirm payment ${paymentLocalId} on order ${orderCode} (${response.status}): ${text}`)
   }
 }
+
 
 /**
  * Get complete ticket purchase information including items, questions, and availability
