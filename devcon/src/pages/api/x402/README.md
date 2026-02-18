@@ -4,7 +4,11 @@ This API implements the x402 payment protocol for purchasing Devcon tickets with
 
 ## Last change recap
 
-**Commit:** dynamic checkout with x402 crypto payment + gas sponsoring — USDC on Base (3% discount), Pretix integration, gasless EIP-3009 relayer.
+- Unified `payment_info` between `purchase.ts` and `verify.ts` (consistent shape, removed unused fields)
+- Amount format: `0.000010119 ETH ($0.02)` or `0.02 USDC ($0.02)` — actual crypto amount + USD value
+- Order API (`order/[code].ts`) now returns `payment_info` via Pretix REST API `details` field
+- Confirmation page uses `payment_info` from API instead of URL query params
+- Created `pretix-x402-payment` plugin for Pretix admin display and REST API exposure
 
 ## Database (Supabase)
 
@@ -617,6 +621,47 @@ PRETIX_ORGANIZER=org PRETIX_EVENT=test pnpm pretix:test-all
 # Test the full x402 flow (requires running API)
 pnpm dev  # In one terminal
 pnpm x402:test-flow  # In another
+```
+
+## Pretix Plugin: pretix-x402-payment
+
+A minimal Pretix payment provider plugin (`pretix-x402-payment`) that stores and displays on-chain crypto payment details in the Pretix admin.
+
+**Location:** `https://github.com/efdevcon/pretix-x402-payment`
+
+### What it does
+
+- Registers `x402_crypto` as a payment provider in Pretix
+- Renders tx hash (linked to block explorer), network, token, amount, payer wallet, and block number in the admin order view
+- Exposes payment details via the Pretix REST API `details` field (used by the order API)
+
+### How payment_info flows
+
+1. **purchase.ts / verify.ts** builds a `payment_info` object after on-chain verification
+2. `createOrder()` includes `payment_info` in the order payload → stored as the payment's `info` JSON field in Pretix
+3. `confirmOrderPayment()` confirms the `x402_crypto` payment with the same `payment_info` → updates the payment's `info` field
+4. **Admin view**: Plugin's `payment_control_render()` reads `payment.info_data` and renders the HTML template
+5. **REST API**: Plugin's `api_payment_details()` returns `payment.info_data`, populating the `details` field on the payment object
+6. **Order API** (`order/[code].ts`): Reads `details` from the x402_crypto payment and returns it as `payment_info`
+7. **Confirmation page** (`order/[code]/[secret].tsx`): Fetches order via API, uses `payment_info` to display crypto details (network, token, tx link, amount)
+
+### payment_info shape
+
+```json
+{
+  "tx_hash": "0x...",
+  "chain_id": 8453,
+  "token_symbol": "USDC",
+  "token_address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "amount": "0.02 USDC ($0.02)",
+  "payer": "0x...",
+  "payment_reference": "x402_abc123...",
+  "block_number": 12345678
+}
+```
+
+`token_address` is omitted for native ETH payments. `amount` always includes the crypto amount, symbol, and USD value in parentheses.
+
 ```
 
 ## Security Considerations
