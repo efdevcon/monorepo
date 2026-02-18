@@ -2,27 +2,11 @@
 
 import React, { useState, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider, useAccount, useConnect, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain, useSignTypedData } from 'wagmi'
-import { createConfig, http } from 'wagmi'
-import { baseSepolia, base } from 'wagmi/chains'
-import { injected, walletConnect } from 'wagmi/connectors'
+import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain, useSignTypedData } from 'wagmi'
+import type { Config } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react'
+import { wagmiAdapter } from 'context/appkit-config'
 import { parseUnits, encodeFunctionData } from 'viem'
-
-// WalletConnect Project ID
-const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
-
-// Wagmi config for Base Sepolia (testnet) and Base (mainnet)
-const wagmiConfig = createConfig({
-  chains: [baseSepolia, base],
-  connectors: [
-    injected(),
-    ...(WC_PROJECT_ID ? [walletConnect({ projectId: WC_PROJECT_ID })] : []),
-  ],
-  transports: {
-    [baseSepolia.id]: http(),
-    [base.id]: http(),
-  },
-})
 
 const queryClient = new QueryClient()
 
@@ -86,7 +70,7 @@ interface PaymentDetails {
 // Main component wrapped with providers
 export default function X402TestPage() {
   return (
-    <WagmiProvider config={wagmiConfig}>
+    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
       <QueryClientProvider client={queryClient}>
         <X402TestContent />
       </QueryClientProvider>
@@ -96,7 +80,7 @@ export default function X402TestPage() {
 
 function X402TestContent() {
   const { address, isConnected, chain } = useAccount()
-  const { connect, connectors } = useConnect()
+  const { open } = useAppKit()
   const { disconnect } = useDisconnect()
   const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
 
@@ -472,17 +456,9 @@ function X402TestContent() {
         ) : (
           <div>
             <p style={{ margin: '0 0 10px' }}>Connect your wallet to purchase tickets</p>
-            <div style={{ display: 'flex', gap: 10 }}>
-              {connectors.map((connector) => (
-                <button
-                  key={connector.uid}
-                  onClick={() => connect({ connector })}
-                  style={buttonStyle}
-                >
-                  {connector.name}
-                </button>
-              ))}
-            </div>
+            <button onClick={() => open()} style={buttonStyle}>
+              Connect Wallet
+            </button>
           </div>
         )}
       </div>

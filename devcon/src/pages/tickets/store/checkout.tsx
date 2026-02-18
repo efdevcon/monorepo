@@ -8,7 +8,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   WagmiProvider,
   useAccount,
-  useConnect,
   useDisconnect,
   useWriteContract,
   useWaitForTransactionReceipt,
@@ -16,53 +15,10 @@ import {
   useWalletClient,
   useSendTransaction,
 } from 'wagmi'
-import { createConfig, http, fallback } from 'wagmi'
-import { baseSepolia, base, mainnet, optimism, arbitrum, polygon } from 'wagmi/chains'
-import { injected, walletConnect } from 'wagmi/connectors'
+import type { Config } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react'
+import { wagmiAdapter } from 'context/appkit-config'
 import { QuestionInfo, TicketInfo } from 'types/pretix'
-
-const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
-const ALCHEMY_KEY = process.env.NEXT_PUBLIC_ALCHEMY_APIKEY || ''
-const INFURA_KEY = process.env.NEXT_PUBLIC_INFURA_APIKEY || ''
-
-// Build RPC transports: Alchemy (primary) → Infura (fallback) → public default
-const ALCHEMY_URLS: Record<number, string> = {
-  [mainnet.id]: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-  [base.id]: `https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-  [optimism.id]: `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-  [arbitrum.id]: `https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-  [polygon.id]: `https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-  [baseSepolia.id]: `https://base-sepolia.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-}
-
-const INFURA_URLS: Record<number, string> = {
-  [mainnet.id]: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
-  [optimism.id]: `https://optimism-mainnet.infura.io/v3/${INFURA_KEY}`,
-  [arbitrum.id]: `https://arbitrum-mainnet.infura.io/v3/${INFURA_KEY}`,
-  [polygon.id]: `https://polygon-mainnet.infura.io/v3/${INFURA_KEY}`,
-  [baseSepolia.id]: `https://base-sepolia.infura.io/v3/${INFURA_KEY}`,
-}
-
-function chainTransport(chainId: number) {
-  const transports = []
-  if (ALCHEMY_KEY && ALCHEMY_URLS[chainId]) transports.push(http(ALCHEMY_URLS[chainId]))
-  if (INFURA_KEY && INFURA_URLS[chainId]) transports.push(http(INFURA_URLS[chainId]))
-  transports.push(http()) // public fallback
-  return fallback(transports)
-}
-
-const wagmiConfig = createConfig({
-  chains: [baseSepolia, base, mainnet, optimism, arbitrum, polygon],
-  connectors: [injected(), ...(WC_PROJECT_ID ? [walletConnect({ projectId: WC_PROJECT_ID })] : [])],
-  transports: {
-    [baseSepolia.id]: chainTransport(baseSepolia.id),
-    [base.id]: chainTransport(base.id),
-    [mainnet.id]: chainTransport(mainnet.id),
-    [optimism.id]: chainTransport(optimism.id),
-    [arbitrum.id]: chainTransport(arbitrum.id),
-    [polygon.id]: chainTransport(polygon.id),
-  },
-})
 
 const queryClient = new QueryClient()
 
@@ -264,7 +220,7 @@ const FAQ_ITEMS = [
 
 export default function CheckoutPage() {
   return (
-    <WagmiProvider config={wagmiConfig}>
+    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
       <QueryClientProvider client={queryClient}>
         <CheckoutContent />
       </QueryClientProvider>
@@ -276,7 +232,7 @@ export default function CheckoutPage() {
 
 function CheckoutContent() {
   const { address, isConnected, chain } = useAccount()
-  const { connect, connectors } = useConnect()
+  const { open } = useAppKit()
   const { disconnect } = useDisconnect()
   const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
   const router = useRouter()
@@ -1637,9 +1593,7 @@ function CheckoutContent() {
 
                 {paymentMethod === 'crypto' && (
                   <div className={css['wallet-box']}>
-                    {!mounted ? (
-                      <p className={css['wallet-sub']}>Loading wallet...</p>
-                    ) : isConnected ? (
+                    {isConnected ? (
                       <div className={css['wallet-connected']}>
                         <div>
                           <span className={css['wallet-address']}>
@@ -1661,18 +1615,13 @@ function CheckoutContent() {
                     ) : (
                       <>
                         <p className={css['wallet-title']}>Connect your wallet to pay with crypto</p>
-                        <div className={css['wallet-connectors']}>
-                          {connectors.map(connector => (
-                            <button
-                              key={connector.uid}
-                              type="button"
-                              className={css['wallet-connect-btn']}
-                              onClick={() => connect({ connector })}
-                            >
-                              {connector.name}
-                            </button>
-                          ))}
-                        </div>
+                        <button
+                          type="button"
+                          className={css['wallet-connect-btn']}
+                          onClick={() => open()}
+                        >
+                          Connect Wallet
+                        </button>
                       </>
                     )}
                   </div>
