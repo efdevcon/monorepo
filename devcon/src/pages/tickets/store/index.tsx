@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
 import themes from '../../themes.module.scss'
@@ -7,6 +8,8 @@ import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import css from './store.module.scss'
 import { TicketInfo, QuestionInfo } from 'types/pretix'
+import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
+import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
 
@@ -208,7 +211,9 @@ function StoreContent({
             <ArrowLeftIcon />
             Back to tickets
           </Link>
-          <div className={css['sidebar-logo']}>DEVCON INDIA</div>
+          <div className={css['sidebar-logo']}>
+            <Image src={StoreSidebarLogo} alt="Devcon India" height={48} width={140} />
+          </div>
           <h1 className={css['sidebar-title']}>Devcon Tickets</h1>
           <p className={css['sidebar-description']}>
             Secure your Devcon India ticket and join thousands of builders, creators, and thinkers at the world's
@@ -223,6 +228,13 @@ function StoreContent({
         <div className={css['content-wrapper']}>
           <div className={css['content']}>
             <div className={css['countdown-banner']}>
+              <Image
+                src={StoreCountdownBanner}
+                alt=""
+                fill
+                className={css['countdown-banner-bg']}
+                sizes="(max-width: 1024px) 100vw, 1400px"
+              />
               <div className={css['countdown-grid']}>
                 <div className={css['countdown-item']}>
                   <span className={css['countdown-value']}>{countdown.days}</span>
