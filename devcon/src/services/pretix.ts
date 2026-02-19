@@ -251,10 +251,12 @@ export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurcha
         name: getLocalizedString(item.name, locale),
         description: getLocalizedString(item.description, locale) || null,
         price: item.default_price,
+        originalPrice: item.original_price || null,
         currency: event.currency,
         available: availability.available,
         availableCount: availability.count,
         isAdmission: item.admission,
+        requireVoucher: item.require_voucher,
         variations: item.variations.map((v) => ({
           id: v.id,
           name: getLocalizedString(v.value, locale),

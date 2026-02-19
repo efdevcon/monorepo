@@ -249,10 +249,12 @@ export interface TicketInfo {
   name: string
   description: string | null
   price: string
+  originalPrice: string | null
   currency: string
   available: boolean
   availableCount: number | null
   isAdmission: boolean
+  requireVoucher: boolean
   variations: {
     id: number
     name: string

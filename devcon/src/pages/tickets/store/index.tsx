@@ -201,7 +201,8 @@ function StoreContent({
     localStorage.setItem('devcon-ticket-cart', JSON.stringify(cartData))
   }
 
-  const admissionTickets = tickets.filter(t => t.isAdmission && t.available)
+  const admissionTickets = tickets.filter(t => t.isAdmission && t.available && !t.requireVoucher)
+  const voucherTickets = tickets.filter(t => t.isAdmission && t.available && t.requireVoucher)
 
   return (
     <>
@@ -308,6 +309,9 @@ function StoreContent({
                     </div>
                     <div className={css['card-right']}>
                       <div className={css['pricing']}>
+                        {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                          <span className={css['price-original']}>${ticket.originalPrice}</span>
+                        )}
                         <span className={css['price-current']}>${ticket.price}</span>
                       </div>
                       <div className={css['quantity']}>
@@ -346,55 +350,65 @@ function StoreContent({
               )}
             </section>
 
-            <section className={css['section']} id="discounts">
-              <h2 className={css['section-title']}>Discounts</h2>
-              <p className={css['section-subtitle']}>Check if you qualify for a general admission discount</p>
+            {voucherTickets.length > 0 && (
+              <section className={css['section']} id="discounts">
+                <h2 className={css['section-title']}>Discounts</h2>
+                <p className={css['section-subtitle']}>Check if you qualify for a general admission discount</p>
 
-              <div className={css['discounts-grid']}>
-                <div className={css['card']}>
-                  <div className={css['card-main']}>
-                    <div className={css['card-body']}>
-                      <h3 className={css['card-title']}>Local Early Bird</h3>
-                      <p className={css['card-meta']}>Via AnonAadhaar</p>
-                      <p className={css['card-description']}>
-                        Verify you're based in India (via AnonAadhaar) to get this discount
-                      </p>
-                    </div>
-                    <div className={css['card-right']}>
-                      <div className={css['pricing']}>
-                        <span className={css['price-current']}>$99</span>
-                        <span className={css['price-original']}>$349</span>
+                <div className={css['discounts-grid']}>
+                  {voucherTickets.map(ticket => (
+                    <React.Fragment key={ticket.id}>
+                      <div className={css['card']}>
+                        <div className={css['card-main']}>
+                          <div className={css['card-body']}>
+                            <h3 className={css['card-title']}>{ticket.name}</h3>
+                            <p className={css['card-meta']}>Via AnonAadhaar</p>
+                            <p className={css['card-description']}>
+                              Verify you're based in India (via AnonAadhaar) to get this discount
+                            </p>
+                          </div>
+                          <div className={css['card-right']}>
+                            <div className={css['pricing']}>
+                              <span className={css['price-current']}>${ticket.price}</span>
+                              {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                <span className={css['price-original']}>${ticket.originalPrice}</span>
+                              )}
+                            </div>
+                            <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
+                              <VerifyIcon />
+                              Verify
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
-                        <VerifyIcon />
-                        Verify
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className={css['card']}>
-                  <div className={css['card-main']}>
-                    <div className={css['card-body']}>
-                      <h3 className={css['card-title']}>Local Early Bird</h3>
-                      <p className={css['card-meta']}>Via SELF</p>
-                      <p className={css['card-description']}>
-                        Verify you're based in India (via SELF) to get this discount
-                      </p>
-                    </div>
-                    <div className={css['card-right']}>
-                      <div className={css['pricing']}>
-                        <span className={css['price-current']}>$99</span>
-                        <span className={css['price-original']}>$349</span>
+                      <div className={css['card']}>
+                        <div className={css['card-main']}>
+                          <div className={css['card-body']}>
+                            <h3 className={css['card-title']}>{ticket.name}</h3>
+                            <p className={css['card-meta']}>Via SELF</p>
+                            <p className={css['card-description']}>
+                              Verify you're based in India (via SELF) to get this discount
+                            </p>
+                          </div>
+                          <div className={css['card-right']}>
+                            <div className={css['pricing']}>
+                              <span className={css['price-current']}>${ticket.price}</span>
+                              {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                <span className={css['price-original']}>${ticket.originalPrice}</span>
+                              )}
+                            </div>
+                            <button type="button" className={css['verify-btn']} onClick={() => setSelfVerificationOpen(true)}>
+                              <VerifyIcon />
+                              Verify
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                      <button type="button" className={css['verify-btn']} onClick={() => setSelfVerificationOpen(true)}>
-                        <VerifyIcon />
-                        Verify
-                      </button>
-                    </div>
-                  </div>
+                    </React.Fragment>
+                  ))}
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
           </div>
           <div className={css['summary-sticky']}>
             <div className={css['summary-sticky-inner']}>
