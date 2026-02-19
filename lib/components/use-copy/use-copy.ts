@@ -1,14 +1,29 @@
-import { useEffect, useMemo } from 'react'
-import { createCopyProxy } from './proxy'
+import { useEffect } from 'react'
 import { useCopyContext } from './provider'
-import type { Proxied } from './types'
+
+function tagStrings(data: any, copyKey: string, path = ''): any {
+  if (typeof data === 'string') {
+    const s = new String(data) as any
+    s.__copyKey = copyKey
+    s.__copyPath = path
+    return s
+  }
+  if (typeof data === 'object' && data !== null) {
+    const out: any = {}
+    for (const [k, v] of Object.entries(data)) {
+      out[k] = tagStrings(v, copyKey, path ? `${path}.${k}` : k)
+    }
+    return out
+  }
+  return data
+}
 
 export function useCopy<T extends Record<string, any>>(
   key: string,
   defaults: T,
   serverContent?: T
-): Proxied<T> {
-  const { registerCopy, version } = useCopyContext()
+): T {
+  const { registerCopy, config, version } = useCopyContext()
 
   const resolved = serverContent ?? defaults
 
@@ -16,8 +31,9 @@ export function useCopy<T extends Record<string, any>>(
     registerCopy(key, defaults, resolved)
   }, [key, registerCopy]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  return useMemo(
-    () => createCopyProxy(resolved, key),
-    [resolved, key, version] // eslint-disable-line react-hooks/exhaustive-deps
-  )
+  if (config.devMode) {
+    return tagStrings(resolved, key) as T
+  }
+
+  return resolved
 }

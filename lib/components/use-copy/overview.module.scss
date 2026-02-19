@@ -77,8 +77,15 @@
 }
 
 .entry {
-  padding: 10px 16px;
   border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.entryHeader {
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,10 +93,6 @@
 
   &:hover {
     background: #f9fafb;
-  }
-
-  &:last-child {
-    border-bottom: none;
   }
 }
 
@@ -106,22 +109,74 @@
   }
 }
 
-.entryAction {
-  font-size: 12px;
-  color: #6366f1;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 .empty {
   padding: 24px 16px;
   text-align: center;
   color: #9ca3af;
   font-size: 13px;
+}
+
+.dataArrow {
+  color: #9ca3af;
+  font-size: 9px;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+
+.dataArrowOpen {
+  transform: rotate(90deg);
+}
+
+.dataEditor {
+  padding: 8px 16px 10px;
+  background: #f9fafb;
+}
+
+.dataTextarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 8px;
+  margin: 0;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #374151;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #6366f1;
+  }
+}
+
+.dataError {
+  font-size: 11px;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+.dataSave {
+  margin-top: 6px;
+  width: 100%;
+  padding: 5px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  background: #6366f1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: #4f46e5;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }

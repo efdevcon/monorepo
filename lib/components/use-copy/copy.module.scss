@@ -1,8 +1,3 @@
-.copyWrapper {
-  position: relative;
-  display: inline;
-}
-
 .editable {
   cursor: pointer;
   outline: 2px dashed transparent;
@@ -14,37 +9,39 @@
   }
 }
 
-.editMode {
-  outline-color: rgba(99, 102, 241, 0.4);
+.showOutlines {
+  outline: 2px dashed rgba(99, 102, 241, 0.4);
+  outline-offset: 2px;
+  transition: outline-color 0.15s ease;
 
   &:hover {
     outline-color: #6366f1;
   }
 }
 
-.editIcon {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 20px;
-  height: 20px;
-  background: #6366f1;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-  pointer-events: none;
-  z-index: 10;
+.editableContents {
+  display: contents;
+  cursor: pointer;
 
-  svg {
-    width: 12px;
-    height: 12px;
-    color: white;
+  > * {
+    outline: 2px dashed transparent;
+    outline-offset: 2px;
+    transition: outline-color 0.15s ease;
+  }
+
+  &:hover > * {
+    outline-color: #6366f1;
   }
 }
 
-.editable:hover .editIcon {
-  opacity: 1;
+.showOutlinesContents {
+  > * {
+    outline: 2px dashed rgba(99, 102, 241, 0.4);
+    outline-offset: 2px;
+    transition: outline-color 0.15s ease;
+  }
+
+  &:hover > * {
+    outline-color: #6366f1;
+  }
 }

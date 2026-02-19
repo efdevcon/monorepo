@@ -5,6 +5,9 @@ interface CopyContextValue {
   config: CopyConfig
   editMode: boolean
   setEditMode: (mode: boolean) => void
+  showOutlines: boolean
+  setShowOutlines: (show: boolean) => void
+  activeCopyKey: string | null
   registry: Map<string, CopyRegistryEntry>
   registerCopy: (key: string, defaults: Record<string, any>, resolved: Record<string, any>) => void
   saveCopy: (key: string, path: string, value: any) => Promise<void>
@@ -27,10 +30,13 @@ export function CopyProvider({
   children: React.ReactNode
 }) {
   const [editMode, setEditMode] = useState(false)
+  const [showOutlines, setShowOutlines] = useState(false)
   const [version, setVersion] = useState(0)
   const registryRef = useRef(new Map<string, CopyRegistryEntry>())
+  const activeCopyKeyRef = useRef<string | null>(null)
 
   const registerCopy = useCallback((key: string, defaults: Record<string, any>, resolved: Record<string, any>) => {
+    activeCopyKeyRef.current = key
     registryRef.current.set(key, {
       defaults,
       overrides: null,
@@ -71,6 +77,9 @@ export function CopyProvider({
         config,
         editMode,
         setEditMode,
+        showOutlines,
+        setShowOutlines,
+        activeCopyKey: activeCopyKeyRef.current,
         registry: registryRef.current,
         registerCopy,
         saveCopy,
