@@ -45,7 +45,7 @@ export default function CmsTestPage(props: any) {
 const defaults2 = {
   cta: {
     heading: '## Get Involved',
-    body: 'Join thousands of builders, researchers, and enthusiasts shaping the future of Ethereum. Whether you\'re a seasoned developer or just getting started, there\'s a place for you at Devcon.',
+    body: "Join thousands of builders, researchers, and enthusiasts shaping the future of Ethereum. Whether you're a seasoned developer or just getting started, there's a place for you at Devcon.",
   },
   faq: {
     heading: '## FAQ',
@@ -59,12 +59,16 @@ const defaults2 = {
 function CmsTestContent({ serverContent }: { serverContent: typeof defaults }) {
   const content = useCopy('cms-test', defaults, serverContent)
   const content2 = useCopy('cms-test-2', defaults2)
+  const content3 = useCopy('cms-test-meta', {
+    title: 'Real time',
+    description: 'Dev-only test page for use-copy library. Not indexed by search engines.',
+  })
 
   return (
     <>
       <Head>
         <meta name="robots" content="noindex, nofollow" />
-        <title>CMS Test Page</title>
+        <title>{String(content3.title)}</title>
       </Head>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px', fontFamily: 'system-ui, sans-serif' }}>
@@ -97,7 +101,7 @@ function CmsTestContent({ serverContent }: { serverContent: typeof defaults }) {
           <ul style={{ listStyle: 'disc', paddingLeft: 24, lineHeight: 2 }}>
             <li>
               <Copy field={content.features.item1}>
-                <span />
+                <span className="bg-yellow-500" />
               </Copy>
             </li>
             <li>

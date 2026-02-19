@@ -159,9 +159,30 @@
   margin-top: 4px;
 }
 
-.dataSave {
+.dataActions {
+  display: flex;
+  gap: 6px;
   margin-top: 6px;
-  width: 100%;
+}
+
+.dataCancel {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f9fafb;
+  }
+}
+
+.dataSave {
+  flex: 1;
   padding: 5px 0;
   font-size: 12px;
   font-weight: 500;

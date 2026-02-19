@@ -10,6 +10,7 @@ interface CopyContextValue {
   activeCopyKey: string | null
   registry: Map<string, CopyRegistryEntry>
   registerCopy: (key: string, defaults: Record<string, any>, resolved: Record<string, any>) => void
+  previewCopy: (key: string, path: string, value: any) => void
   saveCopy: (key: string, path: string, value: any) => Promise<void>
   version: number
 }
@@ -42,6 +43,19 @@ export function CopyProvider({
       overrides: null,
       resolved,
     })
+  }, [])
+
+  const previewCopy = useCallback((key: string, path: string, value: any) => {
+    const entry = registryRef.current.get(key)
+    if (entry) {
+      const keys = path.split('.')
+      let obj = entry.resolved
+      for (let i = 0; i < keys.length - 1; i++) {
+        obj = obj[keys[i]]
+      }
+      obj[keys[keys.length - 1]] = value
+    }
+    setVersion(v => v + 1)
   }, [])
 
   const saveCopy = useCallback(async (key: string, path: string, value: any) => {
@@ -82,6 +96,7 @@ export function CopyProvider({
         activeCopyKey: activeCopyKeyRef.current,
         registry: registryRef.current,
         registerCopy,
+        previewCopy,
         saveCopy,
         version,
       }}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 import { useCopyContext } from './provider'
 import { CopyModal } from './modal'
 import css from './copy.module.scss'
@@ -10,12 +11,24 @@ interface CopyProps {
 }
 
 export function Copy({ field, children, className }: CopyProps) {
-  const { config, editMode, showOutlines, registry } = useCopyContext()
+  const { config, editMode, showOutlines, registry, version } = useCopyContext()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const value = String(field)
   const resolvedKey: string | undefined = field?.__copyKey
   const path: string | undefined = field?.__copyPath
+
+  // Read live value from registry (updated by previewCopy), fall back to tagged field
+  let value = String(field)
+  if (resolvedKey && path) {
+    const entry = registry.get(resolvedKey)
+    if (entry) {
+      let live: any = entry.resolved
+      for (const k of path.split('.')) {
+        live = live?.[k]
+      }
+      if (live !== undefined) value = String(live)
+    }
+  }
 
   const childArray = React.Children.toArray(children)
   const child =
@@ -37,15 +50,18 @@ export function Copy({ field, children, className }: CopyProps) {
     }
   }
 
-  const modal = modalOpen ? (
-    <CopyModal
-      copyKey={resolvedKey}
-      copyPath={path}
-      currentValue={value}
-      open={modalOpen}
-      onOpenChange={setModalOpen}
-    />
-  ) : null
+  const modal = modalOpen
+    ? ReactDOM.createPortal(
+        <CopyModal
+          copyKey={resolvedKey}
+          copyPath={path}
+          currentValue={value}
+          open={modalOpen}
+          onOpenChange={setModalOpen}
+        />,
+        document.body
+      )
+    : null
 
   if (child) {
     // Native DOM elements — inject props + value directly via cloneElement

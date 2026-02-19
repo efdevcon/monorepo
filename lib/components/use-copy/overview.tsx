@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useCopyContext } from './provider'
 import css from './overview.module.scss'
 
-// Collect all leaf paths from an object: { hero: { title: "x" } } → [["hero","title","x"]]
+// Collect all leaf paths from an object
 function leafPaths(obj: any, prefix: string[] = []): Array<{ path: string; value: any }> {
   const results: Array<{ path: string; value: any }> = []
   for (const [k, v] of Object.entries(obj)) {
@@ -17,21 +17,57 @@ function leafPaths(obj: any, prefix: string[] = []): Array<{ path: string; value
 }
 
 function EntryRow({ entryKey, resolved }: { entryKey: string; resolved: Record<string, any> }) {
-  const { saveCopy } = useCopyContext()
+  const { previewCopy, saveCopy } = useCopyContext()
   const [dataOpen, setDataOpen] = useState(false)
   const [draft, setDraft] = useState(() => JSON.stringify(resolved, null, 2))
   const [error, setError] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
+  const snapshotRef = useRef<string>('')
   const fieldCount = Object.keys(resolved).length
 
-  const currentJson = JSON.stringify(resolved, null, 2)
-  const isDirty = draft !== currentJson
+  const isDirty = dataOpen && draft !== snapshotRef.current
 
-  const scrollToField = () => {
-    const el = document.querySelector(`[data-copy-key="${entryKey}"]`)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  // Live preview: apply draft to registry on every change
+  useEffect(() => {
+    if (!dataOpen || !isDirty) return
+    let parsed: any
+    try {
+      parsed = JSON.parse(draft)
+    } catch {
+      return // don't preview invalid JSON
     }
+    const newLeaves = leafPaths(parsed)
+    for (const { path, value } of newLeaves) {
+      previewCopy(entryKey, path, value)
+    }
+  }, [draft, dataOpen, isDirty, entryKey, previewCopy])
+
+  const handleOpen = () => {
+    const json = JSON.stringify(resolved, null, 2)
+    snapshotRef.current = json
+    setDraft(json)
+    setDataOpen(true)
+    setError(null)
+  }
+
+  const handleClose = () => {
+    // Revert to snapshot
+    if (isDirty) {
+      let original: any
+      try {
+        original = JSON.parse(snapshotRef.current)
+      } catch {
+        // shouldn't happen
+      }
+      if (original) {
+        const leaves = leafPaths(original)
+        for (const { path, value } of leaves) {
+          previewCopy(entryKey, path, value)
+        }
+      }
+    }
+    setDataOpen(false)
+    setError(null)
   }
 
   const handleSave = async () => {
@@ -47,8 +83,10 @@ function EntryRow({ entryKey, resolved }: { entryKey: string; resolved: Record<s
     setSaving(true)
 
     try {
-      // Save each leaf that changed
-      const oldLeaves = leafPaths(resolved)
+      let original: any
+      try { original = JSON.parse(snapshotRef.current) } catch { original = {} }
+
+      const oldLeaves = leafPaths(original)
       const newLeaves = leafPaths(parsed)
       const newMap = new Map(newLeaves.map(l => [l.path, l.value]))
 
@@ -58,7 +96,6 @@ function EntryRow({ entryKey, resolved }: { entryKey: string; resolved: Record<s
           await saveCopy(entryKey, path, newVal)
         }
       }
-      // Handle new paths that didn't exist before
       const oldPaths = new Set(oldLeaves.map(l => l.path))
       for (const { path, value } of newLeaves) {
         if (!oldPaths.has(path)) {
@@ -66,6 +103,8 @@ function EntryRow({ entryKey, resolved }: { entryKey: string; resolved: Record<s
         }
       }
 
+      // Update snapshot to new saved state
+      snapshotRef.current = draft
       setError(null)
     } catch {
       setError('Failed to save')
@@ -78,11 +117,7 @@ function EntryRow({ entryKey, resolved }: { entryKey: string; resolved: Record<s
     <div className={css.entry}>
       <div
         className={css.entryHeader}
-        onClick={() => {
-          if (!dataOpen) setDraft(JSON.stringify(resolved, null, 2))
-          setDataOpen(!dataOpen)
-          setError(null)
-        }}
+        onClick={() => dataOpen ? handleClose() : handleOpen()}
       >
         <div className={css.entryInfo}>
           <h4>{entryKey}</h4>
@@ -100,14 +135,23 @@ function EntryRow({ entryKey, resolved }: { entryKey: string; resolved: Record<s
           />
           {error && <div className={css.dataError}>{error}</div>}
           {isDirty && (
-            <button
-              className={css.dataSave}
-              onClick={handleSave}
-              disabled={saving}
-              type="button"
-            >
-              {saving ? 'Saving...' : 'Save'}
-            </button>
+            <div className={css.dataActions}>
+              <button
+                className={css.dataCancel}
+                onClick={handleClose}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                className={css.dataSave}
+                onClick={handleSave}
+                disabled={saving}
+                type="button"
+              >
+                {saving ? 'Saving...' : 'Save'}
+              </button>
+            </div>
           )}
         </div>
       )}
