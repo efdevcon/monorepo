@@ -36,6 +36,8 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [sources, setSources] = useState<Source[]>([]);
   const [showSources, setShowSources] = useState(false);
+  const [debugContext, setDebugContext] = useState<string>("");
+  const [showDebugContext, setShowDebugContext] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -96,6 +98,7 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
     setStreamingMessage("");
     setError("");
     setSources([]);
+    setDebugContext("");
 
     try {
       const baseUrl = apiUrl || process.env.NEXT_PUBLIC_DEVABOT_API_URL || "http://localhost:3001";
@@ -133,6 +136,9 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
               if (data.type === "sources") {
                 console.log("Sources received:", data.documents);
                 setSources(data.documents || []);
+              } else if (data.type === "debug_context") {
+                console.log("Debug context received:", data.contextLength, "chars");
+                setDebugContext(data.context || "");
               } else if (data.type === "text") {
                 assistantContent += data.text;
                 setStreamingMessage(assistantContent);
@@ -214,6 +220,25 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
                         <div className="text-yellow-700 mt-1">{s.content_preview}</div>
                       </div>
                     ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Debug context toggle */}
+            {debugContext && (
+              <div className="px-4 py-2 bg-blue-50 border-b">
+                <button
+                  onClick={() => setShowDebugContext(!showDebugContext)}
+                  className="text-xs font-mono text-blue-800"
+                >
+                  📄 Full context: {debugContext.length.toLocaleString()} chars (click to {showDebugContext ? "hide" : "show"})
+                </button>
+                {showDebugContext && (
+                  <div className="mt-2 max-h-96 overflow-y-auto">
+                    <pre className="text-xs font-mono bg-blue-100 p-2 rounded whitespace-pre-wrap break-words">
+                      {debugContext}
+                    </pre>
                   </div>
                 )}
               </div>

@@ -1,0 +1,7 @@
+export type { CopyConfig, CopyRegistryEntry } from './types'
+export { CopyProvider } from './provider'
+export { useCopy } from './use-copy'
+export { Copy } from './copy'
+export { CopyOverview } from './overview'
+export { deepMerge } from './utils/merge'
+export { flattenToText } from './utils/flatten-text'

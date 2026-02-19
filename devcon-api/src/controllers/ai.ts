@@ -1,37 +1,14 @@
 import { Request, Response, Router } from 'express'
-import { Pool } from 'pg'
-import { RateLimiterPostgres } from 'rate-limiter-flexible'
+import { RateLimiterMemory } from 'rate-limiter-flexible'
 import { api } from '../services/ai/open-ai/open-ai'
 import { devconAppAssistant, devconWebsiteAssistant, devconnectWebsiteAssistant } from '../services/ai/open-ai/assistant-versions'
 
 export const aiRouter = Router()
 
-let pool: Pool | null = null
-
-const getRateLimiter = async (): Promise<RateLimiterPostgres> => {
-  if (!pool) {
-    pool = new Pool({
-      connectionString: process.env.DB_CONNECTION_STRING,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    })
-  }
-
-  return new Promise((resolve, reject) => {
-    const ratelimiter = new RateLimiterPostgres(
-      {
-        storeClient: pool,
-        tableName: 'rate_limit', // This table will be created automatically
-        points: 100,
-        duration: 3600 * 24,
-      },
-      () => {
-        resolve(ratelimiter)
-      }
-    )
-  })
-}
+const rateLimiter = new RateLimiterMemory({
+  points: 100,
+  duration: 3600 * 24,
+})
 
 aiRouter.get('/devabot/threads/:threadID', async (req: Request, res: Response) => {
   const { threadID } = req.params
@@ -48,7 +25,6 @@ aiRouter.get('/devabot/threads/:threadID', async (req: Request, res: Response) =
 
 aiRouter.post('/devabot', async (req: Request, res: Response) => {
   try {
-    const rateLimiter = await getRateLimiter()
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
     await rateLimiter.consume(ip as string)
   } catch (error) {
@@ -96,20 +72,3 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
     res.end()
   }
 })
-
-// aiRouter.post('/devabot/recommendations', async (req: Request, res: Response) => {
-//   const { message } = req.body
-
-//   try {
-//     const recommendations = await api.recommendations.getScheduleRecommendations('asst_PRn8YEfa54OGfroaVFhvLWlv', message)
-
-//     res.json(recommendations)
-//   } catch (e: any) {
-//     console.error(e, 'error')
-//     if (e.error) {
-//       res.status(500).json({ error: e.error })
-//     } else {
-//       res.status(500).json({ error: 'Internal Server Error' })
-//     }
-//   }
-// })

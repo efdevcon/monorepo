@@ -1,5 +1,10 @@
-import { TicketPod } from '../types/accounts'
 import { TicketSpec } from '@parcnet-js/ticket-spec'
+
+interface TicketPod {
+  entries: Record<string, any>
+  signature: string
+  signerPublicKey: string
+}
 import { POD } from '@pcd/pod'
 
 export const DevconTicketSpec = TicketSpec.extend((schema: any, f: any) => {

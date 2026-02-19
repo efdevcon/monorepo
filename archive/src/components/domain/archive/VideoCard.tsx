@@ -51,14 +51,14 @@ export const VideoCard = (props: Props) => {
           <img
             src={
               props.video.sources_youtubeId
-                ? `https://img.youtube.com/vi/${props.video.sources_youtubeId}/maxresdefault.jpg`
+                ? `https://img.youtube.com/vi/${props.video.sources_youtubeId}/hqdefault.jpg`
                 : "/images/video-soon.png"
             }
             alt={`${props.video.title} preview`}
           />
 
           <div className={`${css["labels"]}`}>
-            <div className={`label sm black`}>Devcon {props.video.edition}</div>
+            <div className={`label sm black`}>{props.video.eventId === 'devconnect-arg' ? 'Devconnect' : props.video.edition != null ? `Devcon ${props.video.edition}` : 'Devcon'}</div>
             <div className={`label sm black`}>{props.video.type}</div>
             {props.video.duration && (
               <div className={`${css["duration"]} label sm black`}>

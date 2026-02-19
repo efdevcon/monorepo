@@ -41,6 +41,16 @@ const past_events: Template = {
           type: 'string',
         },
         {
+          label: 'button 2',
+          name: 'button2',
+          type: 'string',
+        },
+        {
+          label: 'button 2 link',
+          name: 'button2_link',
+          type: 'string',
+        },
+        {
           label: 'image',
           name: 'image',
           type: 'image',

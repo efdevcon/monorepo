@@ -25,6 +25,11 @@ export const NavigationItems = [
         url: `/watch?event=devcon-${event}`,
         type: "page",
       })),
+      {
+        title: "Devconnect ARG",
+        url: "/watch?event=devconnect-arg",
+        type: "page",
+      },
     ],
   },
   {

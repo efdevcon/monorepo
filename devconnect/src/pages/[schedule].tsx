@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { Client } from '@notionhq/client'
 import css from './[schedule].module.scss'
-import { Footer, withTranslations } from './index'
+import { Header, Footer, withTranslations } from './index'
 import moment from 'moment'
 import momentTZ from 'moment-timezone'
 import ListIcon from 'assets/icons/list.svg'
@@ -1726,6 +1726,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   return (
     <>
       <SEO title="Schedule" description="Devconnect schedule" />
+      <Header />
       <Hero
         className={`${css['hero']} ${props.edition} wide-layout`}
         autoHeight

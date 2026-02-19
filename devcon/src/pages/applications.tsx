@@ -46,60 +46,68 @@ export default function Applications() {
   }
 
   return (
-    <Page theme={themes['news']}>
-      <PageHero heroBackground={HeroBackground} path={[{ text: 'Applications' }]} />
+    <>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+        <title>{String(content3.title)}</title>
+      </Head>
 
-      <div className="section">
-        <div className="content" style={{ maxWidth: 600, margin: '0 auto' }}>
-          <h2>Apply to Devcon</h2>
-          <p>Enter your email address below to access the application form. If your organization is pre-approved, we will email you a verified link. Otherwise, the form will open directly.</p>
+      <Page theme={themes['news']}>
+        <PageHero heroBackground={HeroBackground} path={[{ text: 'Applications' }]} />
 
-          <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem' }}>
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="you@organization.com"
-              required
-              style={{
-                width: '100%',
-                padding: '12px 16px',
-                fontSize: '16px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                marginBottom: '1rem',
-                boxSizing: 'border-box',
-              }}
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              style={{
-                width: '100%',
-                padding: '12px 24px',
-                fontSize: '16px',
-                fontWeight: 'bold',
-                color: '#fff',
-                backgroundColor: '#30354b',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: status === 'loading' ? 'not-allowed' : 'pointer',
-                opacity: status === 'loading' ? 0.7 : 1,
-              }}
-            >
-              {status === 'loading' ? 'Sending...' : 'Send me the application form'}
-            </button>
-          </form>
+        <div className="section">
+          <div className="content" style={{ maxWidth: 600, margin: '0 auto' }}>
+            <h2>Apply to Devcon</h2>
+            <p>
+              Enter your email address below to access the application form. If your organization is pre-approved, we
+              will email you a verified link. Otherwise, the form will open directly.
+            </p>
 
-          {status === 'success' && (
-            <p style={{ marginTop: '1rem', color: '#16a34a', fontWeight: 'bold' }}>{message}</p>
-          )}
-          {status === 'error' && (
-            <p style={{ marginTop: '1rem', color: '#dc2626', fontWeight: 'bold' }}>{message}</p>
-          )}
+            <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem' }}>
+              <input
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="you@organization.com"
+                required
+                style={{
+                  width: '100%',
+                  padding: '12px 16px',
+                  fontSize: '16px',
+                  border: '2px solid #ccc',
+                  borderRadius: '8px',
+                  marginBottom: '1rem',
+                  boxSizing: 'border-box',
+                }}
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                style={{
+                  width: '100%',
+                  padding: '12px 24px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  color: '#fff',
+                  backgroundColor: '#30354b',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+                  opacity: status === 'loading' ? 0.7 : 1,
+                }}
+              >
+                {status === 'loading' ? 'Sending...' : 'Send me the application form'}
+              </button>
+            </form>
+
+            {status === 'success' && (
+              <p style={{ marginTop: '1rem', color: '#16a34a', fontWeight: 'bold' }}>{message}</p>
+            )}
+            {status === 'error' && <p style={{ marginTop: '1rem', color: '#dc2626', fontWeight: 'bold' }}>{message}</p>}
+          </div>
         </div>
-      </div>
-    </Page>
+      </Page>
+    </>
   )
 }
 

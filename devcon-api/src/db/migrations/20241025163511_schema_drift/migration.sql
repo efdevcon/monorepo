@@ -1,2 +1,0 @@
--- This is an empty migration
--- It represents the current state of the database

@@ -75,7 +75,7 @@ destinoRouter.get('/regenerate/:eventId', apikeyHandler, async (req: Request, re
   }
 })
 
-generateDestinoEvents()
+// generateDestinoEvents()
 
 // Refresh events every hour
-setInterval(generateDestinoEvents, 60 * 60 * 1000)
+// setInterval(generateDestinoEvents, 60 * 60 * 1000)
