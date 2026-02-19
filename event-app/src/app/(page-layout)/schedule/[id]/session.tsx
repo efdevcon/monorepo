@@ -4,6 +4,7 @@ import { useSession } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { use } from "react";
 import { Link, BackButton } from "@/routing";
+import Meerkat from "./meerkat";
 
 interface SessionClientProps {
   params?: Promise<{ id: string }>;
@@ -77,6 +78,8 @@ export default function Session({ params, id: directId }: SessionClientProps) {
           </div>
         </div>
       )}
+
+      <Meerkat sessionId={id} />
     </div>
   );
 }
