@@ -1228,74 +1228,72 @@ function CheckoutContent() {
                       {category.categoryName && (
                         <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
                       )}
-                      {category.items.filter(i => i.available).map(item => {
-                        const sel = selectedAddons.get(item.id)
-                        const qty = sel?.quantity || 0
-                        const isFree = parseFloat(item.price) === 0
-                        const hasVariations = item.variations.length > 0
-                        return (
-                          <div key={item.id} className={css['swag-card']}>
-                            <div className={css['swag-info']}>
-                              <h4>{item.name}</h4>
-                              {item.description && (
-                                <p className={css['addon-description']}>{item.description}</p>
-                              )}
-                            </div>
-                            <div className={css['swag-right']}>
-                              {hasVariations ? (
-                                /* Items with variations: size dropdown */
-                                <select
-                                  className={css['addon-size-select']}
-                                  value={sel?.variationId || ''}
-                                  onChange={e => {
-                                    const val = e.target.value
-                                    setAddonVariation(item.id, val ? Number(val) : undefined)
-                                  }}
-                                >
-                                  <option value="">Select size</option>
-                                  {item.variations.map(v => (
-                                    <option key={v.id} value={v.id}>{v.name}</option>
-                                  ))}
-                                </select>
-                              ) : category.maxCount > 1 ? (
-                                /* Paid items without variations: quantity +/- */
-                                <div className={css['addon-qty']}>
-                                  <button
-                                    type="button"
-                                    className={css['addon-qty-btn']}
-                                    onClick={() => setAddonQuantity(item.id, qty - 1)}
-                                    disabled={qty <= 0}
+                      {category.items
+                        .filter(i => i.available)
+                        .map(item => {
+                          const sel = selectedAddons.get(item.id)
+                          const qty = sel?.quantity || 0
+                          const isFree = parseFloat(item.price) === 0
+                          const hasVariations = item.variations.length > 0
+                          return (
+                            <div key={item.id} className={css['swag-card']}>
+                              <div className={css['swag-info']}>
+                                <h4>{item.name}</h4>
+                                {item.description && <p className={css['addon-description']}>{item.description}</p>}
+                              </div>
+                              <div className={css['swag-right']}>
+                                {hasVariations ? (
+                                  /* Items with variations: size dropdown */
+                                  <select
+                                    className={css['addon-size-select']}
+                                    value={sel?.variationId || ''}
+                                    onChange={e => {
+                                      const val = e.target.value
+                                      setAddonVariation(item.id, val ? Number(val) : undefined)
+                                    }}
                                   >
-                                    &minus;
-                                  </button>
-                                  <span className={css['addon-qty-value']}>{qty}</span>
-                                  <button
-                                    type="button"
-                                    className={css['addon-qty-btn']}
-                                    onClick={() => setAddonQuantity(item.id, qty + 1)}
-                                    disabled={qty >= category.maxCount}
-                                  >
-                                    +
-                                  </button>
-                                </div>
-                              ) : (
-                                /* Simple toggle */
-                                <label className={css['addon-toggle']}>
-                                  <input
-                                    type="checkbox"
-                                    checked={qty > 0}
-                                    onChange={() => toggleAddon(item.id)}
-                                  />
-                                  <span>{qty > 0 ? 'Added' : 'Add'}</span>
-                                </label>
-                              )}
-                              <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
-                                {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
-                              </span>
+                                    <option value="">Select size</option>
+                                    {item.variations.map(v => (
+                                      <option key={v.id} value={v.id}>
+                                        {v.name}
+                                      </option>
+                                    ))}
+                                  </select>
+                                ) : category.maxCount > 1 ? (
+                                  /* Paid items without variations: quantity +/- */
+                                  <div className={css['addon-qty']}>
+                                    <button
+                                      type="button"
+                                      className={css['addon-qty-btn']}
+                                      onClick={() => setAddonQuantity(item.id, qty - 1)}
+                                      disabled={qty <= 0}
+                                    >
+                                      &minus;
+                                    </button>
+                                    <span className={css['addon-qty-value']}>{qty}</span>
+                                    <button
+                                      type="button"
+                                      className={css['addon-qty-btn']}
+                                      onClick={() => setAddonQuantity(item.id, qty + 1)}
+                                      disabled={qty >= category.maxCount}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                ) : (
+                                  /* Simple toggle */
+                                  <label className={css['addon-toggle']}>
+                                    <input type="checkbox" checked={qty > 0} onChange={() => toggleAddon(item.id)} />
+                                    <span>{qty > 0 ? 'Added' : 'Add'}</span>
+                                  </label>
+                                )}
+                                <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
+                                  {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                        )
-                      })}
+                          )
+                        })}
                     </div>
                   ))}
                   <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
@@ -1561,12 +1559,6 @@ function CheckoutContent() {
                           <span className={css['payment-option-title']}>Crypto</span>
                           <span className={css['save-badge']}>SAVE 3%</span>
                         </div>
-                        <div className={css['payment-icons']}>
-                          <span className={css['payment-icon-box']} />
-                          <span className={css['payment-icon-box']} />
-                          <span className={css['payment-icon-box']} />
-                          <span className={css['payment-icon-more']}>+20</span>
-                        </div>
                       </div>
                       <p className={css['payment-option-desc']}>USDC (gasless) &amp; ETH</p>
                     </div>
@@ -1579,12 +1571,6 @@ function CheckoutContent() {
                     <div className={css['payment-option-content']}>
                       <div className={css['payment-option-header']}>
                         <span className={css['payment-option-title']}>Fiat</span>
-                        <div className={css['payment-icons']}>
-                          <span className={css['payment-icon-box-wide']} />
-                          <span className={css['payment-icon-box-wide']} />
-                          <span className={css['payment-icon-box-wide']} />
-                          <span className={css['payment-icon-more']}>+5</span>
-                        </div>
                       </div>
                       <p className={css['payment-option-desc']}>Debit / Credit Card</p>
                     </div>
@@ -1604,22 +1590,14 @@ function CheckoutContent() {
                             {chain?.name} ({chain?.id})
                           </span>
                         </div>
-                        <button
-                          type="button"
-                          className={css['wallet-disconnect-btn']}
-                          onClick={() => disconnect()}
-                        >
+                        <button type="button" className={css['wallet-disconnect-btn']} onClick={() => disconnect()}>
                           Disconnect
                         </button>
                       </div>
                     ) : (
                       <>
                         <p className={css['wallet-title']}>Connect your wallet to pay with crypto</p>
-                        <button
-                          type="button"
-                          className={css['wallet-connect-btn']}
-                          onClick={() => open()}
-                        >
+                        <button type="button" className={css['wallet-connect-btn']} onClick={() => open()}>
                           Connect Wallet
                         </button>
                       </>
@@ -1647,104 +1625,123 @@ function CheckoutContent() {
                     </div>
                     {paymentOptionsLoading ? null : (
                       <>
-                        {paymentOptions.length > 0 && (() => {
-                          const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
-                          const insufficient = paymentOptions.filter(o => !(Boolean(o.signingRequest) && o.sufficient))
-                          const base = sufficient.length === 0 || showInsufficient ? paymentOptions : sufficient
-                          const visible = tokenFilter ? base.filter(o => o.symbol === tokenFilter) : base
+                        {paymentOptions.length > 0 &&
+                          (() => {
+                            const sufficient = paymentOptions.filter(o => Boolean(o.signingRequest) && o.sufficient)
+                            const insufficient = paymentOptions.filter(
+                              o => !(Boolean(o.signingRequest) && o.sufficient)
+                            )
+                            const base = sufficient.length === 0 || showInsufficient ? paymentOptions : sufficient
+                            const visible = tokenFilter ? base.filter(o => o.symbol === tokenFilter) : base
 
-                          // Token tabs: show when >4 options in base list
-                          const uniqueSymbols = [...new Set(base.map(o => o.symbol))]
-                          const showTabs = base.length > 4 && uniqueSymbols.length > 1
+                            // Token tabs: show when >4 options in base list
+                            const uniqueSymbols = [...new Set(base.map(o => o.symbol))]
+                            const showTabs = base.length > 4 && uniqueSymbols.length > 1
 
-                          return (
-                            <>
-                              {showTabs && (
-                                <div className={css['token-tabs']}>
+                            return (
+                              <>
+                                {showTabs && (
+                                  <div className={css['token-tabs']}>
+                                    <button
+                                      type="button"
+                                      className={`${css['token-tab']} ${
+                                        tokenFilter === null ? css['token-tab--active'] : ''
+                                      }`}
+                                      onClick={() => setTokenFilter(null)}
+                                    >
+                                      All
+                                    </button>
+                                    {uniqueSymbols.map(sym => (
+                                      <button
+                                        key={sym}
+                                        type="button"
+                                        className={`${css['token-tab']} ${
+                                          tokenFilter === sym ? css['token-tab--active'] : ''
+                                        }`}
+                                        onClick={() => setTokenFilter(tokenFilter === sym ? null : sym)}
+                                      >
+                                        {TOKEN_ICONS[sym] && (
+                                          /* eslint-disable-next-line @next/next/no-img-element */
+                                          <img src={TOKEN_ICONS[sym]} alt={sym} className={css['token-tab-icon']} />
+                                        )}
+                                        {displaySymbol(sym)}
+                                      </button>
+                                    ))}
+                                  </div>
+                                )}
+                                <div className={css['payment-options-list']}>
+                                  {visible.map(opt => {
+                                    const canPay = Boolean(opt.signingRequest) && opt.sufficient
+                                    const isSelected = selectedOption?.asset === opt.asset
+                                    const isGasless =
+                                      opt.signingRequest?.method === 'eth_signTypedData_v4' ||
+                                      ['USDC', 'USDT0'].includes(opt.symbol)
+                                    const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
+                                    const balanceFormatted =
+                                      opt.decimals >= 18
+                                        ? (Number(opt.balance) / 1e18).toFixed(4)
+                                        : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
+                                    return (
+                                      <button
+                                        key={opt.asset}
+                                        type="button"
+                                        className={[
+                                          css['payment-option-btn'],
+                                          canPay
+                                            ? css['payment-option-btn--sufficient']
+                                            : css['payment-option-btn--insufficient'],
+                                          isSelected ? css['payment-option-btn--selected'] : '',
+                                        ]
+                                          .filter(Boolean)
+                                          .join(' ')}
+                                        disabled={!canPay}
+                                        onClick={() => canPay && selectPaymentOption(opt)}
+                                      >
+                                        <span className={css['payment-option-icon']}>
+                                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                                          <img
+                                            src={TOKEN_ICONS[opt.symbol]}
+                                            alt={opt.symbol}
+                                            className={css['token-icon']}
+                                          />
+                                          {NETWORK_LOGOS[chainIdNum] && (
+                                            /* eslint-disable-next-line @next/next/no-img-element */
+                                            <img
+                                              src={NETWORK_LOGOS[chainIdNum]}
+                                              alt={opt.chain}
+                                              className={css['network-badge']}
+                                            />
+                                          )}
+                                        </span>
+                                        <span className={css['payment-option-info']}>
+                                          <span className={css['payment-option-symbol']}>
+                                            {displaySymbol(opt.symbol)}
+                                            {isGasless && <span className={css['gasless-badge']}>Gasless</span>}
+                                          </span>
+                                          <span className={css['payment-option-chain']}>on {opt.chain}</span>
+                                        </span>
+                                        <span className={css['payment-option-balance']}>
+                                          {balanceFormatted} {displaySymbol(opt.symbol)}
+                                        </span>
+                                        {isSelected && <span className={css['payment-option-check']}>✓</span>}
+                                      </button>
+                                    )
+                                  })}
+                                </div>
+                                {insufficient.length > 0 && (
                                   <button
                                     type="button"
-                                    className={`${css['token-tab']} ${tokenFilter === null ? css['token-tab--active'] : ''}`}
-                                    onClick={() => setTokenFilter(null)}
+                                    className={css['toggle-insufficient']}
+                                    onClick={() => setShowInsufficient(v => !v)}
                                   >
-                                    All
+                                    {showInsufficient
+                                      ? 'Hide insufficient balances'
+                                      : `Show ${insufficient.length} more with insufficient balance`}
                                   </button>
-                                  {uniqueSymbols.map(sym => (
-                                    <button
-                                      key={sym}
-                                      type="button"
-                                      className={`${css['token-tab']} ${tokenFilter === sym ? css['token-tab--active'] : ''}`}
-                                      onClick={() => setTokenFilter(tokenFilter === sym ? null : sym)}
-                                    >
-                                      {TOKEN_ICONS[sym] && (
-                                        /* eslint-disable-next-line @next/next/no-img-element */
-                                        <img src={TOKEN_ICONS[sym]} alt={sym} className={css['token-tab-icon']} />
-                                      )}
-                                      {displaySymbol(sym)}
-                                    </button>
-                                  ))}
-                                </div>
-                              )}
-                              <div className={css['payment-options-list']}>
-                                {visible.map(opt => {
-                                  const canPay = Boolean(opt.signingRequest) && opt.sufficient
-                                  const isSelected = selectedOption?.asset === opt.asset
-                                  const isGasless = opt.signingRequest?.method === 'eth_signTypedData_v4' || ['USDC', 'USDT0'].includes(opt.symbol)
-                                  const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
-                                  const balanceFormatted =
-                                    opt.decimals >= 18
-                                      ? (Number(opt.balance) / 1e18).toFixed(4)
-                                      : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
-                                  return (
-                                    <button
-                                      key={opt.asset}
-                                      type="button"
-                                      className={[
-                                        css['payment-option-btn'],
-                                        canPay ? css['payment-option-btn--sufficient'] : css['payment-option-btn--insufficient'],
-                                        isSelected ? css['payment-option-btn--selected'] : '',
-                                      ]
-                                        .filter(Boolean)
-                                        .join(' ')}
-                                      disabled={!canPay}
-                                      onClick={() => canPay && selectPaymentOption(opt)}
-                                    >
-                                      <span className={css['payment-option-icon']}>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={TOKEN_ICONS[opt.symbol]} alt={opt.symbol} className={css['token-icon']} />
-                                        {NETWORK_LOGOS[chainIdNum] && (
-                                          /* eslint-disable-next-line @next/next/no-img-element */
-                                          <img src={NETWORK_LOGOS[chainIdNum]} alt={opt.chain} className={css['network-badge']} />
-                                        )}
-                                      </span>
-                                      <span className={css['payment-option-info']}>
-                                        <span className={css['payment-option-symbol']}>
-                                          {displaySymbol(opt.symbol)}
-                                          {isGasless && <span className={css['gasless-badge']}>Gasless</span>}
-                                        </span>
-                                        <span className={css['payment-option-chain']}>on {opt.chain}</span>
-                                      </span>
-                                      <span className={css['payment-option-balance']}>
-                                        {balanceFormatted} {displaySymbol(opt.symbol)}
-                                      </span>
-                                      {isSelected && <span className={css['payment-option-check']}>✓</span>}
-                                    </button>
-                                  )
-                                })}
-                              </div>
-                              {insufficient.length > 0 && (
-                                <button
-                                  type="button"
-                                  className={css['toggle-insufficient']}
-                                  onClick={() => setShowInsufficient(v => !v)}
-                                >
-                                  {showInsufficient
-                                    ? 'Hide insufficient balances'
-                                    : `Show ${insufficient.length} more with insufficient balance`}
-                                </button>
-                              )}
-                            </>
-                          )
-                        })()}
+                                )}
+                              </>
+                            )
+                          })()}
                         {selectedOption && (
                           <button
                             type="button"
@@ -1755,13 +1752,19 @@ function CheckoutContent() {
                             {isProcessing
                               ? paymentStatus || 'Processing...'
                               : selectedOption.signingRequest?.method === 'eth_signTypedData_v4'
-                                ? `Sign to pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`
-                                : `Pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
+                              ? `Sign to pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`
+                              : `Pay — ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
                           </button>
                         )}
-                        {!paymentOptionsLoading && paymentOptions.length > 0 && paymentOptions.filter(o => o.sufficient).length === 0 && paymentDetails && (
-                          <p className={css['status-text']}>No option with sufficient balance. Connect a wallet with more USDC or ETH on supported chains.</p>
-                        )}
+                        {!paymentOptionsLoading &&
+                          paymentOptions.length > 0 &&
+                          paymentOptions.filter(o => o.sufficient).length === 0 &&
+                          paymentDetails && (
+                            <p className={css['status-text']}>
+                              No option with sufficient balance. Connect a wallet with more USDC or ETH on supported
+                              chains.
+                            </p>
+                          )}
                       </>
                     )}
                   </div>
@@ -1793,7 +1796,9 @@ function CheckoutContent() {
                   <div className={css['tx-status']}>
                     Transaction:{' '}
                     <a
-                      href={`${(paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) || 'https://etherscan.io'}/tx/${txHash}`}
+                      href={`${
+                        (paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) || 'https://etherscan.io'
+                      }/tx/${txHash}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ color: '#4a90d9', textDecoration: 'underline' }}
@@ -1884,7 +1889,9 @@ function CheckoutContent() {
                       <span className={css['panel-item-name']}>{item.name}</span>
                       <div className={css['panel-item-right']}>
                         <span>x{item.quantity}</span>
-                        <span className={css['panel-item-price']}>${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
+                        <span className={css['panel-item-price']}>
+                          ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                        </span>
                       </div>
                     </div>
                   ))
@@ -1912,7 +1919,10 @@ function CheckoutContent() {
                   const lineTotal = price * data.quantity
                   return (
                     <div key={itemId} className={css['panel-item']}>
-                      <span className={css['panel-item-name']}>{item.name}{varLabel}</span>
+                      <span className={css['panel-item-name']}>
+                        {item.name}
+                        {varLabel}
+                      </span>
                       <div className={css['panel-item-right']}>
                         <span>x{data.quantity}</span>
                         <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
@@ -1927,14 +1937,21 @@ function CheckoutContent() {
                   className={css['discount-input']}
                   placeholder="Discount or Voucher Code"
                   value={voucherInput}
-                  onChange={e => { setVoucherInput(e.target.value); setVoucherError(null) }}
+                  onChange={e => {
+                    setVoucherInput(e.target.value)
+                    setVoucherError(null)
+                  }}
                   disabled={voucherLoading || voucherData?.valid === true}
                 />
                 {voucherData?.valid ? (
                   <button
                     type="button"
                     className={css['discount-btn']}
-                    onClick={() => { setVoucherInput(''); setVoucherData(null); setVoucherError(null) }}
+                    onClick={() => {
+                      setVoucherInput('')
+                      setVoucherData(null)
+                      setVoucherError(null)
+                    }}
                   >
                     Remove
                   </button>
@@ -1957,7 +1974,8 @@ function CheckoutContent() {
                   Voucher applied!
                   {voucherData.priceMode === 'percent' && ` ${parseFloat(voucherData.value || '0')}% off`}
                   {voucherData.priceMode === 'subtract' && ` $${parseFloat(voucherData.value || '0').toFixed(2)} off`}
-                  {voucherData.priceMode === 'set' && ` Price set to $${parseFloat(voucherData.value || '0').toFixed(2)}`}
+                  {voucherData.priceMode === 'set' &&
+                    ` Price set to $${parseFloat(voucherData.value || '0').toFixed(2)}`}
                 </p>
               )}
               <div className={css['summary-lines']}>
@@ -2022,11 +2040,14 @@ function CheckoutContent() {
 
       {/* Fiat/Stripe Payment Modal */}
       {showFiatModal && fiatPaymentUrl && (
-        <div className={css['fiat-modal-overlay']} onClick={() => {
-          setShowFiatModal(false)
-          setFiatPaymentUrl(null)
-          setPaymentStatus(null)
-        }}>
+        <div
+          className={css['fiat-modal-overlay']}
+          onClick={() => {
+            setShowFiatModal(false)
+            setFiatPaymentUrl(null)
+            setPaymentStatus(null)
+          }}
+        >
           <div className={css['fiat-modal']} onClick={e => e.stopPropagation()}>
             <div className={css['fiat-modal-header']}>
               <h3>Complete Payment</h3>
