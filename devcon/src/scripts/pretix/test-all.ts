@@ -91,6 +91,7 @@ async function main() {
   console.log('3. ITEMS (Products/Tickets)')
   console.log('='.repeat(60))
   const items = await fetchEndpoint<PretixResponse<any>>('items/')
+  console.log('Items:', items)
   if (items?.results) {
     for (const item of items.results) {
       console.log(`\n[${item.id}] ${JSON.stringify(item.name)}`)
