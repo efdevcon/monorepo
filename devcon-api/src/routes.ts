@@ -9,6 +9,7 @@ import { atSlurperRouter } from '@/controllers/at-slurper'
 import { destinoRouter } from '@/controllers/destino'
 import { hooksRouter } from '@/controllers/hooks'
 import { pushNotificationRouter } from '@/controllers/push-notifications'
+import { whitelistRouter } from '@/controllers/whitelist'
 import { Router } from 'express'
 import { API_INFO } from '@/utils/config'
 
@@ -40,3 +41,4 @@ router.use(atSlurperRouter)
 router.use(destinoRouter)
 router.use(hooksRouter)
 router.use(pushNotificationRouter)
+router.use(whitelistRouter)
