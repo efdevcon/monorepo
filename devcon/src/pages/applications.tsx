@@ -50,7 +50,7 @@ export default function Applications() {
     <>
       <Head>
         <meta name="robots" content="noindex, nofollow" />
-        <title>{String(content3.title)}</title>
+        <title>Applications — Devcon</title>
       </Head>
 
       <Page theme={themes['news']}>
