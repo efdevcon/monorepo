@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
@@ -284,12 +284,6 @@ function CheckoutContent() {
   const [showInsufficient, setShowInsufficient] = useState(false)
   const [tokenFilter, setTokenFilter] = useState<string | null>(null)
 
-  // Fiat/Stripe state
-  const [fiatPaymentUrl, setFiatPaymentUrl] = useState<string | null>(null)
-  const [fiatOrderCode, setFiatOrderCode] = useState<string | null>(null)
-  const [fiatOrderSecret, setFiatOrderSecret] = useState<string | null>(null)
-  const [showFiatModal, setShowFiatModal] = useState(false)
-  const fiatPollRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
   const tokenFilterAutoSelectedRef = useRef(false)
 
@@ -527,49 +521,6 @@ function CheckoutContent() {
     } as any)
   }
 
-  // ── Poll fiat order status ──
-  const pollFiatStatus = useCallback(async () => {
-    if (!fiatOrderCode || !fiatOrderSecret) return
-    try {
-      const res = await fetch(`/api/x402/tickets/order-status?code=${fiatOrderCode}&secret=${fiatOrderSecret}`)
-      const data = await res.json()
-      if (data.success && data.status === 'p') {
-        // Payment confirmed
-        if (fiatPollRef.current) {
-          clearInterval(fiatPollRef.current)
-          fiatPollRef.current = null
-        }
-        setShowFiatModal(false)
-        setFiatPaymentUrl(null)
-        setPaymentStatus(null)
-        localStorage.removeItem('devcon-ticket-cart')
-        // Redirect to confirmation page
-        router.push(`/tickets/store/order/${data.code}/${data.secret}`)
-      }
-    } catch {
-      // ignore polling errors
-    }
-  }, [fiatOrderCode, fiatOrderSecret])
-
-  useEffect(() => {
-    if (!showFiatModal || !fiatOrderCode) {
-      if (fiatPollRef.current) {
-        clearInterval(fiatPollRef.current)
-        fiatPollRef.current = null
-      }
-      return
-    }
-
-    pollFiatStatus()
-    fiatPollRef.current = setInterval(pollFiatStatus, 2000)
-    return () => {
-      if (fiatPollRef.current) {
-        clearInterval(fiatPollRef.current)
-        fiatPollRef.current = null
-      }
-    }
-  }, [showFiatModal, fiatOrderCode, pollFiatStatus])
-
   // ── Get applicable questions for selected tickets ──
   const ticketIds = cartItems.map(c => c.ticketId)
   const applicableQuestions = questions.filter(
@@ -647,10 +598,6 @@ function CheckoutContent() {
     setTokenFilter(null)
     tokenFilterAutoSelectedRef.current = false
     paymentOptionsAutoLoadedRef.current = null
-    setFiatPaymentUrl(null)
-    setFiatOrderCode(null)
-    setFiatOrderSecret(null)
-    setShowFiatModal(false)
   }
 
   const isProcessing =
@@ -660,13 +607,12 @@ function CheckoutContent() {
     isWritePending ||
     isTxLoading ||
     isSendTxPending ||
-    isSendTxReceiptLoading ||
-    showFiatModal
+    isSendTxReceiptLoading
 
   // Invalidate stale payment when user navigates away from payment section
   // (e.g. goes back to edit add-ons, contact details, etc.)
   useEffect(() => {
-    if (openSection !== 'payment' && !isProcessing && (paymentDetails || fiatOrderCode)) {
+    if (openSection !== 'payment' && !isProcessing && paymentDetails) {
       resetPaymentState()
     }
   }, [openSection])
@@ -674,7 +620,7 @@ function CheckoutContent() {
   // Invalidate stale payment when the order total changes
   // (e.g. voucher applied/removed from sidebar, payment method switched)
   useEffect(() => {
-    if (!isProcessing && (paymentDetails || fiatOrderCode)) {
+    if (!isProcessing && paymentDetails) {
       resetPaymentState()
     }
   }, [totalUsd])
@@ -902,11 +848,15 @@ function CheckoutContent() {
 
       const data = await res.json()
       if (data.success && data.paymentUrl) {
-        setFiatPaymentUrl(data.paymentUrl)
-        setFiatOrderCode(data.orderCode)
-        setFiatOrderSecret(data.orderSecret)
-        setShowFiatModal(true)
-        setPaymentStatus(null)
+        // Build return URL pointing to the order confirmation page on the current domain
+        const locale = router.locale || 'en'
+        const returnPath = `/${locale}/tickets/store/order/${data.orderCode}/${data.orderSecret}/`
+        const returnUrl = `${window.location.origin}${returnPath}`
+        const separator = data.paymentUrl.includes('?') ? '&' : '?'
+        const paymentUrlWithReturn = `${data.paymentUrl}${separator}return_url=${encodeURIComponent(returnUrl)}`
+
+        localStorage.removeItem('devcon-ticket-cart')
+        window.location.href = paymentUrlWithReturn
       } else {
         setPurchaseError(data.error || 'Failed to create order')
         setPaymentStatus(null)
@@ -2038,45 +1988,6 @@ function CheckoutContent() {
         </aside>
       </div>
 
-      {/* Fiat/Stripe Payment Modal */}
-      {showFiatModal && fiatPaymentUrl && (
-        <div
-          className={css['fiat-modal-overlay']}
-          onClick={() => {
-            setShowFiatModal(false)
-            setFiatPaymentUrl(null)
-            setPaymentStatus(null)
-          }}
-        >
-          <div className={css['fiat-modal']} onClick={e => e.stopPropagation()}>
-            <div className={css['fiat-modal-header']}>
-              <h3>Complete Payment</h3>
-              <button
-                type="button"
-                className={css['fiat-modal-close']}
-                onClick={() => {
-                  setShowFiatModal(false)
-                  setFiatPaymentUrl(null)
-                  setPaymentStatus(null)
-                }}
-                aria-label="Close"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className={css['fiat-modal-body']}>
-              <iframe
-                src={fiatPaymentUrl}
-                title="Stripe Payment"
-                className={css['fiat-iframe']}
-                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </Page>
   )
 }
