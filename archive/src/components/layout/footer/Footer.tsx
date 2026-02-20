@@ -14,6 +14,7 @@ import { Link } from "@/components/common/link";
 import {
   BLOG_URL,
   DEVCON_URL,
+  DEVCONNECT_URL,
   FORUM_URL,
   FOUNDATION_URL,
   SOCIAL_EMAIL,
@@ -67,7 +68,7 @@ export const Footer = () => {
 
           <div className={css["col-2"]}>
             <div>
-              <p className="semi-bold">About Devcon —</p>
+              <p className="bold">About Devcon —</p>
               <p>
                 Devcon is the Ethereum conference for developers, researchers,
                 thinkers, and makers.
@@ -82,18 +83,21 @@ export const Footer = () => {
 
           <div className={css["col-3"]}>
             <ul className={css["list"]}>
-              <li className="semi-bold">
+              <li className="bold">
                 <Link href="/watch" className="plain hover-underline">
                   Watch
                 </Link>
               </li>
-              <li>
+              <li className="bold">
                 <Link href={DEVCON_URL}>Devcon</Link>
               </li>
-              <li>
+              <li className="bold">
+                <Link href={DEVCONNECT_URL}>Devconnect</Link>
+              </li>
+              <li className="bold">
                 <Link href={FORUM_URL}>Forum</Link>
               </li>
-              <li>
+              <li className="bold">
                 <Link href={BLOG_URL}>Blog</Link>
               </li>
             </ul>
@@ -101,7 +105,7 @@ export const Footer = () => {
 
           <div className={css["col-4"]}>
             <div className={css["contact"]}>
-              <p className="semi-bold">Get in touch</p>
+              <p className="bold">Get in touch</p>
               <p className={css["email-1"]}>{SOCIAL_EMAIL}</p>
 
               <div className={css["newsletter"]}>

@@ -1,0 +1,15 @@
+{
+  "id": "zk-voting-app-deep-dive-mixers-merkel-trees-and-build-with-noir-buidlguidls-builder-bootcamp",
+  "sourceId": "WIJ7I9KayOA",
+  "eventId": "devconnect-arg",
+  "title": "ZK Voting App Deep Dive: Mixers, Merkel Trees, and Build with Noir - BuidlGuidl's Builder Bootcamp",
+  "description": "This session introduces the core concepts and implementation details behind building a fully private ZK voting application. Philip walks through the privacy mechanism, starting with the concept of a mixer (similar to Tornado Cash) to break the link between a voter's address and their vote. The presentation then explains why a specialized Lean Incremental Merkel Tree is necessary for on-chain registration, and concludes with a deep dive into using the Noir (Nargo) programming language to define the zero-knowledge circuits and generate a Solidity verifier contract.\n\n👉 To learn everything about building on Ethereum, go to https://speedrunethereum.com/ \n\n------\n0:00 Speaker Introduction (Philip from Build Guild) & ZK Voting App Goal\n0:02:10 Why Anonymous Voting is Needed (On-Chain Transparency Issues)\n0:03:38 Concept 1: How Mixers Work (Like Tornado Cash)\n0:04:40 Breaking the Sender-Receiver Connection with a Mixer\n0:05:24 The Three Phases of a Mixer: Deposit, Mixing, and Withdraw\n0:06:46 Mixer Mechanism: Using a New Address & a Secret to Withdraw\n0:07:28 Mixer Application: Using the Gate to Call a Vote Function\n0:07:39 Privacy Growth: Why the Mixer Pool Size and Fixed Denominations Matter\n0:09:20 ZK Voting App Architecture: Back-end (Solidity/Noir) vs. Front-end (Proof Generation)\n0:10:26 Back-end: Registration and Merkel Trees\n0:11:03 Merkel Tree Basics (Quick Summary)\n0:11:48 Problem with Normal Merkel Trees for Dynamic Registration (Over-Recalculation)\n0:12:50 Solution: Lean Incremental Merkel Tree (Optimized for Incremental Updates)\n0:20:24 Zero-Knowledge Proof Concept: Proving Ownership Without Revealing the Secret\n0:22:14 Introduction to Noir (Nargo): The Rust-Based Circuit Programming Language\n0:23:44 Noir: Public Inputs (Visible) vs. Private Inputs (The Secret)\n0:24:46 Building the ZK Circuit: Including the Merkel Path and Commitment\n0:26:01 ZK Logic: Nullifier Hash (Preventing Double-Voting)\n0:31:58 Verifier Contract Logic: Checking the Computed Root Against the Stored Root\n0:34:09 Generating the Solidity Verifier Contract with nargo\n0:35:54 Front-end Role: Generating the ZK Proof Off-Chain\n0:37:58 Solidity Implementation: Calling the Verifier Contract with Proof and Public Inputs\n0:39:09 Final App Logic: Registering Votes & Storing Nullifiers for Double-Vote Check\n0:57:32 Q&A: Preventing Linking of Registration and Voting Transactions (Causality)\n------",
+  "track": "BuidlGuidl's Builder Bootcamp",
+  "type": "Talk",
+  "expertise": "",
+  "tags": [],
+  "speakers": [],
+  "sources_youtubeId": "WIJ7I9KayOA",
+  "duration": 3542,
+  "language": "en"
+}

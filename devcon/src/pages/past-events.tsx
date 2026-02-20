@@ -6,7 +6,7 @@ import { Tags } from 'components/common/tags'
 import css from './past-events.module.scss'
 import { Link } from 'components/common/link'
 import Image from 'next/image'
-import EventLocations from 'assets/images/event-locations.png'
+import EventLocations from 'assets/images/past-events.webp'
 import { Button } from 'lib/components/button'
 import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 import { useTina } from 'tinacms/dist/react'
@@ -41,8 +41,12 @@ export default function PastEvents(props: any) {
             <RichText content={pages.section1?.about} />
           </div>
           <div className={`right ${css['right']}`}>
-            <h2 className="spaced">Past Events Locations</h2>
-            <Image src={EventLocations} alt="Devcon events on world map" />
+            <h2 className="spaced">Past Locations</h2>
+            <Image
+              src={EventLocations}
+              alt="Devcon events on world map"
+              className="lg:translate-x-[-3%] lg:scale-110 lg:mt-[10%]"
+            />
           </div>
 
           <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`}>
@@ -53,7 +57,7 @@ export default function PastEvents(props: any) {
         </div>
 
         <div className="border-bottom clear-bottom">
-          <h2>Past Events Past Devcons</h2>
+          <h2>Past Events</h2>
         </div>
 
         {events.map((event, index: number) => {
@@ -81,11 +85,20 @@ export default function PastEvents(props: any) {
                 <div className={css['right']}>
                   <h2 className="my-4">{event.title}</h2>
                   <RichText content={event.description} />
-                  <Link className="mt-5" key={event.button_link} to={event.button_link}>
-                    <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
-                      {event.button}
-                    </Button>
-                  </Link>
+                  <div className="flex gap-3 mt-5">
+                    <Link key={event.button_link} to={event.button_link}>
+                      <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+                        {event.button}
+                      </Button>
+                    </Link>
+                    {event.button2 && event.button2_link && (
+                      <Link key={event.button2_link} to={event.button2_link}>
+                        <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
+                          {event.button2}
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

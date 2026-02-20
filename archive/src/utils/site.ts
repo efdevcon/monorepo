@@ -9,6 +9,7 @@ export const SOCIAL_GITHUB = 'efdevcon'
 export const SOCIAL_YOUTUBE = 'EthereumFoundation'
 
 export const DEVCON_URL = 'https://www.devcon.org/'
+export const DEVCONNECT_URL = 'https://devconnect.org/'
 export const FORUM_URL = 'https://forum.devcon.org/'
 export const BLOG_URL = 'https://devcon.org/blogs/'
 export const FOUNDATION_URL = 'https://ethereum.foundation/'

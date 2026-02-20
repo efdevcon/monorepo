@@ -1,10 +1,6 @@
-import { Account, PrismaClient } from '@/db/clients/account'
-import { PrismaClient as ScheduleClient } from '@prisma/client'
 import dayjs from 'dayjs'
 
 const LIMIT = 15
-const client = new PrismaClient()
-const scheduleClient = new ScheduleClient()
 
 async function main() {
   const res = await fetch('https://api.devcon.org/sessions?size=1000&event=devcon-7')

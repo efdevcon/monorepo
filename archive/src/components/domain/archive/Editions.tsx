@@ -51,7 +51,9 @@ const Clock = (props: any) => {
 export const Editions = (props: Props) => {
   const [selectedEditionIndex, setSelectedEditionIndex] = useState(0);
   if (!props.events) return null;
-  const selectedEdition = props.events[selectedEditionIndex];
+  const events = props.events.filter((e) => e.id.startsWith("devcon-"));
+  if (events.length === 0) return null;
+  const selectedEdition = events[selectedEditionIndex];
 
   return (
     <div className="section">
@@ -64,7 +66,7 @@ export const Editions = (props: Props) => {
 
         <div className={`padding-bottom ${css["container"]}`}>
           <div className={css["numbers"]}>
-            {props.events.map((i: any, index: number) => {
+            {events.map((i: any, index: number) => {
               const selected = i.edition === selectedEdition.edition;
               let className = css["edition"];
 
@@ -78,7 +80,7 @@ export const Editions = (props: Props) => {
                     <Clock
                       next={() =>
                         setSelectedEditionIndex((curr) =>
-                          curr === props.events.length - 1 ? 0 : curr + 1
+                          curr === events.length - 1 ? 0 : curr + 1
                         )
                       }
                     >
@@ -99,7 +101,7 @@ export const Editions = (props: Props) => {
 
           <div className={css["image-container"]}>
             <div className="aspect square">
-              {props.events.map((i: any, index: number) => {
+              {events.map((i: any, index: number) => {
                 const nConstellations = 3;
                 const gridConstellation = (index % nConstellations) + 1;
                 let className = `${css["constellation-" + gridConstellation]} ${

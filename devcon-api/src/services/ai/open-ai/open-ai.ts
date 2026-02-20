@@ -546,8 +546,6 @@ export const destinoApi = (() => {
     },
     generateDestinoEvent: async (event: any, forceImageGeneration = false) => {
       try {
-        console.log(`[generateDestinoEvent] Starting for event ${event.Id}${forceImageGeneration ? ' (force image generation)' : ''}`)
-
         if (!event || !event.Id) {
           console.error('[generateDestinoEvent] Invalid event data:', event)
           throw new Error('Invalid event data')
@@ -555,15 +553,15 @@ export const destinoApi = (() => {
 
         const eventRecord = await _interface.getDestinoEvent(event.Id)
         const eventExists = !!eventRecord
-        console.log(`[generateDestinoEvent] Event exists in database: ${eventExists}`)
 
         // If exists and updated after last modification, return cached content
         if (!forceImageGeneration && eventRecord && new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate)) {
           return eventRecord.content
         }
 
-        // Otherwise generate new content
-        console.log(`[generateDestinoEvent] Generating new content for event ${event.Id}`)
+        if (forceImageGeneration) {
+          console.log(`[generateDestinoEvent] Force regenerating event ${event.Id}`)
+        }
 
         const upsert = {
           event_id: event.Id,
@@ -580,7 +578,6 @@ export const destinoApi = (() => {
         } as any
 
         if (!eventExists || forceImageGeneration) {
-          console.log(`[generateDestinoEvent] Generating multilingual content for event ${event.Id}`)
           const eventCompletion = await openai.beta.chat.completions.parse({
             temperature: 0,
             model: 'gpt-4.1',
@@ -604,18 +601,13 @@ export const destinoApi = (() => {
           const { data: imageData, error: imageError } = await supabase.storage.from('destino-events').download('reference/destino.png')
 
           if (imageError) {
-            console.error('Error fetching reference image:', imageError)
+            console.error('[generateDestinoEvent] Error fetching reference image:', imageError)
             throw new Error('Failed to fetch reference image')
           }
 
           const openAICompatibleImage = await toFile(imageData, null, { type: 'image/png' })
 
           const content = eventCompletion.choices[0].message.parsed as { en: string; es: string; pt: string }
-          console.log(`[generateDestinoEvent] Generated content for event ${event.Id}:`, {
-            en: content.en.substring(0, 50) + '...',
-            es: content.es.substring(0, 50) + '...',
-            pt: content.pt.substring(0, 50) + '...',
-          })
 
           const prompt = `Adjust the reference image to suit the context of the event.
 DO NOT add or include any text in the generated image.
@@ -625,7 +617,6 @@ Context:
 - Event name: "${event.Name}"
 - Event location: "${event.Location}"
 DO NOT include Event name or event location in the generated image.`
-          console.log(`[generateDestinoEvent] Generating image for event ${event.Id} with prompt:`, prompt)
 
           const resultImage = await openai.images.edit({
             model: 'gpt-image-1',
@@ -641,15 +632,12 @@ DO NOT include Event name or event location in the generated image.`
             throw new Error('Failed to generate image')
           }
 
-          // Save the image to a file
           const image_base64 = resultImage.data[0].b64_json
           const image_bytes = Buffer.from(image_base64, 'base64')
-          console.log(`[generateDestinoEvent] Image generated for event ${event.Id}: ${image_bytes ? 'success' : 'failed'}`)
 
           let imageUrl = null
 
           if (image_bytes) {
-            console.log(`[generateDestinoEvent] Processing and uploading images for event ${event.Id}`)
             // Social media resize
             const resizedImage = await sharp(image_bytes).resize(1200, 628, { fit: 'cover' }).jpeg({ quality: 90 }).toBuffer()
 
@@ -672,15 +660,13 @@ DO NOT include Event name or event location in the generated image.`
             if (uploadError1 || uploadError2) {
               console.error(`[generateDestinoEvent] Error uploading images for event ${event.Id}:`, uploadError1 || uploadError2)
               throw new Error('Failed to upload images')
-            } else {
-              // Get public URL
-              const {
-                data: { publicUrl },
-              } = supabase.storage.from('destino-events').getPublicUrl(socialImagePath)
-
-              imageUrl = publicUrl
-              console.log(`[generateDestinoEvent] Images uploaded successfully for event ${event.Id}. URL: ${imageUrl}`)
             }
+
+            const {
+              data: { publicUrl },
+            } = supabase.storage.from('destino-events').getPublicUrl(socialImagePath)
+
+            imageUrl = publicUrl
           }
 
           upsert.image_url = imageUrl
@@ -688,23 +674,17 @@ DO NOT include Event name or event location in the generated image.`
         }
 
         // Save to Supabase
-        console.log(`[generateDestinoEvent] Saving event ${event.Id} to database`)
         const result = eventExists ? await supabase.from('destino_events').update(upsert).eq('event_id', event.Id) : await supabase.from('destino_events').upsert(upsert, { defaultToNull: false })
 
         if (result.error) {
-          console.error(`[generateDestinoEvent] Error saving event ${event.Id} to database:`, result.error)
-
+          console.error(`[generateDestinoEvent] Error saving event ${event.Id}:`, result.error)
           throw new Error('Failed to save event to database')
         }
 
-        console.log(`[generateDestinoEvent] Event ${event.Id} saved successfully`)
-
         // If forceImageGeneration is true, return the image URL
         if (forceImageGeneration) {
-          // update image_url in the database
           await supabase.from('destino_events').update({ image_url: upsert.image_url }).eq('event_id', event.Id)
 
-          console.log(`[generateDestinoEvent] Returning content and image URL for event ${event.Id}`)
           return {
             content: upsert.content,
             imageUrl: upsert.image_url,
@@ -714,19 +694,23 @@ DO NOT include Event name or event location in the generated image.`
 
         return result
       } catch (error: any) {
-        console.error('[generateDestinoEvent] Error:', error)
+        console.error(`[generateDestinoEvent] Error for event ${event?.Id}:`, error.message)
         throw error
       }
     },
     generateDestinoEvents: async () => {
       const events = await fetchFromSalesforce()
 
+      let generated = 0
       const results = await Promise.all(
         events.map(async (event: any) => {
           const content = await _interface.generateDestinoEvent(event)
+          if (content && typeof content === 'object' && 'updated' in content) generated++
           return { event, content }
         })
       )
+
+      console.log(`[generateDestinoEvents] Processed ${results.length} events (${generated} generated, ${results.length - generated} cached)`)
 
       return results
     },

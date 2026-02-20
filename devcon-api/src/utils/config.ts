@@ -38,9 +38,7 @@ export const SERVER_CONFIG = {
   NODE_ENV: process.env.RENDER ? 'production' : process.env.NODE_ENV || 'development',
   PORT: process.env.PORT || 4000,
 
-  DB_CONNECTION_STRING: process.env.DB_CONNECTION_STRING || '',
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
-  NEYNAR_API_KEY: process.env.NEYNAR_API_KEY,
 
   WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
 
@@ -53,6 +51,10 @@ export const SERVER_CONFIG = {
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
 
   ACCREDITATION_GUIDE_URL: process.env.ACCREDITATION_GUIDE_URL || '',
+
+  WHITELIST_JWT_SECRET: process.env.WHITELIST_JWT_SECRET || '',
+  WHITELIST_FORM_URL: process.env.WHITELIST_FORM_URL || '',
+  WHITELIST_FORM_TOKEN_FIELD: process.env.WHITELIST_FORM_TOKEN_FIELD || 'entry.123456789',
 }
 
 export const PRETALX_CONFIG = {
@@ -76,12 +78,4 @@ export const PRETALX_CONFIG = {
   PRETALX_QUESTIONS_KEYWORDS: 73,
 
   DEFAULT_LIMIT: 100,
-}
-
-export const SESSION_CONFIG = {
-  cookieName: API_INFO.title,
-  password: process.env.SESSION_SECRET || 'default-test-session-secret-for-iron-session',
-  cookieOptions: {
-    secure: process.env.NODE_ENV === 'production',
-  },
 }

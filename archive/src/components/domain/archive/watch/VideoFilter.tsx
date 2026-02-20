@@ -41,18 +41,19 @@ export const useVideoFilter = () => {
   const searchParams = useSearchParams();
 
   const nrOfEditions = 7;
-  const editionFilters = Array.from(Array(nrOfEditions + 1).keys()).sort(
-    (a, b) => b - a
-  );
+  const editionFilters = [
+    ...Array.from(Array(nrOfEditions + 1).keys())
+      .sort((a, b) => b - a)
+      .map((i) => ({
+        text: i.toString(),
+        value: `devcon-${i}`,
+      })),
+    { text: "Devconnect ARG", value: "devconnect-arg" },
+  ];
   const [_, editionFilterState] = useFilter({
     tags: true,
     multiSelect: true,
-    filters: editionFilters.map((i) => {
-      return {
-        text: i.toString(),
-        value: `devcon-${i}`,
-      };
-    }),
+    filters: editionFilters,
     filterFunction: () => [],
   });
 
@@ -260,7 +261,7 @@ const Filters = (props: any) => {
             Object.keys(editionFilterState.activeFilter).length > 0
           }
         >
-          <p className="bold font-xs text-uppercase">Devcon:</p>
+          <p className="bold font-xs text-uppercase">Devcon/nect:</p>
           <Filter {...editionFilterState} />
         </MobileWrapper>
       </div>
