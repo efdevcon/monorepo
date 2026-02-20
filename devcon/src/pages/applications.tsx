@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Head from 'next/head'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
