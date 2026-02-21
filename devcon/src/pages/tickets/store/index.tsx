@@ -191,6 +191,8 @@ function StoreContent({
           .map(c => `${c.quantity} x ${c.name}`)
           .join(', ')
 
+  const pretixCheckoutUrl = process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL
+
   const saveCartAndNavigate = () => {
     if (!paymentInfo) return
     const cartData: CartData = {
@@ -199,6 +201,18 @@ function StoreContent({
       savedAt: Date.now(),
     }
     localStorage.setItem('devcon-ticket-cart', JSON.stringify(cartData))
+  }
+
+  const handleCheckout = (e: React.MouseEvent) => {
+    if (pretixCheckoutUrl) {
+      e.preventDefault()
+      saveCartAndNavigate()
+      // Redirect to Pretix shop — user selects tickets and completes payment there.
+      // Cross-origin cart pre-population is not possible (CSRF protected).
+      window.location.href = pretixCheckoutUrl
+    } else {
+      saveCartAndNavigate()
+    }
   }
 
   const admissionTickets = tickets.filter(t => t.isAdmission && t.available && !t.requireVoucher)
@@ -314,32 +328,39 @@ function StoreContent({
                         )}
                         <span className={css['price-current']}>${ticket.price}</span>
                       </div>
-                      <div className={css['quantity']}>
-                        <button
-                          type="button"
-                          className={css['quantity-btn']}
-                          onClick={() => updateCartQuantity(ticket, -1)}
-                          aria-label="Decrease quantity"
-                        >
-                          −
-                        </button>
-                        <input
-                          type="number"
-                          className={css['quantity-input']}
-                          value={getQuantity(ticket.id)}
-                          min={0}
-                          onChange={e => setCartQuantity(ticket, parseInt(e.target.value, 10) || 0)}
-                          aria-label="Quantity"
-                        />
-                        <button
-                          type="button"
-                          className={css['quantity-btn']}
-                          onClick={() => updateCartQuantity(ticket, 1)}
-                          aria-label="Increase quantity"
-                        >
-                          +
-                        </button>
-                      </div>
+                      {pretixCheckoutUrl ? (
+                        <a href={pretixCheckoutUrl} className={css['checkout-btn']}>
+                          Buy
+                          <ArrowRightIcon />
+                        </a>
+                      ) : (
+                        <div className={css['quantity']}>
+                          <button
+                            type="button"
+                            className={css['quantity-btn']}
+                            onClick={() => updateCartQuantity(ticket, -1)}
+                            aria-label="Decrease quantity"
+                          >
+                            −
+                          </button>
+                          <input
+                            type="number"
+                            className={css['quantity-input']}
+                            value={getQuantity(ticket.id)}
+                            min={0}
+                            onChange={e => setCartQuantity(ticket, parseInt(e.target.value, 10) || 0)}
+                            aria-label="Quantity"
+                          />
+                          <button
+                            type="button"
+                            className={css['quantity-btn']}
+                            onClick={() => updateCartQuantity(ticket, 1)}
+                            aria-label="Increase quantity"
+                          >
+                            +
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -410,33 +431,35 @@ function StoreContent({
               </section>
             )}
           </div>
-          <div className={css['summary-sticky']}>
-            <div className={css['summary-sticky-inner']}>
-              <div className={css['summary-row']}>
-                <div>
-                  <p className={css['summary-label']}>Your selection</p>
-                  <p className={css['summary-selection']}>{selectionText}</p>
+          {!pretixCheckoutUrl && (
+            <div className={css['summary-sticky']}>
+              <div className={css['summary-sticky-inner']}>
+                <div className={css['summary-row']}>
+                  <div>
+                    <p className={css['summary-label']}>Your selection</p>
+                    <p className={css['summary-selection']}>{selectionText}</p>
+                  </div>
+                  <div>
+                    <p className={css['summary-total-label']}>Total</p>
+                    <p className={css['summary-total-value']}>{totalFormatted}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className={css['summary-total-label']}>Total</p>
-                  <p className={css['summary-total-value']}>{totalFormatted}</p>
+                <div className={css['summary-actions']}>
+                  {totalQty > 0 ? (
+                    <Link to="/tickets/store/checkout" className={css['checkout-btn']} onClick={handleCheckout}>
+                      Checkout
+                      <ArrowRightIcon />
+                    </Link>
+                  ) : (
+                    <span className={css['checkout-btn']} aria-disabled>
+                      Checkout
+                      <ArrowRightIcon />
+                    </span>
+                  )}
                 </div>
-              </div>
-              <div className={css['summary-actions']}>
-                {totalQty > 0 ? (
-                  <Link to="/tickets/store/checkout" className={css['checkout-btn']} onClick={saveCartAndNavigate}>
-                    Checkout
-                    <ArrowRightIcon />
-                  </Link>
-                ) : (
-                  <span className={css['checkout-btn']} aria-disabled>
-                    Checkout
-                    <ArrowRightIcon />
-                  </span>
-                )}
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
