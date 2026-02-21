@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { SelfBackendVerifier, DefaultConfigStore, AllIds } from '@selfxyz/core'
+import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, AllIds } from '@selfxyz/core'
 
 const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
@@ -46,6 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       SELF_ENDPOINT,
       IS_STAGING,
       AllIds,
+      // new Map([[ATTESTATION_ID.AADHAAR, true]]),
       configStore,
       'uuid'
     )
