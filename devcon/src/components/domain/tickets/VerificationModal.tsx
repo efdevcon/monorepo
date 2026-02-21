@@ -136,7 +136,11 @@ export function VerificationModal({
                 </button>
               </div>
               <a
-                href={`/en/tickets/store/redeem?voucher=${voucher}`}
+                href={
+                  process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL
+                    ? `${process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL}redeem?voucher=${voucher}`
+                    : `/en/tickets/store/redeem?voucher=${voucher}`
+                }
                 className={css['voucher-cta']}
               >
                 Go to Ticket Store

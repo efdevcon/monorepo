@@ -30,7 +30,12 @@ function useIsMobile() {
 
 export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging }: SelfVerificationModalProps) {
   const [userId, setUserId] = useState(() => crypto.randomUUID())
-  const [voucher, setVoucher] = useState<string | null>(null)
+  const [voucher, setVoucher] = useState<string | null>(() => {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem('selfVoucher')
+    }
+    return null
+  })
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [selfApp, setSelfApp] = useState<SelfApp | null>(null)
@@ -73,6 +78,9 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           setVoucher(data.voucherCode)
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('selfVoucher', data.voucherCode)
+          }
           return
         }
       } catch {
@@ -84,6 +92,9 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   }
 
   const handleReset = () => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('selfVoucher')
+    }
     setVoucher(null)
     setError(null)
     setCopied(false)
@@ -154,7 +165,11 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 </button>
               </div>
               <a
-                href={`/en/tickets/store/redeem?voucher=${voucher}`}
+                href={
+                  process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL
+                    ? `${process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL}redeem?voucher=${voucher}`
+                    : `/en/tickets/store/redeem?voucher=${voucher}`
+                }
                 className={css['voucher-cta']}
               >
                 Go to Ticket Store
