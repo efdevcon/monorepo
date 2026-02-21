@@ -52,8 +52,8 @@ import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
 interface PurchaseRequest {
   email: string
-  /** Wallet address that will pay (required; prevents tx reuse attack) */
-  intendedPayer: string
+  /** Wallet address that will pay (optional; when omitted, first signer claims the order) */
+  intendedPayer?: string
   tickets: {
     itemId: number
     variationId?: number
@@ -122,10 +122,18 @@ function buildExpectedEthWeiByChain(
   return weiPerChain
 }
 
-export default async function handler(
+export interface PurchaseHandlerOptions {
+  /** When false, intendedPayer is not required (simplified agent route). Default: true */
+  requirePayer?: boolean
+}
+
+export async function purchaseHandler(
   req: NextApiRequest,
-  res: NextApiResponse<PurchaseResponse | ErrorResponse>
+  res: NextApiResponse<PurchaseResponse | ErrorResponse>,
+  opts?: PurchaseHandlerOptions
 ) {
+  const requirePayer = opts?.requirePayer ?? true
+
   // x402 v2: If PAYMENT-SIGNATURE header is present, handle payment retry flow (spec §5.2)
   // Works for both GET (awal) and POST (SDK) retries
   const paymentSigHeader = (req.headers['payment-signature'] ?? req.headers['PAYMENT-SIGNATURE']) as string | undefined
@@ -135,7 +143,7 @@ export default async function handler(
 
   // GET: x402 discovery or order creation via ?params=<json>
   if (req.method === 'GET') {
-    const paramsStr = req.query.params as string | undefined
+    const paramsStr = typeof req.query.params === 'string' ? req.query.params : undefined
     if (paramsStr) {
       // GET with ?params= : create pending order (same as POST body), compatible with awal x402 pay
       try {
@@ -166,7 +174,7 @@ export default async function handler(
     const body = req.body as PurchaseRequest
 
     // Validate request
-    const validationErrors = validatePurchaseRequest(body)
+    const validationErrors = validatePurchaseRequest(body, { requirePayer })
     if (validationErrors.length > 0) {
       return res.status(400).json({
         success: false,
@@ -413,7 +421,9 @@ export default async function handler(
       totalUsd: total.toFixed(2),
       createdAt: Date.now() / 1000,
       expiresAt: paymentRequirements.payment.expiresAt,
-      intendedPayer: (validateAddressEIP55(body.intendedPayer.trim()) as { valid: true; checksummed: string }).checksummed,
+      intendedPayer: body.intendedPayer
+        ? (validateAddressEIP55(body.intendedPayer.trim()) as { valid: true; checksummed: string }).checksummed
+        : '',
       expectedEthAmountWeiByChain: Object.keys(expectedEthAmountWeiByChain).length > 0 ? expectedEthAmountWeiByChain : undefined,
       metadata: {
         ticketIds: orderTickets.map((t) => t.item.id),
@@ -473,6 +483,14 @@ export default async function handler(
       error: `Failed to create purchase: ${(error as Error).message}`,
     })
   }
+}
+
+/** Default Next.js handler — requires intendedPayer (frontend / ?params= flow) */
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<PurchaseResponse | ErrorResponse>
+) {
+  return purchaseHandler(req, res)
 }
 
 /**
@@ -558,8 +576,9 @@ async function handleGetDiscovery(
   }
 }
 
-function validatePurchaseRequest(body: PurchaseRequest): string[] {
+function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: boolean }): string[] {
   const errors: string[] = []
+  const requirePayer = opts?.requirePayer ?? true
 
   if (!body.email || typeof body.email !== 'string' || !body.email.includes('@')) {
     errors.push('Valid email is required')
@@ -584,11 +603,11 @@ function validatePurchaseRequest(body: PurchaseRequest): string[] {
     errors.push('Answers array is required')
   }
 
-  if (!body.intendedPayer || typeof body.intendedPayer !== 'string') {
-    errors.push('intendedPayer (wallet address) is required')
-  } else {
+  if (body.intendedPayer != null && body.intendedPayer !== '') {
     const v = validateAddressEIP55(body.intendedPayer)
     if (!v.valid) errors.push(`intendedPayer: ${v.error}`)
+  } else if (requirePayer) {
+    errors.push('intendedPayer (wallet address) is required')
   }
 
   return errors
@@ -679,8 +698,11 @@ async function handlePaymentSignatureRetry(
   const rawSignature = exactPayload.signature
 
   // 7. Verify payer matches intended payer (prevents tx reuse attack)
-  if (!addressesEqual(authorization.from, pendingOrder.intendedPayer)) {
-    return res.status(403).json({ success: false, error: 'Payer does not match intended payer for this order' })
+  //    When intendedPayer is empty (simplified endpoint), the first signer claims the order.
+  if (pendingOrder.intendedPayer) {
+    if (!addressesEqual(authorization.from, pendingOrder.intendedPayer)) {
+      return res.status(403).json({ success: false, error: 'Payer does not match intended payer for this order' })
+    }
   }
 
   // 8. Verify authorization params match expected values
