@@ -231,6 +231,7 @@ export default function CheckoutPage() {
 // ── Checkout content ──
 
 function CheckoutContent() {
+  const daimoPay = process.env.NEXT_PUBLIC_DAIMO_PAY === 'true'
   const { address, isConnected, chain } = useAccount()
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
@@ -579,7 +580,7 @@ function CheckoutContent() {
   })()
 
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : 3
-  const cryptoDiscount = paymentMethod === 'crypto' ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
+  const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
 
   // ── Payment state invalidation ──
@@ -726,7 +727,7 @@ function CheckoutContent() {
       return
     }
 
-    if (paymentMethod === 'crypto' && (!isConnected || !address)) {
+    if (paymentMethod === 'crypto' && !daimoPay && (!isConnected || !address)) {
       setPurchaseError('Please connect your wallet first')
       return
     }
@@ -737,6 +738,8 @@ function CheckoutContent() {
 
     if (paymentMethod === 'fiat') {
       await handleFiatCheckout()
+    } else if (daimoPay) {
+      await handleFiatCheckout('daimo_pay')
     } else {
       await handleCryptoCheckout()
     }
@@ -821,7 +824,7 @@ function CheckoutContent() {
     }
   }
 
-  async function handleFiatCheckout() {
+  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'daimo_pay') {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
@@ -843,6 +846,7 @@ function CheckoutContent() {
             name: { given_name: firstName, family_name: lastName },
             email,
           },
+          ...(paymentProvider && { paymentProvider }),
         }),
       })
 
@@ -1493,9 +1497,11 @@ function CheckoutContent() {
               <div className={css['section-body']}>
                 <div className={css['description-block']}>
                   <p className={css['description-title']}>Select your preferred payment method</p>
-                  <p className={css['description-sub']}>
-                    Receive a <strong>3% discount</strong> when paying with Crypto.
-                  </p>
+                  {!daimoPay && (
+                    <p className={css['description-sub']}>
+                      Receive a <strong>3% discount</strong> when paying with Crypto.
+                    </p>
+                  )}
                 </div>
                 <div className={css['payment-methods']}>
                   <label
@@ -1507,10 +1513,10 @@ function CheckoutContent() {
                       <div className={css['payment-option-header']}>
                         <div className={css['payment-option-title-row']}>
                           <span className={css['payment-option-title']}>Crypto</span>
-                          <span className={css['save-badge']}>SAVE 3%</span>
+                          {!daimoPay && <span className={css['save-badge']}>SAVE 3%</span>}
                         </div>
                       </div>
-                      <p className={css['payment-option-desc']}>USDC (gasless) &amp; ETH</p>
+                      <p className={css['payment-option-desc']}>{daimoPay ? 'via Daimo Pay' : 'USDC (gasless) & ETH'}</p>
                     </div>
                   </label>
                   <label
@@ -1527,7 +1533,7 @@ function CheckoutContent() {
                   </label>
                 </div>
 
-                {paymentMethod === 'crypto' && (
+                {paymentMethod === 'crypto' && !daimoPay && (
                   <div className={css['wallet-box']}>
                     {isConnected ? (
                       <div className={css['wallet-connected']}>
@@ -1555,7 +1561,7 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {paymentMethod === 'crypto' && paymentDetails && address && (
+                {paymentMethod === 'crypto' && !daimoPay && paymentDetails && address && (
                   <div className={css['payment-options-block']}>
                     <div className={css['payment-options-header']}>
                       <span className={css['payment-options-title']}>
@@ -1768,7 +1774,7 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {!(paymentDetails && paymentMethod === 'crypto') && (
+                {!(paymentDetails && paymentMethod === 'crypto' && !daimoPay) && (
                   <button
                     type="button"
                     className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
@@ -1784,9 +1790,9 @@ function CheckoutContent() {
                   </button>
                 )}
 
-                {paymentMethod !== 'crypto' && (
+                {(paymentMethod !== 'crypto' || daimoPay) && (
                   <div className={css['stripe-note']}>
-                    <span>Powered by Stripe</span>
+                    <span>Powered by {paymentMethod === 'crypto' && daimoPay ? 'Daimo Pay' : 'Stripe'}</span>
                   </div>
                 )}
               </div>

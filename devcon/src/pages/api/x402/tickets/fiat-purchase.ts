@@ -1,10 +1,10 @@
 /**
- * Fiat Purchase API - Create Pretix order with Stripe payment
+ * Purchase API - Create Pretix order with a redirect-based payment provider
  * POST /api/x402/tickets/fiat-purchase
  *
- * Creates a Pretix order with payment_provider: 'stripe'.
- * Returns the order code and Stripe payment URL for iframe embedding.
- * No crypto discount is applied for fiat payments.
+ * Accepts an optional `paymentProvider` field (default: 'stripe').
+ * Supported providers: 'stripe', 'daimo_pay'.
+ * Returns the order code and payment URL for redirect.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getTicketPurchaseInfo, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
@@ -36,6 +36,7 @@ interface FiatPurchaseRequest {
     country?: string
   }
   voucher?: string
+  paymentProvider?: 'stripe' | 'daimo_pay'
 }
 
 interface FiatPurchaseResponse {
@@ -230,31 +231,33 @@ export default async function handler(
       }
     }
 
-    // Create Pretix order with Stripe payment provider (no crypto discount)
+    // Determine payment provider (default: stripe)
+    const provider = body.paymentProvider === 'daimo_pay' ? 'daimo_pay' : 'stripe'
+
     const pretixOrder: PretixOrderCreateRequest = {
       email: body.email,
       locale: 'en',
       sales_channel: 'web',
-      payment_provider: 'stripe',
+      payment_provider: provider,
       positions,
       send_email: true,
     }
 
-    console.log('[FiatPurchase] Creating Pretix order with Stripe payment...')
+    console.log(`[Purchase] Creating Pretix order with ${provider} payment...`)
     const order = await createOrder(pretixOrder)
-    console.log('[FiatPurchase] Order created:', order.code)
+    console.log(`[Purchase] Order created:`, order.code)
 
     // Extract payment URL from the order
     const paymentUrl = order.payments?.[0]?.payment_url
     if (!paymentUrl) {
-      console.error('[FiatPurchase] No payment URL in order response')
+      console.error(`[Purchase] No payment URL in order response`)
       return res.status(500).json({
         success: false,
-        error: 'No payment URL returned from payment provider. Stripe may not be configured.',
+        error: `No payment URL returned from payment provider. ${provider} may not be configured.`,
       })
     }
 
-    console.log('[FiatPurchase] Payment URL received for order:', order.code)
+    console.log(`[Purchase] Payment URL received for order:`, order.code)
 
     return res.status(200).json({
       success: true,
