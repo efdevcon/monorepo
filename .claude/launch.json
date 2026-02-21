@@ -1,0 +1,65 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "devcon",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "devcon-website", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "devcon-app",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "devcon-app", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "devcon-api",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "devcon-api", "dev"],
+      "port": 4000
+    },
+    {
+      "name": "devcon-ai",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "devcon-ai", "dev"],
+      "port": 3001
+    },
+    {
+      "name": "devconnect",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "devconnect", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "devconnect-app",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "devconnect-app", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "archive",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "archive", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "perks-portal",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "perks-portal", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "event-app",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "event-app", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "social-ticket",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "social-ticket", "dev"],
+      "port": 3000
+    }
+  ]
+}
