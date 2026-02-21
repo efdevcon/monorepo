@@ -940,20 +940,29 @@ function CheckoutContent() {
     setPaymentStatus('Executing transfer...')
 
     try {
-      const r = signature.slice(0, 66)
-      const s = '0x' + signature.slice(66, 130)
-      const v = parseInt(signature.slice(130, 132), 16)
+      const sigHex = signature.startsWith('0x') ? signature : `0x${signature}`
+      // For EOA (65 bytes / 132 hex chars): split into v/r/s
+      // For smart wallets (ERC-1271, >65 bytes): send full raw signature
+      const isSmartWallet = sigHex.length > 132
+      const body: Record<string, unknown> = {
+        paymentReference: paymentDetails.paymentReference,
+        authorization: auth,
+        chainId: paymentDetails.chainId,
+        tokenAddress: paymentDetails.tokenAddress,
+      }
+      if (isSmartWallet) {
+        body.rawSignature = sigHex
+      } else {
+        const r = sigHex.slice(0, 66)
+        const s = '0x' + sigHex.slice(66, 130)
+        const v = parseInt(sigHex.slice(130, 132), 16)
+        body.signature = { v, r, s }
+      }
 
       const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          paymentReference: paymentDetails.paymentReference,
-          authorization: auth,
-          signature: { v, r, s },
-          chainId: paymentDetails.chainId,
-          tokenAddress: paymentDetails.tokenAddress,
-        }),
+        body: JSON.stringify(body),
       })
 
       const executeData = await executeRes.json()

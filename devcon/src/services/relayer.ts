@@ -11,6 +11,7 @@
 import {
   createPublicClient,
   createWalletClient,
+  decodeAbiParameters,
   parseAbi,
   type Hex,
   type Chain,
@@ -44,11 +45,57 @@ const CHAIN_ID_TO_CHAIN: Record<number, Chain> = {
 // USDC contract ABI for EIP-3009 functions
 const usdcAbi = parseAbi([
   'function transferWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, uint8 v, bytes32 r, bytes32 s) external',
+  'function transferWithAuthorization(address from, address to, uint256 value, uint256 validAfter, uint256 validBefore, bytes32 nonce, bytes signature) external',
   'function authorizationState(address authorizer, bytes32 nonce) external view returns (bool)',
   'function name() external view returns (string)',
   'function version() external view returns (string)',
   'function DOMAIN_SEPARATOR() external view returns (bytes32)',
 ])
+
+/**
+ * Detect smart wallet (ERC-1271) signatures.
+ * EOA signatures are exactly 65 bytes (130 hex chars + '0x' prefix = 132 chars).
+ * Smart wallet signatures (ABI-encoded ERC-1271) are longer.
+ */
+export function isSmartWalletSignature(sig: string): boolean {
+  const hex = sig.startsWith('0x') ? sig.slice(2) : sig
+  return hex.length > 130
+}
+
+/**
+ * ERC-6492 magic suffix (32 bytes).
+ * Signatures ending with this are wrapped in ERC-6492 format:
+ *   abi.encode(address factory, bytes factoryCalldata, bytes originalSignature) ++ magic
+ */
+const ERC_6492_MAGIC = '6492649264926492649264926492649264926492649264926492649264926492'
+
+/**
+ * Unwrap an ERC-6492 signature to extract the inner originalSignature.
+ * If the signature doesn't have the ERC-6492 magic suffix, returns it unchanged.
+ *
+ * ERC-6492 format: abi.encode(address, bytes, bytes) ++ 0x6492...6492
+ * The third `bytes` parameter is the actual ERC-1271 signature.
+ */
+export function unwrapERC6492Signature(sig: Hex): Hex {
+  const hex = sig.startsWith('0x') ? sig.slice(2) : sig
+  if (!hex.endsWith(ERC_6492_MAGIC)) return sig
+
+  // Strip the 32-byte magic suffix
+  const wrapped = `0x${hex.slice(0, -64)}` as Hex
+
+  // ABI-decode: (address factory, bytes factoryCalldata, bytes originalSignature)
+  const [, , originalSignature] = decodeAbiParameters(
+    [
+      { name: 'factory', type: 'address' },
+      { name: 'factoryCalldata', type: 'bytes' },
+      { name: 'originalSignature', type: 'bytes' },
+    ],
+    wrapped
+  )
+
+  console.log('[Relayer] Unwrapped ERC-6492 signature, inner length:', (originalSignature as string).length, 'chars')
+  return originalSignature as Hex
+}
 
 // ── Per-chain client caches ──
 
@@ -283,6 +330,81 @@ export async function executeTransferWithAuthorization(
     return { txHash: hash }
   } catch (error) {
     console.error('[Relayer] Error executing authorization:', error)
+    throw error
+  }
+}
+
+/**
+ * Execute a TransferWithAuthorization using the `bytes signature` overload.
+ * This overload is supported by USDC v2.2+ and internally calls
+ * SignatureChecker.isValidSignatureNow(), which handles both EOA (ecrecover)
+ * and ERC-1271 (smart wallet) signatures.
+ *
+ * Use this for Coinbase Smart Wallet and other contract wallets that produce
+ * ABI-encoded ERC-1271 signatures (>65 bytes).
+ */
+export async function executeTransferWithAuthorizationBytes(
+  authorization: EIP3009Authorization,
+  signatureBytes: Hex,
+  chainIdOrConfig?: number | GaslessTokenConfig
+): Promise<{ txHash: string }> {
+  const config = typeof chainIdOrConfig === 'object'
+    ? chainIdOrConfig
+    : getUsdcConfigForChainId(chainIdOrConfig ?? defaultChainId)
+  if (!config) throw new Error(`No gasless token config for chain ${typeof chainIdOrConfig === 'number' ? chainIdOrConfig : 'unknown'}`)
+  const cid = config.chainId
+
+  const { walletClient } = getWalletClientForChain(cid)
+  const client = getPublicClientForChain(cid)
+  const tokenAddress = config.tokenAddress as `0x${string}`
+
+  // Unwrap ERC-6492 if present (Coinbase Smart Wallet wraps signatures in this format)
+  const unwrappedSig = unwrapERC6492Signature(signatureBytes)
+
+  console.log(`[Relayer] Executing transferWithAuthorization (bytes overload) on chain ${cid} (${CHAIN_ID_TO_CHAIN[cid]?.name ?? 'unknown'})`)
+
+  // Check if nonce has already been used
+  const nonceUsed = await isNonceUsed(authorization.from, authorization.nonce, config)
+  if (nonceUsed) {
+    throw new Error('Authorization nonce has already been used')
+  }
+
+  // Check the payer actually has sufficient balance (prevents gas griefing)
+  try {
+    const balance = await client.readContract({
+      address: tokenAddress,
+      abi: parseAbi(['function balanceOf(address) view returns (uint256)']),
+      functionName: 'balanceOf',
+      args: [authorization.from as `0x${string}`],
+    })
+    if ((balance as bigint) < BigInt(authorization.value)) {
+      throw new Error(`Insufficient ${config.tokenSymbol} balance: payer has ${balance}, needs ${authorization.value}`)
+    }
+  } catch (error) {
+    if ((error as Error).message.startsWith('Insufficient ')) throw error
+    console.warn(`[Relayer] ${config.tokenSymbol} balance check failed, proceeding anyway:`, (error as Error).message)
+  }
+
+  try {
+    const hash = await walletClient.writeContract({
+      address: tokenAddress,
+      abi: usdcAbi,
+      functionName: 'transferWithAuthorization',
+      args: [
+        authorization.from as `0x${string}`,
+        authorization.to as `0x${string}`,
+        BigInt(authorization.value),
+        BigInt(authorization.validAfter),
+        BigInt(authorization.validBefore),
+        authorization.nonce as `0x${string}`,
+        unwrappedSig,
+      ],
+    })
+
+    console.log('[Relayer] transferWithAuthorization (bytes) tx:', hash)
+    return { txHash: hash }
+  } catch (error) {
+    console.error('[Relayer] Error executing authorization (bytes overload):', error)
     throw error
   }
 }

@@ -9,6 +9,7 @@ import { getPendingOrder } from 'services/ticketStore'
 import {
   getTokenDomain,
   getTransferWithAuthorizationTypes,
+  isSmartWalletSignature,
 } from 'services/relayer'
 import {
   X402FacilitatorVerifyRequest,
@@ -195,13 +196,24 @@ export default async function handler(
     }
 
     const rawSig = (paymentPayload.payload as ExactEvmPayload).signature
-    if (typeof rawSig !== 'string' || !rawSig.startsWith('0x') || rawSig.length !== 132) {
+    if (typeof rawSig !== 'string' || !rawSig.startsWith('0x') || rawSig.length < 132) {
       return res.status(200).json({
         isValid: false,
         invalidReason: X402_ERROR_CODES.INVALID_EXACT_EVM_PAYLOAD_SIGNATURE,
         payer: from,
       })
     }
+
+    if (isSmartWalletSignature(rawSig)) {
+      // Smart wallet (ERC-1271): can't verify contract signatures off-chain.
+      // Let settle handle on-chain verification via the bytes overload.
+      return res.status(200).json({
+        isValid: true,
+        payer: from,
+      })
+    }
+
+    // EOA: verify EIP-712 signature off-chain
     const valid = await verifyTypedData({
       address: auth.from as Hex,
       domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },

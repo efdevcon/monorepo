@@ -309,12 +309,14 @@ export interface ExecuteTransferRequest {
   paymentReference: string
   /** The signed authorization */
   authorization: EIP3009Authorization
-  /** Signature components */
-  signature: {
+  /** Signature: v/r/s object (EOA) or raw hex string (smart wallet / EOA) */
+  signature?: {
     v: number
     r: string
     s: string
-  }
+  } | string
+  /** Raw signature hex (smart wallet / ERC-1271: full bytes) — alternative to string signature */
+  rawSignature?: string
   /** Chain ID for multi-chain gasless USDC. Defaults to Base if omitted. */
   chainId?: number
 }

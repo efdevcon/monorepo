@@ -14,7 +14,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
-import { executeTransferWithAuthorization } from 'services/relayer'
+import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature } from 'services/relayer'
+import { type Hex } from 'viem'
 import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse, getGaslessTokenConfig, getGaslessConfigsForChain } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 
@@ -44,7 +45,16 @@ export default async function handler(
       return res.status(400).json({ success: false, error: 'Authorization is required' })
     }
 
-    if (!body.signature || !body.signature.v || !body.signature.r || !body.signature.s) {
+    // Accept signature as:
+    //  1. { v, r, s } object (EOA)
+    //  2. rawSignature hex string (smart wallet / ERC-1271)
+    //  3. signature as raw hex string (fallback)
+    const sig = body.signature
+    const sigObj = (sig && typeof sig === 'object') ? sig as { v: number; r: string; s: string } : undefined
+    const hasVRS = sigObj && sigObj.v !== undefined && sigObj.r && sigObj.s
+    const rawSigStr = body.rawSignature ?? (typeof sig === 'string' ? sig : undefined)
+    const hasRawSig = typeof rawSigStr === 'string' && rawSigStr.startsWith('0x') && rawSigStr.length >= 132
+    if (!hasVRS && !hasRawSig) {
       return res.status(400).json({ success: false, error: 'Valid signature is required' })
     }
 
@@ -144,7 +154,22 @@ export default async function handler(
     console.log('[ExecuteTransfer] Executing transfer for ref:', body.paymentReference, `(chain ${tokenConfig.chainId}, ${tokenConfig.tokenSymbol})`)
 
     // Execute the transfer (single tx: user → payment recipient via transferWithAuthorization)
-    const result = await executeTransferWithAuthorization(body.authorization, body.signature, tokenConfig)
+    let result: { txHash: string }
+    if (hasRawSig && isSmartWalletSignature(rawSigStr!)) {
+      // Smart wallet (ERC-1271): use bytes overload
+      console.log('[ExecuteTransfer] Smart wallet signature detected, using bytes overload')
+      result = await executeTransferWithAuthorizationBytes(body.authorization, rawSigStr as Hex, tokenConfig)
+    } else if (hasRawSig) {
+      // EOA raw signature: split into v/r/s
+      const hex = rawSigStr!
+      const r = hex.slice(0, 66)
+      const s = `0x${hex.slice(66, 130)}`
+      let v = parseInt(hex.slice(130, 132), 16)
+      if (v < 27) v += 27
+      result = await executeTransferWithAuthorization(body.authorization, { v, r, s }, tokenConfig)
+    } else {
+      result = await executeTransferWithAuthorization(body.authorization, body.signature as { v: number; r: string; s: string }, tokenConfig)
+    }
 
     console.log('[ExecuteTransfer] Transaction submitted:', result.txHash)
 

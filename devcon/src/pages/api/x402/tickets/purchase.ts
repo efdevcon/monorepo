@@ -33,7 +33,7 @@ import {
 } from 'services/x402'
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
-import { executeTransferWithAuthorization, getTokenDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
+import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
 import {
   X402PaymentRequirements,
   X402PaymentBlockV2,
@@ -126,14 +126,30 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<PurchaseResponse | ErrorResponse>
 ) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' })
-  }
-
   // x402 v2: If PAYMENT-SIGNATURE header is present, handle payment retry flow (spec §5.2)
+  // Works for both GET (awal) and POST (SDK) retries
   const paymentSigHeader = (req.headers['payment-signature'] ?? req.headers['PAYMENT-SIGNATURE']) as string | undefined
   if (paymentSigHeader) {
     return handlePaymentSignatureRetry(req, res, paymentSigHeader)
+  }
+
+  // GET: x402 discovery or order creation via ?params=<json>
+  if (req.method === 'GET') {
+    const paramsStr = req.query.params as string | undefined
+    if (paramsStr) {
+      // GET with ?params= : create pending order (same as POST body), compatible with awal x402 pay
+      try {
+        req.body = JSON.parse(decodeURIComponent(paramsStr))
+      } catch {
+        return res.status(400).json({ success: false, error: 'Invalid params JSON' })
+      }
+      // Fall through to the order creation logic below
+    } else {
+      // GET without params: discovery only
+      return handleGetDiscovery(req, res)
+    }
+  } else if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
   try {
@@ -459,6 +475,89 @@ export default async function handler(
   }
 }
 
+/**
+ * Handle GET requests for x402 discovery.
+ * Returns 402 with representative pricing so agents (e.g. `awal x402 details`)
+ * can discover payment requirements without creating a pending order.
+ */
+async function handleGetDiscovery(
+  _req: NextApiRequest,
+  res: NextApiResponse
+) {
+  try {
+    const ticketInfo = await getTicketPurchaseInfo()
+
+    // Find cheapest available admission ticket for representative pricing
+    const availableAdmission = ticketInfo.tickets
+      .filter((t) => t.available && t.isAdmission && !t.requireVoucher)
+      .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
+
+    const representative = availableAdmission[0]
+    if (!representative) {
+      return res.status(404).json({ success: false, error: 'No tickets currently available' })
+    }
+
+    const subtotal = parseFloat(representative.price)
+    const cryptoDiscount = (subtotal * CRYPTO_DISCOUNT_PERCENT) / 100
+    const total = subtotal - cryptoDiscount
+
+    // Build payment requirements (ephemeral — not stored)
+    const paymentRequirements = createPaymentRequirements(
+      '/api/x402/tickets/purchase',
+      total.toFixed(2),
+      3600,
+      { discovery: true }
+    )
+
+    const x402Spec = await buildX402PaymentRequiredSpec(paymentRequirements, {
+      error: 'Payment required. POST with a request body to create an order.',
+      resourceDescription: 'Devcon ticket purchase',
+    })
+
+    res.setHeader('PAYMENT-REQUIRED', encodePaymentRequiredHeader(x402Spec))
+
+    return res.status(402).json({
+      x402: x402Spec,
+      description: 'POST a JSON body to this endpoint to create a ticket order and receive payment requirements.',
+      inputSchema: {
+        email: 'string (required)',
+        intendedPayer: 'string (required) — EIP-55 wallet address that will pay',
+        tickets: '[{ itemId: number, variationId?: number, quantity?: number }] (required)',
+        addons: '[{ itemId: number, variationId?: number, quantity?: number }] (optional)',
+        answers: '[{ questionId: number, answer: string | number | string[] }] (required)',
+        attendee: '{ name: { given_name: string, family_name: string }, email?: string, company?: string, country?: string } (required)',
+        voucher: 'string (optional)',
+      },
+      orderSummary: {
+        representativeTicket: representative.name,
+        representativePrice: representative.price,
+        cryptoDiscountPercent: CRYPTO_DISCOUNT_PERCENT,
+        representativeTotal: total.toFixed(2),
+        currency: ticketInfo.event.currency,
+        availableTickets: ticketInfo.tickets
+          .filter((t) => t.available && !t.requireVoucher)
+          .map((t) => ({
+            id: t.id,
+            name: t.name,
+            price: t.price,
+            isAdmission: t.isAdmission,
+            variations: t.variations.filter((v) => v.available).map((v) => ({
+              id: v.id,
+              name: v.name,
+              price: v.price,
+            })),
+          })),
+      },
+    })
+  } catch (error) {
+    console.error('Error in GET discovery:', error)
+    return res.status(500).json({
+      success: false,
+      error: `Discovery failed: ${(error as Error).message}`,
+    })
+  }
+}
+
 function validatePurchaseRequest(body: PurchaseRequest): string[] {
   const errors: string[] = []
 
@@ -521,22 +620,27 @@ async function handlePaymentSignatureRetry(
   res: NextApiResponse,
   paymentSigHeader: string
 ) {
+  console.log('[purchase] PAYMENT-SIGNATURE retry received, method:', _req.method)
   // 1. Decode PAYMENT-SIGNATURE header (base64 → PaymentPayload)
   let paymentPayload: PaymentPayload
   try {
     paymentPayload = decodePaymentSignatureHeader(paymentSigHeader)
-  } catch {
+    console.log('[purchase] Decoded payload:', JSON.stringify(paymentPayload, null, 2))
+  } catch (e) {
+    console.log('[purchase] Failed to decode PAYMENT-SIGNATURE:', (e as Error).message)
     return res.status(400).json({ success: false, error: 'Invalid PAYMENT-SIGNATURE header encoding' })
   }
 
   // 2. Validate x402 version
   if (paymentPayload.x402Version !== X402_VERSION) {
+    console.log('[purchase] Version mismatch:', paymentPayload.x402Version, 'expected:', X402_VERSION)
     return res.status(400).json({ success: false, error: `Unsupported x402 version: ${paymentPayload.x402Version}` })
   }
 
   // 3. Extract accepted requirements, network chain, and payment reference
   const accepted = paymentPayload.accepted
   if (!accepted || accepted.scheme !== 'exact') {
+    console.log('[purchase] Unsupported scheme:', accepted?.scheme)
     return res.status(400).json({ success: false, error: 'Unsupported or missing payment scheme' })
   }
 
@@ -607,61 +711,76 @@ async function handlePaymentSignatureRetry(
     return res.status(400).json({ success: false, error: `Authorization validBefore too far in the future or unlimited (must be before ${maxValidBefore})` })
   }
 
-  // 9. Verify EIP-712 signature (token-specific domain)
-  const domain = getTokenDomain(tokenConfig)
-  const types = getTransferWithAuthorizationTypes()
-  const message = {
-    from: authorization.from as Hex,
-    to: authorization.to as Hex,
-    value: BigInt(String(authorization.value)),
-    validAfter: BigInt(validAfter),
-    validBefore: BigInt(validBefore),
-    nonce: authorization.nonce as Hex,
+  // 9. Verify signature and execute transfer via relayer (gas-sponsored)
+  const smartWallet = isSmartWalletSignature(rawSignature)
+  const sigHex = (rawSignature.startsWith('0x') ? rawSignature : `0x${rawSignature}`) as Hex
+  const authArgs = {
+    from: authorization.from,
+    to: authorization.to,
+    value: String(authorization.value),
+    validAfter,
+    validBefore,
+    nonce: authorization.nonce,
   }
-
-  try {
-    const sigValid = await verifyTypedData({
-      address: authorization.from as Hex,
-      domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
-      types,
-      primaryType: 'TransferWithAuthorization',
-      message,
-      signature: rawSignature as Hex,
-    })
-    if (!sigValid) {
-      return res.status(402).json({ success: false, error: 'Invalid payment signature' })
-    }
-  } catch {
-    return res.status(402).json({ success: false, error: 'Signature verification failed' })
-  }
-
-  // 10. Execute transfer via relayer (gas-sponsored)
-  const sigHex = rawSignature.startsWith('0x') ? rawSignature : `0x${rawSignature}`
-  const r = sigHex.slice(0, 66)
-  const s = `0x${sigHex.slice(66, 130)}`
-  let v = parseInt(sigHex.slice(130, 132), 16)
-  if (v < 27) v += 27
 
   let txHash: string
-  try {
-    const result = await executeTransferWithAuthorization(
-      {
-        from: authorization.from,
-        to: authorization.to,
-        value: String(authorization.value),
-        validAfter,
-        validBefore,
-        nonce: authorization.nonce,
-      },
-      { v, r, s },
-      tokenConfig
-    )
-    txHash = result.txHash
-  } catch (error) {
-    return res.status(402).json({
-      success: false,
-      error: `Settlement failed: ${(error as Error).message}`,
-    })
+  if (smartWallet) {
+    // Smart wallet (ERC-1271): skip off-chain verifyTypedData — contract signatures
+    // can't be verified off-chain. Use the bytes overload which calls
+    // SignatureChecker.isValidSignatureNow() on-chain.
+    console.log('[purchase] Smart wallet signature detected, using bytes overload')
+    try {
+      const result = await executeTransferWithAuthorizationBytes(authArgs, sigHex, tokenConfig)
+      txHash = result.txHash
+    } catch (error) {
+      return res.status(402).json({
+        success: false,
+        error: `Settlement failed: ${(error as Error).message}`,
+      })
+    }
+  } else {
+    // EOA: verify EIP-712 signature off-chain, then use v/r/s overload
+    const domain = getTokenDomain(tokenConfig)
+    const types = getTransferWithAuthorizationTypes()
+    const message = {
+      from: authorization.from as Hex,
+      to: authorization.to as Hex,
+      value: BigInt(String(authorization.value)),
+      validAfter: BigInt(validAfter),
+      validBefore: BigInt(validBefore),
+      nonce: authorization.nonce as Hex,
+    }
+
+    try {
+      const sigValid = await verifyTypedData({
+        address: authorization.from as Hex,
+        domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
+        types,
+        primaryType: 'TransferWithAuthorization',
+        message,
+        signature: sigHex,
+      })
+      if (!sigValid) {
+        return res.status(402).json({ success: false, error: 'Invalid payment signature' })
+      }
+    } catch {
+      return res.status(402).json({ success: false, error: 'Signature verification failed' })
+    }
+
+    const r = sigHex.slice(0, 66)
+    const s = `0x${sigHex.slice(66, 130)}`
+    let v = parseInt(sigHex.slice(130, 132), 16)
+    if (v < 27) v += 27
+
+    try {
+      const result = await executeTransferWithAuthorization(authArgs, { v, r, s }, tokenConfig)
+      txHash = result.txHash
+    } catch (error) {
+      return res.status(402).json({
+        success: false,
+        error: `Settlement failed: ${(error as Error).message}`,
+      })
+    }
   }
 
   // 11. Verify on-chain (wait for receipt)

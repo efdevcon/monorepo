@@ -11,6 +11,8 @@ import { getPaymentRecipient, usdToUsdcAmount } from 'services/x402'
 import { getPendingOrder } from 'services/ticketStore'
 import {
   executeTransferWithAuthorization,
+  executeTransferWithAuthorizationBytes,
+  isSmartWalletSignature,
   getTokenDomain,
   getTransferWithAuthorizationTypes,
 } from 'services/relayer'
@@ -221,7 +223,7 @@ export default async function handler(
       nonce: auth.nonce as Hex,
     }
 
-    if (typeof rawSignature !== 'string' || !rawSignature.startsWith('0x') || rawSignature.length !== 132) {
+    if (typeof rawSignature !== 'string' || !rawSignature.startsWith('0x') || rawSignature.length < 132) {
       return res.status(400).json({
         success: false,
         transaction: '',
@@ -231,44 +233,51 @@ export default async function handler(
       })
     }
 
-    const sigValid = await verifyTypedData({
-      address: auth.from as Hex,
-      domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
-      types,
-      primaryType: 'TransferWithAuthorization',
-      message,
-      signature: rawSignature as Hex,
-    })
-
-    if (!sigValid) {
-      return res.status(400).json({
-        success: false,
-        transaction: '',
-        network,
-        payer: auth.from,
-        errorReason: X402_ERROR_CODES.INVALID_EXACT_EVM_PAYLOAD_SIGNATURE,
-      })
+    const authArgs = {
+      from: auth.from,
+      to: auth.to,
+      value: auth.value,
+      validAfter: auth.validAfter,
+      validBefore: auth.validBefore,
+      nonce: auth.nonce,
     }
 
-    // Execute transfer via relayer
-    const sigHex = rawSignature
-    const r = sigHex.slice(0, 66)
-    const s = `0x${sigHex.slice(66, 130)}`
-    let v = parseInt(sigHex.slice(130, 132), 16)
-    if (v < 27) v += 27
+    let result: { txHash: string }
 
-    const result = await executeTransferWithAuthorization(
-      {
-        from: auth.from,
-        to: auth.to,
-        value: auth.value,
-        validAfter: auth.validAfter,
-        validBefore: auth.validBefore,
-        nonce: auth.nonce,
-      },
-      { v, r, s },
-      tokenConfig
-    )
+    if (isSmartWalletSignature(rawSignature)) {
+      // Smart wallet (ERC-1271): skip off-chain verifyTypedData, use bytes overload
+      // which calls SignatureChecker.isValidSignatureNow() on-chain
+      console.log('[Facilitator settle] Smart wallet signature detected, using bytes overload')
+      result = await executeTransferWithAuthorizationBytes(authArgs, rawSignature as Hex, tokenConfig)
+    } else {
+      // EOA: verify EIP-712 signature off-chain, then use v/r/s overload
+      const sigValid = await verifyTypedData({
+        address: auth.from as Hex,
+        domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
+        types,
+        primaryType: 'TransferWithAuthorization',
+        message,
+        signature: rawSignature as Hex,
+      })
+
+      if (!sigValid) {
+        return res.status(400).json({
+          success: false,
+          transaction: '',
+          network,
+          payer: auth.from,
+          errorReason: X402_ERROR_CODES.INVALID_EXACT_EVM_PAYLOAD_SIGNATURE,
+        })
+      }
+
+      const sigHex = rawSignature
+      const r = sigHex.slice(0, 66)
+      const s = `0x${sigHex.slice(66, 130)}`
+      let v = parseInt(sigHex.slice(130, 132), 16)
+      if (v < 27) v += 27
+
+      result = await executeTransferWithAuthorization(authArgs, { v, r, s }, tokenConfig)
+    }
 
     return res.status(200).json({
       success: true,
