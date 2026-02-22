@@ -4,6 +4,11 @@ import { useSession } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { use } from "react";
 import { Link, BackButton } from "@/routing";
+import {
+  MeerkatProvider,
+  useQuestions,
+  useSessionUrl,
+} from "@meerkat-events/react";
 
 interface SessionClientProps {
   params?: Promise<{ id: string }>;
@@ -76,6 +81,53 @@ export default function Session({ params, id: directId }: SessionClientProps) {
             ))}
           </div>
         </div>
+      )}
+
+      <MeerkatProvider>
+        <SessionQA sessionId={id} />
+      </MeerkatProvider>
+    </div>
+  );
+}
+
+function SessionQA({ sessionId }: { sessionId: string }) {
+  // WIP: realtime disabled until Meerkat integration is avaiable
+  const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
+  const sessionUrl = useSessionUrl(sessionId);
+
+  return (
+    <div className="mt-6">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="font-semibold">Questions</h2>
+        <div className="flex items-center gap-3 text-sm">
+          <a
+            href={sessionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Ask a question
+          </a>
+        </div>
+      </div>
+
+      {error ? (
+        <p className="text-red-500 text-sm">{error.message}</p>
+      ) : isLoading ? (
+        <p className="text-gray-500 text-sm">Loading questions...</p>
+      ) : !questions?.length ? (
+        <p className="text-gray-500 text-sm">No questions yet. Be the first to ask!</p>
+      ) : (
+        <ul className="space-y-2">
+          {questions.map((q) => (
+            <li key={q.id} className="flex gap-3 p-3 border rounded">
+              <span className="text-sm font-medium text-blue-600 shrink-0 min-w-[2rem] text-center">
+                {q.votes}
+              </span>
+              <span className="text-sm text-gray-700">{q.question}</span>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
