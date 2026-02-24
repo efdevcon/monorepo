@@ -2,7 +2,7 @@
 
 import { useSession } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, BackButton } from "@/routing";
 import {
   MeerkatProvider,
@@ -94,20 +94,40 @@ function SessionQA({ sessionId }: { sessionId: string }) {
   // WIP: realtime disabled until Meerkat integration is avaiable
   const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
   const sessionUrl = useSessionUrl(sessionId);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  async function handleAskQuestion() {
+    setIsGenerating(true);
+    try {
+      const res = await fetch("/api/generate-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      });
+      if (!res.ok) throw new Error("Failed to generate code");
+      const { code } = await res.json();
+      const url = new URL(sessionUrl);
+      url.searchParams.set("code", code);
+      window.open(url.toString(), "_blank", "noopener,noreferrer");
+    } catch (err) {
+      console.error("Failed to generate code:", err);
+    } finally {
+      setIsGenerating(false);
+    }
+  }
 
   return (
     <div className="mt-6">
       <div className="flex items-center justify-between mb-3">
         <h2 className="font-semibold">Questions</h2>
         <div className="flex items-center gap-3 text-sm">
-          <a
-            href={sessionUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
+          <button
+            onClick={handleAskQuestion}
+            disabled={isGenerating}
+            className="text-blue-500 hover:underline disabled:opacity-50 cursor-pointer"
           >
-            Ask a question
-          </a>
+            {isGenerating ? "Loading..." : "Ask a question"}
+          </button>
         </div>
       </div>
 
