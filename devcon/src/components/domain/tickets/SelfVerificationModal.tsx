@@ -10,6 +10,16 @@ const SelfQRcodeWrapper = dynamic(() => import('@selfxyz/qrcode').then((mod) => 
 
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
 const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
+const ALLOW_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
+
+function friendlyError(reason?: string): string {
+  if (!reason) return 'Verification failed'
+  if (reason.includes('[InvalidId]'))
+    return 'Verification failed: this only works with an Aadhaar card — passport and other document types are not supported.'
+  if (reason.includes('[InvalidRoot]'))
+    return 'Verification failed: the root does not exist on-chain. Make sure you are using a real Aadhaar card, not a mock or test ID.'
+  return reason
+}
 
 type SelfVerificationModalProps = {
   isOpen: boolean
@@ -43,6 +53,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   const [pollingForVoucher, setPollingForVoucher] = useState(false)
   const isMobile = useIsMobile()
 
+  const effectiveStaging = ALLOW_STAGING && useStaging
+
   useEffect(() => {
     if (!isOpen) return
 
@@ -50,8 +62,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       const app = new SelfAppBuilder({
         appName: 'Devcon India Tickets',
         scope: SELF_SCOPE,
-        endpoint: SELF_ENDPOINT,
-        endpointType: useStaging ? 'staging_https' : 'https',
+        endpoint: effectiveStaging ? `${SELF_ENDPOINT}?staging=true` : SELF_ENDPOINT,
+        endpointType: effectiveStaging ? 'staging_https' : 'https',
         userId,
         userIdType: 'uuid',
         disclosures: {
@@ -67,7 +79,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       console.error('Failed to initialize Self app:', e)
       setError('Failed to initialize verification. Please try again.')
     }
-  }, [isOpen, userId, useStaging])
+  }, [isOpen, userId, effectiveStaging])
 
   const handleSuccess = async () => {
     const maxAttempts = 10
@@ -233,24 +245,26 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               )}
             </ol>
 
-            <div className={`${css['test-mode']} ${useStaging ? css['test-mode--test'] : css['test-mode--real']}`}>
-              <div className={css['test-mode-inner']}>
-                <span className={css['test-mode-label']}>Self mode</span>
-                <span className={css['test-mode-badge']} aria-live="polite">
-                  {useStaging ? 'Test' : 'Production'}
-                </span>
+            {ALLOW_STAGING && (
+              <div className={`${css['test-mode']} ${effectiveStaging ? css['test-mode--test'] : css['test-mode--real']}`}>
+                <div className={css['test-mode-inner']}>
+                  <span className={css['test-mode-label']}>Self mode</span>
+                  <span className={css['test-mode-badge']} aria-live="polite">
+                    {effectiveStaging ? 'Test' : 'Production'}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className={css['test-mode-btn']}
+                  onClick={() => {
+                    setUseStaging(!useStaging)
+                    handleReset()
+                  }}
+                >
+                  Switch to {effectiveStaging ? 'production' : 'test'}
+                </button>
               </div>
-              <button
-                type="button"
-                className={css['test-mode-btn']}
-                onClick={() => {
-                  setUseStaging(!useStaging)
-                  handleReset()
-                }}
-              >
-                Switch to {useStaging ? 'production' : 'test'}
-              </button>
-            </div>
+            )}
 
             {error && <p className={css['error']}>{error}</p>}
 
@@ -304,7 +318,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 <h3 className={css['heading']}>Scan QR code with Self app</h3>
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem 0' }}>
                   {selfApp ? (
-                    <SelfQRcodeWrapper selfApp={selfApp} onSuccess={handleSuccess} onError={(data) => setError(data.reason || 'Verification failed')} darkMode={false} />
+                    <SelfQRcodeWrapper selfApp={selfApp} onSuccess={handleSuccess} onError={(data) => setError(friendlyError(data.reason))} darkMode={false} />
                   ) : (
                     <div
                       style={{
