@@ -1,29 +1,49 @@
 import React from 'react'
-import { Hero } from 'components/domain/index/hero'
+import Head from 'next/head'
+import { TicketSharing } from 'components/domain/ticket-sharing'
 import { SITE_URL } from 'utils/constants'
+import type { GetServerSidePropsContext } from 'next'
 
-const Ticket = (props: { params: { name: string }; imageUrl: string }) => {
+const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string }) => {
   if (!props.params) return null
 
-  return <Hero name={props.params.name} ticketMode imageUrl={props.imageUrl}></Hero>
+  const title = `${props.params.name} — Devcon Mumbai`
+  const description = 'Attending Devcon: the schelling point for the Ethereum community'
+
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={props.imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={props.imageUrl} />
+      </Head>
+      <TicketSharing name={props.params.name} imageUrl={props.imageUrl} xUsername={props.xUsername} />
+    </>
+  )
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const name = (context.params?.name as string) || 'Anon'
+  const xUsername = typeof context.query.x === 'string' ? context.query.x : ''
+  const baseUrl = SITE_URL.replace(/\/$/, '')
+  let imageUrl = `${baseUrl}/api/mumbai/ticket/${encodeURIComponent(name)}`
+  if (xUsername) {
+    imageUrl += `?x=${encodeURIComponent(xUsername)}`
   }
-}
-
-export async function getStaticProps(context: any) {
-  const name = context.params.name || 'Anon'
-  const baseUrl = 'https://dev--devcon-monorepo.netlify.app'
-  const imageUrl = `${baseUrl.replace(/\/$/, '')}/api/mumbai/ticket/${encodeURIComponent(name)}`
 
   return {
     props: {
-      params: context.params,
+      params: { name },
       imageUrl,
+      xUsername,
     },
   }
 }
