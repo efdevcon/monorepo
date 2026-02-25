@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import { TicketSharing } from 'components/domain/ticket-sharing'
-import { SITE_URL } from 'utils/constants'
 import type { GetServerSidePropsContext } from 'next'
 
 const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string; pageUrl: string }) => {
@@ -37,7 +36,9 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const name = (context.params?.name as string) || 'Anon'
   const xUsername = typeof context.query.x === 'string' ? context.query.x : ''
-  const baseUrl = SITE_URL.replace(/\/$/, '')
+  const proto = context.req.headers['x-forwarded-proto'] || 'https'
+  const host = context.req.headers.host || 'devcon.org'
+  const baseUrl = `${proto}://${host}`
   let imageUrl = `${baseUrl}/api/mumbai/ticket/${encodeURIComponent(name)}`
   if (xUsername) {
     imageUrl += `?x=${encodeURIComponent(xUsername)}`
