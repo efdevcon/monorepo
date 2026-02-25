@@ -10,6 +10,7 @@ import css from './store.module.scss'
 import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
+import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
 
@@ -405,8 +406,8 @@ function StoreContent({
                         </div>
                       </div> */}
                       <div className={css['card']}>
-                        <div className={css['card-main']}>
-                          <div className={css['card-body']}>
+                        <div className={css['card-stacked']}>
+                          <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
                             <p className={css['card-meta']}>
                               Via Self & ETH Mumbai registration - Price increases 31 March
@@ -416,7 +417,7 @@ function StoreContent({
                               snacks all week.
                             </p>
                           </div>
-                          <div className={css['card-right']}>
+                          <div className={css['card-footer']}>
                             <div className={css['pricing']}>
                               <span className={css['price-current']}>${ticket.price}</span>
                               {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
@@ -425,11 +426,11 @@ function StoreContent({
                             </div>
                             <button
                               type="button"
-                              className={css['verify-btn']}
+                              className={css['verify-self-btn']}
                               onClick={() => setSelfVerificationOpen(true)}
                             >
-                              <VerifyIcon />
-                              Verify
+                              <SelfLogo className={css['self-logo']} aria-hidden="true" />
+                              Verify via Self
                             </button>
                           </div>
                         </div>
