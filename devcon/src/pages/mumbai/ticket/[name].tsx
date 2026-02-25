@@ -14,16 +14,16 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
     <>
       <Head>
         <title>{title}</title>
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={props.imageUrl} />
+        <meta property="og:title" key="og:title" content={title} />
+        <meta property="og:description" key="og:description" content={description} />
+        <meta property="og:image" key="og:image" content={props.imageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={props.imageUrl} />
+        <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" key="twitter:title" content={title} />
+        <meta name="twitter:description" key="twitter:description" content={description} />
+        <meta name="twitter:image" key="twitter:image" content={props.imageUrl} />
       </Head>
       <TicketSharing name={props.params.name} imageUrl={props.imageUrl} xUsername={props.xUsername} />
     </>
