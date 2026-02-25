@@ -13,7 +13,7 @@
 }
 
 .backdrop {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
 }
@@ -465,6 +465,17 @@
   color: #000;
   margin: 0;
   font-family: inherit;
+  line-height: 1.5;
+}
+
+.self-aadhaar-notice {
+  font-size: 0.875rem;
+  color: #9b1c1c;
+  background: #fff5f5;
+  border: 1px solid #f5c6c6;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
   line-height: 1.5;
 }
 

@@ -12,13 +12,19 @@ const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/red
 const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
 const ALLOW_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
 
-function friendlyError(reason?: string): string {
-  if (!reason) return 'Verification failed'
-  if (reason.includes('[InvalidId]'))
-    return 'Verification failed: this only works with an Aadhaar card — passport and other document types are not supported.'
+type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | null
+
+function parseError(reason?: string): { message: string; code: ErrorCode } {
+  if (!reason) return { message: 'Verification failed', code: null }
+  if (reason.includes('[InvalidId]') || reason.includes('Aadhaar'))
+    return { message: 'Verification failed: only Aadhaar cards are supported.', code: 'INVALID_ID' }
   if (reason.includes('[InvalidRoot]'))
-    return 'Verification failed: the root does not exist on-chain. Make sure you are using a real Aadhaar card, not a mock or test ID.'
-  return reason
+    return { message: 'Verification failed: the root does not exist on-chain. Make sure you are using a real Aadhaar card, not a mock or test ID.', code: null }
+  if (reason.includes('Indian residents') || reason.includes('Nationality'))
+    return { message: reason, code: 'NOT_INDIAN' }
+  if (reason.includes('18') || reason.includes('age') || reason.includes('older'))
+    return { message: reason, code: 'UNDER_18' }
+  return { message: reason, code: null }
 }
 
 type SelfVerificationModalProps = {
@@ -47,10 +53,23 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     return null
   })
   const [error, setError] = useState<string | null>(null)
+  const [errorCode, setErrorCode] = useState<ErrorCode>(null)
+
+  const setErrorFromReason = (reason?: string) => {
+    const { message, code } = parseError(reason)
+    setError(message)
+    setErrorCode(code)
+  }
+
+  const clearError = () => {
+    setError(null)
+    setErrorCode(null)
+  }
   const [copied, setCopied] = useState(false)
   const [selfApp, setSelfApp] = useState<SelfApp | null>(null)
   const [universalLink, setUniversalLink] = useState('')
   const [pollingForVoucher, setPollingForVoucher] = useState(false)
+  const hasOpenedSelfApp = React.useRef(false)
   const isMobile = useIsMobile()
 
   const effectiveStaging = ALLOW_STAGING && useStaging
@@ -95,6 +114,10 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
           }
           return
         }
+        if (res.ok && data.error && data.reason) {
+          setErrorFromReason(data.reason)
+          return
+        }
       } catch {
         // ignore and retry
       }
@@ -103,12 +126,27 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     setError('Verification timed out. Please try again.')
   }
 
+  // When the user returns from the Self app, start polling automatically
+  useEffect(() => {
+    if (!isOpen) return
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && hasOpenedSelfApp.current && !pollingForVoucher && !voucher) {
+        hasOpenedSelfApp.current = false
+        setPollingForVoucher(true)
+        clearError()
+        handleSuccess().finally(() => setPollingForVoucher(false))
+      }
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange)
+  }, [isOpen, pollingForVoucher, voucher])
+
   const handleReset = () => {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem('selfVoucher')
     }
     setVoucher(null)
-    setError(null)
+    clearError()
     setCopied(false)
     setSelfApp(null)
     setUniversalLink('')
@@ -125,7 +163,12 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   if (!isOpen) return null
 
   return (
-    <div className={`${css['overlay']} ${css['self-overlay']}`} role="dialog" aria-modal="true" aria-labelledby="self-verification-title">
+    <div
+      className={`${css['overlay']} ${css['self-overlay']}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="self-verification-title"
+    >
       <div className={css['backdrop']} onClick={onClose} aria-hidden="true" />
       <div className={`${css['modal']} ${css['self-modal']}`}>
         <button type="button" className={`${css['close']} ${css['self-close']}`} onClick={onClose} aria-label="Close">
@@ -277,7 +320,23 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               </div>
             )}
 
-            {error && <p className={css['error']}>{error}</p>}
+            {error && errorCode === null && <p className={css['error']}>{error}</p>}
+            {errorCode === 'INVALID_ID' && (
+              <p className={css['self-aadhaar-notice']}>
+                <strong>Aadhaar cards only.</strong> Passport and other document types are not supported.
+              </p>
+            )}
+            {errorCode === 'NOT_INDIAN' && (
+              <p className={css['self-aadhaar-notice']}>
+                Sorry, it looks like your nationality is not Indian. This offer is currently exclusive to Indian
+                residents with an Aadhaar card, who attended ETH Mumbai.
+              </p>
+            )}
+            {errorCode === 'UNDER_18' && (
+              <p className={css['self-aadhaar-notice']}>
+                Sorry, you must be 18 or older to purchase a discounted ticket.
+              </p>
+            )}
 
             {isMobile ? (
               <div className={css['continue-wrap']}>
@@ -294,12 +353,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     opacity: universalLink ? 1 : 0.6,
                   }}
                   onClick={() => {
-                    // Start polling after a short delay to give Self app time to process
-                    setPollingForVoucher(true)
-                    setError(null)
-                    setTimeout(() => {
-                      handleSuccess().finally(() => setPollingForVoucher(false))
-                    }, 3000)
+                    hasOpenedSelfApp.current = true
+                    clearError()
                   }}
                 >
                   Open Self App
@@ -316,7 +371,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     style={{ marginTop: '0.75rem' }}
                     onClick={() => {
                       setPollingForVoucher(true)
-                      setError(null)
+                      clearError()
                       handleSuccess().finally(() => setPollingForVoucher(false))
                     }}
                   >
@@ -330,7 +385,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   <SelfQRcodeWrapper
                     selfApp={selfApp}
                     onSuccess={handleSuccess}
-                    onError={data => setError(friendlyError(data.reason))}
+                    onError={data => setErrorFromReason(data.reason)}
                     darkMode={false}
                   />
                 ) : (

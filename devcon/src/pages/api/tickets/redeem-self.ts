@@ -5,11 +5,21 @@ const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-dis
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
 const ALLOW_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
 
-// In-memory voucher store keyed by userId. In production, use a proper database.
-// Uses globalThis so the Map is shared across Next.js module instances in dev mode.
-const g = globalThis as unknown as { __selfVoucherStore?: Map<string, string> }
+// In-memory stores keyed by userId. In production, use a proper database.
+// Uses globalThis so Maps are shared across Next.js module instances in dev mode.
+const g = globalThis as unknown as {
+  __selfVoucherStore?: Map<string, string>
+  __selfErrorStore?: Map<string, string>
+}
 if (!g.__selfVoucherStore) g.__selfVoucherStore = new Map<string, string>()
+if (!g.__selfErrorStore) g.__selfErrorStore = new Map<string, string>()
 export const voucherStore = g.__selfVoucherStore
+export const errorStore = g.__selfErrorStore
+
+function storeError(userId: string, reason: string) {
+  errorStore.set(userId, reason)
+  setTimeout(() => errorStore.delete(userId), 30 * 60 * 1000)
+}
 
 function generateFakeVoucherCode(): string {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
@@ -39,6 +49,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Missing proof or publicSignals' })
     }
 
+    if (attestationId !== ATTESTATION_ID.AADHAAR) {
+      return res.status(200).json({
+        status: 'error',
+        result: false,
+        reason: '[InvalidId]: Only Aadhaar cards are supported. Passport and other document types are not accepted.',
+      })
+    }
+
     const configStore = new DefaultConfigStore({
       minimumAge: 18,
     })
@@ -54,8 +72,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     )
 
     const result = await verifier.verify(attestationId, proof, publicSignals, userContextData)
+    console.log('result', JSON.stringify(result, null, 2))
+
+    // Extract userId early so we can store errors for mobile polling
+    const userId = result.userData?.userIdentifier
 
     if (!result.isValidDetails.isValid) {
+      if (userId) storeError(userId, 'Verification failed')
       return res.status(200).json({
         status: 'error',
         result: false,
@@ -66,10 +89,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Check minimum age
     if (!result.isValidDetails.isMinimumAgeValid) {
+      const reason = 'You must be 18 or older to purchase a ticket.'
+      if (userId) storeError(userId, reason)
       return res.status(200).json({
         status: 'error',
         result: false,
-        reason: 'You must be 18 or older to purchase a ticket.',
+        reason,
       })
     }
 
@@ -79,15 +104,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const isIndian = nationality === 'IND' || issuingState === 'IND'
 
     if (!isIndian && !isStaging) {
+      const reason = 'This discount is only available for Indian residents. Nationality/issuing state must be IND.'
+      if (userId) storeError(userId, reason)
       return res.status(200).json({
         status: 'error',
         result: false,
-        reason: 'This discount is only available for Indian residents. Nationality/issuing state must be IND.',
+        reason,
       })
     }
-
-    // Extract userId from the verification result
-    const userId = result.userData?.userIdentifier
 
     if (!userId) {
       return res.status(200).json({
