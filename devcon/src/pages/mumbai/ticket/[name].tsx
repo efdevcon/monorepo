@@ -4,7 +4,7 @@ import { TicketSharing } from 'components/domain/ticket-sharing'
 import { SITE_URL } from 'utils/constants'
 import type { GetServerSidePropsContext } from 'next'
 
-const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string }) => {
+const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string; pageUrl: string }) => {
   if (!props.params) return null
 
   const title = `${props.params.name} — Devcon Mumbai`
@@ -14,6 +14,10 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
     <>
       <Head>
         <title>{title}</title>
+        <meta name="description" key="description" content={description} />
+        <meta name="image" key="image" content={props.imageUrl} />
+        <meta property="og:type" key="og:type" content="website" />
+        <meta property="og:url" key="og:url" content={props.pageUrl} />
         <meta property="og:title" key="og:title" content={title} />
         <meta property="og:description" key="og:description" content={description} />
         <meta property="og:image" key="og:image" content={props.imageUrl} />
@@ -39,10 +43,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     imageUrl += `?x=${encodeURIComponent(xUsername)}`
   }
 
+  let pageUrl = `${baseUrl}/mumbai/ticket/${encodeURIComponent(name)}`
+  if (xUsername) {
+    pageUrl += `?x=${encodeURIComponent(xUsername)}`
+  }
+
   return {
     props: {
       params: { name },
       imageUrl,
+      pageUrl,
       xUsername,
     },
   }
