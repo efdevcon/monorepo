@@ -3,7 +3,7 @@ import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, AllIds } from 
 
 const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
-const IS_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
+const ALLOW_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
 
 // In-memory voucher store keyed by userId. In production, use a proper database.
 // Uses globalThis so the Map is shared across Next.js module instances in dev mode.
@@ -21,8 +21,10 @@ function generateFakeVoucherCode(): string {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const isStaging = ALLOW_STAGING && req.query.staging === 'true'
+
   if (req.method === 'GET') {
-    return res.status(200).json({ status: 'ok', endpoint: 'redeem-self', staging: IS_STAGING })
+    return res.status(200).json({ status: 'ok', endpoint: 'redeem-self', staging: isStaging })
   }
 
   if (req.method !== 'POST') {
@@ -44,9 +46,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const verifier = new SelfBackendVerifier(
       SELF_SCOPE,
       SELF_ENDPOINT,
-      IS_STAGING,
-      AllIds,
-      // new Map([[ATTESTATION_ID.AADHAAR, true]]),
+      isStaging,
+      // AllIds,
+      new Map([[ATTESTATION_ID.AADHAAR, true]]),
       configStore,
       'uuid'
     )
@@ -76,7 +78,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const issuingState = result.discloseOutput?.issuingState
     const isIndian = nationality === 'IND' || issuingState === 'IND'
 
-    if (!isIndian && !IS_STAGING) {
+    if (!isIndian && !isStaging) {
       return res.status(200).json({
         status: 'error',
         result: false,
