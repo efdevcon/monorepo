@@ -131,6 +131,15 @@ function StoreContent({
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [cart, setCart] = useState<CartItem[]>([])
+  const [discountCode, setDiscountCode] = useState<string | null>(null)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const code = params.get('local-early-bird-discount-code')
+    if (code) {
+      setDiscountCode(code)
+    }
+  }, [])
 
   useEffect(() => {
     async function fetchTickets() {
@@ -382,30 +391,7 @@ function StoreContent({
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      {/* <div className={css['card']}>
-                        <div className={css['card-main']}>
-                          <div className={css['card-body']}>
-                            <h3 className={css['card-title']}>{ticket.name}</h3>
-                            <p className={css['card-meta']}>Via AnonAadhaar</p>
-                            <p className={css['card-description']}>
-                              Verify you're based in India (via AnonAadhaar) to get this discount
-                            </p>
-                          </div>
-                          <div className={css['card-right']}>
-                            <div className={css['pricing']}>
-                              <span className={css['price-current']}>${ticket.price}</span>
-                              {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                <span className={css['price-original']}>${ticket.originalPrice}</span>
-                              )}
-                            </div>
-                            <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
-                              <VerifyIcon />
-                              Verify
-                            </button>
-                          </div>
-                        </div>
-                      </div> */}
-                      <div className={css['card']}>
+                      <div className={`${css['card']} ${!discountCode ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
@@ -417,22 +403,36 @@ function StoreContent({
                               snacks all week.
                             </p>
                           </div>
-                          <div className={css['card-footer']}>
-                            <div className={css['pricing']}>
-                              <span className={css['price-current']}>${ticket.price}</span>
-                              {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                <span className={css['price-original']}>${ticket.originalPrice}</span>
-                              )}
+                          {discountCode ? (
+                            <div className={css['card-footer']}>
+                              <div className={css['pricing']}>
+                                <span className={css['price-current']}>${ticket.price}</span>
+                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                )}
+                              </div>
+                              <button
+                                type="button"
+                                className={css['verify-self-btn']}
+                                onClick={() => setSelfVerificationOpen(true)}
+                              >
+                                <SelfLogo className={css['self-logo']} aria-hidden="true" />
+                                Verify via Self
+                              </button>
                             </div>
-                            <button
-                              type="button"
-                              className={css['verify-self-btn']}
-                              onClick={() => setSelfVerificationOpen(true)}
-                            >
-                              <SelfLogo className={css['self-logo']} aria-hidden="true" />
-                              Verify via Self
-                            </button>
-                          </div>
+                          ) : (
+                            <div className={css['card-footer']}>
+                              <div className={css['pricing']}>
+                                <span className={css['price-current']}>${ticket.price}</span>
+                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                )}
+                              </div>
+                              <p className={css['card-disabled-message']}>
+                                Check your email for your unique discount link to access this ticket.
+                              </p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </React.Fragment>

@@ -117,24 +117,23 @@ img {
 /* Countdown: banner image + overlay (Figma node 2698-2019) */
 .countdown-banner {
   background: #5a5a5a;
-  aspect-ratio: 848 / 93;
-    min-height: 93px;
   border-radius: 8px;
-  padding: 0 1.5rem;
+  padding: 1.25rem 1.5rem;
   margin-bottom: 4rem;
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-    .countdown-banner-bg {
-      position: absolute;
-      inset: 0;
-      object-fit: cover;
-      object-position: center;
-      z-index: 0;
-    }
+  min-height: 93px;
+  overflow: clip; /* clips background image without affecting layout */
+
+  .countdown-banner-bg {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
 
   &::before {
     content: '';
@@ -148,47 +147,48 @@ img {
 
 .countdown-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 0.5rem;
   position: relative;
   z-index: 2;
+  width: 100%;
 
   @media (min-width: 480px) {
-    grid-template-columns: repeat(4, 1fr);
     gap: 0 1.25rem;
   }
 }
 
 .countdown-item {
   text-align: center;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   border-left: 1px solid rgba(255, 255, 255, 0.4);
+  min-width: 0;
 
   &:first-child {
     border-left: none;
     padding-left: 0;
   }
+
+  @media (min-width: 480px) {
+    padding: 0 1rem;
+  }
 }
 
 .countdown-value {
-  font-size: 1.25rem;
+  font-size: clamp(0.875rem, 3vw, 1.5rem);
   font-weight: 700;
   color: #fff;
   display: block;
   line-height: 1.2;
-
-  @media (min-width: 480px) {
-    font-size: 1.5rem;
-  }
 }
 
 .countdown-label {
-  font-size: 0.6875rem;
+  font-size: clamp(0.5rem, 1.25vw, 0.6875rem);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: rgba(255, 255, 255, 0.9);
-    margin-top: 0.125rem;
+  margin-top: 0.125rem;
 }
 
 .section {
@@ -279,6 +279,24 @@ img {
 .card-description {
   font-size: 0.875rem;
   color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.card--disabled {
+  pointer-events: none;
+  user-select: none;
+
+  .card-details,
+  .pricing {
+    opacity: 0.45;
+  }
+}
+
+.card-disabled-message {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #000;
   margin: 0;
   line-height: 1.5;
 }
