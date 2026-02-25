@@ -164,6 +164,39 @@ $checkout-accent: #4d59c7;
   gap: 0.5rem;
 }
 
+/* ─── Redeem voucher card (stacks on mobile) ────────────── */
+
+.redeem-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid $checkout-border;
+  border-radius: 8px;
+
+  .btn-continue {
+    width: 100%;
+    white-space: nowrap;
+  }
+}
+
+.redeem-price {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.redeem-price-old {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.4);
+  margin-right: 0.5rem;
+}
+
+.redeem-price-new {
+  font-weight: 700;
+  color: #2e7d32;
+}
+
 .swag-price-free {
   font-size: 1rem;
   font-weight: 700;

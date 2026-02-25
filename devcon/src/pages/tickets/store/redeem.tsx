@@ -138,33 +138,28 @@ export default function RedeemPage() {
                       const discountedPrice = parseFloat(ticket.discountedPrice)
                       const hasDiscount = discountedPrice < originalPrice
                       return (
-                        <div key={ticket.id} className={css['swag-card']}>
+                        <div key={ticket.id} className={css['redeem-card']}>
                           <div className={css['swag-info']}>
                             <h4>{ticket.name}</h4>
-                            <p style={{ margin: '0.25rem 0 0', fontSize: '0.9rem' }}>
+                            <p className={css['redeem-price']}>
                               {hasDiscount ? (
                                 <>
-                                  <span style={{ textDecoration: 'line-through', color: 'rgba(0,0,0,0.4)', marginRight: '0.5rem' }}>
-                                    ${originalPrice.toFixed(2)}
-                                  </span>
-                                  <strong style={{ color: '#2e7d32' }}>${discountedPrice.toFixed(2)}</strong>
+                                  <span className={css['redeem-price-old']}>${originalPrice.toFixed(2)}</span>
+                                  <span className={css['redeem-price-new']}>${discountedPrice.toFixed(2)}</span>
                                 </>
                               ) : (
                                 <strong>${originalPrice.toFixed(2)}</strong>
                               )}
                             </p>
                           </div>
-                          <div className={css['swag-right']}>
-                            <button
-                              type="button"
-                              className={css['btn-continue']}
-                              onClick={() => handleAddToCart(ticket)}
-                              disabled={addingToCart}
-                              style={{ whiteSpace: 'nowrap' }}
-                            >
-                              {addingToCart ? 'Adding...' : 'Add to Cart & Checkout'}
-                            </button>
-                          </div>
+                          <button
+                            type="button"
+                            className={css['btn-continue']}
+                            onClick={() => handleAddToCart(ticket)}
+                            disabled={addingToCart}
+                          >
+                            {addingToCart ? 'Adding...' : 'Add to Cart & Checkout'}
+                          </button>
                         </div>
                       )
                     })}
