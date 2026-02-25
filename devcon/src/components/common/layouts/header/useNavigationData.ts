@@ -322,16 +322,16 @@ const useNavigationData = () => {
       //   type: 'link',
       // },
       {
-        title: 'Devcon Archive',
+        title: 'Archive',
         url: 'https://archive.devcon.org',
         type: 'page',
         // highlight: 'archive',
       },
-      {
-        title: 'Devconnect',
-        url: 'https://devconnect.org',
-        type: 'link',
-      },
+      // {
+      //   title: 'Devconnect',
+      //   url: 'https://devconnect.org',
+      //   type: 'link',
+      // },
       // {
       //   title: 'DevAI 🦄',
       //   type: 'button',
@@ -345,6 +345,12 @@ const useNavigationData = () => {
       //   type: 'page',
       //   highlight: 'app',
       // },
+      {
+        title: 'Get Tickets',
+        url: '/tickets',
+        type: 'page',
+        // highlight: 'archive',
+      },
     ],
     footer: {
       bottom: [
