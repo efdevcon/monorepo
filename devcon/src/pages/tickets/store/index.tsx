@@ -297,7 +297,7 @@ function StoreContent({
               </div>
             </section> */}
 
-            <section className={css['section']} id="general-admission">
+            {/* <section className={css['section']} id="general-admission">
               <h2 className={css['section-title']}>General admission</h2>
               <p className={css['section-subtitle']}>Our General admission tickets are now live!</p>
 
@@ -369,17 +369,19 @@ function StoreContent({
               {!loading && admissionTickets.length === 0 && !error && (
                 <p style={{ color: '#666' }}>No tickets currently available.</p>
               )}
-            </section>
+            </section> */}
 
             {voucherTickets.length > 0 && (
               <section className={css['section']} id="discounts">
-                <h2 className={css['section-title']}>Discounts</h2>
-                <p className={css['section-subtitle']}>Check if you qualify for a general admission discount</p>
+                <h2 className={css['section-title']}>Local ticket launch</h2>
+                <p className={css['section-subtitle']}>
+                  Check if you qualify for the Local Early Bird discount (ETH Mumbai exclusive)
+                </p>
 
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      <div className={css['card']}>
+                      {/* <div className={css['card']}>
                         <div className={css['card-main']}>
                           <div className={css['card-body']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
@@ -401,14 +403,17 @@ function StoreContent({
                             </button>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       <div className={css['card']}>
                         <div className={css['card-main']}>
                           <div className={css['card-body']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
-                            <p className={css['card-meta']}>Via SELF</p>
+                            <p className={css['card-meta']}>
+                              Via Self & ETH Mumbai registration - Price increases 31 March
+                            </p>
                             <p className={css['card-description']}>
-                              Verify you're based in India (via SELF) to get this discount
+                              Full conference access including talks and workshops, swag bag, plus coffee, lunch and
+                              snacks all week.
                             </p>
                           </div>
                           <div className={css['card-right']}>
@@ -418,7 +423,11 @@ function StoreContent({
                                 <span className={css['price-original']}>${ticket.originalPrice}</span>
                               )}
                             </div>
-                            <button type="button" className={css['verify-btn']} onClick={() => setSelfVerificationOpen(true)}>
+                            <button
+                              type="button"
+                              className={css['verify-btn']}
+                              onClick={() => setSelfVerificationOpen(true)}
+                            >
                               <VerifyIcon />
                               Verify
                             </button>
