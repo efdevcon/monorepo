@@ -17,9 +17,9 @@ type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | null
 function parseError(reason?: string): { message: string; code: ErrorCode } {
   if (!reason) return { message: 'Verification failed', code: null }
   if (reason.includes('[InvalidId]') || reason.includes('Aadhaar'))
-    return { message: 'Verification failed: only Aadhaar cards are supported.', code: 'INVALID_ID' }
+    return { message: reason, code: 'INVALID_ID' }
   if (reason.includes('[InvalidRoot]'))
-    return { message: 'Verification failed: the root does not exist on-chain. Make sure you are using a real Aadhaar card, not a mock or test ID.', code: null }
+    return { message: reason, code: null }
   if (reason.includes('Indian residents') || reason.includes('Nationality'))
     return { message: reason, code: 'NOT_INDIAN' }
   if (reason.includes('18') || reason.includes('age') || reason.includes('older'))
@@ -101,6 +101,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   }, [isOpen, userId, effectiveStaging])
 
   const handleSuccess = async () => {
+    clearError()
     const maxAttempts = 10
     const delayMs = 2000
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
@@ -140,6 +141,34 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     document.addEventListener('visibilitychange', onVisibilityChange)
     return () => document.removeEventListener('visibilitychange', onVisibilityChange)
   }, [isOpen, pollingForVoucher, voucher])
+
+  // Background polling fallback: the Self SDK WebSocket does not relay backend
+  // verification errors (only proof_generation_failed and proof_verified exist).
+  // Poll self-voucher periodically so the frontend picks up errors/vouchers
+  // regardless of WebSocket behaviour.
+  useEffect(() => {
+    if (!isOpen || voucher || error) return
+
+    const poll = async () => {
+      try {
+        const res = await fetch(`/api/tickets/self-voucher?userId=${encodeURIComponent(userId)}`)
+        const data = await res.json()
+        if (res.ok && data.voucherCode) {
+          setVoucher(data.voucherCode)
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('selfVoucher', data.voucherCode)
+          }
+        } else if (res.ok && data.error && data.reason) {
+          setErrorFromReason(data.reason)
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    const id = setInterval(poll, 3000)
+    return () => clearInterval(id)
+  }, [isOpen, userId, voucher, error])
 
   const handleReset = () => {
     if (typeof localStorage !== 'undefined') {
@@ -328,72 +357,90 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
             )}
             {errorCode === 'NOT_INDIAN' && (
               <p className={css['self-aadhaar-notice']}>
-                Sorry, it looks like your nationality is not Indian. This offer is currently exclusive to Indian
-                residents with an Aadhaar card, who attended ETH Mumbai.
+                Sorry, your nationality is not Indian. This offer is currently exclusive to Indian residents with an
+                Aadhaar card, who attended ETH Mumbai.
               </p>
             )}
             {errorCode === 'UNDER_18' && (
-              <p className={css['self-aadhaar-notice']}>
-                Sorry, you must be 18 or older to purchase a discounted ticket.
-              </p>
+              <div className={css['self-aadhaar-notice']}>
+                <p>
+                  <strong>Sorry, we can&apos;t issue you a code.</strong>
+                </p>
+                <p>
+                  Your Self proof was successfully submitted however, the zero-knowledge proof provided shows that
+                  you&apos;re not over 18 years old.
+                </p>
+                <p>
+                  Devcon India will have unique, lower cost tickets for Youths aged 5-17 later this year. We recommend
+                  waiting until then to purchase a ticket.
+                </p>
+                <p>We apologize for any inconvenience.</p>
+              </div>
+            )}
+            {(error || errorCode) && (
+              <button type="button" className={css['reset-btn']} onClick={handleReset}>
+                Try again
+              </button>
             )}
 
-            {isMobile ? (
-              <div className={css['continue-wrap']}>
-                <a
-                  href={universalLink || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={css['redeem-btn']}
-                  style={{
-                    display: 'block',
-                    textAlign: 'center',
-                    textDecoration: 'none',
-                    pointerEvents: universalLink ? 'auto' : 'none',
-                    opacity: universalLink ? 1 : 0.6,
-                  }}
-                  onClick={() => {
-                    hasOpenedSelfApp.current = true
-                    clearError()
-                  }}
-                >
-                  Open Self App
-                </a>
-                {pollingForVoucher && (
-                  <p style={{ textAlign: 'center', margin: '1rem 0 0', fontSize: '0.9rem', color: '#666' }}>
-                    Checking verification status...
-                  </p>
-                )}
-                {!pollingForVoucher && !voucher && (
-                  <button
-                    type="button"
-                    className={css['reset-btn']}
-                    style={{ marginTop: '0.75rem' }}
+            {!error && !errorCode && (
+              isMobile ? (
+                <div className={css['continue-wrap']}>
+                  <a
+                    href={universalLink || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['redeem-btn']}
+                    style={{
+                      display: 'block',
+                      textAlign: 'center',
+                      textDecoration: 'none',
+                      pointerEvents: universalLink ? 'auto' : 'none',
+                      opacity: universalLink ? 1 : 0.6,
+                    }}
                     onClick={() => {
-                      setPollingForVoucher(true)
+                      hasOpenedSelfApp.current = true
                       clearError()
-                      handleSuccess().finally(() => setPollingForVoucher(false))
                     }}
                   >
-                    I&apos;ve verified — check status
-                  </button>
-                )}
-              </div>
-            ) : (
-              <div className={css['self-qr-wrap']}>
-                {selfApp ? (
-                  <SelfQRcodeWrapper
-                    selfApp={selfApp}
-                    onSuccess={handleSuccess}
-                    onError={data => setErrorFromReason(data.reason)}
-                    darkMode={false}
-                  />
-                ) : (
-                  <div className={css['self-qr-placeholder']}>
-                    <p>Loading QR Code...</p>
-                  </div>
-                )}
-              </div>
+                    Open Self App
+                  </a>
+                  {pollingForVoucher && (
+                    <p style={{ textAlign: 'center', margin: '1rem 0 0', fontSize: '0.9rem', color: '#666' }}>
+                      Checking verification status...
+                    </p>
+                  )}
+                  {!pollingForVoucher && !voucher && (
+                    <button
+                      type="button"
+                      className={css['reset-btn']}
+                      style={{ marginTop: '0.75rem' }}
+                      onClick={() => {
+                        setPollingForVoucher(true)
+                        clearError()
+                        handleSuccess().finally(() => setPollingForVoucher(false))
+                      }}
+                    >
+                      I&apos;ve verified — check status
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className={css['self-qr-wrap']}>
+                  {selfApp ? (
+                    <SelfQRcodeWrapper
+                      selfApp={selfApp}
+                      onSuccess={handleSuccess}
+                      onError={data => setErrorFromReason(data.reason)}
+                      darkMode={false}
+                    />
+                  ) : (
+                    <div className={css['self-qr-placeholder']}>
+                      <p>Loading QR Code...</p>
+                    </div>
+                  )}
+                </div>
+              )
             )}
 
             <p className={css['self-privacy']}>No personal data is shared!</p>
