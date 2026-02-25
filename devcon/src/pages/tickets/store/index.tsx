@@ -236,18 +236,32 @@ function StoreContent({
             <ArrowLeftIcon />
             Back to tickets
           </Link>
-          <div className={css['sidebar-logo']}>
-            <Image src={StoreSidebarLogo} alt="Devcon India" height={48} width={140} />
+          <div className={css['sidebar-content']}>
+            <div className={css['sidebar-top']}>
+              <div className={css['sidebar-logo']}>
+                <Image src={StoreSidebarLogo} alt="Devcon India" height={48} width={140} />
+              </div>
+              <h1 className={css['sidebar-title']}>
+                Devcon
+                <br />
+                Tickets
+              </h1>
+              <p className={css['sidebar-description']}>
+                Secure your Devcon India ticket and join thousands of builders, creators, and thinkers at the world's
+                biggest Ethereum conference.
+              </p>
+            </div>
+            <ul className={css['sidebar-details']}>
+              <li className={css['sidebar-details-item']}>
+                <span className={css['sidebar-dot']} aria-hidden="true" />
+                3–6 November 2026
+              </li>
+              <li className={css['sidebar-details-item']}>
+                <span className={css['sidebar-dot']} aria-hidden="true" />
+                Jio World Centre, Mumbai, India
+              </li>
+            </ul>
           </div>
-          <h1 className={css['sidebar-title']}>Devcon Tickets</h1>
-          <p className={css['sidebar-description']}>
-            Secure your Devcon India ticket and join thousands of builders, creators, and thinkers at the world's
-            biggest Ethereum conference.
-          </p>
-          <ul className={css['sidebar-details']}>
-            <li>3-6 November 2026</li>
-            <li>Jio World Centre, Mumbai, India</li>
-          </ul>
         </aside>
 
         <div className={css['content-wrapper']}>
@@ -383,10 +397,12 @@ function StoreContent({
 
             {voucherTickets.length > 0 && (
               <section className={css['section']} id="discounts">
-                <h2 className={css['section-title']}>Local ticket launch</h2>
-                <p className={css['section-subtitle']}>
-                  Check if you qualify for the Local Early Bird discount (ETH Mumbai exclusive)
-                </p>
+                <div className={css['section-header']}>
+                  <h2 className={css['section-title']}>Local ticket launch</h2>
+                  <p className={css['section-subtitle']}>
+                    Check if you qualify for the Local Early Bird discount (ETH Mumbai exclusive)
+                  </p>
+                </div>
 
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
@@ -441,7 +457,7 @@ function StoreContent({
               </section>
             )}
           </div>
-          {!pretixCheckoutUrl && (
+          {!pretixCheckoutUrl && totalQty > 0 && (
             <div className={css['summary-sticky']}>
               <div className={css['summary-sticky-inner']}>
                 <div className={css['summary-row']}>
@@ -451,7 +467,10 @@ function StoreContent({
                   </div>
                   <div>
                     <p className={css['summary-total-label']}>Total</p>
-                    <p className={css['summary-total-value']}>{totalFormatted}</p>
+                    <p className={css['summary-total-value']}>
+                      ${(totalCents / 100).toFixed(2)}
+                      <span className={css['summary-total-currency']}> USD</span>
+                    </p>
                   </div>
                 </div>
                 <div className={css['summary-actions']}>
