@@ -125,15 +125,15 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   if (!isOpen) return null
 
   return (
-    <div className={css['overlay']} role="dialog" aria-modal="true" aria-labelledby="self-verification-title">
+    <div className={`${css['overlay']} ${css['self-overlay']}`} role="dialog" aria-modal="true" aria-labelledby="self-verification-title">
       <div className={css['backdrop']} onClick={onClose} aria-hidden="true" />
-      <div className={css['modal']}>
-        <button type="button" className={css['close']} onClick={onClose} aria-label="Close">
+      <div className={`${css['modal']} ${css['self-modal']}`}>
+        <button type="button" className={`${css['close']} ${css['self-close']}`} onClick={onClose} aria-label="Close">
           &times;
         </button>
 
         {voucher ? (
-          <>
+          <div className={css['self-padded']}>
             <h2 id="self-verification-title" className={css['success-title']}>
               Proof successfully submitted!
             </h2>
@@ -205,48 +205,59 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               Test another QR code
             </button>
             <p className={css['privacy']}>No personal data is shared — only a zero-knowledge proof!</p>
-          </>
+          </div>
         ) : (
-          <>
-            <h2 id="self-verification-title" className={css['title']}>
+          <div className={css['self-content']}>
+            <div className={css['eth-banner']}>
+              <p className={css['eth-banner-text']}>Thanks &ndash; ETH Mumbai ticket confirmed!</p>
+            </div>
+            <h2 id="self-verification-title" className={css['self-title']}>
               Verification via Self
             </h2>
 
-            <p className={css['intro']}>
+            <p className={css['self-intro']}>
               Self allows you to prove your identity using your Aadhaar card without revealing personal data. The
               verification uses zero-knowledge proofs — your information never leaves your device.
             </p>
 
-            <h3 className={css['heading']}>How it works</h3>
-            <ol className={css['steps']}>
-              <li>
-                Download the Self app on{' '}
-                <a
-                  href="https://apps.apple.com/app/self-zk-proofs/id6478563710"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  iOS
-                </a>{' '}
-                or{' '}
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.proofofpassportapp&pli=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Android
-                </a>
-              </li>
-              <li>Scan your Aadhaar card&apos;s NFC chip using the Self app</li>
-              {isMobile ? (
-                <li>Tap the button below to open the Self app and share your proof</li>
-              ) : (
-                <li>Scan the QR code below with the Self app to share your proof</li>
-              )}
-            </ol>
+            <hr className={css['self-divider']} aria-hidden="true" />
+
+            <div className={css['self-howto']}>
+              <h3 className={css['self-heading']}>How to use</h3>
+              <ol className={css['self-steps']}>
+                <li>
+                  Download the Self app on{' '}
+                  <a
+                    href="https://apps.apple.com/app/self-zk-proofs/id6478563710"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    iOS
+                  </a>{' '}
+                  or{' '}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.proofofpassportapp&pli=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Android
+                  </a>
+                </li>
+                <li>Scan your Aadhaar card&apos;s NFC using the Self app</li>
+                {isMobile ? (
+                  <li>Tap the button below to open the Self app and share your proof</li>
+                ) : (
+                  <li>
+                    <strong>Scan the QR code below</strong> with the Self app to share your proof
+                  </li>
+                )}
+              </ol>
+            </div>
 
             {ALLOW_STAGING && (
-              <div className={`${css['test-mode']} ${effectiveStaging ? css['test-mode--test'] : css['test-mode--real']}`}>
+              <div
+                className={`${css['test-mode']} ${effectiveStaging ? css['test-mode--test'] : css['test-mode--real']}`}
+              >
                 <div className={css['test-mode-inner']}>
                   <span className={css['test-mode-label']}>Self mode</span>
                   <span className={css['test-mode-badge']} aria-live="polite">
@@ -314,32 +325,24 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 )}
               </div>
             ) : (
-              <>
-                <h3 className={css['heading']}>Scan QR code with Self app</h3>
-                <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem 0' }}>
-                  {selfApp ? (
-                    <SelfQRcodeWrapper selfApp={selfApp} onSuccess={handleSuccess} onError={(data) => setError(friendlyError(data.reason))} darkMode={false} />
-                  ) : (
-                    <div
-                      style={{
-                        width: 256,
-                        height: 256,
-                        background: '#f0f0f0',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 8,
-                      }}
-                    >
-                      <p style={{ color: '#666', fontSize: '0.875rem' }}>Loading QR Code...</p>
-                    </div>
-                  )}
-                </div>
-              </>
+              <div className={css['self-qr-wrap']}>
+                {selfApp ? (
+                  <SelfQRcodeWrapper
+                    selfApp={selfApp}
+                    onSuccess={handleSuccess}
+                    onError={data => setError(friendlyError(data.reason))}
+                    darkMode={false}
+                  />
+                ) : (
+                  <div className={css['self-qr-placeholder']}>
+                    <p>Loading QR Code...</p>
+                  </div>
+                )}
+              </div>
             )}
 
-            <p className={css['privacy']}>No personal data is shared — only a zero-knowledge proof!</p>
-          </>
+            <p className={css['self-privacy']}>No personal data is shared!</p>
+          </div>
         )}
       </div>
     </div>
