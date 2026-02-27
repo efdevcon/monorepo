@@ -489,9 +489,8 @@ $checkout-accent: #4d59c7;
 .payment-icon-box {
   width: 18px;
   height: 18px;
-  background: #f6f6f6;
-  border: 1px solid $checkout-border;
-  border-radius: 2px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .payment-icon-box-wide {

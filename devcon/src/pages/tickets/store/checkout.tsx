@@ -1792,8 +1792,16 @@ function CheckoutContent() {
                           <span className={css['payment-option-title']}>Crypto</span>
                           {!daimoPay && <span className={css['save-badge']}>SAVE 3%</span>}
                         </div>
+                        <div className={css['payment-icons']}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={TOKEN_ICONS.ETH} alt="ETH" className={css['payment-icon-box']} />
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={TOKEN_ICONS.USDC} alt="USDC" className={css['payment-icon-box']} />
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
+                        </div>
                       </div>
-                      <p className={css['payment-option-desc']}>{daimoPay ? 'via Daimo Pay' : 'USDC (gasless) & ETH'}</p>
+                      <p className={css['payment-option-desc']}>{daimoPay ? 'via Daimo Pay' : 'All major wallets & networks'}</p>
                     </div>
                   </label>
                   <label
