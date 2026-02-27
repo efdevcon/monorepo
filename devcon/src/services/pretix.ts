@@ -71,6 +71,39 @@ async function cachedFetch<T>(key: string, fetcher: () => Promise<T>, ttlMs = DE
 }
 
 // ---------------------------------------------------------------------------
+// Retry with exponential backoff — for critical mutating calls (createOrder,
+// confirmOrderPayment) that run AFTER on-chain payment is already verified.
+// A transient Pretix 5xx here would mean money taken but no ticket issued.
+// ---------------------------------------------------------------------------
+
+const RETRY_ATTEMPTS = 3
+const RETRY_BASE_DELAY_MS = 500
+
+function isRetryable(error: unknown): boolean {
+  if (!(error instanceof Error)) return false
+  // Retry on 5xx server errors and network failures
+  const msg = error.message
+  return /5\d{2}/.test(msg) || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT')
+}
+
+async function withRetry<T>(label: string, fn: () => Promise<T>, attempts = RETRY_ATTEMPTS): Promise<T> {
+  let lastError: unknown
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn()
+    } catch (err) {
+      lastError = err
+      if (i < attempts - 1 && isRetryable(err)) {
+        const delay = RETRY_BASE_DELAY_MS * Math.pow(2, i)
+        console.warn(`[pretix] ${label} attempt ${i + 1} failed, retrying in ${delay}ms:`, (err as Error).message)
+        await new Promise((r) => setTimeout(r, delay))
+      }
+    }
+  }
+  throw lastError
+}
+
+// ---------------------------------------------------------------------------
 
 function normalizeBaseUrl(url: string): string {
   let normalized = url.endsWith('/') ? url : `${url}/`
@@ -159,23 +192,25 @@ export async function getQuotaAvailability(quotaId: number): Promise<PretixQuota
 }
 
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
-  const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/`
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify(order),
+  return withRetry('createOrder', async () => {
+    const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/`
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(order),
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      throw new Error(`Pretix order creation failed ${response.status}: ${text}`)
+    }
+
+    return response.json()
   })
-
-  if (!response.ok) {
-    const text = await response.text()
-    throw new Error(`Pretix order creation failed ${response.status}: ${text}`)
-  }
-
-  return response.json()
 }
 
 export async function getOrder(orderCode: string): Promise<PretixOrder> {
-  return fetchPretix<PretixOrder>(`orders/${orderCode}/`)
+  return cachedFetch(`order:${orderCode}`, () => fetchPretix<PretixOrder>(`orders/${orderCode}/`), 5_000)
 }
 
 export async function markOrderPaid(orderCode: string): Promise<PretixOrder> {
@@ -203,20 +238,22 @@ export async function confirmOrderPayment(
   paymentLocalId: number,
   info?: Record<string, unknown>
 ): Promise<void> {
-  const paymentUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/payments/${paymentLocalId}/confirm/`
-  const body: Record<string, unknown> = { force: true }
-  if (info) body.info = JSON.stringify(info)
+  return withRetry(`confirmOrderPayment(${orderCode})`, async () => {
+    const paymentUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/payments/${paymentLocalId}/confirm/`
+    const body: Record<string, unknown> = { force: true }
+    if (info) body.info = JSON.stringify(info)
 
-  const response = await fetch(paymentUrl, {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify(body),
+    const response = await fetch(paymentUrl, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(body),
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      throw new Error(`Failed to confirm payment ${paymentLocalId} on order ${orderCode} (${response.status}): ${text}`)
+    }
   })
-
-  if (!response.ok) {
-    const text = await response.text()
-    throw new Error(`Failed to confirm payment ${paymentLocalId} on order ${orderCode} (${response.status}): ${text}`)
-  }
 }
 
 
