@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Tag, Lock, ChevronUp, ChevronDown, ArrowLeft, Check } from 'lucide-react'
+import { Wallet, CheckCircle, Tag, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2 } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -1688,15 +1688,15 @@ function CheckoutContent() {
                   <div className={css['payment-options-block']}>
                     <div className={css['payment-options-header']}>
                       <span className={css['payment-options-title']}>
-                        {paymentOptionsLoading ? 'Loading payment options...' : 'How would you like to pay?'}
+                        How would you like to pay?
                       </span>
-                      {!paymentOptionsLoading && paymentOptions.length > 0 && (
-                        <span className={css['payment-options-subtitle']}>
-                          Note: Assets with insufficient balance are greyed out.
-                        </span>
-                      )}
                     </div>
-                    {paymentOptionsLoading ? null : (
+                    {paymentOptionsLoading ? (
+                      <div className={css['loading-box']}>
+                        <Loader2 size={24} className={css['loading-spinner']} />
+                        <span>Loading available networks and balances...</span>
+                      </div>
+                    ) : (
                       <>
                         {paymentOptions.length > 0 &&
                           (() => {

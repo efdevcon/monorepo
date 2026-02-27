@@ -495,8 +495,7 @@ $checkout-accent: #4d59c7;
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  background: $checkout-accent;
-  mix-blend-mode: luminosity;
+  background: #000;
   opacity: 0.4;
   border: none;
   border-radius: 360px;
@@ -527,8 +526,12 @@ $checkout-accent: #4d59c7;
 
 .payment-methods {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .payment-option {
@@ -918,6 +921,27 @@ $checkout-accent: #4d59c7;
   }
 }
 
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 16px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.875rem;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .network-list {
   display: flex;
   flex-direction: column;
@@ -1082,7 +1106,6 @@ $checkout-accent: #4d59c7;
 
 .btn-checkout-active {
   opacity: 1;
-  mix-blend-mode: normal;
   transition: opacity 0.15s;
 
   &:hover:not(:disabled) {
