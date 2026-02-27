@@ -1891,9 +1891,9 @@ function CheckoutContent() {
                                           setTokenFilter(sym)
                                           // Auto-select the best network for this asset
                                           const assetsForSym = paymentOptions.filter(o => o.symbol === sym)
-                                          const bestOpt = assetsForSym.find(
-                                            o => Boolean(o.signingRequest) && o.sufficient
-                                          ) || assetsForSym[0]
+                                          const bestOpt =
+                                            assetsForSym.find(o => Boolean(o.signingRequest) && o.sufficient) ||
+                                            assetsForSym[0]
                                           if (bestOpt && bestOpt.signingRequest && bestOpt.sufficient) {
                                             selectPaymentOption(bestOpt)
                                           } else {
@@ -1903,11 +1903,7 @@ function CheckoutContent() {
                                       >
                                         {TOKEN_ICONS[sym] && (
                                           /* eslint-disable-next-line @next/next/no-img-element */
-                                          <img
-                                            src={TOKEN_ICONS[sym]}
-                                            alt={sym}
-                                            className={css['asset-chip-icon']}
-                                          />
+                                          <img src={TOKEN_ICONS[sym]} alt={sym} className={css['asset-chip-icon']} />
                                         )}
                                         {displaySymbol(sym)}
                                       </button>
@@ -1964,9 +1960,7 @@ function CheckoutContent() {
                                             <span className={css['network-row-info']}>
                                               <span className={css['network-row-name-row']}>
                                                 <span className={css['network-row-name']}>{opt.chain}</span>
-                                                {isGasless && (
-                                                  <span className={css['gasless-badge']}>GASLESS</span>
-                                                )}
+                                                {isGasless && <span className={css['gasless-badge']}>GASLESS</span>}
                                               </span>
                                               <span className={css['network-row-balance']}>
                                                 Balance: {balanceFormatted} {displaySymbol(opt.symbol)}
@@ -2004,10 +1998,48 @@ function CheckoutContent() {
                                 )}
 
                                 {(writeError || directSignError) && (
-                                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>{writeError?.message || directSignError}</div>
+                                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                    {writeError?.message || directSignError}
+                                  </div>
                                 )}
 
-                                {paymentStatus && !isProcessing && <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>{paymentStatus}</p>}
+                                {paymentStatus && !isProcessing && (
+                                  <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
+                                    {paymentStatus}
+                                  </p>
+                                )}
+
+                                {txHash && (
+                                  <div className={css['tx-status']}>
+                                    Transaction:{' '}
+                                    <a
+                                      href={`${
+                                        (paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) ||
+                                        'https://etherscan.io'
+                                      }/tx/${txHash}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      style={{ color: '#4a90d9', textDecoration: 'underline' }}
+                                    >
+                                      {txHash.slice(0, 10)}...{txHash.slice(-8)}
+                                    </a>
+                                    {paymentDetails?.chainId === 1 && isProcessing && (
+                                      <span style={{ display: 'block', marginTop: '0.5rem', fontSize: '0.75rem', color: '#92400e' }}>
+                                        Mainnet transactions can take a few seconds to be processed.
+                                      </span>
+                                    )}
+                                    {!isProcessing && paymentDetails && (
+                                      <button
+                                        type="button"
+                                        className={css['retry-verify-btn']}
+                                        onClick={() => verifyPayment(txHash)}
+                                        style={{ marginLeft: '0.75rem' }}
+                                      >
+                                        Retry verification
+                                      </button>
+                                    )}
+                                  </div>
+                                )}
 
                                 {/* Pay button */}
                                 {selectedOption && (
@@ -2023,10 +2055,7 @@ function CheckoutContent() {
                                       : `Pay: ${
                                           selectedOption.decimals >= 18
                                             ? formatEth(selectedOption.amount, 18)
-                                            : (
-                                                Number(selectedOption.amount) /
-                                                10 ** selectedOption.decimals
-                                              ).toFixed(2)
+                                            : (Number(selectedOption.amount) / 10 ** selectedOption.decimals).toFixed(2)
                                         } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
                                   </button>
                                 )}
@@ -2239,32 +2268,6 @@ function CheckoutContent() {
                     .
                   </p>
                 </div>
-
-                {txHash && (
-                  <div className={css['tx-status']}>
-                    Transaction:{' '}
-                    <a
-                      href={`${
-                        (paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) || 'https://etherscan.io'
-                      }/tx/${txHash}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: '#4a90d9', textDecoration: 'underline' }}
-                    >
-                      {txHash.slice(0, 10)}...{txHash.slice(-8)}
-                    </a>
-                    {!isProcessing && paymentDetails && (
-                      <button
-                        type="button"
-                        className={css['retry-verify-btn']}
-                        onClick={() => verifyPayment(txHash)}
-                        style={{ marginLeft: '0.75rem' }}
-                      >
-                        Retry verification
-                      </button>
-                    )}
-                  </div>
-                )}
 
                 {!(paymentMethod === 'crypto' && !daimoPay) && (
                   <button
