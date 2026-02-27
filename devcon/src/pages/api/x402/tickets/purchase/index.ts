@@ -20,7 +20,8 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { verifyTypedData, type Hex } from 'viem'
-import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import { getTicketPurchaseInfo, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import type { TicketPurchaseInfo } from 'types/pretix'
 import {
   createPaymentRequirements,
   getPaymentRecipient,
@@ -125,6 +126,8 @@ function buildExpectedEthWeiByChain(
 export interface PurchaseHandlerOptions {
   /** When false, intendedPayer is not required (simplified agent route). Default: true */
   requirePayer?: boolean
+  /** Pre-fetched ticket info to avoid redundant Pretix API calls */
+  ticketInfo?: TicketPurchaseInfo
 }
 
 export async function purchaseHandler(
@@ -183,8 +186,8 @@ export async function purchaseHandler(
       })
     }
 
-    // Fetch current ticket info to validate items and get prices
-    const ticketInfo = await getTicketPurchaseInfo()
+    // Use pre-fetched ticket info or fetch (cached) from Pretix
+    const ticketInfo = opts?.ticketInfo ?? await getTicketPurchaseInfo()
     const itemsById = new Map(ticketInfo.tickets.map((t) => [t.id, t]))
 
     // Calculate order items and prices

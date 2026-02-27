@@ -17,6 +17,61 @@ import {
   QuestionInfo,
 } from '../types/pretix'
 
+// ---------------------------------------------------------------------------
+// In-memory TTL cache — avoids redundant Pretix API calls for catalog data
+// that changes rarely (items, categories, questions, quotas, event info).
+// ---------------------------------------------------------------------------
+
+interface CacheEntry<T> {
+  data: T
+  expiresAt: number
+}
+
+const DEFAULT_CACHE_TTL_MS = 60_000 // 60 seconds
+
+const cache = new Map<string, CacheEntry<unknown>>()
+
+function getCached<T>(key: string): T | undefined {
+  const entry = cache.get(key)
+  if (!entry) return undefined
+  if (Date.now() > entry.expiresAt) {
+    cache.delete(key)
+    return undefined
+  }
+  return entry.data as T
+}
+
+function setCache<T>(key: string, data: T, ttlMs = DEFAULT_CACHE_TTL_MS): T {
+  cache.set(key, { data, expiresAt: Date.now() + ttlMs })
+  return data
+}
+
+// Dedup in-flight requests so concurrent callers share one fetch
+const inflight = new Map<string, Promise<unknown>>()
+
+async function cachedFetch<T>(key: string, fetcher: () => Promise<T>, ttlMs = DEFAULT_CACHE_TTL_MS): Promise<T> {
+  const hit = getCached<T>(key)
+  if (hit !== undefined) return hit
+
+  const existing = inflight.get(key) as Promise<T> | undefined
+  if (existing) return existing
+
+  const promise = fetcher()
+    .then((result) => {
+      inflight.delete(key)
+      return setCache(key, result, ttlMs)
+    })
+    .catch((err) => {
+      inflight.delete(key)
+      throw err
+    })
+
+  inflight.set(key, promise)
+  return promise
+}
+
+// ---------------------------------------------------------------------------
+
 function normalizeBaseUrl(url: string): string {
   let normalized = url.endsWith('/') ? url : `${url}/`
   // Add api/v1/ if not present
@@ -76,11 +131,11 @@ async function fetchAllPages<T>(endpoint: string): Promise<T[]> {
 }
 
 export async function getEvent(): Promise<PretixEvent> {
-  return fetchPretix<PretixEvent>('')
+  return cachedFetch('event', () => fetchPretix<PretixEvent>(''))
 }
 
 export async function getItems(): Promise<PretixItem[]> {
-  return fetchAllPages<PretixItem>('items/')
+  return cachedFetch('items', () => fetchAllPages<PretixItem>('items/'))
 }
 
 export async function getItem(itemId: number): Promise<PretixItem> {
@@ -88,19 +143,19 @@ export async function getItem(itemId: number): Promise<PretixItem> {
 }
 
 export async function getCategories(): Promise<PretixCategory[]> {
-  return fetchAllPages<PretixCategory>('categories/')
+  return cachedFetch('categories', () => fetchAllPages<PretixCategory>('categories/'))
 }
 
 export async function getQuestions(): Promise<PretixQuestion[]> {
-  return fetchAllPages<PretixQuestion>('questions/')
+  return cachedFetch('questions', () => fetchAllPages<PretixQuestion>('questions/'))
 }
 
 export async function getQuotas(): Promise<PretixQuota[]> {
-  return fetchAllPages<PretixQuota>('quotas/')
+  return cachedFetch('quotas', () => fetchAllPages<PretixQuota>('quotas/'))
 }
 
 export async function getQuotaAvailability(quotaId: number): Promise<PretixQuotaAvailability> {
-  return fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`)
+  return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 30_000)
 }
 
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
@@ -166,9 +221,14 @@ export async function confirmOrderPayment(
 
 
 /**
- * Get complete ticket purchase information including items, questions, and availability
+ * Get complete ticket purchase information including items, questions, and availability.
+ * Results are cached for 60s (catalog) / 30s (availability) to avoid hammering the Pretix API.
  */
 export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurchaseInfo> {
+  return cachedFetch(`ticketPurchaseInfo:${locale}`, () => _buildTicketPurchaseInfo(locale))
+}
+
+async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseInfo> {
   // Fetch all data in parallel
   const [event, items, categories, questions, quotas] = await Promise.all([
     getEvent(),
@@ -181,22 +241,28 @@ export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurcha
   // Build category lookup
   const categoryMap = new Map(categories.map((c) => [c.id, c]))
 
-  // Build quota availability lookup
+  // Build quota availability lookup — fetch all quotas in parallel
   const itemAvailability = new Map<number, { available: boolean; count: number | null }>()
-  for (const quota of quotas) {
-    try {
+  const quotaResults = await Promise.allSettled(
+    quotas.map(async (quota) => {
       const avail = await getQuotaAvailability(quota.id)
-      for (const itemId of quota.items) {
-        const existing = itemAvailability.get(itemId)
-        if (!existing || (avail.available && !existing.available)) {
-          itemAvailability.set(itemId, {
-            available: avail.available,
-            count: avail.available_number,
-          })
-        }
+      return { quota, avail }
+    })
+  )
+  for (const result of quotaResults) {
+    if (result.status === 'rejected') {
+      console.error('Failed to fetch quota availability:', result.reason)
+      continue
+    }
+    const { quota, avail } = result.value
+    for (const itemId of quota.items) {
+      const existing = itemAvailability.get(itemId)
+      if (!existing || (avail.available && !existing.available)) {
+        itemAvailability.set(itemId, {
+          available: avail.available,
+          count: avail.available_number,
+        })
       }
-    } catch (e) {
-      console.error(`Failed to fetch availability for quota ${quota.id}:`, e)
     }
   }
 

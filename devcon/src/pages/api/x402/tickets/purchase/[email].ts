@@ -89,7 +89,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     req.method = 'POST'
 
-    return purchaseHandler(req, res, { requirePayer: false })
+    return purchaseHandler(req, res, { requirePayer: false, ticketInfo })
   } catch (error) {
     console.error('[purchase/email] Error:', error)
     return res.status(500).json({
