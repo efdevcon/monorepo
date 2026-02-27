@@ -473,28 +473,6 @@
   }
 }
 
-.quantity-input {
-  width: 44px;
-  height: 36px;
-  border: none;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 400;
-
-  &:focus {
-    outline: none;
-  }
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  -moz-appearance: textfield;
-}
-
 .verify-btn {
   display: inline-flex;
   align-items: center;

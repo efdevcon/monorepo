@@ -30,6 +30,8 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
 const COUNTRIES = [
   { code: 'AF', name: 'Afghanistan' }, { code: 'AL', name: 'Albania' }, { code: 'DZ', name: 'Algeria' },
@@ -1433,21 +1435,23 @@ function CheckoutContent() {
                               <div className={css['swag-right']}>
                                 {hasVariations ? (
                                   /* Items with variations: size dropdown */
-                                  <select
-                                    className={css['addon-size-select']}
-                                    value={sel?.variationId || ''}
-                                    onChange={e => {
-                                      const val = e.target.value
+                                  <Select
+                                    value={sel?.variationId ? String(sel.variationId) : ''}
+                                    onValueChange={val => {
                                       setAddonVariation(item.id, val ? Number(val) : undefined)
                                     }}
                                   >
-                                    <option value="">Select size</option>
-                                    {item.variations.map(v => (
-                                      <option key={v.id} value={v.id}>
-                                        {v.name}
-                                      </option>
-                                    ))}
-                                  </select>
+                                    <SelectTrigger className="min-w-[140px] h-9 text-sm">
+                                      <SelectValue placeholder="Select size" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {item.variations.map(v => (
+                                        <SelectItem key={v.id} value={String(v.id)}>
+                                          {v.name}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
                                 ) : category.maxCount > 1 ? (
                                   /* Paid items without variations: quantity +/- */
                                   <div className={css['addon-qty']}>
@@ -1471,10 +1475,16 @@ function CheckoutContent() {
                                   </div>
                                 ) : (
                                   /* Simple toggle */
-                                  <label className={css['addon-toggle']}>
-                                    <input type="checkbox" checked={qty > 0} onChange={() => toggleAddon(item.id)} />
-                                    <span>{qty > 0 ? 'Added' : 'Add'}</span>
-                                  </label>
+                                  <div className="flex items-center gap-2">
+                                    <Checkbox
+                                      id={`addon-${item.id}`}
+                                      checked={qty > 0}
+                                      onCheckedChange={() => toggleAddon(item.id)}
+                                    />
+                                    <Label htmlFor={`addon-${item.id}`} className="text-sm text-black/70 cursor-pointer">
+                                      {qty > 0 ? 'Added' : 'Add'}
+                                    </Label>
+                                  </div>
                                 )}
                                 <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
                                   {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
@@ -1515,10 +1525,9 @@ function CheckoutContent() {
                 <div className={css['field-row']}>
                   <div className={css['field']}>
                     <label htmlFor="first-name">Name*</label>
-                    <input
+                    <Input
                       id="first-name"
                       type="text"
-                      className={css['text-input']}
                       placeholder="First name"
                       value={firstName}
                       onChange={e => setFirstName(e.target.value)}
@@ -1526,10 +1535,9 @@ function CheckoutContent() {
                   </div>
                   <div className={css['field']}>
                     <label htmlFor="last-name">&nbsp;</label>
-                    <input
+                    <Input
                       id="last-name"
                       type="text"
-                      className={css['text-input']}
                       placeholder="Last name"
                       value={lastName}
                       onChange={e => setLastName(e.target.value)}
@@ -1539,10 +1547,9 @@ function CheckoutContent() {
                 <div className={css['field-row']}>
                   <div className={css['field']}>
                     <label htmlFor="email">Email*</label>
-                    <input
+                    <Input
                       id="email"
                       type="email"
-                      className={css['text-input']}
                       placeholder="Enter email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
@@ -1550,28 +1557,23 @@ function CheckoutContent() {
                   </div>
                   <div className={css['field']}>
                     <label htmlFor="confirm-email">&nbsp;</label>
-                    <input
+                    <Input
                       id="confirm-email"
                       type="email"
-                      className={css['text-input']}
                       placeholder="Confirm email"
                       value={confirmEmail}
                       onChange={e => setConfirmEmail(e.target.value)}
                     />
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className={`${css['rich-checkbox']} ${newsletter ? css['checked'] : ''}`}
-                  onClick={() => setNewsletter(!newsletter)}
+                <label
+                  className={`flex items-start gap-3 p-3 border rounded-[10px] bg-white cursor-pointer ${newsletter ? 'border-black' : 'border-[#e5e5e5]'}`}
                 >
-                  <span className={css['rich-checkbox-box']}>
-                    {newsletter && (
-                      <svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="#fff" strokeWidth="2">
-                        <path d="M2 6l3 3 5-5" />
-                      </svg>
-                    )}
-                  </span>
+                  <Checkbox
+                    checked={newsletter}
+                    onCheckedChange={checked => setNewsletter(checked === true)}
+                    className="mt-0.5"
+                  />
                   <span className={css['rich-checkbox-content']}>
                     <span className={css['rich-checkbox-label']}>Subscribe to the Devcon newsletter</span>
                     <span className={css['rich-checkbox-desc']}>
@@ -1579,7 +1581,7 @@ function CheckoutContent() {
                       inbox.
                     </span>
                   </span>
-                </button>
+                </label>
                 <button
                   type="button"
                   className={`${css['btn-continue']} ${!contactDetailsFilled ? css['btn-disabled'] : ''}`}
@@ -1725,26 +1727,23 @@ function CheckoutContent() {
 
                       {/* Text fields */}
                       {q.type === 'S' && (
-                        <input
+                        <Input
                           type="text"
-                          className={css['text-input']}
                           value={(answers[q.id] as string) || ''}
                           onChange={e => updateAnswer(q.id, e.target.value)}
                         />
                       )}
 
                       {q.type === 'T' && (
-                        <textarea
-                          className={css['textarea-input']}
+                        <Textarea
                           value={(answers[q.id] as string) || ''}
                           onChange={e => updateAnswer(q.id, e.target.value)}
                         />
                       )}
 
                       {q.type === 'N' && (
-                        <input
+                        <Input
                           type="number"
-                          className={css['text-input']}
                           value={(answers[q.id] as string) || ''}
                           onChange={e => updateAnswer(q.id, e.target.value)}
                         />

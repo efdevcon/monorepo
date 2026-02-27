@@ -6,6 +6,7 @@ import themes from '../../themes.module.scss'
 import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
+import { Input } from '@/components/ui/input'
 import css from './store.module.scss'
 import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
@@ -367,9 +368,9 @@ function StoreContent({
                           >
                             −
                           </button>
-                          <input
+                          <Input
                             type="number"
-                            className={css['quantity-input']}
+                            className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
                             value={getQuantity(ticket.id)}
                             min={0}
                             onChange={e => setCartQuantity(ticket, parseInt(e.target.value, 10) || 0)}
