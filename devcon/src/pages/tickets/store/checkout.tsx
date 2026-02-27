@@ -209,7 +209,7 @@ export default function CheckoutPage() {
 
 function CheckoutContent() {
   const daimoPay = process.env.NEXT_PUBLIC_DAIMO_PAY === 'true'
-  const { address, isConnected, chain } = useAccount()
+  const { address, isConnected, chain, connector } = useAccount()
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
   const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
@@ -280,6 +280,7 @@ function CheckoutContent() {
   const [mobileOrderOpen, setMobileOrderOpen] = useState(false)
   const [mobileInlineSummaryOpen, setMobileInlineSummaryOpen] = useState(false)
   const voucherValidationRef = useRef(0)
+  const autoCheckoutTriggeredRef = useRef<string | null>(null)
 
   // Wagmi hooks
   const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
@@ -536,6 +537,9 @@ function CheckoutContent() {
   // Flat list of all available add-on items (for price lookup in summary)
   const allAddonItems = availableAddons.flatMap(a => a.items)
 
+  // Fingerprint for detecting add-on selection changes (used in reset + auto-checkout effects)
+  const addonFingerprint = JSON.stringify(Array.from(selectedAddons.entries()).sort((a, b) => a[0] - b[0]))
+
   // Add-on subtotal
   const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, data]) => {
     const item = allAddonItems.find(i => i.id === itemId)
@@ -570,6 +574,15 @@ function CheckoutContent() {
   const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
 
+  // ── Wallet error helper ──
+  function humanizeWalletError(e: unknown): string {
+    const msg = (e as Error).message || ''
+    if (/user (rejected|denied|cancelled|refused)/i.test(msg) || /request.rejected/i.test(msg)) {
+      return 'Transaction rejected — please try again when ready.'
+    }
+    return msg || 'Something went wrong'
+  }
+
   // ── Payment state invalidation ──
   // Clears all payment-in-progress state so the user must re-initiate checkout.
   // Called whenever order inputs change after checkout has been started.
@@ -586,6 +599,7 @@ function CheckoutContent() {
     setTokenFilter(null)
     tokenFilterAutoSelectedRef.current = false
     paymentOptionsAutoLoadedRef.current = null
+    autoCheckoutTriggeredRef.current = null
   }
 
   const isProcessing =
@@ -611,7 +625,7 @@ function CheckoutContent() {
     if (!isProcessing && paymentDetails) {
       resetPaymentState()
     }
-  }, [totalUsd])
+  }, [totalUsd, address, addonFingerprint])
 
   // ── Section helpers ──
   const toggleSection = (id: string) => {
@@ -637,6 +651,29 @@ function CheckoutContent() {
     email.trim() !== '' &&
     confirmEmail.trim() !== '' &&
     email.trim() === confirmEmail.trim()
+
+  // Auto-trigger crypto checkout when prerequisites are met (only on payment section)
+  useEffect(() => {
+    if (
+      openSection === 'payment' &&
+      paymentMethod === 'crypto' &&
+      !daimoPay &&
+      contactDetailsFilled &&
+      cartItems.length > 0 &&
+      isConnected &&
+      address &&
+      !paymentDetails &&
+      !isProcessing
+    ) {
+      const key = `${address}-${totalUsd}-${addonFingerprint}`
+      if (autoCheckoutTriggeredRef.current === key) return
+      autoCheckoutTriggeredRef.current = key
+
+      setPurchaseLoading(true)
+      setPurchaseError(null)
+      handleCryptoCheckout().finally(() => setPurchaseLoading(false))
+    }
+  }, [openSection, paymentMethod, daimoPay, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
 
   // Add-on selection helpers
   const toggleAddon = (itemId: number) => {
@@ -901,8 +938,8 @@ function CheckoutContent() {
       setIsSigningDirect(false)
       await executeGaslessTransfer(signature, prepareData.authorization)
     } catch (e) {
-      setDirectSignError((e as Error).message || 'Failed to prepare payment')
-      setPurchaseError((e as Error).message || 'Failed to prepare payment')
+      setDirectSignError(humanizeWalletError(e))
+      setPurchaseError(humanizeWalletError(e))
       setPaymentStatus(null)
       setIsSigningDirect(false)
     }
@@ -1031,8 +1068,8 @@ function CheckoutContent() {
         }
         await executeGaslessTransfer(signature, auth)
       } catch (e) {
-        setDirectSignError((e as Error).message || 'Invalid signing data')
-        setPurchaseError((e as Error).message || 'Invalid signing data')
+        setDirectSignError(humanizeWalletError(e))
+        setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
         setIsSigningDirect(false)
       }
@@ -1060,7 +1097,7 @@ function CheckoutContent() {
           data: (tx.data as `0x${string}`) || '0x',
         })
       } catch (e) {
-        setPurchaseError((e as Error).message || 'Failed to send transaction')
+        setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
       }
     }
@@ -1657,7 +1694,11 @@ function CheckoutContent() {
                         <div className={css['wallet-connected-row']}>
                           <span className={css['wallet-connected-label']}>Connected to:</span>
                           <div className={css['wallet-connected-right']}>
-                            <div className={css['wallet-identicon']} />
+                            {connector?.icon ? (
+                              <img src={connector.icon} alt={connector.name ?? 'wallet'} className={css['wallet-identicon']} />
+                            ) : (
+                              <div className={css['wallet-identicon']} />
+                            )}
                             <span className={css['wallet-address']}>
                               {address?.slice(0, 6)}...{address?.slice(-4)}
                             </span>
@@ -1823,196 +1864,27 @@ function CheckoutContent() {
                                   </div>
                                 )}
 
-                                {/* Mobile: Discount */}
-                                <div className={css['mobile-only']}>
-                                  <div className={css['discount-section']}>
-                                    {voucherData?.valid ? (
-                                      <div className={css['discount-applied']}>
-                                        <div className={css['discount-applied-info']}>
-                                          <CheckCircle className={css['discount-check-icon']} />
-                                          <span className={css['discount-applied-text']}>
-                                            CODE: {voucherInput.length > 12 ? `${voucherInput.slice(0, 6)}...${voucherInput.slice(-4)}` : voucherInput}
-                                          </span>
-                                          {voucherDiscount > 0 && (
-                                            <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
-                                          )}
-                                        </div>
-                                        <button
-                                          type="button"
-                                          className={css['discount-remove-btn']}
-                                          onClick={() => {
-                                            setVoucherInput('')
-                                            setVoucherData(null)
-                                            setVoucherError(null)
-                                            setShowDiscountInput(false)
-                                          }}
-                                        >
-                                          Remove
-                                        </button>
-                                      </div>
-                                    ) : showDiscountInput ? (
-                                      <>
-                                        <div className={css['discount-expand']}>
-                                          <input
-                                            type="text"
-                                            className={css['discount-input']}
-                                            placeholder="Discount or Voucher Code"
-                                            value={voucherInput}
-                                            onChange={e => {
-                                              setVoucherInput(e.target.value)
-                                              setVoucherError(null)
-                                            }}
-                                            disabled={voucherLoading}
-                                          />
-                                          <button
-                                            type="button"
-                                            className={css['discount-apply-btn']}
-                                            onClick={() => voucherInput && validateVoucherCode(voucherInput)}
-                                            disabled={voucherLoading || !voucherInput}
-                                          >
-                                            {voucherLoading ? 'Checking...' : 'Apply'}
-                                          </button>
-                                        </div>
-                                        {voucherError && (
-                                          <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
-                                        )}
-                                      </>
-                                    ) : (
+                                {purchaseError && (
+                                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                    <div>{purchaseError}</div>
+                                    {txHash && paymentDetails && (
                                       <button
                                         type="button"
-                                        className={css['discount-add-btn']}
-                                        onClick={() => setShowDiscountInput(true)}
+                                        className={css['retry-verify-btn']}
+                                        onClick={() => verifyPayment(txHash)}
+                                        disabled={isProcessing}
                                       >
-                                        <Tag size={16} />
-                                        Add Discount
+                                        Retry verification
                                       </button>
                                     )}
                                   </div>
-                                </div>
+                                )}
 
-                                {/* Mobile: Inline order summary */}
-                                <div className={css['mobile-only']}>
-                                  <div className={css['mobile-inline-summary']}>
-                                    <button
-                                      type="button"
-                                      className={css['mobile-inline-summary-bar']}
-                                      onClick={() => setMobileInlineSummaryOpen(!mobileInlineSummaryOpen)}
-                                    >
-                                      <span className={css['mobile-inline-summary-left']}>
-                                        <span>Order summary</span>
-                                        {mobileInlineSummaryOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                                      </span>
-                                      <span className={css['mobile-inline-summary-total']}>${totalUsd}</span>
-                                    </button>
-                                    {mobileInlineSummaryOpen && (
-                                      <div className={css['mobile-inline-summary-content']}>
-                                        <div className={css['panel-items']}>
-                                          {cartItems.length > 0 ? (
-                                            cartItems.map(item => (
-                                              <div key={item.ticketId} className={css['panel-item']}>
-                                                <span className={css['panel-item-name']}>{item.name}</span>
-                                                <div className={css['panel-item-right']}>
-                                                  <span>x{item.quantity}</span>
-                                                  <span className={css['panel-item-price']}>
-                                                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
-                                                  </span>
-                                                </div>
-                                              </div>
-                                            ))
-                                          ) : (
-                                            <div className={css['panel-item']}>
-                                              <span className={css['panel-item-name']}>No tickets selected</span>
-                                              <div className={css['panel-item-right']}>
-                                                <span className={css['panel-item-price']}>$0.00</span>
-                                              </div>
-                                            </div>
-                                          )}
-                                          {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
-                                            const item = allAddonItems.find(i => i.id === itemId)
-                                            if (!item || data.quantity <= 0) return null
-                                            let price = parseFloat(item.price)
-                                            let variationName = ''
-                                            if (data.variationId) {
-                                              const variation = item.variations.find(v => v.id === data.variationId)
-                                              if (variation) {
-                                                price = parseFloat(variation.price)
-                                                variationName = variation.name
-                                              }
-                                            }
-                                            const isFree = price === 0
-                                            const lineTotal = price * data.quantity
-                                            return (
-                                              <div key={itemId} className={css['panel-item']}>
-                                                <div className={css['panel-item-name']}>
-                                                  {item.name}
-                                                  {variationName && (
-                                                    <span className={css['panel-item-meta']}>{variationName}</span>
-                                                  )}
-                                                </div>
-                                                <div className={css['panel-item-right']}>
-                                                  <span>x{data.quantity}</span>
-                                                  <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
-                                                </div>
-                                              </div>
-                                            )
-                                          })}
-                                        </div>
-                                        <div className={css['summary-lines']}>
-                                          <div className={css['summary-line']}>
-                                            <span>Subtotal</span>
-                                            <span>${subtotal.toFixed(2)}</span>
-                                          </div>
-                                          {voucherDiscount > 0 && (
-                                            <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                              <span>Voucher discount</span>
-                                              <span>&ndash;${voucherDiscount.toFixed(2)}</span>
-                                            </div>
-                                          )}
-                                          {paymentMethod === 'crypto' && (
-                                            <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                              <span>Crypto discount (&ndash;3%)</span>
-                                              <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
-                                            </div>
-                                          )}
-                                          <div className={css['summary-total']}>
-                                            <span>Total</span>
-                                            <div className={css['summary-total-values']}>
-                                              {paymentMethod === 'crypto' && selectedOption && (
-                                                <span className={css['summary-eth']}>
-                                                  <span className={css['summary-currency-label']}>{displaySymbol(selectedOption.symbol)}</span>
-                                                  <span className={css['summary-currency-value']}>
-                                                    {selectedOption.decimals >= 18
-                                                      ? formatEth(selectedOption.amount, 18)
-                                                      : (Number(selectedOption.amount) / 10 ** selectedOption.decimals).toFixed(2)}
-                                                  </span>
-                                                </span>
-                                              )}
-                                              <span className={css['summary-usd']}>
-                                                <span className={css['summary-currency-label']}>USD</span>
-                                                <span className={css['summary-currency-value']}>${totalUsd}</span>
-                                              </span>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
+                                {(writeError || directSignError) && (
+                                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>{writeError?.message || directSignError}</div>
+                                )}
 
-                                {/* Mobile: T&C */}
-                                <div className={css['mobile-only']}>
-                                  <p className={css['mobile-tc']}>
-                                    By placing your order, you agree to Devcon&apos;s{' '}
-                                    <Link to="/terms-of-service">
-                                      <strong>Terms & Conditions</strong>
-                                    </Link>{' '}
-                                    and{' '}
-                                    <Link to="/privacy-policy">
-                                      <strong>Privacy Policy</strong>
-                                    </Link>
-                                    .
-                                  </p>
-                                </div>
+                                {paymentStatus && !isProcessing && <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>{paymentStatus}</p>}
 
                                 {/* Pay button */}
                                 {selectedOption && (
@@ -2042,9 +1914,8 @@ function CheckoutContent() {
                           paymentOptions.length > 0 &&
                           paymentOptions.filter(o => o.sufficient).length === 0 &&
                           paymentDetails && (
-                            <p className={css['status-text']}>
-                              No option with sufficient balance. Connect a wallet with more USDC or ETH on supported
-                              chains.
+                            <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                              Insufficient balance. Top up your wallet or connect one with enough USDC, USDT, or ETH.
                             </p>
                           )}
                       </>
@@ -2052,27 +1923,199 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {purchaseError && (
-                  <div className={css['error-box']}>
-                    <div>{purchaseError}</div>
-                    {txHash && paymentDetails && (
+                {/* Mobile: Discount */}
+                <div className={css['mobile-only']}>
+                  <div className={css['discount-section']}>
+                    {voucherData?.valid ? (
+                      <div className={css['discount-applied']}>
+                        <div className={css['discount-applied-info']}>
+                          <CheckCircle className={css['discount-check-icon']} />
+                          <div className={css['discount-applied-text']}>
+                            <span className={css['discount-code-line']}>
+                              <strong>CODE: </strong>
+                              {voucherInput.length > 12 ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}` : voucherInput}
+                            </span>
+                            {voucherDiscount > 0 && (
+                              <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
+                            )}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className={css['discount-remove-btn']}
+                          onClick={() => {
+                            setVoucherInput('')
+                            setVoucherData(null)
+                            setVoucherError(null)
+                            setShowDiscountInput(false)
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : showDiscountInput ? (
+                      <>
+                        <div className={css['discount-expand']}>
+                          <input
+                            type="text"
+                            className={css['discount-input']}
+                            placeholder="Discount or Voucher Code"
+                            value={voucherInput}
+                            onChange={e => {
+                              setVoucherInput(e.target.value)
+                              setVoucherError(null)
+                            }}
+                            disabled={voucherLoading}
+                          />
+                          <button
+                            type="button"
+                            className={css['discount-apply-btn']}
+                            onClick={() => voucherInput && validateVoucherCode(voucherInput)}
+                            disabled={voucherLoading || !voucherInput}
+                          >
+                            {voucherLoading ? 'Checking...' : 'Apply'}
+                          </button>
+                        </div>
+                        {voucherError && (
+                          <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
+                        )}
+                      </>
+                    ) : (
                       <button
                         type="button"
-                        className={css['retry-verify-btn']}
-                        onClick={() => verifyPayment(txHash)}
-                        disabled={isProcessing}
+                        className={css['discount-add-btn']}
+                        onClick={() => setShowDiscountInput(true)}
                       >
-                        Retry verification
+                        <Tag size={16} />
+                        Add Discount
                       </button>
                     )}
                   </div>
-                )}
+                </div>
 
-                {(writeError || directSignError) && (
-                  <div className={css['error-box']}>{writeError?.message || directSignError}</div>
-                )}
+                {/* Mobile: Inline order summary */}
+                <div className={css['mobile-only']}>
+                  <div className={css['mobile-inline-summary']}>
+                    <button
+                      type="button"
+                      className={css['mobile-inline-summary-bar']}
+                      onClick={() => setMobileInlineSummaryOpen(!mobileInlineSummaryOpen)}
+                    >
+                      <span className={css['mobile-inline-summary-left']}>
+                        <span>Order summary</span>
+                        {mobileInlineSummaryOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                      </span>
+                      <span className={css['mobile-inline-summary-total']}>${totalUsd}</span>
+                    </button>
+                    {mobileInlineSummaryOpen && (
+                      <div className={css['mobile-inline-summary-content']}>
+                        <div className={css['panel-items']}>
+                          {cartItems.length > 0 ? (
+                            cartItems.map(item => (
+                              <div key={item.ticketId} className={css['panel-item']}>
+                                <span className={css['panel-item-name']}>{item.name}</span>
+                                <div className={css['panel-item-right']}>
+                                  <span>x{item.quantity}</span>
+                                  <span className={css['panel-item-price']}>
+                                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                  </span>
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div className={css['panel-item']}>
+                              <span className={css['panel-item-name']}>No tickets selected</span>
+                              <div className={css['panel-item-right']}>
+                                <span className={css['panel-item-price']}>$0.00</span>
+                              </div>
+                            </div>
+                          )}
+                          {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
+                            const item = allAddonItems.find(i => i.id === itemId)
+                            if (!item || data.quantity <= 0) return null
+                            let price = parseFloat(item.price)
+                            let variationName = ''
+                            if (data.variationId) {
+                              const variation = item.variations.find(v => v.id === data.variationId)
+                              if (variation) {
+                                price = parseFloat(variation.price)
+                                variationName = variation.name
+                              }
+                            }
+                            const isFree = price === 0
+                            const lineTotal = price * data.quantity
+                            return (
+                              <div key={itemId} className={css['panel-item']}>
+                                <div className={css['panel-item-name']}>
+                                  {item.name}
+                                  {variationName && (
+                                    <span className={css['panel-item-meta']}>{variationName}</span>
+                                  )}
+                                </div>
+                                <div className={css['panel-item-right']}>
+                                  <span>x{data.quantity}</span>
+                                  <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                        <div className={css['summary-lines']}>
+                          <div className={css['summary-line']}>
+                            <span>Subtotal</span>
+                            <span>${subtotal.toFixed(2)}</span>
+                          </div>
+                          {voucherDiscount > 0 && (
+                            <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                              <span>Voucher discount</span>
+                              <span>&ndash;${voucherDiscount.toFixed(2)}</span>
+                            </div>
+                          )}
+                          {paymentMethod === 'crypto' && (
+                            <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                              <span>Crypto discount (&ndash;3%)</span>
+                              <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
+                            </div>
+                          )}
+                          <div className={css['summary-total']}>
+                            <span>Total</span>
+                            <div className={css['summary-total-values']}>
+                              {paymentMethod === 'crypto' && selectedOption && (
+                                <span className={css['summary-eth']}>
+                                  <span className={css['summary-currency-label']}>{displaySymbol(selectedOption.symbol)}</span>
+                                  <span className={css['summary-currency-value']}>
+                                    {selectedOption.decimals >= 18
+                                      ? formatEth(selectedOption.amount, 18)
+                                      : (Number(selectedOption.amount) / 10 ** selectedOption.decimals).toFixed(2)}
+                                  </span>
+                                </span>
+                              )}
+                              <span className={css['summary-usd']}>
+                                <span className={css['summary-currency-label']}>USD</span>
+                                <span className={css['summary-currency-value']}>${totalUsd}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-                {paymentStatus && <p className={css['status-text']}>{paymentStatus}</p>}
+                {/* Mobile: T&C */}
+                <div className={css['mobile-only']}>
+                  <p className={css['mobile-tc']}>
+                    By placing your order, you agree to Devcon&apos;s{' '}
+                    <Link to="/terms-of-service">
+                      <strong>Terms & Conditions</strong>
+                    </Link>{' '}
+                    and{' '}
+                    <Link to="/privacy-policy">
+                      <strong>Privacy Policy</strong>
+                    </Link>
+                    .
+                  </p>
+                </div>
 
                 {txHash && (
                   <div className={css['tx-status']}>
@@ -2100,7 +2143,7 @@ function CheckoutContent() {
                   </div>
                 )}
 
-                {!(paymentDetails && paymentMethod === 'crypto' && !daimoPay) && (
+                {!(paymentMethod === 'crypto' && !daimoPay) && (
                   <button
                     type="button"
                     className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
@@ -2118,7 +2161,11 @@ function CheckoutContent() {
 
                 {(paymentMethod !== 'crypto' || daimoPay) && (
                   <div className={css['stripe-note']}>
-                    <span>Powered by {paymentMethod === 'crypto' && daimoPay ? 'Daimo Pay' : 'Stripe'}</span>
+                    {paymentMethod === 'crypto' && daimoPay ? (
+                      <span>Powered by <strong>Daimo Pay</strong></span>
+                    ) : (
+                      <img src="/assets/images/powered-by-stripe.svg" alt="Powered by Stripe" className={css['stripe-note-img']} />
+                    )}
                   </div>
                 )}
               </div>
@@ -2220,12 +2267,15 @@ function CheckoutContent() {
                   <div className={css['discount-applied']}>
                     <div className={css['discount-applied-info']}>
                       <CheckCircle className={css['discount-check-icon']} />
-                      <span className={css['discount-applied-text']}>
-                        CODE: {voucherInput.length > 12 ? `${voucherInput.slice(0, 6)}...${voucherInput.slice(-4)}` : voucherInput}
-                      </span>
-                      {voucherDiscount > 0 && (
-                        <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
-                      )}
+                      <div className={css['discount-applied-text']}>
+                        <span className={css['discount-code-line']}>
+                          <strong>CODE: </strong>
+                          {voucherInput.length > 12 ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}` : voucherInput}
+                        </span>
+                        {voucherDiscount > 0 && (
+                          <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
+                        )}
+                      </div>
                     </div>
                     <button
                       type="button"

@@ -502,7 +502,7 @@ $checkout-accent: #4d59c7;
   cursor: pointer;
   font-family: inherit;
   letter-spacing: -0.16px;
-  align-self: flex-start;
+  align-self: center;
 }
 
 .btn-checkout-left {
@@ -726,12 +726,17 @@ $checkout-accent: #4d59c7;
   letter-spacing: -0.1px;
 }
 
-.wallet-identicon {
+img.wallet-identicon,
+div.wallet-identicon {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 5px;
   flex-shrink: 0;
+  object-fit: cover;
+}
+
+div.wallet-identicon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .wallet-disconnect-btn {
@@ -752,31 +757,38 @@ $checkout-accent: #4d59c7;
 }
 
 .stripe-note {
-  font-size: 0.8125rem;
-  color: #666;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   align-self: center;
+  font-size: 0.8125rem;
+  color: #000;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.stripe-note-img {
+  height: 34px;
+  width: 150px;
 }
 
 /* ─── Loading & Status States ──────────────────────────── */
 
-.status-text {
+.payment-notice {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
   font-size: 0.875rem;
-  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+  line-height: 1.4;
   text-align: center;
-  padding: 0.5rem 0;
 }
 
-.error-box {
-  padding: 0.75rem 1rem;
+.payment-notice-error {
   background: #fef2f2;
   border: 1px solid #fecaca;
-  border-radius: 8px;
   color: #b91c1c;
-  font-size: 0.875rem;
-  line-height: 1.4;
 
   .retry-verify-btn {
     margin-top: 0.75rem;
@@ -798,6 +810,12 @@ $checkout-accent: #4d59c7;
       cursor: not-allowed;
     }
   }
+}
+
+.payment-notice-info {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
 }
 
 .payment-options-block {
@@ -844,7 +862,7 @@ $checkout-accent: #4d59c7;
 .asset-chips {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .asset-chip {
@@ -853,6 +871,12 @@ $checkout-accent: #4d59c7;
   gap: 8px;
   padding: 8px 12px;
   border-radius: 8px;
+
+  @media (max-width: 767px) {
+    gap: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
   cursor: pointer;
@@ -877,6 +901,11 @@ $checkout-accent: #4d59c7;
   height: 24px;
   border-radius: 50%;
   object-fit: cover;
+
+  @media (max-width: 767px) {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* ─── Network Selection ───────────────────────────────── */
@@ -1310,9 +1339,16 @@ $checkout-accent: #4d59c7;
 }
 
 .mobile-order-bar-total {
+  display: flex;
+  align-items: baseline;
   font-size: 16px;
-  font-weight: 700;
-  color: #000;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+
+  strong {
+    font-weight: 700;
+    color: #000;
+  }
 }
 
 .mobile-order-expanded {
@@ -1375,9 +1411,16 @@ $checkout-accent: #4d59c7;
 }
 
 .mobile-inline-summary-total {
+  display: flex;
+  align-items: baseline;
   font-size: 16px;
-  font-weight: 700;
-  color: #000;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+
+  strong {
+    font-weight: 700;
+    color: #000;
+  }
 }
 
 .mobile-inline-summary-content {
@@ -1577,34 +1620,42 @@ $checkout-accent: #4d59c7;
 }
 
 .discount-applied-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #000;
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.discount-code-line {
+  font-size: 14px;
+  color: #000;
+  letter-spacing: -0.14px;
+
+  strong {
+    font-weight: 700;
+  }
 }
 
 .discount-savings {
-  font-size: 14px;
-  font-weight: 700;
-  color: #2e7d32;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: -0.12px;
 }
 
 .discount-remove-btn {
   font-size: 14px;
   font-weight: 700;
   color: #000;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 360px;
+  background: none;
+  border: none;
   cursor: pointer;
-  padding: 6px 16px;
+  padding: 0;
   flex-shrink: 0;
   font-family: inherit;
+  letter-spacing: -0.14px;
 
   &:hover {
-    background: #f5f5f5;
+    text-decoration: underline;
   }
 }
 
@@ -1659,6 +1710,18 @@ $checkout-accent: #4d59c7;
   font-size: 1rem;
   font-weight: 700;
   color: #000;
+}
+
+.summary-eth-inline {
+  font-size: inherit;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 0.5rem;
+
+  strong {
+    font-weight: 700;
+    color: #000;
+  }
 }
 
 /* ─── Panel Disclaimer ──────────────────────────────────── */
