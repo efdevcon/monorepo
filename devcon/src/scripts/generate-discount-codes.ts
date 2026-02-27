@@ -1,0 +1,101 @@
+/**
+ * Generate unique discount codes and insert into Supabase
+ *
+ * Usage:
+ *   pnpm run discount:generate-codes --count 10 --collection local-early-bird [--prefix DC8-] [--length 12] [--dry-run]
+ */
+import 'dotenv/config'
+import crypto from 'crypto'
+import fs from 'fs'
+import path from 'path'
+import { insertDiscountCodes } from '../services/discountStore'
+
+const STORE_URL = 'https://devcon.org/en/tickets/store/?discount-code='
+
+function parseArgs() {
+  const args = process.argv.slice(2)
+  const get = (flag: string, defaultValue: string): string => {
+    const idx = args.indexOf(flag)
+    return idx !== -1 && args[idx + 1] ? args[idx + 1] : defaultValue
+  }
+  return {
+    count: parseInt(get('--count', '0'), 10),
+    collection: get('--collection', ''),
+    prefix: get('--prefix', ''),
+    length: parseInt(get('--length', '12'), 10),
+    dryRun: args.includes('--dry-run'),
+  }
+}
+
+const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789' // no 0/O/1/I to avoid ambiguity
+
+function generateCode(length: number, prefix: string): string {
+  const bytes = crypto.randomBytes(length)
+  let code = ''
+  for (let i = 0; i < length; i++) {
+    code += CHARSET[bytes[i] % CHARSET.length]
+  }
+  return prefix + code
+}
+
+async function main() {
+  const { count, collection, prefix, length, dryRun } = parseArgs()
+
+  if (count <= 0 || !collection) {
+    console.error('Usage: pnpm run discount:generate-codes --count <number> --collection <name> [--prefix <prefix>] [--length <length>] [--dry-run]')
+    console.error('Example: pnpm run discount:generate-codes --count 100 --collection local-early-bird')
+    process.exit(1)
+  }
+
+  console.log(`Generating ${count} discount codes`)
+  console.log(`  Collection: ${collection}`)
+  console.log(`  Prefix: ${prefix || '(none)'}`)
+  console.log(`  Code length: ${length} chars (+ prefix)`)
+  if (dryRun) console.log('  *** DRY RUN — no changes will be made ***')
+  console.log('')
+
+  // Generate unique codes using a Set for deduplication
+  const codes = new Set<string>()
+  let attempts = 0
+  const maxAttempts = count * 10
+  while (codes.size < count && attempts < maxAttempts) {
+    codes.add(generateCode(length, prefix))
+    attempts++
+  }
+
+  if (codes.size < count) {
+    console.error(`Could only generate ${codes.size} unique codes after ${maxAttempts} attempts`)
+    process.exit(1)
+  }
+
+  const codeArray = Array.from(codes)
+
+  console.log(`Generated ${codeArray.length} unique codes`)
+  console.log(`  Sample: ${codeArray.slice(0, 5).join(', ')}${codeArray.length > 5 ? ', ...' : ''}`)
+  console.log('')
+
+  // Write URLs to text file
+  const outDir = path.resolve('generated-codes')
+  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir)
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)
+  const filename = `discount-codes-${collection}-${timestamp}.txt`
+  const outPath = path.join(outDir, filename)
+  const lines = codeArray.map(code => `${STORE_URL}${code}`)
+  fs.writeFileSync(outPath, lines.join('\n') + '\n')
+  console.log(`Saved ${codeArray.length} URLs to ${outPath}`)
+  console.log('')
+
+  if (dryRun) {
+    console.log('*** DRY RUN complete — re-run without --dry-run to insert into Supabase ***')
+    return
+  }
+
+  console.log('Inserting into Supabase...')
+  const inserted = await insertDiscountCodes(codeArray, collection)
+  console.log(`Inserted ${inserted} discount codes into collection "${collection}"`)
+}
+
+main().catch(err => {
+  console.error('Error:', err.message || err)
+  process.exit(1)
+})

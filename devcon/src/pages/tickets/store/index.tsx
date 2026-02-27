@@ -133,14 +133,41 @@ function StoreContent({
   const [error, setError] = useState<string | null>(null)
   const [cart, setCart] = useState<CartItem[]>([])
   const [discountCode, setDiscountCode] = useState<string | null>(null)
+  const [discountCodeValid, setDiscountCodeValid] = useState<boolean | null>(null)
+  const [discountCodeError, setDiscountCodeError] = useState<string | null>(null)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const code = params.get('local-early-bird-discount-code')
+    const code = params.get('discount-code')
     if (code) {
       setDiscountCode(code)
     }
   }, [])
+
+  // Server-side validation of discount code
+  useEffect(() => {
+    if (!discountCode) return
+    setDiscountCodeValid(null)
+    setDiscountCodeError(null)
+    fetch('/api/tickets/validate-discount-code', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: discountCode }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.valid) {
+          setDiscountCodeValid(true)
+        } else {
+          setDiscountCodeValid(false)
+          setDiscountCodeError(data.error || 'Invalid discount code')
+        }
+      })
+      .catch(() => {
+        setDiscountCodeValid(false)
+        setDiscountCodeError('Failed to validate discount code')
+      })
+  }, [discountCode])
 
   useEffect(() => {
     async function fetchTickets() {
@@ -227,7 +254,13 @@ function StoreContent({
   }
 
   const admissionTickets = tickets.filter(t => t.isAdmission && t.available && !t.requireVoucher)
-  const voucherTickets = tickets.filter(t => t.isAdmission && t.available && t.requireVoucher)
+  const discountTicketId = process.env.NEXT_PUBLIC_PRETIX_TICKET_DISCOUNT_ID
+    ? parseInt(process.env.NEXT_PUBLIC_PRETIX_TICKET_DISCOUNT_ID, 10)
+    : undefined
+  const voucherTickets = tickets.filter(t =>
+    t.isAdmission && t.available && t.requireVoucher &&
+    (discountTicketId ? t.id === discountTicketId : true)
+  )
 
   return (
     <>
@@ -408,7 +441,7 @@ function StoreContent({
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${!discountCode ? css['card--disabled'] : ''}`}>
+                      <div className={`${css['card']} ${!(discountCode && discountCodeValid === true) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
@@ -420,7 +453,7 @@ function StoreContent({
                               snacks all week.
                             </p>
                           </div>
-                          {discountCode ? (
+                          {discountCode && discountCodeValid === true ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-current']}>${ticket.price}</span>
@@ -436,6 +469,30 @@ function StoreContent({
                                 <SelfLogo className={css['self-logo']} aria-hidden="true" />
                                 Verify via Self
                               </button>
+                            </div>
+                          ) : discountCode && discountCodeValid === null ? (
+                            <div className={css['card-footer']}>
+                              <div className={css['pricing']}>
+                                <span className={css['price-current']}>${ticket.price}</span>
+                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                )}
+                              </div>
+                              <p className={css['card-disabled-message']}>
+                                Validating discount code...
+                              </p>
+                            </div>
+                          ) : discountCode && discountCodeValid === false ? (
+                            <div className={css['card-footer']}>
+                              <div className={css['pricing']}>
+                                <span className={css['price-current']}>${ticket.price}</span>
+                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                )}
+                              </div>
+                              <p className={css['card-disabled-message']}>
+                                {discountCodeError || 'Invalid discount code'}
+                              </p>
                             </div>
                           ) : (
                             <div className={css['card-footer']}>
@@ -506,6 +563,7 @@ function StoreContent({
         onClose={() => setSelfVerificationOpen(false)}
         useStaging={useSelfStaging}
         setUseStaging={setUseSelfStaging}
+        discountCode={discountCode ?? undefined}
       />
     </>
   )

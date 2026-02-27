@@ -6,6 +6,7 @@ import {
   ArtifactsOrigin,
   InitArgs,
 } from '@anon-aadhaar/core'
+import { validateDiscountCode, assignVoucher, claimDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
 
 // Indian government public key hash for Aadhaar QR verification (production)
 const pubKeyHash =
@@ -87,7 +88,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ error: 'You must be 18 or older to purchase a ticket.' })
   }
 
-  // Hardcoded Pretix voucher code (will be dynamically assigned in production)
-  const voucherCode = '22QD2ETT2HEGPZZ8'
-  return res.status(200).json({ voucherCode })
+  // Dynamic voucher assignment from Supabase pool
+  const { discountCode } = req.body as { discountCode?: string }
+  const nullifier = anonAadhaarProof.proof.nullifier
+
+  if (!discountCode) {
+    return res.status(400).json({ error: 'Missing discount code' })
+  }
+
+  const validCode = await validateDiscountCode(discountCode)
+  if (!validCode) {
+    return res.status(400).json({ error: 'Invalid or already used discount code' })
+  }
+
+  // Check if this identity already has a voucher (one-voucher-per-identity)
+  const existingVoucher = await getAssignedVoucher(nullifier)
+  if (existingVoucher) {
+    return res.status(200).json({ voucherCode: existingVoucher.code })
+  }
+
+  const voucher = await assignVoucher(nullifier, validCode.collection)
+  if (!voucher) {
+    return res.status(503).json({ error: 'No vouchers available. Please try again later.' })
+  }
+
+  await claimDiscountCode(discountCode, nullifier, voucher.code)
+  return res.status(200).json({ voucherCode: voucher.code })
 }
