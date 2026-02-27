@@ -273,6 +273,7 @@ export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurcha
     .sort((a, b) => a.position - b.position)
     .map((q) => ({
       id: q.id,
+      identifier: q.identifier,
       question: getLocalizedString(q.question, locale),
       helpText: q.help_text ? getLocalizedString(q.help_text, locale) : null,
       type: q.type,

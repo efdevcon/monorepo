@@ -20,6 +20,87 @@ import type { Config } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
 import { wagmiAdapter } from 'context/appkit-config'
 import { QuestionInfo, TicketInfo } from 'types/pretix'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
+
+const COUNTRIES = [
+  { code: 'AF', name: 'Afghanistan' }, { code: 'AL', name: 'Albania' }, { code: 'DZ', name: 'Algeria' },
+  { code: 'AD', name: 'Andorra' }, { code: 'AO', name: 'Angola' }, { code: 'AG', name: 'Antigua and Barbuda' },
+  { code: 'AR', name: 'Argentina' }, { code: 'AM', name: 'Armenia' }, { code: 'AU', name: 'Australia' },
+  { code: 'AT', name: 'Austria' }, { code: 'AZ', name: 'Azerbaijan' }, { code: 'BS', name: 'Bahamas' },
+  { code: 'BH', name: 'Bahrain' }, { code: 'BD', name: 'Bangladesh' }, { code: 'BB', name: 'Barbados' },
+  { code: 'BY', name: 'Belarus' }, { code: 'BE', name: 'Belgium' }, { code: 'BZ', name: 'Belize' },
+  { code: 'BJ', name: 'Benin' }, { code: 'BT', name: 'Bhutan' }, { code: 'BO', name: 'Bolivia' },
+  { code: 'BA', name: 'Bosnia and Herzegovina' }, { code: 'BW', name: 'Botswana' }, { code: 'BR', name: 'Brazil' },
+  { code: 'BN', name: 'Brunei' }, { code: 'BG', name: 'Bulgaria' }, { code: 'BF', name: 'Burkina Faso' },
+  { code: 'BI', name: 'Burundi' }, { code: 'CV', name: 'Cabo Verde' }, { code: 'KH', name: 'Cambodia' },
+  { code: 'CM', name: 'Cameroon' }, { code: 'CA', name: 'Canada' }, { code: 'CF', name: 'Central African Republic' },
+  { code: 'TD', name: 'Chad' }, { code: 'CL', name: 'Chile' }, { code: 'CN', name: 'China' },
+  { code: 'CO', name: 'Colombia' }, { code: 'KM', name: 'Comoros' }, { code: 'CG', name: 'Congo' },
+  { code: 'CD', name: 'Congo (DRC)' }, { code: 'CR', name: 'Costa Rica' }, { code: 'CI', name: "Côte d'Ivoire" },
+  { code: 'HR', name: 'Croatia' }, { code: 'CU', name: 'Cuba' }, { code: 'CY', name: 'Cyprus' },
+  { code: 'CZ', name: 'Czechia' }, { code: 'DK', name: 'Denmark' }, { code: 'DJ', name: 'Djibouti' },
+  { code: 'DM', name: 'Dominica' }, { code: 'DO', name: 'Dominican Republic' }, { code: 'EC', name: 'Ecuador' },
+  { code: 'EG', name: 'Egypt' }, { code: 'SV', name: 'El Salvador' }, { code: 'GQ', name: 'Equatorial Guinea' },
+  { code: 'ER', name: 'Eritrea' }, { code: 'EE', name: 'Estonia' }, { code: 'SZ', name: 'Eswatini' },
+  { code: 'ET', name: 'Ethiopia' }, { code: 'FJ', name: 'Fiji' }, { code: 'FI', name: 'Finland' },
+  { code: 'FR', name: 'France' }, { code: 'GA', name: 'Gabon' }, { code: 'GM', name: 'Gambia' },
+  { code: 'GE', name: 'Georgia' }, { code: 'DE', name: 'Germany' }, { code: 'GH', name: 'Ghana' },
+  { code: 'GR', name: 'Greece' }, { code: 'GD', name: 'Grenada' }, { code: 'GT', name: 'Guatemala' },
+  { code: 'GN', name: 'Guinea' }, { code: 'GW', name: 'Guinea-Bissau' }, { code: 'GY', name: 'Guyana' },
+  { code: 'HT', name: 'Haiti' }, { code: 'HN', name: 'Honduras' }, { code: 'HK', name: 'Hong Kong' },
+  { code: 'HU', name: 'Hungary' }, { code: 'IS', name: 'Iceland' }, { code: 'IN', name: 'India' },
+  { code: 'ID', name: 'Indonesia' }, { code: 'IR', name: 'Iran' }, { code: 'IQ', name: 'Iraq' },
+  { code: 'IE', name: 'Ireland' }, { code: 'IL', name: 'Israel' }, { code: 'IT', name: 'Italy' },
+  { code: 'JM', name: 'Jamaica' }, { code: 'JP', name: 'Japan' }, { code: 'JO', name: 'Jordan' },
+  { code: 'KZ', name: 'Kazakhstan' }, { code: 'KE', name: 'Kenya' }, { code: 'KI', name: 'Kiribati' },
+  { code: 'KP', name: 'North Korea' }, { code: 'KR', name: 'South Korea' }, { code: 'KW', name: 'Kuwait' },
+  { code: 'KG', name: 'Kyrgyzstan' }, { code: 'LA', name: 'Laos' }, { code: 'LV', name: 'Latvia' },
+  { code: 'LB', name: 'Lebanon' }, { code: 'LS', name: 'Lesotho' }, { code: 'LR', name: 'Liberia' },
+  { code: 'LY', name: 'Libya' }, { code: 'LI', name: 'Liechtenstein' }, { code: 'LT', name: 'Lithuania' },
+  { code: 'LU', name: 'Luxembourg' }, { code: 'MO', name: 'Macao' }, { code: 'MG', name: 'Madagascar' },
+  { code: 'MW', name: 'Malawi' }, { code: 'MY', name: 'Malaysia' }, { code: 'MV', name: 'Maldives' },
+  { code: 'ML', name: 'Mali' }, { code: 'MT', name: 'Malta' }, { code: 'MH', name: 'Marshall Islands' },
+  { code: 'MR', name: 'Mauritania' }, { code: 'MU', name: 'Mauritius' }, { code: 'MX', name: 'Mexico' },
+  { code: 'FM', name: 'Micronesia' }, { code: 'MD', name: 'Moldova' }, { code: 'MC', name: 'Monaco' },
+  { code: 'MN', name: 'Mongolia' }, { code: 'ME', name: 'Montenegro' }, { code: 'MA', name: 'Morocco' },
+  { code: 'MZ', name: 'Mozambique' }, { code: 'MM', name: 'Myanmar' }, { code: 'NA', name: 'Namibia' },
+  { code: 'NR', name: 'Nauru' }, { code: 'NP', name: 'Nepal' }, { code: 'NL', name: 'Netherlands' },
+  { code: 'NZ', name: 'New Zealand' }, { code: 'NI', name: 'Nicaragua' }, { code: 'NE', name: 'Niger' },
+  { code: 'NG', name: 'Nigeria' }, { code: 'MK', name: 'North Macedonia' }, { code: 'NO', name: 'Norway' },
+  { code: 'OM', name: 'Oman' }, { code: 'PK', name: 'Pakistan' }, { code: 'PW', name: 'Palau' },
+  { code: 'PS', name: 'Palestine' }, { code: 'PA', name: 'Panama' }, { code: 'PG', name: 'Papua New Guinea' },
+  { code: 'PY', name: 'Paraguay' }, { code: 'PE', name: 'Peru' }, { code: 'PH', name: 'Philippines' },
+  { code: 'PL', name: 'Poland' }, { code: 'PT', name: 'Portugal' }, { code: 'QA', name: 'Qatar' },
+  { code: 'RO', name: 'Romania' }, { code: 'RU', name: 'Russia' }, { code: 'RW', name: 'Rwanda' },
+  { code: 'KN', name: 'Saint Kitts and Nevis' }, { code: 'LC', name: 'Saint Lucia' },
+  { code: 'VC', name: 'Saint Vincent and the Grenadines' }, { code: 'WS', name: 'Samoa' },
+  { code: 'SM', name: 'San Marino' }, { code: 'ST', name: 'São Tomé and Príncipe' },
+  { code: 'SA', name: 'Saudi Arabia' }, { code: 'SN', name: 'Senegal' }, { code: 'RS', name: 'Serbia' },
+  { code: 'SC', name: 'Seychelles' }, { code: 'SL', name: 'Sierra Leone' }, { code: 'SG', name: 'Singapore' },
+  { code: 'SK', name: 'Slovakia' }, { code: 'SI', name: 'Slovenia' }, { code: 'SB', name: 'Solomon Islands' },
+  { code: 'SO', name: 'Somalia' }, { code: 'ZA', name: 'South Africa' }, { code: 'SS', name: 'South Sudan' },
+  { code: 'ES', name: 'Spain' }, { code: 'LK', name: 'Sri Lanka' }, { code: 'SD', name: 'Sudan' },
+  { code: 'SR', name: 'Suriname' }, { code: 'SE', name: 'Sweden' }, { code: 'CH', name: 'Switzerland' },
+  { code: 'SY', name: 'Syria' }, { code: 'TW', name: 'Taiwan' }, { code: 'TJ', name: 'Tajikistan' },
+  { code: 'TZ', name: 'Tanzania' }, { code: 'TH', name: 'Thailand' }, { code: 'TL', name: 'Timor-Leste' },
+  { code: 'TG', name: 'Togo' }, { code: 'TO', name: 'Tonga' }, { code: 'TT', name: 'Trinidad and Tobago' },
+  { code: 'TN', name: 'Tunisia' }, { code: 'TR', name: 'Turkey' }, { code: 'TM', name: 'Turkmenistan' },
+  { code: 'TV', name: 'Tuvalu' }, { code: 'UG', name: 'Uganda' }, { code: 'UA', name: 'Ukraine' },
+  { code: 'AE', name: 'United Arab Emirates' }, { code: 'GB', name: 'United Kingdom' },
+  { code: 'US', name: 'United States' }, { code: 'UY', name: 'Uruguay' }, { code: 'UZ', name: 'Uzbekistan' },
+  { code: 'VU', name: 'Vanuatu' }, { code: 'VA', name: 'Vatican City' }, { code: 'VE', name: 'Venezuela' },
+  { code: 'VN', name: 'Vietnam' }, { code: 'YE', name: 'Yemen' }, { code: 'ZM', name: 'Zambia' },
+  { code: 'ZW', name: 'Zimbabwe' },
+]
 
 const queryClient = new QueryClient()
 
@@ -1524,110 +1605,153 @@ function CheckoutContent() {
             </button>
             {openSection === 'attendee' && (
               <div className={css['section-body']}>
-                {applicableQuestions.map(q => (
-                  <div key={q.id} className={css['field']}>
-                    <label>
-                      {q.question}
-                      {q.required && <span className={css['required']}>*</span>}
-                    </label>
-                    {q.helpText && (
-                      <span style={{ fontSize: '0.75rem', color: '#666', display: 'block', marginTop: '-0.5rem' }}>
-                        {q.helpText}
-                      </span>
-                    )}
+                {applicableQuestions.map(q => {
+                  const isGoals = q.identifier === 'devcon-goals'
 
-                    {q.type === 'C' && (
-                      <select
-                        className={css['text-input']}
-                        value={(answers[q.id] as string) || ''}
-                        onChange={e => updateAnswer(q.id, e.target.value)}
-                      >
-                        <option value="">Select an option</option>
-                        {q.options.map(opt => (
-                          <option key={opt.id} value={opt.id}>
-                            {opt.answer}
-                          </option>
-                        ))}
-                      </select>
-                    )}
+                  return (
+                    <div key={q.id} className={css['field']}>
+                      <label>
+                        {q.question}
+                        {q.required && <span className={css['required']}>*</span>}
+                      </label>
+                      {q.helpText && (
+                        <span style={{ fontSize: '0.75rem', color: '#666', display: 'block', marginTop: '-0.5rem' }}>
+                          {q.helpText}
+                        </span>
+                      )}
 
-                    {q.type === 'M' && (
-                      <div className={css['checkbox-group']}>
-                        {q.options.map(opt => (
-                          <label key={opt.id} className={css['checkbox-label']}>
-                            <input
-                              type="checkbox"
-                              checked={((answers[q.id] as string[]) || []).includes(String(opt.id))}
-                              onChange={() => toggleMultiAnswer(q.id, String(opt.id))}
-                            />
-                            {opt.answer}
-                          </label>
-                        ))}
-                      </div>
-                    )}
+                      {/* Country select */}
+                      {q.type === 'CC' && (
+                        <Select
+                          value={(answers[q.id] as string) || ''}
+                          onValueChange={v => updateAnswer(q.id, v)}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a country" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {COUNTRIES.map(c => (
+                              <SelectItem key={c.code} value={c.code}>
+                                {c.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
 
-                    {q.type === 'B' && (
-                      <div className={css['radio-group']}>
-                        <label className={css['radio-label']}>
-                          <input
-                            type="radio"
-                            name={`q-${q.id}`}
-                            value="True"
-                            checked={(answers[q.id] as string) === 'True'}
-                            onChange={() => updateAnswer(q.id, 'True')}
-                          />
-                          Yes
-                        </label>
-                        <label className={css['radio-label']}>
-                          <input
-                            type="radio"
-                            name={`q-${q.id}`}
-                            value="False"
-                            checked={(answers[q.id] as string) === 'False'}
-                            onChange={() => updateAnswer(q.id, 'False')}
-                          />
-                          No
-                        </label>
-                      </div>
-                    )}
+                      {/* Single choice dropdown */}
+                      {q.type === 'C' && (
+                        <Select
+                          value={(answers[q.id] as string) || ''}
+                          onValueChange={v => updateAnswer(q.id, v)}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a role" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {q.options.map(opt => (
+                              <SelectItem key={opt.id} value={String(opt.id)}>
+                                {opt.answer}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
 
-                    {q.type === 'S' && (
-                      <input
-                        type="text"
-                        className={css['text-input']}
-                        value={(answers[q.id] as string) || ''}
-                        onChange={e => updateAnswer(q.id, e.target.value)}
-                      />
-                    )}
+                      {/* Goals — chip/tag toggle selection */}
+                      {q.type === 'M' && isGoals && (
+                        <div className={css['goals-grid']}>
+                          {q.options.map(opt => {
+                            const selected = ((answers[q.id] as string[]) || []).includes(String(opt.id))
+                            return (
+                              <button
+                                key={opt.id}
+                                type="button"
+                                className={`${css['goal-tag']} ${selected ? css['selected'] : ''}`}
+                                onClick={() => toggleMultiAnswer(q.id, String(opt.id))}
+                              >
+                                {opt.answer}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      )}
 
-                    {q.type === 'T' && (
-                      <textarea
-                        className={css['textarea-input']}
-                        value={(answers[q.id] as string) || ''}
-                        onChange={e => updateAnswer(q.id, e.target.value)}
-                      />
-                    )}
+                      {/* Multiple choice — standard checkboxes */}
+                      {q.type === 'M' && !isGoals && (
+                        <div className={css['checkbox-group']}>
+                          {q.options.map(opt => {
+                            const checked = ((answers[q.id] as string[]) || []).includes(String(opt.id))
+                            return (
+                              <div key={opt.id} className="flex items-center gap-3">
+                                <Checkbox
+                                  id={`q-${q.id}-opt-${opt.id}`}
+                                  checked={checked}
+                                  onCheckedChange={() => toggleMultiAnswer(q.id, String(opt.id))}
+                                />
+                                <Label
+                                  htmlFor={`q-${q.id}-opt-${opt.id}`}
+                                  className="text-sm font-normal text-[#404040] cursor-pointer"
+                                >
+                                  {opt.answer}
+                                </Label>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
 
-                    {q.type === 'N' && (
-                      <input
-                        type="number"
-                        className={css['text-input']}
-                        value={(answers[q.id] as string) || ''}
-                        onChange={e => updateAnswer(q.id, e.target.value)}
-                      />
-                    )}
+                      {/* Boolean — radio group */}
+                      {q.type === 'B' && (
+                        <RadioGroup
+                          value={(answers[q.id] as string) || ''}
+                          onValueChange={v => updateAnswer(q.id, v)}
+                          className="flex flex-col gap-3"
+                        >
+                          <div className="flex items-center gap-2">
+                            <RadioGroupItem value="True" id={`q-${q.id}-yes`} />
+                            <Label htmlFor={`q-${q.id}-yes`} className="text-sm font-normal text-[#404040] cursor-pointer">
+                              Yes
+                            </Label>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <RadioGroupItem value="False" id={`q-${q.id}-no`} />
+                            <Label htmlFor={`q-${q.id}-no`} className="text-sm font-normal text-[#404040] cursor-pointer">
+                              No
+                            </Label>
+                          </div>
+                        </RadioGroup>
+                      )}
 
-                    {q.type === 'CC' && (
-                      <input
-                        type="text"
-                        className={css['text-input']}
-                        placeholder="Country code (e.g. US)"
-                        value={(answers[q.id] as string) || ''}
-                        onChange={e => updateAnswer(q.id, e.target.value)}
-                      />
-                    )}
-                  </div>
-                ))}
+                      {/* Text fields */}
+                      {q.type === 'S' && (
+                        <input
+                          type="text"
+                          className={css['text-input']}
+                          value={(answers[q.id] as string) || ''}
+                          onChange={e => updateAnswer(q.id, e.target.value)}
+                        />
+                      )}
+
+                      {q.type === 'T' && (
+                        <textarea
+                          className={css['textarea-input']}
+                          value={(answers[q.id] as string) || ''}
+                          onChange={e => updateAnswer(q.id, e.target.value)}
+                        />
+                      )}
+
+                      {q.type === 'N' && (
+                        <input
+                          type="number"
+                          className={css['text-input']}
+                          value={(answers[q.id] as string) || ''}
+                          onChange={e => updateAnswer(q.id, e.target.value)}
+                        />
+                      )}
+                    </div>
+                  )
+                })}
 
                 <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('attendee')}>
                   Continue
