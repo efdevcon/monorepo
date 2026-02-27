@@ -34,7 +34,7 @@ import {
 } from 'services/x402'
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
-import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
+import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes, RelayerGasError } from 'services/relayer'
 import {
   X402PaymentRequirements,
   X402PaymentBlockV2,
@@ -758,6 +758,10 @@ async function handlePaymentSignatureRetry(
       const result = await executeTransferWithAuthorizationBytes(authArgs, sigHex, tokenConfig)
       txHash = result.txHash
     } catch (error) {
+      if (error instanceof RelayerGasError && error.retryable) {
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: `Settlement temporarily unavailable: ${error.message}` })
+      }
       return res.status(402).json({
         success: false,
         error: `Settlement failed: ${(error as Error).message}`,
@@ -801,6 +805,10 @@ async function handlePaymentSignatureRetry(
       const result = await executeTransferWithAuthorization(authArgs, { v, r, s }, tokenConfig)
       txHash = result.txHash
     } catch (error) {
+      if (error instanceof RelayerGasError && error.retryable) {
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: `Settlement temporarily unavailable: ${error.message}` })
+      }
       return res.status(402).json({
         success: false,
         error: `Settlement failed: ${(error as Error).message}`,

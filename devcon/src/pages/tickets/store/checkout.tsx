@@ -666,6 +666,16 @@ function CheckoutContent() {
     return msg || 'Something went wrong'
   }
 
+  function humanizeRelayerError(msg?: string): string {
+    if (!msg) return 'Failed to execute transfer'
+    if (/gas price .* exceeds cap/i.test(msg)) return 'Network gas fees are too high right now. Please try again in a few minutes.'
+    if (/relayer balance .* insufficient/i.test(msg)) return 'The payment service is temporarily unavailable. Please try again shortly.'
+    if (/simulation reverted/i.test(msg)) return 'This transaction would fail on-chain. Please check your balance and try again.'
+    if (/nonce has already been used/i.test(msg)) return 'This authorization has already been used. Please start a new payment.'
+    if (/^insufficient /i.test(msg)) return msg // already human-readable ("Insufficient USDC balance: ...")
+    return 'Failed to execute transfer. Please try again.'
+  }
+
   // ── Payment state invalidation ──
   // Clears all payment-in-progress state so the user must re-initiate checkout.
   // Called whenever order inputs change after checkout has been started.
@@ -1066,20 +1076,39 @@ function CheckoutContent() {
         body.signature = { v, r, s }
       }
 
-      const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      })
+      const maxRetries = 3
+      let lastError = 'Failed to execute transfer'
 
-      const executeData = await executeRes.json()
-      if (executeData.success) {
-        setTxHash(executeData.txHash)
-        await verifyPayment(executeData.txHash)
-      } else {
-        setPurchaseError(executeData.error || 'Failed to execute transfer')
-        setPaymentStatus(null)
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        })
+
+        const executeData = await executeRes.json()
+        if (executeData.success) {
+          setTxHash(executeData.txHash)
+          await verifyPayment(executeData.txHash)
+          return
+        }
+
+        // 503 = retryable gas error — auto-retry with backoff
+        if (executeRes.status === 503 && attempt < maxRetries) {
+          const retryAfter = parseInt(executeRes.headers.get('Retry-After') || '15', 10)
+          const delay = retryAfter * 1000 * (attempt + 1)
+          setPaymentStatus(`Network is busy, retrying in ${Math.round(delay / 1000)}s... (attempt ${attempt + 2}/${maxRetries + 1})`)
+          await new Promise(r => setTimeout(r, delay))
+          continue
+        }
+
+        // Non-retryable or final attempt — show user-friendly message
+        lastError = humanizeRelayerError(executeData.error) || 'Failed to execute transfer'
+        break
       }
+
+      setPurchaseError(lastError)
+      setPaymentStatus(null)
     } catch {
       setPurchaseError('Failed to execute transfer')
       setPaymentStatus(null)

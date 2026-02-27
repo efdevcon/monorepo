@@ -358,23 +358,40 @@ function X402TestContent() {
       const s = '0x' + signature.slice(66, 130)
       const v = parseInt(signature.slice(130, 132), 16)
 
-      const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          paymentReference: paymentDetails.paymentReference,
-          authorization: authorizationData.authorization,
-          signature: { v, r, s },
-        }),
-      })
-
-      const executeData = await executeRes.json()
-      if (executeData.success) {
-        setGaslessTxHash(executeData.txHash)
-        setTxHash(executeData.txHash)
-      } else {
-        setError(executeData.error || 'Failed to execute transfer')
+      const body = {
+        paymentReference: paymentDetails.paymentReference,
+        authorization: authorizationData.authorization,
+        signature: { v, r, s },
       }
+
+      const maxRetries = 3
+      let lastError = 'Failed to execute transfer'
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        })
+
+        const executeData = await executeRes.json()
+        if (executeData.success) {
+          setGaslessTxHash(executeData.txHash)
+          setTxHash(executeData.txHash)
+          return
+        }
+
+        if (executeRes.status === 503 && attempt < maxRetries) {
+          const retryAfter = parseInt(executeRes.headers.get('Retry-After') || '15', 10)
+          await new Promise(r => setTimeout(r, retryAfter * 1000 * (attempt + 1)))
+          continue
+        }
+
+        lastError = executeData.error || 'Failed to execute transfer'
+        break
+      }
+
+      setError(lastError)
     } catch (e) {
       setError('Failed to execute gasless transfer')
     }
