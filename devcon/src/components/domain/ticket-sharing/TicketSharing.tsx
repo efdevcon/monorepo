@@ -1,13 +1,16 @@
-import React, { useMemo, useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import Image from 'next/image'
 import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
-import ticketImage from './india-ticket-placeholder.jpeg'
+import ticketFront from './ticket-design.png'
+import ticketBack from './ticket-backside.png'
 import heroBackdrop from 'components/common/dc-8/hero/images/dc8-bg.png'
-import IconX from 'assets/icons/twitter.svg'
-import IconFarcaster from 'assets/icons/farcaster.svg'
+import devconLogo from './updated-dc8-logo.png'
+import IconArrowRight from 'assets/icons/arrow_right.svg'
 import cn from 'classnames'
 import css from './ticket-sharing.module.scss'
+import ShootingStars from './ShootingStars'
+import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 
 interface TicketSharingProps {
   name: string
@@ -15,46 +18,13 @@ interface TicketSharingProps {
   xUsername?: string
 }
 
-const PARTICLE_COUNT = 20
-
 export function TicketSharing({ name, xUsername }: TicketSharingProps) {
   const { containerRef } = useTilt()
-  const {
-    frontIndex,
-    exitDirection,
-    exitingIndex,
-    isAnimating,
-    handlePointerDown,
-  } = useCardSwipe(2)
+  const { frontIndex, exitDirection, exitingIndex, isAnimating, handlePointerDown } = useCardSwipe(2)
 
   const [avatarError, setAvatarError] = useState(false)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
   const avatarSrc = xUsername ? `https://unavatar.io/x/${xUsername}` : null
-
-  const [currentUrl, setCurrentUrl] = useState('https://devcon.org/mumbai/ticket/')
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.href)
-    }
-  }, [])
-
-  const twitterShare = `I just got my @EFdevcon ticket! %0ASee you in Mumbai, November 3-6 %0A%0AGet your ticket, too: %0A%0A${currentUrl}`
-  const warpcastShare = `I just got my @devcon ticket! %0ASee you in Mumbai, November 3-6 %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`
-
-  const particles = useMemo(() => {
-    return Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-      const depth = 0.3 + Math.random() * 0.7
-      return {
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        opacity: 0.05 + depth * 0.15,
-        size: 2 + depth * 3,
-        depth,
-      }
-    })
-  }, [])
 
   const cardClass = (index: number) => {
     const isFront = index === frontIndex
@@ -72,102 +42,88 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
     <div ref={containerRef} className={css.container}>
       {/* Hero background with slow parallax */}
       <div className={`${css.bgLayer} ${css.bgSlow}`}>
-        <Image src={heroBackdrop} alt="" fill className={css.bgImage} priority />
+        <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority />
       </div>
 
-      {/* Floating particles */}
+      <ShootingStars />
+
+      {/* Firefly particles — bottom */}
       <div className={css.particles}>
-        {particles.map(p => (
-          <div
-            key={p.id}
-            className={css.particle}
-            style={{
-              left: p.left,
-              top: p.top,
-              opacity: p.opacity,
-              width: p.size,
-              height: p.size,
-              transform: `translate(calc(var(--tilt-x) * ${p.depth * 35}px), calc(var(--tilt-y) * ${p.depth * 35}px))`,
-            }}
-          />
-        ))}
+        <Fireflies
+          id="ticket-fireflies"
+          settings={{
+            count: 120,
+            color: 'rgba(139, 255, 255, 0.5)',
+            speed: 0.15,
+            radius: 2,
+          }}
+        />
       </div>
 
-      <p className="text-xs text-white/30 mb-3 z-[3] relative">Swipe to flip</p>
+      <div className={css.aboveCard}>
+        <Image src={devconLogo} alt="Devcon 8" className={css.heroLogo} />
+        <p className={css.swipeHint}>Swipe to learn more</p>
+      </div>
 
       {/* Card stack */}
       <div className={cn(css.cardStack, { [css.animating]: isAnimating })}>
-        {/* Card 0: Ticket */}
-        <div
-          className={cardClass(0)}
-          onPointerDown={frontIndex === 0 ? handlePointerDown : undefined}
-        >
-          <Image src={ticketImage} alt={`${name}'s Devcon Mumbai ticket`} className={css.ticketImage} />
-          <div className={css.avatarCircle}>
-            {avatarSrc && !avatarError ? (
-              <img src={avatarSrc} alt={`${xUsername}'s avatar`} className={css.avatarImage} onError={handleAvatarError} />
-            ) : (
-              <svg className={css.avatarPlaceholder} viewBox="0 0 100 100">
-                <circle cx="50" cy="38" r="18" fill="white" />
-                <ellipse cx="50" cy="80" rx="30" ry="22" fill="white" />
-              </svg>
-            )}
-            <svg className={css.avatarRing} viewBox="0 0 200 200">
-              <defs>
-                <path id="circlePath" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" />
-              </defs>
-              <text>
-                <textPath href="#circlePath" startOffset="0%">
-                  DEVCON 8 &bull; MUMBAI &bull; NOV 3 TO 6 &bull;
-                </textPath>
-              </text>
-            </svg>
+        {/* Card 0: Ticket front */}
+        <div className={cn(cardClass(0), css.ticketShadowWrap)} onPointerDown={frontIndex === 0 ? handlePointerDown : undefined}>
+          <div className={css.ticketPunch}>
+            <Image src={ticketFront} alt={`${name}'s Devcon Mumbai ticket`} className={css.ticketImage} />
+            <div className={css.ticketContent}>
+              <div className={css.attendeeRow}>
+                <div className={css.avatarCircle}>
+                  {avatarSrc && !avatarError ? (
+                    <img
+                      src={avatarSrc}
+                      alt={`${xUsername}'s avatar`}
+                      className={css.avatarImage}
+                      onError={handleAvatarError}
+                    />
+                  ) : (
+                    <svg className={css.avatarPlaceholder} viewBox="0 0 100 100">
+                      <circle cx="50" cy="38" r="18" fill="#ccc" />
+                      <ellipse cx="50" cy="80" rx="30" ry="22" fill="#ccc" />
+                    </svg>
+                  )}
+                </div>
+                <div className={css.attendeeInfo}>
+                  <span className={css.attendeeName}>{name}</span>
+                  <span className={css.ticketType}>Attending Devcon</span>
+              </div>
+            </div>
           </div>
-          <span className={css.ticketName}>{name}</span>
+          </div>
         </div>
 
-        {/* Card 1: Info */}
-        <div
-          className={cardClass(1)}
-          onPointerDown={frontIndex === 1 ? handlePointerDown : undefined}
-        >
-          <div className={css.infoCard}>
-            <span className={css.infoLabel}>Devcon 8</span>
-            <h2 className={css.infoTitle}>Mumbai, India</h2>
-            <span className={css.infoDate}>3–6 November 2026</span>
-            <p className={css.infoDescription}>
-              The Ethereum developer conference returns to bring together builders, researchers, and the global community.
-            </p>
-            <span className={css.infoFooter}>devcon.org</span>
+        {/* Card 1: Ticket back */}
+        <div className={cn(cardClass(1), css.backsideShadowWrap)} onPointerDown={frontIndex === 1 ? handlePointerDown : undefined}>
+          <div className={css.backsideInner}>
+            <Image src={ticketBack} alt="Devcon Mumbai ticket details" className={css.ticketImage} />
+            <div className={css.backsideContent}>
+              <h2 className={css.backsideTitle}>Devcon is a unique place for inspiration</h2>
+              <p className={css.backsideDescription}>
+                Here, passionate builders, engineers, designers, researchers, community organizers, and artists come
+                together to share updates and ideas. We can&apos;t wait to welcome you all in Mumbai this year.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Share actions */}
+      {/* Get tickets CTA */}
       <div className={css.actions}>
-        <p className="text-sm text-white/60 mb-2">Share on</p>
-        <div className="flex gap-4">
-          <a
-            className="rounded-full bg-white/10 border border-white/20 w-[2.5em] h-[2.5em] flex items-center justify-center hover:bg-white/20 transition-colors"
-            // @ts-ignore
-            style={{ '--color-icon': '#ffffff' }}
-            href={`https://x.com/intent/tweet?text=${twitterShare}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <IconX />
-          </a>
-          <a
-            className="rounded-full bg-white/10 border border-white/20 w-[2.5em] h-[2.5em] flex items-center justify-center hover:bg-white/20 transition-colors"
-            // @ts-ignore
-            style={{ '--color-icon': '#ffffff' }}
-            href={`https://warpcast.com/~/compose?text=${warpcastShare}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <IconFarcaster />
-          </a>
-        </div>
+        <a
+          href="https://devcon.org"
+          className={css.ctaButton}
+          style={{ '--color-icon': '#f9f8fa' } as React.CSSProperties}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Get tickets
+          <IconArrowRight />
+        </a>
       </div>
 
       {/* Vignette shadow around edges */}
