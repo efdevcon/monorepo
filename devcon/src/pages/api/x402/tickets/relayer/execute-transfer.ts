@@ -14,7 +14,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getPendingOrder } from 'services/ticketStore'
 import { getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
-import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature } from 'services/relayer'
+import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, RelayerGasError } from 'services/relayer'
 import { type Hex } from 'viem'
 import { ExecuteTransferRequest, ExecuteTransferResponse, type SettleResponse, getGaslessTokenConfig, getGaslessConfigsForChain } from 'types/x402'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
@@ -190,10 +190,31 @@ export default async function handler(
 
     return res.status(200).json(response)
   } catch (error) {
+    const message = (error as Error).message
+
+    if (error instanceof RelayerGasError) {
+      if (error.retryable) {
+        console.warn(`[ExecuteTransfer] Retryable gas error (${error.code}):`, message)
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: message })
+      }
+      // Simulation revert — not retryable
+      console.warn(`[ExecuteTransfer] Simulation revert:`, message)
+      return res.status(400).json({ success: false, error: message })
+    }
+
+    // Known user errors
+    if (
+      message.includes('nonce has already been used') ||
+      message.startsWith('Insufficient ')
+    ) {
+      return res.status(400).json({ success: false, error: message })
+    }
+
     console.error('Error executing transfer:', error)
     return res.status(500).json({
       success: false,
-      error: `Failed to execute transfer: ${(error as Error).message}`,
+      error: `Failed to execute transfer: ${message}`,
     })
   }
 }

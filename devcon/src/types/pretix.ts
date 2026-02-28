@@ -283,6 +283,7 @@ export interface TicketInfo {
 
 export interface QuestionInfo {
   id: number
+  identifier: string
   question: string
   helpText: string | null
   type: string

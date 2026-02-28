@@ -24,9 +24,12 @@
     "pretix:test-categories": "ts-node src/scripts/pretix/test-categories.ts",
     "pretix:test-settings": "ts-node src/scripts/pretix/test-settings.ts",
     "pretix:test-all": "ts-node src/scripts/pretix/test-all.ts",
+    "pretix:setup-questions": "ts-node src/scripts/pretix/setup-questions.ts",
     "x402:test-flow": "ts-node src/scripts/pretix/test-x402-flow.ts",
     "x402:test-v2-agent": "ts-node src/scripts/pretix/test-x402-v2-agent.ts",
-    "x402:simulate": "ts-node src/scripts/pretix/simulate-transfers.ts"
+    "x402:simulate": "ts-node src/scripts/pretix/simulate-transfers.ts",
+    "discount:generate-codes": "ts-node src/scripts/generate-discount-codes.ts",
+    "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
@@ -34,8 +37,12 @@
     "@gsap/react": "^2.1.2",
     "@next/bundle-analyzer": "^14.2.7",
     "@notionhq/client": "^0.4.11",
+    "@radix-ui/react-checkbox": "^1.3.3",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-popover": "^1.1.1",
+    "@radix-ui/react-radio-group": "^1.3.8",
+    "@radix-ui/react-select": "^2.2.6",
     "@reown/appkit": "^1.8.18",
     "@reown/appkit-adapter-wagmi": "^1.8.18",
     "@selfxyz/core": "1.2.0-beta.1",

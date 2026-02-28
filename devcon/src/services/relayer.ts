@@ -13,6 +13,7 @@ import {
   createWalletClient,
   decodeAbiParameters,
   parseAbi,
+  parseGwei,
   type Hex,
   type Chain,
 } from 'viem'
@@ -51,6 +52,107 @@ const usdcAbi = parseAbi([
   'function version() external view returns (string)',
   'function DOMAIN_SEPARATOR() external view returns (bytes32)',
 ])
+
+// ── Gas protection ──
+
+export class RelayerGasError extends Error {
+  code: 'GAS_PRICE_TOO_HIGH' | 'INSUFFICIENT_RELAYER_BALANCE' | 'SIMULATION_REVERT'
+  retryable: boolean
+
+  constructor(message: string, code: RelayerGasError['code'], retryable: boolean) {
+    super(message)
+    this.name = 'RelayerGasError'
+    this.code = code
+    this.retryable = retryable
+  }
+}
+
+/** Conservative gas limit covering both EOA (~80-100k) and ERC-1271 (~120k) transfers */
+const TRANSFER_GAS_LIMIT = BigInt(150_000)
+
+/**
+ * Per-chain gas price caps in gwei. Overridable via RELAYER_GAS_CAP_GWEI_<chainId> env var.
+ * USD equivalents at ETH=$2,000, POL=$0.40, gas limit=150k:
+ *   Base/OP/Arb: 150k * 0.13 gwei = 0.0000195 ETH ≈ $0.04
+ *   Mainnet:     150k * 1.5 gwei  = 0.000225 ETH  ≈ $0.45
+ *   Polygon:     150k * 833 gwei  = 0.12495 POL   ≈ $0.02
+ */
+const DEFAULT_GAS_CAPS_GWEI: Record<number, string> = {
+  [base.id]: '0.13',
+  [mainnet.id]: '1.5',
+  [optimism.id]: '0.13',
+  [arbitrum.id]: '0.13',
+  [polygon.id]: '833',
+  [baseSepolia.id]: '10',
+}
+
+function getGasCapForChain(chainId: number): bigint {
+  const envCap = process.env[`RELAYER_GAS_CAP_GWEI_${chainId}`]
+  const gweiStr = envCap || DEFAULT_GAS_CAPS_GWEI[chainId] || '100'
+  return parseGwei(gweiStr)
+}
+
+/**
+ * Pre-flight gas checks: price cap, relayer balance, and tx simulation.
+ * Returns `{ maxFeePerGas }` to pass to writeContract.
+ */
+async function assertGasConditions(params: {
+  chainId: number
+  tokenAddress: `0x${string}`
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  args: any
+  functionName: 'transferWithAuthorization'
+}): Promise<{ maxFeePerGas: bigint }> {
+  const { chainId, tokenAddress, args, functionName } = params
+  const client = getPublicClientForChain(chainId)
+  const gasCap = getGasCapForChain(chainId)
+
+  // 1. Check current gas price against per-chain cap
+  const gasPrice = await client.getGasPrice()
+  if (gasPrice > gasCap) {
+    throw new RelayerGasError(
+      `Gas price ${gasPrice} exceeds cap ${gasCap} (chain ${chainId})`,
+      'GAS_PRICE_TOO_HIGH',
+      true
+    )
+  }
+
+  // maxFeePerGas = min(2x current price, cap) — gives headroom for next-block inclusion
+  const doubled = gasPrice * BigInt(2)
+  const maxFeePerGas = doubled < gasCap ? doubled : gasCap
+
+  // 2. Check relayer ETH balance can cover gas
+  const account = getRelayerAccount()
+  const balance = await client.getBalance({ address: account.address })
+  const requiredGas = TRANSFER_GAS_LIMIT * maxFeePerGas
+  if (balance < requiredGas) {
+    throw new RelayerGasError(
+      `Relayer balance ${balance} insufficient for gas (need ${requiredGas}, chain ${chainId})`,
+      'INSUFFICIENT_RELAYER_BALANCE',
+      true
+    )
+  }
+
+  // 3. Simulate the contract call to catch reverts without burning gas
+  try {
+    await client.simulateContract({
+      address: tokenAddress,
+      abi: usdcAbi,
+      functionName,
+      args,
+      account: account.address,
+      gas: TRANSFER_GAS_LIMIT,
+    })
+  } catch (error) {
+    throw new RelayerGasError(
+      `Simulation reverted: ${(error as Error).message}`,
+      'SIMULATION_REVERT',
+      false
+    )
+  }
+
+  return { maxFeePerGas }
+}
 
 /**
  * Detect smart wallet (ERC-1271) signatures.
@@ -303,22 +405,34 @@ export async function executeTransferWithAuthorization(
     console.warn(`[Relayer] ${config.tokenSymbol} balance check failed, proceeding anyway:`, (error as Error).message)
   }
 
+  // Gas protection: check price cap, relayer balance, and simulate
+  const contractArgs = [
+    authorization.from as `0x${string}`,
+    authorization.to as `0x${string}`,
+    BigInt(authorization.value),
+    BigInt(authorization.validAfter),
+    BigInt(authorization.validBefore),
+    authorization.nonce as `0x${string}`,
+    signature.v,
+    signature.r as `0x${string}`,
+    signature.s as `0x${string}`,
+  ] as const
+
+  const { maxFeePerGas } = await assertGasConditions({
+    chainId: cid,
+    tokenAddress,
+    args: contractArgs,
+    functionName: 'transferWithAuthorization',
+  })
+
   try {
     const hash = await walletClient.writeContract({
       address: tokenAddress,
       abi: usdcAbi,
       functionName: 'transferWithAuthorization',
-      args: [
-        authorization.from as `0x${string}`,
-        authorization.to as `0x${string}`,
-        BigInt(authorization.value),
-        BigInt(authorization.validAfter),
-        BigInt(authorization.validBefore),
-        authorization.nonce as `0x${string}`,
-        signature.v,
-        signature.r as `0x${string}`,
-        signature.s as `0x${string}`,
-      ],
+      args: contractArgs,
+      gas: TRANSFER_GAS_LIMIT,
+      maxFeePerGas,
     })
 
     console.log('[Relayer] transferWithAuthorization tx:', hash)
@@ -385,20 +499,32 @@ export async function executeTransferWithAuthorizationBytes(
     console.warn(`[Relayer] ${config.tokenSymbol} balance check failed, proceeding anyway:`, (error as Error).message)
   }
 
+  // Gas protection: check price cap, relayer balance, and simulate
+  const contractArgs = [
+    authorization.from as `0x${string}`,
+    authorization.to as `0x${string}`,
+    BigInt(authorization.value),
+    BigInt(authorization.validAfter),
+    BigInt(authorization.validBefore),
+    authorization.nonce as `0x${string}`,
+    unwrappedSig,
+  ] as const
+
+  const { maxFeePerGas } = await assertGasConditions({
+    chainId: cid,
+    tokenAddress,
+    args: contractArgs,
+    functionName: 'transferWithAuthorization',
+  })
+
   try {
     const hash = await walletClient.writeContract({
       address: tokenAddress,
       abi: usdcAbi,
       functionName: 'transferWithAuthorization',
-      args: [
-        authorization.from as `0x${string}`,
-        authorization.to as `0x${string}`,
-        BigInt(authorization.value),
-        BigInt(authorization.validAfter),
-        BigInt(authorization.validBefore),
-        authorization.nonce as `0x${string}`,
-        unwrappedSig,
-      ],
+      args: contractArgs,
+      gas: TRANSFER_GAS_LIMIT,
+      maxFeePerGas,
     })
 
     console.log('[Relayer] transferWithAuthorization (bytes) tx:', hash)

@@ -32,6 +32,7 @@ type SelfVerificationModalProps = {
   onClose: () => void
   useStaging: boolean
   setUseStaging: (value: boolean) => void
+  discountCode?: string
 }
 
 function useIsMobile() {
@@ -44,7 +45,7 @@ function useIsMobile() {
   return isMobile
 }
 
-export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging }: SelfVerificationModalProps) {
+export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, discountCode }: SelfVerificationModalProps) {
   const [userId, setUserId] = useState(() => crypto.randomUUID())
   const [voucher, setVoucher] = useState<string | null>(() => {
     if (typeof localStorage !== 'undefined') {
@@ -78,10 +79,16 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     if (!isOpen) return
 
     try {
+      let endpoint = SELF_ENDPOINT
+      const params: string[] = []
+      if (effectiveStaging) params.push('staging=true')
+      if (discountCode) params.push(`discountCode=${encodeURIComponent(discountCode)}`)
+      if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
+
       const app = new SelfAppBuilder({
         appName: 'Devcon India Tickets',
         scope: SELF_SCOPE,
-        endpoint: effectiveStaging ? `${SELF_ENDPOINT}?staging=true` : SELF_ENDPOINT,
+        endpoint,
         endpointType: effectiveStaging ? 'staging_https' : 'https',
         userId,
         userIdType: 'uuid',
@@ -98,7 +105,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       console.error('Failed to initialize Self app:', e)
       setError('Failed to initialize verification. Please try again.')
     }
-  }, [isOpen, userId, effectiveStaging])
+  }, [isOpen, userId, effectiveStaging, discountCode])
 
   const handleSuccess = async () => {
     clearError()

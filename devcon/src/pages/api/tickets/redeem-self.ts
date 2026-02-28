@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
+import { validateDiscountCode, assignVoucher, claimDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
 
 const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
@@ -144,11 +145,78 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Hardcoded Pretix voucher code (will be dynamically assigned in production)
-    const voucherCode = '22QD2ETT2HEGPZZ8'
-    voucherStore.set(verifiedUserId, voucherCode)
+    // Dynamic voucher assignment from Supabase pool
+    const discountCode = (req.query.discountCode ?? req.body.discountCode) as string | undefined
 
-    // Auto-expire after 30 minutes
+    // Use the nullifier as stable identity for Supabase dedup — it's derived from the
+    // Aadhaar card and is always the same for the same card, unlike verifiedUserId which
+    // is a random UUID generated per session.
+    const nullifier = result.discloseOutput?.nullifier
+    if (!nullifier) {
+      const reason = 'Could not determine identity nullifier from proof'
+      storeError(verifiedUserId, reason)
+      return res.status(200).json({
+        status: 'error',
+        result: false,
+        error_code: 'UNKNOWN_ERROR',
+        reason,
+      })
+    }
+
+    if (!discountCode) {
+      const reason = 'Missing discount code'
+      storeError(verifiedUserId, reason)
+      return res.status(200).json({
+        status: 'error',
+        result: false,
+        error_code: 'MISSING_DISCOUNT_CODE',
+        reason,
+      })
+    }
+
+    // Validate the discount code is unclaimed
+    const validCode = await validateDiscountCode(discountCode)
+    if (!validCode) {
+      const reason = 'Invalid or already used discount code'
+      storeError(verifiedUserId, reason)
+      return res.status(200).json({
+        status: 'error',
+        result: false,
+        error_code: 'INVALID_DISCOUNT_CODE',
+        reason,
+      })
+    }
+
+    // Check if this Aadhaar identity already has a voucher (one-voucher-per-identity)
+    const existingVoucher = await getAssignedVoucher(nullifier)
+    if (existingVoucher) {
+      voucherStore.set(verifiedUserId, existingVoucher.code)
+      setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+      return res.status(200).json({
+        status: 'success',
+        result: true,
+        credentialSubject: result.discloseOutput,
+      })
+    }
+
+    // Assign a voucher from the same collection as the discount code
+    const voucher = await assignVoucher(nullifier, validCode.collection)
+    if (!voucher) {
+      const reason = 'No vouchers available. Please try again later.'
+      storeError(verifiedUserId, reason)
+      return res.status(200).json({
+        status: 'error',
+        result: false,
+        error_code: 'NO_VOUCHERS',
+        reason,
+      })
+    }
+
+    // Claim the discount code (link it to the voucher)
+    await claimDiscountCode(discountCode, nullifier, voucher.code)
+
+    // Cache in memory for the polling flow (uses session userId for frontend polling)
+    voucherStore.set(verifiedUserId, voucher.code)
     setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
 
     return res.status(200).json({

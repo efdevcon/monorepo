@@ -20,7 +20,8 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { verifyTypedData, type Hex } from 'viem'
-import { getItems, getQuestions, getTicketPurchaseInfo, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import { getTicketPurchaseInfo, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import type { TicketPurchaseInfo } from 'types/pretix'
 import {
   createPaymentRequirements,
   getPaymentRecipient,
@@ -33,7 +34,7 @@ import {
 } from 'services/x402'
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
-import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes } from 'services/relayer'
+import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes, RelayerGasError } from 'services/relayer'
 import {
   X402PaymentRequirements,
   X402PaymentBlockV2,
@@ -125,6 +126,8 @@ function buildExpectedEthWeiByChain(
 export interface PurchaseHandlerOptions {
   /** When false, intendedPayer is not required (simplified agent route). Default: true */
   requirePayer?: boolean
+  /** Pre-fetched ticket info to avoid redundant Pretix API calls */
+  ticketInfo?: TicketPurchaseInfo
 }
 
 export async function purchaseHandler(
@@ -183,8 +186,8 @@ export async function purchaseHandler(
       })
     }
 
-    // Fetch current ticket info to validate items and get prices
-    const ticketInfo = await getTicketPurchaseInfo()
+    // Use pre-fetched ticket info or fetch (cached) from Pretix
+    const ticketInfo = opts?.ticketInfo ?? await getTicketPurchaseInfo()
     const itemsById = new Map(ticketInfo.tickets.map((t) => [t.id, t]))
 
     // Calculate order items and prices
@@ -755,6 +758,10 @@ async function handlePaymentSignatureRetry(
       const result = await executeTransferWithAuthorizationBytes(authArgs, sigHex, tokenConfig)
       txHash = result.txHash
     } catch (error) {
+      if (error instanceof RelayerGasError && error.retryable) {
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: `Settlement temporarily unavailable: ${error.message}` })
+      }
       return res.status(402).json({
         success: false,
         error: `Settlement failed: ${(error as Error).message}`,
@@ -798,6 +805,10 @@ async function handlePaymentSignatureRetry(
       const result = await executeTransferWithAuthorization(authArgs, { v, r, s }, tokenConfig)
       txHash = result.txHash
     } catch (error) {
+      if (error instanceof RelayerGasError && error.retryable) {
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: `Settlement temporarily unavailable: ${error.message}` })
+      }
       return res.status(402).json({
         success: false,
         error: `Settlement failed: ${(error as Error).message}`,
