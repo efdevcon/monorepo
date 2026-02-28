@@ -23,9 +23,10 @@ export function useTilt(options: UseTiltOptions = {}) {
   const targetRef = useRef<TiltState>({ x: 0, y: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
-  const useGyroRef = useRef(false)
+  const mouseCleanupRef = useRef<(() => void) | null>(null)
+  const orientationHandlerRef = useRef<((e: DeviceOrientationEvent) => void) | null>(null)
 
-  const clamp = (v: number) => Math.max(-maxTilt, Math.min(maxTilt, v))
+  const clamp = useCallback((v: number) => Math.max(-maxTilt, Math.min(maxTilt, v)), [maxTilt])
 
   const animate = useCallback(() => {
     const tilt = tiltRef.current
@@ -42,12 +43,34 @@ export function useTilt(options: UseTiltOptions = {}) {
     }
 
     rafRef.current = requestAnimationFrame(animate)
-  }, [smoothing, maxTilt])
+  }, [smoothing, clamp])
 
   useEffect(() => {
     rafRef.current = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(rafRef.current)
   }, [animate])
+
+  const startGyro = useCallback(() => {
+    // Remove mouse listener if active
+    if (mouseCleanupRef.current) {
+      mouseCleanupRef.current()
+      mouseCleanupRef.current = null
+    }
+
+    setSource('gyroscope')
+
+    const handler = (e: DeviceOrientationEvent) => {
+      const gamma = e.gamma || 0
+      const beta = e.beta || 0
+      targetRef.current = {
+        x: clamp(gamma / gyroSensitivity),
+        y: clamp((beta - betaOffset) / gyroSensitivity),
+      }
+    }
+
+    orientationHandlerRef.current = handler
+    window.addEventListener('deviceorientation', handler)
+  }, [clamp, gyroSensitivity, betaOffset])
 
   // Mouse fallback
   const initMouse = useCallback(() => {
@@ -61,44 +84,27 @@ export function useTilt(options: UseTiltOptions = {}) {
     }
 
     document.addEventListener('mousemove', handler)
-    return () => document.removeEventListener('mousemove', handler)
+    mouseCleanupRef.current = () => document.removeEventListener('mousemove', handler)
   }, [])
 
-  // Gyroscope
+  // Gyroscope setup
   useEffect(() => {
     const hasDeviceOrientation = 'DeviceOrientationEvent' in window
 
     if (!hasDeviceOrientation) {
-      const cleanup = initMouse()
-      return cleanup
-    }
-
-    const handleOrientation = (e: DeviceOrientationEvent) => {
-      const gamma = e.gamma || 0
-      const beta = e.beta || 0
-
-      targetRef.current = {
-        x: clamp(gamma / gyroSensitivity),
-        y: clamp((beta - betaOffset) / gyroSensitivity),
-      }
-    }
-
-    const startGyro = () => {
-      useGyroRef.current = true
-      setSource('gyroscope')
-      window.addEventListener('deviceorientation', handleOrientation)
+      initMouse()
+      return
     }
 
     // Check if permission API exists (iOS 13+)
     const DOE = DeviceOrientationEvent as any
     if (typeof DOE.requestPermission === 'function') {
-      // On iOS, we need user gesture to request permission.
-      // For now, fall back to mouse and expose requestPermission.
-      const cleanup = initMouse()
-      return cleanup
+      // On iOS, fall back to mouse until user gesture triggers requestGyroPermission
+      initMouse()
+      return
     }
 
-    // Android or older iOS - test if events fire
+    // Android or older iOS — test if events actually fire
     let received = false
     const testHandler = (e: DeviceOrientationEvent) => {
       if (e.gamma !== null || e.beta !== null) {
@@ -119,11 +125,16 @@ export function useTilt(options: UseTiltOptions = {}) {
     return () => {
       clearTimeout(timeout)
       window.removeEventListener('deviceorientation', testHandler)
-      window.removeEventListener('deviceorientation', handleOrientation)
+      if (orientationHandlerRef.current) {
+        window.removeEventListener('deviceorientation', orientationHandlerRef.current)
+      }
+      if (mouseCleanupRef.current) {
+        mouseCleanupRef.current()
+      }
     }
-  }, [])
+  }, [initMouse, startGyro])
 
-  // Expose a method to request gyroscope permission (for iOS button trigger)
+  // Request gyroscope permission (must be called from a user gesture on iOS)
   const requestGyroPermission = useCallback(async () => {
     const DOE = DeviceOrientationEvent as any
     if (typeof DOE.requestPermission !== 'function') return false
@@ -131,19 +142,7 @@ export function useTilt(options: UseTiltOptions = {}) {
     try {
       const state = await DOE.requestPermission()
       if (state === 'granted') {
-        useGyroRef.current = true
-        setSource('gyroscope')
-
-        const handleOrientation = (e: DeviceOrientationEvent) => {
-          const gamma = e.gamma || 0
-          const beta = e.beta || 0
-          targetRef.current = {
-            x: clamp(gamma / gyroSensitivity),
-            y: clamp((beta - betaOffset) / gyroSensitivity),
-          }
-        }
-
-        window.addEventListener('deviceorientation', handleOrientation)
+        startGyro()
         return true
       }
     } catch (err) {
@@ -151,7 +150,7 @@ export function useTilt(options: UseTiltOptions = {}) {
     }
 
     return false
-  }, [gyroSensitivity, betaOffset])
+  }, [startGyro])
 
   return { containerRef, source, requestGyroPermission }
 }

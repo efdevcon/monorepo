@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
@@ -19,8 +19,15 @@ interface TicketSharingProps {
 }
 
 export function TicketSharing({ name, xUsername }: TicketSharingProps) {
-  const { containerRef } = useTilt()
+  const { containerRef, requestGyroPermission } = useTilt()
   const { frontIndex, exitDirection, exitingIndex, isAnimating, handlePointerDown } = useCardSwipe(2)
+
+  const gyroRequested = useRef(false)
+  const handleFirstTouch = useCallback(() => {
+    if (gyroRequested.current) return
+    gyroRequested.current = true
+    requestGyroPermission()
+  }, [requestGyroPermission])
 
   const [avatarError, setAvatarError] = useState(false)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
@@ -39,7 +46,7 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
   }
 
   return (
-    <div ref={containerRef} className={css.container}>
+    <div ref={containerRef} className={css.container} onTouchStart={handleFirstTouch}>
       {/* Hero background with slow parallax */}
       <div className={`${css.bgLayer} ${css.bgSlow}`}>
         <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority />
