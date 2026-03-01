@@ -10,7 +10,10 @@
   align-items: center;
   justify-items: center;
   overflow: hidden;
-  background: #0a0a0f;
+  overscroll-behavior: none;
+  background: #1a0a3e;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Background layers with parallax */
@@ -88,7 +91,7 @@
   background: none;
   will-change: transform, opacity;
   backface-visibility: hidden;
-  touch-action: pan-y;
+  touch-action: none;
   cursor: grab;
   user-select: none;
   -webkit-user-drag: none;
@@ -338,9 +341,71 @@
     --hole: 16px;
   }
 
+  .card {
+    transition:
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.7s ease,
+      box-shadow 0.85s ease;
+  }
+
   .vignette {
     display: none;
   }
+}
+
+/* ─── Gyroscope permission prompt ────────────── */
+.gyroPrompt {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.gyroPromptCard {
+  background: rgba(30, 20, 60, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 280px;
+}
+
+.gyroPromptButtons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.gyroPromptEnable {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 360px;
+  border: none;
+  background: #7235ed;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gyroPromptDismiss {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* ─── Vignette ─────────────────────────────────── */

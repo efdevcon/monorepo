@@ -6,7 +6,7 @@ import type { GetServerSidePropsContext } from 'next'
 const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string; pageUrl: string }) => {
   if (!props.params) return null
 
-  const title = `${props.params.name} — Devcon Mumbai`
+  const title = `${props.params.name} — Devcon`
   const description = 'Attending Devcon: the schelling point for the Ethereum community'
 
   return (
@@ -27,6 +27,8 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         <meta name="twitter:image" key="twitter:image" content={props.imageUrl} />
+        {/* iOS status bar / notch / bottom area */}
+        <meta name="theme-color" key="theme-color" content="#1a0a3e" />
       </Head>
       <TicketSharing name={props.params.name} imageUrl={props.imageUrl} xUsername={props.xUsername} />
     </>
@@ -39,12 +41,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
-  let imageUrl = `${baseUrl}/api/mumbai/ticket/${encodeURIComponent(name)}`
+  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}`
   if (xUsername) {
     imageUrl += `?x=${encodeURIComponent(xUsername)}`
   }
 
-  let pageUrl = `${baseUrl}/mumbai/ticket/${encodeURIComponent(name)}`
+  let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
   if (xUsername) {
     pageUrl += `?x=${encodeURIComponent(xUsername)}`
   }

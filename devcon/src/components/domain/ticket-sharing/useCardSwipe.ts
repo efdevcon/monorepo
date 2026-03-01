@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 
-const SWIPE_THRESHOLD = 100
+const SWIPE_THRESHOLD = 60
+const isTouchDevice = () => typeof window !== 'undefined' && 'ontouchstart' in window
 
 export function useCardSwipe(cardCount: number) {
   const [frontIndex, setFrontIndex] = useState(0)
@@ -12,18 +13,25 @@ export function useCardSwipe(cardCount: number) {
   const startX = useRef(0)
   const dragOffset = useRef(0)
   const draggedEl = useRef<HTMLElement | null>(null)
+  const pointerId = useRef<number | null>(null)
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent) => {
       if (isAnimating) return
 
+      const el = e.currentTarget as HTMLElement
+
       isDragging.current = true
       startX.current = e.clientX
       dragOffset.current = 0
-      draggedEl.current = e.currentTarget as HTMLElement
+      draggedEl.current = el
+      pointerId.current = e.pointerId
+
+      // Capture pointer so we get all move/up events even if finger leaves the element
+      el.setPointerCapture(e.pointerId)
 
       // Disable CSS transitions while dragging
-      draggedEl.current.style.transition = 'none'
+      el.style.transition = 'none'
     },
     [isAnimating]
   )
@@ -31,6 +39,7 @@ export function useCardSwipe(cardCount: number) {
   useEffect(() => {
     const handleMove = (e: PointerEvent) => {
       if (!isDragging.current || !draggedEl.current) return
+      if (pointerId.current !== null && e.pointerId !== pointerId.current) return
 
       dragOffset.current = e.clientX - startX.current
 
@@ -41,13 +50,19 @@ export function useCardSwipe(cardCount: number) {
       draggedEl.current.style.transform = `translateX(${dragOffset.current}px) scale(${scale}) rotateY(${rotation}deg)`
     }
 
-    const handleUp = () => {
+    const handleUp = (e: PointerEvent) => {
       if (!isDragging.current || !draggedEl.current) return
+      if (pointerId.current !== null && e.pointerId !== pointerId.current) return
 
       const el = draggedEl.current
       const offset = dragOffset.current
       const shouldCycle = Math.abs(offset) > SWIPE_THRESHOLD
       const direction = offset < 0 ? 'left' : 'right'
+
+      // Release pointer capture
+      if (pointerId.current !== null) {
+        try { el.releasePointerCapture(pointerId.current) } catch {}
+      }
 
       // Restore CSS transitions
       el.style.transition = ''
@@ -56,18 +71,21 @@ export function useCardSwipe(cardCount: number) {
       isDragging.current = false
       dragOffset.current = 0
       draggedEl.current = null
+      pointerId.current = null
 
       if (shouldCycle) {
         setIsAnimating(true)
         setExitDirection(direction)
         setExitingIndex(frontIndex)
+        // Promote the back card immediately so it starts transitioning forward
+        setFrontIndex(prev => (prev + 1) % cardCount)
 
+        const duration = isTouchDevice() ? 850 : 350
         setTimeout(() => {
-          setFrontIndex(prev => (prev + 1) % cardCount)
           setExitDirection(null)
           setExitingIndex(null)
           setIsAnimating(false)
-        }, 350)
+        }, duration)
       }
     }
 

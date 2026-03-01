@@ -72,8 +72,14 @@ export function useTilt(options: UseTiltOptions = {}) {
     window.addEventListener('deviceorientation', handler)
   }, [clamp, gyroSensitivity, betaOffset])
 
-  // Mouse fallback
+  // Mouse fallback (only on non-touch devices)
   const initMouse = useCallback(() => {
+    if ('ontouchstart' in window) {
+      // Touch device — don't listen for mouse events, they're synthetic and cause tilt snapping
+      setSource(null)
+      return
+    }
+
     setSource('mouse')
 
     const handler = (e: MouseEvent) => {
@@ -89,42 +95,41 @@ export function useTilt(options: UseTiltOptions = {}) {
 
   // Gyroscope setup
   useEffect(() => {
+    let testHandler: ((e: DeviceOrientationEvent) => void) | null = null
+    let timeout: ReturnType<typeof setTimeout> | null = null
+
     const hasDeviceOrientation = 'DeviceOrientationEvent' in window
-
-    if (!hasDeviceOrientation) {
-      initMouse()
-      return
-    }
-
-    // Check if permission API exists (iOS 13+)
     const DOE = DeviceOrientationEvent as any
-    if (typeof DOE.requestPermission === 'function') {
-      // On iOS, fall back to mouse until user gesture triggers requestGyroPermission
+    const needsPermission = hasDeviceOrientation && typeof DOE.requestPermission === 'function'
+
+    if (!hasDeviceOrientation || needsPermission) {
+      // No gyro support or iOS (needs user gesture) — start with mouse
       initMouse()
-      return
-    }
-
-    // Android or older iOS — test if events actually fire
-    let received = false
-    const testHandler = (e: DeviceOrientationEvent) => {
-      if (e.gamma !== null || e.beta !== null) {
-        received = true
-        window.removeEventListener('deviceorientation', testHandler)
-        startGyro()
+    } else {
+      // Android or older iOS — test if events actually fire
+      let received = false
+      testHandler = (e: DeviceOrientationEvent) => {
+        if (e.gamma !== null || e.beta !== null) {
+          received = true
+          window.removeEventListener('deviceorientation', testHandler!)
+          testHandler = null
+          startGyro()
+        }
       }
-    }
-    window.addEventListener('deviceorientation', testHandler)
+      window.addEventListener('deviceorientation', testHandler)
 
-    const timeout = setTimeout(() => {
-      if (!received) {
-        window.removeEventListener('deviceorientation', testHandler)
-        initMouse()
-      }
-    }, 1000)
+      timeout = setTimeout(() => {
+        if (!received) {
+          if (testHandler) window.removeEventListener('deviceorientation', testHandler)
+          testHandler = null
+          initMouse()
+        }
+      }, 1000)
+    }
 
     return () => {
-      clearTimeout(timeout)
-      window.removeEventListener('deviceorientation', testHandler)
+      if (timeout) clearTimeout(timeout)
+      if (testHandler) window.removeEventListener('deviceorientation', testHandler)
       if (orientationHandlerRef.current) {
         window.removeEventListener('deviceorientation', orientationHandlerRef.current)
       }

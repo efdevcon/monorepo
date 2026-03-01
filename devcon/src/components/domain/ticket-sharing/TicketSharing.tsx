@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
@@ -22,12 +22,42 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const { frontIndex, exitDirection, exitingIndex, isAnimating, handlePointerDown } = useCardSwipe(2)
 
-  const gyroRequested = useRef(false)
-  const handleFirstTouch = useCallback(() => {
-    if (gyroRequested.current) return
-    gyroRequested.current = true
-    requestGyroPermission()
+  const [showGyroPrompt, setShowGyroPrompt] = useState(false)
+
+  useEffect(() => {
+    // Prevent iOS elastic overscroll and color the notch/bottom area
+    const prevBodyBg = document.body.style.backgroundColor
+    const prevHtmlBg = document.documentElement.style.backgroundColor
+    document.body.style.overflow = 'hidden'
+    document.body.style.overscrollBehavior = 'none'
+    document.body.style.backgroundColor = '#1a0a3e'
+    document.documentElement.style.overflow = 'hidden'
+    document.documentElement.style.overscrollBehavior = 'none'
+    document.documentElement.style.backgroundColor = '#1a0a3e'
+
+    const DOE = DeviceOrientationEvent as any
+    if (typeof DOE.requestPermission === 'function') {
+      setShowGyroPrompt(true)
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.overscrollBehavior = ''
+      document.body.style.backgroundColor = prevBodyBg
+      document.documentElement.style.overflow = ''
+      document.documentElement.style.overscrollBehavior = ''
+      document.documentElement.style.backgroundColor = prevHtmlBg
+    }
+  }, [])
+
+  const handleEnableGyro = useCallback(async () => {
+    setShowGyroPrompt(false)
+    await requestGyroPermission()
   }, [requestGyroPermission])
+
+  const handleDismissGyro = useCallback(() => {
+    setShowGyroPrompt(false)
+  }, [])
 
   const [avatarError, setAvatarError] = useState(false)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
@@ -46,7 +76,20 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
   }
 
   return (
-    <div ref={containerRef} className={css.container} onTouchStart={handleFirstTouch}>
+    <div ref={containerRef} className={css.container}>
+      {/* Gyroscope permission prompt (iOS) */}
+      {showGyroPrompt && (
+        <div className={css.gyroPrompt}>
+          <div className={css.gyroPromptCard}>
+            <p>Enable motion effects?</p>
+            <div className={css.gyroPromptButtons}>
+              <button onClick={handleEnableGyro} className={css.gyroPromptEnable}>Enable</button>
+              <button onClick={handleDismissGyro} className={css.gyroPromptDismiss}>No thanks</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero background with slow parallax */}
       <div className={`${css.bgLayer} ${css.bgSlow}`}>
         <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority />
