@@ -8,14 +8,19 @@ interface TiltState {
 interface UseTiltOptions {
   smoothing?: number
   maxTilt?: number
-  gyroSensitivity?: number
-  betaOffset?: number
+  gammaSensitivity?: number
+  betaSensitivity?: number
 }
 
 export type InputSource = 'mouse' | 'gyroscope' | null
 
 export function useTilt(options: UseTiltOptions = {}) {
-  const { smoothing = 0.1, maxTilt = 1.2, gyroSensitivity = 25, betaOffset = 45 } = options
+  const {
+    smoothing = 0.1,
+    maxTilt = 1.2,
+    gammaSensitivity = 25,
+    betaSensitivity = 15,
+  } = options
 
   const [source, setSource] = useState<InputSource>(null)
 
@@ -25,6 +30,12 @@ export function useTilt(options: UseTiltOptions = {}) {
   const rafRef = useRef<number>(0)
   const mouseCleanupRef = useRef<(() => void) | null>(null)
   const orientationHandlerRef = useRef<((e: DeviceOrientationEvent) => void) | null>(null)
+
+  // Gyro calibration & spike rejection
+  const calibratedRef = useRef(false)
+  const betaOffsetRef = useRef(0)
+  const prevGammaRef = useRef(0)
+  const prevBetaRef = useRef(0)
 
   const clamp = useCallback((v: number) => Math.max(-maxTilt, Math.min(maxTilt, v)), [maxTilt])
 
@@ -58,19 +69,50 @@ export function useTilt(options: UseTiltOptions = {}) {
     }
 
     setSource('gyroscope')
+    calibratedRef.current = false
+
+    const SPIKE_THRESHOLD = 30 // degrees — anything larger in one frame is a glitch or gimbal lock flip
 
     const handler = (e: DeviceOrientationEvent) => {
-      const gamma = e.gamma || 0
-      const beta = e.beta || 0
+      // Skip invalid readings (null means sensor doesn't know)
+      if (e.gamma === null || e.beta === null) return
+
+      const gamma = e.gamma
+      const beta = e.beta
+
+      // Auto-calibrate: use first valid reading as neutral position
+      if (!calibratedRef.current) {
+        betaOffsetRef.current = beta
+        prevGammaRef.current = gamma
+        prevBetaRef.current = beta
+        calibratedRef.current = true
+        return
+      }
+
+      // Spike rejection: keep last good value if jump is too large
+      let useGamma = gamma
+      if (Math.abs(gamma - prevGammaRef.current) > SPIKE_THRESHOLD) {
+        useGamma = prevGammaRef.current
+      } else {
+        prevGammaRef.current = gamma
+      }
+
+      let useBeta = beta
+      if (Math.abs(beta - prevBetaRef.current) > SPIKE_THRESHOLD) {
+        useBeta = prevBetaRef.current
+      } else {
+        prevBetaRef.current = beta
+      }
+
       targetRef.current = {
-        x: clamp(gamma / gyroSensitivity),
-        y: clamp((beta - betaOffset) / gyroSensitivity),
+        x: clamp(useGamma / gammaSensitivity),
+        y: clamp((useBeta - betaOffsetRef.current) / betaSensitivity),
       }
     }
 
     orientationHandlerRef.current = handler
     window.addEventListener('deviceorientation', handler)
-  }, [clamp, gyroSensitivity, betaOffset])
+  }, [clamp, gammaSensitivity, betaSensitivity])
 
   // Mouse fallback (only on non-touch devices)
   const initMouse = useCallback(() => {
