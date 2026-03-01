@@ -41,10 +41,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
-  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}`
-  if (xUsername) {
-    imageUrl += `?x=${encodeURIComponent(xUsername)}`
-  }
+  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}`
 
   let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
   if (xUsername) {

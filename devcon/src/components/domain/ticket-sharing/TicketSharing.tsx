@@ -55,10 +55,6 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
     await requestGyroPermission()
   }, [requestGyroPermission])
 
-  const handleDismissGyro = useCallback(() => {
-    setShowGyroPrompt(false)
-  }, [])
-
   const [avatarError, setAvatarError] = useState(false)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
   const avatarSrc = xUsername ? `https://unavatar.io/x/${xUsername}` : null
@@ -77,19 +73,6 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
 
   return (
     <div ref={containerRef} className={css.container}>
-      {/* Gyroscope permission prompt (iOS) */}
-      {showGyroPrompt && (
-        <div className={css.gyroPrompt}>
-          <div className={css.gyroPromptCard}>
-            <p>Enable motion effects?</p>
-            <div className={css.gyroPromptButtons}>
-              <button onClick={handleEnableGyro} className={css.gyroPromptEnable}>Enable</button>
-              <button onClick={handleDismissGyro} className={css.gyroPromptDismiss}>No thanks</button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Hero background with slow parallax */}
       <div className={`${css.bgLayer} ${css.bgSlow}`}>
         <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority />
@@ -112,7 +95,6 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
 
       <div className={css.aboveCard}>
         <Image src={devconLogo} alt="Devcon 8" className={css.heroLogo} />
-        <p className={css.swipeHint}>Swipe to learn more</p>
       </div>
 
       {/* Card stack */}
@@ -120,7 +102,7 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
         {/* Card 0: Ticket front */}
         <div className={cn(cardClass(0), css.ticketShadowWrap)} onPointerDown={frontIndex === 0 ? handlePointerDown : undefined}>
           <div className={css.ticketPunch}>
-            <Image src={ticketFront} alt={`${name}'s Devcon Mumbai ticket`} className={css.ticketImage} />
+            <Image src={ticketFront} alt={`${name}'s Devcon ticket`} className={css.ticketImage} />
             <div className={css.ticketContent}>
               <div className={css.attendeeRow}>
                 <div className={css.avatarCircle}>
@@ -144,13 +126,19 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
               </div>
             </div>
           </div>
+
+            {/* Flip hint — curved arrow, bottom-right of front card */}
+            <svg className={css.flipHint} viewBox="0 0 24 24" fill="none">
+              <path d="M5 12 C5 6, 12 4, 18 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <polyline points="15,4 18,7 15,9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
         </div>
 
         {/* Card 1: Ticket back */}
         <div className={cn(cardClass(1), css.backsideShadowWrap)} onPointerDown={frontIndex === 1 ? handlePointerDown : undefined}>
           <div className={css.backsideInner}>
-            <Image src={ticketBack} alt="Devcon Mumbai ticket details" className={css.ticketImage} />
+            <Image src={ticketBack} alt="Devcon ticket details" className={css.ticketImage} />
             <div className={css.backsideContent}>
               <h2 className={css.backsideTitle}>Devcon is a unique place for inspiration</h2>
               <p className={css.backsideDescription}>
@@ -162,7 +150,7 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
         </div>
       </div>
 
-      {/* Get tickets CTA */}
+      {/* Get tickets CTA + gyro prompt */}
       <div className={css.actions}>
         <a
           href="https://devcon.org"
@@ -174,6 +162,12 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
           Get tickets
           <IconArrowRight />
         </a>
+
+        {showGyroPrompt && (
+          <button onClick={handleEnableGyro} className={css.gyroButton}>
+            Enable motion effects
+          </button>
+        )}
       </div>
 
       {/* Vignette shadow around edges */}
