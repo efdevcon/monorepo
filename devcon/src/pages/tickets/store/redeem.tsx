@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
+import { ArrowLeft, Loader2 } from 'lucide-react'
+import Image from 'next/image'
+import DevconLogo from 'assets/images/dc-8/dc8-logo.png'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 
@@ -52,6 +55,8 @@ export default function RedeemPage() {
     validate()
   }, [router.isReady, voucherCode])
 
+  const formatPrice = (n: number) => (n % 1 === 0 ? n.toFixed(0) : n.toFixed(2))
+
   const handleAddToCart = (ticket: ApplicableTicket) => {
     setAddingToCart(true)
 
@@ -77,15 +82,13 @@ export default function RedeemPage() {
 
   return (
     <Page theme={themes['tickets']} hideFooter>
-      <div className={css['checkout-layout']}>
+      <div className={css['checkout-layout'] + ' ' + css['checkout-layout-centered']}>
         <main className={css['main']}>
           <Link to="/tickets/store" className={css['back-link']}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            <span>Back to Store</span>
+            <ArrowLeft size={20} />
+            <span>Back to Tickets</span>
           </Link>
-          <h1 className={css['page-title']}>Redeem Voucher</h1>
+          <h1 className={css['page-title']}>Redeem voucher</h1>
 
           {!voucherCode && (
             <div className={css['section-card']}>
@@ -98,7 +101,10 @@ export default function RedeemPage() {
           {voucherCode && loading && (
             <div className={css['section-card']}>
               <div className={css['section-body']}>
-                <p className={css['status-text']}>Validating voucher code...</p>
+                <div className={css['loading-box']}>
+                  <Loader2 className={css['loading-spinner']} size={24} />
+                  <span>Validating voucher code...</span>
+                </div>
               </div>
             </div>
           )}
@@ -106,10 +112,10 @@ export default function RedeemPage() {
           {voucherCode && !loading && result && !result.valid && (
             <div className={css['section-card']}>
               <div className={css['section-body']}>
-                <div className={css['error-box']}>
-                  <div>{result.error || 'Invalid voucher code'}</div>
+                <div className={css['payment-notice'] + ' ' + css['payment-notice-error']}>
+                  {result.error || 'Invalid voucher code'}
                 </div>
-                <p style={{ marginTop: '1rem' }}>
+                <p>
                   The voucher code <strong>{voucherCode}</strong> could not be applied.
                   You can still browse the <Link to="/tickets/store">ticket store</Link> and purchase tickets at regular price.
                 </p>
@@ -120,46 +126,56 @@ export default function RedeemPage() {
           {voucherCode && !loading && result?.valid && (
             <div className={css['section-card']}>
               <div className={css['section-body']}>
-                <div className={css['description-block']}>
-                  <p className={css['description-title']}>Voucher applied!</p>
-                  <p className={css['description-sub']}>
-                    Your voucher code <strong>{result.code}</strong> is valid.
-                    {result.priceMode === 'percent' && ` You get ${parseFloat(result.value || '0')}% off.`}
-                    {result.priceMode === 'subtract' && ` You get $${parseFloat(result.value || '0').toFixed(2)} off.`}
-                    {result.priceMode === 'set' && ` Your ticket price is set to $${parseFloat(result.value || '0').toFixed(2)}.`}
-                    {' '}Select a ticket below to continue.
-                  </p>
+                <div className={css['redeem-description']}>
+                  <h3 className={css['redeem-heading']}>Voucher applied!</h3>
+                  <div className={css['redeem-text']}>
+                    <p>
+                      Your voucher code <strong>{result.code}</strong> is ready to redeem.
+                    </p>
+                    <p>
+                      Your ticket price has been updated
+                      {result.priceMode === 'percent' && <> with a <strong>{parseFloat(result.value || '0')}% discount</strong></>}
+                      {result.priceMode === 'subtract' && <> with <strong>${formatPrice(parseFloat(result.value || '0'))} off</strong></>}
+                      {result.priceMode === 'set' && <> to <strong>${formatPrice(parseFloat(result.value || '0'))}</strong></>}
+                      . Add a ticket to your cart to continue.
+                    </p>
+                  </div>
                 </div>
+
+                <hr className={css['redeem-divider']} />
 
                 {result.applicableTickets && result.applicableTickets.length > 0 ? (
                   <div className={css['swag-grid']}>
-                    {result.applicableTickets.map((ticket) => {
+                    {result.applicableTickets.map(ticket => {
                       const originalPrice = parseFloat(ticket.originalPrice)
                       const discountedPrice = parseFloat(ticket.discountedPrice)
                       const hasDiscount = discountedPrice < originalPrice
                       return (
                         <div key={ticket.id} className={css['redeem-card']}>
-                          <div className={css['swag-info']}>
-                            <h4>{ticket.name}</h4>
-                            <p className={css['redeem-price']}>
-                              {hasDiscount ? (
-                                <>
-                                  <span className={css['redeem-price-old']}>${originalPrice.toFixed(2)}</span>
-                                  <span className={css['redeem-price-new']}>${discountedPrice.toFixed(2)}</span>
-                                </>
-                              ) : (
-                                <strong>${originalPrice.toFixed(2)}</strong>
-                              )}
+                          <div className={css['redeem-card-details']}>
+                            <h4 className={css['redeem-ticket-name']}>{ticket.name}</h4>
+                            <p className={css['redeem-ticket-desc']}>
+                              Full conference access including talks and workshops, swag bag, plus coffee, lunch and snacks all week.
                             </p>
                           </div>
-                          <button
-                            type="button"
-                            className={css['btn-continue']}
-                            onClick={() => handleAddToCart(ticket)}
-                            disabled={addingToCart}
-                          >
-                            {addingToCart ? 'Adding...' : 'Add to Cart & Checkout'}
-                          </button>
+                          <div className={css['redeem-card-footer']}>
+                            <div className={css['redeem-price-row']}>
+                              <span className={css['redeem-price-current']}>
+                                ${hasDiscount ? formatPrice(discountedPrice) : formatPrice(originalPrice)}
+                              </span>
+                              {hasDiscount && (
+                                <span className={css['redeem-price-original']}>${formatPrice(originalPrice)}</span>
+                              )}
+                            </div>
+                            <button
+                              type="button"
+                              className={css['redeem-btn']}
+                              onClick={() => handleAddToCart(ticket)}
+                              disabled={addingToCart}
+                            >
+                              {addingToCart ? 'Adding...' : 'Add to Cart & Checkout'}
+                            </button>
+                          </div>
                         </div>
                       )
                     })}
@@ -170,6 +186,10 @@ export default function RedeemPage() {
               </div>
             </div>
           )}
+
+          <div className={css['redeem-logo']}>
+            <Image src={DevconLogo} alt="Devcon 8 India" width={146} height={64} />
+          </div>
         </main>
       </div>
     </Page>

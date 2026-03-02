@@ -1468,14 +1468,15 @@ function CheckoutContent() {
               </button>
               {openSection === 'swag' && (
                 <div className={css['section-body']}>
-                  {availableAddons.map(category => (
+                  {availableAddons.map(category => {
+                    const availableItems = category.items.filter(i => i.available)
+                    if (availableItems.length === 0) return null
+                    return (
                     <div key={category.categoryId} className={css['swag-grid']}>
                       {category.categoryName && (
                         <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
                       )}
-                      {category.items
-                        .filter(i => i.available)
-                        .map(item => {
+                      {availableItems.map(item => {
                           const sel = selectedAddons.get(item.id)
                           const qty = sel?.quantity || 0
                           const isFree = parseFloat(item.price) === 0
@@ -1549,7 +1550,8 @@ function CheckoutContent() {
                           )
                         })}
                     </div>
-                  ))}
+                    )
+                  })}
                   <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
                     Continue
                   </button>

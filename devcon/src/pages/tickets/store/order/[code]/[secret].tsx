@@ -140,7 +140,8 @@ export default function OrderConfirmationPage() {
       if (existing) {
         existing.quantity += 1
       } else {
-        groups.set(key, { name: pos.itemName, price: pos.price, quantity: 1 })
+        const name = pos.itemName.replace(/\s*[–—-]\s*(.+)$/, ' ($1)')
+        groups.set(key, { name, price: pos.price, quantity: 1 })
       }
     }
     return Array.from(groups.values())
@@ -271,9 +272,14 @@ export default function OrderConfirmationPage() {
                     />
                   </div>
                 </div>
-                <button type="button" className={css['share-btn']}>
+                <a
+                  href={`/en/ticket/${encodeURIComponent(attendeeName.split(' ')[0].toLowerCase())}/${xUsername ? `?x=${encodeURIComponent(xUsername.replace(/^@/, ''))}` : ''}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={css['share-btn']}
+                >
                   View sharing link
-                </button>
+                </a>
               </div>
             </div>
           </div>
