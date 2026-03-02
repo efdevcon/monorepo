@@ -349,7 +349,7 @@ const useNavigationData = () => {
         title: 'Get Tickets',
         url: '/tickets',
         type: 'page',
-        // highlight: 'archive',
+        highlight: 'tickets',
       },
     ],
     footer: {

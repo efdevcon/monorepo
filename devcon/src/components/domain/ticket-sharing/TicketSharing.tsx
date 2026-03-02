@@ -37,7 +37,14 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
 
     const DOE = DeviceOrientationEvent as any
     if (typeof DOE.requestPermission === 'function') {
-      setShowGyroPrompt(true)
+      const accepted = localStorage.getItem('gyro-accepted')
+      if (accepted === 'true') {
+        DOE.requestPermission().then((state: string) => {
+          if (state === 'granted') requestGyroPermission()
+        }).catch(() => {})
+      } else {
+        setShowGyroPrompt(true)
+      }
     }
 
     return () => {
@@ -52,7 +59,10 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
 
   const handleEnableGyro = useCallback(async () => {
     setShowGyroPrompt(false)
-    await requestGyroPermission()
+    const granted = await requestGyroPermission()
+    if (granted) {
+      localStorage.setItem('gyro-accepted', 'true')
+    }
   }, [requestGyroPermission])
 
   const [avatarError, setAvatarError] = useState(false)
@@ -153,22 +163,22 @@ export function TicketSharing({ name, xUsername }: TicketSharingProps) {
       {/* Get tickets CTA + gyro prompt */}
       <div className={css.actions}>
         <a
-          href="https://devcon.org"
+          href="/tickets"
           className={css.ctaButton}
           style={{ '--color-icon': '#f9f8fa' } as React.CSSProperties}
-          target="_blank"
-          rel="noreferrer"
         >
           Get tickets
           <IconArrowRight />
         </a>
 
-        {showGyroPrompt && (
-          <button onClick={handleEnableGyro} className={css.gyroButton}>
-            Enable motion effects
-          </button>
-        )}
       </div>
+
+      {/* Gyro prompt — pinned to bottom */}
+      {showGyroPrompt && (
+        <button onClick={handleEnableGyro} className={css.gyroButton}>
+          Enable motion effects
+        </button>
+      )}
 
       {/* Vignette shadow around edges */}
       <div className={css.vignette} />

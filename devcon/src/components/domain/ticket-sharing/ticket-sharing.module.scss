@@ -357,17 +357,23 @@
 
 /* ─── Gyroscope permission button ────────────── */
 .gyroButton {
-  margin-top: 12px;
-  padding: 0;
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 8px 20px;
   border: none;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 360px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
   white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
 }
 
 /* ─── Vignette ─────────────────────────────────── */

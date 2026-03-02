@@ -165,6 +165,16 @@ export const Navigation = (props: any) => {
               className += ` plain`
             }
 
+            if (i.highlight === 'tickets') {
+              return (
+                <Link to={i.url}>
+                  <Button color="purple-1" className="shadow lg !py-1" fill style={{ background: '#7235ed' }}>
+                    {i.title}
+                  </Button>
+                </Link>
+              )
+            }
+
             if (i.highlight === 'archive') {
               return (
                 <Link to={i.url}>
