@@ -31,12 +31,6 @@ export function useTilt(options: UseTiltOptions = {}) {
   const mouseCleanupRef = useRef<(() => void) | null>(null)
   const orientationHandlerRef = useRef<((e: DeviceOrientationEvent) => void) | null>(null)
 
-  // Gyro calibration & spike rejection
-  const calibratedRef = useRef(false)
-  const betaOffsetRef = useRef(0)
-  const prevGammaRef = useRef(0)
-  const prevBetaRef = useRef(0)
-
   const clamp = useCallback((v: number) => Math.max(-maxTilt, Math.min(maxTilt, v)), [maxTilt])
 
   const animate = useCallback(() => {
@@ -69,44 +63,49 @@ export function useTilt(options: UseTiltOptions = {}) {
     }
 
     setSource('gyroscope')
-    calibratedRef.current = false
 
-    const SPIKE_THRESHOLD = 30 // degrees — anything larger in one frame is a glitch or gimbal lock flip
+    // All gyro state lives in the closure — no stale refs, no cross-invocation leaks
+    const CALIBRATION_COUNT = 10
+    const EMA_ALPHA = 0.15 // Low-pass filter strength (0 = frozen, 1 = raw)
+    const MAX_GAMMA = 45 // Clamp to avoid gimbal lock zone
+    const MAX_BETA_DELTA = 30 // Max tilt from neutral
+
+    const calibrationReadings: { gamma: number; beta: number }[] = []
+    let calibrated = false
+    let betaOffset = 0
+    let filteredGamma = 0
+    let filteredBeta = 0
 
     const handler = (e: DeviceOrientationEvent) => {
-      // Skip invalid readings (null means sensor doesn't know)
       if (e.gamma === null || e.beta === null) return
 
       const gamma = e.gamma
       const beta = e.beta
 
-      // Auto-calibrate: use first valid reading as neutral position
-      if (!calibratedRef.current) {
-        betaOffsetRef.current = beta
-        prevGammaRef.current = gamma
-        prevBetaRef.current = beta
-        calibratedRef.current = true
+      // Calibration: average first N readings for a stable neutral
+      if (!calibrated) {
+        calibrationReadings.push({ gamma, beta })
+        if (calibrationReadings.length < CALIBRATION_COUNT) return
+
+        betaOffset = calibrationReadings.reduce((s, r) => s + r.beta, 0) / CALIBRATION_COUNT
+        filteredGamma = calibrationReadings.reduce((s, r) => s + r.gamma, 0) / CALIBRATION_COUNT
+        filteredBeta = betaOffset
+        calibrated = true
         return
       }
 
-      // Spike rejection: keep last good value if jump is too large
-      let useGamma = gamma
-      if (Math.abs(gamma - prevGammaRef.current) > SPIKE_THRESHOLD) {
-        useGamma = prevGammaRef.current
-      } else {
-        prevGammaRef.current = gamma
-      }
+      // EMA low-pass filter — smooths noise and single-frame spikes
+      // A gimbal lock flip (±60° in one frame) only moves the output by ±9°
+      filteredGamma += (gamma - filteredGamma) * EMA_ALPHA
+      filteredBeta += (beta - filteredBeta) * EMA_ALPHA
 
-      let useBeta = beta
-      if (Math.abs(beta - prevBetaRef.current) > SPIKE_THRESHOLD) {
-        useBeta = prevBetaRef.current
-      } else {
-        prevBetaRef.current = beta
-      }
+      // Clamp to safe ranges
+      const clampedGamma = Math.max(-MAX_GAMMA, Math.min(MAX_GAMMA, filteredGamma))
+      const betaDelta = Math.max(-MAX_BETA_DELTA, Math.min(MAX_BETA_DELTA, filteredBeta - betaOffset))
 
       targetRef.current = {
-        x: clamp(useGamma / gammaSensitivity),
-        y: clamp((useBeta - betaOffsetRef.current) / betaSensitivity),
+        x: clamp(clampedGamma / gammaSensitivity),
+        y: clamp(betaDelta / betaSensitivity),
       }
     }
 
