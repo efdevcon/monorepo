@@ -7,6 +7,7 @@ import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { Input } from '@/components/ui/input'
+import { CalendarDays, MapPin } from 'lucide-react'
 import css from './store.module.scss'
 import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
@@ -273,25 +274,23 @@ function StoreContent({
           <div className={css['sidebar-content']}>
             <div className={css['sidebar-top']}>
               <div className={css['sidebar-logo']}>
-                <Image src={StoreSidebarLogo} alt="Devcon India" height={48} width={140} />
+                <Image src={StoreSidebarLogo} alt="Devcon India" height={64} width={146} />
               </div>
               <h1 className={css['sidebar-title']}>
-                Devcon
-                <br />
-                Tickets
+                Devcon Tickets
               </h1>
               <p className={css['sidebar-description']}>
-                Secure your Devcon India ticket and join thousands of builders, creators, and thinkers at the world's
-                biggest Ethereum conference.
+                Secure your Devcon India ticket and join thousands of builders, creators, researchers, designers and
+                thinkers at the world's biggest Ethereum conference.
               </p>
             </div>
             <ul className={css['sidebar-details']}>
               <li className={css['sidebar-details-item']}>
-                <span className={css['sidebar-dot']} aria-hidden="true" />
+                <CalendarDays size={24} color="#d65600" strokeWidth={1.5} aria-hidden="true" />
                 3–6 November 2026
               </li>
               <li className={css['sidebar-details-item']}>
-                <span className={css['sidebar-dot']} aria-hidden="true" />
+                <MapPin size={24} color="#d65600" strokeWidth={1.5} aria-hidden="true" />
                 Jio World Centre, Mumbai, India
               </li>
             </ul>
