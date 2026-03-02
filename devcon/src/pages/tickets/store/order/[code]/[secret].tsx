@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
+import { Download } from 'lucide-react'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -40,22 +41,6 @@ interface OrderData {
   payment_info: PaymentInfo | null
 }
 
-function CheckIcon() {
-  return (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-      <path d="M5 13l4 4L19 7" />
-    </svg>
-  )
-}
-
-function BackIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M19 12H5M12 19l-7-7 7-7" />
-    </svg>
-  )
-}
-
 export default function OrderConfirmationPage() {
   const router = useRouter()
   const { code, secret } = router.query
@@ -63,6 +48,12 @@ export default function OrderConfirmationPage() {
   const [order, setOrder] = useState<OrderData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [xUsername, setXUsername] = useState('')
+
+  useEffect(() => {
+    const saved = localStorage.getItem('devcon_x_username')
+    if (saved) setXUsername(saved)
+  }, [])
 
   useEffect(() => {
     if (!code || !secret) return
@@ -88,7 +79,9 @@ export default function OrderConfirmationPage() {
   if (loading) {
     return (
       <Page theme={themes['tickets']} hideFooter>
-        <div className={css['loading']}>Loading order...</div>
+        <div className={css['page-bg']}>
+          <div className={css['loading']}>Loading order...</div>
+        </div>
       </Page>
     )
   }
@@ -96,12 +89,14 @@ export default function OrderConfirmationPage() {
   if (error || !order) {
     return (
       <Page theme={themes['tickets']} hideFooter>
-        <div className={css['error-layout']}>
-          <h1>Order Not Found</h1>
-          <p>{error || 'Could not find this order.'}</p>
-          <Link to="/tickets/store" className={css['back-btn']}>
-            Back to Store
-          </Link>
+        <div className={css['page-bg']}>
+          <div className={css['error-layout']}>
+            <h1>Order Not Found</h1>
+            <p>{error || 'Could not find this order.'}</p>
+            <Link to="/tickets/store" className={css['back-btn']}>
+              Back to Store
+            </Link>
+          </div>
         </div>
       </Page>
     )
@@ -133,11 +128,7 @@ export default function OrderConfirmationPage() {
   const explorerBase = (chainId != null && BLOCK_EXPLORERS[chainId]) ? BLOCK_EXPLORERS[chainId] : 'https://etherscan.io'
   const tokenSymbol = pi?.token_symbol ? (SYMBOL_DISPLAY[pi.token_symbol] ?? pi.token_symbol) : null
   const networkName = chainId != null ? CHAIN_NAMES[chainId] ?? null : null
-  const paymentLabel = isCrypto
-    ? (networkName ? `Crypto (${tokenSymbol} on ${networkName})` : `Crypto (${tokenSymbol})`)
-    : 'Card (Stripe)'
 
-  // Separate positions into tickets and add-ons, group by item for display
   const ticketPositions = order.positions.filter(p => !p.isAddon)
   const addonPositions = order.positions.filter(p => p.isAddon)
 
@@ -158,156 +149,246 @@ export default function OrderConfirmationPage() {
   const tickets = groupPositions(ticketPositions)
   const addons = groupPositions(addonPositions)
 
+  const attendeeName = order.positions[0]?.attendee_name || 'Attendee'
+
   const orderDate = new Date(order.datetime)
-  const formattedDate = orderDate.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
+  const day = orderDate.getDate()
+  const month = orderDate.toLocaleDateString('en-US', { month: 'short' })
+  const year = orderDate.getFullYear()
+  const time = orderDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+  const formattedDate = `${day} ${month}, ${year} at ${time}`
+
+  const rawCryptoAmount = pi?.amount || null
+  // Parse the numeric value and format to a readable precision
+  const cryptoAmount = rawCryptoAmount
+    ? (() => {
+        const n = parseFloat(rawCryptoAmount)
+        if (isNaN(n)) return rawCryptoAmount
+        if (n < 0.0001) return n.toPrecision(4)
+        if (n < 1) return n.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
+        return n.toFixed(4)
+      })()
+    : null
+  const totalUsd = `$${parseFloat(order.total).toFixed(2)}`
+
+  // Build download links from Pretix order URL + first ticket position
+  const firstTicketPosition = ticketPositions[0]
+  const orderBaseUrl = order.url?.replace(/\/?$/, '/')
+  const pdfUrl = firstTicketPosition && orderBaseUrl
+    ? `${orderBaseUrl}download/${firstTicketPosition.id}/pdf`
+    : null
+  const passbookUrl = firstTicketPosition && orderBaseUrl
+    ? `${orderBaseUrl}download/${firstTicketPosition.id}/passbook`
+    : null
 
   return (
     <Page theme={themes['tickets']} hideFooter>
-      <div className={css['confirmation-layout']}>
-        <Link to="/tickets/store" className={css['back-link']}>
-          <BackIcon />
-          <span>Back to Store</span>
-        </Link>
+      <div className={css['page-bg']}>
+        <div className={css['layout']}>
+          {/* Mobile only: order header on top */}
+          <div className={css['mobile-header']}>
+            <h1 className={css['order-title']}>Your order has been placed!</h1>
+            <p className={css['order-subtitle']}>
+              We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
+            </p>
+          </div>
 
-        <div className={css['confirmation-card']}>
-          {isPaid && (
-            <div className={css['success-banner']}>
-              <div className={css['success-icon']}>
-                <CheckIcon />
+          {/* Left: Ticket card */}
+          <div className={css['ticket-card']}>
+            <div className={css['ticket-image']}>
+              <img src="/assets/images/dc8-receipt-header.png" alt="Devcon India" />
+              {isPaid ? (
+                <span className={css['confirmed-badge']}>Confirmed</span>
+              ) : (
+                <span className={css['pending-badge']}>{statusLabels[order.status] || order.status}</span>
+              )}
+            </div>
+            <div className={css['ticket-body']}>
+              <div className={css['ticket-data']}>
+                <div className={css['ticket-title-block']}>
+                  <h2 className={css['ticket-event-name']}>Devcon India</h2>
+                  <p className={css['ticket-event-meta']}>3–6 November · Jio World Centre, Mumbai</p>
+                </div>
+
+                <hr className={css['ticket-solid-divider']} />
+
+                <div className={css['ticket-user-data']}>
+                  <div className={css['ticket-section']}>
+                    <span className={css['ticket-section-label']}>Name</span>
+                    <span className={css['ticket-section-value']}>{attendeeName}</span>
+                  </div>
+
+                  {tickets.length > 0 && (
+                    <div className={css['ticket-section']}>
+                      <span className={css['ticket-section-label']}>Tickets</span>
+                      {tickets.map((t, i) => (
+                        <span key={i} className={css['ticket-section-item']}>
+                          {t.quantity} x {t.name}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {addons.length > 0 && (
+                    <div className={css['ticket-section']}>
+                      <span className={css['ticket-section-label']}>Add-ons</span>
+                      <div className={css['ticket-addons-list']}>
+                        {addons.map((a, i) => (
+                          <span key={i} className={css['ticket-section-item']}>
+                            {a.quantity} x {a.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <h1 className={css['success-title']}>Purchase Complete!</h1>
-              <p className={css['success-subtitle']}>Your Devcon tickets have been confirmed.</p>
-              <p className={css['success-email']}>
-                Email confirmation sent to: <strong>{order.email}</strong>
+
+              <hr className={css['ticket-dashed-divider']} />
+
+              <div className={css['share-section']}>
+                <div className={css['share-preview']}>
+                  <img src="/assets/images/dc8-social-ticket-preview.png" alt="Social ticket preview" className={css['share-preview-img']} />
+                </div>
+                <div className={css['share-input-group']}>
+                  <div className={css['share-text']}>
+                    <h3 className={css['share-title']}>Share on socials</h3>
+                    <p className={css['share-subtitle']}>Enter your X username to personalize</p>
+                  </div>
+                  <div className={css['share-input-wrap']}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    <input
+                      type="text"
+                      placeholder="Username (optional)"
+                      value={xUsername}
+                      onChange={e => {
+                        const val = e.target.value
+                        setXUsername(val)
+                        localStorage.setItem('devcon_x_username', val)
+                      }}
+                    />
+                  </div>
+                </div>
+                <button type="button" className={css['share-btn']}>
+                  View sharing link
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Order details */}
+          <div className={css['order-column']}>
+            {/* Desktop only: order header inside right column */}
+            <div className={css['desktop-header']}>
+              <h1 className={css['order-title']}>Your order has been placed!</h1>
+              <p className={css['order-subtitle']}>
+                We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
               </p>
             </div>
-          )}
 
-          {!isPaid && (
-            <div className={css['pending-banner']}>
-              <h1 className={css['pending-title']}>Order {statusLabels[order.status] || order.status}</h1>
-              <p className={css['pending-subtitle']}>Order code: {order.code}</p>
-            </div>
-          )}
+            <hr className={css['order-divider']} />
 
-          {/* Order Details */}
-          <div className={css['section']}>
-            <h3 className={css['section-title']}>Order Details</h3>
-            <div className={css['details-card']}>
-              <div className={css['detail-row']}>
-                <span className={css['detail-label']}>Order Code</span>
-                <span className={css['detail-value']}>{order.code}</span>
-              </div>
-              <div className={css['detail-row']}>
-                <span className={css['detail-label']}>Date</span>
-                <span className={css['detail-value']}>{formattedDate}</span>
-              </div>
-              <div className={css['detail-row']}>
-                <span className={css['detail-label']}>Status</span>
-                <span className={`${css['detail-value']} ${isPaid ? css['status-paid'] : ''}`}>
+            {/* Order summary */}
+            <div className={css['summary-section']}>
+              <h3 className={css['summary-heading']}>Order Summary</h3>
+
+              <div className={css['summary-row']}>
+                <span className={css['summary-label']}>Status</span>
+                <span className={isPaid ? css['status-badge'] : css['status-badge-pending']}>
                   {statusLabels[order.status] || order.status}
                 </span>
               </div>
-              <div className={css['detail-row']}>
-                <span className={css['detail-label']}>Payment</span>
-                <span className={css['detail-value']}>{paymentLabel}</span>
+
+              <div className={css['summary-row']}>
+                <span className={css['summary-label']}>Date:</span>
+                <span className={css['summary-value']}>{formattedDate}</span>
               </div>
+
+              <div className={css['summary-row']}>
+                <span className={css['summary-label']}>Order ID:</span>
+                <span className={css['summary-value-semi']}>{order.code}</span>
+              </div>
+
+              <div className={css['summary-row']}>
+                <span className={css['summary-label']}>Payment</span>
+                {isCrypto ? (
+                  <span className={css['summary-value-payment']}>
+                    <strong>Crypto </strong>
+                    <span>({tokenSymbol} on {networkName})</span>
+                  </span>
+                ) : (
+                  <span className={css['summary-value-semi']}>Card (Stripe)</span>
+                )}
+              </div>
+
               {pi?.tx_hash && (
-                <div className={css['detail-row']}>
-                  <span className={css['detail-label']}>Transaction</span>
+                <div className={css['summary-row']}>
+                  <span className={css['summary-label']}>Transaction</span>
                   <a
                     href={`${explorerBase}/tx/${pi.tx_hash}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={css['detail-link']}
+                    className={css['tx-link']}
                   >
                     {pi.tx_hash.slice(0, 10)}...{pi.tx_hash.slice(-8)}
                   </a>
                 </div>
               )}
-              <div className={css['detail-row']}>
-                <span className={css['detail-label']}>Total</span>
-                <span className={css['detail-value-bold']}>{pi?.amount || `$${order.total}`}</span>
+
+              <div className={css['summary-row']}>
+                <span className={css['summary-label']}>Total</span>
+                {isCrypto && cryptoAmount ? (
+                  <span className={css['summary-value-semi']}>
+                    {cryptoAmount} {tokenSymbol} ({totalUsd})
+                  </span>
+                ) : (
+                  <span className={css['summary-value-semi']}>{totalUsd}</span>
+                )}
               </div>
             </div>
-          </div>
 
-          {/* Tickets */}
-          {tickets.length > 0 && (
-            <div className={css['section']}>
-              <h3 className={css['section-title']}>Tickets</h3>
-              <div className={css['details-card']}>
-                {tickets.map((ticket, i) => (
-                  <div key={i} className={css['item-row']}>
-                    <div className={css['item-info']}>
-                      <span className={css['item-name']}>{ticket.name}</span>
-                      <span className={css['item-qty']}>x{ticket.quantity}</span>
-                    </div>
-                    <span className={css['item-price']}>${(parseFloat(ticket.price) * ticket.quantity).toFixed(2)}</span>
-                  </div>
-                ))}
+            <hr className={css['order-divider']} />
+
+            {/* Save ticket */}
+            <div className={css['save-section']}>
+              <h3 className={css['summary-heading']}>Save Ticket</h3>
+              <div className={css['save-buttons']}>
+                {passbookUrl && (
+                  <a
+                    href={passbookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['wallet-badge']}
+                  >
+                    <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
+                  </a>
+                )}
+                {passbookUrl && (
+                  <a
+                    href={passbookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['wallet-badge']}
+                  >
+                    <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
+                  </a>
+                )}
+                {pdfUrl && (
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['download-btn']}
+                  >
+                    <Download size={24} />
+                    <strong>Download </strong>
+                    <span>(PDF)</span>
+                  </a>
+                )}
               </div>
             </div>
-          )}
-
-          {/* Attendees */}
-          {order.positions.some(p => p.attendee_name || p.attendee_email) && (
-            <div className={css['section']}>
-              <h3 className={css['section-title']}>Attendees</h3>
-              <div className={css['details-card']}>
-                {order.positions.map((pos, i) => (
-                  <div key={pos.id} className={css['detail-row']}>
-                    <span className={css['detail-label']}>{pos.itemName} #{i + 1}</span>
-                    <span className={css['detail-value']}>
-                      {pos.attendee_name || pos.attendee_email || 'N/A'}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Add-ons */}
-          {addons.length > 0 && (
-            <div className={css['section']}>
-              <h3 className={css['section-title']}>Add-ons</h3>
-              <div className={css['details-card']}>
-                {addons.map((addon, i) => (
-                  <div key={i} className={css['item-row']}>
-                    <div className={css['item-info']}>
-                      <span className={css['item-name']}>{addon.name}</span>
-                      {addon.quantity > 1 && <span className={css['item-qty']}>x{addon.quantity}</span>}
-                    </div>
-                    <span className={css['item-price']}>
-                      {parseFloat(addon.price) === 0 ? 'FREE' : `$${(parseFloat(addon.price) * addon.quantity).toFixed(2)}`}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Actions */}
-          <div className={css['actions']}>
-            {order.url && (
-              <a
-                href={order.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={css['btn-primary']}
-              >
-                View Your Ticket
-              </a>
-            )}
-            <Link to="/tickets/store" className={css['btn-secondary']}>
-              Back to Store
-            </Link>
           </div>
         </div>
       </div>

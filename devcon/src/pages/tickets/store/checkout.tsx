@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2 } from 'lucide-react'
+import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -1482,6 +1482,7 @@ function CheckoutContent() {
                           const hasVariations = item.variations.length > 0
                           return (
                             <div key={item.id} className={css['swag-card']}>
+                              <div className={css['swag-image']} />
                               <div className={css['swag-info']}>
                                 <h4>{item.name}</h4>
                                 {item.description && <p className={css['addon-description']}>{item.description}</p>}
@@ -1515,7 +1516,7 @@ function CheckoutContent() {
                                       onClick={() => setAddonQuantity(item.id, qty - 1)}
                                       disabled={qty <= 0}
                                     >
-                                      &minus;
+                                      <Minus size={16} />
                                     </button>
                                     <span className={css['addon-qty-value']}>{qty}</span>
                                     <button
@@ -1524,7 +1525,7 @@ function CheckoutContent() {
                                       onClick={() => setAddonQuantity(item.id, qty + 1)}
                                       disabled={qty >= category.maxCount}
                                     >
-                                      +
+                                      <Plus size={16} />
                                     </button>
                                   </div>
                                 ) : (
