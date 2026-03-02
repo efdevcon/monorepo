@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { SelfAppBuilder, getUniversalLink } from '@selfxyz/qrcode'
 import type { SelfApp } from '@selfxyz/qrcode'
+import { Copy, ArrowRight } from 'lucide-react'
 import css from './VerificationModal.module.scss'
 
 const SelfQRcodeWrapper = dynamic(() => import('@selfxyz/qrcode').then((mod) => mod.SelfQRcodeWrapper), {
@@ -216,44 +217,35 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
             <h2 id="self-verification-title" className={css['success-title']}>
               Proof successfully submitted!
             </h2>
-            <p className={css['success-intro']}>
-              Your identity was successfully verified via Self. Your discount code is unique to your identity and can be
-              found below.
-            </p>
-            <p className={css['success-note']}>
-              <strong>Note:</strong> This code must be entered at checkout to purchase your discount Devcon ticket.
-            </p>
+            <div className={css['success-text-block']}>
+              <p className={css['success-intro']}>
+                Your Self proof was successfully generated and submitted. Your discount code is unique to your identity
+                and can be found below.
+              </p>
+              <p className={css['success-note']}>
+                <strong>Note:</strong> This code must be entered at checkout to purchase your discounted Devcon ticket.
+              </p>
+            </div>
+            <hr className={css['self-divider']} aria-hidden="true" />
             <div className={css['voucher-card']}>
-              <p className={css['voucher-card-label']}>YOUR DISCOUNT CODE</p>
-              <div className={css['voucher-code-row']}>
-                <span className={css['voucher-code']}>{voucher}</span>
-                <button
-                  type="button"
-                  className={css['voucher-copy']}
-                  onClick={handleCopyCode}
-                  aria-label={copied ? 'Copied' : 'Copy code'}
-                  title={copied ? 'Copied' : 'Copy to clipboard'}
-                >
-                  {copied ? (
-                    <span className={css['voucher-copy-text']}>Copied</span>
-                  ) : (
-                    <svg
-                      className={css['voucher-copy-icon']}
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden
-                    >
-                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                    </svg>
-                  )}
-                </button>
+              <div className={css['voucher-card-inner']}>
+                <p className={css['voucher-card-label']}>YOUR DISCOUNT CODE</p>
+                <div className={css['voucher-code-row']}>
+                  <span className={css['voucher-code']}>{voucher}</span>
+                  <button
+                    type="button"
+                    className={css['voucher-copy']}
+                    onClick={handleCopyCode}
+                    aria-label={copied ? 'Copied' : 'Copy code'}
+                    title={copied ? 'Copied' : 'Copy to clipboard'}
+                  >
+                    {copied ? (
+                      <span className={css['voucher-copy-text']}>Copied</span>
+                    ) : (
+                      <Copy size={20} aria-hidden />
+                    )}
+                  </button>
+                </div>
               </div>
               <a
                 href={
@@ -264,26 +256,10 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 className={css['voucher-cta']}
               >
                 Go to Ticket Store
-                <svg
-                  className={css['voucher-cta-icon']}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                <ArrowRight size={20} aria-hidden />
               </a>
             </div>
-            <button type="button" className={css['reset-btn']} onClick={handleReset}>
-              Test another QR code
-            </button>
-            <p className={css['privacy']}>No personal data is shared — only a zero-knowledge proof!</p>
+            <p className={css['privacy']}>No personal data is shared!</p>
           </div>
         ) : (
           <div className={css['self-content']}>
@@ -327,7 +303,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   <li>Tap the button below to open the Self app and share your proof</li>
                 ) : (
                   <li>
-                    <strong>Scan the QR code below</strong> with the Self app to share your proof
+                    <span className={css['self-steps-highlight']}>Scan the QR code below</span> with the Self app to share your proof
                   </li>
                 )}
               </ol>
@@ -451,6 +427,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
             )}
 
             <p className={css['self-privacy']}>No personal data is shared!</p>
+
           </div>
         )}
       </div>

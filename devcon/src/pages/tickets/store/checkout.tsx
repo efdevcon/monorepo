@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Tag, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2 } from 'lucide-react'
+import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2 } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -255,12 +255,12 @@ const FAQ_ITEMS = [
     a: 'Visa invitation letters will be available for ticket holders closer to the event date. Details will be shared via email.',
   },
   {
-    q: 'Can I purchase tickets with crypto?',
-    a: 'Yes! We accept crypto payments with a 3% discount. You can pay using all major wallets and tokens.',
-  },
-  {
     q: 'When will I get my ticket?',
     a: 'Your ticket will be sent to the email address provided during checkout shortly after purchase.',
+  },
+  {
+    q: 'Can I purchase tickets with crypto?',
+    a: 'Yes! We accept crypto payments with a 3% discount. You can pay using all major wallets and tokens.',
   },
   {
     q: 'How can I cancel my order?',
@@ -326,6 +326,7 @@ function CheckoutContent() {
   const [confirmEmail, setConfirmEmail] = useState('')
   const [newsletter, setNewsletter] = useState(false)
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({})
+  const [showAttendeeErrors, setShowAttendeeErrors] = useState(false)
   // ── Payment flow state ──
   const [purchaseLoading, setPurchaseLoading] = useState(false)
   const [purchaseError, setPurchaseError] = useState<string | null>(null)
@@ -359,7 +360,6 @@ function CheckoutContent() {
   } | null>(null)
   const [voucherError, setVoucherError] = useState<string | null>(null)
   const [voucherLoading, setVoucherLoading] = useState(false)
-  const [showDiscountInput, setShowDiscountInput] = useState(false)
   const [mobileOrderOpen, setMobileOrderOpen] = useState(false)
   const [mobileInlineSummaryOpen, setMobileInlineSummaryOpen] = useState(false)
   const voucherValidationRef = useRef(0)
@@ -817,6 +817,31 @@ function CheckoutContent() {
       const next = current.includes(optionId) ? current.filter(v => v !== optionId) : [...current, optionId]
       return { ...prev, [questionId]: next }
     })
+  }
+
+  const isFieldEmpty = (questionId: number) => {
+    const val = answers[questionId]
+    if (val === undefined || val === null) return true
+    if (Array.isArray(val)) return val.length === 0
+    return typeof val === 'string' && val.trim() === ''
+  }
+
+  const getFieldErrorMessage = (q: { type: string; identifier?: string }) => {
+    if (q.type === 'CC') return 'Please select a nationality.'
+    if (q.type === 'C') return 'Please select a role.'
+    if (q.type === 'B') return 'Please select a response.'
+    if (q.type === 'M') return 'Please select at least one option.'
+    return 'This field is required.'
+  }
+
+  const handleAttendeContinue = () => {
+    const hasErrors = applicableQuestions.some(q => q.required && isFieldEmpty(q.id))
+    if (hasErrors) {
+      setShowAttendeeErrors(true)
+      return
+    }
+    setShowAttendeeErrors(false)
+    goToNextSection('attendee')
   }
 
   // ── Purchase flow ──
@@ -1434,11 +1459,11 @@ function CheckoutContent() {
             <div className={css['section-card']}>
               <button
                 type="button"
-                className={css['section-header']}
+                className={`${css['section-header']} ${openSection !== 'swag' ? css['section-header-collapsed'] : ''}`}
                 onClick={() => toggleSection('swag')}
                 aria-expanded={openSection === 'swag'}
               >
-                <span>Add-ons</span>
+                <span>Swag &amp; Add-ons</span>
                 {openSection === 'swag' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
               </button>
               {openSection === 'swag' && (
@@ -1536,7 +1561,7 @@ function CheckoutContent() {
           <div className={css['section-card']}>
             <button
               type="button"
-              className={css['section-header']}
+              className={`${css['section-header']} ${openSection !== 'contact' ? css['section-header-collapsed'] : ''}`}
               onClick={() => toggleSection('contact')}
               aria-expanded={openSection === 'contact'}
             >
@@ -1627,7 +1652,7 @@ function CheckoutContent() {
           <div className={css['section-card']}>
             <button
               type="button"
-              className={css['section-header']}
+              className={`${css['section-header']} ${openSection !== 'attendee' ? css['section-header-collapsed'] : ''}`}
               onClick={() => toggleSection('attendee')}
               aria-expanded={openSection === 'attendee'}
             >
@@ -1638,6 +1663,7 @@ function CheckoutContent() {
               <div className={css['section-body']}>
                 {applicableQuestions.map(q => {
                   const isGoals = q.identifier === 'devcon-goals'
+                  const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
 
                   return (
                     <div key={q.id} className={css['field']}>
@@ -1657,7 +1683,7 @@ function CheckoutContent() {
                           value={(answers[q.id] as string) || ''}
                           onValueChange={v => updateAnswer(q.id, v)}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
                             <SelectValue placeholder="Select a country" />
                           </SelectTrigger>
                           <SelectContent>
@@ -1676,7 +1702,7 @@ function CheckoutContent() {
                           value={(answers[q.id] as string) || ''}
                           onValueChange={v => updateAnswer(q.id, v)}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
                             <SelectValue placeholder="Select a role" />
                           </SelectTrigger>
                           <SelectContent>
@@ -1758,6 +1784,7 @@ function CheckoutContent() {
                       {q.type === 'S' && (
                         <Input
                           type="text"
+                          className={hasError ? 'border-[#ef4444] shadow-none' : ''}
                           value={(answers[q.id] as string) || ''}
                           onChange={e => updateAnswer(q.id, e.target.value)}
                         />
@@ -1765,6 +1792,7 @@ function CheckoutContent() {
 
                       {q.type === 'T' && (
                         <Textarea
+                          className={hasError ? 'border-[#ef4444] shadow-none' : ''}
                           value={(answers[q.id] as string) || ''}
                           onChange={e => updateAnswer(q.id, e.target.value)}
                         />
@@ -1773,15 +1801,20 @@ function CheckoutContent() {
                       {q.type === 'N' && (
                         <Input
                           type="number"
+                          className={hasError ? 'border-[#ef4444] shadow-none' : ''}
                           value={(answers[q.id] as string) || ''}
                           onChange={e => updateAnswer(q.id, e.target.value)}
                         />
+                      )}
+
+                      {hasError && (
+                        <p className={css['field-error']}>{getFieldErrorMessage(q)}</p>
                       )}
                     </div>
                   )
                 })}
 
-                <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('attendee')}>
+                <button type="button" className={css['btn-continue']} onClick={handleAttendeContinue}>
                   Continue
                 </button>
               </div>
@@ -1792,7 +1825,7 @@ function CheckoutContent() {
           <div className={css['section-card']}>
             <button
               type="button"
-              className={css['section-header']}
+              className={`${css['section-header']} ${openSection !== 'payment' ? css['section-header-collapsed'] : ''}`}
               onClick={() => toggleSection('payment')}
               aria-expanded={openSection === 'payment'}
             >
@@ -2136,13 +2169,12 @@ function CheckoutContent() {
                             setVoucherInput('')
                             setVoucherData(null)
                             setVoucherError(null)
-                            setShowDiscountInput(false)
                           }}
                         >
                           Remove
                         </button>
                       </div>
-                    ) : showDiscountInput ? (
+                    ) : (
                       <>
                         <div className={css['discount-expand']}>
                           <input
@@ -2169,15 +2201,6 @@ function CheckoutContent() {
                           <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
                         )}
                       </>
-                    ) : (
-                      <button
-                        type="button"
-                        className={css['discount-add-btn']}
-                        onClick={() => setShowDiscountInput(true)}
-                      >
-                        <Tag size={16} />
-                        Add Discount
-                      </button>
                     )}
                   </div>
                 </div>
@@ -2339,11 +2362,11 @@ function CheckoutContent() {
           <div className={css['section-card']}>
             <button
               type="button"
-              className={css['section-header']}
+              className={`${css['section-header']} ${openSection !== 'faq' ? css['section-header-collapsed'] : ''}`}
               onClick={() => toggleSection('faq')}
               aria-expanded={openSection === 'faq'}
             >
-              <span>FAQ</span>
+              <span>Frequently asked questions</span>
               {openSection === 'faq' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
             </button>
             {openSection === 'faq' && (
@@ -2371,6 +2394,11 @@ function CheckoutContent() {
         <aside className={css['panel']}>
           <div className={css['panel-card']}>
             <div className={css['panel-banner']}>
+              <img
+                src="/assets/images/dc8-order-summary-bg.png"
+                alt=""
+                className={css['panel-banner-img']}
+              />
               <span className={css['panel-banner-text']}>Devcon India</span>
             </div>
             <div className={css['panel-content']}>
@@ -2447,13 +2475,12 @@ function CheckoutContent() {
                         setVoucherInput('')
                         setVoucherData(null)
                         setVoucherError(null)
-                        setShowDiscountInput(false)
                       }}
                     >
                       Remove
                     </button>
                   </div>
-                ) : showDiscountInput ? (
+                ) : (
                   <>
                     <div className={css['discount-expand']}>
                       <input
@@ -2466,7 +2493,6 @@ function CheckoutContent() {
                           setVoucherError(null)
                         }}
                         disabled={voucherLoading}
-                        autoFocus
                       />
                       <button
                         type="button"
@@ -2481,15 +2507,6 @@ function CheckoutContent() {
                       <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
                     )}
                   </>
-                ) : (
-                  <button
-                    type="button"
-                    className={css['discount-add-btn']}
-                    onClick={() => setShowDiscountInput(true)}
-                  >
-                    <Tag size={16} />
-                    Add Discount
-                  </button>
                 )}
               </div>
               <div className={css['summary-lines']}>
