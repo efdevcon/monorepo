@@ -1,5 +1,13 @@
 @use 'assets/css/partials/index' as *;
 
+@font-face {
+  font-family: "Chloe";
+  src: url("/fonts/Chloe-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .font-primary {
   @include fonts-primary;
 }
@@ -10,6 +18,10 @@
 
 [data-cms-header] {
   @include fonts-secondary;
+}
+
+.font-header {
+  font-family: "Chloe";
 }
 
 // Headers
