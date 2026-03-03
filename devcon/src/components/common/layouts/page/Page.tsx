@@ -10,9 +10,10 @@ type LayoutProps = {
     [key: string]: any
   }
   hideFooter?: boolean
+  withHero?: boolean
 }
 
-export default function PageLayout({ children, theme, style, hideFooter }: LayoutProps) {
+export default function PageLayout({ children, theme, style, hideFooter, withHero = false }: LayoutProps) {
   let className = ''
 
   if (theme) className += ` ${theme}`
@@ -20,7 +21,7 @@ export default function PageLayout({ children, theme, style, hideFooter }: Layou
 
   return (
     <div className={className} style={style}>
-      <Header withStrip={true} withHero={false} />
+      <Header withStrip={true} withHero={withHero} />
 
       {children}
 

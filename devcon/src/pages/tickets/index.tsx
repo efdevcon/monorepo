@@ -3,19 +3,21 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
+import { Ticket, Shirt, Coffee, ArrowRight, ChevronDown, ChevronRight } from 'lucide-react'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
-import DevconLogo from 'assets/images/dc-8/dc8-logo.png'
 import themes from '../themes.module.scss'
-import HeroBackground from 'assets/images/pages/hero-bgs/ticketing.jpeg'
+import HeroBackground from 'components/common/dc-8/hero/images/dc8-bg.png'
+import EarlyBirdTicket from 'assets/images/dc-8/tickets/early-bird-hd.png'
 import css from './tickets-landing.module.scss'
+import cn from 'classnames'
 
 const NAV_LINKS = [
-  { title: 'Early Bird', to: '#early-bird' },
   { title: 'Overview', to: '#overview' },
   { title: 'General Admission', to: '#general-admission' },
   { title: 'Discounts', to: '#discounts' },
+  { title: 'Applications', to: '#applications' },
   { title: 'FAQ', to: '#faq' },
 ].map(link => ({ ...link, title: link.title.toUpperCase() }))
 
@@ -26,42 +28,44 @@ const OVERVIEW_CARDS = [
     subtitle: 'GENERAL ADMISSION',
     price: null,
     priceLabel: 'Coming soon',
-    status: 'OPENS 02/04',
+    status: 'OPENS 06/04',
   },
   {
     number: '02',
-    title: 'Self-claiming',
-    subtitle: 'DISCOUNTS',
-    price: '$149',
-    originalPrice: '$249',
+    title: 'Community',
+    subtitle: 'SELF-CLAIMING DISCOUNTS',
+    price: '$99',
     priceLabel: null,
     status: 'AVAILABLE NOW',
   },
   {
     number: '03',
     title: 'Applications',
-    subtitle: 'DISCOUNTS',
+    subtitle: 'REVIEW-BASED DISCOUNTS',
     price: null,
     priceLabel: 'Coming soon',
-    status: 'TBD',
+    status: 'OPENS 06/04',
   },
 ]
 
 const WAVES = [
-  { name: 'Global Early Bird', price: '$249', date: 'Opens 2 April', live: true },
-  { name: 'Waves 1-5', price: 'TBD', date: 'TBD', live: false },
-  { name: 'Waves 5-9', price: 'TBD', date: 'TBD', live: false },
-  { name: 'Waves 9-13', price: 'TBD', date: 'TBD', live: false },
+  { name: 'Global Early Bird', price: '$299', date: 'Opens 6 Apr' },
+  { name: 'Waves 1-4', price: 'TBD', date: 'TBD' },
+  { name: 'Waves 5-8', price: 'TBD', date: 'TBD' },
+  { name: 'Waves 9-10', price: 'TBD', date: 'TBD' },
 ]
 
-const SELF_CLAIMING = [
-  { name: 'Local Early Bird', detail: 'via AnonAadhaar', price: '$149', date: 'Ends 31 March', live: true },
-  { name: 'Locals', detail: null, price: '$249', date: 'Opens 2 April', live: true },
-  { name: 'Local Builders', detail: null, price: '$149', date: 'Opens 2 April', live: true },
-  { name: 'Past attendee POAPs', detail: null, price: null, date: 'Opens 1 May', live: false },
-  { name: 'Open-source contributors', detail: null, price: null, date: 'Opens 1 May', live: false },
-  { name: 'DAO / governance participants', detail: null, price: null, date: 'Opens 1 May', live: false },
-  { name: 'Core Devs', detail: null, price: null, date: 'Opens 1 May', live: false },
+const COMMUNITY_ROWS = [
+  { name: 'Local Early Bird', detail: 'VIA SELF', price: '$99', date: 'Ends 15 Mar', live: true, bold: true },
+  { name: 'Locals', detail: null, price: '$149', date: 'Opens 6 Apr', live: false, bold: false },
+  { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
+  { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
+  { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
+]
+
+const APPLICATION_ROWS = [
+  { name: 'Student Discount', price: '$25', date: 'Opens 6 Apr' },
+  { name: 'Builder Discount', price: 'from $299', date: 'Opens 4 May' },
 ]
 
 const FAQ_ITEMS = [
@@ -70,28 +74,32 @@ const FAQ_ITEMS = [
     a: 'If your child is between the ages of 5-17, they will need a Youth ticket, which can be purchased at any time at tickets.devcon.org. Children under the age of 5 do not need a ticket. A Youth Ticket will not be valid for anyone 18+.',
   },
   {
-    q: 'If I buy a ticket, and then I am accepted for a discount after having bought a full-priced ticket, can I get a refund of the difference?',
-    a: 'If I buy a ticket, and then I am accepted to Speak, can I get a refund for my original ticket I purchased?',
-  },
-  {
-    q: 'If I am accepted for a discount after buying a full-priced ticket, can I get a refund of the difference?',
-    a: 'Please contact the ticketing team for refund eligibility.',
-  },
-  {
-    q: 'I need a Visa Invitation Letter. How can I obtain one?',
-    a: 'Visa invitation letters are available after ticket purchase. Check your confirmation email for details.',
-  },
-  {
-    q: 'When will I get my ticket?',
-    a: 'Tickets are delivered electronically after purchase. You will receive a confirmation email with your ticket.',
-  },
-  {
     q: 'When will General ticket sales start?',
-    a: 'General admission waves will be announced. Global Early Bird launches 2 April.',
+    a: 'General admission waves will be announced. Global Early Bird launches 6 April.',
   },
   {
     q: 'Will there be opportunities to obtain discounted tickets?',
     a: 'Yes. Self-claiming discounts for Indian locals are available now. Additional discount categories open throughout 2026.',
+  },
+  {
+    q: 'If I buy a ticket, and then I am accepted to Speak, can I get a refund for the original ticket I purchased?',
+    a: 'Please contact the ticketing team for refund eligibility.',
+  },
+  {
+    q: 'If I am accepted for a discount after buying a full-priced ticket, can I get refund of the difference?',
+    a: 'Please contact the ticketing team for refund eligibility.',
+  },
+  {
+    q: 'What if I only need to cancel some tickets on an order with multiple?',
+    a: 'Partial cancellations are possible. Please contact the ticketing team.',
+  },
+  {
+    q: 'I need a Visa Invitation Letter. How can I obtain one?',
+    a: 'Visa invitation letters are available after ticket purchase. Check your confirmation email for details on how to request one.',
+  },
+  {
+    q: 'When will I get my ticket?',
+    a: 'Tickets are delivered electronically after purchase. You will receive a confirmation email with your ticket details.',
   },
   {
     q: 'Can I purchase tickets with crypto?',
@@ -102,172 +110,136 @@ const FAQ_ITEMS = [
     a: 'Please contact the ticketing team for cancellation and refund requests.',
   },
   {
-    q: 'What if I only want to cancel some tickets as an order with multiple?',
-    a: 'Partial cancellations are possible. Please contact the ticketing team.',
-  },
-  {
-    q: 'Tickets are sold out - How can I attend?',
+    q: 'Tickets are sold out — how can I attend?',
     a: 'Join the waitlist and follow our social channels for updates on additional ticket releases.',
   },
+  {
+    q: 'Can I transfer my ticket to someone else?',
+    a: 'Discounted tickets are non-transferable. General admission tickets may be transferable — check your ticket terms for details.',
+  },
 ]
 
-const INCLUDED_ITEMS = [
-  ['Full conference access', 'Event swag bag', 'Coffee, tea, lunch & snacks'],
-  ['Full conference access', 'Event swag bag', 'Coffee, tea, lunch & snacks'],
-]
-
-function ArrowRightIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  )
-}
-
-function ChevronDownIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  )
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M9 18l6-6-6-6" />
-    </svg>
-  )
-}
+const FAQ_INITIAL_COUNT = 6
 
 export default function TicketsPage() {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  const [showAllFaq, setShowAllFaq] = useState(false)
+  const visibleFaq = showAllFaq ? FAQ_ITEMS : FAQ_ITEMS.slice(0, FAQ_INITIAL_COUNT)
 
   return (
-    <Page theme={themes['tickets']}>
+    <Page theme={themes['tickets']} withHero>
       <PageHero
+        className={`${css['hero-no-side-gradient']} !mb-0`}
+        titleClassName={css['hero-title']}
         heroBackground={HeroBackground}
-        path={[{ text: <span className="bold">Event</span> }, { text: 'Tickets' }]}
+        path={[]}
         title="Tickets"
         navigation={NAV_LINKS}
       />
 
-      <div className={css['landing']}>
-        {/* Hero: Early Bird */}
-        <section id="early-bird" className={css['early-bird-section']}>
-          <div className={css['early-bird-content']}>
-            <h2>Local Early Bird tickets on sale!</h2>
-            <p className={css['early-bird-description']}>
-              Join thousands of builders, creators and thinkers gathering in Mumbai for the world&apos;s biggest Ethereum
-              conference, 3&ndash;6 November 2026. Secure your ticket early to be part of this pivotal moment in
-              Ethereum&apos;s journey.
-            </p>
-            <p className={css['whats-included']}>What&apos;s included</p>
-            <div className={css['included-list']}>
-              {INCLUDED_ITEMS.map((row, ri) => (
-                <div key={ri} className={css['included-row']}>
-                  {row.map((item, ci) => (
-                    <div key={ci} className={css['included-item']}>
-                      <span className={css['included-dot']} />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              ))}
+      <div className={cn(css['landing'], 'section')}>
+        {/* ── Hero Content ─────────────────────────────────────── */}
+        <section className={css['hero-content-section']}>
+          <div className={css['hero-left']}>
+            <div className={css['hero-text']}>
+              <h2 className={css['heading-2']}>Local Early Bird tickets on sale!</h2>
+              <p className={css['body-lg']}>
+                Join thousands of builders, creators, researchers, designers and thinkers 3&ndash;6 November 2026 in
+                Mumbai for the world&apos;s biggest Ethereum conference.
+              </p>
+              <p className={css['body']}>
+                Secure your ticket early to be part of this pivotal moment in Ethereum&apos;s journey.
+              </p>
             </div>
-            <div className={css['early-bird-ctas']}>
-              <Link to="/tickets/store" className={css['btn-primary-pill']}>
-                Get My ticket
-                <ArrowRightIcon />
+
+            <div className={css['included-section']}>
+              <p className={css['included-label']}>WHAT&apos;S INCLUDED</p>
+              <div className={css['included-items']}>
+                <div className={css['included-item']}>
+                  <Ticket size={24} strokeWidth={1.5} />
+                  <span>Full conference access</span>
+                </div>
+                <div className={css['included-item']}>
+                  <Shirt size={24} strokeWidth={1.5} />
+                  <span>Event swag</span>
+                </div>
+                <div className={css['included-item']}>
+                  <Coffee size={24} strokeWidth={1.5} />
+                  <span>Catering all week</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={css['cta-group']}>
+              <Link to="/tickets/store" className={css['btn-primary']}>
+                Get my tickets
+                <ArrowRight size={16} strokeWidth={2} />
               </Link>
-              <a href="#discounts" className={css['btn-secondary-pill']}>
+              <a href="#discounts" className={css['btn-secondary']}>
                 View future discounts
-                <ChevronDownIcon />
+                <ChevronDown size={16} strokeWidth={2} />
               </a>
             </div>
           </div>
-          <div className={css['ticket-stub']}>
-            <div className={css['ticket-stub-inner']}>
-              <div className={css['ticket-stub-left']}>
-                <div className={css['ticket-stub-logo']}>
-                  <Image src={DevconLogo} alt="Devcon" height={40} width={120} />
-                </div>
-                <div className={css['ticket-stub-title']}>Local Early Bird</div>
-                <div className={css['ticket-stub-subtitle']}>GENERAL ADMISSION TICKET</div>
-                <div className={css['ticket-stub-location']}>
-                  <div>
-                    <span className={css['ticket-label']}>LOCATION</span>
-                    <span className={css['ticket-value']}>Jio World Centre, Mumbai, India</span>
-                  </div>
-                  <div>
-                    <span className={css['ticket-label']}>DATES</span>
-                    <span className={css['ticket-value']}>3&ndash;6 NOV 2026</span>
-                  </div>
-                </div>
-              </div>
-              <div className={css['ticket-stub-divider']} />
-              <div className={css['ticket-stub-right']}>
-                <span className={css['ticket-price-label']}>PRICE</span>
-                <span className={css['ticket-price']}>$149</span>
-                <span className={css['ticket-price-original']}>$249</span>
-                <span className={css['ticket-savings']}>Save $100</span>
-                <span className={css['ticket-note']}>Ends 31 March</span>
-              </div>
-            </div>
+
+          <div className={css['ticket-image-wrapper']}>
+            <Image src={EarlyBirdTicket} alt="Local Early Bird Ticket" className={css['ticket-image']} />
           </div>
         </section>
 
-        {/* Overview */}
+        <hr className={css['divider']} />
+
+        {/* ── Overview ─────────────────────────────────────────── */}
         <section id="overview" className={css['overview-section']}>
-          <h2>Overview</h2>
-          <p className={css['overview-intro']}>
+          <h2 className={css['heading-2-center']}>Overview</h2>
+          <p className={css['body-center']}>
             Tickets to Devcon India will be distributed through three different methods:
           </p>
+
           <div className={css['overview-cards']}>
-            {OVERVIEW_CARDS.map((card) => (
+            {OVERVIEW_CARDS.map(card => (
               <div key={card.number} className={css['overview-card']}>
                 <span className={css['overview-card-number']}>{card.number}</span>
                 <div className={css['overview-card-content']}>
                   <div className={css['overview-card-left']}>
                     <div className={css['overview-card-title']}>{card.title}</div>
-                    <div className={css['overview-card-type']}>{card.subtitle}</div>
+                    <div className={css['overview-card-subtitle']}>{card.subtitle}</div>
                   </div>
                   <div className={css['overview-card-right']}>
-                    {card.price ? (
-                      <div className={css['overview-card-price-wrap']}>
-                        {card.originalPrice && (
-                          <span className={css['overview-card-price-original']}>{card.originalPrice}</span>
-                        )}
-                        <span className={css['overview-card-price']}>{card.price}</span>
-                      </div>
-                    ) : (
-                      <div className={css['overview-card-price']}>{card.priceLabel}</div>
-                    )}
+                    <div className={css['overview-card-price']}>{card.price || card.priceLabel}</div>
                     <div className={css['overview-card-status']}>{card.status}</div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className={css['faq-cta-wrap']}>
-            <a href="#faq" className={css['btn-secondary-pill']}>
-              Frequently asked questions
-              <ChevronDownIcon />
-            </a>
-          </div>
+
+          <a href="#faq" className={css['btn-secondary']}>
+            View FAQ
+            <ChevronDown size={16} strokeWidth={2} />
+          </a>
         </section>
 
-        {/* Sale Waves */}
-        <section id="general-admission" className={css['sale-waves-section']}>
-          <div>
-            <div className={css['section-tag']}>GENERAL ADMISSION</div>
-            <h2 className={css['section-heading']}>Sale waves</h2>
-            <p className={css['section-body']}>
-              General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early Bird
-              launch on <strong>2 April</strong>.
-            </p>
+        <hr className={css['divider']} />
+
+        {/* ── Sale Waves ───────────────────────────────────────── */}
+        <section id="general-admission" className={css['two-col-section']}>
+          <div className={css['section-left']}>
+            <div className={css['section-text']}>
+              <p className={css['section-tag']}>GENERAL ADMISSION</p>
+              <h2 className={css['heading-2']}>Sale waves</h2>
+              <p className={css['body-lg']}>
+                General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early Bird
+                launch on <strong>6 April</strong>.
+              </p>
+              <p className={css['body']}>
+                Sale waves are <strong>limited time windows</strong> to purchase a general admission Devcon India
+                ticket. Follow us on socials or subscribe to our newsletter to stay updated!
+              </p>
+            </div>
+
             <div className={css['social-row']}>
-              <a href="#" className={css['btn-secondary-pill']}>
+              <a href="#" className={css['btn-secondary']}>
                 Subscribe for updates
               </a>
               <div className={css['social-icons']}>
@@ -275,7 +247,7 @@ export default function TicketsPage() {
                   href="https://x.com/EFDevcon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={css['social-icon']}
+                  className={css['social-icon-btn']}
                 >
                   <IconX />
                 </a>
@@ -283,7 +255,7 @@ export default function TicketsPage() {
                   href="https://www.instagram.com/efdevcon/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={css['social-icon']}
+                  className={css['social-icon-btn']}
                 >
                   <IconInstagram />
                 </a>
@@ -291,29 +263,26 @@ export default function TicketsPage() {
                   href="https://warpcast.com/devcon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={css['social-icon']}
+                  className={css['social-icon-btn']}
                 >
                   <IconFarcaster />
                 </a>
               </div>
             </div>
           </div>
-          <div className={css['waves-list']}>
-            <div className={css['waves-list-header']}>
-              <div>
-                <div className={css['waves-list-title']}>Wave structure</div>
-                <div className={css['waves-list-subtitle']}>GENERAL ADMISSION</div>
-              </div>
-              <span className={css['live-badge']}>LIVE</span>
+
+          <div className={css['ticket-type-card']}>
+            <div className={css['ticket-type-header']}>
+              <span className={css['ticket-type-title']}>Sale waves</span>
+              <span className={css['ticket-type-status']}>OPENS 6 APRIL</span>
             </div>
-            <div className={css['table-body']}>
-              {WAVES.map((row) => (
-                <div key={row.name} className={css['table-row']}>
-                  <span className={css['table-name']}>{row.name}</span>
-                  <div className={css['table-meta']}>
-                    {row.live && <span className={css['live-badge-sm']}>LIVE</span>}
-                    <span className={css['table-price']}>{row.price}</span>
-                    <span className={css['table-date']}>{row.date}</span>
+            <div className={css['ticket-type-rows']}>
+              {WAVES.map(row => (
+                <div key={row.name} className={css['ticket-type-row']}>
+                  <span className={css['row-name']}>{row.name}</span>
+                  <div className={css['row-meta']}>
+                    <span className={css['row-price']}>{row.price}</span>
+                    <span className={css['row-date']}>{row.date}</span>
                   </div>
                 </div>
               ))}
@@ -321,39 +290,46 @@ export default function TicketsPage() {
           </div>
         </section>
 
-        {/* Self-Claiming */}
-        <section id="discounts" className={css['self-claiming-section']}>
-          <div>
-            <div className={css['section-tag']}>DISCOUNTS</div>
-            <h2 className={css['section-heading']}>Self-claiming</h2>
-            <p className={css['section-body']}>
-              Our early bird discounts for <strong>Indian locals</strong> are now live! Verify Indian residency via
-              AnonAadhaar to purchase.
-            </p>
-            <Link to="/tickets/store#discounts" className={css['btn-primary-pill']}>
+        <hr className={css['divider']} />
+
+        {/* ── Community (Self-Claiming Discounts) ──────────────── */}
+        <section id="discounts" className={css['two-col-section']}>
+          <div className={css['section-left']}>
+            <div className={css['section-text']}>
+              <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
+              <h2 className={css['heading-2']}>Community</h2>
+              <p className={css['body-lg']}>
+                Our early bird discounts for <strong>Indian locals</strong> are now live. Verify Indian residency via
+                Self to purchase.
+              </p>
+              <p className={css['body']}>
+                Community tickets are <strong>self-claimable</strong> &ndash; no application required, just verify your
+                eligibility and purchase directly. Tickets are <strong>non-transferable</strong> and{' '}
+                <strong>limited</strong>.
+              </p>
+            </div>
+            <Link to="/tickets/store#discounts" className={css['btn-primary']}>
               Check my eligibility
-              <ArrowRightIcon />
+              <ArrowRight size={16} strokeWidth={2} />
             </Link>
           </div>
-          <div className={css['self-claiming-list']}>
-            <div className={css['self-claiming-header']}>
-              <div>
-                <div className={css['self-claiming-title']}>Self-claiming</div>
-                <div className={css['self-claiming-subtitle']}>DISCOUNTS</div>
-              </div>
-              <span className={css['live-badge']}>LIVE</span>
+
+          <div className={css['ticket-type-card']}>
+            <div className={css['ticket-type-header']}>
+              <span className={css['ticket-type-title']}>Community</span>
+              <span className={css['ticket-type-status']}>AVAILABLE NOW</span>
             </div>
-            <div className={css['table-body']}>
-              {SELF_CLAIMING.map((row) => (
-                <div key={row.name} className={css['table-row']}>
-                  <div className={css['table-name-group']}>
-                    <span className={css['table-name']}>{row.name}</span>
-                    {row.detail && <span className={css['table-detail']}>{row.detail}</span>}
+            <div className={css['ticket-type-rows']}>
+              {COMMUNITY_ROWS.map(row => (
+                <div key={row.name} className={cn(css['ticket-type-row'], row.bold && css['row-bold'])}>
+                  <div className={css['row-name-group']}>
+                    <span className={css['row-name']}>{row.name}</span>
+                    {row.detail && <span className={css['row-detail']}>{row.detail}</span>}
                   </div>
-                  <div className={css['table-meta']}>
-                    {row.live && <span className={css['live-badge-sm']}>LIVE</span>}
-                    {row.price && <span className={css['table-price']}>{row.price}</span>}
-                    <span className={css['table-date']}>{row.date}</span>
+                  <div className={css['row-meta']}>
+                    {row.live && <span className={css['live-badge']}>LIVE</span>}
+                    {row.price && <span className={css['row-price']}>{row.price}</span>}
+                    <span className={css['row-date']}>{row.date}</span>
                   </div>
                 </div>
               ))}
@@ -361,30 +337,86 @@ export default function TicketsPage() {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section id="faq" className={css['faq-section']}>
-          <div className={css['faq-image']}>
-            <div className={css['faq-image-placeholder']} />
+        <hr className={css['divider']} />
+
+        {/* ── Applications (Review-Based Discounts) ────────────── */}
+        <section id="applications" className={css['two-col-section']}>
+          <div className={css['section-left']}>
+            <div className={css['section-text']}>
+              <p className={css['section-tag']}>REVIEW-BASED DISCOUNTS</p>
+              <h2 className={css['heading-2']}>Applications</h2>
+              <p className={css['body-lg']}>
+                Ticket support is intended to <strong>enable participation at Devcon</strong>, reward meaningful
+                contributions, and support initiatives with clear ecosystem impact.
+              </p>
+              <p className={css['body']}>
+                All ticket applications are <strong>curated and limited per round</strong>. Discounted prices will
+                increase over time. Applying earlier gives access to <strong>lower price tiers</strong>, subject to
+                availability and review.
+              </p>
+            </div>
+            <a href="#" className={css['btn-secondary']}>
+              Learn more
+            </a>
           </div>
-          <div className={css['faq-content']}>
-            <h2>FAQ</h2>
-            <div className={css['faq-list']}>
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className={css['faq-item']}>
-                  <button
-                    type="button"
-                    className={`${css['faq-question']} ${openFaqIndex === i ? css['open'] : ''}`}
-                    onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
-                    aria-expanded={openFaqIndex === i}
-                  >
-                    <span>{item.q}</span>
-                    <span className={css['faq-chevron']}>
-                      <ChevronRightIcon />
-                    </span>
-                  </button>
-                  {openFaqIndex === i && <p className={css['faq-answer']}>{item.a}</p>}
+
+          <div className={css['ticket-type-card']}>
+            <div className={css['ticket-type-header']}>
+              <span className={css['ticket-type-title']}>Applications</span>
+              <span className={css['ticket-type-status']}>OPENS 6 APRIL</span>
+            </div>
+            <div className={css['ticket-type-rows']}>
+              {APPLICATION_ROWS.map(row => (
+                <div key={row.name} className={css['ticket-type-row']}>
+                  <span className={css['row-name']}>{row.name}</span>
+                  <div className={css['row-meta']}>
+                    <span className={css['row-price']}>{row.price}</span>
+                    <span className={css['row-date']}>{row.date}</span>
+                  </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <hr className={css['divider']} />
+
+        {/* ── FAQ ──────────────────────────────────────────────── */}
+        <section id="faq" className={css['faq-section']}>
+          <div className={css['faq-image']}>{/* FAQ image placeholder — 605×340 */}</div>
+          <div className={css['faq-right']}>
+            <h2 className={css['heading-2']}>Frequently asked questions</h2>
+            <div className={css['faq-and-cta']}>
+              <div className={css['faq-accordion']}>
+                {visibleFaq.map((item, i) => (
+                  <div key={i} className={css['faq-item']}>
+                    <button
+                      type="button"
+                      className={cn(css['faq-trigger'], openFaqIndex === i && css['faq-trigger-open'])}
+                      onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
+                      aria-expanded={openFaqIndex === i}
+                    >
+                      <span>{item.q}</span>
+                      <ChevronRight size={16} strokeWidth={2} className={css['faq-chevron']} />
+                    </button>
+                    <div className={cn(css['faq-answer-wrap'], openFaqIndex === i && css['faq-answer-open'])}>
+                      <div className={css['faq-answer-inner']}>
+                        <p className={css['faq-answer']}>{item.a}</p>
+                      </div>
+                    </div>
+                    {i < visibleFaq.length - 1 && <div className={css['faq-border']} />}
+                  </div>
+                ))}
+              </div>
+              {!showAllFaq && (
+                <button
+                  type="button"
+                  className={css['btn-secondary']}
+                  onClick={() => setShowAllFaq(true)}
+                >
+                  View all <span className={css['view-all-count']}>({FAQ_ITEMS.length})</span>
+                </button>
+              )}
             </div>
           </div>
         </section>
