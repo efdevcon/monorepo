@@ -127,7 +127,7 @@ export default function TicketsPage() {
   const visibleFaq = showAllFaq ? FAQ_ITEMS : FAQ_ITEMS.slice(0, FAQ_INITIAL_COUNT)
 
   return (
-    <Page theme={themes['tickets']} withHero>
+    <Page theme={themes['tickets']} withHero darkFooter>
       <PageHero
         className={`${css['hero-no-side-gradient']} !mb-0`}
         titleClassName={css['hero-title']}
@@ -176,10 +176,10 @@ export default function TicketsPage() {
                   Get my tickets
                   <ArrowRight size={16} strokeWidth={2} />
                 </Link>
-                <a href="#discounts" className={css['btn-secondary']}>
+                <Link to="#discounts" className={css['btn-secondary']}>
                   View future discounts
                   <ChevronDown size={16} strokeWidth={2} />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -215,10 +215,10 @@ export default function TicketsPage() {
               ))}
             </div>
 
-            <a href="#faq" className={css['btn-secondary']}>
+            <Link to="#faq" className={css['btn-secondary']}>
               View FAQ
               <ChevronDown size={16} strokeWidth={2} />
-            </a>
+            </Link>
           </section>
 
           <hr className={css['divider']} />
@@ -240,7 +240,7 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['social-row']}>
-                <a href="#" className={css['btn-secondary']}>
+                <a href="https://paragraph.com/@efevents/subscribe" className={css['btn-secondary']}>
                   Subscribe for updates
                 </a>
                 <div className={css['social-icons']}>
@@ -261,7 +261,7 @@ export default function TicketsPage() {
                     <IconInstagram />
                   </a>
                   <a
-                    href="https://warpcast.com/devcon"
+                    href="https://farcaster.xyz/~/channel/devcon"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={css['social-icon-btn']}
@@ -356,9 +356,9 @@ export default function TicketsPage() {
                   availability and review.
                 </p>
               </div>
-              <a href="#" className={css['btn-secondary']}>
+              {/* <a href="/esp" className={css['btn-secondary']}>
                 Learn more
-              </a>
+              </a> */}
             </div>
 
             <div className={css['ticket-type-card']}>

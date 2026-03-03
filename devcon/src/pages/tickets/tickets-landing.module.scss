@@ -203,8 +203,9 @@
   align-items: flex-start;
   width: 100%;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -267,8 +268,9 @@
   flex-shrink: 0;
   width: 618px;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     width: 100%;
+    max-width: 618px;
   }
 }
 
@@ -294,10 +296,10 @@
 
 .overview-cards {
   display: flex;
-  gap: 24px;
+  gap: 12px;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoints-xl) {
     flex-direction: column;
   }
 }
@@ -306,7 +308,7 @@
   flex: 1;
   background: white;
   border-radius: 16px;
-  padding: 32px 24px;
+  padding: 16px 24px;
   position: relative;
   overflow: hidden;
 }
@@ -390,7 +392,7 @@
   align-items: flex-start;
   width: 100%;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     flex-direction: column;
     gap: 32px;
   }
@@ -399,11 +401,12 @@
 .section-left {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 24px;
   width: 640px;
   flex-shrink: 0;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     width: 100%;
   }
 }
@@ -428,7 +431,7 @@
 .social-row {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -441,8 +444,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  padding: 16px;
   border-radius: 360px;
   border: 1px solid #dddae2;
   background: rgba(255, 255, 255, 0.8);
@@ -473,7 +475,7 @@
     0px 2px 4px rgba(22, 11, 43, 0.08),
     0px 4px 16px rgba(22, 11, 43, 0.12);
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     width: 100%;
   }
 }
@@ -596,7 +598,7 @@
   align-items: flex-start;
   width: 100%;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     flex-direction: column;
     gap: 32px;
   }
@@ -613,7 +615,7 @@
   align-items: center;
   justify-content: center;
 
-  @media (max-width: $breakpoints-lg) {
+  @media (max-width: $breakpoints-xl) {
     width: 100%;
     height: auto;
     aspect-ratio: 605 / 340;
@@ -632,10 +634,10 @@
 
 .faq-image-text {
   position: relative;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 72px;
-  color: white;
+  font-family: 'Chloe', serif;
+  font-weight: 400;
+  font-size: clamp(60px, 20vw, 140px);
+  color: rgba(0, 0, 0, 0.8);
   mix-blend-mode: overlay;
   letter-spacing: -1px;
   user-select: none;
