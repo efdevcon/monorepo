@@ -235,6 +235,10 @@
     flex-direction: column;
     align-items: center;
   }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 32px;
+  }
 }
 
 .hero-left {
@@ -470,6 +474,10 @@
   @media (max-width: $breakpoints-xl) {
     width: 100%;
   }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 20px;
+  }
 }
 
 .section-text {
@@ -695,6 +703,10 @@
   @media (max-width: $breakpoints-xl) {
     flex-direction: column;
     gap: 32px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 24px;
   }
 }
 
