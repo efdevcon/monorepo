@@ -32,7 +32,7 @@ function App({ Component, pageProps }: any) {
       <RecoilRoot>
         <SEO />
         {TICKETING_ENV !== 'production' && (
-          <div style={{ position: 'fixed', bottom: 8, right: 8, background: '#f59e0b', color: '#000', padding: '4px 10px', fontSize: '12px', fontWeight: 600, borderRadius: 6, zIndex: 9999, pointerEvents: 'none', opacity: 0.85 }}>
+          <div style={{ position: 'fixed', bottom: 12, right: 12, background: '#f59e0b', color: '#000', padding: '8px 16px', fontSize: '16px', fontWeight: 700, borderRadius: 8, zIndex: 9999, pointerEvents: 'none', opacity: 0.9 }}>
             {new URL(TICKETING.pretix.baseUrl).hostname.split('.')[0]} pretix shop
           </div>
         )}
