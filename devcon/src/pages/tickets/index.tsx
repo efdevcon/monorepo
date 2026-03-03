@@ -138,7 +138,7 @@ export default function TicketsPage() {
       />
 
       <div className={cn(css['landing'], 'section')}>
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-8 md:gap-16">
           {/* ── Hero Content ─────────────────────────────────────── */}
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>

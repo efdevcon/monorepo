@@ -74,6 +74,10 @@
   // gap: 64px;
   padding: 64px 0px;
   background: linear-gradient(to bottom, #fbfafc 0%, #e5ebff 80%);
+
+  @media (max-width: $breakpoints-md) {
+    padding: 32px 0px;
+  }
 }
 
 /* ─── Divider ─────────────────────────────────────────────── */
@@ -95,6 +99,10 @@
   line-height: 1.2;
   letter-spacing: -0.5px;
   margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
 }
 
 .heading-2-center {
@@ -114,6 +122,10 @@
   strong {
     font-weight: 700;
   }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
 }
 
 .body {
@@ -126,6 +138,10 @@
 
   strong {
     font-weight: 700;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
   }
 }
 
@@ -140,6 +156,7 @@
 .btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   align-self: flex-start;
   gap: 8px;
   padding: 16px 32px;
@@ -162,11 +179,17 @@
   &:hover {
     opacity: 0.9;
   }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   align-self: flex-start;
   gap: 8px;
   padding: 16px 32px;
@@ -189,6 +212,11 @@
   &:hover {
     background: rgba(255, 255, 255, 1);
   }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
 }
 
 .view-all-count {
@@ -207,6 +235,10 @@
     flex-direction: column;
     align-items: center;
   }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 32px;
+  }
 }
 
 .hero-left {
@@ -215,6 +247,10 @@
   flex-direction: column;
   gap: 32px;
   min-width: 0;
+
+  @media (max-width: $breakpoints-md) {
+    gap: 24px;
+  }
 }
 
 .hero-text {
@@ -242,6 +278,11 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .included-item {
@@ -262,6 +303,10 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+  }
 }
 
 .ticket-image-wrapper {
@@ -291,6 +336,10 @@
 
   .btn-secondary {
     align-self: center;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 24px;
   }
 }
 
@@ -325,6 +374,10 @@
   letter-spacing: -0.5px;
   pointer-events: none;
   text-align: right;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 80px;
+  }
 }
 
 .overview-card-content {
@@ -348,6 +401,10 @@
   color: #160b2b;
   line-height: 1.44;
   letter-spacing: -0.5px;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
 }
 
 .overview-card-subtitle {
@@ -373,6 +430,10 @@
   letter-spacing: -0.5px;
   text-align: right;
   white-space: nowrap;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
 }
 
 .overview-card-status {
@@ -396,6 +457,10 @@
     flex-direction: column;
     gap: 32px;
   }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 24px;
+  }
 }
 
 .section-left {
@@ -408,6 +473,10 @@
 
   @media (max-width: $breakpoints-xl) {
     width: 100%;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 20px;
   }
 }
 
@@ -433,11 +502,20 @@
   gap: 16px;
   align-items: center;
   flex-wrap: wrap;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .social-icons {
   display: flex;
   gap: 8px;
+
+  @media (max-width: $breakpoints-md) {
+    justify-content: center;
+  }
 }
 
 .social-icon-btn {
@@ -518,6 +596,12 @@
   padding: 16px;
   background: #f2f1f4;
   border-radius: 8px;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
 .row-bold {
@@ -544,6 +628,10 @@
   color: #594d73;
   line-height: 1.5;
   min-width: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+  }
 }
 
 .row-detail {
@@ -559,6 +647,11 @@
   align-items: center;
   gap: 24px;
   flex-shrink: 0;
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .row-price {
@@ -567,6 +660,10 @@
   color: #594d73;
   line-height: 1.5;
   white-space: nowrap;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+  }
 }
 
 .row-date {
@@ -576,6 +673,11 @@
   line-height: 1.5;
   width: 136px;
   text-align: right;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+    width: auto;
+  }
 }
 
 .live-badge {
@@ -602,6 +704,10 @@
     flex-direction: column;
     gap: 32px;
   }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 24px;
+  }
 }
 
 .faq-image {
@@ -619,6 +725,11 @@
     width: 100%;
     height: auto;
     aspect-ratio: 605 / 340;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    height: 240px;
+    aspect-ratio: unset;
   }
 }
 
