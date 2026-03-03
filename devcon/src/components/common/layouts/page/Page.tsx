@@ -10,10 +10,11 @@ type LayoutProps = {
     [key: string]: any
   }
   hideFooter?: boolean
+  darkFooter?: boolean
   withHero?: boolean
 }
 
-export default function PageLayout({ children, theme, style, hideFooter, withHero = false }: LayoutProps) {
+export default function PageLayout({ children, theme, style, hideFooter, darkFooter, withHero = false }: LayoutProps) {
   let className = ''
 
   if (theme) className += ` ${theme}`
@@ -25,7 +26,7 @@ export default function PageLayout({ children, theme, style, hideFooter, withHer
 
       {children}
 
-      {!hideFooter && <Footer />}
+      {!hideFooter && <Footer dark={darkFooter} />}
     </div>
   )
 }

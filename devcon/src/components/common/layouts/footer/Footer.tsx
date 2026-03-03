@@ -18,6 +18,7 @@ import IconLens from 'assets/icons/lens.svg'
 import { Modal } from 'components/common/modal'
 // import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import LogoFooter from 'assets/images/dc-8/dc8-logo.png'
+import LogoFooterSvg from 'assets/images/dc-8/dc8-footer-logo.svg'
 import DC7Background from 'assets/images/dc-7/footer-bg.png'
 import { Button } from 'lib/components/button'
 import Image from 'next/image'
@@ -98,11 +99,15 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
         <div className={css['content']}>
           <div className={css['col-1']}>
             <Link to={`/${lang}/`} style={{ maxWidth: '225px', minWidth: '130px', display: 'block' }}>
-              <Image
-                src={LogoFooter}
-                alt="Devcon 7 Logo"
-                className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
-              />
+              {dark ? (
+                <LogoFooterSvg className="footer-logo w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]" />
+              ) : (
+                <Image
+                  src={LogoFooter}
+                  alt="Devcon 8 Logo"
+                  className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
+                />
+              )}
             </Link>
 
             <SocialMedia />
