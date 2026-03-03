@@ -24,9 +24,13 @@ const ENV_CONFIG = {
       scope: 'devcon-india-local-discount',
       staging: true,
     },
+    discount: {
+      collection: 'dev-local-discount',
+    },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
+    x402Agents: false,
   },
   production: {
     chainEnv: 'mainnet' as const,
@@ -49,9 +53,13 @@ const ENV_CONFIG = {
       scope: 'devcon-india-local-discount',
       staging: false,
     },
+    discount: {
+      collection: 'local-discount',
+    },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
+    x402Agents: false,
   },
 }
 

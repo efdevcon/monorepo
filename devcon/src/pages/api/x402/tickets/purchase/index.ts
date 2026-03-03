@@ -142,6 +142,9 @@ export async function purchaseHandler(
   // Works for both GET (awal) and POST (SDK) retries
   const paymentSigHeader = (req.headers['payment-signature'] ?? req.headers['PAYMENT-SIGNATURE']) as string | undefined
   if (paymentSigHeader) {
+    if (!TICKETING.x402Agents) {
+      return res.status(404).json({ success: false, error: 'x402 agent endpoints are disabled' })
+    }
     return handlePaymentSignatureRetry(req, res, paymentSigHeader)
   }
 
@@ -589,6 +592,24 @@ function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: 
 
   if (!body.tickets || !Array.isArray(body.tickets) || body.tickets.length === 0) {
     errors.push('At least one ticket is required')
+  } else {
+    for (const ticket of body.tickets) {
+      const q = ticket.quantity ?? 1
+      if (!Number.isInteger(q) || q < 1 || q > 10) {
+        errors.push('Ticket quantity must be an integer between 1 and 10')
+        break
+      }
+    }
+  }
+
+  if (body.addons && Array.isArray(body.addons)) {
+    for (const addon of body.addons) {
+      const q = addon.quantity ?? 1
+      if (!Number.isInteger(q) || q < 1 || q > 10) {
+        errors.push('Addon quantity must be an integer between 1 and 10')
+        break
+      }
+    }
   }
 
   if (!body.attendee || !body.attendee.name) {

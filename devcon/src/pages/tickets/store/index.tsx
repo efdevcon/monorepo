@@ -3,8 +3,9 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
 import themes from '../../themes.module.scss'
-import { AnonAadhaarProvider } from '@anon-aadhaar/react'
-import { VerificationModal } from 'components/domain/tickets/VerificationModal'
+// AnonAadhaar disabled — keeping code for now
+// import { AnonAadhaarProvider } from '@anon-aadhaar/react'
+// import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft, CalendarDays, MapPin } from 'lucide-react'
@@ -98,11 +99,6 @@ function ArrowRightIcon() {
 
 
 type StoreContentProps = {
-  useTestAadhaar: boolean
-  setUseTestAadhaar: (value: boolean) => void
-  setProviderResetKey: React.Dispatch<React.SetStateAction<number>>
-  verificationOpen: boolean
-  setVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
   selfVerificationOpen: boolean
   setSelfVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
   useSelfStaging: boolean
@@ -110,11 +106,6 @@ type StoreContentProps = {
 }
 
 function StoreContent({
-  useTestAadhaar,
-  setUseTestAadhaar,
-  setProviderResetKey,
-  verificationOpen,
-  setVerificationOpen,
   selfVerificationOpen,
   setSelfVerificationOpen,
   useSelfStaging,
@@ -543,14 +534,6 @@ function StoreContent({
         </div>
       </div>
 
-      <VerificationModal
-        isOpen={verificationOpen}
-        onClose={() => setVerificationOpen(false)}
-        useTestAadhaar={useTestAadhaar}
-        setUseTestAadhaar={setUseTestAadhaar}
-        onReset={() => setProviderResetKey(k => k + 1)}
-      />
-
       <SelfVerificationModal
         isOpen={selfVerificationOpen}
         onClose={() => setSelfVerificationOpen(false)}
@@ -563,31 +546,17 @@ function StoreContent({
 }
 
 export default function TicketsStorePage() {
-  const [useTestAadhaar, setUseTestAadhaar] = useState(false)
-  const [providerResetKey, setProviderResetKey] = useState(0)
-  const [verificationOpen, setVerificationOpen] = useState(false)
   const [selfVerificationOpen, setSelfVerificationOpen] = useState(false)
   const [useSelfStaging, setUseSelfStaging] = useState(TICKETING.self.staging)
 
   return (
     <Page theme={themes['tickets']} hideFooter>
-      <AnonAadhaarProvider
-        key={providerResetKey}
-        _useTestAadhaar={useTestAadhaar}
-        _appName="Devcon Tickets"
-      >
-        <StoreContent
-          useTestAadhaar={useTestAadhaar}
-          setUseTestAadhaar={setUseTestAadhaar}
-          setProviderResetKey={setProviderResetKey}
-          verificationOpen={verificationOpen}
-          setVerificationOpen={setVerificationOpen}
-          selfVerificationOpen={selfVerificationOpen}
-          setSelfVerificationOpen={setSelfVerificationOpen}
-          useSelfStaging={useSelfStaging}
-          setUseSelfStaging={setUseSelfStaging}
-        />
-      </AnonAadhaarProvider>
+      <StoreContent
+        selfVerificationOpen={selfVerificationOpen}
+        setSelfVerificationOpen={setSelfVerificationOpen}
+        useSelfStaging={useSelfStaging}
+        setUseSelfStaging={setUseSelfStaging}
+      />
     </Page>
   )
 }

@@ -26,6 +26,7 @@ import {
   getGaslessConfigsForChain,
 } from 'types/x402'
 import { addressesEqual } from 'utils/x402Validation'
+import { TICKETING } from 'config/ticketing'
 
 function normalizeAuth(a: EIP3009Authorization) {
   return {
@@ -42,6 +43,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SettleResponse>
 ) {
+  if (!TICKETING.x402Agents) {
+    return res.status(404).json({ success: false, transaction: '', network: '' as `${string}:${string}`, errorReason: 'x402 agent endpoints are disabled' as any })
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).setHeader('Allow', 'POST').end()
   }

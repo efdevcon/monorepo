@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
-import { validateDiscountCode, assignVoucher, claimDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
 import { TICKETING } from 'config/ticketing'
 
 const SELF_SCOPE = TICKETING.self.scope
@@ -175,7 +175,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Validate the discount code is unclaimed
+    // Check if this identity already has a voucher (one-voucher-per-identity)
+    const existingVoucher = await getAssignedVoucher(nullifier)
+    if (existingVoucher) {
+      voucherStore.set(verifiedUserId, existingVoucher.code)
+      setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+      return res.status(200).json({
+        status: 'success',
+        result: true,
+        credentialSubject: result.discloseOutput,
+      })
+    }
+
+    // Validate the discount code exists and is unclaimed
     const validCode = await validateDiscountCode(discountCode)
     if (!validCode) {
       const reason = 'Invalid or already used discount code'
@@ -188,19 +200,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Check if this Aadhaar identity already has a voucher (one-voucher-per-identity)
-    const existingVoucher = await getAssignedVoucher(nullifier)
-    if (existingVoucher) {
-      voucherStore.set(verifiedUserId, existingVoucher.code)
-      setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+    // Atomically claim the discount code BEFORE assigning a voucher (prevents race condition)
+    const claimed = await claimDiscountCode(discountCode, nullifier)
+    if (!claimed) {
+      const reason = 'Discount code was just claimed by another request'
+      storeError(verifiedUserId, reason)
       return res.status(200).json({
-        status: 'success',
-        result: true,
-        credentialSubject: result.discloseOutput,
+        status: 'error',
+        result: false,
+        error_code: 'INVALID_DISCOUNT_CODE',
+        reason,
       })
     }
 
-    // Assign a voucher from the same collection as the discount code
+    // Only assign a voucher after the discount code is successfully claimed
     const voucher = await assignVoucher(nullifier, validCode.collection)
     if (!voucher) {
       const reason = 'No vouchers available. Please try again later.'
@@ -213,8 +226,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Claim the discount code (link it to the voucher)
-    await claimDiscountCode(discountCode, nullifier, voucher.code)
+    // Link the voucher back to the discount code
+    await linkVoucherToDiscountCode(discountCode, voucher.code)
 
     // Cache in memory for the polling flow (uses session userId for frontend polling)
     voucherStore.set(verifiedUserId, voucher.code)

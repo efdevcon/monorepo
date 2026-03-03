@@ -1,7 +1,6 @@
 /**
  * x402 Tickets Status API - Check order status
  * GET /api/x402/tickets/status?paymentReference=xxx
- * GET /api/x402/tickets/status?orderCode=xxx
  *
  * Returns the current status of an order
  */
@@ -9,7 +8,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   getPendingOrder,
   getCompletedOrder,
-  getCompletedOrderByPretixCode,
 } from 'services/ticketStore'
 import { TICKETING } from 'config/ticketing'
 
@@ -48,92 +46,56 @@ export default async function handler(
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  const { paymentReference, orderCode } = req.query
+  const { paymentReference } = req.query
 
-  if (!paymentReference && !orderCode) {
+  if (!paymentReference || typeof paymentReference !== 'string') {
     return res.status(400).json({
       success: false,
-      error: 'Either paymentReference or orderCode query parameter is required',
+      error: 'paymentReference query parameter is required',
     })
   }
 
   try {
-    // Check by payment reference
-    if (paymentReference && typeof paymentReference === 'string') {
-      // Check completed orders first
-      const completed = await getCompletedOrder(paymentReference)
-      if (completed) {
-        return res.status(200).json({
-          success: true,
-          status: 'completed',
-          order: {
-            code: completed.pretixOrderCode,
-            ticketUrl: getTicketUrl(completed.pretixOrderCode),
-          },
-          payment: {
-            txHash: completed.txHash,
-            payer: completed.payer,
-            completedAt: completed.completedAt,
-          },
-        })
-      }
-
-      // Check pending orders
-      const pending = await getPendingOrder(paymentReference)
-      if (pending) {
-        return res.status(200).json({
-          success: true,
-          status: 'pending',
-          order: {
-            email: pending.metadata?.email,
-            total: pending.totalUsd,
-            expiresAt: pending.expiresAt,
-          },
-        })
-      }
-
-      // Check if reference existed but expired
-      // Note: In production with a database, we could track this better
+    // Check completed orders first
+    const completed = await getCompletedOrder(paymentReference)
+    if (completed) {
       return res.status(200).json({
         success: true,
-        status: 'not_found',
+        status: 'completed',
+        order: {
+          code: completed.pretixOrderCode,
+          ticketUrl: getTicketUrl(completed.pretixOrderCode),
+        },
+        payment: {
+          txHash: completed.txHash,
+          payer: completed.payer,
+          completedAt: completed.completedAt,
+        },
       })
     }
 
-    // Check by order code
-    if (orderCode && typeof orderCode === 'string') {
-      const completed = await getCompletedOrderByPretixCode(orderCode)
-      if (completed) {
-        return res.status(200).json({
-          success: true,
-          status: 'completed',
-          order: {
-            code: completed.pretixOrderCode,
-            ticketUrl: getTicketUrl(completed.pretixOrderCode),
-          },
-          payment: {
-            txHash: completed.txHash,
-            payer: completed.payer,
-            completedAt: completed.completedAt,
-          },
-        })
-      }
-
+    // Check pending orders
+    const pending = await getPendingOrder(paymentReference)
+    if (pending) {
       return res.status(200).json({
         success: true,
-        status: 'not_found',
+        status: 'pending',
+        order: {
+          total: pending.totalUsd,
+          expiresAt: pending.expiresAt,
+        },
       })
     }
 
-    return res.status(400).json({
-      success: false,
-      error: 'Invalid query parameters',
+    return res.status(200).json({
+      success: true,
+      status: 'not_found',
     })
   } catch (error) {
     console.error('Error checking status:', error)
     return res.status(500).json({
       success: false,
-      error: `Status check error: ${(error as Error).message}`,
+      error: 'Internal server error',
     })
   }
 }

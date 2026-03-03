@@ -53,6 +53,10 @@ async function verifyAnonAadhaarProof(proofPayload: ProofPayload): Promise<boole
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // AnonAadhaar verification is currently disabled
+  return res.status(404).json({ error: 'AnonAadhaar verification is not currently available' })
+
+  // eslint-disable-next-line no-unreachable
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST'])
     return res.status(405).end(`Method ${req.method} Not Allowed`)

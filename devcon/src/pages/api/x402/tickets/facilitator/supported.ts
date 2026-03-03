@@ -6,6 +6,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getRelayerAddress } from 'services/relayer'
 import { X402_VERSION, type SupportedResponse, getAllGaslessConfigs } from 'types/x402'
+import { TICKETING } from 'config/ticketing'
 
 const FACILITATOR_API_KEY = process.env.X402_FACILITATOR_API_KEY
 
@@ -13,6 +14,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SupportedResponse>
 ) {
+  if (!TICKETING.x402Agents) {
+    return res.status(404).json({ success: false, error: 'x402 agent endpoints are disabled' } as any)
+  }
+
   if (req.method !== 'GET') {
     return res.status(405).setHeader('Allow', 'GET').end()
   }

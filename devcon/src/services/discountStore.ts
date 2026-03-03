@@ -6,6 +6,7 @@
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { TICKETING } from 'config/ticketing'
 
 export interface DiscountCode {
   id: number
@@ -45,6 +46,7 @@ export async function validateDiscountCode(code: string): Promise<DiscountCode |
     .from('devcon8_discount_codes')
     .select('*')
     .eq('code', code)
+    .eq('collection', TICKETING.discount.collection)
     .maybeSingle()
   if (error) throw new Error(`discountStore validateDiscountCode: ${error.message}`)
   if (!data) return null
@@ -62,23 +64,38 @@ export async function validateDiscountCode(code: string): Promise<DiscountCode |
 /**
  * Claim a discount code atomically. Uses WHERE claimed_by IS NULL for race-condition safety.
  * Returns true if claimed, false if already claimed by someone else.
+ * Call this BEFORE assignVoucher to prevent race conditions.
  */
-export async function claimDiscountCode(code: string, claimedBy: string, voucherCode: string): Promise<boolean> {
+export async function claimDiscountCode(code: string, claimedBy: string, voucherCode?: string): Promise<boolean> {
   const supabase = getSupabase()
   const now = new Date().toISOString()
+  const update: Record<string, string> = {
+    claimed_by: claimedBy,
+    claimed_at: now,
+    updated_at: now,
+  }
+  if (voucherCode) update.voucher_code = voucherCode
   const { data, error } = await supabase
     .from('devcon8_discount_codes')
-    .update({
-      claimed_by: claimedBy,
-      claimed_at: now,
-      voucher_code: voucherCode,
-      updated_at: now,
-    })
+    .update(update)
     .eq('code', code)
+    .eq('collection', TICKETING.discount.collection)
     .is('claimed_by', null)
     .select('id')
   if (error) throw new Error(`discountStore claimDiscountCode: ${error.message}`)
   return (data?.length ?? 0) > 0
+}
+
+/**
+ * Link a voucher code to an already-claimed discount code.
+ */
+export async function linkVoucherToDiscountCode(code: string, voucherCode: string): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase
+    .from('devcon8_discount_codes')
+    .update({ voucher_code: voucherCode, updated_at: new Date().toISOString() })
+    .eq('code', code)
+  if (error) throw new Error(`discountStore linkVoucherToDiscountCode: ${error.message}`)
 }
 
 /**
@@ -168,7 +185,7 @@ export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVo
 /**
  * Bulk insert discount codes (for generate script).
  */
-export async function insertDiscountCodes(codes: string[], collection: string = 'default'): Promise<number> {
+export async function insertDiscountCodes(codes: string[], collection: string = TICKETING.discount.collection): Promise<number> {
   const supabase = getSupabase()
   const rows = codes.map(code => ({ code, collection }))
   const CHUNK_SIZE = 500
@@ -187,7 +204,7 @@ export async function insertDiscountCodes(codes: string[], collection: string = 
  */
 export async function insertDiscountVouchers(
   vouchers: Array<{ code: string; pretixVoucherId: number; itemId: number; tag?: string }>,
-  collection: string = 'default'
+  collection: string = TICKETING.discount.collection
 ): Promise<number> {
   const supabase = getSupabase()
   const rows = vouchers.map(v => ({
