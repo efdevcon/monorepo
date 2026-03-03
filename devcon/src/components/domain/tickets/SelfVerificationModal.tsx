@@ -4,14 +4,15 @@ import { SelfAppBuilder, getUniversalLink } from '@selfxyz/qrcode'
 import type { SelfApp } from '@selfxyz/qrcode'
 import { Copy, ArrowRight } from 'lucide-react'
 import css from './VerificationModal.module.scss'
+import { TICKETING } from 'config/ticketing'
 
 const SelfQRcodeWrapper = dynamic(() => import('@selfxyz/qrcode').then((mod) => mod.SelfQRcodeWrapper), {
   ssr: false,
 })
 
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
-const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
-const ALLOW_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
+const SELF_SCOPE = TICKETING.self.scope
+const ALLOW_STAGING = TICKETING.self.staging
 
 type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | null
 
@@ -249,8 +250,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               </div>
               <a
                 href={
-                  process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL
-                    ? `${process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL}redeem?voucher=${voucher}`
+                  TICKETING.checkout.pretixRedirectUrl
+                    ? `${TICKETING.checkout.pretixRedirectUrl}redeem?voucher=${voucher}`
                     : `/en/tickets/store/redeem?voucher=${voucher}`
                 }
                 className={css['voucher-cta']}

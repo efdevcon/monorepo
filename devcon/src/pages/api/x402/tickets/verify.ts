@@ -32,18 +32,14 @@ import {
 } from 'services/ticketStore'
 import { X402PaymentProof } from 'types/x402'
 import { isValidTxHash, validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
-
-// Build ticket URL from env vars
-const PRETIX_BASE_URL = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
-const PRETIX_ORGANIZER = process.env.PRETIX_ORGANIZER || 'devcon'
-const PRETIX_EVENT = process.env.PRETIX_EVENT || '7'
+import { TICKETING } from 'config/ticketing'
 
 function getTicketUrl(orderCode: string, secret?: string): string {
-  const baseUrl = PRETIX_BASE_URL.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
+  const baseUrl = TICKETING.pretix.baseUrl.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
   if (secret) {
-    return `${baseUrl}/${PRETIX_ORGANIZER}/${PRETIX_EVENT}/order/${orderCode}/${secret}/`
+    return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/${secret}/`
   }
-  return `${baseUrl}/${PRETIX_ORGANIZER}/${PRETIX_EVENT}/order/${orderCode}/`
+  return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/`
 }
 
 interface VerifyRequest {

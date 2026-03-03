@@ -13,6 +13,7 @@ import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
+import { TICKETING } from 'config/ticketing'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
 
@@ -223,7 +224,7 @@ function StoreContent({
           .map(c => `${c.quantity} x ${c.name}`)
           .join(', ')
 
-  const pretixCheckoutUrl = process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL
+  const pretixCheckoutUrl = TICKETING.checkout.pretixRedirectUrl || undefined
 
   const saveCartAndNavigate = () => {
     if (!paymentInfo) return
@@ -248,8 +249,8 @@ function StoreContent({
   }
 
   const admissionTickets = tickets.filter(t => t.isAdmission && t.available && !t.requireVoucher)
-  const discountTicketId = process.env.NEXT_PUBLIC_PRETIX_TICKET_DISCOUNT_ID
-    ? parseInt(process.env.NEXT_PUBLIC_PRETIX_TICKET_DISCOUNT_ID, 10)
+  const discountTicketId = TICKETING.pretix.ticketDiscountId
+    ? parseInt(TICKETING.pretix.ticketDiscountId, 10)
     : undefined
   const voucherTickets = tickets.filter(t =>
     t.isAdmission && t.available && t.requireVoucher &&
@@ -566,7 +567,7 @@ export default function TicketsStorePage() {
   const [providerResetKey, setProviderResetKey] = useState(0)
   const [verificationOpen, setVerificationOpen] = useState(false)
   const [selfVerificationOpen, setSelfVerificationOpen] = useState(false)
-  const [useSelfStaging, setUseSelfStaging] = useState(process.env.NEXT_PUBLIC_SELF_STAGING === 'true')
+  const [useSelfStaging, setUseSelfStaging] = useState(TICKETING.self.staging)
 
   return (
     <Page theme={themes['tickets']} hideFooter>

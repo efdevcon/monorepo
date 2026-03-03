@@ -3,8 +3,9 @@ import { LaunchProveModal, useAnonAadhaar } from '@anon-aadhaar/react'
 import { deserialize } from '@anon-aadhaar/core'
 import type { AnonAadhaarCore } from '@anon-aadhaar/core'
 import css from './VerificationModal.module.scss'
+import { TICKETING } from 'config/ticketing'
 
-const NULLIFIER_SEED = Number(process.env.NEXT_PUBLIC_NULLIFIER_SEED ?? '1')
+const NULLIFIER_SEED = TICKETING.aadhaar.nullifierSeed
 
 type VerificationModalProps = {
   isOpen: boolean
@@ -137,8 +138,8 @@ export function VerificationModal({
               </div>
               <a
                 href={
-                  process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL
-                    ? `${process.env.NEXT_PUBLIC_PRETIX_CHECKOUT_URL}redeem?voucher=${voucher}`
+                  TICKETING.checkout.pretixRedirectUrl
+                    ? `${TICKETING.checkout.pretixRedirectUrl}redeem?voucher=${voucher}`
                     : `/en/tickets/store/redeem?voucher=${voucher}`
                 }
                 className={css['voucher-cta']}

@@ -2,6 +2,7 @@
  * Comprehensive Pretix API Service
  */
 import 'dotenv/config'
+import { TICKETING, getPretixApiToken } from 'config/ticketing'
 import {
   PretixEvent,
   PretixItem,
@@ -113,17 +114,13 @@ function normalizeBaseUrl(url: string): string {
   }
   return normalized
 }
-const baseUrl = normalizeBaseUrl(process.env.PRETIX_BASE_URL || 'https://ticketh.xyz/api/v1/')
-const organizerName = process.env.PRETIX_ORGANIZER || 'devcon'
-const eventName = process.env.PRETIX_EVENT || '7'
+const baseUrl = normalizeBaseUrl(TICKETING.pretix.baseUrl)
+const organizerName = TICKETING.pretix.organizer
+const eventName = TICKETING.pretix.event
 
 function getHeaders() {
-  const apiToken = process.env.PRETIX_API_TOKEN
-  if (!apiToken) {
-    throw new Error('PRETIX_API_TOKEN environment variable is not set')
-  }
   return {
-    Authorization: `Token ${apiToken}`,
+    Authorization: `Token ${getPretixApiToken()}`,
     'Content-Type': 'application/json',
   }
 }

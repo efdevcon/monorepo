@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getQuotaAvailability } from 'services/pretix'
+import { TICKETING } from 'config/ticketing'
 
-const DEFAULT_QUOTA_ID = parseInt(process.env.PRETIX_DEFAULT_QUOTA_ID || '116')
+const DEFAULT_QUOTA_ID = TICKETING.pretix.defaultQuotaId
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {

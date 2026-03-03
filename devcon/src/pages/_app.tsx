@@ -10,6 +10,7 @@ import { init } from '@socialgouv/matomo-next'
 import { RecoilRoot } from 'recoil'
 // import DevaBot from 'lib/components/ai/overlay'
 import Head from 'next/head'
+import { TICKETING_ENV, TICKETING } from 'config/ticketing'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
@@ -30,6 +31,11 @@ function App({ Component, pageProps }: any) {
       </Head>
       <RecoilRoot>
         <SEO />
+        {TICKETING_ENV !== 'production' && (
+          <div style={{ position: 'fixed', bottom: 8, right: 8, background: '#f59e0b', color: '#000', padding: '4px 10px', fontSize: '12px', fontWeight: 600, borderRadius: 6, zIndex: 9999, pointerEvents: 'none', opacity: 0.85 }}>
+            {new URL(TICKETING.pretix.baseUrl).hostname.split('.')[0]} pretix shop
+          </div>
+        )}
 
         {/* <IntlProvider messages={pageProps.messages} locale="en"> */}
         {/* <SessionProvider session={pageProps.session}> */}

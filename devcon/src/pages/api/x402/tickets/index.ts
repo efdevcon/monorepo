@@ -12,7 +12,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { TicketPurchaseInfo } from 'types/pretix'
 import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
-import { STORE_CONFIG } from 'pages/tickets/store/config'
+import { TICKETING, isTestnet } from 'config/ticketing'
 
 // ---------------------------------------------------------------------------
 // Simple in-memory per-IP rate limiter (defense in depth against cache-bypass)
@@ -83,9 +83,6 @@ export default async function handler(
     const locale = (req.query.locale as string) || 'en'
     const ticketInfo = await getTicketPurchaseInfo(locale)
 
-    // Use testnet unless explicitly set to mainnet
-    // NEXT_PUBLIC_CHAIN_ENV=mainnet for production, otherwise testnet
-    const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
     const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
     const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
 
@@ -99,7 +96,7 @@ export default async function handler(
           tokenSymbol: usdcConfig.tokenSymbol,
           tokenAddress: usdcConfig.tokenAddress,
           tokenDecimals: usdcConfig.tokenDecimals,
-          discountForCrypto: `${STORE_CONFIG.cryptoDiscountPercent}%`,
+          discountForCrypto: `${TICKETING.payment.cryptoDiscountPercent}%`,
           supportedAssets,
         },
       },

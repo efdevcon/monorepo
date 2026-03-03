@@ -1,10 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
 import { validateDiscountCode, assignVoucher, claimDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { TICKETING } from 'config/ticketing'
 
-const SELF_SCOPE = process.env.NEXT_PUBLIC_SELF_SCOPE || 'devcon-india-local-discount'
+const SELF_SCOPE = TICKETING.self.scope
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
-const ALLOW_STAGING = process.env.NEXT_PUBLIC_SELF_STAGING === 'true'
+const ALLOW_STAGING = TICKETING.self.staging
 
 // In-memory stores keyed by userId. In production, use a proper database.
 // Uses globalThis so Maps are shared across Next.js module instances in dev mode.

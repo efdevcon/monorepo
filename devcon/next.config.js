@@ -4,6 +4,9 @@ const path = require('path')
 //   enabled: true || process.env.ANALYZE === 'true',
 // });
 
+const ticketingEnv = process.env.NEXT_PUBLIC_PRETIX_ENV || 'development'
+console.log(`[ticketing] Environment: ${ticketingEnv}`)
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['lib'],

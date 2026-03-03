@@ -96,20 +96,20 @@ Both flows produce the same result (a paid Pretix order) and share the same paym
 
 ## Environment Variables
 
+Pretix URLs, organizer/event slugs, payment addresses, and chain config are **not** env vars — they live in `src/config/ticketing.ts` and are selected by a single toggle:
+
 ```bash
-# Required - Pretix Configuration
-PRETIX_BASE_URL=https://your-pretix-instance.com    # Base URL (api/v1/ is added automatically)
-PRETIX_API_TOKEN=your_pretix_api_token              # API token from Pretix user settings
-PRETIX_ORGANIZER=org                                 # Organizer slug
-PRETIX_EVENT=test                                    # Event slug
+NEXT_PUBLIC_PRETIX_ENV=development   # "development" or "production" — selects the config profile
 
-# Required - Payment Configuration (one of these)
-PAYMENT_RECIPIENT_ADDRESS=0x...                     # Explicit address to receive payments
-ETH_RELAYER_PAYMENT_PRIVATE_KEY=0x...               # Private key for relayer (gas sponsorship + address derivation)
+# Pretix API tokens (one per environment)
+PRETIX_API_TOKEN_DEV=...
+PRETIX_API_TOKEN_PROD=...
 
-# Optional - Network Selection
-NEXT_PUBLIC_CHAIN_ENV=mainnet  # Set to 'mainnet' for Base mainnet, otherwise uses Base Sepolia testnet
+# Relayer private key (gas sponsorship + fallback address derivation)
+ETH_RELAYER_PAYMENT_PRIVATE_KEY=0x...
 ```
+
+See `src/config/ticketing.ts` for all env-specific values (Pretix base URL, organizer, event, payment recipient, chain env, etc.).
 
 ## API Endpoints
 
@@ -607,7 +607,7 @@ When answering questions, use these formats based on the question type:
 Run the test scripts to verify the Pretix API connection:
 
 ```bash
-# Test individual endpoints (uses PRETIX_ORGANIZER and PRETIX_EVENT from .env)
+# Test individual Pretix endpoints (uses config from src/config/ticketing.ts)
 pnpm pretix:test-event
 pnpm pretix:test-items
 pnpm pretix:test-questions
@@ -615,9 +615,6 @@ pnpm pretix:test-quotas
 
 # Test all at once
 pnpm pretix:test-all
-
-# Or override organizer/event inline
-PRETIX_ORGANIZER=org PRETIX_EVENT=test pnpm pretix:test-all
 
 # Test the full x402 flow (requires running API)
 pnpm dev  # In one terminal

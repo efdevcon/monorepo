@@ -3,19 +3,19 @@
  * Run with: pnpm run pretix:test-all
  */
 import 'dotenv/config'
+import { TICKETING, TICKETING_ENV, getPretixApiToken } from '../../config/ticketing'
 
 function normalizeBaseUrl(url: string): string {
   let normalized = url.endsWith('/') ? url : `${url}/`
-  // Add api/v1/ if not present
   if (!normalized.includes('/api/')) {
     normalized = `${normalized}api/v1/`
   }
   return normalized
 }
-const baseUrl = normalizeBaseUrl(process.env.PRETIX_BASE_URL || 'https://ticketh.xyz/api/v1/')
-const apiToken = process.env.PRETIX_API_TOKEN
-const organizerName = process.env.PRETIX_ORGANIZER || 'devcon'
-const eventName = process.env.PRETIX_EVENT || '7'
+const baseUrl = normalizeBaseUrl(TICKETING.pretix.baseUrl)
+const apiToken = getPretixApiToken()
+const organizerName = TICKETING.pretix.organizer
+const eventName = TICKETING.pretix.event
 
 interface PretixResponse<T> {
   count: number
@@ -49,14 +49,10 @@ async function fetchEndpoint<T>(endpoint: string): Promise<T | null> {
 
 async function main() {
   console.log('=== Pretix API Comprehensive Test ===\n')
+  console.log(`Ticketing env: ${TICKETING_ENV}`)
   console.log(`Base URL: ${baseUrl}`)
   console.log(`Organizer: ${organizerName}`)
   console.log(`Event: ${eventName}\n`)
-
-  if (!apiToken) {
-    console.error('Error: PRETIX_API_TOKEN environment variable is not set')
-    process.exit(1)
-  }
 
   // 1. Fetch Event
   console.log('\n' + '='.repeat(60))

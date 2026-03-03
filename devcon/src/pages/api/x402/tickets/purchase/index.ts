@@ -50,6 +50,7 @@ import {
 } from 'types/x402'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
+import { TICKETING, isTestnet } from 'config/ticketing'
 
 interface PurchaseRequest {
   email: string
@@ -105,9 +106,7 @@ interface ErrorResponse {
   details?: string[]
 }
 
-import { STORE_CONFIG } from 'pages/tickets/store/config'
-
-const CRYPTO_DISCOUNT_PERCENT = STORE_CONFIG.cryptoDiscountPercent
+const CRYPTO_DISCOUNT_PERCENT = TICKETING.payment.cryptoDiscountPercent
 
 /** Build expected ETH amount in wei per chain ID (for secure native ETH verification) */
 function buildExpectedEthWeiByChain(
@@ -399,7 +398,6 @@ export async function purchaseHandler(
       }
     )
 
-    const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
     const supportedAssetsForOrder = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
     const chainIdsWithEth = [
       ...new Set(
@@ -619,16 +617,12 @@ function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: 
 
 // ============== x402 v2 PAYMENT-SIGNATURE retry flow ==============
 
-const PRETIX_BASE_URL = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
-const PRETIX_ORGANIZER = process.env.PRETIX_ORGANIZER || 'devcon'
-const PRETIX_EVENT = process.env.PRETIX_EVENT || '7'
-
 function getTicketUrl(orderCode: string, secret?: string): string {
-  const baseUrl = PRETIX_BASE_URL.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
+  const baseUrl = TICKETING.pretix.baseUrl.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
   if (secret) {
-    return `${baseUrl}/${PRETIX_ORGANIZER}/${PRETIX_EVENT}/order/${orderCode}/${secret}/`
+    return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/${secret}/`
   }
-  return `${baseUrl}/${PRETIX_ORGANIZER}/${PRETIX_EVENT}/order/${orderCode}/`
+  return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/`
 }
 
 /**

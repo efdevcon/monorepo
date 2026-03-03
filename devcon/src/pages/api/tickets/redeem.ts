@@ -7,6 +7,7 @@ import {
   InitArgs,
 } from '@anon-aadhaar/core'
 import { validateDiscountCode, assignVoucher, claimDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { TICKETING } from 'config/ticketing'
 
 // Indian government public key hash for Aadhaar QR verification (production)
 const pubKeyHash =
@@ -43,7 +44,7 @@ async function verifyAnonAadhaarProof(proofPayload: ProofPayload): Promise<boole
 
   // For production proofs, enforce nullifier seed from env; skip for test Aadhaar
   if (!useTestAadhaar) {
-    const expectedSeed = Number(process.env.NEXT_PUBLIC_NULLIFIER_SEED ?? '1')
+    const expectedSeed = TICKETING.aadhaar.nullifierSeed
     const proofSeed = Number(proofPayload.proof.nullifierSeed)
     if (proofSeed !== expectedSeed) return false
   }
