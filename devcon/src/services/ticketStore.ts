@@ -7,6 +7,7 @@
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { PretixOrderCreateRequest } from '../types/pretix'
+import { TICKETING_ENV } from '../config/ticketing'
 
 /** Expected ETH amount in wei per chain ID (server-computed at order creation for secure verification) */
 export type ExpectedEthAmountWeiByChain = Record<string, string>
@@ -28,6 +29,7 @@ export interface PendingTicketOrder {
     addonIds?: number[]
     email: string
   }
+  env?: string
 }
 
 export interface CompletedTicketOrder {
@@ -36,6 +38,7 @@ export interface CompletedTicketOrder {
   txHash: string
   payer: string
   completedAt: number
+  env?: string
 }
 
 interface PendingRow {
@@ -48,6 +51,7 @@ interface PendingRow {
   expected_eth_amount_wei_by_chain: ExpectedEthAmountWeiByChain | null
   expected_chain_id: number | null
   metadata: Record<string, unknown> | null
+  env: string
 }
 
 interface CompletedRow {
@@ -56,6 +60,7 @@ interface CompletedRow {
   tx_hash: string
   payer: string
   completed_at: number
+  env: string
 }
 
 function getSupabase(): SupabaseClient {
@@ -78,6 +83,7 @@ function rowToPending(row: PendingRow): PendingTicketOrder {
     expectedEthAmountWeiByChain: row.expected_eth_amount_wei_by_chain ?? undefined,
     expectedChainId: row.expected_chain_id ?? undefined,
     metadata: row.metadata as PendingTicketOrder['metadata'] ?? undefined,
+    env: row.env,
   }
 }
 
@@ -88,6 +94,7 @@ function rowToCompleted(row: CompletedRow): CompletedTicketOrder {
     txHash: row.tx_hash,
     payer: row.payer,
     completedAt: row.completed_at,
+    env: row.env,
   }
 }
 
@@ -106,6 +113,7 @@ export async function storePendingOrder(order: PendingTicketOrder): Promise<void
     expected_eth_amount_wei_by_chain: order.expectedEthAmountWeiByChain ?? null,
     expected_chain_id: order.expectedChainId ?? null,
     metadata: order.metadata ?? null,
+    env: TICKETING_ENV,
   }, { onConflict: 'payment_reference' })
   if (error) throw new Error(`ticketStore storePendingOrder: ${error.message}`)
 }
@@ -119,12 +127,13 @@ export async function getPendingOrder(paymentReference: string): Promise<Pending
     .from('x402_pending_orders')
     .select('*')
     .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
     .maybeSingle()
   if (error) throw new Error(`ticketStore getPendingOrder: ${error.message}`)
   if (!data) return undefined
   const order = rowToPending(data as PendingRow)
   if (Date.now() / 1000 > order.expiresAt) {
-    await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference)
+    await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference).eq('env', TICKETING_ENV)
     return undefined
   }
   return order
@@ -141,6 +150,7 @@ export async function claimPendingOrder(paymentReference: string): Promise<Pendi
     .from('x402_pending_orders')
     .delete()
     .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
     .select()
   if (error) throw new Error(`ticketStore claimPendingOrder: ${error.message}`)
   if (!data || data.length === 0) return undefined
@@ -158,6 +168,7 @@ export async function removePendingOrder(paymentReference: string): Promise<bool
     .from('x402_pending_orders')
     .delete()
     .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
     .select('payment_reference')
   if (error) throw new Error(`ticketStore removePendingOrder: ${error.message}`)
   return (data?.length ?? 0) > 0
@@ -183,6 +194,7 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
     tx_hash: order.txHash,
     payer: order.payer,
     completed_at: Math.floor(Number(order.completedAt)),
+    env: TICKETING_ENV,
   })
   if (errCompleted) {
     // Unique constraint on tx_hash — another request already completed with this tx
@@ -191,7 +203,7 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
     }
     throw new Error(`ticketStore storeCompletedOrder: ${errCompleted.message}`)
   }
-  await supabase.from('x402_pending_orders').delete().eq('payment_reference', order.paymentReference)
+  await supabase.from('x402_pending_orders').delete().eq('payment_reference', order.paymentReference).eq('env', TICKETING_ENV)
 }
 
 const RESERVED_PRETIX_CODE = '__RESERVED__'
@@ -215,6 +227,7 @@ export async function reserveCompletedOrder(
     tx_hash: txHash,
     payer,
     completed_at: Math.floor(Number(completedAt)),
+    env: TICKETING_ENV,
   })
   if (error) {
     if (error.code === '23505' && error.message?.includes('tx_hash')) {
@@ -238,10 +251,11 @@ export async function finalizeCompletedOrder(
     .update({ pretix_order_code: pretixOrderCode })
     .eq('payment_reference', paymentReference)
     .eq('pretix_order_code', RESERVED_PRETIX_CODE)
+    .eq('env', TICKETING_ENV)
   if (error) {
     throw new Error(`ticketStore finalizeCompletedOrder: ${error.message}`)
   }
-  await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference)
+  await supabase.from('x402_pending_orders').delete().eq('payment_reference', paymentReference).eq('env', TICKETING_ENV)
 }
 
 /**
@@ -254,6 +268,7 @@ export async function removeCompletedOrderReservation(paymentReference: string):
     .delete()
     .eq('payment_reference', paymentReference)
     .eq('pretix_order_code', RESERVED_PRETIX_CODE)
+    .eq('env', TICKETING_ENV)
 }
 
 /**
@@ -265,6 +280,7 @@ export async function getCompletedOrder(paymentReference: string): Promise<Compl
     .from('x402_completed_orders')
     .select('*')
     .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
     .maybeSingle()
   if (error) throw new Error(`ticketStore getCompletedOrder: ${error.message}`)
   return data ? rowToCompleted(data as CompletedRow) : undefined
@@ -279,6 +295,7 @@ export async function getCompletedOrderByPretixCode(pretixOrderCode: string): Pr
     .from('x402_completed_orders')
     .select('*')
     .eq('pretix_order_code', pretixOrderCode)
+    .eq('env', TICKETING_ENV)
     .maybeSingle()
   if (error) throw new Error(`ticketStore getCompletedOrderByPretixCode: ${error.message}`)
   return data ? rowToCompleted(data as CompletedRow) : undefined
@@ -293,6 +310,7 @@ export async function getCompletedOrderByTxHash(txHash: string): Promise<Complet
     .from('x402_completed_orders')
     .select('*')
     .eq('tx_hash', txHash)
+    .eq('env', TICKETING_ENV)
     .maybeSingle()
   if (error) throw new Error(`ticketStore getCompletedOrderByTxHash: ${error.message}`)
   return data ? rowToCompleted(data as CompletedRow) : undefined
@@ -365,7 +383,7 @@ export async function checkPurchaseRateLimit(clientIp: string): Promise<{ allowe
 export async function cleanupExpiredOrders(): Promise<void> {
   const supabase = getSupabase()
   const now = Math.floor(Date.now() / 1000)
-  await supabase.from('x402_pending_orders').delete().lt('expires_at', now)
+  await supabase.from('x402_pending_orders').delete().lt('expires_at', now).eq('env', TICKETING_ENV)
 }
 
 /**
@@ -373,7 +391,7 @@ export async function cleanupExpiredOrders(): Promise<void> {
  */
 export async function getAllPendingOrders(): Promise<PendingTicketOrder[]> {
   const supabase = getSupabase()
-  const { data, error } = await supabase.from('x402_pending_orders').select('*')
+  const { data, error } = await supabase.from('x402_pending_orders').select('*').eq('env', TICKETING_ENV)
   if (error) throw new Error(`ticketStore getAllPendingOrders: ${error.message}`)
   return (data ?? []).map((row) => rowToPending(row as PendingRow))
 }
@@ -384,8 +402,8 @@ export async function getAllPendingOrders(): Promise<PendingTicketOrder[]> {
 export async function getStoreStats(): Promise<{ pending: number; completed: number }> {
   const supabase = getSupabase()
   const [pendingRes, completedRes] = await Promise.all([
-    supabase.from('x402_pending_orders').select('payment_reference', { count: 'exact', head: true }),
-    supabase.from('x402_completed_orders').select('payment_reference', { count: 'exact', head: true }),
+    supabase.from('x402_pending_orders').select('payment_reference', { count: 'exact', head: true }).eq('env', TICKETING_ENV),
+    supabase.from('x402_completed_orders').select('payment_reference', { count: 'exact', head: true }).eq('env', TICKETING_ENV),
   ])
   if (pendingRes.error) throw new Error(`ticketStore getStoreStats pending: ${pendingRes.error.message}`)
   if (completedRes.error) throw new Error(`ticketStore getStoreStats completed: ${completedRes.error.message}`)
