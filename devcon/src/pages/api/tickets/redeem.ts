@@ -94,7 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Dynamic voucher assignment from Supabase pool
-  const { discountCode } = req.body as { discountCode?: string }
+  const discountCode = (req.body as { discountCode?: string }).discountCode
   const nullifier = anonAadhaarProof.proof.nullifier
 
   if (!discountCode) {
