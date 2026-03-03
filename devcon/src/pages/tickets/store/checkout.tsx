@@ -39,18 +39,6 @@ import { Textarea } from '@/components/ui/textarea'
 
 const queryClient = new QueryClient()
 
-const ERC20_ABI = [
-  {
-    name: 'transfer',
-    type: 'function',
-    inputs: [
-      { name: 'to', type: 'address' },
-      { name: 'amount', type: 'uint256' },
-    ],
-    outputs: [{ name: '', type: 'bool' }],
-  },
-] as const
-
 // ── Token & network icons ──
 
 const TOKEN_ICONS: Record<string, string> = {
@@ -299,7 +287,7 @@ function CheckoutContent() {
   const autoCheckoutTriggeredRef = useRef<string | null>(null)
 
   // Wagmi hooks
-  const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
+  const { data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
   const { data: walletClient } = useWalletClient()
   const [isSigningDirect, setIsSigningDirect] = useState(false)
   const [directSignError, setDirectSignError] = useState<string | null>(null)
@@ -1187,30 +1175,6 @@ function CheckoutContent() {
         setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
       }
-    }
-  }
-
-  async function executeDirectPayment() {
-    if (!paymentDetails || !isConnected || !mounted) return
-
-    if (chain?.id !== paymentDetails.chainId) {
-      setPurchaseError(`Please switch to ${paymentDetails.network} network first`)
-      return
-    }
-
-    setPurchaseError(null)
-    setPaymentStatus('Confirm in wallet...')
-
-    try {
-      writeContract({
-        address: paymentDetails.tokenAddress as `0x${string}`,
-        abi: ERC20_ABI,
-        functionName: 'transfer',
-        args: [paymentDetails.recipient as `0x${string}`, BigInt(paymentDetails.amount)],
-      })
-    } catch {
-      setPurchaseError('Failed to execute payment')
-      setPaymentStatus(null)
     }
   }
 
