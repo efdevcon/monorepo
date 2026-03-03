@@ -27,6 +27,7 @@ const ENV_CONFIG = {
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
+    x402Agents: false,
   },
   production: {
     chainEnv: 'mainnet' as const,
@@ -52,6 +53,7 @@ const ENV_CONFIG = {
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
+    x402Agents: false,
   },
 }
 

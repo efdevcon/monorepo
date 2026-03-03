@@ -10,8 +10,13 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { isEmail } from 'utils/validators'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { purchaseHandler } from './index'
+import { TICKETING } from 'config/ticketing'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (!TICKETING.x402Agents) {
+    return res.status(404).json({ success: false, error: 'x402 agent endpoints are disabled' })
+  }
+
   const email = req.query.email as string
 
   // PAYMENT-SIGNATURE retry: delegate directly

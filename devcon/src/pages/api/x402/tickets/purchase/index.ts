@@ -142,6 +142,9 @@ export async function purchaseHandler(
   // Works for both GET (awal) and POST (SDK) retries
   const paymentSigHeader = (req.headers['payment-signature'] ?? req.headers['PAYMENT-SIGNATURE']) as string | undefined
   if (paymentSigHeader) {
+    if (!TICKETING.x402Agents) {
+      return res.status(404).json({ success: false, error: 'x402 agent endpoints are disabled' })
+    }
     return handlePaymentSignatureRetry(req, res, paymentSigHeader)
   }
 

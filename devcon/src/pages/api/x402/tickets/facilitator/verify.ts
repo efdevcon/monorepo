@@ -21,6 +21,7 @@ import {
   getGaslessConfigsForChain,
 } from 'types/x402'
 import { addressesEqual } from 'utils/x402Validation'
+import { TICKETING } from 'config/ticketing'
 
 function parseSignatureHex(sig: string): { v: number; r: Hex; s: Hex } {
   const hex = sig.startsWith('0x') ? sig : `0x${sig}`
@@ -49,6 +50,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<VerifyResponse>
 ) {
+  if (!TICKETING.x402Agents) {
+    return res.status(404).json({ isValid: false, invalidReason: 'x402 agent endpoints are disabled' as any })
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).setHeader('Allow', 'POST').end()
   }
