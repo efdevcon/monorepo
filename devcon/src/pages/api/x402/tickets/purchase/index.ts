@@ -869,7 +869,8 @@ async function handlePaymentSignatureRetry(
       networkChainId,
       claimedOrder.totalUsd,
       tokenConfig.tokenSymbol,
-      cryptoAmountStr
+      cryptoAmountStr,
+      verification.gasCostWei
     )
   } catch (error) {
     if (error instanceof TxHashAlreadyUsedError) {

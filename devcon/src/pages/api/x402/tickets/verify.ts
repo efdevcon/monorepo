@@ -299,7 +299,8 @@ export default async function handler(
         body.chainId,
         claimedOrder.totalUsd,
         tokenSymbol,
-        cryptoAmount
+        cryptoAmount,
+        verification.gasCostWei
       )
     } catch (error) {
       if (error instanceof TxHashAlreadyUsedError) {

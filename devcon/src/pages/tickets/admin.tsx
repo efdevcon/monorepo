@@ -15,6 +15,7 @@ interface CompletedOrder {
   totalUsd?: string
   tokenSymbol?: string
   cryptoAmount?: string
+  gasCostWei?: string
   env: string
 }
 
@@ -109,6 +110,19 @@ function truncate(s: string, len = 8) {
 
 function formatDate(ts: number) {
   return new Date(ts * 1000).toLocaleString()
+}
+
+function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
+  if (!wei) return '—'
+  const eth = Number(BigInt(wei)) / 1e18
+  if (eth === 0) return '$0'
+  const price = chainId === 137 ? prices?.POL : prices?.ETH
+  if (price) {
+    const usd = eth * price
+    if (usd < 0.01) return '<$0.01'
+    return `$${usd.toFixed(2)}`
+  }
+  return `${eth.toFixed(6)} ETH`
 }
 
 function formatTokenChainText(tokenSymbol?: string, chainId?: number) {
@@ -422,6 +436,19 @@ export default function AdminPage() {
     [filteredCompleted]
   )
 
+  const totalGasSponsored = useMemo(() => {
+    const prices = data?.wallet?.prices
+    if (!prices) return null
+    let total = 0
+    for (const o of filteredCompleted) {
+      if (!o.gasCostWei) continue
+      const eth = Number(BigInt(o.gasCostWei)) / 1e18
+      const price = o.chainId === 137 ? prices.POL : prices.ETH
+      if (price) total += eth * price
+    }
+    return total
+  }, [filteredCompleted, data?.wallet?.prices])
+
   const walletTotalUsd = useMemo(() => {
     const w = data?.wallet
     if (!w) return null
@@ -494,13 +521,14 @@ export default function AdminPage() {
   }
 
   function exportCompletedCsv() {
-    const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Tx Hash', 'Payer', 'Completed At']
+    const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At']
     const rows = filteredCompleted.map(o => [
       o.pretixOrderCode,
       o.totalUsd || '',
       o.cryptoAmount || '',
       o.tokenSymbol || 'USDC',
       chainName(o.chainId),
+      o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '',
       o.txHash,
       o.payer,
       formatDate(o.completedAt),
@@ -595,6 +623,10 @@ export default function AdminPage() {
           <div className={css['stat-card']}>
             <p className={css['stat-label']}>Total Revenue</p>
             <p className={css['stat-value']}>${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+          </div>
+          <div className={css['stat-card']}>
+            <p className={css['stat-label']}>Gas Sponsored</p>
+            <p className={css['stat-value']}>{totalGasSponsored != null ? `$${totalGasSponsored.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</p>
           </div>
           {data?.wallet && (
             <div className={css.wallet}>
@@ -704,7 +736,8 @@ export default function AdminPage() {
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Token / Chain" sortKey="tokenChain" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
-                  <th>Crypto Amt</th>
+                  <th>Crypto Amount</th>
+                  <th>Gas Cost</th>
                   <th>Tx Hash</th>
                   <th>Payer</th>
                   <SortableTh label="Completed At" sortKey="completedAt" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
@@ -726,6 +759,7 @@ export default function AdminPage() {
                     <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
                     <td><TokenChainCell tokenSymbol={o.tokenSymbol} chainId={o.chainId} /></td>
                     <td className={css.mono}>{o.cryptoAmount || '—'}</td>
+                    <td className={css.mono}>{formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices)}</td>
                     <td className={css.mono}>
                       <Copyable value={o.txHash}>
                         <a

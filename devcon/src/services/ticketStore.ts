@@ -42,6 +42,7 @@ export interface CompletedTicketOrder {
   totalUsd?: string
   tokenSymbol?: string
   cryptoAmount?: string
+  gasCostWei?: string
   env?: string
 }
 
@@ -68,6 +69,7 @@ interface CompletedRow {
   total_usd: string | null
   token_symbol: string | null
   crypto_amount: string | null
+  gas_cost_wei: string | null
   env: string
 }
 
@@ -106,6 +108,7 @@ function rowToCompleted(row: CompletedRow): CompletedTicketOrder {
     totalUsd: row.total_usd ?? undefined,
     tokenSymbol: row.token_symbol ?? undefined,
     cryptoAmount: row.crypto_amount ?? undefined,
+    gasCostWei: row.gas_cost_wei ?? undefined,
     env: row.env,
   }
 }
@@ -210,6 +213,7 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
     total_usd: order.totalUsd ?? null,
     token_symbol: order.tokenSymbol ?? null,
     crypto_amount: order.cryptoAmount ?? null,
+    gas_cost_wei: order.gasCostWei ?? null,
     env: TICKETING_ENV,
   })
   if (errCompleted) {
@@ -238,7 +242,8 @@ export async function reserveCompletedOrder(
   chainId?: number,
   totalUsd?: string,
   tokenSymbol?: string,
-  cryptoAmount?: string
+  cryptoAmount?: string,
+  gasCostWei?: string
 ): Promise<void> {
   const supabase = getSupabase()
   const { error } = await supabase.from('x402_completed_orders').insert({
@@ -251,6 +256,7 @@ export async function reserveCompletedOrder(
     total_usd: totalUsd ?? null,
     token_symbol: tokenSymbol ?? null,
     crypto_amount: cryptoAmount ?? null,
+    gas_cost_wei: gasCostWei ?? null,
     env: TICKETING_ENV,
   })
   if (error) {
