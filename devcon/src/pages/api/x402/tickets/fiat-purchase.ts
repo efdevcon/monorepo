@@ -73,6 +73,23 @@ export default async function handler(
     }
     if (!body.tickets || !Array.isArray(body.tickets) || body.tickets.length === 0) {
       errors.push('At least one ticket is required')
+    } else {
+      for (const ticket of body.tickets) {
+        const q = ticket.quantity ?? 1
+        if (!Number.isInteger(q) || q < 1 || q > 10) {
+          errors.push('Ticket quantity must be an integer between 1 and 10')
+          break
+        }
+      }
+    }
+    if (body.addons && Array.isArray(body.addons)) {
+      for (const addon of body.addons) {
+        const q = addon.quantity ?? 1
+        if (!Number.isInteger(q) || q < 1 || q > 10) {
+          errors.push('Addon quantity must be an integer between 1 and 10')
+          break
+        }
+      }
     }
     if (!body.attendee || !body.attendee.name) {
       errors.push('Attendee name is required')
