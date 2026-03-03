@@ -7,7 +7,7 @@ import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
 import { isEmail } from 'utils/validators'
-import { COUNTRIES } from './countries'
+import { COUNTRIES } from 'utils/countries'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   WagmiProvider,
