@@ -2362,7 +2362,7 @@ function CheckoutContent() {
           </div>
 
           {/* FAQ */}
-          <div className={css['section-card']}>
+          <div id="faq" className={css['section-card']}>
             <button
               type="button"
               className={`${css['section-header']} ${openSection !== 'faq' ? css['section-header-collapsed'] : ''}`}
@@ -2564,16 +2564,23 @@ function CheckoutContent() {
                 <p>
                   An order confirmation with your tickets will be sent to the email provided during checkout. If you
                   don&apos;t receive a confirmation email, please{' '}
-                  <Link to="/contact">
+                  <a href="mailto:support@devcon.org">
                     <strong>contact us</strong>
-                  </Link>
+                  </a>
                   .
                 </p>
                 <p>
                   Got a question?{' '}
-                  <Link to="/tickets#faq">
+                  <a
+                    href="#faq"
+                    onClick={e => {
+                      e.preventDefault()
+                      setOpenSection('faq')
+                      document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                  >
                     <strong>Read our ticketing FAQs</strong>
-                  </Link>
+                  </a>
                   .
                 </p>
               </div>

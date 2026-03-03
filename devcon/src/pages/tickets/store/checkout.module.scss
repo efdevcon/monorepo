@@ -736,7 +736,7 @@ $checkout-accent: #7235ed;
 }
 
 .wallet-connected {
-  background: #000;
+  background: #1a0d33;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 12px 16px;
@@ -789,7 +789,7 @@ div.wallet-identicon {
 .wallet-disconnect-btn {
   font-size: 12px;
   font-weight: 700;
-  color: #fff;
+  color: #e9d5ff;
   background: none;
   border: none;
   cursor: pointer;
@@ -938,8 +938,8 @@ div.wallet-identicon {
   }
 
   &--active {
-    background: #e8e8e8;
-    border-color: #000;
+    background: #fff;
+    border-color: $checkout-accent;
   }
 }
 
@@ -979,7 +979,7 @@ div.wallet-identicon {
 .network-refresh {
   font-size: 14px;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.7);
+  color: #a855f7;
   background: none;
   border: none;
   cursor: pointer;
@@ -988,7 +988,7 @@ div.wallet-identicon {
   text-underline-offset: 2px;
 
   &:hover {
-    color: #000;
+    opacity: 0.7;
   }
 
   &:disabled {
@@ -1115,6 +1115,7 @@ div.wallet-identicon {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: $checkout-accent;
 }
 
 /* ─── Pay Button ──────────────────────────────────────── */
@@ -1124,10 +1125,10 @@ div.wallet-identicon {
   padding: 14px 24px;
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
-  background: #000;
+  color: #f9f8fa;
+  background: $checkout-accent;
   border: none;
-  border-radius: 360px;
+  border-radius: 9999px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1142,7 +1143,7 @@ div.wallet-identicon {
   }
 
   &:hover:not(:disabled) {
-    opacity: 0.85;
+    background: #5e20d6;
   }
 
   &:disabled {

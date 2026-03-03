@@ -58,23 +58,21 @@
 .sidebar-back {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #666;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #7235ed;
   text-decoration: none;
   margin-bottom: 1.5rem;
-  transition: color 0.15s;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 
   &:hover {
-    color: #000;
+    opacity: 0.7;
   }
-}
-
-.back-arrow {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
 }
 
 /* Right column: gradient bg – vertical splitter (Figma 2889-3307) */

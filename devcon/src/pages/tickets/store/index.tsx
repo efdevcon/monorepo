@@ -7,7 +7,7 @@ import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { Input } from '@/components/ui/input'
-import { CalendarDays, MapPin } from 'lucide-react'
+import { ArrowLeft, CalendarDays, MapPin } from 'lucide-react'
 import css from './store.module.scss'
 import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
@@ -95,13 +95,6 @@ function ArrowRightIcon() {
   )
 }
 
-function ArrowLeftIcon() {
-  return (
-    <svg className={css['back-arrow']} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M19 12H5M12 19l-7-7 7-7" />
-    </svg>
-  )
-}
 
 type StoreContentProps = {
   useTestAadhaar: boolean
@@ -268,8 +261,8 @@ function StoreContent({
       <div className={css['store-layout']}>
         <aside className={css['sidebar']}>
           <Link to="/tickets" className={css['sidebar-back']}>
-            <ArrowLeftIcon />
-            Back to tickets
+            <ArrowLeft size={20} />
+            Back to Tickets
           </Link>
           <div className={css['sidebar-content']}>
             <div className={css['sidebar-top']}>
