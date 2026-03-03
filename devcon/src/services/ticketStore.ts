@@ -38,6 +38,10 @@ export interface CompletedTicketOrder {
   txHash: string
   payer: string
   completedAt: number
+  chainId?: number
+  totalUsd?: string
+  tokenSymbol?: string
+  cryptoAmount?: string
   env?: string
 }
 
@@ -60,6 +64,10 @@ interface CompletedRow {
   tx_hash: string
   payer: string
   completed_at: number
+  chain_id: number | null
+  total_usd: string | null
+  token_symbol: string | null
+  crypto_amount: string | null
   env: string
 }
 
@@ -94,6 +102,10 @@ function rowToCompleted(row: CompletedRow): CompletedTicketOrder {
     txHash: row.tx_hash,
     payer: row.payer,
     completedAt: row.completed_at,
+    chainId: row.chain_id ?? undefined,
+    totalUsd: row.total_usd ?? undefined,
+    tokenSymbol: row.token_symbol ?? undefined,
+    cryptoAmount: row.crypto_amount ?? undefined,
     env: row.env,
   }
 }
@@ -194,6 +206,10 @@ export async function storeCompletedOrder(order: CompletedTicketOrder): Promise<
     tx_hash: order.txHash,
     payer: order.payer,
     completed_at: Math.floor(Number(order.completedAt)),
+    chain_id: order.chainId ?? null,
+    total_usd: order.totalUsd ?? null,
+    token_symbol: order.tokenSymbol ?? null,
+    crypto_amount: order.cryptoAmount ?? null,
     env: TICKETING_ENV,
   })
   if (errCompleted) {
@@ -218,7 +234,11 @@ export async function reserveCompletedOrder(
   txHash: string,
   paymentReference: string,
   payer: string,
-  completedAt: number
+  completedAt: number,
+  chainId?: number,
+  totalUsd?: string,
+  tokenSymbol?: string,
+  cryptoAmount?: string
 ): Promise<void> {
   const supabase = getSupabase()
   const { error } = await supabase.from('x402_completed_orders').insert({
@@ -227,6 +247,10 @@ export async function reserveCompletedOrder(
     tx_hash: txHash,
     payer,
     completed_at: Math.floor(Number(completedAt)),
+    chain_id: chainId ?? null,
+    total_usd: totalUsd ?? null,
+    token_symbol: tokenSymbol ?? null,
+    crypto_amount: cryptoAmount ?? null,
     env: TICKETING_ENV,
   })
   if (error) {
@@ -391,9 +415,27 @@ export async function cleanupExpiredOrders(): Promise<void> {
  */
 export async function getAllPendingOrders(): Promise<PendingTicketOrder[]> {
   const supabase = getSupabase()
-  const { data, error } = await supabase.from('x402_pending_orders').select('*').eq('env', TICKETING_ENV)
+  const { data, error } = await supabase
+    .from('x402_pending_orders')
+    .select('*')
+    .eq('env', TICKETING_ENV)
+    .order('created_at', { ascending: false })
   if (error) throw new Error(`ticketStore getAllPendingOrders: ${error.message}`)
   return (data ?? []).map((row) => rowToPending(row as PendingRow))
+}
+
+/**
+ * Get all completed orders (for admin monitoring)
+ */
+export async function getAllCompletedOrders(): Promise<CompletedTicketOrder[]> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('x402_completed_orders')
+    .select('*')
+    .eq('env', TICKETING_ENV)
+    .order('completed_at', { ascending: false })
+  if (error) throw new Error(`ticketStore getAllCompletedOrders: ${error.message}`)
+  return (data ?? []).map((row) => rowToCompleted(row as CompletedRow))
 }
 
 /**
