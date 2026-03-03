@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Download } from 'lucide-react'
+import { Download, CircleUser } from 'lucide-react'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -49,10 +49,13 @@ export default function OrderConfirmationPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [xUsername, setXUsername] = useState('')
+  const [shareName, setShareName] = useState('')
 
   useEffect(() => {
-    const saved = localStorage.getItem('devcon_x_username')
-    if (saved) setXUsername(saved)
+    const savedX = localStorage.getItem('devcon_x_username')
+    if (savedX) setXUsername(savedX)
+    const savedName = localStorage.getItem('devcon_share_name')
+    if (savedName) setShareName(savedName)
   }, [])
 
   useEffect(() => {
@@ -196,13 +199,10 @@ export default function OrderConfirmationPage() {
 
           {/* Left: Ticket card */}
           <div className={css['ticket-card']}>
-            <div className={css['ticket-image']}>
-              <img src="/assets/images/dc8-receipt-header.png" alt="Devcon India" />
-              {isPaid ? (
-                <span className={css['confirmed-badge']}>Confirmed</span>
-              ) : (
-                <span className={css['pending-badge']}>{statusLabels[order.status] || order.status}</span>
-              )}
+            <div className={`${css['ticket-banner']} ${isPaid ? css['ticket-banner--confirmed'] : css['ticket-banner--pending']}`}>
+              <span className={css['ticket-banner-text']}>
+                {isPaid ? 'Order Confirmed' : statusLabels[order.status] || order.status}
+              </span>
             </div>
             <div className={css['ticket-body']}>
               <div className={css['ticket-data']}>
@@ -254,7 +254,20 @@ export default function OrderConfirmationPage() {
                 <div className={css['share-input-group']}>
                   <div className={css['share-text']}>
                     <h3 className={css['share-title']}>Share on socials</h3>
-                    <p className={css['share-subtitle']}>Enter your X username to personalize</p>
+                    <p className={css['share-subtitle']}>Add name and/or X username to personalize</p>
+                  </div>
+                  <div className={css['share-input-wrap']}>
+                    <CircleUser size={20} />
+                    <input
+                      type="text"
+                      placeholder="Name (optional)"
+                      value={shareName}
+                      onChange={e => {
+                        const val = e.target.value
+                        setShareName(val)
+                        localStorage.setItem('devcon_share_name', val)
+                      }}
+                    />
                   </div>
                   <div className={css['share-input-wrap']}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -273,7 +286,7 @@ export default function OrderConfirmationPage() {
                   </div>
                 </div>
                 <a
-                  href={`/en/ticket/${encodeURIComponent(attendeeName.split(' ')[0].toLowerCase())}/${xUsername ? `?x=${encodeURIComponent(xUsername.replace(/^@/, ''))}` : ''}`}
+                  href={`/en/ticket/${encodeURIComponent((shareName || attendeeName.split(' ')[0]).toLowerCase())}/${xUsername ? `?x=${encodeURIComponent(xUsername.replace(/^@/, ''))}` : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={css['share-btn']}
