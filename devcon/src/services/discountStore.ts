@@ -6,6 +6,7 @@
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { TICKETING } from 'config/ticketing'
 
 export interface DiscountCode {
   id: number
@@ -45,6 +46,7 @@ export async function validateDiscountCode(code: string): Promise<DiscountCode |
     .from('devcon8_discount_codes')
     .select('*')
     .eq('code', code)
+    .eq('collection', TICKETING.discount.collection)
     .maybeSingle()
   if (error) throw new Error(`discountStore validateDiscountCode: ${error.message}`)
   if (!data) return null
@@ -77,6 +79,7 @@ export async function claimDiscountCode(code: string, claimedBy: string, voucher
     .from('devcon8_discount_codes')
     .update(update)
     .eq('code', code)
+    .eq('collection', TICKETING.discount.collection)
     .is('claimed_by', null)
     .select('id')
   if (error) throw new Error(`discountStore claimDiscountCode: ${error.message}`)
@@ -182,7 +185,7 @@ export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVo
 /**
  * Bulk insert discount codes (for generate script).
  */
-export async function insertDiscountCodes(codes: string[], collection: string = 'default'): Promise<number> {
+export async function insertDiscountCodes(codes: string[], collection: string = TICKETING.discount.collection): Promise<number> {
   const supabase = getSupabase()
   const rows = codes.map(code => ({ code, collection }))
   const CHUNK_SIZE = 500
@@ -201,7 +204,7 @@ export async function insertDiscountCodes(codes: string[], collection: string = 
  */
 export async function insertDiscountVouchers(
   vouchers: Array<{ code: string; pretixVoucherId: number; itemId: number; tag?: string }>,
-  collection: string = 'default'
+  collection: string = TICKETING.discount.collection
 ): Promise<number> {
   const supabase = getSupabase()
   const rows = vouchers.map(v => ({

@@ -24,6 +24,9 @@ const ENV_CONFIG = {
       scope: 'devcon-india-local-discount',
       staging: true,
     },
+    discount: {
+      collection: 'dev-local-discount',
+    },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
@@ -49,6 +52,9 @@ const ENV_CONFIG = {
     self: {
       scope: 'devcon-india-local-discount',
       staging: false,
+    },
+    discount: {
+      collection: 'local-discount',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,

@@ -2,13 +2,14 @@
  * Generate unique discount codes and insert into Supabase
  *
  * Usage:
- *   pnpm run discount:generate-codes --count 10 --collection local-early-bird [--prefix DC8-] [--length 12] [--dry-run]
+ *   pnpm run discount:generate-codes --count 10 [--collection <name>] [--prefix DC8-] [--length 12] [--dry-run]
  */
 import 'dotenv/config'
 import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
 import { insertDiscountCodes } from '../services/discountStore'
+import { TICKETING, TICKETING_ENV } from '../config/ticketing'
 
 const STORE_URL = 'https://devcon.org/en/tickets/store/?discount-code='
 
@@ -20,7 +21,7 @@ function parseArgs() {
   }
   return {
     count: parseInt(get('--count', '0'), 10),
-    collection: get('--collection', ''),
+    collection: get('--collection', TICKETING.discount.collection),
     prefix: get('--prefix', ''),
     length: parseInt(get('--length', '12'), 10),
     dryRun: args.includes('--dry-run'),
@@ -41,13 +42,14 @@ function generateCode(length: number, prefix: string): string {
 async function main() {
   const { count, collection, prefix, length, dryRun } = parseArgs()
 
-  if (count <= 0 || !collection) {
-    console.error('Usage: pnpm run discount:generate-codes --count <number> --collection <name> [--prefix <prefix>] [--length <length>] [--dry-run]')
+  if (count <= 0) {
+    console.error('Usage: pnpm run discount:generate-codes --count <number> [--collection <name>] [--prefix <prefix>] [--length <length>] [--dry-run]')
+    console.error(`Default collection from config (${TICKETING_ENV}): ${TICKETING.discount.collection}`)
     console.error('Example: pnpm run discount:generate-codes --count 100 --collection local-early-bird')
     process.exit(1)
   }
 
-  console.log(`Generating ${count} discount codes`)
+  console.log(`Generating ${count} discount codes (env: ${TICKETING_ENV})`)
   console.log(`  Collection: ${collection}`)
   console.log(`  Prefix: ${prefix || '(none)'}`)
   console.log(`  Code length: ${length} chars (+ prefix)`)
