@@ -62,23 +62,37 @@ export async function validateDiscountCode(code: string): Promise<DiscountCode |
 /**
  * Claim a discount code atomically. Uses WHERE claimed_by IS NULL for race-condition safety.
  * Returns true if claimed, false if already claimed by someone else.
+ * Call this BEFORE assignVoucher to prevent race conditions.
  */
-export async function claimDiscountCode(code: string, claimedBy: string, voucherCode: string): Promise<boolean> {
+export async function claimDiscountCode(code: string, claimedBy: string, voucherCode?: string): Promise<boolean> {
   const supabase = getSupabase()
   const now = new Date().toISOString()
+  const update: Record<string, string> = {
+    claimed_by: claimedBy,
+    claimed_at: now,
+    updated_at: now,
+  }
+  if (voucherCode) update.voucher_code = voucherCode
   const { data, error } = await supabase
     .from('devcon8_discount_codes')
-    .update({
-      claimed_by: claimedBy,
-      claimed_at: now,
-      voucher_code: voucherCode,
-      updated_at: now,
-    })
+    .update(update)
     .eq('code', code)
     .is('claimed_by', null)
     .select('id')
   if (error) throw new Error(`discountStore claimDiscountCode: ${error.message}`)
   return (data?.length ?? 0) > 0
+}
+
+/**
+ * Link a voucher code to an already-claimed discount code.
+ */
+export async function linkVoucherToDiscountCode(code: string, voucherCode: string): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase
+    .from('devcon8_discount_codes')
+    .update({ voucher_code: voucherCode, updated_at: new Date().toISOString() })
+    .eq('code', code)
+  if (error) throw new Error(`discountStore linkVoucherToDiscountCode: ${error.message}`)
 }
 
 /**
