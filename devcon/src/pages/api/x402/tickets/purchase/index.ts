@@ -51,6 +51,7 @@ import {
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
 import { TICKETING, isTestnet } from 'config/ticketing'
+import { isEmail } from 'utils/validators'
 
 interface PurchaseRequest {
   email: string
@@ -582,7 +583,7 @@ function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: 
   const errors: string[] = []
   const requirePayer = opts?.requirePayer ?? true
 
-  if (!body.email || typeof body.email !== 'string' || !body.email.includes('@')) {
+  if (!body.email || typeof body.email !== 'string' || !isEmail(body.email)) {
     errors.push('Valid email is required')
   }
 

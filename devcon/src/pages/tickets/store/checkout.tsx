@@ -6,6 +6,7 @@ import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Lo
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
+import { isEmail } from 'utils/validators'
 import { COUNTRIES } from './countries'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
@@ -691,8 +692,7 @@ function CheckoutContent() {
   const contactDetailsFilled =
     firstName.trim() !== '' &&
     lastName.trim() !== '' &&
-    email.trim() !== '' &&
-    confirmEmail.trim() !== '' &&
+    isEmail(email.trim()) &&
     email.trim() === confirmEmail.trim()
 
   // Auto-trigger crypto checkout when prerequisites are met (only on payment section)

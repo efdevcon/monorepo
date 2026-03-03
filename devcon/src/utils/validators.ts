@@ -1,4 +1,3 @@
 export function isEmail(text: string): boolean {
-  var regex = /\S+@\S+\.\S+/
-  return regex.test(text)
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/.test(text)
 }

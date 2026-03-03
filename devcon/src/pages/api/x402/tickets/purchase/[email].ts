@@ -7,6 +7,7 @@
  * and delegates to the main purchase handler.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { isEmail } from 'utils/validators'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { purchaseHandler } from './index'
 
@@ -23,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ success: false, error: 'Method not allowed. Use GET /api/x402/tickets/purchase/<email>' })
   }
 
-  if (!email || !email.includes('@')) {
+  if (!email || !isEmail(email)) {
     return res.status(400).json({ success: false, error: 'Valid email is required in the URL path' })
   }
 
