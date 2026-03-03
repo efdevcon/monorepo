@@ -1276,7 +1276,7 @@ function CheckoutContent() {
   return (
     <Page theme={themes['tickets']} hideFooter>
       {/* Mobile order summary sticky bar */}
-      <div className={css['mobile-order-wrapper']}>
+      {cartItems.length > 0 && <div className={css['mobile-order-wrapper']}>
           <button
             type="button"
             className={css['mobile-order-bar']}
@@ -1395,7 +1395,7 @@ function CheckoutContent() {
               </div>
             </div>
           )}
-      </div>
+      </div>}
       <div className={css['checkout-layout']}>
         <main className={css['main']}>
           <Link to="/tickets/store" className={css['back-link']}>
@@ -1404,8 +1404,24 @@ function CheckoutContent() {
           </Link>
           <h1 className={css['page-title']}>Checkout</h1>
 
+          {cartItems.length === 0 && mounted && (
+            <div className={css['section-card']}>
+              <div className={css['section-body']}>
+                <div className={css['description-block']}>
+                  <p className={css['description-title']}>Your cart is empty</p>
+                  <p className={css['description-sub']}>
+                    You haven&apos;t selected any tickets yet. Head back to the store to pick your tickets.
+                  </p>
+                </div>
+                <Link to="/tickets/store" className={css['btn-continue']}>
+                  Browse tickets
+                </Link>
+              </div>
+            </div>
+          )}
+
           {/* Add-ons (dynamic from Pretix) */}
-          {availableAddons.length > 0 && (
+          {cartItems.length > 0 && availableAddons.length > 0 && (
             <div className={css['section-card']}>
               <button
                 type="button"
@@ -1510,6 +1526,7 @@ function CheckoutContent() {
             </div>
           )}
 
+          {cartItems.length > 0 && <>
           {/* Contact details */}
           <div className={css['section-card']}>
             <button
@@ -2352,6 +2369,7 @@ function CheckoutContent() {
               </div>
             )}
           </div>
+          </>}
         </main>
 
         <aside className={css['panel']}>
