@@ -9,6 +9,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { isEmail } from 'utils/validators'
 import { getTicketPurchaseInfo, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import { checkPurchaseRateLimit } from 'services/ticketStore'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 
 interface FiatPurchaseRequest {
@@ -61,6 +62,14 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
+  }
+
+  // Rate limit by IP
+  const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+  try {
+    await checkPurchaseRateLimit(clientIp)
+  } catch {
+    return res.status(429).json({ success: false, error: 'Too many purchase attempts. Please try again later.' })
   }
 
   try {
