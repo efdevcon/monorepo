@@ -3,6 +3,7 @@
  * Run with: pnpm run pretix:test-categories
  */
 import 'dotenv/config'
+import { TICKETING, getPretixApiToken } from '../../config/ticketing'
 
 function normalizeBaseUrl(url: string): string {
   let normalized = url.endsWith('/') ? url : `${url}/`
@@ -11,10 +12,10 @@ function normalizeBaseUrl(url: string): string {
   }
   return normalized
 }
-const baseUrl = normalizeBaseUrl(process.env.PRETIX_BASE_URL || 'https://ticketh.xyz/api/v1/')
-const apiToken = process.env.PRETIX_API_TOKEN
-const organizerName = process.env.PRETIX_ORGANIZER || 'devcon'
-const eventName = process.env.PRETIX_EVENT || '7'
+const baseUrl = normalizeBaseUrl(TICKETING.pretix.baseUrl)
+const apiToken = getPretixApiToken()
+const organizerName = TICKETING.pretix.organizer
+const eventName = TICKETING.pretix.event
 
 async function fetchCategories() {
   console.log('=== Fetching Categories ===\n')

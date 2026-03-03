@@ -5,6 +5,9 @@ import { Link } from 'components/common/link'
 import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
+import { TICKETING } from 'config/ticketing'
+import { isEmail } from 'utils/validators'
+import { COUNTRIES } from 'utils/countries'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   WagmiProvider,
@@ -33,90 +36,8 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
-const COUNTRIES = [
-  { code: 'AF', name: 'Afghanistan' }, { code: 'AL', name: 'Albania' }, { code: 'DZ', name: 'Algeria' },
-  { code: 'AD', name: 'Andorra' }, { code: 'AO', name: 'Angola' }, { code: 'AG', name: 'Antigua and Barbuda' },
-  { code: 'AR', name: 'Argentina' }, { code: 'AM', name: 'Armenia' }, { code: 'AU', name: 'Australia' },
-  { code: 'AT', name: 'Austria' }, { code: 'AZ', name: 'Azerbaijan' }, { code: 'BS', name: 'Bahamas' },
-  { code: 'BH', name: 'Bahrain' }, { code: 'BD', name: 'Bangladesh' }, { code: 'BB', name: 'Barbados' },
-  { code: 'BY', name: 'Belarus' }, { code: 'BE', name: 'Belgium' }, { code: 'BZ', name: 'Belize' },
-  { code: 'BJ', name: 'Benin' }, { code: 'BT', name: 'Bhutan' }, { code: 'BO', name: 'Bolivia' },
-  { code: 'BA', name: 'Bosnia and Herzegovina' }, { code: 'BW', name: 'Botswana' }, { code: 'BR', name: 'Brazil' },
-  { code: 'BN', name: 'Brunei' }, { code: 'BG', name: 'Bulgaria' }, { code: 'BF', name: 'Burkina Faso' },
-  { code: 'BI', name: 'Burundi' }, { code: 'CV', name: 'Cabo Verde' }, { code: 'KH', name: 'Cambodia' },
-  { code: 'CM', name: 'Cameroon' }, { code: 'CA', name: 'Canada' }, { code: 'CF', name: 'Central African Republic' },
-  { code: 'TD', name: 'Chad' }, { code: 'CL', name: 'Chile' }, { code: 'CN', name: 'China' },
-  { code: 'CO', name: 'Colombia' }, { code: 'KM', name: 'Comoros' }, { code: 'CG', name: 'Congo' },
-  { code: 'CD', name: 'Congo (DRC)' }, { code: 'CR', name: 'Costa Rica' }, { code: 'CI', name: "Côte d'Ivoire" },
-  { code: 'HR', name: 'Croatia' }, { code: 'CU', name: 'Cuba' }, { code: 'CY', name: 'Cyprus' },
-  { code: 'CZ', name: 'Czechia' }, { code: 'DK', name: 'Denmark' }, { code: 'DJ', name: 'Djibouti' },
-  { code: 'DM', name: 'Dominica' }, { code: 'DO', name: 'Dominican Republic' }, { code: 'EC', name: 'Ecuador' },
-  { code: 'EG', name: 'Egypt' }, { code: 'SV', name: 'El Salvador' }, { code: 'GQ', name: 'Equatorial Guinea' },
-  { code: 'ER', name: 'Eritrea' }, { code: 'EE', name: 'Estonia' }, { code: 'SZ', name: 'Eswatini' },
-  { code: 'ET', name: 'Ethiopia' }, { code: 'FJ', name: 'Fiji' }, { code: 'FI', name: 'Finland' },
-  { code: 'FR', name: 'France' }, { code: 'GA', name: 'Gabon' }, { code: 'GM', name: 'Gambia' },
-  { code: 'GE', name: 'Georgia' }, { code: 'DE', name: 'Germany' }, { code: 'GH', name: 'Ghana' },
-  { code: 'GR', name: 'Greece' }, { code: 'GD', name: 'Grenada' }, { code: 'GT', name: 'Guatemala' },
-  { code: 'GN', name: 'Guinea' }, { code: 'GW', name: 'Guinea-Bissau' }, { code: 'GY', name: 'Guyana' },
-  { code: 'HT', name: 'Haiti' }, { code: 'HN', name: 'Honduras' }, { code: 'HK', name: 'Hong Kong' },
-  { code: 'HU', name: 'Hungary' }, { code: 'IS', name: 'Iceland' }, { code: 'IN', name: 'India' },
-  { code: 'ID', name: 'Indonesia' }, { code: 'IR', name: 'Iran' }, { code: 'IQ', name: 'Iraq' },
-  { code: 'IE', name: 'Ireland' }, { code: 'IL', name: 'Israel' }, { code: 'IT', name: 'Italy' },
-  { code: 'JM', name: 'Jamaica' }, { code: 'JP', name: 'Japan' }, { code: 'JO', name: 'Jordan' },
-  { code: 'KZ', name: 'Kazakhstan' }, { code: 'KE', name: 'Kenya' }, { code: 'KI', name: 'Kiribati' },
-  { code: 'KP', name: 'North Korea' }, { code: 'KR', name: 'South Korea' }, { code: 'KW', name: 'Kuwait' },
-  { code: 'KG', name: 'Kyrgyzstan' }, { code: 'LA', name: 'Laos' }, { code: 'LV', name: 'Latvia' },
-  { code: 'LB', name: 'Lebanon' }, { code: 'LS', name: 'Lesotho' }, { code: 'LR', name: 'Liberia' },
-  { code: 'LY', name: 'Libya' }, { code: 'LI', name: 'Liechtenstein' }, { code: 'LT', name: 'Lithuania' },
-  { code: 'LU', name: 'Luxembourg' }, { code: 'MO', name: 'Macao' }, { code: 'MG', name: 'Madagascar' },
-  { code: 'MW', name: 'Malawi' }, { code: 'MY', name: 'Malaysia' }, { code: 'MV', name: 'Maldives' },
-  { code: 'ML', name: 'Mali' }, { code: 'MT', name: 'Malta' }, { code: 'MH', name: 'Marshall Islands' },
-  { code: 'MR', name: 'Mauritania' }, { code: 'MU', name: 'Mauritius' }, { code: 'MX', name: 'Mexico' },
-  { code: 'FM', name: 'Micronesia' }, { code: 'MD', name: 'Moldova' }, { code: 'MC', name: 'Monaco' },
-  { code: 'MN', name: 'Mongolia' }, { code: 'ME', name: 'Montenegro' }, { code: 'MA', name: 'Morocco' },
-  { code: 'MZ', name: 'Mozambique' }, { code: 'MM', name: 'Myanmar' }, { code: 'NA', name: 'Namibia' },
-  { code: 'NR', name: 'Nauru' }, { code: 'NP', name: 'Nepal' }, { code: 'NL', name: 'Netherlands' },
-  { code: 'NZ', name: 'New Zealand' }, { code: 'NI', name: 'Nicaragua' }, { code: 'NE', name: 'Niger' },
-  { code: 'NG', name: 'Nigeria' }, { code: 'MK', name: 'North Macedonia' }, { code: 'NO', name: 'Norway' },
-  { code: 'OM', name: 'Oman' }, { code: 'PK', name: 'Pakistan' }, { code: 'PW', name: 'Palau' },
-  { code: 'PS', name: 'Palestine' }, { code: 'PA', name: 'Panama' }, { code: 'PG', name: 'Papua New Guinea' },
-  { code: 'PY', name: 'Paraguay' }, { code: 'PE', name: 'Peru' }, { code: 'PH', name: 'Philippines' },
-  { code: 'PL', name: 'Poland' }, { code: 'PT', name: 'Portugal' }, { code: 'QA', name: 'Qatar' },
-  { code: 'RO', name: 'Romania' }, { code: 'RU', name: 'Russia' }, { code: 'RW', name: 'Rwanda' },
-  { code: 'KN', name: 'Saint Kitts and Nevis' }, { code: 'LC', name: 'Saint Lucia' },
-  { code: 'VC', name: 'Saint Vincent and the Grenadines' }, { code: 'WS', name: 'Samoa' },
-  { code: 'SM', name: 'San Marino' }, { code: 'ST', name: 'São Tomé and Príncipe' },
-  { code: 'SA', name: 'Saudi Arabia' }, { code: 'SN', name: 'Senegal' }, { code: 'RS', name: 'Serbia' },
-  { code: 'SC', name: 'Seychelles' }, { code: 'SL', name: 'Sierra Leone' }, { code: 'SG', name: 'Singapore' },
-  { code: 'SK', name: 'Slovakia' }, { code: 'SI', name: 'Slovenia' }, { code: 'SB', name: 'Solomon Islands' },
-  { code: 'SO', name: 'Somalia' }, { code: 'ZA', name: 'South Africa' }, { code: 'SS', name: 'South Sudan' },
-  { code: 'ES', name: 'Spain' }, { code: 'LK', name: 'Sri Lanka' }, { code: 'SD', name: 'Sudan' },
-  { code: 'SR', name: 'Suriname' }, { code: 'SE', name: 'Sweden' }, { code: 'CH', name: 'Switzerland' },
-  { code: 'SY', name: 'Syria' }, { code: 'TW', name: 'Taiwan' }, { code: 'TJ', name: 'Tajikistan' },
-  { code: 'TZ', name: 'Tanzania' }, { code: 'TH', name: 'Thailand' }, { code: 'TL', name: 'Timor-Leste' },
-  { code: 'TG', name: 'Togo' }, { code: 'TO', name: 'Tonga' }, { code: 'TT', name: 'Trinidad and Tobago' },
-  { code: 'TN', name: 'Tunisia' }, { code: 'TR', name: 'Turkey' }, { code: 'TM', name: 'Turkmenistan' },
-  { code: 'TV', name: 'Tuvalu' }, { code: 'UG', name: 'Uganda' }, { code: 'UA', name: 'Ukraine' },
-  { code: 'AE', name: 'United Arab Emirates' }, { code: 'GB', name: 'United Kingdom' },
-  { code: 'US', name: 'United States' }, { code: 'UY', name: 'Uruguay' }, { code: 'UZ', name: 'Uzbekistan' },
-  { code: 'VU', name: 'Vanuatu' }, { code: 'VA', name: 'Vatican City' }, { code: 'VE', name: 'Venezuela' },
-  { code: 'VN', name: 'Vietnam' }, { code: 'YE', name: 'Yemen' }, { code: 'ZM', name: 'Zambia' },
-  { code: 'ZW', name: 'Zimbabwe' },
-]
 
 const queryClient = new QueryClient()
-
-const ERC20_ABI = [
-  {
-    name: 'transfer',
-    type: 'function',
-    inputs: [
-      { name: 'to', type: 'address' },
-      { name: 'amount', type: 'uint256' },
-    ],
-    outputs: [{ name: '', type: 'bool' }],
-  },
-] as const
 
 // ── Token & network icons ──
 
@@ -260,7 +181,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I purchase tickets with crypto?',
-    a: 'Yes! We accept crypto payments with a 3% discount. You can pay using all major wallets and tokens.',
+    a: `Yes! We accept crypto payments with a ${TICKETING.payment.cryptoDiscountPercent}% discount. You can pay using all major wallets and tokens.`,
   },
   {
     q: 'How can I cancel my order?',
@@ -291,7 +212,7 @@ export default function CheckoutPage() {
 // ── Checkout content ──
 
 function CheckoutContent() {
-  const daimoPay = process.env.NEXT_PUBLIC_DAIMO_PAY === 'true'
+  const daimoPay = TICKETING.checkout.useDaimoPay
   const { address, isConnected, chain, connector } = useAccount()
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
@@ -366,7 +287,7 @@ function CheckoutContent() {
   const autoCheckoutTriggeredRef = useRef<string | null>(null)
 
   // Wagmi hooks
-  const { writeContract, data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
+  const { data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
   const { data: walletClient } = useWalletClient()
   const [isSigningDirect, setIsSigningDirect] = useState(false)
   const [directSignError, setDirectSignError] = useState<string | null>(null)
@@ -653,7 +574,7 @@ function CheckoutContent() {
     return +discount.toFixed(2)
   })()
 
-  const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : 3
+  const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
   const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
 
@@ -721,11 +642,29 @@ function CheckoutContent() {
   }, [totalUsd, address, addonFingerprint])
 
   // ── Section helpers ──
+  const [sectionWarning, setSectionWarning] = useState<string | null>(null)
+
   const toggleSection = (id: string) => {
+    if (id === 'payment' && openSection !== 'payment') {
+      if (!contactDetailsFilled) {
+        setSectionWarning('Please fill in your contact details first.')
+        setOpenSection('contact')
+        return
+      }
+      const hasAttendeeErrors = applicableQuestions.some(q => q.required && isFieldEmpty(q.id))
+      if (hasAttendeeErrors) {
+        setSectionWarning('Please complete all required attendee fields first.')
+        setShowAttendeeErrors(true)
+        setOpenSection('attendee')
+        return
+      }
+    }
+    setSectionWarning(null)
     setOpenSection(s => (s === id ? null : id))
   }
 
   const goToNextSection = (currentSectionId: string) => {
+    setSectionWarning(null)
     const i = SECTION_ORDER.indexOf(currentSectionId as (typeof SECTION_ORDER)[number])
     if (i >= 0 && i < SECTION_ORDER.length - 1) {
       let next = SECTION_ORDER[i + 1]
@@ -741,8 +680,7 @@ function CheckoutContent() {
   const contactDetailsFilled =
     firstName.trim() !== '' &&
     lastName.trim() !== '' &&
-    email.trim() !== '' &&
-    confirmEmail.trim() !== '' &&
+    isEmail(email.trim()) &&
     email.trim() === confirmEmail.trim()
 
   // Auto-trigger crypto checkout when prerequisites are met (only on payment section)
@@ -1240,30 +1178,6 @@ function CheckoutContent() {
     }
   }
 
-  async function executeDirectPayment() {
-    if (!paymentDetails || !isConnected || !mounted) return
-
-    if (chain?.id !== paymentDetails.chainId) {
-      setPurchaseError(`Please switch to ${paymentDetails.network} network first`)
-      return
-    }
-
-    setPurchaseError(null)
-    setPaymentStatus('Confirm in wallet...')
-
-    try {
-      writeContract({
-        address: paymentDetails.tokenAddress as `0x${string}`,
-        abi: ERC20_ABI,
-        functionName: 'transfer',
-        args: [paymentDetails.recipient as `0x${string}`, BigInt(paymentDetails.amount)],
-      })
-    } catch {
-      setPurchaseError('Failed to execute payment')
-      setPaymentStatus(null)
-    }
-  }
-
   async function verifyPayment(hash: string, attempt = 1) {
     if (!paymentDetails || !address) return
 
@@ -1326,7 +1240,7 @@ function CheckoutContent() {
   return (
     <Page theme={themes['tickets']} hideFooter>
       {/* Mobile order summary sticky bar */}
-      <div className={css['mobile-order-wrapper']}>
+      {cartItems.length > 0 && <div className={css['mobile-order-wrapper']}>
           <button
             type="button"
             className={css['mobile-order-bar']}
@@ -1405,7 +1319,7 @@ function CheckoutContent() {
                   )}
                   {paymentMethod === 'crypto' && (
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>Crypto discount (&ndash;3%)</span>
+                      <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                       <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                     </div>
                   )}
@@ -1445,7 +1359,7 @@ function CheckoutContent() {
               </div>
             </div>
           )}
-      </div>
+      </div>}
       <div className={css['checkout-layout']}>
         <main className={css['main']}>
           <Link to="/tickets/store" className={css['back-link']}>
@@ -1454,8 +1368,24 @@ function CheckoutContent() {
           </Link>
           <h1 className={css['page-title']}>Checkout</h1>
 
+          {cartItems.length === 0 && mounted && (
+            <div className={css['section-card']}>
+              <div className={css['section-body']}>
+                <div className={css['description-block']}>
+                  <p className={css['description-title']}>Your cart is empty</p>
+                  <p className={css['description-sub']}>
+                    You haven&apos;t selected any tickets yet. Head back to the store to pick your tickets.
+                  </p>
+                </div>
+                <Link to="/tickets/store" className={css['btn-continue']}>
+                  Browse tickets
+                </Link>
+              </div>
+            </div>
+          )}
+
           {/* Add-ons (dynamic from Pretix) */}
-          {availableAddons.length > 0 && (
+          {cartItems.length > 0 && availableAddons.length > 0 && (
             <div className={css['section-card']}>
               <button
                 type="button"
@@ -1560,6 +1490,7 @@ function CheckoutContent() {
             </div>
           )}
 
+          {cartItems.length > 0 && <>
           {/* Contact details */}
           <div className={css['section-card']}>
             <button
@@ -1573,6 +1504,11 @@ function CheckoutContent() {
             </button>
             {openSection === 'contact' && (
               <div className={css['section-body']}>
+                {sectionWarning && (
+                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                    {sectionWarning}
+                  </div>
+                )}
                 <div className={css['description-block']}>
                   <p className={css['description-title']}>Where should we send your tickets?</p>
                   <p className={css['description-sub']}>
@@ -1581,7 +1517,7 @@ function CheckoutContent() {
                 </div>
                 <div className={css['field-row']}>
                   <div className={css['field']}>
-                    <label htmlFor="first-name">Name*</label>
+                    <label htmlFor="first-name">Name<span className={css['required']}>*</span></label>
                     <Input
                       id="first-name"
                       type="text"
@@ -1603,7 +1539,7 @@ function CheckoutContent() {
                 </div>
                 <div className={css['field-row']}>
                   <div className={css['field']}>
-                    <label htmlFor="email">Email*</label>
+                    <label htmlFor="email">Email<span className={css['required']}>*</span></label>
                     <Input
                       id="email"
                       type="email"
@@ -1664,6 +1600,11 @@ function CheckoutContent() {
             </button>
             {openSection === 'attendee' && (
               <div className={css['section-body']}>
+                {sectionWarning && (
+                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                    {sectionWarning}
+                  </div>
+                )}
                 {applicableQuestions.map(q => {
                   const isGoals = q.identifier === 'devcon-goals'
                   const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
@@ -1841,7 +1782,7 @@ function CheckoutContent() {
                   <p className={css['description-title']}>Select your preferred payment method</p>
                   {!daimoPay && (
                     <p className={css['description-sub']}>
-                      Receive a <strong>3% discount</strong> when paying with Crypto.
+                      Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying with Crypto.
                     </p>
                   )}
                 </div>
@@ -1855,7 +1796,7 @@ function CheckoutContent() {
                       <div className={css['payment-option-header']}>
                         <div className={css['payment-option-title-row']}>
                           <span className={css['payment-option-title']}>Crypto</span>
-                          {!daimoPay && <span className={css['save-badge']}>SAVE 3%</span>}
+                          {!daimoPay && <span className={css['save-badge']}>SAVE {TICKETING.payment.cryptoDiscountPercent}%</span>}
                         </div>
                         <div className={css['payment-icons']}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -2288,7 +2229,7 @@ function CheckoutContent() {
                           )}
                           {paymentMethod === 'crypto' && (
                             <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                              <span>Crypto discount (&ndash;3%)</span>
+                              <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                               <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                             </div>
                           )}
@@ -2392,6 +2333,7 @@ function CheckoutContent() {
               </div>
             )}
           </div>
+          </>}
         </main>
 
         <aside className={css['panel']}>
@@ -2525,7 +2467,7 @@ function CheckoutContent() {
                 )}
                 {paymentMethod === 'crypto' && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                    <span>Crypto discount (&ndash;3%)</span>
+                    <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                     <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                   </div>
                 )}

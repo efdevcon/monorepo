@@ -28,9 +28,9 @@ import {
   getUsdcConfigForChainId,
   type GaslessTokenConfig,
 } from '../types/x402'
+import { isTestnet } from 'config/ticketing'
 
 // Default chain (backward compat: Base mainnet or Base Sepolia)
-const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
 const defaultChainId = isTestnet ? baseSepolia.id : base.id
 
 // Map chain IDs to viem Chain objects

@@ -7,6 +7,7 @@
  * Returns the order code and payment URL for redirect.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { isEmail } from 'utils/validators'
 import { getTicketPurchaseInfo, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 
@@ -67,7 +68,7 @@ export default async function handler(
 
     // Validate request
     const errors: string[] = []
-    if (!body.email || typeof body.email !== 'string' || !body.email.includes('@')) {
+    if (!body.email || typeof body.email !== 'string' || !isEmail(body.email)) {
       errors.push('Valid email is required')
     }
     if (!body.tickets || !Array.isArray(body.tickets) || body.tickets.length === 0) {

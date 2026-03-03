@@ -3,6 +3,7 @@
  * Used for HTTP 402 Payment Required responses.
  * Aligned with x402 v2: multi-chain, CAIP-style asset IDs, PAYMENT-REQUIRED header.
  */
+import { isTestnet } from 'config/ticketing'
 
 /** CAIP-19 style asset (eip155:chainId/erc20:address or native ETH placeholder) */
 export interface SupportedAsset {
@@ -213,28 +214,24 @@ export const GASLESS_CONFIGS_TESTNET: GaslessTokenConfig[] = [
 
 /** Look up USDC config by chain ID (backward compat) */
 export function getUsdcConfigForChainId(chainId: number): GaslessTokenConfig | undefined {
-  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
   const configs = isTestnet ? USDC_CONFIGS_TESTNET : USDC_CONFIGS_MAINNET
   return configs.find(c => c.chainId === chainId)
 }
 
 /** Look up gasless config by chain ID + token address */
 export function getGaslessTokenConfig(chainId: number, tokenAddress: string): GaslessTokenConfig | undefined {
-  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
   const configs = isTestnet ? GASLESS_CONFIGS_TESTNET : GASLESS_CONFIGS_MAINNET
   return configs.find(c => c.chainId === chainId && c.tokenAddress.toLowerCase() === tokenAddress.toLowerCase())
 }
 
 /** Get all gasless configs for a chain (may return multiple tokens) */
 export function getGaslessConfigsForChain(chainId: number): GaslessTokenConfig[] {
-  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
   const configs = isTestnet ? GASLESS_CONFIGS_TESTNET : GASLESS_CONFIGS_MAINNET
   return configs.filter(c => c.chainId === chainId)
 }
 
 /** Get all gasless configs */
 export function getAllGaslessConfigs(): GaslessTokenConfig[] {
-  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
   return isTestnet ? GASLESS_CONFIGS_TESTNET : GASLESS_CONFIGS_MAINNET
 }
 
@@ -245,7 +242,6 @@ export function getGaslessChainIds(): number[] {
 
 /** @deprecated Use getGaslessChainIds */
 export function getGaslessUsdcChainIds(): number[] {
-  const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
   const configs = isTestnet ? USDC_CONFIGS_TESTNET : USDC_CONFIGS_MAINNET
   return configs.map(c => c.chainId)
 }

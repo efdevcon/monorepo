@@ -8,6 +8,7 @@
  */
 import 'dotenv/config'
 import { insertDiscountVouchers } from '../../services/discountStore'
+import { TICKETING, getPretixApiToken } from '../../config/ticketing'
 
 function normalizeBaseUrl(url: string): string {
   let normalized = url.endsWith('/') ? url : url + '/'
@@ -17,15 +18,10 @@ function normalizeBaseUrl(url: string): string {
   return normalized
 }
 
-const baseUrl = normalizeBaseUrl(process.env.PRETIX_BASE_URL || 'https://ticketh.xyz/api/v1/')
-const org = process.env.PRETIX_ORGANIZER || 'devcon'
-const ev = process.env.PRETIX_EVENT || '7'
-const token = process.env.PRETIX_API_TOKEN
-
-if (!token) {
-  console.error('PRETIX_API_TOKEN is required')
-  process.exit(1)
-}
+const baseUrl = normalizeBaseUrl(TICKETING.pretix.baseUrl)
+const org = TICKETING.pretix.organizer
+const ev = TICKETING.pretix.event
+const token = getPretixApiToken()
 
 const headers: Record<string, string> = {
   Authorization: 'Token ' + token,

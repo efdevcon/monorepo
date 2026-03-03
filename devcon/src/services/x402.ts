@@ -23,10 +23,7 @@ import {
 } from '../types/x402'
 import { getTokenDomain } from './relayer'
 import crypto from 'crypto'
-
-// Use testnet unless explicitly set to mainnet
-// NEXT_PUBLIC_CHAIN_ENV=mainnet for production, otherwise testnet
-const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
+import { TICKETING, isTestnet } from 'config/ticketing'
 const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
 const chain = isTestnet ? baseSepolia : base
 
@@ -81,16 +78,15 @@ const erc20Abi = parseAbi([
  * Get the payment recipient address from environment
  */
 export function getPaymentRecipient(): string {
-  // First check for explicit payment address
-  const paymentAddress = process.env.PAYMENT_RECIPIENT_ADDRESS
-  if (paymentAddress) {
-    return paymentAddress
+  // Use address from ticketing config
+  if (TICKETING.payment.recipientAddress) {
+    return TICKETING.payment.recipientAddress
   }
 
   // Fall back to deriving from private key
   const privateKey = process.env.ETH_RELAYER_PAYMENT_PRIVATE_KEY
   if (!privateKey) {
-    throw new Error('PAYMENT_RECIPIENT_ADDRESS or ETH_RELAYER_PAYMENT_PRIVATE_KEY environment variable must be set')
+    throw new Error('payment.recipientAddress not set in ticketing config and ETH_RELAYER_PAYMENT_PRIVATE_KEY is missing')
   }
 
   // Derive address from private key

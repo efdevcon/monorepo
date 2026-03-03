@@ -21,6 +21,7 @@ import {
   getGaslessTokenConfig,
   type SupportedAsset,
 } from 'types/x402'
+import { isTestnet } from 'config/ticketing'
 
 const ZAPPER_GRAPHQL = 'https://public.zapper.xyz/graphql'
 
@@ -202,7 +203,6 @@ export default async function handler(
     const totalUsd = parseFloat(pendingOrder.totalUsd)
     const recipient = getPaymentRecipient()
     const expiresAt = pendingOrder.expiresAt
-    const isTestnet = process.env.NEXT_PUBLIC_CHAIN_ENV !== 'mainnet'
     const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
     const chainIds = [...new Set(supportedAssets.map((a) => parseChainIdFromAsset(a.asset)))]
 
