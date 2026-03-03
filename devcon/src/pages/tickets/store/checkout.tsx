@@ -721,11 +721,29 @@ function CheckoutContent() {
   }, [totalUsd, address, addonFingerprint])
 
   // ── Section helpers ──
+  const [sectionWarning, setSectionWarning] = useState<string | null>(null)
+
   const toggleSection = (id: string) => {
+    if (id === 'payment' && openSection !== 'payment') {
+      if (!contactDetailsFilled) {
+        setSectionWarning('Please fill in your contact details first.')
+        setOpenSection('contact')
+        return
+      }
+      const hasAttendeeErrors = applicableQuestions.some(q => q.required && isFieldEmpty(q.id))
+      if (hasAttendeeErrors) {
+        setSectionWarning('Please complete all required attendee fields first.')
+        setShowAttendeeErrors(true)
+        setOpenSection('attendee')
+        return
+      }
+    }
+    setSectionWarning(null)
     setOpenSection(s => (s === id ? null : id))
   }
 
   const goToNextSection = (currentSectionId: string) => {
+    setSectionWarning(null)
     const i = SECTION_ORDER.indexOf(currentSectionId as (typeof SECTION_ORDER)[number])
     if (i >= 0 && i < SECTION_ORDER.length - 1) {
       let next = SECTION_ORDER[i + 1]
@@ -1573,6 +1591,11 @@ function CheckoutContent() {
             </button>
             {openSection === 'contact' && (
               <div className={css['section-body']}>
+                {sectionWarning && (
+                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                    {sectionWarning}
+                  </div>
+                )}
                 <div className={css['description-block']}>
                   <p className={css['description-title']}>Where should we send your tickets?</p>
                   <p className={css['description-sub']}>
@@ -1581,7 +1604,7 @@ function CheckoutContent() {
                 </div>
                 <div className={css['field-row']}>
                   <div className={css['field']}>
-                    <label htmlFor="first-name">Name*</label>
+                    <label htmlFor="first-name">Name<span className={css['required']}>*</span></label>
                     <Input
                       id="first-name"
                       type="text"
@@ -1603,7 +1626,7 @@ function CheckoutContent() {
                 </div>
                 <div className={css['field-row']}>
                   <div className={css['field']}>
-                    <label htmlFor="email">Email*</label>
+                    <label htmlFor="email">Email<span className={css['required']}>*</span></label>
                     <Input
                       id="email"
                       type="email"
@@ -1664,6 +1687,11 @@ function CheckoutContent() {
             </button>
             {openSection === 'attendee' && (
               <div className={css['section-body']}>
+                {sectionWarning && (
+                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                    {sectionWarning}
+                  </div>
+                )}
                 {applicableQuestions.map(q => {
                   const isGoals = q.identifier === 'devcon-goals'
                   const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
