@@ -105,8 +105,9 @@ interface ErrorResponse {
   details?: string[]
 }
 
-// 3% discount for crypto payments
-const CRYPTO_DISCOUNT_PERCENT = 3
+import { STORE_CONFIG } from 'pages/tickets/store/config'
+
+const CRYPTO_DISCOUNT_PERCENT = STORE_CONFIG.cryptoDiscountPercent
 
 /** Build expected ETH amount in wei per chain ID (for secure native ETH verification) */
 function buildExpectedEthWeiByChain(

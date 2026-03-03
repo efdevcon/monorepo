@@ -12,6 +12,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { TicketPurchaseInfo } from 'types/pretix'
 import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
+import { STORE_CONFIG } from 'pages/tickets/store/config'
 
 // ---------------------------------------------------------------------------
 // Simple in-memory per-IP rate limiter (defense in depth against cache-bypass)
@@ -98,7 +99,7 @@ export default async function handler(
           tokenSymbol: usdcConfig.tokenSymbol,
           tokenAddress: usdcConfig.tokenAddress,
           tokenDecimals: usdcConfig.tokenDecimals,
-          discountForCrypto: '3%', // 3% discount for crypto payment
+          discountForCrypto: `${STORE_CONFIG.cryptoDiscountPercent}%`,
           supportedAssets,
         },
       },

@@ -5,6 +5,7 @@ import { Link } from 'components/common/link'
 import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
+import { STORE_CONFIG } from './config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   WagmiProvider,
@@ -260,7 +261,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I purchase tickets with crypto?',
-    a: 'Yes! We accept crypto payments with a 3% discount. You can pay using all major wallets and tokens.',
+    a: `Yes! We accept crypto payments with a ${STORE_CONFIG.cryptoDiscountPercent}% discount. You can pay using all major wallets and tokens.`,
   },
   {
     q: 'How can I cancel my order?',
@@ -653,7 +654,7 @@ function CheckoutContent() {
     return +discount.toFixed(2)
   })()
 
-  const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : 3
+  const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : STORE_CONFIG.cryptoDiscountPercent
   const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
 
@@ -1423,7 +1424,7 @@ function CheckoutContent() {
                   )}
                   {paymentMethod === 'crypto' && (
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>Crypto discount (&ndash;3%)</span>
+                      <span>Crypto discount (&ndash;{STORE_CONFIG.cryptoDiscountPercent}%)</span>
                       <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                     </div>
                   )}
@@ -1869,7 +1870,7 @@ function CheckoutContent() {
                   <p className={css['description-title']}>Select your preferred payment method</p>
                   {!daimoPay && (
                     <p className={css['description-sub']}>
-                      Receive a <strong>3% discount</strong> when paying with Crypto.
+                      Receive a <strong>{STORE_CONFIG.cryptoDiscountPercent}% discount</strong> when paying with Crypto.
                     </p>
                   )}
                 </div>
@@ -1883,7 +1884,7 @@ function CheckoutContent() {
                       <div className={css['payment-option-header']}>
                         <div className={css['payment-option-title-row']}>
                           <span className={css['payment-option-title']}>Crypto</span>
-                          {!daimoPay && <span className={css['save-badge']}>SAVE 3%</span>}
+                          {!daimoPay && <span className={css['save-badge']}>SAVE {STORE_CONFIG.cryptoDiscountPercent}%</span>}
                         </div>
                         <div className={css['payment-icons']}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -2316,7 +2317,7 @@ function CheckoutContent() {
                           )}
                           {paymentMethod === 'crypto' && (
                             <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                              <span>Crypto discount (&ndash;3%)</span>
+                              <span>Crypto discount (&ndash;{STORE_CONFIG.cryptoDiscountPercent}%)</span>
                               <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                             </div>
                           )}
@@ -2553,7 +2554,7 @@ function CheckoutContent() {
                 )}
                 {paymentMethod === 'crypto' && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                    <span>Crypto discount (&ndash;3%)</span>
+                    <span>Crypto discount (&ndash;{STORE_CONFIG.cryptoDiscountPercent}%)</span>
                     <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                   </div>
                 )}
