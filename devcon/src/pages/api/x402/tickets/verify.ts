@@ -279,13 +279,28 @@ export default async function handler(
       })
     }
 
+    // Resolve token symbol and crypto amount before reserving
+    const tokenSymbol = body.symbol || getUsdcConfig().tokenSymbol
+    let cryptoAmount: string
+    if (body.symbol === 'ETH') {
+      const expectedWei = pendingOrder.expectedEthAmountWeiByChain?.[String(body.chainId)] || '0'
+      cryptoAmount = String(Number(BigInt(expectedWei)) / 1e18)
+    } else {
+      cryptoAmount = claimedOrder.totalUsd
+    }
+
     // Reserve tx_hash BEFORE creating Pretix order (prevents orphaned tickets on double-spend race)
     try {
       await reserveCompletedOrder(
         body.txHash,
         body.paymentReference,
         body.payer,
-        verification.confirmedAt || Math.floor(Date.now() / 1000)
+        verification.confirmedAt || Math.floor(Date.now() / 1000),
+        body.chainId,
+        claimedOrder.totalUsd,
+        tokenSymbol,
+        cryptoAmount,
+        verification.gasCostWei
       )
     } catch (error) {
       if (error instanceof TxHashAlreadyUsedError) {
@@ -302,15 +317,7 @@ export default async function handler(
 
     // Attach crypto payment details to order (visible in Pretix admin via x402_crypto plugin)
     const verifyChainIdNum = body.chainId || getUsdcConfig().chainId
-    const tokenSymbol = body.symbol || getUsdcConfig().tokenSymbol
     const tokenAddress = body.symbol === 'ETH' ? null : (body.tokenAddress || getUsdcConfig().tokenAddress)
-    let cryptoAmount: string
-    if (body.symbol === 'ETH') {
-      const expectedWei = pendingOrder.expectedEthAmountWeiByChain?.[String(body.chainId)] || '0'
-      cryptoAmount = String(Number(BigInt(expectedWei)) / 1e18)
-    } else {
-      cryptoAmount = claimedOrder.totalUsd
-    }
     claimedOrder.orderData.payment_info = {
       tx_hash: body.txHash,
       chain_id: verifyChainIdNum,

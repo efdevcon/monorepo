@@ -860,11 +860,17 @@ async function handlePaymentSignatureRetry(
 
   // 13. Reserve tx_hash BEFORE creating Pretix order (prevents orphaned tickets on double-spend race)
   try {
+    const cryptoAmountStr = String(Number(BigInt(String(authorization.value))) / 1e6)
     await reserveCompletedOrder(
       txHash,
       paymentReference,
       authorization.from,
-      verification.confirmedAt || Math.floor(Date.now() / 1000)
+      verification.confirmedAt || Math.floor(Date.now() / 1000),
+      networkChainId,
+      claimedOrder.totalUsd,
+      tokenConfig.tokenSymbol,
+      cryptoAmountStr,
+      verification.gasCostWei
     )
   } catch (error) {
     if (error instanceof TxHashAlreadyUsedError) {

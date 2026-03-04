@@ -122,9 +122,10 @@ export default function OrderConfirmationPage() {
     42161: 'https://arbiscan.io',
     8453: 'https://basescan.org',
     84532: 'https://sepolia.basescan.org',
+    137: 'https://polygonscan.com',
   }
   const CHAIN_NAMES: Record<number, string> = {
-    1: 'Ethereum', 10: 'Optimism', 42161: 'Arbitrum', 8453: 'Base', 84532: 'Base Sepolia',
+    1: 'Ethereum', 10: 'Optimism', 42161: 'Arbitrum', 8453: 'Base', 84532: 'Base Sepolia', 137: 'Polygon',
   }
   const SYMBOL_DISPLAY: Record<string, string> = { USDT0: 'USD₮0' }
   const chainId = pi?.chain_id ?? null

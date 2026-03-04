@@ -282,10 +282,14 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
         to === recipient.toLowerCase() &&
         (!proof.expectedAmount || value >= BigInt(proof.expectedAmount))
       ) {
+        const gasCostWei = receipt.gasUsed != null && receipt.effectiveGasPrice != null
+          ? String(receipt.gasUsed * receipt.effectiveGasPrice)
+          : undefined
         return {
           verified: true,
           blockNumber: Number(receipt.blockNumber),
           confirmedAt: Math.floor(Date.now() / 1000),
+          gasCostWei,
         }
       }
     }
@@ -377,10 +381,14 @@ export async function verifyPaymentDirect(
         to === expectedRecipient.toLowerCase() &&
         value >= BigInt(expectedAmount)
       ) {
+        const gasCostWei = receipt.gasUsed != null && receipt.effectiveGasPrice != null
+          ? String(receipt.gasUsed * receipt.effectiveGasPrice)
+          : undefined
         return {
           verified: true,
           blockNumber: Number(receipt.blockNumber),
           confirmedAt: Math.floor(Date.now() / 1000),
+          gasCostWei,
         }
       }
     }
@@ -454,10 +462,14 @@ export async function verifyPaymentNativeEth(
       return { verified: false, error: 'Transaction value is less than required amount' }
     }
 
+    const gasCostWei = receipt.gasUsed != null && receipt.effectiveGasPrice != null
+      ? String(receipt.gasUsed * receipt.effectiveGasPrice)
+      : undefined
     return {
       verified: true,
       blockNumber: Number(receipt.blockNumber),
       confirmedAt: Math.floor(Date.now() / 1000),
+      gasCostWei,
     }
   } catch (error) {
     console.error('Error verifying native ETH payment:', error)

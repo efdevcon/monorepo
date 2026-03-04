@@ -106,6 +106,8 @@ export interface X402PaymentVerification {
   blockNumber?: number
   /** Timestamp of confirmation */
   confirmedAt?: number
+  /** Gas cost in wei (gasUsed * effectiveGasPrice) — available from receipt */
+  gasCostWei?: string
 }
 
 // ── Gasless token configuration (EIP-3009 transferWithAuthorization) ──
