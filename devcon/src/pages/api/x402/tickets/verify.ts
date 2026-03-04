@@ -300,7 +300,7 @@ export default async function handler(
         claimedOrder.totalUsd,
         tokenSymbol,
         cryptoAmount,
-        verification.gasCostWei
+        undefined // gas paid by user, not sponsored
       )
     } catch (error) {
       if (error instanceof TxHashAlreadyUsedError) {

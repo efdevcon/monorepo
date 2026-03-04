@@ -1,6 +1,27 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Head from 'next/head'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi'
+import type { Config } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react'
+import { wagmiAdapter } from 'context/appkit-config'
+import { parseUnits } from 'viem'
+import { getUsdcConfigForChainId } from 'types/x402'
 import css from './admin.module.scss'
+
+const queryClient = new QueryClient()
+
+const ERC20_TRANSFER_ABI = [
+  {
+    name: 'transfer',
+    type: 'function',
+    inputs: [
+      { name: 'to', type: 'address' },
+      { name: 'amount', type: 'uint256' },
+    ],
+    outputs: [{ name: '', type: 'bool' }],
+  },
+] as const
 
 const STORAGE_KEY = 'x402_admin_secret'
 const POLL_INTERVAL = 30_000
@@ -17,6 +38,9 @@ interface CompletedOrder {
   cryptoAmount?: string
   gasCostWei?: string
   env: string
+  refundStatus?: string
+  refundTxHash?: string
+  refundMeta?: Record<string, unknown>
 }
 
 interface PendingOrder {
@@ -149,6 +173,29 @@ function TokenChainCell({ tokenSymbol, chainId }: { tokenSymbol?: string; chainI
   )
 }
 
+function ChainCell({ chainId }: { chainId?: number }) {
+  if (chainId == null) return <span>—</span>
+  const chain = CHAIN_NAMES[chainId] || `Chain ${chainId}`
+  return (
+    <span className={css['token-chain']}>
+      <Logo src={NETWORK_LOGOS[chainId]} alt={chain} />
+      <span>{chain}</span>
+    </span>
+  )
+}
+
+function CryptoAmountCell({ cryptoAmount, tokenSymbol }: { cryptoAmount?: string; tokenSymbol?: string }) {
+  if (!cryptoAmount) return <span>—</span>
+  const token = tokenSymbol || 'USDC'
+  return (
+    <span className={css['token-chain']}>
+      <span>{cryptoAmount}</span>
+      <Logo src={TOKEN_ICONS[token]} alt={token} />
+      <span>{token}</span>
+    </span>
+  )
+}
+
 function chainName(chainId?: number) {
   if (chainId == null) return '—'
   return CHAIN_NAMES[chainId] || String(chainId)
@@ -174,10 +221,11 @@ function SortableTh({
   currentDir: SortDir
   onSort: (key: string) => void
 }) {
+  const active = currentSort === sortKey
   return (
-    <th className={css.sortable} onClick={() => onSort(sortKey)}>
+    <th className={`${css.sortable}${active ? ` ${css['col-sorted-header']}` : ''}`} onClick={() => onSort(sortKey)}>
       {label}
-      <SortArrow active={currentSort === sortKey} dir={currentDir} />
+      <SortArrow active={active} dir={currentDir} />
     </th>
   )
 }
@@ -275,7 +323,249 @@ function exportCsv(filename: string, headers: string[], rows: string[][]) {
   URL.revokeObjectURL(url)
 }
 
+// ─── Refund Modal ────────────────────────────────────────────────
+
+function RefundModal({
+  order,
+  secret,
+  onClose,
+  onRefunded,
+}: {
+  order: CompletedOrder
+  secret: string
+  onClose: () => void
+  onRefunded: () => void
+}) {
+  const { address, chain } = useAccount()
+  const { switchChainAsync } = useSwitchChain()
+  const { writeContractAsync } = useWriteContract()
+  const [step, setStep] = useState<'confirm' | 'switching' | 'signing' | 'waiting' | 'done' | 'error'>('confirm')
+  const [txHash, setTxHash] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const refundChainId = order.chainId || 8453
+  const refundAmount = order.totalUsd || '0'
+  const usdcConfig = getUsdcConfigForChainId(refundChainId)
+
+  async function callRefundApi(action: string, body: Record<string, unknown>) {
+    const res = await fetch('/api/x402/admin/refund', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
+      body: JSON.stringify({ paymentReference: order.paymentReference, action, ...body }),
+    })
+    const json = await res.json()
+    if (!json.success) throw new Error(json.error || 'API call failed')
+    return json
+  }
+
+  async function handleRefund() {
+    if (!address || !usdcConfig) return
+
+    try {
+      // 1. Initiate — CAS prevents double-refund
+      setStep('signing')
+      await callRefundApi('initiate', {
+        chainId: refundChainId,
+        amount: refundAmount,
+        adminAddress: address,
+      })
+
+      // 2. Switch chain if needed
+      if (chain?.id !== refundChainId) {
+        setStep('switching')
+        await switchChainAsync({ chainId: refundChainId })
+      }
+
+      // 3. Send USDC transfer
+      setStep('signing')
+      const hash = await writeContractAsync({
+        address: usdcConfig.tokenAddress as `0x${string}`,
+        abi: ERC20_TRANSFER_ABI,
+        functionName: 'transfer',
+        args: [order.payer as `0x${string}`, parseUnits(refundAmount, 6)],
+        chainId: refundChainId,
+      })
+      setTxHash(hash)
+
+      // 4. Wait for confirmation
+      setStep('waiting')
+      // writeContractAsync returns after tx is submitted; we confirm via API
+      await callRefundApi('confirm', { txHash: hash })
+
+      setStep('done')
+      setTimeout(() => {
+        onRefunded()
+        onClose()
+      }, 1500)
+    } catch (err: any) {
+      const msg = err?.shortMessage || err?.message || 'Unknown error'
+      setError(msg)
+      setStep('error')
+
+      // If we already initiated, mark as failed
+      try {
+        await callRefundApi('fail', { error: msg })
+      } catch {
+        // best-effort
+      }
+    }
+  }
+
+  return (
+    <div className={css['modal-overlay']} onClick={onClose}>
+      <div className={css['modal-card']} onClick={e => e.stopPropagation()}>
+        <h3 className={css['modal-title']}>Refund Order</h3>
+        <div className={css['modal-details']}>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Pretix Order</span>
+            <span className={css['modal-value']}>{order.pretixOrderCode}</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Amount</span>
+            <span className={css['modal-value']}>${refundAmount} USDC</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Recipient</span>
+            <span className={`${css['modal-value']} ${css.mono}`}>{truncate(order.payer)}</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Chain</span>
+            <span className={css['modal-value']}>
+              <Logo src={NETWORK_LOGOS[refundChainId]} alt={chainName(refundChainId)} />
+              {' '}{chainName(refundChainId)}
+            </span>
+          </div>
+        </div>
+
+        {step === 'confirm' && (
+          <div className={css['modal-actions']}>
+            <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
+            <button
+              className={css['modal-confirm']}
+              onClick={handleRefund}
+              disabled={!address || !usdcConfig}
+            >
+              {!address ? 'Connect Wallet First' : !usdcConfig ? 'Unsupported Chain' : 'Send Refund'}
+            </button>
+          </div>
+        )}
+
+        {step === 'switching' && <div className={css['modal-status']}>Switching to {chainName(refundChainId)}...</div>}
+        {step === 'signing' && <div className={css['modal-status']}>Sign the transaction in your wallet...</div>}
+        {step === 'waiting' && (
+          <div className={css['modal-status']}>
+            Confirming refund...
+            {txHash && (
+              <a className={css.link} href={txExplorerUrl(txHash, refundChainId)} target="_blank" rel="noopener noreferrer">
+                View tx
+              </a>
+            )}
+          </div>
+        )}
+        {step === 'done' && <div className={css['modal-status-success']}>Refund confirmed!</div>}
+        {step === 'error' && (
+          <div className={css['modal-status-error']}>
+            <div>{error}</div>
+            <button className={css['modal-cancel']} onClick={onClose}>Close</button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Refund Action Cell ──────────────────────────────────────────
+
+function RefundActionCell({
+  order,
+  secret,
+  isConnected,
+  onRefunded,
+}: {
+  order: CompletedOrder
+  secret: string
+  isConnected: boolean
+  onRefunded: () => void
+}) {
+  const [showModal, setShowModal] = useState(false)
+
+  if (order.refundStatus === 'confirmed') {
+    return (
+      <span className={css['badge-refunded']}>
+        Refunded
+        {order.refundTxHash && (
+          <>
+            {' '}
+            <a
+              className={css.link}
+              href={txExplorerUrl(order.refundTxHash, order.chainId)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              (tx)
+            </a>
+          </>
+        )}
+      </span>
+    )
+  }
+
+  if (order.refundStatus === 'pending') {
+    return <span className={css['badge-pending']}>Processing...</span>
+  }
+
+  if (order.refundStatus === 'failed') {
+    return (
+      <>
+        <button
+          className={css['refund-btn']}
+          onClick={() => setShowModal(true)}
+          disabled={!isConnected || !order.totalUsd}
+          title={!isConnected ? 'Connect wallet to refund' : !order.totalUsd ? 'No amount to refund' : 'Issue USDC refund'}
+        >
+          Refund
+        </button>
+        {showModal && (
+          <RefundModal order={order} secret={secret} onClose={() => setShowModal(false)} onRefunded={onRefunded} />
+        )}
+      </>
+    )
+  }
+
+  return (
+    <>
+      <button
+        className={css['refund-btn']}
+        onClick={() => setShowModal(true)}
+        disabled={!isConnected || !order.totalUsd}
+        title={!isConnected ? 'Connect wallet to refund' : !order.totalUsd ? 'No amount to refund' : 'Issue USDC refund'}
+      >
+        Refund
+      </button>
+      {showModal && (
+        <RefundModal order={order} secret={secret} onClose={() => setShowModal(false)} onRefunded={onRefunded} />
+      )}
+    </>
+  )
+}
+
+// ─── Main wrapper with WagmiProvider ─────────────────────────────
+
 export default function AdminPage() {
+  return (
+    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
+      <QueryClientProvider client={queryClient}>
+        <AdminContent />
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
+}
+
+function AdminContent() {
+  const { address, isConnected } = useAccount()
+  const { open } = useAppKit()
+  const { disconnect } = useDisconnect()
+
   const [secret, setSecret] = useState('')
   const [authed, setAuthed] = useState(false)
   const [inputSecret, setInputSecret] = useState('')
@@ -286,14 +576,14 @@ export default function AdminPage() {
   const [autoRefresh, setAutoRefresh] = useState(true)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  // Date range filter — default to "All" (show everything on load)
+  // Date range filter — default to last 7 days
   const [dateFrom, setDateFrom] = useState(() => new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))
   const [dateTo, setDateTo] = useState(() => new Date().toISOString().slice(0, 10))
 
   // Sorting
-  const [completedSort, setCompletedSort] = useState<string | null>(null)
+  const [completedSort, setCompletedSort] = useState<string | null>('completedAt')
   const [completedSortDir, setCompletedSortDir] = useState<SortDir>('desc')
-  const [pendingSort, setPendingSort] = useState<string | null>(null)
+  const [pendingSort, setPendingSort] = useState<string | null>('expiresAt')
   const [pendingSortDir, setPendingSortDir] = useState<SortDir>('desc')
 
   const fetchOrders = useCallback(
@@ -431,9 +721,31 @@ export default function AdminPage() {
     return list
   }, [data?.completed, q, dateFrom, dateTo, completedSort, completedSortDir])
 
-  const totalRevenue = useMemo(() =>
-    filteredCompleted.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
+  // Split completed into active (non-refunded) and refunded
+  const activeCompleted = useMemo(() =>
+    filteredCompleted.filter(o => o.refundStatus !== 'confirmed'),
     [filteredCompleted]
+  )
+
+  const refundedOrders = useMemo(() =>
+    filteredCompleted
+      .filter(o => o.refundStatus === 'confirmed')
+      .sort((a, b) => {
+        const aTime = a.refundMeta?.refundedAt ? new Date(a.refundMeta.refundedAt as string).getTime() : 0
+        const bTime = b.refundMeta?.refundedAt ? new Date(b.refundMeta.refundedAt as string).getTime() : 0
+        return bTime - aTime
+      }),
+    [filteredCompleted]
+  )
+
+  const totalRevenue = useMemo(() =>
+    activeCompleted.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
+    [activeCompleted]
+  )
+
+  const totalRefunded = useMemo(() =>
+    refundedOrders.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
+    [refundedOrders]
   )
 
   const totalGasSponsored = useMemo(() => {
@@ -521,7 +833,7 @@ export default function AdminPage() {
   }
 
   function exportCompletedCsv() {
-    const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At']
+    const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At', 'Refund Status', 'Refund Tx Hash']
     const rows = filteredCompleted.map(o => [
       o.pretixOrderCode,
       o.totalUsd || '',
@@ -532,6 +844,8 @@ export default function AdminPage() {
       o.txHash,
       o.payer,
       formatDate(o.completedAt),
+      o.refundStatus || '',
+      o.refundTxHash || '',
     ])
     const date = new Date().toISOString().slice(0, 10)
     exportCsv(`x402-completed-${date}.csv`, headers, rows)
@@ -599,6 +913,15 @@ export default function AdminPage() {
           {data?.env && <span className={css['env-badge']}>{data.env}</span>}
         </div>
         <div className={css['header-right']}>
+          {isConnected ? (
+            <button className={css['wallet-btn']} onClick={() => disconnect()} title={address}>
+              {truncate(address || '', 4)} — Disconnect
+            </button>
+          ) : (
+            <button className={css['wallet-btn-connect']} onClick={() => open()}>
+              Connect Wallet
+            </button>
+          )}
           <label className={css['refresh-toggle']}>
             <input type="checkbox" checked={autoRefresh} onChange={e => setAutoRefresh(e.target.checked)} />
             Auto-refresh (30s)
@@ -619,7 +942,11 @@ export default function AdminPage() {
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Completed</p>
-              <p className={css['stat-value']}>{filteredCompleted.length}</p>
+              <p className={css['stat-value']}>{activeCompleted.length}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Refunded</p>
+              <p className={css['stat-value']}>{refundedOrders.length}</p>
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Total Revenue</p>
@@ -628,6 +955,10 @@ export default function AdminPage() {
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Gas Sponsored</p>
               <p className={css['stat-value']}>{totalGasSponsored != null ? `$${totalGasSponsored.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Total Refunded</p>
+              <p className={css['stat-value']}>${totalRefunded.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
           {data?.wallet && (
@@ -723,13 +1054,13 @@ export default function AdminPage() {
       {/* Completed Orders */}
       <div className={css.section}>
         <div className={css['section-header']}>
-          <h2 className={css['section-title']}>Completed Orders ({filteredCompleted.length})</h2>
+          <h2 className={css['section-title']}>Completed Orders ({activeCompleted.length})</h2>
           <button className={css['export-btn']} onClick={exportCompletedCsv} disabled={filteredCompleted.length === 0}>
             Export CSV
           </button>
         </div>
         <div className={css['table-wrap']}>
-          {filteredCompleted.length === 0 ? (
+          {activeCompleted.length === 0 ? (
             <div className={css.empty}>No completed orders</div>
           ) : (
             <table className={css.table}>
@@ -737,18 +1068,19 @@ export default function AdminPage() {
                 <tr>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
-                  <SortableTh label="Token / Chain" sortKey="tokenChain" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
-                  <th>Gas Cost</th>
+                  <SortableTh label="Chain" sortKey="tokenChain" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <th>Sponsored Gas</th>
                   <th>Tx Hash</th>
                   <th>Payer</th>
                   <SortableTh label="Completed At" sortKey="completedAt" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredCompleted.map(o => (
+                {activeCompleted.map(o => (
                   <tr key={o.paymentReference}>
-                    <td>
+                    <td className={undefined}>
                       <a
                         className={css.link}
                         href={`${data?.pretixBaseUrl}/${o.pretixOrderCode}/`}
@@ -758,10 +1090,10 @@ export default function AdminPage() {
                         {o.pretixOrderCode}
                       </a>
                     </td>
-                    <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><TokenChainCell tokenSymbol={o.tokenSymbol} chainId={o.chainId} /></td>
-                    <td className={css.mono}>{o.cryptoAmount || '—'}</td>
-                    <td className={css.mono}>{formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices)}</td>
+                    <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
+                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol} /></td>
+                    <td className={undefined}><ChainCell chainId={o.chainId} /></td>
+                    <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '—'}</td>
                     <td className={css.mono}>
                       <Copyable value={o.txHash}>
                         <a
@@ -786,7 +1118,15 @@ export default function AdminPage() {
                         {truncate(o.payer)}
                       </a>
                     </td>
-                    <td>{formatDate(o.completedAt)}</td>
+                    <td className={undefined}>{formatDate(o.completedAt)}</td>
+                    <td>
+                      <RefundActionCell
+                        order={o}
+                        secret={secret}
+                        isConnected={isConnected}
+                        onRefunded={() => fetchOrders(secret)}
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -794,6 +1134,92 @@ export default function AdminPage() {
           )}
         </div>
       </div>
+
+      {/* Refunded Orders */}
+      {refundedOrders.length > 0 && (
+        <div className={css.section}>
+          <div className={css['section-header']}>
+            <h2 className={css['section-title']}>Refunded Orders ({refundedOrders.length})</h2>
+          </div>
+          <div className={css['table-wrap']}>
+            <table className={css.table}>
+              <thead>
+                <tr>
+                  <th>Pretix Order</th>
+                  <th>Amount</th>
+                  <th>Crypto Amount</th>
+                  <th>Chain</th>
+                  <th>Payer</th>
+                  <th>Payment Tx</th>
+                  <th>Refund Tx</th>
+                  <th className={css['col-sorted-header']}>Refunded At <span className={css['sort-arrow']}>↓</span></th>
+                  <th>Completed At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {refundedOrders.map(o => (
+                  <tr key={o.paymentReference}>
+                    <td>
+                      <a
+                        className={css.link}
+                        href={`${data?.pretixBaseUrl}/${o.pretixOrderCode}/`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {o.pretixOrderCode}
+                      </a>
+                    </td>
+                    <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
+                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol} /></td>
+                    <td><ChainCell chainId={o.chainId} /></td>
+                    <td className={css.mono}>
+                      <a
+                        className={css.link}
+                        href={addressExplorerUrl(o.payer, o.chainId)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={o.payer}
+                      >
+                        {truncate(o.payer)}
+                      </a>
+                    </td>
+                    <td className={css.mono}>
+                      <Copyable value={o.txHash}>
+                        <a
+                          className={css.link}
+                          href={txExplorerUrl(o.txHash, o.chainId)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={e => e.stopPropagation()}
+                        >
+                          {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+                        </a>
+                      </Copyable>
+                    </td>
+                    <td className={css.mono}>
+                      {o.refundTxHash ? (
+                        <Copyable value={o.refundTxHash}>
+                          <a
+                            className={css.link}
+                            href={txExplorerUrl(o.refundTxHash, o.chainId)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={e => e.stopPropagation()}
+                          >
+                            {o.refundTxHash.slice(0, 10)}...{o.refundTxHash.slice(-8)}
+                          </a>
+                        </Copyable>
+                      ) : '—'}
+                    </td>
+                    <td>{o.refundMeta?.refundedAt ? formatDate(Math.floor(new Date(o.refundMeta.refundedAt as string).getTime() / 1000)) : '—'}</td>
+                    <td>{formatDate(o.completedAt)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Pending Orders */}
       <div className={css.section}>
@@ -826,7 +1252,7 @@ export default function AdminPage() {
                       <td className={css.mono}>
                         <Copyable value={o.paymentReference}>{truncate(o.paymentReference)}</Copyable>
                       </td>
-                      <td>${o.totalUsd}</td>
+                      <td className={undefined}>${o.totalUsd}</td>
                       <td className={css.mono}>
                         <a
                           className={css.link}
@@ -839,13 +1265,13 @@ export default function AdminPage() {
                         </a>
                       </td>
                       <td>{o.metadata?.email ?? '—'}</td>
-                      <td>
+                      <td className={undefined}>
                         <span className={css['token-chain']}>
                           {o.expectedChainId != null && <Logo src={NETWORK_LOGOS[o.expectedChainId]} alt={chainName(o.expectedChainId)} />}
                           {chainName(o.expectedChainId)}
                         </span>
                       </td>
-                      <td>
+                      <td className={undefined}>
                         {formatDate(o.expiresAt)}
                         {isExpired && <span className={css.expired}> EXPIRED</span>}
                       </td>

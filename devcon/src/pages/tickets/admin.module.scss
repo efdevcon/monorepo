@@ -158,7 +158,7 @@
 
 .stat-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
 }
 
@@ -606,4 +606,233 @@
 .sort-arrow {
   font-size: 11px;
   font-weight: 700;
+}
+
+.col-sorted-header {
+  color: #7235ed !important;
+  font-weight: 700;
+}
+
+/* ─── Wallet Connect Button ──────────────────────────────── */
+
+.wallet-btn {
+  padding: 6px 14px;
+  background: white;
+  border: 1px solid #dddae2;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  cursor: pointer;
+  color: #594d73;
+
+  &:hover {
+    background: #f2f1f4;
+  }
+}
+
+.wallet-btn-connect {
+  padding: 6px 14px;
+  background: #7235ed;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #f9f8fa;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+/* ─── Refund Button ──────────────────────────────────────── */
+
+.refund-btn {
+  padding: 4px 12px;
+  background: white;
+  border: 1px solid #dc2626;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #dc2626;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: #fef2f2;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+/* ─── Refund Badges ──────────────────────────────────────── */
+
+.badge-refunded {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: #ecfdf5;
+  color: #059669;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-pending {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #fff7ed;
+  color: #d97706;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-failed {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ─── Refund Modal ───────────────────────────────────────── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 11, 43, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(22, 11, 43, 0.2);
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.modal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-label {
+  font-size: 13px;
+  color: #594d73;
+  font-weight: 600;
+}
+
+.modal-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #160b2b;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-cancel {
+  padding: 8px 18px;
+  background: white;
+  border: 1px solid #dddae2;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #594d73;
+
+  &:hover {
+    background: #f2f1f4;
+  }
+}
+
+.modal-confirm {
+  padding: 8px 18px;
+  background: #dc2626;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: #b91c1c;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.modal-status {
+  text-align: center;
+  font-size: 14px;
+  color: #594d73;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-status-success {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #059669;
+  padding: 12px 0;
+}
+
+.modal-status-error {
+  text-align: center;
+  font-size: 13px;
+  color: #dc2626;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  word-break: break-word;
 }

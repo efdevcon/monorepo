@@ -226,6 +226,64 @@ export async function markOrderPaid(orderCode: string): Promise<PretixOrder> {
 }
 
 /**
+ * Issue a manual refund for an order via the Pretix refund API.
+ * Creates a proper refund record (provider=manual, source=external) against
+ * the order's payment, then cancels the order. This avoids the "OVERPAID"
+ * display that mark_refunded causes with external payment providers.
+ */
+export async function markOrderRefunded(orderCode: string, refundAmount?: string, txHash?: string, chainId?: number): Promise<void> {
+  return withRetry(`markOrderRefunded(${orderCode})`, async () => {
+    // 1. Fetch order to get payment details
+    const order = await getOrder(orderCode)
+    const payment = order.payments?.find(
+      (p: any) => (p.provider === 'x402_crypto' || p.provider === 'manual') && p.state === 'confirmed'
+    )
+
+    const amount = refundAmount ?? (payment as any)?.amount ?? order.total
+
+    // 2. Create a manual refund record
+    if (payment) {
+      const refundUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/refunds/`
+      const refundRes = await fetch(refundUrl, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify({
+          state: 'done',
+          source: 'external',
+          amount,
+          payment: payment.local_id,
+          provider: 'manual',
+          mark_canceled: false,
+          mark_pending: false,
+          execution_date: new Date().toISOString().slice(0, 10),
+          comment: txHash
+            ? `Crypto refund issued on-chain: ${chainId ? `https://${chainId === 1 ? 'etherscan.io' : chainId === 10 ? 'optimistic.etherscan.io' : chainId === 42161 ? 'arbiscan.io' : chainId === 8453 ? 'basescan.org' : chainId === 84532 ? 'sepolia.basescan.org' : chainId === 137 ? 'polygonscan.com' : 'blockscan.com'}/tx/${txHash}` : txHash}`
+            : 'Crypto refund issued on-chain',
+        }),
+      })
+
+      if (!refundRes.ok) {
+        const text = await refundRes.text()
+        console.warn(`[pretix] Failed to create refund record for ${orderCode} (${refundRes.status}): ${text}`)
+        // Fall through to cancel — refund record is nice-to-have, cancellation is essential
+      }
+    }
+
+    // 3. Cancel the order to invalidate the ticket
+    const cancelUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/mark_canceled/`
+    const cancelRes = await fetch(cancelUrl, {
+      method: 'POST',
+      headers: getHeaders(),
+    })
+
+    if (!cancelRes.ok) {
+      const text = await cancelRes.text()
+      throw new Error(`Failed to cancel order ${orderCode} (${cancelRes.status}): ${text}`)
+    }
+  })
+}
+
+/**
  * Confirm an existing payment on an order and attach info data.
  * This confirms the payment created by the order's payment_provider (e.g. x402_crypto)
  * instead of creating a new manual payment via mark_paid/.

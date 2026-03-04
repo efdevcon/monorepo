@@ -44,6 +44,9 @@ export interface CompletedTicketOrder {
   cryptoAmount?: string
   gasCostWei?: string
   env?: string
+  refundStatus?: string
+  refundTxHash?: string
+  refundMeta?: Record<string, unknown>
 }
 
 interface PendingRow {
@@ -71,6 +74,9 @@ interface CompletedRow {
   crypto_amount: string | null
   gas_cost_wei: string | null
   env: string
+  refund_status: string | null
+  refund_tx_hash: string | null
+  refund_meta: Record<string, unknown> | null
 }
 
 function getSupabase(): SupabaseClient {
@@ -110,6 +116,9 @@ function rowToCompleted(row: CompletedRow): CompletedTicketOrder {
     cryptoAmount: row.crypto_amount ?? undefined,
     gasCostWei: row.gas_cost_wei ?? undefined,
     env: row.env,
+    refundStatus: row.refund_status ?? undefined,
+    refundTxHash: row.refund_tx_hash ?? undefined,
+    refundMeta: row.refund_meta ?? undefined,
   }
 }
 
@@ -344,6 +353,99 @@ export async function getCompletedOrderByTxHash(txHash: string): Promise<Complet
     .maybeSingle()
   if (error) throw new Error(`ticketStore getCompletedOrderByTxHash: ${error.message}`)
   return data ? rowToCompleted(data as CompletedRow) : undefined
+}
+
+/**
+ * Mark an order as refund-pending (CAS: only succeeds if refund_status is NULL or 'failed').
+ * Prevents double-refund by blocking 'pending' and 'confirmed' states, but allows retry after failure.
+ */
+export async function markOrderRefundPending(
+  paymentReference: string,
+  chainId: number,
+  amount: string,
+  adminAddress: string
+): Promise<boolean> {
+  const supabase = getSupabase()
+  // Try NULL first (most common case)
+  const { data, error } = await supabase
+    .from('x402_completed_orders')
+    .update({
+      refund_status: 'pending',
+      refund_meta: { amount, chainId, adminAddress, initiatedAt: new Date().toISOString() },
+    })
+    .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
+    .is('refund_status', null)
+    .select('payment_reference')
+  if (error) throw new Error(`ticketStore markOrderRefundPending: ${error.message}`)
+  if ((data?.length ?? 0) > 0) return true
+
+  // Retry from 'failed' state
+  const { data: data2, error: error2 } = await supabase
+    .from('x402_completed_orders')
+    .update({
+      refund_status: 'pending',
+      refund_tx_hash: null,
+      refund_meta: { amount, chainId, adminAddress, initiatedAt: new Date().toISOString() },
+    })
+    .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
+    .eq('refund_status', 'failed')
+    .select('payment_reference')
+  if (error2) throw new Error(`ticketStore markOrderRefundPending (retry): ${error2.message}`)
+  return (data2?.length ?? 0) > 0
+}
+
+/**
+ * Finalize a refund: set status=confirmed, store tx hash and timestamp.
+ */
+export async function finalizeOrderRefund(paymentReference: string, txHash: string): Promise<void> {
+  const supabase = getSupabase()
+
+  // First read existing meta to merge
+  const { data } = await supabase
+    .from('x402_completed_orders')
+    .select('refund_meta')
+    .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
+    .maybeSingle()
+  const meta = (data?.refund_meta as Record<string, unknown>) || {}
+
+  const { error } = await supabase
+    .from('x402_completed_orders')
+    .update({
+      refund_status: 'confirmed',
+      refund_tx_hash: txHash,
+      refund_meta: { ...meta, refundedAt: new Date().toISOString() },
+    })
+    .eq('payment_reference', paymentReference)
+    .eq('refund_status', 'pending')
+    .eq('env', TICKETING_ENV)
+  if (error) throw new Error(`ticketStore finalizeOrderRefund: ${error.message}`)
+}
+
+/**
+ * Mark a refund as failed, storing the error in meta.
+ */
+export async function markOrderRefundFailed(paymentReference: string, errorMessage: string): Promise<void> {
+  const supabase = getSupabase()
+  const { data } = await supabase
+    .from('x402_completed_orders')
+    .select('refund_meta')
+    .eq('payment_reference', paymentReference)
+    .eq('env', TICKETING_ENV)
+    .maybeSingle()
+  const meta = (data?.refund_meta as Record<string, unknown>) || {}
+  const { error } = await supabase
+    .from('x402_completed_orders')
+    .update({
+      refund_status: 'failed',
+      refund_meta: { ...meta, error: errorMessage, failedAt: new Date().toISOString() },
+    })
+    .eq('payment_reference', paymentReference)
+    .eq('refund_status', 'pending')
+    .eq('env', TICKETING_ENV)
+  if (error) throw new Error(`ticketStore markOrderRefundFailed: ${error.message}`)
 }
 
 const RATE_LIMIT_REF_WINDOW_HOURS = 1
