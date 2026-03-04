@@ -940,6 +940,12 @@ function CheckoutContent() {
         const paymentUrlWithReturn = `${data.paymentUrl}${separator}return_url=${encodeURIComponent(returnUrl)}`
 
         localStorage.removeItem('devcon-ticket-cart')
+        if (newsletter) {
+          navigator.sendBeacon(
+            '/api/subscribe/',
+            new Blob([JSON.stringify({ email: email.trim() })], { type: 'application/json' })
+          )
+        }
         window.location.href = paymentUrlWithReturn
       } else {
         setPurchaseError(data.error || 'Failed to create order')
@@ -1207,6 +1213,13 @@ function CheckoutContent() {
       if (data.success) {
         setPaymentStatus(null)
         localStorage.removeItem('devcon-ticket-cart')
+        if (newsletter) {
+          fetch('/api/subscribe/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email.trim() }),
+          }).catch(() => {})
+        }
         // Redirect to confirmation page (payment details are fetched from the API)
         router.push(`/tickets/store/order/${data.order.code}/${data.order.secret}`)
         return
@@ -1240,7 +1253,8 @@ function CheckoutContent() {
   return (
     <Page theme={themes['tickets']} hideFooter>
       {/* Mobile order summary sticky bar */}
-      {cartItems.length > 0 && <div className={css['mobile-order-wrapper']}>
+      {cartItems.length > 0 && (
+        <div className={css['mobile-order-wrapper']}>
           <button
             type="button"
             className={css['mobile-order-bar']}
@@ -1294,13 +1308,13 @@ function CheckoutContent() {
                       <div key={itemId} className={css['panel-item']}>
                         <div className={css['panel-item-name']}>
                           {item.name}
-                          {variationName && (
-                            <span className={css['panel-item-meta']}>{variationName}</span>
-                          )}
+                          {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                         </div>
                         <div className={css['panel-item-right']}>
                           <span>x{data.quantity}</span>
-                          <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
+                          <span className={css['panel-item-price']}>
+                            {isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}
+                          </span>
                         </div>
                       </div>
                     )
@@ -1359,7 +1373,8 @@ function CheckoutContent() {
               </div>
             </div>
           )}
-      </div>}
+        </div>
+      )}
       <div className={css['checkout-layout']}>
         <main className={css['main']}>
           <Link to="/tickets/store" className={css['back-link']}>
@@ -1402,11 +1417,11 @@ function CheckoutContent() {
                     const availableItems = category.items.filter(i => i.available)
                     if (availableItems.length === 0) return null
                     return (
-                    <div key={category.categoryId} className={css['swag-grid']}>
-                      {category.categoryName && (
-                        <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
-                      )}
-                      {availableItems.map(item => {
+                      <div key={category.categoryId} className={css['swag-grid']}>
+                        {category.categoryName && (
+                          <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
+                        )}
+                        {availableItems.map(item => {
                           const sel = selectedAddons.get(item.id)
                           const qty = sel?.quantity || 0
                           const isFree = parseFloat(item.price) === 0
@@ -1467,7 +1482,10 @@ function CheckoutContent() {
                                       checked={qty > 0}
                                       onCheckedChange={() => toggleAddon(item.id)}
                                     />
-                                    <Label htmlFor={`addon-${item.id}`} className="text-sm text-black/70 cursor-pointer">
+                                    <Label
+                                      htmlFor={`addon-${item.id}`}
+                                      className="text-sm text-black/70 cursor-pointer"
+                                    >
                                       {qty > 0 ? 'Added' : 'Add'}
                                     </Label>
                                   </div>
@@ -1479,7 +1497,7 @@ function CheckoutContent() {
                             </div>
                           )
                         })}
-                    </div>
+                      </div>
                     )
                   })}
                   <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
@@ -1490,860 +1508,898 @@ function CheckoutContent() {
             </div>
           )}
 
-          {cartItems.length > 0 && <>
-          {/* Contact details */}
-          <div className={css['section-card']}>
-            <button
-              type="button"
-              className={`${css['section-header']} ${openSection !== 'contact' ? css['section-header-collapsed'] : ''}`}
-              onClick={() => toggleSection('contact')}
-              aria-expanded={openSection === 'contact'}
-            >
-              <span>Contact details</span>
-              {openSection === 'contact' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-            </button>
-            {openSection === 'contact' && (
-              <div className={css['section-body']}>
-                {sectionWarning && (
-                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                    {sectionWarning}
-                  </div>
-                )}
-                <div className={css['description-block']}>
-                  <p className={css['description-title']}>Where should we send your tickets?</p>
-                  <p className={css['description-sub']}>
-                    Your Devcon tickets will be linked with this name and email address.
-                  </p>
-                </div>
-                <div className={css['field-row']}>
-                  <div className={css['field']}>
-                    <label htmlFor="first-name">Name<span className={css['required']}>*</span></label>
-                    <Input
-                      id="first-name"
-                      type="text"
-                      placeholder="First name"
-                      value={firstName}
-                      onChange={e => setFirstName(e.target.value)}
-                    />
-                  </div>
-                  <div className={css['field']}>
-                    <label htmlFor="last-name">&nbsp;</label>
-                    <Input
-                      id="last-name"
-                      type="text"
-                      placeholder="Last name"
-                      value={lastName}
-                      onChange={e => setLastName(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className={css['field-row']}>
-                  <div className={css['field']}>
-                    <label htmlFor="email">Email<span className={css['required']}>*</span></label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter email"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                    />
-                  </div>
-                  <div className={css['field']}>
-                    <label htmlFor="confirm-email">&nbsp;</label>
-                    <Input
-                      id="confirm-email"
-                      type="email"
-                      placeholder="Confirm email"
-                      value={confirmEmail}
-                      onChange={e => setConfirmEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <label
-                  className={`flex items-start gap-3 p-3 border rounded-[10px] bg-white cursor-pointer ${newsletter ? 'border-black' : 'border-[#e5e5e5]'}`}
-                >
-                  <Checkbox
-                    checked={newsletter}
-                    onCheckedChange={checked => setNewsletter(checked === true)}
-                    className="mt-0.5"
-                  />
-                  <span className={css['rich-checkbox-content']}>
-                    <span className={css['rich-checkbox-label']}>Subscribe to the Devcon newsletter</span>
-                    <span className={css['rich-checkbox-desc']}>
-                      Join &gt;11k subscribers and stay updated by getting the latest news delivered directly to your
-                      inbox.
-                    </span>
-                  </span>
-                </label>
+          {cartItems.length > 0 && (
+            <>
+              {/* Contact details */}
+              <div className={css['section-card']}>
                 <button
                   type="button"
-                  className={`${css['btn-continue']} ${!contactDetailsFilled ? css['btn-disabled'] : ''}`}
-                  disabled={!contactDetailsFilled}
-                  onClick={() => goToNextSection('contact')}
+                  className={`${css['section-header']} ${
+                    openSection !== 'contact' ? css['section-header-collapsed'] : ''
+                  }`}
+                  onClick={() => toggleSection('contact')}
+                  aria-expanded={openSection === 'contact'}
                 >
-                  Continue
+                  <span>Contact details</span>
+                  {openSection === 'contact' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
                 </button>
-              </div>
-            )}
-          </div>
-
-          {/* Attendee information */}
-          <div className={css['section-card']}>
-            <button
-              type="button"
-              className={`${css['section-header']} ${openSection !== 'attendee' ? css['section-header-collapsed'] : ''}`}
-              onClick={() => toggleSection('attendee')}
-              aria-expanded={openSection === 'attendee'}
-            >
-              <span>Attendee information</span>
-              {openSection === 'attendee' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-            </button>
-            {openSection === 'attendee' && (
-              <div className={css['section-body']}>
-                {sectionWarning && (
-                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                    {sectionWarning}
+                {openSection === 'contact' && (
+                  <div className={css['section-body']}>
+                    {sectionWarning && (
+                      <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>{sectionWarning}</div>
+                    )}
+                    <div className={css['description-block']}>
+                      <p className={css['description-title']}>Where should we send your tickets?</p>
+                      <p className={css['description-sub']}>
+                        Your Devcon tickets will be linked with this name and email address.
+                      </p>
+                    </div>
+                    <div className={css['field-row']}>
+                      <div className={css['field']}>
+                        <label htmlFor="first-name">
+                          Name<span className={css['required']}>*</span>
+                        </label>
+                        <Input
+                          id="first-name"
+                          type="text"
+                          placeholder="First name"
+                          value={firstName}
+                          onChange={e => setFirstName(e.target.value)}
+                        />
+                      </div>
+                      <div className={css['field']}>
+                        <label htmlFor="last-name">&nbsp;</label>
+                        <Input
+                          id="last-name"
+                          type="text"
+                          placeholder="Last name"
+                          value={lastName}
+                          onChange={e => setLastName(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className={css['field-row']}>
+                      <div className={css['field']}>
+                        <label htmlFor="email">
+                          Email<span className={css['required']}>*</span>
+                        </label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="Enter email"
+                          value={email}
+                          onChange={e => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className={css['field']}>
+                        <label htmlFor="confirm-email">&nbsp;</label>
+                        <Input
+                          id="confirm-email"
+                          type="email"
+                          placeholder="Confirm email"
+                          value={confirmEmail}
+                          onChange={e => setConfirmEmail(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <label
+                      className={`flex items-start gap-3 p-3 border rounded-[10px] bg-white cursor-pointer ${
+                        newsletter ? 'border-black' : 'border-[#e5e5e5]'
+                      }`}
+                    >
+                      <Checkbox
+                        checked={newsletter}
+                        onCheckedChange={checked => setNewsletter(checked === true)}
+                        className="mt-0.5"
+                      />
+                      <span className={css['rich-checkbox-content']}>
+                        <span className={css['rich-checkbox-label']}>Subscribe to the Devcon newsletter</span>
+                        <span className={css['rich-checkbox-desc']}>
+                          Join &gt;16k subscribers and stay updated by getting the latest news delivered directly to
+                          your inbox.
+                        </span>
+                      </span>
+                    </label>
+                    <button
+                      type="button"
+                      className={`${css['btn-continue']} ${!contactDetailsFilled ? css['btn-disabled'] : ''}`}
+                      disabled={!contactDetailsFilled}
+                      onClick={() => goToNextSection('contact')}
+                    >
+                      Continue
+                    </button>
                   </div>
                 )}
-                {applicableQuestions.map(q => {
-                  const isGoals = q.identifier === 'devcon-goals'
-                  const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
+              </div>
 
-                  return (
-                    <div key={q.id} className={css['field']}>
-                      <label>
-                        {q.question}
-                        {q.required && <span className={css['required']}>*</span>}
-                      </label>
-                      {q.helpText && (
-                        <span style={{ fontSize: '0.75rem', color: '#666', display: 'block', marginTop: '-0.5rem' }}>
-                          {q.helpText}
-                        </span>
-                      )}
+              {/* Attendee information */}
+              <div className={css['section-card']}>
+                <button
+                  type="button"
+                  className={`${css['section-header']} ${
+                    openSection !== 'attendee' ? css['section-header-collapsed'] : ''
+                  }`}
+                  onClick={() => toggleSection('attendee')}
+                  aria-expanded={openSection === 'attendee'}
+                >
+                  <span>Attendee information</span>
+                  {openSection === 'attendee' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                </button>
+                {openSection === 'attendee' && (
+                  <div className={css['section-body']}>
+                    {sectionWarning && (
+                      <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>{sectionWarning}</div>
+                    )}
+                    {applicableQuestions.map(q => {
+                      const isGoals = q.identifier === 'devcon-goals'
+                      const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
 
-                      {/* Country select */}
-                      {q.type === 'CC' && (
-                        <Select
-                          value={(answers[q.id] as string) || ''}
-                          onValueChange={v => updateAnswer(q.id, v)}
-                        >
-                          <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
-                            <SelectValue placeholder="Select a country" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {COUNTRIES.map(c => (
-                              <SelectItem key={c.code} value={c.code}>
-                                {c.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      )}
+                      return (
+                        <div key={q.id} className={css['field']}>
+                          <label>
+                            {q.question}
+                            {q.required && <span className={css['required']}>*</span>}
+                          </label>
+                          {q.helpText && (
+                            <span
+                              style={{ fontSize: '0.75rem', color: '#666', display: 'block', marginTop: '-0.5rem' }}
+                            >
+                              {q.helpText}
+                            </span>
+                          )}
 
-                      {/* Single choice dropdown */}
-                      {q.type === 'C' && (
-                        <Select
-                          value={(answers[q.id] as string) || ''}
-                          onValueChange={v => updateAnswer(q.id, v)}
-                        >
-                          <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
-                            <SelectValue placeholder="Select a role" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {q.options.map(opt => (
-                              <SelectItem key={opt.id} value={String(opt.id)}>
-                                {opt.answer}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      )}
+                          {/* Country select */}
+                          {q.type === 'CC' && (
+                            <Select value={(answers[q.id] as string) || ''} onValueChange={v => updateAnswer(q.id, v)}>
+                              <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
+                                <SelectValue placeholder="Select a country" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {COUNTRIES.map(c => (
+                                  <SelectItem key={c.code} value={c.code}>
+                                    {c.name}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          )}
 
-                      {/* Goals — chip/tag toggle selection */}
-                      {q.type === 'M' && isGoals && (
-                        <div className={css['goals-grid']}>
-                          {q.options.map(opt => {
-                            const selected = ((answers[q.id] as string[]) || []).includes(String(opt.id))
-                            return (
-                              <button
-                                key={opt.id}
-                                type="button"
-                                className={`${css['goal-tag']} ${selected ? css['selected'] : ''}`}
-                                onClick={() => toggleMultiAnswer(q.id, String(opt.id))}
-                              >
-                                {opt.answer}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      )}
+                          {/* Single choice dropdown */}
+                          {q.type === 'C' && (
+                            <Select value={(answers[q.id] as string) || ''} onValueChange={v => updateAnswer(q.id, v)}>
+                              <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
+                                <SelectValue placeholder="Select a role" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {q.options.map(opt => (
+                                  <SelectItem key={opt.id} value={String(opt.id)}>
+                                    {opt.answer}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          )}
 
-                      {/* Multiple choice — standard checkboxes */}
-                      {q.type === 'M' && !isGoals && (
-                        <div className={css['checkbox-group']}>
-                          {q.options.map(opt => {
-                            const checked = ((answers[q.id] as string[]) || []).includes(String(opt.id))
-                            return (
-                              <div key={opt.id} className="flex items-center gap-3">
-                                <Checkbox
-                                  id={`q-${q.id}-opt-${opt.id}`}
-                                  checked={checked}
-                                  onCheckedChange={() => toggleMultiAnswer(q.id, String(opt.id))}
-                                />
+                          {/* Goals — chip/tag toggle selection */}
+                          {q.type === 'M' && isGoals && (
+                            <div className={css['goals-grid']}>
+                              {q.options.map(opt => {
+                                const selected = ((answers[q.id] as string[]) || []).includes(String(opt.id))
+                                return (
+                                  <button
+                                    key={opt.id}
+                                    type="button"
+                                    className={`${css['goal-tag']} ${selected ? css['selected'] : ''}`}
+                                    onClick={() => toggleMultiAnswer(q.id, String(opt.id))}
+                                  >
+                                    {opt.answer}
+                                  </button>
+                                )
+                              })}
+                            </div>
+                          )}
+
+                          {/* Multiple choice — standard checkboxes */}
+                          {q.type === 'M' && !isGoals && (
+                            <div className={css['checkbox-group']}>
+                              {q.options.map(opt => {
+                                const checked = ((answers[q.id] as string[]) || []).includes(String(opt.id))
+                                return (
+                                  <div key={opt.id} className="flex items-center gap-3">
+                                    <Checkbox
+                                      id={`q-${q.id}-opt-${opt.id}`}
+                                      checked={checked}
+                                      onCheckedChange={() => toggleMultiAnswer(q.id, String(opt.id))}
+                                    />
+                                    <Label
+                                      htmlFor={`q-${q.id}-opt-${opt.id}`}
+                                      className="text-sm font-normal text-[#404040] cursor-pointer"
+                                    >
+                                      {opt.answer}
+                                    </Label>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          )}
+
+                          {/* Boolean — radio group */}
+                          {q.type === 'B' && (
+                            <RadioGroup
+                              value={(answers[q.id] as string) || ''}
+                              onValueChange={v => updateAnswer(q.id, v)}
+                              className="flex flex-col gap-3"
+                            >
+                              <div className="flex items-center gap-2">
+                                <RadioGroupItem value="True" id={`q-${q.id}-yes`} />
                                 <Label
-                                  htmlFor={`q-${q.id}-opt-${opt.id}`}
+                                  htmlFor={`q-${q.id}-yes`}
                                   className="text-sm font-normal text-[#404040] cursor-pointer"
                                 >
-                                  {opt.answer}
+                                  Yes
                                 </Label>
                               </div>
-                            )
-                          })}
-                        </div>
-                      )}
-
-                      {/* Boolean — radio group */}
-                      {q.type === 'B' && (
-                        <RadioGroup
-                          value={(answers[q.id] as string) || ''}
-                          onValueChange={v => updateAnswer(q.id, v)}
-                          className="flex flex-col gap-3"
-                        >
-                          <div className="flex items-center gap-2">
-                            <RadioGroupItem value="True" id={`q-${q.id}-yes`} />
-                            <Label htmlFor={`q-${q.id}-yes`} className="text-sm font-normal text-[#404040] cursor-pointer">
-                              Yes
-                            </Label>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <RadioGroupItem value="False" id={`q-${q.id}-no`} />
-                            <Label htmlFor={`q-${q.id}-no`} className="text-sm font-normal text-[#404040] cursor-pointer">
-                              No
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      )}
-
-                      {/* Text fields */}
-                      {q.type === 'S' && (
-                        <Input
-                          type="text"
-                          className={hasError ? 'border-[#ef4444] shadow-none' : ''}
-                          value={(answers[q.id] as string) || ''}
-                          onChange={e => updateAnswer(q.id, e.target.value)}
-                        />
-                      )}
-
-                      {q.type === 'T' && (
-                        <Textarea
-                          className={hasError ? 'border-[#ef4444] shadow-none' : ''}
-                          value={(answers[q.id] as string) || ''}
-                          onChange={e => updateAnswer(q.id, e.target.value)}
-                        />
-                      )}
-
-                      {q.type === 'N' && (
-                        <Input
-                          type="number"
-                          className={hasError ? 'border-[#ef4444] shadow-none' : ''}
-                          value={(answers[q.id] as string) || ''}
-                          onChange={e => updateAnswer(q.id, e.target.value)}
-                        />
-                      )}
-
-                      {hasError && (
-                        <p className={css['field-error']}>{getFieldErrorMessage(q)}</p>
-                      )}
-                    </div>
-                  )
-                })}
-
-                <button type="button" className={css['btn-continue']} onClick={handleAttendeContinue}>
-                  Continue
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Payment */}
-          <div className={css['section-card']}>
-            <button
-              type="button"
-              className={`${css['section-header']} ${openSection !== 'payment' ? css['section-header-collapsed'] : ''}`}
-              onClick={() => toggleSection('payment')}
-              aria-expanded={openSection === 'payment'}
-            >
-              <span>Payment</span>
-              {openSection === 'payment' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-            </button>
-            {openSection === 'payment' && (
-              <div className={css['section-body']}>
-                <div className={css['description-block']}>
-                  <p className={css['description-title']}>Select your preferred payment method</p>
-                  {!daimoPay && (
-                    <p className={css['description-sub']}>
-                      Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying with Crypto.
-                    </p>
-                  )}
-                </div>
-                <div className={css['payment-methods']}>
-                  <label
-                    className={`${css['payment-option']} ${paymentMethod === 'crypto' ? css['selected'] : ''}`}
-                    onClick={() => setPaymentMethod('crypto')}
-                  >
-                    <input type="radio" name="payment" checked={paymentMethod === 'crypto'} readOnly />
-                    <div className={css['payment-option-content']}>
-                      <div className={css['payment-option-header']}>
-                        <div className={css['payment-option-title-row']}>
-                          <span className={css['payment-option-title']}>Crypto</span>
-                          {!daimoPay && <span className={css['save-badge']}>SAVE {TICKETING.payment.cryptoDiscountPercent}%</span>}
-                        </div>
-                        <div className={css['payment-icons']}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={TOKEN_ICONS.ETH} alt="ETH" className={css['payment-icon-box']} />
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={TOKEN_ICONS.USDC} alt="USDC" className={css['payment-icon-box']} />
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
-                        </div>
-                      </div>
-                      <p className={css['payment-option-desc']}>{daimoPay ? 'via Daimo Pay' : 'All major wallets & networks'}</p>
-                    </div>
-                  </label>
-                  <label
-                    className={`${css['payment-option']} ${paymentMethod === 'fiat' ? css['selected'] : ''}`}
-                    onClick={() => setPaymentMethod('fiat')}
-                  >
-                    <input type="radio" name="payment" checked={paymentMethod === 'fiat'} readOnly />
-                    <div className={css['payment-option-content']}>
-                      <div className={css['payment-option-header']}>
-                        <span className={css['payment-option-title']}>Fiat</span>
-                      </div>
-                      <p className={css['payment-option-desc']}>Debit / Credit Card</p>
-                    </div>
-                  </label>
-                </div>
-
-                {paymentMethod === 'crypto' && !daimoPay && (
-                  <>
-                    {isConnected ? (
-                      <div className={css['wallet-connected']}>
-                        <div className={css['wallet-connected-row']}>
-                          <span className={css['wallet-connected-label']}>Connected to:</span>
-                          <div className={css['wallet-connected-right']}>
-                            {connector?.icon ? (
-                              <img src={connector.icon} alt={connector.name ?? 'wallet'} className={css['wallet-identicon']} />
-                            ) : (
-                              <div className={css['wallet-identicon']} />
-                            )}
-                            <span className={css['wallet-address']}>
-                              {address?.slice(0, 6)}...{address?.slice(-4)}
-                            </span>
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          className={css['wallet-disconnect-btn']}
-                          onClick={() => disconnect()}
-                        >
-                          Disconnect wallet
-                        </button>
-                      </div>
-                    ) : (
-                      <div className={css['wallet-box']}>
-                        <Wallet className={css['wallet-icon']} strokeWidth={1.5} />
-                        <p className={css['wallet-title']}>Connect your wallet</p>
-                        <p className={css['wallet-sub']}>Checkout securely using crypto</p>
-                        <button type="button" className={css['wallet-connect-btn']} onClick={() => open()}>
-                          Connect Wallet
-                        </button>
-                      </div>
-                    )}
-                  </>
-                )}
-
-                {paymentMethod === 'crypto' && !daimoPay && paymentDetails && address && (
-                  <div className={css['payment-options-block']}>
-                    <div className={css['payment-options-header']}>
-                      <span className={css['payment-options-title']}>
-                        How would you like to pay?
-                      </span>
-                    </div>
-                    {paymentOptionsLoading ? (
-                      <div className={css['loading-box']}>
-                        <Loader2 size={24} className={css['loading-spinner']} />
-                        <span>Loading available networks and balances...</span>
-                      </div>
-                    ) : (
-                      <>
-                        {paymentOptions.length > 0 &&
-                          (() => {
-                            const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))]
-
-                            // Networks for selected asset
-                            const networksForAsset = tokenFilter
-                              ? paymentOptions.filter(o => o.symbol === tokenFilter)
-                              : []
-
-                            // Auto-determine selected network from selectedOption
-                            const selectedAssetKey = selectedOption?.asset
-
-                            return (
-                              <>
-                                {/* Step 1: Asset selection chips */}
-                                <div className={css['asset-selection']}>
-                                  <span className={css['asset-label']}>Asset</span>
-                                  <div className={css['asset-chips']}>
-                                    {uniqueSymbols.map(sym => (
-                                      <button
-                                        key={sym}
-                                        type="button"
-                                        className={`${css['asset-chip']} ${
-                                          tokenFilter === sym ? css['asset-chip--active'] : ''
-                                        }`}
-                                        onClick={() => {
-                                          setTokenFilter(sym)
-                                          // Auto-select the best network for this asset
-                                          const assetsForSym = paymentOptions.filter(o => o.symbol === sym)
-                                          const bestOpt =
-                                            assetsForSym.find(o => Boolean(o.signingRequest) && o.sufficient) ||
-                                            assetsForSym[0]
-                                          if (bestOpt && bestOpt.signingRequest && bestOpt.sufficient) {
-                                            selectPaymentOption(bestOpt)
-                                          } else {
-                                            setSelectedOption(null)
-                                          }
-                                        }}
-                                      >
-                                        {TOKEN_ICONS[sym] && (
-                                          /* eslint-disable-next-line @next/next/no-img-element */
-                                          <img src={TOKEN_ICONS[sym]} alt={sym} className={css['asset-chip-icon']} />
-                                        )}
-                                        {displaySymbol(sym)}
-                                      </button>
-                                    ))}
-                                  </div>
-                                </div>
-
-                                {/* Step 2: Network selection */}
-                                {tokenFilter && networksForAsset.length > 0 && (
-                                  <div className={css['network-selection']}>
-                                    <div className={css['network-header']}>
-                                      <span className={css['network-label']}>Network</span>
-                                      <button
-                                        type="button"
-                                        className={css['network-refresh']}
-                                        onClick={() => fetchPaymentOptions()}
-                                        disabled={paymentOptionsLoading}
-                                      >
-                                        Refresh balances
-                                      </button>
-                                    </div>
-                                    <div className={css['network-list']}>
-                                      {networksForAsset.map(opt => {
-                                        const canPay = Boolean(opt.signingRequest) && opt.sufficient
-                                        const isSelected = selectedAssetKey === opt.asset
-                                        const isGasless =
-                                          opt.signingRequest?.method === 'eth_signTypedData_v4' ||
-                                          ['USDC', 'USDT0'].includes(opt.symbol)
-                                        const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
-                                        const balanceFormatted =
-                                          opt.decimals >= 18
-                                            ? formatEth(opt.balance, 18)
-                                            : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
-                                        return (
-                                          <button
-                                            key={opt.asset}
-                                            type="button"
-                                            className={`${css['network-row']} ${
-                                              isSelected ? css['network-row--selected'] : ''
-                                            } ${!canPay ? css['network-row--insufficient'] : ''}`}
-                                            disabled={!canPay}
-                                            onClick={() => canPay && selectPaymentOption(opt)}
-                                          >
-                                            <span className={css['network-row-icon']}>
-                                              {NETWORK_LOGOS[chainIdNum] && (
-                                                /* eslint-disable-next-line @next/next/no-img-element */
-                                                <img
-                                                  src={NETWORK_LOGOS[chainIdNum]}
-                                                  alt={opt.chain}
-                                                  className={css['network-row-icon-img']}
-                                                />
-                                              )}
-                                            </span>
-                                            <span className={css['network-row-info']}>
-                                              <span className={css['network-row-name-row']}>
-                                                <span className={css['network-row-name']}>{opt.chain}</span>
-                                                {isGasless && <span className={css['gasless-badge']}>GASLESS</span>}
-                                              </span>
-                                              <span className={css['network-row-balance']}>
-                                                Balance: {balanceFormatted} {displaySymbol(opt.symbol)}
-                                                {opt.priceUsd && opt.symbol === 'ETH'
-                                                  ? ` / $${((Number(opt.balance) / 1e18) * opt.priceUsd).toFixed(2)}`
-                                                  : ` / $${balanceFormatted}`}
-                                              </span>
-                                            </span>
-                                            {isSelected && (
-                                              <span className={css['network-row-check']}>
-                                                <Check size={24} />
-                                              </span>
-                                            )}
-                                          </button>
-                                        )
-                                      })}
-                                    </div>
-                                  </div>
-                                )}
-
-                                {purchaseError && (
-                                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                                    <div>{purchaseError}</div>
-                                    {txHash && paymentDetails && (
-                                      <button
-                                        type="button"
-                                        className={css['retry-verify-btn']}
-                                        onClick={() => verifyPayment(txHash)}
-                                        disabled={isProcessing}
-                                      >
-                                        Retry verification
-                                      </button>
-                                    )}
-                                  </div>
-                                )}
-
-                                {(writeError || directSignError) && (
-                                  <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                                    {writeError?.message || directSignError}
-                                  </div>
-                                )}
-
-                                {paymentStatus && !isProcessing && (
-                                  <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
-                                    {paymentStatus}
-                                  </p>
-                                )}
-
-                                {txHash && (
-                                  <div className={css['tx-status']}>
-                                    Transaction:{' '}
-                                    <a
-                                      href={`${
-                                        (paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) ||
-                                        'https://etherscan.io'
-                                      }/tx/${txHash}`}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      style={{ color: '#4a90d9', textDecoration: 'underline' }}
-                                    >
-                                      {txHash.slice(0, 10)}...{txHash.slice(-8)}
-                                    </a>
-                                    {paymentDetails?.chainId === 1 && isProcessing && (
-                                      <span style={{ display: 'block', marginTop: '0.5rem', fontSize: '0.75rem', color: '#92400e' }}>
-                                        Mainnet transactions can take a few seconds to be processed.
-                                      </span>
-                                    )}
-                                    {!isProcessing && paymentDetails && (
-                                      <button
-                                        type="button"
-                                        className={css['retry-verify-btn']}
-                                        onClick={() => verifyPayment(txHash)}
-                                        style={{ marginLeft: '0.75rem' }}
-                                      >
-                                        Retry verification
-                                      </button>
-                                    )}
-                                  </div>
-                                )}
-
-                                {/* Pay button */}
-                                {selectedOption && (
-                                  <button
-                                    type="button"
-                                    className={css['btn-pay-now']}
-                                    disabled={isProcessing}
-                                    onClick={payWithSelectedOption}
-                                  >
-                                    <Lock size={20} />
-                                    {isProcessing
-                                      ? paymentStatus || 'Processing...'
-                                      : `Pay: ${
-                                          selectedOption.decimals >= 18
-                                            ? formatEth(selectedOption.amount, 18)
-                                            : (Number(selectedOption.amount) / 10 ** selectedOption.decimals).toFixed(2)
-                                        } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
-                                  </button>
-                                )}
-                              </>
-                            )
-                          })()}
-                        {!paymentOptionsLoading &&
-                          paymentOptions.length > 0 &&
-                          paymentOptions.filter(o => o.sufficient).length === 0 &&
-                          paymentDetails && (
-                            <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                              Insufficient balance. Top up your wallet or connect one with enough USDC, USDT, or ETH.
-                            </p>
+                              <div className="flex items-center gap-2">
+                                <RadioGroupItem value="False" id={`q-${q.id}-no`} />
+                                <Label
+                                  htmlFor={`q-${q.id}-no`}
+                                  className="text-sm font-normal text-[#404040] cursor-pointer"
+                                >
+                                  No
+                                </Label>
+                              </div>
+                            </RadioGroup>
                           )}
-                      </>
-                    )}
+
+                          {/* Text fields */}
+                          {q.type === 'S' && (
+                            <Input
+                              type="text"
+                              className={hasError ? 'border-[#ef4444] shadow-none' : ''}
+                              value={(answers[q.id] as string) || ''}
+                              onChange={e => updateAnswer(q.id, e.target.value)}
+                            />
+                          )}
+
+                          {q.type === 'T' && (
+                            <Textarea
+                              className={hasError ? 'border-[#ef4444] shadow-none' : ''}
+                              value={(answers[q.id] as string) || ''}
+                              onChange={e => updateAnswer(q.id, e.target.value)}
+                            />
+                          )}
+
+                          {q.type === 'N' && (
+                            <Input
+                              type="number"
+                              className={hasError ? 'border-[#ef4444] shadow-none' : ''}
+                              value={(answers[q.id] as string) || ''}
+                              onChange={e => updateAnswer(q.id, e.target.value)}
+                            />
+                          )}
+
+                          {hasError && <p className={css['field-error']}>{getFieldErrorMessage(q)}</p>}
+                        </div>
+                      )
+                    })}
+
+                    <button type="button" className={css['btn-continue']} onClick={handleAttendeContinue}>
+                      Continue
+                    </button>
                   </div>
                 )}
+              </div>
 
-                {/* Mobile: Discount */}
-                <div className={css['mobile-only']}>
-                  <div className={css['discount-section']}>
-                    {voucherData?.valid ? (
-                      <div className={css['discount-applied']}>
-                        <div className={css['discount-applied-info']}>
-                          <CheckCircle className={css['discount-check-icon']} />
-                          <div className={css['discount-applied-text']}>
-                            <span className={css['discount-code-line']}>
-                              <strong>CODE: </strong>
-                              {voucherInput.length > 12 ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}` : voucherInput}
-                            </span>
-                            {voucherDiscount > 0 && (
-                              <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
-                            )}
+              {/* Payment */}
+              <div className={css['section-card']}>
+                <button
+                  type="button"
+                  className={`${css['section-header']} ${
+                    openSection !== 'payment' ? css['section-header-collapsed'] : ''
+                  }`}
+                  onClick={() => toggleSection('payment')}
+                  aria-expanded={openSection === 'payment'}
+                >
+                  <span>Payment</span>
+                  {openSection === 'payment' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                </button>
+                {openSection === 'payment' && (
+                  <div className={css['section-body']}>
+                    <div className={css['description-block']}>
+                      <p className={css['description-title']}>Select your preferred payment method</p>
+                      {!daimoPay && (
+                        <p className={css['description-sub']}>
+                          Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying
+                          with Crypto.
+                        </p>
+                      )}
+                    </div>
+                    <div className={css['payment-methods']}>
+                      <label
+                        className={`${css['payment-option']} ${paymentMethod === 'crypto' ? css['selected'] : ''}`}
+                        onClick={() => setPaymentMethod('crypto')}
+                      >
+                        <input type="radio" name="payment" checked={paymentMethod === 'crypto'} readOnly />
+                        <div className={css['payment-option-content']}>
+                          <div className={css['payment-option-header']}>
+                            <div className={css['payment-option-title-row']}>
+                              <span className={css['payment-option-title']}>Crypto</span>
+                              {!daimoPay && (
+                                <span className={css['save-badge']}>
+                                  SAVE {TICKETING.payment.cryptoDiscountPercent}%
+                                </span>
+                              )}
+                            </div>
+                            <div className={css['payment-icons']}>
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={TOKEN_ICONS.ETH} alt="ETH" className={css['payment-icon-box']} />
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={TOKEN_ICONS.USDC} alt="USDC" className={css['payment-icon-box']} />
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
+                            </div>
                           </div>
+                          <p className={css['payment-option-desc']}>
+                            {daimoPay ? 'via Daimo Pay' : 'All major wallets & networks'}
+                          </p>
                         </div>
-                        <button
-                          type="button"
-                          className={css['discount-remove-btn']}
-                          onClick={() => {
-                            setVoucherInput('')
-                            setVoucherData(null)
-                            setVoucherError(null)
-                          }}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ) : (
+                      </label>
+                      <label
+                        className={`${css['payment-option']} ${paymentMethod === 'fiat' ? css['selected'] : ''}`}
+                        onClick={() => setPaymentMethod('fiat')}
+                      >
+                        <input type="radio" name="payment" checked={paymentMethod === 'fiat'} readOnly />
+                        <div className={css['payment-option-content']}>
+                          <div className={css['payment-option-header']}>
+                            <span className={css['payment-option-title']}>Fiat</span>
+                          </div>
+                          <p className={css['payment-option-desc']}>Debit / Credit Card</p>
+                        </div>
+                      </label>
+                    </div>
+
+                    {paymentMethod === 'crypto' && !daimoPay && (
                       <>
-                        <div className={css['discount-expand']}>
-                          <input
-                            type="text"
-                            className={css['discount-input']}
-                            placeholder="Discount or Voucher Code"
-                            value={voucherInput}
-                            onChange={e => {
-                              setVoucherInput(e.target.value)
-                              setVoucherError(null)
-                            }}
-                            disabled={voucherLoading}
-                          />
-                          <button
-                            type="button"
-                            className={css['discount-apply-btn']}
-                            onClick={() => voucherInput && validateVoucherCode(voucherInput)}
-                            disabled={voucherLoading || !voucherInput}
-                          >
-                            {voucherLoading ? 'Checking...' : 'Apply'}
-                          </button>
-                        </div>
-                        {voucherError && (
-                          <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
+                        {isConnected ? (
+                          <div className={css['wallet-connected']}>
+                            <div className={css['wallet-connected-row']}>
+                              <span className={css['wallet-connected-label']}>Connected to:</span>
+                              <div className={css['wallet-connected-right']}>
+                                {connector?.icon ? (
+                                  <img
+                                    src={connector.icon}
+                                    alt={connector.name ?? 'wallet'}
+                                    className={css['wallet-identicon']}
+                                  />
+                                ) : (
+                                  <div className={css['wallet-identicon']} />
+                                )}
+                                <span className={css['wallet-address']}>
+                                  {address?.slice(0, 6)}...{address?.slice(-4)}
+                                </span>
+                              </div>
+                            </div>
+                            <button type="button" className={css['wallet-disconnect-btn']} onClick={() => disconnect()}>
+                              Disconnect wallet
+                            </button>
+                          </div>
+                        ) : (
+                          <div className={css['wallet-box']}>
+                            <Wallet className={css['wallet-icon']} strokeWidth={1.5} />
+                            <p className={css['wallet-title']}>Connect your wallet</p>
+                            <p className={css['wallet-sub']}>Checkout securely using crypto</p>
+                            <button type="button" className={css['wallet-connect-btn']} onClick={() => open()}>
+                              Connect Wallet
+                            </button>
+                          </div>
                         )}
                       </>
                     )}
-                  </div>
-                </div>
 
-                {/* Mobile: Inline order summary */}
-                <div className={css['mobile-only']}>
-                  <div className={css['mobile-inline-summary']}>
-                    <button
-                      type="button"
-                      className={css['mobile-inline-summary-bar']}
-                      onClick={() => setMobileInlineSummaryOpen(!mobileInlineSummaryOpen)}
-                    >
-                      <span className={css['mobile-inline-summary-left']}>
-                        <span>Order summary</span>
-                        {mobileInlineSummaryOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                      </span>
-                      <span className={css['mobile-inline-summary-total']}>${totalUsd}</span>
-                    </button>
-                    {mobileInlineSummaryOpen && (
-                      <div className={css['mobile-inline-summary-content']}>
-                        <div className={css['panel-items']}>
-                          {cartItems.length > 0 ? (
-                            cartItems.map(item => (
-                              <div key={item.ticketId} className={css['panel-item']}>
-                                <span className={css['panel-item-name']}>{item.name}</span>
-                                <div className={css['panel-item-right']}>
-                                  <span>x{item.quantity}</span>
-                                  <span className={css['panel-item-price']}>
-                                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
-                                  </span>
-                                </div>
-                              </div>
-                            ))
-                          ) : (
-                            <div className={css['panel-item']}>
-                              <span className={css['panel-item-name']}>No tickets selected</span>
-                              <div className={css['panel-item-right']}>
-                                <span className={css['panel-item-price']}>$0.00</span>
-                              </div>
-                            </div>
-                          )}
-                          {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
-                            const item = allAddonItems.find(i => i.id === itemId)
-                            if (!item || data.quantity <= 0) return null
-                            let price = parseFloat(item.price)
-                            let variationName = ''
-                            if (data.variationId) {
-                              const variation = item.variations.find(v => v.id === data.variationId)
-                              if (variation) {
-                                price = parseFloat(variation.price)
-                                variationName = variation.name
-                              }
-                            }
-                            const isFree = price === 0
-                            const lineTotal = price * data.quantity
-                            return (
-                              <div key={itemId} className={css['panel-item']}>
-                                <div className={css['panel-item-name']}>
-                                  {item.name}
-                                  {variationName && (
-                                    <span className={css['panel-item-meta']}>{variationName}</span>
-                                  )}
-                                </div>
-                                <div className={css['panel-item-right']}>
-                                  <span>x{data.quantity}</span>
-                                  <span className={css['panel-item-price']}>{isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}</span>
-                                </div>
-                              </div>
-                            )
-                          })}
+                    {paymentMethod === 'crypto' && !daimoPay && paymentDetails && address && (
+                      <div className={css['payment-options-block']}>
+                        <div className={css['payment-options-header']}>
+                          <span className={css['payment-options-title']}>How would you like to pay?</span>
                         </div>
-                        <div className={css['summary-lines']}>
-                          <div className={css['summary-line']}>
-                            <span>Subtotal</span>
-                            <span>${subtotal.toFixed(2)}</span>
+                        {paymentOptionsLoading ? (
+                          <div className={css['loading-box']}>
+                            <Loader2 size={24} className={css['loading-spinner']} />
+                            <span>Loading available networks and balances...</span>
                           </div>
-                          {voucherDiscount > 0 && (
-                            <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                              <span>Voucher discount</span>
-                              <span>&ndash;${voucherDiscount.toFixed(2)}</span>
-                            </div>
-                          )}
-                          {paymentMethod === 'crypto' && (
-                            <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                              <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
-                              <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
-                            </div>
-                          )}
-                          <div className={css['summary-total']}>
-                            <span>Total</span>
-                            <div className={css['summary-total-values']}>
-                              {paymentMethod === 'crypto' && selectedOption && (
-                                <span className={css['summary-eth']}>
-                                  <span className={css['summary-currency-label']}>{displaySymbol(selectedOption.symbol)}</span>
-                                  <span className={css['summary-currency-value']}>
-                                    {selectedOption.decimals >= 18
-                                      ? formatEth(selectedOption.amount, 18)
-                                      : (Number(selectedOption.amount) / 10 ** selectedOption.decimals).toFixed(2)}
-                                  </span>
-                                </span>
+                        ) : (
+                          <>
+                            {paymentOptions.length > 0 &&
+                              (() => {
+                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))]
+
+                                // Networks for selected asset
+                                const networksForAsset = tokenFilter
+                                  ? paymentOptions.filter(o => o.symbol === tokenFilter)
+                                  : []
+
+                                // Auto-determine selected network from selectedOption
+                                const selectedAssetKey = selectedOption?.asset
+
+                                return (
+                                  <>
+                                    {/* Step 1: Asset selection chips */}
+                                    <div className={css['asset-selection']}>
+                                      <span className={css['asset-label']}>Asset</span>
+                                      <div className={css['asset-chips']}>
+                                        {uniqueSymbols.map(sym => (
+                                          <button
+                                            key={sym}
+                                            type="button"
+                                            className={`${css['asset-chip']} ${
+                                              tokenFilter === sym ? css['asset-chip--active'] : ''
+                                            }`}
+                                            onClick={() => {
+                                              setTokenFilter(sym)
+                                              // Auto-select the best network for this asset
+                                              const assetsForSym = paymentOptions.filter(o => o.symbol === sym)
+                                              const bestOpt =
+                                                assetsForSym.find(o => Boolean(o.signingRequest) && o.sufficient) ||
+                                                assetsForSym[0]
+                                              if (bestOpt && bestOpt.signingRequest && bestOpt.sufficient) {
+                                                selectPaymentOption(bestOpt)
+                                              } else {
+                                                setSelectedOption(null)
+                                              }
+                                            }}
+                                          >
+                                            {TOKEN_ICONS[sym] && (
+                                              /* eslint-disable-next-line @next/next/no-img-element */
+                                              <img
+                                                src={TOKEN_ICONS[sym]}
+                                                alt={sym}
+                                                className={css['asset-chip-icon']}
+                                              />
+                                            )}
+                                            {displaySymbol(sym)}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    </div>
+
+                                    {/* Step 2: Network selection */}
+                                    {tokenFilter && networksForAsset.length > 0 && (
+                                      <div className={css['network-selection']}>
+                                        <div className={css['network-header']}>
+                                          <span className={css['network-label']}>Network</span>
+                                          <button
+                                            type="button"
+                                            className={css['network-refresh']}
+                                            onClick={() => fetchPaymentOptions()}
+                                            disabled={paymentOptionsLoading}
+                                          >
+                                            Refresh balances
+                                          </button>
+                                        </div>
+                                        <div className={css['network-list']}>
+                                          {networksForAsset.map(opt => {
+                                            const canPay = Boolean(opt.signingRequest) && opt.sufficient
+                                            const isSelected = selectedAssetKey === opt.asset
+                                            const isGasless =
+                                              opt.signingRequest?.method === 'eth_signTypedData_v4' ||
+                                              ['USDC', 'USDT0'].includes(opt.symbol)
+                                            const chainIdNum = parseInt(opt.chainId.replace(/^eip155:/, ''), 10)
+                                            const balanceFormatted =
+                                              opt.decimals >= 18
+                                                ? formatEth(opt.balance, 18)
+                                                : (Number(opt.balance) / 10 ** opt.decimals).toFixed(2)
+                                            return (
+                                              <button
+                                                key={opt.asset}
+                                                type="button"
+                                                className={`${css['network-row']} ${
+                                                  isSelected ? css['network-row--selected'] : ''
+                                                } ${!canPay ? css['network-row--insufficient'] : ''}`}
+                                                disabled={!canPay}
+                                                onClick={() => canPay && selectPaymentOption(opt)}
+                                              >
+                                                <span className={css['network-row-icon']}>
+                                                  {NETWORK_LOGOS[chainIdNum] && (
+                                                    /* eslint-disable-next-line @next/next/no-img-element */
+                                                    <img
+                                                      src={NETWORK_LOGOS[chainIdNum]}
+                                                      alt={opt.chain}
+                                                      className={css['network-row-icon-img']}
+                                                    />
+                                                  )}
+                                                </span>
+                                                <span className={css['network-row-info']}>
+                                                  <span className={css['network-row-name-row']}>
+                                                    <span className={css['network-row-name']}>{opt.chain}</span>
+                                                    {isGasless && <span className={css['gasless-badge']}>GASLESS</span>}
+                                                  </span>
+                                                  <span className={css['network-row-balance']}>
+                                                    Balance: {balanceFormatted} {displaySymbol(opt.symbol)}
+                                                    {opt.priceUsd && opt.symbol === 'ETH'
+                                                      ? ` / $${((Number(opt.balance) / 1e18) * opt.priceUsd).toFixed(
+                                                          2
+                                                        )}`
+                                                      : ` / $${balanceFormatted}`}
+                                                  </span>
+                                                </span>
+                                                {isSelected && (
+                                                  <span className={css['network-row-check']}>
+                                                    <Check size={24} />
+                                                  </span>
+                                                )}
+                                              </button>
+                                            )
+                                          })}
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {purchaseError && (
+                                      <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                        <div>{purchaseError}</div>
+                                        {txHash && paymentDetails && (
+                                          <button
+                                            type="button"
+                                            className={css['retry-verify-btn']}
+                                            onClick={() => verifyPayment(txHash)}
+                                            disabled={isProcessing}
+                                          >
+                                            Retry verification
+                                          </button>
+                                        )}
+                                      </div>
+                                    )}
+
+                                    {(writeError || directSignError) && (
+                                      <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                        {writeError?.message || directSignError}
+                                      </div>
+                                    )}
+
+                                    {paymentStatus && !isProcessing && (
+                                      <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
+                                        {paymentStatus}
+                                      </p>
+                                    )}
+
+                                    {txHash && (
+                                      <div className={css['tx-status']}>
+                                        Transaction:{' '}
+                                        <a
+                                          href={`${
+                                            (paymentDetails?.chainId && BLOCK_EXPLORERS[paymentDetails.chainId]) ||
+                                            'https://etherscan.io'
+                                          }/tx/${txHash}`}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          style={{ color: '#4a90d9', textDecoration: 'underline' }}
+                                        >
+                                          {txHash.slice(0, 10)}...{txHash.slice(-8)}
+                                        </a>
+                                        {paymentDetails?.chainId === 1 && isProcessing && (
+                                          <span
+                                            style={{
+                                              display: 'block',
+                                              marginTop: '0.5rem',
+                                              fontSize: '0.75rem',
+                                              color: '#92400e',
+                                            }}
+                                          >
+                                            Mainnet transactions can take a few seconds to be processed.
+                                          </span>
+                                        )}
+                                        {!isProcessing && paymentDetails && (
+                                          <button
+                                            type="button"
+                                            className={css['retry-verify-btn']}
+                                            onClick={() => verifyPayment(txHash)}
+                                            style={{ marginLeft: '0.75rem' }}
+                                          >
+                                            Retry verification
+                                          </button>
+                                        )}
+                                      </div>
+                                    )}
+
+                                    {/* Pay button */}
+                                    {selectedOption && (
+                                      <button
+                                        type="button"
+                                        className={css['btn-pay-now']}
+                                        disabled={isProcessing}
+                                        onClick={payWithSelectedOption}
+                                      >
+                                        <Lock size={20} />
+                                        {isProcessing
+                                          ? paymentStatus || 'Processing...'
+                                          : `Pay: ${
+                                              selectedOption.decimals >= 18
+                                                ? formatEth(selectedOption.amount, 18)
+                                                : (
+                                                    Number(selectedOption.amount) /
+                                                    10 ** selectedOption.decimals
+                                                  ).toFixed(2)
+                                            } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
+                                      </button>
+                                    )}
+                                  </>
+                                )
+                              })()}
+                            {!paymentOptionsLoading &&
+                              paymentOptions.length > 0 &&
+                              paymentOptions.filter(o => o.sufficient).length === 0 &&
+                              paymentDetails && (
+                                <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                  Insufficient balance. Top up your wallet or connect one with enough USDC, USDT, or
+                                  ETH.
+                                </p>
                               )}
-                              <span className={css['summary-usd']}>
-                                <span className={css['summary-currency-label']}>USD</span>
-                                <span className={css['summary-currency-value']}>${totalUsd}</span>
-                              </span>
+                          </>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Mobile: Discount */}
+                    <div className={css['mobile-only']}>
+                      <div className={css['discount-section']}>
+                        {voucherData?.valid ? (
+                          <div className={css['discount-applied']}>
+                            <div className={css['discount-applied-info']}>
+                              <CheckCircle className={css['discount-check-icon']} />
+                              <div className={css['discount-applied-text']}>
+                                <span className={css['discount-code-line']}>
+                                  <strong>CODE: </strong>
+                                  {voucherInput.length > 12
+                                    ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}`
+                                    : voucherInput}
+                                </span>
+                                {voucherDiscount > 0 && (
+                                  <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
+                                )}
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              className={css['discount-remove-btn']}
+                              onClick={() => {
+                                setVoucherInput('')
+                                setVoucherData(null)
+                                setVoucherError(null)
+                              }}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ) : (
+                          <>
+                            <div className={css['discount-expand']}>
+                              <input
+                                type="text"
+                                className={css['discount-input']}
+                                placeholder="Discount or Voucher Code"
+                                value={voucherInput}
+                                onChange={e => {
+                                  setVoucherInput(e.target.value)
+                                  setVoucherError(null)
+                                }}
+                                disabled={voucherLoading}
+                              />
+                              <button
+                                type="button"
+                                className={css['discount-apply-btn']}
+                                onClick={() => voucherInput && validateVoucherCode(voucherInput)}
+                                disabled={voucherLoading || !voucherInput}
+                              >
+                                {voucherLoading ? 'Checking...' : 'Apply'}
+                              </button>
+                            </div>
+                            {voucherError && (
+                              <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Mobile: Inline order summary */}
+                    <div className={css['mobile-only']}>
+                      <div className={css['mobile-inline-summary']}>
+                        <button
+                          type="button"
+                          className={css['mobile-inline-summary-bar']}
+                          onClick={() => setMobileInlineSummaryOpen(!mobileInlineSummaryOpen)}
+                        >
+                          <span className={css['mobile-inline-summary-left']}>
+                            <span>Order summary</span>
+                            {mobileInlineSummaryOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                          </span>
+                          <span className={css['mobile-inline-summary-total']}>${totalUsd}</span>
+                        </button>
+                        {mobileInlineSummaryOpen && (
+                          <div className={css['mobile-inline-summary-content']}>
+                            <div className={css['panel-items']}>
+                              {cartItems.length > 0 ? (
+                                cartItems.map(item => (
+                                  <div key={item.ticketId} className={css['panel-item']}>
+                                    <span className={css['panel-item-name']}>{item.name}</span>
+                                    <div className={css['panel-item-right']}>
+                                      <span>x{item.quantity}</span>
+                                      <span className={css['panel-item-price']}>
+                                        ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                      </span>
+                                    </div>
+                                  </div>
+                                ))
+                              ) : (
+                                <div className={css['panel-item']}>
+                                  <span className={css['panel-item-name']}>No tickets selected</span>
+                                  <div className={css['panel-item-right']}>
+                                    <span className={css['panel-item-price']}>$0.00</span>
+                                  </div>
+                                </div>
+                              )}
+                              {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
+                                const item = allAddonItems.find(i => i.id === itemId)
+                                if (!item || data.quantity <= 0) return null
+                                let price = parseFloat(item.price)
+                                let variationName = ''
+                                if (data.variationId) {
+                                  const variation = item.variations.find(v => v.id === data.variationId)
+                                  if (variation) {
+                                    price = parseFloat(variation.price)
+                                    variationName = variation.name
+                                  }
+                                }
+                                const isFree = price === 0
+                                const lineTotal = price * data.quantity
+                                return (
+                                  <div key={itemId} className={css['panel-item']}>
+                                    <div className={css['panel-item-name']}>
+                                      {item.name}
+                                      {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
+                                    </div>
+                                    <div className={css['panel-item-right']}>
+                                      <span>x{data.quantity}</span>
+                                      <span className={css['panel-item-price']}>
+                                        {isFree ? 'FREE' : `$${lineTotal.toFixed(2)}`}
+                                      </span>
+                                    </div>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                            <div className={css['summary-lines']}>
+                              <div className={css['summary-line']}>
+                                <span>Subtotal</span>
+                                <span>${subtotal.toFixed(2)}</span>
+                              </div>
+                              {voucherDiscount > 0 && (
+                                <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                                  <span>Voucher discount</span>
+                                  <span>&ndash;${voucherDiscount.toFixed(2)}</span>
+                                </div>
+                              )}
+                              {paymentMethod === 'crypto' && (
+                                <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                                  <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                                  <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
+                                </div>
+                              )}
+                              <div className={css['summary-total']}>
+                                <span>Total</span>
+                                <div className={css['summary-total-values']}>
+                                  {paymentMethod === 'crypto' && selectedOption && (
+                                    <span className={css['summary-eth']}>
+                                      <span className={css['summary-currency-label']}>
+                                        {displaySymbol(selectedOption.symbol)}
+                                      </span>
+                                      <span className={css['summary-currency-value']}>
+                                        {selectedOption.decimals >= 18
+                                          ? formatEth(selectedOption.amount, 18)
+                                          : (Number(selectedOption.amount) / 10 ** selectedOption.decimals).toFixed(2)}
+                                      </span>
+                                    </span>
+                                  )}
+                                  <span className={css['summary-usd']}>
+                                    <span className={css['summary-currency-label']}>USD</span>
+                                    <span className={css['summary-currency-value']}>${totalUsd}</span>
+                                  </span>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Mobile: T&C */}
+                    <div className={css['mobile-only']}>
+                      <p className={css['mobile-tc']}>
+                        By placing your order, you agree to Devcon&apos;s{' '}
+                        <Link to="/terms-of-service">
+                          <strong>Terms & Conditions</strong>
+                        </Link>{' '}
+                        and{' '}
+                        <Link to="/privacy-policy">
+                          <strong>Privacy Policy</strong>
+                        </Link>
+                        .
+                      </p>
+                    </div>
+
+                    {!(paymentMethod === 'crypto' && !daimoPay) && (
+                      <button
+                        type="button"
+                        className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
+                        disabled={!checkoutEnabled}
+                        onClick={handleCheckout}
+                      >
+                        <span className={css['btn-checkout-left']}>
+                          <Lock size={20} />
+                          {isProcessing ? paymentStatus || 'Processing...' : 'Checkout'}
+                        </span>
+                        <span className={css['btn-checkout-divider']} />
+                        <span>${totalUsd} USD</span>
+                      </button>
+                    )}
+
+                    {(paymentMethod !== 'crypto' || daimoPay) && (
+                      <div className={css['stripe-note']}>
+                        {paymentMethod === 'crypto' && daimoPay ? (
+                          <span>
+                            Powered by <strong>Daimo Pay</strong>
+                          </span>
+                        ) : (
+                          <img
+                            src="/assets/images/powered-by-stripe.svg"
+                            alt="Powered by Stripe"
+                            className={css['stripe-note-img']}
+                          />
+                        )}
                       </div>
                     )}
                   </div>
-                </div>
-
-                {/* Mobile: T&C */}
-                <div className={css['mobile-only']}>
-                  <p className={css['mobile-tc']}>
-                    By placing your order, you agree to Devcon&apos;s{' '}
-                    <Link to="/terms-of-service">
-                      <strong>Terms & Conditions</strong>
-                    </Link>{' '}
-                    and{' '}
-                    <Link to="/privacy-policy">
-                      <strong>Privacy Policy</strong>
-                    </Link>
-                    .
-                  </p>
-                </div>
-
-                {!(paymentMethod === 'crypto' && !daimoPay) && (
-                  <button
-                    type="button"
-                    className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
-                    disabled={!checkoutEnabled}
-                    onClick={handleCheckout}
-                  >
-                    <span className={css['btn-checkout-left']}>
-                      <Lock size={20} />
-                      {isProcessing ? paymentStatus || 'Processing...' : 'Checkout'}
-                    </span>
-                    <span className={css['btn-checkout-divider']} />
-                    <span>${totalUsd} USD</span>
-                  </button>
                 )}
+              </div>
 
-                {(paymentMethod !== 'crypto' || daimoPay) && (
-                  <div className={css['stripe-note']}>
-                    {paymentMethod === 'crypto' && daimoPay ? (
-                      <span>Powered by <strong>Daimo Pay</strong></span>
-                    ) : (
-                      <img src="/assets/images/powered-by-stripe.svg" alt="Powered by Stripe" className={css['stripe-note-img']} />
-                    )}
+              {/* FAQ */}
+              <div id="faq" className={css['section-card']}>
+                <button
+                  type="button"
+                  className={`${css['section-header']} ${openSection !== 'faq' ? css['section-header-collapsed'] : ''}`}
+                  onClick={() => toggleSection('faq')}
+                  aria-expanded={openSection === 'faq'}
+                >
+                  <span>Frequently asked questions</span>
+                  {openSection === 'faq' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                </button>
+                {openSection === 'faq' && (
+                  <div className={css['section-body']}>
+                    <div className={css['faq-list']}>
+                      {FAQ_ITEMS.map((item, i) => (
+                        <div key={i} className={css['faq-item']}>
+                          <button
+                            type="button"
+                            className={css['faq-question']}
+                            onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
+                          >
+                            <span>{item.q}</span>
+                            {openFaqIndex === i ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                          </button>
+                          {openFaqIndex === i && <div className={css['faq-answer']}>{item.a}</div>}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
-            )}
-          </div>
-
-          {/* FAQ */}
-          <div id="faq" className={css['section-card']}>
-            <button
-              type="button"
-              className={`${css['section-header']} ${openSection !== 'faq' ? css['section-header-collapsed'] : ''}`}
-              onClick={() => toggleSection('faq')}
-              aria-expanded={openSection === 'faq'}
-            >
-              <span>Frequently asked questions</span>
-              {openSection === 'faq' ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-            </button>
-            {openSection === 'faq' && (
-              <div className={css['section-body']}>
-                <div className={css['faq-list']}>
-                  {FAQ_ITEMS.map((item, i) => (
-                    <div key={i} className={css['faq-item']}>
-                      <button
-                        type="button"
-                        className={css['faq-question']}
-                        onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
-                      >
-                        <span>{item.q}</span>
-                        {openFaqIndex === i ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-                      </button>
-                      {openFaqIndex === i && <div className={css['faq-answer']}>{item.a}</div>}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-          </>}
+            </>
+          )}
         </main>
 
         <aside className={css['panel']}>
           <div className={css['panel-card']}>
             <div className={css['panel-banner']}>
-              <img
-                src="/assets/images/dc8-order-summary-bg.png"
-                alt=""
-                className={css['panel-banner-img']}
-              />
+              <img src="/assets/images/dc8-order-summary-bg.png" alt="" className={css['panel-banner-img']} />
               <span className={css['panel-banner-text']}>Devcon India</span>
             </div>
             <div className={css['panel-content']}>
@@ -2386,9 +2442,7 @@ function CheckoutContent() {
                     <div key={itemId} className={css['panel-item']}>
                       <div className={css['panel-item-name']}>
                         {item.name}
-                        {variationName && (
-                          <span className={css['panel-item-meta']}>{variationName}</span>
-                        )}
+                        {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                       </div>
                       <div className={css['panel-item-right']}>
                         <span>x{data.quantity}</span>
@@ -2406,7 +2460,9 @@ function CheckoutContent() {
                       <div className={css['discount-applied-text']}>
                         <span className={css['discount-code-line']}>
                           <strong>CODE: </strong>
-                          {voucherInput.length > 12 ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}` : voucherInput}
+                          {voucherInput.length > 12
+                            ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}`
+                            : voucherInput}
                         </span>
                         {voucherDiscount > 0 && (
                           <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
@@ -2530,7 +2586,6 @@ function CheckoutContent() {
           </div>
         </aside>
       </div>
-
     </Page>
   )
 }
