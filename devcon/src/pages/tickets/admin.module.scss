@@ -156,6 +156,12 @@
   flex-wrap: wrap;
 }
 
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 .stat-card {
   background: white;
   border: 1px solid #dddae2;
@@ -187,8 +193,6 @@
 /* ─── Wallet Balances ────────────────────────────────────── */
 
 .wallet {
-  flex: 1;
-  min-width: 0;
   background: white;
   border: 1px solid #dddae2;
   border-radius: 12px;

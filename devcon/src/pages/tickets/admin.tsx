@@ -287,7 +287,7 @@ export default function AdminPage() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   // Date range filter — default to "All" (show everything on load)
-  const [dateFrom, setDateFrom] = useState(() => new Date().toISOString().slice(0, 10))
+  const [dateFrom, setDateFrom] = useState(() => new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))
   const [dateTo, setDateTo] = useState(() => new Date().toISOString().slice(0, 10))
 
   // Sorting
@@ -612,67 +612,69 @@ export default function AdminPage() {
       {/* Stats + Wallet */}
       {data?.stats && (
         <div className={css.stats}>
-          <div className={css['stat-card']}>
-            <p className={css['stat-label']}>Pending</p>
-            <p className={css['stat-value']}>{filteredPending.length}</p>
-          </div>
-          <div className={css['stat-card']}>
-            <p className={css['stat-label']}>Completed</p>
-            <p className={css['stat-value']}>{filteredCompleted.length}</p>
-          </div>
-          <div className={css['stat-card']}>
-            <p className={css['stat-label']}>Total Revenue</p>
-            <p className={css['stat-value']}>${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          </div>
-          <div className={css['stat-card']}>
-            <p className={css['stat-label']}>Gas Sponsored</p>
-            <p className={css['stat-value']}>{totalGasSponsored != null ? `$${totalGasSponsored.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</p>
+          <div className={css['stat-grid']}>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Pending</p>
+              <p className={css['stat-value']}>{filteredPending.length}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Completed</p>
+              <p className={css['stat-value']}>{filteredCompleted.length}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Total Revenue</p>
+              <p className={css['stat-value']}>${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Gas Sponsored</p>
+              <p className={css['stat-value']}>{totalGasSponsored != null ? `$${totalGasSponsored.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</p>
+            </div>
           </div>
           {data?.wallet && (
             <div className={css.wallet}>
-              <div className={css['wallet-header']}>
-                <span className={css['wallet-title']}>Destination Wallet</span>
-                <a
-                  className={`${css.mono} ${css['wallet-addr']}`}
-                  href={`https://zapper.xyz/account/${data.wallet.address}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {data.wallet.address}
-                </a>
-                {walletTotalUsd != null && (
-                  <span className={css['wallet-total']}>
-                    ~${walletTotalUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </span>
-                )}
-              </div>
-              <div className={css['wallet-chains']}>
-                {data.wallet.balances.map(chain => {
-                  const nativeSym = chain.chainId === 137 ? 'POL' : 'ETH'
-                  return (
-                    <div key={chain.chainId} className={css['wallet-chain']}>
-                      <div className={css['wallet-chain-name']}>
-                        <Logo src={NETWORK_LOGOS[chain.chainId]} alt={CHAIN_NAMES[chain.chainId] || chain.network} />
-                        {CHAIN_NAMES[chain.chainId] || chain.network}
-                      </div>
-                      <div className={css['wallet-chain-bals']}>
-                        <span className={css['wallet-token']}>
-                          <Logo src={TOKEN_ICONS[nativeSym]} alt={nativeSym} size={14} />
-                          <span className={css['wallet-token-val']}>{Number(chain.ethBalance).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
-                          <span className={css['wallet-token-sym']}>{nativeSym}</span>
-                        </span>
-                        {chain.tokens.map(t => (
-                          <span key={t.symbol} className={css['wallet-token']}>
-                            <Logo src={TOKEN_ICONS[t.symbol]} alt={t.symbol} size={14} />
-                            <span className={css['wallet-token-val']}>{Number(t.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                            <span className={css['wallet-token-sym']}>{t.symbol}</span>
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+          <div className={css['wallet-header']}>
+            <span className={css['wallet-title']}>Destination Wallet</span>
+            <a
+              className={`${css.mono} ${css['wallet-addr']}`}
+              href={`https://zapper.xyz/account/${data.wallet.address}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {data.wallet.address}
+            </a>
+            {walletTotalUsd != null && (
+              <span className={css['wallet-total']}>
+                ~${walletTotalUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </span>
+            )}
+          </div>
+          <div className={css['wallet-chains']}>
+            {data.wallet.balances.map(chain => {
+              const nativeSym = chain.chainId === 137 ? 'POL' : 'ETH'
+              return (
+                <div key={chain.chainId} className={css['wallet-chain']}>
+                  <div className={css['wallet-chain-name']}>
+                    <Logo src={NETWORK_LOGOS[chain.chainId]} alt={CHAIN_NAMES[chain.chainId] || chain.network} />
+                    {CHAIN_NAMES[chain.chainId] || chain.network}
+                  </div>
+                  <div className={css['wallet-chain-bals']}>
+                    <span className={css['wallet-token']}>
+                      <Logo src={TOKEN_ICONS[nativeSym]} alt={nativeSym} size={14} />
+                      <span className={css['wallet-token-val']}>{Number(chain.ethBalance).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
+                      <span className={css['wallet-token-sym']}>{nativeSym}</span>
+                    </span>
+                    {chain.tokens.map(t => (
+                      <span key={t.symbol} className={css['wallet-token']}>
+                        <Logo src={TOKEN_ICONS[t.symbol]} alt={t.symbol} size={14} />
+                        <span className={css['wallet-token-val']}>{Number(t.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        <span className={css['wallet-token-sym']}>{t.symbol}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
             </div>
           )}
         </div>
