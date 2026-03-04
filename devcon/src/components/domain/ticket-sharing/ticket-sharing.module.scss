@@ -68,6 +68,8 @@
 .heroLogo {
   width: min(55vw, 238px);
   height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
   filter: drop-shadow(0 1px 12.1px #D5ECF1);
 
   @media (max-width: 600px) {
