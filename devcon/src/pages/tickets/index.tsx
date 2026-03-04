@@ -3,12 +3,12 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { Ticket, Shirt, Coffee, ArrowRight, ChevronDown, ChevronRight } from 'lucide-react'
+import { Ticket, Shirt, Coffee, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
 import themes from '../themes.module.scss'
-import HeroBackground from 'components/common/dc-8/hero/images/dc8-bg.png'
+import HeroBackground from './updated-hero.png'
 import EarlyBirdTicket from 'assets/images/dc-8/tickets/early-bird-hd.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
@@ -401,7 +401,11 @@ export default function TicketsPage() {
                         aria-expanded={openFaqIndex === i}
                       >
                         <span>{item.q}</span>
-                        <ChevronRight size={16} strokeWidth={2} className={css['faq-chevron']} />
+                        {openFaqIndex === i ? (
+                          <ChevronUp size={16} strokeWidth={2} className={css['faq-chevron']} />
+                        ) : (
+                          <ChevronDown size={16} strokeWidth={2} className={css['faq-chevron']} />
+                        )}
                       </button>
                       <div className={cn(css['faq-answer-wrap'], openFaqIndex === i && css['faq-answer-open'])}>
                         <div className={css['faq-answer-inner']}>

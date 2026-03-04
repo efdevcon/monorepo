@@ -1,5 +1,18 @@
 @use 'assets/css/partials/index' as *;
 
+// Register custom properties so the browser can interpolate gradient color stops
+@property --nav-grad-from {
+  syntax: '<color>';
+  initial-value: rgba(22, 11, 43, 0.5);
+  inherits: false;
+}
+
+@property --nav-grad-to {
+  syntax: '<color>';
+  initial-value: rgba(22, 11, 43, 0);
+  inherits: false;
+}
+
 @mixin fill-header {
   --color-icon: #{$colors-monochrome-10};
   --logo-color: #{$colors-main};
@@ -46,35 +59,31 @@
   z-index: 20;
   --color-icon: white;
   --logo-color: var(--color-icon);
-  --header-background-color: #ffffff00;
+  --header-background-color: transparent;
   --header-shadow: none;
   --button-border: none;
 
-  // Explicit overrides on .header for smooth transitions (var() changes don't interpolate)
+  // Gradient → solid dark transition via @property-registered custom props (animatable)
   .header {
-    background: transparent;
+    --nav-grad-from: rgba(22, 11, 43, 0.5);
+    --nav-grad-to: rgba(22, 11, 43, 0);
+    background: linear-gradient(to bottom, var(--nav-grad-from), var(--nav-grad-to));
     color: white;
     box-shadow: none;
-    transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    transition: --nav-grad-from 0.3s ease, --nav-grad-to 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   }
 
   :global(.lucide-chevron-down),
   :global(.lucide-chevron-up) {
     transition: color 0.2s ease, stroke 0.2s ease;
+    stroke: white !important;
   }
 
   &.scrolled {
-    @include fill-header;
-
     .header {
-      background: $colors-monochrome-1;
-      color: $colors-monochrome-10;
-      box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.15);
-    }
-
-    :global(.lucide-chevron-down),
-    :global(.lucide-chevron-up) {
-      color: black;
+      --nav-grad-from: rgba(22, 11, 43, 1);
+      --nav-grad-to: rgba(22, 11, 43, 1);
+      color: white;
     }
 
     :global(#strip) {
@@ -82,10 +91,17 @@
     }
   }
 
-  &:not(.scrolled) {
-    :global(.lucide-chevron-down),
-    :global(.lucide-chevron-up) {
-      stroke: white !important;
+  // When mobile foldout is open, override fill-header vars back to white (dark bg)
+  .foldout-open {
+    @media (max-width: 1250px) {
+      --color-icon: white;
+      --logo-color: white;
+      --header-background-color: #160b2b;
+      --header-shadow: none;
+
+      .header {
+        background: #160b2b;
+      }
     }
   }
 }

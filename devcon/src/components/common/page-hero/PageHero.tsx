@@ -188,14 +188,14 @@ export const PageHero = (props: PageHeroProps) => {
                           key={link.to + link.title}
                           to={link.to}
                           indicateExternal
-                          className="font-xs bold text-uppercase hover-underline"
+                          className="font-xs font-bold text-uppercase hover-underline"
                         >
                           {link.title}
                         </Link>
                       )
                     } else {
                       return (
-                        <div className="font-xs bold text-uppercase" key={link.key}>
+                        <div className="font-xs font-bold text-uppercase" key={link.key}>
                           {link.title}
                         </div>
                       )
