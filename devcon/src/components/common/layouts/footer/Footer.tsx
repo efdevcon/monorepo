@@ -155,7 +155,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
           <div className={css['col-4']}>
             <div className={css['contact']}>
               <p className="semi-bold">Get in touch</p>
-              <p className={css['email-1']}>{EMAIL_DEVCON}</p>
+              <a href={`mailto:${EMAIL_DEVCON}`} className={css['email-1']}>{EMAIL_DEVCON}</a>
 
               <div className={`${css['newsletter']} mt-8`}>
                 <Newsletter id="footer_newsletter_email" dark={dark} />

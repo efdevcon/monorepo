@@ -168,7 +168,7 @@ export const Navigation = (props: any) => {
             if (i.highlight === 'tickets') {
               return (
                 <Link to={i.url}>
-                  <Button color="purple-1" className="shadow lg !py-1" fill style={{ background: '#7235ed' }}>
+                  <Button color="purple-1" className="shadow lg !py-[8px] !px-[16px] !rounded-full" fill style={{ background: '#7235ed' }}>
                     {i.title}
                   </Button>
                 </Link>

@@ -32,7 +32,7 @@ const useNavigationData = () => {
     ],
     site: [
       {
-        title: 'About Devcon',
+        title: 'About',
         url: '#',
         type: 'links',
         logo: LogoAbout,
