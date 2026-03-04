@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 
 const SWIPE_THRESHOLD = 60
+const TAP_THRESHOLD = 8
 const isTouchDevice = () => typeof window !== 'undefined' && 'ontouchstart' in window
 
 export function useCardSwipe(cardCount: number) {
@@ -73,11 +74,12 @@ export function useCardSwipe(cardCount: number) {
       draggedEl.current = null
       pointerId.current = null
 
-      if (shouldCycle) {
+      const isTap = Math.abs(offset) < TAP_THRESHOLD
+
+      if (shouldCycle || isTap) {
         setIsAnimating(true)
-        setExitDirection(direction)
+        setExitDirection(isTap ? 'right' : direction)
         setExitingIndex(frontIndex)
-        // Promote the back card immediately so it starts transitioning forward
         setFrontIndex(prev => (prev + 1) % cardCount)
 
         const duration = isTouchDevice() ? 850 : 350

@@ -25,6 +25,10 @@
   will-change: transform;
   z-index: 0;
   pointer-events: none;
+
+  @media (max-width: 600px) {
+    will-change: auto;
+  }
 }
 
 .bgSlow {
@@ -36,7 +40,11 @@
 
 .bgImage {
   object-fit: cover;
-  object-position: center;
+  object-position: center 95%;
+
+  @media (max-width: 600px) {
+    object-position: 70% center;
+  }
 }
 
 .shootingStars {
@@ -50,13 +58,21 @@
   flex-direction: column;
   align-items: center;
   align-self: end;
-  padding-bottom: 64px;
+  padding-bottom: 84px;
+
+  // @media (max-width: 600px) {
+  //   padding-bottom: 16px;
+  // }
 }
 
 .heroLogo {
   width: min(55vw, 238px);
   height: auto;
   filter: drop-shadow(0 1px 12.1px #D5ECF1);
+
+  @media (max-width: 600px) {
+    filter: drop-shadow(0 1px 4px #D5ECF1);
+  }
 }
 
 /* ─── Flip hint (on card) ─────────────────────── */
@@ -78,6 +94,20 @@
   width: 76%;
   aspect-ratio: 16 / 9;
   perspective: 1200px;
+
+  @media (hover: hover) {
+    &.frontShowing:hover .cardBackPos {
+      transform:
+        rotateY(calc(var(--tilt-x) * 4deg))
+        rotateX(calc(var(--tilt-y) * -4deg))
+        translate(
+          calc(var(--tilt-x) * -16px),
+          calc(var(--tilt-y) * -16px)
+        )
+        rotate(-7deg)
+        scale(0.97);
+    }
+  }
 }
 
 .cardStack.animating .card {
@@ -158,6 +188,10 @@
   position: absolute;
   inset: 0;
   filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.4));
+
+  @media (max-width: 600px) {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+  }
 }
 
 .ticketPunch {
@@ -203,7 +237,7 @@
   width: clamp(60px, 18%, 160px);
   aspect-ratio: 1;
   border-radius: 12%;
-  border: 3px solid #c4880c;
+  border: 2px solid #D65600;
   background: #e8e4df;
   overflow: hidden;
   flex-shrink: 0;
@@ -227,16 +261,27 @@
 
 .attendeeName {
   font-size: clamp(16px, 3.5vw, 36px);
-  font-weight: 900;
-  color: #1a1a2e;
+  font-weight: 800;
+  color: #160b2b;
   line-height: 1.15;
+  letter-spacing: -0.5px;
+
+  @media (max-width: 600px) {
+    font-size: clamp(18px, 5vw, 36px);
+  }
 }
 
 .ticketType {
   font-size: clamp(11px, 1.8vw, 20px);
-  font-weight: 600;
-  color: #c4880c;
+  font-weight: 500;
+  color: #D65600;
   margin-top: 4px;
+  letter-spacing: -0.5px;
+
+  @media (max-width: 600px) {
+    font-size: clamp(13px, 3.2vw, 20px);
+    margin-top: 0;
+  }
 }
 
 .backsideShadowWrap {
@@ -258,7 +303,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 15% 12%;
+  padding: 15% 8%;
 }
 
 .backsideTitle {
@@ -270,8 +315,8 @@
 }
 
 .backsideDescription {
-  font-size: clamp(9px, 1.8vw, 12px);
-  line-height: 1.7;
+  font-size: clamp(10px, 1.8vw, 14px);
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.6);
   max-width: 420px;
 }
@@ -298,7 +343,7 @@
   flex-direction: column;
   align-items: center;
   align-self: start;
-  padding-top: 64px;
+  padding-top: 80px;
 }
 
 .ctaButton {
@@ -308,21 +353,110 @@
   gap: 8px;
   padding: 16px 28px 16px 32px;
   border-radius: 360px;
-  background: #7235ed;
+  background: rgba(114, 53, 237, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(60px) saturate(1.4);
+  -webkit-backdrop-filter: blur(60px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
   color: #f9f8fa;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: transform 0.2s;
 
   &:hover {
-    opacity: 0.85;
+    transform: scale(1.02);
   }
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
+  }
+}
+
+.shareSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.shareLabel {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(34, 17, 68, 0.6);
+}
+
+.copiedToast {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: 360px;
+  animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(4px); }
+  15% { opacity: 1; transform: translateY(0); }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.shareIcons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.shareIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 360px;
+  background: rgba(249, 248, 250, 0.25);
+  border: 1px solid rgba(249, 248, 250, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  transition: background 100ms ease-out, color 100ms ease-out;
+  text-decoration: none;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+    transition: fill 100ms ease-out;
+  }
+
+  // Lucide icons use stroke, not fill
+  :global(.lucide) {
+    fill: none;
+    stroke: white;
+    transition: stroke 100ms ease-out;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(249, 248, 250, 0.5);
+
+      svg {
+        fill: #160B2B;
+      }
+
+      :global(.lucide) {
+        fill: none;
+        stroke: #160B2B;
+      }
+    }
   }
 }
 
@@ -331,11 +465,11 @@
   .aboveCard {
     align-self: stretch;
     justify-content: space-between;
-    padding-top: max(40px, 10vh);
+    padding-top: max(40px, 15vh);
   }
 
   .cardStack {
-    width: 85%;
+    width: 92%;
     max-width: none;
   }
 
@@ -352,6 +486,11 @@
 
   .vignette {
     display: none;
+  }
+
+  .ctaButton {
+    font-size: 16px;
+    padding: 14px 24px;
   }
 }
 

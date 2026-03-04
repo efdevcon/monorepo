@@ -23,6 +23,9 @@
     img {
       object-position: center 70% !important;
 
+      @media (max-width: $breakpoints-md) {
+        object-position: 62% 50% !important;
+      }
     }
   }
 
