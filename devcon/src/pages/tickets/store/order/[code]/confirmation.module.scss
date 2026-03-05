@@ -475,6 +475,10 @@ $order-border: #dddae2;
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .wallet-badge {
