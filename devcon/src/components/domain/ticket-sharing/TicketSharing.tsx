@@ -4,7 +4,7 @@ import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
 import ticketFront from './ticket-design.png'
 import ticketBack from './ticket-backside.png'
-import heroBackdrop from './occluded.png'
+import heroBackdrop from './ticket-background.png'
 import devconLogo from './updated-dc8-logo.png'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
 import IconTwitter from 'assets/icons/twitter.svg'
@@ -40,6 +40,13 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
     document.documentElement.style.overflow = 'hidden'
     document.documentElement.style.overscrollBehavior = 'none'
     document.documentElement.style.backgroundColor = '#1a0a3e'
+
+    // Strip "share" param from URL so copied/shared URLs show "Get tickets" instead
+    const url = new URL(window.location.href)
+    if (url.searchParams.has('share')) {
+      url.searchParams.delete('share')
+      window.history.replaceState({}, '', url.toString())
+    }
 
     // On iOS Safari (HTTPS), DeviceOrientationEvent.requestPermission exists
     // and must be called from a user gesture. Show a prompt button for that.
@@ -133,25 +140,20 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
         >
           <div className={css.ticketPunch}>
             <Image src={ticketFront} alt={`${name}'s Devcon ticket`} className={css.ticketImage} />
-            <div className={css.ticketContent}>
+            <div className={cn(css.ticketContent, { [css.noAvatar]: !avatarSrc || avatarError })}>
               <div className={css.attendeeRow}>
-                <div className={css.avatarCircle}>
-                  {avatarSrc && !avatarError ? (
+                {avatarSrc && !avatarError && (
+                  <div className={css.avatarCircle}>
                     <img
                       src={avatarSrc}
                       alt={`${xUsername}'s avatar`}
                       className={css.avatarImage}
                       onError={handleAvatarError}
                     />
-                  ) : (
-                    <svg className={css.avatarPlaceholder} viewBox="0 0 100 100">
-                      <circle cx="50" cy="38" r="18" fill="#ccc" />
-                      <ellipse cx="50" cy="80" rx="30" ry="22" fill="#ccc" />
-                    </svg>
-                  )}
-                </div>
+                  </div>
+                )}
                 <div className={css.attendeeInfo}>
-                  <span className={css.attendeeName}>{name}</span>
+                  <span className={css.attendeeName}>{name !== 'Anon' ? name : xUsername ? `@${xUsername}` : 'Anon'}</span>
                   <span className={css.ticketType}>is attending Devcon India</span>
                 </div>
               </div>
@@ -231,7 +233,11 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
             )
           })()
         ) : (
-          <a href="/tickets" className={css.ctaButton} style={{ '--color-icon': '#f9f8fa' } as React.CSSProperties}>
+          <a
+            href="/tickets"
+            className={cn(css.ctaButton, 'select-none')}
+            style={{ '--color-icon': '#f9f8fa' } as React.CSSProperties}
+          >
             Get tickets
             <IconArrowRight />
           </a>

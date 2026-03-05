@@ -287,7 +287,7 @@ export default function OrderConfirmationPage() {
                   </div>
                 </div>
                 <a
-                  href={`/en/ticket/${encodeURIComponent((shareName || attendeeName.split(' ')[0]).toLowerCase())}/${xUsername ? `?x=${encodeURIComponent(xUsername.replace(/^@/, ''))}` : ''}`}
+                  href={`/en/ticket/${encodeURIComponent(shareName || 'Anon')}?share${xUsername ? `&x=${encodeURIComponent(xUsername.replace(/^@/, ''))}` : ''}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={css['share-btn']}

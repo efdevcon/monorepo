@@ -14,17 +14,39 @@
   background: #1a0a3e;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+
+  /* Purple side vignette */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: inset 50px 0 35px -18px #0F012C, inset -50px 0 35px -18px #0F012C;
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
 }
 
 /* Background layers with parallax */
 .bgLayer {
   position: absolute;
   // inset: -60px;
-  inset: -20px;
+  inset: -20px 27px;
   transition: transform 0.15s ease-out;
   will-change: transform;
   z-index: 0;
   pointer-events: none;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+
+  @media (max-width: 1024px) {
+    inset: -20px;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
 
   @media (max-width: 600px) {
     will-change: auto;
@@ -227,6 +249,10 @@
   align-items: center;
   justify-content: center;
   padding: 6% 8%;
+
+  &.noAvatar {
+    justify-content: flex-start;
+  }
 }
 
 .attendeeRow {
