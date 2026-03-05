@@ -113,7 +113,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
         await fetch('/api/ticket/avatar', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, xUsername, image: base64 }),
+          body: JSON.stringify({ xUsername, image: base64 }),
         })
       } catch (err) {
         console.error('[ticket-avatar] upload failed:', err)

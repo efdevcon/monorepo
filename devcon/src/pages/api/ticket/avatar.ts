@@ -13,7 +13,7 @@ function sanitize(s: string): string {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { name, xUsername, image } = req.body
+  const { xUsername, image } = req.body
   if (!xUsername || !image) {
     return res.status(400).json({ error: 'Missing xUsername or image' })
   }
@@ -43,15 +43,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!uploadRes.ok) {
     return res.status(502).json({ error: 'Failed to upload avatar' })
-  }
-
-  // Bust the cached OG image so it regenerates with the new avatar
-  if (name) {
-    const ogKey = `${sanitize(name)}--${sanitize(xUsername)}.png`
-    await fetch(`${supabaseUrl}/storage/v1/object/${BUCKET}/${ogKey}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${supabaseKey}` },
-    })
   }
 
   return res.status(200).json({ ok: true })

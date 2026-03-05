@@ -172,32 +172,44 @@ export default async function handler(req: NextRequest) {
 
   const canCache = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
   const cacheKey = getCacheKey(rawName, xUsername)
+  console.log(`[og] name="${rawName}" x="${xUsername}" key="${cacheKey}" canCache=${!!canCache}`)
 
   // Only use avatar if cached in Supabase (uploaded by a real visitor).
   // Never fall back to unavatar.io — it's rate-limited and a broken response
   // would get baked into the cached OG image permanently.
   let avatarSrc: string | null = null
+  let avatarLastModified = 0
   if (xUsername && canCache) {
     const cachedAvatarUrl = publicUrl(`avatar--${sanitize(xUsername)}.png`)
     try {
       const check = await fetch(cachedAvatarUrl, { method: 'HEAD' })
-      if (check.ok) avatarSrc = cachedAvatarUrl
+      if (check.ok) {
+        avatarSrc = cachedAvatarUrl
+        const lm = check.headers.get('last-modified')
+        if (lm) avatarLastModified = new Date(lm).getTime()
+      }
     } catch {
       // No cached avatar — render without it
     }
   }
 
-  // Check cache
+  // Check cache — but skip if avatar is newer (OG was generated without it or with old version)
   if (canCache) {
     try {
-      const cached = await getCachedImage(cacheKey)
-      if (cached) {
-        return new Response(cached, {
-          headers: {
-            'Content-Type': 'image/png',
-            'Cache-Control': 'public, max-age=31536000, immutable',
-          },
-        })
+      const ogHead = await fetch(publicUrl(cacheKey), { method: 'HEAD' })
+      if (ogHead.ok) {
+        const ogLastModified = new Date(ogHead.headers.get('last-modified') || 0).getTime()
+        if (!avatarLastModified || ogLastModified >= avatarLastModified) {
+          const cached = await getCachedImage(cacheKey)
+          if (cached) {
+            return new Response(cached, {
+              headers: {
+                'Content-Type': 'image/png',
+                'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+              },
+            })
+          }
+        }
       }
     } catch {
       // Cache miss or error — fall through to generate
@@ -222,7 +234,7 @@ export default async function handler(req: NextRequest) {
     return new Response(imageBytes, {
       headers: {
         'Content-Type': 'image/png',
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
       },
     })
   }
