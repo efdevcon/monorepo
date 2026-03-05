@@ -387,7 +387,7 @@ export async function purchaseHandler(
       sales_channel: 'web',
       payment_provider: 'x402_crypto',
       positions,
-      send_email: true,
+      send_email: false,
     }
 
     // Create payment requirements

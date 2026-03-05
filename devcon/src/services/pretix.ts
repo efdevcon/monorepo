@@ -299,7 +299,9 @@ export async function confirmOrderPayment(
   info?: Record<string, unknown>
 ): Promise<void> {
   return withRetry(`confirmOrderPayment(${orderCode})`, async () => {
-    const paymentUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/payments/${paymentLocalId}/confirm/`
+    // Use custom x402 plugin endpoint that passes mail_text to payment.confirm()
+    // so {payment_info} is populated in the "payment received" email
+    const paymentUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/x402/confirm/${orderCode}/${paymentLocalId}/`
     const body: Record<string, unknown> = { force: true }
     if (info) body.info = JSON.stringify(info)
 
@@ -310,6 +312,21 @@ export async function confirmOrderPayment(
     })
 
     if (!response.ok) {
+      // Fall back to standard confirm endpoint if custom endpoint not available
+      if (response.status === 404) {
+        console.warn(`[pretix] Custom confirm endpoint not found, falling back to standard confirm`)
+        const fallbackUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/payments/${paymentLocalId}/confirm/`
+        const fallbackRes = await fetch(fallbackUrl, {
+          method: 'POST',
+          headers: getHeaders(),
+          body: JSON.stringify(body),
+        })
+        if (!fallbackRes.ok) {
+          const text = await fallbackRes.text()
+          throw new Error(`Failed to confirm payment ${paymentLocalId} on order ${orderCode} (${fallbackRes.status}): ${text}`)
+        }
+        return
+      }
       const text = await response.text()
       throw new Error(`Failed to confirm payment ${paymentLocalId} on order ${orderCode} (${response.status}): ${text}`)
     }
