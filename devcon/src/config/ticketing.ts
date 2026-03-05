@@ -46,7 +46,9 @@ const ENV_CONFIG = {
       useDaimoPay: false,
     },
     payment: {
-      recipientAddress: '0xFc488aE9cB395B150574Aa5ce8a321c9100b1ee3',
+      recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      // TODO: replace with production recipient address
+      // recipientAddress: '0xFc488aE9cB395B150574Aa5ce8a321c9100b1ee3',
       cryptoDiscountPercent: 3,
     },
     self: {
