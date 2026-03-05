@@ -4,7 +4,7 @@ import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
 import ticketFront from './ticket-design.png'
 import ticketBack from './ticket-backside.png'
-import heroBackdrop from './ticket-background.png'
+import heroBackdrop from './occluded.png'
 import devconLogo from './updated-dc8-logo.png'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
 import IconTwitter from 'assets/icons/twitter.svg'
@@ -153,7 +153,9 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
                   </div>
                 )}
                 <div className={css.attendeeInfo}>
-                  <span className={css.attendeeName}>{name !== 'Anon' ? name : xUsername ? `@${xUsername}` : 'Anon'}</span>
+                  <span className={css.attendeeName}>
+                    {name !== 'Anon' ? name : xUsername ? `@${xUsername}` : 'Anon'}
+                  </span>
                   <span className={css.ticketType}>is attending Devcon India</span>
                 </div>
               </div>
