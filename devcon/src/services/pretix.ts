@@ -270,10 +270,15 @@ export async function markOrderRefunded(orderCode: string, refundAmount?: string
     }
 
     // 3. Cancel the order to invalidate the ticket
+    const cancelComment = txHash
+      ? `Your order has been refunded on-chain: ${chainId ? `https://${chainId === 1 ? 'etherscan.io' : chainId === 10 ? 'optimistic.etherscan.io' : chainId === 42161 ? 'arbiscan.io' : chainId === 8453 ? 'basescan.org' : chainId === 84532 ? 'sepolia.basescan.org' : chainId === 137 ? 'polygonscan.com' : 'blockscan.com'}/tx/${txHash}` : txHash}`
+      : 'Your order has been refunded.'
+
     const cancelUrl = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/mark_canceled/`
     const cancelRes = await fetch(cancelUrl, {
       method: 'POST',
       headers: getHeaders(),
+      body: JSON.stringify({ send_email: true, comment: cancelComment }),
     })
 
     if (!cancelRes.ok) {
