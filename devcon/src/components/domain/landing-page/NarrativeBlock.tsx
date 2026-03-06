@@ -26,14 +26,15 @@ const NARRATIVE_SECTIONS: TextSegment[][] = [
   ],
   [
     { text: 'Growth in India is grassroots and builder-led.' },
-    { text: 'Driven not by institutional mandates or market cycles, but by engineers who see technology as a tool to solve large-scale, real-world challenges.' },
+    {
+      text: 'Driven not by institutional mandates or market cycles, but by engineers who see technology as a tool to solve large-scale, real-world challenges.',
+    },
   ],
+  [{ text: 'Devcon 8 comes to Mumbai to be part of that.' }, { text: 'To contribute to it.' }],
   [
-    { text: 'Devcon 8 comes to Mumbai to be part of that.' },
-    { text: 'To contribute to it.' },
-  ],
-  [
-    { text: 'And to demonstrate that Ethereum\u2019s commitment to decentralization, openness, and long-term thinking isn\u2019t rhetoric.' },
+    {
+      text: 'And to demonstrate that Ethereum\u2019s commitment to decentralization, openness, and long-term thinking isn\u2019t rhetoric.',
+    },
     { text: 'It\u2019s how we show up.', bold: true },
   ],
 ]
@@ -102,11 +103,17 @@ function PlainText({ segments }: { segments: TextSegment[] }) {
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {segments.map((seg, s) => (
         <React.Fragment key={s}>
-          {seg.text.split(' ').filter(Boolean).map((word, w) => (
-            <span key={w} style={{ display: 'inline-block', marginRight: '0.25em', fontWeight: seg.bold ? 700 : undefined }}>
-              {word}
-            </span>
-          ))}
+          {seg.text
+            .split(' ')
+            .filter(Boolean)
+            .map((word, w) => (
+              <span
+                key={w}
+                style={{ display: 'inline-block', marginRight: '0.25em', fontWeight: seg.bold ? 700 : undefined }}
+              >
+                {word}
+              </span>
+            ))}
           {s < segments.length - 1 && <span style={{ flexBasis: '100%', height: 0 }} />}
         </React.Fragment>
       ))}
@@ -115,7 +122,7 @@ function PlainText({ segments }: { segments: TextSegment[] }) {
 }
 
 export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
-  const [currentSection, setCurrentSection] = useState<number | null>(null)
+  const [currentSection, setCurrentSection] = useState<number | null>(0)
   const narrativeRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const currentSectionRef = useRef<number | null>(null)
@@ -156,10 +163,7 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
       end: () => `bottom ${getPinEnd().pinEnd}`,
       invalidateOnRefresh: true,
       onUpdate: self => {
-        const section = Math.min(
-          Math.floor(self.progress * NARRATIVE_SECTIONS.length),
-          NARRATIVE_SECTIONS.length - 1
-        )
+        const section = Math.min(Math.floor(self.progress * NARRATIVE_SECTIONS.length), NARRATIVE_SECTIONS.length - 1)
         updateSection(section)
       },
       onLeave: () => updateSection(NARRATIVE_SECTIONS.length - 1),

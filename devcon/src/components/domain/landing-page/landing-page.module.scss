@@ -634,7 +634,7 @@
   padding: 24px 0;
 
   @media (max-width: $breakpoints-md) {
-    padding: 24px 0;
+    padding: 4px 0;
   }
 }
 
@@ -893,8 +893,7 @@
 /* ─── Ticket Banner ─────────────────────────── */
 .ticket-banner {
   background: #ffac38;
-  padding: 32px 64px;
-  height: 158px;
+  padding: 80px 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -904,7 +903,7 @@
   overflow: hidden;
 
   @media (max-width: $breakpoints-md) {
-    padding: 12px 24px;
+    padding: 48px 24px;
   }
 }
 
@@ -927,13 +926,15 @@
 .jaali-left,
 .jaali-right {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 140%;
+  // top: 50%;
+  // transform: translateY(-50%);
+  height: 100%;
   width: auto;
-  max-width: 16%;
+  // max-width: 16%;
   opacity: 0.2;
   pointer-events: none;
+  object-fit: cover;
+  max-width: 50%;
 }
 
 .jaali-left {
@@ -942,7 +943,7 @@
 
 .jaali-right {
   right: 0;
-  transform: translateY(-50%) scaleX(-1);
+  transform: scaleX(-1);
 }
 
 /* ─── Shared ────────────────────────────────── */
