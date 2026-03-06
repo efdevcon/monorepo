@@ -247,6 +247,7 @@ function CheckoutContent() {
   const [confirmEmail, setConfirmEmail] = useState('')
   const [newsletter, setNewsletter] = useState(false)
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({})
+  const [showContactErrors, setShowContactErrors] = useState(false)
   const [showAttendeeErrors, setShowAttendeeErrors] = useState(false)
   // ── Payment flow state ──
   const [purchaseLoading, setPurchaseLoading] = useState(false)
@@ -649,6 +650,7 @@ function CheckoutContent() {
     if (id === 'payment' && openSection !== 'payment') {
       if (!contactDetailsFilled) {
         setSectionWarning('Please fill in your contact details first.')
+        setShowContactErrors(true)
         setOpenSection('contact')
         return
       }
@@ -774,6 +776,13 @@ function CheckoutContent() {
   }
 
   const handleAttendeContinue = () => {
+    // Also check contact details — if user somehow skipped them
+    if (!contactDetailsFilled) {
+      setShowContactErrors(true)
+      setSectionWarning('Please fill in your contact details first.')
+      setOpenSection('contact')
+      return
+    }
     const hasErrors = applicableQuestions.some(q => q.required && isDependencyMet(q) && isFieldEmpty(q.id))
     if (hasErrors) {
       setShowAttendeeErrors(true)
@@ -1604,9 +1613,13 @@ function CheckoutContent() {
                           id="first-name"
                           type="text"
                           placeholder="First name"
+                          className={showContactErrors && firstName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
                           value={firstName}
                           onChange={e => setFirstName(e.target.value)}
                         />
+                        {showContactErrors && firstName.trim() === '' && (
+                          <p className={css['field-error']}>Please enter your first name.</p>
+                        )}
                       </div>
                       <div className={css['field']}>
                         <label htmlFor="last-name">&nbsp;</label>
@@ -1614,9 +1627,13 @@ function CheckoutContent() {
                           id="last-name"
                           type="text"
                           placeholder="Last name"
+                          className={showContactErrors && lastName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
                           value={lastName}
                           onChange={e => setLastName(e.target.value)}
                         />
+                        {showContactErrors && lastName.trim() === '' && (
+                          <p className={css['field-error']}>Please enter your last name.</p>
+                        )}
                       </div>
                     </div>
                     <div className={css['field-row']}>
@@ -1628,9 +1645,13 @@ function CheckoutContent() {
                           id="email"
                           type="email"
                           placeholder="Enter email"
+                          className={showContactErrors && !isEmail(email.trim()) ? 'border-[#ef4444] shadow-none' : ''}
                           value={email}
                           onChange={e => setEmail(e.target.value)}
                         />
+                        {showContactErrors && !isEmail(email.trim()) && (
+                          <p className={css['field-error']}>Please enter a valid email.</p>
+                        )}
                       </div>
                       <div className={css['field']}>
                         <label htmlFor="confirm-email">&nbsp;</label>
@@ -1638,15 +1659,20 @@ function CheckoutContent() {
                           id="confirm-email"
                           type="email"
                           placeholder="Confirm email"
+                          className={showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim()) ? 'border-[#ef4444] shadow-none' : ''}
                           value={confirmEmail}
                           onChange={e => setConfirmEmail(e.target.value)}
                         />
+                        {showContactErrors && confirmEmail.trim() !== '' && email.trim() !== confirmEmail.trim() && (
+                          <p className={css['field-error']}>Emails do not match.</p>
+                        )}
+                        {showContactErrors && confirmEmail.trim() === '' && (
+                          <p className={css['field-error']}>Please confirm your email.</p>
+                        )}
                       </div>
                     </div>
                     <label
-                      className={`flex items-start gap-3 p-3 border rounded-[10px] bg-white cursor-pointer ${
-                        newsletter ? 'border-black' : 'border-[#e5e5e5]'
-                      }`}
+                      className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer"
                     >
                       <Checkbox
                         checked={newsletter}
@@ -1664,8 +1690,14 @@ function CheckoutContent() {
                     <button
                       type="button"
                       className={`${css['btn-continue']} ${!contactDetailsFilled ? css['btn-disabled'] : ''}`}
-                      disabled={!contactDetailsFilled}
-                      onClick={() => goToNextSection('contact')}
+                      onClick={() => {
+                        if (!contactDetailsFilled) {
+                          setShowContactErrors(true)
+                          return
+                        }
+                        setShowContactErrors(false)
+                        goToNextSection('contact')
+                      }}
                     >
                       Continue
                     </button>
