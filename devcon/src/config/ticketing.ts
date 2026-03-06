@@ -33,6 +33,9 @@ const ENV_CONFIG = {
     questions: {
       goalsIdentifier: 'devcon-goals',
     },
+    overrides: {
+      soldOut: false,
+    },
     x402Agents: false,
   },
   production: {
@@ -59,13 +62,17 @@ const ENV_CONFIG = {
       staging: false,
     },
     discount: {
-      collection: 'local-discount',
+      // TODO: replace with production collection
+      collection: 'dev-local-discount',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
     questions: {
       goalsIdentifier: 'devcon-goals',
+    },
+    overrides: {
+      soldOut: false,
     },
     x402Agents: false,
   },

@@ -162,7 +162,10 @@ function StoreContent({
         const res = await fetch('/api/x402/tickets')
         const data = await res.json()
         if (data.success) {
-          setTickets(data.data.tickets)
+          const tix = TICKETING.overrides.soldOut
+            ? data.data.tickets.map((t: TicketInfo) => ({ ...t, available: false, availableCount: 0 }))
+            : data.data.tickets
+          setTickets(tix)
           setPaymentInfo(data.data.paymentInfo)
         } else {
           setError(data.error || 'Failed to load tickets')
@@ -240,12 +243,13 @@ function StoreContent({
     }
   }
 
-  const admissionTickets = tickets.filter(t => t.isAdmission && t.available && !t.requireVoucher)
+  const forceSoldOut = TICKETING.overrides.soldOut
+  const admissionTickets = tickets.filter(t => t.isAdmission && (forceSoldOut || t.available) && !t.requireVoucher)
   const discountTicketId = TICKETING.pretix.ticketDiscountId
     ? parseInt(TICKETING.pretix.ticketDiscountId, 10)
     : undefined
   const voucherTickets = tickets.filter(t =>
-    t.isAdmission && t.available && t.requireVoucher &&
+    t.isAdmission && (forceSoldOut || t.available) && t.requireVoucher &&
     (discountTicketId ? t.id === discountTicketId : true)
   )
 
@@ -432,19 +436,33 @@ function StoreContent({
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${!(discountCode && discountCodeValid === true) ? css['card--disabled'] : ''}`}>
+                      <div className={`${css['card']} ${!ticket.available || !(discountCode && discountCodeValid === true) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
-                            <p className={css['card-meta']}>
-                              Via Self & ETH Mumbai registration &middot; Price increases 31 March
-                            </p>
+                            {!ticket.available ? (
+                              <p className={css['sold-out-meta']}>Next sale: 6 April, 2026</p>
+                            ) : (
+                              <p className={css['card-meta']}>
+                                Via Self & ETH Mumbai registration &middot; Price increases 31 March
+                              </p>
+                            )}
                             <p className={css['card-description']}>
                               Full conference access including talks and workshops, swag bag, plus coffee, lunch and
                               snacks all week.
                             </p>
                           </div>
-                          {discountCode && discountCodeValid === true ? (
+                          {!ticket.available ? (
+                            <div className={css['card-footer']}>
+                              <div className={`${css['pricing']} ${css['pricing--faded']}`}>
+                                <span className={css['price-current']}>${ticket.price}</span>
+                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                )}
+                              </div>
+                              <span className={css['sold-out-badge']}>Sold out!</span>
+                            </div>
+                          ) : discountCode && discountCodeValid === true ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-current']}>${ticket.price}</span>

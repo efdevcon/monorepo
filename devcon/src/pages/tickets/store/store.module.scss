@@ -424,6 +424,30 @@
   line-height: 1.5;
 }
 
+.sold-out-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fff0f0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #b42124;
+  white-space: nowrap;
+}
+
+.sold-out-meta {
+  font-size: 14px;
+  font-weight: 700;
+  color: #b42124;
+  line-height: 20px;
+}
+
+.pricing--faded {
+  opacity: 0.4;
+}
+
 .access-link-badge {
   display: flex;
   align-items: center;
