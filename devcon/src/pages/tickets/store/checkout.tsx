@@ -765,8 +765,8 @@ function CheckoutContent() {
   }
 
   const getFieldErrorMessage = (q: { type: string; identifier?: string }) => {
-    if (q.type === 'CC') return 'Please select a nationality.'
-    if (q.type === 'C') return 'Please select a role.'
+    if (q.type === 'CC') return 'Please select a country.'
+    if (q.type === 'C') return 'Please select an option.'
     if (q.type === 'B') return 'Please select a response.'
     if (q.type === 'M') return 'Please select at least one option.'
     return 'This field is required.'
@@ -1361,13 +1361,27 @@ function CheckoutContent() {
                   <p>
                     By placing your order, you agree to Devcon&apos;s{' '}
                     <Link to="/terms-of-service">
-                      <strong>Terms & Conditions</strong>
+                      <strong>Terms &amp; Conditions</strong>
                     </Link>{' '}
                     and{' '}
                     <Link to="/privacy-policy">
                       <strong>Privacy Policy</strong>
                     </Link>
                     .
+                  </p>
+                  <p>
+                    An order confirmation with your tickets will be sent to the email provided during checkout. If you
+                    don&apos;t receive a confirmation email, please{' '}
+                    <a href="mailto:support@devcon.org">
+                      <strong>contact us</strong>
+                    </a>
+                    .
+                  </p>
+                  <p>
+                    Got a question?{' '}
+                    <Link to="/tickets/faq">
+                      <strong>Read our ticketing FAQs</strong>
+                    </Link>
                   </p>
                 </div>
               </div>
@@ -1631,7 +1645,7 @@ function CheckoutContent() {
                       <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>{sectionWarning}</div>
                     )}
                     {applicableQuestions.map(q => {
-                      const isGoals = q.identifier === 'devcon-goals'
+                      const isGoals = q.identifier === TICKETING.questions.goalsIdentifier
                       const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
 
                       return (
@@ -1641,9 +1655,7 @@ function CheckoutContent() {
                             {q.required && <span className={css['required']}>*</span>}
                           </label>
                           {q.helpText && (
-                            <span
-                              style={{ fontSize: '0.75rem', color: '#666', display: 'block', marginTop: '-0.5rem' }}
-                            >
+                            <span className={css['field-help']}>
                               {q.helpText}
                             </span>
                           )}
@@ -1664,11 +1676,30 @@ function CheckoutContent() {
                             </Select>
                           )}
 
-                          {/* Single choice dropdown */}
-                          {q.type === 'C' && (
+                          {/* Single choice — radio for Yes/No, dropdown otherwise */}
+                          {q.type === 'C' && q.options.length <= 3 && (
+                            <RadioGroup
+                              value={(answers[q.id] as string) || ''}
+                              onValueChange={v => updateAnswer(q.id, v)}
+                              className="flex flex-col gap-3"
+                            >
+                              {q.options.map(opt => (
+                                <div key={opt.id} className="flex items-center gap-2">
+                                  <RadioGroupItem value={String(opt.id)} id={`q-${q.id}-opt-${opt.id}`} />
+                                  <Label
+                                    htmlFor={`q-${q.id}-opt-${opt.id}`}
+                                    className="text-sm font-normal text-[#1a0d33] cursor-pointer"
+                                  >
+                                    {opt.answer}
+                                  </Label>
+                                </div>
+                              ))}
+                            </RadioGroup>
+                          )}
+                          {q.type === 'C' && q.options.length > 3 && (
                             <Select value={(answers[q.id] as string) || ''} onValueChange={v => updateAnswer(q.id, v)}>
                               <SelectTrigger className={hasError ? 'border-[#ef4444] shadow-none' : ''}>
-                                <SelectValue placeholder="Select a role" />
+                                <SelectValue placeholder={`Select an option`} />
                               </SelectTrigger>
                               <SelectContent>
                                 {q.options.map(opt => (
@@ -1713,7 +1744,7 @@ function CheckoutContent() {
                                     />
                                     <Label
                                       htmlFor={`q-${q.id}-opt-${opt.id}`}
-                                      className="text-sm font-normal text-[#404040] cursor-pointer"
+                                      className="text-sm font-normal text-[#1a0d33] cursor-pointer"
                                     >
                                       {opt.answer}
                                     </Label>
@@ -1734,7 +1765,7 @@ function CheckoutContent() {
                                 <RadioGroupItem value="True" id={`q-${q.id}-yes`} />
                                 <Label
                                   htmlFor={`q-${q.id}-yes`}
-                                  className="text-sm font-normal text-[#404040] cursor-pointer"
+                                  className="text-sm font-normal text-[#1a0d33] cursor-pointer"
                                 >
                                   Yes
                                 </Label>
@@ -1743,7 +1774,7 @@ function CheckoutContent() {
                                 <RadioGroupItem value="False" id={`q-${q.id}-no`} />
                                 <Label
                                   htmlFor={`q-${q.id}-no`}
-                                  className="text-sm font-normal text-[#404040] cursor-pointer"
+                                  className="text-sm font-normal text-[#1a0d33] cursor-pointer"
                                 >
                                   No
                                 </Label>
@@ -1755,6 +1786,7 @@ function CheckoutContent() {
                           {q.type === 'S' && (
                             <Input
                               type="text"
+                              placeholder={q.question.toLowerCase().includes('legal name') ? 'Full legal name' : ''}
                               className={hasError ? 'border-[#ef4444] shadow-none' : ''}
                               value={(answers[q.id] as string) || ''}
                               onChange={e => updateAnswer(q.id, e.target.value)}

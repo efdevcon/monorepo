@@ -30,6 +30,9 @@ const ENV_CONFIG = {
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
+    questions: {
+      goalsIdentifier: 'devcon-goals',
+    },
     x402Agents: false,
   },
   production: {
@@ -60,6 +63,9 @@ const ENV_CONFIG = {
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
+    },
+    questions: {
+      goalsIdentifier: 'devcon-goals',
     },
     x402Agents: false,
   },

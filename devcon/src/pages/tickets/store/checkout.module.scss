@@ -439,6 +439,15 @@ $checkout-accent: #7235ed;
   color: #b42124;
 }
 
+.field-help {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #594d73;
+  line-height: 1.43;
+  margin-top: -0.25rem;
+}
+
 .field-error {
   font-size: 0.875rem;
   color: #b42124;
@@ -1345,6 +1354,7 @@ div.wallet-identicon {
   position: sticky;
   top: 54px;
   z-index: 10;
+  box-shadow: 0px 1px 2px 0px rgba(22, 11, 43, 0.1), 0px 2px 4px 0px rgba(22, 11, 43, 0.15);
 
   @media (min-width: $breakpoints-lg) {
     display: none;
@@ -1355,13 +1365,12 @@ div.wallet-identicon {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
-  border-bottom: 1px solid $checkout-border;
-  padding: 16px 20px;
-  cursor: pointer;
-  width: 100%;
+  background: #f2f1f4;
   border: none;
   border-bottom: 1px solid $checkout-border;
+  padding: 20px;
+  cursor: pointer;
+  width: 100%;
   font-family: inherit;
 }
 
@@ -1370,13 +1379,13 @@ div.wallet-identicon {
   align-items: center;
   gap: 8px;
   font-size: 16px;
-  font-weight: 600;
-  color: #160b2b;
+  font-weight: 400;
+  color: #1a0d33;
 
   svg {
-    width: 20px;
-    height: 20px;
-    color: #594d73;
+    width: 16px;
+    height: 16px;
+    color: #1a0d33;
   }
 }
 
@@ -1385,20 +1394,17 @@ div.wallet-identicon {
   align-items: baseline;
   font-size: 16px;
   font-weight: 700;
-  color: #160b2b;
+  color: #1a0d33;
 }
 
 .mobile-order-expanded {
-  background: #fff;
+  background: #f2f1f4;
   border-bottom: 1px solid $checkout-border;
-  padding: 0 20px 20px;
+  padding: 0;
 }
 
 .mobile-order-content {
-  background: #fff;
-  border: 1px solid $checkout-border;
-  border-radius: 16px;
-  padding: 1.5rem;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
