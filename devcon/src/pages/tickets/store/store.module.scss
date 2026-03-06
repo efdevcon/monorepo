@@ -124,6 +124,14 @@
   margin: 0;
 }
 
+.sidebar-includes {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a0d33;
+  line-height: 1.5;
+  margin: 0;
+}
+
 .sidebar-details {
   list-style: none;
   padding: 0;
@@ -285,6 +293,28 @@
     gap: 1rem;
     margin-bottom: 2rem;
   }
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9f8fa;
+  background: #7235ed;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 /* Figma: 32px, Poppins ExtraBold (800), line-height 1.2, letter-spacing -0.5px */
@@ -637,4 +667,76 @@
 .checkout-arrow {
   width: 18px;
   height: 18px;
+}
+
+/* Coming soon section */
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.coming-soon-card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dddae2;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.coming-soon-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.coming-soon-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.coming-soon-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.coming-soon-card-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.coming-soon-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.5;
+}
+
+.coming-soon-price-original {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #594d73;
+  text-decoration: line-through;
+  line-height: 1.43;
+}
+
+.coming-soon-availability {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #594d73;
+  line-height: 1.43;
+  white-space: nowrap;
 }
