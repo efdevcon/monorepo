@@ -43,7 +43,7 @@ function getSupabase(): SupabaseClient {
 export async function validateDiscountCode(code: string): Promise<DiscountCode | null> {
   const supabase = getSupabase()
   const { data, error } = await supabase
-    .from('devcon8_discount_codes')
+    .from('devcon8_early_access_codes')
     .select('*')
     .eq('code', code)
     .eq('collection', TICKETING.discount.collection)
@@ -76,7 +76,7 @@ export async function claimDiscountCode(code: string, claimedBy: string, voucher
   }
   if (voucherCode) update.voucher_code = voucherCode
   const { data, error } = await supabase
-    .from('devcon8_discount_codes')
+    .from('devcon8_early_access_codes')
     .update(update)
     .eq('code', code)
     .eq('collection', TICKETING.discount.collection)
@@ -92,7 +92,7 @@ export async function claimDiscountCode(code: string, claimedBy: string, voucher
 export async function linkVoucherToDiscountCode(code: string, voucherCode: string): Promise<void> {
   const supabase = getSupabase()
   const { error } = await supabase
-    .from('devcon8_discount_codes')
+    .from('devcon8_early_access_codes')
     .update({ voucher_code: voucherCode, updated_at: new Date().toISOString() })
     .eq('code', code)
   if (error) throw new Error(`discountStore linkVoucherToDiscountCode: ${error.message}`)
@@ -115,7 +115,7 @@ export async function assignVoucher(
 
   // Find an unassigned voucher in the same collection
   const { data: available, error: findError } = await supabase
-    .from('devcon8_discount_vouchers')
+    .from('devcon8_early_access_vouchers')
     .select('id')
     .eq('collection', collection)
     .is('assigned_to', null)
@@ -127,7 +127,7 @@ export async function assignVoucher(
   // Atomically assign it (WHERE assigned_to IS NULL guards against races)
   const now = new Date().toISOString()
   const { data, error } = await supabase
-    .from('devcon8_discount_vouchers')
+    .from('devcon8_early_access_vouchers')
     .update({
       assigned_to: assignedTo,
       assigned_at: now,
@@ -164,7 +164,7 @@ export async function assignVoucher(
 export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVoucher | null> {
   const supabase = getSupabase()
   const { data, error } = await supabase
-    .from('devcon8_discount_vouchers')
+    .from('devcon8_early_access_vouchers')
     .select('*')
     .eq('assigned_to', assignedTo)
     .maybeSingle()
@@ -192,7 +192,7 @@ export async function insertDiscountCodes(codes: string[], collection: string = 
   let inserted = 0
   for (let i = 0; i < rows.length; i += CHUNK_SIZE) {
     const chunk = rows.slice(i, i + CHUNK_SIZE)
-    const { error } = await supabase.from('devcon8_discount_codes').insert(chunk)
+    const { error } = await supabase.from('devcon8_early_access_codes').insert(chunk)
     if (error) throw new Error(`discountStore insertDiscountCodes chunk ${i}: ${error.message}`)
     inserted += chunk.length
   }
@@ -218,7 +218,7 @@ export async function insertDiscountVouchers(
   let inserted = 0
   for (let i = 0; i < rows.length; i += CHUNK_SIZE) {
     const chunk = rows.slice(i, i + CHUNK_SIZE)
-    const { error } = await supabase.from('devcon8_discount_vouchers').insert(chunk)
+    const { error } = await supabase.from('devcon8_early_access_vouchers').insert(chunk)
     if (error) throw new Error(`discountStore insertDiscountVouchers chunk ${i}: ${error.message}`)
     inserted += chunk.length
   }

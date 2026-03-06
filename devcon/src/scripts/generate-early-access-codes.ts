@@ -1,8 +1,8 @@
 /**
- * Generate unique discount codes and insert into Supabase
+ * Generate unique early access codes and insert into Supabase
  *
  * Usage:
- *   pnpm run discount:generate-codes --count 10 [--collection <name>] [--prefix DC8-] [--length 12] [--dry-run]
+ *   pnpm run early-access:generate-codes --count 10 [--collection <name>] [--prefix DC8-] [--length 12] [--dry-run]
  */
 import 'dotenv/config'
 import crypto from 'crypto'
@@ -11,7 +11,7 @@ import path from 'path'
 import { insertDiscountCodes } from '../services/discountStore'
 import { TICKETING, TICKETING_ENV } from '../config/ticketing'
 
-const STORE_URL = 'https://devcon.org/en/tickets/store/?discount-code='
+const STORE_URL = 'https://devcon.org/en/tickets/store/?early-access='
 
 function parseArgs() {
   const args = process.argv.slice(2)
@@ -43,13 +43,13 @@ async function main() {
   const { count, collection, prefix, length, dryRun } = parseArgs()
 
   if (count <= 0) {
-    console.error('Usage: pnpm run discount:generate-codes --count <number> [--collection <name>] [--prefix <prefix>] [--length <length>] [--dry-run]')
+    console.error('Usage: pnpm run early-access:generate-codes --count <number> [--collection <name>] [--prefix <prefix>] [--length <length>] [--dry-run]')
     console.error(`Default collection from config (${TICKETING_ENV}): ${TICKETING.discount.collection}`)
-    console.error('Example: pnpm run discount:generate-codes --count 100 --collection local-early-bird')
+    console.error('Example: pnpm run early-access:generate-codes --count 100 --collection local-early-bird')
     process.exit(1)
   }
 
-  console.log(`Generating ${count} discount codes (env: ${TICKETING_ENV})`)
+  console.log(`Generating ${count} early access codes (env: ${TICKETING_ENV})`)
   console.log(`  Collection: ${collection}`)
   console.log(`  Prefix: ${prefix || '(none)'}`)
   console.log(`  Code length: ${length} chars (+ prefix)`)
@@ -80,7 +80,7 @@ async function main() {
   const outDir = path.resolve('generated-codes')
   if (!fs.existsSync(outDir)) fs.mkdirSync(outDir)
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)
-  const filename = `discount-codes-${collection}-${timestamp}.txt`
+  const filename = `early-access-codes-${collection}-${timestamp}.txt`
   const outPath = path.join(outDir, filename)
   const lines = codeArray.map(code => `${STORE_URL}${code}`)
   fs.writeFileSync(outPath, lines.join('\n') + '\n')
@@ -94,7 +94,7 @@ async function main() {
 
   console.log('Inserting into Supabase...')
   const inserted = await insertDiscountCodes(codeArray, collection)
-  console.log(`Inserted ${inserted} discount codes into collection "${collection}"`)
+  console.log(`Inserted ${inserted} early access codes into collection "${collection}"`)
 }
 
 main().catch(err => {

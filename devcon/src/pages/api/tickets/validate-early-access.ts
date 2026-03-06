@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { code } = req.body as { code?: string }
   if (!code || typeof code !== 'string') {
-    return res.status(400).json({ valid: false, error: 'Missing discount code' })
+    return res.status(400).json({ valid: false, error: 'Missing early access code' })
   }
 
   try {
@@ -21,12 +21,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const result = await validateDiscountCode(code)
     if (!result) {
-      return res.status(200).json({ valid: false, error: 'Invalid discount code' })
+      return res.status(200).json({ valid: false, error: 'Invalid early access code' })
     }
 
     return res.status(200).json({ valid: true })
   } catch (error) {
-    console.error('[validate-discount-code] Error:', error)
+    console.error('[validate-early-access] Error:', error)
     return res.status(500).json({ valid: false, error: 'Internal server error' })
   }
 }

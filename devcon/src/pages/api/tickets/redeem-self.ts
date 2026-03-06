@@ -147,7 +147,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Dynamic voucher assignment from Supabase pool
-    const discountCode = (req.query.discountCode ?? req.body.discountCode) as string | undefined
+    const discountCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
     const requireDiscountCode = TICKETING.self.requireDiscountCode
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the

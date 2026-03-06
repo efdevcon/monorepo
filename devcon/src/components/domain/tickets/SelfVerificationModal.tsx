@@ -34,7 +34,7 @@ type SelfVerificationModalProps = {
   onClose: () => void
   useStaging: boolean
   setUseStaging: (value: boolean) => void
-  discountCode?: string
+  earlyAccess?: string
 }
 
 function useIsMobile() {
@@ -47,7 +47,7 @@ function useIsMobile() {
   return isMobile
 }
 
-export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, discountCode }: SelfVerificationModalProps) {
+export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, earlyAccess }: SelfVerificationModalProps) {
   const [userId, setUserId] = useState(() => crypto.randomUUID())
   const [voucher, setVoucher] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -79,7 +79,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       let endpoint = SELF_ENDPOINT
       const params: string[] = []
       if (effectiveStaging) params.push('staging=true')
-      if (discountCode) params.push(`discountCode=${encodeURIComponent(discountCode)}`)
+      if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
       if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
 
       const app = new SelfAppBuilder({
@@ -102,7 +102,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       console.error('Failed to initialize Self app:', e)
       setError('Failed to initialize verification. Please try again.')
     }
-  }, [isOpen, userId, effectiveStaging, discountCode])
+  }, [isOpen, userId, effectiveStaging, earlyAccess])
 
   const handleSuccess = async () => {
     clearError()
