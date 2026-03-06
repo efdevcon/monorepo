@@ -628,10 +628,10 @@
 .narrative {
   position: relative;
   z-index: 1;
-  min-height: 160px;
   background: linear-gradient(180deg, #1a0d33 -65%, #45326c 88.89%);
   display: flex;
   align-items: center;
+  padding: 24px 0;
 
   @media (max-width: $breakpoints-md) {
     padding: 24px 0;
@@ -642,7 +642,6 @@
   display: flex;
   gap: 64px;
   align-items: center;
-  min-height: inherit;
   position: relative;
   z-index: 1;
 
@@ -658,12 +657,20 @@
   gap: 24px;
   align-items: center;
   min-width: 0;
+
+  @media (max-width: $breakpoints-md) {
+    display: none;
+  }
 }
 
 .narrative-icon {
   flex-shrink: 0;
   width: 46px;
   height: 80px;
+
+  @media (max-width: $breakpoints-md) {
+    display: none;
+  }
 
   img {
     width: 100%;
@@ -706,9 +713,16 @@
 
 .narrative-content {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 48px;
   display: flex;
   align-items: center;
+
+  @media (max-width: $breakpoints-md) {
+    right: 0;
+  }
 }
 
 .narrative-right strong {

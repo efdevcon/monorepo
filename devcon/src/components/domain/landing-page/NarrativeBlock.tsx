@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import EthDiamond from './images/eth-diamond.svg'
 import css from './landing-page.module.scss'
 import cn from 'classnames'
@@ -132,25 +132,29 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
     const wrapper = wrapperRef.current
     if (!narrative || !wrapper) return
 
-    const header = document.getElementById('header')
-    const headerH = header ? header.getBoundingClientRect().height : 0
+    const getPinEnd = () => {
+      const header = document.getElementById('header')
+      const headerH = header ? header.getBoundingClientRect().height : 0
+      const narrativeH = narrative.getBoundingClientRect().height
+      return { headerH, pinEnd: headerH + narrativeH }
+    }
 
-    // Pin trigger — keeps narrative fixed below header
     const pinTrigger = ScrollTrigger.create({
       trigger: narrative,
-      start: `top ${headerH}`,
+      start: () => `top ${getPinEnd().headerH}`,
       endTrigger: wrapper,
-      end: 'bottom top',
+      end: () => `bottom ${getPinEnd().pinEnd}`,
       pin: true,
       pinSpacing: false,
+      invalidateOnRefresh: true,
     })
 
-    // Section toggle trigger — starts earlier, ends earlier
     const sectionTrigger = ScrollTrigger.create({
       trigger: narrative,
-      start: `top bottom`,
+      start: () => `top 40%`,
       endTrigger: wrapper,
-      end: 'bottom-=30% top',
+      end: () => `bottom ${getPinEnd().pinEnd}`,
+      invalidateOnRefresh: true,
       onUpdate: self => {
         const section = Math.min(
           Math.floor(self.progress * NARRATIVE_SECTIONS.length),
@@ -158,9 +162,15 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
         )
         updateSection(section)
       },
+      onLeave: () => updateSection(NARRATIVE_SECTIONS.length - 1),
+      onEnterBack: () => updateSection(NARRATIVE_SECTIONS.length - 1),
     })
 
+    // Refresh after layout settles on client-side navigation
+    const timeout = setTimeout(() => ScrollTrigger.refresh(), 200)
+
     return () => {
+      clearTimeout(timeout)
       pinTrigger.kill()
       sectionTrigger.kill()
     }
@@ -193,15 +203,13 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
               </div>
               {/* Animated content overlaid on top */}
               <div className={css['narrative-content']}>
-                <AnimatePresence mode="wait">
-                  {currentSection !== null && (
-                    <NarrativeText
-                      key={currentSection}
-                      segments={NARRATIVE_SECTIONS[currentSection]}
-                      sectionKey={currentSection}
-                    />
-                  )}
-                </AnimatePresence>
+                {currentSection !== null && (
+                  <NarrativeText
+                    key={currentSection}
+                    segments={NARRATIVE_SECTIONS[currentSection]}
+                    sectionKey={currentSection}
+                  />
+                )}
               </div>
             </div>
 
