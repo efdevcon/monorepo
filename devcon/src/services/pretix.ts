@@ -461,6 +461,7 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
       appliesToItems: q.items,
       options: q.options.map((opt) => ({
         id: opt.id,
+        identifier: opt.identifier,
         answer: getLocalizedString(opt.answer, locale),
       })),
       ...(q.dependency_question && {

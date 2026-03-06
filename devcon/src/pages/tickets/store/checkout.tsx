@@ -518,7 +518,7 @@ function CheckoutContent() {
   // ── Get applicable questions for selected tickets ──
   const ticketIds = cartItems.map(c => c.ticketId)
   const applicableQuestions = questions.filter(
-    q => !q.dependsOn && (q.appliesToItems.length === 0 || q.appliesToItems.some(id => ticketIds.includes(id)))
+    q => q.appliesToItems.length === 0 || q.appliesToItems.some(id => ticketIds.includes(id))
   )
 
   // ── Get available add-ons for selected tickets ──
@@ -652,7 +652,7 @@ function CheckoutContent() {
         setOpenSection('contact')
         return
       }
-      const hasAttendeeErrors = applicableQuestions.some(q => q.required && isFieldEmpty(q.id))
+      const hasAttendeeErrors = applicableQuestions.some(q => q.required && isDependencyMet(q) && isFieldEmpty(q.id))
       if (hasAttendeeErrors) {
         setSectionWarning('Please complete all required attendee fields first.')
         setShowAttendeeErrors(true)
@@ -774,7 +774,7 @@ function CheckoutContent() {
   }
 
   const handleAttendeContinue = () => {
-    const hasErrors = applicableQuestions.some(q => q.required && isFieldEmpty(q.id))
+    const hasErrors = applicableQuestions.some(q => q.required && isDependencyMet(q) && isFieldEmpty(q.id))
     if (hasErrors) {
       setShowAttendeeErrors(true)
       return
@@ -784,11 +784,27 @@ function CheckoutContent() {
   }
 
   // ── Purchase flow ──
+  function isDependencyMet(q: QuestionInfo): boolean {
+    if (!q.dependsOn) return true
+    const parentAnswer = answers[q.dependsOn.questionId]
+    const parentQuestion = questions.find(pq => pq.id === q.dependsOn!.questionId)
+    if (!parentQuestion) return true
+    const selectedIds = Array.isArray(parentAnswer) ? parentAnswer : parentAnswer ? [parentAnswer] : []
+    const selectedIdentifiers = selectedIds
+      .map(id => parentQuestion.options.find(o => String(o.id) === String(id))?.identifier)
+      .filter(Boolean) as string[]
+    return q.dependsOn.values.some(v => selectedIdentifiers.includes(v))
+  }
+
   function buildFormattedAnswers() {
     return Object.entries(answers)
-      .filter(([_, v]) => {
-        if (Array.isArray(v)) return v.length > 0
-        return typeof v === 'string' && v.trim() !== ''
+      .filter(([qId, v]) => {
+        if (Array.isArray(v) && v.length === 0) return false
+        if (typeof v === 'string' && v.trim() === '') return false
+        // Exclude answers for hidden dependent questions
+        const question = questions.find(q => q.id === parseInt(qId))
+        if (question && !isDependencyMet(question)) return false
+        return true
       })
       .map(([qId, answer]) => ({
         questionId: parseInt(qId),
@@ -1676,6 +1692,9 @@ function CheckoutContent() {
                       <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>{sectionWarning}</div>
                     )}
                     {applicableQuestions.map(q => {
+                      // Check dependsOn — hide question if dependency not satisfied
+                      if (!isDependencyMet(q)) return null
+
                       const isGoals = q.identifier === TICKETING.questions.goalsIdentifier
                       const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
 

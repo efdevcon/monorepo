@@ -314,9 +314,14 @@ export async function purchaseHandler(
             const question = ticketInfo.questions.find((q) => q.id === a.questionId)
             // For choice questions (C = single choice, M = multiple choice), use options array
             if (question && (question.type === 'C' || question.type === 'M')) {
-              const optionIds = Array.isArray(a.answer)
+              const rawIds = Array.isArray(a.answer)
                 ? a.answer.map(v => parseInt(String(v)))
                 : [parseInt(String(a.answer))]
+              const optionIds = rawIds.filter(id => !isNaN(id))
+              if (optionIds.length === 0) {
+                // All option IDs were invalid — skip this answer entirely
+                return { question: a.questionId, answer: '', options: [] }
+              }
               // Find the selected option text for the answer field
               const selectedOption = question.options.find(o => o.id === optionIds[0])
               return {

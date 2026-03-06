@@ -291,6 +291,7 @@ export interface QuestionInfo {
   appliesToItems: number[]
   options: {
     id: number
+    identifier: string
     answer: string
   }[]
   dependsOn?: {
