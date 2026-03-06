@@ -787,7 +787,7 @@ function CheckoutContent() {
       setOpenSection('contact')
       return
     }
-    const firstErrorQuestion = applicableQuestions.find(q => q.required && isDependencyMet(q) && isFieldEmpty(q.id))
+    const firstErrorQuestion = applicableQuestions.find(q => (q.required || q.dependsOn) && isDependencyMet(q) && isFieldEmpty(q.id))
     if (firstErrorQuestion) {
       setShowAttendeeErrors(true)
       setTimeout(() => {
@@ -1745,13 +1745,13 @@ function CheckoutContent() {
                       if (!isDependencyMet(q)) return null
 
                       const isGoals = q.identifier === TICKETING.questions.goalsIdentifier
-                      const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
+                      const hasError = showAttendeeErrors && (q.required || q.dependsOn) && isFieldEmpty(q.id)
 
                       return (
                         <div key={q.id} className={css['field']} data-question-id={q.id}>
                           <label>
                             {q.question}
-                            {q.required && <span className={css['required']}>*</span>}
+                            {(q.required || q.dependsOn) && <span className={css['required']}>*</span>}
                           </label>
                           {q.helpText && (
                             <span className={css['field-help']}>
