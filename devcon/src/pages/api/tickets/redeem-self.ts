@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
-import { validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { lookupDiscountCode, validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
 import { TICKETING } from 'config/ticketing'
 
 const SELF_SCOPE = TICKETING.self.scope
@@ -147,8 +147,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Dynamic voucher assignment from Supabase pool
-    const discountCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
-    const requireDiscountCode = TICKETING.self.requireDiscountCode
+    const earlyAccessCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
+    const requireEarlyAccess = TICKETING.self.requireEarlyAccess
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
     // Aadhaar card and is always the same for the same card, unlike verifiedUserId which
@@ -165,13 +165,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    if (requireDiscountCode && !discountCode) {
-      const reason = 'Missing discount code'
+    if (requireEarlyAccess && !earlyAccessCode) {
+      const reason = 'Missing early access code'
       storeError(verifiedUserId, reason)
       return res.status(200).json({
         status: 'error',
         result: false,
-        error_code: 'MISSING_DISCOUNT_CODE',
+        error_code: 'MISSING_EARLY_ACCESS_CODE',
         reason,
       })
     }
@@ -190,34 +190,57 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let voucherCollection = TICKETING.discount.collection
 
-    if (requireDiscountCode && discountCode) {
-      // Validate the discount code exists and is unclaimed
-      const validCode = await validateDiscountCode(discountCode)
-      if (!validCode) {
-        const reason = 'Invalid or already used discount code'
+    if (requireEarlyAccess && earlyAccessCode) {
+      // Look up the early access code to check its status
+      const codeRecord = await lookupDiscountCode(earlyAccessCode)
+      if (!codeRecord) {
+        const reason = 'Invalid early access code'
         storeError(verifiedUserId, reason)
         return res.status(200).json({
           status: 'error',
           result: false,
-          error_code: 'INVALID_DISCOUNT_CODE',
+          error_code: 'INVALID_EARLY_ACCESS_CODE',
           reason,
         })
       }
 
-      // Atomically claim the discount code BEFORE assigning a voucher (prevents race condition)
-      const claimed = await claimDiscountCode(discountCode, nullifier)
+      // If already claimed by this same identity, return their existing voucher
+      if (codeRecord.claimedBy === nullifier && codeRecord.voucherCode) {
+        voucherStore.set(verifiedUserId, codeRecord.voucherCode)
+        setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+        return res.status(200).json({
+          status: 'success',
+          result: true,
+          credentialSubject: result.discloseOutput,
+        })
+      }
+
+      // If claimed by someone else, reject
+      if (codeRecord.claimedBy) {
+        const reason = 'This early access code has already been used'
+        storeError(verifiedUserId, reason)
+        return res.status(200).json({
+          status: 'error',
+          result: false,
+          error_code: 'EARLY_ACCESS_CODE_USED',
+          reason,
+        })
+      }
+
+      // Atomically claim the early access code BEFORE assigning a voucher (prevents race condition)
+      const claimed = await claimDiscountCode(earlyAccessCode, nullifier)
       if (!claimed) {
-        const reason = 'Discount code was just claimed by another request'
+        const reason = 'Early access code was just claimed by another request'
         storeError(verifiedUserId, reason)
         return res.status(200).json({
           status: 'error',
           result: false,
-          error_code: 'INVALID_DISCOUNT_CODE',
+          error_code: 'EARLY_ACCESS_CODE_USED',
           reason,
         })
       }
 
-      voucherCollection = validCode.collection
+      voucherCollection = codeRecord.collection
     }
 
     // Assign a voucher from the pool
@@ -233,9 +256,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Link the voucher back to the discount code (if applicable)
-    if (requireDiscountCode && discountCode) {
-      await linkVoucherToDiscountCode(discountCode, voucher.code)
+    // Link the voucher back to the early access code (if applicable)
+    if (requireEarlyAccess && earlyAccessCode) {
+      await linkVoucherToDiscountCode(earlyAccessCode, voucher.code)
     }
 
     // Cache in memory for the polling flow (uses session userId for frontend polling)

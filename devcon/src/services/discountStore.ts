@@ -38,6 +38,29 @@ function getSupabase(): SupabaseClient {
 }
 
 /**
+ * Look up a discount code by value. Returns the record regardless of claim status, or null if not found.
+ */
+export async function lookupDiscountCode(code: string): Promise<DiscountCode | null> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('devcon8_early_access_codes')
+    .select('*')
+    .eq('code', code)
+    .eq('collection', TICKETING.discount.collection)
+    .maybeSingle()
+  if (error) throw new Error(`discountStore lookupDiscountCode: ${error.message}`)
+  if (!data) return null
+  return {
+    id: data.id,
+    code: data.code,
+    claimedBy: data.claimed_by,
+    claimedAt: data.claimed_at,
+    voucherCode: data.voucher_code,
+    collection: data.collection,
+  }
+}
+
+/**
  * Validate a discount code. Returns the code record if valid (unclaimed), null otherwise.
  */
 export async function validateDiscountCode(code: string): Promise<DiscountCode | null> {

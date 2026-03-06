@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { validateDiscountCode, checkDiscountRateLimit } from '../../../services/discountStore'
+import { lookupDiscountCode, checkDiscountRateLimit } from '../../../services/discountStore'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(429).json({ valid: false, error: 'Too many requests. Please try again later.' })
     }
 
-    const result = await validateDiscountCode(code)
+    const result = await lookupDiscountCode(code)
     if (!result) {
       return res.status(200).json({ valid: false, error: 'Invalid early access code' })
     }

@@ -244,7 +244,7 @@ function StoreContent({
   }
 
   const forceSoldOut = TICKETING.overrides.soldOut
-  const requireDiscountCode = TICKETING.self.requireDiscountCode
+  const requireEarlyAccess = TICKETING.self.requireEarlyAccess
   const admissionTickets = tickets.filter(t => t.isAdmission && (forceSoldOut || t.available) && !t.requireVoucher)
   const discountTicketId = TICKETING.pretix.ticketDiscountId
     ? parseInt(TICKETING.pretix.ticketDiscountId, 10)
@@ -437,7 +437,7 @@ function StoreContent({
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${!ticket.available || (requireDiscountCode && !(earlyAccess && earlyAccessValid === true)) ? css['card--disabled'] : ''}`}>
+                      <div className={`${css['card']} ${!ticket.available || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true)) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
@@ -463,7 +463,7 @@ function StoreContent({
                               </div>
                               <span className={css['sold-out-badge']}>Sold out!</span>
                             </div>
-                          ) : !requireDiscountCode || (earlyAccess && earlyAccessValid === true) ? (
+                          ) : !requireEarlyAccess || (earlyAccess && earlyAccessValid === true) ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-current']}>${ticket.price}</span>
@@ -647,7 +647,7 @@ function StoreContent({
         onClose={() => setSelfVerificationOpen(false)}
         useStaging={useSelfStaging}
         setUseStaging={setUseSelfStaging}
-        earlyAccess={requireDiscountCode ? (earlyAccess ?? undefined) : undefined}
+        earlyAccess={requireEarlyAccess ? (earlyAccess ?? undefined) : undefined}
       />
     </>
   )

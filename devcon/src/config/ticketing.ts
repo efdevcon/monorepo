@@ -23,7 +23,7 @@ const ENV_CONFIG = {
     self: {
       scope: 'devcon-india-local-discount',
       staging: true,
-      requireDiscountCode: true,
+      requireEarlyAccess: true,
     },
     discount: {
       collection: 'dev-local-early-bird',
@@ -62,7 +62,7 @@ const ENV_CONFIG = {
       scope: 'devcon-india-local-discount',
       // TODO: replace with production staging
       staging: true,
-      requireDiscountCode: true,
+      requireEarlyAccess: true,
     },
     discount: {
       // TODO: replace with production collection
