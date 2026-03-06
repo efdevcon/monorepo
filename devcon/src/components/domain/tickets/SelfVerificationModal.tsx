@@ -250,9 +250,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
           </div>
         ) : (
           <div className={css['self-content']}>
-            <div className={css['eth-banner']}>
-              <p className={css['eth-banner-text']}>Thanks &ndash; ETH Mumbai ticket confirmed!</p>
-            </div>
             <h2 id="self-verification-title" className={css['self-title']}>
               Verification via Self
             </h2>
