@@ -1608,6 +1608,13 @@ div.wallet-identicon {
   }
 }
 
+.discount-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.5;
+}
+
 .discount-expand {
   display: flex;
   gap: 8px;
@@ -1651,6 +1658,22 @@ div.wallet-identicon {
     opacity: 0.4;
     cursor: not-allowed;
   }
+}
+
+.discount-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.discount-error {
+  font-size: 0.875rem;
+  color: #d32f2f;
+  margin: 0;
+  line-height: 1.43;
 }
 
 .discount-applied {

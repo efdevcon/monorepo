@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus } from 'lucide-react'
+import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
@@ -270,6 +270,7 @@ function CheckoutContent() {
   const tokenFilterAutoSelectedRef = useRef(false)
 
   // Voucher state
+  const [discountOpen, setDiscountOpen] = useState(false)
   const [voucherInput, setVoucherInput] = useState('')
   const [voucherData, setVoucherData] = useState<{
     valid: boolean
@@ -1320,6 +1321,36 @@ function CheckoutContent() {
                     )
                   })}
                 </div>
+                {voucherData?.valid && (
+                  <div className={css['discount-applied']}>
+                    <div className={css['discount-applied-info']}>
+                      <CheckCircle className={css['discount-check-icon']} />
+                      <div className={css['discount-applied-text']}>
+                        <span className={css['discount-code-line']}>
+                          <strong>CODE: </strong>
+                          {voucherInput.length > 12
+                            ? `${voucherInput.slice(0, 4)}...${voucherInput.slice(-4)}`
+                            : voucherInput}
+                        </span>
+                        {voucherDiscount > 0 && (
+                          <span className={css['discount-savings']}>Save: ${voucherDiscount.toFixed(2)}</span>
+                        )}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className={css['discount-remove-btn']}
+                      onClick={() => {
+                        setVoucherInput('')
+                        setVoucherData(null)
+                        setVoucherError(null)
+                        setDiscountOpen(false)
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
                 <div className={css['summary-lines']}>
                   <div className={css['summary-line']}>
                     <span>Subtotal</span>
@@ -2196,13 +2227,24 @@ function CheckoutContent() {
                                 setVoucherInput('')
                                 setVoucherData(null)
                                 setVoucherError(null)
+                                setDiscountOpen(false)
                               }}
                             >
                               Remove
                             </button>
                           </div>
+                        ) : !discountOpen ? (
+                          <button
+                            type="button"
+                            className={css['discount-add-btn']}
+                            onClick={() => setDiscountOpen(true)}
+                          >
+                            <Tag size={16} />
+                            Add discount
+                          </button>
                         ) : (
                           <>
+                            <span className={css['discount-label']}>Add discount</span>
                             <div className={css['discount-expand']}>
                               <input
                                 type="text"
@@ -2221,11 +2263,11 @@ function CheckoutContent() {
                                 onClick={() => voucherInput && validateVoucherCode(voucherInput)}
                                 disabled={voucherLoading || !voucherInput}
                               >
-                                {voucherLoading ? 'Checking...' : 'Apply'}
+                                {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                               </button>
                             </div>
                             {voucherError && (
-                              <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
+                              <p className={css['discount-error']}>{voucherError}</p>
                             )}
                           </>
                         )}
@@ -2508,13 +2550,24 @@ function CheckoutContent() {
                         setVoucherInput('')
                         setVoucherData(null)
                         setVoucherError(null)
+                        setDiscountOpen(false)
                       }}
                     >
                       Remove
                     </button>
                   </div>
+                ) : !discountOpen ? (
+                  <button
+                    type="button"
+                    className={css['discount-add-btn']}
+                    onClick={() => setDiscountOpen(true)}
+                  >
+                    <Tag size={16} />
+                    Add discount
+                  </button>
                 ) : (
                   <>
+                    <span className={css['discount-label']}>Add discount</span>
                     <div className={css['discount-expand']}>
                       <input
                         type="text"
@@ -2533,11 +2586,11 @@ function CheckoutContent() {
                         onClick={() => voucherInput && validateVoucherCode(voucherInput)}
                         disabled={voucherLoading || !voucherInput}
                       >
-                        {voucherLoading ? 'Checking...' : 'Apply'}
+                        {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                       </button>
                     </div>
                     {voucherError && (
-                      <p style={{ color: '#d32f2f', fontSize: '0.85rem', margin: '0' }}>{voucherError}</p>
+                      <p className={css['discount-error']}>{voucherError}</p>
                     )}
                   </>
                 )}
