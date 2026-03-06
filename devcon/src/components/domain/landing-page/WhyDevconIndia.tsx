@@ -1,9 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
-import { Play } from 'lucide-react'
 import FrameUpperRight from './images/frame-upper-right.svg'
 import FrameLowerLeft from './images/frame-lower-left.svg'
-import videoPreview from './images/video-preview.png'
 import css from './landing-page.module.scss'
 
 export function WhyDevconIndia() {
@@ -37,12 +34,13 @@ export function WhyDevconIndia() {
               <FrameUpperRight className={`${css['frame-decoration']} ${css['upper-right']}`} />
               <FrameLowerLeft className={`${css['frame-decoration']} ${css['lower-left']}`} />
               <div className={css['video-preview']}>
-                <Image src={videoPreview} alt="Devcon India preview" fill className={css['video-thumbnail']} />
-                <div className={css['video-overlay']}>
-                  <div className={css['play-button']}>
-                    <Play fill="white" />
-                  </div>
-                </div>
+                <iframe
+                  src="https://www.youtube.com/embed/KSElahtIDB0"
+                  title="Devcon India"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className={css['video-iframe']}
+                />
               </div>
             </div>
           </div>
