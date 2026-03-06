@@ -4,7 +4,7 @@ import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
 import ticketFront from './ticket-design.png'
 import ticketBack from './ticket-backside.png'
-import heroBackdrop from './ticket-background.png'
+import heroBackdrop from './occluded.png'
 import devconLogo from './updated-dc8-logo.png'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
 import IconTwitter from 'assets/icons/twitter.svg'
@@ -92,6 +92,48 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
   const [avatarError, setAvatarError] = useState(false)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
   const avatarSrc = xUsername ? `https://unavatar.io/x/${xUsername}` : null
+  const avatarUploaded = useRef(false)
+  const avatarRef = useRef<HTMLImageElement>(null)
+
+  const uploadAvatar = useCallback(
+    async (img: HTMLImageElement) => {
+      if (avatarUploaded.current || !xUsername) return
+      avatarUploaded.current = true
+
+      try {
+        // Fetch image directly to avoid CORS taint issues with canvas
+        const res = await fetch(img.src)
+        const blob = await res.blob()
+        const base64: string = await new Promise(resolve => {
+          const reader = new FileReader()
+          reader.onloadend = () => resolve(reader.result as string)
+          reader.readAsDataURL(blob)
+        })
+
+        await fetch('/api/ticket/avatar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ xUsername, image: base64 }),
+        })
+      } catch (err) {
+        console.error('[ticket-avatar] upload failed:', err)
+      }
+    },
+    [name, xUsername]
+  )
+
+  // Use effect to handle both fresh loads and browser-cached images
+  useEffect(() => {
+    const img = avatarRef.current
+    if (img && img.complete && img.naturalWidth > 0) {
+      uploadAvatar(img)
+    }
+  }, [uploadAvatar])
+
+  const handleAvatarLoad = useCallback(
+    (e: React.SyntheticEvent<HTMLImageElement>) => uploadAvatar(e.currentTarget),
+    [uploadAvatar]
+  )
 
   const cardClass = (index: number) => {
     const isFront = index === frontIndex
@@ -109,7 +151,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
     <div ref={containerRef} className={css.container}>
       {/* Hero background with slow parallax */}
       <div className={`${css.bgLayer} ${css.bgSlow}`}>
-        <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority quality={100} />
+        <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority placeholder="blur" />
       </div>
 
       <ShootingStars minDelay={6000} maxDelay={12000} minSpeed={1} maxSpeed={2} />
@@ -139,21 +181,25 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
           onPointerDown={frontIndex === 0 ? handlePointerDown : undefined}
         >
           <div className={css.ticketPunch}>
-            <Image src={ticketFront} alt={`${name}'s Devcon ticket`} className={css.ticketImage} />
+            <Image src={ticketFront} alt={`${name}'s Devcon ticket`} className={css.ticketImage} placeholder="blur" />
             <div className={cn(css.ticketContent, { [css.noAvatar]: !avatarSrc || avatarError })}>
               <div className={css.attendeeRow}>
                 {avatarSrc && !avatarError && (
                   <div className={css.avatarCircle}>
                     <img
+                      ref={avatarRef}
                       src={avatarSrc}
                       alt={`${xUsername}'s avatar`}
                       className={css.avatarImage}
+                      onLoad={handleAvatarLoad}
                       onError={handleAvatarError}
                     />
                   </div>
                 )}
                 <div className={css.attendeeInfo}>
-                  <span className={css.attendeeName}>{name !== 'Anon' ? name : xUsername ? `@${xUsername}` : 'Anon'}</span>
+                  <span className={css.attendeeName}>
+                    {name !== 'Anon' ? name : xUsername ? `@${xUsername}` : 'Anon'}
+                  </span>
                   <span className={css.ticketType}>is attending Devcon India</span>
                 </div>
               </div>
@@ -167,7 +213,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
           onPointerDown={frontIndex === 1 ? handlePointerDown : undefined}
         >
           <div className={css.backsideInner}>
-            <Image src={ticketBack} alt="Devcon ticket details" className={css.ticketImage} />
+            <Image src={ticketBack} alt="Devcon ticket details" className={css.ticketImage} placeholder="blur" />
             <div className={css.backsideContent}>
               <h2 className={css.backsideTitle}>Devcon is a unique place for inspiration</h2>
               <p className={css.backsideDescription}>
