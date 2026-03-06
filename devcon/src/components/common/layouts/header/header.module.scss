@@ -53,6 +53,25 @@
   }
 }
 
+.header-dark {
+  --color-icon: white;
+  --logo-color: white;
+  --header-background-color: #160b2b;
+  --header-shadow: none;
+  --button-border: none;
+
+  .header {
+    background: #160b2b;
+    color: white;
+    box-shadow: none;
+  }
+
+  :global(.lucide-chevron-down),
+  :global(.lucide-chevron-up) {
+    stroke: white !important;
+  }
+}
+
 .header-fixed-container {
   position: fixed;
   width: 100%;

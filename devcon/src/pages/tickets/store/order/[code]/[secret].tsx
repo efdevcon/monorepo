@@ -81,7 +81,7 @@ export default function OrderConfirmationPage() {
 
   if (loading) {
     return (
-      <Page theme={themes['tickets']} hideFooter>
+      <Page theme={themes['tickets']} hideFooter darkHeader>
         <div className={css['page-bg']}>
           <div className={css['loading']}>Loading order...</div>
         </div>
@@ -91,7 +91,7 @@ export default function OrderConfirmationPage() {
 
   if (error || !order) {
     return (
-      <Page theme={themes['tickets']} hideFooter>
+      <Page theme={themes['tickets']} hideFooter darkHeader>
         <div className={css['page-bg']}>
           <div className={css['error-layout']}>
             <h1>Order Not Found</h1>
@@ -187,7 +187,7 @@ export default function OrderConfirmationPage() {
     : null
 
   return (
-    <Page theme={themes['tickets']} hideFooter>
+    <Page theme={themes['tickets']} hideFooter darkHeader>
       <div className={css['page-bg']}>
         <div className={css['layout']}>
           {/* Mobile only: order header on top */}

@@ -15,10 +15,11 @@ type HeaderProps = {
   withStrip?: boolean
   isApp?: boolean
   withHero?: boolean
+  darkHeader?: boolean
   className?: string
 }
 
-export const Header = React.memo(({ withStrip, withHero, className, isApp }: HeaderProps) => {
+export const Header = React.memo(({ withStrip, withHero, darkHeader, className, isApp }: HeaderProps) => {
   const ref = useRef(null)
   const router = useRouter()
   const isScrolled = useIsScrolled()
@@ -50,6 +51,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
   let headerClass = `${css['header']}`
 
   if (foldoutOpen) headerContainerClass += ` ${css['foldout-open']}`
+  if (darkHeader) headerContainerClass += ` ${css['header-dark']}`
   if (className) headerContainerClass += ` ${className}`
   if (isApp) headerContainerClass += ` ${css['app']}`
 

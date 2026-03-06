@@ -658,7 +658,7 @@ export default function TicketsStorePage() {
   const [useSelfStaging, setUseSelfStaging] = useState(TICKETING.self.staging)
 
   return (
-    <Page theme={themes['tickets']} hideFooter>
+    <Page theme={themes['tickets']} hideFooter darkHeader>
       <StoreContent
         selfVerificationOpen={selfVerificationOpen}
         setSelfVerificationOpen={setSelfVerificationOpen}

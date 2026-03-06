@@ -12,9 +12,10 @@ type LayoutProps = {
   hideFooter?: boolean
   darkFooter?: boolean
   withHero?: boolean
+  darkHeader?: boolean
 }
 
-export default function PageLayout({ children, theme, style, hideFooter, darkFooter, withHero = false }: LayoutProps) {
+export default function PageLayout({ children, theme, style, hideFooter, darkFooter, withHero = false, darkHeader }: LayoutProps) {
   let className = ''
 
   if (theme) className += ` ${theme}`
@@ -22,7 +23,7 @@ export default function PageLayout({ children, theme, style, hideFooter, darkFoo
 
   return (
     <div className={className} style={style}>
-      <Header withStrip={true} withHero={withHero} />
+      <Header withStrip={true} withHero={withHero} darkHeader={darkHeader} />
 
       {children}
 

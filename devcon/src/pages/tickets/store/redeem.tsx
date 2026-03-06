@@ -81,7 +81,7 @@ export default function RedeemPage() {
   }
 
   return (
-    <Page theme={themes['tickets']} hideFooter>
+    <Page theme={themes['tickets']} hideFooter darkHeader>
       <div className={css['checkout-layout'] + ' ' + css['checkout-layout-centered']}>
         <main className={css['main']}>
           <Link to="/tickets/store" className={css['back-link']}>

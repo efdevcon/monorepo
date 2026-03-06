@@ -1281,7 +1281,7 @@ function CheckoutContent() {
   const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
 
   return (
-    <Page theme={themes['tickets']} hideFooter>
+    <Page theme={themes['tickets']} hideFooter darkHeader>
       {/* Mobile order summary sticky bar */}
       {cartItems.length > 0 && (
         <div className={css['mobile-order-wrapper']}>
