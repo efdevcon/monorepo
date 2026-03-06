@@ -14,6 +14,7 @@ import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
+import SelfLogoPng from 'assets/images/self-logo.png'
 import { TICKETING } from 'config/ticketing'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
@@ -492,9 +493,12 @@ function StoreContent({
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
                                 )}
                               </div>
-                              <p className={css['card-disabled-message']}>
-                                Check your email for your unique discount link to access this ticket.
-                              </p>
+                              <div className={css['access-link-badge']}>
+                                <div className={css['access-link-badge-logo']}>
+                                  <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
+                                </div>
+                                <span>Check your email for your unique access link</span>
+                              </div>
                             </div>
                           )}
                         </div>
