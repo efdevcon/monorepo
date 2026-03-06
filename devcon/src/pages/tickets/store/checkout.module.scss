@@ -2,6 +2,7 @@
 
 $checkout-border: #dddae2;
 $checkout-accent: #7235ed;
+$checkout-two-col: 1200px;
 
 .checkout-layout {
   display: grid;
@@ -10,13 +11,13 @@ $checkout-accent: #7235ed;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(to top, #e5ebff 20%, #fbfafc);
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     grid-template-columns: 1fr 608px;
   }
 }
 
 .checkout-layout-centered {
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     grid-template-columns: 1fr;
   }
 }
@@ -25,7 +26,7 @@ $checkout-accent: #7235ed;
   padding: 1.5rem;
   padding-bottom: 4rem;
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     padding: 2.5rem 4rem 4rem;
     max-width: calc(864px + 8rem);
     width: 100%;
@@ -150,7 +151,7 @@ $checkout-accent: #7235ed;
   border: 1px solid $checkout-border;
   border-radius: 12px;
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     flex-direction: row;
     gap: 1.5rem;
     align-items: center;
@@ -190,7 +191,7 @@ $checkout-accent: #7235ed;
   justify-content: space-between;
   gap: 1rem;
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     justify-content: flex-end;
     gap: 1.5rem;
     flex-shrink: 0;
@@ -583,7 +584,7 @@ $checkout-accent: #7235ed;
   grid-template-columns: 1fr;
   gap: 1rem;
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -1336,7 +1337,7 @@ div.wallet-identicon {
   border-left: 1px solid rgba(0, 0, 0, 0.2);
   padding: 0;
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1356,7 +1357,7 @@ div.wallet-identicon {
   z-index: 10;
   box-shadow: 0px 1px 2px 0px rgba(22, 11, 43, 0.1), 0px 2px 4px 0px rgba(22, 11, 43, 0.15);
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     display: none;
   }
 }
@@ -1415,7 +1416,7 @@ div.wallet-identicon {
 .mobile-only {
   display: block;
 
-  @media (min-width: $breakpoints-lg) {
+  @media (min-width: $checkout-two-col) {
     display: none;
   }
 }
