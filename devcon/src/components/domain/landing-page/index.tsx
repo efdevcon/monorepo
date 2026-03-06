@@ -21,8 +21,9 @@ export const LandingPage = () => {
       <WhatToExpect />
       <DevconBanner />
       <ContributeSupport />
-      <NarrativeBlock />
-      <FaqSection />
+      <NarrativeBlock>
+        <FaqSection />
+      </NarrativeBlock>
       <TicketBanner />
     </div>
   )

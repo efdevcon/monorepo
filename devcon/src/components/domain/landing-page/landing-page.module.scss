@@ -5,6 +5,7 @@
   background: linear-gradient(to bottom, #e5ebff 0%, #f1f3fd 400px, #f9f8fa 100%);
   color: #160b2b;
   position: relative;
+  z-index: 5;
 }
 
 /* ─── Devcon Intro + Venue ──────────────────── */
@@ -306,6 +307,18 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: #eeedf6;
+}
+
+.callout-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  pointer-events: none;
+  background-image: url('./images/jaali-pattern-left.svg');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 228px 159px;
 }
 
 .callout-text {
@@ -605,23 +618,23 @@
   margin: 0 8px;
 }
 
-/* ─── Narrative Block ───────────────────────── */
-.narrative {
-  padding: 32px 0;
+/* ─── Narrative + FAQ Wrapper ───────────────── */
+.narrative-faq-wrapper {
   position: relative;
-  overflow: hidden;
+  z-index: 5;
 }
 
-.narrative-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+/* ─── Narrative Block ───────────────────────── */
+.narrative {
+  position: relative;
+  z-index: 1;
+  min-height: 160px;
+  background: linear-gradient(180deg, #1a0d33 -65%, #45326c 88.89%);
+  display: flex;
+  align-items: center;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  @media (max-width: $breakpoints-md) {
+    padding: 24px 0;
   }
 }
 
@@ -629,7 +642,7 @@
   display: flex;
   gap: 64px;
   align-items: center;
-  padding: 32px 0;
+  min-height: inherit;
   position: relative;
   z-index: 1;
 
@@ -673,6 +686,29 @@
   line-height: 1.5;
   color: #f9f8fa;
   min-width: 0;
+  padding-right: 48px;
+  position: relative;
+
+  @media (max-width: $breakpoints-md) {
+    padding-right: 0;
+  }
+}
+
+.narrative-sizer {
+  display: grid;
+  visibility: hidden;
+}
+
+.narrative-sizer-item {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.narrative-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
 }
 
 .narrative-right strong {
@@ -696,15 +732,16 @@
 .indicator {
   width: 4px;
   border-radius: 360px;
-  background: #756a8f;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 10px;
 
   &.active {
     height: 20px;
     background: white;
-  }
-
-  &:not(.active) {
-    height: 10px;
   }
 }
 

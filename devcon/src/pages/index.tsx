@@ -12,7 +12,7 @@ import { client } from '../../tina/__generated__/client'
 
 export default function Index(props: any) {
   return (
-    <div className={`${css['layout-default']} ${themes['index']} overflow-hidden`}>
+    <div className={`${css['layout-default']} ${themes['index']}`}>
       <Header withHero />
       <Hero />
 
