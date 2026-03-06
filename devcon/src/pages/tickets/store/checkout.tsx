@@ -236,6 +236,8 @@ function CheckoutContent() {
   // ── Questions & tickets (add-ons) from API ──
   const [questions, setQuestions] = useState<QuestionInfo[]>([])
   const [tickets, setTickets] = useState<TicketInfo[]>([])
+  const [attendeeNameAsked, setAttendeeNameAsked] = useState(false)
+  const [attendeeNameRequired, setAttendeeNameRequired] = useState(false)
 
   // ── Add-on selections: Map<addonItemId, { quantity, variationId? }> ──
   const [selectedAddons, setSelectedAddons] = useState<Map<number, { quantity: number; variationId?: number }>>(new Map())
@@ -386,6 +388,8 @@ function CheckoutContent() {
         if (data.success) {
           setQuestions(data.data.questions || [])
           setTickets(data.data.tickets || [])
+          if (data.data.attendeeNameAsked != null) setAttendeeNameAsked(data.data.attendeeNameAsked)
+          if (data.data.attendeeNameRequired != null) setAttendeeNameRequired(data.data.attendeeNameRequired)
         }
       } catch {
         // questions/tickets will just be empty
@@ -680,9 +684,9 @@ function CheckoutContent() {
     }
   }
 
+  const namesFilled = !attendeeNameRequired || (firstName.trim() !== '' && lastName.trim() !== '')
   const contactDetailsFilled =
-    firstName.trim() !== '' &&
-    lastName.trim() !== '' &&
+    namesFilled &&
     isEmail(email.trim()) &&
     email.trim() === confirmEmail.trim()
 
@@ -901,7 +905,7 @@ function CheckoutContent() {
           ...(voucherData?.valid && voucherInput && { voucher: voucherInput }),
           answers: formattedAnswers,
           attendee: {
-            name: { given_name: firstName, family_name: lastName },
+            ...(attendeeNameAsked && (firstName.trim() || lastName.trim()) && { name: { given_name: firstName, family_name: lastName } }),
             email,
           },
         }),
@@ -953,7 +957,7 @@ function CheckoutContent() {
           ...(voucherData?.valid && voucherInput && { voucher: voucherInput }),
           answers: formattedAnswers,
           attendee: {
-            name: { given_name: firstName, family_name: lastName },
+            ...(attendeeNameAsked && (firstName.trim() || lastName.trim()) && { name: { given_name: firstName, family_name: lastName } }),
             email,
           },
           ...(paymentProvider && { paymentProvider }),
@@ -1605,23 +1609,24 @@ function CheckoutContent() {
                     <div className={css['description-block']}>
                       <p className={css['description-title']}>Where should we send your tickets?</p>
                       <p className={css['description-sub']}>
-                        Your Devcon tickets will be linked with this name and email address.
+                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email address.
                       </p>
                     </div>
+                    {attendeeNameAsked && (
                     <div className={css['field-row']}>
                       <div className={css['field']}>
                         <label htmlFor="first-name">
-                          Name<span className={css['required']}>*</span>
+                          Name{attendeeNameRequired && <span className={css['required']}>*</span>}
                         </label>
                         <Input
                           id="first-name"
                           type="text"
                           placeholder="First name"
-                          className={showContactErrors && firstName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
+                          className={showContactErrors && attendeeNameRequired && firstName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
                           value={firstName}
                           onChange={e => setFirstName(e.target.value)}
                         />
-                        {showContactErrors && firstName.trim() === '' && (
+                        {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
                           <p className={css['field-error']}>Please enter your first name.</p>
                         )}
                       </div>
@@ -1631,15 +1636,16 @@ function CheckoutContent() {
                           id="last-name"
                           type="text"
                           placeholder="Last name"
-                          className={showContactErrors && lastName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
+                          className={showContactErrors && attendeeNameRequired && lastName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
                           value={lastName}
                           onChange={e => setLastName(e.target.value)}
                         />
-                        {showContactErrors && lastName.trim() === '' && (
+                        {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
                           <p className={css['field-error']}>Please enter your last name.</p>
                         )}
                       </div>
                     </div>
+                    )}
                     <div className={css['field-row']}>
                       <div className={css['field']}>
                         <label htmlFor="email">
@@ -1699,8 +1705,8 @@ function CheckoutContent() {
                           setShowContactErrors(true)
                           setTimeout(() => {
                             const firstErrorId =
-                              firstName.trim() === '' ? 'first-name' :
-                              lastName.trim() === '' ? 'last-name' :
+                              attendeeNameRequired && firstName.trim() === '' ? 'first-name' :
+                              attendeeNameRequired && lastName.trim() === '' ? 'last-name' :
                               !isEmail(email.trim()) ? 'email' : 'confirm-email'
                             document.getElementById(firstErrorId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                           }, 50)

@@ -184,6 +184,16 @@ export async function getQuotas(): Promise<PretixQuota[]> {
   return cachedFetch('quotas', () => fetchAllPages<PretixQuota>('quotas/'))
 }
 
+interface PretixEventSettings {
+  attendee_names_asked: boolean
+  attendee_names_required: boolean
+  [key: string]: unknown
+}
+
+export async function getEventSettings(): Promise<PretixEventSettings> {
+  return cachedFetch('event_settings', () => fetchPretix<PretixEventSettings>('settings/'))
+}
+
 export async function getQuotaAvailability(quotaId: number): Promise<PretixQuotaAvailability> {
   return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 30_000)
 }
@@ -345,12 +355,13 @@ export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurcha
 
 async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseInfo> {
   // Fetch all data in parallel
-  const [event, items, categories, questions, quotas] = await Promise.all([
+  const [event, items, categories, questions, quotas, settings] = await Promise.all([
     getEvent(),
     getItems(),
     getCategories(),
     getQuestions(),
     getQuotas(),
+    getEventSettings(),
   ])
 
   // Build category lookup
@@ -488,6 +499,8 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
       name: getLocalizedString(c.name, locale),
       isAddon: c.is_addon,
     })),
+    attendeeNameAsked: settings.attendee_names_asked,
+    attendeeNameRequired: settings.attendee_names_required,
   }
 }
 

@@ -20,7 +20,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { verifyTypedData, type Hex } from 'viem'
-import { getTicketPurchaseInfo, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import { getTicketPurchaseInfo, getEventSettings, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import type { TicketPurchaseInfo } from 'types/pretix'
 import {
   createPaymentRequirements,
@@ -180,8 +180,9 @@ export async function purchaseHandler(
 
     const body = req.body as PurchaseRequest
 
-    // Validate request
-    const validationErrors = validatePurchaseRequest(body, { requirePayer })
+    // Validate request (check Pretix settings for whether name is required)
+    const eventSettings = await getEventSettings()
+    const validationErrors = validatePurchaseRequest(body, { requirePayer, requireName: eventSettings.attendee_names_required })
     if (validationErrors.length > 0) {
       return res.status(400).json({
         success: false,
@@ -342,14 +343,14 @@ export async function purchaseHandler(
           item: ticket.item.id,
           variation: body.tickets.find((t) => t.itemId === ticket.item.id)?.variationId || null,
           price: ticket.price,
-          attendee_name: null, // Use attendee_name_parts instead
-          attendee_name_parts: body.attendee.name,
-          attendee_email: body.attendee.email || body.email,
-          company: body.attendee.company || null,
+          attendee_name: null,
+          attendee_name_parts: body.attendee?.name || {},
+          attendee_email: body.attendee?.email || body.email,
+          company: body.attendee?.company || null,
           street: null,
           zipcode: null,
           city: null,
-          country: body.attendee.country || null,
+          country: body.attendee?.country || null,
           state: null,
           addon_to: null,
           subevent: null,
@@ -587,9 +588,10 @@ async function handleGetDiscovery(
   }
 }
 
-function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: boolean }): string[] {
+function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: boolean; requireName?: boolean }): string[] {
   const errors: string[] = []
   const requirePayer = opts?.requirePayer ?? true
+  const requireName = opts?.requireName ?? true
 
   if (!body.email || typeof body.email !== 'string' || !isEmail(body.email)) {
     errors.push('Valid email is required')
@@ -617,14 +619,16 @@ function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: 
     }
   }
 
-  if (!body.attendee || !body.attendee.name) {
-    errors.push('Attendee name is required')
-  } else {
-    if (!body.attendee.name.given_name) {
-      errors.push('Attendee given name is required')
-    }
-    if (!body.attendee.name.family_name) {
-      errors.push('Attendee family name is required')
+  if (requireName) {
+    if (!body.attendee || !body.attendee.name) {
+      errors.push('Attendee name is required')
+    } else {
+      if (!body.attendee.name.given_name) {
+        errors.push('Attendee given name is required')
+      }
+      if (!body.attendee.name.family_name) {
+        errors.push('Attendee family name is required')
+      }
     }
   }
 

@@ -8,7 +8,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { isEmail } from 'utils/validators'
-import { getTicketPurchaseInfo, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import { getTicketPurchaseInfo, getEventSettings, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import { checkPurchaseRateLimit } from 'services/ticketStore'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
 
@@ -100,11 +100,14 @@ export default async function handler(
         }
       }
     }
-    if (!body.attendee || !body.attendee.name) {
-      errors.push('Attendee name is required')
-    } else {
-      if (!body.attendee.name.given_name) errors.push('Attendee given name is required')
-      if (!body.attendee.name.family_name) errors.push('Attendee family name is required')
+    const eventSettings = await getEventSettings()
+    if (eventSettings.attendee_names_required) {
+      if (!body.attendee || !body.attendee.name) {
+        errors.push('Attendee name is required')
+      } else {
+        if (!body.attendee.name.given_name) errors.push('Attendee given name is required')
+        if (!body.attendee.name.family_name) errors.push('Attendee family name is required')
+      }
     }
     if (!body.answers || !Array.isArray(body.answers)) {
       errors.push('Answers array is required')
@@ -198,13 +201,13 @@ export default async function handler(
           variation: ticket.variationId || null,
           price,
           attendee_name: null,
-          attendee_name_parts: body.attendee.name,
-          attendee_email: body.attendee.email || body.email,
-          company: body.attendee.company || null,
+          attendee_name_parts: body.attendee?.name || {},
+          attendee_email: body.attendee?.email || body.email,
+          company: body.attendee?.company || null,
           street: null,
           zipcode: null,
           city: null,
-          country: body.attendee.country || null,
+          country: body.attendee?.country || null,
           state: null,
           addon_to: null,
           subevent: null,

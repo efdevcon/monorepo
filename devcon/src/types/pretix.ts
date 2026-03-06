@@ -315,4 +315,6 @@ export interface TicketPurchaseInfo {
     name: string
     isAddon: boolean
   }[]
+  attendeeNameAsked: boolean
+  attendeeNameRequired: boolean
 }
