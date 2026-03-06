@@ -191,10 +191,11 @@ export async function getQuotaAvailability(quotaId: number): Promise<PretixQuota
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
   return withRetry('createOrder', async () => {
     const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/`
+    const payload = TICKETING.pretix.testmode ? { ...order, testmode: true } : order
     const response = await fetch(url, {
       method: 'POST',
       headers: getHeaders(),
-      body: JSON.stringify(order),
+      body: JSON.stringify(payload),
     })
 
     if (!response.ok) {

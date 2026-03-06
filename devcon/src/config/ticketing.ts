@@ -11,6 +11,7 @@ const ENV_CONFIG = {
       event: 'test',
       ticketDiscountId: '6',
       defaultQuotaId: 116,
+      testmode: true,
     },
     checkout: {
       pretixRedirectUrl: '',
@@ -47,6 +48,8 @@ const ENV_CONFIG = {
       event: '8',
       ticketDiscountId: '2',
       defaultQuotaId: 116, // TODO: confirm production quota ID
+      // TODO: disable testmode for production
+      testmode: true,
     },
     checkout: {
       pretixRedirectUrl: '',
@@ -73,7 +76,7 @@ const ENV_CONFIG = {
       nullifierSeed: 14687622115861671582408676159101191136114,
     },
     questions: {
-      goalsIdentifier: 'devcon-goals',
+      goalsIdentifier: 'FNXHWF39',
     },
     overrides: {
       soldOut: false,
