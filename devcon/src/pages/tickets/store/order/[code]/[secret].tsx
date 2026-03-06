@@ -376,35 +376,21 @@ export default function OrderConfirmationPage() {
               <h3 className={css['summary-heading']}>Save Ticket</h3>
               <div className={css['save-buttons']}>
                 {passbookUrl && (
-                  <a
-                    href={passbookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['wallet-badge']}
-                  >
-                    <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
-                  </a>
-                )}
-                {passbookUrl && (
-                  <a
-                    href={passbookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['wallet-badge']}
-                  >
-                    <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
-                  </a>
+                  <div className={css['wallet-row-wrapper']}>
+                    <div className={css['wallet-row']}>
+                      <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
+                        <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
+                      </a>
+                      <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
+                        <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
+                      </a>
+                    </div>
+                  </div>
                 )}
                 {pdfUrl && (
-                  <a
-                    href={pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['download-btn']}
-                  >
-                    <Download size={24} />
-                    <strong>Download </strong>
-                    <span>(PDF)</span>
+                  <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
+                    <Download size={18} />
+                    Download (PDF)
                   </a>
                 )}
               </div>

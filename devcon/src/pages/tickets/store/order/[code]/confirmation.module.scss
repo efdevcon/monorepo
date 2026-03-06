@@ -468,23 +468,44 @@ $order-border: #dddae2;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  @media (max-width: $breakpoints-lg) {
+    max-width: 404px;
+    width: 100%;
+    align-self: center;
+  }
 }
 
 .save-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
 
-  @media (max-width: 768px) {
-    justify-content: center;
+  @media (min-width: $breakpoints-lg) {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
   }
+}
+
+.wallet-row-wrapper {
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: $breakpoints-lg) {
+    justify-content: flex-start;
+  }
+}
+
+.wallet-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .wallet-badge {
   display: inline-flex;
-  height: 46px;
-  flex-shrink: 0;
+  height: 40px;
   transition: opacity 0.15s;
 
   &:hover {
@@ -497,42 +518,39 @@ $order-border: #dddae2;
   }
 }
 
-.download-btn {
-  display: inline-flex;
+.save-btn {
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 46px;
-  padding: 0 1.5rem;
-  font-size: 1rem;
+  height: 44px;
+  width: 100%;
+  padding: 0 1.25rem;
+
+  @media (min-width: $breakpoints-lg) {
+    flex: 1;
+    min-width: 180px;
+  }
+  font-size: 0.875rem;
+  font-weight: 600;
   color: $order-fg;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #f2f1f4;
-  border-radius: 360px;
+  background: #fff;
+  border: 1px solid $order-border;
+  border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   font-family: inherit;
   white-space: nowrap;
-  transition: background 0.15s;
-
-  strong {
-    font-weight: 700;
-  }
-
-  span {
-    font-weight: 400;
-  }
+  transition: background 0.15s, border-color 0.15s;
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 1);
-  }
-
-  @media (max-width: $breakpoints-lg) {
-    width: 100%;
+    background: #f9f8fa;
+    border-color: #b5b1bf;
   }
 }
