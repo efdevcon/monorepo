@@ -783,9 +783,13 @@ function CheckoutContent() {
       setOpenSection('contact')
       return
     }
-    const hasErrors = applicableQuestions.some(q => q.required && isDependencyMet(q) && isFieldEmpty(q.id))
-    if (hasErrors) {
+    const firstErrorQuestion = applicableQuestions.find(q => q.required && isDependencyMet(q) && isFieldEmpty(q.id))
+    if (firstErrorQuestion) {
       setShowAttendeeErrors(true)
+      setTimeout(() => {
+        const el = document.querySelector(`[data-question-id="${firstErrorQuestion.id}"]`)
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 50)
       return
     }
     setShowAttendeeErrors(false)
@@ -1693,6 +1697,13 @@ function CheckoutContent() {
                       onClick={() => {
                         if (!contactDetailsFilled) {
                           setShowContactErrors(true)
+                          setTimeout(() => {
+                            const firstErrorId =
+                              firstName.trim() === '' ? 'first-name' :
+                              lastName.trim() === '' ? 'last-name' :
+                              !isEmail(email.trim()) ? 'email' : 'confirm-email'
+                            document.getElementById(firstErrorId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                          }, 50)
                           return
                         }
                         setShowContactErrors(false)
@@ -1731,7 +1742,7 @@ function CheckoutContent() {
                       const hasError = showAttendeeErrors && q.required && isFieldEmpty(q.id)
 
                       return (
-                        <div key={q.id} className={css['field']}>
+                        <div key={q.id} className={css['field']} data-question-id={q.id}>
                           <label>
                             {q.question}
                             {q.required && <span className={css['required']}>*</span>}
