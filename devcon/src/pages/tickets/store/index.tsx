@@ -244,6 +244,7 @@ function StoreContent({
   }
 
   const forceSoldOut = TICKETING.overrides.soldOut
+  const requireDiscountCode = TICKETING.self.requireDiscountCode
   const admissionTickets = tickets.filter(t => t.isAdmission && (forceSoldOut || t.available) && !t.requireVoucher)
   const discountTicketId = TICKETING.pretix.ticketDiscountId
     ? parseInt(TICKETING.pretix.ticketDiscountId, 10)
@@ -436,7 +437,7 @@ function StoreContent({
                 <div className={css['discounts-grid']}>
                   {voucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${!ticket.available || !(discountCode && discountCodeValid === true) ? css['card--disabled'] : ''}`}>
+                      <div className={`${css['card']} ${!ticket.available || (requireDiscountCode && !(discountCode && discountCodeValid === true)) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
@@ -462,7 +463,7 @@ function StoreContent({
                               </div>
                               <span className={css['sold-out-badge']}>Sold out!</span>
                             </div>
-                          ) : discountCode && discountCodeValid === true ? (
+                          ) : !requireDiscountCode || (discountCode && discountCodeValid === true) ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-current']}>${ticket.price}</span>
@@ -646,7 +647,7 @@ function StoreContent({
         onClose={() => setSelfVerificationOpen(false)}
         useStaging={useSelfStaging}
         setUseStaging={setUseSelfStaging}
-        discountCode={discountCode ?? undefined}
+        discountCode={requireDiscountCode ? (discountCode ?? undefined) : undefined}
       />
     </>
   )

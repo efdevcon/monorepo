@@ -23,9 +23,10 @@ const ENV_CONFIG = {
     self: {
       scope: 'devcon-india-local-discount',
       staging: true,
+      requireDiscountCode: true,
     },
     discount: {
-      collection: 'dev-local-discount',
+      collection: 'dev-local-early-bird',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -61,10 +62,12 @@ const ENV_CONFIG = {
       scope: 'devcon-india-local-discount',
       // TODO: replace with production staging
       staging: true,
+      requireDiscountCode: true,
     },
     discount: {
       // TODO: replace with production collection
-      collection: 'dev-local-discount',
+      collection: 'dev-local-early-bird',
+      // collection: 'local-early-bird',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,

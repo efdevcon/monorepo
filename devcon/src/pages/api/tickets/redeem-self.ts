@@ -148,6 +148,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Dynamic voucher assignment from Supabase pool
     const discountCode = (req.query.discountCode ?? req.body.discountCode) as string | undefined
+    const requireDiscountCode = TICKETING.self.requireDiscountCode
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
     // Aadhaar card and is always the same for the same card, unlike verifiedUserId which
@@ -164,7 +165,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    if (!discountCode) {
+    if (requireDiscountCode && !discountCode) {
       const reason = 'Missing discount code'
       storeError(verifiedUserId, reason)
       return res.status(200).json({
@@ -187,34 +188,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Validate the discount code exists and is unclaimed
-    const validCode = await validateDiscountCode(discountCode)
-    if (!validCode) {
-      const reason = 'Invalid or already used discount code'
-      storeError(verifiedUserId, reason)
-      return res.status(200).json({
-        status: 'error',
-        result: false,
-        error_code: 'INVALID_DISCOUNT_CODE',
-        reason,
-      })
+    let voucherCollection = TICKETING.discount.collection
+
+    if (requireDiscountCode && discountCode) {
+      // Validate the discount code exists and is unclaimed
+      const validCode = await validateDiscountCode(discountCode)
+      if (!validCode) {
+        const reason = 'Invalid or already used discount code'
+        storeError(verifiedUserId, reason)
+        return res.status(200).json({
+          status: 'error',
+          result: false,
+          error_code: 'INVALID_DISCOUNT_CODE',
+          reason,
+        })
+      }
+
+      // Atomically claim the discount code BEFORE assigning a voucher (prevents race condition)
+      const claimed = await claimDiscountCode(discountCode, nullifier)
+      if (!claimed) {
+        const reason = 'Discount code was just claimed by another request'
+        storeError(verifiedUserId, reason)
+        return res.status(200).json({
+          status: 'error',
+          result: false,
+          error_code: 'INVALID_DISCOUNT_CODE',
+          reason,
+        })
+      }
+
+      voucherCollection = validCode.collection
     }
 
-    // Atomically claim the discount code BEFORE assigning a voucher (prevents race condition)
-    const claimed = await claimDiscountCode(discountCode, nullifier)
-    if (!claimed) {
-      const reason = 'Discount code was just claimed by another request'
-      storeError(verifiedUserId, reason)
-      return res.status(200).json({
-        status: 'error',
-        result: false,
-        error_code: 'INVALID_DISCOUNT_CODE',
-        reason,
-      })
-    }
-
-    // Only assign a voucher after the discount code is successfully claimed
-    const voucher = await assignVoucher(nullifier, validCode.collection)
+    // Assign a voucher from the pool
+    const voucher = await assignVoucher(nullifier, voucherCollection)
     if (!voucher) {
       const reason = 'No vouchers available. Please try again later.'
       storeError(verifiedUserId, reason)
@@ -226,8 +233,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Link the voucher back to the discount code
-    await linkVoucherToDiscountCode(discountCode, voucher.code)
+    // Link the voucher back to the discount code (if applicable)
+    if (requireDiscountCode && discountCode) {
+      await linkVoucherToDiscountCode(discountCode, voucher.code)
+    }
 
     // Cache in memory for the polling flow (uses session userId for frontend polling)
     voucherStore.set(verifiedUserId, voucher.code)
