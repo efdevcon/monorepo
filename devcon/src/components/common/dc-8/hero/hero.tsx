@@ -1,254 +1,105 @@
-import React, { useState, useRef } from 'react'
-import { Fireflies } from './fireflies'
+import React from 'react'
 import Image from 'next/image'
-import DC8Background from './images/dc8-bg.png'
-// import Logo from './images/dc8-logo.png'
-import Logo from 'assets/images/dc-8/dc8-logo-glow.png'
-import css from './hero.module.scss'
-import cn from 'classnames'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import Link from 'next/link'
-import { useSpring, useMotionValue, useMotionTemplate, motion } from 'framer-motion'
-import { MapPinIcon } from 'lucide-react'
-
-gsap.registerPlugin(useGSAP, ScrollTrigger)
-
-// TODO: Move to lib later
-const GlassInput = ({
-  value,
-  onChange,
-  className,
-  placeholder,
-  type,
-}: {
-  value: string
-  onChange: (value: string) => void
-  placeholder: string
-  className?: string
-  type?: string
-}) => {
-  return (
-    <div className={cn(css['glass'], 'group flex items-center', className)}>
-      <input
-        type={type || 'text'}
-        placeholder={placeholder}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        className="text-[#4B4B66] bg-transparent outline-none group-hover:border-white"
-      />
-      <div
-        style={{
-          gap: '4px',
-          borderRadius: '34px',
-          background: '#FE7A06',
-        }}
-        className={cn(
-          value.length > 0 ? 'opacity-100' : 'opacity-40',
-          'h-[95%] shrink-0 flex items-center justify-center px-3 text-sm transition-opacity cursor-pointer text-white font-primary font-medium'
-        )}
-      >
-        Join
-      </div>
-    </div>
-  )
-}
-
-const NewsletterForm = () => {
-  const [email, setEmail] = useState('')
-
-  return (
-    <div className="glass mt-3 md:mt-3 relative z-[20]">
-      <Link
-        href="https://paragraph.com/@efevents/subscribe"
-        target="_blank"
-        className="font-semibold font-primary mb-1 bg-[rgba(77,89,199,1)] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white backdrop-blur-[3px] px-7 py-3"
-        style={{
-          textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)',
-          // boxShadow: '0 2px 8px 0 rgba(58, 54, 94, 0.15), 0 1px 2px 0 rgba(255, 255, 255, 0.30) inset',
-        }}
-      >
-        Subscribe for updates
-      </Link>
-      {/* <GlassInput
-        value={email}
-        onChange={setEmail}
-        placeholder="Email address"
-        type="email"
-        className="text-[#4B4B66]"
-      /> */}
-    </div>
-  )
-}
-
-const CenteredOverlayContent = React.forwardRef<HTMLDivElement>((props, ref) => {
-  return (
-    <div
-      ref={ref}
-      className="absolute h-full inset-0 w-full flex items-center justify-center z-[11] text-black translate-y-[-6%]  md:translate-y-[-4%]"
-    >
-      <div className="flex font-secondary text-white flex-col items-center justify-center gap-0">
-        <Image src={Logo} alt="Devcon 8 Logo" className="w-[575px] max-w-[100vw] mb-2 md:mb-0" />
-        {/* <div
-          className="text-2xl font-medium mb-1.5 translate-y-[-16px] md:translate-y-[-26px]"
-          style={{ textShadow: '0 2px 8px rgba(70, 73, 135, 0.75)' }}
-        >
-          DEVCON 8
-        </div> */}
-
-        <div
-          className="text-3xl text-center leading-tighter translate-y-[-16px] md:translate-y-[-26px]"
-          style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
-        >
-          MUMBAI, INDIA
-          <br />
-          <span className="font-normal">3–6 NOV 2026</span>
-        </div>
-
-        <div
-          className="text-xl leading-tight text-center mt-5 translate-y-[-16px] md:translate-y-[-26px] flex items-center gap-2"
-          style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
-        >
-          <MapPinIcon className="w-6 h-6" /> Jio World Centre
-        </div>
-
-        <div
-          className="text-xl leading-tight text-center mt-5 translate-y-[-16px] md:translate-y-[-26px]"
-          style={{ textShadow: '0 2px 12px rgb(24, 24, 30)' }}
-        >
-          Ethereum's global community <br /> and developer conference
-        </div>
-
-        <NewsletterForm />
-
-        <div
-          className="absolute center w-full bottom-[-16px] justify-center hidden xl:flex z-[50]"
-          data-type="scroll-indicator"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
-            <g className="nc-icon-wrapper" fill="#ffffff">
-              <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
-                <path
-                  d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
-                  fill="#ffffff"
-                ></path>
-                <path
-                  d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
-                  fill="#ffffff"
-                  data-color="color-2"
-                ></path>
-              </g>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </div>
-  )
-})
-
-const useCursorTracker = (ref: any) => {
-  const [delta, setDelta] = React.useState({ x: 0, y: 0 })
-
-  React.useEffect(() => {
-    // Only enable on devices with a pointer (not touch)
-    const hasPointer = window.matchMedia('(pointer: fine)').matches
-
-    if (!hasPointer) return
-
-    const handleMouseMove = (event: any) => {
-      if (ref.current) {
-        const { left, top, width, height } = ref.current.getBoundingClientRect()
-        const centerX = left + width / 2
-        const centerY = top + height / 2
-        const deltaX = event.clientX - centerX
-        const deltaY = event.clientY - centerY
-        setDelta({ x: deltaX, y: deltaY })
-      }
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [ref])
-
-  return delta
-}
+import BannerImage from 'components/domain/landing-page/images/devcon-india-banner.png'
+import TicketCard from 'components/domain/landing-page/images/ticket-card.png'
+import TicketBack from 'components/domain/ticket-sharing/ticket-backside.png'
+import IconX from 'assets/icons/twitter.svg'
+import IconInstagram from 'assets/icons/instagram.svg'
+import IconTelegram from 'assets/icons/telegram.svg'
+import IconEmail from 'assets/icons/ui-email.svg'
+import { Link } from 'components/common/link'
+import useGetElementHeight from 'hooks/useGetElementHeight'
 
 export const Hero = () => {
-  const overlayRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const delta = useCursorTracker(containerRef)
-
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const transformX = useSpring(x, { damping: 25 })
-  const transformY = useSpring(y, { damping: 25 })
-
-  React.useEffect(() => {
-    // Pan calculation - simple multiplier of delta with negative to pan opposite direction
-    const panX = Math.max(-delta.x * 0.02, -8)
-    const panY = Math.max(-delta.y * 0.02, -8)
-
-    x.set(panX)
-    y.set(panY)
-  }, [delta, x, y])
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      x.set(0)
-      y.set(0)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [x, y])
-
-  // useGSAP(() => {
-  //   if (overlayRef.current) {
-  //     gsap.to(overlayRef.current, {
-  //       opacity: 0,
-  //       ease: 'none',
-  //       scrollTrigger: {
-  //         trigger: document.body,
-  //         start: 'top top',
-  //         end: `+=${window.innerHeight / 2}`,
-  //         scrub: true,
-  //       },
-  //     })
-  //   }
-  // }, [])
+  const stripHeight = useGetElementHeight('strip')
 
   return (
-    <div className="relative h-screen w-screen">
-      <div ref={containerRef} className="h-screen w-screen z-[10]">
-        <CenteredOverlayContent ref={overlayRef} />
-        <motion.div
-          className="w-full h-full absolute top-0 left-0 z-[5]"
-          style={{
-            x: transformX,
-            y: transformY,
-            scale: 1.02,
-          }}
-        >
-          <Fireflies id="lower-fireflies" />
-          <Image
-            src={DC8Background}
-            alt="Devcon 8 Background"
-            fill
-            placeholder="blur"
-            className="object-cover object-[64.5%,50%] md:object-[50%,80%]"
-          />
-        </motion.div>
-        <div
-          className="absolute inset-0 z-[6] pointer-events-none"
-          style={{ boxShadow: 'inset 0 0 150px 50px rgba(0, 0, 0, 0.5)' }}
-        />
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Background image */}
+      <Image
+        src={BannerImage}
+        alt="Devcon 8 Mumbai India"
+        fill
+        priority
+        placeholder="blur"
+        className="object-cover object-top"
+        style={{ paddingTop: stripHeight }}
+      />
+
+      {/* Edge gradients for smooth blending */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-[150px] mix-blend-hard-light"
+        style={{
+          background: 'linear-gradient(to top, rgba(34,17,68,1) 4.5%, rgba(34,17,68,0) 100%)',
+        }}
+      />
+      <div
+        className="absolute top-0 left-0 h-full w-[160px] mix-blend-hard-light"
+        style={{
+          background: 'linear-gradient(to right, rgba(34,17,68,1) 0%, rgba(34,17,68,0) 100%)',
+        }}
+      />
+      <div
+        className="absolute top-0 right-0 h-full w-[160px] mix-blend-hard-light"
+        style={{
+          background: 'linear-gradient(to left, rgba(34,17,68,1) 0%, rgba(34,17,68,0) 100%)',
+        }}
+      />
+
+      {/* Hero content at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-12">
+        <div className="section">
+          <div className="flex items-end justify-between">
+            {/* Left: Location + Social */}
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1.5 text-white" style={{ textShadow: '0 2px 12px rgba(34,17,68,1)' }}>
+                <h1 className="text-3xl lg:text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px]">
+                  Mumbai, India
+                </h1>
+                <p className="text-xl lg:text-2xl tracking-[-0.5px]">3—6 November, 2026</p>
+              </div>
+
+              <div className="backdrop-blur-[2px] bg-[rgba(26,13,51,0.8)] border border-[rgba(255,255,255,0.1)] flex gap-4 items-center px-4 py-2 rounded-lg w-fit [&_path]:!fill-white">
+                <span className="text-white text-base">Follow us</span>
+                <Link to="https://x.com/efdevcon" className="text-white hover:text-white/80 transition-colors">
+                  <IconX className="w-[18px] h-[18px]" />
+                </Link>
+                <Link to="https://instagram.com/efdevcon" className="text-white hover:text-white/80 transition-colors">
+                  <IconInstagram className="w-[18px] h-[18px]" />
+                </Link>
+                <Link to="https://t.me/devcon_SEA" className="text-white hover:text-white/80 transition-colors">
+                  <IconTelegram className="w-[18px] h-[18px]" />
+                </Link>
+                <Link to="mailto:devcon@ethereum.org" className="text-white hover:text-white/80 transition-colors">
+                  <IconEmail className="w-[18px] h-[18px]" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: Ticket card with fan-out effect */}
+            <Link to="/tickets" className="hidden md:flex flex-col gap-3 items-center w-[348px] shrink-0 group">
+              <div className="relative w-[338px] h-[190px]">
+                {/* Back ticket - fans out on hover */}
+                <div
+                  className="absolute inset-0 origin-center scale-[0.90] transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[-9deg] group-hover:translate-x-[0px] group-hover:translate-y-[2px] group-hover:scale-[0.93]"
+                  style={{ filter: 'drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3))' }}
+                >
+                  <Image src={TicketBack} alt="" width={338} height={190} />
+                </div>
+                {/* Front ticket */}
+                <div
+                  className="absolute inset-0 transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{ filter: 'drop-shadow(0 12px 30px rgba(0, 0, 0, 0.4))' }}
+                >
+                  <Image src={TicketCard} alt="Devcon Early Bird Ticket" width={338} height={190} />
+                </div>
+              </div>
+              <p className="text-white font-bold text-base text-center translate-y-[0px] group-hover:translate-y-[8px] transition-transform duration-300">
+                Local Early Bird tickets now available!
+              </p>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )

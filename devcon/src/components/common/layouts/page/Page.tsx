@@ -22,7 +22,7 @@ export default function PageLayout({ children, theme, style, hideFooter, darkFoo
 
   return (
     <div className={className} style={style}>
-      <Header withStrip={true} withHero={withHero} />
+      <Header withHero={withHero} />
 
       {children}
 
