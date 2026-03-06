@@ -49,12 +49,7 @@ function useIsMobile() {
 
 export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, discountCode }: SelfVerificationModalProps) {
   const [userId, setUserId] = useState(() => crypto.randomUUID())
-  const [voucher, setVoucher] = useState<string | null>(() => {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('selfVoucher')
-    }
-    return null
-  })
+  const [voucher, setVoucher] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [errorCode, setErrorCode] = useState<ErrorCode>(null)
 
@@ -119,9 +114,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           setVoucher(data.voucherCode)
-          if (typeof localStorage !== 'undefined') {
-            localStorage.setItem('selfVoucher', data.voucherCode)
-          }
           return
         }
         if (res.ok && data.error && data.reason) {
@@ -164,9 +156,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           setVoucher(data.voucherCode)
-          if (typeof localStorage !== 'undefined') {
-            localStorage.setItem('selfVoucher', data.voucherCode)
-          }
         } else if (res.ok && data.error && data.reason) {
           setErrorFromReason(data.reason)
         }
@@ -180,9 +169,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   }, [isOpen, userId, voucher, error])
 
   const handleReset = () => {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.removeItem('selfVoucher')
-    }
     setVoucher(null)
     clearError()
     setCopied(false)

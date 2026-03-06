@@ -59,7 +59,8 @@ const ENV_CONFIG = {
     },
     self: {
       scope: 'devcon-india-local-discount',
-      staging: false,
+      // TODO: replace with production staging
+      staging: true,
     },
     discount: {
       // TODO: replace with production collection
