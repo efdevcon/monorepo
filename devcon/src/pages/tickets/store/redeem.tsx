@@ -115,10 +115,31 @@ export default function RedeemPage() {
                 <div className={css['payment-notice'] + ' ' + css['payment-notice-error']}>
                   {result.error || 'Invalid voucher code'}
                 </div>
-                <p>
-                  The voucher code <strong>{voucherCode}</strong> could not be applied.
-                  You can still browse the <Link to="/tickets/store">ticket store</Link> and purchase tickets at regular price.
-                </p>
+                {result.error?.includes('fully redeemed') ? (
+                  <>
+                    <p>
+                      The voucher code <strong>{voucherCode}</strong> has already been used and cannot be applied again.
+                    </p>
+                    <p>
+                      If you believe this is an error, please <a href="mailto:support@devcon.org" style={{ color: '#7235ed', fontWeight: 600 }}>contact support</a>.
+                      You can also browse the <Link to="/tickets/store">ticket store</Link> to purchase tickets at regular price.
+                    </p>
+                  </>
+                ) : result.error?.includes('expired') ? (
+                  <>
+                    <p>
+                      The voucher code <strong>{voucherCode}</strong> has expired and can no longer be used.
+                    </p>
+                    <p>
+                      You can still browse the <Link to="/tickets/store">ticket store</Link> and purchase tickets at regular price.
+                    </p>
+                  </>
+                ) : (
+                  <p>
+                    The voucher code <strong>{voucherCode}</strong> could not be applied.
+                    You can still browse the <Link to="/tickets/store">ticket store</Link> and purchase tickets at regular price.
+                  </p>
+                )}
               </div>
             </div>
           )}
