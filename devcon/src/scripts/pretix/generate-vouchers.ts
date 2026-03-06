@@ -4,7 +4,8 @@
  * Creates vouchers via Pretix API and stores them in the discount_vouchers table.
  *
  * Usage:
- *   pnpm run pretix:generate-vouchers --count 10 --price 0.01 --tag AadhaarDiscountTest --item-id 6 --collection local-early-bird [--max-usages 1] [--dry-run]
+ *   pnpm run pretix:generate-vouchers --count 10 --price 0.01 --tag TestLocalEarlyBird --item-id 2 --collection test-local-early-bird [--max-usages 1] [--dry-run]
+ *   pnpm run pretix:generate-vouchers --count 10 --price 99 --tag LocalEarlyBird --item-id 2 --collection local-early-bird [--max-usages 1] [--dry-run]
  */
 import 'dotenv/config'
 import { insertDiscountVouchers } from '../../services/discountStore'
@@ -41,7 +42,7 @@ function parseArgs() {
   return {
     count: parseInt(get('--count', '0'), 10),
     price: get('--price', '0.01'),
-    tag: get('--tag', 'AadhaarDiscount'),
+    tag: get('--tag', 'TestLocalEarlyBird'),
     itemId: parseInt(get('--item-id', '0'), 10),
     collection: get('--collection', ''),
     maxUsages: parseInt(get('--max-usages', '1'), 10),
@@ -54,7 +55,7 @@ async function main() {
 
   if (count <= 0 || itemId <= 0 || !collection) {
     console.error('Usage: pnpm run pretix:generate-vouchers --count <number> --price <price> --tag <tag> --item-id <id> --collection <name> [--max-usages <n>] [--dry-run]')
-    console.error('Example: pnpm run pretix:generate-vouchers --count 10 --price 0.01 --tag AadhaarDiscount --item-id 6 --collection local-early-bird')
+    console.error('Example: pnpm run pretix:generate-vouchers --count 10 --price 0.01 --tag TestLocalEarlyBird --item-id 2 --collection test-local-early-bird')
     process.exit(1)
   }
 
