@@ -71,7 +71,7 @@ export function WhatToExpect() {
                 <div className={css['expect-icon']}>
                   <Icon />
                 </div>
-                <div>
+                <div className={css['expect-card-content']}>
                   <h4 className={css['expect-card-title']}>{card.title}</h4>
                   <div className={css['expect-card-body']}>
                     {card.paragraphs.map((p, i) => (

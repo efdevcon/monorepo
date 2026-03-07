@@ -75,7 +75,7 @@ export function ContributeSupport() {
                 <div className={`${css['contribute-icon']} ${css[card.iconColor]}`}>
                   <Icon />
                 </div>
-                <div>
+                <div className={css['contribute-card-text']}>
                   <h4 className={css['contribute-card-title']}>{card.title}</h4>
                   <p className={css['contribute-card-body']}>{card.description}</p>
                 </div>

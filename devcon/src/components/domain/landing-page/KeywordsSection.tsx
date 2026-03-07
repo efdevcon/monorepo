@@ -15,12 +15,27 @@ export function KeywordsSection() {
           viewBoxOverride="0 0 355 97"
         />
       </div>
-      <div className={css['keywords-text']}>
+      <div className={`${css['keywords-text']} ${css['keywords-desktop']}`}>
         TALKS &bull; WORKSHOPS &bull; NETWORKING &bull; COWORK &bull; AI
         <br />
         CENSORSHIP RESISTANCE &bull; OPEN SOURCE &bull; PRIVACY &bull; SECURITY
         <br />
         DeFI &bull; Social &bull; CYPHERPUNK &bull; Art &bull; REAL WORLD ETHEREUM
+      </div>
+      <div className={`${css['keywords-text']} ${css['keywords-mobile']}`}>
+        TALKS &bull; WORKSHOPS
+        <br />
+        NETWORKING &bull; COWORK &bull; AI
+        <br />
+        CENSORSHIP RESISTANCE
+        <br />
+        OPEN SOURCE &bull; PRIVACY
+        <br />
+        SECURITY &bull; DeFI &bull; Social
+        <br />
+        CYPHERPUNK &bull; Art
+        <br />
+        REAL WORLD ETHEREUM
       </div>
     </div>
   )
