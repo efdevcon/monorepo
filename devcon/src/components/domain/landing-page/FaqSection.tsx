@@ -65,44 +65,46 @@ export function FaqSection() {
   return (
     <div className={css.faq}>
       <div className="section">
-        <h2 className={css['faq-title']}>Frequently asked questions</h2>
-      </div>
+        <div className={css['faq-inner']}>
+          <h2 className={css['faq-title']}>Frequently asked questions</h2>
 
-      <div className={css['faq-container']}>
-        <div className={css['faq-accordion']}>
-          {visibleFaq.map((item, i) => (
-            <div key={i} className={css['faq-item']}>
-              <button
-                type="button"
-                className={cn(css['faq-trigger'], openIndex === i && css['faq-trigger-open'])}
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                aria-expanded={openIndex === i}
-              >
-                <span>{item.q}</span>
-                {openIndex === i ? (
-                  <ChevronUp size={16} strokeWidth={2} className={css['faq-chevron']} />
-                ) : (
-                  <ChevronDown size={16} strokeWidth={2} className={css['faq-chevron']} />
-                )}
-              </button>
-              <div className={cn(css['faq-answer-wrap'], openIndex === i && css['faq-answer-open'])}>
-                <div className={css['faq-answer-inner']}>
-                  <p className={css['faq-answer']}>{item.a}</p>
+          <div className={css['faq-container']}>
+            <div className={css['faq-accordion']}>
+              {visibleFaq.map((item, i) => (
+                <div key={i} className={css['faq-item']}>
+                  <button
+                    type="button"
+                    className={cn(css['faq-trigger'], openIndex === i && css['faq-trigger-open'])}
+                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                    aria-expanded={openIndex === i}
+                  >
+                    <span>{item.q}</span>
+                    {openIndex === i ? (
+                      <ChevronUp size={16} strokeWidth={2} className={css['faq-chevron']} />
+                    ) : (
+                      <ChevronDown size={16} strokeWidth={2} className={css['faq-chevron']} />
+                    )}
+                  </button>
+                  <div className={cn(css['faq-answer-wrap'], openIndex === i && css['faq-answer-open'])}>
+                    <div className={css['faq-answer-inner']}>
+                      <p className={css['faq-answer']}>{item.a}</p>
+                    </div>
+                  </div>
+                  {i < visibleFaq.length - 1 && <div className={css['faq-border']} />}
                 </div>
-              </div>
-              {i < visibleFaq.length - 1 && <div className={css['faq-border']} />}
+              ))}
             </div>
-          ))}
+
+            {!showAll && (
+              <button type="button" className={css['faq-view-all']} onClick={() => setShowAll(true)}>
+                View all <span>({FAQ_ITEMS.length})</span>
+              </button>
+            )}
+          </div>
+
+          <BloomingEthFlower className={css['faq-flower']} />
         </div>
-
-        {!showAll && (
-          <button type="button" className={css['faq-view-all']} onClick={() => setShowAll(true)}>
-            View all <span>({FAQ_ITEMS.length})</span>
-          </button>
-        )}
       </div>
-
-      <BloomingEthFlower className={css['faq-flower']} />
     </div>
   )
 }

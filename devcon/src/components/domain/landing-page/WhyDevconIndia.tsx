@@ -1,6 +1,4 @@
 import React from 'react'
-import FrameUpperRight from './images/frame-upper-right.svg'
-import FrameLowerLeft from './images/frame-lower-left.svg'
 import css from './landing-page.module.scss'
 
 export function WhyDevconIndia() {
@@ -31,8 +29,10 @@ export function WhyDevconIndia() {
             </div>
 
             <div className={css['video-wrapper']}>
-              <FrameUpperRight className={`${css['frame-decoration']} ${css['upper-right']}`} />
-              <FrameLowerLeft className={`${css['frame-decoration']} ${css['lower-left']}`} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/images/frame-upper-right.svg" alt="" className={`${css['frame-decoration']} ${css['upper-right']}`} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/images/frame-lower-left.svg" alt="" className={`${css['frame-decoration']} ${css['lower-left']}`} />
               <div className={css['video-preview']}>
                 <iframe
                   src="https://www.youtube.com/embed/KSElahtIDB0"

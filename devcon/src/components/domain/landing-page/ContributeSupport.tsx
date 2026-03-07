@@ -32,7 +32,7 @@ const cards: ContributeCard[] = [
       <div className={css['contribute-cta']}>
         <span className={css['contribute-cta-muted']}>Coming soon!</span>
         <span className={css['contribute-cta-divider']} />
-        <a href="#" className={css['contribute-cta-link']}>
+        <a href="https://devcon.org/Devcon__Devconnect_Presskit.pdf" target="_blank" rel="noopener noreferrer" className={css['contribute-cta-link']}>
           Media Partners &amp; Press <ArrowUpRight size={16} />
         </a>
       </div>

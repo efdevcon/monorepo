@@ -20,7 +20,7 @@ export const Header = React.memo(({ withHero, className, isApp }: HeaderProps) =
   const router = useRouter()
   const stripHeight = useGetElementHeight('strip')
   const isScrolled = useIsScrolled()
-  const isScrolledPastStrip = useIsScrolled(stripHeight)
+  const isScrolledPast200 = useIsScrolled(100)
   const [foldoutOpen, setFoldoutOpen] = React.useState(false)
   const [searchOpen, setSearchOpen] = React.useState(false)
 
@@ -44,7 +44,7 @@ export const Header = React.memo(({ withHero, className, isApp }: HeaderProps) =
   if (foldoutOpen) headerContainerClass += ` ${css['foldout-open']}`
   if (className) headerContainerClass += ` ${className}`
   if (isApp) headerContainerClass += ` ${css['app']}`
-  if (isScrolledPastStrip && !withHero) headerContainerClass += ` ${css['scrolled']}`
+  if (isScrolledPast200 && !withHero) headerContainerClass += ` ${css['scrolled']}`
 
   const stripStyle = { '--strip-height': `-${stripHeight}px` } as React.CSSProperties
 
@@ -75,7 +75,7 @@ export const Header = React.memo(({ withHero, className, isApp }: HeaderProps) =
     let fixedContainerClass = `${css['header-fixed-container']}`
 
     if (isScrolled) fixedContainerClass += ` ${css['filled']}`
-    if (isScrolledPastStrip) fixedContainerClass += ` ${css['scrolled']}`
+    if (isScrolledPast200) fixedContainerClass += ` ${css['scrolled']}`
 
     return (
       <div className={cn(fixedContainerClass, '')} id="header-strip" style={stripStyle}>
