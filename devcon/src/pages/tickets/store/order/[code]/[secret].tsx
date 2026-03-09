@@ -332,7 +332,7 @@ export default function OrderConfirmationPage() {
                 {(() => {
                   const ticketName = encodeURIComponent(shareName || 'Anon')
                   const sharePageUrl = shareHash
-                    ? `/ticket/${ticketName}?h=${shareHash}&share`
+                    ? `/ticket/${ticketName}/${shareHash}?share`
                     : `/ticket/${ticketName}?share`
                   const needsUpload = uploading || (!!xUsername.replace(/^@/, '') && !shareHash)
 
@@ -347,6 +347,12 @@ export default function OrderConfirmationPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={css['share-btn']}
+                      onClick={e => {
+                        e.preventDefault()
+                        const cb = Date.now().toString(36)
+                        const sep = sharePageUrl.includes('?') ? '&' : '?'
+                        window.open(`${sharePageUrl}${sep}t=${cb}`, '_blank')
+                      }}
                     >
                       View sharing link
                     </a>

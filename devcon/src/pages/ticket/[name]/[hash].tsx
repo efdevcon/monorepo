@@ -3,7 +3,17 @@ import Head from 'next/head'
 import { TicketSharing } from 'components/domain/ticket-sharing'
 import type { GetServerSidePropsContext } from 'next'
 
-const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string; pageUrl: string; share: boolean }) => {
+const BUCKET = 'og-tickets'
+
+const Ticket = (props: {
+  params: { name: string }
+  imageUrl: string
+  xUsername: string
+  pageUrl: string
+  share: boolean
+  hash: string
+  avatarUrl: string | null
+}) => {
   if (!props.params) return null
 
   const title = `${props.params.name} — Devcon`
@@ -29,27 +39,45 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
         <meta name="twitter:image" key="twitter:image" content={props.imageUrl} />
         <meta name="theme-color" key="theme-color" content="#1a0a3e" />
       </Head>
-      <TicketSharing name={props.params.name} imageUrl={props.imageUrl} xUsername={props.xUsername} share={props.share} pageUrl={props.pageUrl} />
+      <TicketSharing
+        name={props.params.name}
+        imageUrl={props.imageUrl}
+        xUsername={props.xUsername}
+        share={props.share}
+        pageUrl={props.pageUrl}
+        hash={props.hash}
+        avatarUrl={props.avatarUrl}
+      />
     </>
   )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const name = (context.params?.name as string) || 'Anon'
-  const xUsername = typeof context.query.x === 'string' ? context.query.x : ''
+  const hash = context.params?.hash as string
   const share = context.query.share !== undefined
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}`
-  if (xUsername) {
-    imageUrl += `?x=${encodeURIComponent(xUsername)}`
-  }
+  // OG image — pass hash to edge function for avatar resolution
+  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}?h=${encodeURIComponent(hash)}`
+  const pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}`
 
-  let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
-  if (xUsername) {
-    pageUrl += `?x=${encodeURIComponent(xUsername)}`
+  // Check if avatar exists in Supabase for client-side display
+  let avatarUrl: string | null = null
+  const supabaseUrl = process.env.SUPABASE_URL
+  if (supabaseUrl) {
+    try {
+      const avatarCheck = await fetch(`${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`, {
+        method: 'HEAD',
+      })
+      if (avatarCheck.ok) {
+        avatarUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`
+      }
+    } catch {
+      // No avatar
+    }
   }
 
   return {
@@ -57,8 +85,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       params: { name },
       imageUrl,
       pageUrl,
-      xUsername,
+      xUsername: '',
       share,
+      hash,
+      avatarUrl,
     },
   }
 }
