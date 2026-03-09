@@ -416,6 +416,24 @@
   }
 }
 
+.card--loading {
+  pointer-events: none;
+
+  .card-footer {
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .card-disabled-message {
   font-size: 0.875rem;
   font-weight: 600;

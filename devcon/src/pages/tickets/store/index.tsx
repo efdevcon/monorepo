@@ -16,6 +16,7 @@ import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import SelfLogoPng from 'assets/images/self-logo.png'
 import { TICKETING } from 'config/ticketing'
+import { getTicketPurchaseInfo } from 'services/pretix'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
 
@@ -104,6 +105,7 @@ type StoreContentProps = {
   setSelfVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
   useSelfStaging: boolean
   setUseSelfStaging: (value: boolean) => void
+  initialTickets: TicketInfo[]
 }
 
 function StoreContent({
@@ -111,12 +113,14 @@ function StoreContent({
   setSelfVerificationOpen,
   useSelfStaging,
   setUseSelfStaging,
+  initialTickets,
 }: StoreContentProps) {
   const countdown = useCountdown()
 
-  const [tickets, setTickets] = useState<TicketInfo[]>([])
+  const hasInitialData = initialTickets.length > 0
+  const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!hasInitialData)
   const [error, setError] = useState<string | null>(null)
   const [cart, setCart] = useState<CartItem[]>([])
   const [earlyAccess, setEarlyAccess] = useState<string | null>(null)
@@ -253,6 +257,9 @@ function StoreContent({
     t.isAdmission && (forceSoldOut || t.available) && t.requireVoucher &&
     (discountTicketId ? t.id === discountTicketId : true)
   )
+
+  const displayVoucherTickets = voucherTickets
+  const isLoadingTickets = loading && !hasInitialData
 
   return (
     <>
@@ -422,7 +429,7 @@ function StoreContent({
               )}
             </section> */}
 
-            {voucherTickets.length > 0 && (
+            {displayVoucherTickets.length > 0 && (
               <section className={css['section']} id="discounts">
                 <div className={css['section-header']}>
                   <div className={css['section-title-row']}>
@@ -435,9 +442,9 @@ function StoreContent({
                 </div>
 
                 <div className={css['discounts-grid']}>
-                  {voucherTickets.map(ticket => (
+                  {displayVoucherTickets.map(ticket => (
                     <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${!ticket.available || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true)) ? css['card--disabled'] : ''}`}>
+                      <div className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${!isLoadingTickets && (!ticket.available || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true))) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
@@ -453,7 +460,17 @@ function StoreContent({
                               snacks all week.
                             </p>
                           </div>
-                          {!ticket.available ? (
+                          {isLoadingTickets ? (
+                            <div className={css['card-footer']}>
+                              <div className={css['pricing']}>
+                                <span className={css['price-current']}>${ticket.price}</span>
+                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                )}
+                              </div>
+                              <span className={css['card-disabled-message']}>Loading...</span>
+                            </div>
+                          ) : !ticket.available ? (
                             <div className={css['card-footer']}>
                               <div className={`${css['pricing']} ${css['pricing--faded']}`}>
                                 <span className={css['price-current']}>${ticket.price}</span>
@@ -653,7 +670,7 @@ function StoreContent({
   )
 }
 
-export default function TicketsStorePage() {
+export default function TicketsStorePage({ initialTickets = [] }: { initialTickets?: TicketInfo[] }) {
   const [selfVerificationOpen, setSelfVerificationOpen] = useState(false)
   const [useSelfStaging, setUseSelfStaging] = useState(TICKETING.self.staging)
 
@@ -664,13 +681,42 @@ export default function TicketsStorePage() {
         setSelfVerificationOpen={setSelfVerificationOpen}
         useSelfStaging={useSelfStaging}
         setUseSelfStaging={setUseSelfStaging}
+        initialTickets={initialTickets}
       />
     </Page>
   )
 }
 
+// Hardcoded fallback if Pretix is unreachable at build time
+const FALLBACK_TICKET: TicketInfo = {
+  id: 0,
+  name: 'India Early Bird (Limited Availability) 🇮🇳',
+  description: null,
+  price: '99.00',
+  originalPrice: '149.00',
+  currency: 'USD',
+  available: true,
+  availableCount: null,
+  isAdmission: true,
+  requireVoucher: true,
+  variations: [],
+  addons: [],
+}
+
 export async function getStaticProps() {
+  let initialTickets: TicketInfo[] = []
+
+  try {
+    const data = await getTicketPurchaseInfo()
+    initialTickets = TICKETING.overrides.soldOut
+      ? data.tickets.map(t => ({ ...t, available: false, availableCount: 0 }))
+      : data.tickets
+  } catch {
+    // Pretix unavailable at build time — use hardcoded fallback
+    initialTickets = [FALLBACK_TICKET]
+  }
+
   return {
-    props: {},
+    props: { initialTickets },
   }
 }
