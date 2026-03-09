@@ -139,18 +139,18 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
     const wrapper = wrapperRef.current
     if (!narrative || !wrapper) return
 
-    const getPinEnd = () => {
+    const getMeasurements = () => {
       const header = document.getElementById('header')
       const headerH = header ? header.getBoundingClientRect().height : 0
       const narrativeH = narrative.getBoundingClientRect().height
-      return { headerH, pinEnd: headerH + narrativeH }
+      return { headerH, narrativeH }
     }
 
     const pinTrigger = ScrollTrigger.create({
       trigger: narrative,
-      start: () => `top ${getPinEnd().headerH}`,
+      start: () => `top ${getMeasurements().headerH}`,
       endTrigger: wrapper,
-      end: () => `bottom ${getPinEnd().pinEnd}`,
+      end: () => `bottom ${getMeasurements().headerH + getMeasurements().narrativeH}`,
       pin: true,
       pinSpacing: false,
       invalidateOnRefresh: true,
@@ -158,9 +158,9 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
 
     const sectionTrigger = ScrollTrigger.create({
       trigger: narrative,
-      start: () => `top 40%`,
+      start: () => `top ${getMeasurements().headerH}`,
       endTrigger: wrapper,
-      end: () => `bottom ${getPinEnd().pinEnd}`,
+      end: () => `bottom ${getMeasurements().headerH + getMeasurements().narrativeH}`,
       invalidateOnRefresh: true,
       onUpdate: self => {
         const section = Math.min(Math.floor(self.progress * NARRATIVE_SECTIONS.length), NARRATIVE_SECTIONS.length - 1)
@@ -170,7 +170,6 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
       onEnterBack: () => updateSection(NARRATIVE_SECTIONS.length - 1),
     })
 
-    // Refresh after layout settles on client-side navigation
     const timeout = setTimeout(() => ScrollTrigger.refresh(), 200)
 
     return () => {
@@ -197,7 +196,6 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
             </div>
 
             <div className={css['narrative-right']}>
-              {/* All sections in same grid cell to establish max height */}
               <div className={css['narrative-sizer']}>
                 {NARRATIVE_SECTIONS.map((seg, i) => (
                   <div key={i} className={css['narrative-sizer-item']}>
@@ -205,7 +203,6 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
                   </div>
                 ))}
               </div>
-              {/* Animated content overlaid on top */}
               <div className={css['narrative-content']}>
                 {currentSection !== null && (
                   <NarrativeText

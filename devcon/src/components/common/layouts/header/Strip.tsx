@@ -1,8 +1,14 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
 
 export const Strip = () => {
+  const router = useRouter()
+  const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
+
+  if (isTickets) return null
+
   return (
     <div id="strip" className="bg-[#1a0d33] w-full">
       <div className="section py-2.5">
