@@ -1,14 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createHash } from 'crypto'
+import { getOrder } from 'services/pretix'
 
 const BUCKET = 'og-tickets'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { code, xUsername } = req.body
-  if (!code || typeof code !== 'string') {
-    return res.status(400).json({ error: 'Missing order code' })
+  const { code, secret, xUsername } = req.body
+  if (!code || typeof code !== 'string' || !secret || typeof secret !== 'string') {
+    return res.status(400).json({ error: 'Missing order code or secret' })
+  }
+
+  const cleanUsername = xUsername ? xUsername.replace(/^@/, '') : ''
+  if (!cleanUsername) {
+    return res.status(400).json({ error: 'Missing xUsername' })
+  }
+
+  // Validate order against Pretix
+  try {
+    const order = await getOrder(code)
+    if (order.secret !== secret) {
+      return res.status(403).json({ error: 'Invalid order secret' })
+    }
+  } catch {
+    return res.status(404).json({ error: 'Order not found' })
   }
 
   const supabaseUrl = process.env.SUPABASE_URL
@@ -19,13 +35,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const hash = createHash('sha256').update(code).digest('hex').slice(0, 16)
 
-  // Fetch avatar from unavatar.io (server-side, 5s timeout)
-  const cleanUsername = xUsername ? xUsername.replace(/^@/, '') : ''
-  if (!cleanUsername) {
-    return res.status(400).json({ error: 'Missing xUsername' })
-  }
-
   try {
+    // Fetch avatar from unavatar.io (server-side, 5s timeout)
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 5000)
     const avatarRes = await fetch(`https://unavatar.io/x/${cleanUsername}`, { signal: controller.signal })

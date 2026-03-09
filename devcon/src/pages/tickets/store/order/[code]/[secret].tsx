@@ -68,13 +68,13 @@ export default function OrderConfirmationPage() {
   // Auto-upload avatar when X username changes (debounced 800ms)
   // Invalidate hash immediately so the share button locks
   const uploadAvatar = useCallback(async (username: string) => {
-    if (!code || !username) return
+    if (!code || !secret || !username) return
     setUploading(true)
     try {
       const res = await fetch('/api/ticket/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, xUsername: username }),
+        body: JSON.stringify({ code, secret, xUsername: username }),
       })
       const data = await res.json()
       if (data.success && data.hash) {
@@ -85,7 +85,7 @@ export default function OrderConfirmationPage() {
       // Silent failure — share link still works, just without avatar
     }
     setUploading(false)
-  }, [code])
+  }, [code, secret])
 
   const handleXUsernameChange = useCallback((val: string) => {
     setXUsername(val)
