@@ -330,7 +330,7 @@ export default function OrderConfirmationPage() {
                   </div>
                 </div>
                 {(() => {
-                  const ticketName = encodeURIComponent(shareName || 'Anon')
+                  const ticketName = encodeURIComponent(shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon'))
                   const sharePageUrl = shareHash
                     ? `/ticket/${ticketName}/${shareHash}?share`
                     : `/ticket/${ticketName}?share`
