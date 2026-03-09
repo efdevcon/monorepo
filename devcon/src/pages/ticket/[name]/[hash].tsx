@@ -61,7 +61,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const baseUrl = `${proto}://${host}`
 
   // OG image — pass hash to edge function for avatar resolution
-  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}?h=${encodeURIComponent(hash)}`
+  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/?h=${encodeURIComponent(hash)}`
   const pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}`
 
   // Check if avatar exists in Supabase for client-side display

@@ -42,7 +42,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}`
+  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/`
   if (xUsername) {
     imageUrl += `?x=${encodeURIComponent(xUsername)}`
   }
