@@ -9,7 +9,6 @@ import devconLogo from './updated-dc8-logo.png'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
-import IconInstagram from 'assets/icons/instagram.svg'
 import { Copy } from 'lucide-react'
 import cn from 'classnames'
 import css from './ticket-sharing.module.scss'
@@ -190,7 +189,9 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
       <div className={css.actions}>
         {share ? (
           (() => {
-            const shareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '') || ''
+            const baseShareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '') || ''
+            const sep = baseShareUrl.includes('?') ? '&' : '?'
+            const shareUrl = `${baseShareUrl}${sep}t=${Date.now().toString(36)}`
             const shareText = `I'm attending Devcon India!`
             return (
               <div className={css.shareSection}>
@@ -215,14 +216,6 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
                     className={css.shareIcon}
                   >
                     <IconWarpcast />
-                  </a>
-                  <a
-                    href={`https://www.instagram.com/`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css.shareIcon}
-                  >
-                    <IconInstagram />
                   </a>
                   <button
                     className={css.shareIcon}
