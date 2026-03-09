@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import EthDiamond from './images/eth-diamond.svg'
 import css from './landing-page.module.scss'
 import cn from 'classnames'
-
-gsap.registerPlugin(ScrollTrigger)
 
 type TextSegment = {
   text: string
@@ -72,7 +68,7 @@ function NarrativeText({ segments, sectionKey }: { segments: TextSegment[]; sect
             <span
               style={{
                 display: 'inline-block',
-                marginRight: !entry.lineBreak && i < words.length - 1 ? '0.25em' : 0,
+                marginRight: i < words.length - 1 ? '0.25em' : 0,
                 overflow: 'hidden',
               }}
             >
@@ -90,7 +86,7 @@ function NarrativeText({ segments, sectionKey }: { segments: TextSegment[]; sect
                 {entry.word}
               </motion.span>
             </span>
-            {entry.lineBreak && <span style={{ flexBasis: '100%', height: 0 }} />}
+            {entry.lineBreak && <span className={css['narrative-break']} />}
           </React.Fragment>
         )
       })}
@@ -114,7 +110,7 @@ function PlainText({ segments }: { segments: TextSegment[] }) {
                 {word}
               </span>
             ))}
-          {s < segments.length - 1 && <span style={{ flexBasis: '100%', height: 0 }} />}
+          {s < segments.length - 1 && <span className={css['narrative-break']} />}
         </React.Fragment>
       ))}
     </div>
@@ -122,70 +118,27 @@ function PlainText({ segments }: { segments: TextSegment[] }) {
 }
 
 export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
-  const [currentSection, setCurrentSection] = useState<number | null>(0)
-  const narrativeRef = useRef<HTMLDivElement>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const currentSectionRef = useRef<number | null>(null)
-
-  const updateSection = useCallback((index: number) => {
-    if (currentSectionRef.current !== index) {
-      currentSectionRef.current = index
-      setCurrentSection(index)
-    }
-  }, [])
-
-  useEffect(() => {
-    const narrative = narrativeRef.current
-    const wrapper = wrapperRef.current
-    if (!narrative || !wrapper) return
-
-    const getMeasurements = () => {
-      const header = document.getElementById('header')
-      const headerH = header ? header.getBoundingClientRect().height : 0
-      const narrativeH = narrative.getBoundingClientRect().height
-      return { headerH, narrativeH }
-    }
-
-    const pinTrigger = ScrollTrigger.create({
-      trigger: narrative,
-      start: () => `top ${getMeasurements().headerH}`,
-      endTrigger: wrapper,
-      end: () => `bottom ${getMeasurements().headerH + getMeasurements().narrativeH}`,
-      pin: true,
-      pinSpacing: false,
-      invalidateOnRefresh: true,
-    })
-
-    const sectionTrigger = ScrollTrigger.create({
-      trigger: narrative,
-      start: () => `top ${getMeasurements().headerH}`,
-      endTrigger: wrapper,
-      end: () => `bottom ${getMeasurements().headerH + getMeasurements().narrativeH}`,
-      invalidateOnRefresh: true,
-      onUpdate: self => {
-        const section = Math.min(Math.floor(self.progress * NARRATIVE_SECTIONS.length), NARRATIVE_SECTIONS.length - 1)
-        updateSection(section)
-      },
-      onLeave: () => updateSection(NARRATIVE_SECTIONS.length - 1),
-      onEnterBack: () => updateSection(NARRATIVE_SECTIONS.length - 1),
-    })
-
-    const timeout = setTimeout(() => ScrollTrigger.refresh(), 200)
-
-    return () => {
-      clearTimeout(timeout)
-      pinTrigger.kill()
-      sectionTrigger.kill()
-    }
-  }, [updateSection])
+  const [currentSection, setCurrentSection] = useState(0)
 
   return (
-    <div ref={wrapperRef} className={css['narrative-faq-wrapper']}>
-      <div ref={narrativeRef} className={css.narrative}>
+    <>
+      <div className={css.narrative}>
         <div className="section">
           <div className={css['narrative-inner']}>
             <div className={css['narrative-left']}>
               <div className={css['narrative-icon']}>
+                <EthDiamond />
+              </div>
+              <h3 className={css['narrative-heading']}>
+                Building the infrastructure
+                <br />
+                {`for tomorrow\u2019s world`}
+              </h3>
+            </div>
+
+            {/* Mobile header: icon + heading shown above text */}
+            <div className={css['narrative-mobile-header']}>
+              <div className={css['narrative-mobile-icon']}>
                 <EthDiamond />
               </div>
               <h3 className={css['narrative-heading']}>
@@ -204,13 +157,11 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
                 ))}
               </div>
               <div className={css['narrative-content']}>
-                {currentSection !== null && (
-                  <NarrativeText
-                    key={currentSection}
-                    segments={NARRATIVE_SECTIONS[currentSection]}
-                    sectionKey={currentSection}
-                  />
-                )}
+                <NarrativeText
+                  key={currentSection}
+                  segments={NARRATIVE_SECTIONS[currentSection]}
+                  sectionKey={currentSection}
+                />
               </div>
             </div>
 
@@ -229,6 +180,6 @@ export function NarrativeBlock({ children }: { children?: React.ReactNode }) {
         </div>
       </div>
       {children}
-    </div>
+    </>
   )
 }

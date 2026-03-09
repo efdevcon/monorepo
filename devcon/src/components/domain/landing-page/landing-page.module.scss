@@ -788,23 +788,20 @@
   }
 }
 
-/* ─── Narrative + FAQ Wrapper ───────────────── */
-.narrative-faq-wrapper {
-  position: relative;
-  z-index: 5;
-}
-
 /* ─── Narrative Block ───────────────────────── */
 .narrative {
   position: relative;
-  z-index: 1;
   background: linear-gradient(180deg, #1a0d33 -65%, #45326c 88.89%);
   display: flex;
   align-items: center;
   padding: 24px 0;
 
   @media (max-width: $breakpoints-md) {
-    padding: 4px 0;
+    padding: 32px 0;
+  }
+
+  @media (max-width: $breakpoints-sm) {
+    padding: 28px 0;
   }
 }
 
@@ -816,8 +813,14 @@
   z-index: 1;
 
   @media (max-width: $breakpoints-md) {
+    gap: 32px;
+  }
+
+  @media (max-width: $breakpoints-sm) {
     flex-direction: column;
-    gap: 24px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
   }
 }
 
@@ -828,8 +831,30 @@
   align-items: center;
   min-width: 0;
 
-  @media (max-width: $breakpoints-md) {
+  @media (max-width: $breakpoints-sm) {
     display: none;
+  }
+}
+
+.narrative-mobile-header {
+  display: none;
+
+  @media (max-width: $breakpoints-sm) {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.narrative-mobile-icon {
+  flex-shrink: 0;
+  width: 37px;
+  height: 64px;
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -838,11 +863,7 @@
   width: 46px;
   height: 80px;
 
-  @media (max-width: $breakpoints-md) {
-    display: none;
-  }
-
-  img {
+  svg {
     width: 100%;
     height: 100%;
   }
@@ -855,6 +876,11 @@
   line-height: 1.2;
   letter-spacing: -0.5px;
   color: #f9f8fa;
+
+  @media (max-width: $breakpoints-sm) {
+    font-size: 20px;
+    line-height: 1.3;
+  }
 }
 
 .narrative-right {
@@ -866,8 +892,9 @@
   padding-right: 48px;
   position: relative;
 
-  @media (max-width: $breakpoints-md) {
+  @media (max-width: $breakpoints-sm) {
     padding-right: 0;
+    width: 100%;
   }
 }
 
@@ -890,8 +917,17 @@
   display: flex;
   align-items: center;
 
-  @media (max-width: $breakpoints-md) {
+  @media (max-width: $breakpoints-sm) {
     right: 0;
+  }
+}
+
+.narrative-break {
+  flex-basis: 100%;
+  height: 0;
+
+  @media (max-width: $breakpoints-sm) {
+    display: none;
   }
 }
 
@@ -908,8 +944,11 @@
   flex-direction: column;
   gap: 6px;
 
-  @media (max-width: $breakpoints-md) {
-    display: none;
+  @media (max-width: $breakpoints-sm) {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    gap: 6px;
   }
 }
 
@@ -922,10 +961,27 @@
   cursor: pointer;
   transition: all 0.3s ease;
   height: 10px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+  }
+
+  @media (max-width: $breakpoints-sm) {
+    height: 4px;
+    width: 10px;
+  }
 
   &.active {
     height: 20px;
     background: white;
+
+    @media (max-width: $breakpoints-sm) {
+      height: 4px;
+      width: 20px;
+    }
   }
 }
 
