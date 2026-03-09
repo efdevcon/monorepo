@@ -3,7 +3,19 @@ import Head from 'next/head'
 import { TicketSharing } from 'components/domain/ticket-sharing'
 import type { GetServerSidePropsContext } from 'next'
 
-const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string; pageUrl: string; share: boolean }) => {
+interface TicketPageProps {
+  params: { name: string }
+  imageUrl: string
+  xUsername: string
+  pageUrl: string
+  share: boolean
+  hash: string | null
+  avatarUrl: string | null
+}
+
+const BUCKET = 'og-tickets'
+
+const Ticket = (props: TicketPageProps) => {
   if (!props.params) return null
 
   const title = `${props.params.name} — Devcon`
@@ -30,7 +42,15 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
         {/* iOS status bar / notch / bottom area */}
         <meta name="theme-color" key="theme-color" content="#1a0a3e" />
       </Head>
-      <TicketSharing name={props.params.name} imageUrl={props.imageUrl} xUsername={props.xUsername} share={props.share} pageUrl={props.pageUrl} />
+      <TicketSharing
+        name={props.params.name}
+        imageUrl={props.imageUrl}
+        xUsername={props.xUsername}
+        share={props.share}
+        pageUrl={props.pageUrl}
+        hash={props.hash}
+        avatarUrl={props.avatarUrl}
+      />
     </>
   )
 }
@@ -38,18 +58,41 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const name = (context.params?.name as string) || 'Anon'
   const xUsername = typeof context.query.x === 'string' ? context.query.x : ''
+  const hash = typeof context.query.h === 'string' ? context.query.h : null
   const share = context.query.share !== undefined
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
+
+  // OG image URL — pass hash to edge function so it can resolve the avatar
   let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}`
-  if (xUsername) {
+  if (hash) {
+    imageUrl += `?h=${encodeURIComponent(hash)}`
+  } else if (xUsername) {
     imageUrl += `?x=${encodeURIComponent(xUsername)}`
   }
 
+  // Page URL (canonical, without share param)
   let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
-  if (xUsername) {
-    pageUrl += `?x=${encodeURIComponent(xUsername)}`
+  const queryParts: string[] = []
+  if (hash) queryParts.push(`h=${encodeURIComponent(hash)}`)
+  if (xUsername) queryParts.push(`x=${encodeURIComponent(xUsername)}`)
+  if (queryParts.length) pageUrl += `?${queryParts.join('&')}`
+
+  // Avatar URL for client-side display
+  let avatarUrl: string | null = null
+  const supabaseUrl = process.env.SUPABASE_URL
+  if (hash && supabaseUrl) {
+    try {
+      const avatarCheck = await fetch(`${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`, {
+        method: 'HEAD',
+      })
+      if (avatarCheck.ok) {
+        avatarUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`
+      }
+    } catch {
+      // No avatar — fall through
+    }
   }
 
   return {
@@ -59,6 +102,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       pageUrl,
       xUsername,
       share,
+      hash,
+      avatarUrl,
     },
   }
 }

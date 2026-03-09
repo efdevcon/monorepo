@@ -166,20 +166,35 @@ export default async function handler(req: NextRequest) {
   const segments = url.pathname.split('/').filter(Boolean)
   const rawName = decodeURIComponent(segments[segments.length - 1]) || 'Anon'
   const xUsername = url.searchParams.get('x') || ''
+  const hashParam = url.searchParams.get('h') || ''
 
   const displayName = rawName !== 'Anon' ? rawName : xUsername ? `@${xUsername}` : 'Anon'
   const siteUrl = `${url.protocol}//${url.host}`
 
   const canCache = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
-  const cacheKey = getCacheKey(rawName, xUsername)
-  console.log(`[og] name="${rawName}" x="${xUsername}" key="${cacheKey}" canCache=${!!canCache}`)
+  const cacheKey = hashParam
+    ? getCacheKey(rawName, `h_${hashParam}`)
+    : getCacheKey(rawName, xUsername)
+  console.log(`[og] name="${rawName}" x="${xUsername}" h="${hashParam}" key="${cacheKey}" canCache=${!!canCache}`)
 
-  // Only use avatar if cached in Supabase (uploaded by a real visitor).
-  // Never fall back to unavatar.io — it's rate-limited and a broken response
-  // would get baked into the cached OG image permanently.
+  // Look up avatar from Supabase:
+  // - ?h= param: hash-based avatar uploaded by /api/ticket/generate
+  // - ?x= param (legacy): avatar keyed by X username
   let avatarSrc: string | null = null
   let avatarLastModified = 0
-  if (xUsername && canCache) {
+  if (hashParam && canCache) {
+    const cachedAvatarUrl = publicUrl(`${hashParam}_avatar.png`)
+    try {
+      const check = await fetch(cachedAvatarUrl, { method: 'HEAD' })
+      if (check.ok) {
+        avatarSrc = cachedAvatarUrl
+        const lm = check.headers.get('last-modified')
+        if (lm) avatarLastModified = new Date(lm).getTime()
+      }
+    } catch {
+      // No cached avatar — render without it
+    }
+  } else if (xUsername && canCache) {
     const cachedAvatarUrl = publicUrl(`avatar--${sanitize(xUsername)}.png`)
     try {
       const check = await fetch(cachedAvatarUrl, { method: 'HEAD' })

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
@@ -22,9 +22,11 @@ interface TicketSharingProps {
   xUsername?: string
   share?: boolean
   pageUrl?: string
+  hash?: string | null
+  avatarUrl?: string | null
 }
 
-export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharingProps) {
+export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl }: TicketSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const { frontIndex, exitDirection, exitingIndex, isAnimating, handlePointerDown } = useCardSwipe(2)
 
@@ -91,49 +93,10 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
   const [copied, setCopied] = useState(false)
   const [avatarError, setAvatarError] = useState(false)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
-  const avatarSrc = xUsername ? `https://unavatar.io/x/${xUsername}` : null
-  const avatarUploaded = useRef(false)
-  const avatarRef = useRef<HTMLImageElement>(null)
 
-  const uploadAvatar = useCallback(
-    async (img: HTMLImageElement) => {
-      if (avatarUploaded.current || !xUsername) return
-      avatarUploaded.current = true
-
-      try {
-        // Fetch image directly to avoid CORS taint issues with canvas
-        const res = await fetch(img.src)
-        const blob = await res.blob()
-        const base64: string = await new Promise(resolve => {
-          const reader = new FileReader()
-          reader.onloadend = () => resolve(reader.result as string)
-          reader.readAsDataURL(blob)
-        })
-
-        await fetch('/api/ticket/avatar', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ xUsername, image: base64 }),
-        })
-      } catch (err) {
-        console.error('[ticket-avatar] upload failed:', err)
-      }
-    },
-    [name, xUsername]
-  )
-
-  // Use effect to handle both fresh loads and browser-cached images
-  useEffect(() => {
-    const img = avatarRef.current
-    if (img && img.complete && img.naturalWidth > 0) {
-      uploadAvatar(img)
-    }
-  }, [uploadAvatar])
-
-  const handleAvatarLoad = useCallback(
-    (e: React.SyntheticEvent<HTMLImageElement>) => uploadAvatar(e.currentTarget),
-    [uploadAvatar]
-  )
+  // Hash mode: use pre-generated avatar from Supabase
+  // Legacy mode: fetch from unavatar.io (display only, no upload)
+  const avatarSrc = hash ? (avatarUrl || null) : (xUsername ? `https://unavatar.io/x/${xUsername}` : null)
 
   const cardClass = (index: number) => {
     const isFront = index === frontIndex
@@ -187,11 +150,9 @@ export function TicketSharing({ name, xUsername, share, pageUrl }: TicketSharing
                 {avatarSrc && !avatarError && (
                   <div className={css.avatarCircle}>
                     <img
-                      ref={avatarRef}
                       src={avatarSrc}
                       alt={`${xUsername}'s avatar`}
                       className={css.avatarImage}
-                      onLoad={handleAvatarLoad}
                       onError={handleAvatarError}
                     />
                   </div>

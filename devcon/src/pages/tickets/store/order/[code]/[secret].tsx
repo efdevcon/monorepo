@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Download, CircleUser } from 'lucide-react'
+import { Download, CircleUser, Loader2 } from 'lucide-react'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -50,13 +50,60 @@ export default function OrderConfirmationPage() {
   const [error, setError] = useState<string | null>(null)
   const [xUsername, setXUsername] = useState('')
   const [shareName, setShareName] = useState('')
+  const [uploading, setUploading] = useState(false)
+  const [shareHash, setShareHash] = useState<string | null>(null)
+  const uploadTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const savedX = localStorage.getItem('devcon_x_username')
     if (savedX) setXUsername(savedX)
     const savedName = localStorage.getItem('devcon_share_name')
     if (savedName) setShareName(savedName)
-  }, [])
+    if (code) {
+      const savedHash = localStorage.getItem(`devcon_share_hash_${code}`)
+      if (savedHash) setShareHash(savedHash)
+    }
+  }, [code])
+
+  // Auto-upload avatar when X username changes (debounced 800ms)
+  // Invalidate hash immediately so the share button locks
+  const uploadAvatar = useCallback(async (username: string) => {
+    if (!code || !username) return
+    setUploading(true)
+    try {
+      const res = await fetch('/api/ticket/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, xUsername: username }),
+      })
+      const data = await res.json()
+      if (data.success && data.hash) {
+        setShareHash(data.hash)
+        localStorage.setItem(`devcon_share_hash_${code}`, data.hash)
+      }
+    } catch {
+      // Silent failure — share link still works, just without avatar
+    }
+    setUploading(false)
+  }, [code])
+
+  const handleXUsernameChange = useCallback((val: string) => {
+    setXUsername(val)
+    localStorage.setItem('devcon_x_username', val)
+
+    // Invalidate current hash since avatar changed
+    if (shareHash) {
+      setShareHash(null)
+      if (code) localStorage.removeItem(`devcon_share_hash_${code}`)
+    }
+
+    // Debounce avatar upload
+    if (uploadTimer.current) clearTimeout(uploadTimer.current)
+    const cleaned = val.replace(/^@/, '')
+    if (cleaned) {
+      uploadTimer.current = setTimeout(() => uploadAvatar(val), 800)
+    }
+  }, [code, shareHash, uploadAvatar])
 
   useEffect(() => {
     if (!code || !secret) return
@@ -278,22 +325,33 @@ export default function OrderConfirmationPage() {
                       type="text"
                       placeholder="Username (optional)"
                       value={xUsername}
-                      onChange={e => {
-                        const val = e.target.value
-                        setXUsername(val)
-                        localStorage.setItem('devcon_x_username', val)
-                      }}
+                      onChange={e => handleXUsernameChange(e.target.value)}
                     />
                   </div>
                 </div>
-                <a
-                  href={`/en/ticket/${encodeURIComponent(shareName || 'Anon')}?share${xUsername ? `&x=${encodeURIComponent(xUsername.replace(/^@/, ''))}` : ''}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={css['share-btn']}
-                >
-                  View sharing link
-                </a>
+                {(() => {
+                  const ticketName = encodeURIComponent(shareName || 'Anon')
+                  const sharePageUrl = shareHash
+                    ? `/ticket/${ticketName}?h=${shareHash}&share`
+                    : `/ticket/${ticketName}?share`
+                  const needsUpload = uploading || (!!xUsername.replace(/^@/, '') && !shareHash)
+
+                  return needsUpload ? (
+                    <button className={css['share-btn']} disabled>
+                      <Loader2 size={16} className={css['spin']} />
+                      Uploading avatar...
+                    </button>
+                  ) : (
+                    <a
+                      href={sharePageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={css['share-btn']}
+                    >
+                      View sharing link
+                    </a>
+                  )
+                })()}
               </div>
             </div>
           </div>
