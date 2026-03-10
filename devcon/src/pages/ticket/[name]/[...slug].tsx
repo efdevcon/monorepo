@@ -74,8 +74,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Cache buster is in the path so every share is a unique URL for Twitter/Warpcast
   // ogUrl matches the full path; pageUrl is the base for share buttons to append fresh cache busters
   const imageUrl = cacheBuster
-    ? `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}/${cacheBuster}`
-    : `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}`
+    ? `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}/${cacheBuster}.jpg`
+    : `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}/i.jpg`
   const ogUrl = cacheBuster
     ? `${baseUrl}/ticket/${encodedName}/${encodeURIComponent(hash)}/${cacheBuster}`
     : `${baseUrl}/ticket/${encodedName}/${encodeURIComponent(hash)}/`

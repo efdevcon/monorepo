@@ -78,7 +78,7 @@ export default function OrderConfirmationPage() {
 
         // Warm the OG image cache so Twitter gets an instant hit
         const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`).replace(/%20/g, '+')
-        fetch(`/api/ticket/${ticketName}/${data.hash}`).catch(() => {})
+        fetch(`/api/ticket/${ticketName}/${data.hash}/i.jpg`).catch(() => {})
       }
     } catch {
       // Silent failure — share link still works, just without avatar

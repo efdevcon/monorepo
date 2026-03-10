@@ -49,7 +49,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const encodedName = encodeNameForPath(name)
 
-  let imageUrl = `${baseUrl}/api/ticket/${encodedName}/`
+  let imageUrl = `${baseUrl}/api/ticket/${encodedName}/i.jpg`
   if (xUsername) imageUrl += `?x=${encodeURIComponent(xUsername)}`
 
   let pageUrl = `${baseUrl}/ticket/${encodedName}`
