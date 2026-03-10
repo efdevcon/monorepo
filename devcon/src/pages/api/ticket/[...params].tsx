@@ -165,9 +165,12 @@ function generateImage(displayName: string, avatarSrc: string | null, siteUrl: s
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const rawName = decodeURIComponent((req.query.name as string) || 'Anon')
+  // Route: /api/ticket/{name} or /api/ticket/{name}/{hash} or /api/ticket/{name}/{hash}/{cacheBuster}
+  const params = req.query.params as string[]
+  const rawName = decodeURIComponent(params[0] || 'Anon')
+  const hashParam = params[1] || (req.query.h as string) || ''
   const xUsername = (req.query.x as string) || ''
-  const hashParam = (req.query.h as string) || ''
+  // params[2] is the cache buster — ignored by the handler, only used to make the URL unique
 
   const displayName = rawName !== 'Anon' ? rawName : xUsername ? `@${xUsername}` : 'Anon'
   const proto = req.headers['x-forwarded-proto'] || 'http'
