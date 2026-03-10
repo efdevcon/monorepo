@@ -42,27 +42,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  const cacheBuster = typeof context.query.t === 'string' ? context.query.t : ''
-
-  // Image URL for OG tags
   let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/`
-  const imageParams = [
-    xUsername ? `x=${encodeURIComponent(xUsername)}` : '',
-    cacheBuster ? `t=${cacheBuster}` : '',
-  ].filter(Boolean).join('&')
-  if (imageParams) imageUrl += `?${imageParams}`
+  if (xUsername) imageUrl += `?x=${encodeURIComponent(xUsername)}`
 
-  // ogUrl includes cache-buster so Twitter/Warpcast treat each share as unique
-  // pageUrl is the base URL — share buttons add their own fresh t= on click
   let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
   if (xUsername) pageUrl += `?x=${encodeURIComponent(xUsername)}`
 
-  const ogParams = [
-    xUsername ? `x=${encodeURIComponent(xUsername)}` : '',
-    cacheBuster ? `t=${cacheBuster}` : '',
-  ].filter(Boolean).join('&')
-  let ogUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
-  if (ogParams) ogUrl += `?${ogParams}`
+  // Legacy route — no path-based cache busting, same URL for og:url
+  const ogUrl = pageUrl
 
   return {
     props: {

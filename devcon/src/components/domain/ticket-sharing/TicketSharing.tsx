@@ -189,9 +189,8 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
       <div className={css.actions}>
         {share ? (
           (() => {
-            const baseShareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '') || ''
-            const sep = baseShareUrl.includes('?') ? '&' : '?'
-            const freshUrl = () => `${baseShareUrl}${sep}t=${Date.now().toString(36)}`
+            const baseShareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '').replace(/\/$/, '') || ''
+            const freshUrl = () => `${baseShareUrl}/${Date.now().toString(36)}`
             const shareText = `I'm heading to Devcon India from 3–6 November in Mumbai!\n\nJoin me and the wider Ethereum community for a week of incredible talks, workshops, experiences and more!`
             return (
               <div className={css.shareSection}>

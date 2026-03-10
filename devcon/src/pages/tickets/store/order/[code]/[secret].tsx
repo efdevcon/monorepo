@@ -343,10 +343,6 @@ export default function OrderConfirmationPage() {
                 </div>
                 {(() => {
                   const ticketName = encodeURIComponent(shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon'))
-                  const sharePageUrl = shareHash
-                    ? `/ticket/${ticketName}/${shareHash}?share`
-                    : `/ticket/${ticketName}?share`
-
                   const hasUsername = !!xUsername.replace(/^@/, '')
                   const needsLoad = hasUsername && !shareHash && !uploading
 
@@ -361,15 +357,15 @@ export default function OrderConfirmationPage() {
                     </button>
                   ) : (
                     <a
-                      href={sharePageUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#"
                       className={css['share-btn']}
                       onClick={e => {
                         e.preventDefault()
                         const cb = Date.now().toString(36)
-                        const sep = sharePageUrl.includes('?') ? '&' : '?'
-                        window.open(`${sharePageUrl}${sep}t=${cb}`, '_blank')
+                        const base = shareHash
+                          ? `/ticket/${ticketName}/${shareHash}/${cb}?share`
+                          : `/ticket/${ticketName}?share`
+                        window.open(base, '_blank')
                       }}
                     >
                       View sharing link

@@ -55,17 +55,20 @@ const Ticket = (props: {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const name = (context.params?.name as string) || 'Anon'
-  const hash = context.params?.hash as string
+  const slug = context.params?.slug as string[]
+  const hash = slug[0]
+  const cacheBuster = slug[1] || ''
   const share = context.query.share !== undefined
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  // OG URLs include cache-buster so Twitter/Warpcast treat each share as unique
-  // pageUrl is the base URL without t= — share buttons add their own fresh t= on click
-  const cacheBuster = typeof context.query.t === 'string' ? context.query.t : ''
+  // Cache buster is in the path so every share is a unique URL for Twitter/Warpcast
+  // ogUrl matches the full path; pageUrl is the base for share buttons to append fresh cache busters
   const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/?h=${encodeURIComponent(hash)}${cacheBuster ? `&t=${cacheBuster}` : ''}`
-  const ogUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/${cacheBuster ? `?t=${cacheBuster}` : ''}`
+  const ogUrl = cacheBuster
+    ? `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/${cacheBuster}`
+    : `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/`
   const pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/`
 
   // Check if avatar exists in Supabase for client-side display
