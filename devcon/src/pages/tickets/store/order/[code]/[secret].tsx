@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
@@ -54,6 +54,7 @@ export default function OrderConfirmationPage() {
   const [shareName, setShareName] = useState('')
   const [uploading, setUploading] = useState(false)
   const [shareHash, setShareHash] = useState<string | null>(null)
+  const lastWarmedImageUrlRef = useRef('')
 
   const xUsernameKey = orderCode ? `devcon_x_username_${orderCode}` : ''
   const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
@@ -138,6 +139,22 @@ export default function OrderConfirmationPage() {
 
     fetchOrder()
   }, [orderCode, orderSecret])
+
+  // When user edits name manually, warm that exact {name, hash} OG variant in advance.
+  useEffect(() => {
+    if (!shareHash || uploading) return
+    const baseName = shareName.trim() || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')
+    const ticketName = encodeURIComponent(baseName).replace(/%20/g, '+')
+    const imageUrl = `/api/ticket/${ticketName}/${shareHash}/i.jpg`
+    if (imageUrl === lastWarmedImageUrlRef.current) return
+
+    const t = setTimeout(() => {
+      fetch(imageUrl).catch(() => {})
+      lastWarmedImageUrlRef.current = imageUrl
+    }, 250)
+
+    return () => clearTimeout(t)
+  }, [shareHash, shareName, xUsername, uploading])
 
   if (loading) {
     return (
