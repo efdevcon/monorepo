@@ -3,8 +3,19 @@
 import { ImageResponse } from '@vercel/og'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
 const BG = '#000000'
+
+// Pre-load background image as data URL — avoids self-referencing HTTP fetch that can deadlock
+let bgDataUrl: string
+try {
+  const bgBuffer = readFileSync(join(process.cwd(), 'public', 'ticket', 'og-new-hd.jpg'))
+  bgDataUrl = `data:image/jpeg;base64,${bgBuffer.toString('base64')}`
+} catch {
+  bgDataUrl = ''
+}
 const BUCKET = 'og-tickets'
 
 function sanitize(s: string): string {
@@ -49,7 +60,7 @@ async function pngToJpeg(pngBuffer: ArrayBuffer): Promise<Buffer> {
   return sharp(Buffer.from(pngBuffer)).jpeg({ quality: 85 }).toBuffer()
 }
 
-function generateImage(displayName: string, avatarSrc: string | null, siteUrl: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
+function generateImage(displayName: string, avatarSrc: string | null, bgSrc: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
   return new ImageResponse(
     (
       <div
@@ -63,7 +74,7 @@ function generateImage(displayName: string, avatarSrc: string | null, siteUrl: s
         }}
       >
         <img
-          src={`${siteUrl}/ticket/og-new-hd.jpg`}
+          src={bgSrc}
           width="100%"
           height="100%"
           style={{
@@ -240,7 +251,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     fetch('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf').then(res => res.arrayBuffer()),
   ])
 
-  const imageResponse = generateImage(displayName, avatarSrc, siteUrl, { bold: boldFont, medium: mediumFont })
+  const bg = bgDataUrl || `${siteUrl}/ticket/og-new-hd.jpg`
+  const imageResponse = generateImage(displayName, avatarSrc, bg, { bold: boldFont, medium: mediumFont })
   const pngBytes = await imageResponse.arrayBuffer()
   const jpegBuffer = await pngToJpeg(pngBytes)
 
