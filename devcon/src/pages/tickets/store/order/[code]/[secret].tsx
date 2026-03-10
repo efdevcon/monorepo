@@ -363,8 +363,8 @@ export default function OrderConfirmationPage() {
                         e.preventDefault()
                         const cb = Date.now().toString(36)
                         const base = shareHash
-                          ? `/ticket/${ticketName}/${shareHash}/${cb}?share`
-                          : `/ticket/${ticketName}?share`
+                          ? `/ticket/${ticketName}/${shareHash}/${cb}/?share`
+                          : `/ticket/${ticketName}/?share`
                         window.open(base, '_blank')
                       }}
                     >
