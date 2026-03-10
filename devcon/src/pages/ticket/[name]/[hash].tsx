@@ -60,8 +60,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  // OG image — pass hash to edge function for avatar resolution
-  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/?h=${encodeURIComponent(hash)}`
+  // OG image — pass hash for avatar resolution, forward cache-buster if present
+  const cacheBuster = context.query.t ? `&t=${context.query.t}` : ''
+  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/?h=${encodeURIComponent(hash)}${cacheBuster}`
   const pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/`
 
   // Check if avatar exists in Supabase for client-side display

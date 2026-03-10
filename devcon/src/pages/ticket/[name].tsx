@@ -42,9 +42,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
+  const cacheBuster = context.query.t ? `t=${context.query.t}` : ''
   let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/`
   if (xUsername) {
-    imageUrl += `?x=${encodeURIComponent(xUsername)}`
+    imageUrl += `?x=${encodeURIComponent(xUsername)}${cacheBuster ? `&${cacheBuster}` : ''}`
+  } else if (cacheBuster) {
+    imageUrl += `?${cacheBuster}`
   }
 
   let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`

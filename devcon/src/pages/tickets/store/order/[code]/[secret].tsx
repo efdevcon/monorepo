@@ -70,15 +70,16 @@ export default function OrderConfirmationPage() {
         localStorage.setItem(`devcon_share_hash_${code}`, data.hash)
 
         // Prefill name with X display name if available and name is empty
-        if (data.displayName) {
-          setShareName(prev => {
-            if (!prev) {
-              localStorage.setItem('devcon_share_name', data.displayName)
-              return data.displayName
-            }
-            return prev
-          })
+        const currentName = localStorage.getItem('devcon_share_name') || ''
+        const resolvedName = currentName || data.displayName || ''
+        if (data.displayName && !currentName) {
+          setShareName(data.displayName)
+          localStorage.setItem('devcon_share_name', data.displayName)
         }
+
+        // Warm the OG image cache so Twitter gets an instant hit
+        const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`)
+        fetch(`/api/ticket/${ticketName}/?h=${data.hash}`).catch(() => {})
       }
     } catch {
       // Silent failure — share link still works, just without avatar
