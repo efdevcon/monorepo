@@ -63,7 +63,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(502).json({ error: 'Failed to upload avatar' })
     }
 
-    return res.status(200).json({ success: true, hash })
+    // Try to resolve X display name (best-effort, no auth needed)
+    let displayName: string | null = null
+    try {
+      const metaRes = await fetch(`https://api.microlink.io/?url=https://x.com/${cleanUsername}`, {
+        signal: AbortSignal.timeout(5000),
+      })
+      const meta = await metaRes.json()
+      const title = meta?.data?.title || ''
+      // Format: "Display Name (@username) on X"
+      const match = title.match(/^(.+?)\s*\(@/)
+      if (match) displayName = match[1].trim()
+    } catch {
+      // Not critical — fall back to username
+    }
+
+    return res.status(200).json({ success: true, hash, displayName })
   } catch (err) {
     console.error('[ticket/generate] error:', err)
     return res.status(500).json({ error: 'Generation failed' })

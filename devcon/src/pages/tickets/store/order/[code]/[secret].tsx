@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
@@ -52,18 +52,6 @@ export default function OrderConfirmationPage() {
   const [shareName, setShareName] = useState('')
   const [uploading, setUploading] = useState(false)
   const [shareHash, setShareHash] = useState<string | null>(null)
-  const uploadTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  useEffect(() => {
-    const savedX = localStorage.getItem('devcon_x_username')
-    if (savedX) setXUsername(savedX)
-    const savedName = localStorage.getItem('devcon_share_name')
-    if (savedName) setShareName(savedName)
-    if (code) {
-      const savedHash = localStorage.getItem(`devcon_share_hash_${code}`)
-      if (savedHash) setShareHash(savedHash)
-    }
-  }, [code])
 
   // Auto-upload avatar when X username changes (debounced 800ms)
   // Invalidate hash immediately so the share button locks
@@ -80,12 +68,33 @@ export default function OrderConfirmationPage() {
       if (data.success && data.hash) {
         setShareHash(data.hash)
         localStorage.setItem(`devcon_share_hash_${code}`, data.hash)
+
+        // Prefill name with X display name if available and name is empty
+        if (data.displayName) {
+          setShareName(prev => {
+            if (!prev) {
+              localStorage.setItem('devcon_share_name', data.displayName)
+              return data.displayName
+            }
+            return prev
+          })
+        }
       }
     } catch {
       // Silent failure — share link still works, just without avatar
     }
     setUploading(false)
   }, [code, secret])
+
+  useEffect(() => {
+    const savedX = localStorage.getItem('devcon_x_username') || ''
+    const savedName = localStorage.getItem('devcon_share_name') || ''
+    const savedHash = code ? localStorage.getItem(`devcon_share_hash_${code}`) : null
+
+    if (savedX) setXUsername(savedX)
+    if (savedName) setShareName(savedName)
+    if (savedHash) setShareHash(savedHash)
+  }, [code])
 
   const handleXUsernameChange = useCallback((val: string) => {
     setXUsername(val)
@@ -96,14 +105,9 @@ export default function OrderConfirmationPage() {
       setShareHash(null)
       if (code) localStorage.removeItem(`devcon_share_hash_${code}`)
     }
+  }, [code, shareHash])
 
-    // Debounce avatar upload
-    if (uploadTimer.current) clearTimeout(uploadTimer.current)
-    const cleaned = val.replace(/^@/, '')
-    if (cleaned) {
-      uploadTimer.current = setTimeout(() => uploadAvatar(val), 800)
-    }
-  }, [code, shareHash, uploadAvatar])
+
 
   useEffect(() => {
     if (!code || !secret) return
@@ -305,19 +309,6 @@ export default function OrderConfirmationPage() {
                     <p className={css['share-subtitle']}>Add name and/or X username to personalize</p>
                   </div>
                   <div className={css['share-input-wrap']}>
-                    <CircleUser size={20} />
-                    <input
-                      type="text"
-                      placeholder="Name (optional)"
-                      value={shareName}
-                      onChange={e => {
-                        const val = e.target.value
-                        setShareName(val)
-                        localStorage.setItem('devcon_share_name', val)
-                      }}
-                    />
-                  </div>
-                  <div className={css['share-input-wrap']}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
@@ -328,18 +319,45 @@ export default function OrderConfirmationPage() {
                       onChange={e => handleXUsernameChange(e.target.value)}
                     />
                   </div>
+                  {uploading && (
+                    <div className={css['share-input-wrap']}>
+                      <Loader2 size={20} className={css['spin']} />
+                      <span style={{ fontSize: '0.875rem', color: '#888' }}>Fetching profile...</span>
+                    </div>
+                  )}
+                  {!uploading && shareName && (
+                    <div className={css['share-input-wrap']}>
+                      <CircleUser size={20} />
+                      <input
+                        type="text"
+                        placeholder="Name (optional)"
+                        value={shareName}
+                        onChange={e => {
+                          const val = e.target.value
+                          setShareName(val)
+                          localStorage.setItem('devcon_share_name', val)
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
                 {(() => {
                   const ticketName = encodeURIComponent(shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon'))
                   const sharePageUrl = shareHash
                     ? `/ticket/${ticketName}/${shareHash}?share`
                     : `/ticket/${ticketName}?share`
-                  const needsUpload = uploading || (!!xUsername.replace(/^@/, '') && !shareHash)
 
-                  return needsUpload ? (
+                  const hasUsername = !!xUsername.replace(/^@/, '')
+                  const needsLoad = hasUsername && !shareHash && !uploading
+
+                  return uploading ? (
                     <button className={css['share-btn']} disabled>
                       <Loader2 size={16} className={css['spin']} />
-                      Uploading avatar...
+                      Fetching profile...
+                    </button>
+                  ) : needsLoad ? (
+                    <button className={css['share-btn']} onClick={() => uploadAvatar(xUsername)}>
+                      Load profile
                     </button>
                   ) : (
                     <a
