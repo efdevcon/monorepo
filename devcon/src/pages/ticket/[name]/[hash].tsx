@@ -8,6 +8,7 @@ const BUCKET = 'og-tickets'
 const Ticket = (props: {
   params: { name: string }
   imageUrl: string
+  ogUrl: string
   xUsername: string
   pageUrl: string
   share: boolean
@@ -26,7 +27,7 @@ const Ticket = (props: {
         <meta name="description" key="description" content={description} />
         <meta name="image" key="image" content={props.imageUrl} />
         <meta property="og:type" key="og:type" content="website" />
-        <meta property="og:url" key="og:url" content={props.pageUrl} />
+        <meta property="og:url" key="og:url" content={props.ogUrl} />
         <meta property="og:title" key="og:title" content={title} />
         <meta property="og:description" key="og:description" content={description} />
         <meta property="og:image" key="og:image" content={props.imageUrl} />
@@ -60,9 +61,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  // OG image — pass hash for avatar resolution, forward cache-buster if present
-  const cacheBuster = context.query.t ? `&t=${context.query.t}` : ''
-  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/?h=${encodeURIComponent(hash)}${cacheBuster}`
+  // OG URLs include cache-buster so Twitter/Warpcast treat each share as unique
+  // pageUrl is the base URL without t= — share buttons add their own fresh t= on click
+  const cacheBuster = typeof context.query.t === 'string' ? context.query.t : ''
+  const imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/?h=${encodeURIComponent(hash)}${cacheBuster ? `&t=${cacheBuster}` : ''}`
+  const ogUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/${cacheBuster ? `?t=${cacheBuster}` : ''}`
   const pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/`
 
   // Check if avatar exists in Supabase for client-side display
@@ -85,6 +88,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     props: {
       params: { name },
       imageUrl,
+      ogUrl,
       pageUrl,
       xUsername: '',
       share,

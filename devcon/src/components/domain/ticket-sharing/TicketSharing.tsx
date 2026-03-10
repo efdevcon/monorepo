@@ -191,24 +191,29 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
           (() => {
             const baseShareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '') || ''
             const sep = baseShareUrl.includes('?') ? '&' : '?'
-            const shareUrl = `${baseShareUrl}${sep}t=${Date.now().toString(36)}`
+            const freshUrl = () => `${baseShareUrl}${sep}t=${Date.now().toString(36)}`
             const shareText = `I'm heading to Devcon India from 3–6 November in Mumbai!\n\nJoin me and the wider Ethereum community for a week of incredible talks, workshops, experiences and more!`
             return (
               <div className={css.shareSection}>
                 <span className={css.shareLabel}>Share</span>
                 <div className={css.shareIcons}>
                   <a
-                    href={`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault()
+                      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(freshUrl())}`, '_blank')
+                    }}
                     className={css.shareIcon}
                   >
                     <IconTwitter />
                   </a>
                   <a
-                    href={`https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    onClick={e => {
+                      e.preventDefault()
+                      const url = freshUrl()
+                      window.open(`https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(url)}`, '_blank')
+                    }}
                     className={css.shareIcon}
                   >
                     <IconWarpcast />
@@ -216,7 +221,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
                   <button
                     className={css.shareIcon}
                     onClick={() => {
-                      navigator.clipboard.writeText(shareUrl)
+                      navigator.clipboard.writeText(freshUrl())
                       setCopied(true)
                       setTimeout(() => setCopied(false), 2000)
                     }}

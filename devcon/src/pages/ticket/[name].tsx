@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { TicketSharing } from 'components/domain/ticket-sharing'
 import type { GetServerSidePropsContext } from 'next'
 
-const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: string; pageUrl: string; share: boolean }) => {
+const Ticket = (props: { params: { name: string }; imageUrl: string; ogUrl: string; xUsername: string; pageUrl: string; share: boolean }) => {
   if (!props.params) return null
 
   const title = `${props.params.name} — Devcon`
@@ -16,7 +16,7 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; xUsername: 
         <meta name="description" key="description" content={description} />
         <meta name="image" key="image" content={props.imageUrl} />
         <meta property="og:type" key="og:type" content="website" />
-        <meta property="og:url" key="og:url" content={props.pageUrl} />
+        <meta property="og:url" key="og:url" content={props.ogUrl} />
         <meta property="og:title" key="og:title" content={title} />
         <meta property="og:description" key="og:description" content={description} />
         <meta property="og:image" key="og:image" content={props.imageUrl} />
@@ -42,23 +42,33 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  const cacheBuster = context.query.t ? `t=${context.query.t}` : ''
-  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/`
-  if (xUsername) {
-    imageUrl += `?x=${encodeURIComponent(xUsername)}${cacheBuster ? `&${cacheBuster}` : ''}`
-  } else if (cacheBuster) {
-    imageUrl += `?${cacheBuster}`
-  }
+  const cacheBuster = typeof context.query.t === 'string' ? context.query.t : ''
 
+  // Image URL for OG tags
+  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/`
+  const imageParams = [
+    xUsername ? `x=${encodeURIComponent(xUsername)}` : '',
+    cacheBuster ? `t=${cacheBuster}` : '',
+  ].filter(Boolean).join('&')
+  if (imageParams) imageUrl += `?${imageParams}`
+
+  // ogUrl includes cache-buster so Twitter/Warpcast treat each share as unique
+  // pageUrl is the base URL — share buttons add their own fresh t= on click
   let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
-  if (xUsername) {
-    pageUrl += `?x=${encodeURIComponent(xUsername)}`
-  }
+  if (xUsername) pageUrl += `?x=${encodeURIComponent(xUsername)}`
+
+  const ogParams = [
+    xUsername ? `x=${encodeURIComponent(xUsername)}` : '',
+    cacheBuster ? `t=${cacheBuster}` : '',
+  ].filter(Boolean).join('&')
+  let ogUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
+  if (ogParams) ogUrl += `?${ogParams}`
 
   return {
     props: {
       params: { name },
       imageUrl,
+      ogUrl,
       pageUrl,
       xUsername,
       share,

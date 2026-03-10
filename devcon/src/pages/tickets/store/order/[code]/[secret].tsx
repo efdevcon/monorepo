@@ -53,8 +53,7 @@ export default function OrderConfirmationPage() {
   const [uploading, setUploading] = useState(false)
   const [shareHash, setShareHash] = useState<string | null>(null)
 
-  // Auto-upload avatar when X username changes (debounced 800ms)
-  // Invalidate hash immediately so the share button locks
+  // Upload avatar + fetch display name from X profile
   const uploadAvatar = useCallback(async (username: string) => {
     if (!code || !secret || !username) return
     setUploading(true)
@@ -109,8 +108,6 @@ export default function OrderConfirmationPage() {
       localStorage.removeItem('devcon_share_name')
     }
   }, [code, shareHash])
-
-
 
   useEffect(() => {
     if (!code || !secret) return

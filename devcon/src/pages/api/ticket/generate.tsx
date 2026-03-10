@@ -36,14 +36,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const hash = createHash('sha256').update(code).digest('hex').slice(0, 16)
 
   try {
-    // Fetch avatar from unavatar.io (server-side, 5s timeout)
-    const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 5000)
-    const avatarRes = await fetch(`https://unavatar.io/x/${cleanUsername}`, { signal: controller.signal })
-    clearTimeout(timeout)
+    // Fetch avatar and display name in parallel
+    const avatarPromise = fetch(`https://unavatar.io/x/${cleanUsername}`, {
+      signal: AbortSignal.timeout(5000),
+    })
+    const displayNamePromise = fetch(`https://api.microlink.io/?url=https://x.com/${cleanUsername}`, {
+      signal: AbortSignal.timeout(5000),
+    }).then(async r => {
+      const meta = await r.json()
+      const title = meta?.data?.title || ''
+      const match = title.match(/^(.+?)\s*\(@/)
+      return match ? match[1].trim() : null
+    }).catch(() => null)
+
+    const [avatarRes, displayName] = await Promise.all([avatarPromise, displayNamePromise])
 
     if (!avatarRes.ok) {
-      return res.status(502).json({ error: 'Could not fetch avatar from X' })
+      return res.status(200).json({ success: true, hash, displayName })
     }
 
     const avatarBuffer = Buffer.from(await avatarRes.arrayBuffer())
@@ -60,22 +69,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     if (!uploadRes.ok) {
-      return res.status(502).json({ error: 'Failed to upload avatar' })
-    }
-
-    // Try to resolve X display name (best-effort, no auth needed)
-    let displayName: string | null = null
-    try {
-      const metaRes = await fetch(`https://api.microlink.io/?url=https://x.com/${cleanUsername}`, {
-        signal: AbortSignal.timeout(5000),
-      })
-      const meta = await metaRes.json()
-      const title = meta?.data?.title || ''
-      // Format: "Display Name (@username) on X"
-      const match = title.match(/^(.+?)\s*\(@/)
-      if (match) displayName = match[1].trim()
-    } catch {
-      // Not critical — fall back to username
+      // Avatar upload failed but we still have the hash and display name
+      return res.status(200).json({ success: true, hash, displayName })
     }
 
     return res.status(200).json({ success: true, hash, displayName })
