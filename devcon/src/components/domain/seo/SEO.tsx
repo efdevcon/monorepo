@@ -88,7 +88,6 @@ export function SEO(props: SEOProps) {
             </span>
           ))}
 
-        <meta name="twitter:site" key="twitter:site" content="@efdevcon" />
         <meta name="twitter:creator" key="twitter:creator" content="@efdevcon" />
         <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" key="twitter:title" content={title} />

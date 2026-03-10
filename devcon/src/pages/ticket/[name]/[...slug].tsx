@@ -36,7 +36,6 @@ const Ticket = (props: {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" key="twitter:site" content="@DevconOrg" />
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         <meta name="twitter:image" key="twitter:image" content={props.stableImageUrl} />

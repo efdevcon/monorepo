@@ -44,6 +44,8 @@ interface OrderData {
 export default function OrderConfirmationPage() {
   const router = useRouter()
   const { code, secret } = router.query
+  const orderCode = typeof code === 'string' ? code : ''
+  const orderSecret = typeof secret === 'string' ? secret : ''
 
   const [order, setOrder] = useState<OrderData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -53,27 +55,31 @@ export default function OrderConfirmationPage() {
   const [uploading, setUploading] = useState(false)
   const [shareHash, setShareHash] = useState<string | null>(null)
 
+  const xUsernameKey = orderCode ? `devcon_x_username_${orderCode}` : ''
+  const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
+  const shareHashKey = orderCode ? `devcon_share_hash_${orderCode}` : ''
+
   // Upload avatar + fetch display name from X profile
   const uploadAvatar = useCallback(async (username: string) => {
-    if (!code || !secret || !username) return
+    if (!orderCode || !orderSecret || !username) return
     setUploading(true)
     try {
       const res = await fetch('/api/ticket/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, secret, xUsername: username }),
+        body: JSON.stringify({ code: orderCode, secret: orderSecret, xUsername: username }),
       })
       const data = await res.json()
       if (data.success && data.hash) {
         setShareHash(data.hash)
-        localStorage.setItem(`devcon_share_hash_${code}`, data.hash)
+        localStorage.setItem(shareHashKey, data.hash)
 
         // Prefill name with X display name if available and name is empty
-        const currentName = localStorage.getItem('devcon_share_name') || ''
+        const currentName = localStorage.getItem(shareNameKey) || ''
         const resolvedName = currentName || data.displayName || ''
         if (data.displayName && !currentName) {
           setShareName(data.displayName)
-          localStorage.setItem('devcon_share_name', data.displayName)
+          localStorage.setItem(shareNameKey, data.displayName)
         }
 
         // Warm the OG image cache so Twitter gets an instant hit
@@ -84,37 +90,40 @@ export default function OrderConfirmationPage() {
       // Silent failure — share link still works, just without avatar
     }
     setUploading(false)
-  }, [code, secret])
+  }, [orderCode, orderSecret, shareHashKey, shareNameKey])
 
   useEffect(() => {
-    const savedX = localStorage.getItem('devcon_x_username') || ''
-    const savedName = localStorage.getItem('devcon_share_name') || ''
-    const savedHash = code ? localStorage.getItem(`devcon_share_hash_${code}`) : null
+    if (!orderCode) return
+    const savedX = localStorage.getItem(xUsernameKey) || localStorage.getItem('devcon_x_username') || ''
+    const savedName = localStorage.getItem(shareNameKey) || localStorage.getItem('devcon_share_name') || ''
+    const savedHash = localStorage.getItem(shareHashKey)
 
     if (savedX) setXUsername(savedX)
     if (savedName) setShareName(savedName)
     if (savedHash) setShareHash(savedHash)
-  }, [code])
+  }, [orderCode, shareHashKey, shareNameKey, xUsernameKey])
 
   const handleXUsernameChange = useCallback((val: string) => {
     setXUsername(val)
-    localStorage.setItem('devcon_x_username', val)
+    if (orderCode) localStorage.setItem(xUsernameKey, val)
 
     // Invalidate current hash and name since profile changed
     if (shareHash) {
       setShareHash(null)
       setShareName('')
-      if (code) localStorage.removeItem(`devcon_share_hash_${code}`)
-      localStorage.removeItem('devcon_share_name')
+      if (orderCode) {
+        localStorage.removeItem(shareHashKey)
+        localStorage.removeItem(shareNameKey)
+      }
     }
-  }, [code, shareHash])
+  }, [orderCode, shareHash, shareHashKey, shareNameKey, xUsernameKey])
 
   useEffect(() => {
-    if (!code || !secret) return
+    if (!orderCode || !orderSecret) return
 
     async function fetchOrder() {
       try {
-        const res = await fetch(`/api/x402/tickets/order/${code}?secret=${secret}`)
+        const res = await fetch(`/api/x402/tickets/order/${orderCode}?secret=${orderSecret}`)
         const data = await res.json()
         if (data.success) {
           setOrder(data.order)
@@ -128,7 +137,7 @@ export default function OrderConfirmationPage() {
     }
 
     fetchOrder()
-  }, [code, secret])
+  }, [orderCode, orderSecret])
 
   if (loading) {
     return (
@@ -335,7 +344,7 @@ export default function OrderConfirmationPage() {
                         onChange={e => {
                           const val = e.target.value
                           setShareName(val)
-                          localStorage.setItem('devcon_share_name', val)
+                          if (orderCode) localStorage.setItem(shareNameKey, val)
                         }}
                       />
                     </div>
