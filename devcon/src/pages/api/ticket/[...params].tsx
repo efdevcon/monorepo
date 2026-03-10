@@ -16,6 +16,24 @@ try {
 } catch {
   bgDataUrl = ''
 }
+
+function bufferToArrayBuffer(buffer: Buffer): ArrayBuffer {
+  return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength) as ArrayBuffer
+}
+
+// Pre-load fonts from local files for Netlify reliability (no external font fetches at request time).
+let cachedFonts: { bold: ArrayBuffer; medium: ArrayBuffer }
+try {
+  const boldFont = readFileSync(join(process.cwd(), 'public', 'fonts', 'Poppins-800.ttf'))
+  const mediumFont = readFileSync(join(process.cwd(), 'public', 'fonts', 'Poppins-500.ttf'))
+  cachedFonts = {
+    bold: bufferToArrayBuffer(boldFont),
+    medium: bufferToArrayBuffer(mediumFont),
+  }
+} catch (error) {
+  throw new Error(`[og] Missing local Poppins font files in public/fonts: ${(error as Error).message}`)
+}
+
 const BUCKET = 'og-tickets'
 
 function sanitize(s: string): string {
@@ -38,6 +56,14 @@ function publicUrl(key: string): string {
   return `${process.env.SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${key}`
 }
 
+function responseCacheControl(versionParam?: string | string[]): string {
+  if (typeof versionParam === 'string' && versionParam.length > 0) {
+    // Versioned image URLs are immutable and can be cached aggressively.
+    return 'public, max-age=31536000, s-maxage=31536000, immutable'
+  }
+  return 'public, s-maxage=3600, stale-while-revalidate=86400'
+}
+
 async function getCachedImage(key: string): Promise<ArrayBuffer | null> {
   const res = await fetch(publicUrl(key))
   if (!res.ok) return null
@@ -57,7 +83,14 @@ async function uploadImage(key: string, imageBytes: Buffer): Promise<void> {
 }
 
 async function pngToJpeg(pngBuffer: ArrayBuffer): Promise<Buffer> {
-  return sharp(Buffer.from(pngBuffer)).jpeg({ quality: 85 }).toBuffer()
+  return sharp(Buffer.from(pngBuffer))
+    .jpeg({
+      quality: 80,
+      progressive: true, // Better for web loading
+      optimiseCoding: true, // Additional compression
+      mozjpeg: true, // Better compression algorithm
+    })
+    .toBuffer()
 }
 
 function generateImage(displayName: string, avatarSrc: string | null, bgSrc: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
@@ -202,7 +235,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (hashParam && canCache) {
     const cachedAvatarUrl = publicUrl(`${hashParam}_avatar.png`)
     try {
-      const check = await fetch(cachedAvatarUrl, { method: 'HEAD' })
+      const check = await fetch(cachedAvatarUrl, { method: 'HEAD', signal: AbortSignal.timeout(1500) })
       if (check.ok) {
         avatarSrc = cachedAvatarUrl
         const lm = check.headers.get('last-modified')
@@ -214,7 +247,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } else if (xUsername && canCache) {
     const cachedAvatarUrl = publicUrl(`avatar--${sanitize(xUsername)}.png`)
     try {
-      const check = await fetch(cachedAvatarUrl, { method: 'HEAD' })
+      const check = await fetch(cachedAvatarUrl, { method: 'HEAD', signal: AbortSignal.timeout(1500) })
       if (check.ok) {
         avatarSrc = cachedAvatarUrl
         const lm = check.headers.get('last-modified')
@@ -235,7 +268,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const cached = await getCachedImage(cacheKey)
           if (cached) {
             res.setHeader('Content-Type', 'image/jpeg')
-            res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+            res.setHeader('Cache-Control', responseCacheControl(req.query.v))
             return res.send(Buffer.from(cached))
           }
         }
@@ -246,10 +279,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Generate image
-  const [boldFont, mediumFont] = await Promise.all([
-    fetch('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDD4V1s.ttf').then(res => res.arrayBuffer()),
-    fetch('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf').then(res => res.arrayBuffer()),
-  ])
+  const { bold: boldFont, medium: mediumFont } = cachedFonts
 
   const bg = bgDataUrl || `${siteUrl}/ticket/og-new-hd.jpg`
   const imageResponse = generateImage(displayName, avatarSrc, bg, { bold: boldFont, medium: mediumFont })
@@ -262,6 +292,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   res.setHeader('Content-Type', 'image/jpeg')
-  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  res.setHeader('Cache-Control', responseCacheControl(req.query.v))
   return res.send(jpegBuffer)
 }

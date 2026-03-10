@@ -8,6 +8,7 @@ const BUCKET = 'og-tickets'
 const Ticket = (props: {
   params: { name: string }
   imageUrl: string
+  stableImageUrl: string
   ogUrl: string
   xUsername: string
   pageUrl: string
@@ -25,19 +26,21 @@ const Ticket = (props: {
       <Head>
         <title>{title}</title>
         <meta name="description" key="description" content={description} />
-        <meta name="image" key="image" content={props.imageUrl} />
+        <meta name="image" key="image" content={props.stableImageUrl} />
         <meta property="og:type" key="og:type" content="website" />
         <meta property="og:url" key="og:url" content={props.ogUrl} />
         <meta property="og:title" key="og:title" content={title} />
         <meta property="og:description" key="og:description" content={description} />
-        <meta property="og:image" key="og:image" content={props.imageUrl} />
+        <meta property="og:image" key="og:image" content={props.stableImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" key="twitter:site" content="@DevconOrg" />
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
-        <meta name="twitter:image" key="twitter:image" content={props.imageUrl} />
+        <meta name="twitter:image" key="twitter:image" content={props.stableImageUrl} />
+        <meta name="twitter:image:alt" key="twitter:image:alt" content={`${props.params.name} - Devcon India Ticket`} />
         <meta name="theme-color" key="theme-color" content="#1a0a3e" />
       </Head>
       <TicketSharing
@@ -82,25 +85,37 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const pageUrl = `${baseUrl}/ticket/${encodedName}/${encodeURIComponent(hash)}/`
 
   // Check if avatar exists in Supabase for client-side display
+  // and derive a deterministic image version for social crawlers.
   let avatarUrl: string | null = null
+  let imageVersion = '0'
   const supabaseUrl = process.env.SUPABASE_URL
   if (supabaseUrl) {
     try {
       const avatarCheck = await fetch(`${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`, {
         method: 'HEAD',
+        signal: AbortSignal.timeout(1500),
       })
       if (avatarCheck.ok) {
         avatarUrl = `${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`
+        const lastModified = avatarCheck.headers.get('last-modified')
+        const avatarUpdatedAt = lastModified ? new Date(lastModified).getTime() : NaN
+        if (Number.isFinite(avatarUpdatedAt) && avatarUpdatedAt > 0) {
+          imageVersion = Math.floor(avatarUpdatedAt / 1000).toString()
+        }
       }
     } catch {
       // No avatar
     }
   }
 
+  // Stable per-ticket URL for cache hits, versioned by avatar freshness for crawler invalidation.
+  const stableImageUrl = `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}/i.jpg?v=${imageVersion}`
+
   return {
     props: {
       params: { name },
       imageUrl,
+      stableImageUrl,
       ogUrl,
       pageUrl,
       xUsername: '',

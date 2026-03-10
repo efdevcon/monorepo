@@ -34,6 +34,8 @@ import {
 } from 'services/x402'
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
+import type { PretixOrder } from 'types/pretix'
+import { createHash } from 'crypto'
 import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes, RelayerGasError } from 'services/relayer'
 import {
   X402PaymentRequirements,
@@ -497,6 +499,50 @@ export async function purchaseHandler(
   }
 }
 
+/**
+ * Pre-generate ticket images to ensure instant loading on social media
+ */
+function resolveBaseUrlFromRequest(req: NextApiRequest): string {
+  const protoHeader = req.headers['x-forwarded-proto']
+  const hostHeader = req.headers['x-forwarded-host'] || req.headers.host
+  const proto = Array.isArray(protoHeader) ? protoHeader[0] : protoHeader || 'https'
+  const host = Array.isArray(hostHeader) ? hostHeader[0] : hostHeader
+  return host ? `${proto}://${host}` : ''
+}
+
+async function preGenerateTicketImages(pretixOrder: PretixOrder, baseUrl: string): Promise<void> {
+  if (!baseUrl) return
+
+  // Must match /api/ticket/generate.tsx hash derivation so we warm the real share URL.
+  const shareHash = createHash('sha256').update(pretixOrder.code).digest('hex').slice(0, 16)
+
+  const ticketNames = Array.from(
+    new Set(
+      (pretixOrder.positions || [])
+        .map(position => position.attendee_name?.trim())
+        .filter((name): name is string => !!name)
+    )
+  )
+
+  await Promise.allSettled(
+    ticketNames.map(async attendeeName => {
+      const encodedName = encodeURIComponent(attendeeName).replace(/%20/g, '+')
+      const imageUrl = `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(shareHash)}/i.jpg`
+      const response = await fetch(imageUrl, {
+        method: 'GET',
+        signal: AbortSignal.timeout(3000),
+        headers: {
+          'User-Agent': 'Devcon-Ticket-PreGenerator/1.0',
+        },
+      })
+
+      if (!response.ok) {
+        console.warn(`[purchase] Failed to pre-generate ticket image for ${attendeeName}: ${response.status}`)
+      }
+    })
+  )
+}
+
 /** Default Next.js handler — requires intendedPayer (frontend / ?params= flow) */
 export default async function handler(
   req: NextApiRequest,
@@ -926,7 +972,16 @@ async function handlePaymentSignatureRetry(
     })
   }
 
-  // 15. Finalize: replace placeholder with real Pretix order code
+  // Pre-generate ticket images for instant loading
+  try {
+    const baseUrl = process.env.URL || process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL || resolveBaseUrlFromRequest(_req)
+    await preGenerateTicketImages(pretixOrder, baseUrl)
+  } catch (error) {
+    // Don't fail purchase if image generation fails - just log it
+    console.warn(`[purchase] Failed to pre-generate ticket images: ${(error as Error).message}`)
+  }
+
+  // Finalize: replace placeholder with real Pretix order code
   await finalizeCompletedOrder(paymentReference, pretixOrder.code)
 
   // 15. Build PAYMENT-RESPONSE header (x402 v2 spec)
