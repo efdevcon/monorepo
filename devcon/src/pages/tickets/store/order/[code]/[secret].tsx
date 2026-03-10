@@ -334,7 +334,7 @@ export default function OrderConfirmationPage() {
                       <span style={{ fontSize: '0.875rem', color: '#888' }}>Fetching profile...</span>
                     </div>
                   )}
-                  {!uploading && shareName && (
+                  {!uploading && (shareHash || shareName) && (
                     <div className={css['share-input-wrap']}>
                       <CircleUser size={20} />
                       <input
