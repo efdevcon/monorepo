@@ -9,7 +9,8 @@ import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
 import themes from '../themes.module.scss'
 import HeroBackground from './updated-hero.png'
-import EarlyBirdTicket from 'assets/images/dc-8/tickets/early-bird-hd.png'
+import EarlyBirdTicket from './early-bird-india.png'
+import EarlyBirdMobile from './early-bird-mobile.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 
@@ -28,7 +29,7 @@ const OVERVIEW_CARDS = [
     subtitle: 'GENERAL ADMISSION',
     price: null,
     priceLabel: 'Coming soon',
-    status: 'OPENS 06/04',
+    status: 'TBD',
   },
   {
     number: '02',
@@ -44,28 +45,28 @@ const OVERVIEW_CARDS = [
     subtitle: 'REVIEW-BASED DISCOUNTS',
     price: null,
     priceLabel: 'Coming soon',
-    status: 'OPENS 06/04',
+    status: 'TBD',
   },
 ]
 
 const WAVES = [
-  { name: 'Global Early Bird', price: '$299', date: 'Opens 6 Apr' },
-  { name: 'Waves 1-4', price: 'TBD', date: 'TBD' },
-  { name: 'Waves 5-8', price: 'TBD', date: 'TBD' },
-  { name: 'Waves 9-10', price: 'TBD', date: 'TBD' },
+  { name: 'Global Early Bird', price: '$299', date: 'TBD' },
+  // { name: 'Waves 1-4', price: 'TBD', date: 'TBD' },
+  // { name: 'Waves 5-8', price: 'TBD', date: 'TBD' },
+  // { name: 'Waves 9-10', price: 'TBD', date: 'TBD' },
 ]
 
 const COMMUNITY_ROWS = [
-  { name: 'Local Early Bird', detail: 'VIA SELF', price: '$99', date: 'Ends 15 Mar', live: true, bold: true },
-  { name: 'Locals', detail: null, price: '$149', date: 'Opens 6 Apr', live: false, bold: false },
-  { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
-  { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
-  { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
+  { name: 'Indian Early Bird', detail: 'VIA SELF', price: '$99', date: 'Ends 15 Mar', live: true, bold: true },
+  { name: 'India Residents', detail: 'VIA SELF', price: '$149', date: 'TBD', live: false, bold: false },
+  // { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
+  // { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
+  // { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
 ]
 
 const APPLICATION_ROWS = [
-  { name: 'Student Discount', price: '$25', date: 'Opens 6 Apr' },
-  { name: 'Builder Discount', price: 'from $299', date: 'Opens 4 May' },
+  { name: 'Students (Limited)', price: '$25', date: 'TBD' },
+  { name: 'Builders', price: 'from $299', date: 'TBD' },
 ]
 
 const FAQ_ITEMS = [
@@ -75,7 +76,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'When will General ticket sales start?',
-    a: 'General admission waves will be announced. Global Early Bird launches 6 April.',
+    a: 'General admission waves will be announced. Global Early Bird launches later this year.',
   },
   {
     q: 'Will there be opportunities to obtain discounted tickets?',
@@ -143,7 +144,7 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>Local Early Bird tickets on sale!</h2>
+                <h2 className={css['heading-2']}>Indian Early Bird tickets on sale!</h2>
                 <p className={css['body-lg']}>
                   Join thousands of builders, creators, researchers, designers and thinkers 3&ndash;6 November 2026 in
                   Mumbai for the world&apos;s biggest Ethereum conference.
@@ -184,7 +185,16 @@ export default function TicketsPage() {
             </div>
 
             <div className={css['ticket-image-wrapper']}>
-              <Image src={EarlyBirdTicket} alt="Local Early Bird Ticket" className={css['ticket-image']} />
+              <Image
+                src={EarlyBirdTicket}
+                alt="Indian Early Bird Ticket"
+                className={cn(css['ticket-image'], css['ticket-image-desktop'])}
+              />
+              <Image
+                src={EarlyBirdMobile}
+                alt="Indian Early Bird Ticket"
+                className={cn(css['ticket-image'], css['ticket-image-mobile'])}
+              />
             </div>
           </section>
 
@@ -231,7 +241,7 @@ export default function TicketsPage() {
                 <h2 className={css['heading-2']}>Sale waves</h2>
                 <p className={css['body-lg']}>
                   General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early
-                  Bird launch on <strong>6 April</strong>.
+                  Bird launch later this year.
                 </p>
                 <p className={css['body']}>
                   Sale waves are <strong>limited time windows</strong> to purchase a general admission Devcon India
@@ -275,7 +285,7 @@ export default function TicketsPage() {
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
                 <span className={css['ticket-type-title']}>Sale waves</span>
-                <span className={css['ticket-type-status']}>OPENS 6 APRIL</span>
+                <span className={css['ticket-type-status']}>COMING SOON!</span>
               </div>
               <div className={css['ticket-type-rows']}>
                 {WAVES.map(row => (
@@ -364,7 +374,7 @@ export default function TicketsPage() {
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
                 <span className={css['ticket-type-title']}>Applications</span>
-                <span className={css['ticket-type-status']}>OPENS 6 APRIL</span>
+                <span className={css['ticket-type-status']}>COMING SOON!</span>
               </div>
               <div className={css['ticket-type-rows']}>
                 {APPLICATION_ROWS.map(row => (

@@ -14,7 +14,7 @@
 
   [class*='background-image'] {
     // mask-image: linear-gradient(to bottom, black calc(100% - 60px), transparent 100%) !important;
-    // -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 60px), transparent 100%) !important;
+    // -webkit-mask-image: linear-gradi#eaa221ent(to bottom, black calc(100% - 60px), transparent 100%) !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
     width: 100% !important;
@@ -303,7 +303,7 @@
 
   svg {
     flex-shrink: 0;
-    color: #eaa221;
+    color: rgba(214, 86, 0, 1);
   }
 }
 
@@ -331,6 +331,20 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+.ticket-image-desktop {
+  @media (max-width: $breakpoints-md) {
+    display: none;
+  }
+}
+
+.ticket-image-mobile {
+  display: none;
+
+  @media (max-width: $breakpoints-md) {
+    display: block;
+  }
 }
 
 /* ─── Overview Section ────────────────────────────────────── */
@@ -455,6 +469,14 @@
   color: #594d73;
   line-height: 1.33;
   text-align: right;
+}
+
+/* ─── Anchor scroll offset ────────────────────────────────── */
+
+.overview-section,
+.two-col-section,
+.faq-section {
+  scroll-margin-top: 100px;
 }
 
 /* ─── Two Column Section (Sale Waves, Community, Applications) */
@@ -621,7 +643,7 @@
   .row-price,
   .row-date {
     color: #160b2b;
-    font-weight: 500;
+    font-weight: 700;
   }
 }
 

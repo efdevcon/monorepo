@@ -441,6 +441,30 @@
   }
 }
 
+.subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f9f8fa;
+  background: #7235ed;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  margin-top: 16px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
 .items {
   > * {
     // flex-shrink: 0;
