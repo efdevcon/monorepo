@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
+import Markdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
 import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag } from 'lucide-react'
@@ -1537,7 +1538,22 @@ function CheckoutContent() {
                               <div className={css['swag-image']} />
                               <div className={css['swag-info']}>
                                 <h4>{item.name}</h4>
-                                {item.description && <p className={css['addon-description']}>{item.description}</p>}
+                                {item.description && (
+                                  <div className={css['addon-description']}>
+                                    <Markdown
+                                      components={{
+                                        p: ({ children }) => <p style={{ margin: 0 }}>{children}</p>,
+                                        a: ({ href, children }) => (
+                                          <a href={href} target="_blank" rel="noopener noreferrer">
+                                            {children}
+                                          </a>
+                                        ),
+                                      }}
+                                    >
+                                      {item.description}
+                                    </Markdown>
+                                  </div>
+                                )}
                               </div>
                               <div className={css['swag-right']}>
                                 {hasVariations ? (
@@ -1783,7 +1799,18 @@ function CheckoutContent() {
                           </label>
                           {q.helpText && (
                             <span className={css['field-help']}>
-                              {q.helpText}
+                              <Markdown
+                                components={{
+                                  p: ({ children }) => <>{children}</>,
+                                  a: ({ href, children }) => (
+                                    <a href={href} target="_blank" rel="noopener noreferrer">
+                                      {children}
+                                    </a>
+                                  ),
+                                }}
+                              >
+                                {q.helpText}
+                              </Markdown>
                             </span>
                           )}
 

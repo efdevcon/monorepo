@@ -412,6 +412,15 @@ $checkout-two-col: 1200px;
   color: rgba(0, 0, 0, 0.55);
   margin: 0;
   line-height: 1.4;
+
+  a {
+    color: #6c3bdb;
+    text-decoration: underline;
+
+    &:hover {
+      color: #5029a6;
+    }
+  }
 }
 
 /* ─── Form Fields ───────────────────────────────────────── */
@@ -447,6 +456,26 @@ $checkout-two-col: 1200px;
   color: #594d73;
   line-height: 1.43;
   margin-top: -0.25rem;
+
+  a {
+    color: #6c3bdb;
+    text-decoration: underline;
+
+    &:hover {
+      color: #5029a6;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  code {
+    background: #f0ecf5;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
 }
 
 .field-error {
