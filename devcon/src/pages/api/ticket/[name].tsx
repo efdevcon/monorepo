@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from '@vercel/og'
-import type { NextRequest } from 'next/server'
-
-export const runtime = 'edge'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import sharp from 'sharp'
 
 const BG = '#000000'
 const BUCKET = 'og-tickets'
@@ -13,7 +12,7 @@ function sanitize(s: string): string {
 }
 
 function getCacheKey(name: string, xUsername: string): string {
-  return `${sanitize(name)}--${sanitize(xUsername || '_')}.png`
+  return `${sanitize(name)}--${sanitize(xUsername || '_')}.jpg`
 }
 
 function authHeaders(): Record<string, string> {
@@ -34,16 +33,20 @@ async function getCachedImage(key: string): Promise<ArrayBuffer | null> {
   return res.arrayBuffer()
 }
 
-async function uploadImage(key: string, imageBytes: ArrayBuffer): Promise<void> {
+async function uploadImage(key: string, imageBytes: Buffer): Promise<void> {
   await fetch(objectUrl(key), {
     method: 'POST',
     headers: {
       ...authHeaders(),
-      'Content-Type': 'image/png',
+      'Content-Type': 'image/jpeg',
       'x-upsert': 'true',
     },
-    body: imageBytes,
+    body: new Uint8Array(imageBytes),
   })
+}
+
+async function pngToJpeg(pngBuffer: ArrayBuffer): Promise<Buffer> {
+  return sharp(Buffer.from(pngBuffer)).jpeg({ quality: 85 }).toBuffer()
 }
 
 function generateImage(displayName: string, avatarSrc: string | null, siteUrl: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
@@ -60,7 +63,7 @@ function generateImage(displayName: string, avatarSrc: string | null, siteUrl: s
         }}
       >
         <img
-          src={`${siteUrl}/ticket/og-new-hd.png`}
+          src={`${siteUrl}/ticket/og-new-hd.jpg`}
           width="100%"
           height="100%"
           style={{
@@ -161,15 +164,15 @@ function generateImage(displayName: string, avatarSrc: string | null, siteUrl: s
   )
 }
 
-export default async function handler(req: NextRequest) {
-  const url = new URL(req.url)
-  const segments = url.pathname.split('/').filter(Boolean)
-  const rawName = decodeURIComponent(segments[segments.length - 1]) || 'Anon'
-  const xUsername = url.searchParams.get('x') || ''
-  const hashParam = url.searchParams.get('h') || ''
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const rawName = decodeURIComponent((req.query.name as string) || 'Anon')
+  const xUsername = (req.query.x as string) || ''
+  const hashParam = (req.query.h as string) || ''
 
   const displayName = rawName !== 'Anon' ? rawName : xUsername ? `@${xUsername}` : 'Anon'
-  const siteUrl = `${url.protocol}//${url.host}`
+  const proto = req.headers['x-forwarded-proto'] || 'http'
+  const host = req.headers.host || 'localhost:3000'
+  const siteUrl = `${proto}://${host}`
 
   const canCache = process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
   const cacheKey = hashParam
@@ -217,12 +220,9 @@ export default async function handler(req: NextRequest) {
         if (!avatarLastModified || ogLastModified >= avatarLastModified) {
           const cached = await getCachedImage(cacheKey)
           if (cached) {
-            return new Response(cached, {
-              headers: {
-                'Content-Type': 'image/png',
-                'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
-              },
-            })
+            res.setHeader('Content-Type', 'image/jpeg')
+            res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+            return res.send(Buffer.from(cached))
           }
         }
       }
@@ -238,21 +238,15 @@ export default async function handler(req: NextRequest) {
   ])
 
   const imageResponse = generateImage(displayName, avatarSrc, siteUrl, { bold: boldFont, medium: mediumFont })
+  const pngBytes = await imageResponse.arrayBuffer()
+  const jpegBuffer = await pngToJpeg(pngBytes)
 
   // Upload to cache (avatarless OG images get busted when avatar is uploaded)
   if (canCache) {
-    const imageBytes = await imageResponse.arrayBuffer()
-
-    // Fire-and-forget upload
-    uploadImage(cacheKey, imageBytes.slice(0)).catch(() => {})
-
-    return new Response(imageBytes, {
-      headers: {
-        'Content-Type': 'image/png',
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
-      },
-    })
+    uploadImage(cacheKey, jpegBuffer).catch(() => {})
   }
 
-  return imageResponse
+  res.setHeader('Content-Type', 'image/jpeg')
+  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  return res.send(jpegBuffer)
 }
