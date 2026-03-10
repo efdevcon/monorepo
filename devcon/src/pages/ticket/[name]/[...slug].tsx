@@ -53,8 +53,14 @@ const Ticket = (props: {
   )
 }
 
+// Encode name for URL path — use + for spaces so social crawlers (Farcaster) don't truncate at %20
+function encodeNameForPath(name: string): string {
+  return encodeURIComponent(name).replace(/%20/g, '+')
+}
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const name = (context.params?.name as string) || 'Anon'
+  // Next.js auto-decodes params; also convert + back to space for URLs built with encodeNameForPath
+  const name = ((context.params?.name as string) || 'Anon').replace(/\+/g, ' ')
   const slug = context.params?.slug as string[]
   const hash = slug[0]
   const cacheBuster = slug[1] || ''
@@ -63,15 +69,17 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
+  const encodedName = encodeNameForPath(name)
+
   // Cache buster is in the path so every share is a unique URL for Twitter/Warpcast
   // ogUrl matches the full path; pageUrl is the base for share buttons to append fresh cache busters
   const imageUrl = cacheBuster
-    ? `${baseUrl}/api/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/${cacheBuster}`
-    : `${baseUrl}/api/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}`
+    ? `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}/${cacheBuster}`
+    : `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(hash)}`
   const ogUrl = cacheBuster
-    ? `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/${cacheBuster}`
-    : `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/`
-  const pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}/${encodeURIComponent(hash)}/`
+    ? `${baseUrl}/ticket/${encodedName}/${encodeURIComponent(hash)}/${cacheBuster}`
+    : `${baseUrl}/ticket/${encodedName}/${encodeURIComponent(hash)}/`
+  const pageUrl = `${baseUrl}/ticket/${encodedName}/${encodeURIComponent(hash)}/`
 
   // Check if avatar exists in Supabase for client-side display
   let avatarUrl: string | null = null

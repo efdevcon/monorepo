@@ -77,7 +77,7 @@ export default function OrderConfirmationPage() {
         }
 
         // Warm the OG image cache so Twitter gets an instant hit
-        const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`)
+        const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`).replace(/%20/g, '+')
         fetch(`/api/ticket/${ticketName}/${data.hash}`).catch(() => {})
       }
     } catch {
@@ -342,7 +342,7 @@ export default function OrderConfirmationPage() {
                   )}
                 </div>
                 {(() => {
-                  const ticketName = encodeURIComponent(shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon'))
+                  const ticketName = encodeURIComponent(shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')).replace(/%20/g, '+')
                   const hasUsername = !!xUsername.replace(/^@/, '')
                   const needsLoad = hasUsername && !shareHash && !uploading
 

@@ -167,7 +167,7 @@ function generateImage(displayName: string, avatarSrc: string | null, siteUrl: s
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Route: /api/ticket/{name} or /api/ticket/{name}/{hash} or /api/ticket/{name}/{hash}/{cacheBuster}
   const params = req.query.params as string[]
-  const rawName = decodeURIComponent(params[0] || 'Anon')
+  const rawName = decodeURIComponent((params[0] || 'Anon').replace(/\+/g, ' '))
   const hashParam = params[1] || (req.query.h as string) || ''
   const xUsername = (req.query.x as string) || ''
   // params[2] is the cache buster — ignored by the handler, only used to make the URL unique

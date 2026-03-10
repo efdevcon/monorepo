@@ -34,18 +34,25 @@ const Ticket = (props: { params: { name: string }; imageUrl: string; ogUrl: stri
   )
 }
 
+// Encode name for URL path — use + for spaces so social crawlers (Farcaster) don't truncate at %20
+function encodeNameForPath(name: string): string {
+  return encodeURIComponent(name).replace(/%20/g, '+')
+}
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const name = (context.params?.name as string) || 'Anon'
+  const name = ((context.params?.name as string) || 'Anon').replace(/\+/g, ' ')
   const xUsername = typeof context.query.x === 'string' ? context.query.x : ''
   const share = context.query.share !== undefined
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
 
-  let imageUrl = `${baseUrl}/api/ticket/${encodeURIComponent(name)}/`
+  const encodedName = encodeNameForPath(name)
+
+  let imageUrl = `${baseUrl}/api/ticket/${encodedName}/`
   if (xUsername) imageUrl += `?x=${encodeURIComponent(xUsername)}`
 
-  let pageUrl = `${baseUrl}/ticket/${encodeURIComponent(name)}`
+  let pageUrl = `${baseUrl}/ticket/${encodedName}`
   if (xUsername) pageUrl += `?x=${encodeURIComponent(xUsername)}`
 
   // Legacy route — no path-based cache busting, same URL for og:url
