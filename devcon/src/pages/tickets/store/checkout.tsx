@@ -372,6 +372,34 @@ function CheckoutContent() {
     }
   }, [])
 
+  // ── Validate cached answers against current Pretix questions ──
+  // Drops any answer whose option ID no longer exists for that question
+  useEffect(() => {
+    if (questions.length === 0) return
+    setAnswers(prev => {
+      const validated: Record<number, string | string[]> = {}
+      for (const [qIdStr, value] of Object.entries(prev)) {
+        const qId = Number(qIdStr)
+        const question = questions.find(q => q.id === qId)
+        if (!question) continue // question no longer exists, drop it
+        if (question.type === 'C' || question.type === 'M') {
+          const validOptionIds = new Set(question.options.map(o => String(o.id)))
+          if (Array.isArray(value)) {
+            const filtered = value.filter(v => validOptionIds.has(String(v)))
+            if (filtered.length > 0) validated[qId] = filtered
+          } else if (validOptionIds.has(String(value))) {
+            validated[qId] = value
+          }
+          // else: stale option ID, drop it
+        } else {
+          // Free text, boolean, etc. — always valid
+          validated[qId] = value
+        }
+      }
+      return validated
+    })
+  }, [questions])
+
   // ── Save form data to localStorage when it changes ──
   useEffect(() => {
     if (typeof window === 'undefined' || !mounted) return
