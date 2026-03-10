@@ -190,7 +190,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
         {share ? (
           (() => {
             const baseShareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '').replace(/\/$/, '') || ''
-            const freshUrl = () => `${baseShareUrl}/${Date.now().toString(36)}/`
+            const shareUrl = `${baseShareUrl}/`
             const shareText = `I'm heading to Devcon India from 3–6 November in Mumbai!\n\nJoin me and the wider Ethereum community for a week of incredible talks, workshops, experiences and more!`
             return (
               <div className={css.shareSection}>
@@ -200,7 +200,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
                     href="#"
                     onClick={e => {
                       e.preventDefault()
-                      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(freshUrl())}`, '_blank')
+                      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank')
                     }}
                     className={css.shareIcon}
                   >
@@ -210,8 +210,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
                     href="#"
                     onClick={e => {
                       e.preventDefault()
-                      const url = freshUrl()
-                      window.open(`https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(url)}`, '_blank')
+                      window.open(`https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`, '_blank')
                     }}
                     className={css.shareIcon}
                   >
@@ -220,7 +219,7 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
                   <button
                     className={css.shareIcon}
                     onClick={() => {
-                      navigator.clipboard.writeText(freshUrl())
+                      navigator.clipboard.writeText(shareUrl)
                       setCopied(true)
                       setTimeout(() => setCopied(false), 2000)
                     }}
