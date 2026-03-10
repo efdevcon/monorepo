@@ -52,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const [avatarRes, displayName] = await Promise.all([avatarPromise, displayNamePromise])
 
     if (!avatarRes.ok) {
-      return res.status(200).json({ success: true, hash, displayName })
+      return res.status(200).json({ success: true, hash, displayName, version: '' })
     }
 
     const avatarBuffer = Buffer.from(await avatarRes.arrayBuffer())
@@ -70,10 +70,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (!uploadRes.ok) {
       // Avatar upload failed but we still have the hash and display name
-      return res.status(200).json({ success: true, hash, displayName })
+      return res.status(200).json({ success: true, hash, displayName, version: '' })
     }
 
-    return res.status(200).json({ success: true, hash, displayName })
+    return res.status(200).json({ success: true, hash, displayName, version: Math.floor(Date.now() / 1000).toString() })
   } catch (err) {
     console.error('[ticket/generate] error:', err)
     return res.status(500).json({ error: 'Generation failed' })

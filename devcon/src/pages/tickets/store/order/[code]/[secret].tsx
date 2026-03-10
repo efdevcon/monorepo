@@ -54,11 +54,13 @@ export default function OrderConfirmationPage() {
   const [shareName, setShareName] = useState('')
   const [uploading, setUploading] = useState(false)
   const [shareHash, setShareHash] = useState<string | null>(null)
+  const [shareVersion, setShareVersion] = useState<string>('')
   const lastWarmedImageUrlRef = useRef('')
 
   const xUsernameKey = orderCode ? `devcon_x_username_${orderCode}` : ''
   const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
   const shareHashKey = orderCode ? `devcon_share_hash_${orderCode}` : ''
+  const shareVersionKey = orderCode ? `devcon_share_version_${orderCode}` : ''
 
   // Upload avatar + fetch display name from X profile
   const uploadAvatar = useCallback(async (username: string) => {
@@ -74,6 +76,9 @@ export default function OrderConfirmationPage() {
       if (data.success && data.hash) {
         setShareHash(data.hash)
         localStorage.setItem(shareHashKey, data.hash)
+        const version = typeof data.version === 'string' && data.version ? data.version : Math.floor(Date.now() / 1000).toString()
+        setShareVersion(version)
+        localStorage.setItem(shareVersionKey, version)
 
         // Prefill name with X display name if available and name is empty
         const currentName = localStorage.getItem(shareNameKey) || ''
@@ -85,24 +90,26 @@ export default function OrderConfirmationPage() {
 
         // Warm the OG image cache so Twitter gets an instant hit
         const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`).replace(/%20/g, '+')
-        fetch(`/api/ticket/${ticketName}/${data.hash}/i.jpg`).catch(() => {})
+        fetch(`/api/ticket/${ticketName}/${data.hash}/i.jpg?v=${encodeURIComponent(version)}`).catch(() => {})
       }
     } catch {
       // Silent failure — share link still works, just without avatar
     }
     setUploading(false)
-  }, [orderCode, orderSecret, shareHashKey, shareNameKey])
+  }, [orderCode, orderSecret, shareHashKey, shareNameKey, shareVersionKey])
 
   useEffect(() => {
     if (!orderCode) return
     const savedX = localStorage.getItem(xUsernameKey) || localStorage.getItem('devcon_x_username') || ''
     const savedName = localStorage.getItem(shareNameKey) || localStorage.getItem('devcon_share_name') || ''
     const savedHash = localStorage.getItem(shareHashKey)
+    const savedVersion = localStorage.getItem(shareVersionKey) || ''
 
     if (savedX) setXUsername(savedX)
     if (savedName) setShareName(savedName)
     if (savedHash) setShareHash(savedHash)
-  }, [orderCode, shareHashKey, shareNameKey, xUsernameKey])
+    if (savedVersion) setShareVersion(savedVersion)
+  }, [orderCode, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey])
 
   const handleXUsernameChange = useCallback((val: string) => {
     setXUsername(val)
@@ -115,9 +122,11 @@ export default function OrderConfirmationPage() {
       if (orderCode) {
         localStorage.removeItem(shareHashKey)
         localStorage.removeItem(shareNameKey)
+        localStorage.removeItem(shareVersionKey)
       }
+      setShareVersion('')
     }
-  }, [orderCode, shareHash, shareHashKey, shareNameKey, xUsernameKey])
+  }, [orderCode, shareHash, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey])
 
   useEffect(() => {
     if (!orderCode || !orderSecret) return
@@ -145,7 +154,7 @@ export default function OrderConfirmationPage() {
     if (!shareHash || uploading) return
     const baseName = shareName.trim() || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')
     const ticketName = encodeURIComponent(baseName).replace(/%20/g, '+')
-    const imageUrl = `/api/ticket/${ticketName}/${shareHash}/i.jpg`
+    const imageUrl = `/api/ticket/${ticketName}/${shareHash}/i.jpg${shareVersion ? `?v=${encodeURIComponent(shareVersion)}` : ''}`
     if (imageUrl === lastWarmedImageUrlRef.current) return
 
     const t = setTimeout(() => {
@@ -154,7 +163,7 @@ export default function OrderConfirmationPage() {
     }, 250)
 
     return () => clearTimeout(t)
-  }, [shareHash, shareName, xUsername, uploading])
+  }, [shareHash, shareName, shareVersion, xUsername, uploading])
 
   if (loading) {
     return (
@@ -388,7 +397,7 @@ export default function OrderConfirmationPage() {
                       onClick={e => {
                         e.preventDefault()
                         const base = shareHash
-                          ? `/ticket/${ticketName}/${shareHash}/?share`
+                          ? `/ticket/${ticketName}/${shareHash}/?share${shareVersion ? `&v=${encodeURIComponent(shareVersion)}` : ''}`
                           : `/ticket/${ticketName}/?share`
                         window.open(base, '_blank')
                       }}

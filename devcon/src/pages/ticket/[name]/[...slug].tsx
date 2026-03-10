@@ -86,9 +86,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Check if avatar exists in Supabase for client-side display
   // and derive a deterministic image version for social crawlers.
   let avatarUrl: string | null = null
-  let imageVersion = '0'
+  let imageVersion = typeof context.query.v === 'string' && context.query.v ? context.query.v : '0'
   const supabaseUrl = process.env.SUPABASE_URL
-  if (supabaseUrl) {
+  if (supabaseUrl && imageVersion === '0') {
     try {
       const avatarCheck = await fetch(`${supabaseUrl}/storage/v1/object/public/${BUCKET}/${hash}_avatar.png`, {
         method: 'HEAD',
