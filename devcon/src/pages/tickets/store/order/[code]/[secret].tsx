@@ -101,10 +101,12 @@ export default function OrderConfirmationPage() {
     setXUsername(val)
     localStorage.setItem('devcon_x_username', val)
 
-    // Invalidate current hash since avatar changed
+    // Invalidate current hash and name since profile changed
     if (shareHash) {
       setShareHash(null)
+      setShareName('')
       if (code) localStorage.removeItem(`devcon_share_hash_${code}`)
+      localStorage.removeItem('devcon_share_name')
     }
   }, [code, shareHash])
 

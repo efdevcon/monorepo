@@ -192,13 +192,13 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
             const baseShareUrl = pageUrl?.replace('&share', '').replace('?share&', '?').replace('?share', '') || ''
             const sep = baseShareUrl.includes('?') ? '&' : '?'
             const shareUrl = `${baseShareUrl}${sep}t=${Date.now().toString(36)}`
-            const shareText = `I'm heading to Devcon India from 3–6 November in Mumbai!\n\nJoin me and the wider Ethereum community for a week of incredible talks, workshops, experiences and more!\n\n${shareUrl}`
+            const shareText = `I'm heading to Devcon India from 3–6 November in Mumbai!\n\nJoin me and the wider Ethereum community for a week of incredible talks, workshops, experiences and more!`
             return (
               <div className={css.shareSection}>
                 <span className={css.shareLabel}>Share</span>
                 <div className={css.shareIcons}>
                   <a
-                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`}
+                    href={`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={css.shareIcon}
