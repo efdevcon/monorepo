@@ -360,9 +360,9 @@ export default function TicketsPage() {
                   availability and review.
                 </p>
               </div>
-              <a href="/esp" className={css['btn-secondary']}>
+              {/* <a href="/esp" className={css['btn-secondary']}>
                 Learn more
-              </a>
+              </a> */}
             </div>
 
             <div className={css['ticket-type-card']}>
