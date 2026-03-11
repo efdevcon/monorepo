@@ -342,7 +342,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   <li>Tap the button below to open the Self app and share your proof</li>
                 ) : (
                   <li>
-                    <span className={css['self-steps-highlight']}>Scan the QR code below</span> with the Self app to share your proof
+                    <strong>Scan the QR code below</strong> with the Self app to share your proof
                   </li>
                 )}
               </ol>
