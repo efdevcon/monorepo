@@ -35,7 +35,7 @@ export function WhyDevconIndia() {
               <img src="/assets/images/frame-lower-left.svg" alt="" className={`${css['frame-decoration']} ${css['lower-left']}`} />
               <div className={css['video-preview']}>
                 <iframe
-                  src="https://www.youtube.com/embed/KSElahtIDB0"
+                  src="https://www.youtube.com/embed/st_A7rRr9tk?modestbranding=1&rel=0"
                   title="Devcon India"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

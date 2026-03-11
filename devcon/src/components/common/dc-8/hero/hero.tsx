@@ -14,7 +14,7 @@ export const Hero = () => {
   const stripHeight = useGetElementHeight('strip')
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[90vh] md:h-screen overflow-hidden">
       {/* Background image */}
       <Image
         src={BannerImage}
