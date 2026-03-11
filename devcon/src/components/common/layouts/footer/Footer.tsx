@@ -61,17 +61,17 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
       <Link to="https://twitter.com/efdevcon">
         <IconTwitter style={{ cursor: 'pointer' }} />
       </Link>
-      <Link to="https://warpcast.com/~/channel/devcon">
-        <IconWarpcast style={{ cursor: 'pointer' }} />
-      </Link>
       <Link to="https://www.instagram.com/efdevcon">
         <IconInstagram style={{ cursor: 'pointer' }} />
       </Link>
-      <Link to="https://hey.xyz/u/devcon">
-        <IconLens style={{ cursor: 'pointer' }} />
-      </Link>
       <Link to="https://t.me/+sitvvHw8D8EzN2Yx">
         <IconTelegram style={{ cursor: 'pointer' }} />
+      </Link>
+      <Link to="https://warpcast.com/~/channel/devcon">
+        <IconWarpcast style={{ cursor: 'pointer' }} />
+      </Link>
+      <Link to="https://hey.xyz/u/devcon">
+        <IconLens style={{ cursor: 'pointer' }} />
       </Link>
       <Link to="https://github.com/efdevcon">
         <IconGithub style={{ cursor: 'pointer' }} />

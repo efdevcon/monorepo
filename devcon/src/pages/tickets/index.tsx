@@ -9,8 +9,8 @@ import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
 import themes from '../themes.module.scss'
 import HeroBackground from './updated-hero.png'
-import EarlyBirdTicket from './early-bird-india.png'
-import EarlyBirdMobile from './early-bird-mobile.png'
+import EarlyBirdTicket from './big-ticket.png'
+import EarlyBirdMobile from './small-ticket.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 
@@ -35,9 +35,9 @@ const OVERVIEW_CARDS = [
     number: '02',
     title: 'Community',
     subtitle: 'SELF-CLAIMING DISCOUNTS',
-    price: '$99',
-    priceLabel: null,
-    status: 'AVAILABLE NOW',
+    price: null,
+    priceLabel: 'Coming soon',
+    status: 'TBD',
   },
   {
     number: '03',
@@ -51,14 +51,19 @@ const OVERVIEW_CARDS = [
 
 const WAVES = [
   { name: 'Global Early Bird', price: '$299', date: 'TBD' },
-  // { name: 'Waves 1-4', price: 'TBD', date: 'TBD' },
-  // { name: 'Waves 5-8', price: 'TBD', date: 'TBD' },
-  // { name: 'Waves 9-10', price: 'TBD', date: 'TBD' },
+  { name: 'Waves 1-10', price: 'TBD', date: 'TBD' },
 ]
 
 const COMMUNITY_ROWS = [
-  { name: 'Indian Early Bird', detail: 'VIA SELF', price: '$99', date: 'Ends 15 Mar', live: true, bold: true },
-  { name: 'India Residents', detail: 'VIA SELF', price: '$149', date: 'TBD', live: false, bold: false },
+  {
+    name: 'ETH Mumbai Early Access',
+    detail: 'VIA SELF PROTOCOL',
+    price: '$99',
+    date: 'Ends 15 Mar',
+    live: true,
+    bold: true,
+  },
+  { name: 'India Residents', detail: 'VIA SELF PROTOCOL', price: '$149', date: 'TBD', live: false, bold: false },
   // { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
   // { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
   // { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
@@ -72,7 +77,12 @@ const APPLICATION_ROWS = [
 const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
   {
     q: 'When will General ticket sales start?',
-    a: 'Waves will start on July 16. More information will follow with the rest of the ticketing launch on July 16.',
+    a: (
+      <em>
+        General Admission ticket sales for Devcon India will launch in early May. Stay tuned for updates as we get
+        closer to this date.
+      </em>
+    ),
   },
   {
     q: 'Will there be opportunities to obtain discounted tickets?',
@@ -82,119 +92,26 @@ const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
         <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
           <li>
             <strong>Community Discounts</strong> — This will consist of groups like Protocol Guild members, OSS
-            Contributors, Public Goods Project Owners, and more.
+            Contributors and more.
           </li>
           <li>
-            <strong>Applications</strong> — <em>This will include Builder Discounts, Student Discounts, and Youth Tickets
-            for those under 18.</em>
+            <strong>Applications</strong> —{' '}
+            <em>This will include Builder Discounts, Student Discounts, and Youth Tickets for those under 18.</em>
           </li>
           <li>
-            <strong>Ecosystem Tickets</strong> — <em>An application will be open for leaders & organizers of various web2
-            & web3 communities or meetups to apply for free or discounted tickets for their groups.</em>
+            <strong>Ecosystem Tickets</strong> —{' '}
+            <em>
+              An application will be open for leaders & organizers of various web2 & web3 communities or meetups to
+              apply for free or discounted tickets for their groups.
+            </em>
           </li>
         </ul>
       </>
     ),
   },
   {
-    q: 'I plan on bringing my child to Devcon with me. Do they need a ticket?',
-    a: (
-      <>
-        Minors between 3-17 will need a ticket to enter Devcon. Children under the age of 3 will not require a ticket.{' '}
-        <strong>Everyone under 18</strong> who wishes to enter Devcon will need to have their Parent/Guardian fill our
-        Consent Form before they can enter the venue. The Consent Form{' '}
-        <a href="#" className="underline">
-          can be found here
-        </a>
-        .
-      </>
-    ),
-  },
-  {
-    q: 'If I buy a ticket, and then I am accepted to Speak, can I get a refund for the original ticket I purchased?',
-    a: 'Yes! Speakers will be given a Free ticket — we will refund your original purchase.',
-  },
-  {
-    q: 'If I am accepted for a discount after buying a full-priced ticket, can I get refund of the difference?',
-    a: (
-      <>
-        Yes — we will do our best to refund the difference. Request the refund at{' '}
-        <a href="mailto:support@devcon.org" className="underline">
-          support@devcon.org
-        </a>
-        .
-      </>
-    ),
-  },
-  {
-    q: 'I need a Visa invitation Letter. How can I obtain one?',
-    a: (
-      <>
-        You need a ticket before you can request a Visa Invitation Letter. Once you{"'"}ve purchased a ticket & have your
-        Order ID ready,{' '}
-        <a href="https://forms.gle/fYhu45A9HUrbjYRr9" target="_blank" rel="noopener noreferrer" className="underline">
-          request a Visa Invitation Letter here
-        </a>
-        .
-      </>
-    ),
-  },
-  {
     q: 'Can I purchase tickets with crypto?',
-    a: 'Yes! You will be able to choose between Credit Card or Crypto to pay for your ticket. Orders paid in Crypto receive a 3% discount on total cost.',
-  },
-  {
-    q: 'How can I cancel my order?',
-    a: 'Find your original order confirmation email & head to your order page. Then, scroll to the bottom of the page and click Cancel Order.',
-  },
-  {
-    q: 'What if I only need to cancel some tickets on an order with multiple?',
-    a: (
-      <>
-        Reach out to us at{' '}
-        <a href="mailto:support@devcon.org" className="underline">
-          support@devcon.org
-        </a>{' '}
-        with your Order Code & the specifics.
-      </>
-    ),
-  },
-  {
-    q: 'What are the policies towards Refunds & Transfers?',
-    a: (
-      <>
-        <p>
-          <strong>Refunds</strong> — All tickets will be refundable as long as the request is made before the start of
-          the event. Orders made with <strong>Credit Card</strong> will be refunded back to the original payment method.
-          Orders made with Crypto will be refunded back to the original sender address and network via USDC only. Please
-          allow up to 4 weeks for refunds to be issued.
-        </p>
-        <p className="mt-2">
-          <strong>Transfers</strong> — In our effort to prevent scalping and ensure equal opportunity for all interested
-          community members to be able to purchase tickets, we will only allow ticket transfers on a case-by-case basis
-          upon written request to{' '}
-          <a href="mailto:support@devcon.org" className="underline">
-            support@devcon.org
-          </a>
-          . PLEASE DO NOT ATTEMPT TO BUY TICKET FROM AN EXTERNAL SOURCE — YOU RISK BEING SCAMMED.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: 'Tickets are sold out - How can I attend?',
-    a: (
-      <>
-        We will open up a Waiting List after our final wave of General Admission tickets have sold out. In the event of
-        cancellations, tickets will be granted to those on the Waiting List in the order that they signed up. While we
-        don{"'"}t recommend it, if you do purchase a ticket from a third party, we STRONGLY suggest that to do it via
-        email & CC{' '}
-        <a href="mailto:support@devcon.org" className="underline">
-          support@devcon.org
-        </a>{' '}
-        to facilitate the transfer.
-      </>
-    ),
+    a: 'Yes! You will be able to choose between Credit Card or Crypto to pay for your ticket. Orders paid in Crypto receive a 3% discount on the total cost.',
   },
 ]
 
@@ -202,8 +119,7 @@ const FAQ_INITIAL_COUNT = 6
 
 export default function TicketsPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
-  const [showAllFaq, setShowAllFaq] = useState(false)
-  const visibleFaq = showAllFaq ? FAQ_ITEMS : FAQ_ITEMS.slice(0, FAQ_INITIAL_COUNT)
+  const visibleFaq = FAQ_ITEMS
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -222,13 +138,13 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>Indian Early Bird tickets on sale!</h2>
+                <h2 className={css['heading-2']}>ETH Mumbai Early Access now live!</h2>
                 <p className={css['body-lg']}>
-                  Join thousands of builders, creators, researchers, designers and thinkers 3&ndash;6 November 2026 in
+                  Join thousands of builders, creators, researchers, designers, and thinkers 3&ndash;6 November 2026 in
                   Mumbai for the world&apos;s biggest Ethereum conference.
                 </p>
                 <p className={css['body']}>
-                  Secure your ticket early to be part of this pivotal moment in Ethereum&apos;s journey.
+                  Reserve early access to India Early Bird tickets later this year (exclusive to ETH Mumbai attendees).
                 </p>
               </div>
 
@@ -245,14 +161,14 @@ export default function TicketsPage() {
                   </div>
                   <div className={css['included-item']}>
                     <Coffee size={24} strokeWidth={1.5} />
-                    <span>Catering all week</span>
+                    <span>Lunch all week</span>
                   </div>
                 </div>
               </div>
 
               <div className={css['cta-group']}>
-                <Link to="/tickets/store" className={css['btn-primary']}>
-                  Get my tickets
+                <Link to="/tickets/store#discounts" className={css['btn-primary']}>
+                  Check my eligibility
                   <ArrowRight size={16} strokeWidth={2} />
                 </Link>
                 <Link to="#discounts" className={css['btn-secondary']}>
@@ -319,7 +235,7 @@ export default function TicketsPage() {
                 <h2 className={css['heading-2']}>Sale waves</h2>
                 <p className={css['body-lg']}>
                   General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early
-                  Bird launch later this year.
+                  Bird launch in May.
                 </p>
                 <p className={css['body']}>
                   Sale waves are <strong>limited time windows</strong> to purchase a general admission Devcon India
@@ -388,8 +304,8 @@ export default function TicketsPage() {
                 <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
                 <h2 className={css['heading-2']}>Community</h2>
                 <p className={css['body-lg']}>
-                  Our early bird discounts for <strong>Indian locals</strong> are now live. Verify Indian residency via
-                  Self to purchase.
+                  ETH Mumbai attendees can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
+                  residency via Self Protocol to redeem.
                 </p>
                 <p className={css['body']}>
                   Community tickets are <strong>self-claimable</strong> &ndash; no application required, just verify
@@ -504,11 +420,13 @@ export default function TicketsPage() {
                     </div>
                   ))}
                 </div>
+                {/* View all button hidden while FAQ has few entries
                 {!showAllFaq && (
                   <button type="button" className={css['btn-secondary']} onClick={() => setShowAllFaq(true)}>
                     View all <span className={css['view-all-count']}>({FAQ_ITEMS.length})</span>
                   </button>
                 )}
+                */}
               </div>
             </div>
           </section>

@@ -414,18 +414,18 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: #eeedf6;
+  background: transparent;
 }
 
 .callout-pattern {
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  opacity: 0.15;
   pointer-events: none;
-  background-image: url('./images/jaali-pattern-left.svg');
-  background-repeat: repeat;
+  background-image: url('./images/bg-eth-moon.png');
+  background-repeat: repeat-x;
   background-position: center;
-  background-size: 228px 159px;
+  background-size: auto min(100%, 200px);
 }
 
 .callout-text {
