@@ -206,6 +206,29 @@ export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVo
 }
 
 /**
+ * Fetch all existing codes for a collection (for dedup before bulk insert).
+ */
+export async function getExistingCodes(collection: string = TICKETING.discount.collection): Promise<Set<string>> {
+  const supabase = getSupabase()
+  const codes = new Set<string>()
+  const PAGE_SIZE = 1000
+  let from = 0
+  while (true) {
+    const { data, error } = await supabase
+      .from('devcon8_early_access_codes')
+      .select('code')
+      .eq('collection', collection)
+      .range(from, from + PAGE_SIZE - 1)
+    if (error) throw new Error(`discountStore getExistingCodes: ${error.message}`)
+    if (!data || data.length === 0) break
+    for (const row of data) codes.add(row.code)
+    if (data.length < PAGE_SIZE) break
+    from += PAGE_SIZE
+  }
+  return codes
+}
+
+/**
  * Bulk insert discount codes (for generate script).
  */
 export async function insertDiscountCodes(codes: string[], collection: string = TICKETING.discount.collection): Promise<number> {

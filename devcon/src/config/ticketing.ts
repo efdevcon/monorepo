@@ -66,12 +66,12 @@ const ENV_CONFIG = {
       scope: 'devcon-india-local-discount',
       // TODO: replace with production staging
       staging: true,
+      // TODO: replace after event
       requireEarlyAccess: true,
     },
     discount: {
-      // TODO: replace with production collection
+      // TODO: replace with india-early-bird
       collection: 'test-local-early-bird',
-      // collection: 'local-early-bird',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,

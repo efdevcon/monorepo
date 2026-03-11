@@ -8,7 +8,7 @@ import 'dotenv/config'
 import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
-import { insertDiscountCodes } from '../services/discountStore'
+import { insertDiscountCodes, getExistingCodes } from '../services/discountStore'
 import { TICKETING, TICKETING_ENV } from '../config/ticketing'
 
 const STORE_URL = 'https://devcon.org/en/tickets/store/?early-access='
@@ -56,12 +56,18 @@ async function main() {
   if (dryRun) console.log('  *** DRY RUN — no changes will be made ***')
   console.log('')
 
-  // Generate unique codes using a Set for deduplication
+  // Fetch existing codes from DB to avoid collisions
+  console.log('Checking for existing codes in DB...')
+  const existingCodes = dryRun ? new Set<string>() : await getExistingCodes(collection)
+  if (existingCodes.size > 0) console.log(`  Found ${existingCodes.size} existing codes in collection "${collection}"`)
+
+  // Generate unique codes using a Set for deduplication (also excludes DB collisions)
   const codes = new Set<string>()
   let attempts = 0
   const maxAttempts = count * 10
   while (codes.size < count && attempts < maxAttempts) {
-    codes.add(generateCode(length, prefix))
+    const code = generateCode(length, prefix)
+    if (!existingCodes.has(code)) codes.add(code)
     attempts++
   }
 
@@ -72,7 +78,7 @@ async function main() {
 
   const codeArray = Array.from(codes)
 
-  console.log(`Generated ${codeArray.length} unique codes`)
+  console.log(`Generated ${codeArray.length} unique codes (no DB collisions)`)
   console.log(`  Sample: ${codeArray.slice(0, 5).join(', ')}${codeArray.length > 5 ? ', ...' : ''}`)
   console.log('')
 
