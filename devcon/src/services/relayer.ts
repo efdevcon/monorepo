@@ -99,8 +99,7 @@ function getGasCapForChain(chainId: number): bigint {
 async function assertGasConditions(params: {
   chainId: number
   tokenAddress: `0x${string}`
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  args: any
+  args: readonly unknown[]
   functionName: 'transferWithAuthorization'
 }): Promise<{ maxFeePerGas: bigint }> {
   const { chainId, tokenAddress, args, functionName } = params

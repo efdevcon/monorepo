@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useTilt } from './useTilt'
 import { useCardSwipe } from './useCardSwipe'
 import ticketFront from './ticket-design.png'
@@ -232,14 +233,14 @@ export function TicketSharing({ name, xUsername, share, pageUrl, hash, avatarUrl
             )
           })()
         ) : (
-          <a
+          <Link
             href="/tickets"
             className={cn(css.ctaButton, 'select-none')}
             style={{ '--color-icon': '#f9f8fa' } as React.CSSProperties}
           >
             Get tickets
             <IconArrowRight />
-          </a>
+          </Link>
         )}
       </div>
 
