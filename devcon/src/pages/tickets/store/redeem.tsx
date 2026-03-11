@@ -8,6 +8,7 @@ import DevconLogo from 'assets/images/dc-8/dc8-logo.png'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
+import { isEmail } from 'utils/validators'
 
 interface ApplicableTicket {
   id: number
@@ -39,9 +40,13 @@ export default function RedeemPage() {
   const [emailError, setEmailError] = useState('')
   const [sending, setSending] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
+  const [showEmailErrors, setShowEmailErrors] = useState(false)
 
   const voucherCode = (router.query.voucher as string) || ''
   const isShopOpen = TICKETING.isShopOpen
+  const emailsValid = isEmail(email.trim()) && email.trim() === confirmEmail.trim()
+  const canSend = emailsValid && privacyAccepted && !sending
 
   useEffect(() => {
     if (!router.isReady || !voucherCode) return
@@ -103,23 +108,11 @@ export default function RedeemPage() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-
   const handleSendEmail = async () => {
     setEmailError('')
+    setShowEmailErrors(true)
 
-    if (!email.trim()) {
-      setEmailError('Email address is required.')
-      return
-    }
-    if (!isValidEmail(email)) {
-      setEmailError('Please enter a valid email address.')
-      return
-    }
-    if (email !== confirmEmail) {
-      setEmailError('Email addresses do not match.')
-      return
-    }
+    if (!emailsValid) return
 
     setSending(true)
     try {
@@ -371,8 +364,8 @@ export default function RedeemPage() {
                 </p>
 
                 <button type="button" className={css['reserve-copy-btn']} onClick={handleCopyCode}>
-                  <Copy size={16} />
                   <span>{copied ? 'Copied!' : 'Copy code'}</span>
+                  <Copy size={16} />
                 </button>
 
                 <hr className={css['reserve-divider']} />
@@ -383,29 +376,64 @@ export default function RedeemPage() {
                 </span>
 
                 <div className={css['reserve-email-row']}>
-                  <input
-                    type="email"
-                    className={css['reserve-email-input']}
-                    placeholder="Email address"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                  />
-                  <input
-                    type="email"
-                    className={css['reserve-email-input']}
-                    placeholder="Confirm email"
-                    value={confirmEmail}
-                    onChange={e => setConfirmEmail(e.target.value)}
-                  />
+                  <div>
+                    <input
+                      type="email"
+                      className={`${css['reserve-email-input']}${showEmailErrors && !isEmail(email.trim()) ? ' ' + css['reserve-email-input-error'] : ''}`}
+                      placeholder="Email address"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      onBlur={() => { if (email.trim()) setShowEmailErrors(true) }}
+                    />
+                    {showEmailErrors && !isEmail(email.trim()) && (
+                      <p className={css['field-error']}>Please enter a valid email.</p>
+                    )}
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      className={`${css['reserve-email-input']}${showEmailErrors && confirmEmail.trim() !== '' && email.trim() !== confirmEmail.trim() ? ' ' + css['reserve-email-input-error'] : ''}`}
+                      placeholder="Confirm email"
+                      value={confirmEmail}
+                      onChange={e => setConfirmEmail(e.target.value)}
+                      onBlur={() => { if (confirmEmail.trim()) setShowEmailErrors(true) }}
+                    />
+                    {showEmailErrors && confirmEmail.trim() !== '' && email.trim() !== confirmEmail.trim() && (
+                      <p className={css['field-error']}>Email addresses do not match.</p>
+                    )}
+                    {showEmailErrors && confirmEmail.trim() === '' && email.trim() !== '' && (
+                      <p className={css['field-error']}>Please confirm your email.</p>
+                    )}
+                  </div>
                 </div>
 
                 {emailError && <p className={css['field-error']}>{emailError}</p>}
+
+                <label className={css['reserve-privacy']}>
+                  <input
+                    type="checkbox"
+                    checked={privacyAccepted}
+                    onChange={e => setPrivacyAccepted(e.target.checked)}
+                    className={css['reserve-privacy-checkbox']}
+                  />
+                  <span>
+                    I confirm that I have read and understand the{' '}
+                    <a href="https://ethereum.org/privacy-policy" target="_blank" rel="noopener noreferrer">
+                      EF Privacy Policy
+                    </a>{' '}
+                    and{' '}
+                    <a href="https://devcon.org/privacy-notice" target="_blank" rel="noopener noreferrer">
+                      Devcon 8 Privacy Notice
+                    </a>
+                    .
+                  </span>
+                </label>
 
                 <button
                   type="button"
                   className={css['reserve-send-btn']}
                   onClick={handleSendEmail}
-                  disabled={sending}
+                  disabled={!canSend}
                 >
                   {sending ? (
                     <>

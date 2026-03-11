@@ -1867,12 +1867,12 @@ div.wallet-identicon {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  font-size: 0.875rem;
+  padding: 16px 28px 16px 32px;
+  font-size: 1rem;
   font-weight: 700;
-  color: $checkout-accent;
-  background: #fff;
-  border: 1px solid $checkout-accent;
+  color: #1a0d33;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid $checkout-border;
   border-radius: 9999px;
   cursor: pointer;
   font-family: inherit;
@@ -1885,7 +1885,7 @@ div.wallet-identicon {
   }
 
   &:hover {
-    background: rgba(114, 53, 237, 0.05);
+    background: rgba(255, 255, 255, 1);
   }
 }
 
@@ -1921,9 +1921,9 @@ div.wallet-identicon {
 }
 
 .reserve-email-input {
-  padding: 10px 12px;
+  padding: 8px 16px;
   font-size: 14px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid $checkout-border;
   border-radius: 8px;
   background: #fff;
   min-height: 40px;
@@ -1943,12 +1943,17 @@ div.wallet-identicon {
   }
 }
 
+.reserve-email-input-error {
+  border-color: #ef4444;
+  box-shadow: none;
+}
+
 .reserve-send-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 16px 28px 16px 32px;
   font-size: 1rem;
   font-weight: 700;
   color: #f9f8fa;
@@ -1972,6 +1977,61 @@ div.wallet-identicon {
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+.reserve-privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: #160b2b;
+  cursor: pointer;
+
+  a {
+    color: $checkout-accent;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.reserve-privacy-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1px solid $checkout-border;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  margin-top: 2px;
+  position: relative;
+
+  &:checked {
+    background: $checkout-accent;
+    border-color: $checkout-accent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4.5px;
+      top: 1.5px;
+      width: 5px;
+      height: 9px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $checkout-accent;
+    outline-offset: 2px;
   }
 }
 
