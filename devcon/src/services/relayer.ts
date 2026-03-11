@@ -86,6 +86,28 @@ const DEFAULT_GAS_CAPS_GWEI: Record<number, string> = {
   [baseSepolia.id]: '10',
 }
 
+type TransferWithAuthorizationArgs =
+  | readonly [
+      from: `0x${string}`,
+      to: `0x${string}`,
+      value: bigint,
+      validAfter: bigint,
+      validBefore: bigint,
+      nonce: `0x${string}`,
+      v: number,
+      r: `0x${string}`,
+      s: `0x${string}`,
+    ]
+  | readonly [
+      from: `0x${string}`,
+      to: `0x${string}`,
+      value: bigint,
+      validAfter: bigint,
+      validBefore: bigint,
+      nonce: `0x${string}`,
+      signature: Hex,
+    ]
+
 function getGasCapForChain(chainId: number): bigint {
   const envCap = process.env[`RELAYER_GAS_CAP_GWEI_${chainId}`]
   const gweiStr = envCap || DEFAULT_GAS_CAPS_GWEI[chainId] || '100'
@@ -99,7 +121,7 @@ function getGasCapForChain(chainId: number): bigint {
 async function assertGasConditions(params: {
   chainId: number
   tokenAddress: `0x${string}`
-  args: readonly unknown[]
+  args: TransferWithAuthorizationArgs
   functionName: 'transferWithAuthorization'
 }): Promise<{ maxFeePerGas: bigint }> {
   const { chainId, tokenAddress, args, functionName } = params
