@@ -127,11 +127,17 @@ function StoreContent({
   const [earlyAccessValid, setEarlyAccessValid] = useState<boolean | null>(null)
   const [earlyAccessError, setEarlyAccessError] = useState<string | null>(null)
 
+  const [earlyAccessEmail, setEarlyAccessEmail] = useState<string | null>(null)
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const code = params.get('early-access')
     if (code) {
       setEarlyAccess(code)
+    }
+    const emailParam = params.get('email')
+    if (emailParam) {
+      setEarlyAccessEmail(emailParam)
     }
   }, [])
 
@@ -278,8 +284,8 @@ function StoreContent({
                 Ticket Store
               </h1>
               <p className={css['sidebar-description']}>
-                Secure your Devcon India ticket and join thousands of builders, creators, researchers, designers and
-                thinkers at the world's biggest Ethereum conference.
+                Reserve your Devcon India place and join thousands of builders, creators, researchers, designers and
+                thinkers at the world&apos;s biggest Ethereum conference.
               </p>
               <p className={css['sidebar-includes']}>
                 All tickets include full conference access, swag, and lunch for 4 days.
@@ -287,11 +293,11 @@ function StoreContent({
             </div>
             <ul className={css['sidebar-details']}>
               <li className={css['sidebar-details-item']}>
-                <CalendarDays size={24} color="#d65600" strokeWidth={1.5} aria-hidden="true" />
+                <CalendarDays size={24} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
                 3–6 November 2026
               </li>
               <li className={css['sidebar-details-item']}>
-                <MapPin size={24} color="#d65600" strokeWidth={1.5} aria-hidden="true" />
+                <MapPin size={24} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
                 Jio World Centre, Mumbai, India
               </li>
             </ul>
@@ -433,11 +439,11 @@ function StoreContent({
               <section className={css['section']} id="discounts">
                 <div className={css['section-header']}>
                   <div className={css['section-title-row']}>
-                    <h2 className={css['section-title']}>Local ticket launch</h2>
+                    <h2 className={css['section-title']}>ETH Mumbai Early Access</h2>
                     <span className={css['live-badge']}>LIVE</span>
                   </div>
                   <p className={css['section-subtitle']}>
-                    Check if you qualify for the Local Early Bird discounted ticket (ETH Mumbai exclusive)
+                    Check if you qualify to reserve early access to India Early Bird tickets later this year (ETH Mumbai exclusive)
                   </p>
                 </div>
 
@@ -449,20 +455,23 @@ function StoreContent({
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>{ticket.name}</h3>
                             {!ticket.available ? (
-                              <p className={css['sold-out-meta']}>Next sale: 6 April, 2026</p>
+                              <p className={css['sold-out-meta']}>
+                                Sorry, all Early Access vouchers have been reserved. More local tickets will go on sale later this year.
+                              </p>
                             ) : (
                               <p className={css['card-meta']}>
-                                Via Self & ETH Mumbai registration &middot; Price increases 31 March
+                                Via Self Protocol &amp; ETH Mumbai registration
                               </p>
                             )}
                             <p className={css['card-description']}>
-                              Full conference access including talks and workshops, swag bag, plus coffee, lunch and
-                              snacks all week.
+                              Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge
+                              Proofs to prove Indian residency.
                             </p>
                           </div>
                           {isLoadingTickets ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
+                                <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${ticket.price}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
@@ -473,16 +482,18 @@ function StoreContent({
                           ) : !ticket.available ? (
                             <div className={css['card-footer']}>
                               <div className={`${css['pricing']} ${css['pricing--faded']}`}>
+                                <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${ticket.price}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
                                 )}
                               </div>
-                              <span className={css['sold-out-badge']}>Sold out!</span>
+                              <span className={css['sold-out-badge']}>Fully claimed</span>
                             </div>
                           ) : !requireEarlyAccess || (earlyAccess && earlyAccessValid === true) ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
+                                <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${ticket.price}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
@@ -500,6 +511,7 @@ function StoreContent({
                           ) : earlyAccess && earlyAccessValid === null ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
+                                <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${ticket.price}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
@@ -512,6 +524,7 @@ function StoreContent({
                           ) : earlyAccess && earlyAccessValid === false ? (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
+                                <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${ticket.price}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
@@ -524,6 +537,7 @@ function StoreContent({
                           ) : (
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
+                                <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${ticket.price}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${ticket.originalPrice}</span>
@@ -549,7 +563,7 @@ function StoreContent({
               <div className={css['section-header']}>
                 <h2 className={css['section-title']}>Coming soon</h2>
                 <p className={css['section-subtitle']}>
-                  More ways to get Devcon tickets are coming later this year.
+                  More ways to get Devcon tickets are coming later this year
                 </p>
               </div>
 
@@ -557,7 +571,7 @@ function StoreContent({
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'Early Bird GA \ud83d\udc24'}</h3>
-                    <p className={css['card-meta']}>Global launch on 6 April</p>
+                    <p className={css['card-meta']}>Launching later this year</p>
                     <p className={css['card-description']}>
                       Early-bird discount of the original, anon-friendly Devcon ticket.
                     </p>
@@ -567,7 +581,7 @@ function StoreContent({
                       <span className={css['coming-soon-price']}>$299</span>
                       <span className={css['coming-soon-price-original']}>$599</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Available 6 April</span>
+                    <span className={css['coming-soon-availability']}>Coming soon!</span>
                   </div>
                 </div>
 
@@ -583,7 +597,7 @@ function StoreContent({
                     <div className={css['coming-soon-card-pricing']}>
                       <span className={css['coming-soon-price']}>$19</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Applications open 6 April</span>
+                    <span className={css['coming-soon-availability']}>Coming soon!</span>
                   </div>
                 </div>
 
@@ -600,7 +614,7 @@ function StoreContent({
                     <div className={css['coming-soon-card-pricing']}>
                       <span className={css['coming-soon-price']}>$49</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Applications open 6 April</span>
+                    <span className={css['coming-soon-availability']}>Coming soon!</span>
                   </div>
                 </div>
 
@@ -618,7 +632,7 @@ function StoreContent({
                       <span className={css['coming-soon-price']}>$299</span>
                       <span className={css['coming-soon-price-original']}>$599</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Applications open 4 May</span>
+                    <span className={css['coming-soon-availability']}>Coming soon!</span>
                   </div>
                 </div>
               </div>
@@ -665,6 +679,7 @@ function StoreContent({
         useStaging={useSelfStaging}
         setUseStaging={setUseSelfStaging}
         earlyAccess={requireEarlyAccess ? (earlyAccess ?? undefined) : undefined}
+        email={earlyAccessEmail ?? undefined}
       />
     </>
   )

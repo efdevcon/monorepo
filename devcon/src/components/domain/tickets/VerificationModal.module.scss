@@ -339,6 +339,29 @@
   }
 }
 
+.voucher-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a0d33;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #dddae2;
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  min-height: 36px;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #fff;
+  }
+}
+
 .voucher-cta-icon {
   flex-shrink: 0;
 }
@@ -373,6 +396,18 @@
   text-align: center;
   margin: 0.5rem 0 0;
   line-height: 1.43;
+}
+
+.success-email {
+  font-size: 0.875rem;
+  color: #1a0d33;
+  text-align: center;
+  margin: 0.75rem 0 0;
+  line-height: 1.43;
+
+  strong {
+    font-weight: 700;
+  }
 }
 
 /* Self modal — scoped additions (Figma 2778:3977) */
@@ -505,9 +540,38 @@
   line-height: 1.5;
 }
 
+.error-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #9b1c1c;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #dddae2;
+    color: #160b2b;
+    transition: background 0.15s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
 .self-steps {
   margin: 0;
   padding-left: 1.5rem;
+  list-style-type: decimal;
   font-size: 0.875rem;
   color: #1a0d33;
   line-height: 1.43;
@@ -535,6 +599,32 @@
   color: #7235ed;
   font-weight: 700;
   text-decoration: underline;
+}
+
+.self-guide-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #7235ed;
+  background: #ededf7;
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #e3e0f0;
+  }
+}
+
+.self-guide-link-icon {
+  flex-shrink: 0;
 }
 
 .self-qr-wrap {

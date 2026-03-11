@@ -14,10 +14,12 @@ const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/red
 const SELF_SCOPE = TICKETING.self.scope
 const ALLOW_STAGING = TICKETING.self.staging
 
-type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | null
+type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | 'NO_VOUCHERS' | null
 
 function parseError(reason?: string): { message: string; code: ErrorCode } {
   if (!reason) return { message: 'Verification failed', code: null }
+  if (reason.includes('No vouchers available') || reason.includes('no vouchers') || reason.includes('last Early Access'))
+    return { message: reason, code: 'NO_VOUCHERS' }
   if (reason.includes('[InvalidId]') || reason.includes('Aadhaar'))
     return { message: reason, code: 'INVALID_ID' }
   if (reason.includes('[InvalidRoot]'))
@@ -35,6 +37,7 @@ type SelfVerificationModalProps = {
   useStaging: boolean
   setUseStaging: (value: boolean) => void
   earlyAccess?: string
+  email?: string
 }
 
 function useIsMobile() {
@@ -47,9 +50,10 @@ function useIsMobile() {
   return isMobile
 }
 
-export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, earlyAccess }: SelfVerificationModalProps) {
+export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, earlyAccess, email }: SelfVerificationModalProps) {
   const [userId, setUserId] = useState(() => crypto.randomUUID())
   const [voucher, setVoucher] = useState<string | null>(null)
+  const [emailSent, setEmailSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [errorCode, setErrorCode] = useState<ErrorCode>(null)
 
@@ -80,6 +84,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       const params: string[] = []
       if (effectiveStaging) params.push('staging=true')
       if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
+      if (email) params.push(`email=${encodeURIComponent(email)}`)
       if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
 
       const app = new SelfAppBuilder({
@@ -102,7 +107,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       console.error('Failed to initialize Self app:', e)
       setError('Failed to initialize verification. Please try again.')
     }
-  }, [isOpen, userId, effectiveStaging, earlyAccess])
+  }, [isOpen, userId, effectiveStaging, earlyAccess, email])
 
   const handleSuccess = async () => {
     clearError()
@@ -114,6 +119,19 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           setVoucher(data.voucherCode)
+          if (email) {
+            try {
+              const emailRes = await fetch('/api/tickets/send-voucher-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, voucherCode: data.voucherCode }),
+              })
+              const emailData = await emailRes.json()
+              if (emailRes.ok && emailData.success) setEmailSent(true)
+            } catch {
+              // Non-fatal — voucher is still shown
+            }
+          }
           return
         }
         if (res.ok && data.error && data.reason) {
@@ -170,6 +188,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
 
   const handleReset = () => {
     setVoucher(null)
+    setEmailSent(false)
     clearError()
     setCopied(false)
     setSelfApp(null)
@@ -202,21 +221,32 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         {voucher ? (
           <div className={css['self-padded']}>
             <h2 id="self-verification-title" className={css['success-title']}>
-              Proof successfully submitted!
+              {TICKETING.isShopOpen ? 'Proof successfully submitted!' : 'Early Access voucher reserved!'}
             </h2>
             <div className={css['success-text-block']}>
               <p className={css['success-intro']}>
-                Your Self proof was successfully generated and submitted. Your discount code is unique to your identity
+                Your Self proof was successfully generated and submitted. Your {TICKETING.isShopOpen ? 'discount' : 'early access'} code is unique to your identity
                 and can be found below.
               </p>
-              <p className={css['success-note']}>
-                <strong>Note:</strong> This code must be entered at checkout to purchase your discounted Devcon ticket.
-              </p>
+              {emailSent && email && (
+                <p className={css['success-intro']}>
+                  We&apos;ve sent an email containing your code to: <strong>{email}</strong>
+                </p>
+              )}
+              {TICKETING.isShopOpen ? (
+                <p className={css['success-note']}>
+                  <strong>Note:</strong> This code must be entered at checkout to purchase your discounted Devcon ticket.
+                </p>
+              ) : (
+                <p className={css['success-note']}>
+                  <strong>We&apos;ll notify you before tickets go live</strong>, so you&apos;re ready to secure yours early.
+                </p>
+              )}
             </div>
             <hr className={css['self-divider']} aria-hidden="true" />
             <div className={css['voucher-card']}>
               <div className={css['voucher-card-inner']}>
-                <p className={css['voucher-card-label']}>YOUR DISCOUNT CODE</p>
+                <p className={css['voucher-card-label']}>YOUR VOUCHER CODE</p>
                 <div className={css['voucher-code-row']}>
                   <span className={css['voucher-code']}>{voucher}</span>
                   <button
@@ -234,6 +264,14 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   </button>
                 </div>
               </div>
+            </div>
+            {!TICKETING.isShopOpen && (
+              <p className={css['success-note']}>
+                When tickets go live, <strong>please have your code ready</strong> to use at checkout. This is how
+                you&apos;ll access the exclusive discounted price.
+              </p>
+            )}
+            {TICKETING.isShopOpen && (
               <a
                 href={
                   TICKETING.checkout.pretixRedirectUrl
@@ -242,10 +280,10 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 }
                 className={css['voucher-cta']}
               >
-                {TICKETING.isShopOpen ? 'Go to Ticket Store' : 'View your reservation'}
+                Go to Ticket Store
                 <ArrowRight size={20} aria-hidden />
               </a>
-            </div>
+            )}
             <p className={css['privacy']}>No personal data is shared!</p>
           </div>
         ) : (
@@ -282,7 +320,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     Android
                   </a>
                 </li>
-                <li>Scan your Aadhaar card&apos;s NFC using the Self app</li>
+                <li>In the Self app, add a new Indian ID of type &apos;Aadhaar&apos;</li>
+                <li>Follow the instructions to complete registration</li>
                 {isMobile ? (
                   <li>Tap the button below to open the Self app and share your proof</li>
                 ) : (
@@ -291,6 +330,17 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   </li>
                 )}
               </ol>
+              <a
+                href="https://ef-events.notion.site/Self-Aadhaar-Setup-Guide-31e638cdc415809f9d54c0042a8f6292"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={css['self-guide-link']}
+              >
+                Video setup guide and resources
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" />
+                </svg>
+              </a>
             </div>
 
             {ALLOW_STAGING && (
@@ -344,7 +394,33 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 <p>We apologize for any inconvenience.</p>
               </div>
             )}
-            {(error || errorCode) && (
+            {errorCode === 'NO_VOUCHERS' && (
+              <div className={css['self-aadhaar-notice']}>
+                <p>
+                  <strong className={css['error-title']}>Sorry, all voucher codes have now been reserved</strong>
+                </p>
+                <p>
+                  Your Self proof was successfully submitted however, the last Early Access codes have now been reserved.
+                </p>
+                <p>
+                  More local tickets will go on sale in May.{' '}
+                  <strong>Follow us on socials for updates</strong> so you&apos;re ready to secure yours early.
+                </p>
+                <p>We apologize for any inconvenience.</p>
+                <div className={css['social-links']}>
+                  <a href="https://x.com/efdevcon" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  </a>
+                  <a href="https://instagram.com/efdevcon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  </a>
+                  <a href="https://warpcast.com/devcon" target="_blank" rel="noopener noreferrer" aria-label="Farcaster">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5.182 3.073h13.636v1.939l-1.025 1.025h-1.536v10.89h1.025v2.047H5.182V16.88h1.025V6.037H4.67L3.646 5.012V3.073zm3.073 3.964v9.843h7.49V7.037z"/></svg>
+                  </a>
+                </div>
+              </div>
+            )}
+            {(error || errorCode) && errorCode !== 'NO_VOUCHERS' && (
               <button type="button" className={css['reset-btn']} onClick={handleReset}>
                 Try again
               </button>
