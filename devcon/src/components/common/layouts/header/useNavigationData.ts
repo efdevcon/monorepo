@@ -346,7 +346,7 @@ const useNavigationData = () => {
       //   highlight: 'app',
       // },
       {
-        title: 'Get Tickets',
+        title: 'View Tickets',
         url: '/tickets',
         type: 'page',
         highlight: 'tickets',

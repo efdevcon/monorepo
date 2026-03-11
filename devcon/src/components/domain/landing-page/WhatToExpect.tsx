@@ -44,9 +44,7 @@ export function WhatToExpect() {
       <div className={css.expect}>
         <div className={css['expect-header']}>
           <h2 className={css['section-title']}>What to expect</h2>
-          <p className={css['expect-subtitle']}>
-            Devcon is more than just a conference with talks and presentations.
-          </p>
+          <p className={css['expect-subtitle']}>Devcon is more than just a conference with talks and presentations.</p>
           <div className={css['expect-body']}>
             <p>
               We host Devcon to educate and empower the community to build and use decentralized systems. And it is a
@@ -85,7 +83,7 @@ export function WhatToExpect() {
 
           <div className={css['expect-cta']}>
             <Link href="/tickets" className={css['button-primary']}>
-              Get tickets
+              Learn More
               <ArrowRight size={16} />
             </Link>
           </div>

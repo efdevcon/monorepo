@@ -65,7 +65,7 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
       <Link to="https://hey.xyz/u/devcon">
         <IconLens style={{ cursor: 'pointer' }} />
       </Link>
-      <Link to="https://t.me/devcon_SEA">
+      <Link to="https://t.me/+sitvvHw8D8EzN2Yx">
         <IconTelegram style={{ cursor: 'pointer' }} />
       </Link>
       <Link to="https://github.com/efdevcon">
@@ -155,7 +155,9 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
           <div className={css['col-4']}>
             <div className={css['contact']}>
               <p className="semi-bold">Get in touch</p>
-              <a href={`mailto:${EMAIL_DEVCON}`} className={css['email-1']}>{EMAIL_DEVCON}</a>
+              <a href={`mailto:${EMAIL_DEVCON}`} className={css['email-1']}>
+                {EMAIL_DEVCON}
+              </a>
 
               <div className={`${css['newsletter']} mt-8`}>
                 <Newsletter id="footer_newsletter_email" dark={dark} />
@@ -319,9 +321,10 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
                 Code of Conduct
               </Link>
+              {/* TODO: Update later 
               <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
                 Terms of Service
-              </Link>
+              </Link> */}
               <Link
                 className="bold font-xs text-uppercase hover-underline"
                 to={

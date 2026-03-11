@@ -24,7 +24,7 @@ export const LandingPage = () => {
       <NarrativeBlock>
         <FaqSection />
       </NarrativeBlock>
-      <TicketBanner />
+      {/* <TicketBanner /> */}
     </div>
   )
 }

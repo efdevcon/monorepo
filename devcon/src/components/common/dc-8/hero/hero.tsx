@@ -67,7 +67,7 @@ export const Hero = () => {
                 <Link to="https://instagram.com/efdevcon" className="text-white hover:text-white/80 transition-colors">
                   <IconInstagram className="w-[18px] h-[18px]" />
                 </Link>
-                <Link to="https://t.me/devcon_SEA" className="text-white hover:text-white/80 transition-colors">
+                <Link to="https://t.me/+sitvvHw8D8EzN2Yx" className="text-white hover:text-white/80 transition-colors">
                   <IconTelegram className="w-[18px] h-[18px]" />
                 </Link>
                 <Link to="mailto:devcon@ethereum.org" className="text-white hover:text-white/80 transition-colors">
@@ -76,17 +76,15 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Right: Ticket card with fan-out effect */}
+            {/* Right: Ticket card with fan-out effect — commented out while ticket sales are delayed
             <Link to="/tickets" className="hidden md:flex flex-col gap-3 items-center w-[348px] shrink-0 group">
               <div className="relative w-[338px] h-[190px]">
-                {/* Back ticket - fans out on hover */}
                 <div
                   className="absolute inset-0 origin-center scale-[0.90] transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[-9deg] group-hover:translate-x-[0px] group-hover:translate-y-[2px] group-hover:scale-[0.93]"
                   style={{ filter: 'drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3))' }}
                 >
                   <Image src={TicketBack} alt="" width={338} height={190} />
                 </div>
-                {/* Front ticket */}
                 <div
                   className="absolute inset-0 transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
                   style={{ filter: 'drop-shadow(0 12px 30px rgba(0, 0, 0, 0.4))' }}
@@ -98,6 +96,7 @@ export const Hero = () => {
                 Local Early Bird tickets now available!
               </p>
             </Link>
+            */}
           </div>
         </div>
       </div>
