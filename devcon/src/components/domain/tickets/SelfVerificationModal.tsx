@@ -242,7 +242,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 }
                 className={css['voucher-cta']}
               >
-                Go to Ticket Store
+                {TICKETING.isShopOpen ? 'Go to Ticket Store' : 'View your reservation'}
                 <ArrowRight size={20} aria-hidden />
               </a>
             </div>

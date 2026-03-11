@@ -248,8 +248,20 @@ export async function insertDiscountVouchers(
   return inserted
 }
 
+/**
+ * Store the email address for a voucher (called when user sends voucher to email).
+ */
+export async function setVoucherEmail(voucherCode: string, email: string): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .update({ email, updated_at: new Date().toISOString() })
+    .eq('code', voucherCode)
+  if (error) throw new Error(`discountStore setVoucherEmail: ${error.message}`)
+}
+
 const RATE_LIMIT_DISCOUNT_IP_WINDOW_MINUTES = 1
-const RATE_LIMIT_DISCOUNT_IP_MAX = 10
+const RATE_LIMIT_DISCOUNT_IP_MAX = 60
 
 /**
  * Check discount code validation rate limit. Returns true if allowed.

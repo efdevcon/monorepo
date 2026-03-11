@@ -38,6 +38,7 @@ const ENV_CONFIG = {
     overrides: {
       soldOut: false,
     },
+    isShopOpen: false,
     x402Agents: false,
   },
   production: {
@@ -81,6 +82,7 @@ const ENV_CONFIG = {
     overrides: {
       soldOut: false,
     },
+    isShopOpen: false,
     x402Agents: false,
   },
 }
