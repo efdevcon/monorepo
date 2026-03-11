@@ -329,9 +329,10 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
                 Code of Conduct
               </Link>
+              {/* TODO: Update later 
               <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
                 Terms of Service
-              </Link>
+              </Link> */}
               <Link
                 className="bold font-xs text-uppercase hover-underline"
                 to={
