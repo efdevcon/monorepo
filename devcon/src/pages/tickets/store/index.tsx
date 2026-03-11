@@ -10,6 +10,9 @@ import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificatio
 import { Input } from '@/components/ui/input'
 import { ArrowLeft, CalendarDays, MapPin } from 'lucide-react'
 import css from './store.module.scss'
+
+// Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
+const fmtPrice = (p: string) => p.replace(/\.00$/, '')
 import { TicketInfo, QuestionInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
@@ -219,7 +222,7 @@ function StoreContent({
 
   const totalQty = cart.reduce((sum, c) => sum + c.quantity, 0)
   const totalCents = cart.reduce((sum, c) => sum + Math.round(parseFloat(c.price) * 100) * c.quantity, 0)
-  const totalFormatted = `$${(totalCents / 100).toFixed(2)} USD`
+  const totalFormatted = `$${fmtPrice((totalCents / 100).toFixed(2))} USD`
 
   const selectionText =
     totalQty === 0
@@ -372,7 +375,7 @@ function StoreContent({
                 <div key={ticket.id} className={css['card']}>
                   <div className={css['card-main']}>
                     <div className={css['card-body']}>
-                      <h3 className={css['card-title']}>{ticket.name}</h3>
+                      <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
                       {ticket.description && <p className={css['card-meta']}>{ticket.description}</p>}
                       <p className={css['card-description']}>
                         Full conference access, swag bag, plus coffee, lunch and snacks all week!
@@ -388,9 +391,9 @@ function StoreContent({
                     <div className={css['card-right']}>
                       <div className={css['pricing']}>
                         {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                          <span className={css['price-original']}>${ticket.originalPrice}</span>
+                          <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                         )}
-                        <span className={css['price-current']}>${ticket.price}</span>
+                        <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                       </div>
                       {pretixCheckoutUrl ? (
                         <a href={pretixCheckoutUrl} className={css['checkout-btn']}>
@@ -453,8 +456,8 @@ function StoreContent({
                       <div className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${!isLoadingTickets && (!ticket.available || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true))) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
-                            <h3 className={css['card-title']}>{ticket.name}</h3>
-                            {!ticket.available ? (
+                            <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
+                            {!ticket.available || (requireEarlyAccess && !earlyAccess) ? (
                               <p className={css['sold-out-meta']}>
                                 Sorry, all Early Access vouchers have been reserved. More local tickets will go on sale later this year.
                               </p>
@@ -472,9 +475,9 @@ function StoreContent({
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${ticket.price}</span>
+                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
                               <span className={css['card-disabled-message']}>Loading...</span>
@@ -483,9 +486,9 @@ function StoreContent({
                             <div className={css['card-footer']}>
                               <div className={`${css['pricing']} ${css['pricing--faded']}`}>
                                 <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${ticket.price}</span>
+                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
                               <span className={css['sold-out-badge']}>Fully claimed</span>
@@ -494,9 +497,9 @@ function StoreContent({
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${ticket.price}</span>
+                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
                               <button
@@ -512,9 +515,9 @@ function StoreContent({
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${ticket.price}</span>
+                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
                               <p className={css['card-disabled-message']}>
@@ -525,9 +528,9 @@ function StoreContent({
                             <div className={css['card-footer']}>
                               <div className={css['pricing']}>
                                 <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${ticket.price}</span>
+                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
                               <p className={css['card-disabled-message']}>
@@ -536,19 +539,14 @@ function StoreContent({
                             </div>
                           ) : (
                             <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
+                              <div className={`${css['pricing']} ${css['pricing--faded']}`}>
                                 <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${ticket.price}</span>
+                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${ticket.originalPrice}</span>
+                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
-                              <div className={css['access-link-badge']}>
-                                <div className={css['access-link-badge-logo']}>
-                                  <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
-                                </div>
-                                <span>Check your email for your unique access link</span>
-                              </div>
+                              <span className={css['sold-out-badge']}>Fully claimed</span>
                             </div>
                           )}
                         </div>
@@ -649,7 +647,7 @@ function StoreContent({
                   <div>
                     <p className={css['summary-total-label']}>Total</p>
                     <p className={css['summary-total-value']}>
-                      ${(totalCents / 100).toFixed(2)}
+                      ${fmtPrice((totalCents / 100).toFixed(2))}
                       <span className={css['summary-total-currency']}> USD</span>
                     </p>
                   </div>

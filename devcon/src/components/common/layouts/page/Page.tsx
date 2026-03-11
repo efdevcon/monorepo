@@ -31,7 +31,7 @@ export default function PageLayout({
 
   return (
     <div className={className} style={style}>
-      <Header withHero={withHero} />
+      <Header withHero={withHero} darkHeader={darkHeader} />
 
       {children}
 
