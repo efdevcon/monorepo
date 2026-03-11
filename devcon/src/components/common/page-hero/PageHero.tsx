@@ -84,17 +84,16 @@ const PathNavigation = (props: PageHeroProps) => {
 
 export const PageHero = (props: PageHeroProps) => {
   // const pageContext = usePageContext()
-  // const stripHeight = useGetElementHeight('strip')
+  const stripHeight = useGetElementHeight('strip')
   const headerHeight = useGetElementHeight('header-container')
   const pageHeaderHeight = useGetElementHeight('page-navigation')
   const pageHeroHeight = useGetElementHeight('page-hero')
-  const negativeOffset = `-${pageHeroHeight - pageHeaderHeight - headerHeight}px`
+  const negativeOffset = `-${pageHeroHeight - pageHeaderHeight - headerHeight + stripHeight}px`
   const isScrolled = useIsScrolled()
   const [currentScene, setCurrentScene] = React.useState(0)
 
   let style: any = {
     '--negative-offset': negativeOffset,
-    // '--strip-height': `${stripHeight}px`,
   }
 
   let bgStyle: any = {}

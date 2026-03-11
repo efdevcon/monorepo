@@ -167,10 +167,11 @@ export const Navigation = (props: any) => {
 
             if (i.highlight === 'tickets') {
               return (
-                <Link to={i.url}>
-                  <Button color="purple-1" className="shadow lg !py-[8px] !px-[16px] !rounded-full" fill style={{ background: '#7235ed' }}>
-                    {i.title}
-                  </Button>
+                <Link
+                  to={i.url}
+                  className="ml-[3px] bg-[#7235ed] text-white font-bold text-sm rounded-full px-4 py-2 shadow hover:scale-[1.02] transition-transform"
+                >
+                  {i.title}
                 </Link>
               )
             }
