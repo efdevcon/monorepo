@@ -4,7 +4,7 @@
  * Creates vouchers via Pretix API and stores them in the discount_vouchers table.
  *
  * Usage:
- *   pnpm run pretix:generate-vouchers --count 10 --price 0.01 --tag TestLocalEarlyBird --item-id 2 --collection test-local-early-bird [--max-usages 1] [--dry-run]
+ *   pnpm run pretix:generate-vouchers --count 1 --price 0.01 --tag TestLocalEarlyBird --item-id 2 --collection test-local-early-bird [--max-usages 1] [--dry-run]
  *   pnpm run pretix:generate-vouchers --count 500 --price 99 --tag IndiaEarlyBird --item-id 2 --collection india-early-bird [--dry-run] [--max-usages 1]
  */
 import 'dotenv/config'

@@ -10,6 +10,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getTicketPurchaseInfo } from 'services/pretix'
+import { hasAvailableVouchers } from 'services/discountStore'
 import { TicketPurchaseInfo } from 'types/pretix'
 import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
 import { TICKETING, isTestnet } from 'config/ticketing'
@@ -81,7 +82,15 @@ export default async function handler(
 
   try {
     const locale = (req.query.locale as string) || 'en'
-    const ticketInfo = await getTicketPurchaseInfo(locale)
+    const [ticketInfo, vouchersAvailable] = await Promise.all([
+      getTicketPurchaseInfo(locale),
+      hasAvailableVouchers().catch(() => undefined),
+    ])
+
+    // Attach vouchersAvailable to voucher-required tickets
+    const tickets = ticketInfo.tickets.map(t =>
+      t.requireVoucher ? { ...t, vouchersAvailable } : t
+    )
 
     const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
     const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
@@ -90,6 +99,7 @@ export default async function handler(
       success: true,
       data: {
         ...ticketInfo,
+        tickets,
         paymentInfo: {
           network: usdcConfig.network,
           chainId: usdcConfig.chainId,

@@ -2,7 +2,7 @@
  * Generate unique early access codes and insert into Supabase
  *
  * Usage:
- *   pnpm run early-access:generate-codes --count 10 [--collection <name>] [--prefix DC8-] [--length 12] [--dry-run]
+ *   pnpm run early-access:generate-codes --count 1 [--collection <name>] [--prefix DC8-] [--length 12] [--dry-run]
  */
 import 'dotenv/config'
 import crypto from 'crypto'

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getQuotaAvailability } from 'services/pretix'
+import { hasAvailableVouchers } from 'services/discountStore'
 import { TICKETING } from 'config/ticketing'
 
 const DEFAULT_QUOTA_ID = TICKETING.pretix.defaultQuotaId
@@ -10,7 +11,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const data = await getQuotaAvailability(DEFAULT_QUOTA_ID)
+    const [data, vouchersAvailable] = await Promise.all([
+      getQuotaAvailability(DEFAULT_QUOTA_ID),
+      hasAvailableVouchers().catch(() => undefined),
+    ])
     return res.status(200).json({
       code: 200,
       message: '',
@@ -18,6 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         id: String(DEFAULT_QUOTA_ID),
         available_number: data.available_number,
         available: data.available,
+        vouchers_available: vouchersAvailable,
       },
     })
   } catch (error) {

@@ -122,6 +122,20 @@ export async function linkVoucherToDiscountCode(code: string, voucherCode: strin
 }
 
 /**
+ * Check whether unassigned vouchers exist in the pool.
+ */
+export async function hasAvailableVouchers(collection: string = TICKETING.discount.collection): Promise<boolean> {
+  const supabase = getSupabase()
+  const { count, error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .select('id', { count: 'exact', head: true })
+    .eq('collection', collection)
+    .is('assigned_to', null)
+  if (error) throw new Error(`discountStore hasAvailableVouchers: ${error.message}`)
+  return (count ?? 0) > 0
+}
+
+/**
  * Assign a voucher from the pool. Enforces one-voucher-per-identity:
  * if assignedTo already has a voucher, returns that existing one.
  * Otherwise atomically assigns an unassigned voucher.

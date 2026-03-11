@@ -253,6 +253,7 @@ export interface TicketInfo {
   currency: string
   available: boolean
   availableCount: number | null
+  vouchersAvailable?: boolean
   isAdmission: boolean
   requireVoucher: boolean
   variations: {

@@ -451,13 +451,15 @@ function StoreContent({
                 </div>
 
                 <div className={css['discounts-grid']}>
-                  {displayVoucherTickets.map(ticket => (
+                  {displayVoucherTickets.map(ticket => {
+                    const soldOut = !ticket.available || ticket.vouchersAvailable === false
+                    return (
                     <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${!isLoadingTickets && (!ticket.available || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true))) ? css['card--disabled'] : ''}`}>
+                      <div className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${!isLoadingTickets && (soldOut || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true))) ? css['card--disabled'] : ''}`}>
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
-                            {!ticket.available || (requireEarlyAccess && !earlyAccess) ? (
+                            {soldOut ? (
                               <p className={css['sold-out-meta']}>
                                 Sorry, all Early Access vouchers have been reserved. More local tickets will go on sale later this year.
                               </p>
@@ -482,7 +484,7 @@ function StoreContent({
                               </div>
                               <span className={css['card-disabled-message']}>Loading...</span>
                             </div>
-                          ) : !ticket.available ? (
+                          ) : soldOut ? (
                             <div className={css['card-footer']}>
                               <div className={`${css['pricing']} ${css['pricing--faded']}`}>
                                 <span className={css['price-label']}>Price at launch:</span>
@@ -539,20 +541,25 @@ function StoreContent({
                             </div>
                           ) : (
                             <div className={css['card-footer']}>
-                              <div className={`${css['pricing']} ${css['pricing--faded']}`}>
+                              <div className={css['pricing']}>
                                 <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
-                              <span className={css['sold-out-badge']}>Fully claimed</span>
+                              <div className={css['access-link-badge']}>
+                                <div className={css['access-link-badge-logo']}>
+                                  <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
+                                </div>
+                                <span>Check your email for your unique access link</span>
+                              </div>
                             </div>
                           )}
                         </div>
                       </div>
                     </React.Fragment>
-                  ))}
+                  )})}
                 </div>
               </section>
             )}
@@ -727,6 +734,17 @@ export async function getStaticProps() {
   } catch {
     // Pretix unavailable at build time — use hardcoded fallback
     initialTickets = [FALLBACK_TICKET]
+  }
+
+  // Check Supabase voucher pool availability for voucher-required tickets
+  try {
+    const { hasAvailableVouchers } = await import('services/discountStore')
+    const vouchersAvailable = await hasAvailableVouchers()
+    initialTickets = initialTickets.map(t =>
+      t.requireVoucher ? { ...t, vouchersAvailable } : t
+    )
+  } catch {
+    // Supabase unavailable at build time — assume available
   }
 
   return {
