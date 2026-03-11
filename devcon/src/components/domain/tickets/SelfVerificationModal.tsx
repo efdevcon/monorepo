@@ -121,19 +121,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         if (res.ok && data.voucherCode) {
           clearError()
           setVoucher(data.voucherCode)
-          if (email) {
-            try {
-              const emailRes = await fetch('/api/tickets/send-voucher-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, voucherCode: data.voucherCode }),
-              })
-              const emailData = await emailRes.json()
-              if (emailRes.ok && emailData.success) setEmailSent(true)
-            } catch {
-              // Non-fatal — voucher is still shown
-            }
-          }
           return
         }
         if (res.ok && data.error && data.reason) {
@@ -152,6 +139,19 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       setError('Verification timed out. Please try again.')
     }
   }
+
+  // Send email when voucher is obtained, regardless of which code path found it
+  useEffect(() => {
+    if (!voucher || !email || emailSent) return
+    fetch('/api/tickets/send-voucher-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, voucherCode: voucher }),
+    })
+      .then(res => res.json())
+      .then(data => { if (data.success) setEmailSent(true) })
+      .catch(() => { /* Non-fatal — voucher is still shown */ })
+  }, [voucher, email, emailSent])
 
   // When the user returns from the Self app, start polling automatically
   useEffect(() => {

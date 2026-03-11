@@ -173,9 +173,15 @@ export async function assignVoucher(
     .eq('id', available.id)
     .is('assigned_to', null)
     .select('*')
+
+  // Unique index violation (parallel request already assigned a different voucher to this identity)
+  if (error && error.code === '23505') {
+    const existing = await getAssignedVoucher(assignedTo)
+    if (existing) return existing
+  }
   if (error) throw new Error(`discountStore assignVoucher update: ${error.message}`)
 
-  // If another request beat us, try once more (re-check identity dedup first)
+  // If another request beat us to THIS voucher, try once more (re-check identity dedup first)
   if (!data || data.length === 0) {
     const retryExisting = await getAssignedVoucher(assignedTo)
     if (retryExisting) return retryExisting
