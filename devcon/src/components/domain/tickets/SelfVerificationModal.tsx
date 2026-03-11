@@ -414,8 +414,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   <a href="https://instagram.com/efdevcon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                   </a>
-                  <a href="https://warpcast.com/devcon" target="_blank" rel="noopener noreferrer" aria-label="Farcaster">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5.182 3.073h13.636v1.939l-1.025 1.025h-1.536v10.89h1.025v2.047H5.182V16.88h1.025V6.037H4.67L3.646 5.012V3.073zm3.073 3.964v9.843h7.49V7.037z"/></svg>
+                  <a href="https://farcaster.xyz/devcon" target="_blank" rel="noopener noreferrer" aria-label="Farcaster">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.775 2h14.19v20.177h-2.083v-9.242h-.02a5.012 5.012 0 0 0-9.984 0h-.02v9.242H4.775V2Z" fill="currentColor"/><path d="m1 4.864.846 2.864h.716v11.586a.65.65 0 0 0-.65.65v.782h-.13a.65.65 0 0 0-.652.65v.781h7.29v-.78a.65.65 0 0 0-.65-.651h-.13v-.781a.65.65 0 0 0-.652-.651h-.78V4.864H1ZM17.012 19.314a.65.65 0 0 0-.651.65v.782h-.13a.65.65 0 0 0-.651.65v.781h7.29v-.78a.65.65 0 0 0-.651-.651h-.13v-.781a.65.65 0 0 0-.651-.651V7.728h.716L23 4.864h-5.207v14.45h-.781Z" fill="currentColor"/></svg>
                   </a>
                 </div>
               </div>
