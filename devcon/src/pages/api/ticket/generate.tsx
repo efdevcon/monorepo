@@ -55,7 +55,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json({ success: true, hash, displayName, version: '' })
     }
 
-    const avatarBuffer = Buffer.from(await avatarRes.arrayBuffer())
+    let avatarBuffer: Buffer
+    try {
+      avatarBuffer = Buffer.from(await avatarRes.arrayBuffer())
+    } catch {
+      // Body already consumed (redirect chain / connection reset) — continue without avatar
+      return res.status(200).json({ success: true, hash, displayName, version: '' })
+    }
 
     // Upload avatar to Supabase
     const uploadRes = await fetch(`${supabaseUrl}/storage/v1/object/${BUCKET}/${hash}_avatar.png`, {
