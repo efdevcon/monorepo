@@ -113,11 +113,13 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     clearError()
     const maxAttempts = 10
     const delayMs = 2000
+    let lastError: string | undefined
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
         const res = await fetch(`/api/tickets/self-voucher?userId=${encodeURIComponent(userId)}`)
         const data = await res.json()
         if (res.ok && data.voucherCode) {
+          clearError()
           setVoucher(data.voucherCode)
           if (email) {
             try {
@@ -135,15 +137,20 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
           return
         }
         if (res.ok && data.error && data.reason) {
-          setErrorFromReason(data.reason)
-          return
+          // Don't stop immediately — a parallel backend request may still be assigning the voucher.
+          // Keep polling; only show the error after all attempts are exhausted.
+          lastError = data.reason
         }
       } catch {
         // ignore and retry
       }
       await new Promise(r => setTimeout(r, delayMs))
     }
-    setError('Verification timed out. Please try again.')
+    if (lastError) {
+      setErrorFromReason(lastError)
+    } else {
+      setError('Verification timed out. Please try again.')
+    }
   }
 
   // When the user returns from the Self app, start polling automatically
@@ -165,6 +172,9 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   // verification errors (only proof_generation_failed and proof_verified exist).
   // Poll self-voucher periodically so the frontend picks up errors/vouchers
   // regardless of WebSocket behaviour.
+  // Errors are only surfaced after several consecutive polls with no voucher,
+  // to avoid killing the polling loop during a backend race condition.
+  const bgErrorCount = React.useRef(0)
   useEffect(() => {
     if (!isOpen || voucher || error) return
 
@@ -173,9 +183,15 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         const res = await fetch(`/api/tickets/self-voucher?userId=${encodeURIComponent(userId)}`)
         const data = await res.json()
         if (res.ok && data.voucherCode) {
+          bgErrorCount.current = 0
           setVoucher(data.voucherCode)
         } else if (res.ok && data.error && data.reason) {
-          setErrorFromReason(data.reason)
+          bgErrorCount.current++
+          // Only surface the error after 3 consecutive error polls (~9s)
+          // to give a parallel backend request time to store the voucher
+          if (bgErrorCount.current >= 3) {
+            setErrorFromReason(data.reason)
+          }
         }
       } catch {
         // ignore

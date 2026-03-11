@@ -180,6 +180,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const existingVoucher = await getAssignedVoucher(nullifier)
     if (existingVoucher) {
       voucherStore.set(verifiedUserId, existingVoucher.code)
+      errorStore.delete(verifiedUserId)
       setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
       return res.status(200).json({
         status: 'success',
@@ -209,6 +210,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (codeRecord.voucherCode) {
           // Voucher was already linked — return it
           voucherStore.set(verifiedUserId, codeRecord.voucherCode)
+          errorStore.delete(verifiedUserId)
           setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
           return res.status(200).json({
             status: 'success',
@@ -233,22 +235,45 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Unclaimed — atomically claim it BEFORE assigning a voucher (prevents race condition)
         const claimed = await claimDiscountCode(earlyAccessCode, nullifier)
         if (!claimed) {
-          const reason = 'Early access code was just claimed by another request'
-          storeError(verifiedUserId, reason)
-          return res.status(200).json({
-            status: 'error',
-            result: false,
-            error_code: 'EARLY_ACCESS_CODE_USED',
-            reason,
-          })
+          // Re-check: a parallel request from the same identity may have just claimed it
+          const recheck = await lookupDiscountCode(earlyAccessCode)
+          if (recheck?.claimedBy === nullifier) {
+            if (recheck.voucherCode) {
+              voucherStore.set(verifiedUserId, recheck.voucherCode)
+              errorStore.delete(verifiedUserId)
+              setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+              return res.status(200).json({
+                status: 'success',
+                result: true,
+                credentialSubject: result.discloseOutput,
+              })
+            }
+            // Claimed by us but voucher not linked yet — fall through to assign
+            voucherCollection = recheck.collection
+          } else {
+            const reason = 'This early access code has already been used'
+            storeError(verifiedUserId, reason)
+            return res.status(200).json({
+              status: 'error',
+              result: false,
+              error_code: 'EARLY_ACCESS_CODE_USED',
+              reason,
+            })
+          }
+        } else {
+          voucherCollection = codeRecord.collection
         }
-
-        voucherCollection = codeRecord.collection
       }
     }
 
     // Assign a voucher from the pool
-    const voucher = await assignVoucher(nullifier, voucherCollection)
+    let voucher = await assignVoucher(nullifier, voucherCollection)
+    if (!voucher) {
+      // A parallel request for the same identity may still be assigning.
+      // Wait briefly and re-check before giving up.
+      await new Promise(r => setTimeout(r, 2000))
+      voucher = await assignVoucher(nullifier, voucherCollection)
+    }
     if (!voucher) {
       const reason = 'No vouchers available. Please try again later.'
       storeError(verifiedUserId, reason)
@@ -267,6 +292,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Cache in memory for the polling flow (uses session userId for frontend polling)
     voucherStore.set(verifiedUserId, voucher.code)
+    errorStore.delete(verifiedUserId) // Clear any race-condition error from parallel request
     setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
 
     return res.status(200).json({
