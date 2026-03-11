@@ -3,20 +3,21 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 const isBrowser = typeof window !== 'undefined'
 const useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect
 
-export const useIsScrolled = () => {
+export const useIsScrolled = (threshold = 0) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 0 // Reading scrollY causes repaint; keep an eye out for perf issues
+      const scrolled = window.scrollY > threshold
 
       setIsScrolled(scrolled)
     }
 
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [threshold])
 
   return isScrolled
 }

@@ -165,6 +165,17 @@ export const Navigation = (props: any) => {
               className += ` plain`
             }
 
+            if (i.highlight === 'tickets') {
+              return (
+                <Link
+                  to={i.url}
+                  className="ml-[3px] bg-[#7235ed] text-white font-bold text-sm rounded-full px-4 py-2 shadow hover:scale-[1.02] transition-transform"
+                >
+                  {i.title}
+                </Link>
+              )
+            }
+
             if (i.highlight === 'archive') {
               return (
                 <Link to={i.url}>

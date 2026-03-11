@@ -4,7 +4,7 @@ import IconArrowUpward from 'assets/icons/arrow_upward.svg'
 import ImageEF from 'assets/images/ef-logo.svg'
 import { Link } from 'components/common/link'
 import { Link as LinkType } from 'types/Link'
-import { Newsletter } from 'components/common/newsletter'
+// import { Newsletter } from 'components/common/newsletter'
 import { EMAIL_DEVCON, LINK_ETHEREUM_FOUNDATION } from 'utils/constants'
 import { Copyright } from '../Copyright'
 import { useRouter } from 'next/router'
@@ -14,13 +14,16 @@ import IconTwitter from 'assets/icons/twitter.svg'
 import IconYoutube from 'assets/icons/youtube.svg'
 import IconTelegram from 'assets/icons/telegram.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
+import IconInstagram from 'assets/icons/instagram.svg'
 import IconLens from 'assets/icons/lens.svg'
 import { Modal } from 'components/common/modal'
 // import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import LogoFooter from 'assets/images/dc-8/dc8-logo.png'
+import LogoFooterSvg from 'assets/images/dc-8/dc8-footer-logo.svg'
 import DC7Background from 'assets/images/dc-7/footer-bg.png'
 import { Button } from 'lib/components/button'
 import Image from 'next/image'
+import { ArrowUpRight } from 'lucide-react'
 
 type SocialMediaProps = {
   onShare?: () => void
@@ -58,14 +61,17 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
       <Link to="https://twitter.com/efdevcon">
         <IconTwitter style={{ cursor: 'pointer' }} />
       </Link>
+      <Link to="https://www.instagram.com/efdevcon">
+        <IconInstagram style={{ cursor: 'pointer' }} />
+      </Link>
+      <Link to="https://t.me/+sitvvHw8D8EzN2Yx">
+        <IconTelegram style={{ cursor: 'pointer' }} />
+      </Link>
       <Link to="https://warpcast.com/~/channel/devcon">
         <IconWarpcast style={{ cursor: 'pointer' }} />
       </Link>
       <Link to="https://hey.xyz/u/devcon">
         <IconLens style={{ cursor: 'pointer' }} />
-      </Link>
-      <Link to="https://t.me/devcon_SEA">
-        <IconTelegram style={{ cursor: 'pointer' }} />
       </Link>
       <Link to="https://github.com/efdevcon">
         <IconGithub style={{ cursor: 'pointer' }} />
@@ -98,11 +104,15 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
         <div className={css['content']}>
           <div className={css['col-1']}>
             <Link to={`/${lang}/`} style={{ maxWidth: '225px', minWidth: '130px', display: 'block' }}>
-              <Image
-                src={LogoFooter}
-                alt="Devcon 7 Logo"
-                className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
-              />
+              {dark ? (
+                <LogoFooterSvg className="footer-logo w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]" />
+              ) : (
+                <Image
+                  src={LogoFooter}
+                  alt="Devcon 8 Logo"
+                  className="w-[85%] max-w-[350px] lg:w-auto lg:max-w-[400px]"
+                />
+              )}
             </Link>
 
             <SocialMedia />
@@ -150,11 +160,16 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
           <div className={css['col-4']}>
             <div className={css['contact']}>
               <p className="semi-bold">Get in touch</p>
-              <p className={css['email-1']}>{EMAIL_DEVCON}</p>
+              <a href={`mailto:${EMAIL_DEVCON}`} className={css['email-1']}>
+                {EMAIL_DEVCON}
+              </a>
 
               <div className={`${css['newsletter']} mt-8`}>
-                <Newsletter id="footer_newsletter_email" dark={dark} />
-                {/* Subscribe for updates */}
+                <p className="semi-bold">Subscribe for updates</p>
+                <Link to="https://paragraph.com/@efevents/subscribe" className={css['subscribe-btn']}>
+                  Subscribe
+                  <ArrowUpRight size={16} strokeWidth={2} />
+                </Link>
               </div>
             </div>
           </div>
@@ -314,9 +329,10 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
                 Code of Conduct
               </Link>
+              {/* TODO: Update later 
               <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
                 Terms of Service
-              </Link>
+              </Link> */}
               <Link
                 className="bold font-xs text-uppercase hover-underline"
                 to={

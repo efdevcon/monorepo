@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
 
   if (
     req.nextUrl.pathname.startsWith('/_next') ||
-    req.nextUrl.pathname.startsWith('/sea/ticket') ||
+    req.nextUrl.pathname.startsWith('/ticket/') ||
     req.nextUrl.pathname.includes('/api/') ||
     PUBLIC_FILE.test(req.nextUrl.pathname)
   ) {

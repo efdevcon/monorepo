@@ -6,36 +6,29 @@ import css from './header.module.scss'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import HeaderLogo from './HeaderLogo'
 import cn from 'classnames'
-// import DevaBot from 'lib/components/ai/overlay'
-// import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
-// import { useRecoilState, useRecoilValue } from 'recoil'
-// import { appState as appStateAtom } from 'state/main'
+import { Strip } from './Strip'
+import useGetElementHeight from 'hooks/useGetElementHeight'
 
 type HeaderProps = {
-  withStrip?: boolean
   isApp?: boolean
   withHero?: boolean
+  darkHeader?: boolean
   className?: string
 }
 
-export const Header = React.memo(({ withStrip, withHero, className, isApp }: HeaderProps) => {
+export const Header = React.memo(({ withHero, darkHeader, className, isApp }: HeaderProps) => {
   const ref = useRef(null)
   const router = useRouter()
+  const stripHeight = useGetElementHeight('strip')
   const isScrolled = useIsScrolled()
+  const isScrolledPast200 = useIsScrolled(100)
   const [foldoutOpen, setFoldoutOpen] = React.useState(false)
   const [searchOpen, setSearchOpen] = React.useState(false)
-  // useOnOutsideClick(ref, () => setSearchOpen(false))
-
-  // const [appState, setAppState] = useRecoilState(appStateAtom)
-  // const devabotVisible = appState.devabotVisible
-
-  // Add this line to check for the query parameter
-  // const showDevaBot = router.query.showDevaBot === 'true'
 
   // Prevent page scroll when menu is open
   useEffect(() => {
     if (foldoutOpen) {
-      if (isApp) window.scrollTo(0, 0) // Header isn't sticky in the app so we have to scroll to the top to align the foldout content properly
+      if (isApp) window.scrollTo(0, 0)
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
@@ -50,27 +43,22 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
   let headerClass = `${css['header']}`
 
   if (foldoutOpen) headerContainerClass += ` ${css['foldout-open']}`
+  if (darkHeader) headerContainerClass += ` ${css['header-dark']}`
   if (className) headerContainerClass += ` ${className}`
   if (isApp) headerContainerClass += ` ${css['app']}`
+  if (isScrolledPast200 && !withHero) headerContainerClass += ` ${css['scrolled']}`
+
+  const stripStyle = { '--strip-height': `-${stripHeight}px` } as React.CSSProperties
 
   const body = (
-    <header id="header-container" className={headerContainerClass}>
+    <header id="header-container" className={headerContainerClass} style={!withHero ? stripStyle : undefined}>
+      <Strip />
       <div id="header" className={headerClass} ref={ref}>
         <div className="section">
           <div className={`${css['menu-container']} ${isApp ? css['no-overflow'] : ''}`}>
             <Link to={`/${router.locale}`} data-type="devcon-header-logo">
               <HeaderLogo />
             </Link>
-
-            {/* <DevaBot
-              botVersion="devcon-website"
-              toggled={devabotVisible}
-              autoFetchSessions
-              onToggle={() => setAppState({ ...appState, devabotVisible: !appState.devabotVisible })}
-              defaultPrompt={undefined}
-              setDefaultPrompt={() => {}}
-              SessionComponent={undefined}
-            /> */}
 
             <Menu
               isApp={isApp}
@@ -86,14 +74,13 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
   )
 
   if (withHero) {
-    let headerContainerClass = `${css['header-fixed-container']}`
+    let fixedContainerClass = `${css['header-fixed-container']}`
 
-    if (isScrolled) {
-      headerContainerClass += ` ${css['scrolled']}`
-    }
+    if (isScrolled) fixedContainerClass += ` ${css['filled']}`
+    if (isScrolledPast200) fixedContainerClass += ` ${css['scrolled']}`
 
     return (
-      <div className={cn(headerContainerClass, '')} id="header-strip">
+      <div className={cn(fixedContainerClass, '')} id="header-strip" style={stripStyle}>
         {body}
       </div>
     )

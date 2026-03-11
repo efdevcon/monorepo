@@ -1,0 +1,823 @@
+@use 'assets/css/partials/index' as *;
+
+.store-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: calc(100vh - 54px);
+  font-family: 'Poppins', sans-serif;
+
+  @media (min-width: $breakpoints-lg) {
+    grid-template-columns: 432px 1fr;
+    gap: 0;
+    padding: 0;
+  }
+}
+
+/* Left column: white (Figma 2899-1374) */
+.sidebar {
+  padding: 1.5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  @media (min-width: $breakpoints-lg) {
+    padding: 4rem 2rem 5rem 4rem;
+    border-bottom: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 54px;
+    height: calc(100vh - 54px);
+    overflow-y: auto;
+    align-self: start;
+  }
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    flex: 1;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    gap: 1.5rem;
+  }
+}
+
+.sidebar-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #7235ed;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/* Right column: gradient bg – vertical splitter (Figma 2889-3307) */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: linear-gradient(to top, #e5ebff 20%, #fbfafc);
+}
+
+.sidebar-logo {
+  img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    object-position: left;
+  }
+}
+
+/* Figma: 40px, Poppins ExtraBold (800), line-height 1.1, letter-spacing -1px */
+.sidebar-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #160b2b;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+
+  br {
+    display: none;
+  }
+
+  @media (min-width: $breakpoints-lg) {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+
+    br {
+      display: inline;
+    }
+  }
+}
+
+/* Figma: 16px, Poppins Regular (400), line-height 24px (1.5) */
+.sidebar-description {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1a0d33;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.sidebar-includes {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a0d33;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.sidebar-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  @media (min-width: $breakpoints-lg) {
+    gap: 1rem;
+  }
+}
+
+/* Figma: 16px, Poppins Regular (400), line-height 24px (1.5), color #1a0d33 */
+.sidebar-details-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a0d33;
+  line-height: 1.5;
+
+  svg {
+    flex-shrink: 0;
+    stroke: #1a0d33 !important;
+    fill: none !important;
+  }
+
+  @media (min-width: $breakpoints-lg) {
+    font-size: 1rem;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem 1.25rem 2rem;
+  min-width: 0;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+
+  @media (min-width: $breakpoints-lg) {
+    padding: 4rem 2rem 2rem;
+    max-width: calc(880px + 4rem);
+  }
+}
+
+/* Countdown: banner image + overlay (Figma 2894-10485 desktop, 2894-11142 mobile) */
+.countdown-banner {
+  background: #5a5a5a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 93px;
+  overflow: clip;
+
+  @media (min-width: $breakpoints-lg) {
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .countdown-banner-bg {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(34, 17, 68, 0.3);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 4px rgba(22, 11, 43, 0.3);
+}
+
+.countdown-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &:not(:first-child) {
+    padding-left: 1rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 1.625rem;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+
+/* Figma: 24px, Poppins ExtraBold (800), line-height 28.8px (1.2) */
+.countdown-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  display: block;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+/* Figma: 14px, Poppins Medium (500), line-height 20px (1.43) */
+.countdown-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.43;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .discounts-grid {
+    margin-top: 2rem;
+  }
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dddae2;
+  margin-bottom: 1.5rem;
+
+  @media (min-width: $breakpoints-lg) {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9f8fa;
+  background: #7235ed;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Figma: 32px, Poppins ExtraBold (800), line-height 1.2, letter-spacing -0.5px */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #160b2b;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+
+  @media (min-width: $breakpoints-lg) {
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+  }
+}
+
+/* Figma: 16px, Poppins Regular (400), line-height 24px (1.5) */
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1a0d33;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Ticket and discount cards: white (Figma 2899-1374), rounded-lg 8px */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dddae2;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    gap: 1rem;
+  }
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-body {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+/* Figma: 20px, Poppins ExtraBold (800), line-height 26px (1.3) */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #160b2b;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Figma: 14px, Poppins Bold (700), line-height 20px (1.43), color #d65600 */
+.card-meta {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #d65600;
+  margin: 0;
+  line-height: 1.43;
+}
+
+/* Figma: 14px, Poppins Regular (400), line-height 20px (1.43), color #1a0d33 */
+.card-description {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a0d33;
+  margin: 0;
+  line-height: 1.43;
+}
+
+.card--disabled {
+  pointer-events: none;
+  user-select: none;
+
+  .card-details,
+  .pricing {
+    opacity: 0.45;
+  }
+}
+
+.card--loading {
+  pointer-events: none;
+
+  .card-footer {
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.card-disabled-message {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sold-out-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fff0f0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #b42124;
+  white-space: nowrap;
+}
+
+.sold-out-meta {
+  font-size: 14px;
+  font-weight: 700;
+  color: #b42124;
+  line-height: 20px;
+}
+
+.pricing--faded {
+  opacity: 0.4;
+}
+
+.access-link-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f2f1f4;
+  border: 1px solid #dddae2;
+  border-radius: 9999px;
+  padding: 4px 12px 4px 4px;
+  min-height: 36px;
+
+  span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a0d33;
+    line-height: 20px;
+  }
+}
+
+.access-link-badge-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.price-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.43;
+}
+
+/* Figma: 24px, Poppins ExtraBold (800), line-height 28.8px (1.2), letter-spacing -0.5px */
+.price-current {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #160b2b;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+/* Figma: 16px, Poppins Bold (700), line-height 24px (1.5), color #594d73 */
+.price-original {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #594d73;
+  text-decoration: line-through;
+}
+
+.quantity {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #000;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.verify-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #000;
+  background: #fff;
+  border: 1px dashed #999;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: #f8f8f8;
+    border-color: #666;
+  }
+}
+
+.verify-icon {
+  flex-shrink: 0;
+}
+
+/* Figma: 16px, Poppins Bold (700), line-height 1 */
+.verify-self-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a0d33;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #dddae2;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  margin-left: auto;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: #b5b1bf;
+  }
+}
+
+.self-logo {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.discounts-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+/* Bottom section: YOUR SELECTION bar – matches Figma (2899-1374) */
+.summary-sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  padding: 1rem 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.08);
+
+  @media (min-width: $breakpoints-lg) {
+    padding: 1rem 2rem 1.25rem;
+    margin-top: 2.5rem;
+    box-shadow: none;
+  }
+}
+
+.summary-sticky-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    gap: 2rem;
+  }
+}
+
+.summary-row {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 0.25rem;
+}
+
+.summary-selection {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.summary-total-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 0.25rem;
+}
+
+.summary-total-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.summary-total-currency {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, opacity 0.15s;
+
+  &:hover {
+    background: #1a1a1a;
+  }
+
+  &:disabled,
+  &[aria-disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.checkout-arrow {
+  width: 18px;
+  height: 18px;
+}
+
+/* Coming soon section */
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.coming-soon-card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dddae2;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.coming-soon-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.coming-soon-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.coming-soon-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.coming-soon-card-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.coming-soon-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.5;
+}
+
+.coming-soon-price-original {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #594d73;
+  text-decoration: line-through;
+  line-height: 1.43;
+}
+
+.coming-soon-availability {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #594d73;
+  line-height: 1.43;
+  white-space: nowrap;
+}

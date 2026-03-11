@@ -7,6 +7,7 @@ import { aiRouter } from '@/controllers/ai'
 import { atSlurperRouter } from '@/controllers/at-slurper'
 import { destinoRouter } from '@/controllers/destino'
 import { hooksRouter } from '@/controllers/hooks'
+import { whitelistRouter } from '@/controllers/whitelist'
 import { Router } from 'express'
 import { API_INFO } from '@/utils/config'
 
@@ -27,3 +28,4 @@ router.use(aiRouter)
 router.use(atSlurperRouter)
 router.use(destinoRouter)
 router.use(hooksRouter)
+router.use(whitelistRouter)

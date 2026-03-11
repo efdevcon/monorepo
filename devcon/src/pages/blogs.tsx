@@ -20,9 +20,12 @@ export default function BlogsTemplate(props: any) {
 }
 
 export async function getStaticProps(context: any) {
+  const blogs = await GetBlogs()
+
   return {
     props: {
-      blogs: await GetBlogs(),
+      blogs,
     },
+    revalidate: 3600,
   }
 }

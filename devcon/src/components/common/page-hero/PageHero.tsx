@@ -84,17 +84,16 @@ const PathNavigation = (props: PageHeroProps) => {
 
 export const PageHero = (props: PageHeroProps) => {
   // const pageContext = usePageContext()
-  // const stripHeight = useGetElementHeight('strip')
+  const stripHeight = useGetElementHeight('strip')
   const headerHeight = useGetElementHeight('header-container')
   const pageHeaderHeight = useGetElementHeight('page-navigation')
   const pageHeroHeight = useGetElementHeight('page-hero')
-  const negativeOffset = `-${pageHeroHeight - pageHeaderHeight - headerHeight}px`
+  const negativeOffset = `-${pageHeroHeight - pageHeaderHeight - headerHeight + stripHeight}px`
   const isScrolled = useIsScrolled()
   const [currentScene, setCurrentScene] = React.useState(0)
 
   let style: any = {
     '--negative-offset': negativeOffset,
-    // '--strip-height': `${stripHeight}px`,
   }
 
   let bgStyle: any = {}
@@ -188,14 +187,14 @@ export const PageHero = (props: PageHeroProps) => {
                           key={link.to + link.title}
                           to={link.to}
                           indicateExternal
-                          className="font-xs bold text-uppercase hover-underline"
+                          className="font-xs font-bold text-uppercase hover-underline"
                         >
                           {link.title}
                         </Link>
                       )
                     } else {
                       return (
-                        <div className="font-xs bold text-uppercase" key={link.key}>
+                        <div className="font-xs font-bold text-uppercase" key={link.key}>
                           {link.title}
                         </div>
                       )

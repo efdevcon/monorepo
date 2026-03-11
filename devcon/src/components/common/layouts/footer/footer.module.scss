@@ -132,27 +132,28 @@
   position: relative;
 
   &.dark {
+    background: #160b2b;
+    color: #c7c7d0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
     .top-section {
       &:after {
         display: none !important;
         background-image: none;
       }
 
-      * {
-        fill: rgba(199, 199, 208, 1) !important;
+      *:not(:global(.footer-logo) *) {
+        fill: #c7c7d0 !important;
       }
     }
 
     .bottom-section {
-      border-top: 1px solid rgba(34, 68, 144, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
 
       :global(.st0) {
-        // Footer logo svg text
-        fill: rgba(199, 199, 208, 1) !important;
+        fill: #c7c7d0 !important;
       }
     }
-
-    border-top: 1px solid rgba(34, 68, 144, 0.5);
   }
 
   .top-section {
@@ -437,6 +438,30 @@
 .contact {
   .email-1 {
     margin-bottom: $sizes-size-16;
+  }
+}
+
+.subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f9f8fa;
+  background: #7235ed;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  margin-top: 16px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  svg {
+    flex-shrink: 0;
   }
 }
 

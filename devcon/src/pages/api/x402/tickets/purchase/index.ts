@@ -1,0 +1,1014 @@
+/**
+ * x402 Tickets Purchase API - Create order and get payment requirements
+ * POST /api/x402/tickets/purchase
+ *
+ * Request body:
+ * {
+ *   email: string,
+ *   tickets: [{ itemId: number, variationId?: number, quantity: number }],
+ *   addons?: [{ itemId: number, quantity: number }],
+ *   answers: [{ questionId: number, answer: string | number | string[] }],
+ *   attendee: {
+ *     name: { given_name: string, family_name: string },
+ *     email?: string,
+ *     company?: string,
+ *     country?: string
+ *   }
+ * }
+ *
+ * Returns HTTP 402 Payment Required with payment details
+ */
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { verifyTypedData, type Hex } from 'viem'
+import { getTicketPurchaseInfo, getEventSettings, createOrder, confirmOrderPayment, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import type { TicketPurchaseInfo } from 'types/pretix'
+import {
+  createPaymentRequirements,
+  getPaymentRecipient,
+  buildX402PaymentRequiredSpec,
+  encodePaymentRequiredHeader,
+  decodePaymentSignatureHeader,
+  encodeSettlementResponseHeader,
+  usdToUsdcAmount,
+  verifyPayment,
+} from 'services/x402'
+import { fetchEthPriceUsd } from 'services/ethPrice'
+import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
+import type { PretixOrder } from 'types/pretix'
+import { createHash } from 'crypto'
+import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes, RelayerGasError } from 'services/relayer'
+import {
+  X402PaymentRequirements,
+  X402PaymentBlockV2,
+  type PaymentRequired,
+  type PaymentPayload,
+  type SettleResponse,
+  X402_VERSION,
+  EIP3009Authorization,
+  SUPPORTED_ASSETS_MAINNET,
+  SUPPORTED_ASSETS_TESTNET,
+  getGaslessTokenConfig,
+  getGaslessConfigsForChain,
+} from 'types/x402'
+import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
+import { validateAddressEIP55, addressesEqual } from 'utils/x402Validation'
+import { TICKETING, isTestnet } from 'config/ticketing'
+import { isEmail } from 'utils/validators'
+
+interface PurchaseRequest {
+  email: string
+  /** Wallet address that will pay (optional; when omitted, first signer claims the order) */
+  intendedPayer?: string
+  tickets: {
+    itemId: number
+    variationId?: number
+    quantity?: number
+  }[]
+  addons?: {
+    itemId: number
+    variationId?: number
+    quantity?: number
+  }[]
+  answers: {
+    questionId: number
+    answer: string | number | string[]
+  }[]
+  attendee: {
+    name: {
+      given_name: string
+      family_name: string
+    }
+    email?: string
+    company?: string
+    country?: string
+  }
+  voucher?: string
+}
+
+interface PurchaseResponse {
+  success: true
+  paymentRequired: true
+  /** x402 PaymentRequired (@x402/core) for SDK-compliant clients */
+  x402: PaymentRequired
+  /** x402 v2–style payment block (multi-chain, CAIP assets) */
+  payment: X402PaymentBlockV2
+  paymentDetails: X402PaymentRequirements
+  orderSummary: {
+    tickets: { name: string; price: string; quantity: number }[]
+    addons: { name: string; price: string; quantity: number }[]
+    subtotal: string
+    cryptoDiscount: string
+    total: string
+    currency: string
+  }
+}
+
+interface ErrorResponse {
+  success: false
+  error: string
+  details?: string[]
+}
+
+const CRYPTO_DISCOUNT_PERCENT = TICKETING.payment.cryptoDiscountPercent
+
+/** Build expected ETH amount in wei per chain ID (for secure native ETH verification) */
+function buildExpectedEthWeiByChain(
+  totalUsd: number,
+  ethPriceUsd: number,
+  chainIdsWithEth: number[]
+): Record<string, string> {
+  const weiPerChain: Record<string, string> = {}
+  const weiAmount = BigInt(Math.ceil((totalUsd / ethPriceUsd) * 1e18))
+  const weiStr = weiAmount.toString()
+  for (const chainId of chainIdsWithEth) {
+    weiPerChain[String(chainId)] = weiStr
+  }
+  return weiPerChain
+}
+
+export interface PurchaseHandlerOptions {
+  /** When false, intendedPayer is not required (simplified agent route). Default: true */
+  requirePayer?: boolean
+  /** Pre-fetched ticket info to avoid redundant Pretix API calls */
+  ticketInfo?: TicketPurchaseInfo
+}
+
+export async function purchaseHandler(
+  req: NextApiRequest,
+  res: NextApiResponse<PurchaseResponse | ErrorResponse>,
+  opts?: PurchaseHandlerOptions
+) {
+  const requirePayer = opts?.requirePayer ?? true
+
+  // x402 v2: If PAYMENT-SIGNATURE header is present, handle payment retry flow (spec §5.2)
+  // Works for both GET (awal) and POST (SDK) retries
+  const paymentSigHeader = (req.headers['payment-signature'] ?? req.headers['PAYMENT-SIGNATURE']) as string | undefined
+  if (paymentSigHeader) {
+    if (!TICKETING.x402Agents) {
+      return res.status(404).json({ success: false, error: 'x402 agent endpoints are disabled' })
+    }
+    return handlePaymentSignatureRetry(req, res, paymentSigHeader)
+  }
+
+  // GET: x402 discovery or order creation via ?params=<json>
+  if (req.method === 'GET') {
+    const paramsStr = typeof req.query.params === 'string' ? req.query.params : undefined
+    if (paramsStr) {
+      // GET with ?params= : create pending order (same as POST body), compatible with awal x402 pay
+      try {
+        req.body = JSON.parse(decodeURIComponent(paramsStr))
+      } catch {
+        return res.status(400).json({ success: false, error: 'Invalid params JSON' })
+      }
+      // Fall through to the order creation logic below
+    } else {
+      // GET without params: discovery only
+      return handleGetDiscovery(req, res)
+    }
+  } else if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, error: 'Method not allowed' })
+  }
+
+  try {
+    // Rate limit purchases per IP
+    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+    const { allowed } = await checkPurchaseRateLimit(clientIp)
+    if (!allowed) {
+      return res.status(429).json({
+        success: false,
+        error: 'Too many purchase requests. Please try again later.',
+      })
+    }
+
+    const body = req.body as PurchaseRequest
+
+    // Validate request (check Pretix settings for whether name is required)
+    const eventSettings = await getEventSettings()
+    const validationErrors = validatePurchaseRequest(body, { requirePayer, requireName: eventSettings.attendee_names_required })
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid request',
+        details: validationErrors,
+      })
+    }
+
+    // Use pre-fetched ticket info or fetch (cached) from Pretix
+    const ticketInfo = opts?.ticketInfo ?? await getTicketPurchaseInfo()
+    const itemsById = new Map(ticketInfo.tickets.map((t) => [t.id, t]))
+
+    // Calculate order items and prices
+    const orderTickets: { name: string; price: string; quantity: number; item: any }[] = []
+    const orderAddons: { name: string; price: string; quantity: number; item: any; variationId?: number }[] = []
+
+    // Process tickets
+    for (const ticket of body.tickets) {
+      const item = itemsById.get(ticket.itemId)
+      if (!item) {
+        return res.status(400).json({
+          success: false,
+          error: `Invalid ticket ID: ${ticket.itemId}`,
+        })
+      }
+
+      if (!item.available) {
+        return res.status(400).json({
+          success: false,
+          error: `Ticket not available: ${item.name}`,
+        })
+      }
+
+      let price = item.price
+      let name = item.name
+
+      // Handle variations
+      if (ticket.variationId) {
+        const variation = item.variations.find((v) => v.id === ticket.variationId)
+        if (!variation) {
+          return res.status(400).json({
+            success: false,
+            error: `Invalid variation ID: ${ticket.variationId} for ticket ${ticket.itemId}`,
+          })
+        }
+        price = variation.price
+        name = `${item.name} - ${variation.name}`
+      }
+
+      const quantity = ticket.quantity || 1
+      orderTickets.push({ name, price, quantity, item })
+    }
+
+    // Validate and apply voucher if provided
+    let voucherInfo: VoucherInfo | null = null
+    if (body.voucher) {
+      voucherInfo = await validateVoucher(body.voucher)
+      if (!voucherInfo.valid) {
+        return res.status(400).json({
+          success: false,
+          error: `Invalid voucher: ${voucherInfo.error}`,
+        })
+      }
+      // Apply voucher discount to applicable ticket prices
+      for (const ticket of orderTickets) {
+        if (!voucherInfo.itemId || voucherInfo.itemId === ticket.item.id) {
+          ticket.price = applyVoucherDiscount(ticket.price, voucherInfo)
+        }
+      }
+    }
+
+    // Process addons
+    if (body.addons) {
+      for (const addon of body.addons) {
+        const item = itemsById.get(addon.itemId)
+        if (!item) {
+          return res.status(400).json({
+            success: false,
+            error: `Invalid addon ID: ${addon.itemId}`,
+          })
+        }
+
+        let addonPrice = item.price
+        let addonName = item.name
+        if (addon.variationId) {
+          const variation = item.variations.find((v) => v.id === addon.variationId)
+          if (!variation) {
+            return res.status(400).json({
+              success: false,
+              error: `Invalid variation ID: ${addon.variationId} for addon ${addon.itemId}`,
+            })
+          }
+          addonPrice = variation.price
+          addonName = `${item.name} - ${variation.name}`
+        }
+
+        const quantity = addon.quantity || 1
+        orderAddons.push({ name: addonName, price: addonPrice, quantity, item, variationId: addon.variationId })
+      }
+    }
+
+    // Calculate totals
+    const ticketSubtotal = orderTickets.reduce(
+      (sum, t) => sum + parseFloat(t.price) * t.quantity,
+      0
+    )
+    const addonSubtotal = orderAddons.reduce((sum, a) => sum + parseFloat(a.price) * a.quantity, 0)
+    const subtotal = ticketSubtotal + addonSubtotal
+    const cryptoDiscount = (subtotal * CRYPTO_DISCOUNT_PERCENT) / 100
+    const total = subtotal - cryptoDiscount
+
+    // Build Pretix order positions
+    const positions: PretixOrderPosition[] = []
+
+    // Add ticket positions
+    for (const ticket of orderTickets) {
+      for (let i = 0; i < ticket.quantity; i++) {
+        const answers: PretixAnswerInput[] = body.answers
+          .filter((a) => {
+            // Find the question and check if it applies to this item
+            const question = ticketInfo.questions.find((q) => q.id === a.questionId)
+            if (!question) return false
+            // Filter out empty answers
+            if (!a.answer && a.answer !== 0) return false
+            if (Array.isArray(a.answer) && a.answer.length === 0) return false
+            if (typeof a.answer === 'string' && a.answer.trim() === '') return false
+            return question.appliesToItems.length === 0 || question.appliesToItems.includes(ticket.item.id)
+          })
+          .map((a) => {
+            const question = ticketInfo.questions.find((q) => q.id === a.questionId)
+            // For choice questions (C = single choice, M = multiple choice), use options array
+            if (question && (question.type === 'C' || question.type === 'M')) {
+              const rawIds = Array.isArray(a.answer)
+                ? a.answer.map(v => parseInt(String(v)))
+                : [parseInt(String(a.answer))]
+              const optionIds = rawIds.filter(id => !isNaN(id))
+              if (optionIds.length === 0) {
+                // All option IDs were invalid — skip this answer entirely
+                return { question: a.questionId, answer: '', options: [] }
+              }
+              // Find the selected option text for the answer field
+              const selectedOption = question.options.find(o => o.id === optionIds[0])
+              return {
+                question: a.questionId,
+                answer: selectedOption?.answer || String(optionIds[0]),
+                options: optionIds,
+              }
+            }
+            // For other question types, use answer string
+            return {
+              question: a.questionId,
+              answer: Array.isArray(a.answer) ? a.answer.join(', ') : String(a.answer),
+            }
+          })
+          .filter((a) => a && a.answer && a.answer.trim() !== '') // Remove any empty answers
+
+        positions.push({
+          item: ticket.item.id,
+          variation: body.tickets.find((t) => t.itemId === ticket.item.id)?.variationId || null,
+          price: ticket.price,
+          attendee_name: null,
+          attendee_name_parts: body.attendee?.name || {},
+          attendee_email: body.attendee?.email || body.email,
+          company: body.attendee?.company || null,
+          street: null,
+          zipcode: null,
+          city: null,
+          country: body.attendee?.country || null,
+          state: null,
+          addon_to: null,
+          subevent: null,
+          answers,
+          seat: null,
+          voucher: (voucherInfo && (!voucherInfo.itemId || voucherInfo.itemId === ticket.item.id)) ? body.voucher || null : null,
+        })
+      }
+    }
+
+    // Add addon positions (linked to first ticket position)
+    for (const addon of orderAddons) {
+      for (let i = 0; i < addon.quantity; i++) {
+        positions.push({
+          item: addon.item.id,
+          variation: addon.variationId || null,
+          price: addon.price,
+          attendee_name: null,
+          attendee_name_parts: {},
+          attendee_email: null,
+          company: null,
+          street: null,
+          zipcode: null,
+          city: null,
+          country: null,
+          state: null,
+          addon_to: 0, // Link to first position
+          subevent: null,
+          answers: [],
+          seat: null,
+          voucher: null,
+        })
+      }
+    }
+
+    // Create Pretix order request (will be submitted after payment)
+    const pretixOrder: PretixOrderCreateRequest = {
+      email: body.email,
+      locale: 'en',
+      sales_channel: 'web',
+      payment_provider: 'x402_crypto',
+      positions,
+      send_email: false,
+    }
+
+    // Create payment requirements
+    const paymentRequirements = createPaymentRequirements(
+      '/api/x402/tickets/purchase',
+      total.toFixed(2),
+      3600, // 1 hour expiry
+      {
+        email: body.email,
+        ticketCount: orderTickets.reduce((sum, t) => sum + t.quantity, 0),
+        addonCount: orderAddons.reduce((sum, a) => sum + a.quantity, 0),
+      }
+    )
+
+    const supportedAssetsForOrder = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+    const chainIdsWithEth = [
+      ...new Set(
+        supportedAssetsForOrder
+          .filter((a) => a.symbol === 'ETH')
+          .map((a) => parseInt(a.chainId.replace(/^eip155:/, ''), 10))
+      ),
+    ]
+    let expectedEthAmountWeiByChain: Record<string, string> = {}
+    try {
+      const ethPriceResult = await fetchEthPriceUsd()
+      if (ethPriceResult) {
+        expectedEthAmountWeiByChain = buildExpectedEthWeiByChain(total, ethPriceResult.price, chainIdsWithEth)
+      }
+    } catch (e) {
+      console.warn('[purchase] Could not fetch ETH price for expectedEthAmountWeiByChain:', (e as Error).message)
+    }
+
+    // Store pending order (includes server-computed ETH wei per chain for secure verification)
+    const pendingOrder: PendingTicketOrder = {
+      paymentReference: paymentRequirements.payment.paymentReference,
+      orderData: pretixOrder,
+      totalUsd: total.toFixed(2),
+      createdAt: Date.now() / 1000,
+      expiresAt: paymentRequirements.payment.expiresAt,
+      intendedPayer: body.intendedPayer
+        ? (validateAddressEIP55(body.intendedPayer.trim()) as { valid: true; checksummed: string }).checksummed
+        : '',
+      expectedEthAmountWeiByChain: Object.keys(expectedEthAmountWeiByChain).length > 0 ? expectedEthAmountWeiByChain : undefined,
+      metadata: {
+        ticketIds: orderTickets.map((t) => t.item.id),
+        addonIds: orderAddons.map((a) => a.item.id),
+        email: body.email,
+      },
+    }
+    await storePendingOrder(pendingOrder)
+
+    const supportedAssets = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+    const x402Spec = await buildX402PaymentRequiredSpec(paymentRequirements, {
+      error: 'PAYMENT-SIGNATURE header or payment payload required',
+      resourceDescription: 'Devcon ticket purchase',
+    })
+    const paymentBlock: X402PaymentBlockV2 = {
+      paymentId: paymentRequirements.payment.paymentReference,
+      amount: total,
+      currency: ticketInfo.event.currency,
+      referenceId: paymentRequirements.payment.paymentReference,
+      status: 'pending',
+      createdAt: Math.floor(Date.now() / 1000),
+      supportedAssets,
+    }
+
+    // Return 402 Payment Required
+    const response: PurchaseResponse = {
+      success: true,
+      paymentRequired: true,
+      x402: x402Spec,
+      payment: paymentBlock,
+      paymentDetails: paymentRequirements,
+      orderSummary: {
+        tickets: orderTickets.map((t) => ({ name: t.name, price: t.price, quantity: t.quantity })),
+        addons: orderAddons.map((a) => ({ name: a.name, price: a.price, quantity: a.quantity })),
+        subtotal: subtotal.toFixed(2),
+        cryptoDiscount: cryptoDiscount.toFixed(2),
+        total: total.toFixed(2),
+        currency: ticketInfo.event.currency,
+      },
+    }
+
+    // Set x402 headers (v2: PAYMENT-REQUIRED base64-encoded PaymentRequired; legacy: X-Payment-*)
+    res.setHeader('PAYMENT-REQUIRED', encodePaymentRequiredHeader(x402Spec))
+    // Legacy header (X-Payment-Required, NOT Payment-Required which would overwrite PAYMENT-REQUIRED)
+    res.setHeader('X-Payment-Required', 'true')
+    res.setHeader('X-Payment-Network', paymentRequirements.payment.network)
+    res.setHeader('X-Payment-Token', paymentRequirements.payment.tokenAddress)
+    res.setHeader('X-Payment-Amount', paymentRequirements.payment.amount)
+    res.setHeader('X-Payment-Recipient', paymentRequirements.payment.recipient)
+    res.setHeader('X-Payment-Reference', paymentRequirements.payment.paymentReference)
+
+    return res.status(402).json(response)
+  } catch (error) {
+    console.error('Error creating purchase:', error)
+    return res.status(500).json({
+      success: false,
+      error: `Failed to create purchase: ${(error as Error).message}`,
+    })
+  }
+}
+
+/**
+ * Pre-generate ticket images to ensure instant loading on social media
+ */
+function resolveBaseUrlFromRequest(req: NextApiRequest): string {
+  const protoHeader = req.headers['x-forwarded-proto']
+  const hostHeader = req.headers['x-forwarded-host'] || req.headers.host
+  const proto = Array.isArray(protoHeader) ? protoHeader[0] : protoHeader || 'https'
+  const host = Array.isArray(hostHeader) ? hostHeader[0] : hostHeader
+  return host ? `${proto}://${host}` : ''
+}
+
+async function preGenerateTicketImages(pretixOrder: PretixOrder, baseUrl: string): Promise<void> {
+  if (!baseUrl) return
+
+  // Must match /api/ticket/generate.tsx hash derivation so we warm the real share URL.
+  const shareHash = createHash('sha256').update(pretixOrder.code).digest('hex').slice(0, 16)
+
+  const ticketNames = Array.from(
+    new Set(
+      (pretixOrder.positions || [])
+        .map(position => position.attendee_name?.trim())
+        .filter((name): name is string => !!name)
+    )
+  )
+
+  await Promise.allSettled(
+    ticketNames.map(async attendeeName => {
+      const encodedName = encodeURIComponent(attendeeName).replace(/%20/g, '+')
+      const imageUrl = `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(shareHash)}/i.jpg`
+      const response = await fetch(imageUrl, {
+        method: 'GET',
+        signal: AbortSignal.timeout(3000),
+        headers: {
+          'User-Agent': 'Devcon-Ticket-PreGenerator/1.0',
+        },
+      })
+
+      if (!response.ok) {
+        console.warn(`[purchase] Failed to pre-generate ticket image for ${attendeeName}: ${response.status}`)
+      }
+    })
+  )
+}
+
+/** Default Next.js handler — requires intendedPayer (frontend / ?params= flow) */
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<PurchaseResponse | ErrorResponse>
+) {
+  return purchaseHandler(req, res)
+}
+
+/**
+ * Handle GET requests for x402 discovery.
+ * Returns 402 with representative pricing so agents (e.g. `awal x402 details`)
+ * can discover payment requirements without creating a pending order.
+ */
+async function handleGetDiscovery(
+  _req: NextApiRequest,
+  res: NextApiResponse
+) {
+  try {
+    const ticketInfo = await getTicketPurchaseInfo()
+
+    // Find cheapest available admission ticket for representative pricing
+    const availableAdmission = ticketInfo.tickets
+      .filter((t) => t.available && t.isAdmission && !t.requireVoucher)
+      .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
+
+    const representative = availableAdmission[0]
+    if (!representative) {
+      return res.status(404).json({ success: false, error: 'No tickets currently available' })
+    }
+
+    const subtotal = parseFloat(representative.price)
+    const cryptoDiscount = (subtotal * CRYPTO_DISCOUNT_PERCENT) / 100
+    const total = subtotal - cryptoDiscount
+
+    // Build payment requirements (ephemeral — not stored)
+    const paymentRequirements = createPaymentRequirements(
+      '/api/x402/tickets/purchase',
+      total.toFixed(2),
+      3600,
+      { discovery: true }
+    )
+
+    const x402Spec = await buildX402PaymentRequiredSpec(paymentRequirements, {
+      error: 'Payment required. POST with a request body to create an order.',
+      resourceDescription: 'Devcon ticket purchase',
+    })
+
+    res.setHeader('PAYMENT-REQUIRED', encodePaymentRequiredHeader(x402Spec))
+
+    return res.status(402).json({
+      x402: x402Spec,
+      description: 'POST a JSON body to this endpoint to create a ticket order and receive payment requirements.',
+      inputSchema: {
+        email: 'string (required)',
+        intendedPayer: 'string (required) — EIP-55 wallet address that will pay',
+        tickets: '[{ itemId: number, variationId?: number, quantity?: number }] (required)',
+        addons: '[{ itemId: number, variationId?: number, quantity?: number }] (optional)',
+        answers: '[{ questionId: number, answer: string | number | string[] }] (required)',
+        attendee: '{ name: { given_name: string, family_name: string }, email?: string, company?: string, country?: string } (required)',
+        voucher: 'string (optional)',
+      },
+      orderSummary: {
+        representativeTicket: representative.name,
+        representativePrice: representative.price,
+        cryptoDiscountPercent: CRYPTO_DISCOUNT_PERCENT,
+        representativeTotal: total.toFixed(2),
+        currency: ticketInfo.event.currency,
+        availableTickets: ticketInfo.tickets
+          .filter((t) => t.available && !t.requireVoucher)
+          .map((t) => ({
+            id: t.id,
+            name: t.name,
+            price: t.price,
+            isAdmission: t.isAdmission,
+            variations: t.variations.filter((v) => v.available).map((v) => ({
+              id: v.id,
+              name: v.name,
+              price: v.price,
+            })),
+          })),
+      },
+    })
+  } catch (error) {
+    console.error('Error in GET discovery:', error)
+    return res.status(500).json({
+      success: false,
+      error: `Discovery failed: ${(error as Error).message}`,
+    })
+  }
+}
+
+function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: boolean; requireName?: boolean }): string[] {
+  const errors: string[] = []
+  const requirePayer = opts?.requirePayer ?? true
+  const requireName = opts?.requireName ?? true
+
+  if (!body.email || typeof body.email !== 'string' || !isEmail(body.email)) {
+    errors.push('Valid email is required')
+  }
+
+  if (!body.tickets || !Array.isArray(body.tickets) || body.tickets.length === 0) {
+    errors.push('At least one ticket is required')
+  } else {
+    for (const ticket of body.tickets) {
+      const q = ticket.quantity ?? 1
+      if (!Number.isInteger(q) || q < 1 || q > 10) {
+        errors.push('Ticket quantity must be an integer between 1 and 10')
+        break
+      }
+    }
+  }
+
+  if (body.addons && Array.isArray(body.addons)) {
+    for (const addon of body.addons) {
+      const q = addon.quantity ?? 1
+      if (!Number.isInteger(q) || q < 1 || q > 10) {
+        errors.push('Addon quantity must be an integer between 1 and 10')
+        break
+      }
+    }
+  }
+
+  if (requireName) {
+    if (!body.attendee || !body.attendee.name) {
+      errors.push('Attendee name is required')
+    } else {
+      if (!body.attendee.name.given_name) {
+        errors.push('Attendee given name is required')
+      }
+      if (!body.attendee.name.family_name) {
+        errors.push('Attendee family name is required')
+      }
+    }
+  }
+
+  if (!body.answers || !Array.isArray(body.answers)) {
+    errors.push('Answers array is required')
+  }
+
+  if (body.intendedPayer != null && body.intendedPayer !== '') {
+    const v = validateAddressEIP55(body.intendedPayer)
+    if (!v.valid) errors.push(`intendedPayer: ${v.error}`)
+  } else if (requirePayer) {
+    errors.push('intendedPayer (wallet address) is required')
+  }
+
+  return errors
+}
+
+// ============== x402 v2 PAYMENT-SIGNATURE retry flow ==============
+
+function getTicketUrl(orderCode: string, secret?: string): string {
+  const baseUrl = TICKETING.pretix.baseUrl.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
+  if (secret) {
+    return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/${secret}/`
+  }
+  return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/`
+}
+
+/**
+ * Handle x402 v2 PAYMENT-SIGNATURE retry flow (spec §5.2).
+ * Client retries the same POST with a PAYMENT-SIGNATURE header containing
+ * a base64-encoded PaymentPayload. We verify the signature, settle on-chain
+ * via the relayer, create the Pretix order, and return the resource with
+ * a PAYMENT-RESPONSE header.
+ */
+async function handlePaymentSignatureRetry(
+  _req: NextApiRequest,
+  res: NextApiResponse,
+  paymentSigHeader: string
+) {
+  console.log('[purchase] PAYMENT-SIGNATURE retry received, method:', _req.method)
+  // 1. Decode PAYMENT-SIGNATURE header (base64 → PaymentPayload)
+  let paymentPayload: PaymentPayload
+  try {
+    paymentPayload = decodePaymentSignatureHeader(paymentSigHeader)
+    console.log('[purchase] Decoded payload:', JSON.stringify(paymentPayload, null, 2))
+  } catch (e) {
+    console.log('[purchase] Failed to decode PAYMENT-SIGNATURE:', (e as Error).message)
+    return res.status(400).json({ success: false, error: 'Invalid PAYMENT-SIGNATURE header encoding' })
+  }
+
+  // 2. Validate x402 version
+  if (paymentPayload.x402Version !== X402_VERSION) {
+    console.log('[purchase] Version mismatch:', paymentPayload.x402Version, 'expected:', X402_VERSION)
+    return res.status(400).json({ success: false, error: `Unsupported x402 version: ${paymentPayload.x402Version}` })
+  }
+
+  // 3. Extract accepted requirements, network chain, and payment reference
+  const accepted = paymentPayload.accepted
+  if (!accepted || accepted.scheme !== 'exact') {
+    console.log('[purchase] Unsupported scheme:', accepted?.scheme)
+    return res.status(400).json({ success: false, error: 'Unsupported or missing payment scheme' })
+  }
+
+  const networkChainId = parseInt(accepted.network.replace('eip155:', ''), 10)
+  if (getGaslessConfigsForChain(networkChainId).length === 0) {
+    return res.status(400).json({ success: false, error: `Unsupported chain: ${accepted.network}` })
+  }
+
+  // Determine which token config to use (from accepted.asset or fallback)
+  const tokenConfig = (accepted.asset ? getGaslessTokenConfig(networkChainId, accepted.asset) : null)
+    ?? getGaslessConfigsForChain(networkChainId)[0]
+
+  const paymentReference = (accepted.extra as Record<string, unknown>)?.paymentReference as string | undefined
+  if (!paymentReference) {
+    return res.status(400).json({ success: false, error: 'Missing paymentReference in accepted.extra' })
+  }
+
+  // 4. Get pending order
+  const pendingOrder = await getPendingOrder(paymentReference)
+  if (!pendingOrder) {
+    return res.status(404).json({ success: false, error: 'Payment reference not found or expired' })
+  }
+
+  // 5. Check expiry
+  if (Date.now() / 1000 > pendingOrder.expiresAt) {
+    return res.status(400).json({ success: false, error: 'Payment reference has expired' })
+  }
+
+  // 6. Extract authorization and signature from payload (exact EVM scheme)
+  const exactPayload = paymentPayload.payload as { signature: string; authorization: EIP3009Authorization } | undefined
+  if (!exactPayload?.signature || !exactPayload?.authorization) {
+    return res.status(400).json({ success: false, error: 'Missing signature or authorization in payload' })
+  }
+
+  const { authorization } = exactPayload
+  const rawSignature = exactPayload.signature
+
+  // 7. Verify payer matches intended payer (prevents tx reuse attack)
+  //    When intendedPayer is empty (simplified endpoint), the first signer claims the order.
+  if (pendingOrder.intendedPayer) {
+    if (!addressesEqual(authorization.from, pendingOrder.intendedPayer)) {
+      return res.status(403).json({ success: false, error: 'Payer does not match intended payer for this order' })
+    }
+  }
+
+  // 8. Verify authorization params match expected values
+  const paymentRecipient = getPaymentRecipient()
+  const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
+
+  if (!addressesEqual(authorization.to, paymentRecipient)) {
+    return res.status(400).json({ success: false, error: 'Authorization recipient must be the payment recipient address' })
+  }
+  if (BigInt(String(authorization.value)) < BigInt(expectedAmount)) {
+    return res.status(400).json({ success: false, error: 'Authorization amount insufficient' })
+  }
+
+  const now = Math.floor(Date.now() / 1000)
+  const validBefore = typeof authorization.validBefore === 'string' ? parseInt(authorization.validBefore, 10) : Number(authorization.validBefore)
+  const validAfter = typeof authorization.validAfter === 'string' ? parseInt(authorization.validAfter, 10) : Number(authorization.validAfter)
+
+  if (validBefore > 0 && now > validBefore) {
+    return res.status(400).json({ success: false, error: 'Authorization has expired' })
+  }
+  if (now < validAfter) {
+    return res.status(400).json({ success: false, error: 'Authorization is not yet valid' })
+  }
+
+  // Cap validBefore: reject authorizations with no expiry (0) or expiry beyond order expiry + 5 min buffer
+  const maxValidBefore = pendingOrder.expiresAt + 5 * 60
+  if (validBefore === 0 || validBefore > maxValidBefore) {
+    return res.status(400).json({ success: false, error: `Authorization validBefore too far in the future or unlimited (must be before ${maxValidBefore})` })
+  }
+
+  // 9. Verify signature and execute transfer via relayer (gas-sponsored)
+  const smartWallet = isSmartWalletSignature(rawSignature)
+  const sigHex = (rawSignature.startsWith('0x') ? rawSignature : `0x${rawSignature}`) as Hex
+  const authArgs = {
+    from: authorization.from,
+    to: authorization.to,
+    value: String(authorization.value),
+    validAfter,
+    validBefore,
+    nonce: authorization.nonce,
+  }
+
+  let txHash: string
+  if (smartWallet) {
+    // Smart wallet (ERC-1271): skip off-chain verifyTypedData — contract signatures
+    // can't be verified off-chain. Use the bytes overload which calls
+    // SignatureChecker.isValidSignatureNow() on-chain.
+    console.log('[purchase] Smart wallet signature detected, using bytes overload')
+    try {
+      const result = await executeTransferWithAuthorizationBytes(authArgs, sigHex, tokenConfig)
+      txHash = result.txHash
+    } catch (error) {
+      if (error instanceof RelayerGasError && error.retryable) {
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: `Settlement temporarily unavailable: ${error.message}` })
+      }
+      return res.status(402).json({
+        success: false,
+        error: `Settlement failed: ${(error as Error).message}`,
+      })
+    }
+  } else {
+    // EOA: verify EIP-712 signature off-chain, then use v/r/s overload
+    const domain = getTokenDomain(tokenConfig)
+    const types = getTransferWithAuthorizationTypes()
+    const message = {
+      from: authorization.from as Hex,
+      to: authorization.to as Hex,
+      value: BigInt(String(authorization.value)),
+      validAfter: BigInt(validAfter),
+      validBefore: BigInt(validBefore),
+      nonce: authorization.nonce as Hex,
+    }
+
+    try {
+      const sigValid = await verifyTypedData({
+        address: authorization.from as Hex,
+        domain: { ...domain, verifyingContract: domain.verifyingContract as Hex },
+        types,
+        primaryType: 'TransferWithAuthorization',
+        message,
+        signature: sigHex,
+      })
+      if (!sigValid) {
+        return res.status(402).json({ success: false, error: 'Invalid payment signature' })
+      }
+    } catch {
+      return res.status(402).json({ success: false, error: 'Signature verification failed' })
+    }
+
+    const r = sigHex.slice(0, 66)
+    const s = `0x${sigHex.slice(66, 130)}`
+    let v = parseInt(sigHex.slice(130, 132), 16)
+    if (v < 27) v += 27
+
+    try {
+      const result = await executeTransferWithAuthorization(authArgs, { v, r, s }, tokenConfig)
+      txHash = result.txHash
+    } catch (error) {
+      if (error instanceof RelayerGasError && error.retryable) {
+        res.setHeader('Retry-After', '30')
+        return res.status(503).json({ success: false, error: `Settlement temporarily unavailable: ${error.message}` })
+      }
+      return res.status(402).json({
+        success: false,
+        error: `Settlement failed: ${(error as Error).message}`,
+      })
+    }
+  }
+
+  // 11. Verify on-chain (wait for receipt)
+  const verification = await verifyPayment({
+    txHash,
+    paymentReference,
+    payer: authorization.from,
+    chainId: networkChainId,
+    expectedAmount,
+  })
+
+  if (!verification.verified) {
+    return res.status(500).json({
+      success: false,
+      error: `On-chain verification failed: ${verification.error}`,
+    })
+  }
+
+  // 12. Claim pending order atomically (prevents race conditions)
+  const claimedOrder = await claimPendingOrder(paymentReference)
+  if (!claimedOrder) {
+    return res.status(409).json({
+      success: false,
+      error: 'Order already completed or in progress',
+    })
+  }
+
+  // 13. Reserve tx_hash BEFORE creating Pretix order (prevents orphaned tickets on double-spend race)
+  try {
+    const cryptoAmountStr = String(Number(BigInt(String(authorization.value))) / 1e6)
+    await reserveCompletedOrder(
+      txHash,
+      paymentReference,
+      authorization.from,
+      verification.confirmedAt || Math.floor(Date.now() / 1000),
+      networkChainId,
+      claimedOrder.totalUsd,
+      tokenConfig.tokenSymbol,
+      cryptoAmountStr,
+      verification.gasCostWei
+    )
+  } catch (error) {
+    if (error instanceof TxHashAlreadyUsedError) {
+      await storePendingOrder(claimedOrder)
+      return res.status(409).json({
+        success: false,
+        error: 'This transaction has already been used to complete an order',
+      })
+    }
+    throw error
+  }
+
+  // 14. Attach crypto payment details to order (visible in Pretix admin via x402_crypto plugin)
+  const cryptoAmount = Number(BigInt(String(authorization.value))) / 1e6
+  claimedOrder.orderData.payment_info = {
+    tx_hash: txHash,
+    chain_id: networkChainId,
+    token_symbol: tokenConfig.tokenSymbol,
+    token_address: tokenConfig.tokenAddress,
+    amount: `${cryptoAmount} ${tokenConfig.tokenSymbol} ($${claimedOrder.totalUsd})`,
+    payer: authorization.from,
+    payment_reference: paymentReference,
+    block_number: verification.blockNumber || null,
+  }
+
+  // 15. Create Pretix order + confirm the x402_crypto payment with tx details
+  let pretixOrder
+  try {
+    pretixOrder = await createOrder(claimedOrder.orderData)
+    // Find the pending x402_crypto payment created by order creation and confirm it
+    const x402Payment = pretixOrder.payments.find(p => p.provider === 'x402_crypto' && p.state !== 'canceled')
+    if (x402Payment) {
+      await confirmOrderPayment(pretixOrder.code, x402Payment.local_id, claimedOrder.orderData.payment_info)
+    } else {
+      console.warn(`[purchase] No x402_crypto payment found on order ${pretixOrder.code}, order is pending`)
+    }
+  } catch (error) {
+    // Remove reservation and restore pending order so user can retry
+    await removeCompletedOrderReservation(paymentReference)
+    await storePendingOrder(claimedOrder)
+    return res.status(500).json({
+      success: false,
+      error: `Failed to create ticket order: ${(error as Error).message}`,
+    })
+  }
+
+  // Pre-generate ticket images for instant loading
+  try {
+    const baseUrl = process.env.URL || process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL || resolveBaseUrlFromRequest(_req)
+    await preGenerateTicketImages(pretixOrder, baseUrl)
+  } catch (error) {
+    // Don't fail purchase if image generation fails - just log it
+    console.warn(`[purchase] Failed to pre-generate ticket images: ${(error as Error).message}`)
+  }
+
+  // Finalize: replace placeholder with real Pretix order code
+  await finalizeCompletedOrder(paymentReference, pretixOrder.code)
+
+  // 15. Build PAYMENT-RESPONSE header (x402 v2 spec)
+  const settlementResponse: SettleResponse = {
+    success: true,
+    transaction: txHash,
+    network: `eip155:${networkChainId}` as `${string}:${string}`,
+    payer: authorization.from,
+  }
+  res.setHeader('PAYMENT-RESPONSE', encodeSettlementResponseHeader(settlementResponse))
+
+  // 16. Return resource (order confirmation)
+  return res.status(200).json({
+    success: true,
+    order: {
+      code: pretixOrder.code,
+      secret: pretixOrder.secret,
+      email: pretixOrder.email,
+      total: pretixOrder.total,
+      status: 'paid',
+      ticketUrl: getTicketUrl(pretixOrder.code, pretixOrder.secret),
+    },
+    payment: {
+      txHash,
+      payer: authorization.from,
+      confirmedAt: verification.confirmedAt || Math.floor(Date.now() / 1000),
+      blockNumber: verification.blockNumber || 0,
+    },
+  })
+}

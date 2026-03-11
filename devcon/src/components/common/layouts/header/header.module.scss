@@ -1,5 +1,18 @@
 @use 'assets/css/partials/index' as *;
 
+// Register custom properties so the browser can interpolate gradient color stops
+@property --nav-grad-from {
+  syntax: '<color>';
+  initial-value: rgba(22, 11, 43, 0.5);
+  inherits: false;
+}
+
+@property --nav-grad-to {
+  syntax: '<color>';
+  initial-value: rgba(22, 11, 43, 0);
+  inherits: false;
+}
+
 @mixin fill-header {
   --color-icon: #{$colors-monochrome-10};
   --logo-color: #{$colors-main};
@@ -7,25 +20,19 @@
   --header-shadow: 0px 4px 2px rgba(0, 0, 0, 0.15);
 }
 
-@mixin fill-strip {
-  background: white;
-  color: black;
-  --color-icon: black;
-  border-bottom: 1px solid $colors-standard-border-color;
-}
-
 .foldout-open {
   @media (max-width: 1250px) {
     @include fill-header;
-
-    :global(#strip) {
-      @include fill-strip;
-    }
   }
 }
 
 .header-container {
   z-index: 20;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  @media (max-width: 768px) {
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
   &:not(&.app) {
     position: sticky;
@@ -38,6 +45,29 @@
       --button-border: none;
     }
   }
+
+  &.scrolled {
+    transform: translateY(var(--strip-height, 0px));
+  }
+}
+
+.header-dark {
+  --color-icon: white;
+  --logo-color: white;
+  --header-background-color: #160b2b;
+  --header-shadow: none;
+  --button-border: none;
+
+  .header {
+    background: #160b2b;
+    color: white;
+    box-shadow: none;
+  }
+
+  :global(.lucide-chevron-down),
+  :global(.lucide-chevron-up) {
+    stroke: white !important;
+  }
 }
 
 .header-fixed-container {
@@ -46,27 +76,54 @@
   z-index: 20;
   --color-icon: white;
   --logo-color: var(--color-icon);
-  --header-background-color: #ffffff00;
+  --header-background-color: transparent;
   --header-shadow: none;
   --button-border: none;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 
-  &.scrolled {
-    @include fill-header;
+  @media (max-width: 768px) {
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
-    :global(.lucide-chevron-down),
-    :global(.lucide-chevron-up) {
-      color: black;
-    }
+  // Gradient → solid dark transition via @property-registered custom props (animatable)
+  .header {
+    --nav-grad-from: rgba(22, 11, 43, 0.6);
+    --nav-grad-to: rgba(22, 11, 43, 0);
+    background: linear-gradient(to bottom, var(--nav-grad-from), var(--nav-grad-to));
+    color: white;
+    box-shadow: none;
+    transition: --nav-grad-from 0.6s cubic-bezier(0.22, 1, 0.36, 1), --nav-grad-to 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
-    :global(#strip) {
-      @include fill-strip;
+  :global(.lucide-chevron-down),
+  :global(.lucide-chevron-up) {
+    transition: color 0.2s ease, stroke 0.2s ease;
+    stroke: white !important;
+  }
+
+  &.filled {
+    .header {
+      --nav-grad-from: rgba(22, 11, 43, 1);
+      --nav-grad-to: rgba(22, 11, 43, 1);
+      color: white;
     }
   }
 
-  &:not(.scrolled) {
-    :global(.lucide-chevron-down),
-    :global(.lucide-chevron-up) {
-      stroke: white !important;
+  &.scrolled {
+    transform: translateY(var(--strip-height, 0px));
+  }
+
+  // When mobile foldout is open, override fill-header vars back to white (dark bg)
+  .foldout-open {
+    @media (max-width: 1250px) {
+      --color-icon: white;
+      --logo-color: white;
+      --header-background-color: #160b2b;
+      --header-shadow: none;
+
+      .header {
+        background: #160b2b;
+      }
     }
   }
 }
@@ -117,6 +174,7 @@
         height: 38px;
         fill: var(--logo-color, $colors-main);
         padding-right: 42px;
+        transition: fill 0.2s ease;
       }
     }
   }
