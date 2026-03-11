@@ -39,8 +39,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .filter(t => !voucher.itemId || t.id === voucher.itemId)
       .map(t => ({
         name: t.name,
-        originalPrice: t.price,
-        discountedPrice: applyVoucherDiscount(t.price, voucher),
+        originalPrice: t.originalPrice || t.price,
+        discountedPrice: t.price,
       }))
 
     const firstTicket = applicableTickets[0]
