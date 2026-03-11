@@ -9,8 +9,8 @@ import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
 import themes from '../themes.module.scss'
 import HeroBackground from './updated-hero.png'
-import EarlyBirdTicket from './early-bird-india.png'
-import EarlyBirdMobile from './early-bird-mobile.png'
+import EarlyBirdTicket from './big-ticket.png'
+import EarlyBirdMobile from './small-ticket.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 
@@ -35,9 +35,9 @@ const OVERVIEW_CARDS = [
     number: '02',
     title: 'Community',
     subtitle: 'SELF-CLAIMING DISCOUNTS',
-    price: '$99',
-    priceLabel: null,
-    status: 'AVAILABLE NOW',
+    price: null,
+    priceLabel: 'Coming soon',
+    status: 'TBD',
   },
   {
     number: '03',
@@ -51,14 +51,19 @@ const OVERVIEW_CARDS = [
 
 const WAVES = [
   { name: 'Global Early Bird', price: '$299', date: 'TBD' },
-  // { name: 'Waves 1-4', price: 'TBD', date: 'TBD' },
-  // { name: 'Waves 5-8', price: 'TBD', date: 'TBD' },
-  // { name: 'Waves 9-10', price: 'TBD', date: 'TBD' },
+  { name: 'Waves 1-10', price: 'TBD', date: 'TBD' },
 ]
 
 const COMMUNITY_ROWS = [
-  { name: 'Indian Early Bird', detail: 'VIA SELF', price: '$99', date: 'Ends 15 Mar', live: true, bold: true },
-  { name: 'India Residents', detail: 'VIA SELF', price: '$149', date: 'TBD', live: false, bold: false },
+  {
+    name: 'ETH Mumbai Early Access',
+    detail: 'VIA SELF PROTOCOL',
+    price: '$99',
+    date: 'Ends 15 Mar',
+    live: true,
+    bold: true,
+  },
+  { name: 'India Residents', detail: 'VIA SELF PROTOCOL', price: '$149', date: 'TBD', live: false, bold: false },
   // { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
   // { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
   // { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
@@ -72,7 +77,12 @@ const APPLICATION_ROWS = [
 const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
   {
     q: 'When will General ticket sales start?',
-    a: <em>General Admission ticket sales for Devcon India will launch in early May. Stay tuned for updates as we get closer to this date.</em>,
+    a: (
+      <em>
+        General Admission ticket sales for Devcon India will launch in early May. Stay tuned for updates as we get
+        closer to this date.
+      </em>
+    ),
   },
   {
     q: 'Will there be opportunities to obtain discounted tickets?',
@@ -85,12 +95,15 @@ const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
             Contributors and more.
           </li>
           <li>
-            <strong>Applications</strong> — <em>This will include Builder Discounts, Student Discounts, and Youth Tickets
-            for those under 18.</em>
+            <strong>Applications</strong> —{' '}
+            <em>This will include Builder Discounts, Student Discounts, and Youth Tickets for those under 18.</em>
           </li>
           <li>
-            <strong>Ecosystem Tickets</strong> — <em>An application will be open for leaders & organizers of various web2
-            & web3 communities or meetups to apply for free or discounted tickets for their groups.</em>
+            <strong>Ecosystem Tickets</strong> —{' '}
+            <em>
+              An application will be open for leaders & organizers of various web2 & web3 communities or meetups to
+              apply for free or discounted tickets for their groups.
+            </em>
           </li>
         </ul>
       </>
@@ -125,13 +138,13 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>Indian Early Bird tickets on sale!</h2>
+                <h2 className={css['heading-2']}>ETH Mumbai Early Access now live!</h2>
                 <p className={css['body-lg']}>
-                  Join thousands of builders, creators, researchers, designers and thinkers 3&ndash;6 November 2026 in
+                  Join thousands of builders, creators, researchers, designers, and thinkers 3&ndash;6 November 2026 in
                   Mumbai for the world&apos;s biggest Ethereum conference.
                 </p>
                 <p className={css['body']}>
-                  Secure your ticket early to be part of this pivotal moment in Ethereum&apos;s journey.
+                  Reserve early access to India Early Bird tickets later this year (exclusive to ETH Mumbai attendees).
                 </p>
               </div>
 
@@ -148,14 +161,14 @@ export default function TicketsPage() {
                   </div>
                   <div className={css['included-item']}>
                     <Coffee size={24} strokeWidth={1.5} />
-                    <span>Catering all week</span>
+                    <span>Lunch all week</span>
                   </div>
                 </div>
               </div>
 
               <div className={css['cta-group']}>
-                <Link to="/tickets/store" className={css['btn-primary']}>
-                  Get my tickets
+                <Link to="/tickets/store#discounts" className={css['btn-primary']}>
+                  Check my eligibility
                   <ArrowRight size={16} strokeWidth={2} />
                 </Link>
                 <Link to="#discounts" className={css['btn-secondary']}>
@@ -222,7 +235,7 @@ export default function TicketsPage() {
                 <h2 className={css['heading-2']}>Sale waves</h2>
                 <p className={css['body-lg']}>
                   General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early
-                  Bird launch later this year.
+                  Bird launch in May.
                 </p>
                 <p className={css['body']}>
                   Sale waves are <strong>limited time windows</strong> to purchase a general admission Devcon India
@@ -291,8 +304,8 @@ export default function TicketsPage() {
                 <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
                 <h2 className={css['heading-2']}>Community</h2>
                 <p className={css['body-lg']}>
-                  Our early bird discounts for <strong>Indian locals</strong> are now live. Verify Indian residency via
-                  Self to purchase.
+                  ETH Mumbai attendees can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
+                  residency via Self Protocol to redeem.
                 </p>
                 <p className={css['body']}>
                   Community tickets are <strong>self-claimable</strong> &ndash; no application required, just verify
@@ -347,9 +360,9 @@ export default function TicketsPage() {
                   availability and review.
                 </p>
               </div>
-              {/* <a href="/esp" className={css['btn-secondary']}>
+              <a href="/esp" className={css['btn-secondary']}>
                 Learn more
-              </a> */}
+              </a>
             </div>
 
             <div className={css['ticket-type-card']}>
