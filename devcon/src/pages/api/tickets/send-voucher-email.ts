@@ -85,7 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           <!-- Header -->
           <tr>
             <td style="background: #1a0d33 url('https://devcon.org/email/header-bg.png') center/cover no-repeat; padding: 32px 32px 24px; text-align: center;">
-              <img src="https://devcon.org/email/Devcon%208%20India%20logo%20small%20white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
+              <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
               <p style="margin: 12px 0 0; font-size: 14px; color: #c4b5d9;">
                 Your voucher code is reserved
               </p>
