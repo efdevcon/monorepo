@@ -37,4 +37,4 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run Eslint // Lint
-        run: pnpm exec next lint .
+        run: pnpm exec eslint . --max-warnings=0
