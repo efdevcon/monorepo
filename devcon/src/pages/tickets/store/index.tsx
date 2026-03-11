@@ -457,7 +457,7 @@ function StoreContent({
                         <div className={css['card-stacked']}>
                           <div className={css['card-details']}>
                             <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
-                            {!ticket.available ? (
+                            {!ticket.available || (requireEarlyAccess && !earlyAccess) ? (
                               <p className={css['sold-out-meta']}>
                                 Sorry, all Early Access vouchers have been reserved. More local tickets will go on sale later this year.
                               </p>
@@ -539,19 +539,14 @@ function StoreContent({
                             </div>
                           ) : (
                             <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
+                              <div className={`${css['pricing']} ${css['pricing--faded']}`}>
                                 <span className={css['price-label']}>Price at launch:</span>
                                 <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
                                 {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
                                   <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
                                 )}
                               </div>
-                              <div className={css['access-link-badge']}>
-                                <div className={css['access-link-badge-logo']}>
-                                  <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
-                                </div>
-                                <span>Check your email for your unique access link</span>
-                              </div>
+                              <span className={css['sold-out-badge']}>Fully claimed</span>
                             </div>
                           )}
                         </div>
