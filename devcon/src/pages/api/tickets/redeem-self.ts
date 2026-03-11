@@ -204,19 +204,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
       }
 
-      // If already claimed by this same identity, return their existing voucher
-      if (codeRecord.claimedBy === nullifier && codeRecord.voucherCode) {
-        voucherStore.set(verifiedUserId, codeRecord.voucherCode)
-        setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-        return res.status(200).json({
-          status: 'success',
-          result: true,
-          credentialSubject: result.discloseOutput,
-        })
-      }
-
-      // If claimed by someone else, reject
-      if (codeRecord.claimedBy) {
+      // If already claimed by this same identity, recover gracefully
+      if (codeRecord.claimedBy === nullifier) {
+        if (codeRecord.voucherCode) {
+          // Voucher was already linked — return it
+          voucherStore.set(verifiedUserId, codeRecord.voucherCode)
+          setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+          return res.status(200).json({
+            status: 'success',
+            result: true,
+            credentialSubject: result.discloseOutput,
+          })
+        }
+        // Code was claimed but voucher wasn't linked (partial failure on previous attempt)
+        // Fall through to assign a voucher below
+        voucherCollection = codeRecord.collection
+      } else if (codeRecord.claimedBy) {
+        // Claimed by someone else — reject
         const reason = 'This early access code has already been used'
         storeError(verifiedUserId, reason)
         return res.status(200).json({
@@ -225,22 +229,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           error_code: 'EARLY_ACCESS_CODE_USED',
           reason,
         })
-      }
+      } else {
+        // Unclaimed — atomically claim it BEFORE assigning a voucher (prevents race condition)
+        const claimed = await claimDiscountCode(earlyAccessCode, nullifier)
+        if (!claimed) {
+          const reason = 'Early access code was just claimed by another request'
+          storeError(verifiedUserId, reason)
+          return res.status(200).json({
+            status: 'error',
+            result: false,
+            error_code: 'EARLY_ACCESS_CODE_USED',
+            reason,
+          })
+        }
 
-      // Atomically claim the early access code BEFORE assigning a voucher (prevents race condition)
-      const claimed = await claimDiscountCode(earlyAccessCode, nullifier)
-      if (!claimed) {
-        const reason = 'Early access code was just claimed by another request'
-        storeError(verifiedUserId, reason)
-        return res.status(200).json({
-          status: 'error',
-          result: false,
-          error_code: 'EARLY_ACCESS_CODE_USED',
-          reason,
-        })
+        voucherCollection = codeRecord.collection
       }
-
-      voucherCollection = codeRecord.collection
     }
 
     // Assign a voucher from the pool

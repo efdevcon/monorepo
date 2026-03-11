@@ -84,11 +84,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <td style="background: #1a0d33; padding: 32px 32px 24px; text-align: center;">
-              <h1 style="margin: 0; font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">
-                Devcon India
-              </h1>
-              <p style="margin: 8px 0 0; font-size: 14px; color: #c4b5d9;">
+            <td style="background: #1a0d33 url('https://devcon.org/email/header-bg.png') center/cover no-repeat; padding: 32px 32px 24px; text-align: center;">
+              <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
+              <p style="margin: 12px 0 0; font-size: 14px; color: #c4b5d9;">
                 Your voucher code is reserved
               </p>
             </td>
