@@ -71,7 +71,7 @@ const ENV_CONFIG = {
     },
     discount: {
       // TODO: replace with india-early-bird
-      collection: 'test-local-early-bird',
+      collection: 'india-early-bird',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
