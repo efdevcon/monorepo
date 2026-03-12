@@ -19,8 +19,7 @@ The Devcon event app authenticates users and verifies ticket ownership. When a u
          │                     owns a ticket               │
          │                        │                        │
          │                  3. Generate JWT                │
-         │                     {email, sessionId,          │
-         │                      iat, exp}                  │
+         │                     {email, iat, exp}           │
          │                     signed with                 │
          │                     shared secret               │
          │                        │                        │
@@ -40,9 +39,8 @@ The Devcon event app authenticates users and verifies ticket ownership. When a u
          │                        │  7. Check exp claim    │
          │                        │     (5 min window)     │
          │                        │                        │
-         │                        │  8. Extract email +    │
-         │                        │     sessionId from     │
-         │                        │     payload            │
+         │                        │  8. Extract email      │
+         │                        │     from payload       │
          │                        │                        │
          │                        │  9. Establish own      │
          │                        │     session/auth for   │
@@ -75,18 +73,16 @@ Standard JWT format: `header.payload.signature`
 ```json
 {
   "email": "user@example.com",
-  "sessionId": "ABCXYZ",
   "iat": 1710249600000,
   "exp": 1710249900000
 }
 ```
 
-| Field       | Type   | Description                                      |
-|-------------|--------|--------------------------------------------------|
-| `email`     | string | Email of the authenticated ticket holder         |
-| `sessionId` | string | ID of the Devcon session                         |
-| `iat`       | number | Issued-at timestamp (milliseconds since epoch)   |
-| `exp`       | number | Expiry timestamp (milliseconds since epoch)      |
+| Field   | Type   | Description                                      |
+|---------|--------|--------------------------------------------------|
+| `email` | string | Email of the authenticated ticket holder         |
+| `iat`   | number | Issued-at timestamp (milliseconds since epoch)   |
+| `exp`   | number | Expiry timestamp (milliseconds since epoch)      |
 
 **Note:** `iat` and `exp` are in **milliseconds** (not seconds as in the JWT spec). Expiry window is 5 minutes from issuance.
 
@@ -105,7 +101,7 @@ All parts are **base64url** encoded (RFC 4648 Section 5 — no padding, URL-safe
 3. **Compare** the recomputed signature against the received signature (use constant-time comparison to prevent timing attacks)
 4. **Decode** the payload from base64url
 5. **Check expiry**: reject if `Date.now() > exp`
-6. **Extract** `email` and `sessionId` from the payload
+6. **Extract** `email` from the payload
 
 ### Pseudocode
 
@@ -139,7 +135,7 @@ def verify_handover_token(token: str, secret: str):
     if time.time() * 1000 > payload["exp"]:
         raise ValueError("Token expired")
 
-    return payload["email"], payload["sessionId"]
+    return payload["email"]
 ```
 
 ## Token Delivery
@@ -150,7 +146,7 @@ The token is passed as a URL query parameter when redirecting the user to Meerka
 https://app.meerkat.events/session/{sessionId}?token={jwt}
 ```
 
-Meerkat should read the `token` query parameter on page load, verify it, and associate the user's email with their Q&A session.
+Meerkat should read the `token` query parameter on page load, verify it, and use the email to establish its own session for the user. The session context comes from the URL path, not the JWT.
 
 ## Shared Secret
 

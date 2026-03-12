@@ -100,11 +100,7 @@ function SessionQA({ sessionId }: { sessionId: string }) {
   async function handleAskQuestion() {
     setIsGenerating(true);
     try {
-      const res = await fetch("/api/meerkat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId }),
-      });
+      const res = await fetch("/api/meerkat", { method: "POST" });
       if (!res.ok) throw new Error("Failed to generate token");
       const { token } = await res.json();
 

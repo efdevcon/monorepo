@@ -14,20 +14,15 @@ function base64urlEncode(data: string): string {
 
 export interface HandoverPayload {
   email: string;
-  sessionId: string;
   iat: number;
   exp: number;
 }
 
-export function generateHandoverToken(
-  email: string,
-  sessionId: string
-): string {
+export function generateHandoverToken(email: string): string {
   const secret = getSecret();
   const now = Date.now();
   const payload: HandoverPayload = {
     email,
-    sessionId,
     iat: now,
     exp: now + CODE_EXPIRY_MS,
   };
