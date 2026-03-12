@@ -241,8 +241,9 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
             </h2>
             <div className={css['success-text-block']}>
               <p className={css['success-intro']}>
-                Your Self proof was successfully generated and submitted. Your {TICKETING.isShopOpen ? 'discount' : 'early access'} code is unique to your identity
-                and can be found below.
+                Your Self proof was successfully generated and submitted. Your{' '}
+                {TICKETING.isShopOpen ? 'discount' : 'early access'} code is unique to your identity and can be found
+                below.
               </p>
               {emailSent && email && (
                 <p className={css['success-intro']}>
@@ -251,11 +252,13 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               )}
               {TICKETING.isShopOpen ? (
                 <p className={css['success-note']}>
-                  <strong>Note:</strong> This code must be entered at checkout to purchase your discounted Devcon ticket.
+                  <strong>Note:</strong> This code must be entered at checkout to purchase your discounted Devcon
+                  ticket.
                 </p>
               ) : (
                 <p className={css['success-note']}>
-                  <strong>We&apos;ll notify you before tickets go live</strong>, so you&apos;re ready to secure yours early.
+                  <strong>We&apos;ll notify you before tickets go live</strong>, so you&apos;re ready to secure yours
+                  early.
                 </p>
               )}
             </div>
@@ -272,11 +275,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     aria-label={copied ? 'Copied' : 'Copy code'}
                     title={copied ? 'Copied' : 'Copy to clipboard'}
                   >
-                    {copied ? (
-                      <span className={css['voucher-copy-text']}>Copied</span>
-                    ) : (
-                      <Copy size={20} aria-hidden />
-                    )}
+                    {copied ? <span className={css['voucher-copy-text']}>Copied</span> : <Copy size={20} aria-hidden />}
                   </button>
                 </div>
               </div>
@@ -321,7 +320,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 <li>
                   Download the Self app on{' '}
                   <a
-                    href="https://apps.apple.com/app/self-zk-proofs/id6478563710"
+                    href="https://apps.apple.com/in/app/self-zk-proofs/id6478563710"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -335,6 +334,25 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   >
                     Android
                   </a>
+                </li>
+                <li>
+                  Download the mAadhaar app on{' '}
+                  <a
+                    href="https://apps.apple.com/in/app/maadhaar/id1435469474"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    iOS
+                  </a>{' '}
+                  or{' '}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=in.gov.uidai.mAadhaarPlus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Android
+                  </a>{' '}
+                  and generate a QR code
                 </li>
                 <li>In the Self app, add a new Indian ID of type &apos;Aadhaar&apos;</li>
                 <li>Follow the instructions to complete registration</li>
@@ -353,8 +371,19 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 className={css['self-guide-link']}
               >
                 Video setup guide and resources
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7" />
+                  <polyline points="7 7 17 7 17 17" />
                 </svg>
               </a>
             </div>
@@ -416,22 +445,57 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   <strong className={css['error-title']}>Sorry, all voucher codes have now been reserved</strong>
                 </p>
                 <p>
-                  Your Self proof was successfully submitted however, the last Early Access codes have now been reserved.
+                  Your Self proof was successfully submitted however, the last Early Access codes have now been
+                  reserved.
                 </p>
                 <p>
-                  More local tickets will go on sale in May.{' '}
-                  <strong>Follow us on socials for updates</strong> so you&apos;re ready to secure yours early.
+                  More local tickets will go on sale in May. <strong>Follow us on socials for updates</strong> so
+                  you&apos;re ready to secure yours early.
                 </p>
                 <p>We apologize for any inconvenience.</p>
                 <div className={css['social-links']}>
                   <a href="https://x.com/efdevcon" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
                   </a>
-                  <a href="https://instagram.com/efdevcon" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  <a
+                    href="https://instagram.com/efdevcon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
                   </a>
-                  <a href="https://farcaster.xyz/devcon" target="_blank" rel="noopener noreferrer" aria-label="Farcaster">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.775 2h14.19v20.177h-2.083v-9.242h-.02a5.012 5.012 0 0 0-9.984 0h-.02v9.242H4.775V2Z" fill="currentColor"/><path d="m1 4.864.846 2.864h.716v11.586a.65.65 0 0 0-.65.65v.782h-.13a.65.65 0 0 0-.652.65v.781h7.29v-.78a.65.65 0 0 0-.65-.651h-.13v-.781a.65.65 0 0 0-.652-.651h-.78V4.864H1ZM17.012 19.314a.65.65 0 0 0-.651.65v.782h-.13a.65.65 0 0 0-.651.65v.781h7.29v-.78a.65.65 0 0 0-.651-.651h-.13v-.781a.65.65 0 0 0-.651-.651V7.728h.716L23 4.864h-5.207v14.45h-.781Z" fill="currentColor"/></svg>
+                  <a
+                    href="https://farcaster.xyz/devcon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Farcaster"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M4.775 2h14.19v20.177h-2.083v-9.242h-.02a5.012 5.012 0 0 0-9.984 0h-.02v9.242H4.775V2Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="m1 4.864.846 2.864h.716v11.586a.65.65 0 0 0-.65.65v.782h-.13a.65.65 0 0 0-.652.65v.781h7.29v-.78a.65.65 0 0 0-.65-.651h-.13v-.781a.65.65 0 0 0-.652-.651h-.78V4.864H1ZM17.012 19.314a.65.65 0 0 0-.651.65v.782h-.13a.65.65 0 0 0-.651.65v.781h7.29v-.78a.65.65 0 0 0-.651-.651h-.13v-.781a.65.65 0 0 0-.651-.651V7.728h.716L23 4.864h-5.207v14.45h-.781Z"
+                        fill="currentColor"
+                      />
+                    </svg>
                   </a>
                 </div>
               </div>
@@ -442,8 +506,9 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               </button>
             )}
 
-            {!error && !errorCode && (
-              isMobile ? (
+            {!error &&
+              !errorCode &&
+              (isMobile ? (
                 <div className={css['continue-wrap']}>
                   <a
                     href={universalLink || '#'}
@@ -499,11 +564,9 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     </div>
                   )}
                 </div>
-              )
-            )}
+              ))}
 
             <p className={css['self-privacy']}>No personal data is shared!</p>
-
           </div>
         )}
       </div>
