@@ -193,7 +193,7 @@ function X402TestContent() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch('/api/x402/tickets')
+      const res = await fetch('/api/x402/tickets/')
       const data = await res.json()
       if (data.success) {
         setTicketData(data.data)
@@ -220,7 +220,7 @@ function X402TestContent() {
     setError(null)
 
     try {
-      const res = await fetch('/api/x402/tickets/purchase', {
+      const res = await fetch('/api/x402/tickets/purchase/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -303,7 +303,7 @@ function X402TestContent() {
 
     try {
       // Step 1: Prepare authorization (get typed data to sign)
-      const prepareRes = await fetch('/api/x402/tickets/relayer/prepare-authorization', {
+      const prepareRes = await fetch('/api/x402/tickets/relayer/prepare-authorization/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -368,7 +368,7 @@ function X402TestContent() {
       let lastError = 'Failed to execute transfer'
 
       for (let attempt = 0; attempt <= maxRetries; attempt++) {
-        const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
+        const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
@@ -405,7 +405,7 @@ function X402TestContent() {
     setError(null)
 
     try {
-      const res = await fetch('/api/x402/tickets/verify', {
+      const res = await fetch('/api/x402/tickets/verify/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

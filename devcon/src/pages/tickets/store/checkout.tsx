@@ -307,7 +307,7 @@ function CheckoutContent() {
     setVoucherError(null)
     setVoucherData(null)
     try {
-      const resp = await fetch('/api/x402/tickets/validate-voucher', {
+      const resp = await fetch('/api/x402/tickets/validate-voucher/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
@@ -412,7 +412,7 @@ function CheckoutContent() {
   useEffect(() => {
     async function fetchTicketData() {
       try {
-        const res = await fetch('/api/x402/tickets')
+        const res = await fetch('/api/x402/tickets/')
         const data = await res.json()
         if (data.success) {
           setQuestions(data.data.questions || [])
@@ -896,7 +896,7 @@ function CheckoutContent() {
     if (!ref || !addr) return
     setPaymentOptionsLoading(true)
     try {
-      const optRes = await fetch('/api/x402/tickets/payment-options', {
+      const optRes = await fetch('/api/x402/tickets/payment-options/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -923,7 +923,7 @@ function CheckoutContent() {
         .filter(([_, data]) => data.quantity > 0)
         .map(([itemId, data]) => ({ itemId, quantity: data.quantity, ...(data.variationId && { variationId: data.variationId }) }))
 
-      const res = await fetch('/api/x402/tickets/purchase', {
+      const res = await fetch('/api/x402/tickets/purchase/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -976,7 +976,7 @@ function CheckoutContent() {
         .filter(([_, data]) => data.quantity > 0)
         .map(([itemId, data]) => ({ itemId, quantity: data.quantity, ...(data.variationId && { variationId: data.variationId }) }))
 
-      const res = await fetch('/api/x402/tickets/fiat-purchase', {
+      const res = await fetch('/api/x402/tickets/fiat-purchase/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1029,7 +1029,7 @@ function CheckoutContent() {
     setIsSigningDirect(true)
 
     try {
-      const prepareRes = await fetch('/api/x402/tickets/relayer/prepare-authorization', {
+      const prepareRes = await fetch('/api/x402/tickets/relayer/prepare-authorization/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1112,7 +1112,7 @@ function CheckoutContent() {
       let lastError = 'Failed to execute transfer'
 
       for (let attempt = 0; attempt <= maxRetries; attempt++) {
-        const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer', {
+        const executeRes = await fetch('/api/x402/tickets/relayer/execute-transfer/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
@@ -1259,7 +1259,7 @@ function CheckoutContent() {
     setPurchaseError(null)
 
     try {
-      const res = await fetch('/api/x402/tickets/verify', {
+      const res = await fetch('/api/x402/tickets/verify/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -149,7 +149,7 @@ function StoreContent({
     if (!earlyAccess) return
     setEarlyAccessValid(null)
     setEarlyAccessError(null)
-    fetch('/api/tickets/validate-early-access', {
+    fetch('/api/tickets/validate-early-access/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code: earlyAccess }),
@@ -172,7 +172,7 @@ function StoreContent({
   useEffect(() => {
     async function fetchTickets() {
       try {
-        const res = await fetch('/api/x402/tickets')
+        const res = await fetch('/api/x402/tickets/')
         const data = await res.json()
         if (data.success) {
           const tix = TICKETING.overrides.soldOut

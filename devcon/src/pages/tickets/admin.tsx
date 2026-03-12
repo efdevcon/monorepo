@@ -348,7 +348,7 @@ function RefundModal({
   const usdcConfig = getUsdcConfigForChainId(refundChainId)
 
   async function callRefundApi(action: string, body: Record<string, unknown>) {
-    const res = await fetch('/api/x402/admin/refund', {
+    const res = await fetch('/api/x402/admin/refund/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
       body: JSON.stringify({ paymentReference: order.paymentReference, action, ...body }),
@@ -590,7 +590,7 @@ function AdminContent() {
     async (key: string) => {
       setLoading(true)
       try {
-        const res = await fetch('/api/x402/admin/orders', {
+        const res = await fetch('/api/x402/admin/orders/', {
           headers: { 'x-admin-key': key },
         })
         if (res.status === 401) {

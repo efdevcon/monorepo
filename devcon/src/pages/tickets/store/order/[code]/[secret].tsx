@@ -67,7 +67,7 @@ export default function OrderConfirmationPage() {
     if (!orderCode || !orderSecret || !username) return
     setUploading(true)
     try {
-      const res = await fetch('/api/ticket/generate', {
+      const res = await fetch('/api/ticket/generate/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: orderCode, secret: orderSecret, xUsername: username }),

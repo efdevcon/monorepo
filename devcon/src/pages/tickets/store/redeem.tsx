@@ -54,7 +54,7 @@ export default function RedeemPage() {
     async function validate() {
       setLoading(true)
       try {
-        const res = await fetch('/api/x402/tickets/validate-voucher', {
+        const res = await fetch('/api/x402/tickets/validate-voucher/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: voucherCode }),

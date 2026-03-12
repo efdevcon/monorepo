@@ -27,7 +27,7 @@ export function useTicketQuota(quota: TicketQuota | undefined, interval: number 
     // return
 
     try {
-      const response = await fetch('/api/tickets/availability')
+      const response = await fetch('/api/tickets/availability/')
       const body = await response.json()
       setAvailability(body.data)
       return

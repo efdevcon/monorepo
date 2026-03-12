@@ -116,7 +116,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     let lastError: string | undefined
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
-        const res = await fetch(`/api/tickets/self-voucher?userId=${encodeURIComponent(userId)}`)
+        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`)
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           clearError()
@@ -180,7 +180,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
 
     const poll = async () => {
       try {
-        const res = await fetch(`/api/tickets/self-voucher?userId=${encodeURIComponent(userId)}`)
+        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`)
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           bgErrorCount.current = 0

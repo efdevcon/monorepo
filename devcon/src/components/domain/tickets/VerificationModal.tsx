@@ -71,7 +71,7 @@ export function VerificationModal({
     setIsRedeeming(true)
     setError(null)
     try {
-      const res = await fetch('/api/tickets/redeem', {
+      const res = await fetch('/api/tickets/redeem/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ anonAadhaarProof: proof }),
