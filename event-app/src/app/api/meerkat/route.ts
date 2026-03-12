@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateCode } from "@/lib/verification";
+import { generateHandoverToken } from "./verification";
 
-const MOCK_USER_ID = "mock-user-123";
+const MOCK_EMAIL = "mockuser@example.com";
 
 export async function POST(request: NextRequest) {
   let body: { sessionId?: string };
@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Mocked: in production this would resolve the real userId from auth
-  const userId = MOCK_USER_ID;
-  const code = generateCode(userId, sessionId);
+  // TODO: resolve real email from authenticated user session + verify ticket ownership
+  const email = MOCK_EMAIL;
+  const token = generateHandoverToken(email, sessionId);
 
-  return NextResponse.json({ code });
+  return NextResponse.json({ token });
 }

@@ -95,22 +95,29 @@ function SessionQA({ sessionId }: { sessionId: string }) {
   const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
   const sessionUrl = useSessionUrl(sessionId);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [debugToken, setDebugToken] = useState<{ raw: string; header: unknown; payload: unknown } | null>(null);
 
   async function handleAskQuestion() {
     setIsGenerating(true);
     try {
-      const res = await fetch("/api/generate-code", {
+      const res = await fetch("/api/meerkat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sessionId }),
       });
-      if (!res.ok) throw new Error("Failed to generate code");
-      const { code } = await res.json();
-      const url = new URL(sessionUrl);
-      url.searchParams.set("code", code);
-      window.open(url.toString(), "_blank", "noopener,noreferrer");
+      if (!res.ok) throw new Error("Failed to generate token");
+      const { token } = await res.json();
+
+      // TODO: Remove this debug block once Meerkat integration is live — redirect instead:
+      // const url = new URL(sessionUrl);
+      // url.searchParams.set("token", token);
+      // window.open(url.toString(), "_blank", "noopener,noreferrer");
+      const [headerB64, payloadB64] = token.split(".");
+      const header = JSON.parse(atob(headerB64));
+      const payload = JSON.parse(atob(payloadB64));
+      setDebugToken({ raw: token, header, payload });
     } catch (err) {
-      console.error("Failed to generate code:", err);
+      console.error("Failed to generate token:", err);
     } finally {
       setIsGenerating(false);
     }
@@ -130,6 +137,43 @@ function SessionQA({ sessionId }: { sessionId: string }) {
           </button>
         </div>
       </div>
+
+      {debugToken && (
+        <div className="mb-4 p-3 bg-gray-50 border border-dashed border-gray-300 rounded text-xs font-mono space-y-3">
+          <p className="text-gray-500 font-sans text-sm font-medium">
+            Meerkat handover — debug view (remove when integration is live)
+          </p>
+
+          <div>
+            <p className="text-gray-500 font-sans text-xs mb-1">Redirect URL</p>
+            <p className="break-all">{sessionUrl}?token={debugToken.raw}</p>
+          </div>
+
+          <div>
+            <p className="text-gray-500 font-sans text-xs mb-1">Signing secret</p>
+            <p className="break-all">devcon-meerkat-handover-secret-2026</p>
+          </div>
+
+          <div>
+            <p className="text-gray-500 font-sans text-xs mb-1">Raw JWT</p>
+            <p className="break-all">{debugToken.raw}</p>
+          </div>
+
+          <div>
+            <p className="text-gray-500 font-sans text-xs mb-1">Decoded header</p>
+            <pre>{JSON.stringify(debugToken.header, null, 2)}</pre>
+          </div>
+
+          <div>
+            <p className="text-gray-500 font-sans text-xs mb-1">Decoded payload</p>
+            <pre>{JSON.stringify(debugToken.payload, null, 2)}</pre>
+          </div>
+
+          <p className="text-gray-400 font-sans text-xs">
+            Next: Meerkat reads ?token param, verifies HS256 signature with shared secret, extracts email + sessionId. See src/app/api/meerkat/README.md
+          </p>
+        </div>
+      )}
 
       {error ? (
         <p className="text-red-500 text-sm">{error.message}</p>
