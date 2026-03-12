@@ -283,9 +283,7 @@ function StoreContent({
               <div className={css['sidebar-logo']}>
                 <Image src={StoreSidebarLogo} alt="Devcon India" height={64} width={146} />
               </div>
-              <h1 className={css['sidebar-title']}>
-                Ticket Store
-              </h1>
+              <h1 className={css['sidebar-title']}>Ticket Store</h1>
               <p className={css['sidebar-description']}>
                 Reserve your Devcon India place and join thousands of builders, creators, researchers, designers and
                 thinkers at the world&apos;s biggest Ethereum conference.
@@ -446,7 +444,8 @@ function StoreContent({
                     <span className={css['live-badge']}>LIVE</span>
                   </div>
                   <p className={css['section-subtitle']}>
-                    Check if you qualify to reserve early access to India Early Bird tickets later this year (ETH Mumbai exclusive)
+                    Check if you qualify to reserve early access to India Early Bird tickets later this year (ETH Mumbai
+                    exclusive)
                   </p>
                 </div>
 
@@ -454,112 +453,117 @@ function StoreContent({
                   {displayVoucherTickets.map(ticket => {
                     const soldOut = !ticket.available || ticket.vouchersAvailable === false
                     return (
-                    <React.Fragment key={ticket.id}>
-                      <div className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${!isLoadingTickets && (soldOut || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true))) ? css['card--disabled'] : ''}`}>
-                        <div className={css['card-stacked']}>
-                          <div className={css['card-details']}>
-                            <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
-                            {soldOut ? (
-                              <p className={css['sold-out-meta']}>
-                                Sorry, all Early Access vouchers have been reserved. More local tickets will go on sale later this year.
-                              </p>
-                            ) : (
-                              <p className={css['card-meta']}>
-                                Via Self Protocol &amp; ETH Mumbai registration
-                              </p>
-                            )}
-                            <p className={css['card-description']}>
-                              Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge
-                              Proofs to prove Indian residency.
-                            </p>
-                          </div>
-                          {isLoadingTickets ? (
-                            <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
-                                <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                )}
-                              </div>
-                              <span className={css['card-disabled-message']}>Loading...</span>
-                            </div>
-                          ) : soldOut ? (
-                            <div className={css['card-footer']}>
-                              <div className={`${css['pricing']} ${css['pricing--faded']}`}>
-                                <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                )}
-                              </div>
-                              <span className={css['sold-out-badge']}>Fully claimed</span>
-                            </div>
-                          ) : !requireEarlyAccess || (earlyAccess && earlyAccessValid === true) ? (
-                            <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
-                                <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                )}
-                              </div>
-                              <button
-                                type="button"
-                                className={css['verify-self-btn']}
-                                onClick={() => setSelfVerificationOpen(true)}
-                              >
-                                <SelfLogo className={css['self-logo']} aria-hidden="true" />
-                                Verify via Self
-                              </button>
-                            </div>
-                          ) : earlyAccess && earlyAccessValid === null ? (
-                            <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
-                                <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                )}
-                              </div>
-                              <p className={css['card-disabled-message']}>
-                                Validating early access code...
+                      <React.Fragment key={ticket.id}>
+                        <div
+                          className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${
+                            !isLoadingTickets &&
+                            (soldOut || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true)))
+                              ? css['card--disabled']
+                              : ''
+                          }`}
+                        >
+                          <div className={css['card-stacked']}>
+                            <div className={css['card-details']}>
+                              <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
+                              {soldOut ? (
+                                <p className={css['sold-out-meta']}>
+                                  Sorry, all Early Access vouchers have been reserved. More local tickets will go on
+                                  sale later this year.
+                                </p>
+                              ) : (
+                                <p className={css['card-meta']}>Via Self Protocol &amp; ETH Mumbai registration</p>
+                              )}
+                              <p className={css['card-description']}>
+                                Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge
+                                Proofs to prove Indian residency.
                               </p>
                             </div>
-                          ) : earlyAccess && earlyAccessValid === false ? (
-                            <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
-                                <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                )}
-                              </div>
-                              <p className={css['card-disabled-message']}>
-                                {earlyAccessError || 'Invalid early access code'}
-                              </p>
-                            </div>
-                          ) : (
-                            <div className={css['card-footer']}>
-                              <div className={css['pricing']}>
-                                <span className={css['price-label']}>Price at launch:</span>
-                                <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                  <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                )}
-                              </div>
-                              <div className={css['access-link-badge']}>
-                                <div className={css['access-link-badge-logo']}>
-                                  <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
+                            {isLoadingTickets ? (
+                              <div className={css['card-footer']}>
+                                <div className={css['pricing']}>
+                                  <span className={css['price-label']}>Price at launch:</span>
+                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
+                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
+                                  )}
                                 </div>
-                                <span>Check your email for your unique access link</span>
+                                <span className={css['card-disabled-message']}>Loading...</span>
                               </div>
-                            </div>
-                          )}
+                            ) : soldOut ? (
+                              <div className={css['card-footer']}>
+                                <div className={`${css['pricing']} ${css['pricing--faded']}`}>
+                                  <span className={css['price-label']}>Price at launch:</span>
+                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
+                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
+                                  )}
+                                </div>
+                                <span className={css['sold-out-badge']}>Fully claimed</span>
+                              </div>
+                            ) : !requireEarlyAccess || (earlyAccess && earlyAccessValid === true) ? (
+                              <div className={css['card-footer']}>
+                                <div className={css['pricing']}>
+                                  <span className={css['price-label']}>Price at launch:</span>
+                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
+                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
+                                  )}
+                                </div>
+                                <button
+                                  type="button"
+                                  className={css['verify-self-btn']}
+                                  onClick={() => setSelfVerificationOpen(true)}
+                                >
+                                  <SelfLogo className={css['self-logo']} aria-hidden="true" />
+                                  Verify via Self
+                                </button>
+                              </div>
+                            ) : earlyAccess && earlyAccessValid === null ? (
+                              <div className={css['card-footer']}>
+                                <div className={css['pricing']}>
+                                  <span className={css['price-label']}>Price at launch:</span>
+                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
+                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
+                                  )}
+                                </div>
+                                <p className={css['card-disabled-message']}>Validating early access code...</p>
+                              </div>
+                            ) : earlyAccess && earlyAccessValid === false ? (
+                              <div className={css['card-footer']}>
+                                <div className={css['pricing']}>
+                                  <span className={css['price-label']}>Price at launch:</span>
+                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
+                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
+                                  )}
+                                </div>
+                                <p className={css['card-disabled-message']}>
+                                  {earlyAccessError || 'Invalid early access code'}
+                                </p>
+                              </div>
+                            ) : (
+                              <div className={css['card-footer']}>
+                                <div className={css['pricing']}>
+                                  <span className={css['price-label']}>Price at launch:</span>
+                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
+                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
+                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
+                                  )}
+                                </div>
+                                <div className={css['access-link-badge']}>
+                                  <div className={css['access-link-badge-logo']}>
+                                    <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
+                                  </div>
+                                  <span>Check your email for your unique access link</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </React.Fragment>
-                  )})}
+                      </React.Fragment>
+                    )
+                  })}
                 </div>
               </section>
             )}
@@ -567,9 +571,7 @@ function StoreContent({
             <section className={css['section']} id="coming-soon">
               <div className={css['section-header']}>
                 <h2 className={css['section-title']}>Coming soon</h2>
-                <p className={css['section-subtitle']}>
-                  More ways to get Devcon tickets are coming later this year
-                </p>
+                <p className={css['section-subtitle']}>More ways to get Devcon tickets are coming later this year</p>
               </div>
 
               <div className={css['coming-soon-grid']}>
@@ -592,7 +594,7 @@ function StoreContent({
 
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{"Youth Ticket (3\u201317) \ud83c\udf31"}</h3>
+                    <h3 className={css['coming-soon-card-title']}>{'Youth Ticket (3\u201317) \ud83c\udf31'}</h3>
                     <p className={css['card-meta']}>Consent form submission & ID/proof required at Registration.</p>
                     <p className={css['card-description']}>
                       {"Whether you're a younger attendee, or bringing your child."}
@@ -608,7 +610,7 @@ function StoreContent({
 
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{"Student Discount \ud83c\udf93"}</h3>
+                    <h3 className={css['coming-soon-card-title']}>{'Student Discount \ud83c\udf93'}</h3>
                     <p className={css['card-meta']}>School/University ID required at check-in</p>
                     <p className={css['card-description']}>
                       500 discounts will be distributed this year to University students from around the world who wish
@@ -617,7 +619,7 @@ function StoreContent({
                   </div>
                   <div className={css['coming-soon-card-footer']}>
                     <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>$49</span>
+                      <span className={css['coming-soon-price']}>$25</span>
                     </div>
                     <span className={css['coming-soon-availability']}>Coming soon!</span>
                   </div>
@@ -625,7 +627,7 @@ function StoreContent({
 
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{"Builder Discount \ud83e\udd84"}</h3>
+                    <h3 className={css['coming-soon-card-title']}>{'Builder Discount \ud83e\udd84'}</h3>
                     <p className={css['card-meta']}>ID required at Registration</p>
                     <p className={css['card-description']}>
                       For builders of all kinds who actively volunteer or contribute their time to the growth, research
@@ -683,7 +685,7 @@ function StoreContent({
         onClose={() => setSelfVerificationOpen(false)}
         useStaging={useSelfStaging}
         setUseStaging={setUseSelfStaging}
-        earlyAccess={requireEarlyAccess ? (earlyAccess ?? undefined) : undefined}
+        earlyAccess={requireEarlyAccess ? earlyAccess ?? undefined : undefined}
         email={earlyAccessEmail ?? undefined}
       />
     </>
