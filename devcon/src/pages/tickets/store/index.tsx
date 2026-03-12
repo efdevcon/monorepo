@@ -592,7 +592,7 @@ function StoreContent({
                   </div>
                 </div>
 
-                <div className={css['coming-soon-card']}>
+                {/* <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'Youth Ticket (3\u201317) \ud83c\udf31'}</h3>
                     <p className={css['card-meta']}>Consent form submission & ID/proof required at Registration.</p>
@@ -606,7 +606,7 @@ function StoreContent({
                     </div>
                     <span className={css['coming-soon-availability']}>Coming soon!</span>
                   </div>
-                </div>
+                </div> */}
 
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
