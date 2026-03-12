@@ -422,7 +422,7 @@
   inset: 0;
   opacity: 0.15;
   pointer-events: none;
-  background-image: url('./images/bg-eth-moon.png');
+  background-image: url('./images/bg-eth-repeat.png');
   background-repeat: repeat-x;
   background-position: center;
   background-size: auto min(100%, 200px);
@@ -1077,9 +1077,9 @@
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.25s ease;
-  background: white;
-  border-left: 1px solid #f2f1f4;
-  border-right: 1px solid #f2f1f4;
+  background: #f2f1f4;
+  border-left: 1px solid #dddae2;
+  border-right: 1px solid #dddae2;
 }
 
 .faq-answer-open {
@@ -1091,7 +1091,7 @@
 }
 
 .faq-answer {
-  padding: 8px 16px 16px;
+  padding: 16px 32px 16px 24px;
   font-size: 16px;
   line-height: 1.5;
   color: #594d73;

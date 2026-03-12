@@ -77,12 +77,7 @@ const APPLICATION_ROWS = [
 const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
   {
     q: 'When will General ticket sales start?',
-    a: (
-      <em>
-        General Admission ticket sales for Devcon India will launch in early May. Stay tuned for updates as we get
-        closer to this date.
-      </em>
-    ),
+    a: 'General Admission ticket sales for Devcon India will launch in early May. Stay tuned for updates as we get closer to this date.',
   },
   {
     q: 'Will there be opportunities to obtain discounted tickets?',
