@@ -143,7 +143,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   // Send email when voucher is obtained, regardless of which code path found it
   useEffect(() => {
     if (!voucher || !email || emailSent) return
-    fetch('/api/tickets/send-voucher-email', {
+    fetch('/api/tickets/send-voucher-email/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, voucherCode: voucher }),

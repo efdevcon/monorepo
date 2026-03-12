@@ -116,7 +116,7 @@ export default function RedeemPage() {
 
     setSending(true)
     try {
-      const res = await fetch('/api/tickets/send-voucher-email', {
+      const res = await fetch('/api/tickets/send-voucher-email/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim(), voucherCode }),
