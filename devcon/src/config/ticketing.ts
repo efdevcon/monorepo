@@ -27,7 +27,7 @@ const ENV_CONFIG = {
       requireEarlyAccess: true,
     },
     discount: {
-      collection: 'test-local-early-bird',
+      collection: 'test-india-early-bird',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,

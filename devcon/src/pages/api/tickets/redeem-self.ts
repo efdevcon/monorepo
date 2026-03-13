@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
 import { lookupDiscountCode, validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { sendVoucherEmail } from '../../../services/voucherEmail'
 import { TICKETING } from 'config/ticketing'
 
 const SELF_SCOPE = TICKETING.self.scope
@@ -148,6 +149,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Dynamic voucher assignment from Supabase pool
     const earlyAccessCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
+    const emailParam = (req.query.email ?? req.body.email) as string | undefined
     const requireEarlyAccess = TICKETING.self.requireEarlyAccess
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
@@ -176,12 +178,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
+    // Fire-and-forget email helper — logs errors but never blocks the response
+    const trySendEmail = (code: string) => {
+      if (!emailParam) return
+      sendVoucherEmail(emailParam, code).catch(err =>
+        console.error('[redeem-self] Failed to send voucher email:', err)
+      )
+    }
+
     // Check if this identity already has a voucher (one-voucher-per-identity)
     const existingVoucher = await getAssignedVoucher(nullifier)
     if (existingVoucher) {
       voucherStore.set(verifiedUserId, existingVoucher.code)
       errorStore.delete(verifiedUserId)
       setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+      trySendEmail(existingVoucher.code)
       return res.status(200).json({
         status: 'success',
         result: true,
@@ -212,6 +223,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           voucherStore.set(verifiedUserId, codeRecord.voucherCode)
           errorStore.delete(verifiedUserId)
           setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+          trySendEmail(codeRecord.voucherCode)
           return res.status(200).json({
             status: 'success',
             result: true,
@@ -242,6 +254,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               voucherStore.set(verifiedUserId, recheck.voucherCode)
               errorStore.delete(verifiedUserId)
               setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+              trySendEmail(recheck.voucherCode)
               return res.status(200).json({
                 status: 'success',
                 result: true,
@@ -294,6 +307,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     voucherStore.set(verifiedUserId, voucher.code)
     errorStore.delete(verifiedUserId) // Clear any race-condition error from parallel request
     setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+
+    // Send confirmation email (fire-and-forget)
+    trySendEmail(voucher.code)
 
     return res.status(200).json({
       status: 'success',

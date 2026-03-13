@@ -140,18 +140,11 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     }
   }
 
-  // Send email when voucher is obtained, regardless of which code path found it
+  // Email is now sent by the backend (redeem-self.ts) when the voucher is assigned.
+  // Mark emailSent based on whether the email param was provided (backend will handle it).
   useEffect(() => {
-    if (!voucher || !email || emailSent) return
-    fetch('/api/tickets/send-voucher-email/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, voucherCode: voucher }),
-    })
-      .then(res => res.json())
-      .then(data => { if (data.success) setEmailSent(true) })
-      .catch(() => { /* Non-fatal — voucher is still shown */ })
-  }, [voucher, email, emailSent])
+    if (voucher && email) setEmailSent(true)
+  }, [voucher, email])
 
   // When the user returns from the Self app, start polling automatically
   useEffect(() => {
