@@ -4,8 +4,9 @@ export type { IEventDataProvider, SessionFilters } from "./provider-interface";
 // Export base provider class
 export { BaseProvider } from "./provider-interface";
 
-// Export dummy provider for development/testing
+// Export providers
 export { DummyProvider } from "./dummy.provider";
+export { DevconProvider } from "./devcon.provider";
 
 // Export validation utilities
 export { validateWithToast } from "./validation";

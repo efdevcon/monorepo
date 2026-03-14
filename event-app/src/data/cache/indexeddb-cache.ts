@@ -1,29 +1,27 @@
-import type { Cache } from "swr";
 import { cacheDB } from "./cache-db";
 
 const MAX_CACHE_AGE = 24 * 60 * 60 * 1000; // 24 hours
 
-/**
- * Check if we're in a browser environment
- */
 const isBrowser = typeof window !== "undefined";
 
 /**
- * Create an SWR-compatible cache provider using Dexie for IndexedDB persistence
- * Uses a hybrid approach: memory cache for fast reads, Dexie for persistence
- * Falls back to memory-only cache on server (SSR)
+ * Create an SWR-compatible cache backed by Dexie IndexedDB.
+ *
+ * Returns the cache Map and a promise that resolves once IndexedDB entries
+ * have been loaded into memory. SWR should wait for initPromise before
+ * rendering to avoid race conditions.
  */
-export function createDexieCacheProvider(): () => Cache<any> {
-  const memoryCache = new Map<string, any>();
+export function createDexieCacheProvider(): {
+  cache: Map<string, unknown>;
+  initPromise: Promise<void>;
+} {
+  const memoryCache = new Map<string, unknown>();
 
-  // SSR: return simple memory cache
   if (!isBrowser || !cacheDB) {
-    return () => memoryCache;
+    return { cache: memoryCache, initPromise: Promise.resolve() };
   }
 
-  let initialized = false;
-
-  // Load from Dexie on init (browser only)
+  // Load persisted entries into memory
   const initPromise = cacheDB.cache
     .where("timestamp")
     .above(Date.now() - MAX_CACHE_AGE)
@@ -37,60 +35,41 @@ export function createDexieCacheProvider(): () => Cache<any> {
       console.warn("Failed to load cache from IndexedDB:", error);
     });
 
-  return () => {
-    // Start initialization if not already started
-    if (!initialized) {
-      initialized = true;
-      initPromise.catch(console.warn);
-    }
+  // Override set/delete/clear to persist changes to Dexie
+  const originalSet = memoryCache.set.bind(memoryCache);
+  const originalDelete = memoryCache.delete.bind(memoryCache);
+  const originalClear = memoryCache.clear.bind(memoryCache);
 
-    // Override Map methods to sync with Dexie
-    const originalSet = memoryCache.set.bind(memoryCache);
-    const originalDelete = memoryCache.delete.bind(memoryCache);
-    const originalClear = memoryCache.clear.bind(memoryCache);
-
-    // Override set to persist to Dexie
-    memoryCache.set = (key: string, value: unknown) => {
-      originalSet(key, value);
-      // Persist to Dexie (non-blocking)
-      cacheDB.cache
-        .put({
-          key,
-          value,
-          timestamp: Date.now(),
-        })
-        .catch((error) => {
-          console.warn(`Failed to persist cache entry "${key}":`, error);
-        });
-      return memoryCache;
-    };
-
-    // Override delete to remove from Dexie
-    memoryCache.delete = (key: string) => {
-      originalDelete(key);
-      // Remove from Dexie (non-blocking)
-      cacheDB.cache.delete(key).catch((error) => {
-        console.warn(`Failed to delete cache entry "${key}":`, error);
+  memoryCache.set = (key: string, value: unknown) => {
+    originalSet(key, value);
+    cacheDB.cache
+      .put({ key, value, timestamp: Date.now() })
+      .catch((error) => {
+        console.warn(`Failed to persist cache entry "${key}":`, error);
       });
-      return true;
-    };
-
-    // Override clear to clear Dexie
-    memoryCache.clear = () => {
-      originalClear();
-      // Clear Dexie (non-blocking)
-      cacheDB.cache.clear().catch((error) => {
-        console.warn("Failed to clear cache:", error);
-      });
-    };
-
     return memoryCache;
   };
+
+  memoryCache.delete = (key: string) => {
+    originalDelete(key);
+    cacheDB.cache.delete(key).catch((error) => {
+      console.warn(`Failed to delete cache entry "${key}":`, error);
+    });
+    return true;
+  };
+
+  memoryCache.clear = () => {
+    originalClear();
+    cacheDB.cache.clear().catch((error) => {
+      console.warn("Failed to clear cache:", error);
+    });
+  };
+
+  return { cache: memoryCache, initPromise };
 }
 
 /**
  * Cleanup old cache entries (older than MAX_CACHE_AGE)
- * Can be called periodically or on app startup
  */
 export async function cleanupOldCacheEntries(): Promise<void> {
   if (!isBrowser || !cacheDB) return;

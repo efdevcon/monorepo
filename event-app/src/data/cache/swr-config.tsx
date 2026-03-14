@@ -1,7 +1,7 @@
 "use client";
 
 import { SWRConfig, type Cache } from "swr";
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useState, useRef } from "react";
 import { createDexieCacheProvider } from "./indexeddb-cache";
 
 /**
@@ -9,39 +9,45 @@ import { createDexieCacheProvider } from "./indexeddb-cache";
  * - Extended deduplication interval (30 seconds)
  * - Stale-while-revalidate enabled (default)
  * - IndexedDB persistence via Dexie for offline support (supports large datasets)
+ *
+ * Waits for IndexedDB cache to initialize before rendering children,
+ * preventing a race condition where Dexie's async init overwrites SWR's state.
  */
 export function SWRConfigProvider({ children }: { children: ReactNode }) {
-  const providerRef = useRef<Cache | null>(null);
+  const { cacheReady, cacheProvider } = useDexieCache();
 
-  if (!providerRef.current) {
-    providerRef.current = createDexieCacheProvider()();
-  }
+  if (!cacheReady) return null;
 
   return (
     <SWRConfig
       value={{
-        // Extended deduplication: prevent duplicate requests for 30 seconds
-        dedupingInterval: 30000, // 30 seconds (default is 2 seconds)
-
-        // Stale-while-revalidate: show cached data immediately, fetch fresh in background
-        revalidateOnFocus: false, // Don't revalidate when window regains focus
-        revalidateOnReconnect: true, // Revalidate when network reconnects
-        revalidateIfStale: true, // Revalidate stale data on mount
-
-        // Cache settings
-        keepPreviousData: true, // Keep previous data while fetching new data
-        refreshInterval: 0, // Disable automatic polling (set > 0 to enable)
-
-        // Error handling
+        dedupingInterval: 30000,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: true,
+        revalidateIfStale: true,
+        keepPreviousData: true,
+        refreshInterval: 0,
         shouldRetryOnError: true,
         errorRetryCount: 3,
         errorRetryInterval: 5000,
-
-        // Use Dexie-backed IndexedDB cache provider
-        provider: () => providerRef.current!,
+        provider: () => cacheProvider as unknown as Cache,
       }}
     >
       {children}
     </SWRConfig>
   );
+}
+
+function useDexieCache() {
+  const providerRef = useRef<Map<string, unknown> | null>(null);
+  const [cacheReady, setCacheReady] = useState(false);
+
+  useEffect(() => {
+    const { cache, initPromise } = createDexieCacheProvider();
+    providerRef.current = cache;
+
+    initPromise.then(() => setCacheReady(true));
+  }, []);
+
+  return { cacheReady, cacheProvider: providerRef.current };
 }

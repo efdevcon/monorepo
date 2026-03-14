@@ -18,21 +18,32 @@ async function sessionsFetcher(
 export function useSessions(filters?: SessionFilters) {
   const key = filters ? ["sessions", filters] : ["sessions"];
 
-  const { data, error, isLoading, mutate } = useSWR(
+  const { data, error, isLoading, isValidating, mutate } = useSWR(
     key,
-    () => sessionsFetcher(filters),
+    () => {
+      console.log("[useSessions] fetcher called");
+      return sessionsFetcher(filters).then((r) => {
+        console.log("[useSessions] fetcher resolved:", r.length, "sessions");
+        return r;
+      }).catch((e) => {
+        console.error("[useSessions] fetcher error:", e);
+        throw e;
+      });
+    },
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: true,
     }
   );
 
+  console.log("[useSessions] state:", { isLoading, isValidating, hasData: !!data, hasError: !!error, dataLength: data?.length });
+
   return {
     sessions: data ?? [],
     isLoading,
     isError: error,
     error,
-    mutate, // Allows manual revalidation
+    mutate,
   };
 }
 
