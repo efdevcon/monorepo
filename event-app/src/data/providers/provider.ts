@@ -1,7 +1,8 @@
-import { DevconProvider } from "./devcon.provider";
+// import { DevconProvider } from "./devcon.provider";
+import { DummyProvider } from "./dummy.provider";
 import type { IEventDataProvider } from "./provider-interface";
 
 /**
  * Singleton provider instance
  */
-export const provider: IEventDataProvider = new DevconProvider();
+export const provider: IEventDataProvider = new DummyProvider();
