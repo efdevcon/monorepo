@@ -26,6 +26,9 @@ function getTransporter() {
     port: 465,
     secure: true,
     auth: { user: smtpUser, pass: smtpPass },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
   })
 }
 
@@ -103,16 +106,41 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
 </html>`
 }
 
+async function sendWithRetry(
+  transporter: nodemailer.Transporter,
+  mailOptions: nodemailer.SendMailOptions,
+  retries = 2
+): Promise<void> {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      await transporter.sendMail(mailOptions)
+      return
+    } catch (err: unknown) {
+      const isRetryable =
+        err instanceof Error &&
+        ('code' in err && (err as { code?: string }).code === 'ETIMEDOUT' ||
+         'code' in err && (err as { code?: string }).code === 'ESOCKET' ||
+         'code' in err && (err as { code?: string }).code === 'ECONNRESET')
+      if (!isRetryable || attempt === retries) throw err
+      // Brief pause before retry, create a fresh transport for the new attempt
+      await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
+      transporter = getTransporter()
+    }
+  }
+}
+
 /**
- * Send a voucher confirmation email. Validates the voucher via Pretix,
- * builds the email HTML with price info, sends it, and stores the email
- * address on the voucher row.
+ * Send a voucher confirmation email.
+ *
+ * When skipValidation is true (backend calls where voucher was just assigned),
+ * skips the Pretix API call — avoids an extra network round-trip in serverless.
  *
  * Returns { success: true } on success, or { success: false, error: string } on failure.
  */
 export async function sendVoucherEmail(
   email: string,
-  voucherCode: string
+  voucherCode: string,
+  { skipValidation = false }: { skipValidation?: boolean } = {}
 ): Promise<{ success: boolean; error?: string }> {
   const trimmedEmail = email.trim()
   const trimmedCode = voucherCode.trim()
@@ -126,33 +154,50 @@ export async function sendVoucherEmail(
   setTimeout(() => recentlySent.delete(dedupKey), 5 * 60 * 1000)
 
   try {
-    // Validate the voucher is real via Pretix
-    const voucher = await validateVoucher(trimmedCode)
-    if (!voucher.valid) {
-      return { success: false, error: voucher.error || 'Invalid voucher code' }
+    let discountedPrice = '—'
+    let originalPrice = '—'
+
+    if (!skipValidation) {
+      // Validate the voucher is real via Pretix (used by manual re-send API)
+      const voucher = await validateVoucher(trimmedCode)
+      if (!voucher.valid) {
+        return { success: false, error: voucher.error || 'Invalid voucher code' }
+      }
+
+      const ticketInfo = await getTicketPurchaseInfo()
+      const admissionTickets = ticketInfo.tickets.filter(t => t.isAdmission && t.available)
+      const applicableTickets = admissionTickets
+        .filter(t => !voucher.itemId || t.id === voucher.itemId)
+        .map(t => ({
+          originalPrice: t.originalPrice || t.price,
+          discountedPrice: t.price,
+        }))
+
+      const firstTicket = applicableTickets[0]
+      const formatPrice = (n: number) => (n % 1 === 0 ? n.toFixed(0) : n.toFixed(2))
+      discountedPrice = firstTicket ? formatPrice(parseFloat(firstTicket.discountedPrice)) : '—'
+      originalPrice = firstTicket ? formatPrice(parseFloat(firstTicket.originalPrice)) : '—'
+    } else {
+      // Fast path: fetch ticket prices only (skip voucher validation)
+      try {
+        const ticketInfo = await getTicketPurchaseInfo()
+        const admissionTickets = ticketInfo.tickets.filter(t => t.isAdmission && t.available)
+        const firstTicket = admissionTickets[0]
+        const formatPrice = (n: number) => (n % 1 === 0 ? n.toFixed(0) : n.toFixed(2))
+        discountedPrice = firstTicket ? formatPrice(parseFloat(firstTicket.price)) : '—'
+        originalPrice = firstTicket ? formatPrice(parseFloat(firstTicket.originalPrice || firstTicket.price)) : '—'
+      } catch {
+        console.warn('[voucherEmail] Could not fetch ticket prices, using fallback')
+        // Hardcoded fallback so the email still sends even if Pretix is unreachable
+        discountedPrice = '99'
+        originalPrice = '149'
+      }
     }
-
-    // Get ticket info for price display
-    const ticketInfo = await getTicketPurchaseInfo()
-    const admissionTickets = ticketInfo.tickets.filter(t => t.isAdmission && t.available)
-
-    const applicableTickets = admissionTickets
-      .filter(t => !voucher.itemId || t.id === voucher.itemId)
-      .map(t => ({
-        name: t.name,
-        originalPrice: t.originalPrice || t.price,
-        discountedPrice: t.price,
-      }))
-
-    const firstTicket = applicableTickets[0]
-    const formatPrice = (n: number) => (n % 1 === 0 ? n.toFixed(0) : n.toFixed(2))
-    const discountedPrice = firstTicket ? formatPrice(parseFloat(firstTicket.discountedPrice)) : '—'
-    const originalPrice = firstTicket ? formatPrice(parseFloat(firstTicket.originalPrice)) : '—'
 
     const transporter = getTransporter()
     const smtpFrom = process.env.SMTP_FROM || 'noreply@devcon.org'
 
-    await transporter.sendMail({
+    await sendWithRetry(transporter, {
       from: `"Devcon India" <${smtpFrom}>`,
       to: trimmedEmail,
       subject: 'Your Devcon India Voucher Code',
@@ -169,6 +214,8 @@ export async function sendVoucherEmail(
     return { success: true }
   } catch (error) {
     console.error('[voucherEmail] Error sending voucher email:', error)
+    // Clear dedup so a retry (manual or automatic) can try again
+    recentlySent.delete(dedupKey)
     return { success: false, error: 'Failed to send email' }
   }
 }

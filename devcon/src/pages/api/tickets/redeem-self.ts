@@ -178,10 +178,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Fire-and-forget email helper — logs errors but never blocks the response
+    // Fire-and-forget email helper — logs errors but never blocks the response.
+    // skipValidation: we just assigned the voucher, no need to re-validate via Pretix.
     const trySendEmail = (code: string) => {
       if (!emailParam) return
-      sendVoucherEmail(emailParam, code).catch(err =>
+      sendVoucherEmail(emailParam, code, { skipValidation: true }).catch(err =>
         console.error('[redeem-self] Failed to send voucher email:', err)
       )
     }
