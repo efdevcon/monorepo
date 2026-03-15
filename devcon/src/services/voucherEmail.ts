@@ -188,9 +188,9 @@ export async function sendVoucherEmail(
         originalPrice = firstTicket ? formatPrice(parseFloat(firstTicket.originalPrice || firstTicket.price)) : '—'
       } catch {
         console.warn('[voucherEmail] Could not fetch ticket prices, using fallback')
-        // Hardcoded fallback so the email still sends even if Pretix is unreachable
-        discountedPrice = '99'
-        originalPrice = '149'
+        // Fallback placeholders so the email still sends even if Pretix is unreachable
+        discountedPrice = 'XX'
+        originalPrice = 'YY'
       }
     }
 
