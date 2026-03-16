@@ -56,7 +56,7 @@ const WAVES = [
 
 const COMMUNITY_ROWS = [
   {
-    name: 'ETH Mumbai Early Access',
+    name: 'ETHMumbai Early Access',
     detail: 'VIA SELF PROTOCOL',
     price: '$99',
     date: 'Ends 15 Mar',
@@ -133,13 +133,13 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>ETH Mumbai Early Access now live!</h2>
+                <h2 className={css['heading-2']}>ETHMumbai Early Access now live!</h2>
                 <p className={css['body-lg']}>
                   Join thousands of builders, creators, researchers, designers, and thinkers 3&ndash;6 November 2026 in
                   Mumbai for the world&apos;s biggest Ethereum conference.
                 </p>
                 <p className={css['body']}>
-                  Reserve early access to India Early Bird tickets later this year (exclusive to ETH Mumbai attendees).
+                  Reserve early access to India Early Bird tickets later this year (exclusive to ETHMumbai attendees).
                 </p>
               </div>
 
@@ -299,7 +299,7 @@ export default function TicketsPage() {
                 <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
                 <h2 className={css['heading-2']}>Community</h2>
                 <p className={css['body-lg']}>
-                  ETH Mumbai attendees can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
+                  ETHMumbai attendees can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
                   residency via Self Protocol to redeem.
                 </p>
                 <p className={css['body']}>

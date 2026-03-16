@@ -440,12 +440,15 @@ function StoreContent({
               <section className={css['section']} id="discounts">
                 <div className={css['section-header']}>
                   <div className={css['section-title-row']}>
-                    <h2 className={css['section-title']}>ETH Mumbai Early Access</h2>
+                    <h2 className={css['section-title']}>
+                      {requireEarlyAccess ? 'ETHMumbai Early Access' : 'India Early Access'}
+                    </h2>
                     <span className={css['live-badge']}>LIVE</span>
                   </div>
                   <p className={css['section-subtitle']}>
-                    Check if you qualify to reserve early access to India Early Bird tickets later this year (ETH Mumbai
-                    exclusive)
+                    {requireEarlyAccess
+                      ? 'Check if you qualify to reserve early access to India Early Bird tickets later this year (ETHMumbai exclusive)'
+                      : 'Reserve your India Early Bird ticket at a discounted price'}
                   </p>
                 </div>
 
@@ -464,14 +467,20 @@ function StoreContent({
                         >
                           <div className={css['card-stacked']}>
                             <div className={css['card-details']}>
-                              <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
+                              <h3 className={css['card-title']}>
+                                Reserve: India Early Bird Ticket (Limited availability) 🇮🇳
+                              </h3>
                               {soldOut ? (
                                 <p className={css['sold-out-meta']}>
                                   Sorry, all Early Access vouchers have been reserved. More local tickets will go on
                                   sale later this year.
                                 </p>
                               ) : (
-                                <p className={css['card-meta']}>Via Self Protocol &amp; ETH Mumbai registration</p>
+                                <p className={css['card-meta']}>
+                                  {requireEarlyAccess
+                                    ? 'Via Self Protocol & ETHMumbai registration'
+                                    : 'Via Self Protocol'}
+                                </p>
                               )}
                               <p className={css['card-description']}>
                                 Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge

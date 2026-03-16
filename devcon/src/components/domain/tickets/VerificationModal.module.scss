@@ -657,3 +657,44 @@
   margin: 0.5rem 0 0;
   line-height: 1.43;
 }
+
+.self-email-step {
+  margin-bottom: 1rem;
+}
+
+.self-email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.self-email-input {
+  flex: 1;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  border: 1.5px solid #dddae2;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &:focus {
+    border-color: #7235ed;
+  }
+}
+
+.self-email-btn {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  background: #7235ed;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #5f2bc9;
+  }
+}

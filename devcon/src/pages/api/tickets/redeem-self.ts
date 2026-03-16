@@ -123,11 +123,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Check that the user's nationality is India
+    const requireEarlyAccess = TICKETING.self.requireEarlyAccess
     const nationality = result.discloseOutput?.nationality
     const isIndian = nationality === 'IND'
 
     if (!isIndian && !isStaging) {
-      const reason = 'Sorry, your nationality is not Indian. This offer is currently exclusive to Indian residents with an Aadhaar card, who attended ETH Mumbai.'
+      const reason = requireEarlyAccess
+        ? 'Sorry, your nationality is not Indian. This offer is currently exclusive to Indian residents with an Aadhaar card, who attended ETHMumbai.'
+        : 'Sorry, your nationality is not Indian. This offer is currently exclusive to Indian residents with an Aadhaar card.'
       if (verifiedUserId) storeError(verifiedUserId, reason)
       return res.status(200).json({
         status: 'error',
@@ -150,7 +153,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const earlyAccessCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
     const emailParam = (req.query.email ?? req.body.email) as string | undefined
     console.log('[redeem-self] emailParam:', emailParam, '| earlyAccess:', earlyAccessCode, '| userId:', verifiedUserId)
-    const requireEarlyAccess = TICKETING.self.requireEarlyAccess
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
     // Aadhaar card and is always the same for the same card, unlike verifiedUserId which

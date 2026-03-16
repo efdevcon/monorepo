@@ -15,7 +15,7 @@ export const Strip = () => {
         <div className="flex items-center justify-between">
           <div className="flex gap-4 items-center">
             <div className="bg-[#FFAC38] hidden md:flex items-center justify-center px-2 py-1 rounded shrink-0">
-              <span className="font-bold text-[#160b2b] text-xs tracking-[1px] whitespace-nowrap">ETH MUMBAI</span>
+              <span className="font-bold text-[#160b2b] text-xs tracking-[1px] whitespace-nowrap">ETHMUMBAI</span>
             </div>
             <p className="font-bold text-white text-sm whitespace-nowrap">Reserve Early Access now live!</p>
           </div>
