@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
-import { lookupDiscountCode, validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { lookupDiscountCode, validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher, setVoucherEmail } from '../../../services/discountStore'
 import { sendVoucherEmail } from '../../../services/voucherEmail'
 import { TICKETING } from 'config/ticketing'
 
@@ -179,9 +179,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Fire-and-forget email helper — logs errors but never blocks the response.
-    // skipValidation: we just assigned the voucher, no need to re-validate via Pretix.
+    // Step 1: store email on the voucher row immediately (so we never lose it).
+    // Step 2: send the email; voucherEmail service marks email_sent on success.
     const trySendEmail = (code: string) => {
       if (!emailParam) return
+      setVoucherEmail(code, emailParam).catch(err =>
+        console.error('[redeem-self] Failed to store voucher email:', err)
+      )
       sendVoucherEmail(emailParam, code, { skipValidation: true }).catch(err =>
         console.error('[redeem-self] Failed to send voucher email:', err)
       )

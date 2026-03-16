@@ -6,7 +6,7 @@
 
 import nodemailer from 'nodemailer'
 import { validateVoucher, getTicketPurchaseInfo } from 'services/pretix'
-import { setVoucherEmail } from 'services/discountStore'
+import { setVoucherEmail, setVoucherEmailSent } from 'services/discountStore'
 
 // Dedup: prevent the same voucher+email combo from being sent twice
 // (Self SDK posts the proof twice, both requests trigger trySendEmail)
@@ -204,11 +204,12 @@ export async function sendVoucherEmail(
       html: buildEmailHtml(trimmedCode, discountedPrice, originalPrice),
     })
 
-    // Store the email address on the voucher row
+    // Mark email as sent + store email (for manual re-send path where redeem-self didn't set it)
     try {
       await setVoucherEmail(trimmedCode, trimmedEmail)
+      await setVoucherEmailSent(trimmedCode)
     } catch (e) {
-      console.error('Failed to store voucher email (non-fatal):', e)
+      console.error('Failed to update voucher email status (non-fatal):', e)
     }
 
     return { success: true }

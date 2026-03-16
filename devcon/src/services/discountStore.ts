@@ -292,7 +292,7 @@ export async function insertDiscountVouchers(
 }
 
 /**
- * Store the email address for a voucher (called when user sends voucher to email).
+ * Store the email address for a voucher (called at voucher assignment time).
  */
 export async function setVoucherEmail(voucherCode: string, email: string): Promise<void> {
   const supabase = getSupabase()
@@ -301,6 +301,18 @@ export async function setVoucherEmail(voucherCode: string, email: string): Promi
     .update({ email, updated_at: new Date().toISOString() })
     .eq('code', voucherCode)
   if (error) throw new Error(`discountStore setVoucherEmail: ${error.message}`)
+}
+
+/**
+ * Mark a voucher's email as successfully sent.
+ */
+export async function setVoucherEmailSent(voucherCode: string): Promise<void> {
+  const supabase = getSupabase()
+  const { error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .update({ email_sent: true, updated_at: new Date().toISOString() })
+    .eq('code', voucherCode)
+  if (error) throw new Error(`discountStore setVoucherEmailSent: ${error.message}`)
 }
 
 const RATE_LIMIT_DISCOUNT_IP_WINDOW_MINUTES = 1
