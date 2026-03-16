@@ -179,21 +179,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Fire-and-forget email helper — logs errors but never blocks the response.
-    // Step 1: store email on the voucher row immediately (so we never lose it).
+    // Awaited email helper — must complete before res.json() because
+    // Netlify freezes the container after the response is sent.
+    // Step 1: store email on the voucher row (so we never lose it).
     // Step 2: send the email; voucherEmail service marks email_sent on success.
-    const trySendEmail = (code: string) => {
+    const trySendEmail = async (code: string) => {
       if (!emailParam) {
         console.warn('[redeem-self] trySendEmail called but emailParam is missing')
         return
       }
       console.log('[redeem-self] trySendEmail:', { email: emailParam, voucher: code })
-      setVoucherEmail(code, emailParam)
-        .then(() => console.log('[redeem-self] setVoucherEmail OK:', code))
-        .catch(err => console.error('[redeem-self] Failed to store voucher email:', err))
-      sendVoucherEmail(emailParam, code, { skipValidation: true })
-        .then(result => console.log('[redeem-self] sendVoucherEmail result:', result))
-        .catch(err => console.error('[redeem-self] Failed to send voucher email:', err))
+      try {
+        await setVoucherEmail(code, emailParam)
+        console.log('[redeem-self] setVoucherEmail OK:', code)
+      } catch (err) {
+        console.error('[redeem-self] Failed to store voucher email:', err)
+      }
+      try {
+        const result = await sendVoucherEmail(emailParam, code, { skipValidation: true })
+        console.log('[redeem-self] sendVoucherEmail result:', result)
+      } catch (err) {
+        console.error('[redeem-self] Failed to send voucher email:', err)
+      }
     }
 
     // Check if this identity already has a voucher (one-voucher-per-identity)
@@ -202,7 +209,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       voucherStore.set(verifiedUserId, existingVoucher.code)
       errorStore.delete(verifiedUserId)
       setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-      trySendEmail(existingVoucher.code)
+      await trySendEmail(existingVoucher.code)
       return res.status(200).json({
         status: 'success',
         result: true,
@@ -233,7 +240,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           voucherStore.set(verifiedUserId, codeRecord.voucherCode)
           errorStore.delete(verifiedUserId)
           setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-          trySendEmail(codeRecord.voucherCode)
+          await trySendEmail(codeRecord.voucherCode)
           return res.status(200).json({
             status: 'success',
             result: true,
@@ -264,7 +271,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               voucherStore.set(verifiedUserId, recheck.voucherCode)
               errorStore.delete(verifiedUserId)
               setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-              trySendEmail(recheck.voucherCode)
+              await trySendEmail(recheck.voucherCode)
               return res.status(200).json({
                 status: 'success',
                 result: true,
@@ -318,8 +325,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     errorStore.delete(verifiedUserId) // Clear any race-condition error from parallel request
     setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
 
-    // Send confirmation email (fire-and-forget)
-    trySendEmail(voucher.code)
+    // Send confirmation email (awaited — Netlify kills the container after res.json)
+    await trySendEmail(voucher.code)
 
     return res.status(200).json({
       status: 'success',
