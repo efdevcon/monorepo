@@ -404,7 +404,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     </p>
                   )}
                   <button type="submit" className={css['self-email-btn']}>
-                    Continue
+                    Confirm email
                   </button>
                 </form>
               </div>
