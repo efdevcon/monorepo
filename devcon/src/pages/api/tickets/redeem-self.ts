@@ -122,10 +122,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Check that the user's nationality or issuing state is India
+    // Check that the user's nationality is India
     const nationality = result.discloseOutput?.nationality
-    const issuingState = result.discloseOutput?.issuingState
-    const isIndian = nationality === 'IND' || issuingState === 'IND'
+    const isIndian = nationality === 'IND'
 
     if (!isIndian && !isStaging) {
       const reason = 'Sorry, your nationality is not Indian. This offer is currently exclusive to Indian residents with an Aadhaar card, who attended ETH Mumbai.'

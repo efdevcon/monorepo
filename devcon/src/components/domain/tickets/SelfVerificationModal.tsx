@@ -96,7 +96,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         userIdType: 'uuid',
         disclosures: {
           nationality: true,
-          issuing_state: true,
           minimumAge: 18,
         },
       } as Partial<SelfApp>).build()
