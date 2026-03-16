@@ -150,6 +150,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Dynamic voucher assignment from Supabase pool
     const earlyAccessCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
     const emailParam = (req.query.email ?? req.body.email) as string | undefined
+    console.log('[redeem-self] emailParam:', emailParam, '| earlyAccess:', earlyAccessCode, '| userId:', verifiedUserId)
     const requireEarlyAccess = TICKETING.self.requireEarlyAccess
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
@@ -182,13 +183,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Step 1: store email on the voucher row immediately (so we never lose it).
     // Step 2: send the email; voucherEmail service marks email_sent on success.
     const trySendEmail = (code: string) => {
-      if (!emailParam) return
-      setVoucherEmail(code, emailParam).catch(err =>
-        console.error('[redeem-self] Failed to store voucher email:', err)
-      )
-      sendVoucherEmail(emailParam, code, { skipValidation: true }).catch(err =>
-        console.error('[redeem-self] Failed to send voucher email:', err)
-      )
+      if (!emailParam) {
+        console.warn('[redeem-self] trySendEmail called but emailParam is missing')
+        return
+      }
+      console.log('[redeem-self] trySendEmail:', { email: emailParam, voucher: code })
+      setVoucherEmail(code, emailParam)
+        .then(() => console.log('[redeem-self] setVoucherEmail OK:', code))
+        .catch(err => console.error('[redeem-self] Failed to store voucher email:', err))
+      sendVoucherEmail(emailParam, code, { skipValidation: true })
+        .then(result => console.log('[redeem-self] sendVoucherEmail result:', result))
+        .catch(err => console.error('[redeem-self] Failed to send voucher email:', err))
     }
 
     // Check if this identity already has a voucher (one-voucher-per-identity)
