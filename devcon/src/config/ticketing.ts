@@ -67,7 +67,7 @@ const ENV_CONFIG = {
       // TODO: replace with production staging
       staging: false,
       // TODO: replace after event
-      requireEarlyAccess: true,
+      requireEarlyAccess: false,
     },
     discount: {
       // TODO: replace with india-early-bird

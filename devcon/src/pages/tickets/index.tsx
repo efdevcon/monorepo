@@ -56,10 +56,10 @@ const WAVES = [
 
 const COMMUNITY_ROWS = [
   {
-    name: 'ETHMumbai Early Access',
+    name: 'Reserve Early Access',
     detail: 'VIA SELF PROTOCOL',
     price: '$99',
-    date: 'Ends 15 Mar',
+    date: 'Until sold out',
     live: true,
     bold: true,
   },
@@ -133,13 +133,13 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>ETHMumbai Early Access now live!</h2>
+                <h2 className={css['heading-2']}>Reserve Early Access now live for all Indian residents!</h2>
                 <p className={css['body-lg']}>
                   Join thousands of builders, creators, researchers, designers, and thinkers 3&ndash;6 November 2026 in
                   Mumbai for the world&apos;s biggest Ethereum conference.
                 </p>
                 <p className={css['body']}>
-                  Reserve early access to India Early Bird tickets later this year (exclusive to ETHMumbai attendees).
+                  Reserve early access to India Early Bird tickets later this year (now open to all Indian residents).
                 </p>
               </div>
 
@@ -299,7 +299,7 @@ export default function TicketsPage() {
                 <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
                 <h2 className={css['heading-2']}>Community</h2>
                 <p className={css['body-lg']}>
-                  ETHMumbai attendees can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
+                  All Indian residents can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
                   residency via Self Protocol to redeem.
                 </p>
                 <p className={css['body']}>

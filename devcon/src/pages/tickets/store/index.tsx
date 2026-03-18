@@ -441,7 +441,7 @@ function StoreContent({
                 <div className={css['section-header']}>
                   <div className={css['section-title-row']}>
                     <h2 className={css['section-title']}>
-                      {requireEarlyAccess ? 'ETHMumbai Early Access' : 'India Early Access'}
+                      {requireEarlyAccess ? 'ETHMumbai Early Access' : 'Indian Residents Early Access'}
                     </h2>
                     <span className={css['live-badge']}>LIVE</span>
                   </div>
