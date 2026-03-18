@@ -38,7 +38,7 @@ const ENV_CONFIG = {
     overrides: {
       soldOut: false,
     },
-    isShopOpen: false,
+    isShopOpen: true,
     x402Agents: false,
   },
   production: {
