@@ -24,7 +24,7 @@ const ENV_CONFIG = {
     self: {
       scope: 'devcon-india-local-discount',
       staging: true,
-      requireEarlyAccess: true,
+      requireEarlyAccess: false,
     },
     discount: {
       collection: 'test-india-early-bird',
