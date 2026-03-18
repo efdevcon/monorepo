@@ -62,6 +62,7 @@ export default async function handler(
     if (!fromValidation.valid) {
       return res.status(400).json({ success: false, error: fromValidation.error })
     }
+    body.authorization.from = fromValidation.checksummed
 
     // Get pending order
     console.log('[ExecuteTransfer] Looking up pending order for:', body.paymentReference)

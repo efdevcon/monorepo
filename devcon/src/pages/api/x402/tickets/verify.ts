@@ -117,6 +117,7 @@ export default async function handler(
         error: payerValidation.error,
       })
     }
+    body.payer = payerValidation.checksummed
 
     // One-time use of txHash: reject if this transaction already completed an order
     const existingByTx = await getCompletedOrderByTxHash(body.txHash)
