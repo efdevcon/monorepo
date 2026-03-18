@@ -448,7 +448,7 @@ function StoreContent({
                   <p className={css['section-subtitle']}>
                     {requireEarlyAccess
                       ? 'Check if you qualify to reserve early access to India Early Bird tickets later this year (ETHMumbai exclusive)'
-                      : 'Reserve your India Early Bird ticket at a discounted price'}
+                      : 'Verify Indian residency to reserve early access to India Early Bird tickets later this year'}
                   </p>
                 </div>
 
