@@ -80,7 +80,7 @@ const ENV_CONFIG = {
       goalsIdentifier: 'FNXHWF39',
     },
     overrides: {
-      soldOut: false,
+      soldOut: true,
     },
     isShopOpen: false,
     x402Agents: false,
