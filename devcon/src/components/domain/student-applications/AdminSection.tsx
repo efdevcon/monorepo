@@ -87,7 +87,16 @@ export default function AdminSection({ accessToken, email, onLogout }: Props) {
         </button>
       </div>
 
+      {showReview && (
+        <>
+          <h3 style={sectionHeader}>Applications</h3>
+          <ReviewSection accessToken={accessToken} />
+        </>
+      )}
+
       {showVoucherImport && (
+        <>
+        <h3 style={sectionHeader}>Voucher Management</h3>
         <div
           style={{
             padding: '1.5rem',
@@ -97,7 +106,7 @@ export default function AdminSection({ accessToken, email, onLogout }: Props) {
             marginBottom: '1.5rem',
           }}
         >
-          <h3 style={{ margin: '0 0 0.5rem', fontSize: '16px', color: '#1a0d33' }}>Import Voucher Codes</h3>
+          <h4 style={{ margin: '0 0 0.5rem', fontSize: '16px', color: '#1a0d33' }}>Import Voucher Codes</h4>
           <p style={{ margin: '0 0 1rem', fontSize: '14px', color: '#594d73' }}>
             Upload a CSV file with one voucher code per line. Duplicates are skipped.
           </p>
@@ -137,9 +146,17 @@ export default function AdminSection({ accessToken, email, onLogout }: Props) {
             </p>
           )}
         </div>
+        </>
       )}
-
-      {showReview && <ReviewSection accessToken={accessToken} />}
     </>
   )
+}
+
+const sectionHeader: React.CSSProperties = {
+  fontSize: '20px',
+  fontWeight: 700,
+  color: '#1a0d33',
+  margin: '2rem 0 1rem',
+  paddingBottom: '0.5rem',
+  borderBottom: '2px solid #e5e7eb',
 }

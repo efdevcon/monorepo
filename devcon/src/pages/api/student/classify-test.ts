@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { isAdmin } from 'components/domain/student-applications/config'
-import { assignVoucher, getSubmissionByEmail, updateSubmissionStatus } from 'components/domain/student-applications/store'
+import { classifyEmailWithAI } from 'services/email-classifier'
 
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
@@ -16,15 +16,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const token = authHeader.slice(7)
-  const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser(token)
-
+  const { data: { user }, error: authError } = await supabase.auth.getUser(token)
   if (authError || !user?.email) {
     return res.status(401).json({ error: 'Invalid or expired token' })
   }
-
   if (!isAdmin(user.email)) {
     return res.status(403).json({ error: 'Forbidden' })
   }
@@ -34,18 +29,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Email is required' })
   }
 
-  const normalizedEmail = email.toLowerCase()
-
-  const voucher = await assignVoucher(normalizedEmail)
-  if (!voucher) {
-    return res.status(503).json({ error: 'No vouchers available in pool' })
-  }
-
-  // Also mark the submission as approved
-  const submission = await getSubmissionByEmail(normalizedEmail)
-  if (submission) {
-    await updateSubmissionStatus(submission.id, 'approved')
-  }
-
-  return res.status(200).json({ voucherCode: voucher.code })
+  const classification = await classifyEmailWithAI(email)
+  return res.status(200).json({ classification })
 }

@@ -32,13 +32,8 @@ export default function SubmittedStep({ email, onLogout }: Props) {
       </div>
 
       <p>
-        Your application has been submitted for review. We will notify you at <strong>{email}</strong> once a decision
-        has been made.
-      </p>
-
-      <p style={{ fontSize: '0.9rem', color: '#594d73' }}>
-        The review process typically takes a few business days. We will notify you once a decision has been made.
-        You can return to this page at any time to check your status or update your application.
+        Your application has been submitted for review. You can return to this page at any time to check your
+        status or update your application — just sign in with <strong>{email}</strong>.
       </p>
     </>
   )

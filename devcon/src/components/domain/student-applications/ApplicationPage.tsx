@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { supabase } from 'services/supabase-browser'
 import EmailStep from './EmailStep'
-import OtpStep from './OtpStep'
 import VoucherStep from './VoucherStep'
 import FormStep from './FormStep'
 import SubmittedStep from './SubmittedStep'
 import AdminSection from './AdminSection'
 import { isAdmin } from './config'
 
-type Step = 'email' | 'otp' | 'loading' | 'form' | 'voucher' | 'submitted'
+type Step = 'email' | 'magic-link-sent' | 'loading' | 'form' | 'voucher' | 'submitted'
 
 interface Submission {
   name: string
@@ -44,15 +43,12 @@ export default function ApplicationPage() {
       }
 
       if (data.submission && data.voucherCode) {
-        // Voucher granted — show read-only voucher view
         setVoucherCode(data.voucherCode)
         setStep('voucher')
       } else if (data.submission) {
-        // Existing submission, no voucher — edit mode
         setExistingSubmission(data.submission)
         setStep('form')
       } else {
-        // No submission — blank form
         setStep('form')
       }
     } catch {
@@ -64,19 +60,18 @@ export default function ApplicationPage() {
   // Pick up existing session (magic link redirect or page refresh)
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user?.email && step === 'email') {
+      if (session?.user?.email && (step === 'email' || step === 'magic-link-sent')) {
         const userEmail = session.user.email
         const token = session.access_token
         setEmail(userEmail)
         setAccessToken(token)
 
-        // Clean up hash fragment from magic link
         if (window.location.hash) {
           window.history.replaceState(null, '', window.location.pathname)
         }
 
         if (isAdmin(userEmail)) {
-          setStep('form') // skip check, show admin UI
+          setStep('form')
         } else {
           checkApplication(token)
         }
@@ -86,24 +81,9 @@ export default function ApplicationPage() {
     return () => subscription.unsubscribe()
   }, [step, checkApplication])
 
-  const handleOtpSent = (sentEmail: string) => {
+  const handleMagicLinkSent = (sentEmail: string) => {
     setEmail(sentEmail)
-    setStep('otp')
-  }
-
-  const handleVerified = (token: string) => {
-    setAccessToken(token)
-    if (isAdmin(email)) {
-      setStep('form')
-    } else {
-      checkApplication(token)
-    }
-  }
-
-  const handleBack = () => {
-    setStep('email')
-    setEmail('')
-    setError('')
+    setStep('magic-link-sent')
   }
 
   const handleLogout = async () => {
@@ -117,10 +97,26 @@ export default function ApplicationPage() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', paddingBottom: '3rem' }}>
-      {step === 'email' && <EmailStep onOtpSent={handleOtpSent} />}
+    <div style={{ maxWidth: isAdmin(email) && accessToken ? 1200 : 600, margin: '0 auto', paddingBottom: '3rem' }}>
+      {step === 'email' && <EmailStep onMagicLinkSent={handleMagicLinkSent} />}
 
-      {step === 'otp' && <OtpStep email={email} onVerified={handleVerified} onBack={handleBack} />}
+      {step === 'magic-link-sent' && (
+        <>
+          <h2>Check your inbox</h2>
+          <p style={{ marginTop: '1rem' }}>
+            We sent a magic link to <strong>{email}</strong>. Click the link in the email to continue.
+          </p>
+          <p style={{ fontSize: '0.9rem', color: '#594d73', marginTop: '1rem' }}>
+            Didn't receive it? Check your spam folder or{' '}
+            <button
+              onClick={() => { setStep('email'); setEmail('') }}
+              style={{ background: 'none', border: 'none', color: '#7235ed', textDecoration: 'underline', cursor: 'pointer', fontSize: 'inherit', padding: 0 }}
+            >
+              try again
+            </button>.
+          </p>
+        </>
+      )}
 
       {step === 'loading' && (
         <>

@@ -101,13 +101,13 @@ export default function FormStep({ email, accessToken, existingSubmission, onSub
             marginBottom: '1.5rem',
           }}
         >
-          You have already submitted an application. You can update your details below.
+          You have an existing application. Feel free to update your details below — changes are saved when you click Update.
         </div>
       )}
 
       <p>
-        Fill in the form below to apply for a student discount ticket. Applications are reviewed manually and you will be
-        notified by email once a decision has been made.
+        Fill in the form below to apply for a student discount ticket. Applications are reviewed manually.
+        You can return to this page at any time to check your status or update your submission.
       </p>
 
       <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem' }}>
@@ -167,12 +167,16 @@ export default function FormStep({ email, accessToken, existingSubmission, onSub
         <label style={labelStyle}>Why do you want to attend Devcon? (Proof of Work)</label>
         <textarea
           value={form.essayProofOfWork}
-          onChange={e => update('essayProofOfWork', e.target.value)}
+          onChange={e => { if (e.target.value.length <= 500) update('essayProofOfWork', e.target.value) }}
           placeholder="Tell us about your involvement in the Ethereum ecosystem, relevant projects, or why attending Devcon matters to you..."
           required
+          maxLength={500}
           rows={5}
           style={{ ...inputStyle, resize: 'vertical' }}
         />
+        <p style={{ margin: '-0.75rem 0 1rem', fontSize: '12px', color: form.essayProofOfWork.length >= 450 ? '#dc2626' : '#9ca3af', textAlign: 'right' }}>
+          {form.essayProofOfWork.length}/500
+        </p>
 
         <button type="submit" disabled={loading} style={{ ...buttonStyle, opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
           {loading ? (isEditing ? 'Updating...' : 'Submitting...') : (isEditing ? 'Update Application' : 'Submit Application')}

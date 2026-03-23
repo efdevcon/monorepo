@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { isReviewerAdmin } from 'components/domain/student-applications/config'
-import { listSubmissions, updateSubmissionStatus } from 'components/domain/student-applications/store'
+import { listSubmissions, updateSubmissionStatus, getVoucherStats } from 'components/domain/student-applications/store'
 
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
@@ -20,8 +20,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!isReviewerAdmin(email)) return res.status(403).json({ error: 'Forbidden' })
 
   if (req.method === 'GET') {
-    const submissions = await listSubmissions()
-    return res.status(200).json({ submissions })
+    const [submissions, voucherStats] = await Promise.all([listSubmissions(), getVoucherStats()])
+    return res.status(200).json({ submissions, voucherStats })
   }
 
   if (req.method === 'PATCH') {

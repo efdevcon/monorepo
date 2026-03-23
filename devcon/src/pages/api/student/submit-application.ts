@@ -31,6 +31,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!name || !university || !yearOfStudy || !fieldOfStudy || !country || !essayProofOfWork) {
     return res.status(400).json({ error: 'All fields are required' })
   }
+  if (typeof essayProofOfWork === 'string' && essayProofOfWork.length > 500) {
+    return res.status(400).json({ error: 'Essay must be 500 characters or fewer' })
+  }
 
   const fields = { name, university, yearOfStudy, fieldOfStudy, country, essayProofOfWork }
 

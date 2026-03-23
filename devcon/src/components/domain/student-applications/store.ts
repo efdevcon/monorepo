@@ -102,6 +102,22 @@ export async function hasAvailableVouchers(): Promise<boolean> {
   return (count ?? 0) > 0
 }
 
+export async function getVoucherStats(): Promise<{ total: number; assigned: number; available: number }> {
+  const supabase = getSupabase()
+  const { count: total, error: e1 } = await supabase
+    .from('devcon8_student_vouchers')
+    .select('id', { count: 'exact', head: true })
+  if (e1) throw new Error(`getVoucherStats total: ${e1.message}`)
+
+  const { count: assigned, error: e2 } = await supabase
+    .from('devcon8_student_vouchers')
+    .select('id', { count: 'exact', head: true })
+    .not('email', 'is', null)
+  if (e2) throw new Error(`getVoucherStats assigned: ${e2.message}`)
+
+  return { total: total ?? 0, assigned: assigned ?? 0, available: (total ?? 0) - (assigned ?? 0) }
+}
+
 /**
  * Bulk insert voucher codes (for CSV import script).
  */

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { supabase } from 'services/supabase-browser'
 
 interface Props {
-  onOtpSent: (email: string) => void
+  onMagicLinkSent: (email: string) => void
 }
 
-export default function EmailStep({ onOtpSent }: Props) {
+export default function EmailStep({ onMagicLinkSent }: Props) {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -15,16 +15,16 @@ export default function EmailStep({ onOtpSent }: Props) {
     setLoading(true)
     setError('')
 
-    const { error: otpError } = await supabase.auth.signInWithOtp({
+    const { error: authError } = await supabase.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: `${window.location.origin}/applications` },
     })
 
-    if (otpError) {
-      setError(otpError.message)
+    if (authError) {
+      setError(authError.message)
       setLoading(false)
     } else {
-      onOtpSent(email)
+      onMagicLinkSent(email)
     }
   }
 
@@ -32,10 +32,7 @@ export default function EmailStep({ onOtpSent }: Props) {
     <>
       <h2>Student Discount Application</h2>
       <p style={{ marginTop: '1rem' }}>
-        Enter your email address below. We will send you a verification code to confirm your identity before proceeding.
-      </p>
-      <p style={{ fontSize: '0.9rem', color: '#594d73' }}>
-        If you have a university email address (.edu, .ac.uk, etc.), use it for faster processing.
+        Enter your email to apply or check on an existing application. We will send you a magic link to sign in.
       </p>
 
       <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem' }}>
@@ -48,7 +45,7 @@ export default function EmailStep({ onOtpSent }: Props) {
           style={inputStyle}
         />
         <button type="submit" disabled={loading} style={{ ...buttonStyle, opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
-          {loading ? 'Sending code...' : 'Send verification code'}
+          {loading ? 'Sending...' : 'Send magic link'}
         </button>
       </form>
 
