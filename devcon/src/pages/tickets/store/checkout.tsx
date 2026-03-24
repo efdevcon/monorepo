@@ -259,6 +259,7 @@ function CheckoutContent() {
   const [orderSummary, setOrderSummary] = useState<any>(null)
   const [txHash, setTxHash] = useState<string | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null)
+  const [isRedirecting, setIsRedirecting] = useState(false)
 
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
@@ -1002,6 +1003,8 @@ function CheckoutContent() {
         const separator = data.paymentUrl.includes('?') ? '&' : '?'
         const paymentUrlWithReturn = `${data.paymentUrl}${separator}return_url=${encodeURIComponent(returnUrl)}`
 
+        setIsRedirecting(true)
+        setPaymentStatus('Redirecting to payment...')
         localStorage.removeItem('devcon-ticket-cart')
         if (newsletter) {
           navigator.sendBeacon(
@@ -1009,6 +1012,7 @@ function CheckoutContent() {
             new Blob([JSON.stringify({ email: email.trim() })], { type: 'application/json' })
           )
         }
+        await new Promise(resolve => setTimeout(resolve, 1500))
         window.location.href = paymentUrlWithReturn
       } else {
         setPurchaseError(data.error || 'Failed to create order')
@@ -2221,7 +2225,14 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {paymentStatus && !isProcessing && (
+                                    {isRedirecting && (
+                                      <div className={`${css['payment-notice']} ${css['payment-notice-redirect']}`}>
+                                        <Loader2 size={18} className={css['spin']} />
+                                        <span>Redirecting to payment provider — please wait...</span>
+                                      </div>
+                                    )}
+
+                                    {paymentStatus && !isProcessing && !isRedirecting && (
                                       <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
                                         {paymentStatus}
                                       </p>
