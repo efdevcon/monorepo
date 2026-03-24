@@ -281,9 +281,9 @@ function StoreContent({
           <div className={css['sidebar-content']}>
             <div className={css['sidebar-top']}>
               <div className={css['sidebar-logo']}>
-                <Image src={StoreSidebarLogo} alt="Devcon India" height={64} width={146} />
+                <Image src={StoreSidebarLogo} alt="Devcon India" height={56} width={127} />
               </div>
-              <h1 className={css['sidebar-title']}>Ticket Store</h1>
+              <h2 className={css['sidebar-title']}>Ticket Store</h2>
               <p className={css['sidebar-description']}>
                 Reserve your Devcon India place and join thousands of builders, creators, researchers, designers and
                 thinkers at the world&apos;s biggest Ethereum conference.
@@ -440,10 +440,14 @@ function StoreContent({
               <section className={css['section']} id="discounts">
                 <div className={css['section-header']}>
                   <div className={css['section-title-row']}>
-                    <h2 className={css['section-title']}>
+                    <h3 className={css['section-title']}>
                       {requireEarlyAccess ? 'ETHMumbai Early Access' : 'Indian Residents Early Access'}
-                    </h2>
-                    <span className={css['live-badge']}>LIVE</span>
+                    </h3>
+                    {displayVoucherTickets.every(t => !t.available || t.vouchersAvailable === false) ? (
+                      <span className={css['claimed-badge']}>CLAIMED</span>
+                    ) : (
+                      <span className={css['live-badge']}>LIVE</span>
+                    )}
                   </div>
                   <p className={css['section-subtitle']}>
                     {requireEarlyAccess
@@ -472,7 +476,7 @@ function StoreContent({
                               </h3>
                               {soldOut ? (
                                 <p className={css['sold-out-meta']}>
-                                  Sorry, all Early Access vouchers have been reserved. More local tickets will go on
+                                  Sorry, all Early Access vouchers have been claimed. More local tickets will go on
                                   sale later this year.
                                 </p>
                               ) : (
@@ -579,7 +583,7 @@ function StoreContent({
 
             <section className={css['section']} id="coming-soon">
               <div className={css['section-header']}>
-                <h2 className={css['section-title']}>Coming soon</h2>
+                <h3 className={css['section-title']}>Coming soon</h3>
                 <p className={css['section-subtitle']}>More ways to get Devcon tickets are coming later this year</p>
               </div>
 
