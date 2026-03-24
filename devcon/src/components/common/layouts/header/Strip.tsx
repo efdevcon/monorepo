@@ -7,6 +7,9 @@ export const Strip = () => {
   const router = useRouter()
   const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
 
+  // TEMP: disable strip for now
+  if (true) return null
+
   if (isTickets) return null
 
   return (
