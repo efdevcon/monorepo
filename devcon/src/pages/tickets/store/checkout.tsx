@@ -1049,13 +1049,6 @@ function CheckoutContent() {
       setAuthorizationData(prepareData)
 
       const { domain, types, primaryType, message } = prepareData.typedData
-      const domainChainId = typeof domain.chainId === 'string'
-        ? parseInt(domain.chainId, domain.chainId.startsWith('0x') ? 16 : 10)
-        : domain.chainId
-      if (domainChainId && chain?.id !== domainChainId && switchChain) {
-        setPaymentStatus(`Switching to ${details.network}...`)
-        await switchChain({ chainId: domainChainId })
-      }
       setPaymentStatus('Sign in your wallet...')
 
       const signature = await signEIP712Direct({ domain, types, primaryType, message })
@@ -1064,7 +1057,6 @@ function CheckoutContent() {
       await executeGaslessTransfer(signature, prepareData.authorization)
     } catch (e) {
       setDirectSignError(humanizeWalletError(e))
-      setPurchaseError(humanizeWalletError(e))
       setPaymentStatus(null)
       setIsSigningDirect(false)
     }
@@ -1167,6 +1159,9 @@ function CheckoutContent() {
       amount: option.amount,
       amountFormatted,
     })
+    if (chain?.id !== chainIdNum && switchChain) {
+      switchChain({ chainId: chainIdNum })
+    }
   }
 
   async function payWithSelectedOption() {
@@ -1184,13 +1179,6 @@ function CheckoutContent() {
       try {
         const typedJson = req.params[1] as string
         const typed = JSON.parse(typedJson)
-        const domainChainId = typeof typed.domain.chainId === 'string'
-          ? parseInt(typed.domain.chainId, typed.domain.chainId.startsWith('0x') ? 16 : 10)
-          : typed.domain.chainId
-        if (domainChainId && chain?.id !== domainChainId && switchChain) {
-          setPaymentStatus(`Switching to ${selectedOption.chain}...`)
-          await switchChain({ chainId: domainChainId })
-        }
         setPaymentStatus('Sign in your wallet...')
 
         const signature = await signEIP712Direct({
@@ -1213,7 +1201,6 @@ function CheckoutContent() {
         await executeGaslessTransfer(signature, auth)
       } catch (e) {
         setDirectSignError(humanizeWalletError(e))
-        setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
         setIsSigningDirect(false)
       }
@@ -1224,13 +1211,6 @@ function CheckoutContent() {
       const tx = req.params[0] as { to: string; value: string; data?: string; chainId?: string }
       if (!tx?.to || tx?.value === undefined) {
         setPurchaseError('Invalid transaction request')
-        return
-      }
-      const targetChainId = tx.chainId ? parseInt(tx.chainId.replace('0x', ''), 16) : paymentDetails.chainId
-      if (chain?.id !== targetChainId && switchChain) {
-        setPaymentStatus(`Switching to ${selectedOption.chain}...`)
-        await switchChain({ chainId: targetChainId })
-        setPaymentStatus(`Switched to ${selectedOption.chain} — click Pay again`)
         return
       }
       setPaymentStatus('Confirm in wallet...')
