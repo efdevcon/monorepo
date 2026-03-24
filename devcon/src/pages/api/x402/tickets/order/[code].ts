@@ -42,6 +42,7 @@ interface OrderDetailsResponse {
     payment_provider: string | null
     positions: OrderPosition[]
     url: string
+    payment_url: string | null
     payment_info: PaymentInfo | null
   }
 }
@@ -114,6 +115,14 @@ export default async function handler(
       }
     })
 
+    // For pending orders with Stripe, build the payment URL with return_url
+    const pendingStripePayment = (order.payments || []).find(
+      (p: any) => p.provider === 'stripe' && (p.state === 'pending' || p.state === 'created')
+    )
+    const paymentUrl = pendingStripePayment
+      ? `${order.url}pay/change/`
+      : null
+
     // Extract payment info from the x402_crypto payment (if any)
     // Pretix REST API exposes provider-specific data via the `details` field
     const x402Payment = (order.payments || []).find(
@@ -145,6 +154,7 @@ export default async function handler(
         payment_provider: order.payment_provider,
         positions,
         url: order.url,
+        payment_url: paymentUrl,
         payment_info: paymentInfo,
       },
     })
