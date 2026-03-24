@@ -304,7 +304,9 @@ export default function OrderConfirmationPage() {
                 isPaid ? css['ticket-banner--confirmed'] : css['ticket-banner--pending']
               }`}
             >
-              <span className={css['ticket-banner-text']}>{isPaid ? 'Order Confirmed' : 'Order Pending'}</span>
+              <span className={css['ticket-banner-text']}>
+                {isPaid ? 'Order Confirmed' : order.status === 'e' ? 'Order Expired' : 'Order Pending'}
+              </span>
             </div>
             <div className={css['ticket-body']}>
               <div className={css['ticket-data']}>
