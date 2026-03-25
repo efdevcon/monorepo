@@ -322,6 +322,11 @@ const useNavigationData = () => {
       //   type: 'link',
       // },
       {
+        title: 'Ecosystem Program',
+        url: '/ecosystem-program',
+        type: 'page',
+      },
+      {
         title: 'Archive',
         url: 'https://archive.devcon.org',
         type: 'page',
