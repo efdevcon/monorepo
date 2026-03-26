@@ -106,7 +106,7 @@ export default function EcosystemProgramPage() {
           <p className={css['community-banner-text']}>
             Devcon is a space <strong>for</strong> the Ethereum community, <strong>by</strong> the Ethereum community.
             <br className={css['desktop-br']} />
-            Join us, bring your ideas and let&apos;s build Devcon <strong>together</strong>!
+            {' '}Join us, bring your ideas and let&apos;s build Devcon <strong>together</strong>!
           </p>
         </section>
 
@@ -115,11 +115,11 @@ export default function EcosystemProgramPage() {
           {/* Image scroller */}
           <div className={css['image-scroller-wrapper']}>
             <div className={css['image-scroller']}>
-              {SCROLLER_PHOTOS.map((photo, i) => (
+              {[...SCROLLER_PHOTOS, ...SCROLLER_PHOTOS].map((photo, i) => (
                 <div key={i} className={css['scroller-item']}>
                   <Image
                     src={photo}
-                    alt={`Ecosystem event photo ${i + 1}`}
+                    alt={`Ecosystem event photo ${(i % SCROLLER_PHOTOS.length) + 1}`}
                     className={css['scroller-image']}
                     fill
                     sizes="455px"
