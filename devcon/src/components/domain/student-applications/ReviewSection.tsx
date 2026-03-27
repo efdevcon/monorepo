@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp, Loader2 } from 'lucide-react'
+import { supabase } from 'services/supabase-browser'
 
 interface Submission {
   id: number
@@ -69,6 +70,11 @@ function compareSubmissions(a: Submission, b: Submission, key: SortKey, dir: Sor
   return dir === 'desc' ? -cmp : cmp
 }
 
+async function getFreshToken(fallback: string): Promise<string> {
+  const { data } = await supabase.auth.getSession()
+  return data.session?.access_token ?? fallback
+}
+
 export default function ReviewSection({ accessToken }: Props) {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [loading, setLoading] = useState(true)
@@ -84,8 +90,9 @@ export default function ReviewSection({ accessToken }: Props) {
     setLoading(true)
     setError('')
     try {
+      const token = await getFreshToken(accessToken)
       const res = await fetch('/api/student/submissions', {
-        headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       const data = await res.json()
       if (!res.ok) {
@@ -121,11 +128,12 @@ export default function ReviewSection({ accessToken }: Props) {
   const updateStatus = async (id: number, status: 'approved' | 'rejected') => {
     setUpdating(id)
     try {
+      const token = await getFreshToken(accessToken)
       const res = await fetch('/api/student/submissions', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ id, status }),
       })
@@ -142,11 +150,12 @@ export default function ReviewSection({ accessToken }: Props) {
     if (!confirm(`Are you sure you want to grant a voucher to ${email}?`)) return
     setGranting(submissionId)
     try {
+      const token = await getFreshToken(accessToken)
       const res = await fetch('/api/student/grant-voucher', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ email }),
       })
@@ -195,6 +204,7 @@ export default function ReviewSection({ accessToken }: Props) {
         tr.review-row button { user-select: auto; }
         .grant-btn { transition: background-color 0.15s ease, transform 0.15s ease; }
         .grant-btn:hover { background-color: #047857 !important; transform: scale(1.05); }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
       `}</style>
 
       {submissions.length === 0 ? (
@@ -264,18 +274,20 @@ export default function ReviewSection({ accessToken }: Props) {
                             className="grant-btn"
                             onClick={e => { e.stopPropagation(); grantVoucher(s.id, s.email) }}
                             disabled={granting === s.id}
-                            style={{ ...actionButton, backgroundColor: granting === s.id ? '#d1d5db' : '#059669' }}
+                            style={{ ...actionButton, backgroundColor: granting === s.id ? '#9ca3af' : '#059669', display: 'inline-flex', alignItems: 'center', gap: 4 }}
                           >
-                            {granting === s.id ? '...' : 'Grant voucher'}
+                            {granting === s.id && <Loader2 size={12} style={{ animation: 'spin 1s linear infinite' }} />}
+                            {granting === s.id ? 'Granting...' : 'Grant voucher'}
                           </button>
                         )}
                         {s.status !== 'rejected' && !s.voucherCode && (
                           <button
                             onClick={e => { e.stopPropagation(); updateStatus(s.id, 'rejected') }}
                             disabled={updating === s.id}
-                            style={{ ...actionButton, backgroundColor: '#dc2626' }}
+                            style={{ ...actionButton, backgroundColor: updating === s.id ? '#9ca3af' : '#dc2626', display: 'inline-flex', alignItems: 'center', gap: 4 }}
                           >
-                            Reject
+                            {updating === s.id && <Loader2 size={12} style={{ animation: 'spin 1s linear infinite' }} />}
+                            {updating === s.id ? 'Rejecting...' : 'Reject'}
                           </button>
                         )}
                       </div>

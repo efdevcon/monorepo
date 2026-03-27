@@ -7,7 +7,7 @@ import SubmittedStep from './SubmittedStep'
 import AdminSection from './AdminSection'
 import { isAdmin } from './config'
 
-type Step = 'email' | 'magic-link-sent' | 'loading' | 'form' | 'voucher' | 'submitted'
+type Step = 'email' | 'magic-link-sent' | 'loading' | 'form' | 'voucher' | 'submitted' | 'rejected'
 
 interface Submission {
   name: string
@@ -45,6 +45,8 @@ export default function ApplicationPage() {
       if (data.submission && data.voucherCode) {
         setVoucherCode(data.voucherCode)
         setStep('voucher')
+      } else if (data.submission?.status === 'rejected') {
+        setStep('rejected')
       } else if (data.submission) {
         setExistingSubmission(data.submission)
         setStep('form')
@@ -59,10 +61,24 @@ export default function ApplicationPage() {
 
   // Pick up existing session (magic link redirect or page refresh)
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session?.user?.email && (step === 'email' || step === 'magic-link-sent')) {
         const userEmail = session.user.email
-        const token = session.access_token
+
+        // Always get a fresh token — the one from the event may be stale on refresh
+        const { data: refreshed, error: refreshError } = await supabase.auth.getSession()
+
+        if (refreshError || !refreshed.session?.access_token) {
+          // Refresh token is dead — force logout so user isn't stuck in limbo
+          await supabase.auth.signOut()
+          setStep('email')
+          setEmail('')
+          setAccessToken('')
+          return
+        }
+
+        const token = refreshed.session.access_token
+
         setEmail(userEmail)
         setAccessToken(token)
 
@@ -142,6 +158,66 @@ export default function ApplicationPage() {
         <AdminSection accessToken={accessToken} onLogout={handleLogout} email={email} />
       ) : (
         <>
+          {step === 'rejected' && (
+            <>
+              <h2>Application Update</h2>
+              <div
+                style={{
+                  padding: '20px',
+                  backgroundColor: '#fef2f2',
+                  border: '1px solid #fca5a5',
+                  borderRadius: '12px',
+                  marginTop: '1rem',
+                  marginBottom: '1.5rem',
+                }}
+              >
+                <p style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: '#991b1b' }}>
+                  Your application was not approved
+                </p>
+              </div>
+              <p>
+                Thank you for applying for a student discount for Devcon India. After careful review, we were
+                unfortunately unable to approve your application at this time.
+              </p>
+              <p>
+                This may be due to limited availability or eligibility requirements. We encourage you to explore
+                other ticket options, including community discounts and general admission.
+              </p>
+              <div style={{ marginTop: '1.5rem', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <a
+                  href="/tickets"
+                  style={{
+                    display: 'inline-block',
+                    padding: '12px 24px',
+                    backgroundColor: '#7235ed',
+                    color: '#fff',
+                    borderRadius: '9999px',
+                    textDecoration: 'none',
+                    fontWeight: 700,
+                    fontSize: '14px',
+                  }}
+                >
+                  View ticket options
+                </a>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    padding: '12px 24px',
+                    background: 'none',
+                    border: '1px solid #dddae2',
+                    borderRadius: '9999px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: '#594d73',
+                  }}
+                >
+                  Sign in with a different email
+                </button>
+              </div>
+            </>
+          )}
+
           {step === 'voucher' && <VoucherStep email={email} voucherCode={voucherCode} onLogout={handleLogout} />}
 
           {step === 'form' && (
