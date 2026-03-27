@@ -46,10 +46,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const submission = await getSubmissionByEmail(normalizedEmail)
   if (submission) {
     await updateSubmissionStatus(submission.id, 'approved')
-    // Send voucher email (fire and forget)
-    sendVoucherGrantedEmail(normalizedEmail, submission.name, voucher.code).catch(err =>
+    try {
+      await sendVoucherGrantedEmail(normalizedEmail, submission.name, voucher.code)
+    } catch (err) {
       console.error('Failed to send voucher email:', err)
-    )
+    }
   }
 
   return res.status(200).json({ voucherCode: voucher.code })

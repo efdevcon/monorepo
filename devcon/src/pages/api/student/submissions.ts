@@ -36,9 +36,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (status === 'rejected') {
       const submission = await getSubmissionById(id)
       if (submission) {
-        sendRejectionEmail(submission.email, submission.name).catch(err =>
+        try {
+          await sendRejectionEmail(submission.email, submission.name)
+        } catch (err) {
           console.error('Failed to send rejection email:', err)
-        )
+        }
       }
     }
 
