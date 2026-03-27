@@ -173,6 +173,18 @@ function rowToSubmission(row: Record<string, unknown>): StudentSubmission {
   }
 }
 
+export async function getSubmissionById(id: number): Promise<StudentSubmission | null> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('devcon8_student_applications')
+    .select('*')
+    .eq('id', id)
+    .maybeSingle()
+  if (error) throw new Error(`getSubmissionById: ${error.message}`)
+  if (!data) return null
+  return rowToSubmission(data)
+}
+
 export async function getSubmissionByEmail(email: string): Promise<StudentSubmission | null> {
   const supabase = getSupabase()
   const { data, error } = await supabase

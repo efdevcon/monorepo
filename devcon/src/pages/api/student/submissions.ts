@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { isReviewerAdmin } from 'components/domain/student-applications/config'
-import { listSubmissions, updateSubmissionStatus, getVoucherStats } from 'components/domain/student-applications/store'
+import { listSubmissions, updateSubmissionStatus, getVoucherStats, getSubmissionById } from 'components/domain/student-applications/store'
+import { sendRejectionEmail } from 'services/student-emails'
 
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
@@ -30,6 +31,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Invalid id or status' })
     }
     await updateSubmissionStatus(id, status)
+
+    // Send rejection email when status changes to rejected
+    if (status === 'rejected') {
+      const submission = await getSubmissionById(id)
+      if (submission) {
+        sendRejectionEmail(submission.email, submission.name).catch(err =>
+          console.error('Failed to send rejection email:', err)
+        )
+      }
+    }
+
     return res.status(200).json({ success: true })
   }
 

@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { isAdmin } from 'components/domain/student-applications/config'
 import { assignVoucher, getSubmissionByEmail, updateSubmissionStatus } from 'components/domain/student-applications/store'
+import { sendVoucherGrantedEmail } from 'services/student-emails'
 
 const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!)
 
@@ -45,6 +46,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const submission = await getSubmissionByEmail(normalizedEmail)
   if (submission) {
     await updateSubmissionStatus(submission.id, 'approved')
+    // Send voucher email (fire and forget)
+    sendVoucherGrantedEmail(normalizedEmail, submission.name, voucher.code).catch(err =>
+      console.error('Failed to send voucher email:', err)
+    )
   }
 
   return res.status(200).json({ voucherCode: voucher.code })
