@@ -64,20 +64,23 @@ export default function ApplicationPage() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session?.user?.email && (step === 'email' || step === 'magic-link-sent')) {
         const userEmail = session.user.email
+        let token = session.access_token
 
-        // Always get a fresh token — the one from the event may be stale on refresh
-        const { data: refreshed, error: refreshError } = await supabase.auth.getSession()
+        // On page refresh (not fresh sign-in), validate the session is still alive
+        if (event === 'INITIAL_SESSION') {
+          const { data: refreshed, error: refreshError } = await supabase.auth.getSession()
 
-        if (refreshError || !refreshed.session?.access_token) {
-          // Refresh token is dead — force logout so user isn't stuck in limbo
-          await supabase.auth.signOut()
-          setStep('email')
-          setEmail('')
-          setAccessToken('')
-          return
+          if (refreshError || !refreshed.session?.access_token) {
+            // Refresh token is dead — force logout so user isn't stuck in limbo
+            await supabase.auth.signOut()
+            setStep('email')
+            setEmail('')
+            setAccessToken('')
+            return
+          }
+
+          token = refreshed.session.access_token
         }
-
-        const token = refreshed.session.access_token
 
         setEmail(userEmail)
         setAccessToken(token)
