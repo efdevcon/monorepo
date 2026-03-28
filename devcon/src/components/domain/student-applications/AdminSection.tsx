@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { isVoucherAdmin, isReviewerAdmin } from './config'
 import ReviewSection from './ReviewSection'
+import { supabase } from 'services/supabase-browser'
 
 interface Props {
   accessToken: string
@@ -35,11 +36,14 @@ export default function AdminSection({ accessToken, email, onLogout }: Props) {
         return
       }
 
+      const { data: sessionData } = await supabase.auth.getSession()
+      const token = sessionData.session?.access_token ?? accessToken
+
       const res = await fetch('/api/student/import-vouchers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ codes }),
       })

@@ -18,7 +18,11 @@ interface Submission {
   essayProofOfWork: string
 }
 
-export default function ApplicationPage() {
+interface ApplicationPageProps {
+  onAdminModeChange?: (isAdminMode: boolean) => void
+}
+
+export default function ApplicationPage({ onAdminModeChange }: ApplicationPageProps = {}) {
   const [step, setStep] = useState<Step>('email')
   const [email, setEmail] = useState('')
   const [accessToken, setAccessToken] = useState('')
@@ -89,7 +93,10 @@ export default function ApplicationPage() {
           window.history.replaceState(null, '', window.location.pathname)
         }
 
-        if (isAdmin(userEmail)) {
+        const adminMode = isAdmin(userEmail)
+        onAdminModeChange?.(adminMode)
+
+        if (adminMode) {
           setStep('form')
         } else {
           checkApplication(token)
@@ -113,10 +120,11 @@ export default function ApplicationPage() {
     setVoucherCode('')
     setExistingSubmission(null)
     setError('')
+    onAdminModeChange?.(false)
   }
 
   return (
-    <div style={{ maxWidth: isAdmin(email) && accessToken ? 1200 : 600, margin: '0 auto', paddingBottom: '3rem' }}>
+    <div style={{ maxWidth: isAdmin(email) && accessToken ? undefined : 600, margin: '0 auto', padding: isAdmin(email) && accessToken ? '2.5rem 2.5rem 3rem' : '0 0 3rem' }}>
       {step === 'email' && <EmailStep onMagicLinkSent={handleMagicLinkSent} />}
 
       {step === 'magic-link-sent' && (

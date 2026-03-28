@@ -247,11 +247,11 @@ export default function ReviewSection({ accessToken }: Props) {
                       cursor: 'pointer',
                     }}
                   >
-                    <td style={{ ...tdStyle, fontSize: '12px', color: '#9ca3af', whiteSpace: 'nowrap' }}>
-                      {new Date(s.createdAt).toLocaleDateString()}{' '}
-                      {new Date(s.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                      {new Date(s.createdAt).toLocaleDateString(undefined, { timeZone: 'UTC' })}{' '}
+                      {new Date(s.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })} UTC
                     </td>
-                    <td className="review-email" style={{ ...tdStyle, fontSize: '12px', color: '#594d73' }}>{s.email}</td>
+                    <td className="review-email" style={tdStyle}>{s.email}</td>
                     <td style={tdStyle}>{s.name}</td>
                     <td style={tdStyle}>
                       <span style={{ ...classificationBadge, backgroundColor: classificationColor(s) }}>
@@ -346,11 +346,12 @@ function ClassificationTester({ accessToken }: { accessToken: string }) {
     setLoading(true)
     setResult(null)
     try {
+      const token = await getFreshToken(accessToken)
       const res = await fetch('/api/student/classify-test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ email }),
       })
@@ -412,8 +413,8 @@ const statusColor: Record<string, string> = {
 
 const thStyle: React.CSSProperties = {
   textAlign: 'left',
-  padding: '8px 12px',
-  fontSize: '12px',
+  padding: '3px 8px',
+  fontSize: '11px',
   fontWeight: 700,
   color: '#1a0d33',
   borderBottom: '2px solid #e5e7eb',
@@ -423,7 +424,8 @@ const thStyle: React.CSSProperties = {
 }
 
 const tdStyle: React.CSSProperties = {
-  padding: '8px 12px',
+  padding: '3px 8px',
+  fontSize: '12px',
   verticalAlign: 'middle',
 }
 

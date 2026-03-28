@@ -140,6 +140,14 @@ const DISPOSABLE_KEYWORDS = [
   'spamgourmet',
 ]
 
+// ── Whitelisted university domains (auto-classified as university) ────
+// Domains here are known university/education domains that don't use
+// standard .edu/.ac suffixes. Add more as needed.
+
+const WHITELISTED_UNIVERSITY_DOMAINS = new Set([
+  'ethereum.org',
+])
+
 // ── Helpers ───────────────────────────────────────────────────────────
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -228,18 +236,20 @@ export function classifyEmail(rawEmail: string): EmailClassification {
   const isFreeProvider = isPersonalDomain(rootDomain, sld)
   const educationSuffix = isEducationSuffix(publicSuffix)
   const educationToken = hasEducationToken(rootDomain)
-  const isUniversity = educationSuffix || educationToken
+  const isWhitelisted = WHITELISTED_UNIVERSITY_DOMAINS.has(rootDomain) || WHITELISTED_UNIVERSITY_DOMAINS.has(domain)
+  const isUniversity = educationSuffix || educationToken || isWhitelisted
   const isGovernment = isGovernmentSuffix(publicSuffix)
-  const isPersonal = isFreeProvider || isDisposable
+  const isPersonal = (isFreeProvider || isDisposable) && !isWhitelisted
 
   if (isDisposable) signals.push('disposable_domain')
-  if (isFreeProvider) signals.push('personal_provider_domain')
+  if (isFreeProvider && !isWhitelisted) signals.push('personal_provider_domain')
+  if (isWhitelisted) signals.push('whitelisted_university_domain')
   if (educationSuffix) signals.push('education_suffix')
   if (educationToken) signals.push('education_token')
   if (isGovernment) signals.push('government_suffix')
 
   let organizationType: OrganizationType = 'organization'
-  if (isDisposable) organizationType = 'disposable'
+  if (isDisposable && !isWhitelisted) organizationType = 'disposable'
   else if (isPersonal) organizationType = 'personal'
   else if (isUniversity) organizationType = 'university'
   else if (isGovernment) organizationType = 'government'
