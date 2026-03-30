@@ -89,7 +89,7 @@ export default function EcosystemProgramPage() {
           </div>
 
           <div className={css['hero-cta-block']}>
-            <Link to="https://forms.gle/ecosystem-program" className={css['btn-primary']}>
+            <Link to="https://esp.ethereum.foundation/applicants/rfp/rtd8_india" className={css['btn-primary']}>
               Apply now
               <ArrowRight size={16} strokeWidth={2} />
             </Link>
@@ -105,8 +105,8 @@ export default function EcosystemProgramPage() {
           <Image src={CommunityBannerBg} alt="" className={css['community-banner-bg']} fill sizes="100vw" />
           <p className={css['community-banner-text']}>
             Devcon is a space <strong>for</strong> the Ethereum community, <strong>by</strong> the Ethereum community.
-            <br className={css['desktop-br']} />
-            {' '}Join us, bring your ideas and let&apos;s build Devcon <strong>together</strong>!
+            <br className={css['desktop-br']} /> Join us, bring your ideas and let&apos;s build Devcon{' '}
+            <strong>together</strong>!
           </p>
         </section>
 
@@ -220,7 +220,7 @@ export default function EcosystemProgramPage() {
                 <span>Wave 1 - RFP Closing Date:</span>
                 <span className={css['wave-cta-date']}>30 April, 2026</span>
               </div>
-              <Link to="https://forms.gle/ecosystem-program" className={css['btn-primary']}>
+              <Link to="https://esp.ethereum.foundation/applicants/rfp/rtd8_india" className={css['btn-primary']}>
                 Apply now
                 <ArrowRight size={16} strokeWidth={2} />
               </Link>
