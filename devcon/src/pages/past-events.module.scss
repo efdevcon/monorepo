@@ -98,8 +98,18 @@
 }
 
 .content-area {
+  background: linear-gradient(to bottom, #fbfafc 0%, #e5ebff 80%);
+
   h2 {
     font-weight: 800 !important;
+  }
+
+  p a {
+    color: #7235ed !important;
+
+    &:hover {
+      color: #5a20d6 !important;
+    }
   }
 }
 
