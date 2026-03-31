@@ -135,6 +135,11 @@ const useNavigationData = () => {
             url: '/dips',
             type: 'page',
           },
+          {
+            title: 'Ecosystem Program',
+            url: '/ecosystem-program',
+            type: 'page',
+          },
           // {
           //   title: 'Supporters & Impact Teams',
           //   url: '/supporters',
@@ -321,11 +326,6 @@ const useNavigationData = () => {
       //   url: 'https://devconnect.org',
       //   type: 'link',
       // },
-      {
-        title: 'Ecosystem Program',
-        url: '/ecosystem-program',
-        type: 'page',
-      },
       {
         title: 'Archive',
         url: 'https://archive.devcon.org',
