@@ -14,6 +14,8 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  border-radius: 16px;
+  overflow: hidden;
 
   &.slide {
     &:active {
@@ -175,8 +177,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        color: var(--theme-color, $colors-main);
-        --color-icon: var(--theme-color, $colors-main);
+        color: #7235ed;
+        --color-icon: #7235ed;
 
         > svg {
           margin-left: $gaps-gap-3;

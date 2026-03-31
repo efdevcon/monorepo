@@ -135,6 +135,11 @@ const useNavigationData = () => {
             url: '/dips',
             type: 'page',
           },
+          {
+            title: 'Ecosystem Program',
+            url: '/ecosystem-program',
+            type: 'page',
+          },
           // {
           //   title: 'Supporters & Impact Teams',
           //   url: '/supporters',
