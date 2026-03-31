@@ -23,6 +23,7 @@
     "yt": "ts-node ./src/scripts/yt.ts",
     "import:yt": "ts-node ./src/scripts/import-yt.ts",
     "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
+    "sync:pretalx:mumbai": "ts-node ./src/scripts/sync-pretalx.ts devcon-mumbai-playground",
     "swagger:generate": "ts-node ./src/swagger/generate.ts",
     "ai-schedule-sync": "ts-node src/services/ai/open-ai/sync-vector-store",
     "ai-create-assistants": "ts-node src/services/ai/open-ai/create-assistants.ts",

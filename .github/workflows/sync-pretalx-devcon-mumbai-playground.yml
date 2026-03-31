@@ -1,0 +1,32 @@
+name: Pretalx Sync (Devcon Mumbai Playground)
+
+on:
+  schedule:
+    - cron: "0 23 30 * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ./devcon-api
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "20"
+      - run: yarn install
+        env:
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+      - run: yarn sync:pretalx:mumbai
+        env:
+          PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: "devcon-api/data"
+          default_author: github_actions
+          message: "[action] Pretalx Sync (devcon-mumbai-playground)"
+          pull: "--rebase --autostash"

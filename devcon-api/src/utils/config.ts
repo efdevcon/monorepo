@@ -57,25 +57,70 @@ export const SERVER_CONFIG = {
   WHITELIST_FORM_TOKEN_FIELD: process.env.WHITELIST_FORM_TOKEN_FIELD || 'entry.123456789',
 }
 
-export const PRETALX_CONFIG = {
-  PRETALX_API_KEY: process.env.PRETALX_API_KEY,
+export interface PretalxInstanceConfig {
+  eventId: string
+  PRETALX_API_KEY: string | undefined
+  PRETALX_BASE_URI: string
+  PRETALX_EVENT_NAME: string
 
-  PRETALX_BASE_URI: 'https://speak.devcon.org/api', // 'https://speak.devcon.org/api' // https://speak.ticketh.xyz/api
-  PRETALX_EVENT_NAME: 'devcon7-sea', // 'devcon-vi-2022' // 'pwa-data'
-  PRETALX_EVENT_ID: 7,
+  PRETALX_QUESTIONS_GITHUB?: number
+  PRETALX_QUESTIONS_TWITTER?: number
+  PRETALX_QUESTIONS_WEBSITE?: number
+  PRETALX_QUESTIONS_FARCASTER?: number
+  PRETALX_QUESTIONS_LENS?: number
+  PRETALX_QUESTIONS_ENS?: number
+  PRETALX_QUESTIONS_TELEGRAM?: number
 
-  PRETALX_QUESTIONS_GITHUB: 61,
-  PRETALX_QUESTIONS_TWITTER: 62,
-  PRETALX_QUESTIONS_WEBSITE: 63,
-  PRETALX_QUESTIONS_FARCASTER: 78,
-  PRETALX_QUESTIONS_LENS: 79,
-  PRETALX_QUESTIONS_ENS: 75,
-  PRETALX_QUESTIONS_TELEGRAM: 103,
+  PRETALX_QUESTIONS_EXPERTISE?: number
+  PRETALX_QUESTIONS_AUDIENCE?: number
+  PRETALX_QUESTIONS_TAGS?: number
+  PRETALX_QUESTIONS_KEYWORDS?: number
 
-  PRETALX_QUESTIONS_EXPERTISE: 71,
-  PRETALX_QUESTIONS_AUDIENCE: 72,
-  PRETALX_QUESTIONS_TAGS: 76,
-  PRETALX_QUESTIONS_KEYWORDS: 73,
+  DEFAULT_LIMIT: number
+}
 
-  DEFAULT_LIMIT: 100,
+export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
+  'devcon-7': {
+    eventId: 'devcon-7',
+    PRETALX_API_KEY: process.env.PRETALX_API_KEY,
+    PRETALX_BASE_URI: 'https://speak.devcon.org/api',
+    PRETALX_EVENT_NAME: 'devcon7-sea',
+
+    PRETALX_QUESTIONS_GITHUB: 61,
+    PRETALX_QUESTIONS_TWITTER: 62,
+    PRETALX_QUESTIONS_WEBSITE: 63,
+    PRETALX_QUESTIONS_FARCASTER: 78,
+    PRETALX_QUESTIONS_LENS: 79,
+    PRETALX_QUESTIONS_ENS: 75,
+    PRETALX_QUESTIONS_TELEGRAM: 103,
+
+    PRETALX_QUESTIONS_EXPERTISE: 71,
+    PRETALX_QUESTIONS_AUDIENCE: 72,
+    PRETALX_QUESTIONS_TAGS: 76,
+    PRETALX_QUESTIONS_KEYWORDS: 73,
+
+    DEFAULT_LIMIT: 100,
+  },
+  'devcon-mumbai-playground': {
+    eventId: 'devcon-mumbai-playground',
+    PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    PRETALX_BASE_URI: 'https://speak.ticketh.xyz/api',
+    PRETALX_EVENT_NAME: 'devcon-mumbai-playground',
+
+    DEFAULT_LIMIT: 100,
+  },
+}
+
+// Backward compat: default to devcon-7
+export const PRETALX_CONFIG = PRETALX_INSTANCES['devcon-7']
+
+export function getPretalxConfig(eventId: string): PretalxInstanceConfig {
+  const config = PRETALX_INSTANCES[eventId]
+  if (!config) throw new Error(`Unknown pretalx instance: ${eventId}`)
+  return config
+}
+
+// Reverse lookup: find eventId from pretalx event slug
+export function getEventIdByPretalxSlug(slug: string): string | undefined {
+  return Object.values(PRETALX_INSTANCES).find((c) => c.PRETALX_EVENT_NAME === slug)?.eventId
 }
