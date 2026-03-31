@@ -156,7 +156,7 @@ $order-border: #dddae2;
 }
 
 .ticket-banner--pending {
-  background: #fef3c7;
+  background: #ffe0cc;
 }
 
 .ticket-banner-text {
@@ -458,8 +458,8 @@ $order-border: #dddae2;
 }
 
 .status-badge-pending {
-  background: #fef3c7;
-  color: #92400e;
+  background: #ffe0cc;
+  color: #1a0d33;
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0 0.8125rem;
@@ -479,6 +479,41 @@ $order-border: #dddae2;
 }
 
 /* ─── Save ticket ────────────────────────────────────── */
+
+.pending-payment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.pending-payment-text {
+  font-size: 0.9rem;
+  color: #92400e;
+}
+
+.pending-payment-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: #7d52f4;
+  border: none;
+  border-radius: 360px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  width: 100%;
+
+  &:hover {
+    background: #6b3ee8;
+  }
+}
 
 .save-section {
   display: flex;

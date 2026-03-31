@@ -685,6 +685,7 @@ function validatePurchaseRequest(body: PurchaseRequest, opts?: { requirePayer?: 
   if (body.intendedPayer != null && body.intendedPayer !== '') {
     const v = validateAddressEIP55(body.intendedPayer)
     if (!v.valid) errors.push(`intendedPayer: ${v.error}`)
+    else body.intendedPayer = v.checksummed
   } else if (requirePayer) {
     errors.push('intendedPayer (wallet address) is required')
   }

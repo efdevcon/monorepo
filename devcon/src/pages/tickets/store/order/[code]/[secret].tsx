@@ -38,6 +38,7 @@ interface OrderData {
   payment_provider: string | null
   positions: OrderPosition[]
   url: string
+  payment_url: string | null
   payment_info: PaymentInfo | null
 }
 
@@ -199,6 +200,7 @@ export default function OrderConfirmationPage() {
   }
 
   const isPaid = order.status === 'p'
+  const isPending = order.status === 'n'
   const pi = order.payment_info
   const isCrypto = !!pi?.tx_hash
 
@@ -278,17 +280,32 @@ export default function OrderConfirmationPage() {
         <div className={css['layout']}>
           {/* Mobile only: order header on top */}
           <div className={css['mobile-header']}>
-            <h1 className={css['order-title']}>Your order has been placed!</h1>
+            <h1 className={css['order-title']}>
+              {isPaid ? 'Your order has been placed!' : 'Your order is being processed'}
+            </h1>
             <p className={css['order-subtitle']}>
-              We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
+              {isPaid ? (
+                <>
+                  We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
+                </>
+              ) : (
+                <>
+                  Payment is pending. You&apos;ll receive a confirmation email at <strong>{order.email}</strong> once
+                  completed.
+                </>
+              )}
             </p>
           </div>
 
           {/* Left: Ticket card */}
           <div className={css['ticket-card']}>
-            <div className={`${css['ticket-banner']} ${isPaid ? css['ticket-banner--confirmed'] : css['ticket-banner--pending']}`}>
+            <div
+              className={`${css['ticket-banner']} ${
+                isPaid ? css['ticket-banner--confirmed'] : css['ticket-banner--pending']
+              }`}
+            >
               <span className={css['ticket-banner-text']}>
-                {isPaid ? 'Order Confirmed' : statusLabels[order.status] || order.status}
+                {isPaid ? 'Order Confirmed' : order.status === 'e' ? 'Order Expired' : 'Order Pending'}
               </span>
             </div>
             <div className={css['ticket-body']}>
@@ -332,81 +349,93 @@ export default function OrderConfirmationPage() {
                 </div>
               </div>
 
-              <hr className={css['ticket-dashed-divider']} />
+              {isPaid && <hr className={css['ticket-dashed-divider']} />}
 
-              <div className={css['share-section']}>
-                <div className={css['share-preview']}>
-                  <img src="/assets/images/dc8-social-ticket-preview.png" alt="Social ticket preview" className={css['share-preview-img']} />
-                </div>
-                <div className={css['share-input-group']}>
-                  <div className={css['share-text']}>
-                    <h3 className={css['share-title']}>Share on socials</h3>
-                    <p className={css['share-subtitle']}>Add name and/or X username to personalize</p>
-                  </div>
-                  <div className={css['share-input-wrap']}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                    <input
-                      type="text"
-                      placeholder="Username (optional)"
-                      value={xUsername}
-                      onChange={e => handleXUsernameChange(e.target.value)}
-                    />
-                  </div>
-                  {uploading && (
-                    <div className={css['share-input-wrap']}>
-                      <Loader2 size={20} className={css['spin']} />
-                      <span style={{ fontSize: '0.875rem', color: '#888' }}>Fetching profile...</span>
-                    </div>
-                  )}
-                  {!uploading && (shareHash || shareName) && (
-                    <div className={css['share-input-wrap']}>
-                      <CircleUser size={20} />
-                      <input
-                        type="text"
-                        placeholder="Name (optional)"
-                        value={shareName}
-                        onChange={e => {
-                          const val = e.target.value
-                          setShareName(val)
-                          if (orderCode) localStorage.setItem(shareNameKey, val)
-                        }}
+              {isPaid && (
+                <>
+                  <div className={css['share-section']}>
+                    <div className={css['share-preview']}>
+                      <img
+                        src="/assets/images/dc8-social-ticket-preview.png"
+                        alt="Social ticket preview"
+                        className={css['share-preview-img']}
                       />
                     </div>
-                  )}
-                </div>
-                {(() => {
-                  const ticketName = encodeURIComponent(shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')).replace(/%20/g, '+')
-                  const hasUsername = !!xUsername.replace(/^@/, '')
-                  const needsLoad = hasUsername && !shareHash && !uploading
+                    <div className={css['share-input-group']}>
+                      <div className={css['share-text']}>
+                        <h3 className={css['share-title']}>Share on socials</h3>
+                        <p className={css['share-subtitle']}>Add name and/or X username to personalize</p>
+                      </div>
+                      <div className={css['share-input-wrap']}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                        <input
+                          type="text"
+                          placeholder="Username (optional)"
+                          value={xUsername}
+                          onChange={e => handleXUsernameChange(e.target.value)}
+                        />
+                      </div>
+                      {uploading && (
+                        <div className={css['share-input-wrap']}>
+                          <Loader2 size={20} className={css['spin']} />
+                          <span style={{ fontSize: '0.875rem', color: '#888' }}>Fetching profile...</span>
+                        </div>
+                      )}
+                      {!uploading && (shareHash || shareName) && (
+                        <div className={css['share-input-wrap']}>
+                          <CircleUser size={20} />
+                          <input
+                            type="text"
+                            placeholder="Name (optional)"
+                            value={shareName}
+                            onChange={e => {
+                              const val = e.target.value
+                              setShareName(val)
+                              if (orderCode) localStorage.setItem(shareNameKey, val)
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                    {(() => {
+                      const ticketName = encodeURIComponent(
+                        shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')
+                      ).replace(/%20/g, '+')
+                      const hasUsername = !!xUsername.replace(/^@/, '')
+                      const needsLoad = hasUsername && !shareHash && !uploading
 
-                  return uploading ? (
-                    <button className={css['share-btn']} disabled>
-                      <Loader2 size={16} className={css['spin']} />
-                      Fetching profile...
-                    </button>
-                  ) : needsLoad ? (
-                    <button className={css['share-btn']} onClick={() => uploadAvatar(xUsername)}>
-                      Load profile
-                    </button>
-                  ) : (
-                    <a
-                      href="#"
-                      className={css['share-btn']}
-                      onClick={e => {
-                        e.preventDefault()
-                        const base = shareHash
-                          ? `/ticket/${ticketName}/${shareHash}/?share${shareVersion ? `&v=${encodeURIComponent(shareVersion)}` : ''}`
-                          : `/ticket/${ticketName}/?share`
-                        window.open(base, '_blank')
-                      }}
-                    >
-                      View sharing link
-                    </a>
-                  )
-                })()}
-              </div>
+                      return uploading ? (
+                        <button className={css['share-btn']} disabled>
+                          <Loader2 size={16} className={css['spin']} />
+                          Fetching profile...
+                        </button>
+                      ) : needsLoad ? (
+                        <button className={css['share-btn']} onClick={() => uploadAvatar(xUsername)}>
+                          Load profile
+                        </button>
+                      ) : (
+                        <a
+                          href="#"
+                          className={css['share-btn']}
+                          onClick={e => {
+                            e.preventDefault()
+                            const base = shareHash
+                              ? `/ticket/${ticketName}/${shareHash}/?share${
+                                  shareVersion ? `&v=${encodeURIComponent(shareVersion)}` : ''
+                                }`
+                              : `/ticket/${ticketName}/?share`
+                            window.open(base, '_blank')
+                          }}
+                        >
+                          View sharing link
+                        </a>
+                      )
+                    })()}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -448,7 +477,9 @@ export default function OrderConfirmationPage() {
                 {isCrypto ? (
                   <span className={css['summary-value-payment']}>
                     <strong>Crypto </strong>
-                    <span>({tokenSymbol} on {networkName})</span>
+                    <span>
+                      ({tokenSymbol} on {networkName})
+                    </span>
                   </span>
                 ) : (
                   <span className={css['summary-value-semi']}>Card (Stripe)</span>
@@ -481,32 +512,68 @@ export default function OrderConfirmationPage() {
               </div>
             </div>
 
-            <hr className={css['order-divider']} />
-
-            {/* Save ticket */}
-            <div className={css['save-section']}>
-              <h3 className={css['summary-heading']}>Save Ticket</h3>
-              <div className={css['save-buttons']}>
-                {passbookUrl && (
-                  <div className={css['wallet-row-wrapper']}>
-                    <div className={css['wallet-row']}>
-                      <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
-                        <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
-                      </a>
-                      <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
-                        <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
-                      </a>
-                    </div>
-                  </div>
-                )}
-                {pdfUrl && (
-                  <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
-                    <Download size={18} />
-                    Download (PDF)
+            {isPending && order.payment_url && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['pending-payment-section']}>
+                  <p className={css['pending-payment-text']}>Your payment has not been completed yet.</p>
+                  <a
+                    href="#"
+                    className={css['pending-payment-btn']}
+                    onClick={e => {
+                      e.preventDefault()
+                      const returnUrl = `${window.location.origin}${router.asPath}`
+                      const separator = order.payment_url!.includes('?') ? '&' : '?'
+                      window.location.href = `${order.payment_url}${separator}return_url=${encodeURIComponent(
+                        returnUrl
+                      )}`
+                    }}
+                  >
+                    Complete Payment
                   </a>
-                )}
-              </div>
-            </div>
+                </div>
+              </>
+            )}
+
+            {/* Save ticket — only shown when paid */}
+            {isPaid && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['save-section']}>
+                  <h3 className={css['summary-heading']}>Save Ticket</h3>
+                  <div className={css['save-buttons']}>
+                    {passbookUrl && (
+                      <div className={css['wallet-row-wrapper']}>
+                        <div className={css['wallet-row']}>
+                          <a
+                            href={passbookUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={css['wallet-badge']}
+                          >
+                            <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
+                          </a>
+                          <a
+                            href={passbookUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={css['wallet-badge']}
+                          >
+                            <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                    {pdfUrl && (
+                      <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
+                        <Download size={18} />
+                        Download (PDF)
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

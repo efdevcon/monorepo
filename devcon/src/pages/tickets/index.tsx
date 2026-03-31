@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { Ticket, Shirt, Coffee, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
+import { Ticket, Shirt, Coffee, ChevronDown, ChevronUp } from 'lucide-react'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
@@ -50,28 +50,20 @@ const OVERVIEW_CARDS = [
 ]
 
 const WAVES = [
-  { name: 'Global Early Bird', price: '$299', date: 'TBD' },
+  { name: 'Global Early Bird', price: '$299', date: 'Opens in May' },
   { name: 'Waves 1-10', price: 'TBD', date: 'TBD' },
 ]
 
 const COMMUNITY_ROWS = [
-  {
-    name: 'ETHMumbai Early Access',
-    detail: 'VIA SELF PROTOCOL',
-    price: '$99',
-    date: 'Ends 15 Mar',
-    live: true,
-    bold: true,
-  },
-  { name: 'India Residents', detail: 'VIA SELF PROTOCOL', price: '$149', date: 'TBD', live: false, bold: false },
+  { name: 'India Residents', detail: 'VIA SELF PROTOCOL', price: '$149', date: 'Opens in May', live: false, bold: false },
   // { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
   // { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
   // { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
 ]
 
 const APPLICATION_ROWS = [
-  { name: 'Students (Limited)', price: '$25', date: 'TBD' },
-  { name: 'Builders', price: 'from $299', date: 'TBD' },
+  { name: 'Students (Limited)', price: '$25', date: 'Opens in April' },
+  { name: 'Builders', price: 'from $299', date: 'Opens in April' },
 ]
 
 const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
@@ -133,22 +125,22 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>ETHMumbai Early Access now live!</h2>
+                <h2 className={css['heading-2']}>Early Bird tickets launching in May!</h2>
                 <p className={css['body-lg']}>
-                  Join thousands of builders, creators, researchers, designers, and thinkers 3&ndash;6 November 2026 in
-                  Mumbai for the world&apos;s biggest Ethereum conference.
+                  The world&apos;s biggest Ethereum conference returns &ndash; join us in Mumbai, India from 3&ndash;6
+                  November 2026.
                 </p>
                 <p className={css['body']}>
-                  Reserve early access to India Early Bird tickets later this year (exclusive to ETHMumbai attendees).
+                  Be the first to know when tickets drop - follow us or subscribe to our newsletter.
                 </p>
               </div>
 
               <div className={css['included-section']}>
-                <p className={css['included-label']}>WHAT&apos;S INCLUDED</p>
+                <p className={css['included-label']}>INCLUDED IN TICKET</p>
                 <div className={css['included-items']}>
                   <div className={css['included-item']}>
                     <Ticket size={24} strokeWidth={1.5} />
-                    <span>Full conference access</span>
+                    <span>Full 4-day conference access</span>
                   </div>
                   <div className={css['included-item']}>
                     <Shirt size={24} strokeWidth={1.5} />
@@ -162,14 +154,35 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['cta-group']}>
-                <Link to="/tickets/store#discounts" className={css['btn-primary']}>
-                  Check my eligibility
-                  <ArrowRight size={16} strokeWidth={2} />
-                </Link>
-                <Link to="#discounts" className={css['btn-secondary']}>
-                  View future discounts
-                  <ChevronDown size={16} strokeWidth={2} />
-                </Link>
+                <a href="https://paragraph.com/@efevents/subscribe" className={css['btn-secondary']}>
+                  Subscribe for updates
+                </a>
+                <div className={css['social-icons']}>
+                  <a
+                    href="https://x.com/EFDevcon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['social-icon-btn']}
+                  >
+                    <IconX />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/efdevcon/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['social-icon-btn']}
+                  >
+                    <IconInstagram />
+                  </a>
+                  <a
+                    href="https://farcaster.xyz/~/channel/devcon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['social-icon-btn']}
+                  >
+                    <IconFarcaster />
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -299,8 +312,8 @@ export default function TicketsPage() {
                 <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
                 <h2 className={css['heading-2']}>Community</h2>
                 <p className={css['body-lg']}>
-                  ETHMumbai attendees can now <strong>reserve early access</strong> for Devcon tickets. Verify Indian
-                  residency via Self Protocol to redeem.
+                  Our <strong>Early Access vouchers for Indian residents</strong> have now ended. Thank you to everyone
+                  who reserved their place at Devcon.
                 </p>
                 <p className={css['body']}>
                   Community tickets are <strong>self-claimable</strong> &ndash; no application required, just verify
@@ -308,16 +321,12 @@ export default function TicketsPage() {
                   <strong>limited</strong>.
                 </p>
               </div>
-              <Link to="/tickets/store#discounts" className={css['btn-primary']}>
-                Check my eligibility
-                <ArrowRight size={16} strokeWidth={2} />
-              </Link>
             </div>
 
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
                 <span className={css['ticket-type-title']}>Community</span>
-                <span className={css['ticket-type-status']}>AVAILABLE NOW</span>
+                <span className={css['ticket-type-status']}>COMING SOON!</span>
               </div>
               <div className={css['ticket-type-rows']}>
                 {COMMUNITY_ROWS.map(row => (

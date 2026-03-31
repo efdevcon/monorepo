@@ -259,6 +259,7 @@ function CheckoutContent() {
   const [orderSummary, setOrderSummary] = useState<any>(null)
   const [txHash, setTxHash] = useState<string | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null)
+  const [isRedirecting, setIsRedirecting] = useState(false)
 
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
@@ -1002,6 +1003,8 @@ function CheckoutContent() {
         const separator = data.paymentUrl.includes('?') ? '&' : '?'
         const paymentUrlWithReturn = `${data.paymentUrl}${separator}return_url=${encodeURIComponent(returnUrl)}`
 
+        setIsRedirecting(true)
+        setPaymentStatus('Redirecting to payment...')
         localStorage.removeItem('devcon-ticket-cart')
         if (newsletter) {
           navigator.sendBeacon(
@@ -1009,6 +1012,7 @@ function CheckoutContent() {
             new Blob([JSON.stringify({ email: email.trim() })], { type: 'application/json' })
           )
         }
+        await new Promise(resolve => setTimeout(resolve, 1500))
         window.location.href = paymentUrlWithReturn
       } else {
         setPurchaseError(data.error || 'Failed to create order')
@@ -1049,13 +1053,6 @@ function CheckoutContent() {
       setAuthorizationData(prepareData)
 
       const { domain, types, primaryType, message } = prepareData.typedData
-      const domainChainId = typeof domain.chainId === 'string'
-        ? parseInt(domain.chainId, domain.chainId.startsWith('0x') ? 16 : 10)
-        : domain.chainId
-      if (domainChainId && chain?.id !== domainChainId && switchChain) {
-        setPaymentStatus(`Switching to ${details.network}...`)
-        await switchChain({ chainId: domainChainId })
-      }
       setPaymentStatus('Sign in your wallet...')
 
       const signature = await signEIP712Direct({ domain, types, primaryType, message })
@@ -1064,7 +1061,6 @@ function CheckoutContent() {
       await executeGaslessTransfer(signature, prepareData.authorization)
     } catch (e) {
       setDirectSignError(humanizeWalletError(e))
-      setPurchaseError(humanizeWalletError(e))
       setPaymentStatus(null)
       setIsSigningDirect(false)
     }
@@ -1167,6 +1163,9 @@ function CheckoutContent() {
       amount: option.amount,
       amountFormatted,
     })
+    if (chain?.id !== chainIdNum && switchChain) {
+      switchChain({ chainId: chainIdNum })
+    }
   }
 
   async function payWithSelectedOption() {
@@ -1184,13 +1183,6 @@ function CheckoutContent() {
       try {
         const typedJson = req.params[1] as string
         const typed = JSON.parse(typedJson)
-        const domainChainId = typeof typed.domain.chainId === 'string'
-          ? parseInt(typed.domain.chainId, typed.domain.chainId.startsWith('0x') ? 16 : 10)
-          : typed.domain.chainId
-        if (domainChainId && chain?.id !== domainChainId && switchChain) {
-          setPaymentStatus(`Switching to ${selectedOption.chain}...`)
-          await switchChain({ chainId: domainChainId })
-        }
         setPaymentStatus('Sign in your wallet...')
 
         const signature = await signEIP712Direct({
@@ -1213,7 +1205,6 @@ function CheckoutContent() {
         await executeGaslessTransfer(signature, auth)
       } catch (e) {
         setDirectSignError(humanizeWalletError(e))
-        setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
         setIsSigningDirect(false)
       }
@@ -1224,13 +1215,6 @@ function CheckoutContent() {
       const tx = req.params[0] as { to: string; value: string; data?: string; chainId?: string }
       if (!tx?.to || tx?.value === undefined) {
         setPurchaseError('Invalid transaction request')
-        return
-      }
-      const targetChainId = tx.chainId ? parseInt(tx.chainId.replace('0x', ''), 16) : paymentDetails.chainId
-      if (chain?.id !== targetChainId && switchChain) {
-        setPaymentStatus(`Switching to ${selectedOption.chain}...`)
-        await switchChain({ chainId: targetChainId })
-        setPaymentStatus(`Switched to ${selectedOption.chain} — click Pay again`)
         return
       }
       setPaymentStatus('Confirm in wallet...')
@@ -2241,7 +2225,14 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {paymentStatus && !isProcessing && (
+                                    {isRedirecting && (
+                                      <div className={`${css['payment-notice']} ${css['payment-notice-redirect']}`}>
+                                        <Loader2 size={18} className={css['spin']} />
+                                        <span>Redirecting to payment provider — please wait...</span>
+                                      </div>
+                                    )}
+
+                                    {paymentStatus && !isProcessing && !isRedirecting && (
                                       <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
                                         {paymentStatus}
                                       </p>

@@ -24,7 +24,7 @@ const ENV_CONFIG = {
     self: {
       scope: 'devcon-india-local-discount',
       staging: true,
-      requireEarlyAccess: true,
+      requireEarlyAccess: false,
     },
     discount: {
       collection: 'test-india-early-bird',
@@ -38,7 +38,7 @@ const ENV_CONFIG = {
     overrides: {
       soldOut: false,
     },
-    isShopOpen: false,
+    isShopOpen: true,
     x402Agents: false,
   },
   production: {
@@ -67,7 +67,7 @@ const ENV_CONFIG = {
       // TODO: replace with production staging
       staging: false,
       // TODO: replace after event
-      requireEarlyAccess: true,
+      requireEarlyAccess: false,
     },
     discount: {
       // TODO: replace with india-early-bird
@@ -80,7 +80,7 @@ const ENV_CONFIG = {
       goalsIdentifier: 'FNXHWF39',
     },
     overrides: {
-      soldOut: false,
+      soldOut: true,
     },
     isShopOpen: false,
     x402Agents: false,

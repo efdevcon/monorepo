@@ -170,6 +170,7 @@
   padding: 16px 32px;
   font-size: 16px;
   font-weight: 700;
+  line-height: 1;
   color: #f9f8fa;
   background: #7235ed;
   border: none;
@@ -203,6 +204,7 @@
   padding: 16px 32px;
   font-size: 16px;
   font-weight: 700;
+  line-height: 1;
   color: #1a0d33;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #dddae2;
@@ -275,10 +277,10 @@
 
 .included-label {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #160b2b;
+  color: #7235ed;
   margin: 0;
 }
 
@@ -303,13 +305,14 @@
 
   svg {
     flex-shrink: 0;
-    color: rgba(214, 86, 0, 1);
+    color: #ff6600;
   }
 }
 
 .cta-group {
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  align-items: center;
   flex-wrap: wrap;
 
   @media (max-width: $breakpoints-md) {

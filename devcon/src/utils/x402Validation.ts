@@ -15,16 +15,14 @@ export type AddressValidation =
   | { valid: false; error: string }
 
 /**
- * Validates Ethereum address and requires EIP-55 mixed-case checksum (rejects typos).
+ * Validates Ethereum address and normalises it to EIP-55 checksum.
+ * Accepts lowercase/mixed-case addresses (e.g. from MetaMask mobile) and auto-checksums them.
  */
 export function validateAddressEIP55(addr: string): AddressValidation {
   const t = typeof addr === 'string' ? addr.trim() : ''
   if (!t) return { valid: false, error: 'Address is required' }
   try {
     const checksummed = getAddress(t)
-    if (checksummed !== t) {
-      return { valid: false, error: 'Address must use EIP-55 checksum (mixed-case)' }
-    }
     return { valid: true, checksummed }
   } catch {
     return { valid: false, error: 'Invalid Ethereum address' }

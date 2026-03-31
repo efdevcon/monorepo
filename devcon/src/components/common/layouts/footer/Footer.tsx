@@ -15,7 +15,6 @@ import IconYoutube from 'assets/icons/youtube.svg'
 import IconTelegram from 'assets/icons/telegram.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
-import IconLens from 'assets/icons/lens.svg'
 import { Modal } from 'components/common/modal'
 // import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import LogoFooter from 'assets/images/dc-8/dc8-logo.png'
@@ -69,9 +68,6 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
       </Link>
       <Link to="https://warpcast.com/~/channel/devcon">
         <IconWarpcast style={{ cursor: 'pointer' }} />
-      </Link>
-      <Link to="https://hey.xyz/u/devcon">
-        <IconLens style={{ cursor: 'pointer' }} />
       </Link>
       <Link to="https://github.com/efdevcon">
         <IconGithub style={{ cursor: 'pointer' }} />

@@ -904,6 +904,27 @@ div.wallet-identicon {
   color: #92400e;
 }
 
+.payment-notice-redirect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #eff6ff;
+  border: 1px solid #93c5fd;
+  color: #1e40af;
+  font-size: 0.95rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
 .payment-options-block {
   margin: 0.75rem 0;
   display: flex;
