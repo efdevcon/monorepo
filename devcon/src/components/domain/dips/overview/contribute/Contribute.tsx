@@ -9,6 +9,7 @@ import Image from 'next/legacy/image'
 import RichText from 'lib/components/tina-cms/RichText'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import indexCss from 'pages/index.module.scss'
+import { ArrowUpRight } from 'lucide-react'
 
 type ContributeProps = {
   contributors: Array<Contributor>
@@ -139,13 +140,37 @@ export const AutoScroller = (props: { contributors: Array<Contributor>; large?: 
   )
 }
 
+const DipButtons = (data: any) => {
+  if (!data.Button) return <></>
+  return (
+    <div className="flex gap-3 flex-wrap" data-cms-element="button">
+      {data.Button.map(({ text, url }: any, i: number) => {
+        if (!url || !text) return null
+        const isPrimary = i === 0
+        return (
+          <a
+            key={text}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={isPrimary ? css['btn-primary'] : css['btn-secondary']}
+          >
+            {text}
+            <ArrowUpRight size={16} strokeWidth={2} />
+          </a>
+        )
+      })}
+    </div>
+  )
+}
+
 export const Contribute = (props: ContributeProps) => {
   return (
     <>
       <section id="contribute" className={css['section']}>
         <div className={`${css['container']} relative pb-8`}>
           <div className={css['left-section']}>
-            <RichText content={props.dipDescription} />
+            <RichText content={props.dipDescription} Buttons={DipButtons} />
           </div>
 
           <div className={css['contributors']}>
@@ -157,7 +182,7 @@ export const Contribute = (props: ContributeProps) => {
             </div>
           </div>
 
-          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`}>
+          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`} style={{ opacity: 0.5 }}>
             <InfiniteScroller nDuplications={2} speed="240s" reverse>
               <p className="bold uppercase">Devcon Improvement Proposals&nbsp;</p>
             </InfiniteScroller>

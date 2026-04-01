@@ -55,7 +55,7 @@ export default function PastEvents(props: any) {
             />
           </div>
 
-          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`}>
+          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`} style={{ opacity: 0.5 }}>
             <InfiniteScroller nDuplications={2} speed="120s">
               <p className="bold">PAST DEVCONS&nbsp;</p>
             </InfiniteScroller>
