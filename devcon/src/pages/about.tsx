@@ -230,7 +230,7 @@ export default function AboutPage() {
               <div className="flex gap-4" style={{ minWidth: 'max-content' }}>
                 {videos.filter(v => ['Ethereum in 30 Minutes', 'Lessons Learned from Tor'].includes(v.title)).map(v => (
                   <div key={v.title} style={{ width: 300, flexShrink: 0 }}>
-                    <VideoCard className="!bg-white rounded-2xl" video={{ ...v, slug: v.archiveUrl }} />
+                    <VideoCard className="!bg-white rounded-2xl" video={{ ...v, slug: v.archiveUrl } as any} />
                   </div>
                 ))}
               </div>
@@ -261,7 +261,7 @@ export default function AboutPage() {
             <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
               <div className={css['videos']}>
                 {videos.filter(v => ["Argentina\u2019s Opportunity & the Case for a Special Economic Zone", 'Blockchain for Humanitarian Aid Disbursements', 'Hacking Thai Beats, Cities & Dances'].includes(v.title)).map(v => (
-                  <VideoCard compact key={v.title} className="!bg-white rounded-2xl" video={{ ...v, slug: v.archiveUrl }} />
+                  <VideoCard compact key={v.title} className="!bg-white rounded-2xl" video={{ ...v, slug: v.archiveUrl } as any} />
                 ))}
               </div>
             </SwipeToScroll>
