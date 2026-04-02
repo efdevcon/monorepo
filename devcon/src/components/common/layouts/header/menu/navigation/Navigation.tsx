@@ -94,6 +94,7 @@ const Mobile = (props: any) => {
                         if (isHeader) {
                           return (
                             <p key={child.title} className={css['category-header']}>
+                              {child.icon && <child.icon size={20} className={css['foldout-header-icon']} />}
                               {child.title}
                             </p>
                           )
@@ -126,155 +127,241 @@ const Mobile = (props: any) => {
   )
 }
 
+type Section = {
+  header: string
+  headerIcon?: React.ComponentType<{ size?: number; className?: string }>
+  items: LinkType[]
+}
+
+function groupLinksIntoSections(links: LinkType[]): Section[] {
+  const sections: Section[] = []
+  let current: Section | null = null
+
+  for (const c of links) {
+    if (c.type === 'header') {
+      current = { header: c.title, headerIcon: c.icon, items: [] }
+      sections.push(current)
+    } else if (current) {
+      current.items.push(c)
+    } else {
+      if (!sections.length) sections.push({ header: '', items: [] })
+      sections[0].items.push(c)
+    }
+  }
+
+  return sections
+}
+
+const FoldoutContent = ({ sections }: { sections: Section[] }) => (
+  <div className={css['foldout-sections']}>
+    {sections.map((section, sIdx) => (
+      <div key={sIdx} className={css['foldout-section']}>
+        {section.header && (
+          <div className={css['foldout-header']}>
+            {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
+            {section.header}
+          </div>
+        )}
+        <div className={css['foldout-items']}>
+          {section.items.map((c, cIdx) => (
+            <Link
+              key={cIdx}
+              indicateExternal
+              className={`${css['foldout-link-item']} plain`}
+              to={c.url}
+            >
+              {c.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+)
+
 export const Navigation = (props: any) => {
   const navigationData = useNavigationData()
+  const [activeItem, setActiveItem] = React.useState<string | null>(null)
+  const [exitingItem, setExitingItem] = React.useState<string | null>(null)
+  const [direction, setDirection] = React.useState<'left' | 'right'>('right')
+  const prevActiveRef = React.useRef<string | null>(null)
 
   if (props.mobile) {
     return <Mobile {...props} />
   }
 
+  // Sort: items with children first, then the rest
+  const sorted = [...navigationData.site].sort((a: LinkType, b: LinkType) => {
+    const aHas = a.links && a.links.length > 0 ? 0 : 1
+    const bHas = b.links && b.links.length > 0 ? 0 : 1
+    return aHas - bHas
+  })
+
+  const foldableItems = sorted.filter((i: LinkType) => i.links && i.links.length > 0)
+  const plainItems = sorted.filter((i: LinkType) => !i.links || i.links.length === 0)
+
+  const handleSetActive = (title: string) => {
+    const prev = prevActiveRef.current
+    if (prev === title) return
+
+    if (prev && prev !== title) {
+      const prevIdx = foldableItems.findIndex((i: LinkType) => i.title === prev)
+      const nextIdx = foldableItems.findIndex((i: LinkType) => i.title === title)
+      setDirection(nextIdx > prevIdx ? 'right' : 'left')
+      setExitingItem(prev)
+    }
+
+    setActiveItem(title)
+    prevActiveRef.current = title
+  }
+
+  const handleClearActive = () => {
+    setActiveItem(null)
+    setExitingItem(null)
+    prevActiveRef.current = null
+  }
+
+  const activeNavItem = activeItem ? foldableItems.find((i: LinkType) => i.title === activeItem) : null
+  const activeSections = activeNavItem?.links?.length ? groupLinksIntoSections(activeNavItem.links) : []
+
+  const exitingNavItem = exitingItem ? foldableItems.find((i: LinkType) => i.title === exitingItem) : null
+  const exitingSections = exitingNavItem?.links?.length ? groupLinksIntoSections(exitingNavItem.links) : []
+
+  const renderPlainLink = (i: LinkType) => {
+    let className = `${css['foldout-link']} bold`
+
+    if (i.type === 'button') {
+      return (
+        <button key={i.title} onClick={i.onClick} className={className}>
+          {i.title}
+        </button>
+      )
+    }
+
+    if (i.highlight) {
+      className += ` button ${css[i.highlight as any]}`
+
+      if (['app'].includes(i.highlight)) {
+        className += ` rounded-purple`
+      } else {
+        className += ` black`
+      }
+    } else {
+      className += ` plain`
+    }
+
+    if (i.highlight === 'tickets') {
+      return (
+        <Link
+          to={i.url}
+          className="ml-[3px] bg-[#7235ed] text-white font-bold text-sm rounded-full px-4 py-2 shadow hover:scale-[1.02] transition-transform"
+        >
+          {i.title}
+        </Link>
+      )
+    }
+
+    if (i.highlight === 'archive') {
+      return (
+        <Link to={i.url}>
+          <Button color="purple-1" className="shadow lg !py-1" fill>
+            <IconWatch className="mr-2 icon" />
+            {i.title}
+          </Button>
+        </Link>
+      )
+    }
+
+    if (i.highlight === 'app') {
+      return (
+        <Link to={i.url}>
+          <Button
+            color="purple-2"
+            className="shadow lg shrink-0 !py-1 flex gap-2 items-center !rounded-2xl"
+            fill
+          >
+            <AppIcons
+              className="mx-0.5 mr-1 transform scale-[140%] icon"
+              style={{ width: 'auto', height: 'auto', fontSize: '20px' }}
+            />
+            {i.title}
+          </Button>
+        </Link>
+      )
+    }
+
+    return (
+      <Link to={i.url} className={className}>
+        <>
+          {i.highlight === 'app' && <IconCalendar />}
+          {i.highlight === 'livestream' && <IconWatch />}
+          {i.highlight === 'archive' && <IconWatch className="mr-2 icon" />}
+          {i.title}
+        </>
+      </Link>
+    )
+  }
+
   return (
-    <>
-      <ul className={css['navigation']}>
-        {navigationData.site.map((i: LinkType, index: number) => {
-          const primaryKey = `site-nav-1_${index}`
-          const hasChildren = i.links && i.links.length > 0
-
-          const link = (() => {
-            let className = `${css['foldout-link']} bold`
-
-            if (i.type === 'button') {
-              return (
-                // <li key={primaryKey}>
-                <button key={i.title} onClick={i.onClick} className={className}>
-                  {i.title}
-                </button>
-                // </li>
-              )
-            }
-
-            if (i.highlight) {
-              className += ` button ${css[i.highlight as any]}`
-
-              if (['app'].includes(i.highlight)) {
-                className += ` rounded-purple`
-              } else {
-                className += ` black`
-              }
-            } else {
-              className += ` plain`
-            }
-
-            if (i.highlight === 'tickets') {
-              return (
-                <Link
-                  to={i.url}
-                  className="ml-[3px] bg-[#7235ed] text-white font-bold text-sm rounded-full px-4 py-2 shadow hover:scale-[1.02] transition-transform"
-                >
-                  {i.title}
-                </Link>
-              )
-            }
-
-            if (i.highlight === 'archive') {
-              return (
-                <Link to={i.url}>
-                  <Button color="purple-1" className="shadow lg !py-1" fill>
-                    <IconWatch className="mr-2 icon" />
-                    {i.title}
-                  </Button>
-                </Link>
-              )
-            }
-
-            if (i.highlight === 'app') {
-              return (
-                <Link to={i.url}>
-                  <Button
-                    color="purple-2"
-                    className="shadow lg shrink-0 !py-1 flex gap-2 items-center !rounded-2xl"
-                    fill
-                  >
-                    <AppIcons
-                      className="mx-0.5 mr-1 transform scale-[140%] icon"
-                      style={{ width: 'auto', height: 'auto', fontSize: '20px' }}
-                    />
-                    {i.title}
-                    {/* <IconCalendar className="icon shrink-0" style={{ fontSize: '12px' }} /> */}
-                  </Button>
-                </Link>
-              )
-            }
+    <div className={css['nav-wrapper']}>
+      {/* Foldable group: items with children + shared foldout */}
+      <div
+        className={css['nav-foldable-group']}
+        onMouseLeave={handleClearActive}
+      >
+        <ul className={css['navigation']}>
+          {foldableItems.map((i: LinkType, index: number) => {
+            const isActive = activeItem === i.title
 
             return (
-              <Link to={i.url} className={className}>
-                <>
-                  {i.highlight === 'app' && <IconCalendar />}
-                  {i.highlight === 'livestream' && <IconWatch />}
-                  {i.highlight === 'archive' && <IconWatch className="mr-2 icon" />}
-                  {i.title}
-                </>
-              </Link>
+              <li
+                className={`plain bold ${isActive ? css['nav-item-active'] : ''}`}
+                key={`foldable-${index}`}
+                onMouseEnter={() => handleSetActive(i.title)}
+              >
+                {i.title}
+                {isActive ? (
+                  <ChevronUp size={16} style={{ margin: '0 0 0 4px' }} color="white" />
+                ) : (
+                  <ChevronDown size={16} style={{ margin: '0 0 0 4px' }} color="currentColor" />
+                )}
+              </li>
             )
-          })()
+          })}
+        </ul>
 
-          return (
-            <li className="plain bold" key={primaryKey}>
-              {hasChildren ? (
-                <>
-                  {i.title}
-                  <ChevronDown size={16} style={{ margin: '8px' }} color="black" />
-                  <div className={`${css['foldout']} rounded shadow-lg`}>
-                    {i.logo && (
-                      <div className={css['foldout-background']}>
-                        <i.logo />
-                        {/* <Image src={i.logo} alt={`${i.title}: background logo`} layout="fill" /> */}
-                      </div>
-                    )}
-                    {i.links && i.links.length > 0 && (
-                      <ul className="text-sm font-medium">
-                        {i.links?.map((c: LinkType, subIndex: number) => {
-                          const subKey = `site-nav-2_${subIndex}`
+        {activeItem && activeSections.length > 0 && (
+          <div className={css['foldout']}>
+            {/* Exiting content */}
+            {exitingItem && exitingSections.length > 0 && (
+              <div
+                key={`exit-${exitingItem}`}
+                className={`${css['foldout-content-exit']} ${direction === 'right' ? css['exit-left'] : css['exit-right']}`}
+                onAnimationEnd={() => setExitingItem(null)}
+              >
+                <FoldoutContent sections={exitingSections} />
+              </div>
+            )}
 
-                          if (c.type === 'header') {
-                            return (
-                              <li key={subKey} className={css['header']}>
-                                <span className={css['foldout-header']}>{c.title}</span>
-                              </li>
-                            )
-                          }
+            {/* Entering content */}
+            <div
+              key={activeItem}
+              className={`${css['foldout-content-enter']} ${direction === 'right' ? css['enter-from-right'] : css['enter-from-left']}`}
+            >
+              <FoldoutContent sections={activeSections} />
+            </div>
+          </div>
+        )}
+      </div>
 
-                          if (c.type === 'button') {
-                            return (
-                              <li key={subKey}>
-                                <button onClick={c.onClick}>{c.title}</button>
-                              </li>
-                            )
-                          }
-
-                          if (c.type === 'links') {
-                            // nothing?
-                          }
-
-                          return (
-                            <li key={subKey}>
-                              <Link indicateExternal className={`${css['foldout-link']} plain`} to={c.url}>
-                                {c.title}
-                              </Link>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                    )}
-                  </div>
-                </>
-              ) : (
-                link
-              )}
-            </li>
-          )
-        })}
+      {/* Plain items: no foldout */}
+      <ul className={css['navigation']}>
+        {plainItems.map((i: LinkType, index: number) => (
+          <li className="plain bold" key={`plain-${index}`}>
+            {renderPlainLink(i)}
+          </li>
+        ))}
       </ul>
-    </>
+    </div>
   )
 }

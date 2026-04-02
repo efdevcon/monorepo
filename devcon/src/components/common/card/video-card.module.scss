@@ -136,6 +136,8 @@
 
   .labels {
     display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     position: absolute;
     right: $gaps-gap-2;
     bottom: $gaps-gap-2;
