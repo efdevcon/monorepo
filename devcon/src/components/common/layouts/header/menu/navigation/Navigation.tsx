@@ -302,6 +302,66 @@ export const Navigation = (props: any) => {
     )
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent, title: string, index: number) => {
+    switch (e.key) {
+      case 'Enter':
+      case ' ':
+        e.preventDefault()
+        if (activeItem === title) {
+          handleClearActive()
+        } else {
+          handleSetActive(title)
+        }
+        break
+      case 'Escape':
+        e.preventDefault()
+        handleClearActive()
+        break
+      case 'ArrowRight': {
+        e.preventDefault()
+        const next = foldableItems[index + 1]
+        if (next) {
+          handleSetActive(next.title)
+          // Focus the next item
+          const nextEl = document.querySelector(`[data-nav-item="${index + 1}"]`) as HTMLElement
+          nextEl?.focus()
+        }
+        break
+      }
+      case 'ArrowLeft': {
+        e.preventDefault()
+        const prev = foldableItems[index - 1]
+        if (prev) {
+          handleSetActive(prev.title)
+          const prevEl = document.querySelector(`[data-nav-item="${index - 1}"]`) as HTMLElement
+          prevEl?.focus()
+        }
+        break
+      }
+      case 'ArrowDown':
+        e.preventDefault()
+        if (activeItem === title) {
+          // Focus the first link in the foldout
+          const firstLink = document.querySelector(`.${css['foldout-link-item']}`) as HTMLElement
+          firstLink?.focus()
+        } else {
+          handleSetActive(title)
+        }
+        break
+    }
+  }
+
+  const handleFoldoutKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      handleClearActive()
+      // Return focus to the active nav item
+      const idx = foldableItems.findIndex((i: LinkType) => i.title === activeItem)
+      const navEl = document.querySelector(`[data-nav-item="${idx}"]`) as HTMLElement
+      navEl?.focus()
+    }
+  }
+
   return (
     <div className={css['nav-wrapper']}>
       {/* Foldable group: items with children + shared foldout */}
@@ -309,7 +369,7 @@ export const Navigation = (props: any) => {
         className={css['nav-foldable-group']}
         onMouseLeave={handleClearActive}
       >
-        <ul className={css['navigation']}>
+        <ul className={css['navigation']} role="menubar">
           {foldableItems.map((i: LinkType, index: number) => {
             const isActive = activeItem === i.title
 
@@ -317,21 +377,32 @@ export const Navigation = (props: any) => {
               <li
                 className={`plain bold ${isActive ? css['nav-item-active'] : ''}`}
                 key={`foldable-${index}`}
+                role="menuitem"
+                tabIndex={0}
+                aria-haspopup="true"
+                aria-expanded={isActive}
+                data-nav-item={index}
                 onMouseEnter={() => handleSetActive(i.title)}
+                onFocus={() => handleSetActive(i.title)}
+                onKeyDown={e => handleKeyDown(e, i.title, index)}
               >
                 {i.title}
-                {isActive ? (
-                  <ChevronUp size={16} style={{ margin: '0 0 0 4px' }} color="white" />
-                ) : (
-                  <ChevronDown size={16} style={{ margin: '0 0 0 4px' }} color="currentColor" />
-                )}
+                <ChevronDown
+                  size={16}
+                  color={isActive ? 'white' : 'currentColor'}
+                  style={{
+                    margin: '0 0 0 4px',
+                    transition: 'transform 200ms ease',
+                    transform: isActive ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
               </li>
             )
           })}
         </ul>
 
         {activeItem && activeSections.length > 0 && (
-          <div className={css['foldout']}>
+          <div className={css['foldout']} role="menu" onKeyDown={handleFoldoutKeyDown}>
             {/* Exiting content */}
             {exitingItem && exitingSections.length > 0 && (
               <div

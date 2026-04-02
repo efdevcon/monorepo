@@ -163,7 +163,7 @@ export default function AboutPage() {
               Where sovereignty is built at scale
             </h3>
             <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
-              {`India is the home of engineers who didn't wait for permission, in a country that leapfrogged the entire technological generation. Building at scale creates innovation at scale. Devcon isn't coming to Mumbai to introduce Ethereum to India. Devcon 8 is in Mumbai to recognize and champion what India is already building.`}
+              {`India is the home of engineers who didn't wait for permission, in a country that leapfrogged the entire technological generation. `}<strong>Building at scale creates innovation at scale</strong>{`. Devcon isn't coming to Mumbai to introduce Ethereum to India. Devcon 8 is in Mumbai to recognize and champion what India is already building.`}
             </p>
           </div>
         </div>

@@ -61,6 +61,11 @@
       margin-right: 0px;
     }
 
+    &:focus-visible {
+      outline: 2px solid #7235ed;
+      outline-offset: 2px;
+    }
+
     .app,
     .livestream,
     .archive {
