@@ -57,8 +57,14 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
 }
 
 export async function GetSessions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
-  const talks = await exhaustResource(`talks?questions=all`, config)
-  return talks.map((i: any) => mapSession(i, params, config))
+  try {
+    const talks = await exhaustResource(`talks?questions=all`, config)
+    return talks.map((i: any) => mapSession(i, params, config))
+  } catch {
+    // /talks requires a published schedule — fall back to confirmed submissions
+    console.log('No published schedule, falling back to submissions...')
+    return GetSubmissions({ ...params, state: 'confirmed' }, config)
+  }
 }
 
 export async function GetSession(id: string, params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
@@ -90,12 +96,19 @@ async function get(slug: string, config: PretalxInstanceConfig) {
     return cache.get(cacheKey)
   }
 
-  const url = `${config.PRETALX_BASE_URI}/events/${config.PRETALX_EVENT_NAME}/${slug}`
+  // Ensure path segment has trailing slash before query string (pretalx 301-redirects without it)
+  const path = slug.includes('?') ? slug.replace('?', '/?') : `${slug}/`
+  const url = `${config.PRETALX_BASE_URI}/events/${config.PRETALX_EVENT_NAME}/${path}`
   const response = await fetch(url, {
     headers: {
       Authorization: `Token ${config.PRETALX_API_KEY}`,
     },
+    redirect: 'follow',
   })
+
+  if (!response.ok) {
+    throw new Error(`Pretalx API error: ${response.status} ${response.statusText} for ${url}`)
+  }
 
   const data = await response.json()
   cache.set(cacheKey, data)

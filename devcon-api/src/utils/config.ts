@@ -104,7 +104,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
   'devcon-mumbai-playground': {
     eventId: 'devcon-mumbai-playground',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
-    PRETALX_BASE_URI: 'https://speak.ticketh.xyz/api',
+    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
     PRETALX_EVENT_NAME: 'devcon-mumbai-playground',
 
     DEFAULT_LIMIT: 100,
