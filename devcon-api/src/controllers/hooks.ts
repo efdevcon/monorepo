@@ -16,7 +16,7 @@ hooksRouter.post(`/hooks/pretalx/schedule`, UpdateSchedule)
 hooksRouter.post(`/hooks/pretalx/:eventId/schedule`, UpdateSchedule)
 
 export async function UpdateSchedule(req: Request, res: Response) {
-  // #swagger.tags = ['Hooks']
+  // #swagger.ignore = true
 
   const secret = req.header('X-Webhook-Secret') || req.headers['x-webhook-secret']
   if (secret !== SERVER_CONFIG.WEBHOOK_SECRET) return res.status(403).send('Forbidden')
