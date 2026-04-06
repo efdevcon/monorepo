@@ -12,10 +12,28 @@ import IconWatch from 'assets/icons/on_demand_video.svg'
 import { Button } from 'lib/components/button'
 import AppIcons from 'assets/icons/app-icons.svg'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useRouter } from 'next/router'
+import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
+import NextImage from 'next/image'
 
 const Mobile = (props: any) => {
-  const [openItem, setOpenItem] = React.useState<string | undefined>()
   const navigationData = useNavigationData()
+  const router = useRouter()
+  const currentPath = router.pathname
+
+  const foldableItems = navigationData.site.filter((i: LinkType) => i.links && i.links.length > 0)
+
+  // Find which group contains the current page and auto-open it
+  const initialOpen = React.useMemo(() => {
+    for (const item of foldableItems) {
+      if (item.links?.some((link: LinkType) => link.url && !link.url.startsWith('http') && currentPath.replace(/\/$/, '') === link.url.replace(/\/$/, ''))) {
+        return item.title
+      }
+    }
+    return undefined
+  }, [currentPath])
+
+  const [openItem, setOpenItem] = React.useState<string | undefined>(initialOpen)
 
   const closeFoldout = () => {
     props.setFoldoutOpen(false)
@@ -23,106 +41,42 @@ const Mobile = (props: any) => {
 
   return (
     <div className={css['mobile-navigation']}>
-      <ul className={`${css['accordion']} text-sm`}>
-        {navigationData.site.map((i: LinkType, index: number) => {
-          const children = i.links
-          const hasChildren = children && children.length > 0
+      <div className={css['mobile-nav-logo']}>
+        <NextImage src={dc8Logo} alt="Devcon 8 India" width={145} height={64} />
+      </div>
+      <div className={css['mobile-nav-items']}>
+        {foldableItems.map((i: LinkType) => {
           const open = openItem === i.title
-
-          if (i.type === 'button') {
-            return (
-              <li key={i.title}>
-                <button onClick={i.onClick} className={css['accordion-toggle']}>
-                  {i.title}
-                </button>
-              </li>
-            )
-          }
+          const sections = i.links ? groupLinksIntoSections(i.links) : []
 
           return (
-            <li key={i.title} className={open && hasChildren ? css['open'] : ''}>
-              {i.logo && (
-                <div className={css['foldout-background']}>
-                  <i.logo />
-                  {/* <Image src={i.logo} alt={`${i.title}: background logo`} layout="fill" /> */}
-                </div>
-              )}
-              {hasChildren ? (
-                <div
-                  className={css['accordion-toggle']}
-                  onClick={() => {
-                    setOpenItem(open ? undefined : i.title)
+            <div key={i.title} className={css['mobile-nav-group']}>
+              <button
+                className={css['mobile-nav-toggle']}
+                onClick={() => setOpenItem(open ? undefined : i.title)}
+                aria-expanded={open}
+              >
+                {i.title}
+                <ChevronDown
+                  size={20}
+                  style={{
+                    transition: 'transform 200ms ease',
+                    transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
                   }}
-                >
-                  {i.title}
-                  {hasChildren && (open ? <ChevronUp /> : <ChevronDown />)}
+                />
+              </button>
+
+              <div className={`${css['mobile-accordion-panel']} ${open ? css['mobile-accordion-panel-open'] : ''}`}>
+                <div className={css['mobile-accordion-inner']}>
+                  <div className={css['mobile-accordion-content']}>
+                    <FoldoutContent sections={sections} currentPath={currentPath} onLinkClick={closeFoldout} />
+                  </div>
                 </div>
-              ) : (
-                <div className={`${css['accordion-toggle']} ${css['no-children']}`}>
-                  <Link
-                    className={`plain hover-underline button ${css[i.highlight as any]}`}
-                    style={
-                      i.highlight
-                        ? {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            width: '100%',
-                          }
-                        : undefined
-                    }
-                    to={i.url}
-                    onClick={closeFoldout}
-                  >
-                    <>
-                      {i.title}
-                      {i.highlight === 'app' && <AppIcons style={{ fontSize: '1em' }} />}
-                      {i.highlight === 'livestream' ||
-                        (i.highlight === 'archive' && <IconWatch style={{ fontSize: '1em' }} />)}
-                    </>
-                  </Link>
-                </div>
-              )}
-
-              {hasChildren && (
-                <>
-                  {open && (
-                    <div className={css['accordion-content']}>
-                      {children?.map(child => {
-                        const isHeader = child.type === 'header'
-
-                        if (isHeader) {
-                          return (
-                            <p key={child.title} className={css['category-header']}>
-                              {child.icon && <child.icon size={20} className={css['foldout-header-icon']} />}
-                              {child.title}
-                            </p>
-                          )
-                        }
-
-                        return (
-                          <ul key={child.title} className={css['category-items']}>
-                            <li key={child.title}>
-                              <Link
-                                className="plain hover-underline"
-                                indicateExternal
-                                to={child.url}
-                                onClick={closeFoldout}
-                              >
-                                {child.title}
-                              </Link>
-                            </li>
-                          </ul>
-                        )
-                      })}
-                    </div>
-                  )}
-                </>
-              )}
-            </li>
+              </div>
+            </div>
           )
         })}
-      </ul>
+      </div>
     </div>
   )
 }
@@ -152,7 +106,7 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
   return sections
 }
 
-const FoldoutContent = ({ sections }: { sections: Section[] }) => (
+const FoldoutContent = ({ sections, currentPath, onLinkClick }: { sections: Section[]; currentPath?: string; onLinkClick?: () => void }) => (
   <div className={css['foldout-sections']}>
     {sections.map((section, sIdx) => (
       <div key={sIdx} className={css['foldout-section']}>
@@ -163,16 +117,21 @@ const FoldoutContent = ({ sections }: { sections: Section[] }) => (
           </div>
         )}
         <div className={css['foldout-items']}>
-          {section.items.map((c, cIdx) => (
-            <Link
-              key={cIdx}
-              indicateExternal
-              className={`${css['foldout-link-item']} plain`}
-              to={c.url}
-            >
-              {c.title}
-            </Link>
-          ))}
+          {section.items.map((c, cIdx) => {
+            const isActive = currentPath && c.url && !c.url.startsWith('http') &&
+              currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
+            return (
+              <Link
+                key={cIdx}
+                indicateExternal
+                className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
+                to={c.url}
+                onClick={onLinkClick}
+              >
+                {c.title}
+              </Link>
+            )
+          })}
         </div>
       </div>
     ))}
@@ -181,6 +140,8 @@ const FoldoutContent = ({ sections }: { sections: Section[] }) => (
 
 export const Navigation = (props: any) => {
   const navigationData = useNavigationData()
+  const router = useRouter()
+  const currentPath = router.pathname
   const [activeItem, setActiveItem] = React.useState<string | null>(null)
   const [exitingItem, setExitingItem] = React.useState<string | null>(null)
   const [direction, setDirection] = React.useState<'left' | 'right'>('right')
@@ -410,7 +371,7 @@ export const Navigation = (props: any) => {
                 className={`${css['foldout-content-exit']} ${direction === 'right' ? css['exit-left'] : css['exit-right']}`}
                 onAnimationEnd={() => setExitingItem(null)}
               >
-                <FoldoutContent sections={exitingSections} />
+                <FoldoutContent sections={exitingSections} currentPath={currentPath} />
               </div>
             )}
 
@@ -419,7 +380,7 @@ export const Navigation = (props: any) => {
               key={activeItem}
               className={`${css['foldout-content-enter']} ${direction === 'right' ? css['enter-from-right'] : css['enter-from-left']}`}
             >
-              <FoldoutContent sections={activeSections} />
+              <FoldoutContent sections={activeSections} currentPath={currentPath} />
             </div>
           </div>
         )}
