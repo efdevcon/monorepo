@@ -6,9 +6,9 @@ import { GetSession, GetSpeaker } from '@/clients/pretalx'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
 
-const WORKFLOW_MAP: Record<string, string> = {
-  'devcon-7': 'sync-pretalx.yml',
-  'devcon-mumbai-playground': 'sync-pretalx-devcon-mumbai-playground.yml',
+const WORKFLOW_MAP: Record<string, string[]> = {
+  'devcon-7': ['sync-pretalx.yml'],
+  'devcon-mumbai-playground': ['sync-pretalx-devcon-mumbai-playground.yml', 'run-of-show-devcon-mumbai-playground.yml'],
 }
 
 export const hooksRouter = Router()
@@ -115,10 +115,12 @@ async function SyncPretalx(config: PretalxInstanceConfig, newTalks: string[], ca
   console.log('Updating event version...', version)
   store.updateEventVersion(eventId, version)
 
-  const workflowId = WORKFLOW_MAP[eventId]
-  if (workflowId) {
-    console.log(`Triggering Github action ${workflowId}...`)
-    await TriggerWorkflow(workflowId)
+  const workflows = WORKFLOW_MAP[eventId]
+  if (workflows) {
+    for (const workflowId of workflows) {
+      console.log(`Triggering Github action ${workflowId}...`)
+      await TriggerWorkflow(workflowId)
+    }
   }
 }
 
