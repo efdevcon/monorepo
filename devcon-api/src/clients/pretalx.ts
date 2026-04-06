@@ -51,9 +51,40 @@ export async function GetSpeakers(params: Partial<RequestParams> = {}, config: P
   return speakersData.map((i: any) => mapSpeaker(i, params, config)).filter((s: any) => s.sourceId !== 'ADDJPN')
 }
 
+export async function GetSlots(config: PretalxInstanceConfig = PRETALX_CONFIG) {
+  return exhaustResource('slots', config)
+}
+
 export async function GetSubmissions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
-  const submissions = await exhaustResource(`submissions?questions=all`, config)
-  return submissions.filter((i: any) => i.state === (params.state ?? 'confirmed')).map((i: any) => mapSession(i, params, config))
+  const [submissions, slots, rawRooms] = await Promise.all([
+    exhaustResource(`submissions?questions=all`, config),
+    GetSlots(config).catch(() => []),
+    exhaustResource('rooms', config).catch(() => []),
+  ])
+
+  // Build lookups
+  const slotMap = new Map<number, any>(slots.map((s: any) => [s.id, s]))
+  const roomIdToSlug = new Map<number, string>(
+    rawRooms.map((r: any) => [r.id, r.name?.en ? defaultSlugify(r.name.en) : String(r.id)])
+  )
+
+  return submissions
+    .filter((i: any) => i.state === (params.state ?? 'confirmed'))
+    .map((i: any) => {
+      // Enrich with slot data if available (submissions return slots as ID array)
+      if (i.slots && Array.isArray(i.slots) && typeof i.slots[0] === 'number') {
+        const slotData = slotMap.get(i.slots[0])
+        if (slotData) {
+          const roomSlug = roomIdToSlug.get(slotData.room)
+          i.slot = {
+            start: slotData.start,
+            end: slotData.end,
+            room: roomSlug ? { en: roomSlug } : null,
+          }
+        }
+      }
+      return mapSession(i, params, config)
+    })
 }
 
 export async function GetSessions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
@@ -154,7 +185,15 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
   if (i.slot) {
     session.slot_start = dayjs.utc(i.slot.start).valueOf()
     session.slot_end = dayjs.utc(i.slot.end).valueOf()
-    session.slot_roomId = i.slot?.room ? defaultSlugify(i.slot.room.en) : null
+    // Room can be {en: "Name"} from /talks, or a numeric ID from enriched /submissions
+    if (i.slot.room) {
+      if (typeof i.slot.room === 'object' && i.slot.room.en) {
+        session.slot_roomId = defaultSlugify(i.slot.room.en)
+      } else {
+        // Numeric room ID — store as string, will be resolved by the store
+        session.slot_roomId = String(i.slot.room)
+      }
+    }
   }
 
   return session

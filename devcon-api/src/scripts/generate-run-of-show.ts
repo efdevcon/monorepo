@@ -258,9 +258,7 @@ function buildDayRoomRows(day: string, room: RoomData, sessions: SessionData[], 
   const rows: any[][] = []
 
   rows.push(['RUN OF SHOW'])
-  rows.push([])
   rows.push([`${dayLabel} — ${room.name}`])
-  rows.push([])
   rows.push(HEADERS)
 
   let currentBlock = ''
@@ -304,9 +302,7 @@ function buildUnscheduledRows(sessions: SessionData[], allSpeakers: any[]): any[
   const rows: any[][] = []
 
   rows.push(['RUN OF SHOW'])
-  rows.push([])
   rows.push(['UNSCHEDULED SESSIONS'])
-  rows.push([])
   rows.push(HEADERS)
 
   let counter = 0
@@ -327,6 +323,21 @@ function buildUnscheduledRows(sessions: SessionData[], allSpeakers: any[]): any[
 // ============================================================================
 
 async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: number, rows: any[][]) {
+  const COL_COUNT = 17
+
+  // First: unmerge everything to avoid stale merges from previous runs
+  await sheets.spreadsheets.batchUpdate({
+    spreadsheetId,
+    requestBody: {
+      requests: [{
+        unmergeCells: {
+          range: { sheetId, startRowIndex: 0, endRowIndex: rows.length + 10, startColumnIndex: 0, endColumnIndex: COL_COUNT },
+        },
+      }],
+    },
+  })
+
+  // Now apply all formatting
   const requests: any[] = []
 
   // Column widths
@@ -362,10 +373,10 @@ async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: numb
     },
   })
 
-  // Day/room header (row 2) — dark bg, white text, merged
+  // Day/room header (row 1) — dark bg, white text, merged
   requests.push({
     repeatCell: {
-      range: { sheetId, startRowIndex: 2, endRowIndex: 3, startColumnIndex: 0, endColumnIndex: 17 },
+      range: { sheetId, startRowIndex: 1, endRowIndex: 2, startColumnIndex: 0, endColumnIndex: 17 },
       cell: {
         userEnteredFormat: {
           textFormat: { bold: true, fontSize: 12, foregroundColorStyle: { rgbColor: { red: 1, green: 1, blue: 1 } } },
@@ -377,7 +388,7 @@ async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: numb
   })
   requests.push({
     mergeCells: {
-      range: { sheetId, startRowIndex: 2, endRowIndex: 3, startColumnIndex: 0, endColumnIndex: 17 },
+      range: { sheetId, startRowIndex: 1, endRowIndex: 2, startColumnIndex: 0, endColumnIndex: 17 },
       mergeType: 'MERGE_ALL',
     },
   })
@@ -472,7 +483,7 @@ async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: numb
   // Freeze first 5 rows
   requests.push({
     updateSheetProperties: {
-      properties: { sheetId, gridProperties: { frozenRowCount: 5 } },
+      properties: { sheetId, gridProperties: { frozenRowCount: 3 } },
       fields: 'gridProperties.frozenRowCount',
     },
   })

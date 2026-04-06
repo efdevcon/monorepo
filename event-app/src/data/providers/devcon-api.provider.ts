@@ -82,15 +82,15 @@ export class DevconApiProvider extends BaseProvider {
 
   async getSessions(filters?: SessionFilters): Promise<Session[]> {
     const params = new URLSearchParams();
+    params.set("event", EVENT_ID);
     if (filters?.track) params.set("track", filters.track);
     if (filters?.type) params.set("type", filters.type);
     if (filters?.roomId) params.set("room", filters.roomId);
     if (filters?.search) params.set("q", filters.search);
     params.set("size", "1000");
 
-    const qs = params.toString();
     const data = await this.fetchApi<any>(
-      `/events/${EVENT_ID}/sessions${qs ? `?${qs}` : ""}`
+      `/sessions?${params.toString()}`
     );
     const items = data?.items ?? data ?? [];
     return this.validateSessions(items.map((s: any) => this.mapSession(s)));
@@ -120,7 +120,7 @@ export class DevconApiProvider extends BaseProvider {
 
   async getSpeakers(): Promise<Speaker[]> {
     const data = await this.fetchApi<any>(
-      `/events/${EVENT_ID}/speakers?size=1000`
+      `/speakers?event=${EVENT_ID}&size=1000`
     );
     const items = data?.items ?? data ?? [];
     return this.validateSpeakers(items.map((s: any) => this.mapSpeaker(s)));
