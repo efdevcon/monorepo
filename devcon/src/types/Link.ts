@@ -1,3 +1,5 @@
+import React from 'react'
+
 export interface Link {
   title: string
   url?: string
@@ -7,4 +9,5 @@ export interface Link {
   noLocale?: boolean
   links?: Link[]
   highlight?: string
+  icon?: React.ComponentType<{ size?: number; className?: string }>
 }

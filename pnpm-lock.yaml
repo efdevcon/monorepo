@@ -414,6 +414,9 @@ importers:
       tippy.js:
         specifier: ^6.3.7
         version: 6.3.7
+      tldts:
+        specifier: ^7.0.26
+        version: 7.0.26
       unified:
         specifier: ^11.0.5
         version: 11.0.5
@@ -21581,6 +21584,13 @@ packages:
 
   tlds@1.259.0:
     resolution: {integrity: sha512-AldGGlDP0PNgwppe2quAvuBl18UcjuNtOnDuUkqhd6ipPqrYYBt3aTxK1QTsBVknk97lS2JcafWMghjGWFtunw==}
+    hasBin: true
+
+  tldts-core@7.0.26:
+    resolution: {integrity: sha512-5WJ2SqFsv4G2Dwi7ZFVRnz6b2H1od39QME1lc2y5Ew3eWiZMAeqOAfWpRP9jHvhUl881406QtZTODvjttJs+ew==}
+
+  tldts@7.0.26:
+    resolution: {integrity: sha512-WiGwQjr0qYdNNG8KpMKlSvpxz652lqa3Rd+/hSaDcY4Uo6SKWZq2LAF+hsAhUewTtYhXlorBKgNF3Kk8hnjGoQ==}
     hasBin: true
 
   tmp-promise@3.0.3:
@@ -60701,6 +60711,12 @@ snapshots:
       tslib: 2.8.1
 
   tlds@1.259.0: {}
+
+  tldts-core@7.0.26: {}
+
+  tldts@7.0.26:
+    dependencies:
+      tldts-core: 7.0.26
 
   tmp-promise@3.0.3:
     dependencies:

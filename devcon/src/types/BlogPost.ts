@@ -8,4 +8,5 @@ export interface BlogPost {
   slug?: string
   permaLink?: string
   imageUrl?: string
+  edition?: string
 }
