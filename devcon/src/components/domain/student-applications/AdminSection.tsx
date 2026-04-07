@@ -36,7 +36,7 @@ export default function AdminSection({ accessToken, email, onLogout }: Props) {
         return
       }
 
-      const { data: sessionData } = await supabase.auth.getSession()
+      const { data: sessionData } = await supabase!.auth.getSession()
       const token = sessionData.session?.access_token ?? accessToken
 
       const res = await fetch('/api/student/import-vouchers', {

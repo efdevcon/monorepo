@@ -159,6 +159,14 @@ $order-border: #dddae2;
   background: #ffe0cc;
 }
 
+.ticket-banner--expired {
+  background: #f92e32;
+
+  .ticket-banner-text {
+    color: #f9f8fa;
+  }
+}
+
 .ticket-banner-text {
   font-size: 0.875rem;
   font-weight: 600;
@@ -450,6 +458,16 @@ $order-border: #dddae2;
 .status-badge {
   background: #aaeaba;
   color: #1a0d33;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0 0.8125rem;
+  border-radius: 360px;
+  line-height: 1.5;
+}
+
+.status-badge-expired {
+  background: #f92e32;
+  color: #f9f8fa;
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0 0.8125rem;

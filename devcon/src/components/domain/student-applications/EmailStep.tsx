@@ -15,7 +15,7 @@ export default function EmailStep({ onMagicLinkSent }: Props) {
     setLoading(true)
     setError('')
 
-    const { error: authError } = await supabase.auth.signInWithOtp({
+    const { error: authError } = await supabase!.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: `${window.location.origin}/applications` },
     })
