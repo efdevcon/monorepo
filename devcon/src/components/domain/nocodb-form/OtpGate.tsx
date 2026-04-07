@@ -50,7 +50,7 @@ export function OtpGate({ children }: OtpGateProps) {
     setError('')
     setLoading(true)
     try {
-      const { error: err } = await supabase.auth.signInWithOtp({
+      const { error: err } = await supabase!.auth.signInWithOtp({
         email,
         options: { emailRedirectTo: window.location.href },
       })
@@ -109,7 +109,7 @@ export function OtpGate({ children }: OtpGateProps) {
   }
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
+    await supabase!.auth.signOut()
     setVerifiedEmail('')
     setEmail('')
     setStep('email')
