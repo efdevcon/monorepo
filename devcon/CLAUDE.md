@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Development Standards
+
+This is a TypeScript-first codebase. Ensure all new code has proper types — no implicit 'any'. Run type-checks (`tsc --noEmit` or equivalent) before considering a task complete.
+
 ## Commands
 
 ```bash
@@ -75,6 +79,14 @@ Locales: `default`, `en`, `es`. Middleware handles i18n routing.
 - API error responses follow `{ success: false, error: string, details?: string }`
 - Wallet addresses must use EIP-55 checksum format (`getAddress()` from viem)
 - Payment references are single-use, expire after 1 hour
+
+## Code Changes
+
+Before applying per-file workarounds or hardcoded fixes, check if there's a root/shared function that should be fixed instead. Prefer fixing issues at the source.
+
+## UI/Design Workflow
+
+When implementing UI changes, always check for Figma MCP server availability first. If unavailable, ask the user for specific design values (colors, spacing, sizes) rather than guessing or stalling.
 
 ## Downloading Image Assets from Figma
 
