@@ -1,18 +1,32 @@
 import { GetData } from '@/clients/filesystem'
-import { GetLastcheduleUpdate, GetRooms, GetSession, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
 import { CreatePresentationFromTemplate, RunPermissions } from '@/clients/slides'
+import { getPretalxConfig, PretalxInstanceConfig } from '@/utils/config'
 
 import fs from 'fs'
+
+const eventId = process.argv[2] || 'devcon-7'
+const config = getPretalxConfig(eventId)
+
+console.log(`Syncing Pretalx for event: ${eventId} (${config.PRETALX_EVENT_NAME} @ ${config.PRETALX_BASE_URI})`)
 
 async function main() {
   console.log('Syncing Pretalx...')
 
-  await notifyClients()
+  // Devcon-7 specific integrations
+  if (eventId === 'devcon-7') {
+    await notifyClients()
+  }
+
   await syncEventData()
   await syncRooms()
   await syncSessions()
-  await createPresentations()
-  createGlossary()
+
+  // Devcon-7 specific: Google Slides + glossary
+  if (eventId === 'devcon-7') {
+    await createPresentations()
+    createGlossary()
+  }
 }
 
 async function notifyClients() {
@@ -42,7 +56,7 @@ async function notifyClients() {
 
 function createGlossary() {
   const speakers = GetData('speakers')
-  const sessions = GetData('sessions/devcon-7')
+  const sessions = GetData(`sessions/${eventId}`)
 
   let dictionary: string[] = []
   for (const session of sessions) {
@@ -52,8 +66,6 @@ function createGlossary() {
         dictionary.push(...speaker.name.split(' '))
       }
     }
-
-    // dictionary.push(...session.title.split(' '))
   }
 
   dictionary = [...new Set(dictionary)]
@@ -61,32 +73,39 @@ function createGlossary() {
 }
 
 async function syncEventData() {
-  const event = fs.readFileSync(`./data/events/devcon-7.json`, 'utf8')
+  const eventPath = `./data/events/${eventId}.json`
+  if (!fs.existsSync(eventPath)) {
+    console.log(`Creating event file: ${eventPath}`)
+    fs.writeFileSync(eventPath, JSON.stringify({ version: Date.now().toString() }, null, 2))
+    return
+  }
+
+  const event = fs.readFileSync(eventPath, 'utf8')
   const eventData = JSON.parse(event)
-  fs.writeFileSync(`./data/events/devcon-7.json`, JSON.stringify({ ...eventData, version: Date.now().toString() }, null, 2))
+  fs.writeFileSync(eventPath, JSON.stringify({ ...eventData, version: Date.now().toString() }, null, 2))
 }
 
 async function syncRooms() {
-  if (!fs.existsSync('./data/rooms/devcon-7')) {
-    fs.mkdirSync('./data/rooms/devcon-7')
+  if (!fs.existsSync(`./data/rooms/${eventId}`)) {
+    fs.mkdirSync(`./data/rooms/${eventId}`, { recursive: true })
   }
 
-  const rooms = await GetRooms()
-  const roomsFs = GetData('rooms/devcon-7')
+  const rooms = await GetRooms(config)
+  const roomsFs = GetData(`rooms/${eventId}`)
   console.log('Rooms Pretalx', rooms.length, 'Rooms fs', roomsFs.length)
 
   console.log('Sync Rooms')
   for (const room of roomsFs) {
     if (!rooms.some((r: any) => r.id === room.id)) {
       console.log('- delete room', room.id)
-      fs.unlinkSync(`./data/rooms/devcon-7/${room.id}.json`)
+      fs.unlinkSync(`./data/rooms/${eventId}/${room.id}.json`)
     }
   }
 
   for (const room of rooms) {
     const roomFs = roomsFs.find((r: any) => r.id === room.id)
     fs.writeFileSync(
-      `./data/rooms/devcon-7/${room.id}.json`,
+      `./data/rooms/${eventId}/${room.id}.json`,
       JSON.stringify(
         {
           ...roomFs,
@@ -99,34 +118,36 @@ async function syncRooms() {
   }
 
   // Update event data
-  const event = GetData('events').find((e: any) => e.id === 'devcon-7')
-  delete event.id
-  const eventVersion = await GetLastcheduleUpdate()
-  fs.writeFileSync(
-    `./data/events/devcon-7.json`,
-    JSON.stringify({ ...event, rooms: rooms.map((r: any) => r.id), version: eventVersion.toString() }, null, 2)
-  )
+  const event = GetData('events').find((e: any) => e.id === eventId)
+  if (event) {
+    delete event.id
+    const eventVersion = await GetLastcheduleUpdate(config)
+    fs.writeFileSync(
+      `./data/events/${eventId}.json`,
+      JSON.stringify({ ...event, rooms: rooms.map((r: any) => r.id), version: eventVersion.toString() }, null, 2)
+    )
+  }
 
   console.log('Synced Pretalx Rooms')
   console.log('')
 }
 
 async function syncSessions() {
-  const speakers = (await GetSpeakers()).filter((s: any) => s.id && s.name)
+  const speakers = (await GetSpeakers({}, config)).filter((s: any) => s.id && s.name)
   const acceptedSpeakers: any[] = []
 
-  if (!fs.existsSync(`./data/sessions/devcon-7`)) {
-    fs.mkdirSync(`./data/sessions/devcon-7`)
+  if (!fs.existsSync(`./data/sessions/${eventId}`)) {
+    fs.mkdirSync(`./data/sessions/${eventId}`, { recursive: true })
   }
-  const sessions = await GetSessions()
-  const sessionsFs = GetData('sessions/devcon-7')
+  const sessions = await GetSessions({}, config)
+  const sessionsFs = GetData(`sessions/${eventId}`)
   console.log('Sessions Pretalx', sessions.length, 'Sessions fs', sessionsFs.length)
 
   console.log('Sync Sessions')
   for (const session of sessionsFs) {
     if (!sessions.some((s: any) => s.id === session.id)) {
       console.log('- delete session', session.id)
-      fs.unlinkSync(`./data/sessions/devcon-7/${session.id}.json`)
+      fs.unlinkSync(`./data/sessions/${eventId}/${session.id}.json`)
     }
   }
 
@@ -137,7 +158,7 @@ async function syncSessions() {
     }
 
     fs.writeFileSync(
-      `./data/sessions/devcon-7/${session.id}.json`,
+      `./data/sessions/${eventId}/${session.id}.json`,
       JSON.stringify(
         {
           ...fsSession,
@@ -160,8 +181,8 @@ async function syncSessions() {
 }
 
 async function runPermissions() {
-  const sessionsFs = GetData('sessions/devcon-7')
-  const sessions = await GetSessions({ inclContacts: true })
+  const sessionsFs = GetData(`sessions/${eventId}`)
+  const sessions = await GetSessions({ inclContacts: true }, config)
   console.log('# of Submissions', sessions.length)
 
   for (const sessionFs of sessionsFs) {
@@ -179,8 +200,8 @@ async function runPermissions() {
 }
 
 async function createPresentations() {
-  const sessionsFs = GetData('sessions/devcon-7')
-  const sessions = await GetSessions({ inclContacts: true })
+  const sessionsFs = GetData(`sessions/${eventId}`)
+  const sessions = await GetSessions({ inclContacts: true }, config)
   console.log('# of Submissions', sessions.length)
 
   for (const sessionFs of sessionsFs) {
@@ -193,7 +214,7 @@ async function createPresentations() {
         const id = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
         if (id) {
           fs.writeFileSync(
-            `./data/sessions/devcon-7/${sessionFs.id}.json`,
+            `./data/sessions/${eventId}/${sessionFs.id}.json`,
             JSON.stringify({ ...sessionFs, resources_presentation: `https://docs.google.com/presentation/d/${id}` }, null, 2)
           )
         }

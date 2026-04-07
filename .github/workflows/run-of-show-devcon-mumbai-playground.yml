@@ -1,0 +1,28 @@
+name: Run of Show (Devcon Mumbai Playground)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: run-of-show-devcon-mumbai-playground
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    defaults:
+      run:
+        working-directory: ./devcon-api
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - run: pnpm run-of-show:mumbai
+        env:
+          PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
+          ROS_GOOGLE_CLIENT_EMAIL: ${{ secrets.ROS_GOOGLE_CLIENT_EMAIL }}
+          ROS_GOOGLE_PRIVATE_KEY: ${{ secrets.ROS_GOOGLE_PRIVATE_KEY }}
+          ROS_SPREADSHEET_ID: ${{ secrets.ROS_SPREADSHEET_ID }}

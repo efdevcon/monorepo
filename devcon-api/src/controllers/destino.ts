@@ -13,6 +13,7 @@ const generateDestinoEvents = async () => {
 }
 
 destinoRouter.get('/destino', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const eventsList = await destinoApi.getAllDestinoEvents()
 
   // filter out events that don't have a date
@@ -22,6 +23,7 @@ destinoRouter.get('/destino', async (req: Request, res: Response) => {
 })
 
 destinoRouter.get('/destino/:event', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const { event } = req.params
 
   const eventData = await destinoApi.getDestinoEvent(event)

@@ -11,6 +11,7 @@ const rateLimiter = new RateLimiterMemory({
 })
 
 aiRouter.get('/devabot/threads/:threadID', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const { threadID } = req.params
 
   try {
@@ -24,6 +25,7 @@ aiRouter.get('/devabot/threads/:threadID', async (req: Request, res: Response) =
 })
 
 aiRouter.post('/devabot', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   try {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
     await rateLimiter.consume(ip as string)

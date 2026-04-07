@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
 import { supabase } from 'services/supabase-browser'
 import EmailStep from './EmailStep'
 import VoucherStep from './VoucherStep'
@@ -195,7 +196,7 @@ export default function ApplicationPage({ onAdminModeChange }: ApplicationPagePr
                 other ticket options, including community discounts and general admission.
               </p>
               <div style={{ marginTop: '1.5rem', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <a
+                <Link
                   href="/tickets"
                   style={{
                     display: 'inline-block',
@@ -209,7 +210,7 @@ export default function ApplicationPage({ onAdminModeChange }: ApplicationPagePr
                   }}
                 >
                   View ticket options
-                </a>
+                </Link>
                 <button
                   onClick={handleLogout}
                   style={{
