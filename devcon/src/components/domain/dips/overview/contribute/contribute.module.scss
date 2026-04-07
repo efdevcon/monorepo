@@ -1,12 +1,79 @@
 @use 'assets/css/partials/index' as *;
 
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 32px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: #f9f8fa !important;
+  background: #7235ed;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+
+  &:hover {
+    opacity: 0.9;
+    color: #f9f8fa !important;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 32px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: #1a0d33 !important;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #1a0d33 !important;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.left-section {
+  p a:not([class]) {
+    color: #7235ed !important;
+    font-weight: 700;
+
+    &:hover {
+      color: #5a20d6 !important;
+    }
+  }
+}
+
 .scrolling-text {
-  --custom-fade-color: #afdfc8 !important;
-  --custom-text-color: #00b3a4;
-  color: #00b3a4;
+  --custom-fade-color: #FFC299 !important;
+  --custom-text-color: #221144;
+  color: #221144;
 
   &:before {
-    background: #afdfc8 !important;
+    background: #FFC299 !important;
   }
 }
 

@@ -12,6 +12,7 @@ whitelistRouter.post('/whitelist/send-form-link', sendFormLink)
 whitelistRouter.get('/whitelist/verify', verifyToken)
 
 async function sendFormLink(req: Request, res: Response) {
+  // #swagger.ignore = true
   const { email } = req.body
 
   if (!email || typeof email !== 'string') {
@@ -67,6 +68,7 @@ async function sendFormLink(req: Request, res: Response) {
 }
 
 async function verifyToken(req: Request, res: Response) {
+  // #swagger.ignore = true
   const { token } = req.query
 
   if (!token || typeof token !== 'string') {

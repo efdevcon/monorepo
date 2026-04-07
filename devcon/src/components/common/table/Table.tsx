@@ -15,6 +15,7 @@ type RowProps = {
   columns: TableColumn[]
   itemKey: string
   items: any[]
+  onRowClick?: (item: any) => void
 }
 export type TableColumn = {
   title?: string
@@ -81,7 +82,12 @@ export const TableRows = (props: RowProps) => {
     <>
       {props.items.map(item => {
         return (
-          <div key={item[props.itemKey]} className={css['row']}>
+          <div
+            key={item[props.itemKey]}
+            className={css['row']}
+            onClick={() => props.onRowClick?.(item)}
+            style={props.onRowClick ? { cursor: 'pointer' } : undefined}
+          >
             {props.columns.map(column => {
               const value = item[column.key]
 
@@ -111,7 +117,7 @@ export const Table = (props: TableProps) => {
   return (
     <div className={css['container']}>
       <TableHeader columns={props.columns} setSortBy={setSortBy} sortBy={sortBy} sortDirection={sortDirection} />
-      <TableRows itemKey={props.itemKey} columns={props.columns} items={sortedData} />
+      <TableRows itemKey={props.itemKey} columns={props.columns} items={sortedData} onRowClick={props.onRowClick} />
     </div>
   )
 }

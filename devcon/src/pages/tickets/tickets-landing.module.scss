@@ -66,11 +66,14 @@
   font-family: 'Chloe' !important;
   font-weight: 400 !important;
   text-transform: none !important;
-  font-size: clamp(4rem, 12vw, 11rem) !important;
+  font-size: clamp(3rem, 9vw, 130px) !important;
   letter-spacing: -2px !important;
   color: #f9f8fa !important;
   transform: translateY(-16px);
-  // text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45), 0 0 60px rgba(0, 0, 0, 0.25);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+  }
 }
 
 /* ─── Page Content Wrapper ────────────────────────────────── */

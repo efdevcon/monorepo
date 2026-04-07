@@ -6,7 +6,7 @@ import '@/services/at-slurper/main'
 export const atSlurperRouter = Router()
 
 atSlurperRouter.get('/at-slurper', async (req: Request, res: Response) => {
-  //   const { threadID } = req.params
+  // #swagger.ignore = true
 
   try {
     const messages = await experimentation.getATData()
@@ -19,30 +19,35 @@ atSlurperRouter.get('/at-slurper', async (req: Request, res: Response) => {
 })
 
 atSlurperRouter.get('/at-slurper/server-lexicons', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const serverLexicons = await experimentation.getServerLexicons()
 
   res.json(serverLexicons)
 })
 
 atSlurperRouter.get('/at-slurper/test-pds-oauth-on-behalf-of-user', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const result = await experimentation.testPdsOauthOnBehalfOfUser()
 
   res.json(result)
 })
 
 atSlurperRouter.get('/at-slurper/add-schema', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const result = await experimentation.addSchema()
 
   res.json(result)
 })
 
 atSlurperRouter.get('/at-slurper/notion-events', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const notionEvents = await fetchFromNotion()
 
   res.json(notionEvents)
 })
 
 atSlurperRouter.get('/at-slurper/notion-events-upsert', async (req: Request, res: Response) => {
+  // #swagger.ignore = true
   const event = {
     title: 'Test Event',
     description: 'Test Description',

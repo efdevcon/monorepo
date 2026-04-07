@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 import css from './foldout.module.scss'
-import { Newsletter } from 'components/common/newsletter'
-import { SocialMedia } from 'components/common/layouts/footer'
 import useGetElementHeight from 'hooks/useGetElementHeight'
-import { Copyright } from 'components/common/layouts/Copyright'
 import { createPortal } from 'react-dom'
+import { Link } from 'components/common/link'
+import useNavigationData from '../../useNavigationData'
+import { ArrowUpRight, Twitter, Instagram } from 'lucide-react'
+import FarcasterIcon from 'assets/icons/farcaster.svg'
 
 const Foldout = (props: any) => {
   const headerHeight = useGetElementHeight('header')
   const stripHeight = useGetElementHeight('strip')
   const fullHeaderHeight = headerHeight + stripHeight
   const [mounted, setMounted] = React.useState(false)
+  const navigationData = useNavigationData()
 
   useEffect(() => {
     setMounted(true)
@@ -18,11 +20,13 @@ const Foldout = (props: any) => {
 
   if (!mounted) return <></>
 
-  let foldoutClassName = `${css['foldout']} section`
+  let foldoutClassName = css['foldout']
 
   if (props.foldoutOpen) foldoutClassName += ` ${css['open']}`
 
-  // Moving the foldout content to the root so we have better control over z-index in relation to the header
+  // Find CTA items (highlighted items without children, like "View Tickets")
+  const ctaItem = navigationData.site.find((i: any) => i.highlight && (!i.links || i.links.length === 0))
+
   return (
     <>
       {createPortal(
@@ -31,17 +35,52 @@ const Foldout = (props: any) => {
             <div className={css['top']}>{props.children}</div>
 
             <div className={css['bottom']}>
-              <div className={css['social-media']}>
-                <p>Social</p>
-                <SocialMedia url="devcon.org" className={css['social-media-extension']} onShare={() => {}} />
+              {/* CTA Group */}
+              <div className={css['cta-group']}>
+                {ctaItem && (
+                  <Link
+                    to={ctaItem.url}
+                    className={css['cta-primary']}
+                    onClick={() => props.setFoldoutOpen(false)}
+                  >
+                    {ctaItem.title}
+                  </Link>
+                )}
+
+                <div className={css['cta-row']}>
+                  <Link
+                    to="https://devcon.org"
+                    className={css['cta-secondary']}
+                    onClick={() => props.setFoldoutOpen(false)}
+                  >
+                    Subscribe
+                    <ArrowUpRight size={16} />
+                  </Link>
+
+                  <div className={css['social-icons']}>
+                    {[
+                      { icon: <Twitter size={16} />, url: 'https://x.com/efdevcon' },
+                      { icon: <Instagram size={16} />, url: 'https://instagram.com/efdevcon' },
+                      { icon: <FarcasterIcon style={{ width: 16, height: 16 }} />, url: 'https://warpcast.com/devcon' },
+                    ].map(social => (
+                      <a
+                        key={social.url}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={css['social-icon-btn']}
+                      >
+                        {social.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div className={css['newsletter']}>
-                <Newsletter />
-              </div>
-
-              <div className={css['copyright']}>
-                <Copyright />
+              {/* EF Sign off */}
+              <div className={css['ef-signoff']}>
+                <p className={css['signoff-crafted']}>Crafted with passion ♥ ✨ in the Infinite Garden</p>
+                <p className={css['signoff-copyright']}>© 2026 — Ethereum Foundation. All Rights Reserved.</p>
               </div>
             </div>
           </div>
