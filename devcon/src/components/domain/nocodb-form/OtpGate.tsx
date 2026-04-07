@@ -14,12 +14,9 @@ export function OtpGate({ children }: OtpGateProps) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  if (!supabase) {
-    return <p className="text-red-500">OTP verification is not configured.</p>
-  }
-
   // Listen for auth state change (fires when user clicks magic link and is redirected back)
   useEffect(() => {
+    if (!supabase) return
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user?.email) {
         setVerifiedEmail(session.user.email)
@@ -35,6 +32,7 @@ export function OtpGate({ children }: OtpGateProps) {
 
   // Check for existing session on mount (user may already be authenticated)
   useEffect(() => {
+    if (!supabase) return
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user?.email) {
         setVerifiedEmail(session.user.email)
@@ -42,6 +40,10 @@ export function OtpGate({ children }: OtpGateProps) {
       }
     })
   }, [])
+
+  if (!supabase) {
+    return <p className="text-red-500">OTP verification is not configured.</p>
+  }
 
   const handleSendLink = async (e: React.FormEvent) => {
     e.preventDefault()
