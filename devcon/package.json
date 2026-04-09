@@ -29,7 +29,8 @@
     "x402:test-v2-agent": "ts-node src/scripts/pretix/test-x402-v2-agent.ts",
     "x402:simulate": "ts-node src/scripts/pretix/simulate-transfers.ts",
     "early-access:generate-codes": "ts-node src/scripts/generate-early-access-codes.ts",
-    "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts"
+    "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts",
+    "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",

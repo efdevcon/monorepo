@@ -201,6 +201,7 @@ export default function OrderConfirmationPage() {
 
   const isPaid = order.status === 'p'
   const isPending = order.status === 'n'
+  const isExpired = order.status === 'e'
   const pi = order.payment_info
   const isCrypto = !!pi?.tx_hash
 
@@ -301,7 +302,7 @@ export default function OrderConfirmationPage() {
           <div className={css['ticket-card']}>
             <div
               className={`${css['ticket-banner']} ${
-                isPaid ? css['ticket-banner--confirmed'] : css['ticket-banner--pending']
+                isPaid ? css['ticket-banner--confirmed'] : isExpired ? css['ticket-banner--expired'] : css['ticket-banner--pending']
               }`}
             >
               <span className={css['ticket-banner-text']}>
@@ -457,7 +458,7 @@ export default function OrderConfirmationPage() {
 
               <div className={css['summary-row']}>
                 <span className={css['summary-label']}>Status</span>
-                <span className={isPaid ? css['status-badge'] : css['status-badge-pending']}>
+                <span className={isPaid ? css['status-badge'] : isExpired ? css['status-badge-expired'] : css['status-badge-pending']}>
                   {statusLabels[order.status] || order.status}
                 </span>
               </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { CircleFadingArrowUp, Newspaper, CalendarPlus2, HeartHandshake, ArrowUpRight } from 'lucide-react'
 import css from './landing-page.module.scss'
 
@@ -45,9 +46,9 @@ const cards: ContributeCard[] = [
     description:
       'Host a meetup, workshop, or side event as part of our Ecosystem Program and make it a part of the broader Devcon India story.',
     cta: (
-      <a href="/ecosystem-program" className={css['contribute-cta-link']}>
+      <Link href="/ecosystem-program" className={css['contribute-cta-link']}>
         Learn more <ArrowUpRight size={16} />
-      </a>
+      </Link>
     ),
   },
   {
