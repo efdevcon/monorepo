@@ -154,7 +154,7 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['cta-group']}>
-                <a href="https://paragraph.com/@efevents/subscribe" className={css['btn-secondary']}>
+                <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
                   Subscribe for updates
                 </a>
                 <div className={css['social-icons']}>
@@ -252,7 +252,7 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['social-row']}>
-                <a href="https://paragraph.com/@efevents/subscribe" className={css['btn-secondary']}>
+                <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
                   Subscribe for updates
                 </a>
                 <div className={css['social-icons']}>

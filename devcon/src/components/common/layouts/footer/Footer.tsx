@@ -162,7 +162,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
 
               <div className={`${css['newsletter']} mt-8`}>
                 <p className="semi-bold">Subscribe for updates</p>
-                <Link to="https://paragraph.com/@efevents/subscribe" className={css['subscribe-btn']}>
+                <Link to="https://paragraph.com/@efevents" className={css['subscribe-btn']}>
                   Subscribe
                   <ArrowUpRight size={16} strokeWidth={2} />
                 </Link>
