@@ -2,13 +2,13 @@ import React from 'react'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
-import { Tags } from 'components/common/tags'
 import css from './past-events.module.scss'
+import heroCss from './tickets/tickets-landing.module.scss'
 import { Link } from 'components/common/link'
 import Image from 'next/image'
 import EventLocations from 'assets/images/past-events.webp'
-import { Button } from 'lib/components/button'
-import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
+import { ArrowUpRight } from 'lucide-react'
+import HeroBackground from './past-events-hero.png'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesPast_Events, PagesQuery } from '../../tina/__generated__/types'
@@ -22,11 +22,13 @@ export default function PastEvents(props: any) {
   const events = pages.events || []
 
   return (
-    <Page theme={themes['about']}>
+    <Page theme={themes['tickets']} withHero darkFooter>
       <PageHero
+        className={`${heroCss['hero-no-side-gradient']} ${css['hero-overlay']} !mb-0`}
+        titleClassName={heroCss['hero-title']}
         heroBackground={HeroBackground}
-        path={[{ text: <span className="bold">About</span> }, { text: 'Past Events' }]}
-        title="Past Events"
+        path={[]}
+        title="Past events"
         navigation={events.map((event: any) => {
           return {
             title: event.title,
@@ -35,10 +37,14 @@ export default function PastEvents(props: any) {
         })}
       />
 
-      <div className="section">
+      <div className={`section ${css['content-area']}`} style={{ paddingTop: '2rem' }}>
         <div className={`two-columns ${css['about']} clear-bottom border-bottom margin-bottom relative`}>
           <div className={`left ${css['left']}`}>
             <RichText content={pages.section1?.about} />
+            <Link to="https://archive.devcon.org" className={css['btn-archive']}>
+              Devcon Archive
+              <ArrowUpRight size={16} strokeWidth={2} />
+            </Link>
           </div>
           <div className={`right ${css['right']}`}>
             <h2 className="spaced">Past Locations</h2>
@@ -49,7 +55,7 @@ export default function PastEvents(props: any) {
             />
           </div>
 
-          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`}>
+          <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`} style={{ opacity: 0.5 }}>
             <InfiniteScroller nDuplications={2} speed="120s">
               <p className="bold">PAST DEVCONS&nbsp;</p>
             </InfiniteScroller>
@@ -86,18 +92,31 @@ export default function PastEvents(props: any) {
                   <h2 className="my-4">{event.title}</h2>
                   <RichText content={event.description} />
                   <div className="flex gap-3 mt-5">
-                    <Link key={event.button_link} to={event.button_link}>
-                      <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
-                        {event.button}
-                      </Button>
-                    </Link>
-                    {event.button2 && event.button2_link && (
-                      <Link key={event.button2_link} to={event.button2_link}>
-                        <Button color="green-1" fat fill onClick={(e: React.SyntheticEvent) => e.stopPropagation()}>
-                          {event.button2}
-                        </Button>
-                      </Link>
-                    )}
+                    {(() => {
+                      const buttons = [
+                        { text: event.button, link: event.button_link },
+                        event.button2 && event.button2_link ? { text: event.button2, link: event.button2_link } : null,
+                      ].filter(Boolean) as { text: string; link: string }[]
+
+                      // Put "Watch" first if it exists
+                      buttons.sort((a, b) => {
+                        const aIsWatch = a.text.toLowerCase() === 'watch'
+                        const bIsWatch = b.text.toLowerCase() === 'watch'
+                        if (aIsWatch && !bIsWatch) return -1
+                        if (!aIsWatch && bIsWatch) return 1
+                        return 0
+                      })
+
+                      return buttons.map(btn => {
+                        const isWatch = btn.text.toLowerCase() === 'watch'
+                        return (
+                          <Link key={btn.link} to={btn.link} className={isWatch ? css['btn-watch'] : css['btn-learn-more']}>
+                            {btn.text}
+                            <ArrowUpRight size={16} strokeWidth={2} />
+                          </Link>
+                        )
+                      })
+                    })()}
                   </div>
                 </div>
               </div>

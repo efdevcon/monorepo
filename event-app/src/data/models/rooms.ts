@@ -5,7 +5,7 @@ export const RoomSchema = z.object({
   name: z.string(),
   description: z.string(),
   info: z.string(),
-  capacity: z.number().optional(),
+  capacity: z.number().nullable().optional(),
 });
 
 export type Room = z.infer<typeof RoomSchema>;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import css from './proposals.module.scss'
 import { Label } from 'components/common/label'
 import { Link } from 'components/common/link'
@@ -8,7 +8,6 @@ import { SortVariation, presetSortingMethods } from 'components/common/sort'
 import { DIP } from 'types/DIP'
 import GithubIcon from 'assets/icons/github.svg'
 import TooltipIcon from 'assets/icons/tooltip.svg'
-import ArrowRight from 'assets/icons/arrow_right.svg'
 import { useFilter } from 'components/common/filter'
 import { CopyToClipboard } from 'components/common/share/CopyToClipboard'
 import { usePageContext } from 'context/page-context'
@@ -39,16 +38,15 @@ type ProposalsProps = {
 }
 
 export const Proposals = (props: ProposalsProps) => {
-  // Pushing an extra column into the table to make room for a link back to the page
+  // Filter accepted DIPs and sort by number descending (most recent first)
   const dipsWithLink = React.useMemo(() => {
     return props.dips
-      .map(dip => {
-        return {
-          ...dip,
-          link: dip.github,
-        }
-      })
+      .map(dip => ({
+        ...dip,
+        link: dip.github,
+      }))
       .filter(dip => dip.status && dip.status.toLowerCase() === 'accepted')
+      .sort((a, b) => b.number - a.number)
   }, [props.dips])
 
   const [filteredDips, filterState] = useFilter({
@@ -119,7 +117,7 @@ export const Proposals = (props: ProposalsProps) => {
     {
       title: 'Edition',
       key: 'Edition',
-      className: '!basis-[115px] !grow-0 !hidden lg:!flex', // css['name-column'],
+      className: '!basis-[120px] !grow-0 !hidden lg:!flex', // css['name-column'],
       // sort: SortVariation.basic,
       render: (item: DIP) => {
         if (item.instances) {
@@ -127,53 +125,6 @@ export const Proposals = (props: ProposalsProps) => {
         }
 
         return null
-      },
-    },
-    {
-      title: 'Status',
-      key: 'status',
-      className: css['status-column'],
-      // sort: (item1: DIP, item2: DIP) => {
-      //   const a = item1.status
-      //   const b = item2.status
-
-      //   // Active first
-      //   if (a === 'Active') return 1
-      //   if (b === 'Active') return 1
-
-      //   // Secondary sort by number when a === b
-      //   if (a === b) {
-      //     if (item1.number > item2.number) return 1
-      //     if (item1.number < item2.number) return -1
-      //   }
-
-      //   // Sort by status
-      //   return a.localeCompare(b)
-      // },
-      render: (item: DIP) => {
-        let labelType = 'neutral'
-
-        switch (item.status.toLowerCase()) {
-          case 'withdrawn':
-          case 'not implemented':
-            labelType = 'error'
-
-            break
-          case 'active':
-          case 'accepted':
-            labelType = 'success'
-
-            break
-        }
-
-        return (
-          <Label type={labelType} className={`!rounded-lg shrink-0`}>
-            <div className={css['label-content']}>
-              {/* <span>&#8226;</span> */}
-              <p className="shrink-0 text-xs">{item.status.toUpperCase()}</p>
-            </div>
-          </Label>
-        )
       },
     },
     {
@@ -219,21 +170,12 @@ export const Proposals = (props: ProposalsProps) => {
         return <Links dip={item} />
       },
     },
-    {
-      title: 'Expand',
-      key: 'link',
-      className: css['expand-column'],
-      render: (item: DIP) => {
-        return (
-          <Link to={item.github}>
-            {' '}
-            {/*"{`/${context?.current?.lang || 'en'}/dips/dip-${item.number}`}>*/}
-            <ArrowRight />
-          </Link>
-        )
-      },
-    },
   ]
+
+  const INITIAL_COUNT = 10
+  const [showAll, setShowAll] = useState(false)
+  const visibleDips = showAll ? filteredDips : filteredDips.slice(0, INITIAL_COUNT)
+  const hasMore = filteredDips.length > INITIAL_COUNT && !showAll
 
   return (
     <section id="proposals" className={css['container']}>
@@ -243,7 +185,39 @@ export const Proposals = (props: ProposalsProps) => {
         {/* <Filter {...filterState} /> */}
       </div>
 
-      <Table itemKey="number" items={filteredDips} columns={tableColumns} initialSort={0} />
+      <Table
+        itemKey="number"
+        items={visibleDips}
+        columns={tableColumns}
+        initialSort={0}
+        onRowClick={(item: DIP) => {
+          if (item.github) window.open(item.github, '_blank')
+        }}
+      />
+
+      {hasMore && (
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '1.5rem 0' }}>
+          <button
+            onClick={() => setShowAll(true)}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 4,
+              height: 48,
+              padding: '0 32px',
+              fontSize: 16,
+              fontWeight: 700,
+              color: '#1a0d33',
+              background: 'rgba(255,255,255,0.8)',
+              border: '1px solid rgba(34,17,68,0.1)',
+              borderRadius: 9999,
+              cursor: 'pointer',
+            }}
+          >
+            Load all proposals <span style={{ fontWeight: 400 }}>({filteredDips.length})</span>
+          </button>
+        </div>
+      )}
       <div className="clear-bottom"></div>
     </section>
   )

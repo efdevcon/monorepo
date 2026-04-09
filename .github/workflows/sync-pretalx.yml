@@ -13,13 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: yarn install
-        env:
-          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
-      - run: yarn sync:pretalx
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - run: pnpm sync:pretalx
         env:
           PRETALX_API_KEY: ${{ secrets.PRETALX_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -7,6 +7,14 @@
   scroll-snap-margin-top: 120px;
   @include fonts-sm;
 
+  .summary-column a {
+    color: #7235ed !important;
+
+    &:hover {
+      color: #5a20d6 !important;
+    }
+  }
+
   .top-container {
     @include gaps-responsive-gap($attribute: padding, $top: $gaps-gap-6, $bottom: $gaps-gap-6, $min-gap: $gaps-gap-4);
     border-top: 1px solid $colors-standard-border-color;

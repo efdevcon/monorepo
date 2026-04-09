@@ -44,7 +44,11 @@ const cards: ContributeCard[] = [
     title: 'Host a community event',
     description:
       'Host a meetup, workshop, or side event as part of our Ecosystem Program and make it a part of the broader Devcon India story.',
-    cta: <span className={css['contribute-cta-muted']}>Coming soon!</span>,
+    cta: (
+      <a href="/ecosystem-program" className={css['contribute-cta-link']}>
+        Learn more <ArrowUpRight size={16} />
+      </a>
+    ),
   },
   {
     icon: HeartHandshake,
