@@ -65,18 +65,18 @@ export default function ApplicationPage({ onAdminModeChange }: ApplicationPagePr
 
   // Pick up existing session (magic link redirect or page refresh)
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase!.auth.onAuthStateChange(async (event, session) => {
       if (session?.user?.email && (step === 'email' || step === 'magic-link-sent')) {
         const userEmail = session.user.email
         let token = session.access_token
 
         // On page refresh (not fresh sign-in), validate the session is still alive
         if (event === 'INITIAL_SESSION') {
-          const { data: refreshed, error: refreshError } = await supabase.auth.getSession()
+          const { data: refreshed, error: refreshError } = await supabase!.auth.getSession()
 
           if (refreshError || !refreshed.session?.access_token) {
             // Refresh token is dead — force logout so user isn't stuck in limbo
-            await supabase.auth.signOut()
+            await supabase!.auth.signOut()
             setStep('email')
             setEmail('')
             setAccessToken('')
@@ -113,7 +113,7 @@ export default function ApplicationPage({ onAdminModeChange }: ApplicationPagePr
   }
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
+    await supabase!.auth.signOut()
     setStep('email')
     setEmail('')
     setAccessToken('')

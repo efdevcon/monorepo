@@ -21,7 +21,7 @@ function FormInner({
   verifiedEmail,
 }: {
   schema: SchemaResponse
-  methods: ReturnType<typeof useForm>
+  methods: ReturnType<typeof useForm<Record<string, any>>>
   onSubmit: (data: Record<string, any>) => Promise<void>
   submitting: boolean
   error: string
@@ -69,7 +69,7 @@ export default function NocodbFormPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const methods = useForm()
+  const methods = useForm<Record<string, any>>()
 
   useEffect(() => {
     if (!slug) return

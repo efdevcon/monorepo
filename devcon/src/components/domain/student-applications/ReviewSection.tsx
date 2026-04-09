@@ -71,7 +71,7 @@ function compareSubmissions(a: Submission, b: Submission, key: SortKey, dir: Sor
 }
 
 async function getFreshToken(fallback: string): Promise<string> {
-  const { data } = await supabase.auth.getSession()
+  const { data } = await supabase!.auth.getSession()
   return data.session?.access_token ?? fallback
 }
 
