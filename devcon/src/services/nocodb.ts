@@ -89,3 +89,20 @@ export async function createRow(slug: string, data: Record<string, any>) {
   const api = getApi()
   return api.dbTableRow.create('noco', config.baseId, config.tableId, data)
 }
+
+export async function findRowByEmail(slug: string, emailColumn: string, email: string): Promise<any | null> {
+  const config = getFormConfig(slug)
+  const api = getApi()
+  const result = await api.dbTableRow.list('noco', config.baseId, config.tableId, {
+    where: `(${emailColumn},eq,${email})`,
+    limit: 1,
+  })
+  const rows = (result as any)?.list ?? []
+  return rows.length > 0 ? rows[0] : null
+}
+
+export async function updateRow(slug: string, rowId: number, data: Record<string, any>) {
+  const config = getFormConfig(slug)
+  const api = getApi()
+  return api.dbTableRow.update('noco', config.baseId, config.tableId, rowId, data)
+}

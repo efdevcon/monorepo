@@ -51,10 +51,6 @@ export const SERVER_CONFIG = {
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
 
   ACCREDITATION_GUIDE_URL: process.env.ACCREDITATION_GUIDE_URL || '',
-
-  WHITELIST_JWT_SECRET: process.env.WHITELIST_JWT_SECRET || '',
-  WHITELIST_FORM_URL: process.env.WHITELIST_FORM_URL || '',
-  WHITELIST_FORM_TOKEN_FIELD: process.env.WHITELIST_FORM_TOKEN_FIELD || 'entry.123456789',
 }
 
 export interface PretalxInstanceConfig {

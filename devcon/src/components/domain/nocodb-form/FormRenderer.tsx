@@ -14,6 +14,12 @@ export interface FormColumn {
   options?: string[]
 }
 
+const CHAR_LIMITS: Record<string, number> = {
+  SingleLineText: 255,
+  Email: 255,
+  LongText: 1000,
+}
+
 interface FormRendererProps {
   columns: FormColumn[]
   readOnlyFields?: string[]
@@ -29,6 +35,8 @@ export function FormRenderer({ columns, readOnlyFields = [] }: FormRendererProps
         const error = errors[col.column_name]
 
         if (col.uidt === 'SingleLineText') {
+          const max = CHAR_LIMITS.SingleLineText
+          const val = watch(col.column_name) || ''
           return (
             <div key={col.column_name} className="space-y-1.5">
               <Label htmlFor={col.column_name}>
@@ -38,9 +46,11 @@ export function FormRenderer({ columns, readOnlyFields = [] }: FormRendererProps
               {col.description && <p className="text-sm text-neutral-500">{col.description}</p>}
               <Input
                 id={col.column_name}
+                maxLength={max}
                 disabled={isReadOnly}
                 {...register(col.column_name, {
                   required: col.required ? `${col.title} is required` : false,
+                  maxLength: { value: max, message: `Maximum ${max} characters` },
                 })}
               />
               {error && <p className="text-sm text-red-500">{error.message as string}</p>}
@@ -49,6 +59,7 @@ export function FormRenderer({ columns, readOnlyFields = [] }: FormRendererProps
         }
 
         if (col.uidt === 'Email') {
+          const max = CHAR_LIMITS.Email
           return (
             <div key={col.column_name} className="space-y-1.5">
               <Label htmlFor={col.column_name}>
@@ -59,9 +70,11 @@ export function FormRenderer({ columns, readOnlyFields = [] }: FormRendererProps
               <Input
                 id={col.column_name}
                 type="email"
+                maxLength={max}
                 disabled={isReadOnly}
                 {...register(col.column_name, {
                   required: col.required ? `${col.title} is required` : false,
+                  maxLength: { value: max, message: `Maximum ${max} characters` },
                   pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
                 })}
               />
@@ -71,6 +84,8 @@ export function FormRenderer({ columns, readOnlyFields = [] }: FormRendererProps
         }
 
         if (col.uidt === 'LongText') {
+          const max = CHAR_LIMITS.LongText
+          const val: string = watch(col.column_name) || ''
           return (
             <div key={col.column_name} className="space-y-1.5">
               <Label htmlFor={col.column_name}>
@@ -81,11 +96,16 @@ export function FormRenderer({ columns, readOnlyFields = [] }: FormRendererProps
               <Textarea
                 id={col.column_name}
                 rows={4}
+                maxLength={max}
                 disabled={isReadOnly}
                 {...register(col.column_name, {
                   required: col.required ? `${col.title} is required` : false,
+                  maxLength: { value: max, message: `Maximum ${max} characters` },
                 })}
               />
+              <p className={`text-xs text-right ${val.length >= max ? 'text-red-500' : 'text-neutral-400'}`}>
+                {val.length}/{max}
+              </p>
               {error && <p className="text-sm text-red-500">{error.message as string}</p>}
             </div>
           )
