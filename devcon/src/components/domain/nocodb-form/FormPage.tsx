@@ -5,6 +5,7 @@ import { FormRenderer, type FormColumn } from './FormRenderer'
 import { OtpGate } from './OtpGate'
 import { supabase } from 'services/supabase-browser'
 import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 
@@ -95,13 +96,13 @@ function FormInner({
         <FormRenderer columns={schema.columns} readOnlyFields={readOnlyFields} />
 
         {requireOtp && (
-          <a
+          <Link
             href="/tickets"
             className="flex items-center gap-1.5 mx-auto px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
           >
             Learn more about eligibility
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         )}
 
         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
@@ -202,12 +203,12 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
                 Applications will be reviewed on a rolling basis. Keep an eye on your email for a decision from our approval team.
               </p>
 
-              <a
+              <Link
                 href="/"
                 className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
               >
                 Back to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>

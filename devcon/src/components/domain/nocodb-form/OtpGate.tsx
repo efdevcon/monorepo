@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { supabase } from 'services/supabase-browser'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import Link from 'next/link'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { ArrowRight } from 'lucide-react'
@@ -131,13 +132,13 @@ export function OtpGate({ children, title }: OtpGateProps) {
           </button>
         </form>
 
-        <a
+        <Link
           href="/tickets"
           className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
         >
           Learn more about eligibility
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </Link>
       </div>
     )
   }
