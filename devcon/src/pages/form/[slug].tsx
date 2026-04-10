@@ -6,13 +6,15 @@ import { FormRenderer, type FormColumn } from 'components/domain/nocodb-form/For
 import { OtpGate } from 'components/domain/nocodb-form/OtpGate'
 import { nocodbForms } from 'config/nocodb-forms'
 import { supabase } from 'services/supabase-browser'
+import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 
 interface SchemaResponse {
   title: string
   columns: FormColumn[]
 }
 
-// Inner form component — handles setValue in useEffect (not during render)
 function FormInner({
   schema,
   methods,
@@ -21,6 +23,7 @@ function FormInner({
   error,
   verifiedEmail,
   slug,
+  onSignOut,
 }: {
   schema: SchemaResponse
   methods: ReturnType<typeof useForm<Record<string, any>>>
@@ -29,6 +32,7 @@ function FormInner({
   error: string
   verifiedEmail?: string
   slug: string
+  onSignOut?: () => void
 }) {
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
@@ -45,7 +49,6 @@ function FormInner({
       methods.setValue(emailCol.column_name, verifiedEmail)
     }
 
-    // Fetch existing submission to pre-fill
     setLoadingExisting(true)
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session?.access_token) {
@@ -73,23 +76,51 @@ function FormInner({
   }, [verifiedEmail, schema.columns, methods, slug])
 
   if (loadingExisting) {
-    return <p>Loading your submission...</p>
+    return (
+      <div className="flex flex-col items-center justify-center py-12 gap-4">
+        <Image src={dc8Logo} alt="Loading" width={64} height={28} className="animate-pulse opacity-60" />
+        <p className="text-sm text-[#594d73]">Loading your submission...</p>
+      </div>
+    )
   }
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
         <FormRenderer columns={schema.columns} readOnlyFields={readOnlyFields} />
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-
-        <button
-          type="submit"
-          disabled={submitting}
-          className="px-6 py-2.5 bg-neutral-900 text-white text-sm rounded-lg hover:bg-neutral-800 disabled:opacity-50"
+        <a
+          href="/tickets"
+          className="flex items-center gap-1.5 mx-auto px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
         >
-          {submitting ? (isUpdate ? 'Updating...' : 'Submitting...') : (isUpdate ? 'Update Application' : 'Submit')}
-        </button>
+          Learn more about eligibility
+          <ArrowRight className="w-4 h-4" />
+        </a>
+
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+        <div className="flex items-center justify-between w-full">
+          {onSignOut ? (
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="text-base font-bold text-[#b42124] hover:underline"
+            >
+              Cancel &amp; Sign Out
+            </button>
+          ) : (
+            <div />
+          )}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
+          >
+            {submitting
+              ? (isUpdate ? 'Updating...' : 'Submitting...')
+              : (isUpdate ? 'Update application' : 'Complete application')}
+          </button>
+        </div>
       </form>
     </FormProvider>
   )
@@ -123,28 +154,26 @@ export default function NocodbFormPage() {
       .finally(() => setLoading(false))
   }, [slug])
 
-  // slug is validated by getStaticProps (returns 404 for unknown slugs)
   const config = slug ? nocodbForms[slug] : undefined
 
   if (loading || !slug) {
     return (
-      <Page>
-        <div className="section clear-top clear-bottom">
-          <div className="flex flex-col items-center">
-            <p>Loading...</p>
-          </div>
+      <Page darkHeader darkFooter>
+        <div className="min-h-[80vh] flex flex-col items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] gap-4">
+          <Image src={dc8Logo} alt="Loading" width={64} height={28} className="animate-pulse opacity-60" />
+          <p className="text-sm text-[#594d73]">Loading...</p>
         </div>
       </Page>
     )
   }
 
-  if (error) {
+  if (error && !schema) {
     return (
-      <Page>
-        <div className="section clear-top clear-bottom">
-          <div className="flex flex-col items-center">
-            <h2>Error</h2>
-            <p className="text-red-500">{error}</p>
+      <Page darkHeader darkFooter>
+        <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc]">
+          <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4 text-center">
+            <h2 className="text-2xl font-extrabold text-[#160b2b] mb-4">Error</h2>
+            <p className="text-red-500 text-sm">{error}</p>
           </div>
         </div>
       </Page>
@@ -153,30 +182,31 @@ export default function NocodbFormPage() {
 
   if (submitted) {
     return (
-      <Page>
-        <div className="section clear-top clear-bottom">
-          <div style={{ maxWidth: 640, margin: '0 auto' }}>
-            <h2>Application Submitted</h2>
+      <Page darkHeader darkFooter>
+        <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
+          <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4">
+            <div className="flex flex-col items-center gap-4">
+              <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
-            <div
-              style={{
-                padding: '20px',
-                backgroundColor: '#ecfdf5',
-                border: '1px solid #6ee7b7',
-                borderRadius: '12px',
-                marginTop: '1rem',
-                marginBottom: '1.5rem',
-              }}
-            >
-              <p style={{ margin: 0, fontSize: '18px', fontWeight: 700, color: '#065f46' }}>
-                Thank you for applying!
+              <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
+                Thank you!
+              </h2>
+
+              <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                Your application has been submitted.
               </p>
-            </div>
 
-            <p>
-              Your application has been submitted for review. You can return to this page at any time to
-              update your application — just sign in with the same email.
-            </p>
+              <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                Applications will be reviewed on a rolling basis. Keep an eye on your email for a decision from our approval team.
+              </p>
+
+              <a
+                href="/"
+                className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
+              >
+                Back to Home
+              </a>
+            </div>
           </div>
         </div>
       </Page>
@@ -191,7 +221,6 @@ export default function NocodbFormPage() {
     try {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
 
-      // Include Supabase auth token if available (for forms with requireOtp)
       if (supabase) {
         const { data: { session } } = await supabase.auth.getSession()
         if (session?.access_token) {
@@ -215,14 +244,12 @@ export default function NocodbFormPage() {
   }
 
   return (
-    <Page>
-      <div className="section clear-top clear-bottom">
-        <div style={{ maxWidth: 640, margin: '0 auto' }}>
-          <h2 className="mb-6">{schema.title}</h2>
-
+    <Page darkHeader darkFooter>
+      <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
+        <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4 flex flex-col items-center gap-6">
           {config?.requireOtp ? (
-            <OtpGate>
-              {verifiedEmail => (
+            <OtpGate title={schema.title}>
+              {(verifiedEmail, onSignOut) => (
                 <FormInner
                   schema={schema}
                   methods={methods}
@@ -231,6 +258,7 @@ export default function NocodbFormPage() {
                   error={error}
                   verifiedEmail={verifiedEmail}
                   slug={slug}
+                  onSignOut={onSignOut}
                 />
               )}
             </OtpGate>
