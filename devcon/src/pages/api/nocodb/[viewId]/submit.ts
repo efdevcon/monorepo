@@ -1,31 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { getFormConfig } from 'config/nocodb-forms'
+import { getConfigByViewId } from 'config/nocodb-forms'
 import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
 import { classifyEmailWithAI } from 'services/email-classifier'
 
 const WHITELISTED_DOMAINS = new Set([
   'ethereum.org',
-  // Add more pre-approved domains here
 ])
 
 type EmailClassificationState = 'unverified' | 'verified' | 'whitelisted'
-
 
 function getEmailClassificationState(email: string, aiOrgType: string): EmailClassificationState {
   const domain = email.split('@')[1]?.toLowerCase()
   if (!domain) return 'unverified'
 
-  // Pre-approved domains skip AI entirely
   if (WHITELISTED_DOMAINS.has(domain)) return 'whitelisted'
-
-  // University/education domains are whitelisted
   if (aiOrgType === 'university') return 'whitelisted'
-
-  // Government/organization domains are verified (real org, not personal/disposable)
   if (aiOrgType === 'government' || aiOrgType === 'organization') return 'verified'
-
-  // Personal/disposable/unknown = just verified (they proved email ownership via OTP)
   return 'verified'
 }
 
@@ -34,9 +25,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).setHeader('Allow', 'POST').end()
   }
 
-  const { slug } = req.query
-  if (typeof slug !== 'string') {
-    return res.status(400).json({ success: false, error: 'Invalid slug' })
+  const { viewId } = req.query
+  if (typeof viewId !== 'string') {
+    return res.status(400).json({ success: false, error: 'Invalid viewId' })
   }
 
   const { data } = req.body ?? {}
@@ -45,12 +36,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const config = getFormConfig(slug)
+    const config = getConfigByViewId(viewId)
 
     // Auth check: if form requires OTP, validate Supabase session
     let verifiedEmail: string | null = null
 
-    if (config.requireOtp) {
+    if (config?.requireOtp) {
       const authHeader = req.headers.authorization
       if (!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({ success: false, error: 'Authentication required' })
@@ -71,10 +62,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       verifiedEmail = user.email.toLowerCase()
+    } else {
+      // For non-OTP forms, still extract email from token if provided
+      const authHeader = req.headers.authorization
+      if (authHeader?.startsWith('Bearer ')) {
+        const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
+        const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+        if (supabaseUrl && supabaseKey) {
+          const supabase = createClient(supabaseUrl, supabaseKey)
+          const token = authHeader.slice(7)
+          const { data: { user } } = await supabase.auth.getUser(token)
+          if (user?.email) verifiedEmail = user.email.toLowerCase()
+        }
+      }
     }
 
     // Validate fields against schema
-    const fields = await getTableFields(slug)
+    const fields = await getTableFields(viewId)
     const validNames = new Set(fields.map(f => f.column_name))
 
     for (const key of Object.keys(data)) {
@@ -83,16 +87,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Email classification: run on verified email, add to row data
+    // Email classification
     if (verifiedEmail) {
       const domain = verifiedEmail.split('@')[1]?.toLowerCase() ?? ''
       let classificationState: EmailClassificationState = 'verified'
 
       if (WHITELISTED_DOMAINS.has(domain)) {
-        // Skip AI for pre-approved domains
         classificationState = 'whitelisted'
       } else {
-        // Run AI classification
         const classification = await classifyEmailWithAI(verifiedEmail)
         classificationState = getEmailClassificationState(verifiedEmail, classification.organizationType)
       }
@@ -102,22 +104,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     data['Submission Date'] = new Date().toISOString()
 
-    // Upsert: if user already submitted (matched by email), update their row
+    // Upsert: if user already submitted, update their row
     if (verifiedEmail) {
-      const emailColumn = fields.find(f => f.type === 'Email')?.column_name
-      const existingRow = emailColumn ? await findRowByEmail(slug, emailColumn, verifiedEmail) : null
+      const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
+      const existingRow = emailColumn ? await findRowByEmail(viewId, emailColumn, verifiedEmail) : null
       if (existingRow) {
-        await updateRow(slug, existingRow.Id, data)
+        await updateRow(viewId, existingRow.Id, data)
         return res.status(200).json({ success: true, updated: true })
       }
     }
 
-    await createRow(slug, data)
+    await createRow(viewId, data)
     return res.status(200).json({ success: true })
   } catch (err) {
     console.error('[nocodb/submit]', err)
     const msg = (err as Error).message
-    if (msg.includes('Unknown form slug')) {
+    if (msg.includes('Form view not found')) {
       return res.status(404).json({ success: false, error: 'Form not found' })
     }
     return res.status(500).json({ success: false, error: 'Submission failed', details: msg })

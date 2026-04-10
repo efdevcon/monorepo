@@ -96,11 +96,11 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          {title || 'Apply for a Student ticket'}
+          {title || 'Verify your email'}
         </h2>
 
         <p className="text-sm text-[#1a0d33] text-center leading-5">
-          Enter your education email to start the application process
+          Enter your email to verify your identity
         </p>
 
         <form onSubmit={handleSendLink} className="flex flex-col gap-6 items-center w-full">
@@ -174,7 +174,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          {title || 'Apply for a Student ticket'}
+          {title || 'Verify your email'}
         </h2>
 
         <div className="flex items-center justify-between w-full px-4 py-3 bg-[#f9f8fa] rounded text-sm whitespace-nowrap">
