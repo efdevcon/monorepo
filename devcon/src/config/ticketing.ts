@@ -21,6 +21,10 @@ const ENV_CONFIG = {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       cryptoDiscountPercent: 3,
     },
+    tax: {
+      vatPercent: 18,
+      label: 'GST',
+    },
     self: {
       scope: 'devcon-india-local-discount',
       staging: true,
@@ -61,6 +65,10 @@ const ENV_CONFIG = {
       // TODO: replace with production recipient address
       // recipientAddress: '0xFc488aE9cB395B150574Aa5ce8a321c9100b1ee3',
       cryptoDiscountPercent: 3,
+    },
+    tax: {
+      vatPercent: 18,
+      label: 'GST',
     },
     self: {
       scope: 'devcon-india-local-discount',

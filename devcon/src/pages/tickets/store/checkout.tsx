@@ -614,6 +614,13 @@ function CheckoutContent() {
   const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
 
+  // ── GST/VAT (ticket prices are tax-inclusive; free items contribute nothing) ──
+  const vatPercent = TICKETING.tax.vatPercent
+  const vatLabel = TICKETING.tax.label
+  const subtotalExclGst = vatPercent > 0 ? +(subtotal / (1 + vatPercent / 100)).toFixed(2) : subtotal
+  const gstAmount = +(subtotal - subtotalExclGst).toFixed(2)
+  const showGstBreakdown = gstAmount > 0
+
   // ── Wallet error helper ──
   function humanizeWalletError(e: unknown): string {
     const msg = (e as Error).message || ''
@@ -1311,24 +1318,37 @@ function CheckoutContent() {
               <span>Order summary</span>
               {mobileOrderOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </span>
-            <span className={css['mobile-order-bar-total']}>${totalUsd}</span>
+            <span className={css['mobile-order-bar-total']}>
+              <span>${totalUsd}</span>
+              {!mobileOrderOpen && showGstBreakdown && (
+                <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+              )}
+            </span>
           </button>
           {mobileOrderOpen && (
             <div className={css['mobile-order-expanded']}>
               <div className={css['mobile-order-content']}>
                 <div className={css['panel-items']}>
                   {cartItems.length > 0 ? (
-                    cartItems.map(item => (
-                      <div key={item.ticketId} className={css['panel-item']}>
-                        <span className={css['panel-item-name']}>{item.name}</span>
-                        <div className={css['panel-item-right']}>
-                          <span>x{item.quantity}</span>
-                          <span className={css['panel-item-price']}>
-                            ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                    cartItems.map(item => {
+                      const isPaid = parseFloat(item.price) > 0
+                      return (
+                        <div key={item.ticketId} className={css['panel-item']}>
+                          <span className={css['panel-item-name']}>
+                            {item.name}
+                            {isPaid && vatPercent > 0 && (
+                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            )}
                           </span>
+                          <div className={css['panel-item-right']}>
+                            <span>x{item.quantity}</span>
+                            <span className={css['panel-item-price']}>
+                              ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))
+                      )
+                    })
                   ) : (
                     <div className={css['panel-item']}>
                       <span className={css['panel-item-name']}>No tickets selected</span>
@@ -1354,7 +1374,12 @@ function CheckoutContent() {
                     return (
                       <div key={itemId} className={css['panel-item']}>
                         <div className={css['panel-item-name']}>
-                          {item.name}
+                          <span>
+                            {item.name}
+                            {!isFree && vatPercent > 0 && (
+                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            )}
+                          </span>
                           {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                         </div>
                         <div className={css['panel-item-right']}>
@@ -1398,10 +1423,23 @@ function CheckoutContent() {
                   </div>
                 )}
                 <div className={css['summary-lines']}>
-                  <div className={css['summary-line']}>
-                    <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
-                  </div>
+                  {showGstBreakdown ? (
+                    <>
+                      <div className={css['summary-line']}>
+                        <span>Total excl. {vatLabel}</span>
+                        <span>${subtotalExclGst.toFixed(2)}</span>
+                      </div>
+                      <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                        <span>{vatLabel} @ {vatPercent}%</span>
+                        <span>${gstAmount.toFixed(2)}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className={css['summary-line']}>
+                      <span>Subtotal</span>
+                      <span>${subtotal.toFixed(2)}</span>
+                    </div>
+                  )}
                   {voucherDiscount > 0 && (
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                       <span>Voucher discount</span>
@@ -2400,23 +2438,36 @@ function CheckoutContent() {
                             <span>Order summary</span>
                             {mobileInlineSummaryOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                           </span>
-                          <span className={css['mobile-inline-summary-total']}>${totalUsd}</span>
+                          <span className={css['mobile-inline-summary-total']}>
+                            <span>${totalUsd}</span>
+                            {!mobileInlineSummaryOpen && showGstBreakdown && (
+                              <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                            )}
+                          </span>
                         </button>
                         {mobileInlineSummaryOpen && (
                           <div className={css['mobile-inline-summary-content']}>
                             <div className={css['panel-items']}>
                               {cartItems.length > 0 ? (
-                                cartItems.map(item => (
-                                  <div key={item.ticketId} className={css['panel-item']}>
-                                    <span className={css['panel-item-name']}>{item.name}</span>
-                                    <div className={css['panel-item-right']}>
-                                      <span>x{item.quantity}</span>
-                                      <span className={css['panel-item-price']}>
-                                        ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                cartItems.map(item => {
+                                  const isPaid = parseFloat(item.price) > 0
+                                  return (
+                                    <div key={item.ticketId} className={css['panel-item']}>
+                                      <span className={css['panel-item-name']}>
+                                        {item.name}
+                                        {isPaid && vatPercent > 0 && (
+                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                        )}
                                       </span>
+                                      <div className={css['panel-item-right']}>
+                                        <span>x{item.quantity}</span>
+                                        <span className={css['panel-item-price']}>
+                                          ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                        </span>
+                                      </div>
                                     </div>
-                                  </div>
-                                ))
+                                  )
+                                })
                               ) : (
                                 <div className={css['panel-item']}>
                                   <span className={css['panel-item-name']}>No tickets selected</span>
@@ -2442,7 +2493,12 @@ function CheckoutContent() {
                                 return (
                                   <div key={itemId} className={css['panel-item']}>
                                     <div className={css['panel-item-name']}>
-                                      {item.name}
+                                      <span>
+                                        {item.name}
+                                        {!isFree && vatPercent > 0 && (
+                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                        )}
+                                      </span>
                                       {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                                     </div>
                                     <div className={css['panel-item-right']}>
@@ -2456,10 +2512,23 @@ function CheckoutContent() {
                               })}
                             </div>
                             <div className={css['summary-lines']}>
-                              <div className={css['summary-line']}>
-                                <span>Subtotal</span>
-                                <span>${subtotal.toFixed(2)}</span>
-                              </div>
+                              {showGstBreakdown ? (
+                                <>
+                                  <div className={css['summary-line']}>
+                                    <span>Total excl. {vatLabel}</span>
+                                    <span>${subtotalExclGst.toFixed(2)}</span>
+                                  </div>
+                                  <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                                    <span>{vatLabel} @ {vatPercent}%</span>
+                                    <span>${gstAmount.toFixed(2)}</span>
+                                  </div>
+                                </>
+                              ) : (
+                                <div className={css['summary-line']}>
+                                  <span>Subtotal</span>
+                                  <span>${subtotal.toFixed(2)}</span>
+                                </div>
+                              )}
                               {voucherDiscount > 0 && (
                                 <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                                   <span>Voucher discount</span>
@@ -2593,17 +2662,25 @@ function CheckoutContent() {
             <div className={css['panel-content']}>
               <div className={css['panel-items']}>
                 {cartItems.length > 0 ? (
-                  cartItems.map(item => (
-                    <div key={item.ticketId} className={css['panel-item']}>
-                      <span className={css['panel-item-name']}>{item.name}</span>
-                      <div className={css['panel-item-right']}>
-                        <span>x{item.quantity}</span>
-                        <span className={css['panel-item-price']}>
-                          ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  cartItems.map(item => {
+                    const isPaid = parseFloat(item.price) > 0
+                    return (
+                      <div key={item.ticketId} className={css['panel-item']}>
+                        <span className={css['panel-item-name']}>
+                          {item.name}
+                          {isPaid && vatPercent > 0 && (
+                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                          )}
                         </span>
+                        <div className={css['panel-item-right']}>
+                          <span>x{item.quantity}</span>
+                          <span className={css['panel-item-price']}>
+                            ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))
+                    )
+                  })
                 ) : (
                   <div className={css['panel-item']}>
                     <span className={css['panel-item-name']}>No tickets selected</span>
@@ -2629,7 +2706,12 @@ function CheckoutContent() {
                   return (
                     <div key={itemId} className={css['panel-item']}>
                       <div className={css['panel-item-name']}>
-                        {item.name}
+                        <span>
+                          {item.name}
+                          {!isFree && vatPercent > 0 && (
+                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                          )}
+                        </span>
                         {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                       </div>
                       <div className={css['panel-item-right']}>
@@ -2710,10 +2792,23 @@ function CheckoutContent() {
                 )}
               </div>
               <div className={css['summary-lines']}>
-                <div className={css['summary-line']}>
-                  <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
+                {showGstBreakdown ? (
+                  <>
+                    <div className={css['summary-line']}>
+                      <span>Total excl. {vatLabel}</span>
+                      <span>${subtotalExclGst.toFixed(2)}</span>
+                    </div>
+                    <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                      <span>{vatLabel} @ {vatPercent}%</span>
+                      <span>${gstAmount.toFixed(2)}</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className={css['summary-line']}>
+                    <span>Subtotal</span>
+                    <span>${subtotal.toFixed(2)}</span>
+                  </div>
+                )}
                 {voucherDiscount > 0 && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                     <span>Voucher discount</span>
