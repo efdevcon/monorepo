@@ -100,7 +100,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
         </h2>
 
         <p className="text-sm text-[#1a0d33] text-center leading-5">
-          Enter your education email to start the application process
+          Enter your student email to start the application process
         </p>
 
         <form onSubmit={handleSendLink} className="flex flex-col gap-6 items-center w-full">
@@ -112,7 +112,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder="your@education.email.com"
+                placeholder="your@student.email.com"
                 disabled={loading}
                 required
                 className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
