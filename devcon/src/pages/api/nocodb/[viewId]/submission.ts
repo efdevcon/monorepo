@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { getFormConfig } from 'config/nocodb-forms'
 import { getTableFields, findRowByEmail } from 'services/nocodb'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -8,18 +7,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).setHeader('Allow', 'GET').end()
   }
 
-  const { slug } = req.query
-  if (typeof slug !== 'string') {
-    return res.status(400).json({ success: false, error: 'Invalid slug' })
+  const { viewId } = req.query
+  if (typeof viewId !== 'string') {
+    return res.status(400).json({ success: false, error: 'Invalid viewId' })
   }
 
   try {
-    const config = getFormConfig(slug)
-
-    if (!config.requireOtp) {
-      return res.status(400).json({ success: false, error: 'This form does not support submission lookup' })
-    }
-
     const authHeader = req.headers.authorization
     if (!authHeader?.startsWith('Bearer ')) {
       return res.status(401).json({ success: false, error: 'Authentication required' })
@@ -40,21 +33,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const email = user.email.toLowerCase()
-    const fields = await getTableFields(slug)
-    const emailColumn = fields.find(f => f.type === 'Email')?.column_name
+    const fields = await getTableFields(viewId)
+    const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
 
     if (!emailColumn) {
       return res.status(200).json({ success: true, data: null })
     }
 
-    const row = await findRowByEmail(slug, emailColumn, email)
+    const row = await findRowByEmail(viewId, emailColumn, email)
 
     if (!row) {
       return res.status(200).json({ success: true, data: null })
     }
 
-    // Only return form-visible fields
-    const visibleNames = new Set(fields.map(f => f.column_name))
     const filtered: Record<string, any> = {}
     for (const field of fields) {
       if (row[field.column_name] !== undefined) {
@@ -66,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } catch (err) {
     console.error('[nocodb/submission]', err)
     const msg = (err as Error).message
-    if (msg.includes('Unknown form slug')) {
+    if (msg.includes('Form view not found')) {
       return res.status(404).json({ success: false, error: 'Form not found' })
     }
     return res.status(500).json({ success: false, error: 'Failed to fetch submission', details: msg })

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { supabase } from 'services/supabase-browser'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import Link from 'next/link'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { ArrowRight } from 'lucide-react'
@@ -48,7 +49,9 @@ export function OtpGate({ children, title }: OtpGateProps) {
     }
 
     // Also listen for future auth changes (e.g. token refresh)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user?.email) {
         setVerifiedEmail(session.user.email)
         setStep('verified')
@@ -96,7 +99,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          {title || 'Apply for a Student ticket'}
+          {title || 'Verify your email'}
         </h2>
 
         <p className="text-sm text-[#1a0d33] text-center leading-5">
@@ -106,7 +109,9 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <form onSubmit={handleSendLink} className="flex flex-col gap-6 items-center w-full">
           <div className="w-full">
             <div className="space-y-3">
-              <Label htmlFor="gate-email" className="text-base font-bold text-[#160b2b]">Email</Label>
+              <Label htmlFor="gate-email" className="text-base font-bold text-[#160b2b]">
+                Email
+              </Label>
               <Input
                 id="gate-email"
                 type="email"
@@ -131,13 +136,13 @@ export function OtpGate({ children, title }: OtpGateProps) {
           </button>
         </form>
 
-        <a
+        <Link
           href="/tickets"
           className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
         >
           Learn more about eligibility
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </Link>
       </div>
     )
   }
@@ -157,7 +162,10 @@ export function OtpGate({ children, title }: OtpGateProps) {
 
         <button
           type="button"
-          onClick={() => { setStep('email'); setError('') }}
+          onClick={() => {
+            setStep('email')
+            setError('')
+          }}
           className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
         >
           Use a different email
@@ -174,7 +182,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          {title || 'Apply for a Student ticket'}
+          {title || 'Verify your email'}
         </h2>
 
         <div className="flex items-center justify-between w-full px-4 py-3 bg-[#f9f8fa] rounded text-sm whitespace-nowrap">
