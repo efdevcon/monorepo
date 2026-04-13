@@ -612,13 +612,16 @@ function CheckoutContent() {
 
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
   const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
-  const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
+  const totalUsdNum = +(subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
+  const totalUsd = totalUsdNum.toFixed(2)
 
-  // ── GST/VAT (ticket prices are tax-inclusive; free items contribute nothing) ──
+  // ── GST/VAT ──
+  // Ticket prices are tax-inclusive. Discounts reduce the taxable base, so GST is
+  // computed on the *post-discount* total — the actual tax remitted to the customer.
   const vatPercent = TICKETING.tax.vatPercent
   const vatLabel = TICKETING.tax.label
-  const subtotalExclGst = vatPercent > 0 ? +(subtotal / (1 + vatPercent / 100)).toFixed(2) : subtotal
-  const gstAmount = +(subtotal - subtotalExclGst).toFixed(2)
+  const totalExclGst = vatPercent > 0 ? +(totalUsdNum / (1 + vatPercent / 100)).toFixed(2) : totalUsdNum
+  const gstAmount = +(totalUsdNum - totalExclGst).toFixed(2)
   const showGstBreakdown = gstAmount > 0
 
   // ── Wallet error helper ──
@@ -1423,23 +1426,10 @@ function CheckoutContent() {
                   </div>
                 )}
                 <div className={css['summary-lines']}>
-                  {showGstBreakdown ? (
-                    <>
-                      <div className={css['summary-line']}>
-                        <span>Total excl. {vatLabel}</span>
-                        <span>${subtotalExclGst.toFixed(2)}</span>
-                      </div>
-                      <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                        <span>{vatLabel} @ {vatPercent}%</span>
-                        <span>${gstAmount.toFixed(2)}</span>
-                      </div>
-                    </>
-                  ) : (
-                    <div className={css['summary-line']}>
-                      <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
-                    </div>
-                  )}
+                  <div className={css['summary-line']}>
+                    <span>Subtotal</span>
+                    <span>${subtotal.toFixed(2)}</span>
+                  </div>
                   {voucherDiscount > 0 && (
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                       <span>Voucher discount</span>
@@ -1451,6 +1441,18 @@ function CheckoutContent() {
                       <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                       <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                     </div>
+                  )}
+                  {showGstBreakdown && (
+                    <>
+                      <div className={css['summary-line']}>
+                        <span>Total excl. {vatLabel}</span>
+                        <span>${totalExclGst.toFixed(2)}</span>
+                      </div>
+                      <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                        <span>{vatLabel} @ {vatPercent}%</span>
+                        <span>${gstAmount.toFixed(2)}</span>
+                      </div>
+                    </>
                   )}
                   <div className={css['summary-total']}>
                     <span>Total</span>
@@ -2512,23 +2514,10 @@ function CheckoutContent() {
                               })}
                             </div>
                             <div className={css['summary-lines']}>
-                              {showGstBreakdown ? (
-                                <>
-                                  <div className={css['summary-line']}>
-                                    <span>Total excl. {vatLabel}</span>
-                                    <span>${subtotalExclGst.toFixed(2)}</span>
-                                  </div>
-                                  <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                    <span>{vatLabel} @ {vatPercent}%</span>
-                                    <span>${gstAmount.toFixed(2)}</span>
-                                  </div>
-                                </>
-                              ) : (
-                                <div className={css['summary-line']}>
-                                  <span>Subtotal</span>
-                                  <span>${subtotal.toFixed(2)}</span>
-                                </div>
-                              )}
+                              <div className={css['summary-line']}>
+                                <span>Subtotal</span>
+                                <span>${subtotal.toFixed(2)}</span>
+                              </div>
                               {voucherDiscount > 0 && (
                                 <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                                   <span>Voucher discount</span>
@@ -2540,6 +2529,18 @@ function CheckoutContent() {
                                   <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                                   <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                                 </div>
+                              )}
+                              {showGstBreakdown && (
+                                <>
+                                  <div className={css['summary-line']}>
+                                    <span>Total excl. {vatLabel}</span>
+                                    <span>${totalExclGst.toFixed(2)}</span>
+                                  </div>
+                                  <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                                    <span>{vatLabel} @ {vatPercent}%</span>
+                                    <span>${gstAmount.toFixed(2)}</span>
+                                  </div>
+                                </>
                               )}
                               <div className={css['summary-total']}>
                                 <span>Total</span>
@@ -2792,23 +2793,10 @@ function CheckoutContent() {
                 )}
               </div>
               <div className={css['summary-lines']}>
-                {showGstBreakdown ? (
-                  <>
-                    <div className={css['summary-line']}>
-                      <span>Total excl. {vatLabel}</span>
-                      <span>${subtotalExclGst.toFixed(2)}</span>
-                    </div>
-                    <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>{vatLabel} @ {vatPercent}%</span>
-                      <span>${gstAmount.toFixed(2)}</span>
-                    </div>
-                  </>
-                ) : (
-                  <div className={css['summary-line']}>
-                    <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
-                  </div>
-                )}
+                <div className={css['summary-line']}>
+                  <span>Subtotal</span>
+                  <span>${subtotal.toFixed(2)}</span>
+                </div>
                 {voucherDiscount > 0 && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
                     <span>Voucher discount</span>
@@ -2820,6 +2808,18 @@ function CheckoutContent() {
                     <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                     <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                   </div>
+                )}
+                {showGstBreakdown && (
+                  <>
+                    <div className={css['summary-line']}>
+                      <span>Total excl. {vatLabel}</span>
+                      <span>${totalExclGst.toFixed(2)}</span>
+                    </div>
+                    <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                      <span>{vatLabel} @ {vatPercent}%</span>
+                      <span>${gstAmount.toFixed(2)}</span>
+                    </div>
+                  </>
                 )}
                 <div className={css['summary-total']}>
                   <span>Total</span>
