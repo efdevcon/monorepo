@@ -264,6 +264,12 @@ function CheckoutContent() {
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
   const [isExecutingGasless, setIsExecutingGasless] = useState(false)
+  // True during the verifyPayment poll (between tx broadcast and order confirmation).
+  // Used to lock token/network selection until verification resolves.
+  const [isVerifying, setIsVerifying] = useState(false)
+  // EIP-191 signature binding payer wallet to the payment reference.
+  // Only populated for the native ETH path (USDC/USDT0 are bound via EIP-3009).
+  const [ethPayerSignature, setEthPayerSignature] = useState<string | null>(null)
 
   // Payment options (multi-chain)
   const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
@@ -669,7 +675,8 @@ function CheckoutContent() {
     isWritePending ||
     isTxLoading ||
     isSendTxPending ||
-    isSendTxReceiptLoading
+    isSendTxReceiptLoading ||
+    isVerifying
 
   // Invalidate stale payment when user navigates away from payment section
   // (e.g. goes back to edit add-ons, contact details, etc.)
@@ -1227,6 +1234,32 @@ function CheckoutContent() {
         setPurchaseError('Invalid transaction request')
         return
       }
+      if (!walletClient) {
+        setPurchaseError('Wallet not connected')
+        return
+      }
+
+      // Sign a payer-proof message BEFORE sending the tx. Binds the wallet to
+      // this specific paymentReference+chain so the /verify endpoint can
+      // cryptographically confirm the caller owns the payer address (and is
+      // not replaying someone else's on-chain tx for a different order).
+      const chainIdForSig = Number(paymentDetails.chainId)
+      const payerMessage =
+        'Devcon ticket payment (ETH)\n' +
+        `Payment reference: ${paymentDetails.paymentReference}\n` +
+        `Payer: ${address}\n` +
+        `Chain: ${chainIdForSig}`
+      setPaymentStatus('Sign payer proof in wallet...')
+      let sig: string
+      try {
+        sig = await walletClient.signMessage({ account: address, message: payerMessage })
+      } catch (e) {
+        setPurchaseError(humanizeWalletError(e))
+        setPaymentStatus(null)
+        return
+      }
+      setEthPayerSignature(sig)
+
       setPaymentStatus('Confirm in wallet...')
       try {
         await sendTransactionAsync({
@@ -1247,6 +1280,7 @@ function CheckoutContent() {
     const maxAttempts = 5
     const retryDelay = 8000
 
+    setIsVerifying(true)
     setPaymentStatus(attempt > 1
       ? `Waiting for on-chain confirmation... (${attempt}/${maxAttempts})`
       : 'Verifying payment...')
@@ -1263,6 +1297,9 @@ function CheckoutContent() {
           chainId: paymentDetails.chainId,
           symbol: paymentDetails.tokenSymbol,
           tokenAddress: paymentDetails.tokenAddress,
+          ...(paymentDetails.tokenSymbol === 'ETH' && ethPayerSignature && {
+            ethPayerSignature,
+          }),
         }),
       })
 
@@ -1293,6 +1330,7 @@ function CheckoutContent() {
 
       setPurchaseError(data.error || 'Payment verification failed')
       setPaymentStatus(null)
+      setIsVerifying(false)
     } catch {
       // Network error — auto-retry
       if (attempt < maxAttempts) {
@@ -1301,6 +1339,7 @@ function CheckoutContent() {
       }
       setPurchaseError('Failed to verify payment')
       setPaymentStatus(null)
+      setIsVerifying(false)
     }
   }
 
@@ -2143,6 +2182,7 @@ function CheckoutContent() {
                                             className={`${css['asset-chip']} ${
                                               tokenFilter === sym ? css['asset-chip--active'] : ''
                                             }`}
+                                            disabled={isProcessing}
                                             onClick={() => {
                                               setTokenFilter(sym)
                                               // Auto-select the best network for this asset
@@ -2180,7 +2220,7 @@ function CheckoutContent() {
                                             type="button"
                                             className={css['network-refresh']}
                                             onClick={() => fetchPaymentOptions()}
-                                            disabled={paymentOptionsLoading}
+                                            disabled={paymentOptionsLoading || isProcessing}
                                           >
                                             Refresh balances
                                           </button>
@@ -2204,8 +2244,8 @@ function CheckoutContent() {
                                                 className={`${css['network-row']} ${
                                                   isSelected ? css['network-row--selected'] : ''
                                                 } ${!canPay ? css['network-row--insufficient'] : ''}`}
-                                                disabled={!canPay}
-                                                onClick={() => canPay && selectPaymentOption(opt)}
+                                                disabled={!canPay || isProcessing}
+                                                onClick={() => canPay && !isProcessing && selectPaymentOption(opt)}
                                               >
                                                 <span className={css['network-row-icon']}>
                                                   {NETWORK_LOGOS[chainIdNum] && (
