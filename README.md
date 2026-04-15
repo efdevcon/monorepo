@@ -26,3 +26,7 @@ Some additional notes:
 - make sure your pnpm version is up to date (if you are unsure which version to use, refer to the "packageManager" key in the root package.json)
 - never commit any non-pnpm lockfiles, it will brick netlify
 - pnpm does not let you use phantom dependencies, which are packages that are not defined in package.json - this can happen when certain projects have packages as peer dependencies, that you can import without installing them directly - this is not allowed using pnpm and it will fail - can be resolved by explicitly installing them (which adds them to package.json).
+
+## Devcon Security Track
+
+The Devcon Security Track is an official initiative by the Ethereum Foundation's Devcon team. Learn more and support the project on Giveth: https://giveth.io/project/devcon-security-track
