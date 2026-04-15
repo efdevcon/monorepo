@@ -1,0 +1,529 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 70% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: 62% 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 500px !important;
+    max-height: 500px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.55);
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  font-size: clamp(3rem, 9vw, 130px) !important;
+  letter-spacing: -2px !important;
+  color: #f9f8fa !important;
+  transform: translateY(-16px);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+  }
+}
+
+/* ─── Layout container (matches Figma 1120px content width) ─ */
+
+$content-max-width: 1120px;
+
+.container {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── Intro Band ──────────────────────────────────────────── */
+
+.intro {
+  padding: 64px 0;
+  /* Warm peach radial fade near bottom → off-white elsewhere (matches Figma) */
+  background: radial-gradient(ellipse 720px 180px at 50% 100%, #ffe0cc 0%, #fbfafc 100%);
+
+  @media (max-width: $breakpoints-md) {
+    padding: 48px 0;
+  }
+}
+
+.intro-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  width: 100%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoints-xl) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+
+.intro-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+  margin: 0;
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 32px;
+  }
+}
+
+.intro-description {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1a0d33;
+  letter-spacing: -0.25px;
+  max-width: 656px;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
+
+  a {
+    font-weight: 700;
+    color: #7235ed;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ─── Main Section ────────────────────────────────────────── */
+
+.main {
+  position: relative;
+  padding: 64px 0 80px;
+  /* NOTE: cannot use overflow:hidden here — it would break position:sticky on
+     the sidebar. Clip the moon decoration on its own container instead. */
+  /* Purple radial bloom near bottom + cool top-down linear tint (matches Figma) */
+  background:
+    radial-gradient(ellipse 1080px 650px at 50% 100%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 24%, rgba(222, 207, 251, 0) 100%),
+    linear-gradient(to bottom, #e5ebff 20%, #fbfafc 100%);
+
+  @media (max-width: $breakpoints-md) {
+    padding: 40px 0 56px;
+  }
+}
+
+.main-bg-moon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(1440px, 100%);
+  height: 722px;
+  overflow: hidden; /* clip the moon SVG to just its top half */
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.main-inner {
+  position: relative;
+  z-index: 1;
+  max-width: $content-max-width;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  @media (max-width: $breakpoints-md) {
+    gap: 40px;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  width: 100%;
+
+  @media (max-width: $breakpoints-xl) {
+    flex-direction: column-reverse;
+    gap: 32px;
+  }
+}
+
+/* ─── FAQ Column (Left) ───────────────────────────────────── */
+
+.faq-column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 640px;
+
+  @media (max-width: $breakpoints-xl) {
+    max-width: 100%;
+  }
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scroll-margin-top: 100px;
+}
+
+.category-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+  margin: 0;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & + & {
+    border-top: 1px solid rgba(34, 17, 68, 0.1);
+  }
+}
+
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 16px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s;
+
+  span {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #160b2b;
+  }
+
+  &:hover {
+    background: #fafafa;
+  }
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: #594d73;
+  transition: transform 0.2s ease;
+}
+
+.chevron-open {
+  transform: rotate(180deg);
+}
+
+.answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+  background: #f9f8fa;
+}
+
+.answer-wrap-open {
+  grid-template-rows: 1fr;
+}
+
+.answer-inner {
+  overflow: hidden;
+}
+
+.answer {
+  padding: 16px 24px 20px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #594d73;
+
+  p {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    color: #160b2b;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin: 8px 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  a {
+    color: #7235ed;
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* ─── Sidebar (Right) ─────────────────────────────────────── */
+
+.sidebar {
+  flex-shrink: 0;
+  width: 280px;
+  border-left: 1px solid rgba(34, 17, 68, 0.1);
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+
+  @media (max-width: $breakpoints-xl) {
+    position: relative;
+    top: 0;
+    width: 100%;
+    border-left: none;
+    border-bottom: 1px solid rgba(34, 17, 68, 0.1);
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $breakpoints-xl) {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 20px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  color: #221144;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #7235ed;
+  }
+
+  @media (max-width: $breakpoints-xl) {
+    padding: 12px 16px;
+  }
+}
+
+.sidebar-item-active {
+  font-weight: 700;
+  color: #7235ed;
+}
+
+/* ─── Contact CTA ─────────────────────────────────────────── */
+
+.cta-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(34, 17, 68, 0.1);
+  margin: 0;
+  border: none;
+}
+
+.cta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 80px;
+  background: rgba(255, 255, 255, 0.33);
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 4px rgba(34, 17, 68, 0.06), 0 1px 2px rgba(34, 17, 68, 0.08);
+  text-align: center;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 24px;
+  }
+}
+
+.cta-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #1a0d33;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 20px;
+  }
+}
+
+.cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 24px;
+  background: white;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a0d33;
+  text-decoration: none;
+  width: 360px;
+  max-width: 100%;
+  overflow: hidden;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #f9f8fa;
+  }
+}
+
+.cta-button-text {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.cta-button-arrow {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  color: #1a0d33;
+}
+
+.cta-button-watermark {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 49px;
+  height: 50px;
+  opacity: 0.25;
+  color: #1a0d33;
+  pointer-events: none;
+}
+
+/* ─── Empty / loading states ──────────────────────────────── */
+
+.empty {
+  text-align: center;
+  padding: 64px 16px;
+  color: #594d73;
+  font-size: 16px;
+}

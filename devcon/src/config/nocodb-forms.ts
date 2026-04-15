@@ -5,7 +5,7 @@ export interface NocodbFormConfig {
 
 export const nocodbForms: Record<string, NocodbFormConfig> = {
   'student-application': {
-    formViewId: 'vwgfemz67zunzvyo',
+    formViewId: 'vwuuzk50m1lz4vkf',
     requireOtp: true,
   },
 }
