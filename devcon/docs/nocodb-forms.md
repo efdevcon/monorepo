@@ -23,13 +23,13 @@ Both routes render the same `FormPage` component. OTP is enforced if the viewId 
 ## How it works
 
 1. Page fetches `/api/nocodb/{viewId}/schema/` to get form title + fields
-2. Schema API queries NocoDB's PostgreSQL meta DB (`nocodb-meta.ts`) to resolve viewId → base/table/fields
-3. Form fields (order, visibility, labels, required) come from `nc_form_view_columns_v2`
+2. Schema API calls NocoDB's REST meta endpoints (`nocodb-meta.ts`) to resolve viewId → base/table/fields
+3. Form fields (order, visibility, labels, required) come from `GET /api/v1/db/meta/views/:viewId/columns`
 4. Submissions go to `/api/nocodb/{viewId}/submit/` which uses the NocoDB SDK for row CRUD
 
 ## Key files
 
-- `src/services/nocodb-meta.ts` — PostgreSQL queries against NocoDB meta DB
+- `src/services/nocodb-meta.ts` — REST meta API wrapper (form view + fields resolution)
 - `src/services/nocodb.ts` — NocoDB SDK wrapper (CRUD operations)
 - `src/config/nocodb-forms.ts` — slug → viewId mapping + flags
 - `src/components/domain/nocodb-form/FormPage.tsx` — shared form UI
@@ -45,6 +45,5 @@ Both routes render the same `FormPage` component. OTP is enforced if the viewId 
 
 ## Environment
 
-- `NOCODB_META_DB_URL` — PostgreSQL connection to NocoDB meta database
-- `NOCODB_BASE_URL` — NocoDB API base URL (for row CRUD)
+- `NOCODB_BASE_URL` — NocoDB API base URL (used for both meta and row CRUD)
 - `NOCODB_API_TOKEN` — NocoDB API token

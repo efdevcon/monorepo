@@ -1,10 +1,16 @@
-import { Pool } from 'pg'
+/**
+ * NocoDB form-view metadata helpers, implemented on top of the public REST
+ * meta API (no direct Postgres access required).
+ *
+ * Endpoints used (all require the xc-token header):
+ *   GET /api/v1/db/meta/forms/:viewId           — form-level config (heading/subheading, base, source, column configs)
+ *   GET /api/v1/db/meta/columns/:colId          — to resolve a column's fk_model_id (tableId)
+ *   GET /api/v1/db/meta/tables/:tableId         — table metadata incl. views[] and columns[] with SingleSelect options
+ *   GET /api/v1/db/meta/views/:viewId/columns   — per-form-view column config (order, label, help, required, show)
+ */
 
-const pool = new Pool({
-  connectionString: process.env.NOCODB_META_DB_URL,
-  max: 5,
-  idleTimeoutMillis: 30000,
-})
+const NOCODB_BASE_URL = process.env.NOCODB_BASE_URL
+const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN
 
 export interface FormViewMeta {
   viewId: string
@@ -29,44 +35,138 @@ export interface FormField {
 
 const SUPPORTED_TYPES = new Set(['SingleLineText', 'Email', 'SingleSelect', 'LongText'])
 
-// In-memory cache
+// In-memory caches — keyed by viewId / tableId.
 const viewCache = new Map<string, { data: FormViewMeta; expiresAt: number }>()
 const fieldsCache = new Map<string, { data: FormField[]; expiresAt: number }>()
+const tableCache = new Map<string, { data: TableMeta; expiresAt: number }>()
 const CACHE_TTL = 5 * 60 * 1000
+
+// ── API response shapes (only the fields we consume) ─────────────────
+
+interface FormColumnCfg {
+  id: string
+  fk_view_id: string
+  fk_column_id: string
+  label: string | null
+  help: string | null
+  description: string | null
+  required: boolean
+  show: boolean
+  order: number | null
+  created_at?: string
+}
+
+interface FormMeta {
+  fk_view_id: string
+  base_id: string
+  source_id: string
+  heading: string | null
+  subheading: string | null
+  columns?: FormColumnCfg[]
+}
+
+interface ColumnMeta {
+  id: string
+  fk_model_id: string
+  base_id: string
+  source_id: string
+}
+
+interface TableViewSummary {
+  id: string
+  title: string
+  type: number
+}
+
+interface TableColumn {
+  id: string
+  title: string
+  column_name: string
+  uidt: string
+  description?: string | null
+  system?: boolean
+  colOptions?: {
+    options?: Array<{ title: string; order?: number }>
+  }
+}
+
+interface TableMeta {
+  id: string
+  title: string
+  table_name: string
+  base_id: string
+  source_id: string
+  views: TableViewSummary[]
+  columns: TableColumn[]
+}
+
+// ── REST helper ───────────────────────────────────────────────────────
+
+async function nocoFetch<T>(path: string): Promise<T> {
+  if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) {
+    throw new Error('NocoDB env vars not configured (NOCODB_BASE_URL, NOCODB_API_TOKEN)')
+  }
+  const res = await fetch(`${NOCODB_BASE_URL}${path}`, {
+    headers: {
+      'xc-token': NOCODB_API_TOKEN,
+      'Content-Type': 'application/json',
+    },
+  })
+  if (!res.ok) {
+    let body = ''
+    try {
+      body = await res.text()
+    } catch {}
+    throw new Error(`NocoDB API ${path} failed: HTTP ${res.status} ${body}`.trim())
+  }
+  return res.json() as Promise<T>
+}
+
+async function getTableMeta(tableId: string): Promise<TableMeta> {
+  const cached = tableCache.get(tableId)
+  if (cached && Date.now() < cached.expiresAt) return cached.data
+  const data = await nocoFetch<TableMeta>(`/api/v1/db/meta/tables/${tableId}`)
+  tableCache.set(tableId, { data, expiresAt: Date.now() + CACHE_TTL })
+  return data
+}
+
+// ── Public API ────────────────────────────────────────────────────────
 
 export async function resolveFormView(viewId: string): Promise<FormViewMeta> {
   const cached = viewCache.get(viewId)
   if (cached && Date.now() < cached.expiresAt) return cached.data
 
-  const { rows } = await pool.query(
-    `SELECT
-       v.id AS view_id, v.title AS view_title,
-       fv.heading, fv.subheading,
-       m.id AS table_id, m.table_name,
-       b.id AS base_id,
-       v.source_id
-     FROM nc_views_v2 v
-     JOIN nc_form_view_v2 fv ON fv.fk_view_id = v.id
-     JOIN nc_models_v2 m ON m.id = v.fk_model_id
-     JOIN nc_bases_v2 b ON b.id = v.base_id
-     WHERE v.id = $1 AND v.type = 1`,
-    [viewId]
-  )
-
-  if (rows.length === 0) {
-    throw new Error(`Form view not found: ${viewId}`)
+  let form: FormMeta
+  try {
+    form = await nocoFetch<FormMeta>(`/api/v1/db/meta/forms/${viewId}`)
+  } catch (err) {
+    // Treat 404s as "not found" to preserve the prior API surface.
+    const msg = (err as Error).message
+    if (msg.includes('HTTP 404')) throw new Error(`Form view not found: ${viewId}`)
+    throw err
   }
 
-  const row = rows[0]
+  if (!form.columns || form.columns.length === 0) {
+    throw new Error(`Form view has no columns: ${viewId}`)
+  }
+
+  // Resolve tableId via a single column meta lookup (forms endpoint doesn't include fk_model_id).
+  const firstColId = form.columns[0].fk_column_id
+  const column = await nocoFetch<ColumnMeta>(`/api/v1/db/meta/columns/${firstColId}`)
+  const table = await getTableMeta(column.fk_model_id)
+
+  // View title isn't on the forms endpoint — pull it from the table's views[] list.
+  const viewTitle = table.views.find(v => v.id === viewId)?.title ?? table.title
+
   const data: FormViewMeta = {
-    viewId: row.view_id,
-    tableId: row.table_id,
-    baseId: row.base_id,
-    sourceId: row.source_id,
-    viewTitle: row.view_title,
-    formHeading: row.heading || row.view_title,
-    formSubheading: row.subheading || undefined,
-    tableName: row.table_name,
+    viewId,
+    tableId: table.id,
+    baseId: form.base_id,
+    sourceId: form.source_id,
+    viewTitle,
+    formHeading: form.heading || viewTitle,
+    formSubheading: form.subheading || undefined,
+    tableName: table.table_name,
   }
 
   viewCache.set(viewId, { data, expiresAt: Date.now() + CACHE_TTL })
@@ -77,53 +177,51 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
   const cached = fieldsCache.get(viewId)
   if (cached && Date.now() < cached.expiresAt) return cached.data
 
-  const { rows } = await pool.query(
-    `SELECT
-       fvc."order", fvc.label, fvc.description AS form_description, fvc.help,
-       fvc.required, fvc.show,
-       c.id AS col_id, c.title AS col_title, c.column_name, c.uidt,
-       c.description AS col_description, c.system
-     FROM nc_form_view_columns_v2 fvc
-     JOIN nc_columns_v2 c ON c.id = fvc.fk_column_id
-     WHERE fvc.fk_view_id = $1
-     ORDER BY fvc."order"`,
-    [viewId]
-  )
+  // Need: view-column config (order/label/help/required/show) + table columns (uidt/options/descriptions).
+  const { tableId } = await resolveFormView(viewId)
+  const [viewColsResp, table] = await Promise.all([
+    nocoFetch<{ list: FormColumnCfg[] }>(`/api/v1/db/meta/views/${viewId}/columns`),
+    getTableMeta(tableId),
+  ])
 
-  // Collect select options for all columns in one query
-  const colIds = rows.filter(r => r.uidt === 'SingleSelect').map(r => r.col_id)
-  const optionsMap = new Map<string, string[]>()
+  const tableColsById = new Map(table.columns.map(c => [c.id, c]))
 
-  if (colIds.length > 0) {
-    const { rows: optRows } = await pool.query(
-      `SELECT fk_column_id, title
-       FROM nc_col_select_options_v2
-       WHERE fk_column_id = ANY($1)
-       ORDER BY "order"`,
-      [colIds]
-    )
-    for (const opt of optRows) {
-      const list = optionsMap.get(opt.fk_column_id) || []
-      list.push(opt.title)
-      optionsMap.set(opt.fk_column_id, list)
+  // Primary sort by order; tiebreak by created_at to mimic stable SQL ordering.
+  // NocoDB uses fractional order values for drag-drop, and ties can occur after inserts.
+  const sorted = [...viewColsResp.list].sort((a, b) => {
+    const orderDiff = (a.order ?? 0) - (b.order ?? 0)
+    if (orderDiff !== 0) return orderDiff
+    return (a.created_at ?? '').localeCompare(b.created_at ?? '')
+  })
+
+  const fields: FormField[] = []
+  for (const vc of sorted) {
+    if (!vc.show) continue
+    const col = tableColsById.get(vc.fk_column_id)
+    if (!col) continue
+    if (col.system) continue
+    if (!SUPPORTED_TYPES.has(col.uidt)) continue
+
+    const title = vc.label || col.title
+    const description = vc.help || vc.description || col.description || undefined
+
+    let options: string[] | undefined
+    if (col.uidt === 'SingleSelect') {
+      const rawOptions = col.colOptions?.options ?? []
+      const orderedOptions = [...rawOptions].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+      options = orderedOptions.map(o => o.title)
     }
-  }
 
-  const fields: FormField[] = rows
-    .filter(r => r.show && !r.system && SUPPORTED_TYPES.has(r.uidt))
-    .map(r => {
-      const title = r.label || r.col_title
-      const description = r.help || r.form_description || r.col_description || undefined
-      return {
-        id: r.col_id,
-        title,
-        column_name: r.col_title,
-        uidt: r.uidt,
-        required: !!r.required,
-        ...(description ? { description } : {}),
-        ...(r.uidt === 'SingleSelect' ? { options: optionsMap.get(r.col_id) || [] } : {}),
-      }
+    fields.push({
+      id: col.id,
+      title,
+      column_name: col.title,
+      uidt: col.uidt,
+      required: !!vc.required,
+      ...(description ? { description } : {}),
+      ...(options ? { options } : {}),
     })
+  }
 
   fieldsCache.set(viewId, { data: fields, expiresAt: Date.now() + CACHE_TTL })
   return fields
