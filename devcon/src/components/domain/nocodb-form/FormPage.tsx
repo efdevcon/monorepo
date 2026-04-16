@@ -14,6 +14,103 @@ interface SchemaResponse {
   columns: FormColumn[]
 }
 
+const ADMIN_EMAILS = new Set(['lasse.jacobsen@ethereum.org'])
+
+interface ClassificationResult {
+  email: string
+  isPersonal: boolean
+  isUniversity: boolean
+  isGovernment: boolean
+  isDisposable: boolean
+  organizationType: string
+  rootDomain: string | null
+  signals: string[]
+}
+
+function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
+  const [testEmail, setTestEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState<{ heuristic: ClassificationResult; ai: ClassificationResult | null } | null>(null)
+  const [open, setOpen] = useState(false)
+
+  if (!ADMIN_EMAILS.has(callerEmail)) return null
+
+  const handleClassify = async () => {
+    if (!testEmail) return
+    setLoading(true)
+    setResult(null)
+    try {
+      const res = await fetch('/api/nocodb/classify-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: testEmail, callerEmail }),
+      })
+      const data = await res.json()
+      if (data.success) setResult({ heuristic: data.heuristic, ai: data.ai })
+    } catch {}
+    setLoading(false)
+  }
+
+  const renderClassification = (label: string, c: ClassificationResult) => (
+    <div className="text-xs space-y-1">
+      <p className="font-bold text-[#160b2b]">{label}</p>
+      <div className="flex flex-wrap gap-1">
+        <span className={`px-1.5 py-0.5 rounded ${c.isUniversity ? 'bg-green-100 text-green-800' : c.isPersonal ? 'bg-yellow-100 text-yellow-800' : c.isDisposable ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+          {c.organizationType}
+        </span>
+        {c.isUniversity && <span className="px-1.5 py-0.5 rounded bg-green-100 text-green-800">university</span>}
+        {c.isPersonal && <span className="px-1.5 py-0.5 rounded bg-yellow-100 text-yellow-800">personal</span>}
+        {c.isDisposable && <span className="px-1.5 py-0.5 rounded bg-red-100 text-red-800">disposable</span>}
+        {c.isGovernment && <span className="px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">government</span>}
+      </div>
+      <p className="text-[#594d73]">domain: {c.rootDomain || '—'}</p>
+      <p className="text-[#594d73]">signals: {c.signals.length ? c.signals.join(', ') : 'none'}</p>
+    </div>
+  )
+
+  return (
+    <div className="w-full mt-2">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="text-xs text-[#594d73] hover:text-[#7235ed] font-mono"
+      >
+        {open ? '▼' : '▶'} Email Classifier Debug
+      </button>
+
+      {open && (
+        <div className="mt-2 p-3 bg-[#f9f8fa] rounded-lg border border-[#dddae2] space-y-3">
+          <div className="flex gap-2">
+            <input
+              type="email"
+              value={testEmail}
+              onChange={e => setTestEmail(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleClassify()}
+              placeholder="test@example.edu"
+              className="flex-1 px-3 py-1.5 text-sm border border-[#dddae2] rounded-md"
+            />
+            <button
+              type="button"
+              onClick={handleClassify}
+              disabled={loading || !testEmail}
+              className="px-3 py-1.5 text-xs font-bold bg-[#7235ed] text-white rounded-md disabled:opacity-50"
+            >
+              {loading ? '...' : 'Classify'}
+            </button>
+          </div>
+
+          {result && (
+            <div className="space-y-3">
+              {renderClassification('Heuristic', result.heuristic)}
+              {result.ai && renderClassification('AI-enriched', result.ai)}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 interface FormPageProps {
   viewId: string
   requireOtp: boolean
@@ -43,7 +140,8 @@ function FormInner({
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
 
-  const readOnlyFields = verifiedEmail
+  // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner)
+  const hiddenFields = verifiedEmail
     ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name)
     : []
 
@@ -93,7 +191,7 @@ function FormInner({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
-        <FormRenderer columns={schema.columns} readOnlyFields={readOnlyFields} />
+        <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} />
 
         {requireOtp && (
           <Link
@@ -253,17 +351,20 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
           {requireOtp ? (
             <OtpGate title={schema.title}>
               {(verifiedEmail, onSignOut) => (
-                <FormInner
-                  schema={schema}
-                  methods={methods}
-                  onSubmit={onSubmit}
-                  submitting={submitting}
-                  error={error}
-                  verifiedEmail={verifiedEmail}
-                  viewId={viewId}
-                  requireOtp={requireOtp}
-                  onSignOut={onSignOut}
-                />
+                <>
+                  <FormInner
+                    schema={schema}
+                    methods={methods}
+                    onSubmit={onSubmit}
+                    submitting={submitting}
+                    error={error}
+                    verifiedEmail={verifiedEmail}
+                    viewId={viewId}
+                    requireOtp={requireOtp}
+                    onSignOut={onSignOut}
+                  />
+                  <EmailClassifierDebug callerEmail={verifiedEmail} />
+                </>
               )}
             </OtpGate>
           ) : (

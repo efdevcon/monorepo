@@ -3,21 +3,18 @@ import { createClient } from '@supabase/supabase-js'
 import { getConfigByViewId } from 'config/nocodb-forms'
 import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
 import { classifyEmailWithAI } from 'services/email-classifier'
+import { WHITELISTED_UNIVERSITY_DOMAINS } from 'services/whitelisted-domains'
 
-const WHITELISTED_DOMAINS = new Set([
-  'ethereum.org',
-])
-
-type EmailClassificationState = 'unverified' | 'verified' | 'whitelisted'
+type EmailClassificationState = 'personal' | 'organization' | 'whitelisted'
 
 function getEmailClassificationState(email: string, aiOrgType: string): EmailClassificationState {
   const domain = email.split('@')[1]?.toLowerCase()
-  if (!domain) return 'unverified'
+  if (!domain) return 'personal'
 
-  if (WHITELISTED_DOMAINS.has(domain)) return 'whitelisted'
+  if (WHITELISTED_UNIVERSITY_DOMAINS.has(domain)) return 'whitelisted'
   if (aiOrgType === 'university') return 'whitelisted'
-  if (aiOrgType === 'government' || aiOrgType === 'organization') return 'verified'
-  return 'verified'
+  if (aiOrgType === 'government' || aiOrgType === 'organization') return 'organization'
+  return 'personal'
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -90,9 +87,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Email classification
     if (verifiedEmail) {
       const domain = verifiedEmail.split('@')[1]?.toLowerCase() ?? ''
-      let classificationState: EmailClassificationState = 'verified'
+      let classificationState: EmailClassificationState = 'personal'
 
-      if (WHITELISTED_DOMAINS.has(domain)) {
+      if (WHITELISTED_UNIVERSITY_DOMAINS.has(domain)) {
         classificationState = 'whitelisted'
       } else {
         const classification = await classifyEmailWithAI(verifiedEmail)

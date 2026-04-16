@@ -5,6 +5,7 @@
 
 import { parse as parseDomain } from 'tldts'
 import OpenAI from 'openai'
+import { WHITELISTED_UNIVERSITY_DOMAINS } from './whitelisted-domains'
 
 // ── Domain lists ──────────────────────────────────────────────────────
 
@@ -140,13 +141,7 @@ const DISPOSABLE_KEYWORDS = [
   'spamgourmet',
 ]
 
-// ── Whitelisted university domains (auto-classified as university) ────
-// Domains here are known university/education domains that don't use
-// standard .edu/.ac suffixes. Add more as needed.
-
-const WHITELISTED_UNIVERSITY_DOMAINS = new Set([
-  'ethereum.org',
-])
+// Whitelisted university domains imported from ./whitelisted-domains.ts
 
 // ── Helpers ───────────────────────────────────────────────────────────
 
