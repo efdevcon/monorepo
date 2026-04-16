@@ -189,7 +189,7 @@ export const GetReminderDialog = ({ open, onOpenChange }: GetReminderDialogProps
                       onChange={e => setEmail(e.target.value)}
                       onKeyDown={e => e.key === 'Enter' && handleSubmit()}
                       disabled={status === 'loading'}
-                      className="bg-white border border-[#dddae2] rounded-lg h-10 leading-10 px-4 text-[14px] text-[#160b2b] placeholder:text-[#594d73] flex-1 min-w-0 outline-none focus:border-[#7235ed] transition-colors disabled:opacity-60"
+                      className="bg-white border border-[#dddae2] rounded-lg h-10 leading-10 px-4 text-[14px] text-[#160b2b] placeholder:text-[#594d73] w-full sm:flex-1 sm:min-w-0 outline-none focus:border-[#7235ed] transition-colors disabled:opacity-60"
                     />
                     <button
                       type="button"
