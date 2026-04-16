@@ -264,6 +264,12 @@ function CheckoutContent() {
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
   const [isExecutingGasless, setIsExecutingGasless] = useState(false)
+  // True during the verifyPayment poll (between tx broadcast and order confirmation).
+  // Used to lock token/network selection until verification resolves.
+  const [isVerifying, setIsVerifying] = useState(false)
+  // EIP-191 signature binding payer wallet to the payment reference.
+  // Only populated for the native ETH path (USDC/USDT0 are bound via EIP-3009).
+  const [ethPayerSignature, setEthPayerSignature] = useState<string | null>(null)
 
   // Payment options (multi-chain)
   const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
@@ -612,7 +618,17 @@ function CheckoutContent() {
 
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
   const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
-  const totalUsd = (subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
+  const totalUsdNum = +(subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
+  const totalUsd = totalUsdNum.toFixed(2)
+
+  // ── GST/VAT ──
+  // Ticket prices are tax-inclusive. Discounts reduce the taxable base, so GST is
+  // computed on the *post-discount* total — the actual tax remitted to the customer.
+  const vatPercent = TICKETING.tax.vatPercent
+  const vatLabel = TICKETING.tax.label
+  const totalExclGst = vatPercent > 0 ? +(totalUsdNum / (1 + vatPercent / 100)).toFixed(2) : totalUsdNum
+  const gstAmount = +(totalUsdNum - totalExclGst).toFixed(2)
+  const showGstBreakdown = gstAmount > 0
 
   // ── Wallet error helper ──
   function humanizeWalletError(e: unknown): string {
@@ -659,7 +675,8 @@ function CheckoutContent() {
     isWritePending ||
     isTxLoading ||
     isSendTxPending ||
-    isSendTxReceiptLoading
+    isSendTxReceiptLoading ||
+    isVerifying
 
   // Invalidate stale payment when user navigates away from payment section
   // (e.g. goes back to edit add-ons, contact details, etc.)
@@ -1217,6 +1234,32 @@ function CheckoutContent() {
         setPurchaseError('Invalid transaction request')
         return
       }
+      if (!walletClient) {
+        setPurchaseError('Wallet not connected')
+        return
+      }
+
+      // Sign a payer-proof message BEFORE sending the tx. Binds the wallet to
+      // this specific paymentReference+chain so the /verify endpoint can
+      // cryptographically confirm the caller owns the payer address (and is
+      // not replaying someone else's on-chain tx for a different order).
+      const chainIdForSig = Number(paymentDetails.chainId)
+      const payerMessage =
+        'Devcon ticket payment (ETH)\n' +
+        `Payment reference: ${paymentDetails.paymentReference}\n` +
+        `Payer: ${address}\n` +
+        `Chain: ${chainIdForSig}`
+      setPaymentStatus('Sign payer proof in wallet...')
+      let sig: string
+      try {
+        sig = await walletClient.signMessage({ account: address, message: payerMessage })
+      } catch (e) {
+        setPurchaseError(humanizeWalletError(e))
+        setPaymentStatus(null)
+        return
+      }
+      setEthPayerSignature(sig)
+
       setPaymentStatus('Confirm in wallet...')
       try {
         await sendTransactionAsync({
@@ -1237,6 +1280,7 @@ function CheckoutContent() {
     const maxAttempts = 5
     const retryDelay = 8000
 
+    setIsVerifying(true)
     setPaymentStatus(attempt > 1
       ? `Waiting for on-chain confirmation... (${attempt}/${maxAttempts})`
       : 'Verifying payment...')
@@ -1253,6 +1297,9 @@ function CheckoutContent() {
           chainId: paymentDetails.chainId,
           symbol: paymentDetails.tokenSymbol,
           tokenAddress: paymentDetails.tokenAddress,
+          ...(paymentDetails.tokenSymbol === 'ETH' && ethPayerSignature && {
+            ethPayerSignature,
+          }),
         }),
       })
 
@@ -1283,6 +1330,7 @@ function CheckoutContent() {
 
       setPurchaseError(data.error || 'Payment verification failed')
       setPaymentStatus(null)
+      setIsVerifying(false)
     } catch {
       // Network error — auto-retry
       if (attempt < maxAttempts) {
@@ -1291,6 +1339,7 @@ function CheckoutContent() {
       }
       setPurchaseError('Failed to verify payment')
       setPaymentStatus(null)
+      setIsVerifying(false)
     }
   }
 
@@ -1311,24 +1360,37 @@ function CheckoutContent() {
               <span>Order summary</span>
               {mobileOrderOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
             </span>
-            <span className={css['mobile-order-bar-total']}>${totalUsd}</span>
+            <span className={css['mobile-order-bar-total']}>
+              <span>${totalUsd}</span>
+              {!mobileOrderOpen && showGstBreakdown && (
+                <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+              )}
+            </span>
           </button>
           {mobileOrderOpen && (
             <div className={css['mobile-order-expanded']}>
               <div className={css['mobile-order-content']}>
                 <div className={css['panel-items']}>
                   {cartItems.length > 0 ? (
-                    cartItems.map(item => (
-                      <div key={item.ticketId} className={css['panel-item']}>
-                        <span className={css['panel-item-name']}>{item.name}</span>
-                        <div className={css['panel-item-right']}>
-                          <span>x{item.quantity}</span>
-                          <span className={css['panel-item-price']}>
-                            ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                    cartItems.map(item => {
+                      const isPaid = parseFloat(item.price) > 0
+                      return (
+                        <div key={item.ticketId} className={css['panel-item']}>
+                          <span className={css['panel-item-name']}>
+                            {item.name}
+                            {isPaid && vatPercent > 0 && (
+                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            )}
                           </span>
+                          <div className={css['panel-item-right']}>
+                            <span>x{item.quantity}</span>
+                            <span className={css['panel-item-price']}>
+                              ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))
+                      )
+                    })
                   ) : (
                     <div className={css['panel-item']}>
                       <span className={css['panel-item-name']}>No tickets selected</span>
@@ -1354,7 +1416,12 @@ function CheckoutContent() {
                     return (
                       <div key={itemId} className={css['panel-item']}>
                         <div className={css['panel-item-name']}>
-                          {item.name}
+                          <span>
+                            {item.name}
+                            {!isFree && vatPercent > 0 && (
+                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            )}
+                          </span>
                           {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                         </div>
                         <div className={css['panel-item-right']}>
@@ -1413,6 +1480,18 @@ function CheckoutContent() {
                       <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                       <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                     </div>
+                  )}
+                  {showGstBreakdown && (
+                    <>
+                      <div className={css['summary-line']}>
+                        <span>Total excl. {vatLabel}</span>
+                        <span>${totalExclGst.toFixed(2)}</span>
+                      </div>
+                      <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                        <span>{vatLabel} @ {vatPercent}%</span>
+                        <span>${gstAmount.toFixed(2)}</span>
+                      </div>
+                    </>
                   )}
                   <div className={css['summary-total']}>
                     <span>Total</span>
@@ -2103,6 +2182,7 @@ function CheckoutContent() {
                                             className={`${css['asset-chip']} ${
                                               tokenFilter === sym ? css['asset-chip--active'] : ''
                                             }`}
+                                            disabled={isProcessing}
                                             onClick={() => {
                                               setTokenFilter(sym)
                                               // Auto-select the best network for this asset
@@ -2140,7 +2220,7 @@ function CheckoutContent() {
                                             type="button"
                                             className={css['network-refresh']}
                                             onClick={() => fetchPaymentOptions()}
-                                            disabled={paymentOptionsLoading}
+                                            disabled={paymentOptionsLoading || isProcessing}
                                           >
                                             Refresh balances
                                           </button>
@@ -2164,8 +2244,8 @@ function CheckoutContent() {
                                                 className={`${css['network-row']} ${
                                                   isSelected ? css['network-row--selected'] : ''
                                                 } ${!canPay ? css['network-row--insufficient'] : ''}`}
-                                                disabled={!canPay}
-                                                onClick={() => canPay && selectPaymentOption(opt)}
+                                                disabled={!canPay || isProcessing}
+                                                onClick={() => canPay && !isProcessing && selectPaymentOption(opt)}
                                               >
                                                 <span className={css['network-row-icon']}>
                                                   {NETWORK_LOGOS[chainIdNum] && (
@@ -2400,23 +2480,36 @@ function CheckoutContent() {
                             <span>Order summary</span>
                             {mobileInlineSummaryOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                           </span>
-                          <span className={css['mobile-inline-summary-total']}>${totalUsd}</span>
+                          <span className={css['mobile-inline-summary-total']}>
+                            <span>${totalUsd}</span>
+                            {!mobileInlineSummaryOpen && showGstBreakdown && (
+                              <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                            )}
+                          </span>
                         </button>
                         {mobileInlineSummaryOpen && (
                           <div className={css['mobile-inline-summary-content']}>
                             <div className={css['panel-items']}>
                               {cartItems.length > 0 ? (
-                                cartItems.map(item => (
-                                  <div key={item.ticketId} className={css['panel-item']}>
-                                    <span className={css['panel-item-name']}>{item.name}</span>
-                                    <div className={css['panel-item-right']}>
-                                      <span>x{item.quantity}</span>
-                                      <span className={css['panel-item-price']}>
-                                        ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                cartItems.map(item => {
+                                  const isPaid = parseFloat(item.price) > 0
+                                  return (
+                                    <div key={item.ticketId} className={css['panel-item']}>
+                                      <span className={css['panel-item-name']}>
+                                        {item.name}
+                                        {isPaid && vatPercent > 0 && (
+                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                        )}
                                       </span>
+                                      <div className={css['panel-item-right']}>
+                                        <span>x{item.quantity}</span>
+                                        <span className={css['panel-item-price']}>
+                                          ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                                        </span>
+                                      </div>
                                     </div>
-                                  </div>
-                                ))
+                                  )
+                                })
                               ) : (
                                 <div className={css['panel-item']}>
                                   <span className={css['panel-item-name']}>No tickets selected</span>
@@ -2442,7 +2535,12 @@ function CheckoutContent() {
                                 return (
                                   <div key={itemId} className={css['panel-item']}>
                                     <div className={css['panel-item-name']}>
-                                      {item.name}
+                                      <span>
+                                        {item.name}
+                                        {!isFree && vatPercent > 0 && (
+                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                        )}
+                                      </span>
                                       {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                                     </div>
                                     <div className={css['panel-item-right']}>
@@ -2471,6 +2569,18 @@ function CheckoutContent() {
                                   <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                                   <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                                 </div>
+                              )}
+                              {showGstBreakdown && (
+                                <>
+                                  <div className={css['summary-line']}>
+                                    <span>Total excl. {vatLabel}</span>
+                                    <span>${totalExclGst.toFixed(2)}</span>
+                                  </div>
+                                  <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                                    <span>{vatLabel} @ {vatPercent}%</span>
+                                    <span>${gstAmount.toFixed(2)}</span>
+                                  </div>
+                                </>
                               )}
                               <div className={css['summary-total']}>
                                 <span>Total</span>
@@ -2593,17 +2703,25 @@ function CheckoutContent() {
             <div className={css['panel-content']}>
               <div className={css['panel-items']}>
                 {cartItems.length > 0 ? (
-                  cartItems.map(item => (
-                    <div key={item.ticketId} className={css['panel-item']}>
-                      <span className={css['panel-item-name']}>{item.name}</span>
-                      <div className={css['panel-item-right']}>
-                        <span>x{item.quantity}</span>
-                        <span className={css['panel-item-price']}>
-                          ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  cartItems.map(item => {
+                    const isPaid = parseFloat(item.price) > 0
+                    return (
+                      <div key={item.ticketId} className={css['panel-item']}>
+                        <span className={css['panel-item-name']}>
+                          {item.name}
+                          {isPaid && vatPercent > 0 && (
+                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                          )}
                         </span>
+                        <div className={css['panel-item-right']}>
+                          <span>x{item.quantity}</span>
+                          <span className={css['panel-item-price']}>
+                            ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))
+                    )
+                  })
                 ) : (
                   <div className={css['panel-item']}>
                     <span className={css['panel-item-name']}>No tickets selected</span>
@@ -2629,7 +2747,12 @@ function CheckoutContent() {
                   return (
                     <div key={itemId} className={css['panel-item']}>
                       <div className={css['panel-item-name']}>
-                        {item.name}
+                        <span>
+                          {item.name}
+                          {!isFree && vatPercent > 0 && (
+                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                          )}
+                        </span>
                         {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
                       </div>
                       <div className={css['panel-item-right']}>
@@ -2725,6 +2848,18 @@ function CheckoutContent() {
                     <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
                     <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                   </div>
+                )}
+                {showGstBreakdown && (
+                  <>
+                    <div className={css['summary-line']}>
+                      <span>Total excl. {vatLabel}</span>
+                      <span>${totalExclGst.toFixed(2)}</span>
+                    </div>
+                    <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
+                      <span>{vatLabel} @ {vatPercent}%</span>
+                      <span>${gstAmount.toFixed(2)}</span>
+                    </div>
+                  </>
                 )}
                 <div className={css['summary-total']}>
                   <span>Total</span>

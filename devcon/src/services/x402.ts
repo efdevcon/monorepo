@@ -62,7 +62,7 @@ const publicClient = createPublicClient({
   transport: getTransport(chain.id),
 })
 
-function getPublicClientForChainId(chainId: number) {
+export function getPublicClientForChainId(chainId: number) {
   const c = CHAIN_ID_TO_CHAIN[chainId]
   if (!c) return null
   return createPublicClient({ chain: c, transport: getTransport(chainId) })
@@ -294,7 +294,30 @@ export async function verifyPayment(proof: X402PaymentProof): Promise<X402Paymen
       }
     }
 
-    return { verified: false, error: 'No matching transfer found in transaction' }
+    // Build a descriptive error explaining what was expected vs. what we found.
+    // Helps users understand failures on smart-wallet flows where the outer
+    // tx never actually delivers funds to our merchant (e.g., Coinbase Smart
+    // Wallet + its own paymaster bypasses our relayer).
+    const transfersFromPayer = transferLogs
+      .map((log) => ({
+        from: `0x${log.topics[1]?.slice(26)}`.toLowerCase(),
+        to: `0x${log.topics[2]?.slice(26)}`.toLowerCase(),
+        value: BigInt(log.data).toString(),
+      }))
+      .filter((t) => t.from === payer.toLowerCase())
+    const transfersToRecipient = transferLogs
+      .map((log) => ({
+        from: `0x${log.topics[1]?.slice(26)}`.toLowerCase(),
+        to: `0x${log.topics[2]?.slice(26)}`.toLowerCase(),
+        value: BigInt(log.data).toString(),
+      }))
+      .filter((t) => t.to === recipient.toLowerCase())
+    const summary = [
+      `expected: from=${payer.toLowerCase()} to=${recipient.toLowerCase()} value>=${proof.expectedAmount}`,
+      `from payer (${transfersFromPayer.length}): ${JSON.stringify(transfersFromPayer)}`,
+      `to recipient (${transfersToRecipient.length}): ${JSON.stringify(transfersToRecipient)}`,
+    ].join(' | ')
+    return { verified: false, error: `No matching transfer found in transaction. ${summary}` }
   } catch (error) {
     console.error('Error verifying payment:', error)
     return { verified: false, error: `Verification error: ${(error as Error).message}` }
@@ -401,6 +424,59 @@ export async function verifyPaymentDirect(
 }
 
 /**
+ * Walk a `debug_traceTransaction` call tree looking for an internal ETH
+ * transfer from `fromAddr` to `toAddr` with value >= `minValue`.
+ * Supports ERC-4337 bundler flows where the outer tx.from is a bundler EOA
+ * and the real ETH movement happens in an internal call from the smart wallet.
+ *
+ * Requires the RPC provider to support `debug_traceTransaction` with the
+ * `callTracer`. Alchemy, QuickNode, and Infura (paid tier) all support this.
+ */
+type CallTraceNode = {
+  from?: string
+  to?: string
+  value?: string
+  type?: string
+  calls?: CallTraceNode[]
+}
+
+async function findInternalEthTransfer(
+  client: ReturnType<typeof getPublicClientForChainId>,
+  txHash: string,
+  fromAddrLower: string,
+  toAddrLower: string,
+  minValue: bigint,
+): Promise<{ found: boolean; valueWei?: bigint; error?: string }> {
+  if (!client) return { found: false, error: 'No RPC client' }
+  try {
+    // Cast to any to bypass viem's strict typed RPC schema; debug_traceTransaction
+    // is a non-standard but widely supported method (Alchemy, QuickNode, Infura).
+    const trace = (await (client as any).request({
+      method: 'debug_traceTransaction',
+      params: [txHash, { tracer: 'callTracer' }],
+    })) as CallTraceNode
+
+    const stack: CallTraceNode[] = [trace]
+    const zero = BigInt(0)
+    while (stack.length > 0) {
+      const node = stack.pop()!
+      const nodeValue = node.value ? BigInt(node.value) : zero
+      if (
+        nodeValue >= minValue &&
+        node.from?.toLowerCase() === fromAddrLower &&
+        node.to?.toLowerCase() === toAddrLower
+      ) {
+        return { found: true, valueWei: nodeValue }
+      }
+      if (node.calls) stack.push(...node.calls)
+    }
+    return { found: false }
+  } catch (e) {
+    return { found: false, error: (e as Error).message }
+  }
+}
+
+/**
  * Verify a native ETH payment (value transfer) on-chain
  */
 export async function verifyPaymentNativeEth(
@@ -454,12 +530,34 @@ export async function verifyPaymentNativeEth(
     }
 
     const recipientLower = expectedRecipient.toLowerCase()
+    const payerLower = payer.toLowerCase()
     const toMatch = tx.to && tx.to.toLowerCase() === recipientLower
-    if (!toMatch || tx.from?.toLowerCase() !== payer.toLowerCase()) {
-      return { verified: false, error: 'Transaction from/to does not match payment' }
-    }
-    if (tx.value < BigInt(expectedAmountWei)) {
-      return { verified: false, error: 'Transaction value is less than required amount' }
+    const fromMatch = tx.from?.toLowerCase() === payerLower
+
+    // Happy path: EOA sends ETH directly — tx.from/tx.to/tx.value all match.
+    if (toMatch && fromMatch) {
+      if (tx.value < BigInt(expectedAmountWei)) {
+        return { verified: false, error: 'Transaction value is less than required amount' }
+      }
+    } else {
+      // Smart wallet / ERC-4337 bundler path: the outer tx is sent by a
+      // bundler/EntryPoint, and the actual ETH transfer happens in an
+      // internal call from the smart wallet (payer) to the recipient.
+      // We inspect the tx trace to find a matching internal transfer.
+      console.log('[x402] Native ETH direct match failed; trying trace-based detection for smart-wallet / 4337 flow')
+      const traceMatch = await findInternalEthTransfer(
+        client,
+        txHash,
+        payerLower,
+        recipientLower,
+        BigInt(expectedAmountWei),
+      )
+      if (!traceMatch.found) {
+        const reason = `tx.from=${tx.from} (expected payer=${payer}), tx.to=${tx.to} (expected recipient=${expectedRecipient}); no matching internal transfer found`
+        console.warn('[x402] Native ETH mismatch:', reason, traceMatch.error ?? '')
+        return { verified: false, error: `Transaction from/to does not match payment: ${reason}` }
+      }
+      console.log('[x402] Native ETH verified via trace; internal transfer value =', traceMatch.valueWei?.toString())
     }
 
     const gasCostWei = receipt.gasUsed != null && receipt.effectiveGasPrice != null

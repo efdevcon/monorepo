@@ -14,7 +14,7 @@
  * - Ticket details
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader } from 'services/x402'
+import { verifyPayment, verifyPaymentDirect, verifyPaymentNativeEth, getPaymentRecipient, usdToUsdcAmount, encodeSettlementResponseHeader, getPublicClientForChainId } from 'services/x402'
 import { getUsdcConfig } from 'services/relayer'
 import type { SettleResponse } from 'types/x402'
 import { createOrder, confirmOrderPayment } from 'services/pretix'
@@ -52,6 +52,22 @@ interface VerifyRequest {
   symbol?: string
   /** Token contract address. Required for multi-token chains (e.g. USDC vs USDT0 on Arbitrum). Falls back to USDC if omitted. */
   tokenAddress?: string
+  /**
+   * EIP-191 signature proving the caller owns the `payer` wallet.
+   * REQUIRED when `symbol === 'ETH'`. Prevents cross-order tx reuse attacks
+   * on the native ETH path (USDC/USDT0 are already bound via EIP-3009).
+   */
+  ethPayerSignature?: string
+}
+
+/** Build the ETH-only message that the payer signs before their /verify call. */
+function buildEthPayerMessage(paymentReference: string, payer: string, chainId: number): string {
+  return (
+    'Devcon ticket payment (ETH)\n' +
+    `Payment reference: ${paymentReference}\n` +
+    `Payer: ${payer}\n` +
+    `Chain: ${chainId}`
+  )
 }
 
 interface VerifySuccessResponse {
@@ -197,6 +213,55 @@ export default async function handler(
       })
     }
 
+    // For native ETH, require a signature over paymentReference+payer+chainId to
+    // cryptographically prove the caller owns the `payer` wallet. USDC/USDT0 are
+    // already bound via EIP-3009 at prepare-authorization time so no extra
+    // signature is needed for those paths.
+    if (body.symbol === 'ETH') {
+      if (!body.ethPayerSignature || typeof body.ethPayerSignature !== 'string') {
+        return res.status(400).json({
+          success: false,
+          error: 'ethPayerSignature is required for native ETH payments',
+        })
+      }
+      if (body.chainId == null) {
+        return res.status(400).json({
+          success: false,
+          error: 'chainId is required for native ETH payments',
+        })
+      }
+      const message = buildEthPayerMessage(body.paymentReference, body.payer, body.chainId)
+      // Use verifyMessage which handles BOTH EOA (ECDSA recovery) and smart
+      // wallet (ERC-1271 isValidSignature) signatures. For contracts it calls
+      // isValidSignature on the payer address and checks the 0x1626ba7e magic value.
+      const client = getPublicClientForChainId(body.chainId)
+      if (!client) {
+        return res.status(400).json({
+          success: false,
+          error: `Unsupported chainId for signature verification: ${body.chainId}`,
+        })
+      }
+      let sigValid = false
+      try {
+        sigValid = await client.verifyMessage({
+          address: body.payer as `0x${string}`,
+          message,
+          signature: body.ethPayerSignature as `0x${string}`,
+        })
+      } catch (e) {
+        return res.status(400).json({
+          success: false,
+          error: `ethPayerSignature verification failed: ${(e as Error).message}`,
+        })
+      }
+      if (!sigValid) {
+        return res.status(403).json({
+          success: false,
+          error: 'ethPayerSignature does not match the payer address',
+        })
+      }
+    }
+
     // Verify payment on-chain
     const expectedAmount = usdToUsdcAmount(pendingOrder.totalUsd)
     const paymentProof: X402PaymentProof = {
@@ -211,12 +276,16 @@ export default async function handler(
     console.log('[Verify] Attempting primary verification via x402 service', body.chainId != null ? `(chain ${body.chainId})` : '')
     let verification = await verifyPayment(paymentProof)
 
-    // Only try native ETH when client indicates ETH payment; otherwise we'd wrongly run it for USDC and fail (from/to mismatch)
+    // Only try native ETH when client indicates ETH payment; otherwise we'd wrongly run it for USDC and fail (from/to mismatch).
+    // Error prefix match (not exact) because verifyPayment may append diagnostic detail to the message.
     if (
       !verification.verified &&
       body.symbol === 'ETH' &&
       body.chainId != null &&
-      (verification.error === 'No matching transfer found in transaction' || verification.error === 'Invalid payment reference')
+      (
+        verification.error?.startsWith('No matching transfer found in transaction') ||
+        verification.error === 'Invalid payment reference'
+      )
     ) {
       const expectedAmountWei = pendingOrder.expectedEthAmountWeiByChain?.[String(body.chainId)]
       if (!expectedAmountWei) {
