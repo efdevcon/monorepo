@@ -163,8 +163,9 @@ export const GetReminderDialog = ({ open, onOpenChange }: GetReminderDialogProps
                 <div className="flex items-center justify-between font-extrabold w-full whitespace-nowrap">
                   <p className="text-base text-[#f9f8fa] leading-4">Global Early Bird</p>
                   <div className="flex gap-1 items-end">
-                    <p className="text-sm text-[#aca6b9] line-through leading-[14px]">$699</p>
-                    <p className="text-base text-[#f9f8fa] leading-4">$349</p>
+                    {/* <p className="text-sm text-[#aca6b9] line-through leading-[14px]">$699</p>
+                    <p className="text-base text-[#f9f8fa] leading-4">$349</p> */}
+                    <p className="text-sm text-[#aca6b9] leading-4">Discounted</p>
                   </div>
                 </div>
               </div>
