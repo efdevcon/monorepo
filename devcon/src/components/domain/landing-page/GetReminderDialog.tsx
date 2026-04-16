@@ -205,7 +205,7 @@ export const GetReminderDialog = ({ open, onOpenChange }: GetReminderDialogProps
                   )}
                   <p className="text-xs text-center leading-4">
                     <span className="text-[#f2f1f4]">By signing up for ticket reminders, you agree to the Ethereum Foundation&rsquo;s </span>
-                    <span className="text-[#b08df5] font-bold">Privacy Policy</span>
+                    <a href="https://ethereum.org/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[#b08df5] font-bold hover:underline">Privacy Policy</a>
                     <span className="text-[#f2f1f4]">.</span>
                   </p>
                 </>

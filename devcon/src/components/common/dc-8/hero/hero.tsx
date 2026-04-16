@@ -187,7 +187,7 @@ export const Hero = () => {
                             <span className="text-[#aca6b9]">
                               By signing up for ticket reminders, you agree to the Ethereum Foundation&rsquo;s{' '}
                             </span>
-                            <span className="text-[#9668f1] font-bold">Privacy Policy</span>
+                            <a href="https://ethereum.org/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[#9668f1] font-bold hover:underline">Privacy Policy</a>
                             <span className="text-[#aca6b9]">.</span>
                           </p>
                         </>
