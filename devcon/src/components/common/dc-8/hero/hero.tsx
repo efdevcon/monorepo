@@ -141,9 +141,13 @@ export const Hero = () => {
                   <div className="flex items-center justify-between font-extrabold text-sm">
                     <p className="text-white leading-[14px]">Global Early Bird</p>
                     <div className="flex gap-1 items-end">
+                      {/* <p className="text-[#9188a2] line-through leading-[14px]">$699</p> */}
+                      <p className="text-[#9188a2] text-sm leading-4">Discounted</p>
+                    </div>
+                    {/* <div className="flex gap-1 items-end">
                       <p className="text-[#9188a2] line-through leading-[14px]">$699</p>
                       <p className="text-white text-base leading-4">$349</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -178,11 +182,11 @@ export const Hero = () => {
                           >
                             {formStatus === 'loading' ? 'Subscribing...' : 'Remind me'}
                           </button>
-                          {errorMsg && (
-                            <p className="text-[#ff6b6b] text-xs text-center">{errorMsg}</p>
-                          )}
+                          {errorMsg && <p className="text-[#ff6b6b] text-xs text-center">{errorMsg}</p>}
                           <p className="text-[12px] text-center leading-4">
-                            <span className="text-[#aca6b9]">By signing up for ticket reminders, you agree to the Ethereum Foundation&rsquo;s </span>
+                            <span className="text-[#aca6b9]">
+                              By signing up for ticket reminders, you agree to the Ethereum Foundation&rsquo;s{' '}
+                            </span>
                             <span className="text-[#9668f1] font-bold">Privacy Policy</span>
                             <span className="text-[#aca6b9]">.</span>
                           </p>
@@ -237,7 +241,6 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-
     </div>
   )
 }
