@@ -9,7 +9,6 @@ import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import { ChevronDown } from 'lucide-react'
-import { GetReminderDialog } from 'components/domain/landing-page/GetReminderDialog'
 
 // Ticket launch date — May 12, 2026 @ 3:00 PM UTC
 const TICKET_LAUNCH_DATE = new Date(Date.UTC(2026, 4, 12, 15, 0, 0))
@@ -39,7 +38,33 @@ export const Hero = () => {
   const stripHeight = useGetElementHeight('strip')
   const [mounted, setMounted] = useState(false)
   const [countdown, setCountdown] = useState<Countdown>({ days: 0, hours: 0, mins: 0, secs: 0 })
-  const [reminderOpen, setReminderOpen] = useState(false)
+  const [formExpanded, setFormExpanded] = useState(false)
+  const [email, setEmail] = useState('')
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleHeroSubmit = async () => {
+    if (!email.trim()) return
+    setFormStatus('loading')
+    setErrorMsg('')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setFormStatus('error')
+        setErrorMsg(data.error || 'Something went wrong')
+        return
+      }
+      setFormStatus('success')
+    } catch {
+      setFormStatus('error')
+      setErrorMsg('Something went wrong')
+    }
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -122,15 +147,63 @@ export const Hero = () => {
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setReminderOpen(true)}
-                  className="flex gap-1 items-center justify-center w-full cursor-pointer hover:opacity-80 transition-opacity"
-                  aria-label="Remind me when tickets launch"
+                {/* Expandable reminder form */}
+                <div
+                  className="grid transition-[grid-template-rows] duration-400 ease-in-out"
+                  style={{ gridTemplateRows: formExpanded || formStatus === 'success' ? '1fr' : '0fr' }}
                 >
-                  <span className="text-sm font-bold text-[#9668f1] leading-none">Remind me</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-[#9668f1]" strokeWidth={2.5} />
-                </button>
+                  <div className="overflow-hidden">
+                    <div className="flex flex-col gap-3">
+                      {formStatus === 'success' ? (
+                        <div className="bg-[rgba(0,191,48,0.3)] rounded p-3 text-center text-[12px] text-[#f9f8fa] leading-4">
+                          <span className="font-bold">You&rsquo;re on the list! </span>
+                          <span>We&rsquo;ll remind you before May 12 – don&rsquo;t miss early bird pricing ❤️</span>
+                        </div>
+                      ) : (
+                        <>
+                          <input
+                            type="email"
+                            placeholder="Email address"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            onKeyDown={e => e.key === 'Enter' && handleHeroSubmit()}
+                            disabled={formStatus === 'loading'}
+                            className="bg-transparent border-b border-[rgba(255,255,255,0.1)] text-[14px] text-white placeholder:text-[#aca6b9] py-1.5 leading-5 outline-none focus:border-[rgba(255,255,255,0.3)] transition-colors disabled:opacity-60 w-full"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleHeroSubmit}
+                            disabled={formStatus === 'loading' || !email.trim()}
+                            className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-[#f9f8fa] font-bold text-[14px] leading-none rounded-full py-2 w-full cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed min-h-[32px]"
+                          >
+                            {formStatus === 'loading' ? 'Subscribing...' : 'Remind me'}
+                          </button>
+                          {errorMsg && (
+                            <p className="text-[#ff6b6b] text-xs text-center">{errorMsg}</p>
+                          )}
+                          <p className="text-[12px] text-center leading-4">
+                            <span className="text-[#aca6b9]">By signing up for ticket reminders, you agree to the Ethereum Foundation&rsquo;s </span>
+                            <span className="text-[#9668f1] font-bold">Privacy Policy</span>
+                            <span className="text-[#aca6b9]">.</span>
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Toggle button — hidden when expanded or success */}
+                {!formExpanded && formStatus !== 'success' && (
+                  <button
+                    type="button"
+                    onClick={() => setFormExpanded(true)}
+                    className="flex gap-1 items-center justify-center w-full cursor-pointer hover:opacity-80 transition-opacity"
+                    aria-label="Remind me when tickets launch"
+                  >
+                    <span className="text-sm font-bold text-[#9668f1] leading-none">Remind me</span>
+                    <ChevronDown className="w-3.5 h-3.5 text-[#9668f1]" strokeWidth={2.5} />
+                  </button>
+                )}
               </div>
 
               {/* Social Links */}
@@ -165,7 +238,6 @@ export const Hero = () => {
         </div>
       </div>
 
-      <GetReminderDialog open={reminderOpen} onOpenChange={setReminderOpen} />
     </div>
   )
 }

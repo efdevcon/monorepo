@@ -112,8 +112,8 @@ export const GetReminderDialog = ({ open, onOpenChange }: GetReminderDialogProps
           ].join(' ')}
         >
           {/* Background image */}
-          <div aria-hidden className="absolute inset-0 pointer-events-none">
-            <Image src={ReminderBg} alt="" fill className="object-cover" />
+          <div aria-hidden className="absolute inset-0 pointer-events-none bg-[#1a0d33]">
+            <Image src={ReminderBg} alt="" fill className="object-cover" placeholder="blur" />
             {/* Radial dark gradient overlay (darker at the bottom) */}
             <div
               className="absolute inset-0"
@@ -173,9 +173,10 @@ export const GetReminderDialog = ({ open, onOpenChange }: GetReminderDialogProps
             {/* Input + CTA */}
             <div className="flex flex-col gap-3 w-full">
               {status === 'success' ? (
-                <p className="text-[#f9f8fa] text-center text-base font-bold py-2">
-                  You&rsquo;re on the list! We&rsquo;ll remind you when tickets launch.
-                </p>
+                <div className="backdrop-blur-[3px] bg-[rgba(0,119,30,0.5)] rounded-lg p-3 w-full text-center text-[14px] text-[#f9f8fa] leading-5">
+                  <p className="font-bold">You&rsquo;re on the list!</p>
+                  <p>We&rsquo;ll remind you before May 12 – don&rsquo;t miss Early Bird pricing ❤️</p>
+                </div>
               ) : (
                 <>
                   {/* Input + button: stacked on mobile, inline on desktop */}
