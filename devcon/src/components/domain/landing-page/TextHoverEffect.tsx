@@ -1,5 +1,5 @@
-import { useRef, useState, useId, useMemo, useEffect, useCallback } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useRef, useState, useId, useMemo, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 export type GradientStop = {
   offset: string
@@ -38,14 +38,10 @@ export const TextHoverEffect = ({
   viewBoxOverride?: string
 }) => {
   const svgRef = useRef<SVGSVGElement>(null)
-  const gradientRef = useRef<SVGRadialGradientElement>(null)
+  const [cursor, setCursor] = useState({ x: 0, y: 0 })
   const [hovered, setHovered] = useState(false)
+  const [maskPosition, setMaskPosition] = useState({ cx: '50%', cy: '50%' })
   const id = useId()
-
-  const cx = useMotionValue(50)
-  const cy = useMotionValue(50)
-  const springCx = useSpring(cx, { duration: (duration ?? 0) * 1000 })
-  const springCy = useSpring(cy, { duration: (duration ?? 0) * 1000 })
 
   const viewBox = useMemo(() => {
     if (viewBoxOverride) return viewBoxOverride
@@ -54,27 +50,17 @@ export const TextHoverEffect = ({
     return `0 0 ${width} 100`
   }, [text, viewBoxOverride])
 
-  // Imperatively update the radialGradient cx/cy since framer-motion doesn't support motion.radialGradient
   useEffect(() => {
-    const el = gradientRef.current
-    if (!el) return
-    const unsubCx = springCx.on('change', v => el.setAttribute('cx', `${v}%`))
-    const unsubCy = springCy.on('change', v => el.setAttribute('cy', `${v}%`))
-    return () => {
-      unsubCx()
-      unsubCy()
-    }
-  }, [springCx, springCy])
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<SVGSVGElement>) => {
-      if (!svgRef.current) return
+    if (svgRef.current && cursor.x !== null && cursor.y !== null) {
       const svgRect = svgRef.current.getBoundingClientRect()
-      cx.set(((e.clientX - svgRect.left) / svgRect.width) * 100)
-      cy.set(((e.clientY - svgRect.top) / svgRect.height) * 100)
-    },
-    [cx, cy]
-  )
+      const cxPercentage = ((cursor.x - svgRect.left) / svgRect.width) * 100
+      const cyPercentage = ((cursor.y - svgRect.top) / svgRect.height) * 100
+      setMaskPosition({
+        cx: `${cxPercentage}%`,
+        cy: `${cyPercentage}%`,
+      })
+    }
+  }, [cursor])
 
   const gradientId = `textGradient-${id}`
   const maskId = `revealMask-${id}`
@@ -86,12 +72,11 @@ export const TextHoverEffect = ({
       width="100%"
       height="100%"
       viewBox={viewBox}
-      preserveAspectRatio="xMidYMid slice"
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onMouseMove={handleMouseMove}
-      style={{ userSelect: 'none' }}
+      onMouseMove={e => setCursor({ x: e.clientX, y: e.clientY })}
+      className="select-none"
     >
       <defs>
         <linearGradient id={gradientId} gradientUnits="userSpaceOnUse">
@@ -99,24 +84,24 @@ export const TextHoverEffect = ({
             gradientStops.map((stop, i) => <stop key={i} offset={stop.offset} stopColor={stop.color} />)}
         </linearGradient>
 
-        <radialGradient
-          ref={gradientRef}
+        <motion.radialGradient
           id={maskId}
           gradientUnits="userSpaceOnUse"
-          cx="50%"
-          cy="50%"
           r={`${maskRadius}%`}
+          initial={{ cx: '50%', cy: '50%' }}
+          animate={maskPosition}
+          transition={{ duration: duration ?? 0, ease: 'easeOut' }}
         >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
-        </radialGradient>
+        </motion.radialGradient>
         <mask id={textMaskId}>
           <rect x="0" y="0" width="100%" height="100%" fill={`url(#${maskId})`} />
         </mask>
       </defs>
       <text
         x="50%"
-        y="53%"
+        y="51%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
@@ -132,7 +117,7 @@ export const TextHoverEffect = ({
       </text>
       <motion.text
         x="50%"
-        y="53%"
+        y="51%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
@@ -156,7 +141,7 @@ export const TextHoverEffect = ({
       </motion.text>
       <text
         x="50%"
-        y="53%"
+        y="51%"
         textAnchor="middle"
         dominantBaseline="middle"
         stroke={`url(#${gradientId})`}
