@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { Ticket, Shirt, Coffee, ChevronDown, ChevronUp } from 'lucide-react'
+import { Ticket, Shirt, Coffee, ChevronDown } from 'lucide-react'
+import { Faq } from 'components/common/faq'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
@@ -66,48 +67,7 @@ const APPLICATION_ROWS = [
   { name: 'Builders', price: 'from $299', date: 'Opens in April' },
 ]
 
-const FAQ_ITEMS: { q: string; a: React.ReactNode }[] = [
-  {
-    q: 'When will General ticket sales start?',
-    a: 'General Admission ticket sales for Devcon India will launch in early May. Stay tuned for updates as we get closer to this date.',
-  },
-  {
-    q: 'Will there be opportunities to obtain discounted tickets?',
-    a: (
-      <>
-        <p>Yes! There will be multiple ways to obtain discounted tickets this year:</p>
-        <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
-          <li>
-            <strong>Community Discounts</strong> — This will consist of groups like Protocol Guild members, OSS
-            Contributors and more.
-          </li>
-          <li>
-            <strong>Applications</strong> —{' '}
-            <em>This will include Builder Discounts, Student Discounts, and Youth Tickets for those under 18.</em>
-          </li>
-          <li>
-            <strong>Ecosystem Tickets</strong> —{' '}
-            <em>
-              An application will be open for leaders & organizers of various web2 & web3 communities or meetups to
-              apply for free or discounted tickets for their groups.
-            </em>
-          </li>
-        </ul>
-      </>
-    ),
-  },
-  {
-    q: 'Can I purchase tickets with crypto?',
-    a: 'Yes! You will be able to choose between Credit Card or Crypto to pay for your ticket. Orders paid in Crypto receive a 3% discount on the total cost.',
-  },
-]
-
-const FAQ_INITIAL_COUNT = 6
-
 export default function TicketsPage() {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
-  const visibleFaq = FAQ_ITEMS
-
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
       <PageHero
@@ -154,7 +114,7 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['cta-group']}>
-                <a href="https://paragraph.com/@efevents/subscribe" className={css['btn-secondary']}>
+                <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
                   Subscribe for updates
                 </a>
                 <div className={css['social-icons']}>
@@ -252,7 +212,7 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['social-row']}>
-                <a href="https://paragraph.com/@efevents/subscribe" className={css['btn-secondary']}>
+                <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
                   Subscribe for updates
                 </a>
                 <div className={css['social-icons']}>
@@ -399,38 +359,7 @@ export default function TicketsPage() {
             <div className={css['faq-right']}>
               <h2 className={css['heading-2']}>Frequently asked questions</h2>
               <div className={css['faq-and-cta']}>
-                <div className={css['faq-accordion']}>
-                  {visibleFaq.map((item, i) => (
-                    <div key={i} className={css['faq-item']}>
-                      <button
-                        type="button"
-                        className={cn(css['faq-trigger'], openFaqIndex === i && css['faq-trigger-open'])}
-                        onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
-                        aria-expanded={openFaqIndex === i}
-                      >
-                        <span>{item.q}</span>
-                        {openFaqIndex === i ? (
-                          <ChevronUp size={16} strokeWidth={2} className={css['faq-chevron']} />
-                        ) : (
-                          <ChevronDown size={16} strokeWidth={2} className={css['faq-chevron']} />
-                        )}
-                      </button>
-                      <div className={cn(css['faq-answer-wrap'], openFaqIndex === i && css['faq-answer-open'])}>
-                        <div className={css['faq-answer-inner']}>
-                          <div className={css['faq-answer']}>{item.a}</div>
-                        </div>
-                      </div>
-                      {i < visibleFaq.length - 1 && <div className={css['faq-border']} />}
-                    </div>
-                  ))}
-                </div>
-                {/* View all button hidden while FAQ has few entries
-                {!showAllFaq && (
-                  <button type="button" className={css['btn-secondary']} onClick={() => setShowAllFaq(true)}>
-                    View all <span className={css['view-all-count']}>({FAQ_ITEMS.length})</span>
-                  </button>
-                )}
-                */}
+                <Faq />
               </div>
             </div>
           </section>

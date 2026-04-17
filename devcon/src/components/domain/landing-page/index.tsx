@@ -1,30 +1,26 @@
 import React from 'react'
-import { DevconIntro } from './DevconIntro'
-import { KeywordsSection } from './KeywordsSection'
-import { WhyDevconIndia } from './WhyDevconIndia'
-import { LargeCallout } from './LargeCallout'
+import { VenueDetails } from './VenueDetails'
+import { WhyDevconContainer } from './WhyDevconContainer'
 import { WhatToExpect } from './WhatToExpect'
-import { DevconBanner } from './DevconBanner'
-import { ContributeSupport } from './ContributeSupport'
-import { NarrativeBlock } from './NarrativeBlock'
+import { PhotoGallery } from './PhotoGallery'
+import { DevconSEAStats } from './DevconSEAStats'
+import { ContributeAndSupport } from './ContributeAndSupport'
+import { ArtOverlay } from './ArtOverlay'
 import { FaqSection } from './FaqSection'
-import { TicketBanner } from './TicketBanner'
-import css from './landing-page.module.scss'
+import { EarlyBirdBanner } from './EarlyBirdBanner'
 
 export const LandingPage = () => {
   return (
-    <div className={css['page-content']}>
-      <DevconIntro />
-      <KeywordsSection />
-      <WhyDevconIndia />
-      <LargeCallout />
+    <div>
+      <VenueDetails />
+      <WhyDevconContainer />
       <WhatToExpect />
-      <DevconBanner />
-      <ContributeSupport />
-      <NarrativeBlock>
-        <FaqSection />
-      </NarrativeBlock>
-      {/* <TicketBanner /> */}
+      <PhotoGallery />
+      <DevconSEAStats />
+      <ContributeAndSupport />
+      <ArtOverlay />
+      <FaqSection />
+      <EarlyBirdBanner />
     </div>
   )
 }

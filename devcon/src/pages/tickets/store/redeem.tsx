@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { GetServerSideProps } from 'next'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
 import { ArrowLeft, Copy, Send, Loader2 } from 'lucide-react'
@@ -27,7 +28,7 @@ interface VoucherResult {
   error?: string
 }
 
-export default function RedeemPage() {
+export default function RedeemPage({ adminBypass }: { adminBypass?: boolean }) {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [result, setResult] = useState<VoucherResult | null>(null)
@@ -44,7 +45,7 @@ export default function RedeemPage() {
   const [showEmailErrors, setShowEmailErrors] = useState(false)
 
   const voucherCode = (router.query.voucher as string) || ''
-  const isShopOpen = TICKETING.isShopOpen
+  const isShopOpen = TICKETING.isShopOpen || adminBypass
   const emailsValid = isEmail(email.trim()) && email.trim() === confirmEmail.trim()
   const canSend = emailsValid && privacyAccepted && !sending
 
@@ -367,86 +368,6 @@ export default function RedeemPage() {
                   <span>{copied ? 'Copied!' : 'Copy code'}</span>
                   <Copy size={16} />
                 </button>
-
-                <hr className={css['reserve-divider']} />
-
-                <span className={css['reserve-email-label']}>Send voucher via Email</span>
-                <span className={css['reserve-email-help']}>
-                  Enter your email to get your code sent to your inbox, plus a heads-up the moment tickets go live.
-                </span>
-
-                <div className={css['reserve-email-row']}>
-                  <div>
-                    <input
-                      type="email"
-                      className={`${css['reserve-email-input']}${showEmailErrors && !isEmail(email.trim()) ? ' ' + css['reserve-email-input-error'] : ''}`}
-                      placeholder="Email address"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      onBlur={() => { if (email.trim()) setShowEmailErrors(true) }}
-                    />
-                    {showEmailErrors && !isEmail(email.trim()) && (
-                      <p className={css['field-error']}>Please enter a valid email.</p>
-                    )}
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      className={`${css['reserve-email-input']}${showEmailErrors && confirmEmail.trim() !== '' && email.trim() !== confirmEmail.trim() ? ' ' + css['reserve-email-input-error'] : ''}`}
-                      placeholder="Confirm email"
-                      value={confirmEmail}
-                      onChange={e => setConfirmEmail(e.target.value)}
-                      onBlur={() => { if (confirmEmail.trim()) setShowEmailErrors(true) }}
-                    />
-                    {showEmailErrors && confirmEmail.trim() !== '' && email.trim() !== confirmEmail.trim() && (
-                      <p className={css['field-error']}>Email addresses do not match.</p>
-                    )}
-                    {showEmailErrors && confirmEmail.trim() === '' && email.trim() !== '' && (
-                      <p className={css['field-error']}>Please confirm your email.</p>
-                    )}
-                  </div>
-                </div>
-
-                {emailError && <p className={css['field-error']}>{emailError}</p>}
-
-                <label className={css['reserve-privacy']}>
-                  <input
-                    type="checkbox"
-                    checked={privacyAccepted}
-                    onChange={e => setPrivacyAccepted(e.target.checked)}
-                    className={css['reserve-privacy-checkbox']}
-                  />
-                  <span>
-                    I confirm that I have read and understand the{' '}
-                    <a href="https://ethereum.org/privacy-policy" target="_blank" rel="noopener noreferrer">
-                      EF Privacy Policy
-                    </a>{' '}
-                    and{' '}
-                    <a href="https://devcon.org/privacy-notice" target="_blank" rel="noopener noreferrer">
-                      Devcon 8 Privacy Notice
-                    </a>
-                    .
-                  </span>
-                </label>
-
-                <button
-                  type="button"
-                  className={css['reserve-send-btn']}
-                  onClick={handleSendEmail}
-                  disabled={!canSend}
-                >
-                  {sending ? (
-                    <>
-                      <Loader2 className={css['loading-spinner']} size={18} />
-                      <span>Sending...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send size={18} />
-                      <span>Send voucher code</span>
-                    </>
-                  )}
-                </button>
               </div>
             </div>
           )}
@@ -460,8 +381,11 @@ export default function RedeemPage() {
   )
 }
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const secret = query.secret as string | undefined
+  const adminBypass = !!secret && secret === process.env.X402_ADMIN_SECRET
+
   return {
-    props: {},
+    props: { adminBypass },
   }
 }

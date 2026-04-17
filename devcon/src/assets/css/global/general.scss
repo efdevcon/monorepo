@@ -8,6 +8,34 @@
   user-select: none;
 }
 
+/* Radix Dialog overlay fade animation */
+.dialog-overlay {
+  &[data-state='open'] {
+    animation: dialog-overlay-in 400ms ease-out;
+  }
+  &[data-state='closed'] {
+    animation: dialog-overlay-out 300ms ease-in;
+  }
+}
+
+@keyframes dialog-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-overlay-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .aspect {
   position: relative;
   height: 0;
