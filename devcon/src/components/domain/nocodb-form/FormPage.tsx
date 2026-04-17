@@ -11,6 +11,7 @@ import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 
 interface SchemaResponse {
   title: string
+  subheading?: string
   columns: FormColumn[]
 }
 
@@ -498,6 +499,11 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
               <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
                 {schema.title}
               </h2>
+              {schema.subheading && (
+                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
+                  {schema.subheading}
+                </p>
+              )}
               <FormInner
                 schema={schema}
                 methods={methods}
