@@ -5,7 +5,12 @@
 
 import { parse as parseDomain } from 'tldts'
 import OpenAI from 'openai'
-import { WHITELISTED_UNIVERSITY_DOMAINS } from './whitelisted-domains'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import {
+  WHITELISTED_UNIVERSITY_DOMAINS,
+  TOP_INDIAN_UNIVERSITY_DOMAINS,
+  OTHER_INDIAN_UNIVERSITY_DOMAINS,
+} from './whitelisted-domains'
 
 // ── Domain lists ──────────────────────────────────────────────────────
 
@@ -313,4 +318,89 @@ export async function classifyEmailWithAI(rawEmail: string): Promise<EmailClassi
     // Fall back to heuristic if AI fails
     return heuristic
   }
+}
+
+// ── Eligibility buckets ──────────────────────────────────────────────
+
+export type EligibilityBucket =
+  | 'top-indian-university'
+  | 'other-indian-university'
+  | 'ai-university'
+  | 'blocked'
+
+export interface EligibilityResult {
+  bucket: EligibilityBucket
+  email: string
+  domain: string | null
+}
+
+// AI-branch verdicts are cached in Supabase so that `check-eligibility` and
+// `submit` always agree for the same email within the TTL, and so that adding
+// a domain to the whitelist eventually heals stale `blocked` verdicts without
+// manual intervention. Whitelist hits are never cached — they're deterministic
+// and we want whitelist edits to apply instantly.
+const AI_CACHE_TTL_MS = 60 * 60 * 1000 // 1 hour
+
+function getAdminSupabase(): SupabaseClient | null {
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) return null
+  return createClient(url, key)
+}
+
+async function readCachedAiBucket(email: string): Promise<EligibilityBucket | null> {
+  const supabase = getAdminSupabase()
+  if (!supabase) return null
+  try {
+    const { data, error } = await supabase
+      .from('email_classifications')
+      .select('bucket, classified_at')
+      .eq('email', email)
+      .maybeSingle()
+    if (error || !data) return null
+    const age = Date.now() - new Date(data.classified_at as string).getTime()
+    if (age > AI_CACHE_TTL_MS) return null
+    return data.bucket as EligibilityBucket
+  } catch {
+    return null
+  }
+}
+
+async function writeCachedAiBucket(email: string, bucket: EligibilityBucket): Promise<void> {
+  const supabase = getAdminSupabase()
+  if (!supabase) return
+  try {
+    await supabase.from('email_classifications').upsert({
+      email,
+      bucket,
+      classified_at: new Date().toISOString(),
+    })
+  } catch {
+    // Cache write failures are non-fatal — classifier falls back to recompute
+  }
+}
+
+export async function classifyEligibility(rawEmail: string): Promise<EligibilityResult> {
+  const email = rawEmail.trim().toLowerCase()
+  const domain = email.split('@')[1] ?? null
+
+  if (!domain) return { bucket: 'blocked', email, domain: null }
+
+  if (TOP_INDIAN_UNIVERSITY_DOMAINS.has(domain)) {
+    return { bucket: 'top-indian-university', email, domain }
+  }
+
+  if (OTHER_INDIAN_UNIVERSITY_DOMAINS.has(domain)) {
+    return { bucket: 'other-indian-university', email, domain }
+  }
+
+  const cached = await readCachedAiBucket(email)
+  if (cached) return { bucket: cached, email, domain }
+
+  const classification = await classifyEmailWithAI(email)
+  const bucket: EligibilityBucket =
+    classification.organizationType === 'university' ? 'ai-university' : 'blocked'
+
+  await writeCachedAiBucket(email, bucket)
+  return { bucket, email, domain }
 }

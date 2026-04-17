@@ -2,20 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getConfigByViewId } from 'config/nocodb-forms'
 import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
-import { classifyEmailWithAI } from 'services/email-classifier'
-import { WHITELISTED_UNIVERSITY_DOMAINS } from 'services/whitelisted-domains'
-
-type EmailClassificationState = 'personal' | 'organization' | 'whitelisted'
-
-function getEmailClassificationState(email: string, aiOrgType: string): EmailClassificationState {
-  const domain = email.split('@')[1]?.toLowerCase()
-  if (!domain) return 'personal'
-
-  if (WHITELISTED_UNIVERSITY_DOMAINS.has(domain)) return 'whitelisted'
-  if (aiOrgType === 'university') return 'whitelisted'
-  if (aiOrgType === 'government' || aiOrgType === 'organization') return 'organization'
-  return 'personal'
-}
+import { classifyEligibility } from 'services/email-classifier'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -84,19 +71,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Email classification
+    // Email classification & eligibility gate
     if (verifiedEmail) {
-      const domain = verifiedEmail.split('@')[1]?.toLowerCase() ?? ''
-      let classificationState: EmailClassificationState = 'personal'
+      const { bucket } = await classifyEligibility(verifiedEmail)
 
-      if (WHITELISTED_UNIVERSITY_DOMAINS.has(domain)) {
-        classificationState = 'whitelisted'
-      } else {
-        const classification = await classifyEmailWithAI(verifiedEmail)
-        classificationState = getEmailClassificationState(verifiedEmail, classification.organizationType)
+      if (bucket === 'blocked') {
+        return res.status(403).json({
+          success: false,
+          error: 'Your email is not eligible for this application. Please sign in with your university email, or contact support@devcon.org if you believe this is an error.',
+        })
       }
 
-      data['Email Classification'] = classificationState
+      data['Email Classification'] = bucket
     }
 
     data['Submission Date'] = new Date().toISOString()

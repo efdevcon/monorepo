@@ -111,6 +111,135 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
   )
 }
 
+type EligibilityBucket = 'top-indian-university' | 'other-indian-university' | 'ai-university' | 'blocked'
+
+function EligibilityGate({
+  email,
+  viewId,
+  onSignOut,
+  children,
+}: {
+  email: string
+  viewId: string
+  onSignOut: () => void
+  children: React.ReactNode
+}) {
+  const [bucket, setBucket] = useState<EligibilityBucket | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (!email || !supabase) return
+
+    const cacheKey = `eligibility:${email}`
+    const cached = typeof window !== 'undefined' ? window.sessionStorage.getItem(cacheKey) : null
+
+    if (cached) {
+      setBucket(cached as EligibilityBucket)
+      setLoading(false)
+      return
+    }
+
+    setLoading(true)
+    setError('')
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.access_token) {
+        setError('Session expired')
+        setLoading(false)
+        return
+      }
+
+      fetch(`/api/nocodb/${viewId}/check-eligibility/`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      })
+        .then(async res => {
+          const text = await res.text()
+          let result: any
+          try {
+            result = JSON.parse(text)
+          } catch {
+            throw new Error(`Server returned non-JSON (${res.status}): ${text.slice(0, 120)}`)
+          }
+          if (!result.success) throw new Error(result.error || `Eligibility check failed (${res.status})`)
+          window.sessionStorage.setItem(cacheKey, result.bucket)
+          setBucket(result.bucket)
+        })
+        .catch(err => {
+          console.error('[EligibilityGate]', err)
+          setError(err.message)
+        })
+        .finally(() => setLoading(false))
+    })
+  }, [email, viewId])
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 gap-4">
+        <Image src={dc8Logo} alt="Checking eligibility" width={64} height={28} className="animate-pulse opacity-60" />
+        <p className="text-sm text-[#594d73]">Checking eligibility...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center gap-4 text-center">
+        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">
+          Something went wrong
+        </h3>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          We couldn&apos;t verify your eligibility. Please try again, or contact{' '}
+          <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
+            support@devcon.org
+          </a>{' '}
+          if the problem persists.
+        </p>
+        <p className="text-xs text-[#594d73] font-mono">{error}</p>
+        <button
+          type="button"
+          onClick={onSignOut}
+          className="mt-2 px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
+        >
+          Start over
+        </button>
+      </div>
+    )
+  }
+
+  if (bucket === 'blocked') {
+    return (
+      <div className="flex flex-col items-center gap-4 text-center">
+        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">
+          This email isn&apos;t eligible
+        </h3>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          The student application is intended for currently enrolled students. Please sign in
+          with your university email address to continue.
+        </p>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          If your university email isn&apos;t working, or you believe this is a mistake, reach out
+          to{' '}
+          <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
+            support@devcon.org
+          </a>
+          .
+        </p>
+        <button
+          type="button"
+          onClick={onSignOut}
+          className="mt-2 px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
+        >
+          Use a different email
+        </button>
+      </div>
+    )
+  }
+
+  return <>{children}</>
+}
+
 interface FormPageProps {
   viewId: string
   requireOtp: boolean
@@ -351,7 +480,7 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
           {requireOtp ? (
             <OtpGate title={schema.title}>
               {(verifiedEmail, onSignOut) => (
-                <>
+                <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
                   <FormInner
                     schema={schema}
                     methods={methods}
@@ -364,7 +493,7 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
                     onSignOut={onSignOut}
                   />
                   <EmailClassifierDebug callerEmail={verifiedEmail} />
-                </>
+                </EligibilityGate>
               )}
             </OtpGate>
           ) : (
