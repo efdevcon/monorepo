@@ -1111,6 +1111,7 @@ function CheckoutContent() {
         authorization: auth,
         chainId: paymentDetails.chainId,
         tokenAddress: paymentDetails.tokenAddress,
+        symbol: paymentDetails.tokenSymbol,
       }
       if (isSmartWallet) {
         body.rawSignature = sigHex
@@ -1277,8 +1278,8 @@ function CheckoutContent() {
   async function verifyPayment(hash: string, attempt = 1) {
     if (!paymentDetails || !address) return
 
-    const maxAttempts = 5
-    const retryDelay = 8000
+    const maxAttempts = 12
+    const retryDelay = 5000
 
     setIsVerifying(true)
     setPaymentStatus(attempt > 1
@@ -1319,10 +1320,14 @@ function CheckoutContent() {
         return
       }
 
-      // Auto-retry on transient errors (tx not confirmed yet)
-      const isRetryable = data.details?.includes('not found') ||
-        data.details?.includes('try again') ||
-        data.error?.includes('not found')
+      // Auto-retry on transient errors (tx broadcast but not yet indexed / confirmed)
+      const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
+      const isRetryable =
+        msg.includes('not found') ||
+        msg.includes('try again') ||
+        msg.includes('not mined') ||
+        msg.includes('insufficient confirmations') ||
+        msg.includes('rpc error')
       if (attempt < maxAttempts && isRetryable) {
         await new Promise(r => setTimeout(r, retryDelay))
         return verifyPayment(hash, attempt + 1)
