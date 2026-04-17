@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { supabase } from 'services/supabase-browser'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import Link from 'next/link'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
-import { ArrowRight } from 'lucide-react'
+import { Mail } from 'lucide-react'
+import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 
 interface OtpGateProps {
   children: (verifiedEmail: string, onSignOut: () => void) => React.ReactNode
@@ -95,23 +95,29 @@ export function OtpGate({ children, title }: OtpGateProps) {
 
   if (step === 'email') {
     return (
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 w-full">
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
           {title || 'Verify your email'}
         </h2>
 
-        <p className="text-sm text-[#1a0d33] text-center leading-5">
-          Enter your student email to start the application process
-        </p>
-
         <form onSubmit={handleSendLink} className="flex flex-col gap-6 items-center w-full">
-          <div className="w-full">
-            <div className="space-y-3">
-              <Label htmlFor="gate-email" className="text-base font-bold text-[#160b2b]">
+          <div className="flex flex-col gap-4 items-start w-full">
+            <div className="flex flex-col gap-2 items-start w-full">
+              <Label htmlFor="gate-email" className="text-base font-bold text-[#160b2b] leading-6">
                 Email
               </Label>
+              <p className="text-sm text-[#594d73] leading-5">
+                Enter your student email to start the application
+              </p>
+            </div>
+            <div className="relative w-full">
+              <Mail
+                aria-hidden
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#594d73] pointer-events-none"
+                strokeWidth={1.75}
+              />
               <Input
                 id="gate-email"
                 type="email"
@@ -120,7 +126,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
                 placeholder="your@student.email.com"
                 disabled={loading}
                 required
-                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
+                className="h-10 pl-10 pr-4 text-base border-[#dddae2] rounded-lg"
               />
             </div>
           </div>
@@ -136,29 +142,26 @@ export function OtpGate({ children, title }: OtpGateProps) {
           </button>
         </form>
 
-        <Link
-          href="/tickets"
-          className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
-        >
-          Learn more about eligibility
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+        <CriteriaEligibilityButton />
       </div>
     )
   }
 
   if (step === 'link-sent') {
     return (
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 w-full">
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
           Check your email
         </h2>
 
-        <p className="text-sm text-[#1a0d33] text-center leading-5">
-          We sent a verification link to <strong>{email}</strong>. Click the link in your email to continue.
-        </p>
+        <div className="flex flex-col gap-2 items-center py-4 px-4 rounded bg-[#f9f8fa] w-full text-center">
+          <p className="text-sm text-[#1a0d33] leading-5">
+            Use the verification link in the email we sent to:
+          </p>
+          <p className="text-xl font-extrabold text-[#1a0d33] leading-[26px] break-all">{email}</p>
+        </div>
 
         <button
           type="button"
@@ -166,10 +169,9 @@ export function OtpGate({ children, title }: OtpGateProps) {
             setStep('email')
             setError('')
           }}
-          className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
+          className="px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
         >
           Use a different email
-          <ArrowRight className="w-4 h-4" />
         </button>
       </div>
     )

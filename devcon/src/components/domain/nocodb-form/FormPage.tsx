@@ -3,8 +3,8 @@ import { useForm, FormProvider } from 'react-hook-form'
 import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
 import { OtpGate } from './OtpGate'
+import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 import { supabase } from 'services/supabase-browser'
-import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
@@ -323,13 +323,9 @@ function FormInner({
         <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} />
 
         {requireOtp && (
-          <Link
-            href="/tickets"
-            className="flex items-center gap-1.5 mx-auto px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
-          >
-            Learn more about eligibility
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="mx-auto">
+            <CriteriaEligibilityButton />
+          </div>
         )}
 
         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
