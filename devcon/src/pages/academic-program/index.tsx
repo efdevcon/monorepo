@@ -10,12 +10,11 @@ import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
 import JaaliBottom from 'assets/images/pages/ecosystem-jaali-bottom.svg'
 import CommunityBannerBg from '../ecosystem-program/community-banner.png'
 import ArtOverlayText from 'assets/images/pages/ecosystem-art-overlay-text.svg'
-import Photo1 from '../ecosystem-program/photo-1.png'
-import Photo2 from '../ecosystem-program/photo-2.png'
-import Photo3 from '../ecosystem-program/photo-3.png'
-import Photo4 from '../ecosystem-program/photo-4.png'
-import Photo5 from '../ecosystem-program/photo-5.png'
-import Photo6 from '../ecosystem-program/photo-6.png'
+import Photo1 from './photo-1.png'
+import Photo2 from './photo-2.png'
+import Photo3 from './photo-3.png'
+import Photo4 from './photo-4.png'
+import Photo5 from './photo-5.png'
 import css from '../ecosystem-program/ecosystem-program.module.scss'
 import cn from 'classnames'
 
@@ -27,7 +26,7 @@ const NAV_LINKS = [
   { title: 'APPLY', to: '#apply' },
 ]
 
-const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6]
+const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5]
 
 // Reversed color order vs. Ecosystem Program (per Figma note).
 const SUPPORT_TAGS = [
