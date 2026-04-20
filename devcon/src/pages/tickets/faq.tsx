@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { GetStaticProps } from 'next'
 import ReactMarkdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
@@ -24,6 +24,11 @@ function slugify(s: string) {
     .replace(/(^-|-$)/g, '')
 }
 
+// "Tickets & availability" → "Tickets", "Refunds & cancellations" → "Refunds"
+function shortLabel(category: string) {
+  return category.split(/\s+/)[0]
+}
+
 function groupByCategory(items: FaqItem[], categories: string[]) {
   const bucket = new Map<string, FaqItem[]>()
   for (const cat of categories) bucket.set(cat, [])
@@ -41,9 +46,64 @@ export default function FaqPage({ faq }: Props) {
   const groups = useMemo(() => groupByCategory(faq.items, faq.categories), [faq])
   // Only one question can be open at a time.
   const [openId, setOpenId] = useState<number | null>(null)
-  // Active category is set only when the user clicks a sidebar item — no scroll-spy.
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  // Active category follows scroll position so the sidebar highlight matches
+  // the section currently at the top of the viewport.
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    groups.length > 0 ? groups[0].category : null
+  )
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
+  const mobileNavItemRefs = useRef<Record<string, HTMLAnchorElement | null>>({})
+  const mobileNavRef = useRef<HTMLElement | null>(null)
+
+  // Click offset = whatever is sticky-pinned at the top of the viewport, plus
+  // a small buffer. Measured live so it adapts to the site header's variable
+  // height (strip/no-strip) and the mobile-nav (which is display:none on desktop).
+  const getClickOffset = () => {
+    if (typeof document === 'undefined') return 100
+    const header = document.getElementById('header-container')
+    const headerH = header ? header.getBoundingClientRect().height : 0
+    const navEl = mobileNavRef.current
+    const navH = navEl && navEl.offsetParent !== null ? navEl.getBoundingClientRect().height : 0
+    return headerH + navH + 12
+  }
+
+  // Scroll-spy: pick the section whose top is closest to (but not past) an
+  // offset line below the page header. IntersectionObserver alone is clumsy
+  // for "current section" UX because short sections may never fully intersect;
+  // measuring bounding rects on scroll is reliable and cheap at this scale.
+  // Use a slightly larger offset than the click landing so the highlight flips
+  // in as the section approaches, rather than only once it locks into place.
+  useEffect(() => {
+    if (groups.length === 0) return
+
+    const update = () => {
+      const offset = getClickOffset() + 20
+      let current = groups[0].category
+      for (const { category } of groups) {
+        const el = sectionRefs.current[category]
+        if (!el) continue
+        const top = el.getBoundingClientRect().top
+        if (top - offset <= 0) current = category
+        else break
+      }
+      setActiveCategory(prev => (prev === current ? prev : current))
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [groups])
+
+  // Keep the active pill visible in the horizontal mobile nav.
+  useEffect(() => {
+    if (!activeCategory) return
+    const el = mobileNavItemRefs.current[activeCategory]
+    el?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  }, [activeCategory])
 
   const toggle = (id: number) => {
     setOpenId(prev => (prev === id ? null : id))
@@ -56,8 +116,8 @@ export default function FaqPage({ faq }: Props) {
     // Manually calculate + clamp to max scroll position so that clicking the
     // last (short) section can't push us past the end of the page (which would
     // otherwise leave the hero hidden and empty space at the bottom).
-    const SCROLL_OFFSET = 100 // matches .category-group scroll-margin-top
-    const targetTop = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET
+    // Offset matches .category-group scroll-margin-top responsive value.
+    const targetTop = el.getBoundingClientRect().top + window.scrollY - getClickOffset()
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight
     window.scrollTo({ top: Math.min(targetTop, maxScroll), behavior: 'smooth' })
     setActiveCategory(cat)
@@ -88,6 +148,33 @@ export default function FaqPage({ faq }: Props) {
           </p>
         </div>
       </section>
+
+      {/* ── Mobile sticky category nav (outside .main-inner so it can span
+           the full viewport width; hidden on desktop) ─────────── */}
+      {groups.length > 0 && (
+        <aside className={css['mobile-nav']} ref={mobileNavRef}>
+          <ul className={css['mobile-nav-list']}>
+            {groups.map(group => {
+              const isActive = activeCategory === group.category
+              return (
+                <li key={group.category}>
+                  <a
+                    href={`#${slugify(group.category)}`}
+                    ref={el => {
+                      mobileNavItemRefs.current[group.category] = el
+                    }}
+                    className={cn(css['mobile-nav-item'], isActive && css['mobile-nav-item-active'])}
+                    onClick={handleNavClick(group.category)}
+                    aria-current={isActive ? 'true' : undefined}
+                  >
+                    {shortLabel(group.category)}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </aside>
+      )}
 
       {/* ── Main FAQ section ───────────────────────────────── */}
       <section className={cn(css['main'], 'section')}>
@@ -153,24 +240,25 @@ export default function FaqPage({ faq }: Props) {
             ))}
           </div>
 
-          {/* Right: sticky sidebar navigation */}
+          {/* Right: sticky sidebar navigation (desktop only) */}
           {groups.length > 0 && (
             <aside className={css['sidebar']}>
               <ul className={css['sidebar-list']}>
-                {groups.map(group => (
-                  <li key={group.category}>
-                    <a
-                      href={`#${slugify(group.category)}`}
-                      className={cn(
-                        css['sidebar-item'],
-                        activeCategory === group.category && css['sidebar-item-active']
-                      )}
-                      onClick={handleNavClick(group.category)}
-                    >
-                      {group.category}
-                    </a>
-                  </li>
-                ))}
+                {groups.map(group => {
+                  const isActive = activeCategory === group.category
+                  return (
+                    <li key={group.category}>
+                      <a
+                        href={`#${slugify(group.category)}`}
+                        className={cn(css['sidebar-item'], isActive && css['sidebar-item-active'])}
+                        onClick={handleNavClick(group.category)}
+                        aria-current={isActive ? 'true' : undefined}
+                      >
+                        {group.category}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </aside>
             )}

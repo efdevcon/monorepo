@@ -157,10 +157,11 @@ $content-max-width: 1120px;
   padding: 64px 0 80px;
   /* NOTE: cannot use overflow:hidden here — it would break position:sticky on
      the sidebar. Clip the moon decoration on its own container instead. */
-  /* Purple radial bloom near bottom + cool top-down linear tint (matches Figma) */
+  /* Purple radial bloom centered on bottom edge + warm-bottom linear tint.
+     Matches Figma: radial 50% × 13.91% at 50% 100%, linear 0deg. */
   background:
-    radial-gradient(ellipse 1080px 650px at 50% 100%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 24%, rgba(222, 207, 251, 0) 100%),
-    linear-gradient(to bottom, #e5ebff 20%, #fbfafc 100%);
+    radial-gradient(50% 13.91% at 50% 100%, #d3bff9 0%, #decffb 23.56%, rgba(222, 207, 251, 0) 100%),
+    linear-gradient(0deg, #e5ebff 19.98%, #fbfafc 100%);
 
   @media (max-width: $breakpoints-md) {
     padding: 40px 0 56px;
@@ -235,7 +236,13 @@ $content-max-width: 1120px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  /* Desktop: clear the sticky header only. Mobile: also clear the sticky
+     .mobile-nav (~48px) so the category title isn't hidden behind it. */
   scroll-margin-top: 100px;
+
+  @media (max-width: $breakpoints-xl) {
+    scroll-margin-top: 120px;
+  }
 }
 
 .category-title {
@@ -362,10 +369,11 @@ $content-max-width: 1120px;
 
 /* ─── Sidebar (Right) ─────────────────────────────────────── */
 
+/* Desktop sidebar: hidden on mobile (replaced by .mobile-nav outside main-inner) */
+
 .sidebar {
   flex-shrink: 0;
   width: 280px;
-  border-left: 1px solid rgba(34, 17, 68, 0.1);
   position: sticky;
   top: 100px;
   align-self: flex-start;
@@ -373,13 +381,7 @@ $content-max-width: 1120px;
   overflow-y: auto;
 
   @media (max-width: $breakpoints-xl) {
-    position: relative;
-    top: 0;
-    width: 100%;
-    border-left: none;
-    border-bottom: 1px solid rgba(34, 17, 68, 0.1);
-    max-height: none;
-    overflow-y: visible;
+    display: none;
   }
 }
 
@@ -389,12 +391,6 @@ $content-max-width: 1120px;
   list-style: none;
   margin: 0;
   padding: 0;
-
-  @media (max-width: $breakpoints-xl) {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 8px;
-  }
 }
 
 .sidebar-item {
@@ -408,25 +404,83 @@ $content-max-width: 1120px;
   color: #221144;
   text-decoration: none;
   background: none;
-  border: none;
   cursor: pointer;
   text-align: left;
   font-family: inherit;
   white-space: nowrap;
-  transition: color 0.15s;
+  transition: color 0.15s, border-color 0.15s;
+  /* Per-item left border. Inactive items form a continuous grey rail (since
+     the list has no gap between items); the active item swaps to purple,
+     overlapping the rail exactly at the same position. */
+  border-left: 1px solid rgba(34, 17, 68, 0.1);
 
   &:hover {
     color: #7235ed;
-  }
-
-  @media (max-width: $breakpoints-xl) {
-    padding: 12px 16px;
   }
 }
 
 .sidebar-item-active {
   font-weight: 700;
   color: #7235ed;
+  border-left-color: #7235ed;
+}
+
+/* ─── Mobile sticky category nav (Figma 3795:4533) ────────── */
+/* Rendered outside .main-inner so the dark-purple strip spans the full
+   viewport width. Hidden on desktop (≥ xl breakpoint). */
+
+.mobile-nav {
+  display: none;
+
+  @media (max-width: $breakpoints-xl) {
+    display: block;
+    position: sticky;
+    /* Site header is sticky at top: 0 with height ~54px on mobile; pin below it. */
+    top: 54px;
+    z-index: 10;
+    /* Subtle vertical purple gradient matches Figma 3795:4973 background image */
+    background: linear-gradient(180deg, #261847 0%, #3a2862 100%);
+  }
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 16px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > li {
+    flex-shrink: 0;
+  }
+}
+
+.mobile-nav-item {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #dddae2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #c4aaf7;
+  }
+}
+
+.mobile-nav-item-active {
+  color: #c4aaf7;
+  font-weight: 700;
 }
 
 /* ─── Contact CTA ─────────────────────────────────────────── */
