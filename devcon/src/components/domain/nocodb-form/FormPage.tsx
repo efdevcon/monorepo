@@ -12,6 +12,7 @@ import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 interface SchemaResponse {
   title: string
   subheading?: string
+  successMsg?: string
   columns: FormColumn[]
 }
 
@@ -431,13 +432,15 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
                 Thank you!
               </h2>
 
-              <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                Your application has been submitted.
-              </p>
-
-              <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                Applications will be reviewed on a rolling basis. Keep an eye on your email for a decision from our approval team.
-              </p>
+              {schema?.successMsg ? (
+                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
+                  {schema.successMsg}
+                </p>
+              ) : (
+                <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                  Your submission has been received.
+                </p>
+              )}
 
               <Link
                 href="/"

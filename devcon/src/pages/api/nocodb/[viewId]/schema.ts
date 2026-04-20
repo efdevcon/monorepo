@@ -27,6 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({
       title: meta.formHeading,
       ...(meta.formSubheading ? { subheading: meta.formSubheading } : {}),
+      ...(meta.successMsg ? { successMsg: meta.successMsg } : {}),
       columns,
     })
   } catch (err) {

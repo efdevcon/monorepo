@@ -20,6 +20,7 @@ export interface FormViewMeta {
   viewTitle: string
   formHeading: string
   formSubheading?: string
+  successMsg?: string
   tableName: string
 }
 
@@ -62,6 +63,7 @@ interface FormMeta {
   source_id: string
   heading: string | null
   subheading: string | null
+  success_msg: string | null
   columns?: FormColumnCfg[]
 }
 
@@ -166,6 +168,7 @@ export async function resolveFormView(viewId: string): Promise<FormViewMeta> {
     viewTitle,
     formHeading: form.heading || viewTitle,
     formSubheading: form.subheading || undefined,
+    successMsg: form.success_msg || undefined,
     tableName: table.table_name,
   }
 
