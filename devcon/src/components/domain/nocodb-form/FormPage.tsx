@@ -41,6 +41,10 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
     setLoading(true)
     setResult(null)
     try {
+      if (!supabase) {
+        setLoading(false)
+        return
+      }
       const { data: { session } } = await supabase.auth.getSession()
       if (!session?.access_token) {
         setLoading(false)
