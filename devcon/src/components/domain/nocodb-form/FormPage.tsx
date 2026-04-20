@@ -41,10 +41,18 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
     setLoading(true)
     setResult(null)
     try {
-      const res = await fetch('/api/nocodb/classify-email', {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        setLoading(false)
+        return
+      }
+      const res = await fetch('/api/nocodb/classify-email/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: testEmail, callerEmail }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ email: testEmail }),
       })
       const data = await res.json()
       if (data.success) setResult({ heuristic: data.heuristic, ai: data.ai })
