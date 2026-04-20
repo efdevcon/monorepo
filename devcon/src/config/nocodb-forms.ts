@@ -8,6 +8,10 @@ export const nocodbForms: Record<string, NocodbFormConfig> = {
     formViewId: 'vwuuzk50m1lz4vkf',
     requireOtp: true,
   },
+  'volunteer-waitlist': {
+    formViewId: 'vwhi3z0zqrok0pz4',
+    requireOtp: false,
+  },
 }
 
 /** Resolve a slug to its viewId + config. If no config exists, treat input as a viewId. */
