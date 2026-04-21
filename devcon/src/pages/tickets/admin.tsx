@@ -31,6 +31,9 @@ const POLL_INTERVAL = 30_000
  *  are legacy pre-x402 rows shown read-only — many optional fields are absent. */
 interface CompletedOrder {
   source: 'x402' | 'signed_message' | 'wc_attempt'
+  /** Entry point that produced this row: custom devcon frontend, or
+   *  Pretix's own checkout UI. Used for reporting only, not refund gating. */
+  origin: 'custom_frontend' | 'pretix_checkout'
   paymentReference: string | null
   pretixOrderCode: string | null
   txHash: string | null
@@ -160,6 +163,10 @@ function sourceLabel(source: CompletedOrder['source']): string {
   }
 }
 
+function originLabel(origin: CompletedOrder['origin']): string {
+  return origin === 'custom_frontend' ? 'Custom frontend' : 'Pretix checkout'
+}
+
 function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
   if (!wei) return '—'
   const eth = Number(BigInt(wei)) / 1e18
@@ -208,12 +215,33 @@ function ChainCell({ chainId }: { chainId?: number }) {
   )
 }
 
+/** Render a raw on-chain amount (wei / base units) as a human-readable decimal.
+ *  USDC and USDT0 use 6 decimals, ETH uses 18. Unknown tokens default to 6. */
+function formatCryptoAmount(raw: string, tokenSymbol: string): string {
+  const decimals = tokenSymbol === 'ETH' ? 18 : 6
+  try {
+    const n = BigInt(raw)
+    if (n === 0n) return '0'
+    const base = 10n ** BigInt(decimals)
+    const whole = n / base
+    const frac = n % base
+    if (frac === 0n) return whole.toString()
+    // Trim trailing zeros on the fractional part.
+    const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
+    return `${whole}.${fracStr}`
+  } catch {
+    // Fallback: if `raw` isn't an integer string (shouldn't happen from the
+    // plugin, but legacy rows may not have one), show it verbatim.
+    return raw
+  }
+}
+
 function CryptoAmountCell({ cryptoAmount, tokenSymbol }: { cryptoAmount?: string; tokenSymbol?: string }) {
   if (!cryptoAmount) return <span>—</span>
   const token = tokenSymbol || 'USDC'
   return (
     <span className={css['token-chain']}>
-      <span>{cryptoAmount}</span>
+      <span>{formatCryptoAmount(cryptoAmount, token)}</span>
       <Logo src={TOKEN_ICONS[token]} alt={token} />
       <span>{token}</span>
     </span>
@@ -870,7 +898,7 @@ function AdminContent() {
     const rows = filteredCompleted.map(o => [
       o.pretixOrderCode,
       o.totalUsd || '',
-      o.cryptoAmount || '',
+      o.cryptoAmount ? formatCryptoAmount(o.cryptoAmount, o.tokenSymbol || 'USDC') : '',
       o.tokenSymbol || 'USDC',
       chainName(o.chainId),
       o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '',
@@ -1100,6 +1128,7 @@ function AdminContent() {
               <thead>
                 <tr>
                   <th>Type</th>
+                  <th>Entry</th>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
@@ -1115,6 +1144,7 @@ function AdminContent() {
                 {activeCompleted.map(o => (
                   <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
                     <td>{sourceLabel(o.source)}</td>
+                    <td>{originLabel(o.origin)}</td>
                     <td className={undefined}>
                       {o.pretixOrderCode ? (
                         <a
@@ -1171,7 +1201,11 @@ function AdminContent() {
                           onRefunded={() => fetchOrders(secret)}
                         />
                       ) : (
-                        <span className={css.muted} title="On-chain refund flow is only available for x402 payments">—</span>
+                        // TODO(refunds): legacy WC/Daimo rows can't be refunded through this UI
+                        // because the refund CAS columns live only on X402CompletedOrder. Unblock
+                        // by introducing a ManualCryptoRefund ledger keyed (source, row_id) in the
+                        // plugin; see README "Known gaps / TODOs".
+                        <span className={css.muted} title="On-chain refund is only available for x402 payments (see plugin README)">—</span>
                       )}
                     </td>
                   </tr>
