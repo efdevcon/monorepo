@@ -639,10 +639,16 @@ function CheckoutContent() {
     return msg || 'Something went wrong'
   }
 
-  function humanizeRelayerError(msg?: string): string {
+  function humanizeRelayerError(msg?: string, category?: string): string {
+    if (category === 'relayer_insufficient_funds') {
+      return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
+    }
+    if (category === 'gas_price_too_high') {
+      return 'Network fees are currently high. Please try again in a minute or switch to another network.'
+    }
     if (!msg) return 'Failed to execute transfer'
-    if (/gas price .* exceeds cap/i.test(msg)) return 'Network gas fees are too high right now. Please try again in a few minutes.'
-    if (/relayer balance .* insufficient/i.test(msg)) return 'The payment service is temporarily unavailable. Please try again shortly.'
+    if (/relayer cannot afford tx/i.test(msg)) return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
+    if (/gas price .* exceeds cap/i.test(msg)) return 'Network fees are currently high. Please try again in a minute or switch to another network.'
     if (/simulation reverted/i.test(msg)) return 'This transaction would fail on-chain. Please check your balance and try again.'
     if (/nonce has already been used/i.test(msg)) return 'This authorization has already been used. Please start a new payment.'
     if (/^insufficient /i.test(msg)) return msg // already human-readable ("Insufficient USDC balance: ...")
@@ -1139,7 +1145,9 @@ function CheckoutContent() {
           return
         }
 
-        // 503 = retryable gas error — auto-retry with backoff
+        // 502 = non-retryable service error (relayer drained, etc.) — show
+        //       operator-facing message immediately, don't hammer the server.
+        // 503 = transient (gas cap exceeded, network busy) — auto-retry with backoff.
         if (executeRes.status === 503 && attempt < maxRetries) {
           const retryAfter = parseInt(executeRes.headers.get('Retry-After') || '15', 10)
           const delay = retryAfter * 1000 * (attempt + 1)
@@ -1149,7 +1157,7 @@ function CheckoutContent() {
         }
 
         // Non-retryable or final attempt — show user-friendly message
-        lastError = humanizeRelayerError(executeData.error) || 'Failed to execute transfer'
+        lastError = humanizeRelayerError(executeData.error, executeData.category) || 'Failed to execute transfer'
         break
       }
 
