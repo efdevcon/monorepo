@@ -64,40 +64,44 @@ export default function OrderConfirmationPage() {
   const shareVersionKey = orderCode ? `devcon_share_version_${orderCode}` : ''
 
   // Upload avatar + fetch display name from X profile
-  const uploadAvatar = useCallback(async (username: string) => {
-    if (!orderCode || !orderSecret || !username) return
-    setUploading(true)
-    try {
-      const res = await fetch('/api/ticket/generate/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: orderCode, secret: orderSecret, xUsername: username }),
-      })
-      const data = await res.json()
-      if (data.success && data.hash) {
-        setShareHash(data.hash)
-        localStorage.setItem(shareHashKey, data.hash)
-        const version = typeof data.version === 'string' && data.version ? data.version : Math.floor(Date.now() / 1000).toString()
-        setShareVersion(version)
-        localStorage.setItem(shareVersionKey, version)
+  const uploadAvatar = useCallback(
+    async (username: string) => {
+      if (!orderCode || !orderSecret || !username) return
+      setUploading(true)
+      try {
+        const res = await fetch('/api/ticket/generate/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: orderCode, secret: orderSecret, xUsername: username }),
+        })
+        const data = await res.json()
+        if (data.success && data.hash) {
+          setShareHash(data.hash)
+          localStorage.setItem(shareHashKey, data.hash)
+          const version =
+            typeof data.version === 'string' && data.version ? data.version : Math.floor(Date.now() / 1000).toString()
+          setShareVersion(version)
+          localStorage.setItem(shareVersionKey, version)
 
-        // Prefill name with X display name if available and name is empty
-        const currentName = localStorage.getItem(shareNameKey) || ''
-        const resolvedName = currentName || data.displayName || ''
-        if (data.displayName && !currentName) {
-          setShareName(data.displayName)
-          localStorage.setItem(shareNameKey, data.displayName)
+          // Prefill name with X display name if available and name is empty
+          const currentName = localStorage.getItem(shareNameKey) || ''
+          const resolvedName = currentName || data.displayName || ''
+          if (data.displayName && !currentName) {
+            setShareName(data.displayName)
+            localStorage.setItem(shareNameKey, data.displayName)
+          }
+
+          // Warm the OG image cache so Twitter gets an instant hit
+          const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`).replace(/%20/g, '+')
+          fetch(`/api/ticket/${ticketName}/${data.hash}/i.jpg?v=${encodeURIComponent(version)}`).catch(() => {})
         }
-
-        // Warm the OG image cache so Twitter gets an instant hit
-        const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`).replace(/%20/g, '+')
-        fetch(`/api/ticket/${ticketName}/${data.hash}/i.jpg?v=${encodeURIComponent(version)}`).catch(() => {})
+      } catch {
+        // Silent failure — share link still works, just without avatar
       }
-    } catch {
-      // Silent failure — share link still works, just without avatar
-    }
-    setUploading(false)
-  }, [orderCode, orderSecret, shareHashKey, shareNameKey, shareVersionKey])
+      setUploading(false)
+    },
+    [orderCode, orderSecret, shareHashKey, shareNameKey, shareVersionKey]
+  )
 
   useEffect(() => {
     if (!orderCode) return
@@ -112,22 +116,25 @@ export default function OrderConfirmationPage() {
     if (savedVersion) setShareVersion(savedVersion)
   }, [orderCode, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey])
 
-  const handleXUsernameChange = useCallback((val: string) => {
-    setXUsername(val)
-    if (orderCode) localStorage.setItem(xUsernameKey, val)
+  const handleXUsernameChange = useCallback(
+    (val: string) => {
+      setXUsername(val)
+      if (orderCode) localStorage.setItem(xUsernameKey, val)
 
-    // Invalidate current hash and name since profile changed
-    if (shareHash) {
-      setShareHash(null)
-      setShareName('')
-      if (orderCode) {
-        localStorage.removeItem(shareHashKey)
-        localStorage.removeItem(shareNameKey)
-        localStorage.removeItem(shareVersionKey)
+      // Invalidate current hash and name since profile changed
+      if (shareHash) {
+        setShareHash(null)
+        setShareName('')
+        if (orderCode) {
+          localStorage.removeItem(shareHashKey)
+          localStorage.removeItem(shareNameKey)
+          localStorage.removeItem(shareVersionKey)
+        }
+        setShareVersion('')
       }
-      setShareVersion('')
-    }
-  }, [orderCode, shareHash, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey])
+    },
+    [orderCode, shareHash, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey]
+  )
 
   useEffect(() => {
     if (!orderCode || !orderSecret) return
@@ -155,7 +162,9 @@ export default function OrderConfirmationPage() {
     if (!shareHash || uploading) return
     const baseName = shareName.trim() || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')
     const ticketName = encodeURIComponent(baseName).replace(/%20/g, '+')
-    const imageUrl = `/api/ticket/${ticketName}/${shareHash}/i.jpg${shareVersion ? `?v=${encodeURIComponent(shareVersion)}` : ''}`
+    const imageUrl = `/api/ticket/${ticketName}/${shareHash}/i.jpg${
+      shareVersion ? `?v=${encodeURIComponent(shareVersion)}` : ''
+    }`
     if (imageUrl === lastWarmedImageUrlRef.current) return
 
     const t = setTimeout(() => {
@@ -214,12 +223,17 @@ export default function OrderConfirmationPage() {
     137: 'https://polygonscan.com',
   }
   const CHAIN_NAMES: Record<number, string> = {
-    1: 'Ethereum', 10: 'Optimism', 42161: 'Arbitrum', 8453: 'Base', 84532: 'Base Sepolia', 137: 'Polygon',
+    1: 'Ethereum',
+    10: 'Optimism',
+    42161: 'Arbitrum',
+    8453: 'Base',
+    84532: 'Base Sepolia',
+    137: 'Polygon',
   }
   const SYMBOL_DISPLAY: Record<string, string> = { USDT0: 'USD₮0' }
   const chainId = pi?.chain_id ?? null
-  const explorerBase = (chainId != null && BLOCK_EXPLORERS[chainId]) ? BLOCK_EXPLORERS[chainId] : 'https://etherscan.io'
-  const tokenSymbol = pi?.token_symbol ? (SYMBOL_DISPLAY[pi.token_symbol] ?? pi.token_symbol) : null
+  const explorerBase = chainId != null && BLOCK_EXPLORERS[chainId] ? BLOCK_EXPLORERS[chainId] : 'https://etherscan.io'
+  const tokenSymbol = pi?.token_symbol ? SYMBOL_DISPLAY[pi.token_symbol] ?? pi.token_symbol : null
   const networkName = chainId != null ? CHAIN_NAMES[chainId] ?? null : null
 
   const ticketPositions = order.positions.filter(p => !p.isAddon)
@@ -253,14 +267,32 @@ export default function OrderConfirmationPage() {
   const formattedDate = `${day} ${month}, ${year} at ${time}`
 
   const rawCryptoAmount = pi?.amount || null
-  // Parse the numeric value and format to a readable precision
+  // pi.amount is a raw on-chain base-units integer (USDC/USDT0 = 10^6, ETH = 10^18).
+  // Divide by the token's decimals using BigInt to avoid float precision loss on
+  // wei-scale ETH values; then trim zeros for a clean display.
   const cryptoAmount = rawCryptoAmount
     ? (() => {
-        const n = parseFloat(rawCryptoAmount)
-        if (isNaN(n)) return rawCryptoAmount
-        if (n < 0.0001) return n.toPrecision(4)
-        if (n < 1) return n.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
-        return n.toFixed(4)
+        const rawStr = String(rawCryptoAmount).trim()
+        const rawSymbol = pi?.token_symbol
+        const decimals = rawSymbol === 'ETH' ? 18 : 6
+        try {
+          const n = BigInt(rawStr)
+          if (n === 0n) return '0'
+          const base = 10n ** BigInt(decimals)
+          const whole = n / base
+          const frac = n % base
+          if (frac === 0n) return whole.toString()
+          const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
+          return `${whole}.${fracStr}`
+        } catch {
+          // If rawCryptoAmount isn't an integer (e.g. historical orders that
+          // stored a pre-formatted decimal), fall back to the old display path.
+          const f = parseFloat(rawStr)
+          if (isNaN(f)) return rawStr
+          if (f < 0.0001) return f.toPrecision(4)
+          if (f < 1) return f.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
+          return f.toFixed(4)
+        }
       })()
     : null
   const totalUsd = `$${parseFloat(order.total).toFixed(2)}`
@@ -268,12 +300,9 @@ export default function OrderConfirmationPage() {
   // Build download links from Pretix order URL + first ticket position
   const firstTicketPosition = ticketPositions[0]
   const orderBaseUrl = order.url?.replace(/\/?$/, '/')
-  const pdfUrl = firstTicketPosition && orderBaseUrl
-    ? `${orderBaseUrl}download/${firstTicketPosition.id}/pdf`
-    : null
-  const passbookUrl = firstTicketPosition && orderBaseUrl
-    ? `${orderBaseUrl}download/${firstTicketPosition.id}/passbook`
-    : null
+  const pdfUrl = firstTicketPosition && orderBaseUrl ? `${orderBaseUrl}download/${firstTicketPosition.id}/pdf` : null
+  const passbookUrl =
+    firstTicketPosition && orderBaseUrl ? `${orderBaseUrl}download/${firstTicketPosition.id}/passbook` : null
 
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
@@ -302,7 +331,11 @@ export default function OrderConfirmationPage() {
           <div className={css['ticket-card']}>
             <div
               className={`${css['ticket-banner']} ${
-                isPaid ? css['ticket-banner--confirmed'] : isExpired ? css['ticket-banner--expired'] : css['ticket-banner--pending']
+                isPaid
+                  ? css['ticket-banner--confirmed']
+                  : isExpired
+                  ? css['ticket-banner--expired']
+                  : css['ticket-banner--pending']
               }`}
             >
               <span className={css['ticket-banner-text']}>
@@ -458,7 +491,11 @@ export default function OrderConfirmationPage() {
 
               <div className={css['summary-row']}>
                 <span className={css['summary-label']}>Status</span>
-                <span className={isPaid ? css['status-badge'] : isExpired ? css['status-badge-expired'] : css['status-badge-pending']}>
+                <span
+                  className={
+                    isPaid ? css['status-badge'] : isExpired ? css['status-badge-expired'] : css['status-badge-pending']
+                  }
+                >
                   {statusLabels[order.status] || order.status}
                 </span>
               </div>

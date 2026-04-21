@@ -40,7 +40,7 @@ interface CompletedOrder {
   chainId?: number
   totalUsd?: string
   tokenSymbol?: string | null
-  cryptoAmount?: string
+  cryptoAmount?: string | null
   gasCostWei?: string
   env: string
   refundStatus?: string
@@ -170,7 +170,12 @@ function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | 
     if (usd < 0.01) return '<$0.01'
     return `$${usd.toFixed(2)}`
   }
-  return `${eth.toFixed(6)} ETH`
+  // Native-unit fallback when prices aren't loaded. Values below 6-decimal
+  // resolution would round to "0.000000" — show "<0.000001" instead so small
+  // but non-zero gas costs don't look like zero.
+  const unit = chainId === 137 ? 'POL' : 'ETH'
+  if (eth < 0.000001) return `<0.000001 ${unit}`
+  return `${eth.toFixed(6)} ${unit}`
 }
 
 function formatTokenChainText(tokenSymbol?: string, chainId?: number) {
@@ -229,14 +234,19 @@ function formatCryptoAmount(raw: string, tokenSymbol: string): string {
   }
 }
 
-function CryptoAmountCell({ cryptoAmount, tokenSymbol }: { cryptoAmount?: string; tokenSymbol?: string }) {
-  if (!cryptoAmount) return <span>—</span>
-  const token = tokenSymbol || 'USDC'
+function CryptoAmountCell({
+  cryptoAmount,
+  tokenSymbol,
+}: {
+  cryptoAmount?: string | null
+  tokenSymbol?: string
+}) {
+  if (!cryptoAmount || !tokenSymbol) return <span>—</span>
   return (
     <span className={css['token-chain']}>
-      <span>{formatCryptoAmount(cryptoAmount, token)}</span>
-      <Logo src={TOKEN_ICONS[token]} alt={token} />
-      <span>{token}</span>
+      <span>{formatCryptoAmount(cryptoAmount, tokenSymbol)}</span>
+      <Logo src={TOKEN_ICONS[tokenSymbol]} alt={tokenSymbol} />
+      <span>{tokenSymbol}</span>
     </span>
   )
 }
@@ -1273,7 +1283,7 @@ function AdminContent() {
                       </a>
                     </td>
                     <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol} /></td>
+                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
                     <td><ChainCell chainId={o.chainId} /></td>
                     <td className={css.mono}>
                       <a
