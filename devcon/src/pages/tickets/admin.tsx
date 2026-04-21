@@ -27,13 +27,10 @@ const STORAGE_KEY = 'x402_admin_secret'
 const POLL_INTERVAL = 30_000
 
 /** Completed crypto orders. `source === 'x402'` supports the full feature set
- *  (gasless flow + on-chain refund button). `'signed_message'` and `'wc_attempt'`
- *  are legacy pre-x402 rows shown read-only — many optional fields are absent. */
+ *  (gasless flow + on-chain refund button). `'wc_attempt'` is the legacy
+ *  pre-x402 WalletConnect direct-send flow, shown read-only. */
 interface CompletedOrder {
-  source: 'x402' | 'signed_message' | 'wc_attempt'
-  /** Entry point that produced this row: custom devcon frontend, or
-   *  Pretix's own checkout UI. Used for reporting only, not refund gating. */
-  origin: 'custom_frontend' | 'pretix_checkout'
+  source: 'x402' | 'wc_attempt'
   paymentReference: string | null
   pretixOrderCode: string | null
   txHash: string | null
@@ -159,12 +156,7 @@ function sourceLabel(source: CompletedOrder['source']): string {
   switch (source) {
     case 'x402': return 'x402'
     case 'wc_attempt': return 'WalletConnect'
-    case 'signed_message': return 'Daimo'
   }
-}
-
-function originLabel(origin: CompletedOrder['origin']): string {
-  return origin === 'custom_frontend' ? 'Custom frontend' : 'Pretix checkout'
 }
 
 function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
@@ -1128,7 +1120,6 @@ function AdminContent() {
               <thead>
                 <tr>
                   <th>Type</th>
-                  <th>Entry</th>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
@@ -1144,7 +1135,6 @@ function AdminContent() {
                 {activeCompleted.map(o => (
                   <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
                     <td>{sourceLabel(o.source)}</td>
-                    <td>{originLabel(o.origin)}</td>
                     <td className={undefined}>
                       {o.pretixOrderCode ? (
                         <a

@@ -260,6 +260,9 @@ function CheckoutContent() {
   const [txHash, setTxHash] = useState<string | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null)
   const [isRedirecting, setIsRedirecting] = useState(false)
+  // Set true after verify succeeds — used to hide the Pay button during the
+  // short window between "verified" and the actual router.push navigation.
+  const [paymentSucceeded, setPaymentSucceeded] = useState(false)
 
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
@@ -669,6 +672,7 @@ function CheckoutContent() {
     setPurchaseError(null)
     setDirectSignError(null)
     setTokenFilter(null)
+    setPaymentSucceeded(false)
     tokenFilterAutoSelectedRef.current = false
     paymentOptionsAutoLoadedRef.current = null
     autoCheckoutTriggeredRef.current = null
@@ -1314,7 +1318,8 @@ function CheckoutContent() {
 
       const data = await res.json()
       if (data.success) {
-        setPaymentStatus(null)
+        setPaymentStatus('Payment confirmed — redirecting to your order...')
+        setPaymentSucceeded(true)
         localStorage.removeItem('devcon-ticket-cart')
         if (newsletter) {
           fetch('/api/subscribe/', {
@@ -2370,8 +2375,11 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {/* Pay button */}
-                                    {selectedOption && (
+                                    {/* Pay button — hidden while fresh options are loading (avoids
+                                         a stale "Pay: $X on Chain" flash) and after a verify has
+                                         succeeded (avoids an accidental second click during the
+                                         router.push window). */}
+                                    {selectedOption && !paymentOptionsLoading && !paymentSucceeded && (
                                       <button
                                         type="button"
                                         className={css['btn-pay-now']}
@@ -2390,6 +2398,11 @@ function CheckoutContent() {
                                                   ).toFixed(2)
                                             } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
                                       </button>
+                                    )}
+                                    {paymentSucceeded && (
+                                      <div className={css['payment-notice']}>
+                                        {paymentStatus || 'Payment confirmed — redirecting...'}
+                                      </div>
                                     )}
                                   </>
                                 )
