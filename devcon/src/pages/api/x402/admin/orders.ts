@@ -26,7 +26,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { status, body } = await pluginFetch<{
       success: boolean
-      stats?: { pending: number; completed: number; totalUsd: string }
+      stats?: {
+        pending: number
+        completed: number
+        totalUsd: string
+        x402Count?: number
+        legacyCount?: number
+      }
       completed?: Array<Record<string, unknown>>
       pending?: Array<Record<string, unknown>>
       error?: string
@@ -37,10 +43,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (body && body.success) {
       const envLabel = TICKETING_ENV
       const baseUrl = TICKETING.pretix.baseUrl
+      const orgSlug = TICKETING.pretix.organizer
+      const eventSlug = TICKETING.pretix.event
       body.completed = (body.completed || []).map(o => ({ ...o, env: envLabel }))
       body.pending = (body.pending || []).map(o => ({ ...o, env: envLabel }))
       ;(body as Record<string, unknown>).env = envLabel
       ;(body as Record<string, unknown>).pretixBaseUrl = baseUrl
+      ;(body as Record<string, unknown>).pretixOrgSlug = orgSlug
+      ;(body as Record<string, unknown>).pretixEventSlug = eventSlug
     }
     return res.status(status).json(body)
   } catch (e) {

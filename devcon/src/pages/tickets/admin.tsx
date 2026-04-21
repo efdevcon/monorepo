@@ -26,21 +26,35 @@ const ERC20_TRANSFER_ABI = [
 const STORAGE_KEY = 'x402_admin_secret'
 const POLL_INTERVAL = 30_000
 
+/** Completed crypto orders. `source === 'x402'` supports the full feature set
+ *  (gasless flow + on-chain refund button). `'signed_message'` and `'wc_attempt'`
+ *  are legacy pre-x402 rows shown read-only — many optional fields are absent. */
 interface CompletedOrder {
-  paymentReference: string
-  pretixOrderCode: string
-  txHash: string
+  source: 'x402' | 'signed_message' | 'wc_attempt'
+  paymentReference: string | null
+  pretixOrderCode: string | null
+  txHash: string | null
   payer: string
   completedAt: number
   chainId?: number
   totalUsd?: string
-  tokenSymbol?: string
+  tokenSymbol?: string | null
   cryptoAmount?: string
   gasCostWei?: string
   env: string
   refundStatus?: string
   refundTxHash?: string
   refundMeta?: Record<string, unknown>
+}
+
+/** x402 rows always have a payment reference, tx hash, and Pretix order code.
+ *  The refund UI is gated to x402 at the call site; this alias lets the
+ *  refund components assume those fields are present. */
+type X402CompletedOrder = CompletedOrder & {
+  source: 'x402'
+  paymentReference: string
+  txHash: string
+  pretixOrderCode: string
 }
 
 interface PendingOrder {
@@ -71,7 +85,9 @@ interface OrdersResponse {
   success: boolean
   env: string
   pretixBaseUrl: string
-  stats: { pending: number; completed: number }
+  pretixOrgSlug: string
+  pretixEventSlug: string
+  stats: { pending: number; completed: number; x402Count?: number; legacyCount?: number }
   completed: CompletedOrder[]
   pending: PendingOrder[]
   wallet?: WalletInfo | null
@@ -134,6 +150,14 @@ function truncate(s: string, len = 8) {
 
 function formatDate(ts: number) {
   return new Date(ts * 1000).toLocaleString()
+}
+
+function sourceLabel(source: CompletedOrder['source']): string {
+  switch (source) {
+    case 'x402': return 'x402'
+    case 'wc_attempt': return 'WalletConnect'
+    case 'signed_message': return 'Daimo'
+  }
 }
 
 function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
@@ -331,7 +355,7 @@ function RefundModal({
   onClose,
   onRefunded,
 }: {
-  order: CompletedOrder
+  order: X402CompletedOrder
   secret: string
   onClose: () => void
   onRefunded: () => void
@@ -482,7 +506,7 @@ function RefundActionCell({
   isConnected,
   onRefunded,
 }: {
-  order: CompletedOrder
+  order: X402CompletedOrder
   secret: string
   isConnected: boolean
   onRefunded: () => void
@@ -678,7 +702,7 @@ function AdminContent() {
 
   // Filter + date helpers
   const q = search.toLowerCase()
-  function matchesSearch(fields: (string | undefined)[]) {
+  function matchesSearch(fields: (string | null | undefined)[]) {
     if (!q) return true
     return fields.some(f => f?.toLowerCase().includes(q))
   }
@@ -727,9 +751,18 @@ function AdminContent() {
     [filteredCompleted]
   )
 
+  // Refunds are x402-only today — refundStatus/refundTxHash/refundMeta are
+  // only populated for x402 rows. This filter narrows both the lifecycle state
+  // and the source, which makes the downstream non-null field access safe.
   const refundedOrders = useMemo(() =>
     filteredCompleted
-      .filter(o => o.refundStatus === 'confirmed')
+      .filter((o): o is X402CompletedOrder => (
+        o.source === 'x402' &&
+        o.refundStatus === 'confirmed' &&
+        o.paymentReference !== null &&
+        o.txHash !== null &&
+        o.pretixOrderCode !== null
+      ))
       .sort((a, b) => {
         const aTime = a.refundMeta?.refundedAt ? new Date(a.refundMeta.refundedAt as string).getTime() : 0
         const bTime = b.refundMeta?.refundedAt ? new Date(b.refundMeta.refundedAt as string).getTime() : 0
@@ -1066,6 +1099,7 @@ function AdminContent() {
             <table className={css.table}>
               <thead>
                 <tr>
+                  <th>Type</th>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
@@ -1079,33 +1113,42 @@ function AdminContent() {
               </thead>
               <tbody>
                 {activeCompleted.map(o => (
-                  <tr key={o.paymentReference}>
+                  <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
+                    <td>{sourceLabel(o.source)}</td>
                     <td className={undefined}>
-                      <a
-                        className={css.link}
-                        href={`${data?.pretixBaseUrl}/${o.pretixOrderCode}/`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {o.pretixOrderCode}
-                      </a>
+                      {o.pretixOrderCode ? (
+                        <a
+                          className={css.link}
+                          href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {o.pretixOrderCode}
+                        </a>
+                      ) : (
+                        '—'
+                      )}
                     </td>
                     <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol} /></td>
+                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
                     <td className={undefined}><ChainCell chainId={o.chainId} /></td>
                     <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '—'}</td>
                     <td className={css.mono}>
-                      <Copyable value={o.txHash}>
-                        <a
-                          className={css.link}
-                          href={txExplorerUrl(o.txHash, o.chainId)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                        >
-                          {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
-                        </a>
-                      </Copyable>
+                      {o.txHash ? (
+                        <Copyable value={o.txHash}>
+                          <a
+                            className={css.link}
+                            href={txExplorerUrl(o.txHash, o.chainId)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={e => e.stopPropagation()}
+                          >
+                            {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+                          </a>
+                        </Copyable>
+                      ) : (
+                        '—'
+                      )}
                     </td>
                     <td className={css.mono}>
                       <a
@@ -1120,12 +1163,16 @@ function AdminContent() {
                     </td>
                     <td className={undefined}>{formatDate(o.completedAt)}</td>
                     <td>
-                      <RefundActionCell
-                        order={o}
-                        secret={secret}
-                        isConnected={isConnected}
-                        onRefunded={() => fetchOrders(secret)}
-                      />
+                      {o.source === 'x402' ? (
+                        <RefundActionCell
+                          order={o as X402CompletedOrder}
+                          secret={secret}
+                          isConnected={isConnected}
+                          onRefunded={() => fetchOrders(secret)}
+                        />
+                      ) : (
+                        <span className={css.muted} title="On-chain refund flow is only available for x402 payments">—</span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -1162,7 +1209,7 @@ function AdminContent() {
                     <td>
                       <a
                         className={css.link}
-                        href={`${data?.pretixBaseUrl}/${o.pretixOrderCode}/`}
+                        href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
