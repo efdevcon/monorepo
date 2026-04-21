@@ -23,6 +23,7 @@ import DC7Background from 'assets/images/dc-7/footer-bg.png'
 import { Button } from 'lib/components/button'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 type SocialMediaProps = {
   onShare?: () => void
@@ -84,6 +85,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
   const router = useRouter()
   const lang = router.locale
   const navigationData = useNavigationData()
+  const t = useTranslations('common.footer')
   let footerData = navigationData.footer
 
   return (
@@ -116,18 +118,15 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
 
           <div className={css['col-2']}>
             <div>
-              <p className="semi-bold !mb-2">About Devcon —</p>
-              <p>Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.</p>
-              <p>
-                An intensive introduction for new Ethereum explorers, a global family reunion for those already a part
-                of our ecosystem, and a source of energy and creativity for all.
-              </p>
+              <p className="semi-bold !mb-2">{t('about_heading')}</p>
+              <p>{t('about_body_1')}</p>
+              <p>{t('about_body_2')}</p>
             </div>
           </div>
 
           <div className={`${css['col-3']} flex gap-12 xl:gap-8 2xl:gap-20`}>
             <ul className={css['list']}>
-              <li className="semi-bold">Devcon</li>
+              <li className="semi-bold">{t('devcon_section_heading')}</li>
               {footerData?.left.map((link: LinkType, index: number) => {
                 return (
                   <li className="" key={index}>
@@ -140,7 +139,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
             </ul>
 
             <ul className={css['list']}>
-              <li className="semi-bold">Community</li>
+              <li className="semi-bold">{t('community_section_heading')}</li>
               {footerData?.right.map((link: LinkType, index: number) => {
                 return (
                   <li className="" key={index}>
@@ -155,15 +154,15 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
 
           <div className={css['col-4']}>
             <div className={css['contact']}>
-              <p className="semi-bold">Get in touch</p>
+              <p className="semi-bold">{t('contact_heading')}</p>
               <a href={`mailto:${EMAIL_DEVCON}`} className={css['email-1']}>
                 {EMAIL_DEVCON}
               </a>
 
               <div className={`${css['newsletter']} mt-8`}>
-                <p className="semi-bold">Subscribe for updates</p>
+                <p className="semi-bold">{t('subscribe_heading')}</p>
                 <Link to="https://paragraph.com/@efevents" className={css['subscribe-btn']}>
-                  Subscribe
+                  {t('subscribe_button')}
                   <ArrowUpRight size={16} strokeWidth={2} />
                 </Link>
               </div>
@@ -294,6 +293,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
 // }
 
 export const Footer = ({ dark }: { dark?: boolean }) => {
+  const t = useTranslations('common.footer')
   return (
     <footer className={`footer ${css['container']} ${css['archive']} ${dark ? css['dark'] : ''}`}>
       <TopSection dark={dark} />
@@ -314,21 +314,17 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
                 className="bold font-xs text-uppercase hover-underline"
                 to="https://ethereum.org/en/privacy-policy/"
               >
-                Privacy Policy
+                {t('legal_privacy_policy')}
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/terms-of-use/">
-                Terms of Use
+                {t('legal_terms_of_use')}
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/cookie-policy/">
-                Cookie Policy
+                {t('legal_cookie_policy')}
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
-                Code of Conduct
+                {t('legal_code_of_conduct')}
               </Link>
-              {/* TODO: Update later 
-              <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
-                Terms of Service
-              </Link> */}
               <Link
                 className="bold font-xs text-uppercase hover-underline"
                 to={
@@ -337,7 +333,7 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
                     : 'https://devcon.org/Attendee-Solicitation-Guidelines-Oct-18.pdf'
                 }
               >
-                Attendee Solicitation Guidelines
+                {t('legal_attendee_solicitation')}
               </Link>
             </div>
           </div>

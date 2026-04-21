@@ -16,6 +16,7 @@
     "scripts:twitter-import": "ts-node src/scripts/twitter-import",
     "ai-content-sync": "ts-node src/ai/sync-vector-store",
     "ai-content-format": "ts-node src/ai/format-content",
+    "translate-content": "ts-node src/scripts/translate-content.ts",
     "scripts:encrypt": "ts-node src/utils/vouchers",
     "pretix:test-event": "ts-node src/scripts/pretix/test-event.ts",
     "pretix:test-items": "ts-node src/scripts/pretix/test-items.ts",

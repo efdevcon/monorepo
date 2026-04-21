@@ -55,6 +55,22 @@ export const SERVER_CONFIG = {
   WHITELIST_JWT_SECRET: process.env.WHITELIST_JWT_SECRET || '',
   WHITELIST_FORM_URL: process.env.WHITELIST_FORM_URL || '',
   WHITELIST_FORM_TOKEN_FIELD: process.env.WHITELIST_FORM_TOKEN_FIELD || 'entry.123456789',
+
+  NOCODB_URL: process.env.NOCODB_URL || '',
+  NOCODB_API_TOKEN: process.env.NOCODB_API_TOKEN || '',
+  NOCODB_WEBHOOK_SECRET: process.env.NOCODB_WEBHOOK_SECRET || '',
+  NOCODB_TABLES: parseNocoDbTables(process.env.NOCODB_TABLES),
+}
+
+function parseNocoDbTables(raw: string | undefined): Record<string, string> {
+  if (!raw) return {}
+  try {
+    const parsed = JSON.parse(raw)
+    if (parsed && typeof parsed === 'object') return parsed as Record<string, string>
+  } catch {
+    console.error('Invalid NOCODB_TABLES env var; expected JSON object mapping tableId → name')
+  }
+  return {}
 }
 
 export interface PretalxInstanceConfig {

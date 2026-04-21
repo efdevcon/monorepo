@@ -1,5 +1,5 @@
 import React from 'react'
-// import { IntlProvider } from 'next-intl'
+import { IntlProvider } from 'next-intl'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'assets/css/index.scss'
@@ -12,14 +12,67 @@ import { RecoilRoot } from 'recoil'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { TICKETING_ENV, TICKETING } from 'config/ticketing'
+import enCommon from '../../content/en/intl/common.json'
+import enHome from '../../content/en/intl/home.json'
+import enDips from '../../content/en/intl/dips.json'
+import enPastEvents from '../../content/en/intl/past_events.json'
+import enEcosystemProgram from '../../content/en/intl/ecosystem_program.json'
+import enBlogs from '../../content/en/intl/blogs.json'
+import enLantern from '../../content/en/intl/lantern.json'
+import enTickets from '../../content/en/intl/tickets.json'
+import enApplications from '../../content/en/intl/applications.json'
+import enAbout from '../../content/en/intl/about.json'
+import hiCommon from '../../content/hi/intl/common.json'
+import hiHome from '../../content/hi/intl/home.json'
+import hiDips from '../../content/hi/intl/dips.json'
+import hiPastEvents from '../../content/hi/intl/past_events.json'
+import hiEcosystemProgram from '../../content/hi/intl/ecosystem_program.json'
+import hiBlogs from '../../content/hi/intl/blogs.json'
+import hiLantern from '../../content/hi/intl/lantern.json'
+import hiTickets from '../../content/hi/intl/tickets.json'
+import hiApplications from '../../content/hi/intl/applications.json'
+import hiAbout from '../../content/hi/intl/about.json'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
 let matomoAdded = false
 
+const MESSAGES: Record<string, Record<string, any>> = {
+  en: {
+    common: enCommon,
+    home: enHome,
+    dips: enDips,
+    past_events: enPastEvents,
+    ecosystem_program: enEcosystemProgram,
+    blogs: enBlogs,
+    lantern: enLantern,
+    tickets: enTickets,
+    applications: enApplications,
+    about: enAbout,
+  },
+  hi: {
+    common: hiCommon,
+    home: hiHome,
+    dips: hiDips,
+    past_events: hiPastEvents,
+    ecosystem_program: hiEcosystemProgram,
+    blogs: hiBlogs,
+    lantern: hiLantern,
+    tickets: hiTickets,
+    applications: hiApplications,
+    about: hiAbout,
+  },
+}
+
 function App({ Component, pageProps }: any) {
   const router = useRouter()
   const isStorePage = router.pathname.startsWith('/tickets/store')
+
+  const rawLocale = router.locale ?? 'en'
+  const normalizedLocale = rawLocale === 'default' ? 'en' : rawLocale
+  // Per-page getStaticProps can still provide its own `messages` (useful for overriding
+  // or future server-side composition); otherwise fall back to the statically-imported bundle.
+  const messages = pageProps?.messages ?? MESSAGES[normalizedLocale] ?? MESSAGES.en
 
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
@@ -41,13 +94,13 @@ function App({ Component, pageProps }: any) {
           </div>
         )}
 
-        {/* <IntlProvider messages={pageProps.messages} locale="en"> */}
-        {/* <SessionProvider session={pageProps.session}> */}
-        {/* <Web3ModalProvider> */}
-        <Component {...pageProps} />
-        {/* </Web3ModalProvider> */}
-        {/* </SessionProvider> */}
-        {/* </IntlProvider> */}
+        <IntlProvider messages={messages} locale={normalizedLocale}>
+          {/* <SessionProvider session={pageProps.session}> */}
+          {/* <Web3ModalProvider> */}
+          <Component {...pageProps} />
+          {/* </Web3ModalProvider> */}
+          {/* </SessionProvider> */}
+        </IntlProvider>
       </RecoilRoot>
     </>
   )

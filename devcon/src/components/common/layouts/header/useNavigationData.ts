@@ -4,94 +4,74 @@ import LogoAbout from 'assets/images/pages/about.svg'
 import LogoBogota from 'assets/images/pages/bogota.svg'
 import LogoTickets from 'assets/images/pages/tickets.svg'
 import LogoGetInvolved from 'assets/images/pages/get-involved.svg'
-import { devIndicatorServerState } from 'next/dist/server/dev/dev-indicator-server-state'
 import { HandHeart, Newspaper, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
-// import { useRecoilState, useSetRecoilState } from 'recoil'
-// import { appState as appStateAtom } from 'state/main'
 
 const useNavigationData = () => {
-  // const intl = useTranslations()
-  // const [appState, setAppState] = useRecoilState(appStateAtom)
+  const t = useTranslations('common.nav')
 
   return {
-    top: [
-      // {
-      //   title: intl('navigation_archive'),
-      //   url: 'https://archive.devcon.org/archive/',
-      //   type: 'link',
-      // },
-      // {
-      //   title: intl('navigation_forum'),
-      //   url: 'https://forum.devcon.org/',
-      //   type: 'link',
-      // },
-      // {
-      //   title: intl('navigation_blog'),
-      //   url: '/blogs',
-      //   type: 'page',
-      // },
-    ],
+    top: [],
     site: [
       {
-        title: 'About',
+        title: t('about'),
         url: '#',
         type: 'links',
         logo: LogoAbout,
         links: [
           {
-            title: 'Devcon',
+            title: t('devcon'),
             url: '#',
             type: 'header',
             icon: DevconGlyph,
           },
           {
-            title: 'About',
+            title: t('about'),
             url: '/about',
             type: 'page',
           },
           {
-            title: 'Blog',
+            title: t('blog'),
             url: '/blogs',
             type: 'page',
           },
         ],
       },
       {
-        title: 'Get Involved',
+        title: t('get_involved'),
         url: '#',
         type: 'links',
         logo: LogoGetInvolved,
         links: [
           {
-            title: 'Community',
+            title: t('community'),
             url: '#',
             type: 'header',
             icon: HandHeart,
           },
           {
-            title: 'Ecosystem Program',
+            title: t('ecosystem_program'),
             url: '/ecosystem-program',
             type: 'page',
           },
           {
-            title: 'DIPs',
+            title: t('dips'),
             url: '/dips',
             type: 'page',
           },
           {
-            title: 'Forum',
+            title: t('forum'),
             url: 'https://forum.devcon.org/',
             type: 'link',
           },
           {
-            title: 'Press',
+            title: t('press'),
             url: '#',
             type: 'header',
             icon: Newspaper,
           },
           {
-            title: 'Press Kit',
+            title: t('press_kit'),
             url:
               process.env.NODE_ENV === 'development'
                 ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
@@ -101,64 +81,51 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: 'Archive',
+        title: t('archive'),
         url: '#',
         type: 'links',
         links: [
           {
-            title: 'Content',
+            title: t('content'),
             url: '#',
             type: 'header',
             icon: CirclePlay,
           },
           {
-            title: 'Devcon Archive',
+            title: t('devcon_archive'),
             url: 'https://archive.devcon.org',
             type: 'link',
           },
           {
-            title: 'History',
+            title: t('history'),
             url: '#',
             type: 'header',
             icon: History,
           },
           {
-            title: 'Past Events',
+            title: t('past_events'),
             url: '/past-events',
             type: 'page',
           },
           {
-            title: 'Devconnect',
+            title: t('devconnect'),
             url: 'https://devconnect.org',
             type: 'link',
           },
         ],
       },
       {
-        title: 'View Tickets',
+        title: t('view_tickets'),
         url: '/tickets',
         type: 'page',
         highlight: 'tickets',
       },
     ],
     footer: {
-      bottom: [
-        // {
-        //   title: intl('navigation_news'),
-        //   url: '/news',
-        //   type: 'page',
-        // },
-      ],
-      // highlights: [
-      //   {
-      //     title: 'FAQ',
-      //     url: '/faq',
-      //     type: 'page',
-      //   },
-      // ],
+      bottom: [],
       left: [
         {
-          title: 'About',
+          title: t('about'),
           url: '/about',
           type: 'page',
         },
@@ -199,22 +166,17 @@ const useNavigationData = () => {
         //   type: 'page',
         // },
         {
-          title: 'Blog',
+          title: t('blog'),
           url: '/blogs',
           type: 'page',
         },
         {
-          title: 'Past Events',
+          title: t('past_events'),
           url: '/past-events',
           type: 'page',
         },
-        // {
-        //   title: 'News',
-        //   url: '/news',
-        //   type: 'page',
-        // },
         {
-          title: 'Archive',
+          title: t('archive'),
           url: 'https://archive.devcon.org/archive/',
           type: 'link',
         },
@@ -236,27 +198,22 @@ const useNavigationData = () => {
         //   type: 'page',
         // },
         {
-          title: 'DIPs',
+          title: t('dips'),
           url: '/dips',
           type: 'page',
         },
-        // {
-        //   title: 'RTD Grants',
-        //   url: 'https://esp.ethereum.foundation/devcon-grants',
-        //   type: 'link',
-        // },
         {
-          title: 'Forum',
+          title: t('forum'),
           url: 'https://forum.devcon.org/',
           type: 'link',
         },
         {
-          title: 'Github',
+          title: t('github'),
           url: 'https://github.com/efdevcon/',
           type: 'link',
         },
         {
-          title: 'Devconnect',
+          title: t('devconnect'),
           url: 'https://devconnect.org',
           type: 'link',
         },
@@ -266,16 +223,16 @@ const useNavigationData = () => {
         //   type: 'link',
         // },
         {
-          title: 'Press Kit',
+          title: t('press_kit'),
+          // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
           url:
-            // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
             process.env.NODE_ENV === 'development'
               ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
               : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
           type: 'page',
         },
         {
-          title: 'Swarm Mirror',
+          title: t('swarm_mirror'),
           url: 'https://devcon.swarm.eth.limo/',
           type: 'link',
         },

@@ -1,0 +1,37 @@
+name: Devcon Content Translate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'devcon/content/en/**'
+  workflow_dispatch:
+
+jobs:
+  translate:
+    name: Translate changed content
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    defaults:
+      run:
+        working-directory: ./devcon
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run translator
+        env:
+          OPEN_AI_KEY: ${{ secrets.OPEN_AI_KEY }}
+        run: pnpm translate-content
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: 'devcon/content'
+          default_author: github_actions
+          message: '[action] translate devcon content'
+          pull: '--rebase --autostash'

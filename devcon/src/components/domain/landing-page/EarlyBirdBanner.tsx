@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Inbox, CalendarPlus, X } from 'lucide-react'
 import { GetReminderDialog } from './GetReminderDialog'
+import { useTranslations } from 'next-intl'
 
 const EVENT = {
   title: 'Devcon 8',
@@ -45,6 +46,7 @@ function downloadIcs() {
 }
 
 export const EarlyBirdBanner = () => {
+  const t = useTranslations('home.early_bird')
   const [showCalendarModal, setShowCalendarModal] = useState(false)
   const [reminderOpen, setReminderOpen] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
@@ -63,7 +65,7 @@ export const EarlyBirdBanner = () => {
   return (
     <div className="bg-[#ffa366] py-8 sm:py-10 px-5 sm:px-8 md:px-16 flex flex-col items-center justify-center gap-5 sm:gap-6">
       <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] text-center">
-        Early Bird tickets launch May 12
+        {t('heading')}
       </h2>
       <div className="flex flex-col sm:flex-row gap-3 items-stretch w-full max-w-[502px]">
         <button
@@ -71,7 +73,7 @@ export const EarlyBirdBanner = () => {
           onClick={() => setReminderOpen(true)}
           className="flex-1 bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-white font-bold text-sm sm:text-base rounded-full px-6 sm:px-8 py-3.5 sm:py-4 flex items-center gap-2 justify-center min-h-9 cursor-pointer"
         >
-          Get a reminder
+          {t('reminder_button')}
           <Inbox className="w-4 h-4" strokeWidth={2.5} />
         </button>
 
@@ -81,7 +83,7 @@ export const EarlyBirdBanner = () => {
             onClick={() => setShowCalendarModal(v => !v)}
             className="w-full bg-white/80 hover:bg-white transition-colors border border-[#221144]/10 text-[#1a0d33] font-bold text-sm sm:text-base rounded-full px-5 sm:px-6 py-3.5 sm:py-4 flex items-center gap-2 justify-center min-h-9"
           >
-            Add to Calendar
+            {t('calendar_button')}
             <CalendarPlus className="w-4 h-4" strokeWidth={2.5} />
           </button>
 
@@ -104,7 +106,7 @@ export const EarlyBirdBanner = () => {
                 className="px-3 py-2 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-lg transition-colors"
                 onClick={() => setShowCalendarModal(false)}
               >
-                Google Calendar
+                {t('calendar_google')}
               </a>
               <button
                 className="px-3 py-2 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-lg transition-colors text-left"
@@ -113,7 +115,7 @@ export const EarlyBirdBanner = () => {
                   setShowCalendarModal(false)
                 }}
               >
-                Download .ics
+                {t('calendar_ics')}
               </button>
             </div>
           )}

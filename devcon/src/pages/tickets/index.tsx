@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
 import { Ticket, Shirt, Coffee, ChevronDown } from 'lucide-react'
-import { Faq } from 'components/common/faq'
+import { Faq, FaqItem } from 'components/common/faq'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
@@ -14,60 +14,55 @@ import EarlyBirdTicket from './big-ticket.png'
 import EarlyBirdMobile from './small-ticket.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
-
-const NAV_LINKS = [
-  { title: 'Overview', to: '#overview' },
-  { title: 'General Admission', to: '#general-admission' },
-  { title: 'Discounts', to: '#discounts' },
-  { title: 'Applications', to: '#applications' },
-  { title: 'FAQ', to: '#faq' },
-].map(link => ({ ...link, title: link.title.toUpperCase() }))
-
-const OVERVIEW_CARDS = [
-  {
-    number: '01',
-    title: 'Sale waves',
-    subtitle: 'GENERAL ADMISSION',
-    price: null,
-    priceLabel: 'Coming soon',
-    status: 'TBD',
-  },
-  {
-    number: '02',
-    title: 'Community',
-    subtitle: 'SELF-CLAIMING DISCOUNTS',
-    price: null,
-    priceLabel: 'Coming soon',
-    status: 'TBD',
-  },
-  {
-    number: '03',
-    title: 'Applications',
-    subtitle: 'REVIEW-BASED DISCOUNTS',
-    price: null,
-    priceLabel: 'Coming soon',
-    status: 'TBD',
-  },
-]
-
-const WAVES = [
-  { name: 'Global Early Bird', price: '$299', date: 'Opens in May' },
-  { name: 'Waves 1-10', price: 'TBD', date: 'TBD' },
-]
-
-const COMMUNITY_ROWS = [
-  { name: 'India Residents', detail: 'VIA SELF PROTOCOL', price: '$149', date: 'Opens in May', live: false, bold: false },
-  // { name: 'Past Attendee POAPs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
-  // { name: 'Open-Source Contributors', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
-  // { name: 'Core Devs', detail: null, price: null, date: 'Opens 4 May', live: false, bold: false },
-]
-
-const APPLICATION_ROWS = [
-  { name: 'Students (Limited)', price: '$25', date: 'Opens in April' },
-  { name: 'Builders', price: 'from $299', date: 'Opens in April' },
-]
+import { useTranslations } from 'next-intl'
 
 export default function TicketsPage() {
+  const t = useTranslations('tickets')
+  const tFaq = useTranslations('home.faq')
+
+  const navLinks = [
+    { title: t('nav.overview'), to: '#overview' },
+    { title: t('nav.general_admission'), to: '#general-admission' },
+    { title: t('nav.discounts'), to: '#discounts' },
+    { title: t('nav.applications'), to: '#applications' },
+    { title: t('nav.faq'), to: '#faq' },
+  ]
+
+  const overviewCards = t.raw('overview.cards') as Array<{
+    number: string
+    title: string
+    subtitle: string
+    price_label: string
+    status: string
+  }>
+  const waves = t.raw('sale_waves.rows') as Array<{ name: string; price: string; date: string }>
+  const communityRows = t.raw('community.rows') as Array<{ name: string; detail?: string; price: string; date: string }>
+  const applicationRows = t.raw('applications.rows') as Array<{ name: string; price: string; date: string }>
+
+  const faqItems: FaqItem[] = [
+    { q: tFaq('item_1.q'), a: tFaq('item_1.a') },
+    {
+      q: tFaq('item_2.q'),
+      a: (
+        <>
+          <p>{tFaq('item_2.a_intro')}</p>
+          <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
+            <li>
+              <strong>{tFaq('item_2.community_h')}</strong> — {tFaq('item_2.community_b')}
+            </li>
+            <li>
+              <strong>{tFaq('item_2.applications_h')}</strong> — <em>{tFaq('item_2.applications_b')}</em>
+            </li>
+            <li>
+              <strong>{tFaq('item_2.ecosystem_h')}</strong> — <em>{tFaq('item_2.ecosystem_b')}</em>
+            </li>
+          </ul>
+        </>
+      ),
+    },
+    { q: tFaq('item_3.q'), a: tFaq('item_3.a') },
+  ]
+
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
       <PageHero
@@ -75,8 +70,8 @@ export default function TicketsPage() {
         titleClassName={css['hero-title']}
         heroBackground={HeroBackground}
         path={[]}
-        title="Tickets"
-        navigation={NAV_LINKS}
+        title={t('title')}
+        navigation={navLinks}
       />
 
       <div className={cn(css['landing'], 'section')}>
@@ -85,37 +80,32 @@ export default function TicketsPage() {
           <section className={css['hero-content-section']}>
             <div className={css['hero-left']}>
               <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>Early Bird tickets launching in May!</h2>
-                <p className={css['body-lg']}>
-                  The world&apos;s biggest Ethereum conference returns &ndash; join us in Mumbai, India from 3&ndash;6
-                  November 2026.
-                </p>
-                <p className={css['body']}>
-                  Be the first to know when tickets drop - follow us or subscribe to our newsletter.
-                </p>
+                <h2 className={css['heading-2']}>{t('hero.heading')}</h2>
+                <p className={css['body-lg']}>{t('hero.body_lg')}</p>
+                <p className={css['body']}>{t('hero.body')}</p>
               </div>
 
               <div className={css['included-section']}>
-                <p className={css['included-label']}>INCLUDED IN TICKET</p>
+                <p className={css['included-label']}>{t('hero.included_label')}</p>
                 <div className={css['included-items']}>
                   <div className={css['included-item']}>
                     <Ticket size={24} strokeWidth={1.5} />
-                    <span>Full 4-day conference access</span>
+                    <span>{t('hero.included_conference')}</span>
                   </div>
                   <div className={css['included-item']}>
                     <Shirt size={24} strokeWidth={1.5} />
-                    <span>Event swag</span>
+                    <span>{t('hero.included_swag')}</span>
                   </div>
                   <div className={css['included-item']}>
                     <Coffee size={24} strokeWidth={1.5} />
-                    <span>Lunch all week</span>
+                    <span>{t('hero.included_lunch')}</span>
                   </div>
                 </div>
               </div>
 
               <div className={css['cta-group']}>
                 <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
-                  Subscribe for updates
+                  {t('hero.subscribe_button')}
                 </a>
                 <div className={css['social-icons']}>
                   <a
@@ -149,12 +139,12 @@ export default function TicketsPage() {
             <div className={css['ticket-image-wrapper']}>
               <Image
                 src={EarlyBirdTicket}
-                alt="Indian Early Bird Ticket"
+                alt={t('hero.ticket_alt')}
                 className={cn(css['ticket-image'], css['ticket-image-desktop'])}
               />
               <Image
                 src={EarlyBirdMobile}
-                alt="Indian Early Bird Ticket"
+                alt={t('hero.ticket_alt')}
                 className={cn(css['ticket-image'], css['ticket-image-mobile'])}
               />
             </div>
@@ -164,13 +154,11 @@ export default function TicketsPage() {
 
           {/* ── Overview ─────────────────────────────────────────── */}
           <section id="overview" className={css['overview-section']}>
-            <h2 className={css['heading-2-center']}>Overview</h2>
-            <p className={css['body-center']}>
-              Tickets to Devcon India will be distributed through three different methods:
-            </p>
+            <h2 className={css['heading-2-center']}>{t('overview.heading')}</h2>
+            <p className={css['body-center']}>{t('overview.body')}</p>
 
             <div className={css['overview-cards']}>
-              {OVERVIEW_CARDS.map(card => (
+              {overviewCards.map(card => (
                 <div key={card.number} className={css['overview-card']}>
                   <span className={css['overview-card-number']}>{card.number}</span>
                   <div className={css['overview-card-content']}>
@@ -179,7 +167,7 @@ export default function TicketsPage() {
                       <div className={css['overview-card-subtitle']}>{card.subtitle}</div>
                     </div>
                     <div className={css['overview-card-right']}>
-                      <div className={css['overview-card-price']}>{card.price || card.priceLabel}</div>
+                      <div className={css['overview-card-price']}>{card.price_label}</div>
                       <div className={css['overview-card-status']}>{card.status}</div>
                     </div>
                   </div>
@@ -188,7 +176,7 @@ export default function TicketsPage() {
             </div>
 
             <Link to="#faq" className={css['btn-secondary']}>
-              View FAQ
+              {t('overview.view_faq')}
               <ChevronDown size={16} strokeWidth={2} />
             </Link>
           </section>
@@ -199,45 +187,28 @@ export default function TicketsPage() {
           <section id="general-admission" className={css['two-col-section']}>
             <div className={css['section-left']}>
               <div className={css['section-text']}>
-                <p className={css['section-tag']}>GENERAL ADMISSION</p>
-                <h2 className={css['heading-2']}>Sale waves</h2>
-                <p className={css['body-lg']}>
-                  General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early
-                  Bird launch in May.
-                </p>
+                <p className={css['section-tag']}>{t('sale_waves.tag')}</p>
+                <h2 className={css['heading-2']}>{t('sale_waves.heading')}</h2>
+                <p className={css['body-lg']}>{t('sale_waves.body_lg')}</p>
                 <p className={css['body']}>
-                  Sale waves are <strong>limited time windows</strong> to purchase a general admission Devcon India
-                  ticket. Follow us on socials or subscribe to our newsletter to stay updated!
+                  {t('sale_waves.body_prefix')}
+                  <strong>{t('sale_waves.body_strong')}</strong>
+                  {t('sale_waves.body_suffix')}
                 </p>
               </div>
 
               <div className={css['social-row']}>
                 <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
-                  Subscribe for updates
+                  {t('hero.subscribe_button')}
                 </a>
                 <div className={css['social-icons']}>
-                  <a
-                    href="https://x.com/EFDevcon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
+                  <a href="https://x.com/EFDevcon" target="_blank" rel="noopener noreferrer" className={css['social-icon-btn']}>
                     <IconX />
                   </a>
-                  <a
-                    href="https://www.instagram.com/efdevcon/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
+                  <a href="https://www.instagram.com/efdevcon/" target="_blank" rel="noopener noreferrer" className={css['social-icon-btn']}>
                     <IconInstagram />
                   </a>
-                  <a
-                    href="https://farcaster.xyz/~/channel/devcon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
+                  <a href="https://farcaster.xyz/~/channel/devcon" target="_blank" rel="noopener noreferrer" className={css['social-icon-btn']}>
                     <IconFarcaster />
                   </a>
                 </div>
@@ -246,11 +217,11 @@ export default function TicketsPage() {
 
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>Sale waves</span>
-                <span className={css['ticket-type-status']}>COMING SOON!</span>
+                <span className={css['ticket-type-title']}>{t('sale_waves.card_title')}</span>
+                <span className={css['ticket-type-status']}>{t('sale_waves.card_status')}</span>
               </div>
               <div className={css['ticket-type-rows']}>
-                {WAVES.map(row => (
+                {waves.map(row => (
                   <div key={row.name} className={css['ticket-type-row']}>
                     <span className={css['row-name']}>{row.name}</span>
                     <div className={css['row-meta']}>
@@ -269,34 +240,38 @@ export default function TicketsPage() {
           <section id="discounts" className={css['two-col-section']}>
             <div className={css['section-left']}>
               <div className={css['section-text']}>
-                <p className={css['section-tag']}>SELF-CLAIMING DISCOUNTS</p>
-                <h2 className={css['heading-2']}>Community</h2>
+                <p className={css['section-tag']}>{t('community.tag')}</p>
+                <h2 className={css['heading-2']}>{t('community.heading')}</h2>
                 <p className={css['body-lg']}>
-                  Our <strong>Early Access vouchers for Indian residents</strong> have now ended. Thank you to everyone
-                  who reserved their place at Devcon.
+                  {t('community.body_lg_prefix')}
+                  <strong>{t('community.body_lg_strong')}</strong>
+                  {t('community.body_lg_suffix')}
                 </p>
                 <p className={css['body']}>
-                  Community tickets are <strong>self-claimable</strong> &ndash; no application required, just verify
-                  your eligibility and purchase directly. Tickets are <strong>non-transferable</strong> and{' '}
-                  <strong>limited</strong>.
+                  {t('community.body_prefix')}
+                  <strong>{t('community.body_strong_1')}</strong>
+                  {t('community.body_middle')}
+                  <strong>{t('community.body_strong_2')}</strong>
+                  {t('community.body_and')}
+                  <strong>{t('community.body_strong_3')}</strong>
+                  {t('community.body_suffix')}
                 </p>
               </div>
             </div>
 
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>Community</span>
-                <span className={css['ticket-type-status']}>COMING SOON!</span>
+                <span className={css['ticket-type-title']}>{t('community.card_title')}</span>
+                <span className={css['ticket-type-status']}>{t('community.card_status')}</span>
               </div>
               <div className={css['ticket-type-rows']}>
-                {COMMUNITY_ROWS.map(row => (
-                  <div key={row.name} className={cn(css['ticket-type-row'], row.bold && css['row-bold'])}>
+                {communityRows.map(row => (
+                  <div key={row.name} className={css['ticket-type-row']}>
                     <div className={css['row-name-group']}>
                       <span className={css['row-name']}>{row.name}</span>
                       {row.detail && <span className={css['row-detail']}>{row.detail}</span>}
                     </div>
                     <div className={css['row-meta']}>
-                      {row.live && <span className={css['live-badge']}>LIVE</span>}
                       {row.price && <span className={css['row-price']}>{row.price}</span>}
                       <span className={css['row-date']}>{row.date}</span>
                     </div>
@@ -312,30 +287,30 @@ export default function TicketsPage() {
           <section id="applications" className={css['two-col-section']}>
             <div className={css['section-left']}>
               <div className={css['section-text']}>
-                <p className={css['section-tag']}>REVIEW-BASED DISCOUNTS</p>
-                <h2 className={css['heading-2']}>Applications</h2>
+                <p className={css['section-tag']}>{t('applications.tag')}</p>
+                <h2 className={css['heading-2']}>{t('applications.heading')}</h2>
                 <p className={css['body-lg']}>
-                  Ticket support is intended to <strong>enable participation at Devcon</strong>, reward meaningful
-                  contributions, and support initiatives with clear ecosystem impact.
+                  {t('applications.body_lg_prefix')}
+                  <strong>{t('applications.body_lg_strong')}</strong>
+                  {t('applications.body_lg_suffix')}
                 </p>
                 <p className={css['body']}>
-                  All ticket applications are <strong>curated and limited per round</strong>. Discounted prices will
-                  increase over time. Applying earlier gives access to <strong>lower price tiers</strong>, subject to
-                  availability and review.
+                  {t('applications.body_prefix')}
+                  <strong>{t('applications.body_strong_1')}</strong>
+                  {t('applications.body_middle')}
+                  <strong>{t('applications.body_strong_2')}</strong>
+                  {t('applications.body_suffix')}
                 </p>
               </div>
-              {/* <a href="/esp" className={css['btn-secondary']}>
-                Learn more
-              </a> */}
             </div>
 
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>Applications</span>
-                <span className={css['ticket-type-status']}>COMING SOON!</span>
+                <span className={css['ticket-type-title']}>{t('applications.card_title')}</span>
+                <span className={css['ticket-type-status']}>{t('applications.card_status')}</span>
               </div>
               <div className={css['ticket-type-rows']}>
-                {APPLICATION_ROWS.map(row => (
+                {applicationRows.map(row => (
                   <div key={row.name} className={css['ticket-type-row']}>
                     <span className={css['row-name']}>{row.name}</span>
                     <div className={css['row-meta']}>
@@ -354,12 +329,12 @@ export default function TicketsPage() {
           <section id="faq" className={css['faq-section']}>
             <div className={css['faq-image']}>
               <Image src={HeroBackground} alt="" className={css['faq-bg-image']} />
-              <span className={css['faq-image-text']}>Tickets</span>
+              <span className={css['faq-image-text']}>{t('faq_section.image_label')}</span>
             </div>
             <div className={css['faq-right']}>
-              <h2 className={css['heading-2']}>Frequently asked questions</h2>
+              <h2 className={css['heading-2']}>{t('faq_section.heading')}</h2>
               <div className={css['faq-and-cta']}>
-                <Faq />
+                <Faq items={faqItems} />
               </div>
             </div>
           </section>
