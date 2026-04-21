@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Head from 'next/head'
+import { X } from 'lucide-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi'
 import type { Config } from 'wagmi'
@@ -434,7 +435,7 @@ function RefundModal({
       // 4. Wait for confirmation
       setStep('waiting')
       // writeContractAsync returns after tx is submitted; we confirm via API
-      await callRefundApi('confirm', { txHash: hash })
+      await callRefundApi('confirm', { refundTxHash: hash })
 
       setStep('done')
       setTimeout(() => {
@@ -455,9 +456,20 @@ function RefundModal({
     }
   }
 
+  // Click-outside is intentionally disabled on this modal — refunds send an
+  // on-chain tx, and a misclick on the backdrop (mid-signing, or while waiting
+  // for a tx to confirm) could abandon state mid-flight. Explicit close only.
   return (
-    <div className={css['modal-overlay']} onClick={onClose}>
-      <div className={css['modal-card']} onClick={e => e.stopPropagation()}>
+    <div className={css['modal-overlay']}>
+      <div className={css['modal-card']}>
+        <button
+          type="button"
+          className={css['modal-close']}
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <X size={18} />
+        </button>
         <h3 className={css['modal-title']}>Refund Order</h3>
         <div className={css['modal-details']}>
           <div className={css['modal-row']}>
@@ -801,17 +813,28 @@ function AdminContent() {
     [refundedOrders]
   )
 
+  // Total relayer-sponsored gas across the filtered completed rows.
+  // Always return ETH + POL summed; USD is only filled in for chains whose
+  // price loaded (missing prices no longer blank out the whole stat).
   const totalGasSponsored = useMemo(() => {
     const prices = data?.wallet?.prices
-    if (!prices) return null
-    let total = 0
+    let usd: number | null = prices ? 0 : null
+    let ethSum = 0
+    let polSum = 0
+    let rowsCounted = 0
     for (const o of filteredCompleted) {
       if (!o.gasCostWei) continue
-      const eth = Number(BigInt(o.gasCostWei)) / 1e18
-      const price = o.chainId === 137 ? prices.POL : prices.ETH
-      if (price) total += eth * price
+      const native = Number(BigInt(o.gasCostWei)) / 1e18
+      rowsCounted++
+      if (o.chainId === 137) polSum += native
+      else ethSum += native
+      if (usd !== null && prices) {
+        const price = o.chainId === 137 ? prices.POL : prices.ETH
+        if (price) usd += native * price
+      }
     }
-    return total
+    if (rowsCounted === 0) return null
+    return { usd, eth: ethSum, pol: polSum }
   }, [filteredCompleted, data?.wallet?.prices])
 
   const walletTotalUsd = useMemo(() => {
@@ -1007,7 +1030,16 @@ function AdminContent() {
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Gas Sponsored</p>
-              <p className={css['stat-value']}>{totalGasSponsored != null ? `$${totalGasSponsored.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</p>
+              <p className={css['stat-value']}>
+                {totalGasSponsored == null
+                  ? '—'
+                  : totalGasSponsored.usd != null
+                    ? `$${totalGasSponsored.usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                    : [
+                        totalGasSponsored.eth > 0 ? `${totalGasSponsored.eth.toFixed(6)} ETH` : null,
+                        totalGasSponsored.pol > 0 ? `${totalGasSponsored.pol.toFixed(4)} POL` : null,
+                      ].filter(Boolean).join(' + ') || '—'}
+              </p>
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Total Refunded</p>

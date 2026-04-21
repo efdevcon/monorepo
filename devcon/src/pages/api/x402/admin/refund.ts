@@ -21,16 +21,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (provided !== ADMIN_SECRET) {
     return res.status(401).json({ success: false, error: 'unauthorized' })
   }
-  const action = Array.isArray(req.query.action) ? req.query.action[0] : req.query.action || ''
+  // Frontend sends `action` in the JSON body (initiate/confirm/fail); the
+  // plugin reads it from the URL query. Pull it from whichever side we got it.
+  const body = (req.body && typeof req.body === 'object') ? (req.body as Record<string, unknown>) : {}
+  const queryAction = Array.isArray(req.query.action) ? req.query.action[0] : req.query.action
+  const action = String(queryAction || body.action || '')
+  if (!action) {
+    return res.status(400).json({ success: false, error: 'action is required (initiate|confirm|fail)' })
+  }
+
   let proxyResult: { status: number; body: unknown }
   try {
     proxyResult = await pluginFetch(
-    `/plugin/x402/admin/refund/?action=${encodeURIComponent(String(action))}`,
-    {
-      method: 'POST',
-      body: req.body,
-    },
-  )
+      `/plugin/x402/admin/refund/?action=${encodeURIComponent(action)}`,
+      {
+        method: 'POST',
+        body,
+      },
+    )
   } catch (e) {
     console.error('[x402 proxy] refund error:', e)
     return res.status(502).json({ success: false, error: 'Pretix plugin unreachable' })
