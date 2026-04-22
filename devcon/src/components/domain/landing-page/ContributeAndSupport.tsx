@@ -33,7 +33,7 @@ const cards: Card[] = [
     title: 'Volunteer program',
     icon: HandHeart,
     body: 'Join a team of passionate contributors keeping Devcon running smoothly – from registration desks to behind-the-scenes management.',
-    disabled: 'Applications coming soon!',
+    cta: { label: 'Join the waitlist', href: '/form/volunteer-waitlist', external: false },
   },
 ]
 

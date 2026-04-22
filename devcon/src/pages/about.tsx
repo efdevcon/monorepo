@@ -85,7 +85,7 @@ export default function AboutPage() {
   return (
     <Page theme={themes['about']} withHero darkFooter>
       <PageHero
-        className={`${heroCss['hero-no-side-gradient']} !mb-0`}
+        className={`${heroCss['hero-no-side-gradient']} ${css['hero-center-mobile']} !mb-0`}
         titleClassName={heroCss['hero-title']}
         title="About"
         heroBackground={HeroBackground}

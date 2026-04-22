@@ -366,6 +366,19 @@ function FormInner({
               : (isUpdate ? 'Update' : 'Submit')}
           </button>
         </div>
+
+        <p className="text-xs text-[#594d73] text-center leading-[18px] pt-2 border-t border-[rgba(34,17,68,0.08)]">
+          By submitting this form, you acknowledge the Ethereum Foundation&apos;s{' '}
+          <a
+            href="https://ethereum.org/en/privacy-policy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-[#7235ed] hover:underline"
+          >
+            Privacy Policy
+          </a>
+          . We&apos;ll only use your information for Devcon-related communications and won&apos;t share it with third parties.
+        </p>
       </form>
     </FormProvider>
   )
