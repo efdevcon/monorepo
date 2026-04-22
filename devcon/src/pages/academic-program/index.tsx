@@ -68,7 +68,8 @@ const FAQ_ITEMS = [
   },
 ]
 
-const APPLY_HREF = 'mailto:university@ethereum.foundation'
+const APPLY_HREF = 'https://esp.ethereum.foundation/applicants/rfp/rtd8_india_academic/apply'
+const CONTACT_EMAIL = 'university@ethereum.foundation'
 
 export default function AcademicProgramPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
@@ -110,7 +111,7 @@ export default function AcademicProgramPage() {
           </div>
 
           <div className={css['hero-cta-block']}>
-            <Link to="#apply" className={css['btn-primary']}>
+            <Link to={APPLY_HREF} className={css['btn-primary']}>
               Apply now
               <ArrowRight size={16} strokeWidth={2} />
             </Link>
@@ -235,8 +236,8 @@ export default function AcademicProgramPage() {
                 We review applications on a rolling basis and will get back to you <strong>within 15 days</strong>.
                 <br className="hidden sm:block" />
                 {' '}Got a question? Contact us at{' '}
-                <a href={APPLY_HREF} className="font-bold text-[#7235ed] hover:underline break-all">
-                  university@ethereum.foundation
+                <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-[#7235ed] hover:underline break-all">
+                  {CONTACT_EMAIL}
                 </a>
               </p>
             </div>
