@@ -75,6 +75,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Academic Program',
+            url: '/academic-program',
+            type: 'page',
+          },
+          {
             title: 'DIPs',
             url: '/dips',
             type: 'page',
