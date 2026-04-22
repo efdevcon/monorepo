@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Link } from 'components/common/link'
-import { ArrowRight } from 'lucide-react'
+import { Inbox } from 'lucide-react'
+import { GetReminderDialog } from 'components/domain/landing-page/GetReminderDialog'
 
 export const Strip = () => {
   const router = useRouter()
   const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
+  const [reminderOpen, setReminderOpen] = useState(false)
 
   if (isTickets) return null
 
@@ -21,12 +22,18 @@ export const Strip = () => {
               Save the date – Devcon tickets launch May 12
             </p>
           </div>
-          <Link to="/tickets" className="flex gap-1 items-center shrink-0 transition-transform hover:scale-[1.02]">
-            <span className="font-bold text-white text-sm">Learn more</span>
-            <ArrowRight className="text-white" size={14} />
-          </Link>
+          <button
+            type="button"
+            onClick={() => setReminderOpen(true)}
+            className="flex gap-1.5 items-center shrink-0 transition-transform hover:scale-[1.02] cursor-pointer"
+          >
+            <span className="font-bold text-white text-sm">Get a reminder</span>
+            <Inbox className="text-white" size={14} strokeWidth={2.5} />
+          </button>
         </div>
       </div>
+
+      <GetReminderDialog open={reminderOpen} onOpenChange={setReminderOpen} />
     </div>
   )
 }

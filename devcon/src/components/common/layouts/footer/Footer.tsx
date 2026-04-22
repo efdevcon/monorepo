@@ -23,6 +23,7 @@ import DC7Background from 'assets/images/dc-7/footer-bg.png'
 import { Button } from 'lib/components/button'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+import { AddToCalendarButton } from 'components/domain/landing-page/AddToCalendarButton'
 
 type SocialMediaProps = {
   onShare?: () => void
@@ -160,12 +161,24 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
                 {EMAIL_DEVCON}
               </a>
 
-              <div className={`${css['newsletter']} mt-8`}>
-                <p className="semi-bold">Subscribe for updates</p>
-                <Link to="https://paragraph.com/@efevents" className={css['subscribe-btn']}>
-                  Subscribe
-                  <ArrowUpRight size={16} strokeWidth={2} />
-                </Link>
+              <div className="mt-4 grid grid-cols-2 gap-x-4 items-start lg:block">
+                <div className={`${css['newsletter']} min-w-0`}>
+                  <p className="semi-bold">Subscribe for updates</p>
+                  <Link
+                    to="https://paragraph.com/@efevents"
+                    className="mt-2 transition-colors font-bold text-sm rounded-full px-6 py-3 inline-flex items-center gap-2 justify-center cursor-pointer bg-[#7235ed] hover:bg-[#6028cc] text-white border border-transparent"
+                  >
+                    Subscribe
+                    <ArrowUpRight size={16} strokeWidth={2} />
+                  </Link>
+                </div>
+
+                <div className="lg:mt-4 flex flex-col items-start min-w-0">
+                  <p className="semi-bold">Save the date (3–6 Nov)</p>
+                  <div className="mt-2">
+                    <AddToCalendarButton popoverPosition="top" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

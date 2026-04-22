@@ -161,6 +161,10 @@
     // background: white;
     z-index: 2;
 
+    :global(.semi-bold) {
+      color: #ffffff;
+    }
+
     .col-2 {
       @media (max-width: $breakpoints-lg) {
         margin-top: 0px !important;
@@ -445,16 +449,18 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 16px 32px;
-  font-size: 16px;
+  padding: 12px 24px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 700;
   color: #f9f8fa;
   background: #7235ed;
+  border: 1px solid transparent;
   border-radius: 9999px;
   text-decoration: none;
   white-space: nowrap;
   transition: opacity 0.15s;
-  margin-top: 16px;
+  margin-top: 8px;
 
   &:hover {
     opacity: 0.9;
