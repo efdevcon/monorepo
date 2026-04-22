@@ -344,8 +344,8 @@ function FormInner({
 
         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
-        <div className="flex items-center justify-between w-full">
-          {onSignOut ? (
+        <div className={`flex items-center w-full ${onSignOut ? 'justify-between' : 'justify-center'}`}>
+          {onSignOut && (
             <button
               type="button"
               onClick={onSignOut}
@@ -353,8 +353,6 @@ function FormInner({
             >
               Cancel &amp; Sign Out
             </button>
-          ) : (
-            <div />
           )}
           <button
             type="submit"
