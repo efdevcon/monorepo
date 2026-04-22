@@ -6,6 +6,7 @@ import { Globe, ChevronDown } from 'lucide-react'
 const LOCALES = [
   { code: 'en', label: 'English', short: 'EN' },
   { code: 'hi', label: 'हिन्दी', short: 'HI' },
+  { code: 'mr', label: 'मराठी', short: 'MR' },
 ] as const
 
 type LocaleCode = (typeof LOCALES)[number]['code']
@@ -15,7 +16,8 @@ export function LanguageToggle() {
   const [open, setOpen] = React.useState(false)
   const ref = React.useRef<HTMLDivElement>(null)
 
-  const currentCode: LocaleCode = (router.locale === 'hi' ? 'hi' : 'en')
+  const currentCode: LocaleCode =
+    router.locale === 'hi' ? 'hi' : router.locale === 'mr' ? 'mr' : 'en'
   const current = LOCALES.find(l => l.code === currentCode) ?? LOCALES[0]
 
   React.useEffect(() => {

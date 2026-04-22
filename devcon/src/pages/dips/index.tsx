@@ -17,8 +17,9 @@ export default function DIPsTemplate(props: any) {
   const t = useTranslations('dips')
   const { data } = useTina<PagesQuery>(props.cms)
   // Tina returns the query name as the top-level key. For the default `pages` query
-  // that's `data.pages`; for the locale-specific `pagesHi` collection it's `data.pagesHi`.
-  const pageNode = (data as any).pages ?? (data as any).pagesHi
+  // that's `data.pages`; for locale-specific collections it's `data.pagesHi`, `data.pagesMr`, etc.
+  const d = data as any
+  const pageNode = d.pages ?? d.pagesHi ?? d.pagesMr
   const pages = pageNode as PagesDips
 
   return (

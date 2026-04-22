@@ -18,6 +18,16 @@ import hiLantern from '../../content/hi/intl/lantern.json'
 import hiTickets from '../../content/hi/intl/tickets.json'
 import hiApplications from '../../content/hi/intl/applications.json'
 import hiAbout from '../../content/hi/intl/about.json'
+import mrCommon from '../../content/mr/intl/common.json'
+import mrHome from '../../content/mr/intl/home.json'
+import mrDips from '../../content/mr/intl/dips.json'
+import mrPastEvents from '../../content/mr/intl/past_events.json'
+import mrEcosystemProgram from '../../content/mr/intl/ecosystem_program.json'
+import mrBlogs from '../../content/mr/intl/blogs.json'
+import mrLantern from '../../content/mr/intl/lantern.json'
+import mrTickets from '../../content/mr/intl/tickets.json'
+import mrApplications from '../../content/mr/intl/applications.json'
+import mrAbout from '../../content/mr/intl/about.json'
 
 export function flattenMessages(nestedMessages: any, prefix = '') {
   return Object.keys(nestedMessages).reduce((messages: any, key) => {
@@ -60,6 +70,18 @@ const MESSAGES: Record<string, MessageBundle> = {
     tickets: hiTickets as Record<string, any>,
     applications: hiApplications as Record<string, any>,
     about: hiAbout as Record<string, any>,
+  },
+  mr: {
+    common: mrCommon as Record<string, any>,
+    home: mrHome as Record<string, any>,
+    dips: mrDips as Record<string, any>,
+    past_events: mrPastEvents as Record<string, any>,
+    ecosystem_program: mrEcosystemProgram as Record<string, any>,
+    blogs: mrBlogs as Record<string, any>,
+    lantern: mrLantern as Record<string, any>,
+    tickets: mrTickets as Record<string, any>,
+    applications: mrApplications as Record<string, any>,
+    about: mrAbout as Record<string, any>,
   },
 }
 

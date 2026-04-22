@@ -32,6 +32,16 @@ import hiLantern from '../../content/hi/intl/lantern.json'
 import hiTickets from '../../content/hi/intl/tickets.json'
 import hiApplications from '../../content/hi/intl/applications.json'
 import hiAbout from '../../content/hi/intl/about.json'
+import mrCommon from '../../content/mr/intl/common.json'
+import mrHome from '../../content/mr/intl/home.json'
+import mrDips from '../../content/mr/intl/dips.json'
+import mrPastEvents from '../../content/mr/intl/past_events.json'
+import mrEcosystemProgram from '../../content/mr/intl/ecosystem_program.json'
+import mrBlogs from '../../content/mr/intl/blogs.json'
+import mrLantern from '../../content/mr/intl/lantern.json'
+import mrTickets from '../../content/mr/intl/tickets.json'
+import mrApplications from '../../content/mr/intl/applications.json'
+import mrAbout from '../../content/mr/intl/about.json'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
@@ -61,6 +71,18 @@ const MESSAGES: Record<string, Record<string, any>> = {
     tickets: hiTickets,
     applications: hiApplications,
     about: hiAbout,
+  },
+  mr: {
+    common: mrCommon,
+    home: mrHome,
+    dips: mrDips,
+    past_events: mrPastEvents,
+    ecosystem_program: mrEcosystemProgram,
+    blogs: mrBlogs,
+    lantern: mrLantern,
+    tickets: mrTickets,
+    applications: mrApplications,
+    about: mrAbout,
   },
 }
 

@@ -21,7 +21,8 @@ import { useTranslations } from 'next-intl'
 export default function PastEvents(props: any) {
   const t = useTranslations('past_events')
   const { data } = useTina<PagesQuery>(props.cms)
-  const pageNode = (data as any).pages ?? (data as any).pagesHi
+  const d = data as any
+  const pageNode = d.pages ?? d.pagesHi ?? d.pagesMr
   const pages = pageNode as PagesPast_Events
   const events = pages.events || []
 

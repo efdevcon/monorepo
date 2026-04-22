@@ -70,6 +70,26 @@ export default defineConfig({
           },
         },
       },
+      {
+        name: 'pagesMr',
+        label: 'Pages (Marathi)',
+        path: 'content/mr/pages',
+        format: 'mdx',
+        templates: pageTemplates,
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+          router: ({ document }) => {
+            if (!filenameToUrl[document._sys.filename]) {
+              return `/mr${document._sys.filename.replace(/_/g, '-')}`
+            }
+            const base = filenameToUrl[document._sys.filename] || document._sys.filename
+            return `/mr${base === '/' ? '' : base}`
+          },
+        },
+      },
     ],
   },
 })
