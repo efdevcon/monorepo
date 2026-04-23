@@ -74,7 +74,7 @@
         "fromEmail": "\"Devcon\" <noreply@devcon.org>",
         "toEmail": "={{ $json.body.data.rows[0].Email }}",
         "subject": "Your Devcon 8 Student Application Has Been Validated!",
-        "html": "=<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\" /></head><body style=\"margin:0;padding:0;background-color:#f5f3f7;font-family:'Poppins','Segoe UI',Tahoma,Geneva,Verdana,sans-serif\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f5f3f7;padding:40px 16px\"><tr><td align=\"center\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(22,11,43,0.08)\"><tr><td style=\"background:#1a0d33;padding:32px 32px 24px;text-align:center\"><img src=\"https://devcon.org/email/devcon-logo-white.svg\" alt=\"Devcon 8\" width=\"149\" height=\"64\" style=\"display:inline-block;max-width:149px\" /></td></tr><tr><td style=\"padding:32px\"><h2 style=\"margin:0 0 16px;font-size:22px;font-weight:800;color:#1a0d33\">Congratulations, {{ $json.body.data.rows[0][\"Full Name\"] || \"Applicant\" }}!</h2><p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a0d33\">Your student application for Devcon 8 has been <strong style=\"color:#16a34a\">Validated</strong>.</p><p style=\"margin:0 0 24px;font-size:16px;line-height:1.6;color:#1a0d33\">We're excited to have you join us! You'll receive more details about next steps, including how to claim your student ticket, in a follow-up email.</p><h3 style=\"margin:0 0 12px;font-size:18px;font-weight:700;color:#1a0d33\">What happens next?</h3><ul style=\"margin:0 0 24px;padding-left:20px;font-size:15px;line-height:1.6;color:#1a0d33\"><li style=\"margin-bottom:8px\">Keep an eye on your inbox for ticket purchase instructions.</li><li style=\"margin-bottom:8px\">Join the Devcon community channels for updates.</li><li>Start planning your Devcon experience!</li></ul><div style=\"text-align:center\"><a href=\"https://devcon.org\" style=\"display:inline-block;padding:14px 32px;font-size:16px;font-weight:700;color:#ffffff;background-color:#7235ed;border-radius:9999px;text-decoration:none\">Visit devcon.org</a></div></td></tr><tr><td style=\"padding:24px 32px;background:#f9f8fa;border-top:1px solid #dddae2;text-align:center\"><p style=\"margin:0;font-size:13px;color:#594d73;line-height:1.5\">See you at Devcon!<br/>The Devcon Team</p></td></tr></table></td></tr></table></body></html>",
+        "html": "=<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\" /></head><body style=\"margin:0;padding:0;background-color:#f5f3f7;font-family:'Poppins','Segoe UI',Tahoma,Geneva,Verdana,sans-serif\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f5f3f7;padding:40px 16px\"><tr><td align=\"center\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(22,11,43,0.08)\"><tr><td style=\"background:#1a0d33;padding:32px 32px 24px;text-align:center\"><img src=\"https://devcon.org/email/devcon-logo-white.svg\" alt=\"Devcon 8\" width=\"149\" height=\"64\" style=\"display:inline-block;max-width:149px\" /></td></tr><tr><td style=\"padding:32px\"><h2 style=\"margin:0 0 16px;font-size:22px;font-weight:800;color:#1a0d33\">Congratulations, {{ $json.body.data.rows[0][\"Legal name\"] || \"Applicant\" }}!</h2><p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a0d33\">Your student application for Devcon 8 has been <strong style=\"color:#16a34a\">Validated</strong>.</p><p style=\"margin:0 0 24px;font-size:16px;line-height:1.6;color:#1a0d33\">We're excited to have you join us! You'll receive more details about next steps, including how to claim your student ticket, in a follow-up email.</p><h3 style=\"margin:0 0 12px;font-size:18px;font-weight:700;color:#1a0d33\">What happens next?</h3><ul style=\"margin:0 0 24px;padding-left:20px;font-size:15px;line-height:1.6;color:#1a0d33\"><li style=\"margin-bottom:8px\">Keep an eye on your inbox for ticket purchase instructions.</li><li style=\"margin-bottom:8px\">Join the Devcon community channels for updates.</li><li>Start planning your Devcon experience!</li></ul><div style=\"text-align:center\"><a href=\"https://devcon.org\" style=\"display:inline-block;padding:14px 32px;font-size:16px;font-weight:700;color:#ffffff;background-color:#7235ed;border-radius:9999px;text-decoration:none\">Visit devcon.org</a></div></td></tr><tr><td style=\"padding:24px 32px;background:#f9f8fa;border-top:1px solid #dddae2;text-align:center\"><p style=\"margin:0;font-size:13px;color:#594d73;line-height:1.5\">See you at Devcon!<br/>The Devcon Team</p></td></tr></table></td></tr></table></body></html>",
         "options": { "appendAttribution": false }
       },
       "type": "n8n-nodes-base.emailSend",
@@ -95,7 +95,7 @@
         "fromEmail": "\"Devcon\" <noreply@devcon.org>",
         "toEmail": "={{ $json.body.data.rows[0].Email }}",
         "subject": "Devcon 8 Student Application — Update",
-        "html": "=<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\" /></head><body style=\"margin:0;padding:0;background-color:#f5f3f7;font-family:'Poppins','Segoe UI',Tahoma,Geneva,Verdana,sans-serif\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f5f3f7;padding:40px 16px\"><tr><td align=\"center\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(22,11,43,0.08)\"><tr><td style=\"background:#1a0d33;padding:32px 32px 24px;text-align:center\"><img src=\"https://devcon.org/email/devcon-logo-white.svg\" alt=\"Devcon 8\" width=\"149\" height=\"64\" style=\"display:inline-block;max-width:149px\" /></td></tr><tr><td style=\"padding:32px\"><h2 style=\"margin:0 0 16px;font-size:22px;font-weight:800;color:#1a0d33\">Hi {{ $json.body.data.rows[0][\"Full Name\"] || \"Applicant\" }},</h2><p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a0d33\">Thank you for applying to the Devcon 8 student program. After reviewing your application, we're unable to offer you a student ticket at this time.</p><p style=\"margin:0 0 24px;font-size:16px;line-height:1.6;color:#1a0d33\">We received a high volume of applications and had to make difficult decisions. This does not reflect on your potential — we encourage you to apply again for future events.</p><p style=\"margin:0 0 24px;font-size:16px;line-height:1.6;color:#1a0d33\">You can still attend Devcon by purchasing a regular ticket when they become available.</p><div style=\"text-align:center\"><a href=\"https://devcon.org\" style=\"display:inline-block;padding:14px 32px;font-size:16px;font-weight:700;color:#ffffff;background-color:#7235ed;border-radius:9999px;text-decoration:none\">Visit devcon.org</a></div></td></tr><tr><td style=\"padding:24px 32px;background:#f9f8fa;border-top:1px solid #dddae2;text-align:center\"><p style=\"margin:0;font-size:13px;color:#594d73;line-height:1.5\">Thank you for your interest in Devcon.<br/>The Devcon Team</p></td></tr></table></td></tr></table></body></html>",
+        "html": "=<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\" /></head><body style=\"margin:0;padding:0;background-color:#f5f3f7;font-family:'Poppins','Segoe UI',Tahoma,Geneva,Verdana,sans-serif\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f5f3f7;padding:40px 16px\"><tr><td align=\"center\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(22,11,43,0.08)\"><tr><td style=\"background:#1a0d33;padding:32px 32px 24px;text-align:center\"><img src=\"https://devcon.org/email/devcon-logo-white.svg\" alt=\"Devcon 8\" width=\"149\" height=\"64\" style=\"display:inline-block;max-width:149px\" /></td></tr><tr><td style=\"padding:32px\"><h2 style=\"margin:0 0 16px;font-size:22px;font-weight:800;color:#1a0d33\">Hi {{ $json.body.data.rows[0][\"Legal name\"] || \"Applicant\" }},</h2><p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a0d33\">Thank you for applying to the Devcon 8 student program. After reviewing your application, we're unable to offer you a student ticket at this time.</p><p style=\"margin:0 0 24px;font-size:16px;line-height:1.6;color:#1a0d33\">We received a high volume of applications and had to make difficult decisions. This does not reflect on your potential — we encourage you to apply again for future events.</p><p style=\"margin:0 0 24px;font-size:16px;line-height:1.6;color:#1a0d33\">You can still attend Devcon by purchasing a regular ticket when they become available.</p><div style=\"text-align:center\"><a href=\"https://devcon.org\" style=\"display:inline-block;padding:14px 32px;font-size:16px;font-weight:700;color:#ffffff;background-color:#7235ed;border-radius:9999px;text-decoration:none\">Visit devcon.org</a></div></td></tr><tr><td style=\"padding:24px 32px;background:#f9f8fa;border-top:1px solid #dddae2;text-align:center\"><p style=\"margin:0;font-size:13px;color:#594d73;line-height:1.5\">Thank you for your interest in Devcon.<br/>The Devcon Team</p></td></tr></table></td></tr></table></body></html>",
         "options": { "appendAttribution": false }
       },
       "type": "n8n-nodes-base.emailSend",
@@ -158,34 +158,48 @@
           },
           "body": {
             "type": "records.after.update",
-            "id": "mock-test-001",
-            "base_id": "p964xl4nowbllvq",
+            "id": "0d63a2b0-5d10-4f21-8dde-762102f3b2c5",
+            "base_id": "pafi37jhnepkptw",
             "version": "v3",
             "data": {
-              "table_id": "m3bqjjne9mqgnue",
+              "table_id": "mv48rkqyllfpra6",
               "table_name": "Student Application",
               "previous_rows": [
                 {
-                  "Id": 1,
-                  "Full Name": "Didier",
-                  "University / Organization": "ETH Zurich",
-                  "Year of Study": "3rd Year",
+                  "Id": 32,
+                  "CreatedAt": "2026-04-23 12:29:47+00:00",
+                  "UpdatedAt": "2026-04-23 12:29:49+00:00",
+                  "Legal name": "Didier",
+                  "Submission Date": "2026-04-23 12:29:47+00:00",
+                  "Email Classification": "other-indian-university",
+                  "Email": "didier.krux@ethereum.org",
+                  "University / Organization": "Uni",
+                  "Year of Study": "4th Year",
                   "Country": "France",
                   "Why do you want to attend Devcon? (Proof of Work)": "I've been contributing to EIP-4844 research and building rollup infrastructure.",
                   "Status": "To review",
-                  "Email": "didier.krux@ethereum.org"
+                  "Rating": null,
+                  "Notes": "The applicant cites direct involvement with Ethereum‑specific work—EIP‑4844 research and rollup infrastructure—demonstrating clear relevance to Devcon’s technical focus. Credibility is modestly supported by a university affiliation (4th‑year student) and a professional‑looking email domain (@ethereum.org), though the institution name is vague (“Uni”) and no specific projects or publications are listed. The response is brief but on‑topic; there are no obvious spam indicators, though the lack of detailed evidence of contributions could limit assessment of impact.",
+                  "Confirmation email sent": null
                 }
               ],
               "rows": [
                 {
-                  "Id": 1,
-                  "Full Name": "Didier",
-                  "University / Organization": "ETH Zurich",
-                  "Year of Study": "3rd Year",
+                  "Id": 32,
+                  "CreatedAt": "2026-04-23 12:29:47+00:00",
+                  "UpdatedAt": "2026-04-23 12:30:51+00:00",
+                  "Legal name": "Didier",
+                  "Submission Date": "2026-04-23 12:29:47+00:00",
+                  "Email Classification": "other-indian-university",
+                  "Email": "didier.krux@ethereum.org",
+                  "University / Organization": "Uni",
+                  "Year of Study": "4th Year",
                   "Country": "France",
                   "Why do you want to attend Devcon? (Proof of Work)": "I've been contributing to EIP-4844 research and building rollup infrastructure.",
                   "Status": "Validated",
-                  "Email": "didier.krux@ethereum.org"
+                  "Rating": null,
+                  "Notes": "The applicant cites direct involvement with Ethereum‑specific work—EIP‑4844 research and rollup infrastructure—demonstrating clear relevance to Devcon’s technical focus. Credibility is modestly supported by a university affiliation (4th‑year student) and a professional‑looking email domain (@ethereum.org), though the institution name is vague (“Uni”) and no specific projects or publications are listed. The response is brief but on‑topic; there are no obvious spam indicators, though the lack of detailed evidence of contributions could limit assessment of impact.",
+                  "Confirmation email sent": null
                 }
               ]
             }
