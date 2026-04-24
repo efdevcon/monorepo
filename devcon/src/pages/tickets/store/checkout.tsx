@@ -308,6 +308,9 @@ function CheckoutContent() {
   const [directSignError, setDirectSignError] = useState<string | null>(null)
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
   const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
+  // useWaitForTransactionReceipt with default confirmations=1 already waits
+  // until the tx is mined into a block — that's our signal to verify. Any
+  // post-mining RPC-indexer lag is handled by the backend verify retry loop.
   const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
 
   // ── Voucher validation ──
@@ -1333,14 +1336,22 @@ function CheckoutContent() {
         return
       }
 
-      // Auto-retry on transient errors (tx broadcast but not yet indexed / confirmed)
+      // Auto-retry on transient errors. The verify endpoint can fail for reasons
+      // that resolve on their own after a few seconds: the backend RPC hasn't
+      // indexed the tx yet (not mined / not found / insufficient confirmations),
+      // a hiccup in the RPC, OR — for smart-wallet ETH flows — `debug_traceTransaction`
+      // returning stale data that doesn't show the internal transfer yet, which
+      // surfaces as a "from/to mismatch" or "no matching internal transfer" error.
       const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
       const isRetryable =
         msg.includes('not found') ||
         msg.includes('try again') ||
         msg.includes('not mined') ||
         msg.includes('insufficient confirmations') ||
-        msg.includes('rpc error')
+        msg.includes('rpc error') ||
+        msg.includes('no matching internal transfer') ||
+        msg.includes('no matching transfer found') ||
+        msg.includes('from/to mismatch')
       if (attempt < maxAttempts && isRetryable) {
         await new Promise(r => setTimeout(r, retryDelay))
         return verifyPayment(hash, attempt + 1)

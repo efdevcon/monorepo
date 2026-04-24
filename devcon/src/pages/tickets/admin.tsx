@@ -615,6 +615,226 @@ function RefundActionCell({
   )
 }
 
+// ─── Manual verification (admin recovery for stuck pending payments) ─────
+
+const SUPPORTED_SYMBOLS = ['USDC', 'USDT0', 'ETH'] as const
+const SUPPORTED_CHAINS = [1, 10, 8453, 42161, 137] as const
+
+function ManualVerifyModal({
+  order,
+  secret,
+  onClose,
+  onVerified,
+}: {
+  order: PendingOrder
+  secret: string
+  onClose: () => void
+  onVerified: () => void
+}) {
+  const [txHash, setTxHash] = useState('')
+  const [symbol, setSymbol] = useState<string>('USDC')
+  const [chainId, setChainId] = useState<number>(order.expectedChainId ?? 8453)
+  const [ethPayerSignature, setEthPayerSignature] = useState('')
+  const [step, setStep] = useState<'form' | 'submitting' | 'done' | 'error'>('form')
+  const [result, setResult] = useState<{ code?: string; secret?: string } | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const trimmedHash = txHash.trim()
+  const hashValid = /^0x[a-fA-F0-9]{64}$/.test(trimmedHash)
+  const needsEthSig = symbol === 'ETH'
+  const canSubmit = hashValid && (!needsEthSig || ethPayerSignature.trim().length > 0)
+
+  async function handleSubmit() {
+    if (!canSubmit) return
+    setStep('submitting')
+    setError(null)
+    try {
+      const res = await fetch('/api/x402/admin/verify/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
+        body: JSON.stringify({
+          paymentReference: order.paymentReference,
+          txHash: trimmedHash,
+          payer: order.intendedPayer,
+          chainId,
+          symbol,
+          ...(needsEthSig && { ethPayerSignature: ethPayerSignature.trim() }),
+        }),
+      })
+      const body = await res.json()
+      if (!res.ok || !body.success) {
+        setError(body.error || `Verify failed (HTTP ${res.status})`)
+        setStep('error')
+        return
+      }
+      setResult(body.order)
+      setStep('done')
+      setTimeout(() => {
+        onVerified()
+        onClose()
+      }, 2500)
+    } catch (e) {
+      setError((e as Error).message || 'Network error')
+      setStep('error')
+    }
+  }
+
+  return (
+    <div className={css['modal-overlay']}>
+      <div className={css['modal-card']}>
+        <button
+          type="button"
+          className={css['modal-close']}
+          onClick={onClose}
+          disabled={step === 'submitting'}
+          aria-label="Close"
+        >
+          <X size={18} />
+        </button>
+        <h3 className={css['modal-title']}>Manual verification</h3>
+        <p className={css['modal-hint']} style={{ fontSize: 13, color: '#666', margin: '0 0 16px' }}>
+          Confirm a pending payment using the on-chain transaction hash. The plugin re-runs the full
+          verification (tx uniqueness, recipient, amount, payer match). The tx hash <strong>must</strong>
+          belong to the payer shown below, not anyone else.
+        </p>
+        <div className={css['modal-details']}>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Payment Ref</span>
+            <span className={`${css['modal-value']} ${css.mono}`}>{order.paymentReference}</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Amount</span>
+            <span className={css['modal-value']}>${order.totalUsd}</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Payer</span>
+            <span className={`${css['modal-value']} ${css.mono}`} title={order.intendedPayer}>
+              {truncate(order.intendedPayer)}
+            </span>
+          </div>
+        </div>
+
+        {step === 'form' && (
+          <>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '16px 0' }}>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
+                <span style={{ fontWeight: 600 }}>Transaction hash</span>
+                <input
+                  className={css['wc-input'] ?? ''}
+                  style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace' }}
+                  placeholder="0x..."
+                  value={txHash}
+                  onChange={e => setTxHash(e.target.value)}
+                />
+                {!hashValid && txHash.length > 0 && (
+                  <span style={{ color: '#c00', fontSize: 12 }}>Must be 0x + 64 hex characters.</span>
+                )}
+              </label>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, flex: 1 }}>
+                  <span style={{ fontWeight: 600 }}>Token</span>
+                  <select
+                    value={symbol}
+                    onChange={e => setSymbol(e.target.value)}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6 }}
+                  >
+                    {SUPPORTED_SYMBOLS.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, flex: 1 }}>
+                  <span style={{ fontWeight: 600 }}>Chain</span>
+                  <select
+                    value={chainId}
+                    onChange={e => setChainId(Number(e.target.value))}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6 }}
+                  >
+                    {SUPPORTED_CHAINS.map(c => <option key={c} value={c}>{chainName(c)}</option>)}
+                  </select>
+                </label>
+              </div>
+              {needsEthSig && (
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
+                  <span style={{ fontWeight: 600 }}>ETH payer signature</span>
+                  <textarea
+                    rows={3}
+                    placeholder="0x... (required for ETH — buyer must sign the x402 payer message)"
+                    value={ethPayerSignature}
+                    onChange={e => setEthPayerSignature(e.target.value)}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace', fontSize: 12 }}
+                  />
+                  <span style={{ fontSize: 12, color: '#666' }}>
+                    Same EIP-191 signature format the normal checkout produces. Without it, ETH verification is not possible.
+                  </span>
+                </label>
+              )}
+            </div>
+            <div className={css['modal-actions']}>
+              <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
+              <button
+                className={css['modal-confirm']}
+                disabled={!canSubmit}
+                onClick={handleSubmit}
+              >
+                Verify payment
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === 'submitting' && <div className={css['modal-status']}>Verifying on-chain...</div>}
+        {step === 'done' && result && (
+          <div className={css['modal-status']}>
+            Verified. Pretix order <code>{result.code}</code> created.
+          </div>
+        )}
+        {step === 'error' && (
+          <>
+            <div className={css['modal-error']} style={{ marginTop: 12, padding: 12, background: '#fee', borderRadius: 6, fontSize: 13 }}>
+              {error}
+            </div>
+            <div className={css['modal-actions']}>
+              <button className={css['modal-cancel']} onClick={() => setStep('form')}>Back</button>
+              <button className={css['modal-confirm']} onClick={handleSubmit}>Retry</button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function ManualVerifyCell({
+  order,
+  secret,
+  onVerified,
+}: {
+  order: PendingOrder
+  secret: string
+  onVerified: () => void
+}) {
+  const [showModal, setShowModal] = useState(false)
+  return (
+    <>
+      <button
+        type="button"
+        className={css['refund-btn']}
+        onClick={() => setShowModal(true)}
+        title="Manually verify this pending payment with a transaction hash"
+      >
+        Verify
+      </button>
+      {showModal && (
+        <ManualVerifyModal
+          order={order}
+          secret={secret}
+          onClose={() => setShowModal(false)}
+          onVerified={onVerified}
+        />
+      )}
+    </>
+  )
+}
+
 // ─── Main wrapper with WagmiProvider ─────────────────────────────
 
 export default function AdminPage() {
@@ -1355,6 +1575,7 @@ function AdminContent() {
                   <th>Email</th>
                   <SortableTh label="Chain" sortKey="chain" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
                   <SortableTh label="Expires At" sortKey="expiresAt" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -1387,6 +1608,13 @@ function AdminContent() {
                       <td className={undefined}>
                         {formatDate(o.expiresAt)}
                         {isExpired && <span className={css.expired}> EXPIRED</span>}
+                      </td>
+                      <td>
+                        <ManualVerifyCell
+                          order={o}
+                          secret={secret}
+                          onVerified={() => fetchOrders(secret)}
+                        />
                       </td>
                     </tr>
                   )
