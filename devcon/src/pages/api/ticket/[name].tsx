@@ -115,7 +115,7 @@ async function resolveEnsAvatar(name: string, timeoutMs: number): Promise<string
   try {
     const client = createPublicClient({
       chain: mainnet,
-      transport: http(process.env.INFURA_KEY ? `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}` : undefined),
+      transport: http(process.env.NEXT_PUBLIC_INFURA_APIKEY ? `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_APIKEY}` : undefined),
     })
     const avatar = await Promise.race([
       client.getEnsAvatar({ name: normalize(name) }),
