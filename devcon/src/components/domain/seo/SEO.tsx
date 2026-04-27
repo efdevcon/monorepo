@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { SITE_URL } from 'utils/constants'
 import { usePageContext } from 'context/page-context'
-// import { EventMetadata } from './EventMetadata'
+import { EventMetadata } from './EventMetadata'
 
 interface SEOProps {
   title?: string
@@ -97,8 +97,8 @@ export function SEO(props: SEOProps) {
 
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} />
       </Head>
-      {/* <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} /> */}
     </>
   )
 }
