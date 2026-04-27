@@ -1091,7 +1091,11 @@ function AdminContent() {
             cmp = (a.pretixOrderCode || '').localeCompare(b.pretixOrderCode || '')
             break
           case 'tokenChain':
-            cmp = formatTokenChainText(a.tokenSymbol, a.chainId).localeCompare(formatTokenChainText(b.tokenSymbol, b.chainId))
+            // CompletedOrder.tokenSymbol is `string | null | undefined` since we
+            // started carrying legacy rows (wc_attempt) that can have null symbols;
+            // formatTokenChainText only accepts `string | undefined`. Coerce.
+            cmp = formatTokenChainText(a.tokenSymbol ?? undefined, a.chainId)
+              .localeCompare(formatTokenChainText(b.tokenSymbol ?? undefined, b.chainId))
             break
         }
         return completedSortDir === 'asc' ? cmp : -cmp
@@ -1237,14 +1241,17 @@ function AdminContent() {
 
   function exportCompletedCsv() {
     const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At', 'Refund Status', 'Refund Tx Hash']
+    // Coerce nullable fields to '' — legacy `wc_attempt` rows may carry
+    // null pretixOrderCode/txHash/tokenSymbol; the CSV exporter expects
+    // `string[][]`, not `(string | null)[][]`.
     const rows = filteredCompleted.map(o => [
-      o.pretixOrderCode,
+      o.pretixOrderCode ?? '',
       o.totalUsd || '',
       o.cryptoAmount ? formatCryptoAmount(o.cryptoAmount, o.tokenSymbol || 'USDC') : '',
       o.tokenSymbol || 'USDC',
       chainName(o.chainId),
       o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '',
-      o.txHash,
+      o.txHash ?? '',
       o.payer,
       formatDate(o.completedAt),
       o.refundStatus || '',
