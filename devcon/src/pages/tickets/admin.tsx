@@ -91,7 +91,11 @@ interface OrdersResponse {
   stats: { pending: number; completed: number; x402Count?: number; legacyCount?: number }
   completed: CompletedOrder[]
   pending: PendingOrder[]
-  wallet?: WalletInfo | null
+  /** Wallet that receives ticket payments (recipientAddress). Shows all tokens. */
+  destinationWallet?: WalletInfo | null
+  /** Wallet that pays gas for EIP-3009 sponsored transfers (relayerAddress).
+   *  Native-only — gas isn't paid in tokens. Drives the low-balance red flag. */
+  gasRelayerWallet?: WalletInfo | null
   error?: string
 }
 
@@ -261,6 +265,88 @@ function CryptoAmountCell({
 function chainName(chainId?: number) {
   if (chainId == null) return '—'
   return CHAIN_NAMES[chainId] || String(chainId)
+}
+
+/** Render a wallet (destination or gas relayer) — header with address +
+ *  optional USD total, then per-chain native + (optional) token rows.
+ *
+ *  `flagLowNative=true` is for the gas relayer panel: each chain's native
+ *  token row turns red when below the per-chain gas-sponsorship threshold
+ *  (0.001 ETH on L2s, 2 POL on Polygon, 0.004 ETH on Ethereum). For the
+ *  destination wallet there's no operational concern about its native
+ *  balance — pass `false`. */
+function WalletPanel({
+  title,
+  wallet,
+  totalUsd,
+  flagLowNative,
+}: {
+  title: string
+  wallet: WalletInfo
+  totalUsd: number | null
+  flagLowNative: boolean
+}) {
+  return (
+    <div className={css.wallet}>
+      <div className={css['wallet-header']}>
+        <span className={css['wallet-title']}>{title}</span>
+        <a
+          className={`${css.mono} ${css['wallet-addr']}`}
+          href={`https://zapper.xyz/account/${wallet.address}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {wallet.address}
+        </a>
+        {totalUsd != null && (
+          <span className={css['wallet-total']}>
+            ~${totalUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          </span>
+        )}
+      </div>
+      <div className={css['wallet-chains']}>
+        {wallet.balances.map(chain => {
+          const nativeSym = chain.chainId === 137 ? 'POL' : 'ETH'
+          const nativeBal = Number(chain.ethBalance)
+          // Per-chain low-balance thresholds. Only meaningful for the relayer
+          // wallet (where falling below means gasless payments start failing
+          // on that chain). L1 needs more headroom because mainnet gas is
+          // ~10× L2 gas.
+          const lowThreshold =
+            chain.chainId === 1 ? 0.004 :
+            chain.chainId === 137 ? 2 :
+            0.001
+          const isLow = flagLowNative && Number.isFinite(nativeBal) && nativeBal < lowThreshold
+          return (
+            <div key={chain.chainId} className={css['wallet-chain']}>
+              <div className={css['wallet-chain-name']}>
+                <Logo src={NETWORK_LOGOS[chain.chainId]} alt={CHAIN_NAMES[chain.chainId] || chain.network} />
+                {CHAIN_NAMES[chain.chainId] || chain.network}
+              </div>
+              <div className={css['wallet-chain-bals']}>
+                <span
+                  className={`${css['wallet-token']} ${isLow ? css['wallet-token--low'] : ''}`}
+                  title={isLow ? `Below ${lowThreshold} ${nativeSym} — top up to keep gasless payments working on this chain` : undefined}
+                >
+                  <Logo src={TOKEN_ICONS[nativeSym]} alt={nativeSym} size={14} />
+                  <span className={css['wallet-token-val']}>{Number(chain.ethBalance).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
+                  <span className={css['wallet-token-sym']}>{nativeSym}</span>
+                  {isLow && <span className={css['wallet-token-warn']} aria-label="low balance">⚠</span>}
+                </span>
+                {chain.tokens.map(t => (
+                  <span key={t.symbol} className={css['wallet-token']}>
+                    <Logo src={TOKEN_ICONS[t.symbol]} alt={t.symbol} size={14} />
+                    <span className={css['wallet-token-val']}>{Number(t.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    <span className={css['wallet-token-sym']}>{t.symbol}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 type SortDir = 'asc' | 'desc'
@@ -1050,11 +1136,15 @@ function AdminContent() {
     [refundedOrders]
   )
 
+  // Both wallet panels carry the same `prices` block (fetched once on the
+  // backend) — pull from whichever exists.
+  const walletPrices = data?.destinationWallet?.prices ?? data?.gasRelayerWallet?.prices ?? null
+
   // Total relayer-sponsored gas across the filtered completed rows.
   // Always return ETH + POL summed; USD is only filled in for chains whose
   // price loaded (missing prices no longer blank out the whole stat).
   const totalGasSponsored = useMemo(() => {
-    const prices = data?.wallet?.prices
+    const prices = walletPrices
     let usd: number | null = prices ? 0 : null
     let ethSum = 0
     let polSum = 0
@@ -1072,10 +1162,10 @@ function AdminContent() {
     }
     if (rowsCounted === 0) return null
     return { usd, eth: ethSum, pol: polSum }
-  }, [filteredCompleted, data?.wallet?.prices])
+  }, [filteredCompleted, walletPrices])
 
-  const walletTotalUsd = useMemo(() => {
-    const w = data?.wallet
+  const destinationWalletTotalUsd = useMemo(() => {
+    const w = data?.destinationWallet
     if (!w) return null
     let total = 0
     for (const chain of w.balances) {
@@ -1092,7 +1182,7 @@ function AdminContent() {
       }
     }
     return total
-  }, [data?.wallet])
+  }, [data?.destinationWallet])
 
   // Pending orders: search + date + sort
   const filteredPending = useMemo(() => {
@@ -1153,7 +1243,7 @@ function AdminContent() {
       o.cryptoAmount ? formatCryptoAmount(o.cryptoAmount, o.tokenSymbol || 'USDC') : '',
       o.tokenSymbol || 'USDC',
       chainName(o.chainId),
-      o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '',
+      o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '',
       o.txHash,
       o.payer,
       formatDate(o.completedAt),
@@ -1283,52 +1373,21 @@ function AdminContent() {
               <p className={css['stat-value']}>${totalRefunded.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
-          {data?.wallet && (
-            <div className={css.wallet}>
-          <div className={css['wallet-header']}>
-            <span className={css['wallet-title']}>Destination Wallet</span>
-            <a
-              className={`${css.mono} ${css['wallet-addr']}`}
-              href={`https://zapper.xyz/account/${data.wallet.address}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {data.wallet.address}
-            </a>
-            {walletTotalUsd != null && (
-              <span className={css['wallet-total']}>
-                ~${walletTotalUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </span>
-            )}
-          </div>
-          <div className={css['wallet-chains']}>
-            {data.wallet.balances.map(chain => {
-              const nativeSym = chain.chainId === 137 ? 'POL' : 'ETH'
-              return (
-                <div key={chain.chainId} className={css['wallet-chain']}>
-                  <div className={css['wallet-chain-name']}>
-                    <Logo src={NETWORK_LOGOS[chain.chainId]} alt={CHAIN_NAMES[chain.chainId] || chain.network} />
-                    {CHAIN_NAMES[chain.chainId] || chain.network}
-                  </div>
-                  <div className={css['wallet-chain-bals']}>
-                    <span className={css['wallet-token']}>
-                      <Logo src={TOKEN_ICONS[nativeSym]} alt={nativeSym} size={14} />
-                      <span className={css['wallet-token-val']}>{Number(chain.ethBalance).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
-                      <span className={css['wallet-token-sym']}>{nativeSym}</span>
-                    </span>
-                    {chain.tokens.map(t => (
-                      <span key={t.symbol} className={css['wallet-token']}>
-                        <Logo src={TOKEN_ICONS[t.symbol]} alt={t.symbol} size={14} />
-                        <span className={css['wallet-token-val']}>{Number(t.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                        <span className={css['wallet-token-sym']}>{t.symbol}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-            </div>
+          {data?.destinationWallet && (
+            <WalletPanel
+              title="Destination Wallet"
+              wallet={data.destinationWallet}
+              totalUsd={destinationWalletTotalUsd}
+              flagLowNative={false}
+            />
+          )}
+          {data?.gasRelayerWallet && (
+            <WalletPanel
+              title="Gas Relayer Wallet"
+              wallet={data.gasRelayerWallet}
+              totalUsd={null}
+              flagLowNative={true}
+            />
           )}
         </div>
       )}
@@ -1421,7 +1480,7 @@ function AdminContent() {
                     <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
                     <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
                     <td className={undefined}><ChainCell chainId={o.chainId} /></td>
-                    <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '—'}</td>
+                    <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}</td>
                     <td className={css.mono}>
                       {o.txHash ? (
                         <Copyable value={o.txHash}>

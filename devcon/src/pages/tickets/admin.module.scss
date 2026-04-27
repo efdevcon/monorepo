@@ -283,6 +283,27 @@
   color: #594d73;
 }
 
+/* Low-balance modifier — applied to native-token rows when the chain's
+   relayer balance falls below the gas-sponsorship threshold. The whole
+   token block (icon + value + symbol) goes red with a soft red background
+   so the warning is visible at a glance even from across the room. */
+.wallet-token--low {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(220, 38, 38, 0.08);
+
+  .wallet-token-val,
+  .wallet-token-sym {
+    color: #b91c1c;
+  }
+}
+
+.wallet-token-warn {
+  margin-left: 2px;
+  font-size: 13px;
+  color: #b91c1c;
+}
+
 /* ─── Filter Bar ─────────────────────────────────────────── */
 
 .filter-bar {
