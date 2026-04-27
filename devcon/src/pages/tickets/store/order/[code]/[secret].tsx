@@ -277,11 +277,15 @@ export default function OrderConfirmationPage() {
         const decimals = rawSymbol === 'ETH' ? 18 : 6
         try {
           const n = BigInt(rawStr)
-          if (n === 0n) return '0'
-          const base = 10n ** BigInt(decimals)
+          const ZERO = BigInt(0)
+          if (n === ZERO) return '0'
+          // BigInt(`1${'0'.repeat(decimals)}`) keeps us off the literal-syntax
+          // path (`10n ** N`) which requires tsconfig target: es2020. The
+          // shared base config is target: es6 and we don't want to bump it.
+          const base = BigInt('1' + '0'.repeat(decimals))
           const whole = n / base
           const frac = n % base
-          if (frac === 0n) return whole.toString()
+          if (frac === ZERO) return whole.toString()
           const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
           return `${whole}.${fracStr}`
         } catch {

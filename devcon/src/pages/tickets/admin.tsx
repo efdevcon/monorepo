@@ -214,16 +214,23 @@ function ChainCell({ chainId }: { chainId?: number }) {
 }
 
 /** Render a raw on-chain amount (wei / base units) as a human-readable decimal.
- *  USDC and USDT0 use 6 decimals, ETH uses 18. Unknown tokens default to 6. */
+ *  USDC and USDT0 use 6 decimals, ETH uses 18. Unknown tokens default to 6.
+ *
+ *  Implementation note: written with constructor-form BigInt (`BigInt(0)`,
+ *  `BigInt('1' + '0'.repeat(decimals))`) instead of the `0n` / `10n ** N`
+ *  literal syntax so we don't have to bump the shared base tsconfig
+ *  `target: es6`. Constructor calls compile fine on any target where the
+ *  BigInt runtime exists (Node 10.4+, all modern browsers). */
 function formatCryptoAmount(raw: string, tokenSymbol: string): string {
   const decimals = tokenSymbol === 'ETH' ? 18 : 6
   try {
     const n = BigInt(raw)
-    if (n === 0n) return '0'
-    const base = 10n ** BigInt(decimals)
+    const ZERO = BigInt(0)
+    if (n === ZERO) return '0'
+    const base = BigInt('1' + '0'.repeat(decimals))
     const whole = n / base
     const frac = n % base
-    if (frac === 0n) return whole.toString()
+    if (frac === ZERO) return whole.toString()
     // Trim trailing zeros on the fractional part.
     const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
     return `${whole}.${fracStr}`
