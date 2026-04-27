@@ -35,7 +35,6 @@ import {
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { storePendingOrder, getPendingOrder, claimPendingOrder, reserveCompletedOrder, finalizeCompletedOrder, removeCompletedOrderReservation, checkPurchaseRateLimit, TxHashAlreadyUsedError, PendingTicketOrder } from 'services/ticketStore'
 import type { PretixOrder } from 'types/pretix'
-import { createHash } from 'crypto'
 import { executeTransferWithAuthorization, executeTransferWithAuthorizationBytes, isSmartWalletSignature, getTokenDomain, getTransferWithAuthorizationTypes, RelayerGasError } from 'services/relayer'
 import {
   X402PaymentRequirements,
@@ -513,9 +512,6 @@ function resolveBaseUrlFromRequest(req: NextApiRequest): string {
 async function preGenerateTicketImages(pretixOrder: PretixOrder, baseUrl: string): Promise<void> {
   if (!baseUrl) return
 
-  // Must match /api/ticket/generate.tsx hash derivation so we warm the real share URL.
-  const shareHash = createHash('sha256').update(pretixOrder.code).digest('hex').slice(0, 16)
-
   const ticketNames = Array.from(
     new Set(
       (pretixOrder.positions || [])
@@ -527,7 +523,7 @@ async function preGenerateTicketImages(pretixOrder: PretixOrder, baseUrl: string
   await Promise.allSettled(
     ticketNames.map(async attendeeName => {
       const encodedName = encodeURIComponent(attendeeName).replace(/%20/g, '+')
-      const imageUrl = `${baseUrl}/api/ticket/${encodedName}/${encodeURIComponent(shareHash)}/i.jpg`
+      const imageUrl = `${baseUrl}/api/ticket/${encodedName}.jpg`
       const response = await fetch(imageUrl, {
         method: 'GET',
         signal: AbortSignal.timeout(3000),

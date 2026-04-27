@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Download, CircleUser, Loader2 } from 'lucide-react'
+import { Download, CircleUser } from 'lucide-react'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -51,83 +51,15 @@ export default function OrderConfirmationPage() {
   const [order, setOrder] = useState<OrderData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [xUsername, setXUsername] = useState('')
   const [shareName, setShareName] = useState('')
-  const [uploading, setUploading] = useState(false)
-  const [shareHash, setShareHash] = useState<string | null>(null)
-  const [shareVersion, setShareVersion] = useState<string>('')
-  const lastWarmedImageUrlRef = useRef('')
 
-  const xUsernameKey = orderCode ? `devcon_x_username_${orderCode}` : ''
   const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
-  const shareHashKey = orderCode ? `devcon_share_hash_${orderCode}` : ''
-  const shareVersionKey = orderCode ? `devcon_share_version_${orderCode}` : ''
-
-  // Upload avatar + fetch display name from X profile
-  const uploadAvatar = useCallback(async (username: string) => {
-    if (!orderCode || !orderSecret || !username) return
-    setUploading(true)
-    try {
-      const res = await fetch('/api/ticket/generate/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: orderCode, secret: orderSecret, xUsername: username }),
-      })
-      const data = await res.json()
-      if (data.success && data.hash) {
-        setShareHash(data.hash)
-        localStorage.setItem(shareHashKey, data.hash)
-        const version = typeof data.version === 'string' && data.version ? data.version : Math.floor(Date.now() / 1000).toString()
-        setShareVersion(version)
-        localStorage.setItem(shareVersionKey, version)
-
-        // Prefill name with X display name if available and name is empty
-        const currentName = localStorage.getItem(shareNameKey) || ''
-        const resolvedName = currentName || data.displayName || ''
-        if (data.displayName && !currentName) {
-          setShareName(data.displayName)
-          localStorage.setItem(shareNameKey, data.displayName)
-        }
-
-        // Warm the OG image cache so Twitter gets an instant hit
-        const ticketName = encodeURIComponent(resolvedName || `@${username.replace(/^@/, '')}`).replace(/%20/g, '+')
-        fetch(`/api/ticket/${ticketName}/${data.hash}/i.jpg?v=${encodeURIComponent(version)}`).catch(() => {})
-      }
-    } catch {
-      // Silent failure — share link still works, just without avatar
-    }
-    setUploading(false)
-  }, [orderCode, orderSecret, shareHashKey, shareNameKey, shareVersionKey])
 
   useEffect(() => {
     if (!orderCode) return
-    const savedX = localStorage.getItem(xUsernameKey) || localStorage.getItem('devcon_x_username') || ''
     const savedName = localStorage.getItem(shareNameKey) || localStorage.getItem('devcon_share_name') || ''
-    const savedHash = localStorage.getItem(shareHashKey)
-    const savedVersion = localStorage.getItem(shareVersionKey) || ''
-
-    if (savedX) setXUsername(savedX)
     if (savedName) setShareName(savedName)
-    if (savedHash) setShareHash(savedHash)
-    if (savedVersion) setShareVersion(savedVersion)
-  }, [orderCode, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey])
-
-  const handleXUsernameChange = useCallback((val: string) => {
-    setXUsername(val)
-    if (orderCode) localStorage.setItem(xUsernameKey, val)
-
-    // Invalidate current hash and name since profile changed
-    if (shareHash) {
-      setShareHash(null)
-      setShareName('')
-      if (orderCode) {
-        localStorage.removeItem(shareHashKey)
-        localStorage.removeItem(shareNameKey)
-        localStorage.removeItem(shareVersionKey)
-      }
-      setShareVersion('')
-    }
-  }, [orderCode, shareHash, shareHashKey, shareNameKey, shareVersionKey, xUsernameKey])
+  }, [orderCode, shareNameKey])
 
   useEffect(() => {
     if (!orderCode || !orderSecret) return
@@ -149,22 +81,6 @@ export default function OrderConfirmationPage() {
 
     fetchOrder()
   }, [orderCode, orderSecret])
-
-  // When user edits name manually, warm that exact {name, hash} OG variant in advance.
-  useEffect(() => {
-    if (!shareHash || uploading) return
-    const baseName = shareName.trim() || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')
-    const ticketName = encodeURIComponent(baseName).replace(/%20/g, '+')
-    const imageUrl = `/api/ticket/${ticketName}/${shareHash}/i.jpg${shareVersion ? `?v=${encodeURIComponent(shareVersion)}` : ''}`
-    if (imageUrl === lastWarmedImageUrlRef.current) return
-
-    const t = setTimeout(() => {
-      fetch(imageUrl).catch(() => {})
-      lastWarmedImageUrlRef.current = imageUrl
-    }, 250)
-
-    return () => clearTimeout(t)
-  }, [shareHash, shareName, shareVersion, xUsername, uploading])
 
   if (loading) {
     return (
@@ -365,75 +281,33 @@ export default function OrderConfirmationPage() {
                     <div className={css['share-input-group']}>
                       <div className={css['share-text']}>
                         <h3 className={css['share-title']}>Share on socials</h3>
-                        <p className={css['share-subtitle']}>Add name and/or X username to personalize</p>
+                        <p className={css['share-subtitle']}>Enter an ENS name to show your avatar, or any other name</p>
                       </div>
                       <div className={css['share-input-wrap']}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
+                        <CircleUser size={20} />
                         <input
                           type="text"
-                          placeholder="Username (optional)"
-                          value={xUsername}
-                          onChange={e => handleXUsernameChange(e.target.value)}
+                          placeholder="ENS or name"
+                          value={shareName}
+                          onChange={e => {
+                            const val = e.target.value
+                            setShareName(val)
+                            if (orderCode) localStorage.setItem(shareNameKey, val)
+                          }}
                         />
                       </div>
-                      {uploading && (
-                        <div className={css['share-input-wrap']}>
-                          <Loader2 size={20} className={css['spin']} />
-                          <span style={{ fontSize: '0.875rem', color: '#888' }}>Fetching profile...</span>
-                        </div>
-                      )}
-                      {!uploading && (shareHash || shareName) && (
-                        <div className={css['share-input-wrap']}>
-                          <CircleUser size={20} />
-                          <input
-                            type="text"
-                            placeholder="Name (optional)"
-                            value={shareName}
-                            onChange={e => {
-                              const val = e.target.value
-                              setShareName(val)
-                              if (orderCode) localStorage.setItem(shareNameKey, val)
-                            }}
-                          />
-                        </div>
-                      )}
                     </div>
-                    {(() => {
-                      const ticketName = encodeURIComponent(
-                        shareName || (xUsername ? `@${xUsername.replace(/^@/, '')}` : 'Anon')
-                      ).replace(/%20/g, '+')
-                      const hasUsername = !!xUsername.replace(/^@/, '')
-                      const needsLoad = hasUsername && !shareHash && !uploading
-
-                      return uploading ? (
-                        <button className={css['share-btn']} disabled>
-                          <Loader2 size={16} className={css['spin']} />
-                          Fetching profile...
-                        </button>
-                      ) : needsLoad ? (
-                        <button className={css['share-btn']} onClick={() => uploadAvatar(xUsername)}>
-                          Load profile
-                        </button>
-                      ) : (
-                        <a
-                          href="#"
-                          className={css['share-btn']}
-                          onClick={e => {
-                            e.preventDefault()
-                            const base = shareHash
-                              ? `/ticket/${ticketName}/${shareHash}/?share${
-                                  shareVersion ? `&v=${encodeURIComponent(shareVersion)}` : ''
-                                }`
-                              : `/ticket/${ticketName}/?share`
-                            window.open(base, '_blank')
-                          }}
-                        >
-                          View sharing link
-                        </a>
-                      )
-                    })()}
+                    <a
+                      href="#"
+                      className={css['share-btn']}
+                      onClick={e => {
+                        e.preventDefault()
+                        const ticketName = encodeURIComponent(shareName.trim() || 'Anon').replace(/%20/g, '+')
+                        window.open(`/ticket/${ticketName}?share`, '_blank')
+                      }}
+                    >
+                      View sharing link
+                    </a>
                   </div>
                 </>
               )}

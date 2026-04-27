@@ -49,6 +49,10 @@
   &.scrolled {
     transform: translateY(var(--strip-height, 0px));
   }
+
+  &.foldout-open.scrolled {
+    transform: none;
+  }
 }
 
 .header-dark {
@@ -111,6 +115,10 @@
 
   &.scrolled {
     transform: translateY(var(--strip-height, 0px));
+  }
+
+  &.scrolled:has(.foldout-open) {
+    transform: none;
   }
 
   // When mobile foldout is open, override fill-header vars back to white (dark bg)
