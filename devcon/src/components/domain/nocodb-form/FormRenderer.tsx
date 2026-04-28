@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { ChevronDown } from 'lucide-react'
 import { COUNTRIES } from './countries'
+import { renderInlineMarkdown } from './inline-markdown'
 
 export interface FormColumn {
   title: string
@@ -43,7 +44,7 @@ function FieldLabel({ title, required }: { title: string; required: boolean }) {
 }
 
 function FieldDescription({ text }: { text: string }) {
-  return <p className="text-sm text-[#594d73] leading-5">{text}</p>
+  return <p className="text-sm text-[#594d73] leading-5 whitespace-pre-line">{renderInlineMarkdown(text)}</p>
 }
 
 function FieldError({ message }: { message: string }) {

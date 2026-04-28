@@ -1,23 +1,29 @@
-import { useRouter } from 'next/router'
-import { nocodbForms } from 'config/nocodb-forms'
+import type { GetStaticPaths, GetStaticProps } from 'next'
+import { getFormConfigBySlug, isFormOpen, type NocodbFormConfig } from 'services/form-config'
 import FormPage from 'components/domain/nocodb-form/FormPage'
 
-export default function SlugFormPage() {
-  const router = useRouter()
-  const slug = router.query.slug as string | undefined
-  const config = slug ? nocodbForms[slug] : undefined
-
-  if (!slug || !config) return null
-
-  return <FormPage viewId={config.formViewId} requireOtp={config.requireOtp ?? false} />
+interface Props {
+  config: NocodbFormConfig
 }
 
-export async function getStaticPaths() {
+export default function SlugFormPage({ config }: Props) {
+  return (
+    <FormPage
+      viewId={config.formViewId}
+      requireOtp={config.requireOtp}
+      closed={!isFormOpen(config)}
+    />
+  )
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
   return { paths: [], fallback: 'blocking' }
 }
 
-export async function getStaticProps({ params }: any) {
-  const slug = params?.slug as string
-  if (!nocodbForms[slug]) return { notFound: true }
-  return { props: {}, revalidate: 86400 }
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params?.slug as string | undefined
+  if (!slug) return { notFound: true, revalidate: 60 }
+  const config = await getFormConfigBySlug(slug)
+  if (!config) return { notFound: true, revalidate: 60 }
+  return { props: { config }, revalidate: 60 }
 }
