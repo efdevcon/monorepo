@@ -53,14 +53,6 @@ export default function OrderConfirmationPage() {
   const [error, setError] = useState<string | null>(null)
   const [shareName, setShareName] = useState('')
 
-  const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
-
-  useEffect(() => {
-    if (!orderCode) return
-    const savedName = localStorage.getItem(shareNameKey) || localStorage.getItem('devcon_share_name') || ''
-    if (savedName) setShareName(savedName)
-  }, [orderCode, shareNameKey])
-
   useEffect(() => {
     if (!orderCode || !orderSecret) return
 
@@ -309,11 +301,7 @@ export default function OrderConfirmationPage() {
                           type="text"
                           placeholder="ENS or name"
                           value={shareName}
-                          onChange={e => {
-                            const val = e.target.value
-                            setShareName(val)
-                            if (orderCode) localStorage.setItem(shareNameKey, val)
-                          }}
+                          onChange={e => setShareName(e.target.value)}
                         />
                       </div>
                     </div>
