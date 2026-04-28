@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { getConfigByViewId } from 'config/nocodb-forms'
+import { getFormConfigByViewId, isFormOpen } from 'services/form-config'
 import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
 import { classifyEligibility } from 'services/email-classifier'
 
@@ -20,7 +20,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const config = getConfigByViewId(viewId)
+    const config = await getFormConfigByViewId(viewId)
+
+    if (config && !isFormOpen(config)) {
+      return res.status(403).json({
+        success: false,
+        error: 'This form is no longer accepting submissions.',
+      })
+    }
 
     // Auth check: if form requires OTP, validate Supabase session
     let verifiedEmail: string | null = null
