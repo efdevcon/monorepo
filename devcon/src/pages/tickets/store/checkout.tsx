@@ -1377,7 +1377,9 @@ function CheckoutContent() {
   }
 
   // ── Checkout button state ──
-  const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
+  // forcePretixRedirect mode hands wallet-connection over to Pretix's hosted
+  // checkout, so devcon doesn't require a local wallet for the crypto path.
+  const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || forcePretixRedirect || isConnected)
 
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
