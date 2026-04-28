@@ -1526,7 +1526,7 @@ function AdminContent() {
                           onRefunded={() => fetchOrders(secret)}
                         />
                       ) : (
-                        // TODO(refunds): legacy WC/Daimo rows can't be refunded through this UI
+                        // TODO(refunds): legacy WC rows can't be refunded through this UI
                         // because the refund CAS columns live only on X402CompletedOrder. Unblock
                         // by introducing a ManualCryptoRefund ledger keyed (source, row_id) in the
                         // plugin; see README "Known gaps / TODOs".

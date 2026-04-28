@@ -15,7 +15,7 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: true,
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
@@ -59,7 +59,7 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
     },
     payment: {
       // TODO: replace with production recipient address

@@ -3,7 +3,7 @@
  * POST /api/x402/tickets/fiat-purchase
  *
  * Accepts an optional `paymentProvider` field (default: 'stripe').
- * Supported providers: 'stripe', 'daimo_pay'.
+ * Supported providers: 'stripe', 'walletconnect'.
  * Returns the order code and payment URL for redirect.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -38,7 +38,7 @@ interface FiatPurchaseRequest {
     country?: string
   }
   voucher?: string
-  paymentProvider?: 'stripe' | 'daimo_pay'
+  paymentProvider?: 'stripe' | 'walletconnect'
 }
 
 interface FiatPurchaseResponse {
@@ -193,6 +193,15 @@ export default async function handler(
                 options: optionIds,
               }
             }
+            // Boolean questions: Pretix's REST API requires the literal strings
+            // "true" or "false" (lowercase). Our radio buttons use capitalized
+            // values ("True"/"False") and we also accept JS booleans, so
+            // normalize at the boundary to whatever the API expects.
+            if (question && question.type === 'B') {
+              const raw = Array.isArray(a.answer) ? a.answer[0] : a.answer
+              const normalized = String(raw).toLowerCase() === 'true' ? 'true' : 'false'
+              return { question: a.questionId, answer: normalized }
+            }
             return {
               question: a.questionId,
               answer: Array.isArray(a.answer) ? a.answer.join(', ') : String(a.answer),
@@ -266,7 +275,7 @@ export default async function handler(
     }
 
     // Determine payment provider (default: stripe)
-    const provider = body.paymentProvider === 'daimo_pay' ? 'daimo_pay' : 'stripe'
+    const provider = body.paymentProvider === 'walletconnect' ? 'walletconnect' : 'stripe'
 
     const pretixOrder: PretixOrderCreateRequest = {
       email: body.email,

@@ -213,7 +213,11 @@ export default function CheckoutPage() {
 // ── Checkout content ──
 
 function CheckoutContent() {
-  const daimoPay = TICKETING.checkout.useDaimoPay
+  // When true, the "crypto" payment button skips the in-page x402 picker and
+  // redirects to Pretix's hosted checkout — which dispatches to our installed
+  // WalletConnect plugin (the wc_inject UI). Used as a kill switch for the
+  // in-page x402 flow if anything goes wrong with it.
+  const forcePretixRedirect = TICKETING.checkout.forcePretixRedirect
   const { address, isConnected, chain, connector } = useAccount()
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
@@ -623,7 +627,7 @@ function CheckoutContent() {
   })()
 
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
-  const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
+  const cryptoDiscount = paymentMethod === 'crypto' && !forcePretixRedirect ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsdNum = +(subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
   const totalUsd = totalUsdNum.toFixed(2)
 
@@ -755,7 +759,7 @@ function CheckoutContent() {
     if (
       openSection === 'payment' &&
       paymentMethod === 'crypto' &&
-      !daimoPay &&
+      !forcePretixRedirect &&
       contactDetailsFilled &&
       cartItems.length > 0 &&
       isConnected &&
@@ -771,7 +775,7 @@ function CheckoutContent() {
       setPurchaseError(null)
       handleCryptoCheckout().finally(() => setPurchaseLoading(false))
     }
-  }, [openSection, paymentMethod, daimoPay, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
+  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
 
   // Add-on selection helpers
   const toggleAddon = (itemId: number) => {
@@ -901,7 +905,7 @@ function CheckoutContent() {
       return
     }
 
-    if (paymentMethod === 'crypto' && !daimoPay && (!isConnected || !address)) {
+    if (paymentMethod === 'crypto' && !forcePretixRedirect && (!isConnected || !address)) {
       setPurchaseError('Please connect your wallet first')
       return
     }
@@ -912,8 +916,8 @@ function CheckoutContent() {
 
     if (paymentMethod === 'fiat') {
       await handleFiatCheckout()
-    } else if (daimoPay) {
-      await handleFiatCheckout('daimo_pay')
+    } else if (forcePretixRedirect) {
+      await handleFiatCheckout('walletconnect')
     } else {
       await handleCryptoCheckout()
     }
@@ -998,7 +1002,7 @@ function CheckoutContent() {
     }
   }
 
-  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'daimo_pay') {
+  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'walletconnect') {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
@@ -2085,7 +2089,7 @@ function CheckoutContent() {
                   <div className={css['section-body']}>
                     <div className={css['description-block']}>
                       <p className={css['description-title']}>Select your preferred payment method</p>
-                      {!daimoPay && (
+                      {!forcePretixRedirect && (
                         <p className={css['description-sub']}>
                           Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying
                           with Crypto.
@@ -2102,7 +2106,7 @@ function CheckoutContent() {
                           <div className={css['payment-option-header']}>
                             <div className={css['payment-option-title-row']}>
                               <span className={css['payment-option-title']}>Crypto</span>
-                              {!daimoPay && (
+                              {!forcePretixRedirect && (
                                 <span className={css['save-badge']}>
                                   SAVE {TICKETING.payment.cryptoDiscountPercent}%
                                 </span>
@@ -2118,7 +2122,7 @@ function CheckoutContent() {
                             </div>
                           </div>
                           <p className={css['payment-option-desc']}>
-                            {daimoPay ? 'via Daimo Pay' : 'All major wallets & networks'}
+                            All major wallets & networks
                           </p>
                         </div>
                       </label>
@@ -2136,7 +2140,7 @@ function CheckoutContent() {
                       </label>
                     </div>
 
-                    {paymentMethod === 'crypto' && !daimoPay && (
+                    {paymentMethod === 'crypto' && !forcePretixRedirect && (
                       <>
                         {isConnected ? (
                           <div className={css['wallet-connected']}>
@@ -2174,7 +2178,7 @@ function CheckoutContent() {
                       </>
                     )}
 
-                    {paymentMethod === 'crypto' && !daimoPay && paymentDetails && address && (
+                    {paymentMethod === 'crypto' && !forcePretixRedirect && paymentDetails && address && (
                       <div className={css['payment-options-block']}>
                         <div className={css['payment-options-header']}>
                           <span className={css['payment-options-title']}>How would you like to pay?</span>
@@ -2674,7 +2678,7 @@ function CheckoutContent() {
                       </p>
                     </div>
 
-                    {!(paymentMethod === 'crypto' && !daimoPay) && (
+                    {!(paymentMethod === 'crypto' && !forcePretixRedirect) && (
                       <button
                         type="button"
                         className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
@@ -2690,19 +2694,13 @@ function CheckoutContent() {
                       </button>
                     )}
 
-                    {(paymentMethod !== 'crypto' || daimoPay) && (
+                    {paymentMethod !== 'crypto' && (
                       <div className={css['stripe-note']}>
-                        {paymentMethod === 'crypto' && daimoPay ? (
-                          <span>
-                            Powered by <strong>Daimo Pay</strong>
-                          </span>
-                        ) : (
-                          <img
-                            src="/assets/images/powered-by-stripe.svg"
-                            alt="Powered by Stripe"
-                            className={css['stripe-note-img']}
-                          />
-                        )}
+                        <img
+                          src="/assets/images/powered-by-stripe.svg"
+                          alt="Powered by Stripe"
+                          className={css['stripe-note-img']}
+                        />
                       </div>
                     )}
                   </div>
