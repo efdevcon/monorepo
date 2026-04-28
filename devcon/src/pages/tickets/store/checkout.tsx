@@ -2188,7 +2188,20 @@ function CheckoutContent() {
                           <>
                             {paymentOptions.length > 0 &&
                               (() => {
-                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))]
+                                // Canonical asset chip order — independent of the order the
+                                // backend returns options in. Symbols not in the list fall to
+                                // the end so newly-added tokens stay visible.
+                                const ASSET_ORDER = ['ETH', 'USDC', 'USDT0', 'USDT']
+                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))].sort(
+                                  (a, b) => {
+                                    const ia = ASSET_ORDER.indexOf(a)
+                                    const ib = ASSET_ORDER.indexOf(b)
+                                    if (ia === -1 && ib === -1) return a.localeCompare(b)
+                                    if (ia === -1) return 1
+                                    if (ib === -1) return -1
+                                    return ia - ib
+                                  }
+                                )
 
                                 // Networks for selected asset
                                 const networksForAsset = tokenFilter
