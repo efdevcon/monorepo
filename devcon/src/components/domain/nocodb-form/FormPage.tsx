@@ -4,6 +4,7 @@ import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
 import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
+import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -257,6 +258,7 @@ function EligibilityGate({
 interface FormPageProps {
   viewId: string
   requireOtp: boolean
+  closed?: boolean
 }
 
 function FormInner({
@@ -344,8 +346,8 @@ function FormInner({
 
         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
-        <div className="flex items-center justify-between w-full">
-          {onSignOut ? (
+        <div className={`flex items-center w-full ${onSignOut ? 'justify-between' : 'justify-center'}`}>
+          {onSignOut && (
             <button
               type="button"
               onClick={onSignOut}
@@ -353,8 +355,6 @@ function FormInner({
             >
               Cancel &amp; Sign Out
             </button>
-          ) : (
-            <div />
           )}
           <button
             type="submit"
@@ -366,12 +366,25 @@ function FormInner({
               : (isUpdate ? 'Update' : 'Submit')}
           </button>
         </div>
+
+        <p className="text-xs text-[#594d73] text-center leading-[18px] pt-2 border-t border-[rgba(34,17,68,0.08)]">
+          By submitting this form, you acknowledge the Ethereum Foundation&apos;s{' '}
+          <a
+            href="https://ethereum.org/en/privacy-policy/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-[#7235ed] hover:underline"
+          >
+            Privacy Policy
+          </a>
+          . We&apos;ll only use your information for Devcon-related communications and won&apos;t share it with third parties.
+        </p>
       </form>
     </FormProvider>
   )
 }
 
-export default function FormPage({ viewId, requireOtp }: FormPageProps) {
+export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) {
   const [schema, setSchema] = useState<SchemaResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -420,6 +433,32 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
     )
   }
 
+  if (closed) {
+    return (
+      <Page darkHeader darkFooter>
+        <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
+          <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4">
+            <div className="flex flex-col items-center gap-4">
+              <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+              <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
+                {schema?.title || 'Form'}
+              </h2>
+              <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
+                This form is closed, please check back later.
+              </p>
+              <Link
+                href="/"
+                className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
+              >
+                Back to Home
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Page>
+    )
+  }
+
   if (submitted) {
     return (
       <Page darkHeader darkFooter>
@@ -433,13 +472,9 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
               </h2>
 
               {schema?.successMsg ? (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
-                  {schema.successMsg}
-                </p>
+                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">{schema.successMsg}</p>
               ) : (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                  Your submission has been received.
-                </p>
+                <p className="text-sm text-[#1a0d33] leading-5 text-center">Your submission has been received.</p>
               )}
 
               <Link
@@ -464,7 +499,9 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
 
       if (supabase) {
-        const { data: { session } } = await supabase.auth.getSession()
+        const {
+          data: { session },
+        } = await supabase.auth.getSession()
         if (session?.access_token) {
           headers['Authorization'] = `Bearer ${session.access_token}`
         }
@@ -515,9 +552,7 @@ export default function FormPage({ viewId, requireOtp }: FormPageProps) {
                 {schema.title}
               </h2>
               {schema.subheading && (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
-                  {schema.subheading}
-                </p>
+                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">{renderInlineMarkdown(schema.subheading)}</p>
               )}
               <FormInner
                 schema={schema}

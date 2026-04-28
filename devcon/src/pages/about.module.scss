@@ -1,5 +1,13 @@
 @use 'assets/css/partials/index' as *;
 
+.hero-center-mobile {
+  [class*='background-image'] img {
+    @media (max-width: $breakpoints-md) {
+      object-position: center center !important;
+    }
+  }
+}
+
 .intro-right,
 .for-builders-right {
   @media (min-width: $breakpoints-lg) {
@@ -80,11 +88,11 @@
 }
 
 .scrolling-text {
-  --custom-fade-color: #bde48a !important;
-  --custom-text-color: #719355;
-  color: #719355;
+  --custom-fade-color: #ffe3cd !important;
+  --custom-text-color: #ff6600;
+  color: #ff6600;
 
   &:before {
-    background: #bde48a !important;
+    background: #ffe3cd !important;
   }
 }

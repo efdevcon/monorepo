@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { SITE_URL } from 'utils/constants'
 import { usePageContext } from 'context/page-context'
-// import { EventMetadata } from './EventMetadata'
+import { EventMetadata } from './EventMetadata'
 
 interface SEOProps {
   title?: string
@@ -26,7 +26,7 @@ export function SEO(props: SEOProps) {
   const separator = props.separator ?? '—'
 
   // let title = `Devcon ${new Date().getFullYear()}` // Bogotá, Oct 11 → 14'
-  let title = `Devcon 2026` // Bogotá, Oct 11 → 14'
+  let title = `Devcon 8 India`
   if (pageContext?.current?.title && pageContext?.current?.title !== title) {
     title = `${pageContext?.current.title} ${separator} ${title}`
   } else if (props.title) {
@@ -35,9 +35,10 @@ export function SEO(props: SEOProps) {
 
   // console.log(pageContext, 'page contxt hello')
 
-  const globalTitle = 'Devcon 2026' // Bogotá, Oct 11 → 14'
-  const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
-  const globalImage = 'https://www.devcon.org/assets/images/og-india.jpg'
+  const globalTitle = 'Devcon 8 India'
+  const globalDescription =
+    'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers. Join us 3–6 November 2026 in Mumbai, India.'
+  const globalImage = 'https://www.devcon.org/assets/images/new-og.jpg'
   const canonical = props.canonicalUrl || ''
 
   let description = globalDescription
@@ -96,8 +97,8 @@ export function SEO(props: SEOProps) {
 
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} />
       </Head>
-      {/* <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} /> */}
     </>
   )
 }

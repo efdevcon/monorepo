@@ -62,7 +62,7 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
           <div className="flex flex-col gap-4 items-start w-full">
             <div className="flex flex-col gap-2 items-start w-full">
               <h3 className="text-base font-bold text-[#160b2b] leading-6">Who can apply?</h3>
-              <div className="text-sm text-[#1a0d33] leading-5 w-full">
+              <div className="text-base text-[#1a0d33] leading-6 w-full">
                 <p className="font-bold mb-3.5">Applicants should meet the following criteria:</p>
                 <ul className="list-disc list-outside pl-5 space-y-1">
                   <li>
@@ -81,7 +81,7 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
                 </ul>
               </div>
             </div>
-            <div className="text-sm text-[#1a0d33] leading-5 w-full space-y-3.5">
+            <div className="text-base text-[#1a0d33] leading-6 w-full space-y-3.5">
               <p>
                 <span className="font-bold">Please note:</span> Short-term courses, bootcamps, and online-only programs are not eligible.
               </p>

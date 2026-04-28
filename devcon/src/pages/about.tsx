@@ -17,6 +17,8 @@ import { VideoCard } from 'components/common/card/VideoCard'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native/SwipeToScroll'
 import { Clock4, Sun, History, Globe, CirclePlay, ExternalLink, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
+import InfiniteScroller from 'lib/components/infinite-scroll'
+import indexCss from './index.module.scss'
 
 const videos = [
   {
@@ -85,7 +87,7 @@ export default function AboutPage() {
   return (
     <Page theme={themes['about']} withHero darkFooter>
       <PageHero
-        className={`${heroCss['hero-no-side-gradient']} !mb-0`}
+        className={`${heroCss['hero-no-side-gradient']} ${css['hero-center-mobile']} !mb-0`}
         titleClassName={heroCss['hero-title']}
         title="About"
         heroBackground={HeroBackground}
@@ -103,13 +105,16 @@ export default function AboutPage() {
       {/* Section 1: What is Devcon + By the Numbers */}
       <div
         id="intro"
-        className="section"
+        className="section py-8 lg:py-16 relative"
         style={{
-          paddingTop: '2rem',
-          paddingBottom: '2rem',
           background: 'radial-gradient(ellipse at center bottom, rgba(255,194,153,0.3) 0%, rgba(253,222,203,0.15) 40%, transparent 80%)',
         }}
       >
+        <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`} style={{ opacity: 0.5 }}>
+          <InfiniteScroller nDuplications={2} speed="120s">
+            <p className="bold">ABOUT DEVCON&nbsp;</p>
+          </InfiniteScroller>
+        </div>
         <div className="two-columns" style={{ gap: '2rem' }}>
           <div className="left">
             <h2 style={{ fontWeight: 800, fontSize: 32, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
@@ -154,23 +159,29 @@ export default function AboutPage() {
             <h3 style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
               India is where Ethereum is being built for the world
             </h3>
+            <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
+              {`India has one of the world's most extraordinary concentrations of engineering talent — and its fastest-growing Ethereum developer community.`}
+            </p>
             <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
-              {`India has one of the world's most extraordinary concentrations of engineering talent — and its fastest-growing Ethereum developer community. The work happening here is not peripheral to Ethereum's development. Infrastructure, ZK identity systems, and coordination layers built in India power Ethereum globally.`}
+              {`The work happening here is not peripheral to Ethereum's development. Infrastructure, ZK identity systems, and coordination layers built in India power Ethereum globally.`}
             </p>
           </div>
           <div className="right">
             <h3 style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
               Where sovereignty is built at scale
             </h3>
+            <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
+              {`India is the home of engineers who didn't wait for permission, in a country that leapfrogged the entire technological generation. `}<strong>Building at scale creates innovation at scale</strong>{`.`}
+            </p>
             <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
-              {`India is the home of engineers who didn't wait for permission, in a country that leapfrogged the entire technological generation. `}<strong>Building at scale creates innovation at scale</strong>{`. Devcon isn't coming to Mumbai to introduce Ethereum to India. Devcon 8 is in Mumbai to recognize and champion what India is already building.`}
+              {`Devcon isn't coming to Mumbai to introduce Ethereum to India. Devcon 8 is in Mumbai to recognize and champion what India is already building.`}
             </p>
           </div>
         </div>
 
         {/* Stats callout */}
         <div
-          className="flex flex-col md:flex-row flex-wrap justify-between gap-8 rounded-2xl border border-[rgba(34,17,68,0.1)] px-6 md:px-16 py-8 mb-12"
+          className="flex flex-col md:flex-row md:flex-wrap justify-between gap-y-8 md:gap-8 rounded-2xl border border-[rgba(34,17,68,0.1)] px-6 md:px-16 py-8 mb-12"
           style={{
             background: 'radial-gradient(ellipse at center bottom, rgba(236,227,253,1) 0%, rgba(245,241,254,1) 100%)',
           }}
@@ -198,7 +209,7 @@ export default function AboutPage() {
       </div>
 
       {/* Section 3: Creating Global Communities carousel */}
-      <div id="communities" className="expand h-[50vh] lg:h-[38rem] overflow-hidden [&_[data-type=carousel]]:!h-full">
+      <div id="communities" className="expand h-[40vh] lg:h-[38rem] overflow-hidden [&_[data-type=carousel]]:!h-full">
         <Carousel
           title="Creating Global Communities"
           marqueeClassName="!h-full"

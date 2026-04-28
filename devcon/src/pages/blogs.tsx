@@ -81,11 +81,10 @@ export default function BlogsTemplate(props: any) {
         navigation={navLinks}
       />
 
-      <div className="section" style={{ background: 'linear-gradient(to bottom, #fbfafc 0%, #e5ebff 80%)', paddingTop: '2rem' }}>
+      <div className="section py-8 lg:py-16" style={{ background: 'linear-gradient(to bottom, #fbfafc 0%, #e5ebff 80%)' }}>
         {editions.map((edition, i) => (
           <EditionSection key={edition} edition={edition} blogs={grouped[edition]} isFirst={i === 0} />
         ))}
-        <div style={{ height: '2rem' }} />
       </div>
     </Page>
   )

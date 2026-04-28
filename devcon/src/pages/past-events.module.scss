@@ -1,5 +1,13 @@
 @use 'assets/css/partials/index' as *;
 
+.hero-center-mobile {
+  [class*='background-image'] img {
+    @media (max-width: $breakpoints-md) {
+      object-position: center center !important;
+    }
+  }
+}
+
 /* ─── Hero overlay (15% #221144 tint for text contrast) ───── */
 
 .hero-overlay {
