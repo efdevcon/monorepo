@@ -311,7 +311,12 @@ export default function OrderConfirmationPage() {
                       onClick={e => {
                         e.preventDefault()
                         const ticketName = encodeURIComponent(shareName.trim() || 'Anon').replace(/%20/g, '+')
-                        window.open(`/ticket/${ticketName}?share`, '_blank')
+                        // Cache buster lives in the path (not a query param) so every share is
+                        // a unique URL — forces Twitter/Warpcast to re-scrape and re-fetch the OG.
+                        // Trailing slash matches next.config.js `trailingSlash: true`, avoiding
+                        // a 308 hop on Twitter's scrape.
+                        const v = Date.now().toString(36)
+                        window.open(`/ticket/${ticketName}/${v}/?share`, '_blank')
                       }}
                     >
                       View sharing link
