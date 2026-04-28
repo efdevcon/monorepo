@@ -1,5 +1,6 @@
 .faq-accordion {
   background: white;
+  border: 1px solid rgba(34, 17, 68, 0.1);
   border-radius: 16px;
   overflow: hidden;
   width: 100%;
@@ -11,7 +12,7 @@
 
 .faq-border {
   height: 1px;
-  background: #f2f1f4;
+  background: rgba(34, 17, 68, 0.1);
   margin: 0 -1px;
 }
 
@@ -28,8 +29,6 @@
   line-height: 1.5;
   background: white;
   border: none;
-  border-left: 1px solid #f2f1f4;
-  border-right: 1px solid #f2f1f4;
   cursor: pointer;
   text-align: left;
   font-family: inherit;
