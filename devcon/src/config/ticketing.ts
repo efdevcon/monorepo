@@ -15,7 +15,7 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      forcePretixRedirect: true,
+      forcePretixRedirect: false,
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
