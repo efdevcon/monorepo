@@ -135,18 +135,24 @@ const APPLICATION_ROWS: ApplicationRow[] = [
   },
 ]
 
-function ApplicationRowItem({ row }: { row: ApplicationRow }) {
-  const [expanded, setExpanded] = useState(false)
+function ApplicationRowItem({
+  row,
+  isOpen,
+  onToggle,
+}: {
+  row: ApplicationRow
+  isOpen: boolean
+  onToggle: () => void
+}) {
   const isExpandable = !!row.criteria
-  const isOpen = isExpandable && expanded
 
   return (
     <div
       className={cn(css['ticket-type-row-expandable'], {
-        [css['ticket-type-row-expanded']]: isOpen,
+        [css['ticket-type-row-expanded']]: isExpandable && isOpen,
         [css['ticket-type-row-clickable']]: isExpandable,
       })}
-      onClick={isExpandable ? () => setExpanded(v => !v) : undefined}
+      onClick={isExpandable ? onToggle : undefined}
       role={isExpandable ? 'button' : undefined}
       tabIndex={isExpandable ? 0 : undefined}
       onKeyDown={
@@ -154,7 +160,7 @@ function ApplicationRowItem({ row }: { row: ApplicationRow }) {
           ? e => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                setExpanded(v => !v)
+                onToggle()
               }
             }
           : undefined
@@ -179,7 +185,7 @@ function ApplicationRowItem({ row }: { row: ApplicationRow }) {
           )}
         </div>
       </div>
-      {isOpen && (
+      {isExpandable && isOpen && (
         <>
           <hr className={css['row-divider']} />
           <div className={css['row-criteria']}>{row.criteria}</div>
@@ -197,6 +203,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const resolvedFaqItems: FaqItem[] = faqItems && faqItems.length > 0
     ? faqItems.map(i => ({ q: i.question, a: <ReactMarkdown>{i.answer}</ReactMarkdown> }))
     : FAQ_ITEMS
+  const [expandedApplicationId, setExpandedApplicationId] = useState<string | null>(null)
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
       <PageHero
@@ -474,7 +481,14 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
               </div>
               <div className={css['ticket-type-rows']}>
                 {APPLICATION_ROWS.map(row => (
-                  <ApplicationRowItem key={row.id} row={row} />
+                  <ApplicationRowItem
+                    key={row.id}
+                    row={row}
+                    isOpen={expandedApplicationId === row.id}
+                    onToggle={() =>
+                      setExpandedApplicationId(prev => (prev === row.id ? null : row.id))
+                    }
+                  />
                 ))}
               </div>
             </div>

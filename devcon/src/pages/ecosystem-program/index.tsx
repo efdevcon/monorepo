@@ -18,6 +18,7 @@ import Photo5 from './photo-5.png'
 import Photo6 from './photo-6.png'
 import css from './ecosystem-program.module.scss'
 import cn from 'classnames'
+import { ApplicationsTable, type ApplicationRow } from 'components/domain/applications-table'
 
 const NAV_LINKS = [
   { title: 'ABOUT', to: '#about' },
@@ -37,9 +38,28 @@ const SUPPORT_TAGS = [
   { label: 'Academic Collabs', color: '#cdf4d7' },
 ]
 
-const APPLICATION_ROWS = [
-  { name: 'Student Discount', price: '$25', date: 'Opens in May' },
-  { name: 'Builder Discount', price: 'from $299', date: 'Opens in May' },
+const APPLICATION_ROWS: ApplicationRow[] = [
+  {
+    id: 'indian-students',
+    name: 'Indian Students',
+    price: '$25',
+    applyUrl: '/form/student-application',
+    live: true,
+  },
+  {
+    id: 'international-students',
+    name: 'International Students',
+    price: '$99',
+    applyUrl: '/form/student-application',
+    live: true,
+  },
+  {
+    id: 'builders',
+    name: 'Builders',
+    price: 'from $299',
+    date: 'Opens in June',
+    live: false,
+  },
 ]
 
 const FAQ_ITEMS = [
@@ -278,23 +298,7 @@ export default function EcosystemProgramPage() {
           </div>
 
           <div className={css['other-support-right']}>
-            <div className={css['ticket-type-card']}>
-              <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>Applications</span>
-                <span className={css['ticket-type-status']}>COMING SOON!</span>
-              </div>
-              <div className={css['ticket-type-rows']}>
-                {APPLICATION_ROWS.map(row => (
-                  <div key={row.name} className={css['ticket-type-row']}>
-                    <span className={css['row-name']}>{row.name}</span>
-                    <div className={css['row-meta']}>
-                      <span className={css['row-price']}>{row.price}</span>
-                      <span className={css['row-date']}>{row.date}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <ApplicationsTable rows={APPLICATION_ROWS} status="AVAILABLE NOW" />
 
             <div className={css['faq-accordion']}>
               {FAQ_ITEMS.map((item, i) => (
