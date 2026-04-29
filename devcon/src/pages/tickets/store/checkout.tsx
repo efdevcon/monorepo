@@ -1398,7 +1398,9 @@ function CheckoutContent() {
             <span className={css['mobile-order-bar-total']}>
               <span>${totalUsd}</span>
               {!mobileOrderOpen && showGstBreakdown && (
-                <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                <span className={css['mobile-order-bar-tax']}>
+                  incl. {vatPercent}% {vatLabel}
+                </span>
               )}
             </span>
           </button>
@@ -1414,7 +1416,10 @@ function CheckoutContent() {
                           <span className={css['panel-item-name']}>
                             {item.name}
                             {isPaid && vatPercent > 0 && (
-                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                              <span className={css['panel-item-tax']}>
+                                {' '}
+                                ({vatLabel} {vatPercent}%)
+                              </span>
                             )}
                           </span>
                           <div className={css['panel-item-right']}>
@@ -1454,7 +1459,10 @@ function CheckoutContent() {
                           <span>
                             {item.name}
                             {!isFree && vatPercent > 0 && (
-                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                              <span className={css['panel-item-tax']}>
+                                {' '}
+                                ({vatLabel} {vatPercent}%)
+                              </span>
                             )}
                           </span>
                           {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -1523,7 +1531,9 @@ function CheckoutContent() {
                         <span>${totalExclGst.toFixed(2)}</span>
                       </div>
                       <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                        <span>{vatLabel} @ {vatPercent}%</span>
+                        <span>
+                          {vatLabel} @ {vatPercent}%
+                        </span>
                         <span>${gstAmount.toFixed(2)}</span>
                       </div>
                     </>
@@ -1751,42 +1761,51 @@ function CheckoutContent() {
                     <div className={css['description-block']}>
                       <p className={css['description-title']}>Where should we send your tickets?</p>
                       <p className={css['description-sub']}>
-                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email address.
+                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email
+                        address.
                       </p>
                     </div>
                     {attendeeNameAsked && (
-                    <div className={css['field-row']}>
-                      <div className={css['field']}>
-                        <label htmlFor="first-name">
-                          Name{attendeeNameRequired && <span className={css['required']}>*</span>}
-                        </label>
-                        <Input
-                          id="first-name"
-                          type="text"
-                          placeholder="First name"
-                          className={showContactErrors && attendeeNameRequired && firstName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
-                          value={firstName}
-                          onChange={e => setFirstName(e.target.value)}
-                        />
-                        {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
-                          <p className={css['field-error']}>Please enter your first name.</p>
-                        )}
+                      <div className={css['field-row']}>
+                        <div className={css['field']}>
+                          <label htmlFor="first-name">
+                            Name{attendeeNameRequired && <span className={css['required']}>*</span>}
+                          </label>
+                          <Input
+                            id="first-name"
+                            type="text"
+                            placeholder="First name"
+                            className={
+                              showContactErrors && attendeeNameRequired && firstName.trim() === ''
+                                ? 'border-[#ef4444] shadow-none'
+                                : ''
+                            }
+                            value={firstName}
+                            onChange={e => setFirstName(e.target.value)}
+                          />
+                          {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
+                            <p className={css['field-error']}>Please enter your first name.</p>
+                          )}
+                        </div>
+                        <div className={css['field']}>
+                          <label htmlFor="last-name">&nbsp;</label>
+                          <Input
+                            id="last-name"
+                            type="text"
+                            placeholder="Last name"
+                            className={
+                              showContactErrors && attendeeNameRequired && lastName.trim() === ''
+                                ? 'border-[#ef4444] shadow-none'
+                                : ''
+                            }
+                            value={lastName}
+                            onChange={e => setLastName(e.target.value)}
+                          />
+                          {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
+                            <p className={css['field-error']}>Please enter your last name.</p>
+                          )}
+                        </div>
                       </div>
-                      <div className={css['field']}>
-                        <label htmlFor="last-name">&nbsp;</label>
-                        <Input
-                          id="last-name"
-                          type="text"
-                          placeholder="Last name"
-                          className={showContactErrors && attendeeNameRequired && lastName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
-                          value={lastName}
-                          onChange={e => setLastName(e.target.value)}
-                        />
-                        {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
-                          <p className={css['field-error']}>Please enter your last name.</p>
-                        )}
-                      </div>
-                    </div>
                     )}
                     <div className={css['field-row']}>
                       <div className={css['field']}>
@@ -1811,7 +1830,11 @@ function CheckoutContent() {
                           id="confirm-email"
                           type="email"
                           placeholder="Confirm email"
-                          className={showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim()) ? 'border-[#ef4444] shadow-none' : ''}
+                          className={
+                            showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim())
+                              ? 'border-[#ef4444] shadow-none'
+                              : ''
+                          }
                           value={confirmEmail}
                           onChange={e => setConfirmEmail(e.target.value)}
                         />
@@ -1823,9 +1846,7 @@ function CheckoutContent() {
                         )}
                       </div>
                     </div>
-                    <label
-                      className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer"
-                    >
+                    <label className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer">
                       <Checkbox
                         checked={newsletter}
                         onCheckedChange={checked => setNewsletter(checked === true)}
@@ -1847,10 +1868,16 @@ function CheckoutContent() {
                           setShowContactErrors(true)
                           setTimeout(() => {
                             const firstErrorId =
-                              attendeeNameRequired && firstName.trim() === '' ? 'first-name' :
-                              attendeeNameRequired && lastName.trim() === '' ? 'last-name' :
-                              !isEmail(email.trim()) ? 'email' : 'confirm-email'
-                            document.getElementById(firstErrorId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                              attendeeNameRequired && firstName.trim() === ''
+                                ? 'first-name'
+                                : attendeeNameRequired && lastName.trim() === ''
+                                ? 'last-name'
+                                : !isEmail(email.trim())
+                                ? 'email'
+                                : 'confirm-email'
+                            document
+                              .getElementById(firstErrorId)
+                              ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                           }, 50)
                           return
                         }
@@ -2123,9 +2150,7 @@ function CheckoutContent() {
                               <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
                             </div>
                           </div>
-                          <p className={css['payment-option-desc']}>
-                            All major wallets & networks
-                          </p>
+                          <p className={css['payment-option-desc']}>All major wallets & networks</p>
                         </div>
                       </label>
                       <label
@@ -2198,16 +2223,14 @@ function CheckoutContent() {
                                 // backend returns options in. Symbols not in the list fall to
                                 // the end so newly-added tokens stay visible.
                                 const ASSET_ORDER = ['ETH', 'USDC', 'USDT0', 'USDT']
-                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))].sort(
-                                  (a, b) => {
-                                    const ia = ASSET_ORDER.indexOf(a)
-                                    const ib = ASSET_ORDER.indexOf(b)
-                                    if (ia === -1 && ib === -1) return a.localeCompare(b)
-                                    if (ia === -1) return 1
-                                    if (ib === -1) return -1
-                                    return ia - ib
-                                  }
-                                )
+                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))].sort((a, b) => {
+                                  const ia = ASSET_ORDER.indexOf(a)
+                                  const ib = ASSET_ORDER.indexOf(b)
+                                  if (ia === -1 && ib === -1) return a.localeCompare(b)
+                                  if (ia === -1) return 1
+                                  if (ib === -1) return -1
+                                  return ia - ib
+                                })
 
                                 // Networks for selected asset
                                 const networksForAsset = tokenFilter
@@ -2442,8 +2465,8 @@ function CheckoutContent() {
                               paymentOptions.filter(o => o.sufficient).length === 0 &&
                               paymentDetails && (
                                 <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                                  Insufficient balance. Top up your wallet or connect one with enough USDC, USDT, or
-                                  ETH.
+                                  Insufficient balance. Top up your wallet or connect one with enough ETH, USDC, or
+                                  USDT.
                                 </p>
                               )}
                           </>
@@ -2516,9 +2539,7 @@ function CheckoutContent() {
                                 {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                               </button>
                             </div>
-                            {voucherError && (
-                              <p className={css['discount-error']}>{voucherError}</p>
-                            )}
+                            {voucherError && <p className={css['discount-error']}>{voucherError}</p>}
                           </>
                         )}
                       </div>
@@ -2539,7 +2560,9 @@ function CheckoutContent() {
                           <span className={css['mobile-inline-summary-total']}>
                             <span>${totalUsd}</span>
                             {!mobileInlineSummaryOpen && showGstBreakdown && (
-                              <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                              <span className={css['mobile-order-bar-tax']}>
+                                incl. {vatPercent}% {vatLabel}
+                              </span>
                             )}
                           </span>
                         </button>
@@ -2554,7 +2577,10 @@ function CheckoutContent() {
                                       <span className={css['panel-item-name']}>
                                         {item.name}
                                         {isPaid && vatPercent > 0 && (
-                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                          <span className={css['panel-item-tax']}>
+                                            {' '}
+                                            ({vatLabel} {vatPercent}%)
+                                          </span>
                                         )}
                                       </span>
                                       <div className={css['panel-item-right']}>
@@ -2594,7 +2620,10 @@ function CheckoutContent() {
                                       <span>
                                         {item.name}
                                         {!isFree && vatPercent > 0 && (
-                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                          <span className={css['panel-item-tax']}>
+                                            {' '}
+                                            ({vatLabel} {vatPercent}%)
+                                          </span>
                                         )}
                                       </span>
                                       {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -2633,7 +2662,9 @@ function CheckoutContent() {
                                     <span>${totalExclGst.toFixed(2)}</span>
                                   </div>
                                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                    <span>{vatLabel} @ {vatPercent}%</span>
+                                    <span>
+                                      {vatLabel} @ {vatPercent}%
+                                    </span>
                                     <span>${gstAmount.toFixed(2)}</span>
                                   </div>
                                 </>
@@ -2760,7 +2791,10 @@ function CheckoutContent() {
                         <span className={css['panel-item-name']}>
                           {item.name}
                           {isPaid && vatPercent > 0 && (
-                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            <span className={css['panel-item-tax']}>
+                              {' '}
+                              ({vatLabel} {vatPercent}%)
+                            </span>
                           )}
                         </span>
                         <div className={css['panel-item-right']}>
@@ -2800,7 +2834,10 @@ function CheckoutContent() {
                         <span>
                           {item.name}
                           {!isFree && vatPercent > 0 && (
-                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            <span className={css['panel-item-tax']}>
+                              {' '}
+                              ({vatLabel} {vatPercent}%)
+                            </span>
                           )}
                         </span>
                         {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -2844,11 +2881,7 @@ function CheckoutContent() {
                     </button>
                   </div>
                 ) : !discountOpen ? (
-                  <button
-                    type="button"
-                    className={css['discount-add-btn']}
-                    onClick={() => setDiscountOpen(true)}
-                  >
+                  <button type="button" className={css['discount-add-btn']} onClick={() => setDiscountOpen(true)}>
                     <Tag size={16} />
                     Add discount
                   </button>
@@ -2876,9 +2909,7 @@ function CheckoutContent() {
                         {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                       </button>
                     </div>
-                    {voucherError && (
-                      <p className={css['discount-error']}>{voucherError}</p>
-                    )}
+                    {voucherError && <p className={css['discount-error']}>{voucherError}</p>}
                   </>
                 )}
               </div>
@@ -2906,7 +2937,9 @@ function CheckoutContent() {
                       <span>${totalExclGst.toFixed(2)}</span>
                     </div>
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>{vatLabel} @ {vatPercent}%</span>
+                      <span>
+                        {vatLabel} @ {vatPercent}%
+                      </span>
                       <span>${gstAmount.toFixed(2)}</span>
                     </div>
                   </>
