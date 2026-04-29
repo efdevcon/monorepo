@@ -53,14 +53,6 @@ export default function OrderConfirmationPage() {
   const [error, setError] = useState<string | null>(null)
   const [shareName, setShareName] = useState('')
 
-  const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
-
-  useEffect(() => {
-    if (!orderCode) return
-    const savedName = localStorage.getItem(shareNameKey) || localStorage.getItem('devcon_share_name') || ''
-    if (savedName) setShareName(savedName)
-  }, [orderCode, shareNameKey])
-
   useEffect(() => {
     if (!orderCode || !orderSecret) return
 
@@ -169,14 +161,34 @@ export default function OrderConfirmationPage() {
   const formattedDate = `${day} ${month}, ${year} at ${time}`
 
   const rawCryptoAmount = pi?.amount || null
-  // Parse the numeric value and format to a readable precision
+  // pi.amount is a raw on-chain base-units integer (USDC/USDT0 = 10^6, ETH = 10^18).
+  // Divide by the token's decimals using BigInt to avoid float precision loss on
+  // wei-scale ETH values; then trim zeros for a clean display.
   const cryptoAmount = rawCryptoAmount
     ? (() => {
-        const n = parseFloat(rawCryptoAmount)
-        if (isNaN(n)) return rawCryptoAmount
-        if (n < 0.0001) return n.toPrecision(4)
-        if (n < 1) return n.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
-        return n.toFixed(4)
+        const rawStr = String(rawCryptoAmount).trim()
+        const rawSymbol = pi?.token_symbol
+        const decimals = rawSymbol === 'ETH' ? 18 : 6
+        try {
+          const n = BigInt(rawStr)
+          const ZERO = BigInt(0)
+          if (n === ZERO) return '0'
+          // BigInt(`1${'0'.repeat(decimals)}`) keeps us off the literal-syntax
+          // path (`10n ** N`) which requires tsconfig target: es2020.
+          const base = BigInt('1' + '0'.repeat(decimals))
+          const whole = n / base
+          const frac = n % base
+          if (frac === ZERO) return whole.toString()
+          const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
+          return `${whole}.${fracStr}`
+        } catch {
+          // Historical orders may have stored a pre-formatted decimal — fall back.
+          const f = parseFloat(rawStr)
+          if (isNaN(f)) return rawStr
+          if (f < 0.0001) return f.toPrecision(4)
+          if (f < 1) return f.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
+          return f.toFixed(4)
+        }
       })()
     : null
   const totalUsd = `$${parseFloat(order.total).toFixed(2)}`
@@ -289,11 +301,7 @@ export default function OrderConfirmationPage() {
                           type="text"
                           placeholder="ENS or name"
                           value={shareName}
-                          onChange={e => {
-                            const val = e.target.value
-                            setShareName(val)
-                            if (orderCode) localStorage.setItem(shareNameKey, val)
-                          }}
+                          onChange={e => setShareName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -303,7 +311,12 @@ export default function OrderConfirmationPage() {
                       onClick={e => {
                         e.preventDefault()
                         const ticketName = encodeURIComponent(shareName.trim() || 'Anon').replace(/%20/g, '+')
-                        window.open(`/ticket/${ticketName}?share`, '_blank')
+                        // Cache buster lives in the path (not a query param) so every share is
+                        // a unique URL — forces Twitter/Warpcast to re-scrape and re-fetch the OG.
+                        // Trailing slash matches next.config.js `trailingSlash: true`, avoiding
+                        // a 308 hop on Twitter's scrape.
+                        const v = Date.now().toString(36)
+                        window.open(`/ticket/${ticketName}/${v}/?share`, '_blank')
                       }}
                     >
                       View sharing link

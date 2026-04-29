@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Head from 'next/head'
+import { X } from 'lucide-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi'
 import type { Config } from 'wagmi'
@@ -26,21 +27,35 @@ const ERC20_TRANSFER_ABI = [
 const STORAGE_KEY = 'x402_admin_secret'
 const POLL_INTERVAL = 30_000
 
+/** Completed crypto orders. `source === 'x402'` supports the full feature set
+ *  (gasless flow + on-chain refund button). `'wc_attempt'` is the legacy
+ *  pre-x402 WalletConnect direct-send flow, shown read-only. */
 interface CompletedOrder {
-  paymentReference: string
-  pretixOrderCode: string
-  txHash: string
+  source: 'x402' | 'wc_attempt'
+  paymentReference: string | null
+  pretixOrderCode: string | null
+  txHash: string | null
   payer: string
   completedAt: number
   chainId?: number
   totalUsd?: string
-  tokenSymbol?: string
-  cryptoAmount?: string
+  tokenSymbol?: string | null
+  cryptoAmount?: string | null
   gasCostWei?: string
   env: string
   refundStatus?: string
   refundTxHash?: string
   refundMeta?: Record<string, unknown>
+}
+
+/** x402 rows always have a payment reference, tx hash, and Pretix order code.
+ *  The refund UI is gated to x402 at the call site; this alias lets the
+ *  refund components assume those fields are present. */
+type X402CompletedOrder = CompletedOrder & {
+  source: 'x402'
+  paymentReference: string
+  txHash: string
+  pretixOrderCode: string
 }
 
 interface PendingOrder {
@@ -71,10 +86,16 @@ interface OrdersResponse {
   success: boolean
   env: string
   pretixBaseUrl: string
-  stats: { pending: number; completed: number }
+  pretixOrgSlug: string
+  pretixEventSlug: string
+  stats: { pending: number; completed: number; x402Count?: number; legacyCount?: number }
   completed: CompletedOrder[]
   pending: PendingOrder[]
-  wallet?: WalletInfo | null
+  /** Wallet that receives ticket payments (recipientAddress). Shows all tokens. */
+  destinationWallet?: WalletInfo | null
+  /** Wallet that pays gas for EIP-3009 sponsored transfers (relayerAddress).
+   *  Native-only — gas isn't paid in tokens. Drives the low-balance red flag. */
+  gasRelayerWallet?: WalletInfo | null
   error?: string
 }
 
@@ -136,6 +157,13 @@ function formatDate(ts: number) {
   return new Date(ts * 1000).toLocaleString()
 }
 
+function sourceLabel(source: CompletedOrder['source']): string {
+  switch (source) {
+    case 'x402': return 'x402'
+    case 'wc_attempt': return 'WalletConnect'
+  }
+}
+
 function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
   if (!wei) return '—'
   const eth = Number(BigInt(wei)) / 1e18
@@ -146,7 +174,12 @@ function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | 
     if (usd < 0.01) return '<$0.01'
     return `$${usd.toFixed(2)}`
   }
-  return `${eth.toFixed(6)} ETH`
+  // Native-unit fallback when prices aren't loaded. Values below 6-decimal
+  // resolution would round to "0.000000" — show "<0.000001" instead so small
+  // but non-zero gas costs don't look like zero.
+  const unit = chainId === 137 ? 'POL' : 'ETH'
+  if (eth < 0.000001) return `<0.000001 ${unit}`
+  return `${eth.toFixed(6)} ${unit}`
 }
 
 function formatTokenChainText(tokenSymbol?: string, chainId?: number) {
@@ -184,14 +217,47 @@ function ChainCell({ chainId }: { chainId?: number }) {
   )
 }
 
-function CryptoAmountCell({ cryptoAmount, tokenSymbol }: { cryptoAmount?: string; tokenSymbol?: string }) {
-  if (!cryptoAmount) return <span>—</span>
-  const token = tokenSymbol || 'USDC'
+/** Render a raw on-chain amount (wei / base units) as a human-readable decimal.
+ *  USDC and USDT0 use 6 decimals, ETH uses 18. Unknown tokens default to 6.
+ *
+ *  Implementation note: written with constructor-form BigInt (`BigInt(0)`,
+ *  `BigInt('1' + '0'.repeat(decimals))`) instead of the `0n` / `10n ** N`
+ *  literal syntax so we don't have to bump the shared base tsconfig
+ *  `target: es6`. Constructor calls compile fine on any target where the
+ *  BigInt runtime exists (Node 10.4+, all modern browsers). */
+function formatCryptoAmount(raw: string, tokenSymbol: string): string {
+  const decimals = tokenSymbol === 'ETH' ? 18 : 6
+  try {
+    const n = BigInt(raw)
+    const ZERO = BigInt(0)
+    if (n === ZERO) return '0'
+    const base = BigInt('1' + '0'.repeat(decimals))
+    const whole = n / base
+    const frac = n % base
+    if (frac === ZERO) return whole.toString()
+    // Trim trailing zeros on the fractional part.
+    const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
+    return `${whole}.${fracStr}`
+  } catch {
+    // Fallback: if `raw` isn't an integer string (shouldn't happen from the
+    // plugin, but legacy rows may not have one), show it verbatim.
+    return raw
+  }
+}
+
+function CryptoAmountCell({
+  cryptoAmount,
+  tokenSymbol,
+}: {
+  cryptoAmount?: string | null
+  tokenSymbol?: string
+}) {
+  if (!cryptoAmount || !tokenSymbol) return <span>—</span>
   return (
     <span className={css['token-chain']}>
-      <span>{cryptoAmount}</span>
-      <Logo src={TOKEN_ICONS[token]} alt={token} />
-      <span>{token}</span>
+      <span>{formatCryptoAmount(cryptoAmount, tokenSymbol)}</span>
+      <Logo src={TOKEN_ICONS[tokenSymbol]} alt={tokenSymbol} />
+      <span>{tokenSymbol}</span>
     </span>
   )
 }
@@ -199,6 +265,88 @@ function CryptoAmountCell({ cryptoAmount, tokenSymbol }: { cryptoAmount?: string
 function chainName(chainId?: number) {
   if (chainId == null) return '—'
   return CHAIN_NAMES[chainId] || String(chainId)
+}
+
+/** Render a wallet (destination or gas relayer) — header with address +
+ *  optional USD total, then per-chain native + (optional) token rows.
+ *
+ *  `flagLowNative=true` is for the gas relayer panel: each chain's native
+ *  token row turns red when below the per-chain gas-sponsorship threshold
+ *  (0.001 ETH on L2s, 2 POL on Polygon, 0.004 ETH on Ethereum). For the
+ *  destination wallet there's no operational concern about its native
+ *  balance — pass `false`. */
+function WalletPanel({
+  title,
+  wallet,
+  totalUsd,
+  flagLowNative,
+}: {
+  title: string
+  wallet: WalletInfo
+  totalUsd: number | null
+  flagLowNative: boolean
+}) {
+  return (
+    <div className={css.wallet}>
+      <div className={css['wallet-header']}>
+        <span className={css['wallet-title']}>{title}</span>
+        <a
+          className={`${css.mono} ${css['wallet-addr']}`}
+          href={`https://zapper.xyz/account/${wallet.address}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {wallet.address}
+        </a>
+        {totalUsd != null && (
+          <span className={css['wallet-total']}>
+            ~${totalUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          </span>
+        )}
+      </div>
+      <div className={css['wallet-chains']}>
+        {wallet.balances.map(chain => {
+          const nativeSym = chain.chainId === 137 ? 'POL' : 'ETH'
+          const nativeBal = Number(chain.ethBalance)
+          // Per-chain low-balance thresholds. Only meaningful for the relayer
+          // wallet (where falling below means gasless payments start failing
+          // on that chain). L1 needs more headroom because mainnet gas is
+          // ~10× L2 gas.
+          const lowThreshold =
+            chain.chainId === 1 ? 0.004 :
+            chain.chainId === 137 ? 2 :
+            0.001
+          const isLow = flagLowNative && Number.isFinite(nativeBal) && nativeBal < lowThreshold
+          return (
+            <div key={chain.chainId} className={css['wallet-chain']}>
+              <div className={css['wallet-chain-name']}>
+                <Logo src={NETWORK_LOGOS[chain.chainId]} alt={CHAIN_NAMES[chain.chainId] || chain.network} />
+                {CHAIN_NAMES[chain.chainId] || chain.network}
+              </div>
+              <div className={css['wallet-chain-bals']}>
+                <span
+                  className={`${css['wallet-token']} ${isLow ? css['wallet-token--low'] : ''}`}
+                  title={isLow ? `Below ${lowThreshold} ${nativeSym} — top up to keep gasless payments working on this chain` : undefined}
+                >
+                  <Logo src={TOKEN_ICONS[nativeSym]} alt={nativeSym} size={14} />
+                  <span className={css['wallet-token-val']}>{Number(chain.ethBalance).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
+                  <span className={css['wallet-token-sym']}>{nativeSym}</span>
+                  {isLow && <span className={css['wallet-token-warn']} aria-label="low balance">⚠</span>}
+                </span>
+                {chain.tokens.map(t => (
+                  <span key={t.symbol} className={css['wallet-token']}>
+                    <Logo src={TOKEN_ICONS[t.symbol]} alt={t.symbol} size={14} />
+                    <span className={css['wallet-token-val']}>{Number(t.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    <span className={css['wallet-token-sym']}>{t.symbol}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 type SortDir = 'asc' | 'desc'
@@ -331,7 +479,7 @@ function RefundModal({
   onClose,
   onRefunded,
 }: {
-  order: CompletedOrder
+  order: X402CompletedOrder
   secret: string
   onClose: () => void
   onRefunded: () => void
@@ -390,7 +538,7 @@ function RefundModal({
       // 4. Wait for confirmation
       setStep('waiting')
       // writeContractAsync returns after tx is submitted; we confirm via API
-      await callRefundApi('confirm', { txHash: hash })
+      await callRefundApi('confirm', { refundTxHash: hash })
 
       setStep('done')
       setTimeout(() => {
@@ -411,9 +559,20 @@ function RefundModal({
     }
   }
 
+  // Click-outside is intentionally disabled on this modal — refunds send an
+  // on-chain tx, and a misclick on the backdrop (mid-signing, or while waiting
+  // for a tx to confirm) could abandon state mid-flight. Explicit close only.
   return (
-    <div className={css['modal-overlay']} onClick={onClose}>
-      <div className={css['modal-card']} onClick={e => e.stopPropagation()}>
+    <div className={css['modal-overlay']}>
+      <div className={css['modal-card']}>
+        <button
+          type="button"
+          className={css['modal-close']}
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <X size={18} />
+        </button>
         <h3 className={css['modal-title']}>Refund Order</h3>
         <div className={css['modal-details']}>
           <div className={css['modal-row']}>
@@ -482,7 +641,7 @@ function RefundActionCell({
   isConnected,
   onRefunded,
 }: {
-  order: CompletedOrder
+  order: X402CompletedOrder
   secret: string
   isConnected: boolean
   onRefunded: () => void
@@ -544,6 +703,226 @@ function RefundActionCell({
       </button>
       {showModal && (
         <RefundModal order={order} secret={secret} onClose={() => setShowModal(false)} onRefunded={onRefunded} />
+      )}
+    </>
+  )
+}
+
+// ─── Manual verification (admin recovery for stuck pending payments) ─────
+
+const SUPPORTED_SYMBOLS = ['USDC', 'USDT0', 'ETH'] as const
+const SUPPORTED_CHAINS = [1, 10, 8453, 42161, 137] as const
+
+function ManualVerifyModal({
+  order,
+  secret,
+  onClose,
+  onVerified,
+}: {
+  order: PendingOrder
+  secret: string
+  onClose: () => void
+  onVerified: () => void
+}) {
+  const [txHash, setTxHash] = useState('')
+  const [symbol, setSymbol] = useState<string>('USDC')
+  const [chainId, setChainId] = useState<number>(order.expectedChainId ?? 8453)
+  const [ethPayerSignature, setEthPayerSignature] = useState('')
+  const [step, setStep] = useState<'form' | 'submitting' | 'done' | 'error'>('form')
+  const [result, setResult] = useState<{ code?: string; secret?: string } | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  const trimmedHash = txHash.trim()
+  const hashValid = /^0x[a-fA-F0-9]{64}$/.test(trimmedHash)
+  const needsEthSig = symbol === 'ETH'
+  const canSubmit = hashValid && (!needsEthSig || ethPayerSignature.trim().length > 0)
+
+  async function handleSubmit() {
+    if (!canSubmit) return
+    setStep('submitting')
+    setError(null)
+    try {
+      const res = await fetch('/api/x402/admin/verify/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
+        body: JSON.stringify({
+          paymentReference: order.paymentReference,
+          txHash: trimmedHash,
+          payer: order.intendedPayer,
+          chainId,
+          symbol,
+          ...(needsEthSig && { ethPayerSignature: ethPayerSignature.trim() }),
+        }),
+      })
+      const body = await res.json()
+      if (!res.ok || !body.success) {
+        setError(body.error || `Verify failed (HTTP ${res.status})`)
+        setStep('error')
+        return
+      }
+      setResult(body.order)
+      setStep('done')
+      setTimeout(() => {
+        onVerified()
+        onClose()
+      }, 2500)
+    } catch (e) {
+      setError((e as Error).message || 'Network error')
+      setStep('error')
+    }
+  }
+
+  return (
+    <div className={css['modal-overlay']}>
+      <div className={css['modal-card']}>
+        <button
+          type="button"
+          className={css['modal-close']}
+          onClick={onClose}
+          disabled={step === 'submitting'}
+          aria-label="Close"
+        >
+          <X size={18} />
+        </button>
+        <h3 className={css['modal-title']}>Manual verification</h3>
+        <p className={css['modal-hint']} style={{ fontSize: 13, color: '#666', margin: '0 0 16px' }}>
+          Confirm a pending payment using the on-chain transaction hash. The plugin re-runs the full
+          verification (tx uniqueness, recipient, amount, payer match). The tx hash <strong>must</strong>
+          belong to the payer shown below, not anyone else.
+        </p>
+        <div className={css['modal-details']}>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Payment Ref</span>
+            <span className={`${css['modal-value']} ${css.mono}`}>{order.paymentReference}</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Amount</span>
+            <span className={css['modal-value']}>${order.totalUsd}</span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Payer</span>
+            <span className={`${css['modal-value']} ${css.mono}`} title={order.intendedPayer}>
+              {truncate(order.intendedPayer)}
+            </span>
+          </div>
+        </div>
+
+        {step === 'form' && (
+          <>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '16px 0' }}>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
+                <span style={{ fontWeight: 600 }}>Transaction hash</span>
+                <input
+                  className={css['wc-input'] ?? ''}
+                  style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace' }}
+                  placeholder="0x..."
+                  value={txHash}
+                  onChange={e => setTxHash(e.target.value)}
+                />
+                {!hashValid && txHash.length > 0 && (
+                  <span style={{ color: '#c00', fontSize: 12 }}>Must be 0x + 64 hex characters.</span>
+                )}
+              </label>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, flex: 1 }}>
+                  <span style={{ fontWeight: 600 }}>Token</span>
+                  <select
+                    value={symbol}
+                    onChange={e => setSymbol(e.target.value)}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6 }}
+                  >
+                    {SUPPORTED_SYMBOLS.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, flex: 1 }}>
+                  <span style={{ fontWeight: 600 }}>Chain</span>
+                  <select
+                    value={chainId}
+                    onChange={e => setChainId(Number(e.target.value))}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6 }}
+                  >
+                    {SUPPORTED_CHAINS.map(c => <option key={c} value={c}>{chainName(c)}</option>)}
+                  </select>
+                </label>
+              </div>
+              {needsEthSig && (
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
+                  <span style={{ fontWeight: 600 }}>ETH payer signature</span>
+                  <textarea
+                    rows={3}
+                    placeholder="0x... (required for ETH — buyer must sign the x402 payer message)"
+                    value={ethPayerSignature}
+                    onChange={e => setEthPayerSignature(e.target.value)}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace', fontSize: 12 }}
+                  />
+                  <span style={{ fontSize: 12, color: '#666' }}>
+                    Same EIP-191 signature format the normal checkout produces. Without it, ETH verification is not possible.
+                  </span>
+                </label>
+              )}
+            </div>
+            <div className={css['modal-actions']}>
+              <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
+              <button
+                className={css['modal-confirm']}
+                disabled={!canSubmit}
+                onClick={handleSubmit}
+              >
+                Verify payment
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === 'submitting' && <div className={css['modal-status']}>Verifying on-chain...</div>}
+        {step === 'done' && result && (
+          <div className={css['modal-status']}>
+            Verified. Pretix order <code>{result.code}</code> created.
+          </div>
+        )}
+        {step === 'error' && (
+          <>
+            <div className={css['modal-error']} style={{ marginTop: 12, padding: 12, background: '#fee', borderRadius: 6, fontSize: 13 }}>
+              {error}
+            </div>
+            <div className={css['modal-actions']}>
+              <button className={css['modal-cancel']} onClick={() => setStep('form')}>Back</button>
+              <button className={css['modal-confirm']} onClick={handleSubmit}>Retry</button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function ManualVerifyCell({
+  order,
+  secret,
+  onVerified,
+}: {
+  order: PendingOrder
+  secret: string
+  onVerified: () => void
+}) {
+  const [showModal, setShowModal] = useState(false)
+  return (
+    <>
+      <button
+        type="button"
+        className={css['refund-btn']}
+        onClick={() => setShowModal(true)}
+        title="Manually verify this pending payment with a transaction hash"
+      >
+        Verify
+      </button>
+      {showModal && (
+        <ManualVerifyModal
+          order={order}
+          secret={secret}
+          onClose={() => setShowModal(false)}
+          onVerified={onVerified}
+        />
       )}
     </>
   )
@@ -678,7 +1057,7 @@ function AdminContent() {
 
   // Filter + date helpers
   const q = search.toLowerCase()
-  function matchesSearch(fields: (string | undefined)[]) {
+  function matchesSearch(fields: (string | null | undefined)[]) {
     if (!q) return true
     return fields.some(f => f?.toLowerCase().includes(q))
   }
@@ -712,7 +1091,11 @@ function AdminContent() {
             cmp = (a.pretixOrderCode || '').localeCompare(b.pretixOrderCode || '')
             break
           case 'tokenChain':
-            cmp = formatTokenChainText(a.tokenSymbol, a.chainId).localeCompare(formatTokenChainText(b.tokenSymbol, b.chainId))
+            // CompletedOrder.tokenSymbol is `string | null | undefined` since we
+            // started carrying legacy rows (wc_attempt) that can have null symbols;
+            // formatTokenChainText only accepts `string | undefined`. Coerce.
+            cmp = formatTokenChainText(a.tokenSymbol ?? undefined, a.chainId)
+              .localeCompare(formatTokenChainText(b.tokenSymbol ?? undefined, b.chainId))
             break
         }
         return completedSortDir === 'asc' ? cmp : -cmp
@@ -727,9 +1110,18 @@ function AdminContent() {
     [filteredCompleted]
   )
 
+  // Refunds are x402-only today — refundStatus/refundTxHash/refundMeta are
+  // only populated for x402 rows. This filter narrows both the lifecycle state
+  // and the source, which makes the downstream non-null field access safe.
   const refundedOrders = useMemo(() =>
     filteredCompleted
-      .filter(o => o.refundStatus === 'confirmed')
+      .filter((o): o is X402CompletedOrder => (
+        o.source === 'x402' &&
+        o.refundStatus === 'confirmed' &&
+        o.paymentReference !== null &&
+        o.txHash !== null &&
+        o.pretixOrderCode !== null
+      ))
       .sort((a, b) => {
         const aTime = a.refundMeta?.refundedAt ? new Date(a.refundMeta.refundedAt as string).getTime() : 0
         const bTime = b.refundMeta?.refundedAt ? new Date(b.refundMeta.refundedAt as string).getTime() : 0
@@ -748,21 +1140,36 @@ function AdminContent() {
     [refundedOrders]
   )
 
+  // Both wallet panels carry the same `prices` block (fetched once on the
+  // backend) — pull from whichever exists.
+  const walletPrices = data?.destinationWallet?.prices ?? data?.gasRelayerWallet?.prices ?? null
+
+  // Total relayer-sponsored gas across the filtered completed rows.
+  // Always return ETH + POL summed; USD is only filled in for chains whose
+  // price loaded (missing prices no longer blank out the whole stat).
   const totalGasSponsored = useMemo(() => {
-    const prices = data?.wallet?.prices
-    if (!prices) return null
-    let total = 0
+    const prices = walletPrices
+    let usd: number | null = prices ? 0 : null
+    let ethSum = 0
+    let polSum = 0
+    let rowsCounted = 0
     for (const o of filteredCompleted) {
       if (!o.gasCostWei) continue
-      const eth = Number(BigInt(o.gasCostWei)) / 1e18
-      const price = o.chainId === 137 ? prices.POL : prices.ETH
-      if (price) total += eth * price
+      const native = Number(BigInt(o.gasCostWei)) / 1e18
+      rowsCounted++
+      if (o.chainId === 137) polSum += native
+      else ethSum += native
+      if (usd !== null && prices) {
+        const price = o.chainId === 137 ? prices.POL : prices.ETH
+        if (price) usd += native * price
+      }
     }
-    return total
-  }, [filteredCompleted, data?.wallet?.prices])
+    if (rowsCounted === 0) return null
+    return { usd, eth: ethSum, pol: polSum }
+  }, [filteredCompleted, walletPrices])
 
-  const walletTotalUsd = useMemo(() => {
-    const w = data?.wallet
+  const destinationWalletTotalUsd = useMemo(() => {
+    const w = data?.destinationWallet
     if (!w) return null
     let total = 0
     for (const chain of w.balances) {
@@ -779,7 +1186,7 @@ function AdminContent() {
       }
     }
     return total
-  }, [data?.wallet])
+  }, [data?.destinationWallet])
 
   // Pending orders: search + date + sort
   const filteredPending = useMemo(() => {
@@ -834,14 +1241,17 @@ function AdminContent() {
 
   function exportCompletedCsv() {
     const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At', 'Refund Status', 'Refund Tx Hash']
+    // Coerce nullable fields to '' — legacy `wc_attempt` rows may carry
+    // null pretixOrderCode/txHash/tokenSymbol; the CSV exporter expects
+    // `string[][]`, not `(string | null)[][]`.
     const rows = filteredCompleted.map(o => [
-      o.pretixOrderCode,
+      o.pretixOrderCode ?? '',
       o.totalUsd || '',
-      o.cryptoAmount || '',
+      o.cryptoAmount ? formatCryptoAmount(o.cryptoAmount, o.tokenSymbol || 'USDC') : '',
       o.tokenSymbol || 'USDC',
       chainName(o.chainId),
-      o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '',
-      o.txHash,
+      o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '',
+      o.txHash ?? '',
       o.payer,
       formatDate(o.completedAt),
       o.refundStatus || '',
@@ -954,59 +1364,37 @@ function AdminContent() {
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Gas Sponsored</p>
-              <p className={css['stat-value']}>{totalGasSponsored != null ? `$${totalGasSponsored.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</p>
+              <p className={css['stat-value']}>
+                {totalGasSponsored == null
+                  ? '—'
+                  : totalGasSponsored.usd != null
+                    ? `$${totalGasSponsored.usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                    : [
+                        totalGasSponsored.eth > 0 ? `${totalGasSponsored.eth.toFixed(6)} ETH` : null,
+                        totalGasSponsored.pol > 0 ? `${totalGasSponsored.pol.toFixed(4)} POL` : null,
+                      ].filter(Boolean).join(' + ') || '—'}
+              </p>
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Total Refunded</p>
               <p className={css['stat-value']}>${totalRefunded.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
             </div>
           </div>
-          {data?.wallet && (
-            <div className={css.wallet}>
-          <div className={css['wallet-header']}>
-            <span className={css['wallet-title']}>Destination Wallet</span>
-            <a
-              className={`${css.mono} ${css['wallet-addr']}`}
-              href={`https://zapper.xyz/account/${data.wallet.address}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {data.wallet.address}
-            </a>
-            {walletTotalUsd != null && (
-              <span className={css['wallet-total']}>
-                ~${walletTotalUsd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </span>
-            )}
-          </div>
-          <div className={css['wallet-chains']}>
-            {data.wallet.balances.map(chain => {
-              const nativeSym = chain.chainId === 137 ? 'POL' : 'ETH'
-              return (
-                <div key={chain.chainId} className={css['wallet-chain']}>
-                  <div className={css['wallet-chain-name']}>
-                    <Logo src={NETWORK_LOGOS[chain.chainId]} alt={CHAIN_NAMES[chain.chainId] || chain.network} />
-                    {CHAIN_NAMES[chain.chainId] || chain.network}
-                  </div>
-                  <div className={css['wallet-chain-bals']}>
-                    <span className={css['wallet-token']}>
-                      <Logo src={TOKEN_ICONS[nativeSym]} alt={nativeSym} size={14} />
-                      <span className={css['wallet-token-val']}>{Number(chain.ethBalance).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 })}</span>
-                      <span className={css['wallet-token-sym']}>{nativeSym}</span>
-                    </span>
-                    {chain.tokens.map(t => (
-                      <span key={t.symbol} className={css['wallet-token']}>
-                        <Logo src={TOKEN_ICONS[t.symbol]} alt={t.symbol} size={14} />
-                        <span className={css['wallet-token-val']}>{Number(t.balance).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                        <span className={css['wallet-token-sym']}>{t.symbol}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-            </div>
+          {data?.destinationWallet && (
+            <WalletPanel
+              title="Destination Wallet"
+              wallet={data.destinationWallet}
+              totalUsd={destinationWalletTotalUsd}
+              flagLowNative={false}
+            />
+          )}
+          {data?.gasRelayerWallet && (
+            <WalletPanel
+              title="Gas Relayer Wallet"
+              wallet={data.gasRelayerWallet}
+              totalUsd={null}
+              flagLowNative={true}
+            />
           )}
         </div>
       )}
@@ -1066,6 +1454,7 @@ function AdminContent() {
             <table className={css.table}>
               <thead>
                 <tr>
+                  <th>Type</th>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
@@ -1079,33 +1468,42 @@ function AdminContent() {
               </thead>
               <tbody>
                 {activeCompleted.map(o => (
-                  <tr key={o.paymentReference}>
+                  <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
+                    <td>{sourceLabel(o.source)}</td>
                     <td className={undefined}>
-                      <a
-                        className={css.link}
-                        href={`${data?.pretixBaseUrl}/${o.pretixOrderCode}/`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {o.pretixOrderCode}
-                      </a>
-                    </td>
-                    <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol} /></td>
-                    <td className={undefined}><ChainCell chainId={o.chainId} /></td>
-                    <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, data?.wallet?.prices) : '—'}</td>
-                    <td className={css.mono}>
-                      <Copyable value={o.txHash}>
+                      {o.pretixOrderCode ? (
                         <a
                           className={css.link}
-                          href={txExplorerUrl(o.txHash, o.chainId)}
+                          href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
                         >
-                          {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+                          {o.pretixOrderCode}
                         </a>
-                      </Copyable>
+                      ) : (
+                        '—'
+                      )}
+                    </td>
+                    <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
+                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
+                    <td className={undefined}><ChainCell chainId={o.chainId} /></td>
+                    <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}</td>
+                    <td className={css.mono}>
+                      {o.txHash ? (
+                        <Copyable value={o.txHash}>
+                          <a
+                            className={css.link}
+                            href={txExplorerUrl(o.txHash, o.chainId)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={e => e.stopPropagation()}
+                          >
+                            {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+                          </a>
+                        </Copyable>
+                      ) : (
+                        '—'
+                      )}
                     </td>
                     <td className={css.mono}>
                       <a
@@ -1120,12 +1518,20 @@ function AdminContent() {
                     </td>
                     <td className={undefined}>{formatDate(o.completedAt)}</td>
                     <td>
-                      <RefundActionCell
-                        order={o}
-                        secret={secret}
-                        isConnected={isConnected}
-                        onRefunded={() => fetchOrders(secret)}
-                      />
+                      {o.source === 'x402' ? (
+                        <RefundActionCell
+                          order={o as X402CompletedOrder}
+                          secret={secret}
+                          isConnected={isConnected}
+                          onRefunded={() => fetchOrders(secret)}
+                        />
+                      ) : (
+                        // TODO(refunds): legacy WC rows can't be refunded through this UI
+                        // because the refund CAS columns live only on X402CompletedOrder. Unblock
+                        // by introducing a ManualCryptoRefund ledger keyed (source, row_id) in the
+                        // plugin; see README "Known gaps / TODOs".
+                        <span className={css.muted} title="On-chain refund is only available for x402 payments (see plugin README)">—</span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -1162,7 +1568,7 @@ function AdminContent() {
                     <td>
                       <a
                         className={css.link}
-                        href={`${data?.pretixBaseUrl}/${o.pretixOrderCode}/`}
+                        href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -1170,7 +1576,7 @@ function AdminContent() {
                       </a>
                     </td>
                     <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol} /></td>
+                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
                     <td><ChainCell chainId={o.chainId} /></td>
                     <td className={css.mono}>
                       <a
@@ -1242,6 +1648,7 @@ function AdminContent() {
                   <th>Email</th>
                   <SortableTh label="Chain" sortKey="chain" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
                   <SortableTh label="Expires At" sortKey="expiresAt" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -1274,6 +1681,13 @@ function AdminContent() {
                       <td className={undefined}>
                         {formatDate(o.expiresAt)}
                         {isExpired && <span className={css.expired}> EXPIRED</span>}
+                      </td>
+                      <td>
+                        <ManualVerifyCell
+                          order={o}
+                          secret={secret}
+                          onVerified={() => fetchOrders(secret)}
+                        />
                       </td>
                     </tr>
                   )

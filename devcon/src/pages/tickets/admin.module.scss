@@ -283,6 +283,27 @@
   color: #594d73;
 }
 
+/* Low-balance modifier — applied to native-token rows when the chain's
+   relayer balance falls below the gas-sponsorship threshold. The whole
+   token block (icon + value + symbol) goes red with a soft red background
+   so the warning is visible at a glance even from across the room. */
+.wallet-token--low {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(220, 38, 38, 0.08);
+
+  .wallet-token-val,
+  .wallet-token-sym {
+    color: #b91c1c;
+  }
+}
+
+.wallet-token-warn {
+  margin-left: 2px;
+  font-size: 13px;
+  color: #b91c1c;
+}
+
 /* ─── Filter Bar ─────────────────────────────────────────── */
 
 .filter-bar {
@@ -721,12 +742,41 @@
 }
 
 .modal-card {
+  position: relative;
   background: white;
   border-radius: 16px;
   padding: 32px;
   max-width: 440px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(22, 11, 43, 0.2);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(22, 11, 43, 0.6);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(22, 11, 43, 0.06);
+    color: rgba(22, 11, 43, 1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(22, 11, 43, 0.3);
+    outline-offset: 1px;
+  }
 }
 
 .modal-title {

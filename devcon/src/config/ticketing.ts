@@ -15,10 +15,11 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       cryptoDiscountPercent: 3,
     },
     tax: {
@@ -58,12 +59,13 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
     },
     payment: {
-      recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       // TODO: replace with production recipient address
-      // recipientAddress: '0xFc488aE9cB395B150574Aa5ce8a321c9100b1ee3',
+      recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      // recipientAddress: '0x403A3A81abA974dEb4faF20514ae34FAf9268E28',
+      relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       cryptoDiscountPercent: 3,
     },
     tax: {

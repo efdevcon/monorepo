@@ -123,14 +123,18 @@ export default async function handler(
       ? `${order.url}pay/change/`
       : null
 
-    // Extract payment info from the x402_crypto payment (if any)
-    // Pretix REST API exposes provider-specific data via the `details` field
-    const x402Payment = (order.payments || []).find(
-      (p) => p.provider === 'x402_crypto' && p.state !== 'canceled'
+    // Extract payment info from our crypto payment provider (if any).
+    // The plugin registers as `walletconnect` (WalletConnectPayment.identifier);
+    // older codepaths used `x402_crypto`, kept here for backwards compatibility
+    // with any historical orders. Pretix's REST API exposes provider-specific
+    // data via the `details` field.
+    const cryptoProviders = new Set(['walletconnect', 'x402_crypto'])
+    const cryptoPayment = (order.payments || []).find(
+      (p) => cryptoProviders.has(p.provider) && p.state !== 'canceled'
     )
     let paymentInfo: PaymentInfo | null = null
-    if (x402Payment?.details) {
-      const d = x402Payment.details
+    if (cryptoPayment?.details) {
+      const d = cryptoPayment.details
       paymentInfo = {
         tx_hash: d.tx_hash as string | undefined,
         chain_id: d.chain_id as number | undefined,

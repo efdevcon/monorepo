@@ -213,7 +213,11 @@ export default function CheckoutPage() {
 // ── Checkout content ──
 
 function CheckoutContent() {
-  const daimoPay = TICKETING.checkout.useDaimoPay
+  // When true, the "crypto" payment button skips the in-page x402 picker and
+  // redirects to Pretix's hosted checkout — which dispatches to our installed
+  // WalletConnect plugin (the wc_inject UI). Used as a kill switch for the
+  // in-page x402 flow if anything goes wrong with it.
+  const forcePretixRedirect = TICKETING.checkout.forcePretixRedirect
   const { address, isConnected, chain, connector } = useAccount()
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
@@ -260,6 +264,9 @@ function CheckoutContent() {
   const [txHash, setTxHash] = useState<string | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null)
   const [isRedirecting, setIsRedirecting] = useState(false)
+  // Set true after verify succeeds — used to hide the Pay button during the
+  // short window between "verified" and the actual router.push navigation.
+  const [paymentSucceeded, setPaymentSucceeded] = useState(false)
 
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
@@ -305,6 +312,9 @@ function CheckoutContent() {
   const [directSignError, setDirectSignError] = useState<string | null>(null)
   const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
   const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
+  // useWaitForTransactionReceipt with default confirmations=1 already waits
+  // until the tx is mined into a block — that's our signal to verify. Any
+  // post-mining RPC-indexer lag is handled by the backend verify retry loop.
   const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
 
   // ── Voucher validation ──
@@ -617,7 +627,7 @@ function CheckoutContent() {
   })()
 
   const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
-  const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
+  const cryptoDiscount = paymentMethod === 'crypto' && !forcePretixRedirect ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
   const totalUsdNum = +(subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
   const totalUsd = totalUsdNum.toFixed(2)
 
@@ -639,10 +649,16 @@ function CheckoutContent() {
     return msg || 'Something went wrong'
   }
 
-  function humanizeRelayerError(msg?: string): string {
+  function humanizeRelayerError(msg?: string, category?: string): string {
+    if (category === 'relayer_insufficient_funds') {
+      return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
+    }
+    if (category === 'gas_price_too_high') {
+      return 'Network fees are currently high. Please try again in a minute or switch to another network.'
+    }
     if (!msg) return 'Failed to execute transfer'
-    if (/gas price .* exceeds cap/i.test(msg)) return 'Network gas fees are too high right now. Please try again in a few minutes.'
-    if (/relayer balance .* insufficient/i.test(msg)) return 'The payment service is temporarily unavailable. Please try again shortly.'
+    if (/relayer cannot afford tx/i.test(msg)) return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
+    if (/gas price .* exceeds cap/i.test(msg)) return 'Network fees are currently high. Please try again in a minute or switch to another network.'
     if (/simulation reverted/i.test(msg)) return 'This transaction would fail on-chain. Please check your balance and try again.'
     if (/nonce has already been used/i.test(msg)) return 'This authorization has already been used. Please start a new payment.'
     if (/^insufficient /i.test(msg)) return msg // already human-readable ("Insufficient USDC balance: ...")
@@ -663,6 +679,7 @@ function CheckoutContent() {
     setPurchaseError(null)
     setDirectSignError(null)
     setTokenFilter(null)
+    setPaymentSucceeded(false)
     tokenFilterAutoSelectedRef.current = false
     paymentOptionsAutoLoadedRef.current = null
     autoCheckoutTriggeredRef.current = null
@@ -742,7 +759,7 @@ function CheckoutContent() {
     if (
       openSection === 'payment' &&
       paymentMethod === 'crypto' &&
-      !daimoPay &&
+      !forcePretixRedirect &&
       contactDetailsFilled &&
       cartItems.length > 0 &&
       isConnected &&
@@ -758,7 +775,7 @@ function CheckoutContent() {
       setPurchaseError(null)
       handleCryptoCheckout().finally(() => setPurchaseLoading(false))
     }
-  }, [openSection, paymentMethod, daimoPay, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
+  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
 
   // Add-on selection helpers
   const toggleAddon = (itemId: number) => {
@@ -888,7 +905,7 @@ function CheckoutContent() {
       return
     }
 
-    if (paymentMethod === 'crypto' && !daimoPay && (!isConnected || !address)) {
+    if (paymentMethod === 'crypto' && !forcePretixRedirect && (!isConnected || !address)) {
       setPurchaseError('Please connect your wallet first')
       return
     }
@@ -899,8 +916,8 @@ function CheckoutContent() {
 
     if (paymentMethod === 'fiat') {
       await handleFiatCheckout()
-    } else if (daimoPay) {
-      await handleFiatCheckout('daimo_pay')
+    } else if (forcePretixRedirect) {
+      await handleFiatCheckout('walletconnect')
     } else {
       await handleCryptoCheckout()
     }
@@ -985,7 +1002,7 @@ function CheckoutContent() {
     }
   }
 
-  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'daimo_pay') {
+  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'walletconnect') {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
@@ -1111,6 +1128,7 @@ function CheckoutContent() {
         authorization: auth,
         chainId: paymentDetails.chainId,
         tokenAddress: paymentDetails.tokenAddress,
+        symbol: paymentDetails.tokenSymbol,
       }
       if (isSmartWallet) {
         body.rawSignature = sigHex
@@ -1138,7 +1156,9 @@ function CheckoutContent() {
           return
         }
 
-        // 503 = retryable gas error — auto-retry with backoff
+        // 502 = non-retryable service error (relayer drained, etc.) — show
+        //       operator-facing message immediately, don't hammer the server.
+        // 503 = transient (gas cap exceeded, network busy) — auto-retry with backoff.
         if (executeRes.status === 503 && attempt < maxRetries) {
           const retryAfter = parseInt(executeRes.headers.get('Retry-After') || '15', 10)
           const delay = retryAfter * 1000 * (attempt + 1)
@@ -1148,7 +1168,7 @@ function CheckoutContent() {
         }
 
         // Non-retryable or final attempt — show user-friendly message
-        lastError = humanizeRelayerError(executeData.error) || 'Failed to execute transfer'
+        lastError = humanizeRelayerError(executeData.error, executeData.category) || 'Failed to execute transfer'
         break
       }
 
@@ -1277,8 +1297,8 @@ function CheckoutContent() {
   async function verifyPayment(hash: string, attempt = 1) {
     if (!paymentDetails || !address) return
 
-    const maxAttempts = 5
-    const retryDelay = 8000
+    const maxAttempts = 12
+    const retryDelay = 5000
 
     setIsVerifying(true)
     setPaymentStatus(attempt > 1
@@ -1305,7 +1325,8 @@ function CheckoutContent() {
 
       const data = await res.json()
       if (data.success) {
-        setPaymentStatus(null)
+        setPaymentStatus('Payment confirmed — redirecting to your order...')
+        setPaymentSucceeded(true)
         localStorage.removeItem('devcon-ticket-cart')
         if (newsletter) {
           fetch('/api/subscribe/', {
@@ -1319,10 +1340,22 @@ function CheckoutContent() {
         return
       }
 
-      // Auto-retry on transient errors (tx not confirmed yet)
-      const isRetryable = data.details?.includes('not found') ||
-        data.details?.includes('try again') ||
-        data.error?.includes('not found')
+      // Auto-retry on transient errors. The verify endpoint can fail for reasons
+      // that resolve on their own after a few seconds: the backend RPC hasn't
+      // indexed the tx yet (not mined / not found / insufficient confirmations),
+      // a hiccup in the RPC, OR — for smart-wallet ETH flows — `debug_traceTransaction`
+      // returning stale data that doesn't show the internal transfer yet, which
+      // surfaces as a "from/to mismatch" or "no matching internal transfer" error.
+      const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
+      const isRetryable =
+        msg.includes('not found') ||
+        msg.includes('try again') ||
+        msg.includes('not mined') ||
+        msg.includes('insufficient confirmations') ||
+        msg.includes('rpc error') ||
+        msg.includes('no matching internal transfer') ||
+        msg.includes('no matching transfer found') ||
+        msg.includes('from/to mismatch')
       if (attempt < maxAttempts && isRetryable) {
         await new Promise(r => setTimeout(r, retryDelay))
         return verifyPayment(hash, attempt + 1)
@@ -1344,7 +1377,9 @@ function CheckoutContent() {
   }
 
   // ── Checkout button state ──
-  const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
+  // forcePretixRedirect mode hands wallet-connection over to Pretix's hosted
+  // checkout, so devcon doesn't require a local wallet for the crypto path.
+  const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || forcePretixRedirect || isConnected)
 
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
@@ -1363,7 +1398,9 @@ function CheckoutContent() {
             <span className={css['mobile-order-bar-total']}>
               <span>${totalUsd}</span>
               {!mobileOrderOpen && showGstBreakdown && (
-                <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                <span className={css['mobile-order-bar-tax']}>
+                  incl. {vatPercent}% {vatLabel}
+                </span>
               )}
             </span>
           </button>
@@ -1379,7 +1416,10 @@ function CheckoutContent() {
                           <span className={css['panel-item-name']}>
                             {item.name}
                             {isPaid && vatPercent > 0 && (
-                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                              <span className={css['panel-item-tax']}>
+                                {' '}
+                                ({vatLabel} {vatPercent}%)
+                              </span>
                             )}
                           </span>
                           <div className={css['panel-item-right']}>
@@ -1419,7 +1459,10 @@ function CheckoutContent() {
                           <span>
                             {item.name}
                             {!isFree && vatPercent > 0 && (
-                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                              <span className={css['panel-item-tax']}>
+                                {' '}
+                                ({vatLabel} {vatPercent}%)
+                              </span>
                             )}
                           </span>
                           {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -1488,7 +1531,9 @@ function CheckoutContent() {
                         <span>${totalExclGst.toFixed(2)}</span>
                       </div>
                       <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                        <span>{vatLabel} @ {vatPercent}%</span>
+                        <span>
+                          {vatLabel} @ {vatPercent}%
+                        </span>
                         <span>${gstAmount.toFixed(2)}</span>
                       </div>
                     </>
@@ -1716,42 +1761,51 @@ function CheckoutContent() {
                     <div className={css['description-block']}>
                       <p className={css['description-title']}>Where should we send your tickets?</p>
                       <p className={css['description-sub']}>
-                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email address.
+                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email
+                        address.
                       </p>
                     </div>
                     {attendeeNameAsked && (
-                    <div className={css['field-row']}>
-                      <div className={css['field']}>
-                        <label htmlFor="first-name">
-                          Name{attendeeNameRequired && <span className={css['required']}>*</span>}
-                        </label>
-                        <Input
-                          id="first-name"
-                          type="text"
-                          placeholder="First name"
-                          className={showContactErrors && attendeeNameRequired && firstName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
-                          value={firstName}
-                          onChange={e => setFirstName(e.target.value)}
-                        />
-                        {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
-                          <p className={css['field-error']}>Please enter your first name.</p>
-                        )}
+                      <div className={css['field-row']}>
+                        <div className={css['field']}>
+                          <label htmlFor="first-name">
+                            Name{attendeeNameRequired && <span className={css['required']}>*</span>}
+                          </label>
+                          <Input
+                            id="first-name"
+                            type="text"
+                            placeholder="First name"
+                            className={
+                              showContactErrors && attendeeNameRequired && firstName.trim() === ''
+                                ? 'border-[#ef4444] shadow-none'
+                                : ''
+                            }
+                            value={firstName}
+                            onChange={e => setFirstName(e.target.value)}
+                          />
+                          {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
+                            <p className={css['field-error']}>Please enter your first name.</p>
+                          )}
+                        </div>
+                        <div className={css['field']}>
+                          <label htmlFor="last-name">&nbsp;</label>
+                          <Input
+                            id="last-name"
+                            type="text"
+                            placeholder="Last name"
+                            className={
+                              showContactErrors && attendeeNameRequired && lastName.trim() === ''
+                                ? 'border-[#ef4444] shadow-none'
+                                : ''
+                            }
+                            value={lastName}
+                            onChange={e => setLastName(e.target.value)}
+                          />
+                          {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
+                            <p className={css['field-error']}>Please enter your last name.</p>
+                          )}
+                        </div>
                       </div>
-                      <div className={css['field']}>
-                        <label htmlFor="last-name">&nbsp;</label>
-                        <Input
-                          id="last-name"
-                          type="text"
-                          placeholder="Last name"
-                          className={showContactErrors && attendeeNameRequired && lastName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
-                          value={lastName}
-                          onChange={e => setLastName(e.target.value)}
-                        />
-                        {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
-                          <p className={css['field-error']}>Please enter your last name.</p>
-                        )}
-                      </div>
-                    </div>
                     )}
                     <div className={css['field-row']}>
                       <div className={css['field']}>
@@ -1776,7 +1830,11 @@ function CheckoutContent() {
                           id="confirm-email"
                           type="email"
                           placeholder="Confirm email"
-                          className={showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim()) ? 'border-[#ef4444] shadow-none' : ''}
+                          className={
+                            showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim())
+                              ? 'border-[#ef4444] shadow-none'
+                              : ''
+                          }
                           value={confirmEmail}
                           onChange={e => setConfirmEmail(e.target.value)}
                         />
@@ -1788,9 +1846,7 @@ function CheckoutContent() {
                         )}
                       </div>
                     </div>
-                    <label
-                      className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer"
-                    >
+                    <label className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer">
                       <Checkbox
                         checked={newsletter}
                         onCheckedChange={checked => setNewsletter(checked === true)}
@@ -1812,10 +1868,16 @@ function CheckoutContent() {
                           setShowContactErrors(true)
                           setTimeout(() => {
                             const firstErrorId =
-                              attendeeNameRequired && firstName.trim() === '' ? 'first-name' :
-                              attendeeNameRequired && lastName.trim() === '' ? 'last-name' :
-                              !isEmail(email.trim()) ? 'email' : 'confirm-email'
-                            document.getElementById(firstErrorId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                              attendeeNameRequired && firstName.trim() === ''
+                                ? 'first-name'
+                                : attendeeNameRequired && lastName.trim() === ''
+                                ? 'last-name'
+                                : !isEmail(email.trim())
+                                ? 'email'
+                                : 'confirm-email'
+                            document
+                              .getElementById(firstErrorId)
+                              ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                           }, 50)
                           return
                         }
@@ -2056,7 +2118,7 @@ function CheckoutContent() {
                   <div className={css['section-body']}>
                     <div className={css['description-block']}>
                       <p className={css['description-title']}>Select your preferred payment method</p>
-                      {!daimoPay && (
+                      {!forcePretixRedirect && (
                         <p className={css['description-sub']}>
                           Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying
                           with Crypto.
@@ -2073,7 +2135,7 @@ function CheckoutContent() {
                           <div className={css['payment-option-header']}>
                             <div className={css['payment-option-title-row']}>
                               <span className={css['payment-option-title']}>Crypto</span>
-                              {!daimoPay && (
+                              {!forcePretixRedirect && (
                                 <span className={css['save-badge']}>
                                   SAVE {TICKETING.payment.cryptoDiscountPercent}%
                                 </span>
@@ -2088,9 +2150,7 @@ function CheckoutContent() {
                               <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
                             </div>
                           </div>
-                          <p className={css['payment-option-desc']}>
-                            {daimoPay ? 'via Daimo Pay' : 'All major wallets & networks'}
-                          </p>
+                          <p className={css['payment-option-desc']}>All major wallets & networks</p>
                         </div>
                       </label>
                       <label
@@ -2107,7 +2167,7 @@ function CheckoutContent() {
                       </label>
                     </div>
 
-                    {paymentMethod === 'crypto' && !daimoPay && (
+                    {paymentMethod === 'crypto' && !forcePretixRedirect && (
                       <>
                         {isConnected ? (
                           <div className={css['wallet-connected']}>
@@ -2145,7 +2205,7 @@ function CheckoutContent() {
                       </>
                     )}
 
-                    {paymentMethod === 'crypto' && !daimoPay && paymentDetails && address && (
+                    {paymentMethod === 'crypto' && !forcePretixRedirect && paymentDetails && address && (
                       <div className={css['payment-options-block']}>
                         <div className={css['payment-options-header']}>
                           <span className={css['payment-options-title']}>How would you like to pay?</span>
@@ -2159,7 +2219,18 @@ function CheckoutContent() {
                           <>
                             {paymentOptions.length > 0 &&
                               (() => {
-                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))]
+                                // Canonical asset chip order — independent of the order the
+                                // backend returns options in. Symbols not in the list fall to
+                                // the end so newly-added tokens stay visible.
+                                const ASSET_ORDER = ['ETH', 'USDC', 'USDT0', 'USDT']
+                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))].sort((a, b) => {
+                                  const ia = ASSET_ORDER.indexOf(a)
+                                  const ib = ASSET_ORDER.indexOf(b)
+                                  if (ia === -1 && ib === -1) return a.localeCompare(b)
+                                  if (ia === -1) return 1
+                                  if (ib === -1) return -1
+                                  return ia - ib
+                                })
 
                                 // Networks for selected asset
                                 const networksForAsset = tokenFilter
@@ -2357,8 +2428,11 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {/* Pay button */}
-                                    {selectedOption && (
+                                    {/* Pay button — hidden while fresh options are loading (avoids
+                                         a stale "Pay: $X on Chain" flash) and after a verify has
+                                         succeeded (avoids an accidental second click during the
+                                         router.push window). */}
+                                    {selectedOption && !paymentOptionsLoading && !paymentSucceeded && (
                                       <button
                                         type="button"
                                         className={css['btn-pay-now']}
@@ -2378,6 +2452,11 @@ function CheckoutContent() {
                                             } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
                                       </button>
                                     )}
+                                    {paymentSucceeded && (
+                                      <div className={css['payment-notice']}>
+                                        {paymentStatus || 'Payment confirmed — redirecting...'}
+                                      </div>
+                                    )}
                                   </>
                                 )
                               })()}
@@ -2386,8 +2465,8 @@ function CheckoutContent() {
                               paymentOptions.filter(o => o.sufficient).length === 0 &&
                               paymentDetails && (
                                 <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                                  Insufficient balance. Top up your wallet or connect one with enough USDC, USDT, or
-                                  ETH.
+                                  Insufficient balance. Top up your wallet or connect one with enough ETH, USDC, or
+                                  USDT.
                                 </p>
                               )}
                           </>
@@ -2460,9 +2539,7 @@ function CheckoutContent() {
                                 {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                               </button>
                             </div>
-                            {voucherError && (
-                              <p className={css['discount-error']}>{voucherError}</p>
-                            )}
+                            {voucherError && <p className={css['discount-error']}>{voucherError}</p>}
                           </>
                         )}
                       </div>
@@ -2483,7 +2560,9 @@ function CheckoutContent() {
                           <span className={css['mobile-inline-summary-total']}>
                             <span>${totalUsd}</span>
                             {!mobileInlineSummaryOpen && showGstBreakdown && (
-                              <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                              <span className={css['mobile-order-bar-tax']}>
+                                incl. {vatPercent}% {vatLabel}
+                              </span>
                             )}
                           </span>
                         </button>
@@ -2498,7 +2577,10 @@ function CheckoutContent() {
                                       <span className={css['panel-item-name']}>
                                         {item.name}
                                         {isPaid && vatPercent > 0 && (
-                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                          <span className={css['panel-item-tax']}>
+                                            {' '}
+                                            ({vatLabel} {vatPercent}%)
+                                          </span>
                                         )}
                                       </span>
                                       <div className={css['panel-item-right']}>
@@ -2538,7 +2620,10 @@ function CheckoutContent() {
                                       <span>
                                         {item.name}
                                         {!isFree && vatPercent > 0 && (
-                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                          <span className={css['panel-item-tax']}>
+                                            {' '}
+                                            ({vatLabel} {vatPercent}%)
+                                          </span>
                                         )}
                                       </span>
                                       {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -2577,7 +2662,9 @@ function CheckoutContent() {
                                     <span>${totalExclGst.toFixed(2)}</span>
                                   </div>
                                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                    <span>{vatLabel} @ {vatPercent}%</span>
+                                    <span>
+                                      {vatLabel} @ {vatPercent}%
+                                    </span>
                                     <span>${gstAmount.toFixed(2)}</span>
                                   </div>
                                 </>
@@ -2624,7 +2711,7 @@ function CheckoutContent() {
                       </p>
                     </div>
 
-                    {!(paymentMethod === 'crypto' && !daimoPay) && (
+                    {!(paymentMethod === 'crypto' && !forcePretixRedirect) && (
                       <button
                         type="button"
                         className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
@@ -2640,19 +2727,13 @@ function CheckoutContent() {
                       </button>
                     )}
 
-                    {(paymentMethod !== 'crypto' || daimoPay) && (
+                    {paymentMethod !== 'crypto' && (
                       <div className={css['stripe-note']}>
-                        {paymentMethod === 'crypto' && daimoPay ? (
-                          <span>
-                            Powered by <strong>Daimo Pay</strong>
-                          </span>
-                        ) : (
-                          <img
-                            src="/assets/images/powered-by-stripe.svg"
-                            alt="Powered by Stripe"
-                            className={css['stripe-note-img']}
-                          />
-                        )}
+                        <img
+                          src="/assets/images/powered-by-stripe.svg"
+                          alt="Powered by Stripe"
+                          className={css['stripe-note-img']}
+                        />
                       </div>
                     )}
                   </div>
@@ -2710,7 +2791,10 @@ function CheckoutContent() {
                         <span className={css['panel-item-name']}>
                           {item.name}
                           {isPaid && vatPercent > 0 && (
-                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            <span className={css['panel-item-tax']}>
+                              {' '}
+                              ({vatLabel} {vatPercent}%)
+                            </span>
                           )}
                         </span>
                         <div className={css['panel-item-right']}>
@@ -2750,7 +2834,10 @@ function CheckoutContent() {
                         <span>
                           {item.name}
                           {!isFree && vatPercent > 0 && (
-                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            <span className={css['panel-item-tax']}>
+                              {' '}
+                              ({vatLabel} {vatPercent}%)
+                            </span>
                           )}
                         </span>
                         {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -2794,11 +2881,7 @@ function CheckoutContent() {
                     </button>
                   </div>
                 ) : !discountOpen ? (
-                  <button
-                    type="button"
-                    className={css['discount-add-btn']}
-                    onClick={() => setDiscountOpen(true)}
-                  >
+                  <button type="button" className={css['discount-add-btn']} onClick={() => setDiscountOpen(true)}>
                     <Tag size={16} />
                     Add discount
                   </button>
@@ -2826,9 +2909,7 @@ function CheckoutContent() {
                         {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                       </button>
                     </div>
-                    {voucherError && (
-                      <p className={css['discount-error']}>{voucherError}</p>
-                    )}
+                    {voucherError && <p className={css['discount-error']}>{voucherError}</p>}
                   </>
                 )}
               </div>
@@ -2856,7 +2937,9 @@ function CheckoutContent() {
                       <span>${totalExclGst.toFixed(2)}</span>
                     </div>
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>{vatLabel} @ {vatPercent}%</span>
+                      <span>
+                        {vatLabel} @ {vatPercent}%
+                      </span>
                       <span>${gstAmount.toFixed(2)}</span>
                     </div>
                   </>
