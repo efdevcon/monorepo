@@ -5,7 +5,7 @@ import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
 import { Ticket, Shirt, Coffee, ChevronDown, ArrowRight } from 'lucide-react'
-import { Faq, FAQ_ITEMS, type FaqItem } from 'components/common/faq'
+import { Faq, type FaqItem } from 'components/common/faq'
 import { BloomingEthFlower } from 'components/domain/landing-page/BloomingEthFlower'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
@@ -22,8 +22,8 @@ import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
 
-const TICKETS_FAQ_CATEGORY = 'Tickets & availability'
-const TICKETS_FAQ_LIMIT = 7
+const TICKETS_FAQ_CATEGORIES = ['Tickets & availability', 'Pricing & discounts']
+const TICKETS_FAQ_PER_CATEGORY = 4
 
 interface ApplicationRow {
   id: string
@@ -83,7 +83,7 @@ const APPLICATION_ROWS: ApplicationRow[] = [
   {
     id: 'builders',
     name: 'Builders',
-    price: 'from $299',
+    price: 'from $349',
     date: 'Opens in June',
     live: false,
   },
@@ -128,11 +128,7 @@ function ApplicationRowItem({
           {row.live && <span className={css['row-live-badge']}>LIVE</span>}
           <span className={cn(css['row-price'], { [css['row-price-bold']]: row.live })}>{row.price}</span>
           {row.live && row.applyUrl ? (
-            <Link
-              to={row.applyUrl}
-              className={css['row-apply']}
-              onClick={(e: React.MouseEvent) => e.stopPropagation()}
-            >
+            <Link to={row.applyUrl} className={css['row-apply']} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
               {applyLabel}
               <ArrowRight size={16} strokeWidth={2.5} />
             </Link>
@@ -179,31 +175,32 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const waves = t.raw('sale_waves.rows') as Array<{ name: string; price: string; date: string }>
   const communityRows = t.raw('community.rows') as Array<{ name: string; detail?: string; price: string; date: string }>
 
-  const resolvedFaqItems: FaqItem[] = faqItems && faqItems.length > 0
-    ? faqItems.map(i => ({ q: i.question, a: <ReactMarkdown>{i.answer}</ReactMarkdown> }))
-    : [
-        { q: tFaq('item_1.q'), a: tFaq('item_1.a') },
-        {
-          q: tFaq('item_2.q'),
-          a: (
-            <>
-              <p>{tFaq('item_2.a_intro')}</p>
-              <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
-                <li>
-                  <strong>{tFaq('item_2.community_h')}</strong> — {tFaq('item_2.community_b')}
-                </li>
-                <li>
-                  <strong>{tFaq('item_2.applications_h')}</strong> — <em>{tFaq('item_2.applications_b')}</em>
-                </li>
-                <li>
-                  <strong>{tFaq('item_2.ecosystem_h')}</strong> — <em>{tFaq('item_2.ecosystem_b')}</em>
-                </li>
-              </ul>
-            </>
-          ),
-        },
-        { q: tFaq('item_3.q'), a: tFaq('item_3.a') },
-      ]
+  const resolvedFaqItems: FaqItem[] =
+    faqItems && faqItems.length > 0
+      ? faqItems.map(i => ({ q: i.question, a: <ReactMarkdown>{i.answer}</ReactMarkdown> }))
+      : [
+          { q: tFaq('item_1.q'), a: tFaq('item_1.a') },
+          {
+            q: tFaq('item_2.q'),
+            a: (
+              <>
+                <p>{tFaq('item_2.a_intro')}</p>
+                <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
+                  <li>
+                    <strong>{tFaq('item_2.community_h')}</strong> — {tFaq('item_2.community_b')}
+                  </li>
+                  <li>
+                    <strong>{tFaq('item_2.applications_h')}</strong> — <em>{tFaq('item_2.applications_b')}</em>
+                  </li>
+                  <li>
+                    <strong>{tFaq('item_2.ecosystem_h')}</strong> — <em>{tFaq('item_2.ecosystem_b')}</em>
+                  </li>
+                </ul>
+              </>
+            ),
+          },
+          { q: tFaq('item_3.q'), a: tFaq('item_3.a') },
+        ]
   const [expandedApplicationId, setExpandedApplicationId] = useState<string | null>(null)
 
   return (
@@ -353,13 +350,28 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                   {t('hero.subscribe_button')}
                 </a>
                 <div className={css['social-icons']}>
-                  <a href="https://x.com/EFDevcon" target="_blank" rel="noopener noreferrer" className={css['social-icon-btn']}>
+                  <a
+                    href="https://x.com/EFDevcon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['social-icon-btn']}
+                  >
                     <IconX />
                   </a>
-                  <a href="https://www.instagram.com/efdevcon/" target="_blank" rel="noopener noreferrer" className={css['social-icon-btn']}>
+                  <a
+                    href="https://www.instagram.com/efdevcon/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['social-icon-btn']}
+                  >
                     <IconInstagram />
                   </a>
-                  <a href="https://farcaster.xyz/~/channel/devcon" target="_blank" rel="noopener noreferrer" className={css['social-icon-btn']}>
+                  <a
+                    href="https://farcaster.xyz/~/channel/devcon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={css['social-icon-btn']}
+                  >
                     <IconFarcaster />
                   </a>
                 </div>
@@ -470,9 +482,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                     key={row.id}
                     row={row}
                     isOpen={expandedApplicationId === row.id}
-                    onToggle={() =>
-                      setExpandedApplicationId(prev => (prev === row.id ? null : row.id))
-                    }
+                    onToggle={() => setExpandedApplicationId(prev => (prev === row.id ? null : row.id))}
                     applyLabel={t('applications.apply')}
                   />
                 ))}
@@ -519,16 +529,18 @@ export async function getStaticProps(context: any) {
   let faqItems: Array<{ question: string; answer: string }> = []
   try {
     const data = await getFaqData()
-    faqItems = data.items
-      .filter(i => i.category === TICKETS_FAQ_CATEGORY && i.answer.trim() !== '')
-      .slice(0, TICKETS_FAQ_LIMIT)
-      .map(i => ({ question: i.question, answer: i.answer }))
+    faqItems = TICKETS_FAQ_CATEGORIES.flatMap(category =>
+      data.items
+        .filter(i => i.category === category && i.answer.trim() !== '')
+        .slice(0, TICKETS_FAQ_PER_CATEGORY)
+        .map(i => ({ question: i.question, answer: i.answer }))
+    )
   } catch {
-    // Fall back to empty list — TicketsPage renders hardcoded FAQ_ITEMS instead
+    // Fall back to empty list — TicketsPage renders translated fallback instead
   }
 
   return {
     props: { faqItems, messages },
-    revalidate: 60,
+    revalidate: 3600, // 1 hour
   }
 }

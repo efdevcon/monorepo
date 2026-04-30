@@ -660,7 +660,7 @@ function StoreContent({
 
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'Indian Residents \ud83c\udde6\ud83c\uddfa'}</h3>
+                    <h3 className={css['coming-soon-card-title']}>{'Indian Residents \ud83c\uddee\ud83c\uddf3'}</h3>
                     <p className={css['card-meta']}>Launches May 12</p>
                     <p className={css['card-description']}>
                       Indian residents can apply using{' '}

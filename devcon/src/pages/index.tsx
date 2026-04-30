@@ -9,8 +9,8 @@ import css from './index.module.scss'
 import themes from './themes.module.scss'
 import { getMessages } from 'utils/intl'
 
-const HOMEPAGE_FAQ_CATEGORY = 'Tickets & availability'
-const HOMEPAGE_FAQ_LIMIT = 7
+const HOMEPAGE_FAQ_CATEGORIES = ['Tickets & availability', 'Pricing & discounts']
+const HOMEPAGE_FAQ_PER_CATEGORY = 4
 
 export default function Index(props: any) {
   return (
@@ -34,10 +34,12 @@ export async function getStaticProps(context: any) {
   let faqItems: Array<{ question: string; answer: string }> = []
   try {
     const data = await getFaqData()
-    faqItems = data.items
-      .filter(i => i.category === HOMEPAGE_FAQ_CATEGORY && i.answer.trim() !== '')
-      .slice(0, HOMEPAGE_FAQ_LIMIT)
-      .map(i => ({ question: i.question, answer: i.answer }))
+    faqItems = HOMEPAGE_FAQ_CATEGORIES.flatMap(category =>
+      data.items
+        .filter(i => i.category === category && i.answer.trim() !== '')
+        .slice(0, HOMEPAGE_FAQ_PER_CATEGORY)
+        .map(i => ({ question: i.question, answer: i.answer }))
+    )
   } catch {
     // Fall back to empty list — FaqSection will render its hardcoded fallback
   }
