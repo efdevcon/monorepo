@@ -1,5 +1,5 @@
 /**
- * Form configuration backed by the NocoDB "Form config" table (m14tlu3gzv34agd).
+ * Form configuration backed by the NocoDB "Form config" table (mz6lcse5kfidb23).
  *
  * Replaces the previous static `src/config/nocodb-forms.ts` so non-engineers can
  * toggle a form's open/closed state and OTP requirement directly in NocoDB.
@@ -11,7 +11,7 @@
 const NOCODB_BASE_URL = process.env.NOCODB_BASE_URL
 const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN
 
-const FORM_CONFIG_TABLE_ID = 'm14tlu3gzv34agd'
+const FORM_CONFIG_TABLE_ID = 'mz6lcse5kfidb23'
 
 export interface NocodbFormConfig {
   formSlug: string
