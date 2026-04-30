@@ -71,7 +71,7 @@ const APPLICATION_ROWS: ApplicationRow[] = [
     applyUrl: '/form/student-application',
     live: true,
   },
-  { id: 'builders', name: 'Builders', price: 'from $399', date: 'Opens in June', live: false },
+  { id: 'builders', name: 'Builders', price: 'TBD', date: 'Opens in June', live: false },
 ]
 
 const FAQ_ITEMS = [
@@ -118,8 +118,8 @@ export default function AcademicProgramPage() {
               ahead of Devcon 8
             </h2>
             <p className={css['body']}>
-              Shape the next generation of Ethereum builders at your campus and bring your community to Devcon in
-              Mumbai this November.
+              Shape the next generation of Ethereum builders at your campus and bring your community to Devcon in Mumbai
+              this November.
             </p>
           </div>
 
@@ -186,9 +186,10 @@ export default function AcademicProgramPage() {
               <h3 className={css['heading-3']}>Who can apply</h3>
               <div className={css['body']}>
                 <p style={{ marginBottom: 16 }}>
-                  We support initiatives such as <strong>introductory talks</strong>, <strong>technical workshops</strong>,{' '}
-                  <strong>panel discussions</strong>, <strong>research presentations</strong>, <strong>hackathons</strong>, or{' '}
-                  <strong>meetups</strong> that:
+                  We support initiatives such as <strong>introductory talks</strong>,{' '}
+                  <strong>technical workshops</strong>, <strong>panel discussions</strong>,{' '}
+                  <strong>research presentations</strong>, <strong>hackathons</strong>, or <strong>meetups</strong>{' '}
+                  that:
                 </p>
                 <ul className={css['detail-list']}>
                   <li>
@@ -247,8 +248,7 @@ export default function AcademicProgramPage() {
               </div>
               <p className="text-sm text-[#594d73] text-center leading-5 px-4">
                 We review applications on a rolling basis and will get back to you <strong>within 15 days</strong>.
-                <br className="hidden sm:block" />
-                {' '}Got a question? Contact us at{' '}
+                <br className="hidden sm:block" /> Got a question? Contact us at{' '}
                 <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-[#7235ed] hover:underline break-all">
                   {CONTACT_EMAIL}
                 </a>

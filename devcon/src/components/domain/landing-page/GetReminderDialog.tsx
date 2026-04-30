@@ -166,7 +166,8 @@ export const GetReminderDialog = ({ open, onOpenChange }: GetReminderDialogProps
                 <div className="flex items-center justify-between font-extrabold w-full whitespace-nowrap">
                   <p className="text-base text-[#f9f8fa] leading-4">{t('early_bird_label')}</p>
                   <div className="flex gap-1 items-end">
-                    <p className="text-sm text-[#aca6b9] leading-4">{t('pricing')}</p>
+                    <p className="text-sm text-[#aca6b9] line-through leading-4">{t('pricing_full')}</p>
+                    <p className="text-base text-white leading-4">{t('pricing_discounted')}</p>
                   </div>
                 </div>
               </div>

@@ -144,12 +144,9 @@ export const Hero = () => {
                   <div className="flex items-center justify-between font-extrabold text-sm">
                     <p className="text-white leading-[14px]">{t('early_bird_label')}</p>
                     <div className="flex gap-1 items-end">
-                      <p className="text-[#9188a2] text-sm leading-4">{t('pricing')}</p>
+                      <p className="text-[#9188a2] line-through leading-[14px]">{t('pricing_full')}</p>
+                      <p className="text-white text-base leading-4">{t('pricing_discounted')}</p>
                     </div>
-                    {/* <div className="flex gap-1 items-end">
-                      <p className="text-[#9188a2] line-through leading-[14px]">$699</p>
-                      <p className="text-white text-base leading-4">$349</p>
-                    </div> */}
                   </div>
                 </div>
 

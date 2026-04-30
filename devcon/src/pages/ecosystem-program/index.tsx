@@ -43,7 +43,7 @@ const APPLICATION_ROWS: ApplicationRow[] = [
   {
     id: 'builders',
     name: 'Builders',
-    price: 'from $349',
+    price: 'TBD',
     date: 'Opens in June',
     live: false,
   },
@@ -88,9 +88,20 @@ export default function EcosystemProgramPage() {
   const ecosystemBullets = t.raw('ecosystem_needs.bullets') as Array<{ strong: string; rest: string }>
   const supportTagItems = t.raw('support_tags.items') as string[]
   const whoCanApplyFormats = t.raw('who_can_apply.intro_formats') as string[]
-  const whoCanApplyBullets = t.raw('who_can_apply.bullets') as Array<{ prefix?: string; strong: string; suffix?: string; rest?: string }>
-  const receiveBullets = t.raw('what_you_can_receive.bullets') as Array<string | { prefix: string; strong: string; suffix: string }>
-  const otherSupportBullets = t.raw('other_support.bullets') as Array<{ prefix: string; strong: string; suffix: string }>
+  const whoCanApplyBullets = t.raw('who_can_apply.bullets') as Array<{
+    prefix?: string
+    strong: string
+    suffix?: string
+    rest?: string
+  }>
+  const receiveBullets = t.raw('what_you_can_receive.bullets') as Array<
+    string | { prefix: string; strong: string; suffix: string }
+  >
+  const otherSupportBullets = t.raw('other_support.bullets') as Array<{
+    prefix: string
+    strong: string
+    suffix: string
+  }>
   const applicationRows = t.raw('other_support.rows') as Array<{ name: string; price: string; date: string }>
   const faqItems = t.raw('other_support.faq') as Array<{ q: string; a: string }>
 
