@@ -11,7 +11,7 @@ import IconCalendar from 'assets/icons/calendar.svg'
 import IconWatch from 'assets/icons/on_demand_video.svg'
 import { Button } from 'lib/components/button'
 import AppIcons from 'assets/icons/app-icons.svg'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react'
 import { useRouter } from 'next/router'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import NextImage from 'next/image'
@@ -118,17 +118,20 @@ const FoldoutContent = ({ sections, currentPath, onLinkClick }: { sections: Sect
         )}
         <div className={css['foldout-items']}>
           {section.items.map((c, cIdx) => {
-            const isActive = currentPath && c.url && !c.url.startsWith('http') &&
+            const isExternal = c.url?.startsWith('http')
+            const isActive = currentPath && c.url && !isExternal &&
               currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
             return (
               <Link
                 key={cIdx}
-                indicateExternal
                 className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
                 to={c.url}
                 onClick={onLinkClick}
               >
-                {c.title}
+                <span className="inline-flex items-center gap-1">
+                  {c.title}
+                  {isExternal && <ArrowUpRight size={14} strokeWidth={2} />}
+                </span>
               </Link>
             )
           })}

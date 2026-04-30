@@ -8,7 +8,7 @@ const cardMeta = [
   { icon: CircleFadingArrowUp, href: 'https://forum.devcon.org', external: true },
   { icon: Newspaper, href: 'https://devcon.org/Devcon__Devconnect_Presskit.pdf', external: true },
   { icon: CalendarPlus2, href: '/ecosystem-program', external: false },
-  { icon: HandHeart, href: null, external: false },
+  { icon: HandHeart, href: '/form/volunteer-waitlist', external: false },
 ]
 
 export const ContributeAndSupport = () => {

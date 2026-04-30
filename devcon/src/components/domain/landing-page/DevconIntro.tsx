@@ -1,5 +1,6 @@
 import React from 'react'
-import DC8Logo from 'components/common/dc-8/hero/images/devcon-8-india-logo.svg'
+import Image from 'next/image'
+import DC8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -9,7 +10,7 @@ export const DevconIntro = () => {
   return (
     <div className="relative section py-8 sm:py-10">
       <div className="flex flex-col items-center gap-4 sm:gap-6 text-center">
-        <DC8Logo className="w-[140px] sm:w-[182px] h-auto [&_path]:fill-[#160b2b]" />
+        <Image src={DC8Logo} alt="Devcon 8 India" className="w-[140px] sm:w-[182px] h-auto" priority />
 
         <div className="flex flex-col items-center gap-3 sm:gap-4 max-w-[620px]">
           <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">

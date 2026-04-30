@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
+import ReactMarkdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { Ticket, Shirt, Coffee, ChevronDown } from 'lucide-react'
-import { Faq, FaqItem } from 'components/common/faq'
+import { Ticket, Shirt, Coffee, ChevronDown, ArrowRight } from 'lucide-react'
+import { Faq, FAQ_ITEMS, type FaqItem } from 'components/common/faq'
+import { BloomingEthFlower } from 'components/domain/landing-page/BloomingEthFlower'
+import { getFaqData } from 'services/faq'
+import { getMessages } from 'utils/intl'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconFarcaster from 'assets/icons/farcaster.svg'
@@ -12,11 +16,146 @@ import themes from '../themes.module.scss'
 import HeroBackground from './updated-hero.png'
 import EarlyBirdTicket from './big-ticket.png'
 import EarlyBirdMobile from './small-ticket.png'
+import ArtOverlayBg from './tickets-art-overlay-bg.png'
+import ArtOverlayText from 'assets/images/pages/tickets-art-overlay-text.svg'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
 
-export default function TicketsPage() {
+const TICKETS_FAQ_CATEGORY = 'Tickets & availability'
+const TICKETS_FAQ_LIMIT = 7
+
+interface ApplicationRow {
+  id: string
+  name: string
+  price: string
+  date?: string
+  applyUrl?: string
+  live: boolean
+  criteria?: React.ReactNode
+}
+
+const STUDENT_CRITERIA = (
+  <>
+    <p>
+      <strong>All applicants should meet the following criteria:</strong>
+    </p>
+    <ul>
+      <li>
+        Currently enrolled in an <strong>accredited university degree program</strong> (Bachelor, Master, or PhD)
+      </li>
+      <li>
+        Studying fields such as computer science, engineering, mathematics, economics, law, governance, public policy,
+        or other relevant disciplines
+      </li>
+      <li>
+        Students contributing to research, open-source projects, or academic work related to blockchain, cryptography,
+        governance, or digital public infrastructure
+      </li>
+      <li>
+        Students involved in university research groups, blockchain clubs, policy initiatives, or developer communities
+      </li>
+      <li>Students with a demonstrated interest in Ethereum and open technologies</li>
+    </ul>
+    <p>
+      <strong>Please note:</strong> Short-term courses, bootcamps, and online-only programs are not eligible.
+    </p>
+  </>
+)
+
+const APPLICATION_ROWS: ApplicationRow[] = [
+  {
+    id: 'indian-students',
+    name: 'Indian Students',
+    price: '$25',
+    applyUrl: '/form/student-application',
+    live: true,
+    criteria: STUDENT_CRITERIA,
+  },
+  {
+    id: 'international-students',
+    name: 'International Students',
+    price: '$99',
+    applyUrl: '/form/student-application',
+    live: true,
+    criteria: STUDENT_CRITERIA,
+  },
+  {
+    id: 'builders',
+    name: 'Builders',
+    price: 'from $299',
+    date: 'Opens in June',
+    live: false,
+  },
+]
+
+function ApplicationRowItem({
+  row,
+  isOpen,
+  onToggle,
+  applyLabel,
+}: {
+  row: ApplicationRow
+  isOpen: boolean
+  onToggle: () => void
+  applyLabel: string
+}) {
+  const isExpandable = !!row.criteria
+
+  return (
+    <div
+      className={cn(css['ticket-type-row-expandable'], {
+        [css['ticket-type-row-expanded']]: isExpandable && isOpen,
+        [css['ticket-type-row-clickable']]: isExpandable,
+      })}
+      onClick={isExpandable ? onToggle : undefined}
+      role={isExpandable ? 'button' : undefined}
+      tabIndex={isExpandable ? 0 : undefined}
+      onKeyDown={
+        isExpandable
+          ? e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onToggle()
+              }
+            }
+          : undefined
+      }
+    >
+      <div className={css['ticket-type-row-main']}>
+        <span className={cn(css['row-name'], { [css['row-name-bold']]: row.live })}>{row.name}</span>
+        <div className={css['row-meta']}>
+          {row.live && <span className={css['row-live-badge']}>LIVE</span>}
+          <span className={cn(css['row-price'], { [css['row-price-bold']]: row.live })}>{row.price}</span>
+          {row.live && row.applyUrl ? (
+            <Link
+              to={row.applyUrl}
+              className={css['row-apply']}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            >
+              {applyLabel}
+              <ArrowRight size={16} strokeWidth={2.5} />
+            </Link>
+          ) : (
+            <span className={css['row-date']}>{row.date}</span>
+          )}
+        </div>
+      </div>
+      {isExpandable && isOpen && (
+        <>
+          <hr className={css['row-divider']} />
+          <div className={css['row-criteria']}>{row.criteria}</div>
+        </>
+      )}
+    </div>
+  )
+}
+
+interface TicketsPageProps {
+  faqItems?: Array<{ question: string; answer: string }>
+}
+
+export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const t = useTranslations('tickets')
   const tFaq = useTranslations('home.faq')
 
@@ -34,34 +173,38 @@ export default function TicketsPage() {
     subtitle: string
     price_label: string
     status: string
+    live?: boolean
+    price?: string
   }>
   const waves = t.raw('sale_waves.rows') as Array<{ name: string; price: string; date: string }>
   const communityRows = t.raw('community.rows') as Array<{ name: string; detail?: string; price: string; date: string }>
-  const applicationRows = t.raw('applications.rows') as Array<{ name: string; price: string; date: string }>
 
-  const faqItems: FaqItem[] = [
-    { q: tFaq('item_1.q'), a: tFaq('item_1.a') },
-    {
-      q: tFaq('item_2.q'),
-      a: (
-        <>
-          <p>{tFaq('item_2.a_intro')}</p>
-          <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
-            <li>
-              <strong>{tFaq('item_2.community_h')}</strong> — {tFaq('item_2.community_b')}
-            </li>
-            <li>
-              <strong>{tFaq('item_2.applications_h')}</strong> — <em>{tFaq('item_2.applications_b')}</em>
-            </li>
-            <li>
-              <strong>{tFaq('item_2.ecosystem_h')}</strong> — <em>{tFaq('item_2.ecosystem_b')}</em>
-            </li>
-          </ul>
-        </>
-      ),
-    },
-    { q: tFaq('item_3.q'), a: tFaq('item_3.a') },
-  ]
+  const resolvedFaqItems: FaqItem[] = faqItems && faqItems.length > 0
+    ? faqItems.map(i => ({ q: i.question, a: <ReactMarkdown>{i.answer}</ReactMarkdown> }))
+    : [
+        { q: tFaq('item_1.q'), a: tFaq('item_1.a') },
+        {
+          q: tFaq('item_2.q'),
+          a: (
+            <>
+              <p>{tFaq('item_2.a_intro')}</p>
+              <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
+                <li>
+                  <strong>{tFaq('item_2.community_h')}</strong> — {tFaq('item_2.community_b')}
+                </li>
+                <li>
+                  <strong>{tFaq('item_2.applications_h')}</strong> — <em>{tFaq('item_2.applications_b')}</em>
+                </li>
+                <li>
+                  <strong>{tFaq('item_2.ecosystem_h')}</strong> — <em>{tFaq('item_2.ecosystem_b')}</em>
+                </li>
+              </ul>
+            </>
+          ),
+        },
+        { q: tFaq('item_3.q'), a: tFaq('item_3.a') },
+      ]
+  const [expandedApplicationId, setExpandedApplicationId] = useState<string | null>(null)
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -104,6 +247,10 @@ export default function TicketsPage() {
               </div>
 
               <div className={css['cta-group']}>
+                <Link to="/tickets/store" className={css['btn-primary']}>
+                  Learn more
+                  <ArrowRight size={16} strokeWidth={2.5} />
+                </Link>
                 <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
                   {t('hero.subscribe_button')}
                 </a>
@@ -167,8 +314,12 @@ export default function TicketsPage() {
                       <div className={css['overview-card-subtitle']}>{card.subtitle}</div>
                     </div>
                     <div className={css['overview-card-right']}>
-                      <div className={css['overview-card-price']}>{card.price_label}</div>
-                      <div className={css['overview-card-status']}>{card.status}</div>
+                      <div className={css['overview-card-price']}>{card.price || card.price_label}</div>
+                      <div
+                        className={cn(css['overview-card-status'], { [css['overview-card-status-live']]: card.live })}
+                      >
+                        {card.status}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -302,41 +453,58 @@ export default function TicketsPage() {
                   {t('applications.body_suffix')}
                 </p>
               </div>
+              <Link to="/tickets/store" className={css['btn-primary']}>
+                {t('applications.learn_more')}
+                <ChevronDown size={16} strokeWidth={2} style={{ transform: 'rotate(-90deg)' }} />
+              </Link>
             </div>
 
             <div className={css['ticket-type-card']}>
               <div className={css['ticket-type-header']}>
                 <span className={css['ticket-type-title']}>{t('applications.card_title')}</span>
-                <span className={css['ticket-type-status']}>{t('applications.card_status')}</span>
+                <span className={css['ticket-type-status-live']}>{t('applications.card_status')}</span>
               </div>
               <div className={css['ticket-type-rows']}>
-                {applicationRows.map(row => (
-                  <div key={row.name} className={css['ticket-type-row']}>
-                    <span className={css['row-name']}>{row.name}</span>
-                    <div className={css['row-meta']}>
-                      <span className={css['row-price']}>{row.price}</span>
-                      <span className={css['row-date']}>{row.date}</span>
-                    </div>
-                  </div>
+                {APPLICATION_ROWS.map(row => (
+                  <ApplicationRowItem
+                    key={row.id}
+                    row={row}
+                    isOpen={expandedApplicationId === row.id}
+                    onToggle={() =>
+                      setExpandedApplicationId(prev => (prev === row.id ? null : row.id))
+                    }
+                    applyLabel={t('applications.apply')}
+                  />
                 ))}
               </div>
             </div>
           </section>
+        </div>
+      </div>
 
-          <hr className={css['divider']} />
+      {/* ── Art with Text Overlay ─────────────────────────────── */}
+      <section className={css['art-overlay']}>
+        <Image src={ArtOverlayBg} alt="" className={css['art-overlay-bg']} fill sizes="100vw" />
+        <div className={css['art-overlay-inner']}>
+          <div className={css['art-overlay-text']} aria-label="Tickets">
+            <ArtOverlayText />
+          </div>
+        </div>
+      </section>
 
+      <div className={cn(css['landing'], 'section')}>
+        <div className="flex flex-col gap-8 md:gap-16">
           {/* ── FAQ ──────────────────────────────────────────────── */}
-          <section id="faq" className={css['faq-section']}>
-            <div className={css['faq-image']}>
-              <Image src={HeroBackground} alt="" className={css['faq-bg-image']} />
-              <span className={css['faq-image-text']}>{t('faq_section.image_label')}</span>
+          <section id="faq" className={css['faq-section-vertical']}>
+            <h2 className={css['faq-section-heading']}>{t('faq_section.heading')}</h2>
+            <div className={css['faq-section-content']}>
+              <Faq items={resolvedFaqItems} />
+              <Link to="/tickets/faq" className={cn(css['btn-secondary'], css['btn-secondary-centered'])}>
+                {t('faq_section.view_all')}
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </Link>
             </div>
-            <div className={css['faq-right']}>
-              <h2 className={css['heading-2']}>{t('faq_section.heading')}</h2>
-              <div className={css['faq-and-cta']}>
-                <Faq items={faqItems} />
-              </div>
-            </div>
+            <BloomingEthFlower className={css['faq-flower']} />
           </section>
         </div>
       </div>
@@ -344,8 +512,23 @@ export default function TicketsPage() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context: any) {
+  const locale: string = context.locale ?? 'en'
+  const messages = await getMessages(locale)
+
+  let faqItems: Array<{ question: string; answer: string }> = []
+  try {
+    const data = await getFaqData()
+    faqItems = data.items
+      .filter(i => i.category === TICKETS_FAQ_CATEGORY && i.answer.trim() !== '')
+      .slice(0, TICKETS_FAQ_LIMIT)
+      .map(i => ({ question: i.question, answer: i.answer }))
+  } catch {
+    // Fall back to empty list — TicketsPage renders hardcoded FAQ_ITEMS instead
+  }
+
   return {
-    props: {},
+    props: { faqItems, messages },
+    revalidate: 60,
   }
 }

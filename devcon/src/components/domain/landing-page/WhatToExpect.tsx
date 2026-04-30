@@ -54,7 +54,7 @@ export const WhatToExpect = () => {
           return (
             <div key={i} className={`flex flex-col gap-6 items-start pt-6 pb-8 sm:pt-8 sm:pb-12 px-5 ${borders}`}>
               <div className="bg-white/60 rounded-full p-3 flex items-center">
-                <Icon className="w-8 h-8 text-[#e87a2a]" strokeWidth={1.75} />
+                <Icon className="w-8 h-8 text-[#FF6600]" strokeWidth={1.75} />
               </div>
               <div className="flex flex-col gap-3 w-full">
                 <h3 className="text-xl font-extrabold text-[#160b2b] leading-[26px]">{c.title}</h3>

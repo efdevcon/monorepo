@@ -29,7 +29,7 @@ export default function PastEvents(props: any) {
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
       <PageHero
-        className={`${heroCss['hero-no-side-gradient']} ${css['hero-overlay']} !mb-0`}
+        className={`${heroCss['hero-no-side-gradient']} ${css['hero-overlay']} ${css['hero-center-mobile']} !mb-0`}
         titleClassName={heroCss['hero-title']}
         heroBackground={HeroBackground}
         path={[]}

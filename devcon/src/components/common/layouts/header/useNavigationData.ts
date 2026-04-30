@@ -55,6 +55,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: t('academic_program'),
+            url: '/academic-program',
+            type: 'page',
+          },
+          {
             title: t('dips'),
             url: '/dips',
             type: 'page',

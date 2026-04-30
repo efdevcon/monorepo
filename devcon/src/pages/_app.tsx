@@ -12,6 +12,7 @@ import { RecoilRoot } from 'recoil'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { TICKETING_ENV, TICKETING } from 'config/ticketing'
+import { AiTranslationBanner } from 'components/common/ai-translation-banner/AiTranslationBanner'
 import enCommon from '../../content/en/intl/common.json'
 import enHome from '../../content/en/intl/home.json'
 import enDips from '../../content/en/intl/dips.json'
@@ -120,6 +121,7 @@ function App({ Component, pageProps }: any) {
           {/* <SessionProvider session={pageProps.session}> */}
           {/* <Web3ModalProvider> */}
           <Component {...pageProps} />
+          <AiTranslationBanner />
           {/* </Web3ModalProvider> */}
           {/* </SessionProvider> */}
         </IntlProvider>

@@ -19,10 +19,35 @@ import Photo6 from './photo-6.png'
 import css from './ecosystem-program.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
+import { ApplicationsTable, type ApplicationRow } from 'components/domain/applications-table'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6]
 
 const SUPPORT_TAG_COLORS = ['#ffe0cc', '#f0d7f4', '#d6d5f6', '#cddff4', '#cdf4d7']
+
+const APPLICATION_ROWS: ApplicationRow[] = [
+  {
+    id: 'indian-students',
+    name: 'Indian Students',
+    price: '$25',
+    applyUrl: '/form/student-application',
+    live: true,
+  },
+  {
+    id: 'international-students',
+    name: 'International Students',
+    price: '$99',
+    applyUrl: '/form/student-application',
+    live: true,
+  },
+  {
+    id: 'builders',
+    name: 'Builders',
+    price: 'from $299',
+    date: 'Opens in June',
+    live: false,
+  },
+]
 
 export default function EcosystemProgramPage() {
   const t = useTranslations('ecosystem_program')
@@ -272,23 +297,7 @@ export default function EcosystemProgramPage() {
           </div>
 
           <div className={css['other-support-right']}>
-            <div className={css['ticket-type-card']}>
-              <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>{t('other_support.card_title')}</span>
-                <span className={css['ticket-type-status']}>{t('other_support.card_status')}</span>
-              </div>
-              <div className={css['ticket-type-rows']}>
-                {applicationRows.map(row => (
-                  <div key={row.name} className={css['ticket-type-row']}>
-                    <span className={css['row-name']}>{row.name}</span>
-                    <div className={css['row-meta']}>
-                      <span className={css['row-price']}>{row.price}</span>
-                      <span className={css['row-date']}>{row.date}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <ApplicationsTable rows={APPLICATION_ROWS} status={t('other_support.card_status')} />
 
             <div className={css['faq-accordion']}>
               {faqItems.map((item, i) => (
