@@ -1,8 +1,9 @@
 import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG, getPretalxConfig, getEventIdByPretalxSlug, PretalxInstanceConfig } from '@/utils/config'
-import { TriggerWorkflow } from '@/services/github'
+import { TriggerWorkflow, CommitContentFile } from '@/services/github'
 import { GetSession, GetSpeaker } from '@/clients/pretalx'
+import { FetchNocoDbTable } from '@/clients/nocodb'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
 
@@ -14,6 +15,8 @@ const WORKFLOW_MAP: Record<string, string[]> = {
 export const hooksRouter = Router()
 hooksRouter.post(`/hooks/pretalx/schedule`, UpdateSchedule)
 hooksRouter.post(`/hooks/pretalx/:eventId/schedule`, UpdateSchedule)
+hooksRouter.post(`/hooks/nocodb`, UpdateNocoDb)
+hooksRouter.post(`/hooks/nocodb/:tableId`, UpdateNocoDb)
 
 export async function UpdateSchedule(req: Request, res: Response) {
   // #swagger.ignore = true
@@ -122,6 +125,42 @@ async function SyncPretalx(config: PretalxInstanceConfig, newTalks: string[], ca
       await TriggerWorkflow(workflowId)
     }
   }
+}
+
+export async function UpdateNocoDb(req: Request, res: Response) {
+  // #swagger.ignore = true
+
+  const secret = req.header('X-Webhook-Secret') || req.headers['x-webhook-secret']
+  if (secret !== SERVER_CONFIG.NOCODB_WEBHOOK_SECRET) return res.status(403).send('Forbidden')
+
+  const tableId = req.params.tableId || (req.body?.data?.table_id as string | undefined) || (req.body?.table_id as string | undefined)
+  if (!tableId) return res.status(400).send('Missing table id')
+
+  const tableName = SERVER_CONFIG.NOCODB_TABLES[tableId]
+  if (!tableName) {
+    console.error(`NocoDB webhook for unmapped tableId: ${tableId}`)
+    return res.status(400).send('Unmapped table id')
+  }
+
+  try {
+    const result = await SyncNocoDbTable(tableId, tableName)
+    return res.status(200).json(result)
+  } catch (error) {
+    console.error('NocoDB sync failed', error)
+    return res.status(500).send('Sync failed')
+  }
+}
+
+export async function SyncNocoDbTable(tableId: string, tableName: string) {
+  console.log(`Syncing NocoDB table ${tableId} → ${tableName}.json`)
+  const rows = await FetchNocoDbTable(tableId)
+
+  const filePath = `devcon/content/en/external/nocodb/${tableName}.json`
+  const content = JSON.stringify(rows, null, 2) + '\n'
+
+  const result = await CommitContentFile(filePath, content, `[action] sync nocodb ${tableName} (${rows.length} rows)`)
+
+  return { table: tableName, rows: rows.length, changed: result.changed }
 }
 
 async function SyncSpeakers(speakers: any[], config: PretalxInstanceConfig) {

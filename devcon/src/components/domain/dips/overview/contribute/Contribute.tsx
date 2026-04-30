@@ -10,6 +10,7 @@ import RichText from 'lib/components/tina-cms/RichText'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import indexCss from 'pages/index.module.scss'
 import { ArrowUpRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 type ContributeProps = {
   contributors: Array<Contributor>
@@ -165,6 +166,7 @@ const DipButtons = (data: any) => {
 }
 
 export const Contribute = (props: ContributeProps) => {
+  const t = useTranslations('dips')
   return (
     <>
       <section id="contribute" className={css['section']}>
@@ -178,13 +180,13 @@ export const Contribute = (props: ContributeProps) => {
               <AutoScroller contributors={props.contributors} />
             </div>
             <div className={css['info']}>
-              <p className="bold">*DIP Github Contributors</p> <Github />
+              <p className="bold">{t('contributors_caption')}</p> <Github />
             </div>
           </div>
 
           <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`} style={{ opacity: 0.5 }}>
             <InfiniteScroller nDuplications={2} speed="240s" reverse>
-              <p className="bold uppercase">Devcon Improvement Proposals&nbsp;</p>
+              <p className="bold uppercase">{t('scrolling_banner')}&nbsp;</p>
             </InfiniteScroller>
           </div>
         </div>

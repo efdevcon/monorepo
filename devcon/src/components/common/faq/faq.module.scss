@@ -77,4 +77,51 @@
     line-height: 1.43;
     padding: 12px 16px;
   }
+
+  p {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    color: #160b2b;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin: 8px 0 12px;
+    list-style: disc outside;
+  }
+
+  ol {
+    list-style: decimal outside;
+  }
+
+  li {
+    margin: 0 0 6px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a,
+  a > strong {
+    color: #7235ed !important;
+    font-weight: 700;
+    text-decoration: none !important;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 }

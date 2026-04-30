@@ -1,6 +1,6 @@
 const NOCODB_BASE_URL = process.env.NOCODB_BASE_URL
 const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN
-const FAQ_TABLE_ID = 'm012lq6ohzsr0ts'
+const FAQ_TABLE_ID = 'mmf20b9gfp79zbt'
 
 export interface FaqItem {
   id: number

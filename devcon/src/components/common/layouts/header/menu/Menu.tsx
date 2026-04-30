@@ -10,7 +10,7 @@ import AccountIcon from 'assets/icons/account.svg'
 import IconCross from 'assets/icons/cross.svg'
 // import SearchIcon from 'assets/icons/search.svg'
 import { Tooltip } from 'components/common/tooltip'
-// import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
+import { LanguageToggle } from './language-toggle'
 import useNavigationData from '../useNavigationData'
 import { TippyProps } from '@tippyjs/react'
 // import { Notifications } from 'components/domain/app/notifications'
@@ -119,15 +119,13 @@ export const Menu = (props: any) => {
           <div className={css['right']}>
             <Navigation navigationData={context?.navigation} />
 
-            {/* <div className={css['language-toggle-container']}>
-              <LanguageToggle />
-            </div> */}
+            <LanguageToggle />
           </div>
 
           <Foldout foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
             <div className={css['foldout-top']}>
               <Left navigationData={context?.navigation} />
-              {/* <LanguageToggle /> */}
+              <LanguageToggle />
             </div>
             <Navigation setFoldoutOpen={props.setFoldoutOpen} navigationData={context?.navigation} mobile={true} />
           </Foldout>
