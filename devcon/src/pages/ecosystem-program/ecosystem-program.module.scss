@@ -294,6 +294,80 @@
   }
 }
 
+.applications-closed-card {
+  background: #ffffff;
+  border: 1px solid #ff6600;
+  border-radius: 16px;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.applications-closed-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.applications-closed-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.applications-closed-heading {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.44;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+}
+
+.applications-closed-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #594d73;
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.applications-closed-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(34, 17, 68, 0.1);
+}
+
+.applications-closed-next {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #160b2b;
+  text-align: center;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
 .jaali-left {
   position: absolute;
   left: 0;
