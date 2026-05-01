@@ -9,6 +9,7 @@ import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import { ChevronDown } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 // Ticket launch date — May 12, 2026 @ 3:00 PM UTC
 const TICKET_LAUNCH_DATE = new Date(Date.UTC(2026, 4, 12, 15, 0, 0))
@@ -35,6 +36,8 @@ const CountdownUnit = ({ value, label, width }: { value: number; label: string; 
 const Separator = () => <div className="w-px h-4 bg-white/10" aria-hidden />
 
 export const Hero = () => {
+  const t = useTranslations('home.hero')
+  const tCommon = useTranslations('common')
   const stripHeight = useGetElementHeight('strip')
   const [mounted, setMounted] = useState(false)
   const [countdown, setCountdown] = useState<Countdown>({ days: 0, hours: 0, mins: 0, secs: 0 })
@@ -78,7 +81,7 @@ export const Hero = () => {
       {/* Background image */}
       <Image
         src={BannerImage}
-        alt="Devcon 8 Mumbai India"
+        alt={t('bg_alt')}
         fill
         priority
         placeholder="blur"
@@ -108,8 +111,8 @@ export const Hero = () => {
             <div className="flex flex-col gap-4 md:gap-6 [filter:drop-shadow(0_2px_12px_#214)]">
               <DevconLogo className="w-[160px] md:w-[263px] h-auto text-white" />
               <div className="flex flex-col gap-1 md:gap-2 text-white">
-                <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.2] tracking-[-0.5px]">Mumbai, India</h1>
-                <p className="text-xl md:text-4xl font-light leading-[1.2] tracking-[-0.5px]">3—6 November, 2026</p>
+                <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.2] tracking-[-0.5px]">{t('location')}</h1>
+                <p className="text-xl md:text-4xl font-light leading-[1.2] tracking-[-0.5px]">{t('dates')}</p>
               </div>
             </div>
 
@@ -119,35 +122,31 @@ export const Hero = () => {
               <div className="backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(150,142,166,0.19)] rounded-lg p-4 flex flex-col gap-4">
                 <div className="flex flex-col gap-3">
                   <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] leading-none">
-                    TICKETS LAUNCH MAY 12
+                    {t('tickets_launch_eyebrow')}
                   </p>
 
                   {/* Countdown row — only render on client to avoid hydration mismatch */}
                   <div className="flex items-center justify-between min-h-[44px]">
                     {mounted && (
                       <>
-                        <CountdownUnit value={countdown.days} label="days" width="w-12" />
+                        <CountdownUnit value={countdown.days} label={tCommon('countdown.days')} width="w-12" />
                         <Separator />
-                        <CountdownUnit value={countdown.hours} label="hours" />
+                        <CountdownUnit value={countdown.hours} label={tCommon('countdown.hours')} />
                         <Separator />
-                        <CountdownUnit value={countdown.mins} label="mins" width="w-10" />
+                        <CountdownUnit value={countdown.mins} label={tCommon('countdown.mins')} width="w-10" />
                         <Separator />
-                        <CountdownUnit value={countdown.secs} label="secs" width="w-10" />
+                        <CountdownUnit value={countdown.secs} label={tCommon('countdown.secs')} width="w-10" />
                       </>
                     )}
                   </div>
 
                   {/* Early bird pricing */}
                   <div className="flex items-center justify-between font-extrabold text-sm">
-                    <p className="text-white leading-[14px]">Global Early Bird</p>
+                    <p className="text-white leading-[14px]">{t('early_bird_label')}</p>
                     <div className="flex gap-1 items-end">
-                      {/* <p className="text-[#9188a2] line-through leading-[14px]">$699</p> */}
-                      <p className="text-[#9188a2] text-sm leading-4">Discounted</p>
+                      <p className="text-[#9188a2] line-through leading-[14px]">{t('pricing_full')}</p>
+                      <p className="text-white text-base leading-4">{t('pricing_discounted')}</p>
                     </div>
-                    {/* <div className="flex gap-1 items-end">
-                      <p className="text-[#9188a2] line-through leading-[14px]">$699</p>
-                      <p className="text-white text-base leading-4">$349</p>
-                    </div> */}
                   </div>
                 </div>
 
@@ -160,14 +159,14 @@ export const Hero = () => {
                     <div className="flex flex-col gap-3">
                       {formStatus === 'success' ? (
                         <div className="bg-[rgba(0,191,48,0.3)] rounded p-3 text-center text-[12px] text-[#f9f8fa] leading-4">
-                          <span className="font-bold">You&rsquo;re on the list! </span>
-                          <span>We&rsquo;ll remind you before May 12 – don&rsquo;t miss early bird pricing ❤️</span>
+                          <span className="font-bold">{tCommon('reminder_form.success_heading')} </span>
+                          <span>{tCommon('reminder_form.success_message')}</span>
                         </div>
                       ) : (
                         <>
                           <input
                             type="email"
-                            placeholder="Email address"
+                            placeholder={tCommon('reminder_form.email_placeholder')}
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             onKeyDown={e => e.key === 'Enter' && handleHeroSubmit()}
@@ -180,15 +179,13 @@ export const Hero = () => {
                             disabled={formStatus === 'loading' || !email.trim()}
                             className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-[#f9f8fa] font-bold text-[14px] leading-none rounded-full py-2 w-full cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed min-h-[32px]"
                           >
-                            {formStatus === 'loading' ? 'Subscribing...' : 'Remind me'}
+                            {formStatus === 'loading' ? tCommon('reminder_form.submit_loading') : tCommon('reminder_form.submit')}
                           </button>
                           {errorMsg && <p className="text-[#ff6b6b] text-xs text-center">{errorMsg}</p>}
                           <p className="text-[12px] text-center leading-4">
-                            <span className="text-[#aca6b9]">
-                              By signing up for ticket reminders, you agree to the Ethereum Foundation&rsquo;s{' '}
-                            </span>
-                            <a href="https://ethereum.org/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[#9668f1] font-bold hover:underline">Privacy Policy</a>
-                            <span className="text-[#aca6b9]">.</span>
+                            <span className="text-[#aca6b9]">{tCommon('reminder_form.privacy_before')}</span>
+                            <a href="https://ethereum.org/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[#9668f1] font-bold hover:underline">{tCommon('reminder_form.privacy_link')}</a>
+                            <span className="text-[#aca6b9]">{tCommon('reminder_form.privacy_after')}</span>
                           </p>
                         </>
                       )}
@@ -202,9 +199,9 @@ export const Hero = () => {
                     type="button"
                     onClick={() => setFormExpanded(true)}
                     className="flex gap-1 items-center justify-center w-full cursor-pointer hover:opacity-80 transition-opacity"
-                    aria-label="Remind me when tickets launch"
+                    aria-label={t('remind_toggle_aria')}
                   >
-                    <span className="text-sm font-bold text-[#9668f1] leading-none">Remind me</span>
+                    <span className="text-sm font-bold text-[#9668f1] leading-none">{t('remind_toggle')}</span>
                     <ChevronDown className="w-3.5 h-3.5 text-[#9668f1]" strokeWidth={2.5} />
                   </button>
                 )}
@@ -212,7 +209,7 @@ export const Hero = () => {
 
               {/* Social Links */}
               <div className="backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(150,142,166,0.19)] rounded-lg px-4 py-2 flex items-center justify-center gap-4 sm:justify-between sm:gap-0 [&_path]:!fill-white">
-                <p className="text-sm text-white leading-5">Follow for updates</p>
+                <p className="text-sm text-white leading-5">{t('follow_for_updates')}</p>
                 <div className="flex gap-4 items-center">
                   <Link to="https://x.com/efdevcon" className="text-white hover:text-white/80 transition-colors">
                     <IconX className="w-[18px] h-[18px]" />

@@ -337,6 +337,10 @@
   display: block;
   width: 100%;
   height: auto;
+  filter:
+    drop-shadow(0px 1px 0.5px rgba(34, 17, 68, 0.1))
+    drop-shadow(0px 2px 4px rgba(34, 17, 68, 0.15))
+    drop-shadow(0px 4px 8px rgba(34, 17, 68, 0.1));
 }
 
 .ticket-image-desktop {
@@ -476,6 +480,10 @@
   color: #594d73;
   line-height: 1.33;
   text-align: right;
+}
+
+.overview-card-status-live {
+  color: #ff6600;
 }
 
 /* ─── Anchor scroll offset ────────────────────────────────── */
@@ -623,6 +631,15 @@
   line-height: 1.1;
 }
 
+.ticket-type-status-live {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #f9f8fa;
+}
+
 .ticket-type-rows {
   display: flex;
   flex-direction: column;
@@ -642,6 +659,137 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+}
+
+.ticket-type-row-expandable {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 16px;
+  background: #f2f1f4;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.ticket-type-row-expanded {
+  border-color: #756a8a;
+}
+
+.ticket-type-row-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+.ticket-type-row-clickable {
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+
+  &:hover {
+    background: #ebe9ef;
+    border-color: rgba(34, 17, 68, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(22, 11, 43, 0.06);
+  }
+
+  &:focus-visible {
+    border-color: #7235ed;
+    box-shadow: 0 0 0 3px rgba(114, 53, 237, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+
+.row-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(34, 17, 68, 0.1);
+  margin: 0;
+}
+
+.row-criteria {
+  font-size: 16px;
+  font-weight: 500;
+  color: #594d73;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  strong {
+    color: #160b2b;
+    font-weight: 700;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.row-name-bold {
+  color: #160b2b !important;
+  font-weight: 700 !important;
+}
+
+.row-price-bold {
+  color: #160b2b !important;
+  font-weight: 700 !important;
+}
+
+.row-live-badge {
+  background: #7235ed;
+  color: #f9f8fa;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.row-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0 4px 8px;
+  width: 136px;
+  justify-content: flex-end;
+  color: #7235ed !important;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none !important;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: auto;
   }
 }
 
@@ -884,4 +1032,94 @@
   line-height: 1.5;
   color: #594d73;
   margin: 0;
+}
+
+/* ─── Art Overlay Section ──────────────────────────────────── */
+
+.art-overlay {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  width: 100%;
+
+  @media (max-width: $breakpoints-md) {
+    height: 180px;
+  }
+}
+
+.art-overlay-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.art-overlay-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-overlay-text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: overlay;
+
+  svg {
+    max-width: 836px;
+    width: 100%;
+    max-height: 180px;
+    height: auto;
+  }
+}
+
+/* ─── Vertical FAQ Section (matches Figma 3633:20277) ────── */
+
+.faq-section-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 0;
+  width: 100%;
+}
+
+.faq-section-heading {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+  text-align: center;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
+}
+
+.faq-section-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 760px;
+}
+
+.btn-secondary-centered {
+  align-self: center !important;
+}
+
+.faq-flower {
+  width: 120px;
+  height: 120px;
 }

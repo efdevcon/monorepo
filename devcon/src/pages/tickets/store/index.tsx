@@ -8,7 +8,7 @@ import themes from '../../themes.module.scss'
 // import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { Input } from '@/components/ui/input'
-import { ArrowLeft, CalendarDays, MapPin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarDays, MapPin } from 'lucide-react'
 import css from './store.module.scss'
 
 // Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
@@ -436,7 +436,60 @@ function StoreContent({
               )}
             </section> */}
 
-            {displayVoucherTickets.length > 0 && (
+            <section className={css['section']} id="applications">
+              <div className={css['section-header']}>
+                <div className={css['section-title-row']}>
+                  <h3 className={css['section-title']}>Applications</h3>
+                  <span className={css['live-badge']}>LIVE</span>
+                </div>
+                <p className={css['section-subtitle']}>
+                  Student ticket applications are now open. Supply is limited so apply early!
+                </p>
+              </div>
+
+              <div className={css['applications-grid']}>
+                <div className={css['application-card']}>
+                  <div className={css['application-card-body']}>
+                    <h3 className={css['application-card-title']}>Indian Students 🇮🇳</h3>
+                    <p className={css['application-card-meta']}>Student ID required at check-in</p>
+                    <p className={css['application-card-description']}>
+                      1000 discounts will be distributed to Indian students looking to dive deeper into the free and
+                      open world of Ethereum.
+                    </p>
+                  </div>
+                  <div className={css['application-card-footer']}>
+                    <span className={css['application-price']}>$25</span>
+                    <Link to="/form/student-application" className={css['apply-btn']}>
+                      Apply now
+                      <ArrowRight size={16} strokeWidth={2.5} />
+                    </Link>
+                  </div>
+                </div>
+
+                <div className={css['application-card']}>
+                  <div className={css['application-card-body']}>
+                    <h3 className={css['application-card-title']}>International Students 🌎</h3>
+                    <p className={css['application-card-meta']}>Student ID required at check-in</p>
+                    <p className={css['application-card-description']}>
+                      An additional 1000 discounts will be distributed to international students who wish to join us in
+                      Mumbai to explore Ethereum.
+                    </p>
+                  </div>
+                  <div className={css['application-card-footer']}>
+                    <span className={css['application-price']}>$99</span>
+                    <Link to="/form/student-application" className={css['apply-btn']}>
+                      Apply now
+                      <ArrowRight size={16} strokeWidth={2.5} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <p className={css['gst-note']}>Prices include 18% GST</p>
+            </section>
+
+            {/* Legacy Self.xyz Early Access flow — hidden for now, kept for future re-activation */}
+            {false && displayVoucherTickets.length > 0 && (
               <section className={css['section']} id="discounts">
                 <div className={css['section-header']}>
                   <div className={css['section-title-row']}>
@@ -591,57 +644,49 @@ function StoreContent({
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'Early Bird GA \ud83d\udc24'}</h3>
-                    <p className={css['card-meta']}>Launching later this year</p>
+                    <p className={css['card-meta']}>Launches May 12</p>
                     <p className={css['card-description']}>
                       Early-bird discount of the original, anon-friendly Devcon ticket.
                     </p>
                   </div>
                   <div className={css['coming-soon-card-footer']}>
                     <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>$299</span>
-                      <span className={css['coming-soon-price-original']}>$599</span>
+                      <span className={css['coming-soon-price']}>$349</span>
+                      <span className={css['coming-soon-price-original']}>$699</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Coming soon!</span>
+                    <span className={css['coming-soon-availability']}>Our lowest price</span>
                   </div>
                 </div>
 
-                {/* <div className={css['coming-soon-card']}>
-                  <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'Youth Ticket (3\u201317) \ud83c\udf31'}</h3>
-                    <p className={css['card-meta']}>Consent form submission & ID/proof required at Registration.</p>
-                    <p className={css['card-description']}>
-                      {"Whether you're a younger attendee, or bringing your child."}
-                    </p>
-                  </div>
-                  <div className={css['coming-soon-card-footer']}>
-                    <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>$19</span>
-                    </div>
-                    <span className={css['coming-soon-availability']}>Coming soon!</span>
-                  </div>
-                </div> */}
-
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'Student Discount \ud83c\udf93'}</h3>
-                    <p className={css['card-meta']}>School/University ID required at check-in</p>
+                    <h3 className={css['coming-soon-card-title']}>{'Indian Residents \ud83c\uddee\ud83c\uddf3'}</h3>
+                    <p className={css['card-meta']}>Launch TBD</p>
                     <p className={css['card-description']}>
-                      500 discounts will be distributed this year to University students from around the world who wish
-                      to explore Ethereum.
+                      Indian residents can apply using{' '}
+                      <a
+                        href="https://self.xyz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={css['inline-link']}
+                      >
+                        Self.xyz
+                      </a>
+                      . Use your Aadhaar Card &amp; Zero-Knowledge Proofs to prove Indian residency.
                     </p>
                   </div>
                   <div className={css['coming-soon-card-footer']}>
                     <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>$25</span>
+                      <span className={css['coming-soon-price']}>TBD</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Coming soon!</span>
+                    <span className={css['coming-soon-availability']}>ID required at Registration</span>
                   </div>
                 </div>
 
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'Builder Discount \ud83e\udd84'}</h3>
-                    <p className={css['card-meta']}>ID required at Registration</p>
+                    <p className={css['card-meta']}>Launches in June</p>
                     <p className={css['card-description']}>
                       For builders of all kinds who actively volunteer or contribute their time to the growth, research
                       and development of Ethereum or the ecosystem.
@@ -649,13 +694,14 @@ function StoreContent({
                   </div>
                   <div className={css['coming-soon-card-footer']}>
                     <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>$299</span>
-                      <span className={css['coming-soon-price-original']}>$599</span>
+                      <span className={css['coming-soon-price']}>TBD</span>
                     </div>
-                    <span className={css['coming-soon-availability']}>Coming soon!</span>
+                    <span className={css['coming-soon-availability']}>ID required at registration</span>
                   </div>
                 </div>
               </div>
+
+              <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
           </div>
           {!pretixCheckoutUrl && totalQty > 0 && (

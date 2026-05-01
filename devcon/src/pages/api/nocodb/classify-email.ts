@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { classifyEmail, classifyEmailWithAI } from 'services/email-classifier'
+import { classifyEmail, classifyEmailWithAI, classifyEligibility } from 'services/email-classifier'
 
 const ADMIN_EMAILS = new Set(['lasse.jacobsen@ethereum.org'])
 
@@ -43,10 +43,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // AI enrichment is best-effort
     }
 
+    // Also run the full eligibility pipeline — exercises the same code path the
+    // user-facing /check-eligibility and /submit routes use, including writing
+    // the AI verdict to the email_classifications cache table.
+    let eligibility = null
+    try {
+      eligibility = await classifyEligibility(email)
+    } catch {
+      // Eligibility is best-effort for the debug tool
+    }
+
     return res.status(200).json({
       success: true,
       heuristic,
       ai,
+      eligibility,
     })
   } catch (err) {
     return res.status(500).json({ success: false, error: (err as Error).message })

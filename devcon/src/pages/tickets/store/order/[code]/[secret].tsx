@@ -292,14 +292,14 @@ export default function OrderConfirmationPage() {
                     </div>
                     <div className={css['share-input-group']}>
                       <div className={css['share-text']}>
-                        <h3 className={css['share-title']}>Share on socials</h3>
-                        <p className={css['share-subtitle']}>Enter an ENS name to show your avatar, or any other name</p>
+                        <h3 className={css['share-title']}>Share your ticket</h3>
+                        <p className={css['share-subtitle']}>Add your ENS name or a custom handle to personalise your sharing link</p>
                       </div>
                       <div className={css['share-input-wrap']}>
                         <CircleUser size={20} />
                         <input
                           type="text"
-                          placeholder="ENS or name"
+                          placeholder="name.eth or nickname"
                           value={shareName}
                           onChange={e => setShareName(e.target.value)}
                         />
@@ -319,7 +319,7 @@ export default function OrderConfirmationPage() {
                         window.open(`/ticket/${ticketName}/${v}/?share`, '_blank')
                       }}
                     >
-                      View sharing link
+                      Generate sharing link
                     </a>
                   </div>
                 </>

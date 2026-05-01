@@ -33,7 +33,11 @@ interface ClassificationResult {
 function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
   const [testEmail, setTestEmail] = useState('')
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<{ heuristic: ClassificationResult; ai: ClassificationResult | null } | null>(null)
+  const [result, setResult] = useState<{
+    heuristic: ClassificationResult
+    ai: ClassificationResult | null
+    eligibility: { bucket: EligibilityBucket; email: string; domain: string | null } | null
+  } | null>(null)
   const [open, setOpen] = useState(false)
 
   if (!ADMIN_EMAILS.has(callerEmail)) return null
@@ -61,7 +65,7 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
         body: JSON.stringify({ email: testEmail }),
       })
       const data = await res.json()
-      if (data.success) setResult({ heuristic: data.heuristic, ai: data.ai })
+      if (data.success) setResult({ heuristic: data.heuristic, ai: data.ai, eligibility: data.eligibility ?? null })
     } catch {}
     setLoading(false)
   }
@@ -118,6 +122,24 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
             <div className="space-y-3">
               {renderClassification('Heuristic', result.heuristic)}
               {result.ai && renderClassification('AI-enriched', result.ai)}
+              {result.eligibility && (
+                <div className="text-xs space-y-1 pt-2 border-t border-[#dddae2]">
+                  <p className="font-bold text-[#160b2b]">Eligibility (cached in Supabase)</p>
+                  <span
+                    className={`inline-block px-1.5 py-0.5 rounded ${
+                      result.eligibility.bucket === 'blocked'
+                        ? 'bg-red-100 text-red-800'
+                        : result.eligibility.bucket === 'top-indian-university'
+                        ? 'bg-green-100 text-green-800'
+                        : result.eligibility.bucket === 'other-indian-university'
+                        ? 'bg-blue-100 text-blue-800'
+                        : 'bg-purple-100 text-purple-800'
+                    }`}
+                  >
+                    {result.eligibility.bucket}
+                  </span>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -231,10 +253,10 @@ function EligibilityGate({
         </h3>
         <p className="text-sm text-[#1a0d33] leading-5">
           The student application is intended for currently enrolled students. Please sign in
-          with your university email address to continue.
+          with your <strong>university email</strong> address to continue.
         </p>
         <p className="text-sm text-[#1a0d33] leading-5">
-          If your university email isn&apos;t working, or you believe this is a mistake, reach out
+          If your <strong>university email</strong> isn&apos;t working, or you believe this is a mistake, reach out
           to{' '}
           <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
             support@devcon.org

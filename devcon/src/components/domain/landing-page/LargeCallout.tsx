@@ -1,8 +1,10 @@
 import React from 'react'
 import { WritingText } from './WritingText'
 import css from './landing-page.module.scss'
+import { useTranslations } from 'next-intl'
 
 export function LargeCallout() {
+  const t = useTranslations('home.callout')
   return (
     <div className={css.callout}>
       <div className={css['callout-pattern']} />
@@ -10,8 +12,8 @@ export function LargeCallout() {
         <WritingText
           className={css['callout-text']}
           segments={[
-            { text: 'India is not just where Ethereum is used.' },
-            { text: "It's where Ethereum is built.", className: css['callout-bold'] },
+            { text: t('line_1') },
+            { text: t('line_2'), className: css['callout-bold'] },
           ]}
           triggerOnScroll
           stagger={0.05}
