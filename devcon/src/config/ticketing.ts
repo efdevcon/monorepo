@@ -16,6 +16,9 @@ const ENV_CONFIG = {
     checkout: {
       pretixRedirectUrl: '',
       forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
@@ -60,6 +63,9 @@ const ENV_CONFIG = {
     checkout: {
       pretixRedirectUrl: '',
       forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       // TODO: replace with production recipient address

@@ -240,6 +240,7 @@ function CheckoutContent() {
   // WalletConnect plugin (the wc_inject UI). Used as a kill switch for the
   // in-page x402 flow if anything goes wrong with it.
   const forcePretixRedirect = TICKETING.checkout.forcePretixRedirect
+  const supportEmail = (TICKETING.checkout as { supportEmail?: string }).supportEmail || ''
   const { address, isConnected, chain, connector } = useAccount()
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
@@ -1461,6 +1462,44 @@ function CheckoutContent() {
   // checkout, so devcon doesn't require a local wallet for the crypto path.
   const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || forcePretixRedirect || isConnected)
 
+  // Build the support-mailto once with all known checkout context. Used by
+  // both the persistent "Need help?" link below the Pay button and the two
+  // "If you don't receive a confirmation email, please contact us" notes.
+  // Single source of truth keeps the prefill template identical everywhere.
+  function buildSupportMailto(): string {
+    if (!supportEmail) return ''
+    const fill = (v: string | number | undefined | null) =>
+      v == null || v === '' ? '(please fill in)' : String(v)
+    const cartLines = cartItems
+      .filter(c => c.quantity > 0)
+      .map(c => `  - ${c.quantity} × ${c.name}`)
+    const lines: string[] = [
+      'Hi,',
+      '',
+      'I need help with my Devcon ticket purchase.',
+      '',
+      `Email: ${fill(email)}`,
+      `Payment method: ${paymentMethod || '(please fill in)'}`,
+      ...(cartLines.length ? ['Cart:', ...cartLines] : ['Cart: (please describe)']),
+      `Order total (USD): $${fill(totalUsd)}`,
+    ]
+    if (paymentMethod === 'crypto') {
+      lines.push(
+        `Wallet address: ${fill(address || '')}`,
+        `Payment reference: ${fill(paymentDetails?.paymentReference)}`,
+        `Network: ${fill(paymentDetails?.network)}`,
+        `Token: ${fill(paymentDetails?.tokenSymbol)}`,
+        `Amount expected: ${fill(paymentDetails?.amountFormatted)}`,
+        `Recipient: ${fill(paymentDetails?.recipient)}`,
+        `Transaction hash: ${fill(txHash)}`,
+      )
+    }
+    lines.push('', 'What went wrong: (please describe)', '', 'Thanks!')
+    const subject = `Devcon ticket support${paymentDetails?.paymentReference ? ` — ref ${paymentDetails.paymentReference}` : ''}`
+    return `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
+  }
+  const supportMailto = buildSupportMailto()
+
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
       {/* Mobile order summary sticky bar */}
@@ -1653,7 +1692,7 @@ function CheckoutContent() {
                   <p>
                     An order confirmation with your tickets will be sent to the email provided during checkout. If you
                     don&apos;t receive a confirmation email, please{' '}
-                    <a href="mailto:support@devcon.org">
+                    <a href={supportMailto || `mailto:${supportEmail}`}>
                       <strong>contact us</strong>
                     </a>
                     .
@@ -2555,12 +2594,34 @@ function CheckoutContent() {
                             {!paymentOptionsLoading &&
                               paymentOptions.length > 0 &&
                               paymentOptions.filter(o => o.sufficient).length === 0 &&
-                              paymentDetails && (
-                                <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                                  Insufficient balance. Top up your wallet or connect one with enough ETH, USDC, or
-                                  USDT.
-                                </p>
-                              )}
+                              paymentDetails && (() => {
+                                // Build the "enough ETH, USDC, or USDT0" list from the
+                                // tokens this event actually offers. Honors the plugin's
+                                // chain/token toggles — won't suggest USDT0 if the event
+                                // didn't enable it.
+                                const ASSET_DISPLAY_ORDER = ['ETH', 'USDC', 'USDT0', 'USDT']
+                                const symbols = [...new Set(paymentOptions.map(o => o.symbol))]
+                                  .sort((a, b) => {
+                                    const ia = ASSET_DISPLAY_ORDER.indexOf(a)
+                                    const ib = ASSET_DISPLAY_ORDER.indexOf(b)
+                                    if (ia === -1 && ib === -1) return a.localeCompare(b)
+                                    if (ia === -1) return 1
+                                    if (ib === -1) return -1
+                                    return ia - ib
+                                  })
+                                  .map(s => SYMBOL_DISPLAY[s] ?? s)
+                                let humanList = ''
+                                if (symbols.length === 1) humanList = symbols[0]
+                                else if (symbols.length === 2) humanList = `${symbols[0]} or ${symbols[1]}`
+                                else if (symbols.length > 2)
+                                  humanList = `${symbols.slice(0, -1).join(', ')}, or ${symbols[symbols.length - 1]}`
+                                return (
+                                  <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                    Insufficient balance. Top up your wallet
+                                    {humanList ? ` or connect one with enough ${humanList}` : ''}.
+                                  </p>
+                                )
+                              })()}
                           </>
                         )}
                       </div>
@@ -2828,6 +2889,16 @@ function CheckoutContent() {
                         />
                       </div>
                     )}
+
+                    {supportMailto && (
+                      <p className={css['support-link']} style={{ marginTop: 12, fontSize: 13, color: '#666', textAlign: 'center' }}>
+                        Need help?{' '}
+                        <a href={supportMailto} style={{ color: '#4a90d9', textDecoration: 'underline' }}>
+                          Contact support
+                        </a>
+                        {' '}— we&apos;ve pre-filled the details we know.
+                      </p>
+                    )}
                   </div>
                 )}
               </div>
@@ -3071,7 +3142,7 @@ function CheckoutContent() {
                 <p>
                   An order confirmation with your tickets will be sent to the email provided during checkout. If you
                   don&apos;t receive a confirmation email, please{' '}
-                  <a href="mailto:support@devcon.org">
+                  <a href={supportMailto || `mailto:${supportEmail}`}>
                     <strong>contact us</strong>
                   </a>
                   .
