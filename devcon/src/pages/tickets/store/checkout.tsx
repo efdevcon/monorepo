@@ -338,12 +338,27 @@ function CheckoutContent() {
   const { data: walletClient } = useWalletClient()
   const [isSigningDirect, setIsSigningDirect] = useState(false)
   const [directSignError, setDirectSignError] = useState<string | null>(null)
-  const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
+  // `onReplaced` fires when the wallet user clicks "Speed Up" (reason: 'repriced'),
+  // sends a different tx at the same nonce ('replaced'), or clicks "Cancel"
+  // ('cancelled'). The hook then resolves with the new tx's receipt — we read
+  // `data.transactionHash` (NOT `writeData`/`sendTxHash`) so verify always
+  // targets the hash that actually mined.
+  function handleReplaced(replacement: { reason: string }) {
+    if (replacement.reason === 'cancelled') {
+      setPurchaseError('Transaction was cancelled in your wallet — please retry.')
+      setPaymentStatus(null)
+      setIsVerifying(false)
+    }
+  }
+  const { isLoading: isTxLoading, isSuccess: isTxSuccess, data: writeReceipt } = useWaitForTransactionReceipt({
+    hash: writeData,
+    onReplaced: handleReplaced,
+  })
   const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
-  // useWaitForTransactionReceipt with default confirmations=1 already waits
-  // until the tx is mined into a block — that's our signal to verify. Any
-  // post-mining RPC-indexer lag is handled by the backend verify retry loop.
-  const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
+  const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess, data: sendTxReceipt } = useWaitForTransactionReceipt({
+    hash: sendTxHash,
+    onReplaced: handleReplaced,
+  })
 
   // ── Voucher validation ──
   async function validateVoucherCode(code: string) {
@@ -531,20 +546,31 @@ function CheckoutContent() {
   }, [paymentOptions])
 
   // ── Handle direct payment tx success ──
+  // Use `writeReceipt.transactionHash` (NOT `writeData`) so we verify the tx
+  // that actually mined — including any wallet-side speed-up or replacement
+  // that produced a different hash at the same nonce.
   useEffect(() => {
-    if (isTxSuccess && writeData && paymentDetails) {
-      setTxHash(writeData)
-      verifyPayment(writeData)
+    if (isTxSuccess && writeReceipt && paymentDetails) {
+      const minedHash = writeReceipt.transactionHash
+      if (writeData && minedHash !== writeData) {
+        console.info('[checkout] write tx replaced/sped-up:', writeData, '→', minedHash)
+      }
+      setTxHash(minedHash)
+      verifyPayment(minedHash)
     }
-  }, [isTxSuccess, writeData])
+  }, [isTxSuccess, writeReceipt])
 
   // ── Handle native ETH send tx success ──
   useEffect(() => {
-    if (isSendTxSuccess && sendTxHash && paymentDetails) {
-      setTxHash(sendTxHash)
-      verifyPayment(sendTxHash)
+    if (isSendTxSuccess && sendTxReceipt && paymentDetails) {
+      const minedHash = sendTxReceipt.transactionHash
+      if (sendTxHash && minedHash !== sendTxHash) {
+        console.info('[checkout] sendTx replaced/sped-up:', sendTxHash, '→', minedHash)
+      }
+      setTxHash(minedHash)
+      verifyPayment(minedHash)
     }
-  }, [isSendTxSuccess, sendTxHash])
+  }, [isSendTxSuccess, sendTxReceipt])
 
   /**
    * Sign EIP-712 typed data directly via eth_signTypedData_v4.
@@ -2242,7 +2268,19 @@ function CheckoutContent() {
                                 </span>
                               </div>
                             </div>
-                            <button type="button" className={css['wallet-disconnect-btn']} onClick={() => disconnect()}>
+                            <button
+                              type="button"
+                              className={css['wallet-disconnect-btn']}
+                              onClick={() => disconnect()}
+                              // Lock disconnect mid-flight: a wallet swap during the
+                              // tx-broadcast / verify-poll window leaves the order in a
+                              // half-paid state where the backend keeps polling on the
+                              // original payer + hash but the UI reflects a different
+                              // session. Wait for verify to resolve (success or hard
+                              // error) before allowing a disconnect.
+                              disabled={isProcessing}
+                              title={isProcessing ? 'Disconnect disabled while a payment is being verified.' : undefined}
+                            >
                               Disconnect wallet
                             </button>
                           </div>
