@@ -149,6 +149,28 @@ const BLOCK_EXPLORERS: Record<number, string> = {
   137: 'https://polygonscan.com',
 }
 
+// Per-chain block time (ms). Drives the verify-poll cadence so we don't
+// spin-poll Ethereum's 12s blocks or hammer Arbitrum's sub-second blocks.
+const BLOCK_TIME_MS: Record<number, number> = {
+  1: 12_000, // Ethereum
+  10: 2_000, // Optimism
+  137: 2_000, // Polygon
+  8453: 2_000, // Base
+  42161: 250, // Arbitrum
+}
+
+/** Half-block-time, clamped to [1.5s, 8s]. */
+function pollIntervalMs(chainId: number | undefined): number {
+  const blockTime = (chainId && BLOCK_TIME_MS[chainId]) ?? 4_000
+  return Math.max(1_500, Math.min(8_000, Math.floor(blockTime / 2)))
+}
+
+/** Poll budget = enough for `requiredConfs + 1` blocks of waiting; capped at 90s. */
+function pollMaxDurationMs(chainId: number | undefined, requiredConfs: number): number {
+  const blockTime = (chainId && BLOCK_TIME_MS[chainId]) ?? 4_000
+  return Math.min(90_000, blockTime * (requiredConfs + 1) + 4_000)
+}
+
 const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
 
 const FAQ_ITEMS = [
@@ -274,6 +296,12 @@ function CheckoutContent() {
   // True during the verifyPayment poll (between tx broadcast and order confirmation).
   // Used to lock token/network selection until verification resolves.
   const [isVerifying, setIsVerifying] = useState(false)
+  // Confirmation progress surfaced from the plugin's `confirmations` /
+  // `confirmations_required` fields. Used to render "Confirming on-chain (1/3)…"
+  // in place of the old retry-counter ("3/12 attempts") UI which was misleading
+  // — it implied the system was approaching failure when it was actually just
+  // waiting on the chain to mine more blocks.
+  const [confirmProgress, setConfirmProgress] = useState<{ current: number; required: number } | null>(null)
   // EIP-191 signature binding payer wallet to the payment reference.
   // Only populated for the native ETH path (USDC/USDT0 are bound via EIP-3009).
   const [ethPayerSignature, setEthPayerSignature] = useState<string | null>(null)
@@ -1294,86 +1322,112 @@ function CheckoutContent() {
     }
   }
 
-  async function verifyPayment(hash: string, attempt = 1) {
+  async function verifyPayment(hash: string) {
     if (!paymentDetails || !address) return
 
-    const maxAttempts = 12
-    const retryDelay = 5000
-
     setIsVerifying(true)
-    setPaymentStatus(attempt > 1
-      ? `Waiting for on-chain confirmation... (${attempt}/${maxAttempts})`
-      : 'Verifying payment...')
+    setPaymentStatus('Verifying payment...')
     setPurchaseError(null)
+    setConfirmProgress(null)
 
-    try {
-      const res = await fetch('/api/x402/tickets/verify/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          txHash: hash,
-          paymentReference: paymentDetails.paymentReference,
-          payer: address,
-          chainId: paymentDetails.chainId,
-          symbol: paymentDetails.tokenSymbol,
-          tokenAddress: paymentDetails.tokenAddress,
-          ...(paymentDetails.tokenSymbol === 'ETH' && ethPayerSignature && {
-            ethPayerSignature,
+    // Adaptive cadence keyed off the chain's block time. We don't know the
+    // required-confirmations count until the first server response, so the
+    // initial budget assumes 3 confs and is recomputed once we learn the
+    // actual threshold. Loop is time-bounded — stops on success, hard
+    // failure, or budget exhaustion.
+    const interval = pollIntervalMs(paymentDetails.chainId)
+    let budget = pollMaxDurationMs(paymentDetails.chainId, 3)
+    const startedAt = Date.now()
+    let firstAttempt = true
+
+    // Reasons the server returns 4xx that resolve on their own as the chain
+    // mines more blocks or the backend RPC catches up. Anything outside this
+    // set is a hard failure (wrong recipient, signature mismatch, etc.) and
+    // should bail immediately rather than waste polls.
+    const RETRYABLE_SUBSTRINGS = [
+      'not found',
+      'try again',
+      'not mined',
+      'insufficient confirmations',
+      'rpc error',
+      'no matching internal transfer',
+      'no matching transfer found',
+      'from/to mismatch',
+    ]
+
+    while (Date.now() - startedAt < budget) {
+      if (!firstAttempt) {
+        await new Promise(r => setTimeout(r, interval))
+      }
+      firstAttempt = false
+
+      try {
+        const res = await fetch('/api/x402/tickets/verify/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            txHash: hash,
+            paymentReference: paymentDetails.paymentReference,
+            payer: address,
+            chainId: paymentDetails.chainId,
+            symbol: paymentDetails.tokenSymbol,
+            tokenAddress: paymentDetails.tokenAddress,
+            ...(paymentDetails.tokenSymbol === 'ETH' && ethPayerSignature && {
+              ethPayerSignature,
+            }),
           }),
-        }),
-      })
+        })
 
-      const data = await res.json()
-      if (data.success) {
-        setPaymentStatus('Payment confirmed — redirecting to your order...')
-        setPaymentSucceeded(true)
-        localStorage.removeItem('devcon-ticket-cart')
-        if (newsletter) {
-          fetch('/api/subscribe/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email.trim() }),
-          }).catch(() => {})
+        const data = await res.json()
+        if (data.success) {
+          setConfirmProgress(null)
+          setPaymentStatus('Payment confirmed — redirecting to your order...')
+          setPaymentSucceeded(true)
+          localStorage.removeItem('devcon-ticket-cart')
+          if (newsletter) {
+            fetch('/api/subscribe/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: email.trim() }),
+            }).catch(() => {})
+          }
+          router.push(`/tickets/store/order/${data.order.code}/${data.order.secret}`)
+          return
         }
-        // Redirect to confirmation page (payment details are fetched from the API)
-        router.push(`/tickets/store/order/${data.order.code}/${data.order.secret}`)
-        return
-      }
 
-      // Auto-retry on transient errors. The verify endpoint can fail for reasons
-      // that resolve on their own after a few seconds: the backend RPC hasn't
-      // indexed the tx yet (not mined / not found / insufficient confirmations),
-      // a hiccup in the RPC, OR — for smart-wallet ETH flows — `debug_traceTransaction`
-      // returning stale data that doesn't show the internal transfer yet, which
-      // surfaces as a "from/to mismatch" or "no matching internal transfer" error.
-      const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
-      const isRetryable =
-        msg.includes('not found') ||
-        msg.includes('try again') ||
-        msg.includes('not mined') ||
-        msg.includes('insufficient confirmations') ||
-        msg.includes('rpc error') ||
-        msg.includes('no matching internal transfer') ||
-        msg.includes('no matching transfer found') ||
-        msg.includes('from/to mismatch')
-      if (attempt < maxAttempts && isRetryable) {
-        await new Promise(r => setTimeout(r, retryDelay))
-        return verifyPayment(hash, attempt + 1)
-      }
+        const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
+        const isRetryable = RETRYABLE_SUBSTRINGS.some(s => msg.includes(s))
+        if (!isRetryable) {
+          setConfirmProgress(null)
+          setPurchaseError(data.error || 'Payment verification failed')
+          setPaymentStatus(null)
+          setIsVerifying(false)
+          return
+        }
 
-      setPurchaseError(data.error || 'Payment verification failed')
-      setPaymentStatus(null)
-      setIsVerifying(false)
-    } catch {
-      // Network error — auto-retry
-      if (attempt < maxAttempts) {
-        await new Promise(r => setTimeout(r, retryDelay))
-        return verifyPayment(hash, attempt + 1)
+        // Surface confirmation progress when the plugin tells us how far
+        // along we are. The status string drives the UI label so the user
+        // sees the chain making progress instead of an opaque spinner.
+        const cur = typeof data.confirmations === 'number' ? data.confirmations : null
+        const req = typeof data.confirmations_required === 'number' ? data.confirmations_required : null
+        if (cur !== null && req !== null) {
+          setConfirmProgress({ current: cur, required: req })
+          setPaymentStatus(`Confirming on-chain (${cur}/${req})...`)
+          // Recompute the time budget now that we know the chain's threshold.
+          budget = pollMaxDurationMs(paymentDetails.chainId, req)
+        } else {
+          // Tx not mined yet, or some other transient — keep the generic msg.
+          setPaymentStatus('Waiting for transaction to be mined...')
+        }
+      } catch {
+        // Network blip / fetch failure — let the loop retry on next interval.
       }
-      setPurchaseError('Failed to verify payment')
-      setPaymentStatus(null)
-      setIsVerifying(false)
     }
+
+    setConfirmProgress(null)
+    setPurchaseError('Verification timed out — try the Retry button below or contact support.')
+    setPaymentStatus(null)
+    setIsVerifying(false)
   }
 
   // ── Checkout button state ──
