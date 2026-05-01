@@ -159,10 +159,12 @@ const BLOCK_TIME_MS: Record<number, number> = {
   42161: 250, // Arbitrum
 }
 
-/** Half-block-time, clamped to [1.5s, 8s]. */
+/** Polling cadence: 1.5 s floor (don't hammer fast L2s), 2 s ceiling
+ *  (don't sit idle on L1 — receipt indexing typically resolves within a
+ *  few seconds of inclusion regardless of the 12 s block cadence). */
 function pollIntervalMs(chainId: number | undefined): number {
   const blockTime = (chainId && BLOCK_TIME_MS[chainId]) ?? 4_000
-  return Math.max(1_500, Math.min(8_000, Math.floor(blockTime / 2)))
+  return Math.max(1_500, Math.min(2_000, Math.floor(blockTime / 2)))
 }
 
 /** Poll budget = enough for `requiredConfs + 1` blocks of waiting; capped at 90s. */
