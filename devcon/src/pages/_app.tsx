@@ -117,7 +117,7 @@ function App({ Component, pageProps }: any) {
           </div>
         )}
 
-        <IntlProvider messages={messages} locale={normalizedLocale}>
+        <IntlProvider messages={messages} locale={normalizedLocale} timeZone="UTC">
           {/* <SessionProvider session={pageProps.session}> */}
           {/* <Web3ModalProvider> */}
           <Component {...pageProps} />
