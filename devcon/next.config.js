@@ -36,7 +36,6 @@ const nextConfig = {
     optimizePackageImports: [
       'viem',
       'openai',
-      'nocodb-sdk',
       'lucide-react',
       'framer-motion',
     ],
