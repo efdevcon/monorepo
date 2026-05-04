@@ -281,6 +281,11 @@ function CheckoutContent() {
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({})
   const [showContactErrors, setShowContactErrors] = useState(false)
   const [showAttendeeErrors, setShowAttendeeErrors] = useState(false)
+  /** Flips true when the user clicks Continue on the Swag section with at
+   *  least one addon picked at quantity ≥ 1 but no variation chosen. Drives
+   *  red borders on the size dropdown + an inline error message. Auto-clears
+   *  on the next successful Continue. */
+  const [showSwagErrors, setShowSwagErrors] = useState(false)
   // ── Payment flow state ──
   const [purchaseLoading, setPurchaseLoading] = useState(false)
   const [purchaseError, setPurchaseError] = useState<string | null>(null)
@@ -786,6 +791,16 @@ function CheckoutContent() {
   const [sectionWarning, setSectionWarning] = useState<string | null>(null)
 
   const toggleSection = (id: string) => {
+    // Block forward jumps past 'swag' when an addon is picked at qty ≥ 1 but
+    // its variation hasn't been chosen — same gating shape as the
+    // contact/attendee mandatory-field guards below.
+    const movingPastSwag = id !== 'swag' && id !== 'faq' && openSection !== id
+    if (movingPastSwag && !swagSelectionsValid) {
+      setSectionWarning('Please select a size for each add-on first.')
+      setShowSwagErrors(true)
+      setOpenSection('swag')
+      return
+    }
     if (id === 'payment' && openSection !== 'payment') {
       if (!contactDetailsFilled) {
         setSectionWarning('Please fill in your contact details first.')
@@ -824,6 +839,19 @@ function CheckoutContent() {
     namesFilled &&
     isEmail(email.trim()) &&
     email.trim() === confirmEmail.trim()
+
+  /** True when every selected addon (quantity ≥ 1) that has variations has a
+   *  variation chosen. Same gating semantics as `contactDetailsFilled` —
+   *  blocks forward navigation past the Swag section. */
+  const swagSelectionsValid = (() => {
+    for (const [itemId, data] of selectedAddons.entries()) {
+      if (data.quantity <= 0) continue
+      const item = allAddonItems.find(i => i.id === itemId)
+      if (!item || item.variations.length === 0) continue
+      if (!data.variationId) return false
+    }
+    return true
+  })()
 
   // Auto-trigger crypto checkout when prerequisites are met (only on payment section)
   useEffect(() => {
@@ -893,7 +921,16 @@ function CheckoutContent() {
 
   const toggleMultiAnswer = (questionId: number, optionId: string) => {
     setAnswers(prev => {
-      const current = (prev[questionId] as string[]) || []
+      // Defensive: a previous render may have stored a single-select string
+      // under this id (e.g. if the question type changed, or the value was
+      // hydrated from a Pretix answer that's persisted as a comma-joined
+      // string). Coerce non-array values into an array before .filter / spread.
+      const raw = prev[questionId]
+      const current: string[] = Array.isArray(raw)
+        ? raw
+        : typeof raw === 'string' && raw.length > 0
+        ? raw.split(',').map(s => s.trim()).filter(Boolean)
+        : []
       const next = current.includes(optionId) ? current.filter(v => v !== optionId) : [...current, optionId]
       return { ...prev, [questionId]: next }
     })
@@ -1771,11 +1808,34 @@ function CheckoutContent() {
                       }
                     }
 
+                    // Total quantity already selected across all items in a given
+                    // category — Pretix `max_count` caps the SUM across items, not
+                    // per-item. e.g. premium category with max_count=2 + multi_allowed=false
+                    // means the buyer can pick 1 shirt + 1 chess set, but never a 2nd of
+                    // either AND never both at once if the cap is already hit.
+                    const categoryQtyTotals = new Map<number, number>()
+                    for (const cat of availableAddons) {
+                      let total = 0
+                      for (const it of cat.items) {
+                        total += selectedAddons.get(it.id)?.quantity || 0
+                      }
+                      categoryQtyTotals.set(cat.categoryId, total)
+                    }
+
                     const renderItem = (item: AddonItem, category: AddonCategory) => {
                       const sel = selectedAddons.get(item.id)
                       const qty = sel?.quantity || 0
                       const isFree = category.priceIncluded || parseFloat(item.price) === 0
                       const hasVariations = item.variations.length > 0
+                      // Effective per-item cap: 1 when multi_allowed=false (default for
+                      // premium swag), otherwise the category's max_count.
+                      const perItemCap = category.multiAllowed ? category.maxCount : 1
+                      // Category running total — disable + on this item once the category
+                      // sum has reached max_count, even if this specific item is still under
+                      // its per-item cap.
+                      const categoryTotal = categoryQtyTotals.get(category.categoryId) ?? 0
+                      const categoryRoom = category.maxCount - categoryTotal
+                      const canIncrement = qty < perItemCap && categoryRoom > 0
                       const showQty = isFree || hasVariations || category.maxCount > 1
                       return (
                         <div key={item.id} className={css['swag-card']}>
@@ -1821,7 +1881,7 @@ function CheckoutContent() {
                                     type="button"
                                     className={css['addon-qty-btn']}
                                     onClick={() => setAddonQuantity(item.id, qty + 1)}
-                                    disabled={qty >= category.maxCount}
+                                    disabled={!canIncrement}
                                   >
                                     <Plus size={16} />
                                   </button>
@@ -1842,23 +1902,35 @@ function CheckoutContent() {
                                 </div>
                               )}
                               {hasVariations && (
-                                <Select
-                                  value={sel?.variationId ? String(sel.variationId) : ''}
-                                  onValueChange={val => {
-                                    setAddonVariation(item.id, val ? Number(val) : undefined)
-                                  }}
-                                >
-                                  <SelectTrigger className="min-w-[140px] h-10 text-sm">
-                                    <SelectValue placeholder="Select size" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    {item.variations.map(v => (
-                                      <SelectItem key={v.id} value={String(v.id)}>
-                                        {v.name}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
+                                <div className={css['swag-variation']}>
+                                  <Select
+                                    value={sel?.variationId ? String(sel.variationId) : ''}
+                                    onValueChange={val => {
+                                      setAddonVariation(item.id, val ? Number(val) : undefined)
+                                    }}
+                                  >
+                                    <SelectTrigger
+                                      data-addon-variation-id={item.id}
+                                      className={`min-w-[140px] h-10 text-sm ${
+                                        showSwagErrors && qty > 0 && !sel?.variationId
+                                          ? 'border-[#ef4444] shadow-none'
+                                          : ''
+                                      }`}
+                                    >
+                                      <SelectValue placeholder="Select size" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {item.variations.map(v => (
+                                        <SelectItem key={v.id} value={String(v.id)}>
+                                          {v.name}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                  {showSwagErrors && qty > 0 && !sel?.variationId && (
+                                    <p className={css['field-error']}>Please select a size.</p>
+                                  )}
+                                </div>
                               )}
                             </div>
                             <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
@@ -1896,7 +1968,31 @@ function CheckoutContent() {
                       </>
                     )
                   })()}
-                  <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
+                  <button
+                    type="button"
+                    className={css['btn-continue']}
+                    onClick={() => {
+                      // Validate: any addon picked at qty ≥ 1 with variations must have one selected.
+                      const missing: number[] = []
+                      for (const [itemId, data] of selectedAddons.entries()) {
+                        if (data.quantity <= 0) continue
+                        const item = allAddonItems.find(i => i.id === itemId)
+                        if (!item || item.variations.length === 0) continue
+                        if (!data.variationId) missing.push(itemId)
+                      }
+                      if (missing.length > 0) {
+                        setShowSwagErrors(true)
+                        setTimeout(() => {
+                          document
+                            .querySelector(`[data-addon-variation-id="${missing[0]}"]`)
+                            ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                        }, 50)
+                        return
+                      }
+                      setShowSwagErrors(false)
+                      goToNextSection('swag')
+                    }}
+                  >
                     Continue
                   </button>
                 </div>

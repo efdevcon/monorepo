@@ -234,7 +234,11 @@ $checkout-two-col: 1200px;
 .swag-controls-cell {
   grid-area: controls;
   display: flex;
-  align-items: center;
+  /* Top-align so the qty/select row stays put when the variation column
+     expands downward to fit an error message. The price spans (.swag-price-free
+     and .addon-price) carry their own 40px min-height so they remain visually
+     centered against the qty/select row. */
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
   align-self: end;
@@ -243,9 +247,19 @@ $checkout-two-col: 1200px;
 
 .swag-controls {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   flex-wrap: wrap;
+}
+
+.swag-variation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  /* Top-align inside the controls row so the size dropdown stays aligned with
+     the 40px qty button group when the error message expands the column
+     downward. The card grows naturally to contain the message. */
+  align-self: flex-start;
 }
 
 .swag-info h4 {
@@ -398,12 +412,20 @@ $checkout-two-col: 1200px;
   font-size: 1rem;
   font-weight: 700;
   color: #000;
+  /* Match the qty/select 40px row so the price visually centers against the
+     controls regardless of whether the variation column shows an error. */
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .addon-price {
   font-size: 1rem;
   font-weight: 700;
   color: #000;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .addon-category-title {
