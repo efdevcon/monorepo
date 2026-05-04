@@ -1948,7 +1948,7 @@ function CheckoutContent() {
                           )}
                         </div>
                         <div className={css['field']}>
-                          <label htmlFor="last-name">&nbsp;</label>
+                          <label htmlFor="last-name" data-spacer="true">&nbsp;</label>
                           <Input
                             id="last-name"
                             type="text"
@@ -1985,7 +1985,7 @@ function CheckoutContent() {
                         )}
                       </div>
                       <div className={css['field']}>
-                        <label htmlFor="confirm-email">&nbsp;</label>
+                        <label htmlFor="confirm-email" data-spacer="true">&nbsp;</label>
                         <Input
                           id="confirm-email"
                           type="email"
@@ -2006,7 +2006,7 @@ function CheckoutContent() {
                         )}
                       </div>
                     </div>
-                    <label className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer">
+                    <label className={css['rich-checkbox']}>
                       <Checkbox
                         checked={newsletter}
                         onCheckedChange={checked => setNewsletter(checked === true)}
