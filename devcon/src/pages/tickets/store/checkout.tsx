@@ -840,6 +840,13 @@ function CheckoutContent() {
     isEmail(email.trim()) &&
     email.trim() === confirmEmail.trim()
 
+  /** True when ETH is the sole enabled crypto token — drives ETH-specific
+   *  copy on the payment option. Computed via a non-narrowing runtime cast
+   *  so changing the token list shape (`as const` vs typed alias) in
+   *  `config/ticketing.ts` doesn't reintroduce TS2367. */
+  const enabledTokensList = TICKETING.payment.enabledTokens as readonly string[]
+  const isEthOnly = enabledTokensList.length === 1 && enabledTokensList[0] === 'ETH'
+
   /** True when every selected addon (quantity ≥ 1) that has variations has a
    *  variation chosen. Same gating semantics as `contactDetailsFilled` —
    *  blocks forward navigation past the Swag section. */
@@ -2403,10 +2410,7 @@ function CheckoutContent() {
                           <div className={css['payment-option-header']}>
                             <div className={css['payment-option-title-row']}>
                               <span className={css['payment-option-title']}>
-                                {TICKETING.payment.enabledTokens.length === 1 &&
-                                TICKETING.payment.enabledTokens[0] === 'ETH'
-                                  ? 'ETH'
-                                  : 'Crypto'}
+                                {isEthOnly ? 'ETH' : 'Crypto'}
                               </span>
                               {!forcePretixRedirect && TICKETING.payment.fiatEnabled && (
                                 <span className={css['save-badge']}>
@@ -2427,10 +2431,7 @@ function CheckoutContent() {
                             </div>
                           </div>
                           <p className={css['payment-option-desc']}>
-                            {TICKETING.payment.enabledTokens.length === 1 &&
-                            TICKETING.payment.enabledTokens[0] === 'ETH'
-                              ? 'Pay using ETH on Mainnet'
-                              : 'All major wallets & networks'}
+                            {isEthOnly ? 'Pay using ETH on Mainnet' : 'All major wallets & networks'}
                           </p>
                         </div>
                       </label>
