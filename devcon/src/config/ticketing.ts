@@ -23,7 +23,9 @@ const ENV_CONFIG = {
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
-      cryptoDiscountPercent: 3,
+      cryptoDiscountPercent: 10,
+      fiatEnabled: false,
+      enabledTokens: ['ETH', 'USDC'] as const,
     },
     tax: {
       vatPercent: 18,
@@ -73,6 +75,8 @@ const ENV_CONFIG = {
       // recipientAddress: '0x403A3A81abA974dEb4faF20514ae34FAf9268E28',
       relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       cryptoDiscountPercent: 3,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as const,
     },
     tax: {
       vatPercent: 18,

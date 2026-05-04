@@ -2238,8 +2238,10 @@ function CheckoutContent() {
                 {openSection === 'payment' && (
                   <div className={css['section-body']}>
                     <div className={css['description-block']}>
-                      <p className={css['description-title']}>Select your preferred payment method</p>
-                      {!forcePretixRedirect && (
+                      <p className={css['description-title']}>
+                        {TICKETING.payment.fiatEnabled ? 'Select your preferred payment method' : 'Payment method'}
+                      </p>
+                      {!forcePretixRedirect && TICKETING.payment.fiatEnabled && (
                         <p className={css['description-sub']}>
                           Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying
                           with Crypto.
@@ -2256,36 +2258,41 @@ function CheckoutContent() {
                           <div className={css['payment-option-header']}>
                             <div className={css['payment-option-title-row']}>
                               <span className={css['payment-option-title']}>Crypto</span>
-                              {!forcePretixRedirect && (
+                              {!forcePretixRedirect && TICKETING.payment.fiatEnabled && (
                                 <span className={css['save-badge']}>
                                   SAVE {TICKETING.payment.cryptoDiscountPercent}%
                                 </span>
                               )}
                             </div>
                             <div className={css['payment-icons']}>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={TOKEN_ICONS.ETH} alt="ETH" className={css['payment-icon-box']} />
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={TOKEN_ICONS.USDC} alt="USDC" className={css['payment-icon-box']} />
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
+                              {TICKETING.payment.enabledTokens.map((sym) => (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  key={sym}
+                                  src={TOKEN_ICONS[sym]}
+                                  alt={SYMBOL_DISPLAY[sym] ?? sym}
+                                  className={css['payment-icon-box']}
+                                />
+                              ))}
                             </div>
                           </div>
                           <p className={css['payment-option-desc']}>All major wallets & networks</p>
                         </div>
                       </label>
-                      <label
-                        className={`${css['payment-option']} ${paymentMethod === 'fiat' ? css['selected'] : ''}`}
-                        onClick={() => setPaymentMethod('fiat')}
-                      >
-                        <input type="radio" name="payment" checked={paymentMethod === 'fiat'} readOnly />
-                        <div className={css['payment-option-content']}>
-                          <div className={css['payment-option-header']}>
-                            <span className={css['payment-option-title']}>Fiat</span>
+                      {TICKETING.payment.fiatEnabled && (
+                        <label
+                          className={`${css['payment-option']} ${paymentMethod === 'fiat' ? css['selected'] : ''}`}
+                          onClick={() => setPaymentMethod('fiat')}
+                        >
+                          <input type="radio" name="payment" checked={paymentMethod === 'fiat'} readOnly />
+                          <div className={css['payment-option-content']}>
+                            <div className={css['payment-option-header']}>
+                              <span className={css['payment-option-title']}>Fiat</span>
+                            </div>
+                            <p className={css['payment-option-desc']}>Debit / Credit Card</p>
                           </div>
-                          <p className={css['payment-option-desc']}>Debit / Credit Card</p>
-                        </div>
-                      </label>
+                        </label>
+                      )}
                     </div>
 
                     {paymentMethod === 'crypto' && !forcePretixRedirect && (
