@@ -427,6 +427,7 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
             description: getLocalizedString(ai.description, locale) || null,
             price: ai.default_price,
             available: itemAvailability.get(ai.id)?.available ?? true,
+            picture: ai.picture || null,
             variations: ai.variations
               .filter((v) => v.active)
               .map((v) => ({

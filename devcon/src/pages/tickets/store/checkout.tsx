@@ -1753,108 +1753,143 @@ function CheckoutContent() {
               </button>
               {openSection === 'swag' && (
                 <div className={css['section-body']}>
-                  {availableAddons.map(category => {
-                    const availableItems = category.items.filter(i => i.available)
-                    if (availableItems.length === 0) return null
-                    return (
-                      <div key={category.categoryId} className={css['swag-grid']}>
-                        {category.categoryName && (
-                          <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
-                        )}
-                        {availableItems.map(item => {
-                          const sel = selectedAddons.get(item.id)
-                          const qty = sel?.quantity || 0
-                          const isFree = parseFloat(item.price) === 0
-                          const hasVariations = item.variations.length > 0
-                          return (
-                            <div key={item.id} className={css['swag-card']}>
-                              <div className={css['swag-image']} />
-                              <div className={css['swag-info']}>
-                                <h4>{item.name}</h4>
-                                {item.description && (
-                                  <div className={css['addon-description']}>
-                                    <Markdown
-                                      components={{
-                                        p: ({ children }) => <p style={{ margin: 0 }}>{children}</p>,
-                                        a: ({ href, children }) => (
-                                          <a href={href} target="_blank" rel="noopener noreferrer">
-                                            {children}
-                                          </a>
-                                        ),
-                                      }}
-                                    >
-                                      {item.description}
-                                    </Markdown>
-                                  </div>
-                                )}
+                  {(() => {
+                    type AddonItem = TicketInfo['addons'][number]['items'][number]
+                    type AddonCategory = TicketInfo['addons'][number]
+                    const freeItems: { item: AddonItem; category: AddonCategory }[] = []
+                    const paidItems: { item: AddonItem; category: AddonCategory }[] = []
+                    for (const category of availableAddons) {
+                      for (const item of category.items.filter(i => i.available)) {
+                        if (parseFloat(item.price) === 0) freeItems.push({ item, category })
+                        else paidItems.push({ item, category })
+                      }
+                    }
+
+                    const renderItem = (item: AddonItem, category: AddonCategory) => {
+                      const sel = selectedAddons.get(item.id)
+                      const qty = sel?.quantity || 0
+                      const isFree = parseFloat(item.price) === 0
+                      const hasVariations = item.variations.length > 0
+                      const showQty = isFree || hasVariations || category.maxCount > 1
+                      return (
+                        <div key={item.id} className={css['swag-card']}>
+                          {item.picture ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img className={css['swag-image']} src={item.picture} alt={item.name} />
+                          ) : (
+                            <div className={css['swag-image']} />
+                          )}
+                          <div className={css['swag-info']}>
+                            <h4>{item.name}</h4>
+                            {item.description && (
+                              <div className={css['addon-description']}>
+                                <Markdown
+                                  components={{
+                                    p: ({ children }) => <p style={{ margin: 0 }}>{children}</p>,
+                                    a: ({ href, children }) => (
+                                      <a href={href} target="_blank" rel="noopener noreferrer">
+                                        {children}
+                                      </a>
+                                    ),
+                                  }}
+                                >
+                                  {item.description}
+                                </Markdown>
                               </div>
-                              <div className={css['swag-right']}>
-                                {hasVariations ? (
-                                  /* Items with variations: size dropdown */
-                                  <Select
-                                    value={sel?.variationId ? String(sel.variationId) : ''}
-                                    onValueChange={val => {
-                                      setAddonVariation(item.id, val ? Number(val) : undefined)
-                                    }}
+                            )}
+                          </div>
+                          <div className={css['swag-controls-cell']}>
+                            <div className={css['swag-controls']}>
+                              {showQty ? (
+                                <div className={css['addon-qty']}>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty - 1)}
+                                    disabled={qty <= 0}
                                   >
-                                    <SelectTrigger className="min-w-[140px] h-9 text-sm">
-                                      <SelectValue placeholder="Select size" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                      {item.variations.map(v => (
-                                        <SelectItem key={v.id} value={String(v.id)}>
-                                          {v.name}
-                                        </SelectItem>
-                                      ))}
-                                    </SelectContent>
-                                  </Select>
-                                ) : category.maxCount > 1 ? (
-                                  /* Paid items without variations: quantity +/- */
-                                  <div className={css['addon-qty']}>
-                                    <button
-                                      type="button"
-                                      className={css['addon-qty-btn']}
-                                      onClick={() => setAddonQuantity(item.id, qty - 1)}
-                                      disabled={qty <= 0}
-                                    >
-                                      <Minus size={16} />
-                                    </button>
-                                    <span className={css['addon-qty-value']}>{qty}</span>
-                                    <button
-                                      type="button"
-                                      className={css['addon-qty-btn']}
-                                      onClick={() => setAddonQuantity(item.id, qty + 1)}
-                                      disabled={qty >= category.maxCount}
-                                    >
-                                      <Plus size={16} />
-                                    </button>
-                                  </div>
-                                ) : (
-                                  /* Simple toggle */
-                                  <div className="flex items-center gap-2">
-                                    <Checkbox
-                                      id={`addon-${item.id}`}
-                                      checked={qty > 0}
-                                      onCheckedChange={() => toggleAddon(item.id)}
-                                    />
-                                    <Label
-                                      htmlFor={`addon-${item.id}`}
-                                      className="text-sm text-black/70 cursor-pointer"
-                                    >
-                                      {qty > 0 ? 'Added' : 'Add'}
-                                    </Label>
-                                  </div>
-                                )}
-                                <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
-                                  {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
-                                </span>
-                              </div>
+                                    <Minus size={16} />
+                                  </button>
+                                  <span className={css['addon-qty-value']}>{qty}</span>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty + 1)}
+                                    disabled={qty >= category.maxCount}
+                                  >
+                                    <Plus size={16} />
+                                  </button>
+                                </div>
+                              ) : (
+                                <div className="flex items-center gap-2">
+                                  <Checkbox
+                                    id={`addon-${item.id}`}
+                                    checked={qty > 0}
+                                    onCheckedChange={() => toggleAddon(item.id)}
+                                  />
+                                  <Label
+                                    htmlFor={`addon-${item.id}`}
+                                    className="text-sm text-black/70 cursor-pointer"
+                                  >
+                                    {qty > 0 ? 'Added' : 'Add'}
+                                  </Label>
+                                </div>
+                              )}
+                              {hasVariations && (
+                                <Select
+                                  value={sel?.variationId ? String(sel.variationId) : ''}
+                                  onValueChange={val => {
+                                    setAddonVariation(item.id, val ? Number(val) : undefined)
+                                  }}
+                                >
+                                  <SelectTrigger className="min-w-[140px] h-10 text-sm">
+                                    <SelectValue placeholder="Select size" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {item.variations.map(v => (
+                                      <SelectItem key={v.id} value={String(v.id)}>
+                                        {v.name}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              )}
                             </div>
-                          )
-                        })}
-                      </div>
+                            <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
+                              {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
+                            </span>
+                          </div>
+                        </div>
+                      )
+                    }
+
+                    return (
+                      <>
+                        {freeItems.length > 0 && (
+                          <div className={css['swag-group']}>
+                            <h4 className={css['swag-group-title']}>Included with ticket</h4>
+                            <div className={css['swag-grid']}>
+                              {freeItems.map(({ item, category }) => renderItem(item, category))}
+                            </div>
+                          </div>
+                        )}
+                        {paidItems.length > 0 && (
+                          <div className={css['swag-group']}>
+                            <div className={css['swag-group-header']}>
+                              <h4 className={css['swag-group-title']}>Premium items</h4>
+                              <span className={css['swag-group-tag']}>LIMITED STOCK</span>
+                            </div>
+                            <div className={css['swag-grid']}>
+                              {paidItems.map(({ item, category }) => renderItem(item, category))}
+                            </div>
+                          </div>
+                        )}
+                        <p className={css['swag-tax-note']}>
+                          Prices include {TICKETING.tax.vatPercent}% {TICKETING.tax.label}
+                        </p>
+                      </>
                     )
-                  })}
+                  })()}
                   <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
                     Continue
                   </button>

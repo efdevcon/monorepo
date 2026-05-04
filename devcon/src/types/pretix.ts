@@ -96,6 +96,7 @@ export interface PretixItem {
   show_quota_left: boolean | null
   checkin_attention: boolean
   meta_data: Record<string, string>
+  picture: string | null
 }
 
 export interface PretixQuestionOption {
@@ -273,6 +274,7 @@ export interface TicketInfo {
       description: string | null
       price: string
       available: boolean
+      picture: string | null
       variations: {
         id: number
         name: string
