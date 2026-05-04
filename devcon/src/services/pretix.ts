@@ -421,6 +421,7 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
           categoryName: category ? getLocalizedString(category.name, locale) : '',
           minCount: addon.min_count,
           maxCount: addon.max_count,
+          priceIncluded: addon.price_included,
           items: addonItems.map((ai) => ({
             id: ai.id,
             name: getLocalizedString(ai.name, locale),

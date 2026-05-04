@@ -653,10 +653,24 @@ function CheckoutContent() {
   // Fingerprint for detecting add-on selection changes (used in reset + auto-checkout effects)
   const addonFingerprint = JSON.stringify(Array.from(selectedAddons.entries()).sort((a, b) => a[0] - b[0]))
 
+  // Lookup: addon item id → parent category (so we can read priceIncluded).
+  // An item can appear in only one addon-category for a given ticket, so the
+  // first hit is authoritative.
+  const addonCategoryByItemId = new Map<number, TicketInfo['addons'][number]>()
+  for (const cat of availableAddons) {
+    for (const it of cat.items) {
+      if (!addonCategoryByItemId.has(it.id)) addonCategoryByItemId.set(it.id, cat)
+    }
+  }
+
   // Add-on subtotal
   const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, data]) => {
     const item = allAddonItems.find(i => i.id === itemId)
     if (!item || data.quantity <= 0) return sum
+    // Free as an addon to the selected ticket — Pretix's `price_included: true`
+    // on the parent ticket's addon-category entry overrides item.default_price.
+    const category = addonCategoryByItemId.get(itemId)
+    if (category?.priceIncluded) return sum
     // If a variation is selected, use variation price; otherwise use item price
     let price = parseFloat(item.price)
     if (data.variationId) {
@@ -1563,12 +1577,13 @@ function CheckoutContent() {
                   {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                     const item = allAddonItems.find(i => i.id === itemId)
                     if (!item || data.quantity <= 0) return null
-                    let price = parseFloat(item.price)
+                    const cat = addonCategoryByItemId.get(itemId)
+                    let price = cat?.priceIncluded ? 0 : parseFloat(item.price)
                     let variationName = ''
                     if (data.variationId) {
                       const variation = item.variations.find(v => v.id === data.variationId)
                       if (variation) {
-                        price = parseFloat(variation.price)
+                        if (!cat?.priceIncluded) price = parseFloat(variation.price)
                         variationName = variation.name
                       }
                     }
@@ -1745,15 +1760,21 @@ function CheckoutContent() {
                     const paidItems: { item: AddonItem; category: AddonCategory }[] = []
                     for (const category of availableAddons) {
                       for (const item of category.items.filter(i => i.available)) {
-                        if (parseFloat(item.price) === 0) freeItems.push({ item, category })
-                        else paidItems.push({ item, category })
+                        // Free either because the item is intrinsically free OR because the
+                        // parent ticket's addon entry has `price_included: true` (Pretix's
+                        // server side already charges $0 for these — surface that to buyers).
+                        if (category.priceIncluded || parseFloat(item.price) === 0) {
+                          freeItems.push({ item, category })
+                        } else {
+                          paidItems.push({ item, category })
+                        }
                       }
                     }
 
                     const renderItem = (item: AddonItem, category: AddonCategory) => {
                       const sel = selectedAddons.get(item.id)
                       const qty = sel?.quantity || 0
-                      const isFree = parseFloat(item.price) === 0
+                      const isFree = category.priceIncluded || parseFloat(item.price) === 0
                       const hasVariations = item.variations.length > 0
                       const showQty = isFree || hasVariations || category.maxCount > 1
                       return (
@@ -2803,12 +2824,13 @@ function CheckoutContent() {
                               {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                                 const item = allAddonItems.find(i => i.id === itemId)
                                 if (!item || data.quantity <= 0) return null
-                                let price = parseFloat(item.price)
+                                const cat = addonCategoryByItemId.get(itemId)
+                                let price = cat?.priceIncluded ? 0 : parseFloat(item.price)
                                 let variationName = ''
                                 if (data.variationId) {
                                   const variation = item.variations.find(v => v.id === data.variationId)
                                   if (variation) {
-                                    price = parseFloat(variation.price)
+                                    if (!cat?.priceIncluded) price = parseFloat(variation.price)
                                     variationName = variation.name
                                   }
                                 }
@@ -3029,12 +3051,13 @@ function CheckoutContent() {
                 {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                   const item = allAddonItems.find(i => i.id === itemId)
                   if (!item || data.quantity <= 0) return null
-                  let price = parseFloat(item.price)
+                  const cat = addonCategoryByItemId.get(itemId)
+                  let price = cat?.priceIncluded ? 0 : parseFloat(item.price)
                   let variationName = ''
                   if (data.variationId) {
                     const variation = item.variations.find(v => v.id === data.variationId)
                     if (variation) {
-                      price = parseFloat(variation.price)
+                      if (!cat?.priceIncluded) price = parseFloat(variation.price)
                       variationName = variation.name
                     }
                   }

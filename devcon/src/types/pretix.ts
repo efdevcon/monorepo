@@ -268,6 +268,11 @@ export interface TicketInfo {
     categoryName: string
     minCount: number
     maxCount: number
+    /** True when the parent ticket's addon entry has `price_included: true` —
+     *  every item in this category is effectively free as an addon to this
+     *  ticket regardless of the item's `price`. Drives the "Included with
+     *  ticket" group + $0 charge in the cart. */
+    priceIncluded: boolean
     items: {
       id: number
       name: string
