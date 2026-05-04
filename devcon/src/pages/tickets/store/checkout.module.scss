@@ -712,6 +712,16 @@ $checkout-two-col: 1200px;
   }
 }
 
+.payment-methods-single {
+  /* Crypto-only layout: full width on every viewport so the option doesn't
+     sit at half-width with empty space when fiat is disabled. */
+  grid-template-columns: 1fr;
+
+  @media (min-width: $checkout-two-col) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .payment-option {
   display: flex;
   align-items: flex-start;
@@ -1632,6 +1642,24 @@ div.wallet-identicon {
 .mobile-tc {
   font-size: 0.875rem;
   line-height: 1.5;
+  color: #160b2b;
+  text-align: center;
+  margin: 0;
+
+  a {
+    color: $checkout-accent;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.payment-confirm-text {
+  font-size: 0.875rem;
+  line-height: 1.43;
   color: #160b2b;
   text-align: center;
   margin: 0;

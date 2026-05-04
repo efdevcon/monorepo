@@ -1681,21 +1681,6 @@ function CheckoutContent() {
                 </div>
                 <div className={css['panel-disclaimer']}>
                   <p>
-                    I confirm that I have read and understand the{' '}
-                    <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
-                      <strong>EF Privacy Policy</strong>
-                    </a>{' '}
-                    and{' '}
-                    <a
-                      href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <strong>Devcon 8 Privacy Notice</strong>
-                    </a>
-                    .
-                  </p>
-                  <p>
                     An order confirmation with your tickets will be sent to the email provided during checkout. If you
                     don&apos;t receive a confirmation email, please{' '}
                     <a href={supportMailto || `mailto:${supportEmail}`}>
@@ -2287,7 +2272,11 @@ function CheckoutContent() {
                         </p>
                       )}
                     </div>
-                    <div className={css['payment-methods']}>
+                    <div
+                      className={`${css['payment-methods']} ${
+                        !TICKETING.payment.fiatEnabled ? css['payment-methods-single'] : ''
+                      }`}
+                    >
                       <label
                         className={`${css['payment-option']} ${paymentMethod === 'crypto' ? css['selected'] : ''}`}
                         onClick={() => setPaymentMethod('crypto')}
@@ -2296,7 +2285,12 @@ function CheckoutContent() {
                         <div className={css['payment-option-content']}>
                           <div className={css['payment-option-header']}>
                             <div className={css['payment-option-title-row']}>
-                              <span className={css['payment-option-title']}>Crypto</span>
+                              <span className={css['payment-option-title']}>
+                                {TICKETING.payment.enabledTokens.length === 1 &&
+                                TICKETING.payment.enabledTokens[0] === 'ETH'
+                                  ? 'ETH'
+                                  : 'Crypto'}
+                              </span>
                               {!forcePretixRedirect && TICKETING.payment.fiatEnabled && (
                                 <span className={css['save-badge']}>
                                   SAVE {TICKETING.payment.cryptoDiscountPercent}%
@@ -2315,7 +2309,12 @@ function CheckoutContent() {
                               ))}
                             </div>
                           </div>
-                          <p className={css['payment-option-desc']}>All major wallets & networks</p>
+                          <p className={css['payment-option-desc']}>
+                            {TICKETING.payment.enabledTokens.length === 1 &&
+                            TICKETING.payment.enabledTokens[0] === 'ETH'
+                              ? 'Pay using ETH on Mainnet'
+                              : 'All major wallets & networks'}
+                          </p>
                         </div>
                       </label>
                       {TICKETING.payment.fiatEnabled && (
@@ -2897,24 +2896,32 @@ function CheckoutContent() {
                       </div>
                     </div>
 
-                    {/* Mobile: T&C */}
-                    <div className={css['mobile-only']}>
-                      <p className={css['mobile-tc']}>
-                        I confirm that I have read and understand the{' '}
-                        <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
-                          <strong>EF Privacy Policy</strong>
-                        </a>{' '}
-                        and{' '}
-                        <a
-                          href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <strong>Devcon 8 Privacy Notice</strong>
+                    {supportMailto && (
+                      <p className={css['support-link']} style={{ fontSize: 13, color: '#666', textAlign: 'center' }}>
+                        Need help?{' '}
+                        <a href={supportMailto} style={{ color: '#4a90d9', textDecoration: 'underline' }}>
+                          Contact support
                         </a>
-                        .
+                        {' '}— we&apos;ve pre-filled the details we know.
                       </p>
-                    </div>
+                    )}
+
+                    {/* Privacy / Notice confirmation — shown inside the Payment card per Figma */}
+                    <p className={css['payment-confirm-text']}>
+                      I confirm that I have read and understand the{' '}
+                      <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                        <strong>EF Privacy Policy</strong>
+                      </a>{' '}
+                      and{' '}
+                      <a
+                        href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Devcon 8 Privacy Notice</strong>
+                      </a>
+                      .
+                    </p>
 
                     {!(paymentMethod === 'crypto' && !forcePretixRedirect) && (
                       <button
@@ -2940,16 +2947,6 @@ function CheckoutContent() {
                           className={css['stripe-note-img']}
                         />
                       </div>
-                    )}
-
-                    {supportMailto && (
-                      <p className={css['support-link']} style={{ marginTop: 12, fontSize: 13, color: '#666', textAlign: 'center' }}>
-                        Need help?{' '}
-                        <a href={supportMailto} style={{ color: '#4a90d9', textDecoration: 'underline' }}>
-                          Contact support
-                        </a>
-                        {' '}— we&apos;ve pre-filled the details we know.
-                      </p>
                     )}
                   </div>
                 )}
@@ -3180,21 +3177,6 @@ function CheckoutContent() {
                 </div>
               </div>
               <div className={css['panel-disclaimer']}>
-                <p>
-                  I confirm that I have read and understand the{' '}
-                  <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
-                    <strong>EF Privacy Policy</strong>
-                  </a>{' '}
-                  and{' '}
-                  <a
-                    href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <strong>Devcon 8 Privacy Notice</strong>
-                  </a>
-                  .
-                </p>
                 <p>
                   An order confirmation with your tickets will be sent to the email provided during checkout. If you
                   don&apos;t receive a confirmation email, please{' '}
