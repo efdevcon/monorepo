@@ -1681,14 +1681,18 @@ function CheckoutContent() {
                 </div>
                 <div className={css['panel-disclaimer']}>
                   <p>
-                    By placing your order, you agree to Devcon&apos;s{' '}
-                    <Link to="/terms-of-service">
-                      <strong>Terms &amp; Conditions</strong>
-                    </Link>{' '}
+                    I confirm that I have read and understand the{' '}
+                    <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                      <strong>EF Privacy Policy</strong>
+                    </a>{' '}
                     and{' '}
-                    <Link to="/privacy-policy">
-                      <strong>Privacy Policy</strong>
-                    </Link>
+                    <a
+                      href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <strong>Devcon 8 Privacy Notice</strong>
+                    </a>
                     .
                   </p>
                   <p>
@@ -2861,14 +2865,18 @@ function CheckoutContent() {
                     {/* Mobile: T&C */}
                     <div className={css['mobile-only']}>
                       <p className={css['mobile-tc']}>
-                        By placing your order, you agree to Devcon&apos;s{' '}
-                        <Link to="/terms-of-service">
-                          <strong>Terms & Conditions</strong>
-                        </Link>{' '}
+                        I confirm that I have read and understand the{' '}
+                        <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                          <strong>EF Privacy Policy</strong>
+                        </a>{' '}
                         and{' '}
-                        <Link to="/privacy-policy">
-                          <strong>Privacy Policy</strong>
-                        </Link>
+                        <a
+                          href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <strong>Devcon 8 Privacy Notice</strong>
+                        </a>
                         .
                       </p>
                     </div>
@@ -3138,14 +3146,18 @@ function CheckoutContent() {
               </div>
               <div className={css['panel-disclaimer']}>
                 <p>
-                  By placing your order, you agree to Devcon&apos;s{' '}
-                  <Link to="/terms-of-service">
-                    <strong>Terms & Conditions</strong>
-                  </Link>{' '}
+                  I confirm that I have read and understand the{' '}
+                  <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                    <strong>EF Privacy Policy</strong>
+                  </a>{' '}
                   and{' '}
-                  <Link to="/privacy-policy">
-                    <strong>Privacy Policy</strong>
-                  </Link>
+                  <a
+                    href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <strong>Devcon 8 Privacy Notice</strong>
+                  </a>
                   .
                 </p>
                 <p>
