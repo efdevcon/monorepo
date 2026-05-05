@@ -112,30 +112,18 @@ function App({ Component, pageProps }: any) {
       <RecoilRoot>
         <SEO />
         {isStorePage && (TICKETING_ENV !== 'production' || TICKETING.pretix.testmode) && (
-          <div
-            style={{
-              position: 'fixed',
-              bottom: 12,
-              right: 12,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 6,
-              alignItems: 'flex-end',
-              zIndex: 9999,
-              pointerEvents: 'none',
-            }}
-          >
-            {TICKETING_ENV !== 'production' && (
-              <div style={{ background: '#f59e0b', color: '#000', padding: '8px 16px', fontSize: 16, fontWeight: 700, borderRadius: 8, opacity: 0.9 }}>
-                {new URL(TICKETING.pretix.baseUrl).hostname.split('.')[0]} pretix shop
+          <div className="fixed bottom-3 right-3 z-[9999] flex flex-row items-center gap-1.5 pointer-events-none whitespace-nowrap">
+            {(TICKETING_ENV !== 'production' || TICKETING.pretix.testmode) && (
+              <div className="bg-[#f59e0b] text-black font-bold rounded-lg opacity-90 text-[11px] sm:text-base px-2 py-1 sm:px-4 sm:py-2">
+                {new URL(TICKETING.pretix.baseUrl).hostname.split('.')[0]} Pretix
               </div>
             )}
             {TICKETING.pretix.testmode && (
               // Testmode is a Pretix flag, independent of TICKETING_ENV — surface
               // it loudly so an operator who left testmode on in production sees
               // it next to a real Stripe/x402 charge attempt.
-              <div style={{ background: '#dc2626', color: '#fff', padding: '8px 16px', fontSize: 16, fontWeight: 700, borderRadius: 8, opacity: 0.9, letterSpacing: 0.5 }}>
-                TEST MODE
+              <div className="bg-[#dc2626] text-white font-bold rounded-lg opacity-90 tracking-wider text-[11px] sm:text-base px-2 py-1 sm:px-4 sm:py-2">
+                TEST MODE - real crypto charges
               </div>
             )}
           </div>
