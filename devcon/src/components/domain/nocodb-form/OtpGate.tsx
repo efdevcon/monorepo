@@ -243,11 +243,12 @@ export function OtpGate({ children, title }: OtpGateProps) {
           {title || 'Verify your email'}
         </h2>
 
-        <div className="flex items-center justify-between w-full px-4 py-3 bg-[#f9f8fa] rounded text-sm whitespace-nowrap">
-          <p className="text-[#1a0d33]">
-            Signed in as <strong>{verifiedEmail}</strong>
-          </p>
-          <p className="text-right ml-4">
+        <div className="flex flex-col items-center gap-2 w-full px-4 py-3 bg-[#f9f8fa] rounded text-sm md:flex-row md:justify-between md:items-center md:gap-4">
+          <div className="flex flex-col items-center gap-1 min-w-0 max-w-full md:flex-row md:items-baseline md:gap-1.5">
+            <p className="text-[#1a0d33] shrink-0">Signed in as:</p>
+            <p className="font-bold text-[#1a0d33] truncate max-w-full">{verifiedEmail}</p>
+          </div>
+          <p className="text-center whitespace-nowrap shrink-0 md:text-right">
             <span className="text-[#1a0d33]">Wrong email? </span>
             <button type="button" onClick={handleSignOut} className="font-bold text-[#7235ed] hover:underline">
               Start over

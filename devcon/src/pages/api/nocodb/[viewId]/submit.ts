@@ -68,9 +68,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Validate fields against schema
+    // Validate fields against schema. enrollment_proof is an Attachment column not
+    // exposed via the form schema (Attachment uidt is filtered out), so allow it through.
     const fields = await getTableFields(viewId)
     const validNames = new Set(fields.map(f => f.column_name))
+    validNames.add('enrollment_proof')
 
     for (const key of Object.keys(data)) {
       if (!validNames.has(key)) {
@@ -78,18 +80,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Email classification & eligibility gate
+    // Email classification & eligibility gate. Non-institutional ("blocked") emails
+    // are now permitted as long as they attach proof of enrollment.
     if (verifiedEmail) {
       const { bucket } = await classifyEligibility(verifiedEmail)
 
       if (bucket === 'blocked') {
-        return res.status(403).json({
-          success: false,
-          error: 'Your email is not eligible for this application. Please sign in with your university email, or contact support@devcon.org if you believe this is an error.',
-        })
+        const proof = data.enrollment_proof
+        const hasProof = Array.isArray(proof) ? proof.length > 0 : !!proof
+        if (!hasProof) {
+          return res.status(400).json({
+            success: false,
+            error: 'Proof of enrollment is required for non-institutional emails.',
+          })
+        }
+      } else {
+        // Whitelisted/AI-university buckets shouldn't carry an enrollment_proof.
+        delete data.enrollment_proof
       }
 
-      data['Email Classification'] = bucket
+      // Map our cached "blocked" bucket to the NocoDB option label "proof-required".
+      // (Cache keeps "blocked" — only the value written to NocoDB is renamed.)
+      data['Email Classification'] = bucket === 'blocked' ? 'proof-required' : bucket
     }
 
     data['Submission Date'] = new Date().toISOString()
@@ -107,11 +119,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await createRow(viewId, data)
     return res.status(200).json({ success: true })
   } catch (err) {
-    console.error('[nocodb/submit]', err)
+    const axiosBody = (err as any)?.response?.data
+    console.error('[nocodb/submit]', err, axiosBody ? { axiosBody } : '')
     const msg = (err as Error).message
     if (msg.includes('Form view not found')) {
       return res.status(404).json({ success: false, error: 'Form not found' })
     }
-    return res.status(500).json({ success: false, error: 'Submission failed', details: msg })
+    const details = axiosBody ? `${msg} — ${typeof axiosBody === 'string' ? axiosBody : JSON.stringify(axiosBody)}` : msg
+    return res.status(500).json({ success: false, error: 'Submission failed', details })
   }
 }

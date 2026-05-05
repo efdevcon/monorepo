@@ -38,14 +38,14 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
       >
         <div
           className={[
-            'relative overflow-hidden border border-solid border-[rgba(34,17,68,0.1)] bg-[#f2f1f4] flex flex-col',
-            'rounded-t-2xl rounded-b-none pt-6 pb-8 px-4 gap-6',
+            'relative overflow-y-auto overscroll-contain border border-solid border-[rgba(34,17,68,0.1)] bg-[#f2f1f4] flex flex-col',
+            'max-h-[90vh] rounded-t-2xl rounded-b-none pt-6 pb-8 px-4 gap-6',
             'shadow-[0_-20px_25px_-5px_rgba(22,11,43,0.1),0_-8px_10px_-6px_rgba(22,11,43,0.1)]',
             'sm:rounded-2xl sm:p-8 sm:gap-8',
             'sm:shadow-[0_20px_25px_-5px_rgba(22,11,43,0.1),0_8px_10px_-6px_rgba(22,11,43,0.1)]',
           ].join(' ')}
         >
-          <div className="flex items-center justify-between relative w-full">
+          <div className="flex items-center justify-between relative w-full shrink-0">
             <h2 className="text-xl font-bold text-[#160b2b] leading-[28.8px] tracking-[-0.5px]">
               Student application criteria
             </h2>
@@ -59,7 +59,7 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
             </button>
           </div>
 
-          <div className="flex flex-col gap-4 items-start w-full">
+          <div className="flex flex-col gap-4 items-start w-full shrink-0">
             <div className="flex flex-col gap-2 items-start w-full">
               <h3 className="text-base font-bold text-[#160b2b] leading-6">Who can apply?</h3>
               <div className="text-base text-[#1a0d33] leading-6 w-full">
@@ -86,6 +86,21 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
                 <span className="font-bold">Please note:</span> Short-term courses, bootcamps, and online-only programs are not eligible.
               </p>
               <p className="font-bold">Limited number of discounted tickets available.</p>
+            </div>
+
+            <div className="flex flex-col gap-2 items-start w-full shrink-0">
+              <h3 className="text-base font-bold text-[#160b2b] leading-6">Application timeline</h3>
+              <div className="text-base text-[#1a0d33] leading-6 w-full">
+                <p className="mb-2">Applications are reviewed in two rounds:</p>
+                <ul className="list-disc list-outside pl-5 space-y-1">
+                  <li>
+                    <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
+                  </li>
+                  <li>
+                    <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
