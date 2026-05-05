@@ -1487,6 +1487,10 @@ function CheckoutContent() {
         const executeData = await executeRes.json()
         if (executeData.success) {
           setTxHash(executeData.txHash)
+          // Clear the gasless-executing flag before verification so a
+          // verification timeout doesn't leave the UI stuck in "Processing"
+          // (which also disables the Retry verification button).
+          setIsExecutingGasless(false)
           await verifyPayment(executeData.txHash)
           return
         }
