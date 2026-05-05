@@ -111,9 +111,33 @@ function App({ Component, pageProps }: any) {
       </Head>
       <RecoilRoot>
         <SEO />
-        {TICKETING_ENV !== 'production' && isStorePage && (
-          <div style={{ position: 'fixed', bottom: 12, right: 12, background: '#f59e0b', color: '#000', padding: '8px 16px', fontSize: '16px', fontWeight: 700, borderRadius: 8, zIndex: 9999, pointerEvents: 'none', opacity: 0.9 }}>
-            {new URL(TICKETING.pretix.baseUrl).hostname.split('.')[0]} pretix shop
+        {isStorePage && (TICKETING_ENV !== 'production' || TICKETING.pretix.testmode) && (
+          <div
+            style={{
+              position: 'fixed',
+              bottom: 12,
+              right: 12,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 6,
+              alignItems: 'flex-end',
+              zIndex: 9999,
+              pointerEvents: 'none',
+            }}
+          >
+            {TICKETING_ENV !== 'production' && (
+              <div style={{ background: '#f59e0b', color: '#000', padding: '8px 16px', fontSize: 16, fontWeight: 700, borderRadius: 8, opacity: 0.9 }}>
+                {new URL(TICKETING.pretix.baseUrl).hostname.split('.')[0]} pretix shop
+              </div>
+            )}
+            {TICKETING.pretix.testmode && (
+              // Testmode is a Pretix flag, independent of TICKETING_ENV — surface
+              // it loudly so an operator who left testmode on in production sees
+              // it next to a real Stripe/x402 charge attempt.
+              <div style={{ background: '#dc2626', color: '#fff', padding: '8px 16px', fontSize: 16, fontWeight: 700, borderRadius: 8, opacity: 0.9, letterSpacing: 0.5 }}>
+                TEST MODE
+              </div>
+            )}
           </div>
         )}
 
