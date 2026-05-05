@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Download, CircleUser } from 'lucide-react'
+import { Download, CircleUser, ExternalLink } from 'lucide-react'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -452,10 +452,16 @@ export default function OrderConfirmationPage() {
                         </div>
                       </div>
                     )}
-                    {pdfUrl && (
+                    {/* {pdfUrl && (
                       <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
                         <Download size={18} />
                         Download (PDF)
+                      </a>
+                    )} */}
+                    {order.url && (
+                      <a href={order.url} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
+                        <ExternalLink size={18} />
+                        View order on Pretix
                       </a>
                     )}
                   </div>
