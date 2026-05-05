@@ -19,6 +19,7 @@ import {
   useSwitchChain,
   useWalletClient,
   useSendTransaction,
+  usePublicClient,
 } from 'wagmi'
 import type { Config } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
@@ -173,6 +174,120 @@ function pollMaxDurationMs(chainId: number | undefined, requiredConfs: number): 
   return Math.min(90_000, blockTime * (requiredConfs + 1) + 4_000)
 }
 
+/** Detect Safe (multisig smart wallets). For Safes, `eth_sendTransaction` over
+ *  WalletConnect resolves with a *safeTxHash* — an off-chain hash of the Safe
+ *  transaction object — instead of the on-chain tx hash. We have to bridge
+ *  through the Safe Transaction Service to recover the executed hash. */
+function isSafeWallet(connector: { id?: string; name?: string } | undefined): boolean {
+  if (!connector) return false
+  if (connector.id === 'safe') return true
+  return Boolean(connector.name?.toLowerCase().includes('safe'))
+}
+
+/** Per-chain Safe Transaction Service host (free, no auth). Returns null for
+ *  chains where Safe doesn't operate a tx service. */
+function safeTxServiceHost(chainId: number | undefined): string | null {
+  switch (chainId) {
+    case 1: return 'safe-transaction-mainnet.safe.global'
+    case 10: return 'safe-transaction-optimism.safe.global'
+    case 137: return 'safe-transaction-polygon.safe.global'
+    case 8453: return 'safe-transaction-base.safe.global'
+    case 42161: return 'safe-transaction-arbitrum.safe.global'
+    default: return null
+  }
+}
+
+/** Poll Safe Tx Service until `transactionHash` is non-null (Safe has executed
+ *  the multisig and broadcast). Resolves with the on-chain tx hash, rejects
+ *  on timeout. Budget defaults to 30 minutes — multisigs (e.g. 2/3) can sit
+ *  waiting for co-signers; this is the upper bound the user is expected to
+ *  keep the page open. Beyond that, admin manual-verify is the recovery path. */
+async function pollSafeTxService(
+  chainId: number | undefined,
+  safeTxHash: string,
+  budgetMs = 30 * 60_000
+): Promise<string> {
+  const host = safeTxServiceHost(chainId)
+  if (!host) {
+    throw new Error(`Safe Transaction Service not available for chain ${chainId}`)
+  }
+  const startedAt = Date.now()
+  // Track consecutive 404/422s. Safe's indexer takes a few seconds to ingest
+  // a new safeTxHash, so a brief 404 burst is normal. But if the address
+  // isn't actually a Safe (e.g., a different smart-wallet type) the API
+  // will 404 forever — bail out after ~45s so the user sees a clear error
+  // instead of waiting 30 minutes.
+  let consecutiveNotFound = 0
+  while (Date.now() - startedAt < budgetMs) {
+    try {
+      const res = await fetch(`https://${host}/api/v1/multisig-transactions/${safeTxHash}/`)
+      if (res.ok) {
+        const data = await res.json()
+        if (typeof data.transactionHash === 'string' && data.transactionHash.startsWith('0x')) {
+          return data.transactionHash
+        }
+        consecutiveNotFound = 0
+      } else if (res.status === 404 || res.status === 422) {
+        consecutiveNotFound++
+        if (consecutiveNotFound >= 15) {
+          throw new Error(
+            'Transaction not found in Safe Transaction Service — your wallet may not be a Safe, or the transaction has not been broadcast yet.'
+          )
+        }
+      } else {
+        consecutiveNotFound = 0
+      }
+    } catch (err) {
+      // Re-throw the bail-out error; treat anything else as a transient blip.
+      if (err instanceof Error && err.message.includes('not found in Safe')) throw err
+    }
+    await new Promise(r => setTimeout(r, 8_000))
+  }
+  throw new Error(
+    'Safe transaction timed out — please complete the signing in your Safe and click Retry verification with the on-chain tx hash.'
+  )
+}
+
+/** Poll Safe Messages Service until `preparedSignature` is non-null (Safe has
+ *  collected enough owner signatures to satisfy its threshold and assembled
+ *  the ERC-1271-compatible signature). Used for multisig Safes where
+ *  `eth_signTypedData_v4` returns a 32-byte safeMessageHash instead of a
+ *  complete signature.
+ *
+ *  Resolves with the prepared signature (a hex blob the relayer can pass
+ *  through to the Safe contract's `isValidSignature`). */
+async function pollSafeMessagesService(
+  chainId: number | undefined,
+  safeAddress: string,
+  safeMessageHash: string,
+  budgetMs = 30 * 60_000
+): Promise<string> {
+  const host = safeTxServiceHost(chainId)
+  if (!host) {
+    throw new Error(`Safe Transaction Service not available for chain ${chainId}`)
+  }
+  const startedAt = Date.now()
+  while (Date.now() - startedAt < budgetMs) {
+    try {
+      const res = await fetch(
+        `https://${host}/api/v1/safes/${safeAddress}/messages/${safeMessageHash}/`
+      )
+      if (res.ok) {
+        const data = await res.json()
+        if (typeof data.preparedSignature === 'string' && data.preparedSignature.startsWith('0x')) {
+          return data.preparedSignature
+        }
+      }
+    } catch {
+      // Network blip — keep polling
+    }
+    await new Promise(r => setTimeout(r, 15_000))
+  }
+  throw new Error(
+    'Safe message timed out — please ensure all required signers have signed in their Safe and try again.'
+  )
+}
+
 const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
 
 const FAQ_ITEMS = [
@@ -322,6 +437,22 @@ function CheckoutContent() {
 
   const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
   const tokenFilterAutoSelectedRef = useRef(false)
+  /** Payer address frozen at the moment a payment is initiated. Read by
+   *  verifyPayment instead of the live `useAccount().address` because a
+   *  multisig Safe co-signer often needs to switch wallets/accounts mid-flow
+   *  to provide the next signature — that switch tears down the WC session
+   *  and zeros out the live address. The on-chain tx still mines under the
+   *  Safe address regardless of which owner-EOA is currently connected, so
+   *  freezing the payer at flow-start keeps verify pointed at the right
+   *  account. */
+  const payerAddressRef = useRef<string | null>(null)
+  /** Mirror of `ethPayerSignature` state — read by callers that fire in the
+   *  same async chain as the `setEthPayerSignature` call (notably the Safe
+   *  ETH path: signMessage → setEthPayerSignature → sendTransaction →
+   *  pollSafeTxService → verifyPayment, all within one async closure with
+   *  no re-render between). The state's closure value is stale at that
+   *  point; the ref always holds the latest. */
+  const ethPayerSignatureRef = useRef<string | null>(null)
 
   // Voucher state
   const [discountOpen, setDiscountOpen] = useState(false)
@@ -344,13 +475,80 @@ function CheckoutContent() {
   // Wagmi hooks
   const { data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
   const { data: walletClient } = useWalletClient()
+  const publicClient = usePublicClient()
   const [isSigningDirect, setIsSigningDirect] = useState(false)
   const [directSignError, setDirectSignError] = useState<string | null>(null)
+  /** Smart-wallet (any contract wallet) flag from on-chain `getCode`. Drives
+   *  the Safe-bridge fallback in the ETH-send path — useful even for non-Safe
+   *  smart wallets, because we want to *try* Safe Tx Service polling and let
+   *  the API itself say no via a 404. */
+  const [isSmartWallet, setIsSmartWallet] = useState(false)
+  /** Safe-specific flag: true only when the connected address is registered
+   *  with Safe Transaction Service. Used for the user-facing notice so the
+   *  copy is Safe-flavored rather than generic-smart-wallet-flavored. */
+  const [isSafeAddress, setIsSafeAddress] = useState(false)
+  /** Safe owner threshold (signatures required). 1 = single-sig, ≥2 = multi-
+   *  sig. Drives the "open in a separate tab" guidance, which only matters
+   *  when co-signers are involved. */
+  const [safeThreshold, setSafeThreshold] = useState<number | null>(null)
   // `onReplaced` fires when the wallet user clicks "Speed Up" (reason: 'repriced'),
   // sends a different tx at the same nonce ('replaced'), or clicks "Cancel"
   // ('cancelled'). The hook then resolves with the new tx's receipt — we read
   // `data.transactionHash` (NOT `writeData`/`sendTxHash`) so verify always
   // targets the hash that actually mined.
+  // Detect smart wallets and Safes at connect time. Two parallel signals:
+  //   1. `getCode(address)` non-empty → some contract wallet (Safe, CSW, etc.)
+  //   2. Safe Transaction Service `/api/v1/safes/<addr>/` 200 → confirmed Safe
+  // The smart-wallet flag drives the ETH-send fallback path (best-effort Safe
+  // Tx Service polling). The Safe flag drives the user-facing notice copy so
+  // it specifically says "Safe" rather than "smart wallet" (less confusing
+  // for buyers using an actual Safe; non-Safe smart wallets are rare in
+  // ticket purchases anyway).
+  useEffect(() => {
+    if (!isConnected || !address || !publicClient) {
+      setIsSmartWallet(false)
+      setIsSafeAddress(false)
+      return
+    }
+    let cancelled = false
+    publicClient
+      .getCode({ address: address as `0x${string}` })
+      .then(code => {
+        if (cancelled) return
+        setIsSmartWallet(Boolean(code && code !== '0x'))
+      })
+      .catch(() => {
+        if (cancelled) return
+        setIsSmartWallet(false)
+      })
+    const host = safeTxServiceHost(chain?.id)
+    if (host) {
+      fetch(`https://${host}/api/v1/safes/${address}/`)
+        .then(async r => {
+          if (cancelled) return
+          if (!r.ok) {
+            setIsSafeAddress(false)
+            setSafeThreshold(null)
+            return
+          }
+          setIsSafeAddress(true)
+          const data = await r.json().catch(() => null)
+          setSafeThreshold(typeof data?.threshold === 'number' ? data.threshold : null)
+        })
+        .catch(() => {
+          if (cancelled) return
+          setIsSafeAddress(false)
+          setSafeThreshold(null)
+        })
+    } else {
+      setIsSafeAddress(false)
+      setSafeThreshold(null)
+    }
+    return () => {
+      cancelled = true
+    }
+  }, [isConnected, address, publicClient, chain?.id])
+
   function handleReplaced(replacement: { reason: string }) {
     if (replacement.reason === 'cancelled') {
       setPurchaseError('Transaction was cancelled in your wallet — please retry.')
@@ -622,10 +820,26 @@ function CheckoutContent() {
       ),
     })
 
-    return walletClient.request({
+    const sig = (await walletClient.request({
       method: 'eth_signTypedData_v4',
       params: [address, jsonStr],
-    } as any)
+    } as any)) as string
+
+    // Multisig Safe path: when threshold > 1, the Safe app stores the
+    // typed-data message in Safe Tx Service and returns the safeMessageHash
+    // (32 bytes / 66 chars including 0x) instead of a complete signature. The
+    // dapp must poll Safe Messages API until co-signers have signed and the
+    // assembled `preparedSignature` is available — that's what the relayer
+    // submits to the Safe contract's ERC-1271 `isValidSignature`.
+    //
+    // Length-based discrimination: a real ECDSA sig is 65 bytes (132 chars +
+    // 0x), an ERC-1271 sig is even longer; only a bare hash is 32 bytes (66
+    // chars + 0x). So short = "this is a hash, not a sig".
+    if (typeof sig === 'string' && sig.length === 66 && sig.startsWith('0x')) {
+      setPaymentStatus('Waiting for Safe owners to sign — this may take a while...')
+      return await pollSafeMessagesService(chainIdNum, address as string, sig)
+    }
+    return sig
   }
 
   // ── Get applicable questions for selected tickets ──
@@ -1067,6 +1281,12 @@ function CheckoutContent() {
   async function handleCryptoCheckout() {
     try {
       const formattedAnswers = buildFormattedAnswers()
+      // Freeze the payer at flow-start. Multisig Safe co-signers may swap
+      // wallets after the first signature, dropping the WC session and
+      // zeroing useAccount().address — but the on-chain tx mines under this
+      // (Safe) address regardless. verifyPayment reads from the ref so that
+      // post-disconnect verify keeps working.
+      payerAddressRef.current = address ?? null
 
       // Build add-ons array from selections
       const addons = Array.from(selectedAddons.entries())
@@ -1378,30 +1598,109 @@ function CheckoutContent() {
       // this specific paymentReference+chain so the /verify endpoint can
       // cryptographically confirm the caller owns the payer address (and is
       // not replaying someone else's on-chain tx for a different order).
+      //
+      // Use the frozen payer address (from handleCryptoCheckout) — NOT the
+      // live `useAccount().address`. MM Mobile + WC has been observed to
+      // flip the active account between handleCryptoCheckout and this sign
+      // call (e.g. user accepts a "Speed Up" prompt that re-establishes the
+      // session). If the signed message embeds the live address but verify
+      // sends the frozen one, the backend rebuilds a different message,
+      // ECDSA recovery fails, and we get "ethPayerSignature does not match".
+      const payerForSig = payerAddressRef.current ?? address
+      if (!payerForSig) {
+        setPurchaseError('Payer address unavailable — please reconnect your wallet.')
+        setPaymentStatus(null)
+        return
+      }
       const chainIdForSig = Number(paymentDetails.chainId)
       const payerMessage =
         'Devcon ticket payment (ETH)\n' +
         `Payment reference: ${paymentDetails.paymentReference}\n` +
-        `Payer: ${address}\n` +
+        `Payer: ${payerForSig}\n` +
         `Chain: ${chainIdForSig}`
       setPaymentStatus('Sign payer proof in wallet...')
       let sig: string
       try {
-        sig = await walletClient.signMessage({ account: address, message: payerMessage })
+        sig = await walletClient.signMessage({
+          account: payerForSig as `0x${string}`,
+          message: payerMessage,
+        })
       } catch (e) {
         setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
         return
       }
+      ethPayerSignatureRef.current = sig
       setEthPayerSignature(sig)
+      // Debug telemetry: log everything needed to reproduce a verification
+      // mismatch. Recovers the signing address client-side via viem so we
+      // can compare against `payerForSig` and tell at a glance whether the
+      // wallet signed with a different account than expected (the classic
+      // MM Mobile + WC bug).
+      try {
+        const { recoverMessageAddress } = await import('viem')
+        const recovered = await recoverMessageAddress({
+          message: payerMessage,
+          signature: sig as `0x${string}`,
+        })
+        console.info('[checkout] ethPayerSignature collected', {
+          expectedPayer: payerForSig,
+          recovered,
+          match: recovered.toLowerCase() === payerForSig.toLowerCase(),
+          chainIdForSig,
+          paymentReference: paymentDetails.paymentReference,
+          message: payerMessage,
+          signature: sig,
+          sigLength: sig.length,
+        })
+      } catch (logErr) {
+        console.info('[checkout] ethPayerSignature collected (recover failed)', {
+          expectedPayer: payerForSig,
+          chainIdForSig,
+          paymentReference: paymentDetails.paymentReference,
+          message: payerMessage,
+          signature: sig,
+          sigLength: sig.length,
+          recoverError: logErr instanceof Error ? logErr.message : String(logErr),
+        })
+      }
 
       setPaymentStatus('Confirm in wallet...')
       try {
-        await sendTransactionAsync({
+        // Capture the return value: for normal EOAs this is the on-chain tx
+        // hash, but for Safe (and other smart-wallet wrappers) it's a
+        // *safeTxHash* — an off-chain hash of the Safe transaction object that
+        // doesn't appear on chain at all. wagmi's useWaitForTransactionReceipt
+        // can't resolve a safeTxHash, so the receipt useEffect at the top of
+        // this component never fires and verify never runs. Detect Safe and
+        // bridge through the Safe Transaction Service to recover the real hash.
+        const sentHash = await sendTransactionAsync({
           to: tx.to as `0x${string}`,
           value: BigInt(tx.value),
           data: (tx.data as `0x${string}`) || '0x',
         })
+        // Also gate on `isSmartWallet`: the typical Safe flow (paste WC URI
+        // from app.safe.global into Reown's modal) reports `connector.id ===
+        // 'walletConnect'`, NOT 'safe' — so connector-only detection misses
+        // it. The on-chain `getCode(address)` check at connect time gives us
+        // a reliable signal for any contract wallet, Safes included. If the
+        // address isn't actually a Safe, pollSafeTxService just 404s and
+        // surfaces an error — no worse than the current stuck state.
+        if (isSafeWallet(connector) || isSmartWallet) {
+          setPaymentStatus('Waiting for Safe to execute the transaction...')
+          try {
+            const realHash = await pollSafeTxService(paymentDetails.chainId, sentHash)
+            setTxHash(realHash)
+            await verifyPayment(realHash)
+          } catch (err) {
+            setPurchaseError(
+              err instanceof Error
+                ? err.message
+                : 'Could not retrieve the on-chain transaction from your Safe — please try again or contact support.'
+            )
+            setPaymentStatus(null)
+          }
+        }
       } catch (e) {
         setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
@@ -1410,7 +1709,12 @@ function CheckoutContent() {
   }
 
   async function verifyPayment(hash: string) {
-    if (!paymentDetails || !address) return
+    // Use the frozen payer (set at flow-start in handleCryptoCheckout) as the
+    // primary source — survives multisig Safe co-signer wallet swaps that
+    // disconnect the live wagmi session. Falls back to live `address` for
+    // legacy code paths that didn't run through handleCryptoCheckout.
+    const payer = payerAddressRef.current ?? address ?? null
+    if (!paymentDetails || !payer) return
 
     setIsVerifying(true)
     setPaymentStatus('Verifying payment...')
@@ -1455,13 +1759,21 @@ function CheckoutContent() {
           body: JSON.stringify({
             txHash: hash,
             paymentReference: paymentDetails.paymentReference,
-            payer: address,
+            payer,
             chainId: paymentDetails.chainId,
             symbol: paymentDetails.tokenSymbol,
             tokenAddress: paymentDetails.tokenAddress,
-            ...(paymentDetails.tokenSymbol === 'ETH' && ethPayerSignature && {
-              ethPayerSignature,
-            }),
+            // Read from the ref FIRST: the Safe ETH path runs sign → send →
+            // pollSafeTxService → verifyPayment all inside one async closure
+            // with no re-render in between, so the state-derived
+            // `ethPayerSignature` here is the *previous* render's value (i.e.,
+            // empty) and the field would be omitted. The ref is updated
+            // synchronously alongside setState so callers in the same chain
+            // see the right value.
+            ...(paymentDetails.tokenSymbol === 'ETH' &&
+              (ethPayerSignatureRef.current || ethPayerSignature) && {
+                ethPayerSignature: ethPayerSignatureRef.current || ethPayerSignature,
+              }),
           }),
         })
 
@@ -2462,6 +2774,19 @@ function CheckoutContent() {
 
                     {paymentMethod === 'crypto' && !forcePretixRedirect && (
                       <>
+                        {isConnected && isSafeAddress && (
+                          <div className={css['smart-wallet-notice']}>
+                            <strong>Safe detected — payment is experimental.</strong> Keep this tab open while the transaction is signed and executed.
+                            {safeThreshold !== null && safeThreshold > 1 && (
+                              <>
+                                {' '}
+                                For Safes with multiple signers, use a <strong>dedicated browser</strong>{' '}
+                                for the Safe app where co-signers add signatures — this prevents losing
+                                the WalletConnect connection to your Safe mid-flow.
+                              </>
+                            )}
+                          </div>
+                        )}
                         {isConnected ? (
                           <div className={css['wallet-connected']}>
                             <div className={css['wallet-connected-row']}>
