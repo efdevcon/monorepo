@@ -775,19 +775,30 @@ $checkout-two-col: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.5rem 0.75rem;
+  /* Wrap when the card is narrow (2-col grid on desktop with a sidebar
+     squeezes each card to ~280-320px). Icons drop to a new line under the
+     title+badge instead of overlapping. */
+  flex-wrap: wrap;
 }
 
 .payment-option-title-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  /* Allow the row to shrink + wrap when the parent header is tight: the
+     SAVE 3% badge can flow below the title rather than overlapping it. */
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .payment-option-title {
   font-size: 1rem;
   font-weight: 700;
   color: #160b2b;
+  /* Long words like "Crypto" can't break, but allowing min-width:0 here lets
+     the title participate in the parent's flex shrinking. */
+  min-width: 0;
 
   .payment-option:not(.selected) & {
     color: #594d73;
@@ -1690,6 +1701,36 @@ div.wallet-identicon {
     color: $checkout-accent;
     font-weight: 700;
     text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+/* "Need help? Contact support" pill (marigold/50 background) inside the
+   Payment card per Figma node 4254:15818. */
+.support-pill {
+  width: 100%;
+  background: #fff0e6;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    color: #160b2b;
+    text-align: center;
+  }
+
+  a {
+    color: $checkout-accent;
+    text-decoration: underline;
+
+    strong {
+      font-weight: 700;
+    }
 
     &:hover {
       text-decoration: none;

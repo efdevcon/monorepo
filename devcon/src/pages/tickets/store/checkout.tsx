@@ -1483,6 +1483,15 @@ function CheckoutContent() {
         }
 
         const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
+        // Rate-limit (429) is a transient throttle, not a hard failure. Back
+        // off for a few seconds so we don't burn the next polling slot
+        // immediately, then continue the loop. Without this the user sees the
+        // same 429 on every Retry click until the server window expires.
+        if (res.status === 429 || msg.includes('rate limit')) {
+          setPaymentStatus('Verifying — slowing down briefly to respect rate limit...')
+          await new Promise(r => setTimeout(r, 8000))
+          continue
+        }
         const isRetryable = RETRYABLE_SUBSTRINGS.some(s => msg.includes(s))
         if (!isRetryable) {
           setConfirmProgress(null)
@@ -3016,13 +3025,14 @@ function CheckoutContent() {
                     </div>
 
                     {supportMailto && (
-                      <p className={css['support-link']} style={{ fontSize: 13, color: '#666', textAlign: 'center' }}>
-                        Need help?{' '}
-                        <a href={supportMailto} style={{ color: '#4a90d9', textDecoration: 'underline' }}>
-                          Contact support
-                        </a>
-                        {' '}— we&apos;ve pre-filled the details we know.
-                      </p>
+                      <div className={css['support-pill']}>
+                        <p>
+                          Need help?{' '}
+                          <a href={supportMailto}>
+                            <strong>Contact support</strong>
+                          </a>
+                        </p>
+                      </div>
                     )}
 
                     {/* Privacy / Notice confirmation — shown inside the Payment card per Figma */}
