@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Markdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag } from 'lucide-react'
+import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag, Monitor, Smartphone, Shield } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
@@ -14,6 +14,7 @@ import {
   WagmiProvider,
   useAccount,
   useDisconnect,
+  useEnsName,
   useWriteContract,
   useWaitForTransactionReceipt,
   useSwitchChain,
@@ -21,8 +22,10 @@ import {
   useSendTransaction,
   usePublicClient,
 } from 'wagmi'
+import { mainnet } from 'viem/chains'
 import type { Config } from 'wagmi'
-import { useAppKit } from '@reown/appkit/react'
+import { useAppKit, useWalletInfo } from '@reown/appkit/react'
+import { classifyConnection, connectionTypeLabel, connectionTypeIcon, walletLocationPhrase } from 'utils/walletConnection'
 import { wagmiAdapter } from 'context/appkit-config'
 import { QuestionInfo, TicketInfo } from 'types/pretix'
 import {
@@ -359,9 +362,37 @@ function CheckoutContent() {
   const forcePretixRedirect = TICKETING.checkout.forcePretixRedirect
   const supportEmail = (TICKETING.checkout as { supportEmail?: string }).supportEmail || ''
   const { address, isConnected, chain, connector } = useAccount()
+  // Reown AppKit hook — exposes the *actual* wallet on the other side of a
+  // WalletConnect session (e.g. "Rainbow", "MetaMask Mobile") rather than
+  // the generic "WalletConnect" connector name. For injected connections
+  // it mirrors the extension's announced metadata. May be undefined for a
+  // brief window right after a restored session reconnects.
+  const { walletInfo } = useWalletInfo()
+  const connectionKind = classifyConnection(connector)
+  const connectedWalletName = walletInfo?.name || connector?.name
+  const connectedWalletIcon = walletInfo?.icon || connector?.icon
+  // Some wallets (Bitget has been the worst offender, but it's a generic
+  // problem with self-hosted icon CDNs) return an `icon` URL that 4xxs,
+  // times out, or is malformed. Without a fallback the buyer sees the
+  // browser's broken-image glyph next to a perfectly working connection.
+  // Tracking the failure per-icon (keyed by URL) lets us swap to the
+  // gradient placeholder without re-rendering on every network blip.
+  const [iconLoadFailedFor, setIconLoadFailedFor] = useState<string | null>(null)
+  const iconBroken = Boolean(connectedWalletIcon && iconLoadFailedFor === connectedWalletIcon)
+  // Reverse-resolve the connected address to an ENS name on Ethereum
+  // mainnet (UNS / other namespaces aren't supported by viem's resolver).
+  // Pinned to chainId=1 regardless of which chain the user is currently on
+  // — `.eth` reverse records only live on mainnet. Cached automatically by
+  // wagmi/React Query so the call only fires once per address. Renders the
+  // truncated 0x… while loading or if no name is set.
+  const { data: ensName } = useEnsName({
+    address,
+    chainId: mainnet.id,
+    query: { enabled: Boolean(address) },
+  })
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
-  const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
+  const { switchChain, switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const router = useRouter()
 
   const [mounted, setMounted] = useState(false)
@@ -551,7 +582,7 @@ function CheckoutContent() {
 
   function handleReplaced(replacement: { reason: string }) {
     if (replacement.reason === 'cancelled') {
-      setPurchaseError('Transaction was cancelled in your wallet — please retry.')
+      setPurchaseError(`Transaction was cancelled ${walletLocationPhrase(connectionKind, connectedWalletName)} — please retry.`)
       setPaymentStatus(null)
       setIsVerifying(false)
     }
@@ -1422,7 +1453,7 @@ function CheckoutContent() {
       setAuthorizationData(prepareData)
 
       const { domain, types, primaryType, message } = prepareData.typedData
-      setPaymentStatus('Sign in your wallet...')
+      setPaymentStatus(`Sign ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
 
       const signature = await signEIP712Direct({ domain, types, primaryType, message })
 
@@ -1549,6 +1580,42 @@ function CheckoutContent() {
     const req = selectedOption.signingRequest
     setPurchaseError(null)
 
+    // Chain enforcement at pay-time. `selectPaymentOption` triggers a
+    // fire-and-forget `switchChain` when the user picks a network, but
+    // some WalletConnect wallets (Trust Wallet has been the worst
+    // offender, also seen with Bitget Mobile and a few others) silently
+    // drop or queue the `wallet_switchEthereumChain` request — so the
+    // wallet stays on whatever chain it was already on (usually
+    // Ethereum mainnet). Without this guard the buyer signs / broadcasts
+    // on the wrong chain and the verify step fails with "no payment
+    // detected on <selected chain>". Await the switch RIGHT before the
+    // sign/send and surface a clear error if it doesn't take.
+    //
+    // The most common cause of a hard-fail on `switchChainAsync` is a WC
+    // session whose namespaces only include Ethereum: Trust Wallet (and
+    // sometimes Bitget) only show the first chain in the handshake UI,
+    // so the buyer approves Ethereum only and the session lacks
+    // permission for the chain we're now asking about. The fix from the
+    // buyer's side is to disconnect and reconnect, approving all the
+    // chains they see in the wallet's prompt — surface that explicitly
+    // and prompt for a one-click disconnect via the error notice's
+    // existing Disconnect button on the wallet card above.
+    if (chain?.id !== paymentDetails.chainId) {
+      try {
+        setPaymentStatus(`Switching to ${selectedOption.chain} ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
+        await switchChainAsync({ chainId: paymentDetails.chainId })
+      } catch (e) {
+        setPaymentStatus(null)
+        const wcSession = connectionKind === 'walletConnect'
+        setPurchaseError(
+          wcSession
+            ? `Your wallet refused to switch to ${selectedOption.chain}. This usually means the WalletConnect session was approved for Ethereum only. Disconnect using the button above and reconnect — when your wallet shows the connection prompt, approve all the networks listed (not just Ethereum), then retry the payment.`
+            : `Couldn't switch your wallet to ${selectedOption.chain}. Please switch manually in your wallet and try again.`,
+        )
+        return
+      }
+    }
+
     if (req.method === 'eth_signTypedData_v4') {
       if (!walletClient) {
         setPurchaseError('Wallet not connected')
@@ -1559,7 +1626,7 @@ function CheckoutContent() {
       try {
         const typedJson = req.params[1] as string
         const typed = JSON.parse(typedJson)
-        setPaymentStatus('Sign in your wallet...')
+        setPaymentStatus(`Sign ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
 
         const signature = await signEIP712Direct({
           domain: typed.domain,
@@ -1622,7 +1689,7 @@ function CheckoutContent() {
         `Payment reference: ${paymentDetails.paymentReference}\n` +
         `Payer: ${payerForSig}\n` +
         `Chain: ${chainIdForSig}`
-      setPaymentStatus('Sign payer proof in wallet...')
+      setPaymentStatus(`Sign payer proof ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
       let sig: string
       try {
         sig = await walletClient.signMessage({
@@ -1669,7 +1736,7 @@ function CheckoutContent() {
         })
       }
 
-      setPaymentStatus('Confirm in wallet...')
+      setPaymentStatus(`Confirm ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
       try {
         // Capture the return value: for normal EOAs this is the on-chain tx
         // hash, but for Safe (and other smart-wallet wrappers) it's a
@@ -1683,14 +1750,19 @@ function CheckoutContent() {
           value: BigInt(tx.value),
           data: (tx.data as `0x${string}`) || '0x',
         })
-        // Also gate on `isSmartWallet`: the typical Safe flow (paste WC URI
-        // from app.safe.global into Reown's modal) reports `connector.id ===
-        // 'walletConnect'`, NOT 'safe' — so connector-only detection misses
-        // it. The on-chain `getCode(address)` check at connect time gives us
-        // a reliable signal for any contract wallet, Safes included. If the
-        // address isn't actually a Safe, pollSafeTxService just 404s and
-        // surfaces an error — no worse than the current stuck state.
-        if (isSafeWallet(connector) || isSmartWallet) {
+        // The typical Safe flow (paste WC URI from app.safe.global into
+        // Reown's modal) reports `connector.id === 'walletConnect'`, NOT
+        // 'safe' — so connector-only detection misses it. We pair the
+        // connector check with `isSafeAddress`, which is set by the
+        // Safe-Tx-Service probe in the connect-time effect (it returns 200
+        // only for actual Safes). Earlier versions used `isSmartWallet`
+        // here (any address with non-empty bytecode), but that also
+        // matched EIP-7702-delegated EOAs (Rainbow and others ship this
+        // for some users) and non-Safe ERC-4337 wallets, both of which
+        // return a real on-chain tx hash from `sendTransaction` and don't
+        // need Safe-Tx-Service translation — gating on `isSafeAddress`
+        // keeps the Safe-specific path narrowly scoped to Safes.
+        if (isSafeWallet(connector) || isSafeAddress) {
           setPaymentStatus('Waiting for Safe to execute the transaction...')
           try {
             const realHash = await pollSafeTxService(paymentDetails.chainId, sentHash)
@@ -2794,20 +2866,69 @@ function CheckoutContent() {
                         {isConnected ? (
                           <div className={css['wallet-connected']}>
                             <div className={css['wallet-connected-row']}>
-                              <span className={css['wallet-connected-label']}>Connected to:</span>
+                              {/* No "Connected to:" label — the wallet's own icon
+                                   (e.g. the MetaMask fox) plus the connection-type
+                                   pill ("🖥️ Browser extension", "📱 WalletConnect")
+                                   already communicate the connected state. The
+                                   label was redundant on desktop and hidden on
+                                   mobile, so it's gone in both viewports. */}
                               <div className={css['wallet-connected-right']}>
-                                {connector?.icon ? (
+                                {connectedWalletIcon && !iconBroken ? (
                                   <img
-                                    src={connector.icon}
-                                    alt={connector.name ?? 'wallet'}
+                                    src={connectedWalletIcon}
+                                    alt={connectedWalletName ?? 'wallet'}
                                     className={css['wallet-identicon']}
+                                    onError={() => setIconLoadFailedFor(connectedWalletIcon)}
                                   />
                                 ) : (
                                   <div className={css['wallet-identicon']} />
                                 )}
-                                <span className={css['wallet-address']}>
-                                  {address?.slice(0, 6)}...{address?.slice(-4)}
-                                </span>
+                                <div className={css['wallet-connected-meta']}>
+                                  {/* Brand name on top, address + connection type below.
+                                       Surfaces the actual wallet (e.g. "Rainbow") via
+                                       Reown's `useWalletInfo`, not the generic
+                                       "WalletConnect" connector label — important so
+                                       returning buyers with a stale WC session know
+                                       which mobile app to open before clicking Pay. */}
+                                  {connectedWalletName && (
+                                    <span className={css['wallet-brand']}>{connectedWalletName}</span>
+                                  )}
+                                  <span className={css['wallet-address']}>
+                                    {/* Prefer ENS name when available — most users
+                                         recognize "vitalik.eth" much faster than
+                                         "0xd8dA…6045". Fall back to the truncated
+                                         hex while the lookup resolves or when no
+                                         primary name is set. The full hex stays
+                                         available via the title attribute for
+                                         hover-confirmation. */}
+                                    <span
+                                      className={css['wallet-address-hex']}
+                                      title={address}
+                                    >
+                                      {ensName || (address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '')}
+                                    </span>
+                                    {/* Connection-type pill — colored chip with icon
+                                         so it's unmistakable at a glance whether the
+                                         next signature popup is in the browser
+                                         extension, on a phone (WC), in Coinbase
+                                         Wallet, or routed through Safe. The chip
+                                         uses data-kind to pick its tint via CSS so
+                                         the JSX stays kind-agnostic. */}
+                                    <span
+                                      className={css['wallet-connection-type']}
+                                      data-kind={connectionKind}
+                                    >
+                                      {(() => {
+                                        const icon = connectionTypeIcon(connectionKind)
+                                        if (icon === 'monitor') return <Monitor size={12} />
+                                        if (icon === 'smartphone') return <Smartphone size={12} />
+                                        if (icon === 'shield') return <Shield size={12} />
+                                        return <Wallet size={12} />
+                                      })()}
+                                      {connectionTypeLabel(connectionKind)}
+                                    </span>
+                                  </span>
+                                </div>
                               </div>
                             </div>
                             <button
@@ -3017,10 +3138,18 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {paymentStatus && !isProcessing && !isRedirecting && (
-                                      <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
-                                        {paymentStatus}
-                                      </p>
+                                    {/* In-flight status banner. Renders the contextual
+                                         `paymentStatus` ("Sign payer proof in Rainbow on your
+                                         phone…", "Verifying on-chain (3/12)…", etc.) the moment a
+                                         flow starts. The Pay button below stays on a generic
+                                         "Processing…" label so the same text isn't duplicated;
+                                         this banner sits above the Pay button and is much harder
+                                         to miss when the buyer's eyes are on the wallet popup. */}
+                                    {!isRedirecting && paymentStatus && (
+                                      <div className={css['payment-status-banner']}>
+                                        <Loader2 size={16} className={css['spin']} />
+                                        <span>{paymentStatus}</span>
+                                      </div>
                                     )}
 
                                     {txHash && (
@@ -3067,24 +3196,32 @@ function CheckoutContent() {
                                          succeeded (avoids an accidental second click during the
                                          router.push window). */}
                                     {selectedOption && !paymentOptionsLoading && !paymentSucceeded && (
-                                      <button
-                                        type="button"
-                                        className={css['btn-pay-now']}
-                                        disabled={isProcessing}
-                                        onClick={payWithSelectedOption}
-                                      >
-                                        <Lock size={20} />
-                                        {isProcessing
-                                          ? paymentStatus || 'Processing...'
-                                          : `Pay: ${
-                                              selectedOption.decimals >= 18
-                                                ? formatEth(selectedOption.amount, 18)
-                                                : (
-                                                    Number(selectedOption.amount) /
-                                                    10 ** selectedOption.decimals
-                                                  ).toFixed(2)
-                                            } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
-                                      </button>
+                                      <>
+                                        {/* No status banner here — the Pay button below already
+                                             swaps its label to `paymentStatus` (e.g. "Sign payer
+                                             proof in Rainbow on your phone…") whenever a flow is
+                                             in motion. A second banner above the button repeated
+                                             the exact same text. The success / redirect notices
+                                             render separately further down. */}
+                                        <button
+                                          type="button"
+                                          className={css['btn-pay-now']}
+                                          disabled={isProcessing}
+                                          onClick={payWithSelectedOption}
+                                        >
+                                          <Lock size={20} />
+                                          {isProcessing
+                                            ? 'Processing…'
+                                            : `Pay: ${
+                                                selectedOption.decimals >= 18
+                                                  ? formatEth(selectedOption.amount, 18)
+                                                  : (
+                                                      Number(selectedOption.amount) /
+                                                      10 ** selectedOption.decimals
+                                                    ).toFixed(2)
+                                              } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
+                                        </button>
+                                      </>
                                     )}
                                     {paymentSucceeded && (
                                       <div className={css['payment-notice']}>
