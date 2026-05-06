@@ -967,6 +967,20 @@ function CheckoutContent() {
     if (/user (rejected|denied|cancelled|refused)/i.test(msg) || /request.rejected/i.test(msg)) {
       return 'Transaction rejected — please try again when ready.'
     }
+    // Wallet-side RPC hiccups: Zerion (and others) route their pre-tx reads
+    // through shared Reown/erpc upstream pools, which periodically rate-limit
+    // or return missing-data errors. The wallet surfaces these as opaque blobs
+    // — map the known signatures to a clear retry prompt.
+    if (
+      /header not found/i.test(msg) ||
+      /ErrUpstreamsExhausted|ErrEndpointMissingData|ErrUpstreamRequest/i.test(msg) ||
+      /upstream connect error/i.test(msg) ||
+      /rate.?limited|too many requests/i.test(msg) ||
+      /-32014/.test(msg) ||
+      /(syntax error at index 0|invalid chars).*upstream/is.test(msg)
+    ) {
+      return "Your wallet's network connection was unstable while preparing the transaction. Please try again."
+    }
     return msg || 'Something went wrong'
   }
 
