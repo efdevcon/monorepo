@@ -1056,6 +1056,48 @@ $checkout-two-col: 1200px;
   border-radius: 8px;
 }
 
+/* Manual-hash escape hatch — shown when the recovery watchdog gives up
+   trying to find the user's tx via Alchemy assetTransfers and we fall
+   back to letting the buyer paste the hash themselves. */
+.manual-hash-prompt {
+  margin: 12px 0 8px;
+  padding: 12px 14px;
+  background: #fefce8;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.manual-hash-message {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.manual-hash-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+
+  > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  > button {
+    flex: 0 0 auto;
+    margin-top: 0 !important;
+  }
+}
+
+.manual-hash-error {
+  font-size: 12px;
+  font-weight: 600;
+  color: #b91c1c;
+}
+
 img.wallet-identicon,
 div.wallet-identicon {
   width: 20px;

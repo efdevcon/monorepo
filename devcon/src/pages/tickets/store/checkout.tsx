@@ -26,6 +26,7 @@ import { mainnet } from 'viem/chains'
 import type { Config } from 'wagmi'
 import { useAppKit, useWalletInfo } from '@reown/appkit/react'
 import { classifyConnection, connectionTypeLabel, connectionTypeIcon, walletLocationPhrase } from 'utils/walletConnection'
+import { discoverNativeTransfer } from 'utils/discoverTx'
 import { wagmiAdapter } from 'context/appkit-config'
 import { QuestionInfo, TicketInfo } from 'types/pretix'
 import {
@@ -459,6 +460,29 @@ function CheckoutContent() {
   // EIP-191 signature binding payer wallet to the payment reference.
   // Only populated for the native ETH path (USDC/USDT0 are bound via EIP-3009).
   const [ethPayerSignature, setEthPayerSignature] = useState<string | null>(null)
+
+  // Hash-recovery escape hatch for native ETH sends. Some wallets (Binance
+  // Wallet on macOS, intermittently Bitget Mobile/TokenPocket) broadcast the
+  // tx successfully but never return the hash through the WC session, leaving
+  // sendTransactionAsync hanging forever. When the watchdog can't auto-find
+  // the tx via Alchemy assetTransfers within ~4min, we surface a manual hash
+  // input as a last resort.
+  const [needsManualHash, setNeedsManualHash] = useState(false)
+  const [manualHashInput, setManualHashInput] = useState('')
+  const [manualHashError, setManualHashError] = useState<string | null>(null)
+  const [manualHashSubmitting, setManualHashSubmitting] = useState(false)
+  const manualHashResolverRef = useRef<((hash: `0x${string}`) => void) | null>(null)
+  // Holds the expected (to, value) so submitManualHash can validate the
+  // pasted hash matches the order before accepting it. Cleared when recovery
+  // ends or the order is cancelled.
+  const expectedTxRef = useRef<{ to: string; value: bigint } | null>(null)
+  // Guard against concurrent verifyPayment polls. Two callers can race for
+  // the same hash — the recovery wrapper (when discovery/manual wins) and
+  // the useWaitForTransactionReceipt useEffect (when the wallet eventually
+  // returns the same hash anyway). Both end up polling the same backend
+  // verify endpoint and racing setIsVerifying / navigation; this ref
+  // suppresses the second caller for an in-flight hash.
+  const verifyingHashRef = useRef<string | null>(null)
 
   // Payment options (multi-chain)
   const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
@@ -1000,6 +1024,192 @@ function CheckoutContent() {
     return 'Failed to execute transfer. Please try again.'
   }
 
+  // ── Native-ETH send with hash-recovery ──
+  // Wraps `sendTransactionAsync` so that wallets which broadcast a tx but fail
+  // to return the hash (Binance Wallet on macOS being the canonical example,
+  // and a class of WC-implementation bugs more generally) don't strand the UI
+  // in "Confirm in wallet…" forever after the buyer's funds have already left.
+  //
+  // Three paths race for the hash:
+  //   1. Wallet → returns hash via WC/injected (the happy path, ~always wins)
+  //   2. Auto-discovery → after a 45s grace, polls Alchemy assetTransfers
+  //      every 8s for an outgoing native-ETH transfer matching from/to/value
+  //      since `fromBlock`. Fires until the hash is found or 4min elapse.
+  //   3. Manual hash entry → after the auto window expires, an input field
+  //      appears so the buyer can paste the hash from their wallet history.
+  //
+  // Whichever path resolves first wins; the others are no-ops afterwards.
+  // Errors from the wallet path (genuine rejections, RPC failures) reject
+  // the outer promise and bypass recovery.
+  async function sendNativeEthWithRecovery(args: {
+    to: `0x${string}`
+    value: bigint
+    data: `0x${string}`
+    chainId: number
+    payer: string
+  }): Promise<`0x${string}`> {
+    // Snapshot the chain head before sending so the discovery poll has a
+    // tight lower bound. If we can't read it (publicClient temporarily
+    // unavailable), fall back to scanning recent history — Alchemy capped
+    // at maxCount=1000 will still return our match if it lands.
+    let preBlock: bigint | undefined
+    try {
+      preBlock = await publicClient?.getBlockNumber()
+    } catch {
+      preBlock = undefined
+    }
+
+    expectedTxRef.current = { to: args.to.toLowerCase(), value: args.value }
+
+    const startedAt = Date.now()
+    let resolved = false
+    let resolveOuter!: (h: `0x${string}`) => void
+    let rejectOuter!: (e: unknown) => void
+    const result = new Promise<`0x${string}`>((res, rej) => {
+      resolveOuter = res
+      rejectOuter = rej
+    })
+    const cleanup = () => {
+      manualHashResolverRef.current = null
+      setNeedsManualHash(false)
+    }
+    // Wallet path resolution: hand the hash back and let the existing
+    // useWaitForTransactionReceipt → verifyPayment useEffect run.
+    const finishFromWallet = (h: `0x${string}`) => {
+      if (resolved) return
+      resolved = true
+      console.info('[checkout] tx-hash recovery: WALLET path won', { hash: h, elapsedMs: Date.now() - startedAt })
+      cleanup()
+      resolveOuter(h)
+    }
+    // Recovery path resolution (Alchemy or manual): wagmi never saw this
+    // hash, so the receipt useEffect will never fire. Trigger verify here.
+    const finishFromRecovery = (h: `0x${string}`, source: 'discovery' | 'manual') => {
+      if (resolved) return
+      resolved = true
+      console.info(`[checkout] tx-hash recovery: ${source.toUpperCase()} path won`, { hash: h, elapsedMs: Date.now() - startedAt })
+      cleanup()
+      setTxHash(h)
+      verifyPayment(h)
+      resolveOuter(h)
+    }
+    const fail = (e: unknown) => {
+      if (resolved) return
+      resolved = true
+      console.info('[checkout] tx-hash recovery: WALLET path FAILED', { error: e, elapsedMs: Date.now() - startedAt })
+      cleanup()
+      rejectOuter(e)
+    }
+
+    manualHashResolverRef.current = (h) => finishFromRecovery(h, 'manual')
+
+    // Path 1: the wallet
+    sendTransactionAsync({
+      to: args.to,
+      value: args.value,
+      data: args.data,
+    })
+      .then(h => finishFromWallet(h as `0x${string}`))
+      .catch(e => fail(e))
+
+    // Path 2 + 3: discovery + manual fallback
+    const GRACE_MS = 20_000
+    const POLL_MS = 8_000
+    const TOTAL_MS = 60_000
+    let announcedDiscovery = false
+
+    const tick = async () => {
+      if (resolved) return
+      if (!announcedDiscovery) {
+        announcedDiscovery = true
+        console.info('[checkout] tx-hash recovery: discovery polling started', { graceMs: GRACE_MS, pollMs: POLL_MS, totalMs: TOTAL_MS })
+        setPaymentStatus('Looking for your transaction on chain — please do not close this window…')
+      }
+      try {
+        const found = await discoverNativeTransfer({
+          chainId: args.chainId,
+          payer: args.payer,
+          to: args.to,
+          value: args.value,
+          fromBlock: preBlock,
+        })
+        console.info('[checkout] tx-hash recovery: discovery poll result', { found: found ?? null, elapsedMs: Date.now() - startedAt })
+        if (found) {
+          finishFromRecovery(found, 'discovery')
+          return
+        }
+      } catch (err) {
+        console.info('[checkout] tx-hash recovery: discovery poll error', err)
+      }
+      if (resolved) return
+      if (Date.now() - startedAt < TOTAL_MS) {
+        setTimeout(tick, POLL_MS)
+      } else {
+        // Auto window exhausted. Surface the manual entry but keep listening
+        // — the wallet might still resolve, and the manualHashResolverRef is
+        // wired up the same way.
+        console.info('[checkout] tx-hash recovery: auto window exhausted, surfacing manual hash entry')
+        setPaymentStatus(null)
+        setNeedsManualHash(true)
+      }
+    }
+    setTimeout(tick, GRACE_MS)
+
+    return result
+  }
+
+  // ── Manual-hash submit ──
+  // Validates the hash on-chain (from=payer, to=expected, value=expected)
+  // before accepting, then hands it to whatever recovery flow is awaiting it.
+  async function submitManualHash() {
+    const raw = manualHashInput.trim()
+    setManualHashError(null)
+    if (!/^0x[0-9a-fA-F]{64}$/.test(raw)) {
+      setManualHashError('That doesn\'t look like a transaction hash. It should be 0x followed by 64 hex characters.')
+      return
+    }
+    if (!publicClient) {
+      setManualHashError('Wallet not connected — cannot verify the hash.')
+      return
+    }
+    if (!expectedTxRef.current || !manualHashResolverRef.current) {
+      setManualHashError('No payment is currently waiting for a hash.')
+      return
+    }
+    const expectedPayer = (payerAddressRef.current ?? address ?? '').toLowerCase()
+    const expected = expectedTxRef.current
+
+    setManualHashSubmitting(true)
+    try {
+      const tx = await publicClient.getTransaction({ hash: raw as `0x${string}` })
+      if (!tx) {
+        setManualHashError('Transaction not found on chain. Make sure you pasted the correct hash and that it has been broadcast.')
+        return
+      }
+      if ((tx.from ?? '').toLowerCase() !== expectedPayer) {
+        setManualHashError('That transaction was sent from a different wallet than the one connected here.')
+        return
+      }
+      if ((tx.to ?? '').toLowerCase() !== expected.to) {
+        setManualHashError('That transaction was sent to a different address than the order recipient.')
+        return
+      }
+      if (tx.value !== expected.value) {
+        setManualHashError('That transaction\'s ETH amount does not match the order total.')
+        return
+      }
+      manualHashResolverRef.current(raw as `0x${string}`)
+      setManualHashInput('')
+    } catch (e) {
+      setManualHashError(
+        (e instanceof Error && e.message) ||
+        'Could not look up the transaction. Please try again in a moment.'
+      )
+    } finally {
+      setManualHashSubmitting(false)
+    }
+  }
+
   // ── Payment state invalidation ──
   // Clears all payment-in-progress state so the user must re-initiate checkout.
   // Called whenever order inputs change after checkout has been started.
@@ -1015,6 +1225,13 @@ function CheckoutContent() {
     setDirectSignError(null)
     setTokenFilter(null)
     setPaymentSucceeded(false)
+    setNeedsManualHash(false)
+    setManualHashInput('')
+    setManualHashError(null)
+    setManualHashSubmitting(false)
+    manualHashResolverRef.current = null
+    expectedTxRef.current = null
+    verifyingHashRef.current = null
     tokenFilterAutoSelectedRef.current = false
     paymentOptionsAutoLoadedRef.current = null
     autoCheckoutTriggeredRef.current = null
@@ -1752,18 +1969,6 @@ function CheckoutContent() {
 
       setPaymentStatus(`Confirm ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
       try {
-        // Capture the return value: for normal EOAs this is the on-chain tx
-        // hash, but for Safe (and other smart-wallet wrappers) it's a
-        // *safeTxHash* — an off-chain hash of the Safe transaction object that
-        // doesn't appear on chain at all. wagmi's useWaitForTransactionReceipt
-        // can't resolve a safeTxHash, so the receipt useEffect at the top of
-        // this component never fires and verify never runs. Detect Safe and
-        // bridge through the Safe Transaction Service to recover the real hash.
-        const sentHash = await sendTransactionAsync({
-          to: tx.to as `0x${string}`,
-          value: BigInt(tx.value),
-          data: (tx.data as `0x${string}`) || '0x',
-        })
         // The typical Safe flow (paste WC URI from app.safe.global into
         // Reown's modal) reports `connector.id === 'walletConnect'`, NOT
         // 'safe' — so connector-only detection misses it. We pair the
@@ -1776,7 +1981,18 @@ function CheckoutContent() {
         // return a real on-chain tx hash from `sendTransaction` and don't
         // need Safe-Tx-Service translation — gating on `isSafeAddress`
         // keeps the Safe-specific path narrowly scoped to Safes.
-        if (isSafeWallet(connector) || isSafeAddress) {
+        const isSafePath = isSafeWallet(connector) || isSafeAddress
+        if (isSafePath) {
+          // Safe wraps eth_sendTransaction differently — the wallet returns a
+          // *safeTxHash* (off-chain hash of the Safe tx object) almost
+          // immediately, so the WC-hash-not-returned bug doesn't apply and
+          // the recovery watchdog would only confuse things. Use the bare
+          // sendTransactionAsync and translate via Safe Tx Service.
+          const sentHash = await sendTransactionAsync({
+            to: tx.to as `0x${string}`,
+            value: BigInt(tx.value),
+            data: (tx.data as `0x${string}`) || '0x',
+          })
           setPaymentStatus('Waiting for Safe to execute the transaction...')
           try {
             const realHash = await pollSafeTxService(paymentDetails.chainId, sentHash)
@@ -1790,6 +2006,20 @@ function CheckoutContent() {
             )
             setPaymentStatus(null)
           }
+        } else {
+          // Normal EOA: route through the recovery wrapper so wallets that
+          // broadcast but fail to return the hash via WC (Binance Wallet
+          // macOS, etc.) don't strand the UI. If recovery wins (via Alchemy
+          // discovery or manual hash entry), the wrapper triggers verify
+          // internally — no further work here. If the wallet wins, the
+          // existing useWaitForTransactionReceipt useEffect handles verify.
+          await sendNativeEthWithRecovery({
+            to: tx.to as `0x${string}`,
+            value: BigInt(tx.value),
+            data: (tx.data as `0x${string}`) || '0x',
+            chainId: paymentDetails.chainId,
+            payer: payerForSig,
+          })
         }
       } catch (e) {
         setPurchaseError(humanizeWalletError(e))
@@ -1805,6 +2035,13 @@ function CheckoutContent() {
     // legacy code paths that didn't run through handleCryptoCheckout.
     const payer = payerAddressRef.current ?? address ?? null
     if (!paymentDetails || !payer) return
+
+    // De-dupe concurrent calls for the same hash (e.g. recovery path triggers
+    // verify, then wagmi's receipt useEffect fires for the same hash a few
+    // seconds later). Allow re-entry only for a different hash (replacement /
+    // speed-up case).
+    if (verifyingHashRef.current === hash) return
+    verifyingHashRef.current = hash
 
     setIsVerifying(true)
     setPaymentStatus('Verifying payment...')
@@ -1900,6 +2137,7 @@ function CheckoutContent() {
           setPurchaseError(data.error || 'Payment verification failed')
           setPaymentStatus(null)
           setIsVerifying(false)
+          verifyingHashRef.current = null
           return
         }
 
@@ -1926,6 +2164,7 @@ function CheckoutContent() {
     setPurchaseError('Verification timed out — try the Retry button below or contact support.')
     setPaymentStatus(null)
     setIsVerifying(false)
+    verifyingHashRef.current = null
   }
 
   // ── Checkout button state ──
@@ -3163,6 +3402,43 @@ function CheckoutContent() {
                                       <div className={css['payment-status-banner']}>
                                         <Loader2 size={16} className={css['spin']} />
                                         <span>{paymentStatus}</span>
+                                      </div>
+                                    )}
+
+                                    {/* Manual hash escape hatch — appears after the recovery
+                                         watchdog has spent its full budget without finding the tx
+                                         via Alchemy assetTransfers. Buyer can paste the hash
+                                         from their wallet's history; we validate it on-chain
+                                         (from/to/value match) before accepting. */}
+                                    {needsManualHash && (
+                                      <div className={css['manual-hash-prompt']}>
+                                        <div className={css['manual-hash-message']}>
+                                          We can't tell whether your wallet sent the transaction.
+                                          If your wallet shows a successful payment, paste the
+                                          transaction hash here so we can verify it. Otherwise,
+                                          you can cancel and try again.
+                                        </div>
+                                        <div className={css['manual-hash-row']}>
+                                          <Input
+                                            value={manualHashInput}
+                                            onChange={(e) => setManualHashInput(e.target.value)}
+                                            placeholder="0x..."
+                                            disabled={manualHashSubmitting}
+                                            spellCheck={false}
+                                            autoComplete="off"
+                                          />
+                                          <button
+                                            type="button"
+                                            className={css['retry-verify-btn']}
+                                            onClick={submitManualHash}
+                                            disabled={manualHashSubmitting || !manualHashInput.trim()}
+                                          >
+                                            {manualHashSubmitting ? 'Verifying…' : 'Verify hash'}
+                                          </button>
+                                        </div>
+                                        {manualHashError && (
+                                          <div className={css['manual-hash-error']}>{manualHashError}</div>
+                                        )}
                                       </div>
                                     )}
 
