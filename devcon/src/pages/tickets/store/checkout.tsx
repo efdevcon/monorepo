@@ -3429,11 +3429,11 @@ function CheckoutContent() {
                                           />
                                           <button
                                             type="button"
-                                            className={css['retry-verify-btn']}
+                                            className={css['manual-hash-submit']}
                                             onClick={submitManualHash}
                                             disabled={manualHashSubmitting || !manualHashInput.trim()}
                                           >
-                                            {manualHashSubmitting ? 'Verifying…' : 'Verify hash'}
+                                            {manualHashSubmitting ? 'Verifying payment…' : 'Verify payment'}
                                           </button>
                                         </div>
                                         {manualHashError && (

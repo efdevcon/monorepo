@@ -1080,15 +1080,44 @@ $checkout-two-col: 1200px;
   display: flex;
   gap: 8px;
   align-items: stretch;
+  flex-wrap: wrap;
 
   > :first-child {
-    flex: 1 1 auto;
+    flex: 1 1 220px;
     min-width: 0;
   }
+}
 
-  > button {
-    flex: 0 0 auto;
-    margin-top: 0 !important;
+/* Primary action — buyer pastes the hash and clicks this to complete a
+   stuck payment, so it gets a primary button treatment (not the secondary
+   pink retry-verify-btn used for repolling an in-flight verify). */
+.manual-hash-submit {
+  flex: 0 0 auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  background: #1f2937;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: #111827;
+    border-color: #111827;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 480px) {
+  .manual-hash-submit {
+    flex: 1 1 100%;
   }
 }
 
