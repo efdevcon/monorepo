@@ -7,6 +7,12 @@ on:
       - 'devcon/content/en/**'
   workflow_dispatch:
 
+# When several en/* edits land in quick succession (e.g. NocoDB sync bursts),
+# cancel any in-progress run so only the latest set gets translated.
+concurrency:
+  group: devcon-translate
+  cancel-in-progress: true
+
 jobs:
   translate:
     name: Translate changed content
