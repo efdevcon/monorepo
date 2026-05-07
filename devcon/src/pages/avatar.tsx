@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import HeroBackground from 'components/common/dc-8/hero/images/dc8-bg.png'
 import { OtpGate } from 'components/domain/nocodb-form/OtpGate'
 import { supabase } from 'services/supabase-browser'
@@ -70,12 +71,12 @@ function NoTicketView({ email, onSignOut }: { email: string; onSignOut: () => vo
         different email, sign out and try that one.
       </p>
       <div className="flex gap-3 mt-2">
-        <a
+        <Link
           href="/tickets"
           className="px-5 py-2.5 bg-[rgba(77,89,199,1)] hover:bg-[#555EB1] transition-colors duration-300 rounded-full border border-white/30 text-white font-semibold backdrop-blur-sm"
         >
           Get a ticket
-        </a>
+        </Link>
         <button
           onClick={onSignOut}
           className="px-5 py-2.5 bg-black/40 hover:bg-black/60 border border-white/30 rounded-full text-white text-sm font-medium backdrop-blur-sm"
