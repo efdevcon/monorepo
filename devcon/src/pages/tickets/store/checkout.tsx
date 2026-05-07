@@ -1001,7 +1001,7 @@ function CheckoutContent() {
       /upstream connect error/i.test(msg) ||
       /rate.?limited|too many requests/i.test(msg) ||
       /-32014/.test(msg) ||
-      /(syntax error at index 0|invalid chars).*upstream/is.test(msg)
+      /(syntax error at index 0|invalid chars)[\s\S]*upstream/i.test(msg)
     ) {
       return "Your wallet's network connection was unstable while preparing the transaction. Please try again."
     }
