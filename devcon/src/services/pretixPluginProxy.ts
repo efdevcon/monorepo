@@ -43,6 +43,13 @@ export async function pluginFetch<T = unknown>(
     Authorization: `Token ${token}`,
   }
   if (init.clientIp && init.clientIp !== 'unknown') {
+    // Cloudflare (in front of the pretix backend) overwrites `X-Forwarded-For`
+    // with its own view of the connection — i.e. our Netlify egress IP — so
+    // a vanilla XFF doesn't survive the trip. Custom `X-…` headers pass
+    // through Cloudflare unchanged, so we use a private one. The plugin's
+    // `get_client_ip` reads it first when the request is token-authenticated.
+    // We still set XFF too as a fallback for deployments without Cloudflare.
+    headers['X-Pretix-Buyer-Ip'] = init.clientIp
     headers['X-Forwarded-For'] = init.clientIp
   }
   if (body) {
