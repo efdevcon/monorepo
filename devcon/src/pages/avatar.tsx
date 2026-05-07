@@ -500,7 +500,7 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
   )
 }
 
-function GatedAvatar({ email, onSignOut }: { email: string; onSignOut: () => void }) {
+function GatedAvatar({ onSignOut }: { onSignOut: () => void }) {
   const [check, setCheck] = useState<CheckResult | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -589,7 +589,7 @@ export default function AvatarPage() {
       {sessionChecked && (
         <div className={`relative z-10 w-full px-4 mx-auto ${verifiedEmail ? 'max-w-2xl' : 'max-w-md'}`}>
           {verifiedEmail ? (
-            <GatedAvatar email={verifiedEmail} onSignOut={handleSignOut} />
+            <GatedAvatar onSignOut={handleSignOut} />
           ) : (
             <div className="bg-white rounded-2xl p-6 md:p-10">
               <OtpGate
