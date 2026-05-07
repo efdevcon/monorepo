@@ -11,6 +11,7 @@ import { isEmail } from 'utils/validators'
 import { getTicketPurchaseInfo, getEventSettings, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
 import { checkPurchaseRateLimit } from 'services/ticketStore'
 import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
+import { getClientIp } from 'utils/getClientIp'
 
 interface FiatPurchaseRequest {
   email: string
@@ -64,11 +65,12 @@ export default async function handler(
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  // Rate limit by IP
-  const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
-  try {
-    await checkPurchaseRateLimit(clientIp)
-  } catch {
+  // Rate limit by IP. `checkPurchaseRateLimit` returns `{allowed}` and never
+  // throws — the previous try/catch silently dropped every result, leaving
+  // the endpoint unrate-limited in practice. Inspect the return value.
+  const clientIp = getClientIp(req)
+  const { allowed } = await checkPurchaseRateLimit(clientIp)
+  if (!allowed) {
     return res.status(429).json({ success: false, error: 'Too many purchase attempts. Please try again later.' })
   }
 

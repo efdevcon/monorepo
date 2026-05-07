@@ -11,7 +11,16 @@ const BASE_URL = TICKETING.pretix.baseUrl.replace(/\/api\/v1\/?$/, '').replace(/
 
 export async function pluginFetch<T = unknown>(
   path: string,
-  init: { method: 'GET' | 'POST'; body?: Record<string, unknown> } = { method: 'GET' },
+  init: {
+    method: 'GET' | 'POST'
+    body?: Record<string, unknown>
+    /** Buyer's true client IP, captured at the proxy edge via `getClientIp`.
+     *  Forwarded to the plugin as `X-Forwarded-For` so the plugin's
+     *  per-buyer rate limiter sees the real IP instead of the Next.js
+     *  server's. The plugin only honors XFF when the proxy's IP is in its
+     *  PRETIX_ETH_TRUSTED_PROXIES allowlist — configure both sides. */
+    clientIp?: string
+  } = { method: 'GET' },
 ): Promise<{ status: number; body: T }> {
   const url = new URL(path, BASE_URL)
   if (init.method === 'GET') {
@@ -32,6 +41,9 @@ export async function pluginFetch<T = unknown>(
 
   const headers: Record<string, string> = {
     Authorization: `Token ${token}`,
+  }
+  if (init.clientIp && init.clientIp !== 'unknown') {
+    headers['X-Forwarded-For'] = init.clientIp
   }
   if (body) {
     headers['Content-Type'] = 'application/json'

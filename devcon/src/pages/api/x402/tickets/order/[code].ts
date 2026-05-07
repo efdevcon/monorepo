@@ -6,6 +6,7 @@
  * The secret acts as authentication — only someone with the secret can view the order.
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
+import crypto from 'crypto'
 import { getOrder, getItems, getCategories } from 'services/pretix'
 
 interface OrderPosition {
@@ -73,13 +74,44 @@ export default async function handler(
     return res.status(400).json({ success: false, error: 'Order code and secret are required' })
   }
 
-  try {
-    const [order, items, categories] = await Promise.all([getOrder(code), getItems(), getCategories()])
+  // Symmetric 404 response for both "no such order" and "wrong secret" — the
+  // previous 404-vs-403 split was an enumeration oracle: any caller could
+  // walk the order-code namespace by checking which 4xx code came back.
+  const ORDER_NOT_FOUND_RESPONSE = { success: false as const, error: 'Order not found or secret mismatch' }
 
-    // Verify secret matches
-    if (order.secret !== secret) {
-      return res.status(403).json({ success: false, error: 'Invalid order secret' })
+  let order: Awaited<ReturnType<typeof getOrder>>
+  let items: Awaited<ReturnType<typeof getItems>>
+  let categories: Awaited<ReturnType<typeof getCategories>>
+  try {
+    ;[order, items, categories] = await Promise.all([getOrder(code), getItems(), getCategories()])
+  } catch (error) {
+    // Pretix's 404 surfaces as `Pretix API error 404: …` — collapse it into
+    // the same 404 we use for secret mismatch. Other errors (network, real
+    // 5xx) keep their original 500 path below.
+    const msg = (error as Error).message || ''
+    if (/Pretix API error 404/.test(msg)) {
+      return res.status(404).json(ORDER_NOT_FOUND_RESPONSE)
     }
+    console.error('Error fetching order:', error)
+    return res.status(500).json({
+      success: false,
+      error: `Failed to fetch order: ${msg}`,
+    })
+  }
+
+  // Verify secret matches via constant-time compare. Naive `!==` short-
+  // circuits on the first differing byte — a measurable timing leak that
+  // (in principle) lets an attacker recover the secret one character at a
+  // time. Lengths are checked first because timingSafeEqual rejects on
+  // unequal-length buffers.
+  const expected = Buffer.from(order.secret || '', 'utf-8')
+  const provided = Buffer.from(secret, 'utf-8')
+  const secretOk = expected.length === provided.length && crypto.timingSafeEqual(expected, provided)
+  if (!secretOk) {
+    return res.status(404).json(ORDER_NOT_FOUND_RESPONSE)
+  }
+
+  try {
 
     // Build item name, variation name, and category addon lookups
     const itemNameMap = new Map<number, string>()

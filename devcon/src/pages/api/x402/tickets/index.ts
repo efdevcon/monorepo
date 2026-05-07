@@ -13,6 +13,7 @@ import { getTicketPurchaseInfo } from 'services/pretix'
 import { hasAvailableVouchers } from 'services/discountStore'
 import { TicketPurchaseInfo } from 'types/pretix'
 import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
+import { getClientIp } from 'utils/getClientIp'
 import { TICKETING, isTestnet } from 'config/ticketing'
 
 // ---------------------------------------------------------------------------
@@ -74,7 +75,7 @@ export default async function handler(
   }
 
   // Rate limit per IP
-  const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+  const clientIp = getClientIp(req)
   if (!checkRateLimit(clientIp)) {
     res.setHeader('Retry-After', '60')
     return res.status(429).json({ success: false, error: 'Too many requests. Please try again later.' })

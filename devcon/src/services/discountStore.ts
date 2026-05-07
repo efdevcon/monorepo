@@ -339,3 +339,29 @@ export async function checkDiscountRateLimit(clientIp: string): Promise<{ allowe
   await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
   return { allowed: true }
 }
+
+const RATE_LIMIT_VOUCHER_IP_WINDOW_MINUTES = 1
+const RATE_LIMIT_VOUCHER_IP_MAX = 30
+
+/**
+ * Voucher-validation rate limit. Per IP: 30 requests / minute. Without this
+ * the public `/validate-voucher` endpoint is a brute-force oracle for the
+ * voucher code namespace (codes are alphanumeric, often short).
+ */
+export async function checkVoucherValidationRateLimit(clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_VOUCHER_IP_WINDOW_MINUTES * 60 * 1000).toISOString()
+  const ipKey = `voucher_ip:${clientIp}`
+
+  const ipCount = await supabase
+    .from('x402_verify_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('key', ipKey)
+    .gte('created_at', ipSince)
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_VOUCHER_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
+  return { allowed: true }
+}
