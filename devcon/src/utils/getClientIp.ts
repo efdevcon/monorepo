@@ -17,16 +17,21 @@
 import type { NextApiRequest } from 'next'
 
 export function getClientIp(req: NextApiRequest): string {
-  // Netlify (functions runtime sets NETLIFY=true) injects the verified client
-  // IP via `x-nf-client-connection-ip`. Their edge overwrites the header on
-  // every request, so it cannot be spoofed by the user — preferred over
-  // generic XFF allowlisting because Netlify's internal proxy IPs aren't
-  // stable enough to enumerate in a TRUSTED_PROXIES list.
-  if (process.env.NETLIFY === 'true') {
-    const nfIp = req.headers['x-nf-client-connection-ip']
-    const nfStr = Array.isArray(nfIp) ? nfIp[0] : nfIp
-    if (nfStr) return nfStr
-  }
+  // Netlify's edge sets `x-nf-client-connection-ip` to the verified client IP
+  // and strips any pre-existing copy on inbound requests, so the header's
+  // presence is itself the proof we're behind Netlify's edge — same trust
+  // model Cloudflare uses for `cf-connecting-ip`. We don't gate on
+  // `process.env.NETLIFY` because that env var is set at build time and
+  // doesn't reliably propagate to Next.js's function runtime on Netlify.
+  const nfIp = req.headers['x-nf-client-connection-ip']
+  const nfStr = Array.isArray(nfIp) ? nfIp[0] : nfIp
+  if (nfStr) return nfStr
+
+  // Cloudflare equivalent — useful for any deployment that fronts Next.js
+  // with CF (rare but possible). CF strips inbound copies the same way.
+  const cfIp = req.headers['cf-connecting-ip']
+  const cfStr = Array.isArray(cfIp) ? cfIp[0] : cfIp
+  if (cfStr) return cfStr
 
   const trusted = (process.env.TRUSTED_PROXIES || '')
     .split(',')
