@@ -526,6 +526,11 @@ function CheckoutContent() {
   const [mobileInlineSummaryOpen, setMobileInlineSummaryOpen] = useState(false)
   const voucherValidationRef = useRef(0)
   const autoCheckoutTriggeredRef = useRef<string | null>(null)
+  // Set true when /purchase returns 404 'x402 flow not enabled for this event'.
+  // Suppresses the auto-checkout retry loop and surfaces a clear notice
+  // instead of the generic "Failed to create purchase" the buyer would
+  // otherwise see when an admin has toggled x402 off for this event.
+  const [cryptoDisabledForEvent, setCryptoDisabledForEvent] = useState(false)
 
   // Wagmi hooks
   const { data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
@@ -1347,7 +1352,8 @@ function CheckoutContent() {
       isConnected &&
       address &&
       !paymentDetails &&
-      !isProcessing
+      !isProcessing &&
+      !cryptoDisabledForEvent
     ) {
       const key = `${address}-${totalUsd}-${addonFingerprint}`
       if (autoCheckoutTriggeredRef.current === key) return
@@ -1357,7 +1363,7 @@ function CheckoutContent() {
       setPurchaseError(null)
       handleCryptoCheckout().finally(() => setPurchaseLoading(false))
     }
-  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
+  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint, cryptoDisabledForEvent])
 
   // Add-on selection helpers
   const toggleAddon = (itemId: number) => {
@@ -1590,7 +1596,19 @@ function CheckoutContent() {
           })
         }
       } else {
-        setPurchaseError(data.error || 'Failed to create purchase')
+        // Per-event x402 toggle (plugin Fix 1) returns 404 with this exact
+        // error string when an admin has disabled crypto checkout for the
+        // event. Surface a clear message + flip the suppress-flag so the
+        // auto-checkout effect doesn't immediately re-trigger on re-render.
+        if (res.status === 404 && /x402 flow not enabled/i.test(data.error || '')) {
+          setCryptoDisabledForEvent(true)
+          setPurchaseError(
+            'Crypto checkout is currently unavailable for this event. ' +
+            'Please switch to card payment, or contact support if crypto was advertised for your purchase.'
+          )
+        } else {
+          setPurchaseError(data.error || 'Failed to create purchase')
+        }
         setPaymentStatus(null)
       }
     } catch {
@@ -3103,6 +3121,33 @@ function CheckoutContent() {
 
                     {paymentMethod === 'crypto' && !forcePretixRedirect && (
                       <>
+                        {/* x402 toggled OFF for this event — surface a clear,
+                             dedicated notice instead of leaving the wallet area
+                             stuck on a generic error. The auto-checkout effect
+                             is suppressed via `cryptoDisabledForEvent`, so this
+                             notice persists until the buyer switches methods. */}
+                        {cryptoDisabledForEvent && (
+                          <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                            <div>
+                              Crypto checkout is currently unavailable for this event.
+                              {TICKETING.payment.fiatEnabled
+                                ? ' Please switch to card payment to complete your purchase.'
+                                : ' Please contact support if crypto was advertised for your purchase.'}
+                            </div>
+                            {TICKETING.payment.fiatEnabled && (
+                              <button
+                                type="button"
+                                className={css['retry-verify-btn']}
+                                onClick={() => {
+                                  setPaymentMethod('fiat')
+                                  setPurchaseError(null)
+                                }}
+                              >
+                                Switch to card payment
+                              </button>
+                            )}
+                          </div>
+                        )}
                         {isConnected && isSafeAddress && (
                           <div className={css['smart-wallet-notice']}>
                             <strong>Safe detected — payment is experimental.</strong> Keep this tab open while the transaction is signed and executed.
