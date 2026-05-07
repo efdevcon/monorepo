@@ -11,7 +11,7 @@ const DEVCON_AI_URL = process.env.NEXT_PUBLIC_DEVCON_AI_URL || 'http://localhost
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 
 // Show the dev test-image grid only in non-production builds.
-const SHOW_TEST_IMAGES = true //  process.env.NODE_ENV !== 'production'
+const SHOW_TEST_IMAGES = process.env.NODE_ENV !== 'production'
 
 function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
