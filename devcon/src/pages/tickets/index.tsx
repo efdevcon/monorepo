@@ -518,7 +518,7 @@ export async function getStaticProps(context: any) {
 
   let faqItems: Array<{ question: string; answer: string }> = []
   try {
-    const data = await getFaqData()
+    const data = await getFaqData(locale)
     faqItems = TICKETS_FAQ_CATEGORIES.flatMap(category =>
       data.items
         .filter(i => i.category === category && i.answer.trim() !== '')
