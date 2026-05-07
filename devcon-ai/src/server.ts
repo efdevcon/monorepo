@@ -6,6 +6,7 @@ import { chatRouter } from "./routes/chat.js";
 import { fuzzyRouter } from "./routes/fuzzy.js";
 import { generateImageRouter } from "./routes/generate-image.js";
 import { baseModelRouter } from "./routes/base-model.js";
+import { devconAvatarRouter } from "./routes/devcon-avatar.js";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -25,6 +26,7 @@ app.use("/api/chat", chatRouter);
 app.use("/api/fuzzy", fuzzyRouter);
 app.use("/api/generate-image", generateImageRouter);
 app.use("/api/base-model", baseModelRouter);
+app.use("/api/devcon-avatar", devconAvatarRouter);
 
 // Start server
 app.listen(port, () => {

@@ -18,6 +18,9 @@ interface SEOProps {
     name?: string
     url?: string
   }
+  // When true, emit `<meta name="robots" content="noindex, nofollow">` so the
+  // page is excluded from search engines. Use for in-progress / gated routes.
+  noIndex?: boolean
 }
 
 export function SEO(props: SEOProps) {
@@ -94,6 +97,8 @@ export function SEO(props: SEOProps) {
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         {image && <meta name="twitter:image" key="twitter:image" content={image} />}
+
+        {props.noIndex && <meta name="robots" content="noindex, nofollow" />}
 
         <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
