@@ -1,0 +1,458 @@
+import { Router } from "express";
+import express from "express";
+import { z } from "zod";
+import OpenAI, { toFile } from "openai";
+import { createServerClient } from "../lib/supabase.js";
+import { validateBearerToken } from "../lib/auth.js";
+import { emailHasPaidTicket } from "../lib/pretix.js";
+import fs from "fs";
+import path from "path";
+import { createHash } from "crypto";
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+// "low" | "medium" | "high" — controls cost and quality. Roughly $0.01 / $0.04 / $0.17 per image.
+const IMAGE_QUALITY = (process.env.OPENAI_IMAGE_QUALITY || "medium") as
+  | "low"
+  | "medium"
+  | "high";
+
+const CHARACTERS_DIR = path.join(process.cwd(), "image-references/characters");
+
+const DEVCON_AVATAR_BUCKET = "devcon-avatars";
+
+function loadImage(filePath: string): { base64: string; mimeType: string } {
+  const buffer = fs.readFileSync(filePath);
+  return { base64: buffer.toString("base64"), mimeType: "image/png" };
+}
+
+// Load all character reference images at module init — they don't change at runtime.
+const STYLE_REFERENCES: { base64: string; mimeType: string; name: string }[] = (() => {
+  try {
+    const files = fs
+      .readdirSync(CHARACTERS_DIR)
+      .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
+      .sort();
+    if (files.length === 0) {
+      console.warn(
+        `[devcon-avatar] No character reference images found in ${CHARACTERS_DIR}`,
+      );
+    }
+    return files.map((f) => ({
+      ...loadImage(path.join(CHARACTERS_DIR, f)),
+      name: f,
+    }));
+  } catch (err: any) {
+    console.error(
+      `[devcon-avatar] Failed to load character references from ${CHARACTERS_DIR}:`,
+      err.message,
+    );
+    return [];
+  }
+})();
+console.log(
+  `[devcon-avatar] Loaded ${STYLE_REFERENCES.length} character reference image(s): ${STYLE_REFERENCES.map((r) => r.name).join(", ")}`,
+);
+
+function detectMimeFromBase64(b64: string): string {
+  if (b64.startsWith("iVBORw0KGgo")) return "image/png";
+  if (b64.startsWith("/9j/")) return "image/jpeg";
+  if (b64.startsWith("UklGR")) return "image/webp";
+  return "image/png";
+}
+
+function hashEmail(email: string): string {
+  return createHash("sha256")
+    .update(email.toLowerCase().trim())
+    .digest("hex");
+}
+
+// Emails (and domains) that skip the Pretix ticket check. Used while ticket
+// infrastructure isn't fully live yet, and for ad-hoc testing. Comma-separated
+// env var. Entries beginning with "@" are treated as domain matches (e.g.
+// "@ethereum.org" allows any address on that domain); everything else is an
+// exact email match. These users still must complete the OTP flow — only the
+// Pretix lookup is skipped for them.
+const WHITELIST_ENTRIES: readonly string[] = (
+  process.env.AVATAR_TICKET_WHITELIST || "@ethereum.org"
+)
+  .split(",")
+  .map((s) => s.toLowerCase().trim())
+  .filter(Boolean);
+
+const WHITELIST_EMAILS = new Set(
+  WHITELIST_ENTRIES.filter((e) => !e.startsWith("@")),
+);
+const WHITELIST_DOMAINS = WHITELIST_ENTRIES.filter((e) => e.startsWith("@"));
+
+function isWhitelisted(email: string): boolean {
+  const normalized = email.toLowerCase().trim();
+  if (WHITELIST_EMAILS.has(normalized)) return true;
+  return WHITELIST_DOMAINS.some((domain) => normalized.endsWith(domain));
+}
+
+const generateSchema = z.object({
+  image: z.string().min(100),
+  mode: z.enum(["style", "character", "accessories"]).default("style"),
+  // Required when mode === "character" or "accessories". Filename without extension (e.g. "aria").
+  character: z.string().optional(),
+});
+
+function characterBaseName(filename: string): string {
+  return filename.replace(/\.[^.]+$/, "");
+}
+
+function findCharacter(name: string): { base64: string; mimeType: string; name: string } | null {
+  const target = name.toLowerCase().trim();
+  return (
+    STYLE_REFERENCES.find(
+      (r) => characterBaseName(r.name).toLowerCase() === target,
+    ) ?? null
+  );
+}
+
+function buildAccessoriesPrompt(characterName: string): string {
+  return `The first input image is a photo of a real person. The second input image is an illustrated character named "${characterName}".
+
+Generate an illustrated portrait that keeps the person's pose, body, clothing, and scene from the photo, but adds the distinctive accessories worn by the character.
+
+Keep from the photo:
+- The person's identifiable face — recognizable features, eye shape, nose, mouth, skin tone, age.
+- The exact same pose, head angle, body position, and framing.
+- The person's existing clothing/outfit (color, fit, type) — do not replace it.
+- The background composition and subject matter.
+
+Add from the character reference:
+- Distinctive accessories worn by the character — hats, headwear, glasses, jewelry, weapons, tools, gear, scarves, badges, cloaks layered over clothes, or any other identifiable accessory items.
+- Fit these accessories naturally to the person's pose, scale, and proportions.
+
+Apply rendering style:
+- Use the character reference's artistic rendering style (line work, color palette, lighting, level of stylization) for the entire image — including the person's face, clothing, and background.
+
+Critical rules:
+- Do not change the person's pose or stance.
+- Do not replace their clothing — only add accessories on top.
+- Do not change the scene — the background should match the photo, just rendered in the new style.
+- The person must remain recognizably themselves.
+- Square format, suitable for sharing as a portrait.
+- Do not include any text, watermarks, or words in the image.`;
+}
+
+function buildCharacterPrompt(characterName: string): string {
+  return `The first input image is a photo of a real person. The second input image is an illustrated character named "${characterName}". Take the person from the photo and depict them as this character, while keeping them recognizably themselves.
+
+Keep from the photo:
+- The person's identifiable face — their unique features, eye shape, nose, mouth, skin tone, and approximate age must remain recognizable.
+- Their hair color and approximate hairstyle, blended naturally into the character's outfit (e.g. if the character wears a hood, the hair tucks in similarly).
+
+Keep from the character reference:
+- The artistic rendering style (line work, color palette, lighting, level of stylization).
+- The pose, body proportions, and silhouette.
+- The clothing, outfit, accessories.
+- The background, environment, and scene.
+- The mood and atmosphere.
+
+Critical rules:
+- The person must remain recognizably themselves. Do not replace their face with the character's face — adapt their actual face into the character's art style.
+- Use the character's pose, clothing, and scene exactly. Do not invent new poses or settings.
+- Square format, suitable for sharing as a portrait.
+- Do not include any text, watermarks, or words in the image.`;
+}
+
+function buildPrompt(numStyleRefs: number, featuredCharacterName?: string): string {
+  const featured = featuredCharacterName?.trim();
+  const otherRefsCount = featured ? Math.max(0, numStyleRefs - 1) : numStyleRefs;
+
+  const intro = featured
+    ? `The first input image is a photo of a real person. The second input image is the featured character "${featured}" — its distinctive accessories should be added to the person.${otherRefsCount > 0 ? ` The remaining ${otherRefsCount} input image${otherRefsCount > 1 ? "s are" : " is"} other character${otherRefsCount > 1 ? "s" : ""} in the same illustration style — use ${otherRefsCount > 1 ? "them" : "it"} only as additional style guidance.` : ""}`
+    : numStyleRefs === 1
+      ? "The first input image is a photo of a real person. The second input image is a style reference."
+      : `The first input image is a photo of a real person. The remaining ${numStyleRefs} input images are examples of the same illustration style — different characters but shared artistic treatment (line work, color palette, lighting, shading, level of stylization).`;
+
+  const synthesize =
+    numStyleRefs > 1
+      ? "Synthesize the common style across all of the reference images — do not copy any single character's face, hair, or clothing."
+      : "Study the reference's rendering style, brush strokes, line quality, color palette, lighting, and overall artistic treatment.";
+
+  const accessoryClause = featured
+    ? `
+
+Add from the featured character "${featured}" (the second input image):
+- Its distinctive accessories — hats, headwear, glasses, jewelry, weapons, tools, gear, scarves, badges, cloaks layered over clothes, or any other identifiable accessory items.
+- Fit these accessories naturally to the person's pose, scale, and proportions. They should sit on top of the person's existing clothing, not replace it.
+- Do NOT take the character's face, hair, body, clothing, or pose — only the accessories.`
+    : "";
+
+  return `${intro}
+
+Generate an illustrated portrait of the person in the photo by applying the shared rendering style of the reference image${numStyleRefs > 1 ? "s" : ""}. ${synthesize}
+
+Keep identical to the photo:
+- The exact same pose, head angle, body position, and framing.
+- The exact same facial expression and gaze direction.
+- The same hair color, hair length, and hairstyle.
+- The same clothing (color, type, fit).
+- The same skin tone and approximate age.
+- The same background composition and subject matter (reinterpret it in the new style — e.g. blurred greenery becomes painted greenery).
+- The same gender presentation and identifiable features.
+
+Apply from the reference${numStyleRefs > 1 ? "s" : ""} (style only — do not copy any reference character's face, hair, clothing, or background):
+- The artistic rendering technique (brush style, line work, shading approach).
+- The color palette and lighting feel.
+- The level of stylization in facial features and details.${accessoryClause}
+
+CRITICAL RULES:
+- The person must remain RECOGNIZABLY THE SAME individual — preserve their unique features.
+- Do NOT change pose, composition, clothing, or background subject matter.
+- Do not pick one of the reference characters and reuse their hair, clothes, or face.${featured ? ` Only the *accessories* from "${featured}" should be added.` : ""}
+- This is a style transfer${featured ? " plus accessory overlay" : ""}, not a redesign.
+- Square format, suitable for sharing as a portrait.
+- Do not include any text, watermarks, or words in the image.`;
+}
+
+export const devconAvatarRouter: Router = Router();
+
+// Allow ~10MB so base64-encoded source photos fit comfortably.
+devconAvatarRouter.use(express.json({ limit: "10mb" }));
+
+// Public — list of character names (used by the picker on the frontend).
+devconAvatarRouter.get("/characters", (_req, res) => {
+  res.json({
+    characters: STYLE_REFERENCES.map((r) => characterBaseName(r.name)),
+  });
+});
+
+// Public — character reference image bytes. Used as <img src> in the picker.
+devconAvatarRouter.get("/characters/:name", (req, res) => {
+  const ref = findCharacter(req.params.name);
+  if (!ref) {
+    res.status(404).json({ error: "Character not found" });
+    return;
+  }
+  res.setHeader("Content-Type", ref.mimeType);
+  res.setHeader("Cache-Control", "public, max-age=3600");
+  res.send(Buffer.from(ref.base64, "base64"));
+});
+
+// GET /check — does this verified email have a Devcon ticket? Returns the
+// existing avatar URL (if any) so the client can render it without a second hop.
+devconAvatarRouter.get("/check", async (req, res) => {
+  const auth = await validateBearerToken(req.headers.authorization);
+  if (!auth.ok) {
+    if (auth.reason === "config") {
+      res.status(500).json({ error: "Auth not configured on server" });
+    } else {
+      res.status(401).json({ error: "Invalid or missing token" });
+    }
+    return;
+  }
+
+  let hasTicket = false;
+  if (isWhitelisted(auth.email)) {
+    hasTicket = true;
+  } else {
+    try {
+      hasTicket = await emailHasPaidTicket(auth.email);
+    } catch (err: any) {
+      console.error("[devcon-avatar/check] Pretix lookup failed:", err);
+      res.status(502).json({ error: "Ticket lookup failed" });
+      return;
+    }
+  }
+
+  let existingAvatar: string | null = null;
+  if (hasTicket) {
+    try {
+      const ticketId = hashEmail(auth.email);
+      const filePath = `${ticketId}.png`;
+      const supabase = createServerClient();
+      const { data } = await supabase.storage
+        .from(DEVCON_AVATAR_BUCKET)
+        .download(filePath);
+      if (data) {
+        const {
+          data: { publicUrl },
+        } = supabase.storage.from(DEVCON_AVATAR_BUCKET).getPublicUrl(filePath);
+        existingAvatar = publicUrl;
+      }
+    } catch {
+      // Best-effort
+    }
+  }
+
+  res.json({ email: auth.email, hasTicket, existingAvatar });
+});
+
+// POST / — generate a stylized portrait for the authenticated, ticketed user.
+devconAvatarRouter.post("/", async (req, res) => {
+  try {
+    const auth = await validateBearerToken(req.headers.authorization);
+    if (!auth.ok) {
+      if (auth.reason === "config") {
+        res.status(500).json({ error: "Auth not configured on server" });
+      } else {
+        res.status(401).json({ error: "Invalid or missing token" });
+      }
+      return;
+    }
+
+    if (!isWhitelisted(auth.email)) {
+      let hasTicket = false;
+      try {
+        hasTicket = await emailHasPaidTicket(auth.email);
+      } catch (err: any) {
+        console.error("[devcon-avatar] Pretix lookup failed:", err);
+        res.status(502).json({ error: "Ticket lookup failed" });
+        return;
+      }
+
+      if (!hasTicket) {
+        res
+          .status(403)
+          .json({ error: "No Devcon ticket found for this email" });
+        return;
+      }
+    }
+
+    const parsed = generateSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res
+        .status(400)
+        .json({ error: "Invalid request", details: parsed.error.issues });
+      return;
+    }
+
+    if (!process.env.OPENAI_API_KEY) {
+      res.status(500).json({ error: "OPENAI_API_KEY not configured" });
+      return;
+    }
+
+    const { image, mode, character } = parsed.data;
+    const cleanImage = image.replace(/^data:image\/[a-z]+;base64,/, "");
+    const sourceMime = detectMimeFromBase64(cleanImage);
+
+    if (STYLE_REFERENCES.length === 0) {
+      res
+        .status(500)
+        .json({ error: "No style reference images configured on server" });
+      return;
+    }
+
+    let promptText: string;
+    let referenceImages: Array<{ base64: string; mimeType: string; name: string }>;
+    let storageSuffix = "";
+
+    if (mode === "character" || mode === "accessories") {
+      if (!character) {
+        res
+          .status(400)
+          .json({ error: `character is required when mode=${mode}` });
+        return;
+      }
+      const ref = findCharacter(character);
+      if (!ref) {
+        res.status(400).json({
+          error: `Unknown character "${character}". Available: ${STYLE_REFERENCES.map((r) => characterBaseName(r.name)).join(", ")}`,
+        });
+        return;
+      }
+      const charName = characterBaseName(ref.name);
+      promptText =
+        mode === "character"
+          ? buildCharacterPrompt(charName)
+          : buildAccessoriesPrompt(charName);
+      referenceImages = [ref];
+      storageSuffix =
+        mode === "character"
+          ? `-${charName.toLowerCase()}`
+          : `-acc-${charName.toLowerCase()}`;
+    } else {
+      // style mode: optionally feature one character so its accessories get added.
+      // Reorder refs so the featured character is first; the prompt instructs the
+      // model to take *only* its accessories, while using the rest for style.
+      let featuredName: string | undefined;
+      if (character) {
+        const featuredRef = findCharacter(character);
+        if (featuredRef) {
+          featuredName = characterBaseName(featuredRef.name);
+          referenceImages = [
+            featuredRef,
+            ...STYLE_REFERENCES.filter((r) => r.name !== featuredRef.name),
+          ];
+          storageSuffix = `-style-${featuredName.toLowerCase()}`;
+        } else {
+          referenceImages = STYLE_REFERENCES;
+        }
+      } else {
+        referenceImages = STYLE_REFERENCES;
+      }
+      promptText = buildPrompt(referenceImages.length, featuredName);
+    }
+
+    const ticketId = hashEmail(auth.email);
+    console.log(
+      `Generating Devcon avatar for ${auth.email} [mode=${mode}${character ? `, character=${character}` : ""}, quality=${IMAGE_QUALITY}]`,
+    );
+
+    // OpenAI gpt-image-1 expects File-like objects. Convert source + each
+    // reference from base64 to File via the SDK helper.
+    const sourceFile = await toFile(
+      Buffer.from(cleanImage, "base64"),
+      `source.${sourceMime.split("/")[1] || "png"}`,
+      { type: sourceMime },
+    );
+    const refFiles = await Promise.all(
+      referenceImages.map((ref, i) =>
+        toFile(Buffer.from(ref.base64, "base64"), `ref-${i}-${ref.name}`, {
+          type: ref.mimeType,
+        }),
+      ),
+    );
+
+    const response = await openai.images.edit({
+      model: "gpt-image-1",
+      image: [sourceFile, ...refFiles],
+      prompt: promptText,
+      size: "1024x1024",
+      quality: IMAGE_QUALITY,
+    });
+
+    const imageBase64 = response.data?.[0]?.b64_json;
+    if (!imageBase64) {
+      console.error("OpenAI response:", JSON.stringify(response, null, 2));
+      res.status(500).json({ error: "No image in OpenAI response" });
+      return;
+    }
+
+    const imageBuffer = Buffer.from(imageBase64, "base64");
+    const supabase = createServerClient();
+    const filePath = `${ticketId}${storageSuffix}.png`;
+
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from(DEVCON_AVATAR_BUCKET)
+      .upload(filePath, imageBuffer, {
+        contentType: "image/png",
+        cacheControl: "31536000",
+        upsert: true,
+      });
+
+    if (uploadError) {
+      console.error("Supabase upload error:", uploadError);
+      res.status(500).json({ error: `Upload failed: ${uploadError.message}` });
+      return;
+    }
+
+    const {
+      data: { publicUrl },
+    } = supabase.storage
+      .from(DEVCON_AVATAR_BUCKET)
+      .getPublicUrl(uploadData.path);
+
+    console.log(`Devcon avatar uploaded for ${auth.email}: ${publicUrl}`);
+
+    res.json({ image: publicUrl });
+  } catch (err: any) {
+    console.error("Devcon avatar generation error:", err);
+    res.status(500).json({ error: err.message || "Generation failed" });
+  }
+});

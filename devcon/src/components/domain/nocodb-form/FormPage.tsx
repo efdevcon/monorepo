@@ -539,7 +539,12 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
       <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
         <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4 flex flex-col items-center gap-6">
           {requireOtp ? (
-            <OtpGate title={schema.title}>
+            <OtpGate
+              title={schema.title}
+              description="Enter your student email to start the application"
+              emailPlaceholder="your@student.email.com"
+              footer={<CriteriaEligibilityButton />}
+            >
               {(verifiedEmail, onSignOut) => (
                 <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
                   {bucket => (

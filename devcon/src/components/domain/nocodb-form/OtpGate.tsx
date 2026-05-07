@@ -5,18 +5,42 @@ import { Label } from '@/components/ui/label'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Mail } from 'lucide-react'
-import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 
 interface OtpGateProps {
   children: (verifiedEmail: string, onSignOut: () => void) => React.ReactNode
   title?: string
+  // Copy shown above the email input (e.g. "Enter your student email…").
+  description?: string
+  // Placeholder text inside the email input.
+  emailPlaceholder?: string
+  // Optional footer rendered below the "Send code" button — used for things
+  // like the student-application "View criteria and eligibility" link.
+  footer?: React.ReactNode
+  // Override the redirect URL the Supabase email template branches on. Default
+  // is the student-application URL (already listed in the email template's
+  // `if or` clause). Pass a different URL when adding new gated pages, and
+  // make sure that URL is also added to the email template's `if or`.
+  redirectUrl?: string
+  // When true, skip the logo + title + "Signed in as" bar after verification.
+  // Children are rendered directly. The child is responsible for any "switch
+  // email" affordance using the `onSignOut` callback.
+  hideVerifiedHeader?: boolean
 }
 
-// Hardcoded so the Supabase email template can branch on RedirectTo to render the
-// code-based template instead of the magic-link template.
-const EMAIL_REDIRECT_URL = 'https://devcon.org/form/student-application'
+const DEFAULT_EMAIL_REDIRECT_URL = 'https://devcon.org/form/student-application'
+const DEFAULT_TITLE = 'Verify your email'
+const DEFAULT_DESCRIPTION = 'Enter your email to continue'
+const DEFAULT_PLACEHOLDER = 'you@example.com'
 
-export function OtpGate({ children, title }: OtpGateProps) {
+export function OtpGate({
+  children,
+  title,
+  description,
+  emailPlaceholder,
+  footer,
+  redirectUrl,
+  hideVerifiedHeader,
+}: OtpGateProps) {
   const [step, setStep] = useState<'email' | 'code' | 'verified'>('email')
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
@@ -76,7 +100,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
     try {
       const { error: err } = await supabase!.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: EMAIL_REDIRECT_URL },
+        options: { emailRedirectTo: redirectUrl || DEFAULT_EMAIL_REDIRECT_URL },
       })
       if (err) throw err
       setStep('code')
@@ -124,7 +148,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          {title || 'Verify your email'}
+          {title || DEFAULT_TITLE}
         </h2>
 
         <form onSubmit={handleSendCode} className="flex flex-col gap-6 items-center w-full">
@@ -133,9 +157,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
               <Label htmlFor="gate-email" className="text-base font-bold text-[#160b2b] leading-6">
                 Email
               </Label>
-              <p className="text-sm text-[#594d73] leading-5">
-                Enter your student email to start the application
-              </p>
+              <p className="text-sm text-[#594d73] leading-5">{description || DEFAULT_DESCRIPTION}</p>
             </div>
             <div className="relative w-full">
               <Mail
@@ -148,7 +170,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder="your@student.email.com"
+                placeholder={emailPlaceholder || DEFAULT_PLACEHOLDER}
                 disabled={loading}
                 required
                 className="h-10 pl-10 pr-4 text-base border-[#dddae2] rounded-lg"
@@ -167,7 +189,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
           </button>
         </form>
 
-        <CriteriaEligibilityButton />
+        {footer}
       </div>
     )
   }
@@ -234,6 +256,10 @@ export function OtpGate({ children, title }: OtpGateProps) {
   }
 
   // step === 'verified'
+  if (hideVerifiedHeader) {
+    return <>{children(verifiedEmail, handleSignOut)}</>
+  }
+
   return (
     <>
       <div className="flex flex-col items-center gap-6 w-full">
