@@ -16,35 +16,73 @@
 // any setup where the proxy IP isn't stable enough to allowlist.
 import type { NextApiRequest } from 'next'
 
+function pickHeader(req: NextApiRequest, name: string): string {
+  const v = req.headers[name]
+  if (Array.isArray(v)) return v[0] || ''
+  return v || ''
+}
+
 export function getClientIp(req: NextApiRequest): string {
-  // Netlify's edge sets `x-nf-client-connection-ip` to the verified client IP
-  // and strips any pre-existing copy on inbound requests, so the header's
-  // presence is itself the proof we're behind Netlify's edge — same trust
-  // model Cloudflare uses for `cf-connecting-ip`. We don't gate on
-  // `process.env.NETLIFY` because that env var is set at build time and
-  // doesn't reliably propagate to Next.js's function runtime on Netlify.
-  const nfIp = req.headers['x-nf-client-connection-ip']
-  const nfStr = Array.isArray(nfIp) ? nfIp[0] : nfIp
-  if (nfStr) return nfStr
-
-  // Cloudflare equivalent — useful for any deployment that fronts Next.js
-  // with CF (rare but possible). CF strips inbound copies the same way.
-  const cfIp = req.headers['cf-connecting-ip']
-  const cfStr = Array.isArray(cfIp) ? cfIp[0] : cfIp
-  if (cfStr) return cfStr
-
-  const trusted = (process.env.TRUSTED_PROXIES || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
+  // `x-pretix-buyer-ip` is stamped by our Netlify Edge Function
+  // (netlify/edge-functions/inject-client-ip.ts) using `context.ip`, which
+  // is Netlify's verified client IP — populated regardless of plugin
+  // version. The edge function strips inbound copies, so this header can't
+  // be spoofed by the user. Read it FIRST.
+  const edgeStamped = pickHeader(req, 'x-pretix-buyer-ip')
+  const nfClient = pickHeader(req, 'x-nf-client-connection-ip')
+  const cfConnecting = pickHeader(req, 'cf-connecting-ip')
+  const trueClient = pickHeader(req, 'true-client-ip')
+  const xRealIp = pickHeader(req, 'x-real-ip')
+  const xff = pickHeader(req, 'x-forwarded-for')
+  const xffFirst = xff ? xff.split(',')[0].trim() : ''
   const socketIp = req.socket?.remoteAddress || ''
-  if (socketIp && trusted.includes(socketIp)) {
-    const xff = req.headers['x-forwarded-for']
-    const xffStr = Array.isArray(xff) ? xff[0] : xff
-    if (xffStr) {
-      const first = xffStr.split(',')[0].trim()
-      if (first) return first
+
+  // Order of trust:
+  // 1. Edge-stamped `x-pretix-buyer-ip` (our injecting edge function)
+  // 2. Netlify's edge-set header (works on plugin versions that forward it)
+  // 3. Cloudflare equivalent (when fronting Next.js directly)
+  // 4. true-client-ip (Akamai/CF Enterprise convention, similarly authoritative)
+  // 5. trusted-proxy XFF (deployments that allowlist the proxy IP explicitly)
+  // 6. socket peer (last resort; useful for direct-connect dev, useless on
+  //    Lambda where the peer is an internal AWS IP)
+  let resolved = ''
+  let path = ''
+  if (edgeStamped) { resolved = edgeStamped; path = 'edge-stamped' }
+  else if (nfClient) { resolved = nfClient; path = 'nf-client' }
+  else if (cfConnecting) { resolved = cfConnecting; path = 'cf-connecting' }
+  else if (trueClient) { resolved = trueClient; path = 'true-client' }
+  else {
+    const trusted = (process.env.TRUSTED_PROXIES || '')
+      .split(',').map((s) => s.trim()).filter(Boolean)
+    if (socketIp && trusted.includes(socketIp) && xffFirst) {
+      resolved = xffFirst; path = 'trusted-xff'
+    } else {
+      resolved = socketIp; path = 'socket'
     }
   }
-  return socketIp || 'unknown'
+
+  // DIAGNOSTIC — log every IP-resolution decision with all candidate headers,
+  // so when something forwards the wrong IP (e.g. Lambda's internal peer
+  // instead of the buyer's real IP) we can see exactly what was on offer.
+  // Revert to a quieter level once the deployment topology is understood.
+  if (process.env.GET_CLIENT_IP_DEBUG !== 'off') {
+    // eslint-disable-next-line no-console
+    console.info(
+      '[getClientIp]',
+      JSON.stringify({
+        resolved, path,
+        edgeStamped: edgeStamped || '-',
+        nfClient: nfClient || '-',
+        cfConnecting: cfConnecting || '-',
+        trueClient: trueClient || '-',
+        xRealIp: xRealIp || '-',
+        xff: xff || '-',
+        xffFirst: xffFirst || '-',
+        socketIp: socketIp || '-',
+        url: req.url,
+      }),
+    )
+  }
+
+  return resolved || 'unknown'
 }

@@ -13,6 +13,30 @@
   path = "/_next/image/*"
   function = "image-csp"
 
+# Stamp `x-pretix-buyer-ip` (from Netlify edge `context.ip`) into every
+# rate-limited API route's request, so `getClientIp` in the Next.js function
+# can resolve the real buyer IP regardless of whether the @netlify/plugin-nextjs
+# version forwards Netlify's own client-IP headers. See netlify/edge-functions/
+# inject-client-ip.ts for details.
+[[edge_functions]]
+  path = "/api/x402/tickets/purchase/*"
+  function = "inject-client-ip"
+[[edge_functions]]
+  path = "/api/x402/tickets/verify/*"
+  function = "inject-client-ip"
+[[edge_functions]]
+  path = "/api/x402/tickets/fiat-purchase/*"
+  function = "inject-client-ip"
+[[edge_functions]]
+  path = "/api/x402/tickets/validate-voucher/*"
+  function = "inject-client-ip"
+[[edge_functions]]
+  path = "/api/x402/tickets"
+  function = "inject-client-ip"
+[[edge_functions]]
+  path = "/api/tickets/validate-early-access/*"
+  function = "inject-client-ip"
+
 [[redirects]]
   from = "/grants"
   to = "https://esp.ethereum.foundation/devcon-grants"
