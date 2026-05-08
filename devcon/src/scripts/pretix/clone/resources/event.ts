@@ -191,6 +191,9 @@ export async function applyEvent(opts: {
   for (const key of SETTINGS_ALLOWLIST) {
     if (key in settingsObj) restPatch[key] = settingsObj[key]
   }
+  // Dev-only overrides — settings forced regardless of source. Adds friction-free
+  // testing; e.g. don't ask for email twice on the order form.
+  restPatch.order_email_asked_twice = false
   if (cli.dryRun) {
     console.log(
       '[event] DRY RUN: would PATCH ' +

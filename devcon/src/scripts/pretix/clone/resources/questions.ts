@@ -30,6 +30,9 @@ function bodyOf(src: RawResource, forCreate: boolean): Record<string, unknown> {
     if (v === null || v === undefined) continue
     out[k] = v
   }
+  // Force questions to be optional on dev — testers shouldn't be blocked by
+  // required prod fields (legal-name-on-ID, etc.) when poking at the event.
+  out.required = false
   // Pretix accepts `options` on POST (create) but rejects them on PATCH —
   // updates require the nested /options/ endpoint, which we don't currently
   // walk. So include options only on creation.
