@@ -8,7 +8,7 @@ const ENV_CONFIG = {
     pretix: {
       baseUrl: 'https://dcdev2.ticketh.xyz',
       organizer: 'org',
-      event: 'test',
+      event: '8',
       ticketDiscountId: '6',
       defaultQuotaId: 116,
       testmode: true,
