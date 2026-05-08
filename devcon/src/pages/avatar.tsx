@@ -62,7 +62,15 @@ type CheckResult = {
   existingAvatar: string | null
 }
 
-function NoTicketView({ email, onSignOut }: { email: string; onSignOut: () => void }) {
+function NoTicketView({
+  email,
+  onSignOut,
+  detail,
+}: {
+  email: string
+  onSignOut: () => void
+  detail?: string
+}) {
   return (
     <div className="flex flex-col items-center gap-5 max-w-md w-full px-4 text-center">
       <h2 className="text-white text-2xl font-bold">No Devcon ticket found</h2>
@@ -84,6 +92,7 @@ function NoTicketView({ email, onSignOut }: { email: string; onSignOut: () => vo
           Use a different email
         </button>
       </div>
+      {detail && <p className="text-white/30 text-xs font-mono mt-1">{detail}</p>}
     </div>
   )
 }
@@ -500,7 +509,7 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
   )
 }
 
-function GatedAvatar({ onSignOut }: { onSignOut: () => void }) {
+function GatedAvatar({ email, onSignOut }: { email: string; onSignOut: () => void }) {
   const [check, setCheck] = useState<CheckResult | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -529,8 +538,12 @@ function GatedAvatar({ onSignOut }: { onSignOut: () => void }) {
     }
   }, [])
 
+  // Treat any server error the same as "no ticket" from the user's perspective —
+  // both end up at the same dead end (no avatar can be generated), and the user
+  // most likely needs to switch to a different email either way. Surface the
+  // raw error in muted text below so it's still debuggable.
   if (error) {
-    return <div className="text-center text-red-400 text-sm">Couldn&apos;t verify ticket: {error}</div>
+    return <NoTicketView email={email} onSignOut={onSignOut} detail={error} />
   }
 
   if (!check) {
@@ -589,7 +602,7 @@ export default function AvatarPage() {
       {sessionChecked && (
         <div className={`relative z-10 w-full px-4 mx-auto ${verifiedEmail ? 'max-w-2xl' : 'max-w-md'}`}>
           {verifiedEmail ? (
-            <GatedAvatar onSignOut={handleSignOut} />
+            <GatedAvatar email={verifiedEmail} onSignOut={handleSignOut} />
           ) : (
             <div className="bg-white rounded-2xl p-6 md:p-10">
               <OtpGate

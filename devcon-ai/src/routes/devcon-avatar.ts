@@ -27,29 +27,30 @@ function loadImage(filePath: string): { base64: string; mimeType: string } {
 }
 
 // Load all character reference images at module init — they don't change at runtime.
-const STYLE_REFERENCES: { base64: string; mimeType: string; name: string }[] = (() => {
-  try {
-    const files = fs
-      .readdirSync(CHARACTERS_DIR)
-      .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
-      .sort();
-    if (files.length === 0) {
-      console.warn(
-        `[devcon-avatar] No character reference images found in ${CHARACTERS_DIR}`,
+const STYLE_REFERENCES: { base64: string; mimeType: string; name: string }[] =
+  (() => {
+    try {
+      const files = fs
+        .readdirSync(CHARACTERS_DIR)
+        .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
+        .sort();
+      if (files.length === 0) {
+        console.warn(
+          `[devcon-avatar] No character reference images found in ${CHARACTERS_DIR}`,
+        );
+      }
+      return files.map((f) => ({
+        ...loadImage(path.join(CHARACTERS_DIR, f)),
+        name: f,
+      }));
+    } catch (err: any) {
+      console.error(
+        `[devcon-avatar] Failed to load character references from ${CHARACTERS_DIR}:`,
+        err.message,
       );
+      return [];
     }
-    return files.map((f) => ({
-      ...loadImage(path.join(CHARACTERS_DIR, f)),
-      name: f,
-    }));
-  } catch (err: any) {
-    console.error(
-      `[devcon-avatar] Failed to load character references from ${CHARACTERS_DIR}:`,
-      err.message,
-    );
-    return [];
-  }
-})();
+  })();
 console.log(
   `[devcon-avatar] Loaded ${STYLE_REFERENCES.length} character reference image(s): ${STYLE_REFERENCES.map((r) => r.name).join(", ")}`,
 );
@@ -62,9 +63,7 @@ function detectMimeFromBase64(b64: string): string {
 }
 
 function hashEmail(email: string): string {
-  return createHash("sha256")
-    .update(email.toLowerCase().trim())
-    .digest("hex");
+  return createHash("sha256").update(email.toLowerCase().trim()).digest("hex");
 }
 
 // Emails (and domains) that skip the Pretix ticket check. Used while ticket
@@ -102,7 +101,9 @@ function characterBaseName(filename: string): string {
   return filename.replace(/\.[^.]+$/, "");
 }
 
-function findCharacter(name: string): { base64: string; mimeType: string; name: string } | null {
+function findCharacter(
+  name: string,
+): { base64: string; mimeType: string; name: string } | null {
   const target = name.toLowerCase().trim();
   return (
     STYLE_REFERENCES.find(
@@ -112,102 +113,61 @@ function findCharacter(name: string): { base64: string; mimeType: string; name: 
 }
 
 function buildAccessoriesPrompt(characterName: string): string {
-  return `The first input image is a photo of a real person. The second input image is an illustrated character named "${characterName}".
+  return `Photo: one or more real people. Reference: an illustrated character named "${characterName}".
 
-Generate an illustrated portrait that keeps the person's pose, body, clothing, and scene from the photo, but adds the distinctive accessories worn by the character.
+Add the character's signature accessories (hat/headwear, glasses, jewelry, gear, scarf, badge, cloak, etc.) onto each person in the photo, and lightly restyle the rendering in the reference's illustration style.
 
-Keep from the photo:
-- The person's identifiable face — recognizable features, eye shape, nose, mouth, skin tone, age.
-- The exact same pose, head angle, body position, and framing.
-- The person's existing clothing/outfit (color, fit, type) — do not replace it.
-- The background composition and subject matter.
-
-Add from the character reference:
-- Distinctive accessories worn by the character — hats, headwear, glasses, jewelry, weapons, tools, gear, scarves, badges, cloaks layered over clothes, or any other identifiable accessory items.
-- Fit these accessories naturally to the person's pose, scale, and proportions.
-
-Apply rendering style:
-- Use the character reference's artistic rendering style (line work, color palette, lighting, level of stylization) for the entire image — including the person's face, clothing, and background.
-
-Critical rules:
-- Do not change the person's pose or stance.
-- Do not replace their clothing — only add accessories on top.
-- Do not change the scene — the background should match the photo, just rendered in the new style.
-- The person must remain recognizably themselves.
-- Square format, suitable for sharing as a portrait.
-- Do not include any text, watermarks, or words in the image.`;
+Hard rules:
+- Keep every face exactly as it is in the photo — same likeness, same proportions, same expression, same skin tone. Do not redraw or restyle facial geometry.
+- Keep each person's pose, body, hair, clothing, and gender presentation unchanged.
+- Only add accessories — don't replace clothing.
+- Keep the same number of people in the same positions. Don't add, remove, merge, or duplicate anyone.
+- Square portrait, no text or watermarks.`;
 }
 
 function buildCharacterPrompt(characterName: string): string {
-  return `The first input image is a photo of a real person. The second input image is an illustrated character named "${characterName}". Take the person from the photo and depict them as this character, while keeping them recognizably themselves.
+  return `Photo: one or more real people. Reference: an illustrated character named "${characterName}".
 
-Keep from the photo:
-- The person's identifiable face — their unique features, eye shape, nose, mouth, skin tone, and approximate age must remain recognizable.
-- Their hair color and approximate hairstyle, blended naturally into the character's outfit (e.g. if the character wears a hood, the hair tucks in similarly).
+Place each person from the photo into this character's costume, accessories, and scene, rendered in the reference's illustration style.
 
-Keep from the character reference:
-- The artistic rendering style (line work, color palette, lighting, level of stylization).
-- The pose, body proportions, and silhouette.
-- The clothing, outfit, accessories.
-- The background, environment, and scene.
-- The mood and atmosphere.
-
-Critical rules:
-- The person must remain recognizably themselves. Do not replace their face with the character's face — adapt their actual face into the character's art style.
-- Use the character's pose, clothing, and scene exactly. Do not invent new poses or settings.
-- Square format, suitable for sharing as a portrait.
-- Do not include any text, watermarks, or words in the image.`;
+Hard rules:
+- Keep every face exactly as it is in the photo — same likeness, same proportions, same expression, same skin tone. Do not redraw or restyle facial geometry.
+- Keep each person's gender presentation, body type, and approximate age unchanged.
+- Keep each person's hair color and length; tuck under hoods or hats only if the costume requires it.
+- Keep the same number of people in the same relative positions. Don't add, remove, merge, or duplicate anyone.
+- Square portrait, no text or watermarks.`;
 }
 
-function buildPrompt(numStyleRefs: number, featuredCharacterName?: string): string {
+function buildPrompt(
+  numStyleRefs: number,
+  featuredCharacterName?: string,
+): string {
   const featured = featuredCharacterName?.trim();
-  const otherRefsCount = featured ? Math.max(0, numStyleRefs - 1) : numStyleRefs;
+  const otherRefsCount = featured
+    ? Math.max(0, numStyleRefs - 1)
+    : numStyleRefs;
 
   const intro = featured
-    ? `The first input image is a photo of a real person. The second input image is the featured character "${featured}" — its distinctive accessories should be added to the person.${otherRefsCount > 0 ? ` The remaining ${otherRefsCount} input image${otherRefsCount > 1 ? "s are" : " is"} other character${otherRefsCount > 1 ? "s" : ""} in the same illustration style — use ${otherRefsCount > 1 ? "them" : "it"} only as additional style guidance.` : ""}`
+    ? `Photo: one or more real people. Reference 1: featured character "${featured}" — only its accessories should be added.${otherRefsCount > 0 ? ` Reference${otherRefsCount > 1 ? "s" : ""} 2${otherRefsCount > 1 ? `–${otherRefsCount + 1}` : ""}: additional style guidance only (don't copy their faces, hair, or clothing).` : ""}`
     : numStyleRefs === 1
-      ? "The first input image is a photo of a real person. The second input image is a style reference."
-      : `The first input image is a photo of a real person. The remaining ${numStyleRefs} input images are examples of the same illustration style — different characters but shared artistic treatment (line work, color palette, lighting, shading, level of stylization).`;
-
-  const synthesize =
-    numStyleRefs > 1
-      ? "Synthesize the common style across all of the reference images — do not copy any single character's face, hair, or clothing."
-      : "Study the reference's rendering style, brush strokes, line quality, color palette, lighting, and overall artistic treatment.";
+      ? "Photo: one or more real people. Reference: an illustration style."
+      : `Photo: one or more real people. References: ${numStyleRefs} examples of one shared illustration style (don't copy any character's face, hair, or clothing).`;
 
   const accessoryClause = featured
-    ? `
-
-Add from the featured character "${featured}" (the second input image):
-- Its distinctive accessories — hats, headwear, glasses, jewelry, weapons, tools, gear, scarves, badges, cloaks layered over clothes, or any other identifiable accessory items.
-- Fit these accessories naturally to the person's pose, scale, and proportions. They should sit on top of the person's existing clothing, not replace it.
-- Do NOT take the character's face, hair, body, clothing, or pose — only the accessories.`
+    ? `\nAlso add the featured character's signature accessories (hats, headwear, glasses, jewelry, gear, scarves, badges, cloaks, etc.) on top of each person's existing clothing — fit to each person's pose. Don't take the character's face, hair, body, clothing, or pose — only accessories.`
     : "";
 
   return `${intro}
 
-Generate an illustrated portrait of the person in the photo by applying the shared rendering style of the reference image${numStyleRefs > 1 ? "s" : ""}. ${synthesize}
+Restyle the photo in the reference illustration style.${accessoryClause}
 
-Keep identical to the photo:
-- The exact same pose, head angle, body position, and framing.
-- The exact same facial expression and gaze direction.
-- The same hair color, hair length, and hairstyle.
-- The same clothing (color, type, fit).
-- The same skin tone and approximate age.
-- The same background composition and subject matter (reinterpret it in the new style — e.g. blurred greenery becomes painted greenery).
-- The same gender presentation and identifiable features.
-
-Apply from the reference${numStyleRefs > 1 ? "s" : ""} (style only — do not copy any reference character's face, hair, clothing, or background):
-- The artistic rendering technique (brush style, line work, shading approach).
-- The color palette and lighting feel.
-- The level of stylization in facial features and details.${accessoryClause}
-
-CRITICAL RULES:
-- The person must remain RECOGNIZABLY THE SAME individual — preserve their unique features.
-- Do NOT change pose, composition, clothing, or background subject matter.
-- Do not pick one of the reference characters and reuse their hair, clothes, or face.${featured ? ` Only the *accessories* from "${featured}" should be added.` : ""}
+Hard rules:
+- Keep every face exactly as it is in the photo — same likeness, same proportions, same expression, same skin tone. Do not redraw or restyle facial geometry; restyle the rendering around it.
+- Keep each person's pose, body, hair, clothing, and gender presentation unchanged.
+- Keep the background subject matter and composition; just reinterpret it in the new style.
+- Keep the same number of people in the same positions. Don't add, remove, merge, or duplicate anyone.
 - This is a style transfer${featured ? " plus accessory overlay" : ""}, not a redesign.
-- Square format, suitable for sharing as a portrait.
-- Do not include any text, watermarks, or words in the image.`;
+- Square portrait, no text or watermarks.`;
 }
 
 export const devconAvatarRouter: Router = Router();
@@ -339,7 +299,11 @@ devconAvatarRouter.post("/", async (req, res) => {
     }
 
     let promptText: string;
-    let referenceImages: Array<{ base64: string; mimeType: string; name: string }>;
+    let referenceImages: Array<{
+      base64: string;
+      mimeType: string;
+      name: string;
+    }>;
     let storageSuffix = "";
 
     if (mode === "character" || mode === "accessories") {
