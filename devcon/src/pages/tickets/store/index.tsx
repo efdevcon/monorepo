@@ -643,10 +643,10 @@ function StoreContent({
               <div className={css['coming-soon-grid']}>
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'Early Bird GA \ud83d\udc24'}</h3>
-                    <p className={css['card-meta']}>Launches May 12</p>
+                    <h3 className={css['coming-soon-card-title']}>{'ETH Early Bird GA \ud83d\udc24'}</h3>
+                    <p className={css['card-meta']}>Launches May 20</p>
                     <p className={css['card-description']}>
-                      Early-bird discount of the original, anon-friendly Devcon ticket.
+                      Early-bird discount of the original, anon-friendly Devcon ticket. This wave only accepts payments in ETH on Ethereum Mainnet (L1).
                     </p>
                   </div>
                   <div className={css['coming-soon-card-footer']}>

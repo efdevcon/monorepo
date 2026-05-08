@@ -237,7 +237,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                   </div>
                   <div className={css['included-item']}>
                     <Coffee size={24} strokeWidth={1.5} />
-                    <span>{t('hero.included_lunch')}</span>
+                    <span>{t('hero.included_catering')}</span>
                   </div>
                 </div>
               </div>

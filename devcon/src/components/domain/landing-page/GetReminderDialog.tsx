@@ -5,8 +5,8 @@ import { X } from 'lucide-react'
 import ReminderBg from './images/new/reminder-bg.png'
 import { useTranslations } from 'next-intl'
 
-// Ticket launch date — May 12, 2026 @ 3:00 PM UTC
-const TICKET_LAUNCH_DATE = new Date(Date.UTC(2026, 4, 12, 15, 0, 0))
+// Ticket launch date — May 20, 2026 @ 3:00 PM UTC
+const TICKET_LAUNCH_DATE = new Date(Date.UTC(2026, 4, 20, 15, 0, 0))
 
 type Countdown = { days: number; hours: number; mins: number; secs: number }
 
