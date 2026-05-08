@@ -168,6 +168,12 @@ export async function getItems(): Promise<PretixItem[]> {
   return cachedFetch('items', () => fetchAllPages<PretixItem>('items/'))
 }
 
+/** Uncached variant for callers (eg. M9 service-bypass guard) that need the
+ *  authoritative current rules — not a snapshot up to 60s stale. */
+export async function getItemsFresh(): Promise<PretixItem[]> {
+  return fetchAllPages<PretixItem>('items/')
+}
+
 export async function getItem(itemId: number): Promise<PretixItem> {
   return fetchPretix<PretixItem>(`items/${itemId}/`)
 }

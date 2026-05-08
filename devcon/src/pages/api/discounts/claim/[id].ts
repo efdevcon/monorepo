@@ -12,11 +12,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!session) return res.status(401).json({ error: 'Unauthorized' })
 
   // M12: the session's identity must match the URL id we're looking up.
-  // Without this check, any logged-in user could claim any discount-list
-  // member's voucher (incl. ~395 100%-off entries). Both ETH addresses and
-  // GitHub usernames in the lists are stored lowercase.
-  const claimer = ((session as { id?: string })?.id || '').toLowerCase()
-  if (!claimer || claimer !== id.toLowerCase()) {
+  // Without `session.id !== id` enforcement, any logged-in user could
+  // claim any discount-list member's voucher (incl. ~395 100%-off
+  // entries). Both ETH addresses and GitHub usernames in the discount
+  // lists are stored lowercase, so we compare the lowercase forms to
+  // tolerate case-different but equivalent identities.
+  const sessionId = ((session as { id?: string })?.id || '').toLowerCase()
+  const urlId = (id || '').toLowerCase()
+  if (!sessionId || sessionId !== urlId) {
     return res.status(403).json({ error: 'forbidden' })
   }
 

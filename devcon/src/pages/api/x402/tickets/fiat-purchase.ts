@@ -15,7 +15,7 @@ import {
   validateVoucher,
   applyVoucherDiscount,
   VoucherInfo,
-  getItems,
+  getItemsFresh,
   getCategories,
 } from 'services/pretix'
 import { checkPurchaseRateLimit } from 'services/ticketStore'
@@ -343,7 +343,13 @@ export default async function handler(
     // before POSTing to the organizer-privileged REST endpoint. The raw
     // PretixItem records carry the gating fields (max_per_order, sales_channels,
     // require_approval, …) that the trimmed `TicketInfo` doesn't expose.
-    const [rawItems, rawCategories] = await Promise.all([getItems(), getCategories()])
+    //
+    // `getItemsFresh()` bypasses the 60s items cache. Operators and the M9
+    // verifier both PATCH item flags (max_per_order, available_until,
+    // require_approval, …) and immediately probe — a cached read here would
+    // miss those mutations until the TTL elapsed and falsely accept carts
+    // that the live Pretix item state would reject.
+    const [rawItems, rawCategories] = await Promise.all([getItemsFresh(), getCategories()])
     const questionsByItem = new Map<number, { id: number; required: boolean }[]>()
     for (const q of ticketInfo.questions) {
       if (q.appliesToItems.length === 0) {
