@@ -13,7 +13,9 @@ const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+// Default express.json() limit is 100KB, which 413s base64-encoded images.
+// Frontend caps uploads at 5MB; allow 10MB to cover base64 inflation + headroom.
+app.use(express.json({ limit: "10mb" }));
 
 // Health check
 app.get("/health", (_req, res) => {
