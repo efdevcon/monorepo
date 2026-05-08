@@ -582,6 +582,61 @@ $checkout-two-col: 1200px;
   line-height: 1.43;
 }
 
+.youth-ticket-helper {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: #f2f1f4;
+  border-radius: 8px;
+  color: #1a0d33;
+  font-size: 0.875rem;
+  line-height: 1.43;
+}
+
+.youth-ticket-helper-title {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #160b2b;
+}
+
+.youth-ticket-helper-body {
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0 0 0.5rem;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    color: #7235ed;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .rich-checkbox {
   display: flex;
   align-items: flex-start;

@@ -2853,13 +2853,24 @@ function CheckoutContent() {
                       const isGoals = q.identifier === TICKETING.questions.goalsIdentifier
                       const hasError = showAttendeeErrors && (q.required || q.dependsOn) && isFieldEmpty(q.id)
 
+                      // Hardcoded special-case: when a question's helpText contains the
+                      // youth-ticket form URL, render the helpText as a highlighted box
+                      // (Figma "Will you have Youth Tickets for sale?" accordion treatment)
+                      // and only when the buyer answered Yes.
+                      const isYouthHelper = !!q.helpText?.includes('https://devcon.org/en/form/youth-ticket/')
+                      const yesOptionId =
+                        q.type === 'C' ? q.options.find(o => /^\s*yes\s*$/i.test(o.answer || ''))?.id : undefined
+                      const isAnswerYes =
+                        (q.type === 'B' && answers[q.id] === 'True') ||
+                        (q.type === 'C' && yesOptionId !== undefined && answers[q.id] === String(yesOptionId))
+
                       return (
                         <div key={q.id} className={css['field']} data-question-id={q.id}>
                           <label>
                             {q.question}
                             {(q.required || q.dependsOn) && <span className={css['required']}>*</span>}
                           </label>
-                          {q.helpText && (
+                          {q.helpText && !isYouthHelper && (
                             <span className={css['field-help']}>
                               <Markdown
                                 components={{
@@ -3024,6 +3035,27 @@ function CheckoutContent() {
                               value={(answers[q.id] as string) || ''}
                               onChange={e => updateAnswer(q.id, e.target.value)}
                             />
+                          )}
+
+                          {isYouthHelper && isAnswerYes && q.helpText && (
+                            <div className={css['youth-ticket-helper']}>
+                              <p className={css['youth-ticket-helper-title']}>
+                                Children aged 3–17 need their own ticket
+                              </p>
+                              <div className={css['youth-ticket-helper-body']}>
+                                <Markdown
+                                  components={{
+                                    a: ({ href, children }) => (
+                                      <a href={href} target="_blank" rel="noopener noreferrer">
+                                        {children}
+                                      </a>
+                                    ),
+                                  }}
+                                >
+                                  {q.helpText}
+                                </Markdown>
+                              </div>
+                            </div>
                           )}
 
                           {hasError && <p className={css['field-error']}>{getFieldErrorMessage(q)}</p>}
