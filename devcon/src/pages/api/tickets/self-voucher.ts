@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAssignedVoucher } from '../../../services/discountStore'
+import { getClientIp } from '../../../utils/getClientIp'
+import { checkVoucherEmailRateLimit } from '../../../services/discountStore'
 
 // Read from the same globalThis stores that redeem-self writes to
 const g = globalThis as unknown as {
@@ -18,7 +19,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Missing userId' })
   }
 
-  // Check in-memory store first (fast path)
+  // M15: rate-limit per IP. Voucher codes are bearer secrets, and the
+  // polling key (`userId`) used to be a free-text query param with no
+  // throttle — anyone who learned an `assigned_to` value (from logs,
+  // network capture, or a Supabase leak) could hammer this endpoint.
+  // Reuse `checkVoucherEmailRateLimit` (10/min/IP) — it's a generic
+  // per-IP+per-key bucket on the existing Supabase counter table.
+  const clientIp = getClientIp(req)
+  const { allowed } = await checkVoucherEmailRateLimit(clientIp, `selfvoucher:${userId}`)
+  if (!allowed) {
+    return res.status(429).json({ pending: true })
+  }
+
+  // M15: the in-memory polling store is keyed by the FE-generated UUID v4
+  // (`verifiedUserId` in redeem-self), which has ~122 bits of entropy and is
+  // only known to the originating FE session. The dropped Supabase fallback
+  // (which queried `assigned_to == userId`) was the actual oracle: an
+  // attacker with any `assigned_to` value (Self nullifier, email, etc.)
+  // could pull the voucher code without authentication. The fallback is
+  // gone; if the in-memory store is cold (server restart), the buyer must
+  // re-verify rather than risk an unauth Supabase lookup.
   const voucherCode = g.__selfVoucherStore?.get(userId)
   if (voucherCode) {
     return res.status(200).json({ voucherCode })
@@ -29,15 +49,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({ error: true, reason: errorReason })
   }
 
-  // Supabase fallback: handles server restarts clearing the in-memory Map
-  try {
-    const voucher = await getAssignedVoucher(userId)
-    if (voucher) {
-      return res.status(200).json({ voucherCode: voucher.code })
-    }
-  } catch (err) {
-    console.error('[self-voucher] Supabase fallback error:', err)
-  }
-
-  return res.status(404).json({ error: 'No voucher found. Verification may still be in progress.' })
+  // M15: constant 'pending' shape — caller can't distinguish "no such userId"
+  // from "verification still in progress" from "rate-limited". Same response
+  // as the 429 above, by design.
+  return res.status(200).json({ pending: true })
 }

@@ -11,6 +11,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const session = await getServerSession(req, res, authOptions)
   if (!session) return res.status(401).json({ error: 'Unauthorized' })
 
+  // M12: the session's identity must match the URL id we're looking up.
+  // Without this check, any logged-in user could claim any discount-list
+  // member's voucher (incl. ~395 100%-off entries). Both ETH addresses and
+  // GitHub usernames in the lists are stored lowercase.
+  const claimer = ((session as { id?: string })?.id || '').toLowerCase()
+  if (!claimer || claimer !== id.toLowerCase()) {
+    return res.status(403).json({ error: 'forbidden' })
+  }
+
   const data = GetDiscount(id)
   if (data.discounts.length === 0) {
     return res.status(400).json({ error: 'Not eligible for a discount' })

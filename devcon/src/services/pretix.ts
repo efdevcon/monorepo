@@ -528,6 +528,16 @@ export interface VoucherInfo {
   itemId: number | null
   maxUsages: number
   redeemed: number
+  /** Pretix `Voucher.min_usages` — minimum positions that must redeem the
+   *  voucher in a single order. Single-ticket carts that go below this
+   *  threshold must be rejected (cf. M9 stopgap). */
+  minUsages: number
+  /** Pretix `Voucher.variation` — when set, voucher only applies to this
+   *  variation of `itemId`. */
+  variationId: number | null
+  /** Pretix `Voucher.quota` — when set, voucher is bound to a quota
+   *  (alternative to item-bound). */
+  quotaId: number | null
   error?: string
 }
 
@@ -543,6 +553,9 @@ export async function validateVoucher(code: string): Promise<VoucherInfo> {
     itemId: null,
     maxUsages: 0,
     redeemed: 0,
+    minUsages: 1,
+    variationId: null,
+    quotaId: null,
     error,
   })
 
@@ -578,6 +591,9 @@ export async function validateVoucher(code: string): Promise<VoucherInfo> {
       itemId: voucher.item || null,
       maxUsages: voucher.max_usages || 0,
       redeemed: voucher.redeemed || 0,
+      minUsages: voucher.min_usages || 1,
+      variationId: voucher.variation || null,
+      quotaId: voucher.quota || null,
     }
   } catch (e) {
     return invalid(`Failed to validate voucher: ${(e as Error).message}`)

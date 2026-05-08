@@ -37,20 +37,29 @@ export function getClientIp(req: NextApiRequest): string {
   const xffFirst = xff ? xff.split(',')[0].trim() : ''
   const socketIp = req.socket?.remoteAddress || ''
 
+  // M8 trust gate: only honor the "Netlify Edge stripped any inbound copy"
+  // headers when an explicit env marker confirms we're actually deployed
+  // behind that Edge Function. Default OFF — non-Netlify deploys (Vercel,
+  // self-host, dev) fail closed: an attacker who sets `x-pretix-buyer-ip`
+  // directly is no longer trusted. The Netlify Edge Function strips inbound
+  // copies of these headers before stamping its own (anti-spoof), but that
+  // anti-spoof only holds when the Edge Function actually runs.
+  const trustsNetlifyEdge = process.env.TRUSTS_NETLIFY_EDGE === 'true'
+
   // Order of trust:
-  // 1. Edge-stamped `x-pretix-buyer-ip` (our injecting edge function)
-  // 2. Netlify's edge-set header (works on plugin versions that forward it)
-  // 3. Cloudflare equivalent (when fronting Next.js directly)
-  // 4. true-client-ip (Akamai/CF Enterprise convention, similarly authoritative)
+  // 1. Edge-stamped `x-pretix-buyer-ip` (our injecting edge function) — only when TRUSTS_NETLIFY_EDGE
+  // 2. Netlify's edge-set header — only when TRUSTS_NETLIFY_EDGE
+  // 3. Cloudflare equivalent — only when TRUSTS_NETLIFY_EDGE (CF in front of NF)
+  // 4. true-client-ip (Akamai/CF Enterprise convention) — only when TRUSTS_NETLIFY_EDGE
   // 5. trusted-proxy XFF (deployments that allowlist the proxy IP explicitly)
   // 6. socket peer (last resort; useful for direct-connect dev, useless on
   //    Lambda where the peer is an internal AWS IP)
   let resolved = ''
   let path = ''
-  if (edgeStamped) { resolved = edgeStamped; path = 'edge-stamped' }
-  else if (nfClient) { resolved = nfClient; path = 'nf-client' }
-  else if (cfConnecting) { resolved = cfConnecting; path = 'cf-connecting' }
-  else if (trueClient) { resolved = trueClient; path = 'true-client' }
+  if (trustsNetlifyEdge && edgeStamped) { resolved = edgeStamped; path = 'edge-stamped' }
+  else if (trustsNetlifyEdge && nfClient) { resolved = nfClient; path = 'nf-client' }
+  else if (trustsNetlifyEdge && cfConnecting) { resolved = cfConnecting; path = 'cf-connecting' }
+  else if (trustsNetlifyEdge && trueClient) { resolved = trueClient; path = 'true-client' }
   else {
     const trusted = (process.env.TRUSTED_PROXIES || '')
       .split(',').map((s) => s.trim()).filter(Boolean)
@@ -71,6 +80,7 @@ export function getClientIp(req: NextApiRequest): string {
       '[getClientIp]',
       JSON.stringify({
         resolved, path,
+        trustsNetlifyEdge,
         edgeStamped: edgeStamped || '-',
         nfClient: nfClient || '-',
         cfConnecting: cfConnecting || '-',
