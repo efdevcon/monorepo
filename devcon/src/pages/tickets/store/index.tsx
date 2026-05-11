@@ -9,6 +9,8 @@ import themes from '../../themes.module.scss'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft, ArrowRight, CalendarDays, MapPin } from 'lucide-react'
+import { useEthEarlyBirdWave } from 'hooks/useEthEarlyBirdWave'
+import { CountdownText } from 'components/common/CountdownText'
 import css from './store.module.scss'
 
 // Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
@@ -119,6 +121,7 @@ function StoreContent({
   initialTickets,
 }: StoreContentProps) {
   const countdown = useCountdown()
+  const ethEarlyBird = useEthEarlyBirdWave()
 
   const hasInitialData = initialTickets.length > 0
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
@@ -644,7 +647,15 @@ function StoreContent({
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'ETH Early Bird GA \ud83d\udc24'}</h3>
-                    <p className={css['card-meta']}>Launches May 20</p>
+                    <p className={css['card-meta']}>
+                      {ethEarlyBird.status === 'live' ? (
+                        'On sale now'
+                      ) : ethEarlyBird.status === 'countdown' && ethEarlyBird.countdown ? (
+                        <>Launches in <CountdownText value={ethEarlyBird.countdown} /></>
+                      ) : (
+                        'Launches May 20'
+                      )}
+                    </p>
                     <p className={css['card-description']}>
                       Early-bird discount of the original, anon-friendly Devcon ticket. This wave only accepts payments in ETH on Ethereum Mainnet (L1).
                     </p>

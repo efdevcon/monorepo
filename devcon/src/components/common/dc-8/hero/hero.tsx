@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
+import NextLink from 'next/link'
 import BannerImage from './images/devcon-8-india-bg.png'
 import DevconLogo from './images/devcon-8-india-logo.svg'
 import IconX from 'assets/icons/twitter.svg'
@@ -8,73 +9,17 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
-import { ChevronDown } from 'lucide-react'
+import { useEthEarlyBirdWave } from 'hooks/useEthEarlyBirdWave'
+import { CountdownText } from 'components/common/CountdownText'
+import { getFirstWaveDateLabel } from 'config/waves'
+import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-
-// Ticket launch date — May 20, 2026 @ 3:00 PM UTC
-const TICKET_LAUNCH_DATE = new Date(Date.UTC(2026, 4, 20, 15, 0, 0))
-
-type Countdown = { days: number; hours: number; mins: number; secs: number }
-
-function computeCountdown(): Countdown {
-  const now = Date.now()
-  const diff = Math.max(0, TICKET_LAUNCH_DATE.getTime() - now)
-  const days = Math.floor(diff / 86_400_000)
-  const hours = Math.floor((diff % 86_400_000) / 3_600_000)
-  const mins = Math.floor((diff % 3_600_000) / 60_000)
-  const secs = Math.floor((diff % 60_000) / 1000)
-  return { days, hours, mins, secs }
-}
-
-const CountdownUnit = ({ value, label, width }: { value: number; label: string; width?: string }) => (
-  <div className={`flex flex-col items-center justify-center text-center ${width || ''}`}>
-    <p className="text-2xl font-extrabold text-white leading-[28.8px] tracking-[-0.5px]">{value}</p>
-    <p className="text-xs text-[#9188a2] leading-4">{label}</p>
-  </div>
-)
-
-const Separator = () => <div className="w-px h-4 bg-white/10" aria-hidden />
 
 export const Hero = () => {
   const t = useTranslations('home.hero')
-  const tCommon = useTranslations('common')
   const stripHeight = useGetElementHeight('strip')
-  const [mounted, setMounted] = useState(false)
-  const [countdown, setCountdown] = useState<Countdown>({ days: 0, hours: 0, mins: 0, secs: 0 })
-  const [formExpanded, setFormExpanded] = useState(false)
-  const [email, setEmail] = useState('')
-  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMsg, setErrorMsg] = useState('')
-
-  const handleHeroSubmit = async () => {
-    if (!email.trim()) return
-    setFormStatus('loading')
-    setErrorMsg('')
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim() }),
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        setFormStatus('error')
-        setErrorMsg(data.error || 'Something went wrong')
-        return
-      }
-      setFormStatus('success')
-    } catch {
-      setFormStatus('error')
-      setErrorMsg('Something went wrong')
-    }
-  }
-
-  useEffect(() => {
-    setMounted(true)
-    setCountdown(computeCountdown())
-    const interval = setInterval(() => setCountdown(computeCountdown()), 1000)
-    return () => clearInterval(interval)
-  }, [])
+  const wave = useEthEarlyBirdWave()
+  const showCountdown = wave.status === 'countdown' && wave.countdown
 
   return (
     <div className="relative w-full h-[90vh] md:h-screen overflow-hidden">
@@ -118,29 +63,27 @@ export const Hero = () => {
 
             {/* Right: Ticket countdown + social links */}
             <div className="flex flex-col gap-2 w-full sm:w-[315px] shrink-0">
-              {/* Ticket Countdown Widget */}
+              {/* Ticket sale widget */}
               <div className="backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(150,142,166,0.19)] rounded-lg p-4 flex flex-col gap-4">
                 <div className="flex flex-col gap-3">
-                  <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] leading-none">
-                    {t('tickets_launch_eyebrow')}
-                  </p>
-
-                  {/* Countdown row — only render on client to avoid hydration mismatch */}
-                  <div className="flex items-center justify-between min-h-[44px]">
-                    {mounted && (
-                      <>
-                        <CountdownUnit value={countdown.days} label={tCommon('countdown.days')} width="w-12" />
-                        <Separator />
-                        <CountdownUnit value={countdown.hours} label={tCommon('countdown.hours')} />
-                        <Separator />
-                        <CountdownUnit value={countdown.mins} label={tCommon('countdown.mins')} width="w-10" />
-                        <Separator />
-                        <CountdownUnit value={countdown.secs} label={tCommon('countdown.secs')} width="w-10" />
-                      </>
-                    )}
-                  </div>
-
-                  {/* Early bird pricing */}
+                  {showCountdown ? (
+                    <div className="flex flex-col gap-1 items-center">
+                      <p className="text-xs font-semibold text-[#ffa366] tracking-[2px] leading-none">
+                        {t('tickets_launch_eyebrow_countdown')}
+                      </p>
+                      <CountdownText
+                        value={wave.countdown}
+                        className="text-base font-extrabold text-white leading-none"
+                      />
+                      {getFirstWaveDateLabel() && (
+                        <p className="text-xs text-[#aca6b9] leading-none">on {getFirstWaveDateLabel()}</p>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] leading-none">
+                      {t('tickets_launch_eyebrow')}
+                    </p>
+                  )}
                   <div className="flex items-center justify-between font-extrabold text-sm">
                     <p className="text-white leading-[14px]">{t('early_bird_label')}</p>
                     <div className="flex gap-1 items-end">
@@ -150,61 +93,13 @@ export const Hero = () => {
                   </div>
                 </div>
 
-                {/* Expandable reminder form */}
-                <div
-                  className="grid transition-[grid-template-rows] duration-400 ease-in-out"
-                  style={{ gridTemplateRows: formExpanded || formStatus === 'success' ? '1fr' : '0fr' }}
+                <NextLink
+                  href="/tickets"
+                  className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-[#f9f8fa] font-bold text-sm leading-none rounded-full min-h-8 py-2 pl-4 pr-3 flex gap-1 items-center justify-center w-full"
                 >
-                  <div className="overflow-hidden">
-                    <div className="flex flex-col gap-3">
-                      {formStatus === 'success' ? (
-                        <div className="bg-[rgba(0,191,48,0.3)] rounded p-3 text-center text-[12px] text-[#f9f8fa] leading-4">
-                          <span className="font-bold">{tCommon('reminder_form.success_heading')} </span>
-                          <span>{tCommon('reminder_form.success_message')}</span>
-                        </div>
-                      ) : (
-                        <>
-                          <input
-                            type="email"
-                            placeholder={tCommon('reminder_form.email_placeholder')}
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            onKeyDown={e => e.key === 'Enter' && handleHeroSubmit()}
-                            disabled={formStatus === 'loading'}
-                            className="bg-transparent border-b border-[rgba(255,255,255,0.1)] text-[14px] text-white placeholder:text-[#aca6b9] py-1.5 leading-5 outline-none focus:border-[rgba(255,255,255,0.3)] transition-colors disabled:opacity-60 w-full"
-                          />
-                          <button
-                            type="button"
-                            onClick={handleHeroSubmit}
-                            disabled={formStatus === 'loading' || !email.trim()}
-                            className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-[#f9f8fa] font-bold text-[14px] leading-none rounded-full py-2 w-full cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed min-h-[32px]"
-                          >
-                            {formStatus === 'loading' ? tCommon('reminder_form.submit_loading') : tCommon('reminder_form.submit')}
-                          </button>
-                          {errorMsg && <p className="text-[#ff6b6b] text-xs text-center">{errorMsg}</p>}
-                          <p className="text-[12px] text-center leading-4">
-                            <span className="text-[#aca6b9]">{tCommon('reminder_form.privacy_before')}</span>
-                            <a href="https://ethereum.org/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-[#9668f1] font-bold hover:underline">{tCommon('reminder_form.privacy_link')}</a>
-                            <span className="text-[#aca6b9]">{tCommon('reminder_form.privacy_after')}</span>
-                          </p>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Toggle button — hidden when expanded or success */}
-                {!formExpanded && formStatus !== 'success' && (
-                  <button
-                    type="button"
-                    onClick={() => setFormExpanded(true)}
-                    className="flex gap-1 items-center justify-center w-full cursor-pointer hover:opacity-80 transition-opacity"
-                    aria-label={t('remind_toggle_aria')}
-                  >
-                    <span className="text-sm font-bold text-[#9668f1] leading-none">{t('remind_toggle')}</span>
-                    <ChevronDown className="w-3.5 h-3.5 text-[#9668f1]" strokeWidth={2.5} />
-                  </button>
-                )}
+                  {t('get_tickets_button')}
+                  <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+                </NextLink>
               </div>
 
               {/* Social Links */}
