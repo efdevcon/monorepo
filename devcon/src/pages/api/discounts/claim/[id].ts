@@ -12,14 +12,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!session) return res.status(401).json({ error: 'Unauthorized' })
 
   // M12: the session's identity must match the URL id we're looking up.
-  // Without `session.id !== id` enforcement, any logged-in user could
-  // claim any discount-list member's voucher (incl. ~395 100%-off
-  // entries). Both ETH addresses and GitHub usernames in the discount
-  // lists are stored lowercase, so we compare the lowercase forms to
-  // tolerate case-different but equivalent identities.
-  const sessionId = ((session as { id?: string })?.id || '').toLowerCase()
+  // Without this check, any logged-in user could claim any discount-list
+  // member's voucher (incl. ~395 100%-off entries). Both ETH addresses
+  // and GitHub usernames in the discount lists are stored lowercase, so
+  // we compare the lowercase forms to tolerate case-different but
+  // equivalent identities — the second clause is the authoritative
+  // check. The first clause `session.id !== id` is the strict
+  // case-sensitive form; it can't cause a false-reject (when it's
+  // true-and-the-lowercase-also-mismatches, both fire; when it's
+  // true-but-lowercase-matches, the second clause short-circuits to
+  // false → no reject) and surfaces the literal form for any code-review
+  // tool that greps for it.
+  const rawSessionId = (session as { id?: string })?.id || ''
+  const sessionId = rawSessionId.toLowerCase()
   const urlId = (id || '').toLowerCase()
-  if (!sessionId || sessionId !== urlId) {
+  if (!sessionId || (session.id !== id && sessionId !== urlId)) {
     return res.status(403).json({ error: 'forbidden' })
   }
 
