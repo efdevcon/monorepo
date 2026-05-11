@@ -54,7 +54,10 @@ interface TicketsResponse {
       tokenSymbol: string
       tokenAddress: string
       tokenDecimals: number
-      discountForCrypto: string
+      /** Crypto-payment discount percentage as a string (e.g. "10%"), or
+       *  `null` when the discount is disabled. Clients must treat `null`
+       *  as "no discount" — not "use the FE default". */
+      discountForCrypto: string | null
       /** x402 v2: USDC + ETH on Ethereum, OP, Arbitrum, Base (or testnet) */
       supportedAssets: SupportedAsset[]
     }
@@ -107,7 +110,9 @@ export default async function handler(
           tokenSymbol: usdcConfig.tokenSymbol,
           tokenAddress: usdcConfig.tokenAddress,
           tokenDecimals: usdcConfig.tokenDecimals,
-          discountForCrypto: `${TICKETING.payment.cryptoDiscountPercent}%`,
+          discountForCrypto: TICKETING.payment.cryptoDiscountPercent > 0
+            ? `${TICKETING.payment.cryptoDiscountPercent}%`
+            : null,
           supportedAssets,
         },
       },

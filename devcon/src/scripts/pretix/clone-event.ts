@@ -2,11 +2,11 @@
  * Pretix event clone — CLI entrypoint.
  *
  * Usage:
+ *   pnpm pretix:clone --force              # reuse existing target slug
  *   pnpm pretix:clone --pull               # source → snapshot file
  *   pnpm pretix:clone --push               # snapshot file → target
  *   pnpm pretix:clone                      # pull then push
  *   pnpm pretix:clone --dry-run            # plan only, no writes
- *   pnpm pretix:clone --force              # reuse existing target slug
  *   pnpm pretix:clone --prune              # NOT YET IMPLEMENTED — flag is parsed, no effect
  *   pnpm pretix:clone --only=questions     # restrict resource type
  *   pnpm pretix:clone --yes                # skip interactive confirm

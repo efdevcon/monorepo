@@ -36,7 +36,9 @@ interface PaymentInfo {
   tokenAddress: string
   tokenSymbol: string
   tokenDecimals: number
-  discountForCrypto: string
+  /** Crypto-payment discount percentage as a string (e.g. "10%"), or `null`
+   *  when the discount is disabled. */
+  discountForCrypto: string | null
 }
 
 interface CartData {

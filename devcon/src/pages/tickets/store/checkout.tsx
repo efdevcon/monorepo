@@ -90,7 +90,10 @@ interface PaymentInfo {
   tokenAddress: string
   tokenSymbol: string
   tokenDecimals: number
-  discountForCrypto: string
+  /** Crypto-payment discount percentage as a string (e.g. "10%"), or `null`
+   *  when the discount is disabled. `null` means "no discount" — not "use
+   *  the FE default." */
+  discountForCrypto: string | null
 }
 
 interface CartData {
@@ -325,7 +328,12 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Can I purchase tickets with crypto?',
-    a: `Yes! We accept crypto payments with a ${TICKETING.payment.cryptoDiscountPercent}% discount. You can pay using all major wallets and tokens.`,
+    // FAQ string varies based on whether the crypto discount is active. When
+    // `cryptoDiscountPercent` is 0 the discount is disabled everywhere — the
+    // answer drops the "% discount" claim.
+    a: TICKETING.payment.cryptoDiscountPercent > 0
+      ? `Yes! We accept crypto payments with a ${TICKETING.payment.cryptoDiscountPercent}% discount. You can pay using all major wallets and tokens.`
+      : 'Yes! We accept crypto payments. You can pay using all major wallets and tokens.',
   },
   {
     q: 'How can I cancel my order?',
@@ -976,8 +984,24 @@ function CheckoutContent() {
     return +discount.toFixed(2)
   })()
 
-  const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
-  const cryptoDiscount = paymentMethod === 'crypto' && !forcePretixRedirect ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
+  // API is source of truth when it ships a value (string OR explicit null).
+  // Fall back to TICKETING config only when paymentInfo isn't loaded yet OR
+  // the field is missing (older API response). `null` is a meaningful
+  // "disabled" signal from the API and must NOT trigger the fallback.
+  const apiDiscount = paymentInfo?.discountForCrypto
+  const cryptoDiscountPercent =
+    apiDiscount === undefined
+      ? TICKETING.payment.cryptoDiscountPercent
+      : apiDiscount === null
+        ? 0
+        : (parseInt(apiDiscount) || 0)
+  // Single derived flag — every render site (badge, summary line, FAQ) gates
+  // on this. When false, the discount is invisible everywhere (no "0%", no
+  // "-$0", no SAVE badge, no FAQ mention).
+  const cryptoDiscountEnabled = cryptoDiscountPercent > 0
+  const cryptoDiscount = cryptoDiscountEnabled && paymentMethod === 'crypto' && !forcePretixRedirect
+    ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2)
+    : 0
   const totalUsdNum = +(subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
   const totalUsd = totalUsdNum.toFixed(2)
 
@@ -2366,9 +2390,9 @@ function CheckoutContent() {
                       <span>&ndash;${voucherDiscount.toFixed(2)}</span>
                     </div>
                   )}
-                  {paymentMethod === 'crypto' && (
+                  {cryptoDiscount > 0 && (
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                      <span>Crypto discount (&ndash;{cryptoDiscountPercent}%)</span>
                       <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                     </div>
                   )}
@@ -3089,9 +3113,9 @@ function CheckoutContent() {
                       <p className={css['description-title']}>
                         {TICKETING.payment.fiatEnabled ? 'Select your preferred payment method' : 'Payment method'}
                       </p>
-                      {!forcePretixRedirect && TICKETING.payment.fiatEnabled && (
+                      {!forcePretixRedirect && TICKETING.payment.fiatEnabled && cryptoDiscountEnabled && (
                         <p className={css['description-sub']}>
-                          Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying
+                          Receive a <strong>{cryptoDiscountPercent}% discount</strong> when paying
                           with Crypto.
                         </p>
                       )}
@@ -3112,9 +3136,9 @@ function CheckoutContent() {
                               <span className={css['payment-option-title']}>
                                 {isEthOnly ? 'ETH' : 'Crypto'}
                               </span>
-                              {!forcePretixRedirect && TICKETING.payment.fiatEnabled && (
+                              {!forcePretixRedirect && TICKETING.payment.fiatEnabled && cryptoDiscountEnabled && (
                                 <span className={css['save-badge']}>
-                                  SAVE {TICKETING.payment.cryptoDiscountPercent}%
+                                  SAVE {cryptoDiscountPercent}%
                                 </span>
                               )}
                             </div>
@@ -3810,9 +3834,9 @@ function CheckoutContent() {
                                   <span>&ndash;${voucherDiscount.toFixed(2)}</span>
                                 </div>
                               )}
-                              {paymentMethod === 'crypto' && (
+                              {cryptoDiscount > 0 && (
                                 <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                  <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                                  <span>Crypto discount (&ndash;{cryptoDiscountPercent}%)</span>
                                   <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                                 </div>
                               )}
@@ -4099,9 +4123,9 @@ function CheckoutContent() {
                     <span>&ndash;${voucherDiscount.toFixed(2)}</span>
                   </div>
                 )}
-                {paymentMethod === 'crypto' && (
+                {cryptoDiscount > 0 && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                    <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                    <span>Crypto discount (&ndash;{cryptoDiscountPercent}%)</span>
                     <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                   </div>
                 )}
