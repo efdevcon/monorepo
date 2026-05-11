@@ -399,6 +399,10 @@ function CheckoutContent() {
     chainId: mainnet.id,
     query: { enabled: Boolean(address) },
   })
+  // DEMO HARDCODE: rebrand `d.krux.eth` → `d.devcon.eth` for the demo.
+  // The `title={address}` on the rendered `<span>` still surfaces the real
+  // 0x on hover, so this is purely a visual substitution. REMOVE AFTER DEMO.
+  const displayEnsName = ensName === 'd.krux.eth' ? 'd.devcon.eth' : ensName
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
   const { switchChain, switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
@@ -3259,7 +3263,7 @@ function CheckoutContent() {
                                       className={css['wallet-address-hex']}
                                       title={address}
                                     >
-                                      {ensName || (address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '')}
+                                      {displayEnsName || (address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '')}
                                     </span>
                                     {/* Connection-type pill — colored chip with icon
                                          so it's unmistakable at a glance whether the
