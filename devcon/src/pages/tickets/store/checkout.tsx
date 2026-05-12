@@ -9,6 +9,7 @@ import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
 import { isEmail } from 'utils/validators'
 import { COUNTRIES } from 'utils/countries'
+import { getFaqData } from 'services/faq'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   WagmiProvider,
@@ -297,65 +298,20 @@ async function pollSafeMessagesService(
 
 const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
 
-const FAQ_ITEMS = [
-  {
-    q: 'I plan on bringing my child to Devcon with me. Do they need a ticket?',
-    a: 'If your child is between the ages of 5-17, they will need a Youth ticket, which can be purchased at any time at devcon.org/tickets. Children under the age of 5 do not need a ticket. A Youth Ticket will not be valid for anyone 18+.',
-  },
-  {
-    q: 'When will General ticket sales start?',
-    a: 'Early Bird tickets are on sale now. General admission waves will be announced.',
-  },
-  {
-    q: 'Will there be opportunities to obtain discounted tickets?',
-    a: 'Yes. Self-claiming discounts for Indian locals are available via AnonAadhaar. Additional discount categories open 1 May.',
-  },
-  {
-    q: 'If I buy a ticket, and then I am accepted to Speak, can I get a refund for the original ticket I purchased?',
-    a: 'Yes, if you are accepted as a speaker, you can request a refund for your original ticket purchase.',
-  },
-  {
-    q: 'If I am accepted for a discount after buying a full-priced ticket, can I get refund of the difference?',
-    a: 'Yes, we will process a partial refund for the difference between your original ticket price and the discounted price.',
-  },
-  {
-    q: 'I need a Visa invitation Letter. How can I obtain one?',
-    a: 'Visa invitation letters will be available for ticket holders closer to the event date. Details will be shared via email.',
-  },
-  {
-    q: 'When will I get my ticket?',
-    a: 'Your ticket will be sent to the email address provided during checkout shortly after purchase.',
-  },
-  {
-    q: 'Can I purchase tickets with crypto?',
-    // FAQ string varies based on whether the crypto discount is active. When
-    // `cryptoDiscountPercent` is 0 the discount is disabled everywhere — the
-    // answer drops the "% discount" claim.
-    a: TICKETING.payment.cryptoDiscountPercent > 0
-      ? `Yes! We accept crypto payments with a ${TICKETING.payment.cryptoDiscountPercent}% discount. You can pay using all major wallets and tokens.`
-      : 'Yes! We accept crypto payments. You can pay using all major wallets and tokens.',
-  },
-  {
-    q: 'How can I cancel my order?',
-    a: 'You can request a cancellation by contacting our support team. Refund policies apply.',
-  },
-  {
-    q: 'What if I only need to cancel some tickets on an order with multiple?',
-    a: 'You can request a partial cancellation by contacting our support team.',
-  },
-  {
-    q: 'Tickets are sold out - How can I attend?',
-    a: 'Join the waitlist and follow our social channels for announcements about additional ticket releases.',
-  },
-]
-
 // ── Main page wrapper with providers ──
 
-export default function CheckoutPage() {
+interface CheckoutPageProps {
+  /** FAQs loaded server-side from NocoDB, sliced to entries whose `Page`
+   *  multi-select includes "checkout". Empty array when no rows are tagged
+   *  yet — the FAQ section then renders no items. */
+  faqItems?: Array<{ question: string; answer: string }>
+}
+
+export default function CheckoutPage({ faqItems }: CheckoutPageProps = {}) {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
       <QueryClientProvider client={queryClient}>
-        <CheckoutContent />
+        <CheckoutContent faqItems={faqItems} />
       </QueryClientProvider>
     </WagmiProvider>
   )
@@ -363,7 +319,7 @@ export default function CheckoutPage() {
 
 // ── Checkout content ──
 
-function CheckoutContent() {
+function CheckoutContent({ faqItems }: CheckoutPageProps) {
   // When true, the "crypto" payment button skips the in-page x402 picker and
   // redirects to Pretix's hosted checkout — which dispatches to our installed
   // WalletConnect plugin (the wc_inject UI). Used as a kill switch for the
@@ -429,6 +385,16 @@ function CheckoutContent() {
   const [openSection, setOpenSection] = useState<string | null>('swag')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
   const [paymentMethod, setPaymentMethod] = useState<'crypto' | 'fiat'>('crypto')
+
+  // FAQ list shown in the on-page accordion. Sourced from NocoDB rows
+  // whose `Page` multi-select contains "checkout" (filtered in
+  // getStaticProps), so the editorial team can edit copy without a
+  // redeploy. Empty when no rows are tagged yet — the FAQ section then
+  // simply renders no items.
+  const resolvedFaqItems: Array<{ q: React.ReactNode; a: React.ReactNode }> = (faqItems || []).map(i => ({
+    q: i.question,
+    a: <Markdown>{i.answer}</Markdown>,
+  }))
 
   // ── Cart from localStorage ──
   const [cartItems, setCartItems] = useState<CartItem[]>([])
@@ -4009,7 +3975,7 @@ function CheckoutContent() {
                 {openSection === 'faq' && (
                   <div className={css['section-body']}>
                     <div className={css['faq-list']}>
-                      {FAQ_ITEMS.map((item, i) => (
+                      {resolvedFaqItems.map((item, i) => (
                         <div key={i} className={css['faq-item']}>
                           <button
                             type="button"
@@ -4252,8 +4218,26 @@ function CheckoutContent() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context: { locale?: string }) {
+  const locale: string = context.locale ?? 'en'
+
+  // Slice the synced NocoDB FAQ feed to entries whose Page multi-select
+  // contains "checkout". `Page` is a recently-added column; rows that
+  // haven't been tagged yet have `pages: []` and are simply skipped. If
+  // the slice is empty (sync race, fresh column, or editorial backlog)
+  // the FAQ section on the page renders no items.
+  let faqItems: Array<{ question: string; answer: string }> = []
+  try {
+    const data = await getFaqData(locale)
+    faqItems = data.items
+      .filter(i => i.pages.includes('checkout') && i.answer.trim() !== '')
+      .map(i => ({ question: i.question, answer: i.answer }))
+  } catch {
+    // Sync miss or read error — leave faqItems empty and let the fallback render
+  }
+
   return {
-    props: {},
+    props: { faqItems },
+    revalidate: 3600, // 1 hour
   }
 }
