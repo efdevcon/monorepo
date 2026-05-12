@@ -370,6 +370,18 @@ function CheckoutContent() {
   // in-page x402 flow if anything goes wrong with it.
   const forcePretixRedirect = TICKETING.checkout.forcePretixRedirect
   const supportEmail = (TICKETING.checkout as { supportEmail?: string }).supportEmail || ''
+  // Fallback shop URL: when either crypto or fiat returns a "not enabled" 404
+  // from the plugin, redirect the buyer to Pretix's hosted shop where they
+  // can use whatever payment Pretix has wired up (via wc_inject for crypto +
+  // Stripe / SEPA for fiat). Honor the explicit `pretixRedirectUrl` admin
+  // override if set; otherwise build the canonical shop URL from base + org +
+  // event slugs. Trailing slash matters — Pretix's shop is a slash route.
+  const pretixShopUrl = (() => {
+    const override = (TICKETING.checkout as { pretixRedirectUrl?: string }).pretixRedirectUrl
+    if (override && override.trim()) return override.trim()
+    const base = TICKETING.pretix.baseUrl.replace(/\/$/, '')
+    return `${base}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/`
+  })()
   const { address, isConnected, chain, connector } = useAccount()
   // Reown AppKit hook — exposes the *actual* wallet on the other side of a
   // WalletConnect session (e.g. "Rainbow", "MetaMask Mobile") rather than
@@ -543,6 +555,13 @@ function CheckoutContent() {
   // instead of the generic "Failed to create purchase" the buyer would
   // otherwise see when an admin has toggled x402 off for this event.
   const [cryptoDisabledForEvent, setCryptoDisabledForEvent] = useState(false)
+  // Set true when /fiat-purchase returns 404 'external API purchase is not
+  // enabled for this event' (plugin's `fiat_purchase_enabled` toggle).
+  // Parallel to `cryptoDisabledForEvent` — surfaces a clear "card payment
+  // unavailable" notice instead of a generic error from the redirect path.
+  // Affects both the Stripe button and the WC-via-Pretix redirect, since
+  // both routes go through `/api/x402/tickets/fiat-purchase`.
+  const [fiatDisabledForEvent, setFiatDisabledForEvent] = useState(false)
 
   // Wagmi hooks
   const { data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
@@ -1626,17 +1645,19 @@ function CheckoutContent() {
       } else {
         // Per-event x402 toggle (plugin Fix 1) returns 404 with this exact
         // error string when an admin has disabled crypto checkout for the
-        // event. Surface a clear message + flip the suppress-flag so the
-        // auto-checkout effect doesn't immediately re-trigger on re-render.
+        // event. Flip the suppress-flag so the auto-checkout effect doesn't
+        // immediately re-trigger, then surface a notice with a button that
+        // sends the buyer to the Pretix-hosted shop. The shop has wc_inject
+        // for crypto and Stripe for fiat — whatever the operator has wired
+        // up there will keep working even when our storefront's API path is
+        // disabled. Button-driven (not auto-redirect) so the buyer
+        // explicitly chooses to leave the storefront.
         if (res.status === 404 && /x402 flow not enabled/i.test(data.error || '')) {
           setCryptoDisabledForEvent(true)
-          setPurchaseError(
-            'Crypto checkout is currently unavailable for this event. ' +
-            'Please switch to card payment, or contact support if crypto was advertised for your purchase.'
-          )
-        } else {
-          setPurchaseError(data.error || 'Failed to create purchase')
+          setPaymentStatus(null)
+          return
         }
+        setPurchaseError(data.error || 'Failed to create purchase')
         setPaymentStatus(null)
       }
     } catch {
@@ -1692,6 +1713,16 @@ function CheckoutContent() {
         await new Promise(resolve => setTimeout(resolve, 1500))
         window.location.href = paymentUrlWithReturn
       } else {
+        // Per-event `fiat_purchase_enabled` toggle (plugin Follow-up 1)
+        // returns 404 with this exact error string. Flip the suppress-flag
+        // and let the notice block below render its "Go to Pretix shop"
+        // button — parallel to the crypto-disabled flow above. Button-driven
+        // (not auto-redirect) so the buyer explicitly chooses to leave.
+        if (res.status === 404 && /external API purchase is not enabled/i.test(data.error || '')) {
+          setFiatDisabledForEvent(true)
+          setPaymentStatus(null)
+          return
+        }
         setPurchaseError(data.error || 'Failed to create order')
         setPaymentStatus(null)
       }
@@ -3179,33 +3210,55 @@ function CheckoutContent() {
                       )}
                     </div>
 
+                    {/* `fiat_purchase_enabled` toggled OFF for this event —
+                         parallels the crypto-disabled notice below. The plugin's
+                         /api/x402/tickets/fiat-purchase 404s with this exact
+                         signal; the buyer otherwise sees a generic error on
+                         the Stripe button. Affects both the Fiat radio path
+                         AND `forcePretixRedirect` (WC-via-Pretix), since both
+                         go through the same endpoint. Button-driven redirect
+                         to the Pretix-hosted shop where Stripe / wc_inject
+                         remain wired up by the operator. */}
+                    {(paymentMethod === 'fiat' || forcePretixRedirect) && fiatDisabledForEvent && (
+                      <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                        <div>
+                          Card payment is currently unavailable here.
+                          You can complete your purchase on the Pretix shop instead.
+                        </div>
+                        <button
+                          type="button"
+                          className={css['retry-verify-btn']}
+                          onClick={() => { window.location.href = pretixShopUrl }}
+                        >
+                          Go to Pretix shop
+                        </button>
+                      </div>
+                    )}
+
                     {paymentMethod === 'crypto' && !forcePretixRedirect && (
                       <>
                         {/* x402 toggled OFF for this event — surface a clear,
                              dedicated notice instead of leaving the wallet area
                              stuck on a generic error. The auto-checkout effect
                              is suppressed via `cryptoDisabledForEvent`, so this
-                             notice persists until the buyer switches methods. */}
+                             notice persists until the buyer leaves the page.
+                             Button-driven redirect to the Pretix-hosted shop
+                             where the operator's wc_inject / Stripe remain
+                             wired up — the buyer keeps a path forward
+                             regardless of which side is disabled. */}
                         {cryptoDisabledForEvent && (
                           <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
                             <div>
-                              Crypto checkout is currently unavailable for this event.
-                              {TICKETING.payment.fiatEnabled
-                                ? ' Please switch to card payment to complete your purchase.'
-                                : ' Please contact support if crypto was advertised for your purchase.'}
+                              Crypto checkout is currently unavailable here.
+                              You can complete your purchase on the Pretix shop instead.
                             </div>
-                            {TICKETING.payment.fiatEnabled && (
-                              <button
-                                type="button"
-                                className={css['retry-verify-btn']}
-                                onClick={() => {
-                                  setPaymentMethod('fiat')
-                                  setPurchaseError(null)
-                                }}
-                              >
-                                Switch to card payment
-                              </button>
-                            )}
+                            <button
+                              type="button"
+                              className={css['retry-verify-btn']}
+                              onClick={() => { window.location.href = pretixShopUrl }}
+                            >
+                              Go to Pretix shop
+                            </button>
                           </div>
                         )}
                         {isConnected && isSafeAddress && (

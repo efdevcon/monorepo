@@ -81,3 +81,60 @@ export async function pluginFetch<T = unknown>(
     return { status: 502, body: { success: false, error: msg } as unknown as T }
   }
 }
+
+/** Per-event toggle state returned by `/plugin/x402/settings/`. Both flags
+ *  default OFF if the plugin doesn't ship the field yet (older deploy),
+ *  so the storefront fails closed on the gated paths. */
+export interface PluginSettings {
+  x402_enabled: boolean
+  fiat_purchase_enabled: boolean
+}
+
+/** Short-TTL in-memory cache for the per-event settings lookup. A 10s
+ *  window lets admin toggle flips propagate quickly while keeping the
+ *  per-request cost effectively free on the storefront's hot path. */
+const _settingsCache: { value: PluginSettings | null; expiresAt: number } = {
+  value: null,
+  expiresAt: 0,
+}
+const SETTINGS_CACHE_TTL_MS = 10_000
+
+/**
+ * Read the per-event admin toggles (x402_enabled + fiat_purchase_enabled)
+ * from the plugin. Used by `/api/x402/tickets/fiat-purchase` to gate the
+ * external-API purchase path behind a per-event flag (M18–M22 follow-up;
+ * default OFF for the v1 launch posture).
+ *
+ * Fails closed on any error — if the plugin is unreachable, the settings
+ * call errors out, or the response is malformed, returns both flags as
+ * `false`. Better to over-block than to over-permit during launch.
+ */
+export async function getPluginSettings(): Promise<PluginSettings> {
+  const now = Date.now()
+  if (_settingsCache.value && now < _settingsCache.expiresAt) {
+    return _settingsCache.value
+  }
+  try {
+    const { status, body } = await pluginFetch<Partial<PluginSettings> & { success?: boolean; error?: string }>(
+      '/plugin/x402/settings/',
+      { method: 'GET' },
+    )
+    if (status !== 200 || typeof body !== 'object' || body === null) {
+      console.warn(`[x402 settings] non-200 from plugin (status=${status}); failing closed`)
+      const failClosed: PluginSettings = { x402_enabled: false, fiat_purchase_enabled: false }
+      _settingsCache.value = failClosed
+      _settingsCache.expiresAt = now + SETTINGS_CACHE_TTL_MS
+      return failClosed
+    }
+    const resolved: PluginSettings = {
+      x402_enabled: body.x402_enabled === true,
+      fiat_purchase_enabled: body.fiat_purchase_enabled === true,
+    }
+    _settingsCache.value = resolved
+    _settingsCache.expiresAt = now + SETTINGS_CACHE_TTL_MS
+    return resolved
+  } catch (e) {
+    console.warn('[x402 settings] error fetching settings; failing closed:', e)
+    return { x402_enabled: false, fiat_purchase_enabled: false }
+  }
+}

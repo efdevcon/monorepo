@@ -19,6 +19,7 @@ import {
   getCategories,
 } from 'services/pretix'
 import { checkPurchaseRateLimit } from 'services/ticketStore'
+import { getPluginSettings } from 'services/pretixPluginProxy'
 import {
   PretixOrderCreateRequest,
   PretixOrderPosition,
@@ -267,6 +268,24 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
+  }
+
+  // M18–M22 follow-up: gate the external-API purchase path behind the plugin's
+  // `fiat_purchase_enabled` per-event toggle. Default OFF — v1 ships crypto-only
+  // via WC and the M9 stopgap's residual gaps (M18: stale catalog snapshot,
+  // M19: addon rule gaps, M20: event/shop policy bypass, M21: question
+  // constraint bypass, M22: cart-size quota hold) are all reachable only
+  // through this endpoint. With the toggle OFF, none of them touch live
+  // code. v2b will rewrite this endpoint around Pretix's checkout service,
+  // at which point the M-cluster goes away structurally.
+  //
+  // `getPluginSettings()` fails closed on any plugin error → 404 here.
+  const pluginSettings = await getPluginSettings()
+  if (!pluginSettings.fiat_purchase_enabled) {
+    return res.status(404).json({
+      success: false,
+      error: 'external API purchase is not enabled for this event',
+    })
   }
 
   // Rate limit by IP. `checkPurchaseRateLimit` returns `{allowed}` and never
