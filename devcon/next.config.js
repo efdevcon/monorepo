@@ -32,6 +32,14 @@ const nextConfig = {
   },
   trailingSlash: true,
   serverExternalPackages: ['@selfxyz/qrcode'],
+  experimental: {
+    optimizePackageImports: [
+      'viem',
+      'openai',
+      'lucide-react',
+      'framer-motion',
+    ],
+  },
   webpack: (config, { buildId, webpack }) => {
     return {
       ...config,

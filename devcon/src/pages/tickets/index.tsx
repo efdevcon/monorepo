@@ -15,7 +15,6 @@ import IconFarcaster from 'assets/icons/farcaster.svg'
 import themes from '../themes.module.scss'
 import HeroBackground from './updated-hero.png'
 import EarlyBirdTicket from './big-ticket.png'
-import EarlyBirdMobile from './small-ticket.png'
 import ArtOverlayBg from './tickets-art-overlay-bg.png'
 import ArtOverlayText from 'assets/images/pages/tickets-art-overlay-text.svg'
 import css from './tickets-landing.module.scss'
@@ -238,7 +237,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                   </div>
                   <div className={css['included-item']}>
                     <Coffee size={24} strokeWidth={1.5} />
-                    <span>{t('hero.included_lunch')}</span>
+                    <span>{t('hero.included_catering')}</span>
                   </div>
                 </div>
               </div>
@@ -281,16 +280,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
             </div>
 
             <div className={css['ticket-image-wrapper']}>
-              <Image
-                src={EarlyBirdTicket}
-                alt={t('hero.ticket_alt')}
-                className={cn(css['ticket-image'], css['ticket-image-desktop'])}
-              />
-              <Image
-                src={EarlyBirdMobile}
-                alt={t('hero.ticket_alt')}
-                className={cn(css['ticket-image'], css['ticket-image-mobile'])}
-              />
+              <Image src={EarlyBirdTicket} alt={t('hero.ticket_alt')} className={css['ticket-image']} />
             </div>
           </section>
 
@@ -528,7 +518,7 @@ export async function getStaticProps(context: any) {
 
   let faqItems: Array<{ question: string; answer: string }> = []
   try {
-    const data = await getFaqData()
+    const data = await getFaqData(locale)
     faqItems = TICKETS_FAQ_CATEGORIES.flatMap(category =>
       data.items
         .filter(i => i.category === category && i.answer.trim() !== '')

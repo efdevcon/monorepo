@@ -343,21 +343,6 @@
     drop-shadow(0px 4px 8px rgba(34, 17, 68, 0.1));
 }
 
-.ticket-image-desktop {
-  @media (max-width: $breakpoints-md) {
-    display: none;
-  }
-}
-
-.ticket-image-mobile {
-  display: none;
-  filter: drop-shadow(0px 4px 16px rgba(22, 11, 43, 0.15));
-
-  @media (max-width: $breakpoints-md) {
-    display: block;
-  }
-}
-
 /* ─── Overview Section ────────────────────────────────────── */
 
 .overview-section {

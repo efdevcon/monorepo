@@ -5,9 +5,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { createPublicClient, http } from 'viem'
-import { mainnet } from 'viem/chains'
-import { normalize } from 'viem/ens'
 
 const BG = '#000000'
 
@@ -113,15 +110,9 @@ function isEnsName(name: string): boolean {
 
 async function resolveEnsAvatar(name: string, timeoutMs: number): Promise<string | null> {
   try {
-    const client = createPublicClient({
-      chain: mainnet,
-      transport: http(process.env.NEXT_PUBLIC_INFURA_APIKEY ? `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_APIKEY}` : undefined),
-    })
-    const avatar = await Promise.race([
-      client.getEnsAvatar({ name: normalize(name) }),
-      new Promise<null>(resolve => setTimeout(() => resolve(null), timeoutMs)),
-    ])
-    return avatar || null
+    const url = `https://metadata.ens.domains/mainnet/avatar/${encodeURIComponent(name.trim().toLowerCase())}`
+    const res = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(timeoutMs) })
+    return res.ok ? url : null
   } catch {
     return null
   }

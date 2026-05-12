@@ -227,6 +227,28 @@ export async function getOrder(orderCode: string): Promise<PretixOrder> {
   return cachedFetch(`order:${orderCode}`, () => fetchPretix<PretixOrder>(`orders/${orderCode}/`), 5_000)
 }
 
+export async function getPaidOrdersByEmail(email: string): Promise<PretixOrder[]> {
+  const lowerEmail = email.toLowerCase().trim()
+  return cachedFetch(
+    `orders_by_email:${lowerEmail}`,
+    async () => {
+      const params = new URLSearchParams({ status: 'p', search: lowerEmail })
+      const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/?${params}`
+      const response = await fetch(url, { headers: getHeaders() })
+      if (!response.ok) {
+        const text = await response.text()
+        throw new Error(`Pretix orders search failed ${response.status}: ${text}`)
+      }
+      const data: PretixPaginatedResponse<PretixOrder> = await response.json()
+      return (data.results ?? []).filter(order => {
+        if (order.email?.toLowerCase() === lowerEmail) return true
+        return order.positions?.some(p => p.attendee_email?.toLowerCase() === lowerEmail)
+      })
+    },
+    5 * 60 * 1000,
+  )
+}
+
 export async function markOrderPaid(orderCode: string): Promise<PretixOrder> {
   const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/${orderCode}/mark_paid/`
   const response = await fetch(url, {

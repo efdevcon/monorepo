@@ -1,6 +1,5 @@
-const NOCODB_BASE_URL = process.env.NOCODB_BASE_URL
-const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN
-const FAQ_TABLE_ID = 'mmf20b9gfp79zbt'
+import * as fs from 'fs'
+import * as path from 'path'
 
 export interface FaqItem {
   id: number
@@ -14,77 +13,74 @@ export interface FaqData {
   items: FaqItem[]
 }
 
-async function nocoFetch<T = any>(path: string): Promise<T> {
-  if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) {
-    throw new Error('NocoDB env vars not configured (NOCODB_BASE_URL, NOCODB_API_TOKEN)')
-  }
-  const res = await fetch(`${NOCODB_BASE_URL}${path}`, {
-    headers: {
-      'xc-token': NOCODB_API_TOKEN,
-      'Content-Type': 'application/json',
-    },
-  })
-  if (!res.ok) {
-    throw new Error(`NocoDB fetch failed: ${res.status} ${res.statusText}`)
-  }
-  return res.json() as Promise<T>
+interface RawNocoFaqRow {
+  Id: number
+  Question?: string
+  Answer?: string
+  Category?: string
+  Published?: boolean
 }
 
-interface SchemaColumn {
-  title: string
-  colOptions?: {
-    options?: Array<{ title: string; order?: number }>
-  }
-}
+const SUPPORTED_LOCALES = ['en', 'hi', 'mr'] as const
 
-interface SchemaResponse {
-  columns: SchemaColumn[]
-}
-
-interface RecordsResponse {
-  list: Array<{
-    Id: number
-    Question?: string
-    Answer?: string
-    Category?: string
-  }>
-  pageInfo?: { isLastPage?: boolean }
-}
-
-// Strips leading numeric prefixes like "1. " so categories sort in NocoDB
-// but render cleanly on the frontend.
+// Categories in NocoDB are prefixed with "N." so they sort canonically; the
+// prefix is presentation noise and gets stripped before render.
 function stripCategoryPrefix(label: string): string {
   return label.replace(/^\s*\d+\.\s*/, '')
 }
 
-export async function getFaqData(): Promise<FaqData> {
-  // Category order — from Single Select options in field schema
-  const schema = await nocoFetch<SchemaResponse>(`/api/v2/meta/tables/${FAQ_TABLE_ID}`)
-  const categoryField = schema.columns.find(c => c.title === 'Category')
-  const categories = (categoryField?.colOptions?.options || [])
-    .slice()
-    .sort((a, b) => (a.order || 0) - (b.order || 0))
-    .map(o => stripCategoryPrefix(o.title))
+function getCategoryOrder(label: string): number {
+  const match = /^\s*(\d+)\./.exec(label)
+  return match ? parseInt(match[1], 10) : Number.MAX_SAFE_INTEGER
+}
 
-  // Records — fetch all published, default order = drag-drop order in NocoDB
-  const items: FaqItem[] = []
-  let page = 1
-  const maxPages = 10
-  while (page <= maxPages) {
-    const data = await nocoFetch<RecordsResponse>(
-      `/api/v2/tables/${FAQ_TABLE_ID}/records?where=(Published,checked)&limit=100&page=${page}`
-    )
-    for (const r of data.list || []) {
-      items.push({
-        id: r.Id,
-        question: r.Question || '',
-        answer: r.Answer || '',
-        category: stripCategoryPrefix(r.Category || ''),
-      })
-    }
-    if (data.pageInfo?.isLastPage !== false) break
-    page++
+// translateJson loses the top-level array shape on some locales (writes
+// `{"0": {...}, "1": {...}}` instead of `[{...}, ...]`). Normalize both shapes
+// so the consumer doesn't care which form landed on disk.
+function normalizeFaqRows(parsed: unknown): RawNocoFaqRow[] {
+  if (Array.isArray(parsed)) return parsed as RawNocoFaqRow[]
+  if (parsed && typeof parsed === 'object') return Object.values(parsed as Record<string, RawNocoFaqRow>)
+  return []
+}
+
+function readSyncedFaqFile(locale: string): RawNocoFaqRow[] {
+  const target = (SUPPORTED_LOCALES as readonly string[]).includes(locale) ? locale : 'en'
+  const filePath = path.resolve(process.cwd(), `content/${target}/external/nocodb/faq.json`)
+  if (fs.existsSync(filePath)) {
+    return normalizeFaqRows(JSON.parse(fs.readFileSync(filePath, 'utf-8')))
   }
+  // Translated locale missing → fall back to English so the page never renders empty
+  // due to a sync race rather than missing data.
+  if (target !== 'en') {
+    const fallback = path.resolve(process.cwd(), 'content/en/external/nocodb/faq.json')
+    if (fs.existsSync(fallback)) return normalizeFaqRows(JSON.parse(fs.readFileSync(fallback, 'utf-8')))
+  }
+  return []
+}
+
+export async function getFaqData(locale: string = 'en'): Promise<FaqData> {
+  const rows = readSyncedFaqFile(locale)
+
+  const categoryFirstSeen = new Map<string, number>()
+  const items: FaqItem[] = []
+
+  for (const r of rows) {
+    if (r.Published === false) continue
+    const rawCategory = r.Category || ''
+    if (rawCategory && !categoryFirstSeen.has(rawCategory)) {
+      categoryFirstSeen.set(rawCategory, getCategoryOrder(rawCategory))
+    }
+    items.push({
+      id: r.Id,
+      question: r.Question || '',
+      answer: r.Answer || '',
+      category: stripCategoryPrefix(rawCategory),
+    })
+  }
+
+  const categories = [...categoryFirstSeen.entries()]
+    .sort((a, b) => a[1] - b[1])
+    .map(([raw]) => stripCategoryPrefix(raw))
 
   return { categories, items }
 }

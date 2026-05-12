@@ -5,16 +5,45 @@ import { Label } from '@/components/ui/label'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Mail } from 'lucide-react'
-import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 
 interface OtpGateProps {
   children: (verifiedEmail: string, onSignOut: () => void) => React.ReactNode
   title?: string
+  // Copy shown above the email input (e.g. "Enter your student email…").
+  description?: string
+  // Placeholder text inside the email input.
+  emailPlaceholder?: string
+  // Optional footer rendered below the "Send code" button — used for things
+  // like the student-application "View criteria and eligibility" link.
+  footer?: React.ReactNode
+  // Override the redirect URL the Supabase email template branches on. Default
+  // is the student-application URL (already listed in the email template's
+  // `if or` clause). Pass a different URL when adding new gated pages, and
+  // make sure that URL is also added to the email template's `if or`.
+  redirectUrl?: string
+  // When true, skip the logo + title + "Signed in as" bar after verification.
+  // Children are rendered directly. The child is responsible for any "switch
+  // email" affordance using the `onSignOut` callback.
+  hideVerifiedHeader?: boolean
 }
 
-export function OtpGate({ children, title }: OtpGateProps) {
-  const [step, setStep] = useState<'email' | 'link-sent' | 'verified'>('email')
+const DEFAULT_EMAIL_REDIRECT_URL = 'https://devcon.org/form/student-application'
+const DEFAULT_TITLE = 'Verify your email'
+const DEFAULT_DESCRIPTION = 'Enter your email to continue'
+const DEFAULT_PLACEHOLDER = 'you@example.com'
+
+export function OtpGate({
+  children,
+  title,
+  description,
+  emailPlaceholder,
+  footer,
+  redirectUrl,
+  hideVerifiedHeader,
+}: OtpGateProps) {
+  const [step, setStep] = useState<'email' | 'code' | 'verified'>('email')
   const [email, setEmail] = useState('')
+  const [code, setCode] = useState('')
   const [verifiedEmail, setVerifiedEmail] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -64,17 +93,36 @@ export function OtpGate({ children, title }: OtpGateProps) {
     return <p className="text-red-500">OTP verification is not configured.</p>
   }
 
-  const handleSendLink = async (e: React.FormEvent) => {
+  const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setLoading(true)
     try {
       const { error: err } = await supabase!.auth.signInWithOtp({
         email,
-        options: { emailRedirectTo: window.location.href },
+        options: { emailRedirectTo: redirectUrl || DEFAULT_EMAIL_REDIRECT_URL },
       })
       if (err) throw err
-      setStep('link-sent')
+      setStep('code')
+    } catch (err) {
+      setError((err as Error).message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleVerifyCode = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+    try {
+      const { error: err } = await supabase!.auth.verifyOtp({
+        email,
+        token: code.trim(),
+        type: 'email',
+      })
+      if (err) throw err
+      // onAuthStateChange handler will pick up the new session and move to 'verified'
     } catch (err) {
       setError((err as Error).message)
     } finally {
@@ -86,6 +134,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
     await supabase!.auth.signOut()
     setVerifiedEmail('')
     setEmail('')
+    setCode('')
     setStep('email')
     // Clean any leftover hash fragment so Supabase doesn't choke on stale tokens
     if (window.location.hash) {
@@ -99,18 +148,16 @@ export function OtpGate({ children, title }: OtpGateProps) {
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          {title || 'Verify your email'}
+          {title || DEFAULT_TITLE}
         </h2>
 
-        <form onSubmit={handleSendLink} className="flex flex-col gap-6 items-center w-full">
+        <form onSubmit={handleSendCode} className="flex flex-col gap-6 items-center w-full">
           <div className="flex flex-col gap-4 items-start w-full">
             <div className="flex flex-col gap-2 items-start w-full">
               <Label htmlFor="gate-email" className="text-base font-bold text-[#160b2b] leading-6">
                 Email
               </Label>
-              <p className="text-sm text-[#594d73] leading-5">
-                Enter your student email to start the application
-              </p>
+              <p className="text-sm text-[#594d73] leading-5">{description || DEFAULT_DESCRIPTION}</p>
             </div>
             <div className="relative w-full">
               <Mail
@@ -123,7 +170,7 @@ export function OtpGate({ children, title }: OtpGateProps) {
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder="your@student.email.com"
+                placeholder={emailPlaceholder || DEFAULT_PLACEHOLDER}
                 disabled={loading}
                 required
                 className="h-10 pl-10 pr-4 text-base border-[#dddae2] rounded-lg"
@@ -138,36 +185,67 @@ export function OtpGate({ children, title }: OtpGateProps) {
             disabled={loading}
             className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
           >
-            {loading ? 'Sending...' : 'Send verification link'}
+            {loading ? 'Sending...' : 'Send verification code'}
           </button>
         </form>
 
-        <CriteriaEligibilityButton />
+        {footer}
       </div>
     )
   }
 
-  if (step === 'link-sent') {
+  if (step === 'code') {
     return (
       <div className="flex flex-col items-center gap-4 w-full">
         <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-          Check your email
+          Enter verification code
         </h2>
 
         <div className="flex flex-col gap-2 items-center py-4 px-4 rounded bg-[#f9f8fa] w-full text-center">
-          <p className="text-sm text-[#1a0d33] leading-5">
-            Use the verification link in the email we sent to:
-          </p>
+          <p className="text-sm text-[#1a0d33] leading-5">We sent a 6-digit code to:</p>
           <p className="text-xl font-extrabold text-[#1a0d33] leading-[26px] break-all">{email}</p>
         </div>
+
+        <form onSubmit={handleVerifyCode} className="flex flex-col gap-6 items-center w-full">
+          <div className="flex flex-col gap-2 items-start w-full">
+            <Label htmlFor="gate-code" className="text-base font-bold text-[#160b2b] leading-6">
+              Code
+            </Label>
+            <Input
+              id="gate-code"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              pattern="[0-9]{6}"
+              maxLength={6}
+              value={code}
+              onChange={e => setCode(e.target.value.replace(/\D/g, ''))}
+              placeholder="123456"
+              disabled={loading}
+              required
+              className="h-10 pl-4 pr-4 text-base border-[#dddae2] rounded-lg tracking-widest"
+            />
+          </div>
+
+          {error && <p className="text-sm text-red-500">{error}</p>}
+
+          <button
+            type="submit"
+            disabled={loading || code.length !== 6}
+            className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
+          >
+            {loading ? 'Verifying...' : 'Verify'}
+          </button>
+        </form>
 
         <button
           type="button"
           onClick={() => {
             setStep('email')
             setError('')
+            setCode('')
           }}
           className="px-4 py-1.5 text-sm font-bold text-[#7235ed] hover:underline"
         >
@@ -178,6 +256,10 @@ export function OtpGate({ children, title }: OtpGateProps) {
   }
 
   // step === 'verified'
+  if (hideVerifiedHeader) {
+    return <>{children(verifiedEmail, handleSignOut)}</>
+  }
+
   return (
     <>
       <div className="flex flex-col items-center gap-6 w-full">
@@ -187,11 +269,12 @@ export function OtpGate({ children, title }: OtpGateProps) {
           {title || 'Verify your email'}
         </h2>
 
-        <div className="flex items-center justify-between w-full px-4 py-3 bg-[#f9f8fa] rounded text-sm whitespace-nowrap">
-          <p className="text-[#1a0d33]">
-            Signed in as <strong>{verifiedEmail}</strong>
-          </p>
-          <p className="text-right ml-4">
+        <div className="flex flex-col items-center gap-2 w-full px-4 py-3 bg-[#f9f8fa] rounded text-sm md:flex-row md:justify-between md:items-center md:gap-4">
+          <div className="flex flex-col items-center gap-1 min-w-0 max-w-full md:flex-row md:items-baseline md:gap-1.5">
+            <p className="text-[#1a0d33] shrink-0">Signed in as:</p>
+            <p className="font-bold text-[#1a0d33] truncate max-w-full">{verifiedEmail}</p>
+          </div>
+          <p className="text-center whitespace-nowrap shrink-0 md:text-right">
             <span className="text-[#1a0d33]">Wrong email? </span>
             <button type="button" onClick={handleSignOut} className="font-bold text-[#7235ed] hover:underline">
               Start over

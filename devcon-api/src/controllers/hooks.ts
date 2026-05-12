@@ -131,7 +131,15 @@ export async function UpdateNocoDb(req: Request, res: Response) {
   // #swagger.ignore = true
 
   const secret = req.header('X-Webhook-Secret') || req.headers['x-webhook-secret']
-  if (secret !== SERVER_CONFIG.NOCODB_WEBHOOK_SECRET) return res.status(403).send('Forbidden')
+  if (secret !== SERVER_CONFIG.NOCODB_WEBHOOK_SECRET) {
+    console.log('[nocodb webhook] 403', {
+      headerPresent: !!secret,
+      headerLen: secret ? String(secret).length : 0,
+      expectedConfigured: !!SERVER_CONFIG.NOCODB_WEBHOOK_SECRET,
+      expectedLen: SERVER_CONFIG.NOCODB_WEBHOOK_SECRET ? SERVER_CONFIG.NOCODB_WEBHOOK_SECRET.length : 0,
+    })
+    return res.status(403).send('Forbidden')
+  }
 
   const tableId = req.params.tableId || (req.body?.data?.table_id as string | undefined) || (req.body?.table_id as string | undefined)
   if (!tableId) return res.status(400).send('Missing table id')
@@ -142,13 +150,33 @@ export async function UpdateNocoDb(req: Request, res: Response) {
     return res.status(400).send('Unmapped table id')
   }
 
-  try {
-    const result = await SyncNocoDbTable(tableId, tableName)
-    return res.status(200).json(result)
-  } catch (error) {
-    console.error('NocoDB sync failed', error)
-    return res.status(500).send('Sync failed')
-  }
+  scheduleNocoDbSync(tableId, tableName)
+  return res.status(202).json({ scheduled: true, tableId, debounceMs: NOCODB_SYNC_DEBOUNCE_MS })
+}
+
+// Debounce: bursty edits in NocoDB (e.g. fixing several FAQ rows in a row) would
+// otherwise produce one commit + one translate-workflow run per webhook. We coalesce
+// per-table edits within this window into a single fetch + commit.
+const NOCODB_SYNC_DEBOUNCE_MS = 30_000
+const pendingNocoDbSync = new Map<string, NodeJS.Timeout>()
+
+function scheduleNocoDbSync(tableId: string, tableName: string) {
+  const existing = pendingNocoDbSync.get(tableId)
+  if (existing) clearTimeout(existing)
+
+  const timer = setTimeout(async () => {
+    pendingNocoDbSync.delete(tableId)
+    try {
+      const result = await SyncNocoDbTable(tableId, tableName)
+      console.log('[nocodb sync] completed', result)
+    } catch (err) {
+      console.error('[nocodb sync] failed', err)
+    }
+  }, NOCODB_SYNC_DEBOUNCE_MS)
+
+  // Don't keep the Node process alive on shutdown waiting for a debounced sync.
+  if (typeof timer.unref === 'function') timer.unref()
+  pendingNocoDbSync.set(tableId, timer)
 }
 
 export async function SyncNocoDbTable(tableId: string, tableName: string) {
