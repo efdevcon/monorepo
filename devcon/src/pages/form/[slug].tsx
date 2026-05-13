@@ -12,6 +12,7 @@ export default function SlugFormPage({ config }: Props) {
       viewId={config.formViewId}
       requireOtp={config.requireOtp}
       closed={!isFormOpen(config)}
+      formSlug={config.formSlug}
     />
   )
 }

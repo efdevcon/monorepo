@@ -13,6 +13,7 @@ export default function DynamicFormPage({ viewId, config }: Props) {
       viewId={viewId}
       requireOtp={config?.requireOtp ?? false}
       closed={!isFormOpen(config ?? undefined)}
+      formSlug={config?.formSlug}
     />
   )
 }

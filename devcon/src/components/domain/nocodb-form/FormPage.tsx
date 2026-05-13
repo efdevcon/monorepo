@@ -52,7 +52,9 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
         setLoading(false)
         return
       }
-      const { data: { session } } = await supabase.auth.getSession()
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
       if (!session?.access_token) {
         setLoading(false)
         return
@@ -75,7 +77,17 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
     <div className="text-xs space-y-1">
       <p className="font-bold text-[#160b2b]">{label}</p>
       <div className="flex flex-wrap gap-1">
-        <span className={`px-1.5 py-0.5 rounded ${c.isUniversity ? 'bg-green-100 text-green-800' : c.isPersonal ? 'bg-yellow-100 text-yellow-800' : c.isDisposable ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
+        <span
+          className={`px-1.5 py-0.5 rounded ${
+            c.isUniversity
+              ? 'bg-green-100 text-green-800'
+              : c.isPersonal
+              ? 'bg-yellow-100 text-yellow-800'
+              : c.isDisposable
+              ? 'bg-red-100 text-red-800'
+              : 'bg-blue-100 text-blue-800'
+          }`}
+        >
           {c.organizationType}
         </span>
         {c.isUniversity && <span className="px-1.5 py-0.5 rounded bg-green-100 text-green-800">university</span>}
@@ -224,9 +236,7 @@ function EligibilityGate({
   if (error) {
     return (
       <div className="flex flex-col items-center gap-4 text-center">
-        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">
-          Something went wrong
-        </h3>
+        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">Something went wrong</h3>
         <p className="text-sm text-[#1a0d33] leading-5">
           We couldn&apos;t verify your eligibility. Please try again, or contact{' '}
           <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
@@ -255,7 +265,14 @@ interface FormPageProps {
   viewId: string
   requireOtp: boolean
   closed?: boolean
+  // Form slug from the NocoDB form config. Used to scope behavior that's only
+  // relevant to a specific form (e.g. the student-application eligibility CTA).
+  formSlug?: string
 }
+
+// Slug of the student application form in NocoDB. Only this form should render
+// the "View criteria and eligibility" CTA below the submit button.
+const STUDENT_APPLICATION_SLUG = 'student-application'
 
 function FormInner({
   schema,
@@ -268,6 +285,7 @@ function FormInner({
   requireOtp,
   onSignOut,
   bucket,
+  formSlug,
 }: {
   schema: SchemaResponse
   methods: ReturnType<typeof useForm<Record<string, any>>>
@@ -279,14 +297,13 @@ function FormInner({
   requireOtp?: boolean
   onSignOut?: () => void
   bucket?: EligibilityBucket
+  formSlug?: string
 }) {
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
 
   // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner)
-  const hiddenFields = verifiedEmail
-    ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name)
-    : []
+  const hiddenFields = verifiedEmail ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name) : []
 
   useEffect(() => {
     if (!verifiedEmail || !supabase) return
@@ -338,7 +355,7 @@ function FormInner({
 
         {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
 
-        {requireOtp && (
+        {requireOtp && formSlug === STUDENT_APPLICATION_SLUG && (
           <div className="mx-auto">
             <CriteriaEligibilityButton />
           </div>
@@ -348,11 +365,7 @@ function FormInner({
 
         <div className={`flex items-center w-full ${onSignOut ? 'justify-between' : 'justify-center'}`}>
           {onSignOut && (
-            <button
-              type="button"
-              onClick={onSignOut}
-              className="text-base font-bold text-[#b42124] hover:underline"
-            >
+            <button type="button" onClick={onSignOut} className="text-base font-bold text-[#b42124] hover:underline">
               Cancel &amp; Sign Out
             </button>
           )}
@@ -361,9 +374,7 @@ function FormInner({
             disabled={submitting}
             className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
           >
-            {submitting
-              ? (isUpdate ? 'Updating...' : 'Submitting...')
-              : (isUpdate ? 'Update' : 'Submit')}
+            {submitting ? (isUpdate ? 'Updating...' : 'Submitting...') : isUpdate ? 'Update' : 'Submit'}
           </button>
         </div>
 
@@ -377,14 +388,15 @@ function FormInner({
           >
             Privacy Policy
           </a>
-          . We&apos;ll only use your information for Devcon-related communications and won&apos;t share it with third parties.
+          . We&apos;ll only use your information for Devcon-related communications and won&apos;t share it with third
+          parties.
         </p>
       </form>
     </FormProvider>
   )
 }
 
-export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) {
+export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormPageProps) {
   const [schema, setSchema] = useState<SchemaResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -471,23 +483,25 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
                 Thank you!
               </h2>
 
-              <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                Your application has been submitted.
-              </p>
-              <div className="text-sm text-[#1a0d33] leading-5 text-center bg-[#f9f8fa] rounded-lg px-4 py-4 w-full">
-                <p className="font-bold mb-2">We review applications in two rounds:</p>
-                <ul className="list-disc list-outside pl-5 space-y-1 inline-block text-left">
-                  <li>
-                    <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
-                  </li>
-                  <li>
-                    <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
-                  </li>
-                </ul>
-              </div>
-              <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                Keep an eye on your email for a decision from our approval team.
-              </p>
+              <p className="text-sm text-[#1a0d33] leading-5 text-center">Your application has been submitted.</p>
+              {formSlug === STUDENT_APPLICATION_SLUG && (
+                <>
+                  <div className="text-sm text-[#1a0d33] leading-5 text-center bg-[#f9f8fa] rounded-lg px-4 py-4 w-full">
+                    <p className="font-bold mb-2">We review applications in two rounds:</p>
+                    <ul className="list-disc list-outside pl-5 space-y-1 inline-block text-left">
+                      <li>
+                        <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
+                      </li>
+                      <li>
+                        <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
+                      </li>
+                    </ul>
+                  </div>
+                  <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                    Keep an eye on your email for a decision from our approval team.
+                  </p>
+                </>
+              )}
 
               <Link
                 href="/"
@@ -541,9 +555,15 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
           {requireOtp ? (
             <OtpGate
               title={schema.title}
-              description="Enter your student email to start the application"
-              emailPlaceholder="your@student.email.com"
-              footer={<CriteriaEligibilityButton />}
+              description={
+                formSlug === STUDENT_APPLICATION_SLUG
+                  ? 'Enter your student email to start the application'
+                  : 'Enter your email to start the application'
+              }
+              emailPlaceholder={
+                formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'
+              }
+              footer={formSlug === STUDENT_APPLICATION_SLUG ? <CriteriaEligibilityButton /> : null}
             >
               {(verifiedEmail, onSignOut) => (
                 <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
@@ -560,6 +580,7 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
                         requireOtp={requireOtp}
                         onSignOut={onSignOut}
                         bucket={bucket}
+                        formSlug={formSlug}
                       />
                       <EmailClassifierDebug callerEmail={verifiedEmail} />
                     </>
@@ -574,7 +595,9 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
                 {schema.title}
               </h2>
               {schema.subheading && (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">{renderInlineMarkdown(schema.subheading)}</p>
+                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
+                  {renderInlineMarkdown(schema.subheading)}
+                </p>
               )}
               <FormInner
                 schema={schema}
