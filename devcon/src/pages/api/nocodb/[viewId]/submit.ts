@@ -49,7 +49,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { data: { user }, error: authError } = await supabase.auth.getUser(token)
 
       if (authError || !user?.email) {
-        return res.status(401).json({ success: false, error: 'Invalid or expired session' })
+        console.error('[nocodb/submit] auth failed', { authError, hasUser: !!user })
+        return res.status(401).json({
+          success: false,
+          error: 'Invalid or expired session',
+          details: authError?.message ?? 'No user returned from getUser',
+        })
       }
 
       verifiedEmail = user.email.toLowerCase()
@@ -80,9 +85,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Email classification & eligibility gate. Non-institutional ("blocked") emails
-    // are now permitted as long as they attach proof of enrollment.
-    if (verifiedEmail) {
+    // Email classification & eligibility gate is specific to the student
+    // application form — it classifies institutional emails and gates
+    // submissions on enrollment proof. Other forms shouldn't run this (the
+    // "Email Classification" column doesn't exist on those NocoDB tables and
+    // would cause writes to fail).
+    const isStudentApplication = config?.formSlug === 'student-application'
+    if (verifiedEmail && isStudentApplication) {
       const { bucket } = await classifyEligibility(verifiedEmail)
 
       if (bucket === 'blocked') {
