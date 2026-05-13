@@ -238,7 +238,7 @@ function EligibilityGate({
       <div className="flex flex-col items-center gap-4 text-center">
         <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">Something went wrong</h3>
         <p className="text-sm text-[#1a0d33] leading-5">
-          We couldn&apos;t verify your eligibility. Please try again, or contact{' '}
+          Please try again, or contact{' '}
           <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
             support@devcon.org
           </a>{' '}
@@ -560,33 +560,50 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                   ? 'Enter your student email to start the application'
                   : 'Enter your email to start the application'
               }
-              emailPlaceholder={
-                formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'
-              }
+              emailPlaceholder={formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'}
               footer={formSlug === STUDENT_APPLICATION_SLUG ? <CriteriaEligibilityButton /> : null}
             >
-              {(verifiedEmail, onSignOut) => (
-                <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
-                  {bucket => (
-                    <>
-                      <FormInner
-                        schema={schema}
-                        methods={methods}
-                        onSubmit={onSubmit}
-                        submitting={submitting}
-                        error={error}
-                        verifiedEmail={verifiedEmail}
-                        viewId={viewId}
-                        requireOtp={requireOtp}
-                        onSignOut={onSignOut}
-                        bucket={bucket}
-                        formSlug={formSlug}
-                      />
-                      <EmailClassifierDebug callerEmail={verifiedEmail} />
-                    </>
-                  )}
-                </EligibilityGate>
-              )}
+              {(verifiedEmail, onSignOut) =>
+                // EligibilityGate hits /check-eligibility/, which classifies the
+                // email against the student-application criteria (Indian student
+                // domains, etc.). Other OTP-required forms (e.g. visa collection)
+                // shouldn't run that check — skip the gate for them.
+                formSlug === STUDENT_APPLICATION_SLUG ? (
+                  <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
+                    {bucket => (
+                      <>
+                        <FormInner
+                          schema={schema}
+                          methods={methods}
+                          onSubmit={onSubmit}
+                          submitting={submitting}
+                          error={error}
+                          verifiedEmail={verifiedEmail}
+                          viewId={viewId}
+                          requireOtp={requireOtp}
+                          onSignOut={onSignOut}
+                          bucket={bucket}
+                          formSlug={formSlug}
+                        />
+                        <EmailClassifierDebug callerEmail={verifiedEmail} />
+                      </>
+                    )}
+                  </EligibilityGate>
+                ) : (
+                  <FormInner
+                    schema={schema}
+                    methods={methods}
+                    onSubmit={onSubmit}
+                    submitting={submitting}
+                    error={error}
+                    verifiedEmail={verifiedEmail}
+                    viewId={viewId}
+                    requireOtp={requireOtp}
+                    onSignOut={onSignOut}
+                    formSlug={formSlug}
+                  />
+                )
+              }
             </OtpGate>
           ) : (
             <>
