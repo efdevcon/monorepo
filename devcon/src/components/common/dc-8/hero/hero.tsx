@@ -10,7 +10,7 @@ import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import { useFeaturedWave } from 'hooks/useWaveStates'
-import { CountdownText } from 'components/common/CountdownText'
+import { useNow } from 'hooks/useNow'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -23,12 +23,35 @@ const HERO_DATE_FORMATTER = new Intl.DateTimeFormat('en', {
   timeZone: 'UTC',
 })
 
+type CountdownParts = { days: number; hours: number; mins: number; secs: number }
+
+function splitCountdown(target: Date, now: Date): CountdownParts {
+  const diff = Math.max(0, target.getTime() - now.getTime())
+  return {
+    days: Math.floor(diff / 86_400_000),
+    hours: Math.floor((diff % 86_400_000) / 3_600_000),
+    mins: Math.floor((diff % 3_600_000) / 60_000),
+    secs: Math.floor((diff % 60_000) / 1000),
+  }
+}
+
+const CountdownUnit = ({ value, label, width }: { value: number; label: string; width?: string }) => (
+  <div className={`flex flex-col items-center justify-center text-center ${width || ''}`}>
+    <p className="text-2xl font-extrabold text-white leading-[28.8px] tracking-[-0.5px]">{value}</p>
+    <p className="text-xs text-[#9188a2] leading-4">{label}</p>
+  </div>
+)
+
+const CountdownSeparator = () => <div className="w-px h-4 bg-white/10" aria-hidden />
+
 export const Hero = () => {
   const t = useTranslations('home.hero')
   const stripHeight = useGetElementHeight('strip')
   const { featured } = useFeaturedWave()
-  const showCountdown = featured?.status === 'countdown' && featured.countdown
+  const now = useNow()
+  const showCountdown = featured?.status === 'countdown' && !!featured.upcoming
   const showLive = featured?.status === 'live'
+  const parts = showCountdown && featured?.upcoming && now ? splitCountdown(featured.upcoming, now) : null
 
   return (
     <div className="relative w-full h-[90vh] md:h-screen overflow-hidden">
@@ -76,19 +99,24 @@ export const Hero = () => {
               <div className="backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(150,142,166,0.19)] rounded-lg p-4 flex flex-col gap-4">
                 <div className="flex flex-col gap-3">
                   {showCountdown && featured ? (
-                    <div className="flex flex-col gap-1 items-center">
-                      <p className="text-xs font-semibold text-[#ffa366] tracking-[2px] leading-none">
-                        {t('tickets_launch_eyebrow_countdown')}
+                    <div className="flex flex-col gap-3 items-center">
+                      <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-4">
+                        Available on {featured.upcoming ? `${HERO_DATE_FORMATTER.format(featured.upcoming)} UTC` : ''}
                       </p>
-                      <CountdownText
-                        value={featured.countdown}
-                        className="text-base font-extrabold text-white leading-none"
-                      />
-                      {featured.upcoming && (
-                        <p className="text-xs text-[#aca6b9] leading-none">
-                          on {HERO_DATE_FORMATTER.format(featured.upcoming)} UTC
-                        </p>
-                      )}
+                      {/* Countdown row — only render on client to avoid hydration mismatch */}
+                      <div className="flex items-center justify-between w-full min-h-[44px]">
+                        {parts && (
+                          <>
+                            <CountdownUnit value={parts.days} label="days" width="w-12" />
+                            <CountdownSeparator />
+                            <CountdownUnit value={parts.hours} label="hours" />
+                            <CountdownSeparator />
+                            <CountdownUnit value={parts.mins} label="mins" width="w-10" />
+                            <CountdownSeparator />
+                            <CountdownUnit value={parts.secs} label="secs" width="w-10" />
+                          </>
+                        )}
+                      </div>
                     </div>
                   ) : showLive ? (
                     <p className="text-xs font-semibold text-[#aaeaba] text-center tracking-[2px] leading-none">
