@@ -49,7 +49,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { data: { user }, error: authError } = await supabase.auth.getUser(token)
 
       if (authError || !user?.email) {
-        console.error('[nocodb/submit] auth failed', { authError, hasUser: !!user })
+        console.error('[nocodb/submit] auth failed', {
+          viewId,
+          authError: authError?.message,
+          authStatus: (authError as any)?.status,
+          authName: (authError as any)?.name,
+          hasUser: !!user,
+          tokenLength: token.length,
+          tokenPrefix: token.slice(0, 12),
+          supabaseUrl,
+        })
         return res.status(401).json({
           success: false,
           error: 'Invalid or expired session',
@@ -115,13 +124,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     data['Submission Date'] = new Date().toISOString()
 
-    // Upsert: if user already submitted, update their row
-    if (verifiedEmail) {
+    // For OTP-required forms only: write the verified email into the email
+    // column server-side, and upsert by email so re-submissions edit the
+    // existing row. We gate on requireOtp (not just verifiedEmail) so we don't
+    // accidentally touch forms that weren't designed for auth — those may
+    // not have an Email column and writing to it would 400.
+    if (verifiedEmail && config?.requireOtp) {
       const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
-      const existingRow = emailColumn ? await findRowByEmail(viewId, emailColumn, verifiedEmail) : null
-      if (existingRow) {
-        await updateRow(viewId, existingRow.Id, data)
-        return res.status(200).json({ success: true, updated: true })
+      if (emailColumn) {
+        data[emailColumn] = verifiedEmail
+        const existingRow = await findRowByEmail(viewId, emailColumn, verifiedEmail)
+        if (existingRow) {
+          await updateRow(viewId, existingRow.Id, data)
+          return res.status(200).json({ success: true, updated: true })
+        }
       }
     }
 

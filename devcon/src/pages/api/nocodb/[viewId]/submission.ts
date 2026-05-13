@@ -29,7 +29,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data: { user }, error: authError } = await supabase.auth.getUser(token)
 
     if (authError || !user?.email) {
-      return res.status(401).json({ success: false, error: 'Invalid or expired session' })
+      console.error('[nocodb/submission] auth failed', {
+        viewId,
+        authError: authError?.message,
+        authStatus: (authError as any)?.status,
+        hasUser: !!user,
+        tokenLength: token.length,
+      })
+      return res.status(401).json({
+        success: false,
+        error: 'Invalid or expired session',
+        details: authError?.message ?? 'No user returned from getUser',
+      })
     }
 
     const email = user.email.toLowerCase()
