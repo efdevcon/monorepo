@@ -255,6 +255,41 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
           )
         }
 
+        if (col.uidt === 'Date') {
+          return (
+            <div key={col.column_name} className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
+                <FieldLabel title={col.title} required={col.required} />
+                {col.description && <FieldDescription text={col.description} />}
+              </div>
+              <Input
+                id={col.column_name}
+                type="date"
+                disabled={isReadOnly}
+                // Open the native date picker on any click/focus, not just on
+                // the small calendar icon. `showPicker()` is supported in
+                // Chrome 99+, Firefox 101+, Safari 16+ — wrap in a try so we
+                // degrade gracefully on older browsers.
+                onClick={e => {
+                  try {
+                    ;(e.currentTarget as HTMLInputElement).showPicker?.()
+                  } catch {}
+                }}
+                onFocus={e => {
+                  try {
+                    ;(e.currentTarget as HTMLInputElement).showPicker?.()
+                  } catch {}
+                }}
+                className="h-10 px-4 text-base border-[#dddae2] rounded-lg cursor-pointer"
+                {...register(col.column_name, {
+                  required: col.required ? `${col.title} is required` : false,
+                })}
+              />
+              {error && <FieldError message={error.message as string} />}
+            </div>
+          )
+        }
+
         if (col.uidt === 'SingleSelect' && col.options) {
           const currentValue = watch(col.column_name)
           return (
