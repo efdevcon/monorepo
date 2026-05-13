@@ -23,6 +23,11 @@ import {
   useSendTransaction,
   usePublicClient,
 } from 'wagmi'
+import {
+  getCapabilities,
+  sendCalls,
+  waitForCallsStatus,
+} from 'wagmi/actions'
 import { mainnet } from 'viem/chains'
 import type { Config } from 'wagmi'
 import { useAppKit, useWalletInfo } from '@reown/appkit/react'
@@ -385,6 +390,15 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
   const [openSection, setOpenSection] = useState<string | null>('swag')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
   const [paymentMethod, setPaymentMethod] = useState<'crypto' | 'fiat'>('crypto')
+
+  // CB / Base SW on mobile Safari trips the WebView eviction bug;
+  // block pay (allow connect). TODO: cart-handoff token to re-enable.
+  const showMobileCoinbaseWarning = (() => {
+    if (typeof navigator === 'undefined') return false
+    const ua = navigator.userAgent || ''
+    return /iPhone|iPad|iPod|Android/i.test(ua) && !/Coinbase/i.test(ua) && connectionKind === 'coinbaseWallet'
+  })()
+
 
   // FAQ list shown in the on-page accordion. Sourced from NocoDB rows
   // whose `Page` multi-select contains "checkout" (filtered in
@@ -1366,7 +1380,8 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
       address &&
       !paymentDetails &&
       !isProcessing &&
-      !cryptoDisabledForEvent
+      !cryptoDisabledForEvent &&
+      !showMobileCoinbaseWarning
     ) {
       const key = `${address}-${totalUsd}-${addonFingerprint}`
       if (autoCheckoutTriggeredRef.current === key) return
@@ -1376,7 +1391,7 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
       setPurchaseError(null)
       handleCryptoCheckout().finally(() => setPurchaseLoading(false))
     }
-  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint, cryptoDisabledForEvent])
+  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint, cryptoDisabledForEvent, showMobileCoinbaseWarning])
 
   // Add-on selection helpers
   const toggleAddon = (itemId: number) => {
@@ -1560,6 +1575,12 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
   }
 
   async function handleCryptoCheckout() {
+    if (showMobileCoinbaseWarning) {
+      setPurchaseError(
+        'Coinbase / Base Smart Wallet checkout is not supported on mobile yet. Please complete this purchase on desktop, or disconnect and use a different wallet.',
+      )
+      return
+    }
     try {
       const formattedAnswers = buildFormattedAnswers()
       // Freeze the payer at flow-start. Multisig Safe co-signers may swap
@@ -1851,44 +1872,37 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
 
   async function payWithSelectedOption() {
     if (!selectedOption?.signingRequest || !paymentDetails || !address) return
+    if (showMobileCoinbaseWarning) {
+      setPurchaseError(
+        'Coinbase / Base Smart Wallet checkout is not supported on mobile yet. Please complete this purchase on desktop, or disconnect and use a different wallet.',
+      )
+      return
+    }
     const req = selectedOption.signingRequest
     setPurchaseError(null)
 
-    // Chain enforcement at pay-time. `selectPaymentOption` triggers a
-    // fire-and-forget `switchChain` when the user picks a network, but
-    // some WalletConnect wallets (Trust Wallet has been the worst
-    // offender, also seen with Bitget Mobile and a few others) silently
-    // drop or queue the `wallet_switchEthereumChain` request — so the
-    // wallet stays on whatever chain it was already on (usually
-    // Ethereum mainnet). Without this guard the buyer signs / broadcasts
-    // on the wrong chain and the verify step fails with "no payment
-    // detected on <selected chain>". Await the switch RIGHT before the
-    // sign/send and surface a clear error if it doesn't take.
+    // ── Click-to-first-wallet-RPC must be free of preceding awaits ──
     //
-    // The most common cause of a hard-fail on `switchChainAsync` is a WC
-    // session whose namespaces only include Ethereum: Trust Wallet (and
-    // sometimes Bitget) only show the first chain in the handshake UI,
-    // so the buyer approves Ethereum only and the session lacks
-    // permission for the chain we're now asking about. The fix from the
-    // buyer's side is to disconnect and reconnect, approving all the
-    // chains they see in the wallet's prompt — surface that explicitly
-    // and prompt for a one-click disconnect via the error notice's
-    // existing Disconnect button on the wallet card above.
-    if (chain?.id !== paymentDetails.chainId) {
-      try {
-        setPaymentStatus(`Switching to ${selectedOption.chain} ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
-        await switchChainAsync({ chainId: paymentDetails.chainId })
-      } catch (e) {
-        setPaymentStatus(null)
-        const wcSession = connectionKind === 'walletConnect'
-        setPurchaseError(
-          wcSession
-            ? `Your wallet refused to switch to ${selectedOption.chain}. This usually means the WalletConnect session was approved for Ethereum only. Disconnect using the button above and reconnect — when your wallet shows the connection prompt, approve all the networks listed (not just Ethereum), then retry the payment.`
-            : `Couldn't switch your wallet to ${selectedOption.chain}. Please switch manually in your wallet and try again.`,
-        )
-        return
-      }
-    }
+    // iOS Safari (and the keys.coinbase.com popup on desktop Base
+    // Account) consume the user-gesture token on the first microtask
+    // yield. Any `await` between this click handler and the wallet
+    // popup blocks the popup ("Popup blocked" on iOS Chrome/Safari, or
+    // silent no-op on Base Account desktop). The chain switch that
+    // used to live here moves to two places:
+    //   * For EOAs, `selectPaymentOption` already fires a
+    //     fire-and-forget `switchChain` at pick time — by Pay-click
+    //     time the wallet is already on the right chain in 95%+ of
+    //     EOA cases.
+    //   * For the native `eth_sendTransaction` branch below, the
+    //     defensive `await switchChainAsync` runs *after* the
+    //     payer-proof sign — i.e. once the user has already engaged
+    //     with the wallet, the gesture-token issue no longer applies
+    //     and we can safely await the switch.
+    //   * For the gasless `eth_signTypedData_v4` branch, no switch is
+    //     needed at all — the EIP-712 domain has chainId baked in and
+    //     the relayer broadcasts server-side, so the wallet just
+    //     signs the typed data with the in-payload chainId regardless
+    //     of which chain it's currently "on".
 
     if (req.method === 'eth_signTypedData_v4') {
       if (!walletClient) {
@@ -2030,7 +2044,9 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
           // *safeTxHash* (off-chain hash of the Safe tx object) almost
           // immediately, so the WC-hash-not-returned bug doesn't apply and
           // the recovery watchdog would only confuse things. Use the bare
-          // sendTransactionAsync and translate via Safe Tx Service.
+          // sendTransactionAsync and translate via Safe Tx Service. The
+          // Safe app is already scoped to one chain (per-deployment), so
+          // no switchChain is needed regardless of `chain?.id`.
           const sentHash = await sendTransactionAsync({
             to: tx.to as `0x${string}`,
             value: BigInt(tx.value),
@@ -2050,19 +2066,94 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
             setPaymentStatus(null)
           }
         } else {
-          // Normal EOA: route through the recovery wrapper so wallets that
-          // broadcast but fail to return the hash via WC (Binance Wallet
-          // macOS, etc.) don't strand the UI. If recovery wins (via Alchemy
-          // discovery or manual hash entry), the wrapper triggers verify
-          // internally — no further work here. If the wallet wins, the
-          // existing useWaitForTransactionReceipt useEffect handles verify.
-          await sendNativeEthWithRecovery({
-            to: tx.to as `0x${string}`,
-            value: BigInt(tx.value),
-            data: (tx.data as `0x${string}`) || '0x',
-            chainId: paymentDetails.chainId,
-            payer: payerForSig,
-          })
+          // ── Post-sign chain enforcement (gesture already used) ──
+          // The payer-proof sign popup above has already consumed the iOS
+          // gesture token, so awaiting `switchChainAsync` here doesn't
+          // re-introduce the popup-blocked failure mode. Defensive guard
+          // against EOAs that silently ignored the fire-and-forget
+          // `switchChain` at pick time (Trust Wallet, Bitget Mobile have
+          // both been observed dropping `wallet_switchEthereumChain`).
+          if (chain?.id !== paymentDetails.chainId) {
+            try {
+              setPaymentStatus(`Switching to ${selectedOption.chain} ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
+              await switchChainAsync({ chainId: paymentDetails.chainId })
+            } catch (e) {
+              const wcSession = connectionKind === 'walletConnect'
+              setPurchaseError(
+                wcSession
+                  ? `Your wallet refused to switch to ${selectedOption.chain}. This usually means the WalletConnect session was approved for Ethereum only. Disconnect using the button above and reconnect — when your wallet shows the connection prompt, approve all the networks listed (not just Ethereum), then retry the payment.`
+                  : `Couldn't switch your wallet to ${selectedOption.chain}. Please switch manually in your wallet and try again.`,
+              )
+              setPaymentStatus(null)
+              return
+            }
+          }
+
+          // ── EIP-5792 capability probe ──
+          // Base Account / Coinbase Smart Wallet (and other modern
+          // smart wallets) advertise `atomic.status === 'supported' |
+          // 'ready'` per-chain. When supported we use
+          // `wallet_sendCalls` with explicit `chainId`, which:
+          //   * routes the popup directly to the target chain in ONE
+          //     prompt (no second `wallet_switchEthereumChain` round-
+          //     trip — the bug at coinbase-wallet-sdk #1317 that has
+          //     wagmi's connector get out of sync with the wallet);
+          //   * returns a call-bundle id we poll via
+          //     `wallet_getCallsStatus` for the on-chain hash, sidestep
+          //     the WC "wallet broadcast but didn't return hash" failure
+          //     mode entirely.
+          // Older EOAs / WC sessions throw `wallet_getCapabilities`
+          // unsupported or return no `atomic` key — those fall through
+          // to the existing `sendNativeEthWithRecovery` path.
+          let useAtomic = false
+          try {
+            const caps = await getCapabilities(wagmiAdapter.wagmiConfig as Config, {
+              chainId: paymentDetails.chainId,
+              account: address as `0x${string}`,
+            })
+            const status = (caps as { atomic?: { status?: string } })?.atomic?.status
+            useAtomic = status === 'supported' || status === 'ready'
+          } catch {
+            // wallet_getCapabilities unsupported — fall through to legacy
+          }
+
+          if (useAtomic) {
+            const { id } = await sendCalls(wagmiAdapter.wagmiConfig as Config, {
+              chainId: paymentDetails.chainId,
+              account: address as `0x${string}`,
+              calls: [{
+                to: tx.to as `0x${string}`,
+                value: BigInt(tx.value),
+                data: (tx.data as `0x${string}`) || '0x',
+              }],
+            })
+            setPaymentStatus('Waiting for transaction to be mined...')
+            const final = await waitForCallsStatus(wagmiAdapter.wagmiConfig as Config, {
+              id,
+              timeout: 90_000,
+            })
+            const receipts = (final as { receipts?: Array<{ transactionHash?: string }> }).receipts || []
+            const hash = receipts[0]?.transactionHash
+            if (!hash) {
+              throw new Error('Wallet completed payment but did not return a transaction hash. Refresh the page and check your wallet history before retrying — your funds may already be on the way.')
+            }
+            setTxHash(hash as `0x${string}`)
+            await verifyPayment(hash)
+          } else {
+            // Legacy EOA path: route through the recovery wrapper so
+            // wallets that broadcast but fail to return the hash via
+            // WC (Binance Wallet macOS, etc.) don't strand the UI. If
+            // recovery wins via Alchemy discovery or manual hash entry,
+            // the wrapper triggers verify internally; otherwise the
+            // existing useWaitForTransactionReceipt useEffect handles it.
+            await sendNativeEthWithRecovery({
+              to: tx.to as `0x${string}`,
+              value: BigInt(tx.value),
+              data: (tx.data as `0x${string}`) || '0x',
+              chainId: paymentDetails.chainId,
+              payer: payerForSig,
+            })
+          }
         }
       } catch (e) {
         setPurchaseError(humanizeWalletError(e))
@@ -3323,6 +3414,15 @@ function CheckoutContent({ faqItems }: CheckoutPageProps) {
                             >
                               Disconnect wallet
                             </button>
+                            {showMobileCoinbaseWarning && (
+                              <div className={css['cb-mobile-warning']} role="alert">
+                                <strong>Coinbase / Base Smart Wallet is not
+                                supported on mobile yet.</strong> Please
+                                complete this purchase on desktop, or
+                                disconnect and use a different wallet
+                                (MetaMask, Rainbow, etc.).
+                              </div>
+                            )}
                           </div>
                         ) : (
                           <div className={css['wallet-box']}>

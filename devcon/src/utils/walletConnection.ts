@@ -31,14 +31,23 @@ export function classifyConnection(
   switch (connector.type) {
     case 'injected': return 'injected'
     case 'walletConnect': return 'walletConnect'
+    // `baseAccount` is the modern Base Account / Coinbase Smart Wallet
+    // connector (wagmi/@wagmi/connectors `baseAccount()`) that Reown
+    // AppKit 1.8.x auto-installs. `coinbaseWallet` is the legacy SDK4
+    // connector. Treat both as the same kind — UI copy ("Approve in
+    // Coinbase Wallet") and the EIP-5792 capability probe apply
+    // uniformly across them. Without this, the new connector falls
+    // through to `'other'` and renders a generic "Connected" pill
+    // instead of the Coinbase chip.
     case 'coinbaseWallet': return 'coinbaseWallet'
+    case 'baseAccount': return 'coinbaseWallet'
     case 'safe': return 'safe'
   }
   const id = connector.id
   if (!id) return 'other'
   if (id === 'injected' || id === 'metaMask' || id === 'metaMaskSDK') return 'injected'
   if (id === 'walletConnect') return 'walletConnect'
-  if (id === 'coinbaseWallet' || id === 'coinbaseWalletSDK') return 'coinbaseWallet'
+  if (id === 'coinbaseWallet' || id === 'coinbaseWalletSDK' || id === 'baseAccount') return 'coinbaseWallet'
   if (id === 'safe') return 'safe'
   return 'other'
 }

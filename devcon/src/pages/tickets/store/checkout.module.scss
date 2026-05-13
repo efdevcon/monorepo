@@ -966,6 +966,7 @@ $checkout-two-col: 1200px;
   }
 }
 
+
 .wallet-connected {
   background: #1a0d33;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1209,6 +1210,27 @@ div.wallet-identicon {
 
   &:hover {
     opacity: 0.7;
+  }
+}
+
+// Post-connection warning rendered inside the connected-wallet card when
+// the buyer connects via Coinbase / Base Account on mobile Safari. Sits
+// below the disconnect link so the visual hierarchy is wallet info →
+// disconnect → caveat about this specific wallet on this device.
+.cb-mobile-warning {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(254, 240, 138, 0.12);
+  border: 1px solid rgba(254, 240, 138, 0.35);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #fef3c7;
+
+  strong {
+    color: #fde68a;
+    font-weight: 700;
   }
 }
 
