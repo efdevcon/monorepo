@@ -5,6 +5,13 @@ export interface TicketAvailability {
   available_number: number | null
 }
 
+// TEMPORARY: short-circuit availability to `false` until the prod Pretix quota
+// id is configured. With this set to true, the hook makes no network calls and
+// always reports unavailable, so wave UI flips to "live" only via the
+// grace-window path (useful for time-only testing). Flip back to `false` and
+// re-enable polling once `TICKETING.pretix.defaultQuotaId` is correct.
+const ALWAYS_REPORT_UNAVAILABLE = true
+
 /**
  * Polls /api/tickets/availability (Pretix quota proxy) on an interval.
  * Returns the live availability for the default quota.
@@ -13,9 +20,13 @@ export interface TicketAvailability {
  * states without waiting for the user to refresh the page.
  */
 export function useTicketAvailability(intervalMs: number = 10_000): TicketAvailability {
-  const [state, setState] = useState<TicketAvailability>({ available: null, available_number: null })
+  const [state, setState] = useState<TicketAvailability>(
+    ALWAYS_REPORT_UNAVAILABLE ? { available: false, available_number: null } : { available: null, available_number: null },
+  )
 
   useEffect(() => {
+    if (ALWAYS_REPORT_UNAVAILABLE) return
+
     let cancelled = false
 
     async function poll() {

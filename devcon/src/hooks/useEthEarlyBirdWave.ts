@@ -1,6 +1,6 @@
 import { TICKET_WAVE_TIMES } from 'config/waves'
-import { useTicketAvailability } from './useTicketAvailability'
 import { useWaveCountdown } from './useWaveCountdown'
+import { useTicketAvailability } from './useTicketAvailability'
 
 export interface EthEarlyBirdWaveState {
   // True once the client-side ticker has started. Pre-mount, status defaults
@@ -33,6 +33,9 @@ export function useEthEarlyBirdWave(): EthEarlyBirdWaveState {
     return { mounted: false, status: 'countdown', countdown: null, upcoming: null }
   }
 
+  // Live = Pretix says inventory is available, OR we're inside the 5-minute
+  // grace window after a wave just opened (UI flips immediately without
+  // waiting for the next quota poll).
   const isLive = !!(availability.available || wave.withinGraceWindow)
 
   if (isLive) {

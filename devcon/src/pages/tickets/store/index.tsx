@@ -9,7 +9,7 @@ import themes from '../../themes.module.scss'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft, ArrowRight, CalendarDays, MapPin } from 'lucide-react'
-import { useEthEarlyBirdWave } from 'hooks/useEthEarlyBirdWave'
+import { useFeaturedWave } from 'hooks/useWaveStates'
 import { CountdownText } from 'components/common/CountdownText'
 import css from './store.module.scss'
 
@@ -24,6 +24,15 @@ import { TICKETING } from 'config/ticketing'
 import { getTicketPurchaseInfo } from 'services/pretix'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
+
+const WAVE_TIME_FORMATTER = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+  timeZone: 'UTC',
+})
 
 interface CartItem {
   ticketId: number
@@ -121,7 +130,7 @@ function StoreContent({
   initialTickets,
 }: StoreContentProps) {
   const countdown = useCountdown()
-  const ethEarlyBird = useEthEarlyBirdWave()
+  const { featured: ethEarlyBird } = useFeaturedWave()
 
   const hasInitialData = initialTickets.length > 0
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
@@ -648,10 +657,20 @@ function StoreContent({
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'ETH Early Bird GA \ud83d\udc24'}</h3>
                     <p className={css['card-meta']}>
-                      {ethEarlyBird.status === 'live' ? (
+                      {ethEarlyBird?.status === 'live' ? (
                         'On sale now'
-                      ) : ethEarlyBird.status === 'countdown' && ethEarlyBird.countdown ? (
-                        <>Launches in <CountdownText value={ethEarlyBird.countdown} /></>
+                      ) : ethEarlyBird?.status === 'countdown' && ethEarlyBird.countdown ? (
+                        <>
+                          Launches in <CountdownText value={ethEarlyBird.countdown} />
+                          {ethEarlyBird.upcoming && (
+                            <>
+                              <br />
+                              <span className="text-[#594d73] font-normal">
+                                on {WAVE_TIME_FORMATTER.format(ethEarlyBird.upcoming)} UTC
+                              </span>
+                            </>
+                          )}
+                        </>
                       ) : (
                         'Launches May 20'
                       )}

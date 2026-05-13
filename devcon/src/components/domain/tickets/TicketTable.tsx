@@ -23,6 +23,8 @@ export interface TicketRow {
   // Used to surface live information like a countdown + opening times for
   // the active wave. Adds vertical height to the row.
   richContent?: React.ReactNode
+  // When true the row is rendered de-emphasized (e.g. a past/closed wave).
+  muted?: boolean
 }
 
 interface TicketTableProps {
@@ -52,11 +54,14 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           // Live OR upcoming wave (one with richContent attached) → emphasized
           // styling; otherwise the row stays muted gray.
           const isEmphasized = isLive || !!row.richContent
+          // Opacity is applied to non-tag children only so the SALE ENDED badge
+          // remains fully visible while name/price/etc. fade out.
+          const mutedChildClasses = row.muted ? 'opacity-50' : ''
 
           const mainRow = (
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-center w-full">
               {/* Name + detail */}
-              <div className="flex-1 min-w-0 flex flex-col gap-1">
+              <div className={`flex-1 min-w-0 flex flex-col gap-1 ${mutedChildClasses}`}>
                 <p className={`text-base leading-6 ${isEmphasized ? 'font-bold text-[#160b2b]' : 'font-medium text-[#594d73]'}`}>{row.name}</p>
                 {row.detail && (
                   <p className="text-xs font-bold text-[#594d73] tracking-[0.25px] uppercase leading-4">{row.detail}</p>
@@ -65,10 +70,10 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
 
               {/* Meta — sm+ keeps it on the same row; mobile stacks it underneath */}
               <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto sm:shrink-0 gap-4 sm:gap-6">
-                <div className="flex items-center gap-4 sm:gap-6">
+                <div className={`flex items-center gap-4 sm:gap-6 ${mutedChildClasses}`}>
                   {row.status === 'open' ? (
-                    <span className="inline-flex items-center bg-[#aaeaba] rounded px-2 py-1 text-sm font-bold text-[#221144] tracking-[0.5px] leading-none">
-                      OPEN
+                    <span className="inline-flex items-center bg-[#aaeaba] rounded px-2 py-1 text-sm font-bold text-[#221144] tracking-[0.5px] leading-none whitespace-nowrap">
+                      OPEN NOW
                     </span>
                   ) : (
                     row.countdownText && (
@@ -88,7 +93,11 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                   )}
                 </div>
 
-                {isInteractive ? (
+                {row.muted ? (
+                  <span className="inline-flex items-center justify-center sm:w-[136px] bg-[#594d73] rounded px-3 py-2 text-sm font-bold text-white tracking-[0.5px] leading-none whitespace-nowrap uppercase">
+                    Sale Ended
+                  </span>
+                ) : isInteractive ? (
                   isExpandable ? (
                     // Inside an expandable row: the action becomes its own
                     // Link with stopPropagation so the row toggle doesn't fire.
@@ -116,8 +125,9 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           )
 
           const containerClasses = 'flex flex-col bg-[#f2f1f4] rounded-lg p-4 transition-colors'
-          const hoverClasses = (isInteractive || isExpandable) ? 'hover:bg-[#e9e7ee]' : ''
+          const hoverClasses = (isInteractive || isExpandable) && !row.muted ? 'hover:bg-[#e9e7ee]' : ''
           const activeClasses = isExpanded ? 'bg-[#ebe8f0]' : ''
+          const mutedClasses = row.muted ? 'pointer-events-none' : ''
 
           // Rich content rendered below the main row (live info like a countdown).
           const richBlock = row.richContent ? (
@@ -151,7 +161,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                     setExpandedIndex(prev => (prev === i ? null : i))
                   }
                 }}
-                className={`${containerClasses} ${hoverClasses} ${activeClasses} cursor-pointer`}
+                className={`${containerClasses} ${hoverClasses} ${activeClasses} ${mutedClasses} cursor-pointer`}
               >
                 {mainRow}
                 {richBlock}
@@ -165,7 +175,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
               <NextLink
                 key={i}
                 href={row.actionHref!}
-                className={`${containerClasses} ${hoverClasses}`}
+                className={`${containerClasses} ${hoverClasses} ${mutedClasses}`}
               >
                 {mainRow}
                 {richBlock}
@@ -174,7 +184,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           }
 
           return (
-            <div key={i} className={containerClasses}>
+            <div key={i} className={`${containerClasses} ${mutedClasses}`}>
               {mainRow}
               {richBlock}
             </div>

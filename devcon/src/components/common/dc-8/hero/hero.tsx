@@ -9,17 +9,26 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
-import { useEthEarlyBirdWave } from 'hooks/useEthEarlyBirdWave'
+import { useFeaturedWave } from 'hooks/useWaveStates'
 import { CountdownText } from 'components/common/CountdownText'
-import { getFirstWaveDateLabel } from 'config/waves'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+
+const HERO_DATE_FORMATTER = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+  timeZone: 'UTC',
+})
 
 export const Hero = () => {
   const t = useTranslations('home.hero')
   const stripHeight = useGetElementHeight('strip')
-  const wave = useEthEarlyBirdWave()
-  const showCountdown = wave.status === 'countdown' && wave.countdown
+  const { featured } = useFeaturedWave()
+  const showCountdown = featured?.status === 'countdown' && featured.countdown
+  const showLive = featured?.status === 'live'
 
   return (
     <div className="relative w-full h-[90vh] md:h-screen overflow-hidden">
@@ -66,38 +75,48 @@ export const Hero = () => {
               {/* Ticket sale widget */}
               <div className="backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(150,142,166,0.19)] rounded-lg p-4 flex flex-col gap-4">
                 <div className="flex flex-col gap-3">
-                  {showCountdown ? (
+                  {showCountdown && featured ? (
                     <div className="flex flex-col gap-1 items-center">
                       <p className="text-xs font-semibold text-[#ffa366] tracking-[2px] leading-none">
                         {t('tickets_launch_eyebrow_countdown')}
                       </p>
                       <CountdownText
-                        value={wave.countdown}
+                        value={featured.countdown}
                         className="text-base font-extrabold text-white leading-none"
                       />
-                      {getFirstWaveDateLabel() && (
-                        <p className="text-xs text-[#aca6b9] leading-none">on {getFirstWaveDateLabel()}</p>
+                      {featured.upcoming && (
+                        <p className="text-xs text-[#aca6b9] leading-none">
+                          on {HERO_DATE_FORMATTER.format(featured.upcoming)} UTC
+                        </p>
                       )}
                     </div>
+                  ) : showLive ? (
+                    <p className="text-xs font-semibold text-[#aaeaba] text-center tracking-[2px] leading-none">
+                      {t('tickets_launch_eyebrow_live')}
+                    </p>
                   ) : (
                     <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] leading-none">
                       {t('tickets_launch_eyebrow')}
                     </p>
                   )}
-                  <div className="flex items-center justify-between font-extrabold text-sm">
-                    <p className="text-white leading-[14px]">{t('early_bird_label')}</p>
-                    <div className="flex gap-1 items-end">
-                      <p className="text-[#9188a2] line-through leading-[14px]">{t('pricing_full')}</p>
-                      <p className="text-white text-base leading-4">{t('pricing_discounted')}</p>
+                  {featured && (
+                    <div className="flex items-center justify-between font-extrabold text-sm">
+                      <p className="text-white leading-[14px]">{featured.wave.name}</p>
+                      <div className="flex gap-1 items-end">
+                        {featured.wave.id === 'eth-early-bird' && (
+                          <p className="text-[#9188a2] line-through leading-[14px]">{t('pricing_original')}</p>
+                        )}
+                        <p className="text-white text-base leading-4">{featured.wave.price}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 <NextLink
                   href="/tickets"
                   className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-[#f9f8fa] font-bold text-sm leading-none rounded-full min-h-8 py-2 pl-4 pr-3 flex gap-1 items-center justify-center w-full"
                 >
-                  {t('get_tickets_button')}
+                  {showLive ? t('get_tickets_button') : t('view_tickets_button')}
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
                 </NextLink>
               </div>

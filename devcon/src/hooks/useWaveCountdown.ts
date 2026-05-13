@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useNow } from './useNow'
 
 export interface WaveCountdownState {
   // The next future wave (or null if all waves are in the past).
@@ -58,13 +58,9 @@ function formatRemaining(target: Date, now: Date): string {
  * for native Date math.
  */
 export function useWaveCountdown(waves: Date[]): WaveCountdownState {
-  const [now, setNow] = useState<Date | null>(null)
-
-  useEffect(() => {
-    setNow(new Date())
-    const id = setInterval(() => setNow(new Date()), 1000)
-    return () => clearInterval(id)
-  }, [])
+  // Time source — supports URL-based mocking via `?mockNow=<ISO>`.
+  // See `hooks/useNow.ts` for the full mocking contract.
+  const now = useNow()
 
   if (!now) {
     return { upcoming: null, latest: null, countdown: null, withinGraceWindow: false, mounted: false }

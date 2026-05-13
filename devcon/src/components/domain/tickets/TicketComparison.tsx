@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import NextLink from 'next/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
+import { useFeaturedWave } from 'hooks/useWaveStates'
 
 type IconKind = 'check' | 'asterisk'
 
@@ -19,6 +20,9 @@ interface Column {
   price: string
   price_original?: string
   price_note: string
+  // Optional second line under price_note (e.g. "Limited quantity • Purchasable
+  // using ETH (L1)" from a wave's description field).
+  price_description?: string
   best_for: string
   included: IncludedItem[]
   how_it_works: string[]
@@ -34,7 +38,7 @@ const IncludedIcon = ({ kind }: { kind: IconKind }) => {
 
 const StatusTag = ({ status, openLabel, comingLabel }: { status: 'open' | 'coming'; openLabel: string; comingLabel: string }) => (
   <span
-    className={`inline-flex items-center px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase ${
+    className={`inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase ${
       status === 'open' ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
     }`}
   >
@@ -98,6 +102,9 @@ const MobileCard = ({
           )}
         </div>
         <p className="text-xs text-[#594d73] leading-none">{column.price_note}</p>
+        {column.price_description && (
+          <p className="text-xs text-[#594d73] leading-4">{column.price_description}</p>
+        )}
       </div>
     </div>
 
@@ -178,7 +185,38 @@ export function TicketComparison() {
     tag_coming: string
     swipe_hint?: string
   }
-  const columns = t.raw('columns') as Column[]
+  const rawColumns = t.raw('columns') as Column[]
+  const { featured, mounted } = useFeaturedWave()
+
+  // Inject live wave state into the General Admission column so the price /
+  // status / CTA always reflect the currently-featured wave instead of the
+  // static eth-early-bird snapshot baked into translations.
+  const columns: Column[] = rawColumns.map(col => {
+    if (col.id !== 'general_admission' || !mounted) return col
+    if (!featured) {
+      // No featured wave — sale has ended across the board.
+      return {
+        ...col,
+        status: 'coming',
+        price_original: undefined,
+        price_note: 'Sale ended',
+        cta_label: 'View tickets',
+      }
+    }
+    const isLive = featured.status === 'live'
+    return {
+      ...col,
+      status: isLive ? 'open' : 'coming',
+      price: featured.wave.price,
+      // Strikethrough original price is only meaningful for the discounted
+      // ETH Early Bird wave.
+      price_original: featured.wave.id === 'eth-early-bird' ? col.price_original : undefined,
+      price_note: featured.wave.name,
+      price_description: featured.wave.description,
+      cta_label: isLive ? 'Get tickets' : 'View tickets',
+    }
+  })
+
   const [activeTab, setActiveTab] = useState(0)
 
   return (
@@ -261,6 +299,9 @@ export function TicketComparison() {
                 )}
               </div>
               <p className="text-xs text-[#594d73] leading-none">{col.price_note}</p>
+              {col.price_description && (
+                <p className="text-xs text-[#594d73] leading-4">{col.price_description}</p>
+              )}
             </div>
           ))}
         </div>

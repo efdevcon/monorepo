@@ -8,8 +8,8 @@ import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
 import { EarlyBirdSaleBanner } from 'components/domain/tickets/EarlyBirdSaleBanner'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
-import { useEthEarlyBirdWave } from 'hooks/useEthEarlyBirdWave'
-import { TICKET_WAVES, getFirstWaveDateLabel } from 'config/waves'
+import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useNow } from 'hooks/useNow'
 import { CountdownText } from 'components/common/CountdownText'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
@@ -58,58 +58,116 @@ const WAVE_TIME_FORMATTER = new Intl.DateTimeFormat('en', {
   hour12: false,
   timeZone: 'UTC',
 })
-const WAVE_LABELS = ['First wave', 'Second wave', 'Third wave', 'Fourth wave']
+const ROUND_LABELS = ['First round', 'Second round']
 
-// Rich block rendered below the active ETH Early Bird row in the General
-// Admission table — countdown next to the two announced opening windows
-// (mirrors the layout of the main ETH Early Bird sale banner).
-function EthEarlyBirdWaveDetails({ countdown }: { countdown: string }) {
-  const times = TICKET_WAVES[0]?.openTimes ?? []
+// Renders the list of announced opening times (single "Opens on …" line or
+// per-round breakdown). Past rounds get struck through, EXCEPT the most-recent
+// past round when the wave is currently live — that's the round on sale right now.
+function WaveTimesList({ openTimes, isLive }: { openTimes: Date[]; isLive?: boolean }) {
+  const now = useNow()
+  if (openTimes.length === 0) return null
+  // Index of the round that's currently considered "live" (most recent past
+  // round when wave.status === 'live'). -1 if none.
+  let liveIdx = -1
+  if (isLive && now) {
+    for (let i = openTimes.length - 1; i >= 0; i--) {
+      if (openTimes[i].getTime() <= now.getTime()) {
+        liveIdx = i
+        break
+      }
+    }
+  }
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-      <p className="text-base leading-6">
-        Opens in <CountdownText value={countdown} className="font-bold text-[#7235ed] leading-6" />
-      </p>
-      {times.length > 0 && (
-        <div className="flex flex-col gap-0.5 text-xs leading-[14px] text-[#594d73] sm:text-right">
-          {times.map((d, i) => (
-            <p key={i} className="whitespace-nowrap">
-              {WAVE_LABELS[i] ?? `Wave ${i + 1}`} at {WAVE_TIME_FORMATTER.format(d)} UTC
+    <div className="flex flex-col gap-0.5 text-[#594d73] sm:text-right">
+      {openTimes.map((d, i) => {
+        const time = `${WAVE_TIME_FORMATTER.format(d)} UTC`
+        const isPast = now ? d.getTime() <= now.getTime() : false
+        const strike = isPast && i !== liveIdx
+        const pastClasses = strike ? 'line-through opacity-60' : ''
+        if (openTimes.length === 1) {
+          return (
+            <p key={i} className={`whitespace-nowrap text-sm leading-5 ${pastClasses}`}>
+              Opens {time}
             </p>
-          ))}
-        </div>
-      )}
+          )
+        }
+        return (
+          <p key={i} className={`whitespace-nowrap text-xs leading-[14px] ${pastClasses}`}>
+            {ROUND_LABELS[i] ?? `Round ${i + 1}`} at {time}
+          </p>
+        )
+      })}
     </div>
   )
 }
 
+// Rich block rendered below an upcoming wave's row — countdown + opening
+// windows (mirrors the main sale banner).
+function UpcomingWaveDetails({ countdown, openTimes }: { countdown: string; openTimes: Date[] }) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+      <p className="text-base leading-6">
+        Available in <CountdownText value={countdown} className="font-bold text-[#7235ed] leading-6" />
+      </p>
+      <WaveTimesList openTimes={openTimes} />
+    </div>
+  )
+}
+
+// Rich block rendered below the currently-live wave's row — "On sale now!"
+// label + opening windows (mirrors the main sale banner's live state).
+function LiveWaveDetails({ openTimes }: { openTimes: Date[] }) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+      <p className="text-base leading-6 font-bold text-[#7235ed]">On sale now!</p>
+      <WaveTimesList openTimes={openTimes} isLive />
+    </div>
+  )
+}
+
+// Format the featured wave's next opening time as "MAY 20" (uppercase,
+// UTC-based so it matches the publicly-announced launch date regardless of
+// viewer's local timezone).
+function formatUpcomingDate(d: Date): string {
+  return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(d).toUpperCase()
+}
+
 // Tag rendered on the General Admission overview card. Cycles through three
-// states driven by `useEthEarlyBirdWave`:
-//   countdown → precise launch date (e.g. "MAY 20") in plain bold text
-//   live      → green OPEN tag
-//   closed    → gray CLOSED tag
+// states driven by the featured wave:
+//   countdown → marigold pill with date of the next wave (e.g. "OPENS MAY 22")
+//   live      → green OPEN NOW pill
+//   closed/no featured → gray CLOSED pill
 function GeneralAdmissionTag() {
-  const wave = useEthEarlyBirdWave()
-  if (wave.status === 'live') {
+  const { featured, mounted } = useFeaturedWave()
+
+  if (!mounted) {
+    return (
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#221144]">
+        &nbsp;
+      </span>
+    )
+  }
+
+  if (featured?.status === 'live') {
     return (
       <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#aaeaba] text-[#221144]">
-        OPEN
+        OPEN NOW
       </span>
     )
   }
-  if (wave.status === 'closed') {
+
+  if (featured?.status === 'countdown' && featured.upcoming) {
     return (
-      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#594d73]">
-        CLOSED
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#ffa366] text-[#221144]">
+        OPENS {formatUpcomingDate(featured.upcoming)}
       </span>
     )
   }
-  // 'countdown' (or pre-mount) → show the announced date in a marigold pill,
-  // mirroring the pill styling of OPEN / COMING SOON on the other cards.
-  const dateLabel = getFirstWaveDateLabel()
+
+  // No featured wave (all closed or all tbd) → CLOSED.
   return (
-    <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#ffa366] text-[#221144]">
-      {dateLabel ? `OPENS ${dateLabel.toUpperCase()}` : ''}
+    <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#594d73]">
+      CLOSED
     </span>
   )
 }
@@ -141,6 +199,7 @@ interface TicketsPageProps {
 export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const t = useTranslations('tickets')
   const resolvedFaqItems = useStandardFaqItems(faqItems)
+  const { label: ctaLabel } = useTicketsCtaLabel()
 
   const navLinks = [
     { title: t('nav.overview'), to: '#overview' },
@@ -157,8 +216,17 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const communityRowsRaw = t.raw('community_section.rows') as TicketRow[]
   const applicationRowsRaw = t.raw('applications_section.rows') as TicketRow[]
 
-  // ETH Early Bird wave state — shared across the site via this hook.
-  const wave = useEthEarlyBirdWave()
+  // Per-wave state for the General Admission rows. The "featured" wave is the
+  // currently live one, or the next upcoming one — only it shows the rich
+  // countdown + opening times block below the row. Other waves just render
+  // their static openLabel on the right.
+  const waveStates = useWaveStates()
+  const featuredWaveId = (() => {
+    const live = waveStates.find(s => s.status === 'live')
+    if (live) return live.wave.id
+    const countdown = waveStates.find(s => s.status === 'countdown')
+    return countdown?.wave.id ?? null
+  })()
 
   // Maps a row name → expandable details JSX. Anything not in the map renders
   // as a normal (non-expandable) row. Easy to add more detail blocks here.
@@ -172,24 +240,36 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   }
 
   // General Admission rows derived from the canonical wave config. Each wave
-  // becomes a row; the ETH Early Bird row additionally reflects live state
-  // (OPEN tag once live, countdown badge while pending).
-  const generalRows: TicketRow[] = TICKET_WAVES.map(w => {
+  // becomes a row; per-wave state drives the right-edge tag/badge and any
+  // rich countdown content underneath.
+  const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, countdown }) => {
     const row: TicketRow = {
       name: w.name,
       price: w.price,
-      action: w.action,
-      actionHref: w.actionHref,
       date: w.openLabel,
     }
-    if (w.id === 'eth-early-bird') {
-      if (wave.status === 'live') {
-        row.status = 'open'
-      } else if (wave.status === 'countdown' && wave.countdown) {
-        // Countdown + announced opening times rendered below the row
-        // (mirrors the main ETH Early Bird sale banner).
-        row.richContent = <EthEarlyBirdWaveDetails countdown={wave.countdown} />
+    const isFeatured = w.id === featuredWaveId
+    if (status === 'live') {
+      // Any live wave routes to the shared store CTA — no per-wave config needed.
+      row.status = 'open'
+      row.action = 'Get tickets'
+      row.actionHref = '/tickets/store'
+      if (w.openTimes && w.openTimes.length > 0) {
+        row.richContent = <LiveWaveDetails openTimes={w.openTimes} />
       }
+    } else if (status === 'countdown') {
+      // Only the featured (current/next) wave gets the View tickets CTA and
+      // the rich countdown block. Other upcoming waves keep their openLabel
+      // shown as the date on the right.
+      if (isFeatured) {
+        row.action = 'View tickets'
+        row.actionHref = '/tickets/store'
+        if (countdown && w.openTimes && w.openTimes.length > 0) {
+          row.richContent = <UpcomingWaveDetails countdown={countdown} openTimes={w.openTimes} />
+        }
+      }
+    } else if (status === 'closed') {
+      row.muted = true
     }
     return withDetails(row)
   })
@@ -213,7 +293,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <EarlyBirdSaleBanner />
 
           {/* ── Overview ─────────────────────────────────────────── */}
-          <section id="overview" className="flex flex-col gap-8 items-center">
+          <section id="overview" className="scroll-mt-36 flex flex-col gap-8 items-center">
             <div className="flex flex-col gap-4 items-center text-center w-full">
               <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
                 {t('overview.eyebrow')}
@@ -263,7 +343,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <hr className={css['divider']} />
 
           {/* ── General Admission ────────────────────────────────── */}
-          <section id="general-admission" className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <section id="general-admission" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
                 <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
@@ -285,7 +365,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                 href="/tickets/store"
                 className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
               >
-                {t('general_admission.cta')}
+                {ctaLabel}
                 <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
               </NextLink>
             </div>
@@ -294,14 +374,13 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
               title={t('general_admission.card_title')}
               subtitle={t('general_admission.card_subtitle')}
               rows={generalRows}
-              tapLabel={t('general_admission.tap_label')}
             />
           </section>
 
           <hr className={css['divider']} />
 
           {/* ── Community ────────────────────────────────────────── */}
-          <section id="discounts" className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <section id="discounts" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <div className="flex flex-col gap-4">
               <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
                 {t('community_section.eyebrow')}
@@ -329,14 +408,13 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
               title={t('community_section.card_title')}
               subtitle={t('community_section.card_subtitle')}
               rows={communityRows}
-              tapLabel={t('community_section.tap_label')}
             />
           </section>
 
           <hr className={css['divider']} />
 
           {/* ── Applications ─────────────────────────────────────── */}
-          <section id="applications" className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <section id="applications" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <div className="flex flex-col gap-4">
               <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
                 {t('applications_section.eyebrow')}
@@ -379,7 +457,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
       </div>
 
       {/* ── FAQ (with banner) ─────────────────────────────────── */}
-      <section id="faq">
+      <section id="faq" className="scroll-mt-36">
         <BottomFAQ
           heading={t('faq_section.heading')}
           items={resolvedFaqItems}
