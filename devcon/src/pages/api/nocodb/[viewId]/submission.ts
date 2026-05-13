@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { getTableFields, findRowByEmail } from 'services/nocodb'
+import { getTableFields, findRowByEmail, getAllTableColumns } from 'services/nocodb'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -45,7 +45,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const email = user.email.toLowerCase()
     const fields = await getTableFields(viewId)
-    const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
+    // The Email column is often hidden from the form view — look it up against
+    // the full underlying table so we can still match the user's existing row.
+    const allColumns = await getAllTableColumns(viewId)
+    const emailColumn = allColumns.find(f => f.uidt === 'Email')?.column_name
 
     if (!emailColumn) {
       return res.status(200).json({ success: true, data: null })

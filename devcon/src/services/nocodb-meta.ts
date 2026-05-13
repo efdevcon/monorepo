@@ -229,3 +229,24 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
   fieldsCache.set(viewId, { data: fields, expiresAt: Date.now() + CACHE_TTL })
   return fields
 }
+
+/**
+ * Returns every non-system column on the underlying table, ignoring whether
+ * the form view exposes them. Use this when you need to write to columns that
+ * exist on the table but are hidden from the form (e.g. server-side email
+ * injection, classification tags, submission timestamps).
+ */
+export async function getAllTableColumns(viewId: string): Promise<FormField[]> {
+  const { tableId } = await resolveFormView(viewId)
+  const table = await getTableMeta(tableId)
+  return table.columns
+    .filter(c => !c.system)
+    .map(col => ({
+      id: col.id,
+      title: col.title,
+      column_name: col.title,
+      uidt: col.uidt,
+      required: false,
+      ...(col.description ? { description: col.description } : {}),
+    }))
+}

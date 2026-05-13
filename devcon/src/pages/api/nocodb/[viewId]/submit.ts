@@ -2,6 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getFormConfigByViewId, isFormOpen } from 'services/form-config'
 import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
+
+// Convention: any OTP-required form is expected to have a column literally
+// named "Email" on the underlying table. The server writes the OTP-verified
+// email into that column on submit — no per-form lookup needed.
+const EMAIL_COLUMN_NAME = 'Email'
 import { classifyEligibility } from 'services/email-classifier'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -124,20 +129,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     data['Submission Date'] = new Date().toISOString()
 
-    // For OTP-required forms only: write the verified email into the email
-    // column server-side, and upsert by email so re-submissions edit the
-    // existing row. We gate on requireOtp (not just verifiedEmail) so we don't
-    // accidentally touch forms that weren't designed for auth — those may
-    // not have an Email column and writing to it would 400.
+    // For OTP-required forms: write the OTP-verified email into the
+    // conventional "Email" column and upsert by email so re-submissions
+    // edit the existing row.
     if (verifiedEmail && config?.requireOtp) {
-      const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
-      if (emailColumn) {
-        data[emailColumn] = verifiedEmail
-        const existingRow = await findRowByEmail(viewId, emailColumn, verifiedEmail)
-        if (existingRow) {
-          await updateRow(viewId, existingRow.Id, data)
-          return res.status(200).json({ success: true, updated: true })
-        }
+      data[EMAIL_COLUMN_NAME] = verifiedEmail
+      const existingRow = await findRowByEmail(viewId, EMAIL_COLUMN_NAME, verifiedEmail)
+      if (existingRow) {
+        await updateRow(viewId, existingRow.Id, data)
+        return res.status(200).json({ success: true, updated: true })
       }
     }
 
