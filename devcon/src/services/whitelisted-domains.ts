@@ -531,7 +531,15 @@ const HIPO_INDIA_DOMAINS: readonly string[] = [
 ]
 
 // -- Manually curated additions (add domains not covered by the API) --
-const ADDITIONAL_DOMAINS: readonly string[] = ['ethereum.org']
+const ADDITIONAL_DOMAINS: readonly string[] = [
+  'ethereum.org',
+  'mujonline.edu.in',
+  'svyasa-sas.edu.in',
+  'acropolis.in',
+  'ticollege.org',
+  'ltce.in',
+  'lnmiit.ac.in',
+]
 
 // -- Exported sets --
 

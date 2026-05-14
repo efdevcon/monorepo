@@ -8,19 +8,28 @@ const ENV_CONFIG = {
     pretix: {
       baseUrl: 'https://dcdev2.ticketh.xyz',
       organizer: 'org',
-      event: 'test',
+      event: '8',
       ticketDiscountId: '6',
       defaultQuotaId: 116,
       testmode: true,
     },
     checkout: {
       pretixRedirectUrl: '',
-      forcePretixRedirect: true,
+      forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
-      cryptoDiscountPercent: 3,
+      // Crypto-payment discount percentage. 0 disables the discount entirely
+      // (no UI, no API field, no math). Set per environment. Default 0 so a
+      // new environment doesn't accidentally ship with a discount nobody
+      // signed off on.
+      cryptoDiscountPercent: 10,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
@@ -60,13 +69,22 @@ const ENV_CONFIG = {
     checkout: {
       pretixRedirectUrl: '',
       forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       // TODO: replace with production recipient address
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
       // recipientAddress: '0x403A3A81abA974dEb4faF20514ae34FAf9268E28',
       relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
-      cryptoDiscountPercent: 3,
+      // Crypto-payment discount percentage. 0 disables the discount entirely
+      // (no UI, no API field, no math). Set per environment. Default 0 so a
+      // new environment doesn't accidentally ship with a discount nobody
+      // signed off on.
+      cryptoDiscountPercent: 10,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
@@ -81,7 +99,7 @@ const ENV_CONFIG = {
     },
     discount: {
       // TODO: replace with india-early-bird
-      collection: 'india-early-bird',
+      collection: 'test-india-early-bird',
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -90,7 +108,8 @@ const ENV_CONFIG = {
       goalsIdentifier: 'FNXHWF39',
     },
     overrides: {
-      soldOut: true,
+      // TODO: replace with production soldOut
+      soldOut: false,
     },
     isShopOpen: false,
     x402Agents: false,

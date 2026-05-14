@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import VideoPoster from './images/new/video-preview.jpg'
 import { Play } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export const VideoPreview = () => {
+  const t = useTranslations('home.video')
   const [playing, setPlaying] = useState(false)
 
   return (
@@ -15,13 +17,13 @@ export const VideoPreview = () => {
             className="hidden lg:block absolute right-full top-1/2 mr-6 uppercase tracking-[3px] text-sm text-[#1a0d33] whitespace-nowrap pointer-events-none z-10"
             style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%) rotate(180deg)' }}
           >
-            Ethereum Developer Conference
+            {t('conference_label')}
           </p>
           <p
             className="hidden lg:block absolute left-full top-1/2 -translate-y-1/2 ml-6 uppercase tracking-[3px] text-sm text-[#1a0d33] whitespace-nowrap pointer-events-none z-10"
             style={{ writingMode: 'vertical-rl' }}
           >
-            Mumbai India · 3–6 November 2026
+            {t('location_label')}
           </p>
 
           {/* Video container with rounded corners and shadow */}
@@ -38,7 +40,7 @@ export const VideoPreview = () => {
                 <button
                   type="button"
                   onClick={() => setPlaying(true)}
-                  aria-label="Play video"
+                  aria-label={t('play_aria')}
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-[rgba(32,16,63,0.3)] border border-white/20 backdrop-blur-[6px] flex items-center justify-center hover:bg-[rgba(32,16,63,0.5)] transition-colors z-10 cursor-pointer"
                 >
                   <Play className="w-8 h-8 text-white fill-white ml-1" />

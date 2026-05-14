@@ -1,8 +1,9 @@
 import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG, getPretalxConfig, getEventIdByPretalxSlug, PretalxInstanceConfig } from '@/utils/config'
-import { TriggerWorkflow } from '@/services/github'
+import { TriggerWorkflow, CommitContentFile } from '@/services/github'
 import { GetSession, GetSpeaker } from '@/clients/pretalx'
+import { FetchNocoDbTable } from '@/clients/nocodb'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
 
@@ -14,6 +15,8 @@ const WORKFLOW_MAP: Record<string, string[]> = {
 export const hooksRouter = Router()
 hooksRouter.post(`/hooks/pretalx/schedule`, UpdateSchedule)
 hooksRouter.post(`/hooks/pretalx/:eventId/schedule`, UpdateSchedule)
+hooksRouter.post(`/hooks/nocodb`, UpdateNocoDb)
+hooksRouter.post(`/hooks/nocodb/:tableId`, UpdateNocoDb)
 
 export async function UpdateSchedule(req: Request, res: Response) {
   // #swagger.ignore = true
@@ -122,6 +125,70 @@ async function SyncPretalx(config: PretalxInstanceConfig, newTalks: string[], ca
       await TriggerWorkflow(workflowId)
     }
   }
+}
+
+export async function UpdateNocoDb(req: Request, res: Response) {
+  // #swagger.ignore = true
+
+  const secret = req.header('X-Webhook-Secret') || req.headers['x-webhook-secret']
+  if (secret !== SERVER_CONFIG.NOCODB_WEBHOOK_SECRET) {
+    console.log('[nocodb webhook] 403', {
+      headerPresent: !!secret,
+      headerLen: secret ? String(secret).length : 0,
+      expectedConfigured: !!SERVER_CONFIG.NOCODB_WEBHOOK_SECRET,
+      expectedLen: SERVER_CONFIG.NOCODB_WEBHOOK_SECRET ? SERVER_CONFIG.NOCODB_WEBHOOK_SECRET.length : 0,
+    })
+    return res.status(403).send('Forbidden')
+  }
+
+  const tableId = req.params.tableId || (req.body?.data?.table_id as string | undefined) || (req.body?.table_id as string | undefined)
+  if (!tableId) return res.status(400).send('Missing table id')
+
+  const tableName = SERVER_CONFIG.NOCODB_TABLES[tableId]
+  if (!tableName) {
+    console.error(`NocoDB webhook for unmapped tableId: ${tableId}`)
+    return res.status(400).send('Unmapped table id')
+  }
+
+  scheduleNocoDbSync(tableId, tableName)
+  return res.status(202).json({ scheduled: true, tableId, debounceMs: NOCODB_SYNC_DEBOUNCE_MS })
+}
+
+// Debounce: bursty edits in NocoDB (e.g. fixing several FAQ rows in a row) would
+// otherwise produce one commit + one translate-workflow run per webhook. We coalesce
+// per-table edits within this window into a single fetch + commit.
+const NOCODB_SYNC_DEBOUNCE_MS = 30_000
+const pendingNocoDbSync = new Map<string, NodeJS.Timeout>()
+
+function scheduleNocoDbSync(tableId: string, tableName: string) {
+  const existing = pendingNocoDbSync.get(tableId)
+  if (existing) clearTimeout(existing)
+
+  const timer = setTimeout(async () => {
+    pendingNocoDbSync.delete(tableId)
+    try {
+      const result = await SyncNocoDbTable(tableId, tableName)
+      console.log('[nocodb sync] completed', result)
+    } catch (err) {
+      console.error('[nocodb sync] failed', err)
+    }
+  }, NOCODB_SYNC_DEBOUNCE_MS)
+
+  // Don't keep the Node process alive on shutdown waiting for a debounced sync.
+  if (typeof timer.unref === 'function') timer.unref()
+  pendingNocoDbSync.set(tableId, timer)
+}
+
+export async function SyncNocoDbTable(tableId: string, tableName: string) {
+  console.log(`Syncing NocoDB table ${tableId} → ${tableName}.json`)
+  const rows = await FetchNocoDbTable(tableId)
+
+  const filePath = `devcon/content/en/external/nocodb/${tableName}.json`
+  const content = JSON.stringify(rows, null, 2) + '\n'
+
+  const result = await CommitContentFile(filePath, content, `[action] sync nocodb ${tableName} (${rows.length} rows)`)
+
+  return { table: tableName, rows: rows.length, changed: result.changed }
 }
 
 async function SyncSpeakers(speakers: any[], config: PretalxInstanceConfig) {

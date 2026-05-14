@@ -100,7 +100,7 @@ function X402TestContent() {
     event: { name: string; currency: string; dateFrom: string; dateTo: string | null; location: string | null }
     tickets: TicketInfo[]
     questions: QuestionInfo[]
-    paymentInfo: { network: string; chainId: number; tokenSymbol: string; tokenAddress: string; discountForCrypto: string }
+    paymentInfo: { network: string; chainId: number; tokenSymbol: string; tokenAddress: string; discountForCrypto: string | null }
   } | null>(null)
 
   // Cart
@@ -534,8 +534,12 @@ function X402TestContent() {
 
           <div style={{ marginTop: 20, padding: 15, background: '#e8f5e9', borderRadius: 8 }}>
             <strong>Payment Info:</strong> {ticketData.paymentInfo.tokenSymbol} on {ticketData.paymentInfo.network}
-            <br />
-            <small>Crypto discount: {ticketData.paymentInfo.discountForCrypto}</small>
+            {ticketData.paymentInfo.discountForCrypto && (
+              <>
+                <br />
+                <small>Crypto discount: {ticketData.paymentInfo.discountForCrypto}</small>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -650,10 +654,12 @@ function X402TestContent() {
               <span>Subtotal</span>
               <span>${orderSummary.subtotal}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#28a745' }}>
-              <span>Crypto Discount (3%)</span>
-              <span>-${orderSummary.cryptoDiscount}</span>
-            </div>
+            {Number(orderSummary.cryptoDiscount) > 0 && (
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#28a745' }}>
+                <span>Crypto Discount</span>
+                <span>-${orderSummary.cryptoDiscount}</span>
+              </div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: 18, marginTop: 10 }}>
               <span>Total</span>
               <span>${orderSummary.total} {orderSummary.currency}</span>

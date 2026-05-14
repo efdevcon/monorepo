@@ -4,6 +4,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { pluginFetch } from 'services/pretixPluginProxy'
+import { getClientIp } from 'utils/getClientIp'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -12,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { status, body } = await pluginFetch('/plugin/x402/verify/', {
     method: 'POST',
     body: req.body,
+    clientIp: getClientIp(req),
   })
   return res.status(status).json(body)
 }

@@ -837,3 +837,113 @@
   line-height: 1.43;
   white-space: nowrap;
 }
+
+/* ─── Applications Section (live student applications) ───── */
+
+.applications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: $breakpoints-lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.application-card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dddae2;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.application-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.application-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.application-card-meta {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #d65600;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.application-card-description {
+  font-size: 0.875rem;
+  color: #1a0d33;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.application-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.application-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.44;
+  letter-spacing: -0.5px;
+}
+
+.apply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 40px;
+  padding: 0.5rem 1.25rem 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #1a0d33 !important;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  border-radius: 9999px;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover {
+    background: #fff;
+    border-color: rgba(34, 17, 68, 0.2);
+  }
+}
+
+.gst-note {
+  font-size: 0.875rem;
+  color: #594d73;
+  line-height: 1.43;
+  text-align: center;
+  margin: 0.75rem 0 0;
+}
+
+/* Inline link inside coming-soon card descriptions */
+.inline-link {
+  color: #7235ed !important;
+  font-weight: 700;
+  text-decoration: underline !important;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}

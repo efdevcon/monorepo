@@ -15,10 +15,15 @@ import { PagesPast_Events, PagesQuery } from '../../tina/__generated__/types'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import RichText from 'lib/components/tina-cms/RichText'
 import indexCss from './index.module.scss'
+import { getMessages } from 'utils/intl'
+import { useTranslations } from 'next-intl'
 
 export default function PastEvents(props: any) {
+  const t = useTranslations('past_events')
   const { data } = useTina<PagesQuery>(props.cms)
-  const pages = data.pages as PagesPast_Events
+  const d = data as any
+  const pageNode = d.pages ?? d.pagesHi ?? d.pagesMr
+  const pages = pageNode as PagesPast_Events
   const events = pages.events || []
 
   return (
@@ -28,7 +33,7 @@ export default function PastEvents(props: any) {
         titleClassName={heroCss['hero-title']}
         heroBackground={HeroBackground}
         path={[]}
-        title="Past events"
+        title={t('hero_title')}
         navigation={events.map((event: any) => {
           return {
             title: event.title,
@@ -42,28 +47,28 @@ export default function PastEvents(props: any) {
           <div className={`left ${css['left']}`}>
             <RichText content={pages.section1?.about} />
             <Link to="https://archive.devcon.org" className={css['btn-archive']}>
-              Devcon Archive
+              {t('devcon_archive_button')}
               <ArrowUpRight size={16} strokeWidth={2} />
             </Link>
           </div>
           <div className={`right ${css['right']}`}>
-            <h2 className="spaced">Past Locations</h2>
+            <h2 className="spaced">{t('past_locations_heading')}</h2>
             <Image
               src={EventLocations}
-              alt="Devcon events on world map"
+              alt={t('locations_map_alt')}
               className="lg:translate-x-[-3%] lg:scale-110 lg:mt-[10%]"
             />
           </div>
 
           <div className={`${indexCss['scrolling-text-background']} ${css['scrolling-text']}`} style={{ opacity: 0.5 }}>
             <InfiniteScroller nDuplications={2} speed="120s">
-              <p className="bold">PAST DEVCONS&nbsp;</p>
+              <p className="bold">{t('scrolling_banner')}&nbsp;</p>
             </InfiniteScroller>
           </div>
         </div>
 
         <div className="border-bottom clear-bottom">
-          <h2>Past Events</h2>
+          <h2>{t('past_events_heading')}</h2>
         </div>
 
         {events.map((event, index: number) => {
@@ -131,7 +136,21 @@ export default function PastEvents(props: any) {
 }
 
 export async function getStaticProps(context: any) {
-  const content = await client.queries.pages({ relativePath: 'past_events.mdx' })
+  const locale: string = context.locale ?? 'en'
+  const queries = client.queries as any
+  const localeQueryKey = `pages${locale.charAt(0).toUpperCase()}${locale.slice(1)}`
+  const queryFn =
+    locale !== 'en' && typeof queries[localeQueryKey] === 'function' ? queries[localeQueryKey] : queries.pages
+
+  let content
+  try {
+    content = await queryFn({ relativePath: 'past_events.mdx' })
+  } catch {
+    // Hindi MDX may not exist yet (before translator has run). Fall back to English so the page renders.
+    content = await queries.pages({ relativePath: 'past_events.mdx' })
+  }
+
+  const messages = await getMessages(locale)
 
   return {
     props: {
@@ -140,6 +159,7 @@ export async function getStaticProps(context: any) {
         data: content.data,
         query: content.query,
       },
+      messages,
     },
   }
 }

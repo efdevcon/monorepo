@@ -42,6 +42,8 @@ interface CompletedOrder {
   tokenSymbol?: string | null
   cryptoAmount?: string | null
   gasCostWei?: string
+  /** Buyer's email pulled from the matching Pretix Order (joined by code). */
+  email?: string | null
   env: string
   refundStatus?: string
   refundTxHash?: string
@@ -65,6 +67,10 @@ interface PendingOrder {
   expiresAt: number
   intendedPayer: string
   expectedChainId?: number
+  /** Pre-computed ETH wei per chain (locked at pending-creation time). Map from
+   *  string chainId → string of wei. USDC/USDT0 amounts aren't stored — they're
+   *  just `totalUsd × 10^6` since both are 6-dec stables pegged to USD. */
+  expectedEthAmountWeiByChain?: Record<string, string>
   metadata?: { ticketIds: number[]; addonIds?: number[]; email: string }
   env: string
 }
@@ -260,6 +266,45 @@ function CryptoAmountCell({
       <span>{tokenSymbol}</span>
     </span>
   )
+}
+
+/** Pre-stored ETH wei amount snapshotted at pending-order creation time —
+ *  this is the rate the buyer was quoted, locked in regardless of how ETH
+ *  moves between now and when they actually pay. Stables (USDC/USDT0) aren't
+ *  shown here because they're trivially `totalUsd` (both are 6-dec USD-pegged
+ *  stables); the Amount column already covers that. */
+function PendingEthQuoteCell({
+  expectedEthByChain,
+  expectedChainId,
+}: {
+  expectedEthByChain?: Record<string, string>
+  expectedChainId?: number
+}) {
+  const ethEntries = expectedEthByChain ? Object.entries(expectedEthByChain) : []
+  const primaryEth = expectedChainId != null && expectedEthByChain
+    ? expectedEthByChain[String(expectedChainId)]
+    : null
+
+  if (primaryEth) {
+    return (
+      <span className={css['token-chain']}>
+        <Logo src={TOKEN_ICONS.ETH} alt="ETH" />
+        <span>{formatCryptoAmount(primaryEth, 'ETH')} ETH on {chainName(expectedChainId)}</span>
+      </span>
+    )
+  }
+  if (ethEntries.length > 0) {
+    // Pre-quote: amounts across chains are derived from the same USD ÷ ETH
+    // price, so they're effectively identical. Show one figure rather than
+    // spamming the same number once per chain.
+    return (
+      <span className={css['token-chain']} title="Same wei across all chains — buyer hasn't picked one yet">
+        <Logo src={TOKEN_ICONS.ETH} alt="ETH" />
+        <span>{formatCryptoAmount(ethEntries[0][1], 'ETH')} ETH</span>
+      </span>
+    )
+  }
+  return <span>—</span>
 }
 
 function chainName(chainId?: number) {
@@ -727,21 +772,22 @@ function ManualVerifyModal({
   const [txHash, setTxHash] = useState('')
   const [symbol, setSymbol] = useState<string>('USDC')
   const [chainId, setChainId] = useState<number>(order.expectedChainId ?? 8453)
-  const [ethPayerSignature, setEthPayerSignature] = useState('')
   const [step, setStep] = useState<'form' | 'submitting' | 'done' | 'error'>('form')
   const [result, setResult] = useState<{ code?: string; secret?: string } | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const trimmedHash = txHash.trim()
   const hashValid = /^0x[a-fA-F0-9]{64}$/.test(trimmedHash)
-  const needsEthSig = symbol === 'ETH'
-  const canSubmit = hashValid && (!needsEthSig || ethPayerSignature.trim().length > 0)
+  const canSubmit = hashValid
 
   async function handleSubmit() {
     if (!canSubmit) return
     setStep('submitting')
     setError(null)
     try {
+      // Admin manual-verify deliberately omits ethPayerSignature — the plugin
+      // bypasses that gate for the recovery path and falls back to on-chain
+      // tx.from binding (see _x402_verify_and_finalize.skip_eth_payer_signature).
       const res = await fetch('/api/x402/admin/verify/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
@@ -751,7 +797,6 @@ function ManualVerifyModal({
           payer: order.intendedPayer,
           chainId,
           symbol,
-          ...(needsEthSig && { ethPayerSignature: ethPayerSignature.trim() }),
         }),
       })
       const body = await res.json()
@@ -788,7 +833,9 @@ function ManualVerifyModal({
         <p className={css['modal-hint']} style={{ fontSize: 13, color: '#666', margin: '0 0 16px' }}>
           Confirm a pending payment using the on-chain transaction hash. The plugin re-runs the full
           verification (tx uniqueness, recipient, amount, payer match). The tx hash <strong>must</strong>
-          belong to the payer shown below, not anyone else.
+          belong to the payer shown below, not anyone else. For ETH payments the off-chain
+          <em> ethPayerSignature</em> is not required here — payer binding falls back to the on-chain{' '}
+          <code>tx.from</code> match.
         </p>
         <div className={css['modal-details']}>
           <div className={css['modal-row']}>
@@ -845,21 +892,6 @@ function ManualVerifyModal({
                   </select>
                 </label>
               </div>
-              {needsEthSig && (
-                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
-                  <span style={{ fontWeight: 600 }}>ETH payer signature</span>
-                  <textarea
-                    rows={3}
-                    placeholder="0x... (required for ETH — buyer must sign the x402 payer message)"
-                    value={ethPayerSignature}
-                    onChange={e => setEthPayerSignature(e.target.value)}
-                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace', fontSize: 12 }}
-                  />
-                  <span style={{ fontSize: 12, color: '#666' }}>
-                    Same EIP-191 signature format the normal checkout produces. Without it, ETH verification is not possible.
-                  </span>
-                </label>
-              )}
             </div>
             <div className={css['modal-actions']}>
               <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
@@ -1211,9 +1243,6 @@ function AdminContent() {
           case 'expiresAt':
             cmp = a.expiresAt - b.expiresAt
             break
-          case 'chain':
-            cmp = (a.expectedChainId ?? 0) - (b.expectedChainId ?? 0)
-            break
         }
         return pendingSortDir === 'asc' ? cmp : -cmp
       })
@@ -1240,12 +1269,13 @@ function AdminContent() {
   }
 
   function exportCompletedCsv() {
-    const headers = ['Pretix Order', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At', 'Refund Status', 'Refund Tx Hash']
+    const headers = ['Pretix Order', 'Email', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At', 'Refund Status', 'Refund Tx Hash']
     // Coerce nullable fields to '' — legacy `wc_attempt` rows may carry
     // null pretixOrderCode/txHash/tokenSymbol; the CSV exporter expects
     // `string[][]`, not `(string | null)[][]`.
     const rows = filteredCompleted.map(o => [
       o.pretixOrderCode ?? '',
+      o.email ?? '',
       o.totalUsd || '',
       o.cryptoAmount ? formatCryptoAmount(o.cryptoAmount, o.tokenSymbol || 'USDC') : '',
       o.tokenSymbol || 'USDC',
@@ -1263,17 +1293,28 @@ function AdminContent() {
 
   function exportPendingCsv() {
     const now = Math.floor(Date.now() / 1000)
-    const headers = ['Payment Ref', 'Amount', 'Payer', 'Email', 'Chain', 'Created At', 'Expires At', 'Status']
-    const rows = filteredPending.map(o => [
-      o.paymentReference,
-      o.totalUsd,
-      o.intendedPayer,
-      o.metadata?.email ?? '',
-      chainName(o.expectedChainId),
-      formatDate(o.createdAt),
-      formatDate(o.expiresAt),
-      o.expiresAt < now ? 'EXPIRED' : 'ACTIVE',
-    ])
+    const headers = [
+      'Payment Ref', 'Amount', 'ETH Quote',
+      'Payer', 'Email', 'Created At', 'Expires At', 'Status',
+    ]
+    const rows = filteredPending.map(o => {
+      // Pre-quote: per-chain ETH amounts are all the same value derived from
+      // USD ÷ ETH price. Take the first if not bound to a specific chain yet.
+      const primaryEth = o.expectedChainId != null
+        ? o.expectedEthAmountWeiByChain?.[String(o.expectedChainId)]
+        : Object.values(o.expectedEthAmountWeiByChain || {})[0]
+      const ethStr = primaryEth ? formatCryptoAmount(primaryEth, 'ETH') : ''
+      return [
+        o.paymentReference,
+        o.totalUsd,
+        ethStr,
+        o.intendedPayer,
+        o.metadata?.email ?? '',
+        formatDate(o.createdAt),
+        formatDate(o.expiresAt),
+        o.expiresAt < now ? 'EXPIRED' : 'ACTIVE',
+      ]
+    })
     const date = new Date().toISOString().slice(0, 10)
     exportCsv(`x402-pending-${date}.csv`, headers, rows)
   }
@@ -1456,6 +1497,7 @@ function AdminContent() {
                 <tr>
                   <th>Type</th>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <th>Email</th>
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
                   <SortableTh label="Chain" sortKey="tokenChain" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
@@ -1484,6 +1526,7 @@ function AdminContent() {
                         '—'
                       )}
                     </td>
+                    <td className={undefined}>{o.email ?? '—'}</td>
                     <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
                     <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
                     <td className={undefined}><ChainCell chainId={o.chainId} /></td>
@@ -1644,9 +1687,9 @@ function AdminContent() {
                 <tr>
                   <th>Payment Ref</th>
                   <SortableTh label="Amount" sortKey="amount" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
+                  <th>ETH Quote</th>
                   <th>Payer</th>
                   <th>Email</th>
-                  <SortableTh label="Chain" sortKey="chain" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
                   <SortableTh label="Expires At" sortKey="expiresAt" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
                   <th>Actions</th>
                 </tr>
@@ -1660,6 +1703,12 @@ function AdminContent() {
                         <Copyable value={o.paymentReference}>{truncate(o.paymentReference)}</Copyable>
                       </td>
                       <td className={undefined}>${o.totalUsd}</td>
+                      <td>
+                        <PendingEthQuoteCell
+                          expectedEthByChain={o.expectedEthAmountWeiByChain}
+                          expectedChainId={o.expectedChainId}
+                        />
+                      </td>
                       <td className={css.mono}>
                         <a
                           className={css.link}
@@ -1672,12 +1721,6 @@ function AdminContent() {
                         </a>
                       </td>
                       <td>{o.metadata?.email ?? '—'}</td>
-                      <td className={undefined}>
-                        <span className={css['token-chain']}>
-                          {o.expectedChainId != null && <Logo src={NETWORK_LOGOS[o.expectedChainId]} alt={chainName(o.expectedChainId)} />}
-                          {chainName(o.expectedChainId)}
-                        </span>
-                      </td>
                       <td className={undefined}>
                         {formatDate(o.expiresAt)}
                         {isExpired && <span className={css.expired}> EXPIRED</span>}

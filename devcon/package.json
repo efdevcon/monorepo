@@ -16,6 +16,7 @@
     "scripts:twitter-import": "ts-node src/scripts/twitter-import",
     "ai-content-sync": "ts-node src/ai/sync-vector-store",
     "ai-content-format": "ts-node src/ai/format-content",
+    "translate-content": "ts-node src/scripts/translate-content.ts",
     "scripts:encrypt": "ts-node src/utils/vouchers",
     "pretix:test-event": "ts-node src/scripts/pretix/test-event.ts",
     "pretix:test-items": "ts-node src/scripts/pretix/test-items.ts",
@@ -30,7 +31,8 @@
     "x402:simulate": "ts-node src/scripts/pretix/simulate-transfers.ts",
     "early-access:generate-codes": "ts-node src/scripts/generate-early-access-codes.ts",
     "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts",
-    "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts"
+    "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts",
+    "pretix:clone": "ts-node src/scripts/pretix/clone-event.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",

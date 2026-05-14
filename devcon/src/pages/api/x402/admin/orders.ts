@@ -10,8 +10,7 @@ import { pluginFetch } from 'services/pretixPluginProxy'
 import { TICKETING, TICKETING_ENV } from 'config/ticketing'
 import { fetchEthPriceUsd } from 'services/ethPrice'
 import { fetchWalletInfoFromZapper } from 'services/zapperWallet'
-
-const ADMIN_SECRET = process.env.X402_ADMIN_SECRET || ''
+import { checkAdminAuth } from 'utils/adminAuth'
 
 const SUPPORTED_CHAIN_IDS = [1, 10, 8453, 42161, 137]
 
@@ -34,13 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
-  if (!ADMIN_SECRET) {
-    return res.status(500).json({ success: false, error: 'X402_ADMIN_SECRET not configured' })
-  }
-  const provided = (req.headers['x-admin-key'] as string | undefined) || (req.query.secret as string | undefined) || ''
-  if (provided !== ADMIN_SECRET) {
-    return res.status(401).json({ success: false, error: 'unauthorized' })
-  }
+  if (!checkAdminAuth(req, res)) return
 
   try {
     const { status, body } = await pluginFetch<{

@@ -9,7 +9,11 @@ import { ArtOverlay } from './ArtOverlay'
 import { FaqSection } from './FaqSection'
 import { EarlyBirdBanner } from './EarlyBirdBanner'
 
-export const LandingPage = () => {
+interface LandingPageProps {
+  faqItems?: Array<{ question: string; answer: string }>
+}
+
+export const LandingPage = ({ faqItems }: LandingPageProps) => {
   return (
     <div>
       <VenueDetails />
@@ -19,7 +23,7 @@ export const LandingPage = () => {
       <DevconSEAStats />
       <ContributeAndSupport />
       <ArtOverlay />
-      <FaqSection />
+      <FaqSection items={faqItems} />
       <EarlyBirdBanner />
     </div>
   )

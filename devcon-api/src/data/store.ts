@@ -121,16 +121,22 @@ interface SessionFilters {
   take?: number
 }
 
+// Lowercase + NFD-decompose + strip combining marks so "Szilágyi" and "Szilagyi" compare equal.
+function normalizeSearchText(value: string | undefined | null): string {
+  if (!value) return ''
+  return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
+
 export function getSessions(filters: SessionFilters) {
   let result = [...sessions]
 
-  // Text search
+  // Text search — diacritic-insensitive so "Szilagyi" matches "Szilágyi"
   if (filters.q) {
-    const query = filters.q.toLowerCase()
+    const query = normalizeSearchText(filters.q)
     result = result.filter((s) => {
-      if (s.title?.toLowerCase().includes(query)) return true
-      if (s.description?.toLowerCase().includes(query)) return true
-      if (s.speakers?.some((sp: any) => sp.name?.toLowerCase().includes(query))) return true
+      if (normalizeSearchText(s.title).includes(query)) return true
+      if (normalizeSearchText(s.description).includes(query)) return true
+      if (s.speakers?.some((sp: any) => normalizeSearchText(sp.name).includes(query))) return true
       return false
     })
   }

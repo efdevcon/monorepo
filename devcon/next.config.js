@@ -26,12 +26,20 @@ const nextConfig = {
     ],
   },
   i18n: {
-    locales: ['default', 'en', 'es'],
+    locales: ['default', 'en', 'hi', 'mr'],
     defaultLocale: 'default',
     localeDetection: false,
   },
   trailingSlash: true,
   serverExternalPackages: ['@selfxyz/qrcode'],
+  experimental: {
+    optimizePackageImports: [
+      'viem',
+      'openai',
+      'lucide-react',
+      'framer-motion',
+    ],
+  },
   webpack: (config, { buildId, webpack }) => {
     return {
       ...config,

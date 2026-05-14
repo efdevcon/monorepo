@@ -280,9 +280,10 @@ export default function FaqPage({ faq }: Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async context => {
+  const locale = context.locale ?? 'en'
   try {
-    const faq = await getFaqData()
+    const faq = await getFaqData(locale)
     return {
       props: { faq },
       revalidate: 60,

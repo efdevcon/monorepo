@@ -4,6 +4,7 @@ import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
 import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
+import { EnrollmentProofUpload } from './EnrollmentProofUpload'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import Link from 'next/link'
@@ -33,7 +34,11 @@ interface ClassificationResult {
 function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
   const [testEmail, setTestEmail] = useState('')
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<{ heuristic: ClassificationResult; ai: ClassificationResult | null } | null>(null)
+  const [result, setResult] = useState<{
+    heuristic: ClassificationResult
+    ai: ClassificationResult | null
+    eligibility: { bucket: EligibilityBucket; email: string; domain: string | null } | null
+  } | null>(null)
   const [open, setOpen] = useState(false)
 
   if (!ADMIN_EMAILS.has(callerEmail)) return null
@@ -61,7 +66,7 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
         body: JSON.stringify({ email: testEmail }),
       })
       const data = await res.json()
-      if (data.success) setResult({ heuristic: data.heuristic, ai: data.ai })
+      if (data.success) setResult({ heuristic: data.heuristic, ai: data.ai, eligibility: data.eligibility ?? null })
     } catch {}
     setLoading(false)
   }
@@ -118,6 +123,24 @@ function EmailClassifierDebug({ callerEmail }: { callerEmail: string }) {
             <div className="space-y-3">
               {renderClassification('Heuristic', result.heuristic)}
               {result.ai && renderClassification('AI-enriched', result.ai)}
+              {result.eligibility && (
+                <div className="text-xs space-y-1 pt-2 border-t border-[#dddae2]">
+                  <p className="font-bold text-[#160b2b]">Eligibility (cached in Supabase)</p>
+                  <span
+                    className={`inline-block px-1.5 py-0.5 rounded ${
+                      result.eligibility.bucket === 'blocked'
+                        ? 'bg-red-100 text-red-800'
+                        : result.eligibility.bucket === 'top-indian-university'
+                        ? 'bg-green-100 text-green-800'
+                        : result.eligibility.bucket === 'other-indian-university'
+                        ? 'bg-blue-100 text-blue-800'
+                        : 'bg-purple-100 text-purple-800'
+                    }`}
+                  >
+                    {result.eligibility.bucket}
+                  </span>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -137,7 +160,7 @@ function EligibilityGate({
   email: string
   viewId: string
   onSignOut: () => void
-  children: React.ReactNode
+  children: (bucket: EligibilityBucket) => React.ReactNode
 }) {
   const [bucket, setBucket] = useState<EligibilityBucket | null>(null)
   const [loading, setLoading] = useState(true)
@@ -223,36 +246,9 @@ function EligibilityGate({
     )
   }
 
-  if (bucket === 'blocked') {
-    return (
-      <div className="flex flex-col items-center gap-4 text-center">
-        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">
-          This email isn&apos;t eligible
-        </h3>
-        <p className="text-sm text-[#1a0d33] leading-5">
-          The student application is intended for currently enrolled students. Please sign in
-          with your university email address to continue.
-        </p>
-        <p className="text-sm text-[#1a0d33] leading-5">
-          If your university email isn&apos;t working, or you believe this is a mistake, reach out
-          to{' '}
-          <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
-            support@devcon.org
-          </a>
-          .
-        </p>
-        <button
-          type="button"
-          onClick={onSignOut}
-          className="mt-2 px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
-        >
-          Use a different email
-        </button>
-      </div>
-    )
-  }
+  if (!bucket) return null
 
-  return <>{children}</>
+  return <>{children(bucket)}</>
 }
 
 interface FormPageProps {
@@ -271,6 +267,7 @@ function FormInner({
   viewId,
   requireOtp,
   onSignOut,
+  bucket,
 }: {
   schema: SchemaResponse
   methods: ReturnType<typeof useForm<Record<string, any>>>
@@ -281,6 +278,7 @@ function FormInner({
   viewId: string
   requireOtp?: boolean
   onSignOut?: () => void
+  bucket?: EligibilityBucket
 }) {
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
@@ -337,6 +335,8 @@ function FormInner({
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
         <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} />
+
+        {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
 
         {requireOtp && (
           <div className="mx-auto">
@@ -471,11 +471,23 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
                 Thank you!
               </h2>
 
-              {schema?.successMsg ? (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">{schema.successMsg}</p>
-              ) : (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center">Your submission has been received.</p>
-              )}
+              <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                Your application has been submitted.
+              </p>
+              <div className="text-sm text-[#1a0d33] leading-5 text-center bg-[#f9f8fa] rounded-lg px-4 py-4 w-full">
+                <p className="font-bold mb-2">We review applications in two rounds:</p>
+                <ul className="list-disc list-outside pl-5 space-y-1 inline-block text-left">
+                  <li>
+                    <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
+                  </li>
+                  <li>
+                    <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
+                  </li>
+                </ul>
+              </div>
+              <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                Keep an eye on your email for a decision from our approval team.
+              </p>
 
               <Link
                 href="/"
@@ -527,21 +539,31 @@ export default function FormPage({ viewId, requireOtp, closed }: FormPageProps) 
       <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
         <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4 flex flex-col items-center gap-6">
           {requireOtp ? (
-            <OtpGate title={schema.title}>
+            <OtpGate
+              title={schema.title}
+              description="Enter your student email to start the application"
+              emailPlaceholder="your@student.email.com"
+              footer={<CriteriaEligibilityButton />}
+            >
               {(verifiedEmail, onSignOut) => (
                 <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
-                  <FormInner
-                    schema={schema}
-                    methods={methods}
-                    onSubmit={onSubmit}
-                    submitting={submitting}
-                    error={error}
-                    verifiedEmail={verifiedEmail}
-                    viewId={viewId}
-                    requireOtp={requireOtp}
-                    onSignOut={onSignOut}
-                  />
-                  <EmailClassifierDebug callerEmail={verifiedEmail} />
+                  {bucket => (
+                    <>
+                      <FormInner
+                        schema={schema}
+                        methods={methods}
+                        onSubmit={onSubmit}
+                        submitting={submitting}
+                        error={error}
+                        verifiedEmail={verifiedEmail}
+                        viewId={viewId}
+                        requireOtp={requireOtp}
+                        onSignOut={onSignOut}
+                        bucket={bucket}
+                      />
+                      <EmailClassifierDebug callerEmail={verifiedEmail} />
+                    </>
+                  )}
                 </EligibilityGate>
               )}
             </OtpGate>

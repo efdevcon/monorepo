@@ -56,7 +56,7 @@ const contentDir = path.resolve(__dirname, 'formatted-content')
 // }
 
 const writeFile = async (fileName: string) => {
-  const sourcePath = path.join(devconDir, 'cms/pages', fileName)
+  const sourcePath = path.join(devconDir, 'content/en/pages', fileName)
   const baseFileName = fileName.split('.mdx')[0]
 
   try {
@@ -185,7 +185,7 @@ const writeFile = async (fileName: string) => {
 // Load all files from folder
 function loadAllFilesFromFolder() {
   try {
-    const directoryPath = path.resolve(devconDir, 'cms/pages')
+    const directoryPath = path.resolve(devconDir, 'content/en/pages')
     const files = fs.readdirSync(directoryPath).filter(Boolean)
     return files
   } catch (error) {

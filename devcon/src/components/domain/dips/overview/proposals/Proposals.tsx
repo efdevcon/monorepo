@@ -11,6 +11,7 @@ import TooltipIcon from 'assets/icons/tooltip.svg'
 import { useFilter } from 'components/common/filter'
 import { CopyToClipboard } from 'components/common/share/CopyToClipboard'
 import { usePageContext } from 'context/page-context'
+import { useTranslations } from 'next-intl'
 
 export const Links = ({ dip }: { dip: DIP }) => {
   return (
@@ -38,6 +39,7 @@ type ProposalsProps = {
 }
 
 export const Proposals = (props: ProposalsProps) => {
+  const t = useTranslations('dips')
   // Filter accepted DIPs and sort by number descending (most recent first)
   const dipsWithLink = React.useMemo(() => {
     return props.dips
@@ -180,7 +182,7 @@ export const Proposals = (props: ProposalsProps) => {
   return (
     <section id="proposals" className={css['container']}>
       <div className={css['top-container']}>
-        <p className="h2">Accepted Proposals</p>
+        <p className="h2">{t('accepted_proposals_heading')}</p>
 
         {/* <Filter {...filterState} /> */}
       </div>
@@ -214,7 +216,7 @@ export const Proposals = (props: ProposalsProps) => {
               cursor: 'pointer',
             }}
           >
-            Load all proposals <span style={{ fontWeight: 400 }}>({filteredDips.length})</span>
+            {t('load_all_proposals')} <span style={{ fontWeight: 400 }}>({filteredDips.length})</span>
           </button>
         </div>
       )}

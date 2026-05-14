@@ -8,9 +8,26 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { isEmail } from 'utils/validators'
-import { getTicketPurchaseInfo, getEventSettings, createOrder, validateVoucher, applyVoucherDiscount, VoucherInfo } from 'services/pretix'
+import {
+  getTicketPurchaseInfo,
+  getEventSettings,
+  createOrder,
+  validateVoucher,
+  applyVoucherDiscount,
+  VoucherInfo,
+  getItemsFresh,
+  getCategories,
+} from 'services/pretix'
 import { checkPurchaseRateLimit } from 'services/ticketStore'
-import { PretixOrderCreateRequest, PretixOrderPosition, PretixAnswerInput } from 'types/pretix'
+import { getPluginSettings } from 'services/pretixPluginProxy'
+import {
+  PretixOrderCreateRequest,
+  PretixOrderPosition,
+  PretixAnswerInput,
+  PretixItem,
+  PretixCategory,
+} from 'types/pretix'
+import { getClientIp } from 'utils/getClientIp'
 
 interface FiatPurchaseRequest {
   email: string
@@ -56,6 +73,195 @@ interface ErrorResponse {
   details?: string[]
 }
 
+/**
+ * Mirror Pretix `_create_order()` business rules locally before POSTing to the
+ * organizer-privileged REST endpoint. The REST endpoint deliberately skips
+ * most of these checks (it's for operator comps/overrides) so any storefront
+ * that POSTs there inherits operator privileges. Pretix recommends routing
+ * through their hosted cart for buyer-driven orders; this validator is the
+ * stopgap until that migration lands.
+ *
+ * Rejects on first failure with a one-line reason. Caller returns 400.
+ */
+function validateCartAgainstPretixRules(
+  body: FiatPurchaseRequest,
+  rawItems: PretixItem[],
+  categories: PretixCategory[],
+  voucherInfo: VoucherInfo | null,
+  ticketAnswers: { questionId: number }[],
+  questionsByItem: Map<number, { id: number; required: boolean }[]>,
+): string | null {
+  const itemById = new Map(rawItems.map(i => [i.id, i]))
+  const categoryById = new Map(categories.map(c => [c.id, c]))
+  const now = Date.now()
+
+  // Aggregate per-item ticket quantity so max_per_order can be enforced
+  // against the total, not individual positions.
+  const ticketQtyByItem = new Map<number, number>()
+  for (const t of body.tickets) {
+    ticketQtyByItem.set(t.itemId, (ticketQtyByItem.get(t.itemId) || 0) + (t.quantity || 1))
+  }
+
+  const checkItem = (item: PretixItem, isAddon: boolean, parentItemId: number | null): string | null => {
+    if (!item.active) return `Item not active: ${item.id}`
+    if (item.available_from && now < new Date(item.available_from).getTime()) {
+      return `Item not yet on sale: ${item.id}`
+    }
+    if (item.available_until && now > new Date(item.available_until).getTime()) {
+      return `Item no longer on sale: ${item.id}`
+    }
+    if (item.sales_channels && item.sales_channels.length > 0 && !item.sales_channels.includes('web')) {
+      return `Item not available on web sales channel: ${item.id}`
+    }
+    if (item.require_membership) {
+      // Storefront has no membership context; reject rather than silently bypass.
+      return `Item requires membership: ${item.id}`
+    }
+    if (item.require_approval) {
+      // Approval-gated items must go through Pretix's approval flow, not a
+      // direct paid order. The REST endpoint silently issues these as normal
+      // pending orders and skips the approval queue.
+      return `Item requires approval: ${item.id}`
+    }
+    if (item.require_voucher) {
+      const voucherCovers = voucherInfo && voucherInfo.valid &&
+        (voucherInfo.itemId === null || voucherInfo.itemId === item.id)
+      if (!voucherCovers) return `Item requires voucher: ${item.id}`
+    }
+    // Admission items must NOT be smuggled through the addons[] lane —
+    // addon_to=0 with an admission item lands a free admission with no
+    // category linkage check.
+    if (isAddon && item.admission) {
+      return `Admission item cannot be ordered as an add-on: ${item.id}`
+    }
+    // Addon item's category must be advertised by the parent ticket's addons.
+    if (isAddon && parentItemId !== null) {
+      const parent = itemById.get(parentItemId)
+      const allowed = parent?.addons.some(a => a.addon_category === item.category)
+      if (!allowed) return `Item ${item.id} is not a valid add-on for ticket ${parentItemId}`
+      // Category must actually be marked is_addon (defensive — Pretix invariant).
+      const cat = item.category != null ? categoryById.get(item.category) : null
+      if (!cat?.is_addon) return `Item ${item.id} is not in an addon category`
+    }
+    return null
+  }
+
+  const checkVariation = (item: PretixItem, variationId: number | undefined): string | null => {
+    if (item.has_variations && variationId == null) {
+      return `Item ${item.id} requires a variation`
+    }
+    if (variationId != null) {
+      const v = item.variations.find(x => x.id === variationId)
+      if (!v) return `Invalid variation ${variationId} for item ${item.id}`
+      if (!v.active) return `Variation ${variationId} is not active`
+      if (v.available_from && now < new Date(v.available_from).getTime()) {
+        return `Variation ${variationId} not yet on sale`
+      }
+      if (v.available_until && now > new Date(v.available_until).getTime()) {
+        return `Variation ${variationId} no longer on sale`
+      }
+      if (v.sales_channels && v.sales_channels.length > 0 && !v.sales_channels.includes('web')) {
+        return `Variation ${variationId} not available on web sales channel`
+      }
+      if (v.require_membership) return `Variation ${variationId} requires membership`
+    }
+    return null
+  }
+
+  // -- Ticket positions --
+  for (const ticket of body.tickets) {
+    const item = itemById.get(ticket.itemId)
+    if (!item) return `Invalid ticket ID: ${ticket.itemId}`
+    const qty = ticket.quantity || 1
+    const totalQtyForItem = ticketQtyByItem.get(item.id) || qty
+    if (item.max_per_order != null && totalQtyForItem > item.max_per_order) {
+      return `Item ${item.id} exceeds max_per_order (${item.max_per_order})`
+    }
+    if (item.min_per_order != null && totalQtyForItem < item.min_per_order) {
+      return `Item ${item.id} below min_per_order (${item.min_per_order})`
+    }
+    const e1 = checkItem(item, false, null)
+    if (e1) return e1
+    const e2 = checkVariation(item, ticket.variationId)
+    if (e2) return e2
+
+    // Required questions for this item must be present in answers.
+    const itemQuestions = questionsByItem.get(item.id) || []
+    for (const q of itemQuestions) {
+      if (!q.required) continue
+      const answered = ticketAnswers.some(a => a.questionId === q.id)
+      if (!answered) return `Required question ${q.id} not answered for item ${item.id}`
+    }
+  }
+
+  // -- Addon positions --
+  if (body.addons) {
+    // Pretix `ItemAddOn.max_count` is per-category-per-base-position (across all
+    // items in that category). Aggregate addon qty by (parentItemId, categoryId).
+    const addonQtyByCatPerParent = new Map<string, number>()
+    // Per-item count to enforce multi_allowed (1 per item when false).
+    const addonQtyByItemPerParent = new Map<string, number>()
+    // Pick the first ticket as the implied addon parent — matches the existing
+    // `addon_to: 0` placeholder behavior. Without explicit parent linkage in
+    // the request schema, we can only validate against the first ticket.
+    const firstTicket = body.tickets[0]
+    const parentItemId = firstTicket?.itemId ?? null
+    if (parentItemId == null) return 'Add-ons require at least one ticket'
+
+    for (const addon of body.addons) {
+      const item = itemById.get(addon.itemId)
+      if (!item) return `Invalid addon ID: ${addon.itemId}`
+      const e1 = checkItem(item, true, parentItemId)
+      if (e1) return e1
+      const e2 = checkVariation(item, addon.variationId)
+      if (e2) return e2
+
+      const qty = addon.quantity || 1
+      const catKey = `${parentItemId}:${item.category}`
+      const itemKey = `${parentItemId}:${item.id}`
+      addonQtyByCatPerParent.set(catKey, (addonQtyByCatPerParent.get(catKey) || 0) + qty)
+      addonQtyByItemPerParent.set(itemKey, (addonQtyByItemPerParent.get(itemKey) || 0) + qty)
+
+      const parent = itemById.get(parentItemId)
+      const addonRule = parent?.addons.find(a => a.addon_category === item.category)
+      if (addonRule) {
+        const totalForCat = addonQtyByCatPerParent.get(catKey) || 0
+        if (addonRule.max_count != null && totalForCat > addonRule.max_count) {
+          return `Add-on category ${item.category} exceeds max_count (${addonRule.max_count})`
+        }
+        const totalForItem = addonQtyByItemPerParent.get(itemKey) || 0
+        if (!addonRule.multi_allowed && totalForItem > 1) {
+          return `Add-on item ${item.id} cannot be selected more than once`
+        }
+      }
+    }
+  }
+
+  // -- Voucher constraints --
+  if (voucherInfo && voucherInfo.valid) {
+    const totalRedeemingPositions = body.tickets.reduce((sum, t) => {
+      const item = itemById.get(t.itemId)
+      if (!item) return sum
+      const matchesItem = voucherInfo.itemId === null || voucherInfo.itemId === item.id
+      const matchesVar = voucherInfo.variationId === null || voucherInfo.variationId === t.variationId
+      return matchesItem && matchesVar ? sum + (t.quantity || 1) : sum
+    }, 0)
+    if (voucherInfo.minUsages > 1 && totalRedeemingPositions < voucherInfo.minUsages) {
+      return `Voucher requires at least ${voucherInfo.minUsages} matching positions in this order`
+    }
+    if (voucherInfo.itemId !== null) {
+      const usesNonMatching = body.tickets.some(t => t.itemId !== voucherInfo.itemId)
+      if (usesNonMatching) {
+        // Voucher is item-bound; non-matching items in the cart are fine
+        // but they must not reference this voucher. The order builder already
+        // gates `position.voucher` on item match, so this is informational.
+      }
+    }
+  }
+
+  return null
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<FiatPurchaseResponse | ErrorResponse>
@@ -64,11 +270,30 @@ export default async function handler(
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  // Rate limit by IP
-  const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
-  try {
-    await checkPurchaseRateLimit(clientIp)
-  } catch {
+  // M18–M22 follow-up: gate the external-API purchase path behind the plugin's
+  // `fiat_purchase_enabled` per-event toggle. Default OFF — v1 ships crypto-only
+  // via WC and the M9 stopgap's residual gaps (M18: stale catalog snapshot,
+  // M19: addon rule gaps, M20: event/shop policy bypass, M21: question
+  // constraint bypass, M22: cart-size quota hold) are all reachable only
+  // through this endpoint. With the toggle OFF, none of them touch live
+  // code. v2b will rewrite this endpoint around Pretix's checkout service,
+  // at which point the M-cluster goes away structurally.
+  //
+  // `getPluginSettings()` fails closed on any plugin error → 404 here.
+  const pluginSettings = await getPluginSettings()
+  if (!pluginSettings.fiat_purchase_enabled) {
+    return res.status(404).json({
+      success: false,
+      error: 'external API purchase is not enabled for this event',
+    })
+  }
+
+  // Rate limit by IP. `checkPurchaseRateLimit` returns `{allowed}` and never
+  // throws — the previous try/catch silently dropped every result, leaving
+  // the endpoint unrate-limited in practice. Inspect the return value.
+  const clientIp = getClientIp(req)
+  const { allowed } = await checkPurchaseRateLimit(clientIp)
+  if (!allowed) {
     return res.status(429).json({ success: false, error: 'Too many purchase attempts. Please try again later.' })
   }
 
@@ -131,6 +356,46 @@ export default async function handler(
           error: `Invalid voucher: ${voucherInfo.error}`,
         })
       }
+    }
+
+    // M9 stopgap: mirror Pretix `_create_order()` business rules locally
+    // before POSTing to the organizer-privileged REST endpoint. The raw
+    // PretixItem records carry the gating fields (max_per_order, sales_channels,
+    // require_approval, …) that the trimmed `TicketInfo` doesn't expose.
+    //
+    // `getItemsFresh()` bypasses the 60s items cache. Operators and the M9
+    // verifier both PATCH item flags (max_per_order, available_until,
+    // require_approval, …) and immediately probe — a cached read here would
+    // miss those mutations until the TTL elapsed and falsely accept carts
+    // that the live Pretix item state would reject.
+    const [rawItems, rawCategories] = await Promise.all([getItemsFresh(), getCategories()])
+    const questionsByItem = new Map<number, { id: number; required: boolean }[]>()
+    for (const q of ticketInfo.questions) {
+      if (q.appliesToItems.length === 0) {
+        for (const id of itemsById.keys()) {
+          const list = questionsByItem.get(id) || []
+          list.push({ id: q.id, required: q.required })
+          questionsByItem.set(id, list)
+        }
+      } else {
+        for (const id of q.appliesToItems) {
+          const list = questionsByItem.get(id) || []
+          list.push({ id: q.id, required: q.required })
+          questionsByItem.set(id, list)
+        }
+      }
+    }
+    const ticketAnswers = (body.answers || []).filter(a => {
+      if (a.answer === undefined || a.answer === null) return false
+      if (Array.isArray(a.answer)) return a.answer.length > 0
+      return String(a.answer).trim() !== ''
+    })
+    const ruleErr = validateCartAgainstPretixRules(
+      body, rawItems, rawCategories, voucherInfo, ticketAnswers, questionsByItem,
+    )
+    if (ruleErr) {
+      console.warn(`[Purchase] Cart rejected by service-bypass guard: ${ruleErr}`)
+      return res.status(400).json({ success: false, error: ruleErr })
     }
 
     // Build order positions

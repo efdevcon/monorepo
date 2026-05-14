@@ -7,11 +7,13 @@ import { BlogOverview } from 'components/domain/blog-overview'
 import { GetBlogs, EDITION_ORDER } from 'services/blogs'
 import { BlogPost } from 'types/BlogPost'
 import HeroBackground from './past-events-hero.png'
+import { useTranslations } from 'next-intl'
 
 const CURRENT_EDITION = EDITION_ORDER[0] // Devcon 8 India
 const PREVIEW_COUNT = 2
 
 function EditionSection({ edition, blogs, isFirst }: { edition: string; blogs: BlogPost[]; isFirst?: boolean }) {
+  const t = useTranslations('blogs')
   const isCurrent = edition === CURRENT_EDITION
   const [expanded, setExpanded] = useState(isCurrent)
   const visibleBlogs = expanded ? blogs : blogs.slice(0, PREVIEW_COUNT)
@@ -42,7 +44,7 @@ function EditionSection({ edition, blogs, isFirst }: { edition: string; blogs: B
               cursor: 'pointer',
             }}
           >
-            View all <span style={{ fontWeight: 400 }}>({blogs.length})</span>
+            {t('view_all')} <span style={{ fontWeight: 400 }}>({blogs.length})</span>
           </button>
         </div>
       )}
@@ -51,6 +53,7 @@ function EditionSection({ edition, blogs, isFirst }: { edition: string; blogs: B
 }
 
 export default function BlogsTemplate(props: any) {
+  const t = useTranslations('blogs')
   const blogs: BlogPost[] = props.blogs
 
   // Group blogs by edition
@@ -77,7 +80,7 @@ export default function BlogsTemplate(props: any) {
         titleClassName={heroCss['hero-title']}
         heroBackground={HeroBackground}
         path={[]}
-        title="Blog"
+        title={t('title')}
         navigation={navLinks}
       />
 

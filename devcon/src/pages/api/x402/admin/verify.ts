@@ -9,20 +9,13 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { pluginFetch } from 'services/pretixPluginProxy'
-
-const ADMIN_SECRET = process.env.X402_ADMIN_SECRET || ''
+import { checkAdminAuth } from 'utils/adminAuth'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
-  if (!ADMIN_SECRET) {
-    return res.status(500).json({ success: false, error: 'X402_ADMIN_SECRET not configured' })
-  }
-  const provided = (req.headers['x-admin-key'] as string | undefined) || (req.query.secret as string | undefined) || ''
-  if (provided !== ADMIN_SECRET) {
-    return res.status(401).json({ success: false, error: 'unauthorized' })
-  }
+  if (!checkAdminAuth(req, res)) return
   try {
     const { status, body } = await pluginFetch('/plugin/x402/admin/verify/', {
       method: 'POST',

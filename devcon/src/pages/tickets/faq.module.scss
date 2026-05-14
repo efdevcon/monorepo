@@ -351,15 +351,26 @@ $content-max-width: 1120px;
   ol {
     padding-left: 20px;
     margin: 8px 0 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    list-style: disc outside;
   }
 
-  a {
-    color: #7235ed;
-    font-weight: 500;
-    text-decoration: underline;
+  ol {
+    list-style: decimal outside;
+  }
+
+  li {
+    margin: 0 0 6px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a,
+  a > strong {
+    color: #7235ed !important;
+    font-weight: 700;
+    text-decoration: none !important;
 
     &:hover {
       opacity: 0.8;

@@ -15,6 +15,24 @@
   // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.foldout-language {
+  display: flex;
+  padding: 20px 0;
+
+  :global(#language-toggle) {
+    margin-left: 0;
+  }
+
+  :global(#language-toggle) > button {
+    padding-left: 0;
+  }
+
+  :global(#language-toggle) [role='menu'] {
+    right: auto !important;
+    left: 0 !important;
+  }
+}
+
 .menu {
   display: flex;
   justify-content: flex-end;

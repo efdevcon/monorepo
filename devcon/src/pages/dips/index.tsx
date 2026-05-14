@@ -10,10 +10,17 @@ import HeroBackground from '../ecosystem-program/hero-bg.png'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../../tina/__generated__/client'
 import { PagesDips, PagesQuery } from '../../../tina/__generated__/types'
+import { getMessages } from 'utils/intl'
+import { useTranslations } from 'next-intl'
 
 export default function DIPsTemplate(props: any) {
+  const t = useTranslations('dips')
   const { data } = useTina<PagesQuery>(props.cms)
-  const pages = data.pages as PagesDips
+  // Tina returns the query name as the top-level key. For the default `pages` query
+  // that's `data.pages`; for locale-specific collections it's `data.pagesHi`, `data.pagesMr`, etc.
+  const d = data as any
+  const pageNode = d.pages ?? d.pagesHi ?? d.pagesMr
+  const pages = pageNode as PagesDips
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -22,22 +29,22 @@ export default function DIPsTemplate(props: any) {
         titleClassName={heroCss['hero-title']}
         heroBackground={HeroBackground}
         path={[]}
-        title="DIPs"
+        title={t('title')}
         navigation={[
           {
-            title: 'CONTRIBUTE',
+            title: t('nav.contribute'),
             to: '#contribute',
           },
           {
-            title: 'ACCEPTED PROPOSALS',
+            title: t('nav.accepted_proposals'),
             to: '#proposals',
           },
           {
-            title: 'FORUM',
+            title: t('nav.forum'),
             to: 'https://forum.devcon.org',
           },
           {
-            title: 'GITHUB',
+            title: t('nav.github'),
             to: 'https://github.com/efdevcon/DIPs',
           },
         ]}
@@ -56,10 +63,23 @@ export default function DIPsTemplate(props: any) {
 }
 
 export async function getStaticProps(context: any) {
+  const locale: string = context.locale ?? 'en'
+
   const dips = await GetDIPs()
   const dipsWithoutCommunityHub = dips.filter(dip => dip.tags.every(tag => tag !== ('Community Hub' as any)))
   const contributors = await GetContributors()
-  const content = await client.queries.pages({ relativePath: 'dips.mdx' })
+
+  // Locale-aware Tina query. `pagesHi` is only available after `tinacms build` regenerates
+  // the client with the Hindi collection. Falls back to English `pages` until then.
+  const queries = client.queries as any
+  const queryFn =
+    locale !== 'en' && typeof queries[`pages${capitalize(locale)}`] === 'function'
+      ? queries[`pages${capitalize(locale)}`]
+      : queries.pages
+
+  const content = await queryFn({ relativePath: 'dips.mdx' })
+
+  const messages = await getMessages(locale)
 
   return {
     props: {
@@ -70,7 +90,12 @@ export async function getStaticProps(context: any) {
         data: content.data,
         query: content.query,
       },
+      messages,
     },
     revalidate: 43200, // 12 hours
   }
+}
+
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1)
 }

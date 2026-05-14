@@ -9,70 +9,56 @@ import cn from 'classnames'
 import LanternBG from 'assets/images/dc-7/lantern-bg.png'
 import LanternPrism from 'assets/images/dc-7/lantern-prism.png'
 import DevaSignature from 'assets/images/dc-7/deva-signature.png'
+import { useTranslations } from 'next-intl'
 
 export default function SeaLocal(props: any) {
+  const t = useTranslations('lantern')
+  const steps = t.raw('steps') as string[]
   return (
     <div className={cn(`${themes['index']} flex justify-center min-h-screen w-screen p-4`, css['lantern'])}>
       <Image
         src={LanternBG}
-        alt="Lantern BG"
+        alt={t('lantern_bg_alt')}
         className="fixed inset-0 z-[-1] object-center w-full object-contain h-[90vh] top-[5vh]"
       />
       <Image
         src={DC7OverlayLeft}
-        alt="DC7 Overlay Left"
+        alt={t('overlay_left_alt')}
         className="fixed object-contain opacity-0 xl:opacity-100 object-left left-0 top-0 h-screen"
       />
       <Image
         src={DC7OverlayRight}
-        alt="DC7 Overlay Right"
+        alt={t('overlay_right_alt')}
         className="fixed object-contain opacity-0 xl:opacity-100 object-right right-0 top-0 h-screen"
       />
       <div className="z-10 flex flex-col items-center relative">
         <div className="flex justify-between items-center border-bottom pb-4 mb-4 w-[630px] max-w-full">
           <div>
-            <Image src={DC7Logo} alt="DC7 Logo" className="w-[90px]  object-contain mb-4" />
-            <p className="text-base leading-[1.05em] font-bold">Dark Forest</p>
-            <p className="text-base leading-[1.05em]">Illuminating Paper Lantern</p>
-            <p className="text-base leading-[1.05em]">Builder Kit</p>
+            <Image src={DC7Logo} alt={t('dc7_logo_alt')} className="w-[90px]  object-contain mb-4" />
+            <p className="text-base leading-[1.05em] font-bold">{t('title_line_1')}</p>
+            <p className="text-base leading-[1.05em]">{t('title_line_2')}</p>
+            <p className="text-base leading-[1.05em]">{t('title_line_3')}</p>
           </div>
           <div>
-            <Image src={LanternPrism} alt="Lantern Prism" className="object-contain h-[71px] object-right" />
+            <Image src={LanternPrism} alt={t('lantern_prism_alt')} className="object-contain h-[71px] object-right" />
           </div>
         </div>
 
         <div className="w-[630px] max-w-full flex flex-col order-2 items-center md:flex-row gap-8 md:items-stretch text-xs">
           <div className="order-2 text-center mb-4 md:mb-0">
             <div className="text-left flex flex-col">
-              <p className="mb-2 font-semibold text-sm">
-                Here are your DIY instructions for the Dark Forest Illuminating Paper Lantern builder kit:
-              </p>
+              <p className="mb-2 font-semibold text-sm">{t('intro')}</p>
 
               <ol className="list-decimal ml-4 mb-2">
-                <li>
-                  Lay out the parts provided: Paper panels, Wooden panels, glue stick, light string, rope, and tassel.
-                </li>
-                <li>Connect the edges that interlink for the wooden panels.</li>
-                <li>Glue edges and let glue rest and dry faster by reducing glue amount and residue.</li>
-                <li>Insert and attach next wooden panel and repeat process of gluing.</li>
-                <li>Attach base panel with glue to the created triangle.</li>
-                <li>Repeat process for second triangle.</li>
-                <li>Glue bases together.</li>
-                <li>Glue paper panels on Ethereum Lantern.</li>
-                <li>Remove light battery safety paper.</li>
-                <li>Insert light string and attach to top.</li>
-                <li>Attach tassel to bottom of structure.</li>
-                <li>Tie rope together on top for hanging lantern.</li>
+                {steps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
               </ol>
 
-              <p>
-                The DIY lantern kit was designed for you to be able to travel with and build on your own in the comfort
-                of your home. You are free to use tape or any other method to strengthen the structure and apply the
-                paper panels. Remember to spark the change you want. Be positive-sum.
-              </p>
+              <p>{t('outro')}</p>
 
-              <p className="mt-4">Safe Travels home.</p>
-              <Image src={DevaSignature} alt="Deva Signature" className="w-[70px] mt-2 object-contain self-center" />
+              <p className="mt-4">{t('safe_travels')}</p>
+              <Image src={DevaSignature} alt={t('deva_signature_alt')} className="w-[70px] mt-2 object-contain self-center" />
             </div>
           </div>
           <div className="text-center flex items-center justify-center aspect-[873/1600] md:order-3 relative md:mb-0 shrink-0 sm:max-w-[200px] max-w-full md:self-start rounded-2xl overflow-hidden">
