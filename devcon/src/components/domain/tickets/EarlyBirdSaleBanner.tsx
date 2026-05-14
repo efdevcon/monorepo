@@ -61,7 +61,7 @@ export function EarlyBirdSaleBanner() {
           </h3>
           {(showCountdown || showLive) && (
             <>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3">
                 {showCountdown ? (
                   <CountdownText
                     value={countdown}

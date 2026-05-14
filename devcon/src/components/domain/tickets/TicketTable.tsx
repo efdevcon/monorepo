@@ -58,19 +58,46 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           // remains fully visible while name/price/etc. fade out.
           const mutedChildClasses = row.muted ? 'opacity-50' : ''
 
-          const mainRow = (
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 sm:items-center w-full">
-              {/* Name + detail */}
-              <div className={`flex-1 min-w-0 flex flex-col gap-1 ${mutedChildClasses}`}>
-                <p className={`text-base leading-6 ${isEmphasized ? 'font-bold text-[#160b2b]' : 'font-medium text-[#594d73]'}`}>{row.name}</p>
-                {row.detail && (
-                  <p className="text-xs font-bold text-[#594d73] tracking-[0.25px] uppercase leading-4">{row.detail}</p>
-                )}
-              </div>
+          const actionSlot = row.muted ? (
+            <span className="inline-flex items-center justify-center sm:w-[136px] bg-[#594d73] rounded px-3 py-2 text-sm font-bold text-white tracking-[0.5px] leading-none whitespace-nowrap uppercase">
+              Sale Ended
+            </span>
+          ) : isInteractive ? (
+            isExpandable ? (
+              // Inside an expandable row: the action becomes its own Link with
+              // stopPropagation so the row toggle doesn't fire.
+              <NextLink
+                href={row.actionHref!}
+                onClick={e => e.stopPropagation()}
+                className="inline-flex gap-1.5 items-center justify-end pl-2 py-1 rounded-full sm:w-[136px] text-base font-bold text-[#7235ed] text-right whitespace-nowrap leading-none hover:underline"
+              >
+                {row.action}
+                <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+              </NextLink>
+            ) : (
+              <span className="inline-flex gap-1.5 items-center justify-end pl-2 py-1 rounded-full sm:w-[136px] text-base font-bold text-[#7235ed] text-right whitespace-nowrap leading-none">
+                {row.action}
+                <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+              </span>
+            )
+          ) : (
+            row.date && (
+              <p className="text-base font-medium text-[#594d73] text-right sm:w-[136px] leading-6 whitespace-nowrap">{row.date}</p>
+            )
+          )
 
-              {/* Meta — sm+ keeps it on the same row; mobile stacks it underneath */}
-              <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto sm:shrink-0 gap-4 sm:gap-6">
-                <div className={`flex items-center gap-4 sm:gap-6 ${mutedChildClasses}`}>
+          const mainRow = (
+            <div className="flex items-center gap-4 w-full">
+              {/* Left column: name on top, status+price below on mobile; all
+                  inline on sm+ so they sit on a single row alongside name. */}
+              <div className={`flex-1 min-w-0 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-6 ${mutedChildClasses}`}>
+                <div className="flex-1 min-w-0 flex flex-col gap-1">
+                  <p className={`text-base leading-6 ${isEmphasized ? 'font-bold text-[#160b2b]' : 'font-medium text-[#594d73]'}`}>{row.name}</p>
+                  {row.detail && (
+                    <p className="text-xs font-bold text-[#594d73] tracking-[0.25px] uppercase leading-4">{row.detail}</p>
+                  )}
+                </div>
+                <div className="flex items-center gap-4 sm:gap-6">
                   {row.status === 'open' ? (
                     <span className="inline-flex items-center bg-[#aaeaba] rounded px-2 py-1 text-sm font-bold text-[#221144] tracking-[0.5px] leading-none whitespace-nowrap">
                       OPEN NOW
@@ -92,35 +119,10 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                     </p>
                   )}
                 </div>
-
-                {row.muted ? (
-                  <span className="inline-flex items-center justify-center sm:w-[136px] bg-[#594d73] rounded px-3 py-2 text-sm font-bold text-white tracking-[0.5px] leading-none whitespace-nowrap uppercase">
-                    Sale Ended
-                  </span>
-                ) : isInteractive ? (
-                  isExpandable ? (
-                    // Inside an expandable row: the action becomes its own
-                    // Link with stopPropagation so the row toggle doesn't fire.
-                    <NextLink
-                      href={row.actionHref!}
-                      onClick={e => e.stopPropagation()}
-                      className="inline-flex gap-1.5 items-center justify-end pl-2 py-1 rounded-full sm:w-[136px] text-base font-bold text-[#7235ed] text-right whitespace-nowrap leading-none hover:underline"
-                    >
-                      {row.action}
-                      <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-                    </NextLink>
-                  ) : (
-                    <span className="inline-flex gap-1.5 items-center justify-end pl-2 py-1 rounded-full sm:w-[136px] text-base font-bold text-[#7235ed] text-right whitespace-nowrap leading-none">
-                      {row.action}
-                      <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-                    </span>
-                  )
-                ) : (
-                  row.date && (
-                    <p className="text-base font-medium text-[#594d73] text-right sm:w-[136px] leading-6 whitespace-nowrap">{row.date}</p>
-                  )
-                )}
               </div>
+
+              {/* Right column: action — vertically centered with the whole left stack on mobile */}
+              <div className="shrink-0">{actionSlot}</div>
             </div>
           )
 
