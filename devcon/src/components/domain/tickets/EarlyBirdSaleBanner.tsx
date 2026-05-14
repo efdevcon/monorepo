@@ -68,7 +68,7 @@ export function EarlyBirdSaleBanner() {
                     className="text-2xl md:text-[28px] font-extrabold text-[#ffa366] leading-none tracking-[-0.5px] [text-shadow:0_1px_2px_rgba(34,17,68,0.2)]"
                   />
                 ) : (
-                  <span className="inline-flex items-center bg-[#aaeaba] rounded px-3 py-2 text-base font-bold text-[#221144] tracking-[0.5px] leading-none whitespace-nowrap uppercase">
+                  <span className="inline-flex items-center self-start bg-[#aaeaba] rounded px-3 py-2 text-base font-bold text-[#221144] tracking-[0.5px] leading-none whitespace-nowrap uppercase">
                     Open Now
                   </span>
                 )}
