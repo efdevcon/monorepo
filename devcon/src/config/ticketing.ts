@@ -27,7 +27,7 @@ const ENV_CONFIG = {
       // (no UI, no API field, no math). Set per environment. Default 0 so a
       // new environment doesn't accidentally ship with a discount nobody
       // signed off on.
-      cryptoDiscountPercent: 0,
+      cryptoDiscountPercent: 10,
       fiatEnabled: true,
       enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
