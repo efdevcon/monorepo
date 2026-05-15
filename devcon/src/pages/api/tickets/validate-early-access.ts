@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { lookupDiscountCode, checkDiscountRateLimit } from '../../../services/discountStore'
+import { validateDiscountCode, checkDiscountRateLimit } from '../../../services/discountStore'
+import { getClientIp } from '../../../utils/getClientIp'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -13,13 +14,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
+    const clientIp = getClientIp(req)
     const { allowed } = await checkDiscountRateLimit(clientIp)
     if (!allowed) {
       return res.status(429).json({ valid: false, error: 'Too many requests. Please try again later.' })
     }
 
-    const result = await lookupDiscountCode(code)
+    // M17: use the unclaimed-only validator. `lookupDiscountCode` returned a
+    // hit for codes that were already claimed (claimed_by IS NOT NULL),
+    // letting an attacker enumerate which codes had been issued. The
+    // `validateDiscountCode` helper additionally requires the row's claim
+    // state to be unclaimed, so the response no longer distinguishes
+    // "doesn't exist" from "exists, already claimed".
+    const result = await validateDiscountCode(code)
     if (!result) {
       return res.status(200).json({ valid: false, error: 'Invalid early access code' })
     }

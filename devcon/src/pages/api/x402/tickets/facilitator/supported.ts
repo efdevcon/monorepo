@@ -22,7 +22,12 @@ export default async function handler(
     return res.status(405).setHeader('Allow', 'GET').end()
   }
 
-  if (FACILITATOR_API_KEY && req.headers['x-facilitator-key'] !== FACILITATOR_API_KEY) {
+  // Fail closed when the env var is unset — see verify.ts / settle.ts for
+  // the same pattern. Misconfiguration must not silently open the endpoint.
+  if (!FACILITATOR_API_KEY) {
+    return res.status(500).json({ kinds: [], error: 'facilitator not configured: X402_FACILITATOR_API_KEY missing' } as any)
+  }
+  if (req.headers['x-facilitator-key'] !== FACILITATOR_API_KEY) {
     return res.status(401).json({ kinds: [] } as any)
   }
 
