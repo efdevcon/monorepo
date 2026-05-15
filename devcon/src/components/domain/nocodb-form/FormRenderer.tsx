@@ -8,7 +8,7 @@ import { COUNTRIES } from './countries'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import { AGE_RECIPIENTS, isEncryptedTitle, stripEncryptedPrefix } from 'config/encrypted-forms'
-import { packEnvelope } from 'lib/age-envelope'
+import { packEnvelope } from 'utils/age-envelope'
 import { rhfFieldName } from './rhf-key'
 
 export interface FormColumn {

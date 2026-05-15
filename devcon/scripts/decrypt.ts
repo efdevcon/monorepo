@@ -33,7 +33,7 @@ import { existsSync } from 'node:fs'
 import { join, extname } from 'node:path'
 import { config as loadDotenv } from 'dotenv'
 import { Decrypter } from 'age-encryption'
-import { unpackEnvelope } from '../src/lib/age-envelope'
+import { unpackEnvelope } from '../src/utils/age-envelope'
 
 // Load env from .env.decrypt / .env.local / .env (relative to where the
 // script is invoked from — `pnpm` always runs scripts from the package
