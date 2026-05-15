@@ -5,7 +5,6 @@ import { WhatToExpect } from './WhatToExpect'
 import { PhotoGallery } from './PhotoGallery'
 import { DevconSEAStats } from './DevconSEAStats'
 import { ContributeAndSupport } from './ContributeAndSupport'
-import { ArtOverlay } from './ArtOverlay'
 import { FaqSection } from './FaqSection'
 import { EarlyBirdBanner } from './EarlyBirdBanner'
 
@@ -22,7 +21,6 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
       <PhotoGallery />
       <DevconSEAStats />
       <ContributeAndSupport />
-      <ArtOverlay />
       <FaqSection items={faqItems} />
       <EarlyBirdBanner />
     </div>

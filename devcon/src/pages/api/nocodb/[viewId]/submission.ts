@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { getTableFields, findRowByEmail } from 'services/nocodb'
+import { getTableFields, findRowByEmail, getAllTableColumns } from 'services/nocodb'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -29,12 +29,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data: { user }, error: authError } = await supabase.auth.getUser(token)
 
     if (authError || !user?.email) {
-      return res.status(401).json({ success: false, error: 'Invalid or expired session' })
+      console.error('[nocodb/submission] auth failed', {
+        viewId,
+        authError: authError?.message,
+        authStatus: (authError as any)?.status,
+        hasUser: !!user,
+        tokenLength: token.length,
+      })
+      return res.status(401).json({
+        success: false,
+        error: 'Invalid or expired session',
+        details: authError?.message ?? 'No user returned from getUser',
+      })
     }
 
     const email = user.email.toLowerCase()
     const fields = await getTableFields(viewId)
-    const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
+    // The Email column is often hidden from the form view — look it up against
+    // the full underlying table so we can still match the user's existing row.
+    const allColumns = await getAllTableColumns(viewId)
+    const emailColumn = allColumns.find(f => f.uidt === 'Email')?.column_name
 
     if (!emailColumn) {
       return res.status(200).json({ success: true, data: null })
@@ -52,10 +66,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         filtered[field.column_name] = row[field.column_name]
       }
     }
-    // enrollment_proof is an Attachment column, not surfaced in the form schema —
-    // pass it through so returning blocked users see their existing upload.
-    if (row.enrollment_proof !== undefined) {
-      filtered.enrollment_proof = row.enrollment_proof
+    // Pass through every Attachment column on the underlying table, even those
+    // hidden from the form view (e.g. the student-application enrollment_proof),
+    // so returning users see their previously uploaded files.
+    for (const col of allColumns) {
+      if (col.uidt === 'Attachment' && row[col.column_name] !== undefined) {
+        filtered[col.column_name] = row[col.column_name]
+      }
     }
 
     return res.status(200).json({ success: true, data: filtered })

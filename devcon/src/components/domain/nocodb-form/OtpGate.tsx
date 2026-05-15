@@ -5,10 +5,14 @@ import { Label } from '@/components/ui/label'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Mail } from 'lucide-react'
+import { FormSubheading } from './FormSubheading'
 
 interface OtpGateProps {
   children: (verifiedEmail: string, onSignOut: () => void) => React.ReactNode
   title?: string
+  // Form-level description (NocoDB "Form subheading"), shown between the
+  // title and the email input. Markdown-light: supports `**bold**`.
+  subheading?: string
   // Copy shown above the email input (e.g. "Enter your student email…").
   description?: string
   // Placeholder text inside the email input.
@@ -35,6 +39,7 @@ const DEFAULT_PLACEHOLDER = 'you@example.com'
 export function OtpGate({
   children,
   title,
+  subheading,
   description,
   emailPlaceholder,
   footer,
@@ -150,6 +155,8 @@ export function OtpGate({
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
           {title || DEFAULT_TITLE}
         </h2>
+
+        {subheading && <FormSubheading text={subheading} />}
 
         <form onSubmit={handleSendCode} className="flex flex-col gap-6 items-center w-full">
           <div className="flex flex-col gap-4 items-start w-full">
