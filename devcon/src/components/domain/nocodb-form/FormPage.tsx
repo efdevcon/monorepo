@@ -3,10 +3,10 @@ import { useForm, FormProvider } from 'react-hook-form'
 import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
 import { rhfFieldName, remapToOriginalNames } from './rhf-key'
+import { FormSubheading } from './FormSubheading'
 import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 import { EnrollmentProofUpload } from './EnrollmentProofUpload'
-import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -360,6 +360,8 @@ function FormInner({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
+        {schema.subheading && <FormSubheading text={schema.subheading} />}
+
         <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} viewId={viewId} />
 
         {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
@@ -568,6 +570,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
           {requireOtp ? (
             <OtpGate
               title={schema.title}
+              subheading={schema.subheading}
               description={
                 formSlug === STUDENT_APPLICATION_SLUG
                   ? 'Enter your student email to start the application'
@@ -624,11 +627,8 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
               <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
                 {schema.title}
               </h2>
-              {schema.subheading && (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
-                  {renderInlineMarkdown(schema.subheading)}
-                </p>
-              )}
+              {/* schema.subheading is rendered inside FormInner so the OTP
+                  post-signin path shows it too. */}
               <FormInner
                 schema={schema}
                 methods={methods}
