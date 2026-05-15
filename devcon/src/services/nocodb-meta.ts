@@ -34,7 +34,7 @@ export interface FormField {
   options?: string[]
 }
 
-const SUPPORTED_TYPES = new Set(['SingleLineText', 'Email', 'SingleSelect', 'LongText', 'Date'])
+const SUPPORTED_TYPES = new Set(['SingleLineText', 'Email', 'SingleSelect', 'LongText', 'Date', 'Attachment'])
 
 // In-memory caches — keyed by viewId / tableId.
 const viewCache = new Map<string, { data: FormViewMeta; expiresAt: number }>()

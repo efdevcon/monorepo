@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getFormConfigByViewId, isFormOpen } from 'services/form-config'
-import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
+import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumns } from 'services/nocodb'
 
 // Convention: any OTP-required form is expected to have a column literally
 // named "Email" on the underlying table. The server writes the OTP-verified
@@ -87,11 +87,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Validate fields against schema. enrollment_proof is an Attachment column not
-    // exposed via the form schema (Attachment uidt is filtered out), so allow it through.
+    // Validate fields against schema. Attachment columns on the underlying
+    // table are always allowed (some — like the student-application enrollment_proof —
+    // are hidden from the form view and uploaded via dedicated UI).
     const fields = await getTableFields(viewId)
     const validNames = new Set(fields.map(f => f.column_name))
-    validNames.add('enrollment_proof')
+    const allColumns = await getAllTableColumns(viewId)
+    for (const c of allColumns) {
+      if (c.uidt === 'Attachment') validNames.add(c.column_name)
+    }
 
     for (const key of Object.keys(data)) {
       if (!validNames.has(key)) {

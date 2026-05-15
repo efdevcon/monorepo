@@ -302,8 +302,14 @@ function FormInner({
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
 
-  // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner)
-  const hiddenFields = verifiedEmail ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name) : []
+  // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner).
+  // For the student-application form, also hide the enrollment_proof attachment from the
+  // generic renderer — the bespoke EnrollmentProofUpload below handles it conditionally
+  // (only shown for the "blocked" eligibility bucket).
+  const hiddenFields = [
+    ...(verifiedEmail ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name) : []),
+    ...(formSlug === STUDENT_APPLICATION_SLUG ? ['enrollment_proof'] : []),
+  ]
 
   useEffect(() => {
     if (!verifiedEmail || !supabase) return
@@ -351,7 +357,7 @@ function FormInner({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
-        <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} />
+        <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} viewId={viewId} />
 
         {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
 

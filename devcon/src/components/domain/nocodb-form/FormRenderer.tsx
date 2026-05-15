@@ -3,9 +3,10 @@ import { useFormContext } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, X, FileText, Download, ExternalLink } from 'lucide-react'
 import { COUNTRIES } from './countries'
 import { renderInlineMarkdown } from './inline-markdown'
+import { supabase } from 'services/supabase-browser'
 
 export interface FormColumn {
   title: string
@@ -32,6 +33,236 @@ interface FormRendererProps {
   columns: FormColumn[]
   readOnlyFields?: string[]
   hiddenFields?: string[]
+  viewId: string
+}
+
+const ATTACHMENT_MAX_BYTES = 10 * 1024 * 1024
+const ATTACHMENT_ACCEPT = '.pdf,.doc,.docx,image/png,image/jpeg,image/webp'
+
+interface NocoAttachment {
+  url?: string
+  path?: string
+  signedPath?: string
+  title: string
+  mimetype: string
+  size: number
+}
+
+function formatSize(bytes: number): string {
+  if (!bytes || bytes < 0) return ''
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
+function attachmentProxyUrl(a: NocoAttachment): string | null {
+  // Prefer absolute signed URLs, then NocoDB's `dltemp/...` signed path. Raw
+  // `download/...` paths are not lent through the proxy (no token sharing).
+  const params = new URLSearchParams()
+  if (a.url) params.set('url', a.url)
+  else if (a.signedPath) params.set('path', a.signedPath)
+  else return null
+  if (a.title) params.set('filename', a.title)
+  return `/api/nocodb/file/?${params.toString()}`
+}
+
+function AttachmentPreview({
+  attachment,
+  onRemove,
+}: {
+  attachment: NocoAttachment
+  onRemove?: () => void
+}) {
+  const fileUrl = attachmentProxyUrl(attachment)
+  const isImage = attachment.mimetype?.startsWith('image/')
+
+  return (
+    <li className="flex items-center gap-3 px-3 py-2 bg-[#f9f8fa] border border-[#dddae2] rounded-md text-sm">
+      <div className="shrink-0 w-10 h-10 flex items-center justify-center bg-white border border-[#dddae2] rounded overflow-hidden">
+        {isImage && fileUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={fileUrl} alt={attachment.title} className="w-full h-full object-cover" />
+        ) : (
+          <FileText className="w-5 h-5 text-[#594d73]" />
+        )}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-[#160b2b]">{attachment.title}</p>
+        {attachment.size > 0 && <p className="text-xs text-[#594d73]">{formatSize(attachment.size)}</p>}
+      </div>
+
+      {fileUrl && (
+        <a
+          href={fileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 p-1.5 text-[#594d73] hover:text-[#7235ed]"
+          aria-label={`Open ${attachment.title}`}
+          title="Open / download"
+        >
+          {isImage || attachment.mimetype === 'application/pdf' ? (
+            <ExternalLink className="w-4 h-4" />
+          ) : (
+            <Download className="w-4 h-4" />
+          )}
+        </a>
+      )}
+      {onRemove && (
+        <button
+          type="button"
+          onClick={onRemove}
+          className="shrink-0 p-1.5 text-[#594d73] hover:text-[#b42124]"
+          aria-label={`Remove ${attachment.title}`}
+          title="Remove"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      )}
+    </li>
+  )
+}
+
+function AttachmentField({
+  col,
+  viewId,
+  isReadOnly,
+}: {
+  col: FormColumn
+  viewId: string
+  isReadOnly: boolean
+}) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
+
+  useEffect(() => {
+    register(col.column_name, {
+      validate: v => {
+        if (!col.required) return true
+        return (Array.isArray(v) && v.length > 0) || `${col.title} is required`
+      },
+    })
+  }, [register, col.column_name, col.required, col.title])
+
+  // NocoDB sometimes returns attachments as a JSON-encoded string on read; normalize.
+  const rawAttachments = watch(col.column_name)
+  const attachments: NocoAttachment[] = Array.isArray(rawAttachments)
+    ? rawAttachments
+    : typeof rawAttachments === 'string'
+    ? (() => {
+        try { return JSON.parse(rawAttachments) } catch { return [] }
+      })()
+    : []
+  const hasFiles = attachments.length > 0
+  const fieldError = errors[col.column_name]
+  const errorMessage = uploadError || (fieldError?.message as string | undefined)
+
+  const handlePick = () => inputRef.current?.click()
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    e.target.value = ''
+    if (files.length === 0) return
+
+    setUploadError('')
+    for (const file of files) {
+      if (file.size > ATTACHMENT_MAX_BYTES) {
+        setUploadError(`"${file.name}" is too large (max 10MB)`)
+        return
+      }
+    }
+
+    setUploading(true)
+    try {
+      const headers: Record<string, string> = {}
+      if (supabase) {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession()
+        if (session?.access_token) {
+          headers['Authorization'] = `Bearer ${session.access_token}`
+        }
+      }
+
+      const uploaded: NocoAttachment[] = []
+      for (const file of files) {
+        const formData = new FormData()
+        formData.append('files', file)
+
+        const res = await fetch(
+          `/api/nocodb/${viewId}/upload-attachment/?column=${encodeURIComponent(col.column_name)}`,
+          { method: 'POST', headers, body: formData }
+        )
+        const result = await res.json()
+        if (!res.ok || !result.success) throw new Error(result.error || 'Upload failed')
+        if (Array.isArray(result.attachments)) uploaded.push(...result.attachments)
+      }
+
+      setValue(col.column_name, [...attachments, ...uploaded], { shouldValidate: true })
+    } catch (err) {
+      setUploadError((err as Error).message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const handleRemove = (idx: number) => {
+    const next = attachments.filter((_, i) => i !== idx)
+    setValue(col.column_name, next, { shouldValidate: true })
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={col.title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+
+      <button
+        type="button"
+        onClick={handlePick}
+        disabled={uploading || isReadOnly}
+        className="flex items-center gap-3 w-full px-4 py-2.5 bg-white border border-[#dddae2] rounded-lg text-sm text-left disabled:opacity-50 hover:border-[rgba(34,17,68,0.2)] transition-colors min-w-0"
+      >
+        <span className="font-medium text-[#7235ed] shrink-0">
+          {hasFiles ? 'Add more' : 'Choose file(s)'}
+        </span>
+        <span className="text-[#594d73] truncate">
+          {uploading ? 'Uploading…' : 'PDF, DOC, PNG, JPG up to 10MB'}
+        </span>
+      </button>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ATTACHMENT_ACCEPT}
+        multiple
+        onChange={handleChange}
+        className="hidden"
+      />
+
+      {hasFiles && (
+        <ul className="flex flex-col gap-2">
+          {attachments.map((a, idx) => (
+            <AttachmentPreview
+              key={`${a.title}-${idx}`}
+              attachment={a}
+              onRemove={isReadOnly ? undefined : () => handleRemove(idx)}
+            />
+          ))}
+        </ul>
+      )}
+
+      {errorMessage && <FieldError message={errorMessage} />}
+    </div>
+  )
 }
 
 function FieldLabel({ title, required }: { title: string; required: boolean }) {
@@ -142,7 +373,7 @@ function SearchableSelect({
   )
 }
 
-export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }: FormRendererProps) {
+export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [], viewId }: FormRendererProps) {
   const { register, setValue, watch, formState: { errors } } = useFormContext()
 
   return (
@@ -151,6 +382,10 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
         if (hiddenFields.includes(col.column_name)) return null
         const isReadOnly = readOnlyFields.includes(col.column_name)
         const error = errors[col.column_name]
+
+        if (col.uidt === 'Attachment') {
+          return <AttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
+        }
 
         // Country fields → searchable dropdown
         if (isCountryField(col)) {
