@@ -494,7 +494,9 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                 Thank you!
               </h2>
 
-              <p className="text-sm text-[#1a0d33] leading-5 text-center">Your application has been submitted.</p>
+              <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                {schema.successMsg ?? 'Your application has been submitted.'}
+              </p>
               {formSlug === STUDENT_APPLICATION_SLUG && (
                 <>
                   <div className="text-sm text-[#1a0d33] leading-5 text-center bg-[#f9f8fa] rounded-lg px-4 py-4 w-full">
