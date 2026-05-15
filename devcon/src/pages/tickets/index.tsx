@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
+import React from 'react'
+import NextLink from 'next/link'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { Ticket, Shirt, Coffee, ChevronDown, ArrowRight } from 'lucide-react'
-import { Faq, type FaqItem } from 'components/common/faq'
-import { BloomingEthFlower } from 'components/domain/landing-page/BloomingEthFlower'
+import { ArrowRight, ChevronDown } from 'lucide-react'
+import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
+import { EarlyBirdSaleBanner } from 'components/domain/tickets/EarlyBirdSaleBanner'
+import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
+import { TicketComparison } from 'components/domain/tickets/TicketComparison'
+import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useNow } from 'hooks/useNow'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
-import IconX from 'assets/icons/twitter.svg'
-import IconInstagram from 'assets/icons/instagram.svg'
-import IconFarcaster from 'assets/icons/farcaster.svg'
 import themes from '../themes.module.scss'
+import Image from 'next/image'
 import HeroBackground from './updated-hero.png'
-import EarlyBirdTicket from './big-ticket.png'
 import ArtOverlayBg from './tickets-art-overlay-bg.png'
-import ArtOverlayText from 'assets/images/pages/tickets-art-overlay-text.svg'
+import ComparisonGlyphWatermark from './comparison-glyph-watermark.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
@@ -24,125 +24,152 @@ import { useTranslations } from 'next-intl'
 const TICKETS_FAQ_CATEGORIES = ['Tickets & availability', 'Pricing & discounts']
 const TICKETS_FAQ_PER_CATEGORY = 4
 
-interface ApplicationRow {
-  id: string
-  name: string
-  price: string
-  date?: string
-  applyUrl?: string
-  live: boolean
-  criteria?: React.ReactNode
+interface OverviewCard {
+  title: string
+  subtitle: string
+  status: 'open' | 'coming'
 }
 
-const STUDENT_CRITERIA = (
-  <>
-    <p>
-      <strong>All applicants should meet the following criteria:</strong>
-    </p>
-    <ul>
-      <li>
-        Currently enrolled in an <strong>accredited university degree program</strong> (Bachelor, Master, or PhD)
-      </li>
-      <li>
-        Studying fields such as computer science, engineering, mathematics, economics, law, governance, public policy,
-        or other relevant disciplines
-      </li>
-      <li>
-        Students contributing to research, open-source projects, or academic work related to blockchain, cryptography,
-        governance, or digital public infrastructure
-      </li>
-      <li>
-        Students involved in university research groups, blockchain clubs, policy initiatives, or developer communities
-      </li>
-      <li>Students with a demonstrated interest in Ethereum and open technologies</li>
-    </ul>
-    <p>
-      <strong>Please note:</strong> Short-term courses, bootcamps, and online-only programs are not eligible.
-    </p>
-  </>
-)
-
-const APPLICATION_ROWS: ApplicationRow[] = [
-  {
-    id: 'indian-students',
-    name: 'Indian Students',
-    price: '$25',
-    applyUrl: '/form/student-application',
-    live: true,
-    criteria: STUDENT_CRITERIA,
-  },
-  {
-    id: 'international-students',
-    name: 'International Students',
-    price: '$99',
-    applyUrl: '/form/student-application',
-    live: true,
-    criteria: STUDENT_CRITERIA,
-  },
-  {
-    id: 'builders',
-    name: 'Builders',
-    price: 'TBD',
-    date: 'Opens in June',
-    live: false,
-  },
-]
-
-function ApplicationRowItem({
-  row,
-  isOpen,
-  onToggle,
-  applyLabel,
+function StatusTag({
+  status,
+  openLabel,
+  comingLabel,
 }: {
-  row: ApplicationRow
-  isOpen: boolean
-  onToggle: () => void
-  applyLabel: string
+  status: 'open' | 'coming'
+  openLabel: string
+  comingLabel: string
 }) {
-  const isExpandable = !!row.criteria
+  return (
+    <span
+      className={`inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase ${
+        status === 'open' ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
+      }`}
+    >
+      {status === 'open' ? openLabel : comingLabel}
+    </span>
+  )
+}
+
+// Format a wave opening time as "JUN 15" (day + month, UTC) for the inline
+// "Available [date], [times] UTC" line beneath a featured row.
+const DAY_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
+  day: 'numeric',
+  month: 'short',
+  timeZone: 'UTC',
+})
+const HOUR_FORMATTER = new Intl.DateTimeFormat('en', {
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+  timeZone: 'UTC',
+})
+
+// Single-line availability annotation rendered under the featured wave's row.
+//   Single time:    "Opens May 20, 02:00 UTC"
+//   Multiple times: "Available Jun 15, 02:00 & 16:00 UTC"
+// Past times are struck through, EXCEPT the most-recent past time when the
+// wave is currently live — that's the round on sale right now.
+function WaveAvailabilityLine({ openTimes, isLive }: { openTimes: Date[]; isLive?: boolean }) {
+  const now = useNow()
+  if (openTimes.length === 0) return null
+  const single = openTimes.length === 1
+  const dayMonth = DAY_MONTH_FORMATTER.format(openTimes[0])
+
+  // Index of the round currently considered "live" (most recent past round
+  // when isLive). -1 otherwise — every past round gets struck.
+  let liveIdx = -1
+  if (isLive && now) {
+    for (let i = openTimes.length - 1; i >= 0; i--) {
+      if (openTimes[i].getTime() <= now.getTime()) {
+        liveIdx = i
+        break
+      }
+    }
+  }
 
   return (
-    <div
-      className={cn(css['ticket-type-row-expandable'], {
-        [css['ticket-type-row-expanded']]: isExpandable && isOpen,
-        [css['ticket-type-row-clickable']]: isExpandable,
+    <p className="text-sm leading-5 text-[#594d73] text-right">
+      {single ? 'Opens ' : 'Available '}
+      {dayMonth},{' '}
+      {openTimes.map((d, i) => {
+        const isPast = now ? d.getTime() <= now.getTime() : false
+        const strike = isPast && i !== liveIdx
+        return (
+          <React.Fragment key={i}>
+            {i > 0 && ' & '}
+            <span className={strike ? 'line-through' : ''}>{HOUR_FORMATTER.format(d)}</span>
+          </React.Fragment>
+        )
       })}
-      onClick={isExpandable ? onToggle : undefined}
-      role={isExpandable ? 'button' : undefined}
-      tabIndex={isExpandable ? 0 : undefined}
-      onKeyDown={
-        isExpandable
-          ? e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                onToggle()
-              }
-            }
-          : undefined
-      }
-    >
-      <div className={css['ticket-type-row-main']}>
-        <span className={cn(css['row-name'], { [css['row-name-bold']]: row.live })}>{row.name}</span>
-        <div className={css['row-meta']}>
-          {row.live && <span className={css['row-live-badge']}>LIVE</span>}
-          <span className={cn(css['row-price'], { [css['row-price-bold']]: row.live })}>{row.price}</span>
-          {row.live && row.applyUrl ? (
-            <Link to={row.applyUrl} className={css['row-apply']} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
-              {applyLabel}
-              <ArrowRight size={16} strokeWidth={2.5} />
-            </Link>
-          ) : (
-            <span className={css['row-date']}>{row.date}</span>
-          )}
-        </div>
-      </div>
-      {isExpandable && isOpen && (
-        <>
-          <hr className={css['row-divider']} />
-          <div className={css['row-criteria']}>{row.criteria}</div>
-        </>
-      )}
-    </div>
+      {' UTC'}
+    </p>
+  )
+}
+
+// Format the featured wave's next opening time as "MAY 20" (uppercase,
+// UTC-based so it matches the publicly-announced launch date regardless of
+// viewer's local timezone).
+function formatUpcomingDate(d: Date): string {
+  return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(d).toUpperCase()
+}
+
+// Tag rendered on the General Admission overview card. Cycles through three
+// states driven by the featured wave:
+//   countdown → marigold pill with date of the next wave (e.g. "OPENS MAY 22")
+//   live      → green OPEN NOW pill
+//   closed/no featured → gray CLOSED pill
+function GeneralAdmissionTag() {
+  const { featured, mounted } = useFeaturedWave()
+
+  if (!mounted) {
+    return (
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#221144]">
+        &nbsp;
+      </span>
+    )
+  }
+
+  if (featured?.status === 'live') {
+    return (
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#aaeaba] text-[#221144]">
+        OPEN NOW
+      </span>
+    )
+  }
+
+  if (featured?.status === 'countdown' && featured.upcoming) {
+    return (
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#f2f1f4] text-[#594d73]">
+        OPENS {formatUpcomingDate(featured.upcoming)}
+      </span>
+    )
+  }
+
+  // No featured wave (all closed or all tbd) → CLOSED.
+  return (
+    <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#594d73]">
+      CLOSED
+    </span>
+  )
+}
+
+// Student application criteria — shown in expandable row content under both
+// "Indian Students" and "International Students" rows in the Applications table.
+function StudentCriteria() {
+  const t = useTranslations('tickets.criteria.student')
+  const bullets = t.raw('bullets') as string[]
+  return (
+    <>
+      <p className="font-bold">{t('heading')}</p>
+      <ul className="list-disc pl-5 flex flex-col gap-1.5">
+        {bullets.map((b, i) => (
+          <li key={i}>{b}</li>
+        ))}
+      </ul>
+      <p>
+        <strong>{t('note_label')}</strong> {t('note')}
+      </p>
+    </>
   )
 }
 
@@ -152,7 +179,8 @@ interface TicketsPageProps {
 
 export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const t = useTranslations('tickets')
-  const tFaq = useTranslations('home.faq')
+  const resolvedFaqItems = useStandardFaqItems(faqItems)
+  const { label: ctaLabel } = useTicketsCtaLabel()
 
   const navLinks = [
     { title: t('nav.overview'), to: '#overview' },
@@ -162,45 +190,71 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
     { title: t('nav.faq'), to: '#faq' },
   ]
 
-  const overviewCards = t.raw('overview.cards') as Array<{
-    number: string
-    title: string
-    subtitle: string
-    price_label: string
-    status: string
-    live?: boolean
-    price?: string
-  }>
-  const waves = t.raw('sale_waves.rows') as Array<{ name: string; price: string; date: string }>
-  const communityRows = t.raw('community.rows') as Array<{ name: string; detail?: string; price: string; date: string }>
+  const overviewCards = t.raw('overview.cards') as OverviewCard[]
+  const tagOpen = t('overview.tag_open')
+  const tagComing = t('overview.tag_coming')
 
-  const resolvedFaqItems: FaqItem[] =
-    faqItems && faqItems.length > 0
-      ? faqItems.map(i => ({ q: i.question, a: <ReactMarkdown>{i.answer}</ReactMarkdown> }))
-      : [
-          { q: tFaq('item_1.q'), a: tFaq('item_1.a') },
-          {
-            q: tFaq('item_2.q'),
-            a: (
-              <>
-                <p>{tFaq('item_2.a_intro')}</p>
-                <ul className="list-disc pl-5 mt-2 flex flex-col gap-1.5">
-                  <li>
-                    <strong>{tFaq('item_2.community_h')}</strong> — {tFaq('item_2.community_b')}
-                  </li>
-                  <li>
-                    <strong>{tFaq('item_2.applications_h')}</strong> — <em>{tFaq('item_2.applications_b')}</em>
-                  </li>
-                  <li>
-                    <strong>{tFaq('item_2.ecosystem_h')}</strong> — <em>{tFaq('item_2.ecosystem_b')}</em>
-                  </li>
-                </ul>
-              </>
-            ),
-          },
-          { q: tFaq('item_3.q'), a: tFaq('item_3.a') },
-        ]
-  const [expandedApplicationId, setExpandedApplicationId] = useState<string | null>(null)
+  const communityRowsRaw = t.raw('community_section.rows') as TicketRow[]
+  const applicationRowsRaw = t.raw('applications_section.rows') as TicketRow[]
+
+  // Per-wave state for the General Admission rows. The "featured" wave is the
+  // currently live one, or the next upcoming one — only it shows the rich
+  // countdown + opening times block below the row. Other waves just render
+  // their static openLabel on the right.
+  const waveStates = useWaveStates()
+  const featuredWaveId = (() => {
+    const live = waveStates.find(s => s.status === 'live')
+    if (live) return live.wave.id
+    const countdown = waveStates.find(s => s.status === 'countdown')
+    return countdown?.wave.id ?? null
+  })()
+
+  // Maps a row name → expandable details JSX. Anything not in the map renders
+  // as a normal (non-expandable) row. Easy to add more detail blocks here.
+  const detailsByName: Record<string, React.ReactNode> = {
+    'Indian Students': <StudentCriteria />,
+    'International Students': <StudentCriteria />,
+  }
+  function withDetails(row: TicketRow): TicketRow {
+    const details = detailsByName[row.name]
+    return details ? { ...row, details } : row
+  }
+
+  // General Admission rows derived from the canonical wave config. Each wave
+  // becomes a row; per-wave state drives the right-edge tag/badge and any
+  // rich countdown content underneath.
+  const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, countdown }) => {
+    const row: TicketRow = { name: w.name, price: w.price }
+    const isFeatured = w.id === featuredWaveId
+    const hasTimes = !!(w.openTimes && w.openTimes.length > 0)
+
+    if (status === 'live') {
+      // Live: OPEN badge + price + "Get tickets" button; availability line below.
+      row.status = 'open'
+      row.action = 'Get tickets'
+      row.actionHref = '/tickets/store'
+      if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} isLive />
+    } else if (status === 'countdown') {
+      if (isFeatured) {
+        // Featured countdown: purple countdown in action slot, availability line below.
+        if (countdown) row.actionCountdown = countdown
+        if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} />
+      } else {
+        // Non-featured upcoming: just the static "Opens [date]" column.
+        row.date = w.openLabel
+      }
+    } else if (status === 'closed') {
+      // Past wave — name struck through, "Sale ended" in action slot, no price.
+      row.muted = true
+      row.price = undefined
+    } else {
+      // 'tbd' — wave date not yet set, fall back to the static openLabel.
+      row.date = w.openLabel
+    }
+    return withDetails(row)
+  })
+  const communityRows: TicketRow[] = communityRowsRaw.map(withDetails)
+  const applicationRows: TicketRow[] = applicationRowsRaw.map(withDetails)
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -214,300 +268,203 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
       />
 
       <div className={cn(css['landing'], 'section')}>
-        <div className="flex flex-col gap-8 md:gap-16">
-          {/* ── Hero Content ─────────────────────────────────────── */}
-          <section className={css['hero-content-section']}>
-            <div className={css['hero-left']}>
-              <div className={css['hero-text']}>
-                <h2 className={css['heading-2']}>{t('hero.heading')}</h2>
-                <p className={css['body-lg']}>{t('hero.body_lg')}</p>
-                <p className={css['body']}>{t('hero.body')}</p>
-              </div>
-
-              <div className={css['included-section']}>
-                <p className={css['included-label']}>{t('hero.included_label')}</p>
-                <div className={css['included-items']}>
-                  <div className={css['included-item']}>
-                    <Ticket size={24} strokeWidth={1.5} />
-                    <span>{t('hero.included_conference')}</span>
-                  </div>
-                  <div className={css['included-item']}>
-                    <Shirt size={24} strokeWidth={1.5} />
-                    <span>{t('hero.included_swag')}</span>
-                  </div>
-                  <div className={css['included-item']}>
-                    <Coffee size={24} strokeWidth={1.5} />
-                    <span>{t('hero.included_catering')}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className={css['cta-group']}>
-                <Link to="/tickets/store" className={css['btn-primary']}>
-                  Learn more
-                  <ArrowRight size={16} strokeWidth={2.5} />
-                </Link>
-                <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
-                  {t('hero.subscribe_button')}
-                </a>
-                <div className={css['social-icons']}>
-                  <a
-                    href="https://x.com/EFDevcon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
-                    <IconX />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/efdevcon/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
-                    <IconInstagram />
-                  </a>
-                  <a
-                    href="https://farcaster.xyz/~/channel/devcon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
-                    <IconFarcaster />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className={css['ticket-image-wrapper']}>
-              <Image src={EarlyBirdTicket} alt={t('hero.ticket_alt')} className={css['ticket-image']} />
-            </div>
-          </section>
-
-          <hr className={css['divider']} />
+        <div className="flex flex-col gap-12 md:gap-16">
+          {/* ── ETH Early Bird sale banner ───────────────────────── */}
+          <EarlyBirdSaleBanner />
 
           {/* ── Overview ─────────────────────────────────────────── */}
-          <section id="overview" className={css['overview-section']}>
-            <h2 className={css['heading-2-center']}>{t('overview.heading')}</h2>
-            <p className={css['body-center']}>{t('overview.body')}</p>
-
-            <div className={css['overview-cards']}>
-              {overviewCards.map(card => (
-                <div key={card.number} className={css['overview-card']}>
-                  <span className={css['overview-card-number']}>{card.number}</span>
-                  <div className={css['overview-card-content']}>
-                    <div className={css['overview-card-left']}>
-                      <div className={css['overview-card-title']}>{card.title}</div>
-                      <div className={css['overview-card-subtitle']}>{card.subtitle}</div>
-                    </div>
-                    <div className={css['overview-card-right']}>
-                      <div className={css['overview-card-price']}>{card.price || card.price_label}</div>
-                      <div
-                        className={cn(css['overview-card-status'], { [css['overview-card-status-live']]: card.live })}
-                      >
-                        {card.status}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          <section id="overview" className="scroll-mt-36 flex flex-col gap-8 items-center">
+            <div className="flex flex-col gap-4 items-center text-center w-full">
+              <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+                {t('overview.eyebrow')}
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+                {t('overview.heading')}
+              </h2>
+              <p className="text-sm sm:text-base text-[#221144] leading-6">{t('overview.subheading')}</p>
             </div>
 
-            <Link to="#faq" className={css['btn-secondary']}>
-              {t('overview.view_faq')}
-              <ChevronDown size={16} strokeWidth={2} />
+            <div className="flex flex-col md:flex-row gap-4 w-full">
+              {overviewCards.map((card, i) => {
+                // General Admission tag cycles based on the live ETH Early Bird state:
+                //   countdown → display the precise public-facing date (e.g. "MAY 20")
+                //   live      → green "OPEN" tag
+                //   closed    → gray "CLOSED" tag
+                const isGeneral = card.title === 'General Admission'
+                return (
+                  <div key={i} className="flex-1 flex items-center gap-2 bg-white rounded-2xl px-6 py-8 min-w-0">
+                    <div className="flex-1 min-w-0 flex flex-col gap-1">
+                      <p className="text-xl font-bold text-[#160b2b] leading-[28.8px] tracking-[-0.5px]">
+                        {card.title}
+                      </p>
+                      <p className="text-xs font-bold text-[#594d73] tracking-[0.25px] uppercase leading-4">
+                        {card.subtitle}
+                      </p>
+                    </div>
+                    {isGeneral ? (
+                      <GeneralAdmissionTag />
+                    ) : (
+                      <StatusTag status={card.status} openLabel={tagOpen} comingLabel={tagComing} />
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
+            <Link
+              to="#general-admission"
+              className="inline-flex items-center gap-1.5 pl-4 py-4 text-base font-bold text-[#7235ed] hover:opacity-80 transition-opacity"
+            >
+              {t('overview.learn_more')}
+              <ChevronDown className="w-4 h-4" strokeWidth={2} />
             </Link>
           </section>
 
           <hr className={css['divider']} />
 
-          {/* ── Sale Waves ───────────────────────────────────────── */}
-          <section id="general-admission" className={css['two-col-section']}>
-            <div className={css['section-left']}>
-              <div className={css['section-text']}>
-                <p className={css['section-tag']}>{t('sale_waves.tag')}</p>
-                <h2 className={css['heading-2']}>{t('sale_waves.heading')}</h2>
-                <p className={css['body-lg']}>{t('sale_waves.body_lg')}</p>
-                <p className={css['body']}>
-                  {t('sale_waves.body_prefix')}
-                  <strong>{t('sale_waves.body_strong')}</strong>
-                  {t('sale_waves.body_suffix')}
+          {/* ── General Admission ────────────────────────────────── */}
+          <section
+            id="general-admission"
+            className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+          >
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4">
+                <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+                  {t('general_admission.eyebrow')}
+                </p>
+                <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+                  {t('general_admission.heading')}
+                </h2>
+                <p className="text-base md:text-[18px] text-[#1a0d33] leading-[1.5] tracking-[-0.25px]">
+                  <strong>{t('general_admission.body_strong')}</strong>
+                  {t('general_admission.body')}
+                </p>
+                <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
+                  <strong>{t('general_admission.subcopy_strong')}</strong>
+                  {t('general_admission.subcopy')}
                 </p>
               </div>
-
-              <div className={css['social-row']}>
-                <a href="https://paragraph.com/@efevents" className={css['btn-secondary']}>
-                  {t('hero.subscribe_button')}
-                </a>
-                <div className={css['social-icons']}>
-                  <a
-                    href="https://x.com/EFDevcon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
-                    <IconX />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/efdevcon/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
-                    <IconInstagram />
-                  </a>
-                  <a
-                    href="https://farcaster.xyz/~/channel/devcon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={css['social-icon-btn']}
-                  >
-                    <IconFarcaster />
-                  </a>
-                </div>
-              </div>
+              <NextLink
+                href="/tickets/store"
+                className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
+              >
+                {ctaLabel}
+                <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+              </NextLink>
             </div>
 
-            <div className={css['ticket-type-card']}>
-              <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>{t('sale_waves.card_title')}</span>
-                <span className={css['ticket-type-status']}>{t('sale_waves.card_status')}</span>
-              </div>
-              <div className={css['ticket-type-rows']}>
-                {waves.map(row => (
-                  <div key={row.name} className={css['ticket-type-row']}>
-                    <span className={css['row-name']}>{row.name}</span>
-                    <div className={css['row-meta']}>
-                      <span className={css['row-price']}>{row.price}</span>
-                      <span className={css['row-date']}>{row.date}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <TicketTable
+              title={t('general_admission.card_title')}
+              subtitle={t('general_admission.card_subtitle')}
+              rows={generalRows}
+            />
           </section>
 
           <hr className={css['divider']} />
 
-          {/* ── Community (Self-Claiming Discounts) ──────────────── */}
-          <section id="discounts" className={css['two-col-section']}>
-            <div className={css['section-left']}>
-              <div className={css['section-text']}>
-                <p className={css['section-tag']}>{t('community.tag')}</p>
-                <h2 className={css['heading-2']}>{t('community.heading')}</h2>
-                <p className={css['body-lg']}>
-                  {t('community.body_lg_prefix')}
-                  <strong>{t('community.body_lg_strong')}</strong>
-                  {t('community.body_lg_suffix')}
-                </p>
-                <p className={css['body']}>
-                  {t('community.body_prefix')}
-                  <strong>{t('community.body_strong_1')}</strong>
-                  {t('community.body_middle')}
-                  <strong>{t('community.body_strong_2')}</strong>
-                  {t('community.body_and')}
-                  <strong>{t('community.body_strong_3')}</strong>
-                  {t('community.body_suffix')}
-                </p>
-              </div>
+          {/* ── Community ────────────────────────────────────────── */}
+          <section id="discounts" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+                {t('community_section.eyebrow')}
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+                {t('community_section.heading')}
+              </h2>
+              <p className="text-base md:text-[18px] text-[#1a0d33] leading-[1.5] tracking-[-0.25px]">
+                {t('community_section.body_prefix')}
+                <strong>{t('community_section.body_strong_1')}</strong>
+                {t('community_section.body_middle')}
+                <strong>{t('community_section.body_strong_2')}</strong>
+                {t('community_section.body_suffix')}
+              </p>
+              <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
+                {t('community_section.subcopy_prefix')}
+                <strong>{t('community_section.subcopy_strong_1')}</strong>
+                {t('community_section.subcopy_and')}
+                <strong>{t('community_section.subcopy_strong_2')}</strong>
+                {t('community_section.subcopy_suffix')}
+              </p>
             </div>
 
-            <div className={css['ticket-type-card']}>
-              <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>{t('community.card_title')}</span>
-                <span className={css['ticket-type-status']}>{t('community.card_status')}</span>
-              </div>
-              <div className={css['ticket-type-rows']}>
-                {communityRows.map(row => (
-                  <div key={row.name} className={css['ticket-type-row']}>
-                    <div className={css['row-name-group']}>
-                      <span className={css['row-name']}>{row.name}</span>
-                      {row.detail && <span className={css['row-detail']}>{row.detail}</span>}
-                    </div>
-                    <div className={css['row-meta']}>
-                      {row.price && <span className={css['row-price']}>{row.price}</span>}
-                      <span className={css['row-date']}>{row.date}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <TicketTable
+              title={t('community_section.card_title')}
+              subtitle={t('community_section.card_subtitle')}
+              rows={communityRows}
+            />
           </section>
 
           <hr className={css['divider']} />
 
-          {/* ── Applications (Review-Based Discounts) ────────────── */}
-          <section id="applications" className={css['two-col-section']}>
-            <div className={css['section-left']}>
-              <div className={css['section-text']}>
-                <p className={css['section-tag']}>{t('applications.tag')}</p>
-                <h2 className={css['heading-2']}>{t('applications.heading')}</h2>
-                <p className={css['body-lg']}>
-                  {t('applications.body_lg_prefix')}
-                  <strong>{t('applications.body_lg_strong')}</strong>
-                  {t('applications.body_lg_suffix')}
-                </p>
-                <p className={css['body']}>
-                  {t('applications.body_prefix')}
-                  <strong>{t('applications.body_strong_1')}</strong>
-                  {t('applications.body_middle')}
-                  <strong>{t('applications.body_strong_2')}</strong>
-                  {t('applications.body_suffix')}
-                </p>
-              </div>
-              <Link to="/tickets/store" className={css['btn-primary']}>
-                {t('applications.learn_more')}
-                <ChevronDown size={16} strokeWidth={2} style={{ transform: 'rotate(-90deg)' }} />
-              </Link>
+          {/* ── Applications ─────────────────────────────────────── */}
+          <section
+            id="applications"
+            className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+          >
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+                {t('applications_section.eyebrow')}
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+                {t('applications_section.heading')}
+              </h2>
+              <p className="text-base md:text-[18px] text-[#1a0d33] leading-[1.5] tracking-[-0.25px]">
+                {t('applications_section.body_prefix')}
+                <strong>{t('applications_section.body_strong_1')}</strong>
+                {t('applications_section.body_amp')}
+                <strong>{t('applications_section.body_strong_2')}</strong>
+                {t('applications_section.body_middle')}
+                <strong>{t('applications_section.body_strong_3')}</strong>
+                {t('applications_section.body_suffix')}
+              </p>
+              <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
+                <strong>{t('applications_section.subcopy_strong_1')}</strong>
+                {t('applications_section.subcopy_middle_1')}
+                <strong>{t('applications_section.subcopy_strong_2')}</strong>
+                {t('applications_section.subcopy_middle_2')}
+                <strong>{t('applications_section.subcopy_strong_3')}</strong>
+                {t('applications_section.subcopy_suffix')}
+              </p>
             </div>
 
-            <div className={css['ticket-type-card']}>
-              <div className={css['ticket-type-header']}>
-                <span className={css['ticket-type-title']}>{t('applications.card_title')}</span>
-                <span className={css['ticket-type-status-live']}>{t('applications.card_status')}</span>
-              </div>
-              <div className={css['ticket-type-rows']}>
-                {APPLICATION_ROWS.map(row => (
-                  <ApplicationRowItem
-                    key={row.id}
-                    row={row}
-                    isOpen={expandedApplicationId === row.id}
-                    onToggle={() => setExpandedApplicationId(prev => (prev === row.id ? null : row.id))}
-                    applyLabel={t('applications.apply')}
-                  />
-                ))}
-              </div>
-            </div>
+            <TicketTable
+              title={t('applications_section.card_title')}
+              subtitle={t('applications_section.card_subtitle')}
+              rows={applicationRows}
+              tapLabel={t('applications_section.tap_label')}
+            />
           </section>
-        </div>
-      </div>
 
-      {/* ── Art with Text Overlay ─────────────────────────────── */}
-      <section className={css['art-overlay']}>
-        <Image src={ArtOverlayBg} alt="" className={css['art-overlay-bg']} fill sizes="100vw" />
-        <div className={css['art-overlay-inner']}>
-          <div className={css['art-overlay-text']} aria-label="Tickets">
-            <ArtOverlayText />
+          <hr className={css['divider']} />
+
+          {/* ── Comparison Table ─────────────────────────────────── */}
+          <div className="relative">
+            {/* Decorative glyph at the bottom of the page content area,
+                behind the comparison card. */}
+            <Image
+              src={ComparisonGlyphWatermark}
+              alt=""
+              aria-hidden
+              priority={false}
+              className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 h-auto w-full select-none"
+            />
+            <div className="relative z-10">
+              <TicketComparison />
+            </div>
           </div>
         </div>
-      </section>
-
-      <div className={cn(css['landing'], 'section')}>
-        <div className="flex flex-col gap-8 md:gap-16">
-          {/* ── FAQ ──────────────────────────────────────────────── */}
-          <section id="faq" className={css['faq-section-vertical']}>
-            <h2 className={css['faq-section-heading']}>{t('faq_section.heading')}</h2>
-            <div className={css['faq-section-content']}>
-              <Faq items={resolvedFaqItems} />
-              <Link to="/tickets/faq" className={cn(css['btn-secondary'], css['btn-secondary-centered'])}>
-                {t('faq_section.view_all')}
-                <ArrowRight size={16} strokeWidth={2.5} />
-              </Link>
-            </div>
-            <BloomingEthFlower className={css['faq-flower']} />
-          </section>
-        </div>
       </div>
+
+      {/* ── FAQ (with banner) ─────────────────────────────────── */}
+      <section id="faq" className="scroll-mt-36">
+        <BottomFAQ
+          heading={t('faq_section.heading')}
+          items={resolvedFaqItems}
+          viewAllLabel={t('faq_section.view_all')}
+          viewAllHref="/tickets/faq"
+          banner={ArtOverlayBg}
+        />
+      </section>
     </Page>
   )
 }

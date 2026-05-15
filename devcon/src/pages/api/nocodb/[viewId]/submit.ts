@@ -1,7 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getFormConfigByViewId, isFormOpen } from 'services/form-config'
-import { getTableFields, createRow, findRowByEmail, updateRow } from 'services/nocodb'
+import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumns } from 'services/nocodb'
+
+// Convention: any OTP-required form is expected to have a column literally
+// named "Email" on the underlying table. The server writes the OTP-verified
+// email into that column on submit — no per-form lookup needed.
+const EMAIL_COLUMN_NAME = 'Email'
 import { classifyEligibility } from 'services/email-classifier'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -49,7 +54,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { data: { user }, error: authError } = await supabase.auth.getUser(token)
 
       if (authError || !user?.email) {
-        return res.status(401).json({ success: false, error: 'Invalid or expired session' })
+        console.error('[nocodb/submit] auth failed', {
+          viewId,
+          authError: authError?.message,
+          authStatus: (authError as any)?.status,
+          authName: (authError as any)?.name,
+          hasUser: !!user,
+          tokenLength: token.length,
+          tokenPrefix: token.slice(0, 12),
+          supabaseUrl,
+        })
+        return res.status(401).json({
+          success: false,
+          error: 'Invalid or expired session',
+          details: authError?.message ?? 'No user returned from getUser',
+        })
       }
 
       verifiedEmail = user.email.toLowerCase()
@@ -68,11 +87,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Validate fields against schema. enrollment_proof is an Attachment column not
-    // exposed via the form schema (Attachment uidt is filtered out), so allow it through.
+    // Validate fields against schema. Attachment columns on the underlying
+    // table are always allowed (some — like the student-application enrollment_proof —
+    // are hidden from the form view and uploaded via dedicated UI).
     const fields = await getTableFields(viewId)
     const validNames = new Set(fields.map(f => f.column_name))
-    validNames.add('enrollment_proof')
+    const allColumns = await getAllTableColumns(viewId)
+    for (const c of allColumns) {
+      if (c.uidt === 'Attachment') validNames.add(c.column_name)
+    }
 
     for (const key of Object.keys(data)) {
       if (!validNames.has(key)) {
@@ -80,9 +103,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Email classification & eligibility gate. Non-institutional ("blocked") emails
-    // are now permitted as long as they attach proof of enrollment.
-    if (verifiedEmail) {
+    // Email classification & eligibility gate is specific to the student
+    // application form — it classifies institutional emails and gates
+    // submissions on enrollment proof. Other forms shouldn't run this (the
+    // "Email Classification" column doesn't exist on those NocoDB tables and
+    // would cause writes to fail).
+    const isStudentApplication = config?.formSlug === 'student-application'
+    if (verifiedEmail && isStudentApplication) {
       const { bucket } = await classifyEligibility(verifiedEmail)
 
       if (bucket === 'blocked') {
@@ -106,10 +133,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     data['Submission Date'] = new Date().toISOString()
 
-    // Upsert: if user already submitted, update their row
-    if (verifiedEmail) {
-      const emailColumn = fields.find(f => f.uidt === 'Email')?.column_name
-      const existingRow = emailColumn ? await findRowByEmail(viewId, emailColumn, verifiedEmail) : null
+    // For OTP-required forms: write the OTP-verified email into the
+    // conventional "Email" column and upsert by email so re-submissions
+    // edit the existing row.
+    if (verifiedEmail && config?.requireOtp) {
+      data[EMAIL_COLUMN_NAME] = verifiedEmail
+      const existingRow = await findRowByEmail(viewId, EMAIL_COLUMN_NAME, verifiedEmail)
       if (existingRow) {
         await updateRow(viewId, existingRow.Id, data)
         return res.status(200).json({ success: true, updated: true })

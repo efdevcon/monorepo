@@ -1,6 +1,8 @@
 import { Api } from 'nocodb-sdk'
-import { resolveFormView, getFormFields as getFormFieldsFromMeta } from './nocodb-meta'
+import { resolveFormView, getFormFields as getFormFieldsFromMeta, getAllTableColumns } from './nocodb-meta'
 import type { FormField } from './nocodb-meta'
+
+export { getAllTableColumns }
 
 const NOCODB_BASE_URL = process.env.NOCODB_BASE_URL
 const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN

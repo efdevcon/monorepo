@@ -15,20 +15,25 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 14px 8px;
-  border-bottom: 1px solid $colors-monochrome-10;
-  // @include fonts-sm;
+  // Tighter rows to balance the now longer list — matches the Figma spec where
+  // each row is sized to its content (leading-none) rather than padded for breathing.
+  padding: 8px;
+  font-size: 14px;
+  line-height: 1;
+  border-bottom: 1px solid rgba(34, 17, 68, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   > svg {
-    font-size: 1.3em;
+    font-size: 16px;
     margin-right: 12px;
     flex-shrink: 0;
   }
 
   a {
-    // @include fonts-generic-link;
     @include colors-theme-color;
-    // text-transform: uppercase;
   }
 
   span,
@@ -53,11 +58,6 @@
       margin-right: 0;
     }
   }
-  // &:hover,
-  // &:focus,
-  // &:active {
-  //   background: #f8f8f8;
-  // }
 }
 
 .primary {
