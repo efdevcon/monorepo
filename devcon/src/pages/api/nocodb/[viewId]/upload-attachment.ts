@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getFormConfigByViewId } from 'services/form-config'
-import { getAllTableColumns } from 'services/nocodb'
+import { getAllTableColumns, getTableFields } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
+import { isEncryptedTitle } from 'config/encrypted-forms'
 
 export const config = {
   api: {
@@ -24,6 +25,13 @@ const ALLOWED_MIME = new Set([
   'application/msword',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ])
+
+// For columns whose form-view (or table) title starts with "[encrypted]",
+// the browser sends an opaque `.age` ciphertext (envelope + age payload). It's
+// authenticated by age's MAC and has no executable interpretation — so the
+// XSS concerns that gate the normal allowlist don't apply.
+const ENCRYPTED_EXT = '.age'
+const ENCRYPTED_MIME = 'application/octet-stream'
 
 interface MultipartFileInfo {
   filename?: string
@@ -112,7 +120,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    const columns = await getAllTableColumns(viewId)
+    const [columns, formFields] = await Promise.all([
+      getAllTableColumns(viewId),
+      getTableFields(viewId).catch(() => []),
+    ])
     const target = columns.find(c => c.column_name === column)
     if (!target) {
       return res.status(400).json({ success: false, error: `Unknown column: ${column}` })
@@ -120,6 +131,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (target.uidt !== 'Attachment') {
       return res.status(400).json({ success: false, error: `Column "${column}" is not an attachment field` })
     }
+    // The "[encrypted]" prefix may live on the form-view label OR on the
+    // underlying table column title — either flips us into encrypted mode.
+    const formField = formFields.find(f => f.column_name === column)
+    const isEncryptedColumn =
+      isEncryptedTitle(formField?.title) || isEncryptedTitle(target.title)
 
     const contentType = req.headers['content-type']
     if (!contentType?.startsWith('multipart/form-data')) {
@@ -155,11 +171,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!p.filename || !ext) {
         return res.status(400).json({ success: false, error: 'Missing filename' })
       }
-      if (!ALLOWED_EXT.has(ext)) {
-        return res.status(415).json({ success: false, error: `File type "${ext}" not allowed` })
-      }
-      if (!p.contentType || !ALLOWED_MIME.has(p.contentType.toLowerCase().split(';')[0].trim())) {
-        return res.status(415).json({ success: false, error: `Content-type "${p.contentType ?? 'unknown'}" not allowed` })
+      const partMime = p.contentType?.toLowerCase().split(';')[0].trim()
+      if (isEncryptedColumn) {
+        if (ext !== ENCRYPTED_EXT || partMime !== ENCRYPTED_MIME) {
+          return res.status(415).json({
+            success: false,
+            error: `Encrypted columns only accept ${ENCRYPTED_EXT} files (got ext "${ext}", type "${partMime ?? 'unknown'}")`,
+          })
+        }
+      } else {
+        if (!ALLOWED_EXT.has(ext)) {
+          return res.status(415).json({ success: false, error: `File type "${ext}" not allowed` })
+        }
+        if (!partMime || !ALLOWED_MIME.has(partMime)) {
+          return res.status(415).json({ success: false, error: `Content-type "${p.contentType ?? 'unknown'}" not allowed` })
+        }
       }
     }
 

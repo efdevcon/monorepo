@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
+import { rhfFieldName, remapToOriginalNames } from './rhf-key'
 import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 import { EnrollmentProofUpload } from './EnrollmentProofUpload'
@@ -316,7 +317,7 @@ function FormInner({
 
     const emailCol = schema.columns.find(c => c.uidt === 'Email')
     if (emailCol) {
-      methods.setValue(emailCol.column_name, verifiedEmail)
+      methods.setValue(rhfFieldName(emailCol.column_name), verifiedEmail)
     }
 
     setLoadingExisting(true)
@@ -335,7 +336,9 @@ function FormInner({
             setIsUpdate(true)
             for (const [key, value] of Object.entries(result.data)) {
               if (value !== null && value !== undefined) {
-                methods.setValue(key, value)
+                // Server returns the original NocoDB column names; the form
+                // is registered under sanitized aliases (see rhfFieldName).
+                methods.setValue(rhfFieldName(key), value)
               }
             }
           }
@@ -539,10 +542,14 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
         }
       }
 
+      // Form data is keyed by sanitized RHF aliases (rhfFieldName); the server
+      // expects original NocoDB column titles.
+      const submitData = remapToOriginalNames(formData, schema!.columns.map(c => c.column_name))
+
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ data: formData }),
+        body: JSON.stringify({ data: submitData }),
       })
       const result = await res.json()
       if (!res.ok) throw new Error(result.error || 'Submission failed')
