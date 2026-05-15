@@ -20,7 +20,7 @@ export const ContributeAndSupport = () => {
         <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
           {t('heading')}
         </h2>
-        <p className="text-sm sm:text-base text-[#1a0d33] leading-5 sm:leading-6">
+        <p className="text-sm sm:text-base text-[#1a0d33] leading-5 sm:leading-6 whitespace-pre-line">
           {t('subheading')}
         </p>
       </div>

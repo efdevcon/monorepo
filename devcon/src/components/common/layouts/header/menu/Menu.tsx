@@ -127,9 +127,6 @@ export const Menu = (props: any) => {
               <Left navigationData={context?.navigation} />
             </div>
             <Navigation setFoldoutOpen={props.setFoldoutOpen} navigationData={context?.navigation} mobile={true} />
-            <div className={css['foldout-language']}>
-              <LanguageToggle />
-            </div>
           </Foldout>
         </>
       )}
