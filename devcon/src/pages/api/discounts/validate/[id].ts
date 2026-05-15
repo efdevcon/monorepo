@@ -75,7 +75,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         discounts.push({ list: 'Past Attendees', discount: 10 });
     }
 
+    // M14: strip the `index` field from each entry before returning. The
+    // frontend uses `discount` (the percentage badge) and `type` / `name`
+    // (which list the user is on); it has no use for the position in the
+    // encrypted voucher file. Pre-fix code returned `index`, which combined
+    // with M12 turned this unauth endpoint into an "iterate any address
+    // universe → look up which voucher index" enumeration short-circuit.
+    // Internal callers (claim/[id].ts) still call `GetDiscount(id)` directly
+    // and have access to the full record including `index`.
+    const internal = GetDiscount(id)
     res.status(200).json({
-        data: GetDiscount(id)
+        data: {
+            id: internal.id,
+            type: internal.type,
+            discount: internal.discount,
+            discounts: internal.discounts.map(({ index: _omitIndex, ...rest }) => rest),
+        },
     })
 }

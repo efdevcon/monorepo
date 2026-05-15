@@ -23,6 +23,10 @@ const Ticket = (props: TicketProps) => {
     <>
       <Head>
         <title>{title}</title>
+        {/* Warm the OG image cache from the user's browser so by the time Twitter
+            scrapes the URL (typically several seconds after the user posts), the
+            JPEG is already in our Supabase cache and the scrape is a fast HIT. */}
+        <link rel="preload" as="image" href={props.imageUrl} />
         <meta name="description" key="description" content={description} />
         <meta name="image" key="image" content={props.imageUrl} />
         <meta property="og:type" key="og:type" content="website" />
@@ -71,7 +75,12 @@ async function resolveEnsAvatar(name: string, timeoutMs: number): Promise<string
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const name = ((context.params?.name as string) || 'Anon').replace(/\+/g, ' ')
+  // Catch-all route accepts /ticket/{name} or /ticket/{name}/{cacheBuster}.
+  // The cacheBuster is purely a URL-uniqueness device for social card scrapers
+  // (Twitter/Warpcast cache by full URL). It doesn't affect the rendered page.
+  const slug = (context.params?.slug as string[] | undefined) || []
+  const name = (slug[0] || 'Anon').replace(/\+/g, ' ')
+  const cacheBuster = slug[1] || ''
   const share = context.query.share !== undefined
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
@@ -80,8 +89,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const encodedName = encodeNameForPath(name)
   const avatarUrl = isEnsName(name) ? await resolveEnsAvatar(name, 2500) : null
 
-  const imageUrl = `${baseUrl}/api/ticket/${encodedName}.jpg`
-  const pageUrl = `${baseUrl}/ticket/${encodedName}`
+  const busterSegment = cacheBuster ? `/${encodeURIComponent(cacheBuster)}` : ''
+  // og:image ends in .jpg — Next.js exempts file extensions from trailingSlash redirects, so no slash.
+  const imageUrl = `${baseUrl}/api/ticket/${encodedName}${busterSegment}.jpg`
+  // Page URL: trailing slash matches next.config.js `trailingSlash: true`, so the og:url
+  // we emit is the canonical URL Twitter sees post-redirect — no inconsistency that could
+  // cause Twitter to dedupe across the slashed/unslashed variants.
+  const pageUrl = `${baseUrl}/ticket/${encodedName}${busterSegment}/`
   const ogUrl = pageUrl
 
   return {
