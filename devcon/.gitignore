@@ -66,3 +66,7 @@ generated-codes/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# pretix clone script — snapshots and state files contain Pretix data and must not be committed
+src/scripts/pretix/snapshots/
+src/scripts/pretix/.clone-state-*.json

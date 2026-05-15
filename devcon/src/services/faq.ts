@@ -6,6 +6,12 @@ export interface FaqItem {
   question: string
   answer: string
   category: string
+  /** Multi-select column from NocoDB. NocoDB serializes multi-select fields
+   *  as a comma-separated string (e.g. "checkout,faq") or null when empty;
+   *  we normalize both into a plain array of trimmed tag strings. Used to
+   *  surface FAQs on per-page slices (e.g. the checkout page picks `page`
+   *  containing "checkout"). */
+  pages: string[]
 }
 
 export interface FaqData {
@@ -19,6 +25,7 @@ interface RawNocoFaqRow {
   Answer?: string
   Category?: string
   Published?: boolean
+  Page?: string | null
 }
 
 const SUPPORTED_LOCALES = ['en', 'hi', 'mr'] as const
@@ -70,11 +77,15 @@ export async function getFaqData(locale: string = 'en'): Promise<FaqData> {
     if (rawCategory && !categoryFirstSeen.has(rawCategory)) {
       categoryFirstSeen.set(rawCategory, getCategoryOrder(rawCategory))
     }
+    const pages = typeof r.Page === 'string'
+      ? r.Page.split(',').map(s => s.trim()).filter(Boolean)
+      : []
     items.push({
       id: r.Id,
       question: r.Question || '',
       answer: r.Answer || '',
       category: stripCategoryPrefix(rawCategory),
+      pages,
     })
   }
 

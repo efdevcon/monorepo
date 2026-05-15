@@ -3,25 +3,36 @@ import { useRouter } from 'next/router'
 import Markdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag } from 'lucide-react'
+import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag, Monitor, Smartphone, Shield } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
 import { isEmail } from 'utils/validators'
 import { COUNTRIES } from 'utils/countries'
+import { getFaqData } from 'services/faq'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   WagmiProvider,
   useAccount,
   useDisconnect,
+  useEnsName,
   useWriteContract,
   useWaitForTransactionReceipt,
   useSwitchChain,
   useWalletClient,
   useSendTransaction,
+  usePublicClient,
 } from 'wagmi'
+import {
+  getCapabilities,
+  sendCalls,
+  waitForCallsStatus,
+} from 'wagmi/actions'
+import { mainnet } from 'viem/chains'
 import type { Config } from 'wagmi'
-import { useAppKit } from '@reown/appkit/react'
+import { useAppKit, useWalletInfo } from '@reown/appkit/react'
+import { classifyConnection, connectionTypeLabel, connectionTypeIcon, walletLocationPhrase } from 'utils/walletConnection'
+import { discoverNativeTransfer } from 'utils/discoverTx'
 import { wagmiAdapter } from 'context/appkit-config'
 import { QuestionInfo, TicketInfo } from 'types/pretix'
 import {
@@ -85,7 +96,10 @@ interface PaymentInfo {
   tokenAddress: string
   tokenSymbol: string
   tokenDecimals: number
-  discountForCrypto: string
+  /** Crypto-payment discount percentage as a string (e.g. "10%"), or `null`
+   *  when the discount is disabled. `null` means "no discount" — not "use
+   *  the FE default." */
+  discountForCrypto: string | null
 }
 
 interface CartData {
@@ -149,62 +163,160 @@ const BLOCK_EXPLORERS: Record<number, string> = {
   137: 'https://polygonscan.com',
 }
 
-const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
+// Per-chain block time (ms). Drives the verify-poll cadence so we don't
+// spin-poll Ethereum's 12s blocks or hammer Arbitrum's sub-second blocks.
+const BLOCK_TIME_MS: Record<number, number> = {
+  1: 12_000, // Ethereum
+  10: 2_000, // Optimism
+  137: 2_000, // Polygon
+  8453: 2_000, // Base
+  42161: 250, // Arbitrum
+}
 
-const FAQ_ITEMS = [
-  {
-    q: 'I plan on bringing my child to Devcon with me. Do they need a ticket?',
-    a: 'If your child is between the ages of 5-17, they will need a Youth ticket, which can be purchased at any time at devcon.org/tickets. Children under the age of 5 do not need a ticket. A Youth Ticket will not be valid for anyone 18+.',
-  },
-  {
-    q: 'When will General ticket sales start?',
-    a: 'Early Bird tickets are on sale now. General admission waves will be announced.',
-  },
-  {
-    q: 'Will there be opportunities to obtain discounted tickets?',
-    a: 'Yes. Self-claiming discounts for Indian locals are available via AnonAadhaar. Additional discount categories open 1 May.',
-  },
-  {
-    q: 'If I buy a ticket, and then I am accepted to Speak, can I get a refund for the original ticket I purchased?',
-    a: 'Yes, if you are accepted as a speaker, you can request a refund for your original ticket purchase.',
-  },
-  {
-    q: 'If I am accepted for a discount after buying a full-priced ticket, can I get refund of the difference?',
-    a: 'Yes, we will process a partial refund for the difference between your original ticket price and the discounted price.',
-  },
-  {
-    q: 'I need a Visa invitation Letter. How can I obtain one?',
-    a: 'Visa invitation letters will be available for ticket holders closer to the event date. Details will be shared via email.',
-  },
-  {
-    q: 'When will I get my ticket?',
-    a: 'Your ticket will be sent to the email address provided during checkout shortly after purchase.',
-  },
-  {
-    q: 'Can I purchase tickets with crypto?',
-    a: `Yes! We accept crypto payments with a ${TICKETING.payment.cryptoDiscountPercent}% discount. You can pay using all major wallets and tokens.`,
-  },
-  {
-    q: 'How can I cancel my order?',
-    a: 'You can request a cancellation by contacting our support team. Refund policies apply.',
-  },
-  {
-    q: 'What if I only need to cancel some tickets on an order with multiple?',
-    a: 'You can request a partial cancellation by contacting our support team.',
-  },
-  {
-    q: 'Tickets are sold out - How can I attend?',
-    a: 'Join the waitlist and follow our social channels for announcements about additional ticket releases.',
-  },
-]
+/** Polling cadence: 1.5 s floor (don't hammer fast L2s), 2 s ceiling
+ *  (don't sit idle on L1 — receipt indexing typically resolves within a
+ *  few seconds of inclusion regardless of the 12 s block cadence). */
+function pollIntervalMs(chainId: number | undefined): number {
+  const blockTime = (chainId && BLOCK_TIME_MS[chainId]) ?? 4_000
+  return Math.max(1_500, Math.min(2_000, Math.floor(blockTime / 2)))
+}
+
+/** Poll budget = enough for `requiredConfs + 1` blocks of waiting; capped at 90s. */
+function pollMaxDurationMs(chainId: number | undefined, requiredConfs: number): number {
+  const blockTime = (chainId && BLOCK_TIME_MS[chainId]) ?? 4_000
+  return Math.min(90_000, blockTime * (requiredConfs + 1) + 4_000)
+}
+
+/** Detect Safe (multisig smart wallets). For Safes, `eth_sendTransaction` over
+ *  WalletConnect resolves with a *safeTxHash* — an off-chain hash of the Safe
+ *  transaction object — instead of the on-chain tx hash. We have to bridge
+ *  through the Safe Transaction Service to recover the executed hash. */
+function isSafeWallet(connector: { id?: string; name?: string } | undefined): boolean {
+  if (!connector) return false
+  if (connector.id === 'safe') return true
+  return Boolean(connector.name?.toLowerCase().includes('safe'))
+}
+
+/** Per-chain Safe Transaction Service host (free, no auth). Returns null for
+ *  chains where Safe doesn't operate a tx service. */
+function safeTxServiceHost(chainId: number | undefined): string | null {
+  switch (chainId) {
+    case 1: return 'safe-transaction-mainnet.safe.global'
+    case 10: return 'safe-transaction-optimism.safe.global'
+    case 137: return 'safe-transaction-polygon.safe.global'
+    case 8453: return 'safe-transaction-base.safe.global'
+    case 42161: return 'safe-transaction-arbitrum.safe.global'
+    default: return null
+  }
+}
+
+/** Poll Safe Tx Service until `transactionHash` is non-null (Safe has executed
+ *  the multisig and broadcast). Resolves with the on-chain tx hash, rejects
+ *  on timeout. Budget defaults to 30 minutes — multisigs (e.g. 2/3) can sit
+ *  waiting for co-signers; this is the upper bound the user is expected to
+ *  keep the page open. Beyond that, admin manual-verify is the recovery path. */
+async function pollSafeTxService(
+  chainId: number | undefined,
+  safeTxHash: string,
+  budgetMs = 30 * 60_000
+): Promise<string> {
+  const host = safeTxServiceHost(chainId)
+  if (!host) {
+    throw new Error(`Safe Transaction Service not available for chain ${chainId}`)
+  }
+  const startedAt = Date.now()
+  // Track consecutive 404/422s. Safe's indexer takes a few seconds to ingest
+  // a new safeTxHash, so a brief 404 burst is normal. But if the address
+  // isn't actually a Safe (e.g., a different smart-wallet type) the API
+  // will 404 forever — bail out after ~45s so the user sees a clear error
+  // instead of waiting 30 minutes.
+  let consecutiveNotFound = 0
+  while (Date.now() - startedAt < budgetMs) {
+    try {
+      const res = await fetch(`https://${host}/api/v1/multisig-transactions/${safeTxHash}/`)
+      if (res.ok) {
+        const data = await res.json()
+        if (typeof data.transactionHash === 'string' && data.transactionHash.startsWith('0x')) {
+          return data.transactionHash
+        }
+        consecutiveNotFound = 0
+      } else if (res.status === 404 || res.status === 422) {
+        consecutiveNotFound++
+        if (consecutiveNotFound >= 15) {
+          throw new Error(
+            'Transaction not found in Safe Transaction Service — your wallet may not be a Safe, or the transaction has not been broadcast yet.'
+          )
+        }
+      } else {
+        consecutiveNotFound = 0
+      }
+    } catch (err) {
+      // Re-throw the bail-out error; treat anything else as a transient blip.
+      if (err instanceof Error && err.message.includes('not found in Safe')) throw err
+    }
+    await new Promise(r => setTimeout(r, 8_000))
+  }
+  throw new Error(
+    'Safe transaction timed out — please complete the signing in your Safe and click Retry verification with the on-chain tx hash.'
+  )
+}
+
+/** Poll Safe Messages Service until `preparedSignature` is non-null (Safe has
+ *  collected enough owner signatures to satisfy its threshold and assembled
+ *  the ERC-1271-compatible signature). Used for multisig Safes where
+ *  `eth_signTypedData_v4` returns a 32-byte safeMessageHash instead of a
+ *  complete signature.
+ *
+ *  Resolves with the prepared signature (a hex blob the relayer can pass
+ *  through to the Safe contract's `isValidSignature`). */
+async function pollSafeMessagesService(
+  chainId: number | undefined,
+  safeAddress: string,
+  safeMessageHash: string,
+  budgetMs = 30 * 60_000
+): Promise<string> {
+  const host = safeTxServiceHost(chainId)
+  if (!host) {
+    throw new Error(`Safe Transaction Service not available for chain ${chainId}`)
+  }
+  const startedAt = Date.now()
+  while (Date.now() - startedAt < budgetMs) {
+    try {
+      const res = await fetch(
+        `https://${host}/api/v1/safes/${safeAddress}/messages/${safeMessageHash}/`
+      )
+      if (res.ok) {
+        const data = await res.json()
+        if (typeof data.preparedSignature === 'string' && data.preparedSignature.startsWith('0x')) {
+          return data.preparedSignature
+        }
+      }
+    } catch {
+      // Network blip — keep polling
+    }
+    await new Promise(r => setTimeout(r, 15_000))
+  }
+  throw new Error(
+    'Safe message timed out — please ensure all required signers have signed in their Safe and try again.'
+  )
+}
+
+const SECTION_ORDER = ['swag', 'contact', 'attendee', 'payment', 'faq'] as const
 
 // ── Main page wrapper with providers ──
 
-export default function CheckoutPage() {
+interface CheckoutPageProps {
+  /** FAQs loaded server-side from NocoDB, sliced to entries whose `Page`
+   *  multi-select includes "checkout". Empty array when no rows are tagged
+   *  yet — the FAQ section then renders no items. */
+  faqItems?: Array<{ question: string; answer: string }>
+}
+
+export default function CheckoutPage({ faqItems }: CheckoutPageProps = {}) {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
       <QueryClientProvider client={queryClient}>
-        <CheckoutContent />
+        <CheckoutContent faqItems={faqItems} />
       </QueryClientProvider>
     </WagmiProvider>
   )
@@ -212,12 +324,61 @@ export default function CheckoutPage() {
 
 // ── Checkout content ──
 
-function CheckoutContent() {
-  const daimoPay = TICKETING.checkout.useDaimoPay
+function CheckoutContent({ faqItems }: CheckoutPageProps) {
+  // When true, the "crypto" payment button skips the in-page x402 picker and
+  // redirects to Pretix's hosted checkout — which dispatches to our installed
+  // WalletConnect plugin (the wc_inject UI). Used as a kill switch for the
+  // in-page x402 flow if anything goes wrong with it.
+  const forcePretixRedirect = TICKETING.checkout.forcePretixRedirect
+  const supportEmail = (TICKETING.checkout as { supportEmail?: string }).supportEmail || ''
+  // Fallback shop URL: when either crypto or fiat returns a "not enabled" 404
+  // from the plugin, redirect the buyer to Pretix's hosted shop where they
+  // can use whatever payment Pretix has wired up (via wc_inject for crypto +
+  // Stripe / SEPA for fiat). Honor the explicit `pretixRedirectUrl` admin
+  // override if set; otherwise build the canonical shop URL from base + org +
+  // event slugs. Trailing slash matters — Pretix's shop is a slash route.
+  const pretixShopUrl = (() => {
+    const override = (TICKETING.checkout as { pretixRedirectUrl?: string }).pretixRedirectUrl
+    if (override && override.trim()) return override.trim()
+    const base = TICKETING.pretix.baseUrl.replace(/\/$/, '')
+    return `${base}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/`
+  })()
   const { address, isConnected, chain, connector } = useAccount()
+  // Reown AppKit hook — exposes the *actual* wallet on the other side of a
+  // WalletConnect session (e.g. "Rainbow", "MetaMask Mobile") rather than
+  // the generic "WalletConnect" connector name. For injected connections
+  // it mirrors the extension's announced metadata. May be undefined for a
+  // brief window right after a restored session reconnects.
+  const { walletInfo } = useWalletInfo()
+  const connectionKind = classifyConnection(connector)
+  const connectedWalletName = walletInfo?.name || connector?.name
+  const connectedWalletIcon = walletInfo?.icon || connector?.icon
+  // Some wallets (Bitget has been the worst offender, but it's a generic
+  // problem with self-hosted icon CDNs) return an `icon` URL that 4xxs,
+  // times out, or is malformed. Without a fallback the buyer sees the
+  // browser's broken-image glyph next to a perfectly working connection.
+  // Tracking the failure per-icon (keyed by URL) lets us swap to the
+  // gradient placeholder without re-rendering on every network blip.
+  const [iconLoadFailedFor, setIconLoadFailedFor] = useState<string | null>(null)
+  const iconBroken = Boolean(connectedWalletIcon && iconLoadFailedFor === connectedWalletIcon)
+  // Reverse-resolve the connected address to an ENS name on Ethereum
+  // mainnet (UNS / other namespaces aren't supported by viem's resolver).
+  // Pinned to chainId=1 regardless of which chain the user is currently on
+  // — `.eth` reverse records only live on mainnet. Cached automatically by
+  // wagmi/React Query so the call only fires once per address. Renders the
+  // truncated 0x… while loading or if no name is set.
+  const { data: ensName } = useEnsName({
+    address,
+    chainId: mainnet.id,
+    query: { enabled: Boolean(address) },
+  })
+  // DEMO HARDCODE: rebrand `d.krux.eth` → `d.devcon.eth` for the demo.
+  // The `title={address}` on the rendered `<span>` still surfaces the real
+  // 0x on hover, so this is purely a visual substitution. REMOVE AFTER DEMO.
+  const displayEnsName = ensName === 'd.krux.eth' ? 'd.devcon.eth' : ensName
   const { open } = useAppKit()
   const { disconnect } = useDisconnect()
-  const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
+  const { switchChain, switchChainAsync, isPending: isSwitchingChain } = useSwitchChain()
   const router = useRouter()
 
   const [mounted, setMounted] = useState(false)
@@ -229,6 +390,25 @@ function CheckoutContent() {
   const [openSection, setOpenSection] = useState<string | null>('swag')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
   const [paymentMethod, setPaymentMethod] = useState<'crypto' | 'fiat'>('crypto')
+
+  // CB / Base SW on mobile Safari trips the WebView eviction bug;
+  // block pay (allow connect). TODO: cart-handoff token to re-enable.
+  const showMobileCoinbaseWarning = (() => {
+    if (typeof navigator === 'undefined') return false
+    const ua = navigator.userAgent || ''
+    return /iPhone|iPad|iPod|Android/i.test(ua) && !/Coinbase/i.test(ua) && connectionKind === 'coinbaseWallet'
+  })()
+
+
+  // FAQ list shown in the on-page accordion. Sourced from NocoDB rows
+  // whose `Page` multi-select contains "checkout" (filtered in
+  // getStaticProps), so the editorial team can edit copy without a
+  // redeploy. Empty when no rows are tagged yet — the FAQ section then
+  // simply renders no items.
+  const resolvedFaqItems: Array<{ q: React.ReactNode; a: React.ReactNode }> = (faqItems || []).map(i => ({
+    q: i.question,
+    a: <Markdown>{i.answer}</Markdown>,
+  }))
 
   // ── Cart from localStorage ──
   const [cartItems, setCartItems] = useState<CartItem[]>([])
@@ -252,6 +432,11 @@ function CheckoutContent() {
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({})
   const [showContactErrors, setShowContactErrors] = useState(false)
   const [showAttendeeErrors, setShowAttendeeErrors] = useState(false)
+  /** Flips true when the user clicks Continue on the Swag section with at
+   *  least one addon picked at quantity ≥ 1 but no variation chosen. Drives
+   *  red borders on the size dropdown + an inline error message. Auto-clears
+   *  on the next successful Continue. */
+  const [showSwagErrors, setShowSwagErrors] = useState(false)
   // ── Payment flow state ──
   const [purchaseLoading, setPurchaseLoading] = useState(false)
   const [purchaseError, setPurchaseError] = useState<string | null>(null)
@@ -260,6 +445,9 @@ function CheckoutContent() {
   const [txHash, setTxHash] = useState<string | null>(null)
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null)
   const [isRedirecting, setIsRedirecting] = useState(false)
+  // Set true after verify succeeds — used to hide the Pay button during the
+  // short window between "verified" and the actual router.push navigation.
+  const [paymentSucceeded, setPaymentSucceeded] = useState(false)
 
   // Gasless state
   const [authorizationData, setAuthorizationData] = useState<any>(null)
@@ -267,9 +455,38 @@ function CheckoutContent() {
   // True during the verifyPayment poll (between tx broadcast and order confirmation).
   // Used to lock token/network selection until verification resolves.
   const [isVerifying, setIsVerifying] = useState(false)
+  // Confirmation progress surfaced from the plugin's `confirmations` /
+  // `confirmations_required` fields. Used to render "Confirming on-chain (1/3)…"
+  // in place of the old retry-counter ("3/12 attempts") UI which was misleading
+  // — it implied the system was approaching failure when it was actually just
+  // waiting on the chain to mine more blocks.
+  const [confirmProgress, setConfirmProgress] = useState<{ current: number; required: number } | null>(null)
   // EIP-191 signature binding payer wallet to the payment reference.
   // Only populated for the native ETH path (USDC/USDT0 are bound via EIP-3009).
   const [ethPayerSignature, setEthPayerSignature] = useState<string | null>(null)
+
+  // Hash-recovery escape hatch for native ETH sends. Some wallets (Binance
+  // Wallet on macOS, intermittently Bitget Mobile/TokenPocket) broadcast the
+  // tx successfully but never return the hash through the WC session, leaving
+  // sendTransactionAsync hanging forever. When the watchdog can't auto-find
+  // the tx via Alchemy assetTransfers within ~4min, we surface a manual hash
+  // input as a last resort.
+  const [needsManualHash, setNeedsManualHash] = useState(false)
+  const [manualHashInput, setManualHashInput] = useState('')
+  const [manualHashError, setManualHashError] = useState<string | null>(null)
+  const [manualHashSubmitting, setManualHashSubmitting] = useState(false)
+  const manualHashResolverRef = useRef<((hash: `0x${string}`) => void) | null>(null)
+  // Holds the expected (to, value) so submitManualHash can validate the
+  // pasted hash matches the order before accepting it. Cleared when recovery
+  // ends or the order is cancelled.
+  const expectedTxRef = useRef<{ to: string; value: bigint } | null>(null)
+  // Guard against concurrent verifyPayment polls. Two callers can race for
+  // the same hash — the recovery wrapper (when discovery/manual wins) and
+  // the useWaitForTransactionReceipt useEffect (when the wallet eventually
+  // returns the same hash anyway). Both end up polling the same backend
+  // verify endpoint and racing setIsVerifying / navigation; this ref
+  // suppresses the second caller for an in-flight hash.
+  const verifyingHashRef = useRef<string | null>(null)
 
   // Payment options (multi-chain)
   const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([])
@@ -279,6 +496,22 @@ function CheckoutContent() {
 
   const paymentOptionsAutoLoadedRef = useRef<string | null>(null)
   const tokenFilterAutoSelectedRef = useRef(false)
+  /** Payer address frozen at the moment a payment is initiated. Read by
+   *  verifyPayment instead of the live `useAccount().address` because a
+   *  multisig Safe co-signer often needs to switch wallets/accounts mid-flow
+   *  to provide the next signature — that switch tears down the WC session
+   *  and zeros out the live address. The on-chain tx still mines under the
+   *  Safe address regardless of which owner-EOA is currently connected, so
+   *  freezing the payer at flow-start keeps verify pointed at the right
+   *  account. */
+  const payerAddressRef = useRef<string | null>(null)
+  /** Mirror of `ethPayerSignature` state — read by callers that fire in the
+   *  same async chain as the `setEthPayerSignature` call (notably the Safe
+   *  ETH path: signMessage → setEthPayerSignature → sendTransaction →
+   *  pollSafeTxService → verifyPayment, all within one async closure with
+   *  no re-render between). The state's closure value is stale at that
+   *  point; the ref always holds the latest. */
+  const ethPayerSignatureRef = useRef<string | null>(null)
 
   // Voucher state
   const [discountOpen, setDiscountOpen] = useState(false)
@@ -297,15 +530,112 @@ function CheckoutContent() {
   const [mobileInlineSummaryOpen, setMobileInlineSummaryOpen] = useState(false)
   const voucherValidationRef = useRef(0)
   const autoCheckoutTriggeredRef = useRef<string | null>(null)
+  // Set true when /purchase returns 404 'x402 flow not enabled for this event'.
+  // Suppresses the auto-checkout retry loop and surfaces a clear notice
+  // instead of the generic "Failed to create purchase" the buyer would
+  // otherwise see when an admin has toggled x402 off for this event.
+  const [cryptoDisabledForEvent, setCryptoDisabledForEvent] = useState(false)
+  // Set true when /fiat-purchase returns 404 'external API purchase is not
+  // enabled for this event' (plugin's `fiat_purchase_enabled` toggle).
+  // Parallel to `cryptoDisabledForEvent` — surfaces a clear "card payment
+  // unavailable" notice instead of a generic error from the redirect path.
+  // Affects both the Stripe button and the WC-via-Pretix redirect, since
+  // both routes go through `/api/x402/tickets/fiat-purchase`.
+  const [fiatDisabledForEvent, setFiatDisabledForEvent] = useState(false)
 
   // Wagmi hooks
   const { data: writeData, isPending: isWritePending, error: writeError } = useWriteContract()
   const { data: walletClient } = useWalletClient()
+  const publicClient = usePublicClient()
   const [isSigningDirect, setIsSigningDirect] = useState(false)
   const [directSignError, setDirectSignError] = useState<string | null>(null)
-  const { isLoading: isTxLoading, isSuccess: isTxSuccess } = useWaitForTransactionReceipt({ hash: writeData })
+  /** Smart-wallet (any contract wallet) flag from on-chain `getCode`. Drives
+   *  the Safe-bridge fallback in the ETH-send path — useful even for non-Safe
+   *  smart wallets, because we want to *try* Safe Tx Service polling and let
+   *  the API itself say no via a 404. */
+  const [isSmartWallet, setIsSmartWallet] = useState(false)
+  /** Safe-specific flag: true only when the connected address is registered
+   *  with Safe Transaction Service. Used for the user-facing notice so the
+   *  copy is Safe-flavored rather than generic-smart-wallet-flavored. */
+  const [isSafeAddress, setIsSafeAddress] = useState(false)
+  /** Safe owner threshold (signatures required). 1 = single-sig, ≥2 = multi-
+   *  sig. Drives the "open in a separate tab" guidance, which only matters
+   *  when co-signers are involved. */
+  const [safeThreshold, setSafeThreshold] = useState<number | null>(null)
+  // `onReplaced` fires when the wallet user clicks "Speed Up" (reason: 'repriced'),
+  // sends a different tx at the same nonce ('replaced'), or clicks "Cancel"
+  // ('cancelled'). The hook then resolves with the new tx's receipt — we read
+  // `data.transactionHash` (NOT `writeData`/`sendTxHash`) so verify always
+  // targets the hash that actually mined.
+  // Detect smart wallets and Safes at connect time. Two parallel signals:
+  //   1. `getCode(address)` non-empty → some contract wallet (Safe, CSW, etc.)
+  //   2. Safe Transaction Service `/api/v1/safes/<addr>/` 200 → confirmed Safe
+  // The smart-wallet flag drives the ETH-send fallback path (best-effort Safe
+  // Tx Service polling). The Safe flag drives the user-facing notice copy so
+  // it specifically says "Safe" rather than "smart wallet" (less confusing
+  // for buyers using an actual Safe; non-Safe smart wallets are rare in
+  // ticket purchases anyway).
+  useEffect(() => {
+    if (!isConnected || !address || !publicClient) {
+      setIsSmartWallet(false)
+      setIsSafeAddress(false)
+      return
+    }
+    let cancelled = false
+    publicClient
+      .getCode({ address: address as `0x${string}` })
+      .then(code => {
+        if (cancelled) return
+        setIsSmartWallet(Boolean(code && code !== '0x'))
+      })
+      .catch(() => {
+        if (cancelled) return
+        setIsSmartWallet(false)
+      })
+    const host = safeTxServiceHost(chain?.id)
+    if (host) {
+      fetch(`https://${host}/api/v1/safes/${address}/`)
+        .then(async r => {
+          if (cancelled) return
+          if (!r.ok) {
+            setIsSafeAddress(false)
+            setSafeThreshold(null)
+            return
+          }
+          setIsSafeAddress(true)
+          const data = await r.json().catch(() => null)
+          setSafeThreshold(typeof data?.threshold === 'number' ? data.threshold : null)
+        })
+        .catch(() => {
+          if (cancelled) return
+          setIsSafeAddress(false)
+          setSafeThreshold(null)
+        })
+    } else {
+      setIsSafeAddress(false)
+      setSafeThreshold(null)
+    }
+    return () => {
+      cancelled = true
+    }
+  }, [isConnected, address, publicClient, chain?.id])
+
+  function handleReplaced(replacement: { reason: string }) {
+    if (replacement.reason === 'cancelled') {
+      setPurchaseError(`Transaction was cancelled ${walletLocationPhrase(connectionKind, connectedWalletName)} — please retry.`)
+      setPaymentStatus(null)
+      setIsVerifying(false)
+    }
+  }
+  const { isLoading: isTxLoading, isSuccess: isTxSuccess, data: writeReceipt } = useWaitForTransactionReceipt({
+    hash: writeData,
+    onReplaced: handleReplaced,
+  })
   const { sendTransactionAsync, data: sendTxHash, isPending: isSendTxPending } = useSendTransaction()
-  const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess } = useWaitForTransactionReceipt({ hash: sendTxHash })
+  const { isLoading: isSendTxReceiptLoading, isSuccess: isSendTxSuccess, data: sendTxReceipt } = useWaitForTransactionReceipt({
+    hash: sendTxHash,
+    onReplaced: handleReplaced,
+  })
 
   // ── Voucher validation ──
   async function validateVoucherCode(code: string) {
@@ -493,20 +823,31 @@ function CheckoutContent() {
   }, [paymentOptions])
 
   // ── Handle direct payment tx success ──
+  // Use `writeReceipt.transactionHash` (NOT `writeData`) so we verify the tx
+  // that actually mined — including any wallet-side speed-up or replacement
+  // that produced a different hash at the same nonce.
   useEffect(() => {
-    if (isTxSuccess && writeData && paymentDetails) {
-      setTxHash(writeData)
-      verifyPayment(writeData)
+    if (isTxSuccess && writeReceipt && paymentDetails) {
+      const minedHash = writeReceipt.transactionHash
+      if (writeData && minedHash !== writeData) {
+        console.info('[checkout] write tx replaced/sped-up:', writeData, '→', minedHash)
+      }
+      setTxHash(minedHash)
+      verifyPayment(minedHash)
     }
-  }, [isTxSuccess, writeData])
+  }, [isTxSuccess, writeReceipt])
 
   // ── Handle native ETH send tx success ──
   useEffect(() => {
-    if (isSendTxSuccess && sendTxHash && paymentDetails) {
-      setTxHash(sendTxHash)
-      verifyPayment(sendTxHash)
+    if (isSendTxSuccess && sendTxReceipt && paymentDetails) {
+      const minedHash = sendTxReceipt.transactionHash
+      if (sendTxHash && minedHash !== sendTxHash) {
+        console.info('[checkout] sendTx replaced/sped-up:', sendTxHash, '→', minedHash)
+      }
+      setTxHash(minedHash)
+      verifyPayment(minedHash)
     }
-  }, [isSendTxSuccess, sendTxHash])
+  }, [isSendTxSuccess, sendTxReceipt])
 
   /**
    * Sign EIP-712 typed data directly via eth_signTypedData_v4.
@@ -550,10 +891,26 @@ function CheckoutContent() {
       ),
     })
 
-    return walletClient.request({
+    const sig = (await walletClient.request({
       method: 'eth_signTypedData_v4',
       params: [address, jsonStr],
-    } as any)
+    } as any)) as string
+
+    // Multisig Safe path: when threshold > 1, the Safe app stores the
+    // typed-data message in Safe Tx Service and returns the safeMessageHash
+    // (32 bytes / 66 chars including 0x) instead of a complete signature. The
+    // dapp must poll Safe Messages API until co-signers have signed and the
+    // assembled `preparedSignature` is available — that's what the relayer
+    // submits to the Safe contract's ERC-1271 `isValidSignature`.
+    //
+    // Length-based discrimination: a real ECDSA sig is 65 bytes (132 chars +
+    // 0x), an ERC-1271 sig is even longer; only a bare hash is 32 bytes (66
+    // chars + 0x). So short = "this is a hash, not a sig".
+    if (typeof sig === 'string' && sig.length === 66 && sig.startsWith('0x')) {
+      setPaymentStatus('Waiting for Safe owners to sign — this may take a while...')
+      return await pollSafeMessagesService(chainIdNum, address as string, sig)
+    }
+    return sig
   }
 
   // ── Get applicable questions for selected tickets ──
@@ -586,10 +943,24 @@ function CheckoutContent() {
   // Fingerprint for detecting add-on selection changes (used in reset + auto-checkout effects)
   const addonFingerprint = JSON.stringify(Array.from(selectedAddons.entries()).sort((a, b) => a[0] - b[0]))
 
+  // Lookup: addon item id → parent category (so we can read priceIncluded).
+  // An item can appear in only one addon-category for a given ticket, so the
+  // first hit is authoritative.
+  const addonCategoryByItemId = new Map<number, TicketInfo['addons'][number]>()
+  for (const cat of availableAddons) {
+    for (const it of cat.items) {
+      if (!addonCategoryByItemId.has(it.id)) addonCategoryByItemId.set(it.id, cat)
+    }
+  }
+
   // Add-on subtotal
   const addonSubtotal = Array.from(selectedAddons.entries()).reduce((sum, [itemId, data]) => {
     const item = allAddonItems.find(i => i.id === itemId)
     if (!item || data.quantity <= 0) return sum
+    // Free as an addon to the selected ticket — Pretix's `price_included: true`
+    // on the parent ticket's addon-category entry overrides item.default_price.
+    const category = addonCategoryByItemId.get(itemId)
+    if (category?.priceIncluded) return sum
     // If a variation is selected, use variation price; otherwise use item price
     let price = parseFloat(item.price)
     if (data.variationId) {
@@ -616,8 +987,24 @@ function CheckoutContent() {
     return +discount.toFixed(2)
   })()
 
-  const cryptoDiscountPercent = paymentInfo?.discountForCrypto ? parseInt(paymentInfo.discountForCrypto) : TICKETING.payment.cryptoDiscountPercent
-  const cryptoDiscount = paymentMethod === 'crypto' && !daimoPay ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2) : 0
+  // API is source of truth when it ships a value (string OR explicit null).
+  // Fall back to TICKETING config only when paymentInfo isn't loaded yet OR
+  // the field is missing (older API response). `null` is a meaningful
+  // "disabled" signal from the API and must NOT trigger the fallback.
+  const apiDiscount = paymentInfo?.discountForCrypto
+  const cryptoDiscountPercent =
+    apiDiscount === undefined
+      ? TICKETING.payment.cryptoDiscountPercent
+      : apiDiscount === null
+        ? 0
+        : (parseInt(apiDiscount) || 0)
+  // Single derived flag — every render site (badge, summary line, FAQ) gates
+  // on this. When false, the discount is invisible everywhere (no "0%", no
+  // "-$0", no SAVE badge, no FAQ mention).
+  const cryptoDiscountEnabled = cryptoDiscountPercent > 0
+  const cryptoDiscount = cryptoDiscountEnabled && paymentMethod === 'crypto' && !forcePretixRedirect
+    ? +((subtotal - voucherDiscount) * cryptoDiscountPercent / 100).toFixed(2)
+    : 0
   const totalUsdNum = +(subtotal - voucherDiscount - cryptoDiscount).toFixed(2)
   const totalUsd = totalUsdNum.toFixed(2)
 
@@ -636,17 +1023,223 @@ function CheckoutContent() {
     if (/user (rejected|denied|cancelled|refused)/i.test(msg) || /request.rejected/i.test(msg)) {
       return 'Transaction rejected — please try again when ready.'
     }
+    // Wallet-side RPC hiccups: Zerion (and others) route their pre-tx reads
+    // through shared Reown/erpc upstream pools, which periodically rate-limit
+    // or return missing-data errors. The wallet surfaces these as opaque blobs
+    // — map the known signatures to a clear retry prompt.
+    if (
+      /header not found/i.test(msg) ||
+      /ErrUpstreamsExhausted|ErrEndpointMissingData|ErrUpstreamRequest/i.test(msg) ||
+      /upstream connect error/i.test(msg) ||
+      /rate.?limited|too many requests/i.test(msg) ||
+      /-32014/.test(msg) ||
+      /(syntax error at index 0|invalid chars)[\s\S]*upstream/i.test(msg)
+    ) {
+      return "Your wallet's network connection was unstable while preparing the transaction. Please try again."
+    }
     return msg || 'Something went wrong'
   }
 
-  function humanizeRelayerError(msg?: string): string {
+  function humanizeRelayerError(msg?: string, category?: string): string {
+    if (category === 'relayer_insufficient_funds') {
+      return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
+    }
+    if (category === 'gas_price_too_high') {
+      return 'Network fees are currently high. Please try again in a minute or switch to another network.'
+    }
     if (!msg) return 'Failed to execute transfer'
-    if (/gas price .* exceeds cap/i.test(msg)) return 'Network gas fees are too high right now. Please try again in a few minutes.'
-    if (/relayer balance .* insufficient/i.test(msg)) return 'The payment service is temporarily unavailable. Please try again shortly.'
+    if (/relayer cannot afford tx/i.test(msg)) return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
+    if (/gas price .* exceeds cap/i.test(msg)) return 'Network fees are currently high. Please try again in a minute or switch to another network.'
     if (/simulation reverted/i.test(msg)) return 'This transaction would fail on-chain. Please check your balance and try again.'
     if (/nonce has already been used/i.test(msg)) return 'This authorization has already been used. Please start a new payment.'
     if (/^insufficient /i.test(msg)) return msg // already human-readable ("Insufficient USDC balance: ...")
     return 'Failed to execute transfer. Please try again.'
+  }
+
+  // ── Native-ETH send with hash-recovery ──
+  // Wraps `sendTransactionAsync` so that wallets which broadcast a tx but fail
+  // to return the hash (Binance Wallet on macOS being the canonical example,
+  // and a class of WC-implementation bugs more generally) don't strand the UI
+  // in "Confirm in wallet…" forever after the buyer's funds have already left.
+  //
+  // Three paths race for the hash:
+  //   1. Wallet → returns hash via WC/injected (the happy path, ~always wins)
+  //   2. Auto-discovery → after a 45s grace, polls Alchemy assetTransfers
+  //      every 8s for an outgoing native-ETH transfer matching from/to/value
+  //      since `fromBlock`. Fires until the hash is found or 4min elapse.
+  //   3. Manual hash entry → after the auto window expires, an input field
+  //      appears so the buyer can paste the hash from their wallet history.
+  //
+  // Whichever path resolves first wins; the others are no-ops afterwards.
+  // Errors from the wallet path (genuine rejections, RPC failures) reject
+  // the outer promise and bypass recovery.
+  async function sendNativeEthWithRecovery(args: {
+    to: `0x${string}`
+    value: bigint
+    data: `0x${string}`
+    chainId: number
+    payer: string
+  }): Promise<`0x${string}`> {
+    // Snapshot the chain head before sending so the discovery poll has a
+    // tight lower bound. If we can't read it (publicClient temporarily
+    // unavailable), fall back to scanning recent history — Alchemy capped
+    // at maxCount=1000 will still return our match if it lands.
+    let preBlock: bigint | undefined
+    try {
+      preBlock = await publicClient?.getBlockNumber()
+    } catch {
+      preBlock = undefined
+    }
+
+    expectedTxRef.current = { to: args.to.toLowerCase(), value: args.value }
+
+    const startedAt = Date.now()
+    let resolved = false
+    let resolveOuter!: (h: `0x${string}`) => void
+    let rejectOuter!: (e: unknown) => void
+    const result = new Promise<`0x${string}`>((res, rej) => {
+      resolveOuter = res
+      rejectOuter = rej
+    })
+    const cleanup = () => {
+      manualHashResolverRef.current = null
+      setNeedsManualHash(false)
+    }
+    // Wallet path resolution: hand the hash back and let the existing
+    // useWaitForTransactionReceipt → verifyPayment useEffect run.
+    const finishFromWallet = (h: `0x${string}`) => {
+      if (resolved) return
+      resolved = true
+      console.info('[checkout] tx-hash recovery: WALLET path won', { hash: h, elapsedMs: Date.now() - startedAt })
+      cleanup()
+      resolveOuter(h)
+    }
+    // Recovery path resolution (Alchemy or manual): wagmi never saw this
+    // hash, so the receipt useEffect will never fire. Trigger verify here.
+    const finishFromRecovery = (h: `0x${string}`, source: 'discovery' | 'manual') => {
+      if (resolved) return
+      resolved = true
+      console.info(`[checkout] tx-hash recovery: ${source.toUpperCase()} path won`, { hash: h, elapsedMs: Date.now() - startedAt })
+      cleanup()
+      setTxHash(h)
+      verifyPayment(h)
+      resolveOuter(h)
+    }
+    const fail = (e: unknown) => {
+      if (resolved) return
+      resolved = true
+      console.info('[checkout] tx-hash recovery: WALLET path FAILED', { error: e, elapsedMs: Date.now() - startedAt })
+      cleanup()
+      rejectOuter(e)
+    }
+
+    manualHashResolverRef.current = (h) => finishFromRecovery(h, 'manual')
+
+    // Path 1: the wallet
+    sendTransactionAsync({
+      to: args.to,
+      value: args.value,
+      data: args.data,
+    })
+      .then(h => finishFromWallet(h as `0x${string}`))
+      .catch(e => fail(e))
+
+    // Path 2 + 3: discovery + manual fallback
+    const GRACE_MS = 20_000
+    const POLL_MS = 8_000
+    const TOTAL_MS = 60_000
+    let announcedDiscovery = false
+
+    const tick = async () => {
+      if (resolved) return
+      if (!announcedDiscovery) {
+        announcedDiscovery = true
+        console.info('[checkout] tx-hash recovery: discovery polling started', { graceMs: GRACE_MS, pollMs: POLL_MS, totalMs: TOTAL_MS })
+        setPaymentStatus('Looking for your transaction on chain — please do not close this window…')
+      }
+      try {
+        const found = await discoverNativeTransfer({
+          chainId: args.chainId,
+          payer: args.payer,
+          to: args.to,
+          value: args.value,
+          fromBlock: preBlock,
+        })
+        console.info('[checkout] tx-hash recovery: discovery poll result', { found: found ?? null, elapsedMs: Date.now() - startedAt })
+        if (found) {
+          finishFromRecovery(found, 'discovery')
+          return
+        }
+      } catch (err) {
+        console.info('[checkout] tx-hash recovery: discovery poll error', err)
+      }
+      if (resolved) return
+      if (Date.now() - startedAt < TOTAL_MS) {
+        setTimeout(tick, POLL_MS)
+      } else {
+        // Auto window exhausted. Surface the manual entry but keep listening
+        // — the wallet might still resolve, and the manualHashResolverRef is
+        // wired up the same way.
+        console.info('[checkout] tx-hash recovery: auto window exhausted, surfacing manual hash entry')
+        setPaymentStatus(null)
+        setNeedsManualHash(true)
+      }
+    }
+    setTimeout(tick, GRACE_MS)
+
+    return result
+  }
+
+  // ── Manual-hash submit ──
+  // Validates the hash on-chain (from=payer, to=expected, value=expected)
+  // before accepting, then hands it to whatever recovery flow is awaiting it.
+  async function submitManualHash() {
+    const raw = manualHashInput.trim()
+    setManualHashError(null)
+    if (!/^0x[0-9a-fA-F]{64}$/.test(raw)) {
+      setManualHashError('That doesn\'t look like a transaction hash. It should be 0x followed by 64 hex characters.')
+      return
+    }
+    if (!publicClient) {
+      setManualHashError('Wallet not connected — cannot verify the hash.')
+      return
+    }
+    if (!expectedTxRef.current || !manualHashResolverRef.current) {
+      setManualHashError('No payment is currently waiting for a hash.')
+      return
+    }
+    const expectedPayer = (payerAddressRef.current ?? address ?? '').toLowerCase()
+    const expected = expectedTxRef.current
+
+    setManualHashSubmitting(true)
+    try {
+      const tx = await publicClient.getTransaction({ hash: raw as `0x${string}` })
+      if (!tx) {
+        setManualHashError('Transaction not found on chain. Make sure you pasted the correct hash and that it has been broadcast.')
+        return
+      }
+      if ((tx.from ?? '').toLowerCase() !== expectedPayer) {
+        setManualHashError('That transaction was sent from a different wallet than the one connected here.')
+        return
+      }
+      if ((tx.to ?? '').toLowerCase() !== expected.to) {
+        setManualHashError('That transaction was sent to a different address than the order recipient.')
+        return
+      }
+      if (tx.value !== expected.value) {
+        setManualHashError('That transaction\'s ETH amount does not match the order total.')
+        return
+      }
+      manualHashResolverRef.current(raw as `0x${string}`)
+      setManualHashInput('')
+    } catch (e) {
+      setManualHashError(
+        (e instanceof Error && e.message) ||
+        'Could not look up the transaction. Please try again in a moment.'
+      )
+    } finally {
+      setManualHashSubmitting(false)
+    }
   }
 
   // ── Payment state invalidation ──
@@ -663,6 +1256,14 @@ function CheckoutContent() {
     setPurchaseError(null)
     setDirectSignError(null)
     setTokenFilter(null)
+    setPaymentSucceeded(false)
+    setNeedsManualHash(false)
+    setManualHashInput('')
+    setManualHashError(null)
+    setManualHashSubmitting(false)
+    manualHashResolverRef.current = null
+    expectedTxRef.current = null
+    verifyingHashRef.current = null
     tokenFilterAutoSelectedRef.current = false
     paymentOptionsAutoLoadedRef.current = null
     autoCheckoutTriggeredRef.current = null
@@ -698,6 +1299,16 @@ function CheckoutContent() {
   const [sectionWarning, setSectionWarning] = useState<string | null>(null)
 
   const toggleSection = (id: string) => {
+    // Block forward jumps past 'swag' when an addon is picked at qty ≥ 1 but
+    // its variation hasn't been chosen — same gating shape as the
+    // contact/attendee mandatory-field guards below.
+    const movingPastSwag = id !== 'swag' && id !== 'faq' && openSection !== id
+    if (movingPastSwag && !swagSelectionsValid) {
+      setSectionWarning('Please select a size for each add-on first.')
+      setShowSwagErrors(true)
+      setOpenSection('swag')
+      return
+    }
     if (id === 'payment' && openSection !== 'payment') {
       if (!contactDetailsFilled) {
         setSectionWarning('Please fill in your contact details first.')
@@ -737,18 +1348,40 @@ function CheckoutContent() {
     isEmail(email.trim()) &&
     email.trim() === confirmEmail.trim()
 
+  /** True when ETH is the sole enabled crypto token — drives ETH-specific
+   *  copy on the payment option. Computed via a non-narrowing runtime cast
+   *  so changing the token list shape (`as const` vs typed alias) in
+   *  `config/ticketing.ts` doesn't reintroduce TS2367. */
+  const enabledTokensList = TICKETING.payment.enabledTokens as readonly string[]
+  const isEthOnly = enabledTokensList.length === 1 && enabledTokensList[0] === 'ETH'
+
+  /** True when every selected addon (quantity ≥ 1) that has variations has a
+   *  variation chosen. Same gating semantics as `contactDetailsFilled` —
+   *  blocks forward navigation past the Swag section. */
+  const swagSelectionsValid = (() => {
+    for (const [itemId, data] of selectedAddons.entries()) {
+      if (data.quantity <= 0) continue
+      const item = allAddonItems.find(i => i.id === itemId)
+      if (!item || item.variations.length === 0) continue
+      if (!data.variationId) return false
+    }
+    return true
+  })()
+
   // Auto-trigger crypto checkout when prerequisites are met (only on payment section)
   useEffect(() => {
     if (
       openSection === 'payment' &&
       paymentMethod === 'crypto' &&
-      !daimoPay &&
+      !forcePretixRedirect &&
       contactDetailsFilled &&
       cartItems.length > 0 &&
       isConnected &&
       address &&
       !paymentDetails &&
-      !isProcessing
+      !isProcessing &&
+      !cryptoDisabledForEvent &&
+      !showMobileCoinbaseWarning
     ) {
       const key = `${address}-${totalUsd}-${addonFingerprint}`
       if (autoCheckoutTriggeredRef.current === key) return
@@ -758,7 +1391,7 @@ function CheckoutContent() {
       setPurchaseError(null)
       handleCryptoCheckout().finally(() => setPurchaseLoading(false))
     }
-  }, [openSection, paymentMethod, daimoPay, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint])
+  }, [openSection, paymentMethod, forcePretixRedirect, contactDetailsFilled, cartItems.length, isConnected, address, paymentDetails, isProcessing, totalUsd, addonFingerprint, cryptoDisabledForEvent, showMobileCoinbaseWarning])
 
   // Add-on selection helpers
   const toggleAddon = (itemId: number) => {
@@ -805,7 +1438,16 @@ function CheckoutContent() {
 
   const toggleMultiAnswer = (questionId: number, optionId: string) => {
     setAnswers(prev => {
-      const current = (prev[questionId] as string[]) || []
+      // Defensive: a previous render may have stored a single-select string
+      // under this id (e.g. if the question type changed, or the value was
+      // hydrated from a Pretix answer that's persisted as a comma-joined
+      // string). Coerce non-array values into an array before .filter / spread.
+      const raw = prev[questionId]
+      const current: string[] = Array.isArray(raw)
+        ? raw
+        : typeof raw === 'string' && raw.length > 0
+        ? raw.split(',').map(s => s.trim()).filter(Boolean)
+        : []
       const next = current.includes(optionId) ? current.filter(v => v !== optionId) : [...current, optionId]
       return { ...prev, [questionId]: next }
     })
@@ -888,7 +1530,7 @@ function CheckoutContent() {
       return
     }
 
-    if (paymentMethod === 'crypto' && !daimoPay && (!isConnected || !address)) {
+    if (paymentMethod === 'crypto' && !forcePretixRedirect && (!isConnected || !address)) {
       setPurchaseError('Please connect your wallet first')
       return
     }
@@ -899,8 +1541,8 @@ function CheckoutContent() {
 
     if (paymentMethod === 'fiat') {
       await handleFiatCheckout()
-    } else if (daimoPay) {
-      await handleFiatCheckout('daimo_pay')
+    } else if (forcePretixRedirect) {
+      await handleFiatCheckout('walletconnect')
     } else {
       await handleCryptoCheckout()
     }
@@ -933,8 +1575,20 @@ function CheckoutContent() {
   }
 
   async function handleCryptoCheckout() {
+    if (showMobileCoinbaseWarning) {
+      setPurchaseError(
+        'Coinbase / Base Smart Wallet checkout is not supported on mobile yet. Please complete this purchase on desktop, or disconnect and use a different wallet.',
+      )
+      return
+    }
     try {
       const formattedAnswers = buildFormattedAnswers()
+      // Freeze the payer at flow-start. Multisig Safe co-signers may swap
+      // wallets after the first signature, dropping the WC session and
+      // zeroing useAccount().address — but the on-chain tx mines under this
+      // (Safe) address regardless. verifyPayment reads from the ref so that
+      // post-disconnect verify keeps working.
+      payerAddressRef.current = address ?? null
 
       // Build add-ons array from selections
       const addons = Array.from(selectedAddons.entries())
@@ -976,6 +1630,20 @@ function CheckoutContent() {
           })
         }
       } else {
+        // Per-event x402 toggle (plugin Fix 1) returns 404 with this exact
+        // error string when an admin has disabled crypto checkout for the
+        // event. Flip the suppress-flag so the auto-checkout effect doesn't
+        // immediately re-trigger, then surface a notice with a button that
+        // sends the buyer to the Pretix-hosted shop. The shop has wc_inject
+        // for crypto and Stripe for fiat — whatever the operator has wired
+        // up there will keep working even when our storefront's API path is
+        // disabled. Button-driven (not auto-redirect) so the buyer
+        // explicitly chooses to leave the storefront.
+        if (res.status === 404 && /x402 flow not enabled/i.test(data.error || '')) {
+          setCryptoDisabledForEvent(true)
+          setPaymentStatus(null)
+          return
+        }
         setPurchaseError(data.error || 'Failed to create purchase')
         setPaymentStatus(null)
       }
@@ -985,7 +1653,7 @@ function CheckoutContent() {
     }
   }
 
-  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'daimo_pay') {
+  async function handleFiatCheckout(paymentProvider?: 'stripe' | 'walletconnect') {
     try {
       const formattedAnswers = buildFormattedAnswers()
 
@@ -1032,6 +1700,16 @@ function CheckoutContent() {
         await new Promise(resolve => setTimeout(resolve, 1500))
         window.location.href = paymentUrlWithReturn
       } else {
+        // Per-event `fiat_purchase_enabled` toggle (plugin Follow-up 1)
+        // returns 404 with this exact error string. Flip the suppress-flag
+        // and let the notice block below render its "Go to Pretix shop"
+        // button — parallel to the crypto-disabled flow above. Button-driven
+        // (not auto-redirect) so the buyer explicitly chooses to leave.
+        if (res.status === 404 && /external API purchase is not enabled/i.test(data.error || '')) {
+          setFiatDisabledForEvent(true)
+          setPaymentStatus(null)
+          return
+        }
         setPurchaseError(data.error || 'Failed to create order')
         setPaymentStatus(null)
       }
@@ -1070,7 +1748,7 @@ function CheckoutContent() {
       setAuthorizationData(prepareData)
 
       const { domain, types, primaryType, message } = prepareData.typedData
-      setPaymentStatus('Sign in your wallet...')
+      setPaymentStatus(`Sign ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
 
       const signature = await signEIP712Direct({ domain, types, primaryType, message })
 
@@ -1111,6 +1789,7 @@ function CheckoutContent() {
         authorization: auth,
         chainId: paymentDetails.chainId,
         tokenAddress: paymentDetails.tokenAddress,
+        symbol: paymentDetails.tokenSymbol,
       }
       if (isSmartWallet) {
         body.rawSignature = sigHex
@@ -1134,11 +1813,17 @@ function CheckoutContent() {
         const executeData = await executeRes.json()
         if (executeData.success) {
           setTxHash(executeData.txHash)
+          // Clear the gasless-executing flag before verification so a
+          // verification timeout doesn't leave the UI stuck in "Processing"
+          // (which also disables the Retry verification button).
+          setIsExecutingGasless(false)
           await verifyPayment(executeData.txHash)
           return
         }
 
-        // 503 = retryable gas error — auto-retry with backoff
+        // 502 = non-retryable service error (relayer drained, etc.) — show
+        //       operator-facing message immediately, don't hammer the server.
+        // 503 = transient (gas cap exceeded, network busy) — auto-retry with backoff.
         if (executeRes.status === 503 && attempt < maxRetries) {
           const retryAfter = parseInt(executeRes.headers.get('Retry-After') || '15', 10)
           const delay = retryAfter * 1000 * (attempt + 1)
@@ -1148,7 +1833,7 @@ function CheckoutContent() {
         }
 
         // Non-retryable or final attempt — show user-friendly message
-        lastError = humanizeRelayerError(executeData.error) || 'Failed to execute transfer'
+        lastError = humanizeRelayerError(executeData.error, executeData.category) || 'Failed to execute transfer'
         break
       }
 
@@ -1187,8 +1872,37 @@ function CheckoutContent() {
 
   async function payWithSelectedOption() {
     if (!selectedOption?.signingRequest || !paymentDetails || !address) return
+    if (showMobileCoinbaseWarning) {
+      setPurchaseError(
+        'Coinbase / Base Smart Wallet checkout is not supported on mobile yet. Please complete this purchase on desktop, or disconnect and use a different wallet.',
+      )
+      return
+    }
     const req = selectedOption.signingRequest
     setPurchaseError(null)
+
+    // ── Click-to-first-wallet-RPC must be free of preceding awaits ──
+    //
+    // iOS Safari (and the keys.coinbase.com popup on desktop Base
+    // Account) consume the user-gesture token on the first microtask
+    // yield. Any `await` between this click handler and the wallet
+    // popup blocks the popup ("Popup blocked" on iOS Chrome/Safari, or
+    // silent no-op on Base Account desktop). The chain switch that
+    // used to live here moves to two places:
+    //   * For EOAs, `selectPaymentOption` already fires a
+    //     fire-and-forget `switchChain` at pick time — by Pay-click
+    //     time the wallet is already on the right chain in 95%+ of
+    //     EOA cases.
+    //   * For the native `eth_sendTransaction` branch below, the
+    //     defensive `await switchChainAsync` runs *after* the
+    //     payer-proof sign — i.e. once the user has already engaged
+    //     with the wallet, the gesture-token issue no longer applies
+    //     and we can safely await the switch.
+    //   * For the gasless `eth_signTypedData_v4` branch, no switch is
+    //     needed at all — the EIP-712 domain has chainId baked in and
+    //     the relayer broadcasts server-side, so the wallet just
+    //     signs the typed data with the in-payload chainId regardless
+    //     of which chain it's currently "on".
 
     if (req.method === 'eth_signTypedData_v4') {
       if (!walletClient) {
@@ -1200,7 +1914,7 @@ function CheckoutContent() {
       try {
         const typedJson = req.params[1] as string
         const typed = JSON.parse(typedJson)
-        setPaymentStatus('Sign in your wallet...')
+        setPaymentStatus(`Sign ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
 
         const signature = await signEIP712Direct({
           domain: typed.domain,
@@ -1243,108 +1957,392 @@ function CheckoutContent() {
       // this specific paymentReference+chain so the /verify endpoint can
       // cryptographically confirm the caller owns the payer address (and is
       // not replaying someone else's on-chain tx for a different order).
+      //
+      // Use the frozen payer address (from handleCryptoCheckout) — NOT the
+      // live `useAccount().address`. MM Mobile + WC has been observed to
+      // flip the active account between handleCryptoCheckout and this sign
+      // call (e.g. user accepts a "Speed Up" prompt that re-establishes the
+      // session). If the signed message embeds the live address but verify
+      // sends the frozen one, the backend rebuilds a different message,
+      // ECDSA recovery fails, and we get "ethPayerSignature does not match".
+      const payerForSig = payerAddressRef.current ?? address
+      if (!payerForSig) {
+        setPurchaseError('Payer address unavailable — please reconnect your wallet.')
+        setPaymentStatus(null)
+        return
+      }
       const chainIdForSig = Number(paymentDetails.chainId)
       const payerMessage =
         'Devcon ticket payment (ETH)\n' +
         `Payment reference: ${paymentDetails.paymentReference}\n` +
-        `Payer: ${address}\n` +
+        `Payer: ${payerForSig}\n` +
         `Chain: ${chainIdForSig}`
-      setPaymentStatus('Sign payer proof in wallet...')
+      setPaymentStatus(`Sign payer proof ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
       let sig: string
       try {
-        sig = await walletClient.signMessage({ account: address, message: payerMessage })
-      } catch (e) {
-        setPurchaseError(humanizeWalletError(e))
-        setPaymentStatus(null)
-        return
-      }
-      setEthPayerSignature(sig)
-
-      setPaymentStatus('Confirm in wallet...')
-      try {
-        await sendTransactionAsync({
-          to: tx.to as `0x${string}`,
-          value: BigInt(tx.value),
-          data: (tx.data as `0x${string}`) || '0x',
+        sig = await walletClient.signMessage({
+          account: payerForSig as `0x${string}`,
+          message: payerMessage,
         })
       } catch (e) {
         setPurchaseError(humanizeWalletError(e))
         setPaymentStatus(null)
+        return
+      }
+      ethPayerSignatureRef.current = sig
+      setEthPayerSignature(sig)
+      // Debug telemetry: log everything needed to reproduce a verification
+      // mismatch. Recovers the signing address client-side via viem so we
+      // can compare against `payerForSig` and tell at a glance whether the
+      // wallet signed with a different account than expected (the classic
+      // MM Mobile + WC bug).
+      try {
+        const { recoverMessageAddress } = await import('viem')
+        const recovered = await recoverMessageAddress({
+          message: payerMessage,
+          signature: sig as `0x${string}`,
+        })
+        console.info('[checkout] ethPayerSignature collected', {
+          expectedPayer: payerForSig,
+          recovered,
+          match: recovered.toLowerCase() === payerForSig.toLowerCase(),
+          chainIdForSig,
+          paymentReference: paymentDetails.paymentReference,
+          message: payerMessage,
+          signature: sig,
+          sigLength: sig.length,
+        })
+      } catch (logErr) {
+        console.info('[checkout] ethPayerSignature collected (recover failed)', {
+          expectedPayer: payerForSig,
+          chainIdForSig,
+          paymentReference: paymentDetails.paymentReference,
+          message: payerMessage,
+          signature: sig,
+          sigLength: sig.length,
+          recoverError: logErr instanceof Error ? logErr.message : String(logErr),
+        })
+      }
+
+      setPaymentStatus(`Confirm ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
+      try {
+        // The typical Safe flow (paste WC URI from app.safe.global into
+        // Reown's modal) reports `connector.id === 'walletConnect'`, NOT
+        // 'safe' — so connector-only detection misses it. We pair the
+        // connector check with `isSafeAddress`, which is set by the
+        // Safe-Tx-Service probe in the connect-time effect (it returns 200
+        // only for actual Safes). Earlier versions used `isSmartWallet`
+        // here (any address with non-empty bytecode), but that also
+        // matched EIP-7702-delegated EOAs (Rainbow and others ship this
+        // for some users) and non-Safe ERC-4337 wallets, both of which
+        // return a real on-chain tx hash from `sendTransaction` and don't
+        // need Safe-Tx-Service translation — gating on `isSafeAddress`
+        // keeps the Safe-specific path narrowly scoped to Safes.
+        const isSafePath = isSafeWallet(connector) || isSafeAddress
+        if (isSafePath) {
+          // Safe wraps eth_sendTransaction differently — the wallet returns a
+          // *safeTxHash* (off-chain hash of the Safe tx object) almost
+          // immediately, so the WC-hash-not-returned bug doesn't apply and
+          // the recovery watchdog would only confuse things. Use the bare
+          // sendTransactionAsync and translate via Safe Tx Service. The
+          // Safe app is already scoped to one chain (per-deployment), so
+          // no switchChain is needed regardless of `chain?.id`.
+          const sentHash = await sendTransactionAsync({
+            to: tx.to as `0x${string}`,
+            value: BigInt(tx.value),
+            data: (tx.data as `0x${string}`) || '0x',
+          })
+          setPaymentStatus('Waiting for Safe to execute the transaction...')
+          try {
+            const realHash = await pollSafeTxService(paymentDetails.chainId, sentHash)
+            setTxHash(realHash)
+            await verifyPayment(realHash)
+          } catch (err) {
+            setPurchaseError(
+              err instanceof Error
+                ? err.message
+                : 'Could not retrieve the on-chain transaction from your Safe — please try again or contact support.'
+            )
+            setPaymentStatus(null)
+          }
+        } else {
+          // ── Post-sign chain enforcement (gesture already used) ──
+          // The payer-proof sign popup above has already consumed the iOS
+          // gesture token, so awaiting `switchChainAsync` here doesn't
+          // re-introduce the popup-blocked failure mode. Defensive guard
+          // against EOAs that silently ignored the fire-and-forget
+          // `switchChain` at pick time (Trust Wallet, Bitget Mobile have
+          // both been observed dropping `wallet_switchEthereumChain`).
+          if (chain?.id !== paymentDetails.chainId) {
+            try {
+              setPaymentStatus(`Switching to ${selectedOption.chain} ${walletLocationPhrase(connectionKind, connectedWalletName)}…`)
+              await switchChainAsync({ chainId: paymentDetails.chainId })
+            } catch (e) {
+              const wcSession = connectionKind === 'walletConnect'
+              setPurchaseError(
+                wcSession
+                  ? `Your wallet refused to switch to ${selectedOption.chain}. This usually means the WalletConnect session was approved for Ethereum only. Disconnect using the button above and reconnect — when your wallet shows the connection prompt, approve all the networks listed (not just Ethereum), then retry the payment.`
+                  : `Couldn't switch your wallet to ${selectedOption.chain}. Please switch manually in your wallet and try again.`,
+              )
+              setPaymentStatus(null)
+              return
+            }
+          }
+
+          // ── EIP-5792 capability probe ──
+          // Base Account / Coinbase Smart Wallet (and other modern
+          // smart wallets) advertise `atomic.status === 'supported' |
+          // 'ready'` per-chain. When supported we use
+          // `wallet_sendCalls` with explicit `chainId`, which:
+          //   * routes the popup directly to the target chain in ONE
+          //     prompt (no second `wallet_switchEthereumChain` round-
+          //     trip — the bug at coinbase-wallet-sdk #1317 that has
+          //     wagmi's connector get out of sync with the wallet);
+          //   * returns a call-bundle id we poll via
+          //     `wallet_getCallsStatus` for the on-chain hash, sidestep
+          //     the WC "wallet broadcast but didn't return hash" failure
+          //     mode entirely.
+          // Older EOAs / WC sessions throw `wallet_getCapabilities`
+          // unsupported or return no `atomic` key — those fall through
+          // to the existing `sendNativeEthWithRecovery` path.
+          let useAtomic = false
+          try {
+            const caps = await getCapabilities(wagmiAdapter.wagmiConfig as Config, {
+              chainId: paymentDetails.chainId,
+              account: address as `0x${string}`,
+            })
+            const status = (caps as { atomic?: { status?: string } })?.atomic?.status
+            useAtomic = status === 'supported' || status === 'ready'
+          } catch {
+            // wallet_getCapabilities unsupported — fall through to legacy
+          }
+
+          if (useAtomic) {
+            const { id } = await sendCalls(wagmiAdapter.wagmiConfig as Config, {
+              chainId: paymentDetails.chainId,
+              account: address as `0x${string}`,
+              calls: [{
+                to: tx.to as `0x${string}`,
+                value: BigInt(tx.value),
+                data: (tx.data as `0x${string}`) || '0x',
+              }],
+            })
+            setPaymentStatus('Waiting for transaction to be mined...')
+            const final = await waitForCallsStatus(wagmiAdapter.wagmiConfig as Config, {
+              id,
+              timeout: 90_000,
+            })
+            const receipts = (final as { receipts?: Array<{ transactionHash?: string }> }).receipts || []
+            const hash = receipts[0]?.transactionHash
+            if (!hash) {
+              throw new Error('Wallet completed payment but did not return a transaction hash. Refresh the page and check your wallet history before retrying — your funds may already be on the way.')
+            }
+            setTxHash(hash as `0x${string}`)
+            await verifyPayment(hash)
+          } else {
+            // Legacy EOA path: route through the recovery wrapper so
+            // wallets that broadcast but fail to return the hash via
+            // WC (Binance Wallet macOS, etc.) don't strand the UI. If
+            // recovery wins via Alchemy discovery or manual hash entry,
+            // the wrapper triggers verify internally; otherwise the
+            // existing useWaitForTransactionReceipt useEffect handles it.
+            await sendNativeEthWithRecovery({
+              to: tx.to as `0x${string}`,
+              value: BigInt(tx.value),
+              data: (tx.data as `0x${string}`) || '0x',
+              chainId: paymentDetails.chainId,
+              payer: payerForSig,
+            })
+          }
+        }
+      } catch (e) {
+        setPurchaseError(humanizeWalletError(e))
+        setPaymentStatus(null)
       }
     }
   }
 
-  async function verifyPayment(hash: string, attempt = 1) {
-    if (!paymentDetails || !address) return
+  async function verifyPayment(hash: string) {
+    // Use the frozen payer (set at flow-start in handleCryptoCheckout) as the
+    // primary source — survives multisig Safe co-signer wallet swaps that
+    // disconnect the live wagmi session. Falls back to live `address` for
+    // legacy code paths that didn't run through handleCryptoCheckout.
+    const payer = payerAddressRef.current ?? address ?? null
+    if (!paymentDetails || !payer) return
 
-    const maxAttempts = 5
-    const retryDelay = 8000
+    // De-dupe concurrent calls for the same hash (e.g. recovery path triggers
+    // verify, then wagmi's receipt useEffect fires for the same hash a few
+    // seconds later). Allow re-entry only for a different hash (replacement /
+    // speed-up case).
+    if (verifyingHashRef.current === hash) return
+    verifyingHashRef.current = hash
 
     setIsVerifying(true)
-    setPaymentStatus(attempt > 1
-      ? `Waiting for on-chain confirmation... (${attempt}/${maxAttempts})`
-      : 'Verifying payment...')
+    setPaymentStatus('Verifying payment...')
     setPurchaseError(null)
+    setConfirmProgress(null)
 
-    try {
-      const res = await fetch('/api/x402/tickets/verify/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          txHash: hash,
-          paymentReference: paymentDetails.paymentReference,
-          payer: address,
-          chainId: paymentDetails.chainId,
-          symbol: paymentDetails.tokenSymbol,
-          tokenAddress: paymentDetails.tokenAddress,
-          ...(paymentDetails.tokenSymbol === 'ETH' && ethPayerSignature && {
-            ethPayerSignature,
+    // Adaptive cadence keyed off the chain's block time. We don't know the
+    // required-confirmations count until the first server response, so the
+    // initial budget assumes 3 confs and is recomputed once we learn the
+    // actual threshold. Loop is time-bounded — stops on success, hard
+    // failure, or budget exhaustion.
+    const interval = pollIntervalMs(paymentDetails.chainId)
+    let budget = pollMaxDurationMs(paymentDetails.chainId, 3)
+    const startedAt = Date.now()
+    let firstAttempt = true
+
+    // Reasons the server returns 4xx that resolve on their own as the chain
+    // mines more blocks or the backend RPC catches up. Anything outside this
+    // set is a hard failure (wrong recipient, signature mismatch, etc.) and
+    // should bail immediately rather than waste polls.
+    const RETRYABLE_SUBSTRINGS = [
+      'not found',
+      'try again',
+      'not mined',
+      'insufficient confirmations',
+      'rpc error',
+      'no matching internal transfer',
+      'no matching transfer found',
+      'from/to mismatch',
+    ]
+
+    while (Date.now() - startedAt < budget) {
+      if (!firstAttempt) {
+        await new Promise(r => setTimeout(r, interval))
+      }
+      firstAttempt = false
+
+      try {
+        const res = await fetch('/api/x402/tickets/verify/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            txHash: hash,
+            paymentReference: paymentDetails.paymentReference,
+            payer,
+            chainId: paymentDetails.chainId,
+            symbol: paymentDetails.tokenSymbol,
+            tokenAddress: paymentDetails.tokenAddress,
+            // Read from the ref FIRST: the Safe ETH path runs sign → send →
+            // pollSafeTxService → verifyPayment all inside one async closure
+            // with no re-render in between, so the state-derived
+            // `ethPayerSignature` here is the *previous* render's value (i.e.,
+            // empty) and the field would be omitted. The ref is updated
+            // synchronously alongside setState so callers in the same chain
+            // see the right value.
+            ...(paymentDetails.tokenSymbol === 'ETH' &&
+              (ethPayerSignatureRef.current || ethPayerSignature) && {
+                ethPayerSignature: ethPayerSignatureRef.current || ethPayerSignature,
+              }),
           }),
-        }),
-      })
+        })
 
-      const data = await res.json()
-      if (data.success) {
-        setPaymentStatus(null)
-        localStorage.removeItem('devcon-ticket-cart')
-        if (newsletter) {
-          fetch('/api/subscribe/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email.trim() }),
-          }).catch(() => {})
+        const data = await res.json()
+        if (data.success) {
+          setConfirmProgress(null)
+          setPaymentStatus('Payment confirmed — redirecting to your order...')
+          setPaymentSucceeded(true)
+          localStorage.removeItem('devcon-ticket-cart')
+          if (newsletter) {
+            fetch('/api/subscribe/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: email.trim() }),
+            }).catch(() => {})
+          }
+          router.push(`/tickets/store/order/${data.order.code}/${data.order.secret}`)
+          return
         }
-        // Redirect to confirmation page (payment details are fetched from the API)
-        router.push(`/tickets/store/order/${data.order.code}/${data.order.secret}`)
-        return
-      }
 
-      // Auto-retry on transient errors (tx not confirmed yet)
-      const isRetryable = data.details?.includes('not found') ||
-        data.details?.includes('try again') ||
-        data.error?.includes('not found')
-      if (attempt < maxAttempts && isRetryable) {
-        await new Promise(r => setTimeout(r, retryDelay))
-        return verifyPayment(hash, attempt + 1)
-      }
+        const msg = `${data.error || ''} ${data.details || ''}`.toLowerCase()
+        // Rate-limit (429) is a transient throttle, not a hard failure. Back
+        // off for a few seconds so we don't burn the next polling slot
+        // immediately, then continue the loop. Without this the user sees the
+        // same 429 on every Retry click until the server window expires.
+        if (res.status === 429 || msg.includes('rate limit')) {
+          setPaymentStatus('Verifying — slowing down briefly to respect rate limit...')
+          await new Promise(r => setTimeout(r, 8000))
+          continue
+        }
+        const isRetryable = RETRYABLE_SUBSTRINGS.some(s => msg.includes(s))
+        if (!isRetryable) {
+          setConfirmProgress(null)
+          setPurchaseError(data.error || 'Payment verification failed')
+          setPaymentStatus(null)
+          setIsVerifying(false)
+          verifyingHashRef.current = null
+          return
+        }
 
-      setPurchaseError(data.error || 'Payment verification failed')
-      setPaymentStatus(null)
-      setIsVerifying(false)
-    } catch {
-      // Network error — auto-retry
-      if (attempt < maxAttempts) {
-        await new Promise(r => setTimeout(r, retryDelay))
-        return verifyPayment(hash, attempt + 1)
+        // Surface confirmation progress when the plugin tells us how far
+        // along we are. The status string drives the UI label so the user
+        // sees the chain making progress instead of an opaque spinner.
+        const cur = typeof data.confirmations === 'number' ? data.confirmations : null
+        const req = typeof data.confirmations_required === 'number' ? data.confirmations_required : null
+        if (cur !== null && req !== null) {
+          setConfirmProgress({ current: cur, required: req })
+          setPaymentStatus(`Confirming on-chain (${cur}/${req})...`)
+          // Recompute the time budget now that we know the chain's threshold.
+          budget = pollMaxDurationMs(paymentDetails.chainId, req)
+        } else {
+          // Tx not mined yet, or some other transient — keep the generic msg.
+          setPaymentStatus('Waiting for transaction to be mined...')
+        }
+      } catch {
+        // Network blip / fetch failure — let the loop retry on next interval.
       }
-      setPurchaseError('Failed to verify payment')
-      setPaymentStatus(null)
-      setIsVerifying(false)
     }
+
+    setConfirmProgress(null)
+    setPurchaseError('Verification timed out — try the Retry button below or contact support.')
+    setPaymentStatus(null)
+    setIsVerifying(false)
+    verifyingHashRef.current = null
   }
 
   // ── Checkout button state ──
-  const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || isConnected)
+  // forcePretixRedirect mode hands wallet-connection over to Pretix's hosted
+  // checkout, so devcon doesn't require a local wallet for the crypto path.
+  const checkoutEnabled = contactDetailsFilled && cartItems.length > 0 && !isProcessing && (paymentMethod === 'fiat' || forcePretixRedirect || isConnected)
+
+  // Build the support-mailto once with all known checkout context. Used by
+  // both the persistent "Need help?" link below the Pay button and the two
+  // "If you don't receive a confirmation email, please contact us" notes.
+  // Single source of truth keeps the prefill template identical everywhere.
+  function buildSupportMailto(): string {
+    if (!supportEmail) return ''
+    const fill = (v: string | number | undefined | null) =>
+      v == null || v === '' ? '(please fill in)' : String(v)
+    const cartLines = cartItems
+      .filter(c => c.quantity > 0)
+      .map(c => `  - ${c.quantity} × ${c.name}`)
+    const lines: string[] = [
+      'Hi,',
+      '',
+      'I need help with my Devcon ticket purchase.',
+      '',
+      `Email: ${fill(email)}`,
+      `Payment method: ${paymentMethod || '(please fill in)'}`,
+      ...(cartLines.length ? ['Cart:', ...cartLines] : ['Cart: (please describe)']),
+      `Order total (USD): $${fill(totalUsd)}`,
+    ]
+    if (paymentMethod === 'crypto') {
+      lines.push(
+        `Wallet address: ${fill(address || '')}`,
+        `Payment reference: ${fill(paymentDetails?.paymentReference)}`,
+        `Network: ${fill(paymentDetails?.network)}`,
+        `Token: ${fill(paymentDetails?.tokenSymbol)}`,
+        `Amount expected: ${fill(paymentDetails?.amountFormatted)}`,
+        `Recipient: ${fill(paymentDetails?.recipient)}`,
+        `Transaction hash: ${fill(txHash)}`,
+      )
+    }
+    lines.push('', 'What went wrong: (please describe)', '', 'Thanks!')
+    const subject = `Devcon ticket support${paymentDetails?.paymentReference ? ` — ref ${paymentDetails.paymentReference}` : ''}`
+    return `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
+  }
+  const supportMailto = buildSupportMailto()
 
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
@@ -1363,7 +2361,9 @@ function CheckoutContent() {
             <span className={css['mobile-order-bar-total']}>
               <span>${totalUsd}</span>
               {!mobileOrderOpen && showGstBreakdown && (
-                <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                <span className={css['mobile-order-bar-tax']}>
+                  incl. {vatPercent}% {vatLabel}
+                </span>
               )}
             </span>
           </button>
@@ -1379,7 +2379,10 @@ function CheckoutContent() {
                           <span className={css['panel-item-name']}>
                             {item.name}
                             {isPaid && vatPercent > 0 && (
-                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                              <span className={css['panel-item-tax']}>
+                                {' '}
+                                ({vatLabel} {vatPercent}%)
+                              </span>
                             )}
                           </span>
                           <div className={css['panel-item-right']}>
@@ -1402,12 +2405,13 @@ function CheckoutContent() {
                   {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                     const item = allAddonItems.find(i => i.id === itemId)
                     if (!item || data.quantity <= 0) return null
-                    let price = parseFloat(item.price)
+                    const cat = addonCategoryByItemId.get(itemId)
+                    let price = cat?.priceIncluded ? 0 : parseFloat(item.price)
                     let variationName = ''
                     if (data.variationId) {
                       const variation = item.variations.find(v => v.id === data.variationId)
                       if (variation) {
-                        price = parseFloat(variation.price)
+                        if (!cat?.priceIncluded) price = parseFloat(variation.price)
                         variationName = variation.name
                       }
                     }
@@ -1419,7 +2423,10 @@ function CheckoutContent() {
                           <span>
                             {item.name}
                             {!isFree && vatPercent > 0 && (
-                              <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                              <span className={css['panel-item-tax']}>
+                                {' '}
+                                ({vatLabel} {vatPercent}%)
+                              </span>
                             )}
                           </span>
                           {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -1475,9 +2482,9 @@ function CheckoutContent() {
                       <span>&ndash;${voucherDiscount.toFixed(2)}</span>
                     </div>
                   )}
-                  {paymentMethod === 'crypto' && (
+                  {cryptoDiscount > 0 && (
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                      <span>Crypto discount (&ndash;{cryptoDiscountPercent}%)</span>
                       <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                     </div>
                   )}
@@ -1488,7 +2495,9 @@ function CheckoutContent() {
                         <span>${totalExclGst.toFixed(2)}</span>
                       </div>
                       <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                        <span>{vatLabel} @ {vatPercent}%</span>
+                        <span>
+                          {vatLabel} @ {vatPercent}%
+                        </span>
                         <span>${gstAmount.toFixed(2)}</span>
                       </div>
                     </>
@@ -1515,20 +2524,9 @@ function CheckoutContent() {
                 </div>
                 <div className={css['panel-disclaimer']}>
                   <p>
-                    By placing your order, you agree to Devcon&apos;s{' '}
-                    <Link to="/terms-of-service">
-                      <strong>Terms &amp; Conditions</strong>
-                    </Link>{' '}
-                    and{' '}
-                    <Link to="/privacy-policy">
-                      <strong>Privacy Policy</strong>
-                    </Link>
-                    .
-                  </p>
-                  <p>
                     An order confirmation with your tickets will be sent to the email provided during checkout. If you
                     don&apos;t receive a confirmation email, please{' '}
-                    <a href="mailto:support@devcon.org">
+                    <a href={supportMailto || `mailto:${supportEmail}`}>
                       <strong>contact us</strong>
                     </a>
                     .
@@ -1583,51 +2581,133 @@ function CheckoutContent() {
               </button>
               {openSection === 'swag' && (
                 <div className={css['section-body']}>
-                  {availableAddons.map(category => {
-                    const availableItems = category.items.filter(i => i.available)
-                    if (availableItems.length === 0) return null
-                    return (
-                      <div key={category.categoryId} className={css['swag-grid']}>
-                        {category.categoryName && (
-                          <h4 className={css['addon-category-title']}>{category.categoryName}</h4>
-                        )}
-                        {availableItems.map(item => {
-                          const sel = selectedAddons.get(item.id)
-                          const qty = sel?.quantity || 0
-                          const isFree = parseFloat(item.price) === 0
-                          const hasVariations = item.variations.length > 0
-                          return (
-                            <div key={item.id} className={css['swag-card']}>
-                              <div className={css['swag-image']} />
-                              <div className={css['swag-info']}>
-                                <h4>{item.name}</h4>
-                                {item.description && (
-                                  <div className={css['addon-description']}>
-                                    <Markdown
-                                      components={{
-                                        p: ({ children }) => <p style={{ margin: 0 }}>{children}</p>,
-                                        a: ({ href, children }) => (
-                                          <a href={href} target="_blank" rel="noopener noreferrer">
-                                            {children}
-                                          </a>
-                                        ),
-                                      }}
-                                    >
-                                      {item.description}
-                                    </Markdown>
-                                  </div>
-                                )}
+                  {(() => {
+                    type AddonItem = TicketInfo['addons'][number]['items'][number]
+                    type AddonCategory = TicketInfo['addons'][number]
+                    const freeItems: { item: AddonItem; category: AddonCategory }[] = []
+                    const paidItems: { item: AddonItem; category: AddonCategory }[] = []
+                    for (const category of availableAddons) {
+                      for (const item of category.items.filter(i => i.available)) {
+                        // Free either because the item is intrinsically free OR because the
+                        // parent ticket's addon entry has `price_included: true` (Pretix's
+                        // server side already charges $0 for these — surface that to buyers).
+                        if (category.priceIncluded || parseFloat(item.price) === 0) {
+                          freeItems.push({ item, category })
+                        } else {
+                          paidItems.push({ item, category })
+                        }
+                      }
+                    }
+
+                    // Total quantity already selected across all items in a given
+                    // category — Pretix `max_count` caps the SUM across items, not
+                    // per-item. e.g. premium category with max_count=2 + multi_allowed=false
+                    // means the buyer can pick 1 shirt + 1 chess set, but never a 2nd of
+                    // either AND never both at once if the cap is already hit.
+                    const categoryQtyTotals = new Map<number, number>()
+                    for (const cat of availableAddons) {
+                      let total = 0
+                      for (const it of cat.items) {
+                        total += selectedAddons.get(it.id)?.quantity || 0
+                      }
+                      categoryQtyTotals.set(cat.categoryId, total)
+                    }
+
+                    const renderItem = (item: AddonItem, category: AddonCategory) => {
+                      const sel = selectedAddons.get(item.id)
+                      const qty = sel?.quantity || 0
+                      const isFree = category.priceIncluded || parseFloat(item.price) === 0
+                      const hasVariations = item.variations.length > 0
+                      // Effective per-item cap: 1 when multi_allowed=false (default for
+                      // premium swag), otherwise the category's max_count.
+                      const perItemCap = category.multiAllowed ? category.maxCount : 1
+                      // Category running total — disable + on this item once the category
+                      // sum has reached max_count, even if this specific item is still under
+                      // its per-item cap.
+                      const categoryTotal = categoryQtyTotals.get(category.categoryId) ?? 0
+                      const categoryRoom = category.maxCount - categoryTotal
+                      const canIncrement = qty < perItemCap && categoryRoom > 0
+                      const showQty = isFree || hasVariations || category.maxCount > 1
+                      return (
+                        <div key={item.id} className={css['swag-card']}>
+                          {item.picture ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img className={css['swag-image']} src={item.picture} alt={item.name} />
+                          ) : (
+                            <div className={css['swag-image']} />
+                          )}
+                          <div className={css['swag-info']}>
+                            <h4>{item.name}</h4>
+                            {item.description && (
+                              <div className={css['addon-description']}>
+                                <Markdown
+                                  components={{
+                                    p: ({ children }) => <p style={{ margin: 0 }}>{children}</p>,
+                                    a: ({ href, children }) => (
+                                      <a href={href} target="_blank" rel="noopener noreferrer">
+                                        {children}
+                                      </a>
+                                    ),
+                                  }}
+                                >
+                                  {item.description}
+                                </Markdown>
                               </div>
-                              <div className={css['swag-right']}>
-                                {hasVariations ? (
-                                  /* Items with variations: size dropdown */
+                            )}
+                          </div>
+                          <div className={css['swag-controls-cell']}>
+                            <div className={css['swag-controls']}>
+                              {showQty ? (
+                                <div className={css['addon-qty']}>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty - 1)}
+                                    disabled={qty <= 0}
+                                  >
+                                    <Minus size={16} />
+                                  </button>
+                                  <span className={css['addon-qty-value']}>{qty}</span>
+                                  <button
+                                    type="button"
+                                    className={css['addon-qty-btn']}
+                                    onClick={() => setAddonQuantity(item.id, qty + 1)}
+                                    disabled={!canIncrement}
+                                  >
+                                    <Plus size={16} />
+                                  </button>
+                                </div>
+                              ) : (
+                                <div className="flex items-center gap-2">
+                                  <Checkbox
+                                    id={`addon-${item.id}`}
+                                    checked={qty > 0}
+                                    onCheckedChange={() => toggleAddon(item.id)}
+                                  />
+                                  <Label
+                                    htmlFor={`addon-${item.id}`}
+                                    className="text-sm text-black/70 cursor-pointer"
+                                  >
+                                    {qty > 0 ? 'Added' : 'Add'}
+                                  </Label>
+                                </div>
+                              )}
+                              {hasVariations && (
+                                <div className={css['swag-variation']}>
                                   <Select
                                     value={sel?.variationId ? String(sel.variationId) : ''}
                                     onValueChange={val => {
                                       setAddonVariation(item.id, val ? Number(val) : undefined)
                                     }}
                                   >
-                                    <SelectTrigger className="min-w-[140px] h-9 text-sm">
+                                    <SelectTrigger
+                                      data-addon-variation-id={item.id}
+                                      className={`min-w-[140px] h-10 text-sm ${
+                                        showSwagErrors && qty > 0 && !sel?.variationId
+                                          ? 'border-[#ef4444] shadow-none'
+                                          : ''
+                                      }`}
+                                    >
                                       <SelectValue placeholder="Select size" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -1638,54 +2718,72 @@ function CheckoutContent() {
                                       ))}
                                     </SelectContent>
                                   </Select>
-                                ) : category.maxCount > 1 ? (
-                                  /* Paid items without variations: quantity +/- */
-                                  <div className={css['addon-qty']}>
-                                    <button
-                                      type="button"
-                                      className={css['addon-qty-btn']}
-                                      onClick={() => setAddonQuantity(item.id, qty - 1)}
-                                      disabled={qty <= 0}
-                                    >
-                                      <Minus size={16} />
-                                    </button>
-                                    <span className={css['addon-qty-value']}>{qty}</span>
-                                    <button
-                                      type="button"
-                                      className={css['addon-qty-btn']}
-                                      onClick={() => setAddonQuantity(item.id, qty + 1)}
-                                      disabled={qty >= category.maxCount}
-                                    >
-                                      <Plus size={16} />
-                                    </button>
-                                  </div>
-                                ) : (
-                                  /* Simple toggle */
-                                  <div className="flex items-center gap-2">
-                                    <Checkbox
-                                      id={`addon-${item.id}`}
-                                      checked={qty > 0}
-                                      onCheckedChange={() => toggleAddon(item.id)}
-                                    />
-                                    <Label
-                                      htmlFor={`addon-${item.id}`}
-                                      className="text-sm text-black/70 cursor-pointer"
-                                    >
-                                      {qty > 0 ? 'Added' : 'Add'}
-                                    </Label>
-                                  </div>
-                                )}
-                                <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
-                                  {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
-                                </span>
-                              </div>
+                                  {showSwagErrors && qty > 0 && !sel?.variationId && (
+                                    <p className={css['field-error']}>Please select a size.</p>
+                                  )}
+                                </div>
+                              )}
                             </div>
-                          )
-                        })}
-                      </div>
+                            <span className={isFree ? css['swag-price-free'] : css['addon-price']}>
+                              {isFree ? 'FREE' : `$${parseFloat(item.price).toFixed(2)}`}
+                            </span>
+                          </div>
+                        </div>
+                      )
+                    }
+
+                    return (
+                      <>
+                        {freeItems.length > 0 && (
+                          <div className={css['swag-group']}>
+                            <h4 className={css['swag-group-title']}>Included with ticket</h4>
+                            <div className={css['swag-grid']}>
+                              {freeItems.map(({ item, category }) => renderItem(item, category))}
+                            </div>
+                          </div>
+                        )}
+                        {paidItems.length > 0 && (
+                          <div className={css['swag-group']}>
+                            <div className={css['swag-group-header']}>
+                              <h4 className={css['swag-group-title']}>Premium items</h4>
+                              <span className={css['swag-group-tag']}>LIMITED STOCK</span>
+                            </div>
+                            <div className={css['swag-grid']}>
+                              {paidItems.map(({ item, category }) => renderItem(item, category))}
+                            </div>
+                          </div>
+                        )}
+                        <p className={css['swag-tax-note']}>
+                          Prices include {TICKETING.tax.vatPercent}% {TICKETING.tax.label}
+                        </p>
+                      </>
                     )
-                  })}
-                  <button type="button" className={css['btn-continue']} onClick={() => goToNextSection('swag')}>
+                  })()}
+                  <button
+                    type="button"
+                    className={css['btn-continue']}
+                    onClick={() => {
+                      // Validate: any addon picked at qty ≥ 1 with variations must have one selected.
+                      const missing: number[] = []
+                      for (const [itemId, data] of selectedAddons.entries()) {
+                        if (data.quantity <= 0) continue
+                        const item = allAddonItems.find(i => i.id === itemId)
+                        if (!item || item.variations.length === 0) continue
+                        if (!data.variationId) missing.push(itemId)
+                      }
+                      if (missing.length > 0) {
+                        setShowSwagErrors(true)
+                        setTimeout(() => {
+                          document
+                            .querySelector(`[data-addon-variation-id="${missing[0]}"]`)
+                            ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                        }, 50)
+                        return
+                      }
+                      setShowSwagErrors(false)
+                      goToNextSection('swag')
+                    }}
+                  >
                     Continue
                   </button>
                 </div>
@@ -1716,42 +2814,51 @@ function CheckoutContent() {
                     <div className={css['description-block']}>
                       <p className={css['description-title']}>Where should we send your tickets?</p>
                       <p className={css['description-sub']}>
-                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email address.
+                        Your Devcon tickets will be linked with this{attendeeNameAsked ? ' name and' : ''} email
+                        address.
                       </p>
                     </div>
                     {attendeeNameAsked && (
-                    <div className={css['field-row']}>
-                      <div className={css['field']}>
-                        <label htmlFor="first-name">
-                          Name{attendeeNameRequired && <span className={css['required']}>*</span>}
-                        </label>
-                        <Input
-                          id="first-name"
-                          type="text"
-                          placeholder="First name"
-                          className={showContactErrors && attendeeNameRequired && firstName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
-                          value={firstName}
-                          onChange={e => setFirstName(e.target.value)}
-                        />
-                        {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
-                          <p className={css['field-error']}>Please enter your first name.</p>
-                        )}
+                      <div className={css['field-row']}>
+                        <div className={css['field']}>
+                          <label htmlFor="first-name">
+                            Name{attendeeNameRequired && <span className={css['required']}>*</span>}
+                          </label>
+                          <Input
+                            id="first-name"
+                            type="text"
+                            placeholder="First name"
+                            className={
+                              showContactErrors && attendeeNameRequired && firstName.trim() === ''
+                                ? 'border-[#ef4444] shadow-none'
+                                : ''
+                            }
+                            value={firstName}
+                            onChange={e => setFirstName(e.target.value)}
+                          />
+                          {showContactErrors && attendeeNameRequired && firstName.trim() === '' && (
+                            <p className={css['field-error']}>Please enter your first name.</p>
+                          )}
+                        </div>
+                        <div className={css['field']}>
+                          <label htmlFor="last-name" data-spacer="true">&nbsp;</label>
+                          <Input
+                            id="last-name"
+                            type="text"
+                            placeholder="Last name"
+                            className={
+                              showContactErrors && attendeeNameRequired && lastName.trim() === ''
+                                ? 'border-[#ef4444] shadow-none'
+                                : ''
+                            }
+                            value={lastName}
+                            onChange={e => setLastName(e.target.value)}
+                          />
+                          {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
+                            <p className={css['field-error']}>Please enter your last name.</p>
+                          )}
+                        </div>
                       </div>
-                      <div className={css['field']}>
-                        <label htmlFor="last-name">&nbsp;</label>
-                        <Input
-                          id="last-name"
-                          type="text"
-                          placeholder="Last name"
-                          className={showContactErrors && attendeeNameRequired && lastName.trim() === '' ? 'border-[#ef4444] shadow-none' : ''}
-                          value={lastName}
-                          onChange={e => setLastName(e.target.value)}
-                        />
-                        {showContactErrors && attendeeNameRequired && lastName.trim() === '' && (
-                          <p className={css['field-error']}>Please enter your last name.</p>
-                        )}
-                      </div>
-                    </div>
                     )}
                     <div className={css['field-row']}>
                       <div className={css['field']}>
@@ -1771,12 +2878,16 @@ function CheckoutContent() {
                         )}
                       </div>
                       <div className={css['field']}>
-                        <label htmlFor="confirm-email">&nbsp;</label>
+                        <label htmlFor="confirm-email" data-spacer="true">&nbsp;</label>
                         <Input
                           id="confirm-email"
                           type="email"
                           placeholder="Confirm email"
-                          className={showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim()) ? 'border-[#ef4444] shadow-none' : ''}
+                          className={
+                            showContactErrors && (confirmEmail.trim() === '' || email.trim() !== confirmEmail.trim())
+                              ? 'border-[#ef4444] shadow-none'
+                              : ''
+                          }
                           value={confirmEmail}
                           onChange={e => setConfirmEmail(e.target.value)}
                         />
@@ -1788,9 +2899,7 @@ function CheckoutContent() {
                         )}
                       </div>
                     </div>
-                    <label
-                      className="flex items-start gap-3 p-3 border border-[#e5e5e5] rounded-[10px] bg-white cursor-pointer"
-                    >
+                    <label className={css['rich-checkbox']}>
                       <Checkbox
                         checked={newsletter}
                         onCheckedChange={checked => setNewsletter(checked === true)}
@@ -1812,10 +2921,16 @@ function CheckoutContent() {
                           setShowContactErrors(true)
                           setTimeout(() => {
                             const firstErrorId =
-                              attendeeNameRequired && firstName.trim() === '' ? 'first-name' :
-                              attendeeNameRequired && lastName.trim() === '' ? 'last-name' :
-                              !isEmail(email.trim()) ? 'email' : 'confirm-email'
-                            document.getElementById(firstErrorId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                              attendeeNameRequired && firstName.trim() === ''
+                                ? 'first-name'
+                                : attendeeNameRequired && lastName.trim() === ''
+                                ? 'last-name'
+                                : !isEmail(email.trim())
+                                ? 'email'
+                                : 'confirm-email'
+                            document
+                              .getElementById(firstErrorId)
+                              ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
                           }, 50)
                           return
                         }
@@ -1854,13 +2969,24 @@ function CheckoutContent() {
                       const isGoals = q.identifier === TICKETING.questions.goalsIdentifier
                       const hasError = showAttendeeErrors && (q.required || q.dependsOn) && isFieldEmpty(q.id)
 
+                      // Hardcoded special-case: when a question's helpText contains the
+                      // youth-ticket form URL, render the helpText as a highlighted box
+                      // (Figma "Will you have Youth Tickets for sale?" accordion treatment)
+                      // and only when the buyer answered Yes.
+                      const isYouthHelper = !!q.helpText?.includes('https://devcon.org/en/form/youth-ticket/')
+                      const yesOptionId =
+                        q.type === 'C' ? q.options.find(o => /^\s*yes\s*$/i.test(o.answer || ''))?.id : undefined
+                      const isAnswerYes =
+                        (q.type === 'B' && answers[q.id] === 'True') ||
+                        (q.type === 'C' && yesOptionId !== undefined && answers[q.id] === String(yesOptionId))
+
                       return (
                         <div key={q.id} className={css['field']} data-question-id={q.id}>
                           <label>
                             {q.question}
                             {(q.required || q.dependsOn) && <span className={css['required']}>*</span>}
                           </label>
-                          {q.helpText && (
+                          {q.helpText && !isYouthHelper && (
                             <span className={css['field-help']}>
                               <Markdown
                                 components={{
@@ -2027,6 +3153,27 @@ function CheckoutContent() {
                             />
                           )}
 
+                          {isYouthHelper && isAnswerYes && q.helpText && (
+                            <div className={css['youth-ticket-helper']}>
+                              <p className={css['youth-ticket-helper-title']}>
+                                Children aged 3–17 need their own ticket
+                              </p>
+                              <div className={css['youth-ticket-helper-body']}>
+                                <Markdown
+                                  components={{
+                                    a: ({ href, children }) => (
+                                      <a href={href} target="_blank" rel="noopener noreferrer">
+                                        {children}
+                                      </a>
+                                    ),
+                                  }}
+                                >
+                                  {q.helpText}
+                                </Markdown>
+                              </div>
+                            </div>
+                          )}
+
                           {hasError && <p className={css['field-error']}>{getFieldErrorMessage(q)}</p>}
                         </div>
                       )
@@ -2055,15 +3202,21 @@ function CheckoutContent() {
                 {openSection === 'payment' && (
                   <div className={css['section-body']}>
                     <div className={css['description-block']}>
-                      <p className={css['description-title']}>Select your preferred payment method</p>
-                      {!daimoPay && (
+                      <p className={css['description-title']}>
+                        {TICKETING.payment.fiatEnabled ? 'Select your preferred payment method' : 'Payment method'}
+                      </p>
+                      {!forcePretixRedirect && TICKETING.payment.fiatEnabled && cryptoDiscountEnabled && (
                         <p className={css['description-sub']}>
-                          Receive a <strong>{TICKETING.payment.cryptoDiscountPercent}% discount</strong> when paying
+                          Receive a <strong>{cryptoDiscountPercent}% discount</strong> when paying
                           with Crypto.
                         </p>
                       )}
                     </div>
-                    <div className={css['payment-methods']}>
+                    <div
+                      className={`${css['payment-methods']} ${
+                        !TICKETING.payment.fiatEnabled ? css['payment-methods-single'] : ''
+                      }`}
+                    >
                       <label
                         className={`${css['payment-option']} ${paymentMethod === 'crypto' ? css['selected'] : ''}`}
                         onClick={() => setPaymentMethod('crypto')}
@@ -2072,65 +3225,204 @@ function CheckoutContent() {
                         <div className={css['payment-option-content']}>
                           <div className={css['payment-option-header']}>
                             <div className={css['payment-option-title-row']}>
-                              <span className={css['payment-option-title']}>Crypto</span>
-                              {!daimoPay && (
+                              <span className={css['payment-option-title']}>
+                                {isEthOnly ? 'ETH' : 'Crypto'}
+                              </span>
+                              {!forcePretixRedirect && TICKETING.payment.fiatEnabled && cryptoDiscountEnabled && (
                                 <span className={css['save-badge']}>
-                                  SAVE {TICKETING.payment.cryptoDiscountPercent}%
+                                  SAVE {cryptoDiscountPercent}%
                                 </span>
                               )}
                             </div>
                             <div className={css['payment-icons']}>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={TOKEN_ICONS.ETH} alt="ETH" className={css['payment-icon-box']} />
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={TOKEN_ICONS.USDC} alt="USDC" className={css['payment-icon-box']} />
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={TOKEN_ICONS.USDT0} alt="USDT" className={css['payment-icon-box']} />
+                              {TICKETING.payment.enabledTokens.map((sym) => (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  key={sym}
+                                  src={TOKEN_ICONS[sym]}
+                                  alt={SYMBOL_DISPLAY[sym] ?? sym}
+                                  className={css['payment-icon-box']}
+                                />
+                              ))}
                             </div>
                           </div>
                           <p className={css['payment-option-desc']}>
-                            {daimoPay ? 'via Daimo Pay' : 'All major wallets & networks'}
+                            {isEthOnly ? 'Pay using ETH on Mainnet' : 'All major wallets & networks'}
                           </p>
                         </div>
                       </label>
-                      <label
-                        className={`${css['payment-option']} ${paymentMethod === 'fiat' ? css['selected'] : ''}`}
-                        onClick={() => setPaymentMethod('fiat')}
-                      >
-                        <input type="radio" name="payment" checked={paymentMethod === 'fiat'} readOnly />
-                        <div className={css['payment-option-content']}>
-                          <div className={css['payment-option-header']}>
-                            <span className={css['payment-option-title']}>Fiat</span>
+                      {TICKETING.payment.fiatEnabled && (
+                        <label
+                          className={`${css['payment-option']} ${paymentMethod === 'fiat' ? css['selected'] : ''}`}
+                          onClick={() => setPaymentMethod('fiat')}
+                        >
+                          <input type="radio" name="payment" checked={paymentMethod === 'fiat'} readOnly />
+                          <div className={css['payment-option-content']}>
+                            <div className={css['payment-option-header']}>
+                              <span className={css['payment-option-title']}>Fiat</span>
+                            </div>
+                            <p className={css['payment-option-desc']}>Debit / Credit Card</p>
                           </div>
-                          <p className={css['payment-option-desc']}>Debit / Credit Card</p>
-                        </div>
-                      </label>
+                        </label>
+                      )}
                     </div>
 
-                    {paymentMethod === 'crypto' && !daimoPay && (
+                    {/* `fiat_purchase_enabled` toggled OFF for this event —
+                         parallels the crypto-disabled notice below. The plugin's
+                         /api/x402/tickets/fiat-purchase 404s with this exact
+                         signal; the buyer otherwise sees a generic error on
+                         the Stripe button. Affects both the Fiat radio path
+                         AND `forcePretixRedirect` (WC-via-Pretix), since both
+                         go through the same endpoint. Button-driven redirect
+                         to the Pretix-hosted shop where Stripe / wc_inject
+                         remain wired up by the operator. */}
+                    {(paymentMethod === 'fiat' || forcePretixRedirect) && fiatDisabledForEvent && (
+                      <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                        <div>
+                          Card payment is currently unavailable here.
+                          You can complete your purchase on the Pretix shop instead.
+                        </div>
+                        <button
+                          type="button"
+                          className={css['retry-verify-btn']}
+                          onClick={() => { window.location.href = pretixShopUrl }}
+                        >
+                          Go to Pretix shop
+                        </button>
+                      </div>
+                    )}
+
+                    {paymentMethod === 'crypto' && !forcePretixRedirect && (
                       <>
+                        {/* x402 toggled OFF for this event — surface a clear,
+                             dedicated notice instead of leaving the wallet area
+                             stuck on a generic error. The auto-checkout effect
+                             is suppressed via `cryptoDisabledForEvent`, so this
+                             notice persists until the buyer leaves the page.
+                             Button-driven redirect to the Pretix-hosted shop
+                             where the operator's wc_inject / Stripe remain
+                             wired up — the buyer keeps a path forward
+                             regardless of which side is disabled. */}
+                        {cryptoDisabledForEvent && (
+                          <div className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                            <div>
+                              Crypto checkout is currently unavailable here.
+                              You can complete your purchase on the Pretix shop instead.
+                            </div>
+                            <button
+                              type="button"
+                              className={css['retry-verify-btn']}
+                              onClick={() => { window.location.href = pretixShopUrl }}
+                            >
+                              Go to Pretix shop
+                            </button>
+                          </div>
+                        )}
+                        {isConnected && isSafeAddress && (
+                          <div className={css['smart-wallet-notice']}>
+                            <strong>Safe detected — payment is experimental.</strong> Keep this tab open while the transaction is signed and executed.
+                            {safeThreshold !== null && safeThreshold > 1 && (
+                              <>
+                                {' '}
+                                For Safes with multiple signers, use a <strong>dedicated browser</strong>{' '}
+                                for the Safe app where co-signers add signatures — this prevents losing
+                                the WalletConnect connection to your Safe mid-flow.
+                              </>
+                            )}
+                          </div>
+                        )}
                         {isConnected ? (
                           <div className={css['wallet-connected']}>
                             <div className={css['wallet-connected-row']}>
-                              <span className={css['wallet-connected-label']}>Connected to:</span>
+                              {/* No "Connected to:" label — the wallet's own icon
+                                   (e.g. the MetaMask fox) plus the connection-type
+                                   pill ("🖥️ Browser extension", "📱 WalletConnect")
+                                   already communicate the connected state. The
+                                   label was redundant on desktop and hidden on
+                                   mobile, so it's gone in both viewports. */}
                               <div className={css['wallet-connected-right']}>
-                                {connector?.icon ? (
+                                {connectedWalletIcon && !iconBroken ? (
                                   <img
-                                    src={connector.icon}
-                                    alt={connector.name ?? 'wallet'}
+                                    src={connectedWalletIcon}
+                                    alt={connectedWalletName ?? 'wallet'}
                                     className={css['wallet-identicon']}
+                                    onError={() => setIconLoadFailedFor(connectedWalletIcon)}
                                   />
                                 ) : (
                                   <div className={css['wallet-identicon']} />
                                 )}
-                                <span className={css['wallet-address']}>
-                                  {address?.slice(0, 6)}...{address?.slice(-4)}
-                                </span>
+                                <div className={css['wallet-connected-meta']}>
+                                  {/* Brand name on top, address + connection type below.
+                                       Surfaces the actual wallet (e.g. "Rainbow") via
+                                       Reown's `useWalletInfo`, not the generic
+                                       "WalletConnect" connector label — important so
+                                       returning buyers with a stale WC session know
+                                       which mobile app to open before clicking Pay. */}
+                                  {connectedWalletName && (
+                                    <span className={css['wallet-brand']}>{connectedWalletName}</span>
+                                  )}
+                                  <span className={css['wallet-address']}>
+                                    {/* Prefer ENS name when available — most users
+                                         recognize "vitalik.eth" much faster than
+                                         "0xd8dA…6045". Fall back to the truncated
+                                         hex while the lookup resolves or when no
+                                         primary name is set. The full hex stays
+                                         available via the title attribute for
+                                         hover-confirmation. */}
+                                    <span
+                                      className={css['wallet-address-hex']}
+                                      title={address}
+                                    >
+                                      {displayEnsName || (address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '')}
+                                    </span>
+                                    {/* Connection-type pill — colored chip with icon
+                                         so it's unmistakable at a glance whether the
+                                         next signature popup is in the browser
+                                         extension, on a phone (WC), in Coinbase
+                                         Wallet, or routed through Safe. The chip
+                                         uses data-kind to pick its tint via CSS so
+                                         the JSX stays kind-agnostic. */}
+                                    <span
+                                      className={css['wallet-connection-type']}
+                                      data-kind={connectionKind}
+                                    >
+                                      {(() => {
+                                        const icon = connectionTypeIcon(connectionKind)
+                                        if (icon === 'monitor') return <Monitor size={12} />
+                                        if (icon === 'smartphone') return <Smartphone size={12} />
+                                        if (icon === 'shield') return <Shield size={12} />
+                                        return <Wallet size={12} />
+                                      })()}
+                                      {connectionTypeLabel(connectionKind)}
+                                    </span>
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                            <button type="button" className={css['wallet-disconnect-btn']} onClick={() => disconnect()}>
+                            <button
+                              type="button"
+                              className={css['wallet-disconnect-btn']}
+                              onClick={() => disconnect()}
+                              // Lock disconnect mid-flight: a wallet swap during the
+                              // tx-broadcast / verify-poll window leaves the order in a
+                              // half-paid state where the backend keeps polling on the
+                              // original payer + hash but the UI reflects a different
+                              // session. Wait for verify to resolve (success or hard
+                              // error) before allowing a disconnect.
+                              disabled={isProcessing}
+                              title={isProcessing ? 'Disconnect disabled while a payment is being verified.' : undefined}
+                            >
                               Disconnect wallet
                             </button>
+                            {showMobileCoinbaseWarning && (
+                              <div className={css['cb-mobile-warning']} role="alert">
+                                <strong>Coinbase / Base Smart Wallet is not
+                                supported on mobile yet.</strong> Please
+                                complete this purchase on desktop, or
+                                disconnect and use a different wallet
+                                (MetaMask, Rainbow, etc.).
+                              </div>
+                            )}
                           </div>
                         ) : (
                           <div className={css['wallet-box']}>
@@ -2145,7 +3437,7 @@ function CheckoutContent() {
                       </>
                     )}
 
-                    {paymentMethod === 'crypto' && !daimoPay && paymentDetails && address && (
+                    {paymentMethod === 'crypto' && !forcePretixRedirect && paymentDetails && address && (
                       <div className={css['payment-options-block']}>
                         <div className={css['payment-options-header']}>
                           <span className={css['payment-options-title']}>How would you like to pay?</span>
@@ -2159,7 +3451,18 @@ function CheckoutContent() {
                           <>
                             {paymentOptions.length > 0 &&
                               (() => {
-                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))]
+                                // Canonical asset chip order — independent of the order the
+                                // backend returns options in. Symbols not in the list fall to
+                                // the end so newly-added tokens stay visible.
+                                const ASSET_ORDER = ['ETH', 'USDC', 'USDT0', 'USDT']
+                                const uniqueSymbols = [...new Set(paymentOptions.map(o => o.symbol))].sort((a, b) => {
+                                  const ia = ASSET_ORDER.indexOf(a)
+                                  const ib = ASSET_ORDER.indexOf(b)
+                                  if (ia === -1 && ib === -1) return a.localeCompare(b)
+                                  if (ia === -1) return 1
+                                  if (ib === -1) return -1
+                                  return ia - ib
+                                })
 
                                 // Networks for selected asset
                                 const networksForAsset = tokenFilter
@@ -2312,10 +3615,55 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {paymentStatus && !isProcessing && !isRedirecting && (
-                                      <p className={`${css['payment-notice']} ${css['payment-notice-info']}`}>
-                                        {paymentStatus}
-                                      </p>
+                                    {/* In-flight status banner. Renders the contextual
+                                         `paymentStatus` ("Sign payer proof in Rainbow on your
+                                         phone…", "Verifying on-chain (3/12)…", etc.) the moment a
+                                         flow starts. The Pay button below stays on a generic
+                                         "Processing…" label so the same text isn't duplicated;
+                                         this banner sits above the Pay button and is much harder
+                                         to miss when the buyer's eyes are on the wallet popup. */}
+                                    {!isRedirecting && paymentStatus && (
+                                      <div className={css['payment-status-banner']}>
+                                        <Loader2 size={16} className={css['spin']} />
+                                        <span>{paymentStatus}</span>
+                                      </div>
+                                    )}
+
+                                    {/* Manual hash escape hatch — appears after the recovery
+                                         watchdog has spent its full budget without finding the tx
+                                         via Alchemy assetTransfers. Buyer can paste the hash
+                                         from their wallet's history; we validate it on-chain
+                                         (from/to/value match) before accepting. */}
+                                    {needsManualHash && (
+                                      <div className={css['manual-hash-prompt']}>
+                                        <div className={css['manual-hash-message']}>
+                                          We can't tell whether your wallet sent the transaction.
+                                          If your wallet shows a successful payment, paste the
+                                          transaction hash here so we can verify it. Otherwise,
+                                          you can cancel and try again.
+                                        </div>
+                                        <div className={css['manual-hash-row']}>
+                                          <Input
+                                            value={manualHashInput}
+                                            onChange={(e) => setManualHashInput(e.target.value)}
+                                            placeholder="0x..."
+                                            disabled={manualHashSubmitting}
+                                            spellCheck={false}
+                                            autoComplete="off"
+                                          />
+                                          <button
+                                            type="button"
+                                            className={css['manual-hash-submit']}
+                                            onClick={submitManualHash}
+                                            disabled={manualHashSubmitting || !manualHashInput.trim()}
+                                          >
+                                            {manualHashSubmitting ? 'Verifying payment…' : 'Verify payment'}
+                                          </button>
+                                        </div>
+                                        {manualHashError && (
+                                          <div className={css['manual-hash-error']}>{manualHashError}</div>
+                                        )}
+                                      </div>
                                     )}
 
                                     {txHash && (
@@ -2357,26 +3705,42 @@ function CheckoutContent() {
                                       </div>
                                     )}
 
-                                    {/* Pay button */}
-                                    {selectedOption && (
-                                      <button
-                                        type="button"
-                                        className={css['btn-pay-now']}
-                                        disabled={isProcessing}
-                                        onClick={payWithSelectedOption}
-                                      >
-                                        <Lock size={20} />
-                                        {isProcessing
-                                          ? paymentStatus || 'Processing...'
-                                          : `Pay: ${
-                                              selectedOption.decimals >= 18
-                                                ? formatEth(selectedOption.amount, 18)
-                                                : (
-                                                    Number(selectedOption.amount) /
-                                                    10 ** selectedOption.decimals
-                                                  ).toFixed(2)
-                                            } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
-                                      </button>
+                                    {/* Pay button — hidden while fresh options are loading (avoids
+                                         a stale "Pay: $X on Chain" flash) and after a verify has
+                                         succeeded (avoids an accidental second click during the
+                                         router.push window). */}
+                                    {selectedOption && !paymentOptionsLoading && !paymentSucceeded && (
+                                      <>
+                                        {/* No status banner here — the Pay button below already
+                                             swaps its label to `paymentStatus` (e.g. "Sign payer
+                                             proof in Rainbow on your phone…") whenever a flow is
+                                             in motion. A second banner above the button repeated
+                                             the exact same text. The success / redirect notices
+                                             render separately further down. */}
+                                        <button
+                                          type="button"
+                                          className={css['btn-pay-now']}
+                                          disabled={isProcessing}
+                                          onClick={payWithSelectedOption}
+                                        >
+                                          <Lock size={20} />
+                                          {isProcessing
+                                            ? 'Processing…'
+                                            : `Pay: ${
+                                                selectedOption.decimals >= 18
+                                                  ? formatEth(selectedOption.amount, 18)
+                                                  : (
+                                                      Number(selectedOption.amount) /
+                                                      10 ** selectedOption.decimals
+                                                    ).toFixed(2)
+                                              } ${displaySymbol(selectedOption.symbol)} on ${selectedOption.chain}`}
+                                        </button>
+                                      </>
+                                    )}
+                                    {paymentSucceeded && (
+                                      <div className={css['payment-notice']}>
+                                        {paymentStatus || 'Payment confirmed — redirecting...'}
+                                      </div>
                                     )}
                                   </>
                                 )
@@ -2384,12 +3748,34 @@ function CheckoutContent() {
                             {!paymentOptionsLoading &&
                               paymentOptions.length > 0 &&
                               paymentOptions.filter(o => o.sufficient).length === 0 &&
-                              paymentDetails && (
-                                <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
-                                  Insufficient balance. Top up your wallet or connect one with enough USDC, USDT, or
-                                  ETH.
-                                </p>
-                              )}
+                              paymentDetails && (() => {
+                                // Build the "enough ETH, USDC, or USDT0" list from the
+                                // tokens this event actually offers. Honors the plugin's
+                                // chain/token toggles — won't suggest USDT0 if the event
+                                // didn't enable it.
+                                const ASSET_DISPLAY_ORDER = ['ETH', 'USDC', 'USDT0', 'USDT']
+                                const symbols = [...new Set(paymentOptions.map(o => o.symbol))]
+                                  .sort((a, b) => {
+                                    const ia = ASSET_DISPLAY_ORDER.indexOf(a)
+                                    const ib = ASSET_DISPLAY_ORDER.indexOf(b)
+                                    if (ia === -1 && ib === -1) return a.localeCompare(b)
+                                    if (ia === -1) return 1
+                                    if (ib === -1) return -1
+                                    return ia - ib
+                                  })
+                                  .map(s => SYMBOL_DISPLAY[s] ?? s)
+                                let humanList = ''
+                                if (symbols.length === 1) humanList = symbols[0]
+                                else if (symbols.length === 2) humanList = `${symbols[0]} or ${symbols[1]}`
+                                else if (symbols.length > 2)
+                                  humanList = `${symbols.slice(0, -1).join(', ')}, or ${symbols[symbols.length - 1]}`
+                                return (
+                                  <p className={`${css['payment-notice']} ${css['payment-notice-error']}`}>
+                                    Insufficient balance. Top up your wallet
+                                    {humanList ? ` or connect one with enough ${humanList}` : ''}.
+                                  </p>
+                                )
+                              })()}
                           </>
                         )}
                       </div>
@@ -2460,9 +3846,7 @@ function CheckoutContent() {
                                 {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                               </button>
                             </div>
-                            {voucherError && (
-                              <p className={css['discount-error']}>{voucherError}</p>
-                            )}
+                            {voucherError && <p className={css['discount-error']}>{voucherError}</p>}
                           </>
                         )}
                       </div>
@@ -2483,7 +3867,9 @@ function CheckoutContent() {
                           <span className={css['mobile-inline-summary-total']}>
                             <span>${totalUsd}</span>
                             {!mobileInlineSummaryOpen && showGstBreakdown && (
-                              <span className={css['mobile-order-bar-tax']}>incl. {vatPercent}% {vatLabel}</span>
+                              <span className={css['mobile-order-bar-tax']}>
+                                incl. {vatPercent}% {vatLabel}
+                              </span>
                             )}
                           </span>
                         </button>
@@ -2498,7 +3884,10 @@ function CheckoutContent() {
                                       <span className={css['panel-item-name']}>
                                         {item.name}
                                         {isPaid && vatPercent > 0 && (
-                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                          <span className={css['panel-item-tax']}>
+                                            {' '}
+                                            ({vatLabel} {vatPercent}%)
+                                          </span>
                                         )}
                                       </span>
                                       <div className={css['panel-item-right']}>
@@ -2521,12 +3910,13 @@ function CheckoutContent() {
                               {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                                 const item = allAddonItems.find(i => i.id === itemId)
                                 if (!item || data.quantity <= 0) return null
-                                let price = parseFloat(item.price)
+                                const cat = addonCategoryByItemId.get(itemId)
+                                let price = cat?.priceIncluded ? 0 : parseFloat(item.price)
                                 let variationName = ''
                                 if (data.variationId) {
                                   const variation = item.variations.find(v => v.id === data.variationId)
                                   if (variation) {
-                                    price = parseFloat(variation.price)
+                                    if (!cat?.priceIncluded) price = parseFloat(variation.price)
                                     variationName = variation.name
                                   }
                                 }
@@ -2538,7 +3928,10 @@ function CheckoutContent() {
                                       <span>
                                         {item.name}
                                         {!isFree && vatPercent > 0 && (
-                                          <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                                          <span className={css['panel-item-tax']}>
+                                            {' '}
+                                            ({vatLabel} {vatPercent}%)
+                                          </span>
                                         )}
                                       </span>
                                       {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -2564,9 +3957,9 @@ function CheckoutContent() {
                                   <span>&ndash;${voucherDiscount.toFixed(2)}</span>
                                 </div>
                               )}
-                              {paymentMethod === 'crypto' && (
+                              {cryptoDiscount > 0 && (
                                 <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                  <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                                  <span>Crypto discount (&ndash;{cryptoDiscountPercent}%)</span>
                                   <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                                 </div>
                               )}
@@ -2577,7 +3970,9 @@ function CheckoutContent() {
                                     <span>${totalExclGst.toFixed(2)}</span>
                                   </div>
                                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                                    <span>{vatLabel} @ {vatPercent}%</span>
+                                    <span>
+                                      {vatLabel} @ {vatPercent}%
+                                    </span>
                                     <span>${gstAmount.toFixed(2)}</span>
                                   </div>
                                 </>
@@ -2609,22 +4004,35 @@ function CheckoutContent() {
                       </div>
                     </div>
 
-                    {/* Mobile: T&C */}
-                    <div className={css['mobile-only']}>
-                      <p className={css['mobile-tc']}>
-                        By placing your order, you agree to Devcon&apos;s{' '}
-                        <Link to="/terms-of-service">
-                          <strong>Terms & Conditions</strong>
-                        </Link>{' '}
-                        and{' '}
-                        <Link to="/privacy-policy">
-                          <strong>Privacy Policy</strong>
-                        </Link>
-                        .
-                      </p>
-                    </div>
+                    {supportMailto && (
+                      <div className={css['support-pill']}>
+                        <p>
+                          Need help?{' '}
+                          <a href={supportMailto}>
+                            <strong>Contact support</strong>
+                          </a>
+                        </p>
+                      </div>
+                    )}
 
-                    {!(paymentMethod === 'crypto' && !daimoPay) && (
+                    {/* Privacy / Notice confirmation — shown inside the Payment card per Figma */}
+                    <p className={css['payment-confirm-text']}>
+                      I confirm that I have read and understand the{' '}
+                      <a href="https://ethereum.org/en/privacy-policy/" target="_blank" rel="noopener noreferrer">
+                        <strong>EF Privacy Policy</strong>
+                      </a>{' '}
+                      and{' '}
+                      <a
+                        href="https://docs.google.com/document/d/122-G_xgVVFBgLt_3MNtTSaaXZxygtQK5O1VfGvi17Kk/edit"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>Devcon 8 Privacy Notice</strong>
+                      </a>
+                      .
+                    </p>
+
+                    {!(paymentMethod === 'crypto' && !forcePretixRedirect) && (
                       <button
                         type="button"
                         className={`${css['btn-checkout']} ${checkoutEnabled ? css['btn-checkout-active'] : ''}`}
@@ -2640,19 +4048,13 @@ function CheckoutContent() {
                       </button>
                     )}
 
-                    {(paymentMethod !== 'crypto' || daimoPay) && (
+                    {paymentMethod !== 'crypto' && (
                       <div className={css['stripe-note']}>
-                        {paymentMethod === 'crypto' && daimoPay ? (
-                          <span>
-                            Powered by <strong>Daimo Pay</strong>
-                          </span>
-                        ) : (
-                          <img
-                            src="/assets/images/powered-by-stripe.svg"
-                            alt="Powered by Stripe"
-                            className={css['stripe-note-img']}
-                          />
-                        )}
+                        <img
+                          src="/assets/images/powered-by-stripe.svg"
+                          alt="Powered by Stripe"
+                          className={css['stripe-note-img']}
+                        />
                       </div>
                     )}
                   </div>
@@ -2673,7 +4075,7 @@ function CheckoutContent() {
                 {openSection === 'faq' && (
                   <div className={css['section-body']}>
                     <div className={css['faq-list']}>
-                      {FAQ_ITEMS.map((item, i) => (
+                      {resolvedFaqItems.map((item, i) => (
                         <div key={i} className={css['faq-item']}>
                           <button
                             type="button"
@@ -2710,7 +4112,10 @@ function CheckoutContent() {
                         <span className={css['panel-item-name']}>
                           {item.name}
                           {isPaid && vatPercent > 0 && (
-                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            <span className={css['panel-item-tax']}>
+                              {' '}
+                              ({vatLabel} {vatPercent}%)
+                            </span>
                           )}
                         </span>
                         <div className={css['panel-item-right']}>
@@ -2733,12 +4138,13 @@ function CheckoutContent() {
                 {Array.from(selectedAddons.entries()).map(([itemId, data]) => {
                   const item = allAddonItems.find(i => i.id === itemId)
                   if (!item || data.quantity <= 0) return null
-                  let price = parseFloat(item.price)
+                  const cat = addonCategoryByItemId.get(itemId)
+                  let price = cat?.priceIncluded ? 0 : parseFloat(item.price)
                   let variationName = ''
                   if (data.variationId) {
                     const variation = item.variations.find(v => v.id === data.variationId)
                     if (variation) {
-                      price = parseFloat(variation.price)
+                      if (!cat?.priceIncluded) price = parseFloat(variation.price)
                       variationName = variation.name
                     }
                   }
@@ -2750,7 +4156,10 @@ function CheckoutContent() {
                         <span>
                           {item.name}
                           {!isFree && vatPercent > 0 && (
-                            <span className={css['panel-item-tax']}> ({vatLabel} {vatPercent}%)</span>
+                            <span className={css['panel-item-tax']}>
+                              {' '}
+                              ({vatLabel} {vatPercent}%)
+                            </span>
                           )}
                         </span>
                         {variationName && <span className={css['panel-item-meta']}>{variationName}</span>}
@@ -2794,11 +4203,7 @@ function CheckoutContent() {
                     </button>
                   </div>
                 ) : !discountOpen ? (
-                  <button
-                    type="button"
-                    className={css['discount-add-btn']}
-                    onClick={() => setDiscountOpen(true)}
-                  >
+                  <button type="button" className={css['discount-add-btn']} onClick={() => setDiscountOpen(true)}>
                     <Tag size={16} />
                     Add discount
                   </button>
@@ -2826,9 +4231,7 @@ function CheckoutContent() {
                         {voucherLoading ? <Loader2 size={16} className={css['discount-spinner']} /> : 'Apply'}
                       </button>
                     </div>
-                    {voucherError && (
-                      <p className={css['discount-error']}>{voucherError}</p>
-                    )}
+                    {voucherError && <p className={css['discount-error']}>{voucherError}</p>}
                   </>
                 )}
               </div>
@@ -2843,9 +4246,9 @@ function CheckoutContent() {
                     <span>&ndash;${voucherDiscount.toFixed(2)}</span>
                   </div>
                 )}
-                {paymentMethod === 'crypto' && (
+                {cryptoDiscount > 0 && (
                   <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                    <span>Crypto discount (&ndash;{TICKETING.payment.cryptoDiscountPercent}%)</span>
+                    <span>Crypto discount (&ndash;{cryptoDiscountPercent}%)</span>
                     <span>&ndash;${cryptoDiscount.toFixed(2)}</span>
                   </div>
                 )}
@@ -2856,7 +4259,9 @@ function CheckoutContent() {
                       <span>${totalExclGst.toFixed(2)}</span>
                     </div>
                     <div className={`${css['summary-line']} ${css['summary-line-indent']}`}>
-                      <span>{vatLabel} @ {vatPercent}%</span>
+                      <span>
+                        {vatLabel} @ {vatPercent}%
+                      </span>
                       <span>${gstAmount.toFixed(2)}</span>
                     </div>
                   </>
@@ -2883,20 +4288,9 @@ function CheckoutContent() {
               </div>
               <div className={css['panel-disclaimer']}>
                 <p>
-                  By placing your order, you agree to Devcon&apos;s{' '}
-                  <Link to="/terms-of-service">
-                    <strong>Terms & Conditions</strong>
-                  </Link>{' '}
-                  and{' '}
-                  <Link to="/privacy-policy">
-                    <strong>Privacy Policy</strong>
-                  </Link>
-                  .
-                </p>
-                <p>
                   An order confirmation with your tickets will be sent to the email provided during checkout. If you
                   don&apos;t receive a confirmation email, please{' '}
-                  <a href="mailto:support@devcon.org">
+                  <a href={supportMailto || `mailto:${supportEmail}`}>
                     <strong>contact us</strong>
                   </a>
                   .
@@ -2924,8 +4318,25 @@ function CheckoutContent() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context: { locale?: string }) {
+  const locale: string = context.locale ?? 'en'
+
+  // Slice the synced NocoDB FAQ feed to entries whose Page multi-select
+  // contains "checkout". `Page` is a recently-added column; rows that
+  // haven't been tagged yet have `pages: []` and are simply skipped. If
+  // the slice is empty (sync race, fresh column, or editorial backlog)
+  // the FAQ section on the page renders no items.
+  let faqItems: Array<{ question: string; answer: string }> = []
+  try {
+    const data = await getFaqData(locale)
+    faqItems = data.items
+      .filter(i => i.pages.includes('checkout') && i.answer.trim() !== '')
+      .map(i => ({ question: i.question, answer: i.answer }))
+  } catch {
+    // Sync miss or read error — leave faqItems empty and let the fallback render
+  }
+
   return {
-    props: {},
+    props: { faqItems },
   }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Download, CircleUser } from 'lucide-react'
+import { Download, CircleUser, ExternalLink } from 'lucide-react'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -40,6 +40,11 @@ interface OrderData {
   url: string
   payment_url: string | null
   payment_info: PaymentInfo | null
+  require_approval: boolean
+  refunded_amount: string
+  refund_tx_hash: string | null
+  refund_chain_id: number | null
+  was_paid: boolean
 }
 
 export default function OrderConfirmationPage() {
@@ -52,14 +57,6 @@ export default function OrderConfirmationPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [shareName, setShareName] = useState('')
-
-  const shareNameKey = orderCode ? `devcon_share_name_${orderCode}` : ''
-
-  useEffect(() => {
-    if (!orderCode) return
-    const savedName = localStorage.getItem(shareNameKey) || localStorage.getItem('devcon_share_name') || ''
-    if (savedName) setShareName(savedName)
-  }, [orderCode, shareNameKey])
 
   useEffect(() => {
     if (!orderCode || !orderSecret) return
@@ -108,18 +105,97 @@ export default function OrderConfirmationPage() {
     )
   }
 
+  const pi = order.payment_info
+  // `payment_provider` is Pretix's last-attempted provider identifier on
+  // the order (`'stripe'`, `'walletconnect'`, `'banktransfer'`, etc.).
+  // It's our source of truth for what to show in the "Payment" row.
+  // `isCrypto` is a heuristic fallback for older records where the
+  // provider field wasn't populated but tx details landed in
+  // payment_info — both treated as crypto.
+  const isCrypto = order.payment_provider === 'walletconnect' || !!pi?.tx_hash
+  const isStripe = order.payment_provider === 'stripe'
+  // Friendly label for the Payment summary row. Pending orders without
+  // a chosen provider land on "Awaiting payment method" so the buyer
+  // isn't told they paid by card when they haven't paid at all yet.
+  // Specific known providers get a recognisable label; unknown ones
+  // surface the identifier directly so support has something to grep.
+  const paymentLabel = (() => {
+    if (isCrypto) return 'Crypto'
+    if (isStripe) return 'Card (Stripe)'
+    if (order.payment_provider === 'banktransfer') return 'Bank transfer'
+    if (order.payment_provider) return order.payment_provider
+    return 'Awaiting payment method'
+  })()
+
+  // ── Order-state derivations ──
+  // Four Pretix statuses (`n` pending, `p` paid, `e` expired, `c`
+  // canceled) plus three sub-states:
+  //   * `isAwaitingApproval` — admin-gated order (require_approval +
+  //     status `n`). No "Complete Payment" CTA; payment URL isn't
+  //     valid until approval lands.
+  //   * `isPendingWithTx` — crypto buyer signed + broadcast, we're
+  //     polling confirmations. Swaps the pending CTA for an onchain-
+  //     verifying notice and the existing tx link is what they watch.
+  //   * `isPartiallyRefunded` / `isFullyRefunded` — derived from the
+  //     sum of `state === 'done'` refunds in payment records.
+  const isPaid = order.status === 'p'
+  const isExpired = order.status === 'e'
+  const isCanceled = order.status === 'c'
+  const isAwaitingApproval = order.status === 'n' && order.require_approval
+  const isPending = order.status === 'n' && !order.require_approval
+  const isPendingWithTx = isPending && !!pi?.tx_hash
+
+  const refundedNum = parseFloat(order.refunded_amount || '0') || 0
+  const totalNum = parseFloat(order.total || '0') || 0
+  const isFullyRefunded = refundedNum > 0 && refundedNum >= totalNum - 0.001
+  const isPartiallyRefunded = refundedNum > 0 && !isFullyRefunded
+  // Cancelled-with-unrefunded-money: the buyer paid, the order's
+  // been voided, but the refund hasn't landed yet. Surface a clear
+  // "we owe you money back" notice so they're not left wondering.
+  // Distinct from `isCanceled` alone — a cancelled-before-payment
+  // order doesn't owe anything back.
+  const isRefundPending = isCanceled && order.was_paid && !isFullyRefunded
+
   const statusLabels: Record<string, string> = {
-    n: 'Pending',
+    n: isAwaitingApproval ? 'Awaiting Approval' : 'Pending',
     p: 'Paid',
     e: 'Expired',
     c: 'Canceled',
   }
 
-  const isPaid = order.status === 'p'
-  const isPending = order.status === 'n'
-  const isExpired = order.status === 'e'
-  const pi = order.payment_info
-  const isCrypto = !!pi?.tx_hash
+  // Banner/badge styling key. Cancelled gets its own variant so we can
+  // diverge from `--expired` later if Figma colors differ; today both
+  // are the same coral pink. Approval-pending reuses the amber pending
+  // visual since it's still an "in-flight" state from the buyer's POV.
+  const stateVariant: 'confirmed' | 'pending' | 'expired' | 'cancelled' =
+    isPaid ? 'confirmed'
+    : isExpired ? 'expired'
+    : isCanceled ? 'cancelled'
+    : 'pending'
+
+  const bannerText =
+    isPaid ? 'Order Confirmed'
+    : isExpired ? 'Order Expired'
+    : isCanceled ? 'Order Canceled'
+    : isAwaitingApproval ? 'Awaiting Approval'
+    : 'Order Pending'
+
+  // Buyer-facing h1. Each Pretix terminal state gets its own copy from
+  // the Figma designs; pending-with-tx gets a separate header to set
+  // the right expectation (we're verifying, not waiting for them to act).
+  const headerTitle =
+    isPaid ? 'Your order has been confirmed!'
+    : isPendingWithTx ? 'Confirming your payment onchain'
+    : isAwaitingApproval ? 'Your order is awaiting approval'
+    : isPending ? 'Your order is pending payment'
+    : isExpired ? 'Your order has now expired'
+    : isCanceled ? 'Your order was canceled'
+    : 'Your order'
+
+  // Subtitle: pending (and pending-with-tx) tells them what's still
+  // outstanding; every terminal state (paid / expired / cancelled /
+  // awaiting-approval) confirms the email destination instead.
+  const showPendingSubtitle = isPending && !isPendingWithTx
 
   const BLOCK_EXPLORERS: Record<number, string> = {
     1: 'https://etherscan.io',
@@ -169,14 +245,34 @@ export default function OrderConfirmationPage() {
   const formattedDate = `${day} ${month}, ${year} at ${time}`
 
   const rawCryptoAmount = pi?.amount || null
-  // Parse the numeric value and format to a readable precision
+  // pi.amount is a raw on-chain base-units integer (USDC/USDT0 = 10^6, ETH = 10^18).
+  // Divide by the token's decimals using BigInt to avoid float precision loss on
+  // wei-scale ETH values; then trim zeros for a clean display.
   const cryptoAmount = rawCryptoAmount
     ? (() => {
-        const n = parseFloat(rawCryptoAmount)
-        if (isNaN(n)) return rawCryptoAmount
-        if (n < 0.0001) return n.toPrecision(4)
-        if (n < 1) return n.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
-        return n.toFixed(4)
+        const rawStr = String(rawCryptoAmount).trim()
+        const rawSymbol = pi?.token_symbol
+        const decimals = rawSymbol === 'ETH' ? 18 : 6
+        try {
+          const n = BigInt(rawStr)
+          const ZERO = BigInt(0)
+          if (n === ZERO) return '0'
+          // BigInt(`1${'0'.repeat(decimals)}`) keeps us off the literal-syntax
+          // path (`10n ** N`) which requires tsconfig target: es2020.
+          const base = BigInt('1' + '0'.repeat(decimals))
+          const whole = n / base
+          const frac = n % base
+          if (frac === ZERO) return whole.toString()
+          const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
+          return `${whole}.${fracStr}`
+        } catch {
+          // Historical orders may have stored a pre-formatted decimal — fall back.
+          const f = parseFloat(rawStr)
+          if (isNaN(f)) return rawStr
+          if (f < 0.0001) return f.toPrecision(4)
+          if (f < 1) return f.toFixed(6).replace(/0+$/, '').replace(/\.$/, '')
+          return f.toFixed(4)
+        }
       })()
     : null
   const totalUsd = `$${parseFloat(order.total).toFixed(2)}`
@@ -197,18 +293,16 @@ export default function OrderConfirmationPage() {
         <div className={css['layout']}>
           {/* Mobile only: order header on top */}
           <div className={css['mobile-header']}>
-            <h1 className={css['order-title']}>
-              {isPaid ? 'Your order has been placed!' : 'Your order is being processed'}
-            </h1>
+            <h1 className={css['order-title']}>{headerTitle}</h1>
             <p className={css['order-subtitle']}>
-              {isPaid ? (
-                <>
-                  We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
-                </>
-              ) : (
+              {showPendingSubtitle ? (
                 <>
                   Payment is pending. You&apos;ll receive a confirmation email at <strong>{order.email}</strong> once
                   completed.
+                </>
+              ) : (
+                <>
+                  We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
                 </>
               )}
             </p>
@@ -217,13 +311,9 @@ export default function OrderConfirmationPage() {
           {/* Left: Ticket card */}
           <div className={css['ticket-card']}>
             <div
-              className={`${css['ticket-banner']} ${
-                isPaid ? css['ticket-banner--confirmed'] : isExpired ? css['ticket-banner--expired'] : css['ticket-banner--pending']
-              }`}
+              className={`${css['ticket-banner']} ${css[`ticket-banner--${stateVariant}`]}`}
             >
-              <span className={css['ticket-banner-text']}>
-                {isPaid ? 'Order Confirmed' : order.status === 'e' ? 'Order Expired' : 'Order Pending'}
-              </span>
+              <span className={css['ticket-banner-text']}>{bannerText}</span>
             </div>
             <div className={css['ticket-body']}>
               <div className={css['ticket-data']}>
@@ -289,11 +379,7 @@ export default function OrderConfirmationPage() {
                           type="text"
                           placeholder="name.eth or nickname"
                           value={shareName}
-                          onChange={e => {
-                            const val = e.target.value
-                            setShareName(val)
-                            if (orderCode) localStorage.setItem(shareNameKey, val)
-                          }}
+                          onChange={e => setShareName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -303,7 +389,12 @@ export default function OrderConfirmationPage() {
                       onClick={e => {
                         e.preventDefault()
                         const ticketName = encodeURIComponent(shareName.trim() || 'Anon').replace(/%20/g, '+')
-                        window.open(`/ticket/${ticketName}?share`, '_blank')
+                        // Cache buster lives in the path (not a query param) so every share is
+                        // a unique URL — forces Twitter/Warpcast to re-scrape and re-fetch the OG.
+                        // Trailing slash matches next.config.js `trailingSlash: true`, avoiding
+                        // a 308 hop on Twitter's scrape.
+                        const v = Date.now().toString(36)
+                        window.open(`/ticket/${ticketName}/${v}/?share`, '_blank')
                       }}
                     >
                       Generate sharing link
@@ -318,9 +409,18 @@ export default function OrderConfirmationPage() {
           <div className={css['order-column']}>
             {/* Desktop only: order header inside right column */}
             <div className={css['desktop-header']}>
-              <h1 className={css['order-title']}>Your order has been placed!</h1>
+              <h1 className={css['order-title']}>{headerTitle}</h1>
               <p className={css['order-subtitle']}>
-                We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
+                {showPendingSubtitle ? (
+                  <>
+                    Payment is pending. You&apos;ll receive a confirmation email at <strong>{order.email}</strong> once
+                    completed.
+                  </>
+                ) : (
+                  <>
+                    We&apos;ve sent a confirmation email to: <strong>{order.email}</strong>
+                  </>
+                )}
               </p>
             </div>
 
@@ -332,7 +432,12 @@ export default function OrderConfirmationPage() {
 
               <div className={css['summary-row']}>
                 <span className={css['summary-label']}>Status</span>
-                <span className={isPaid ? css['status-badge'] : isExpired ? css['status-badge-expired'] : css['status-badge-pending']}>
+                <span className={
+                  isPaid ? css['status-badge']
+                  : isExpired ? css['status-badge-expired']
+                  : isCanceled ? css['status-badge-cancelled']
+                  : css['status-badge-pending']
+                }>
                   {statusLabels[order.status] || order.status}
                 </span>
               </div>
@@ -349,7 +454,7 @@ export default function OrderConfirmationPage() {
 
               <div className={css['summary-row']}>
                 <span className={css['summary-label']}>Payment</span>
-                {isCrypto ? (
+                {isCrypto && tokenSymbol && networkName ? (
                   <span className={css['summary-value-payment']}>
                     <strong>Crypto </strong>
                     <span>
@@ -357,7 +462,7 @@ export default function OrderConfirmationPage() {
                     </span>
                   </span>
                 ) : (
-                  <span className={css['summary-value-semi']}>Card (Stripe)</span>
+                  <span className={css['summary-value-semi']}>{paymentLabel}</span>
                 )}
               </div>
 
@@ -387,7 +492,12 @@ export default function OrderConfirmationPage() {
               </div>
             </div>
 
-            {isPending && order.payment_url && (
+            {/* Complete Payment CTA — only when the order is genuinely
+                waiting for the buyer to act. Suppressed for:
+                  * pending-with-tx (we're verifying onchain, not waiting on them)
+                  * awaiting-approval (no payment URL is valid yet)
+                  * paid / expired / cancelled (terminal states) */}
+            {isPending && !isPendingWithTx && order.payment_url && (
               <>
                 <hr className={css['order-divider']} />
                 <div className={css['pending-payment-section']}>
@@ -410,41 +520,125 @@ export default function OrderConfirmationPage() {
               </>
             )}
 
-            {/* Save ticket — only shown when paid */}
-            {isPaid && (
+            {isPendingWithTx && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['pending-payment-section']}>
+                  <p className={css['pending-payment-text']}>
+                    We&apos;re confirming your payment onchain. This page will update once it&apos;s settled — you
+                    can close it and check back later, or watch the transaction at the link above.
+                  </p>
+                </div>
+              </>
+            )}
+
+            {isAwaitingApproval && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['pending-payment-section']}>
+                  <p className={css['pending-payment-text']}>
+                    This order needs to be approved before payment can be collected. We&apos;ll email{' '}
+                    <strong>{order.email}</strong> once an organiser reviews it.
+                  </p>
+                </div>
+              </>
+            )}
+
+            {isRefundPending && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['pending-payment-section']}>
+                  <p className={css['pending-payment-text']}>
+                    Your order was canceled and a refund is being processed.
+                    {isPartiallyRefunded ? (
+                      <> ${(totalNum - refundedNum).toFixed(2)} is still outstanding and will be returned to the wallet you paid from. </>
+                    ) : (
+                      <> The amount you paid will be returned to the wallet you paid from. </>
+                    )}
+                    If you don&apos;t see it within a few business days, please contact the event organizer.
+                  </p>
+                </div>
+              </>
+            )}
+
+            {(isPartiallyRefunded || isFullyRefunded) && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['summary-section']}>
+                  <h3 className={css['summary-heading']}>Refund</h3>
+                  <div className={css['summary-row']}>
+                    <span className={css['summary-label']}>
+                      {isFullyRefunded ? 'Fully refunded' : 'Partially refunded'}
+                    </span>
+                    <span className={css['summary-value-semi']}>
+                      ${refundedNum.toFixed(2)}
+                    </span>
+                  </div>
+                  {order.refund_tx_hash && (
+                    <div className={css['summary-row']}>
+                      <span className={css['summary-label']}>Refund transaction</span>
+                      <a
+                        href={`${
+                          (order.refund_chain_id != null && BLOCK_EXPLORERS[order.refund_chain_id]) ||
+                          'https://etherscan.io'
+                        }/tx/${order.refund_tx_hash}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={css['tx-link']}
+                      >
+                        {order.refund_tx_hash.slice(0, 10)}...{order.refund_tx_hash.slice(-8)}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+
+            {/* Save ticket — only the Google/Apple Wallet passbook badges
+                are paid-only; the "View order on Pretix" link below is
+                always rendered when an order URL exists so pending /
+                expired / cancelled buyers still have a path to the
+                full Pretix-hosted view for support / refunds. */}
+            {isPaid && passbookUrl && (
               <>
                 <hr className={css['order-divider']} />
                 <div className={css['save-section']}>
                   <h3 className={css['summary-heading']}>Save Ticket</h3>
                   <div className={css['save-buttons']}>
-                    {passbookUrl && (
-                      <div className={css['wallet-row-wrapper']}>
-                        <div className={css['wallet-row']}>
-                          <a
-                            href={passbookUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={css['wallet-badge']}
-                          >
-                            <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
-                          </a>
-                          <a
-                            href={passbookUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={css['wallet-badge']}
-                          >
-                            <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
-                          </a>
-                        </div>
+                    <div className={css['wallet-row-wrapper']}>
+                      <div className={css['wallet-row']}>
+                        <a
+                          href={passbookUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={css['wallet-badge']}
+                        >
+                          <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
+                        </a>
+                        <a
+                          href={passbookUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={css['wallet-badge']}
+                        >
+                          <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
+                        </a>
                       </div>
-                    )}
-                    {pdfUrl && (
-                      <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
-                        <Download size={18} />
-                        Download (PDF)
-                      </a>
-                    )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {order.url && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['save-section']}>
+                  <div className={css['save-buttons']}>
+                    <a href={order.url} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
+                      <ExternalLink size={18} />
+                      View order on Pretix
+                    </a>
                   </div>
                 </div>
               </>
