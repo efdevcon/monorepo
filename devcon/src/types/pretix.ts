@@ -96,7 +96,6 @@ export interface PretixItem {
   show_quota_left: boolean | null
   checkin_attention: boolean
   meta_data: Record<string, string>
-  picture: string | null
 }
 
 export interface PretixQuestionOption {
@@ -267,27 +266,13 @@ export interface TicketInfo {
     categoryId: number
     categoryName: string
     minCount: number
-    /** Maximum total quantity across **all items in this category**, NOT per
-     *  item. e.g. `maxCount=2` + 3 items in the category means the buyer can
-     *  pick any combination summing to ≤ 2 (1+1, 2+0, 0+2). The per-item cap
-     *  is governed by `multiAllowed` separately. */
     maxCount: number
-    /** When `false`, each individual item in this category can only be picked
-     *  once (per-item cap = 1). When `true`, an item can be picked up to the
-     *  full `maxCount`. Pretix `ItemAddOn.multi_allowed`. */
-    multiAllowed: boolean
-    /** True when the parent ticket's addon entry has `price_included: true` —
-     *  every item in this category is effectively free as an addon to this
-     *  ticket regardless of the item's `price`. Drives the "Included with
-     *  ticket" group + $0 charge in the cart. */
-    priceIncluded: boolean
     items: {
       id: number
       name: string
       description: string | null
       price: string
       available: boolean
-      picture: string | null
       variations: {
         id: number
         name: string

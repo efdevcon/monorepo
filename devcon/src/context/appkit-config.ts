@@ -18,7 +18,6 @@ function chainTransport(alchemySlug: string, infuraSlug?: string) {
 
 const networks = [baseSepolia, base, mainnet, optimism, arbitrum, polygon] as const
 
-
 export const wagmiAdapter = new WagmiAdapter({
   ssr: true,
   networks: [...networks],

@@ -32,7 +32,6 @@
     "early-access:generate-codes": "ts-node src/scripts/generate-early-access-codes.ts",
     "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts",
     "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts",
-    "pretix:clone": "ts-node src/scripts/pretix/clone-event.ts",
     "forms:decrypt": "tsx scripts/decrypt.ts"
   },
   "dependencies": {

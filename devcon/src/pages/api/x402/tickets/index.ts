@@ -13,7 +13,6 @@ import { getTicketPurchaseInfo } from 'services/pretix'
 import { hasAvailableVouchers } from 'services/discountStore'
 import { TicketPurchaseInfo } from 'types/pretix'
 import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
-import { getClientIp } from 'utils/getClientIp'
 import { TICKETING, isTestnet } from 'config/ticketing'
 
 // ---------------------------------------------------------------------------
@@ -54,10 +53,7 @@ interface TicketsResponse {
       tokenSymbol: string
       tokenAddress: string
       tokenDecimals: number
-      /** Crypto-payment discount percentage as a string (e.g. "10%"), or
-       *  `null` when the discount is disabled. Clients must treat `null`
-       *  as "no discount" — not "use the FE default". */
-      discountForCrypto: string | null
+      discountForCrypto: string
       /** x402 v2: USDC + ETH on Ethereum, OP, Arbitrum, Base (or testnet) */
       supportedAssets: SupportedAsset[]
     }
@@ -78,7 +74,7 @@ export default async function handler(
   }
 
   // Rate limit per IP
-  const clientIp = getClientIp(req)
+  const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown'
   if (!checkRateLimit(clientIp)) {
     res.setHeader('Retry-After', '60')
     return res.status(429).json({ success: false, error: 'Too many requests. Please try again later.' })
@@ -110,9 +106,7 @@ export default async function handler(
           tokenSymbol: usdcConfig.tokenSymbol,
           tokenAddress: usdcConfig.tokenAddress,
           tokenDecimals: usdcConfig.tokenDecimals,
-          discountForCrypto: TICKETING.payment.cryptoDiscountPercent > 0
-            ? `${TICKETING.payment.cryptoDiscountPercent}%`
-            : null,
+          discountForCrypto: `${TICKETING.payment.cryptoDiscountPercent}%`,
           supportedAssets,
         },
       },
