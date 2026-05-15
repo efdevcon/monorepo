@@ -42,6 +42,9 @@ interface OrderData {
   payment_info: PaymentInfo | null
   require_approval: boolean
   refunded_amount: string
+  refund_tx_hash: string | null
+  refund_chain_id: number | null
+  was_paid: boolean
 }
 
 export default function OrderConfirmationPage() {
@@ -146,6 +149,12 @@ export default function OrderConfirmationPage() {
   const totalNum = parseFloat(order.total || '0') || 0
   const isFullyRefunded = refundedNum > 0 && refundedNum >= totalNum - 0.001
   const isPartiallyRefunded = refundedNum > 0 && !isFullyRefunded
+  // Cancelled-with-unrefunded-money: the buyer paid, the order's
+  // been voided, but the refund hasn't landed yet. Surface a clear
+  // "we owe you money back" notice so they're not left wondering.
+  // Distinct from `isCanceled` alone — a cancelled-before-payment
+  // order doesn't owe anything back.
+  const isRefundPending = isCanceled && order.was_paid && !isFullyRefunded
 
   const statusLabels: Record<string, string> = {
     n: isAwaitingApproval ? 'Awaiting Approval' : 'Pending',
@@ -535,6 +544,23 @@ export default function OrderConfirmationPage() {
               </>
             )}
 
+            {isRefundPending && (
+              <>
+                <hr className={css['order-divider']} />
+                <div className={css['pending-payment-section']}>
+                  <p className={css['pending-payment-text']}>
+                    Your order was canceled and a refund is being processed.
+                    {isPartiallyRefunded ? (
+                      <> ${(totalNum - refundedNum).toFixed(2)} is still outstanding and will be returned to the wallet you paid from. </>
+                    ) : (
+                      <> The amount you paid will be returned to the wallet you paid from. </>
+                    )}
+                    If you don&apos;t see it within a few business days, please contact the event organizer.
+                  </p>
+                </div>
+              </>
+            )}
+
             {(isPartiallyRefunded || isFullyRefunded) && (
               <>
                 <hr className={css['order-divider']} />
@@ -548,6 +574,22 @@ export default function OrderConfirmationPage() {
                       ${refundedNum.toFixed(2)}
                     </span>
                   </div>
+                  {order.refund_tx_hash && (
+                    <div className={css['summary-row']}>
+                      <span className={css['summary-label']}>Refund transaction</span>
+                      <a
+                        href={`${
+                          (order.refund_chain_id != null && BLOCK_EXPLORERS[order.refund_chain_id]) ||
+                          'https://etherscan.io'
+                        }/tx/${order.refund_tx_hash}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={css['tx-link']}
+                      >
+                        {order.refund_tx_hash.slice(0, 10)}...{order.refund_tx_hash.slice(-8)}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </>
             )}
