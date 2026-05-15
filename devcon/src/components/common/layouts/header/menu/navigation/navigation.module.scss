@@ -241,7 +241,32 @@
 }
 
 .mobile-nav-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 24px 0 16px;
+
+  // Bump the language toggle a notch so it reads as a comfortable touch
+  // target alongside the logo, and pin the dropdown to the right edge.
+  :global(#language-toggle) {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  :global(#language-toggle) > button {
+    padding: 8px 4px;
+    gap: 6px;
+  }
+
+  :global(#language-toggle) > button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  :global(#language-toggle) [role='menu'] {
+    right: 0 !important;
+    left: auto !important;
+  }
 }
 
 .mobile-nav-items {

@@ -15,7 +15,7 @@ import { Link } from 'components/common/link'
 import { LargeCallout } from 'components/domain/landing-page/LargeCallout'
 import { VideoCard } from 'components/common/card/VideoCard'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native/SwipeToScroll'
-import { Clock4, Sun, History, Globe, CirclePlay, ExternalLink, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { Clock4, History, Users, Flag, Globe, CirclePlay, ExternalLink, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
 import { useTranslations } from 'next-intl'
 
@@ -89,10 +89,31 @@ const videos = [
 ]
 
 const STAT_META = [
+  {
+    number: 1,
+    prefix: '#',
+    suffix: '',
+    decimals: 0,
+    source: 'GitHub',
+    url: 'https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/',
+  },
+  {
+    number: 76,
+    prefix: '',
+    suffix: '%',
+    decimals: 0,
+    source: 'Linux Foundation',
+    url: 'https://www.prnewswire.com/news-releases/linux-foundation-research-finds-open-source-is-key-to-driving-indias-ai-market-302688143.html',
+  },
   { number: 1, prefix: '# ', suffix: '', decimals: 0, source: 'Electric Capital', url: 'https://www.electriccapital.com/' },
-  { number: 17, prefix: '', suffix: '%', decimals: 0, source: 'Electric Capital', url: 'https://www.electriccapital.com/' },
-  { number: 2.55, prefix: '', suffix: 'M', decimals: 2, source: 'Airswift', url: 'https://www.airswift.com/' },
-  { number: 564, prefix: '$', suffix: 'M', decimals: 0, source: 'Hashed Emergent', url: 'https://www.hashedem.com/' },
+  {
+    number: 2021,
+    prefix: '',
+    suffix: '',
+    decimals: 0,
+    source: 'TechCrunch',
+    url: 'https://techcrunch.com/2024/12/11/linux-foundation-sets-up-india-entity-to-boost-open-source-collaboration/',
+  },
 ]
 
 export default function AboutPage() {
@@ -100,8 +121,9 @@ export default function AboutPage() {
 
   const snapshotLabels = t.raw('intro.snapshot_labels') as {
     devcon_0: string
-    devcon_7: string
     past_editions: string
+    attendees: string
+    countries: string
     continents: string
     archived_videos: string
   }
@@ -170,8 +192,9 @@ export default function AboutPage() {
               <Snapshot
                 items={[
                   { Icon: Clock4, title: snapshotLabels.devcon_0, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>2014</span> },
-                  { Icon: Sun, title: snapshotLabels.devcon_7, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>2024</span> },
-                  { Icon: History, title: snapshotLabels.past_editions, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>8</span> },
+                  { Icon: History, title: snapshotLabels.past_editions, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>12</span> },
+                  { Icon: Users, title: snapshotLabels.attendees, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>45K+</span> },
+                  { Icon: Flag, title: snapshotLabels.countries, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>12</span> },
                   { Icon: Globe, title: snapshotLabels.continents, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>4</span> },
                   { Icon: CirclePlay, title: snapshotLabels.archived_videos, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>727</span> },
                 ]}
@@ -190,16 +213,22 @@ export default function AboutPage() {
               <h3 style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
                 {t('why_india.subheading_1')}
               </h3>
-              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>{t('why_india.body_1')}</p>
+              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
+                {t('why_india.body_1_para_1')}
+              </p>
+              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>{t('why_india.body_1_para_2')}</p>
             </div>
             <div className="right">
               <h3 style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
                 {t('why_india.subheading_2')}
               </h3>
-              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
+              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
                 {t('why_india.body_2_prefix')}
                 <strong>{t('why_india.body_2_strong')}</strong>
-                {t('why_india.body_2_suffix')}
+                {t('why_india.body_2_suffix_para_1')}
+              </p>
+              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
+                {t('why_india.body_2_suffix_para_2')}
               </p>
             </div>
           </div>
@@ -262,7 +291,14 @@ export default function AboutPage() {
                 {t('builders.heading')}
               </h3>
               <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
-                {t('builders.body_1')}
+                {t('builders.body_1_prefix')}
+                {(t.raw('builders.body_1_props') as string[]).map((prop, i, arr) => (
+                  <React.Fragment key={prop}>
+                    <strong>{prop}</strong>
+                    {i < arr.length - 2 ? ', ' : i === arr.length - 2 ? ', and ' : ''}
+                  </React.Fragment>
+                ))}
+                {t('builders.body_1_suffix')}
               </p>
               <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>{t('builders.body_2')}</p>
             </div>
@@ -298,7 +334,18 @@ export default function AboutPage() {
                   marginBottom: 16,
                 }}
               >
-                {t('builders.global_lead')}
+                {t('builders.global_lead_para_1')}
+              </p>
+              <p
+                style={{
+                  fontSize: 20,
+                  lineHeight: '28.8px',
+                  color: '#221144',
+                  letterSpacing: '-0.25px',
+                  marginBottom: 16,
+                }}
+              >
+                {t('builders.global_lead_para_2')}
               </p>
               <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
                 <em>{t('builders.global_quote')}</em>

@@ -96,6 +96,18 @@ interface ZapperTokenBalance {
   }
 }
 
+// ── Module-scope TTL cache ────────────────────────────────────────
+// Zapper's GraphQL is rate-limited (the free tier trips on ~10 req/min)
+// and the admin orders endpoint hits it twice per refresh (destination +
+// relayer wallets). Multiple admin tabs / auto-poll + a 30s tick blows
+// past the limit fast. Cache results in process memory for 60s — wallet
+// balances don't move that fast, and on a HIT we skip the call entirely.
+// Keyed by `(address, sorted-chain-ids, ethPrice, polPrice)` so a
+// re-quote with different prices still gets a fresh fetch.
+type CacheEntry = { value: WalletInfo | null; expiresAt: number }
+const _walletInfoCache: Map<string, CacheEntry> = new Map()
+const WALLET_INFO_TTL_MS = 60_000
+
 export async function fetchWalletInfoFromZapper(opts: {
   address: string
   chainIds: number[]
@@ -108,6 +120,17 @@ export async function fetchWalletInfoFromZapper(opts: {
     // Not configured — admin panel will omit the wallet block, no error.
     console.warn('[zapper] ZAPPER_API_KEY not set — wallet panel will not appear in admin')
     return null
+  }
+
+  const cacheKey = `${opts.address.toLowerCase()}|${[...opts.chainIds].sort((a, b) => a - b).join(',')}|${opts.ethPrice ?? ''}|${opts.polPrice ?? ''}`
+  const now = Date.now()
+  const cached = _walletInfoCache.get(cacheKey)
+  if (cached && now < cached.expiresAt) {
+    return cached.value
+  }
+  const cacheAndReturn = (value: WalletInfo | null): WalletInfo | null => {
+    _walletInfoCache.set(cacheKey, { value, expiresAt: Date.now() + WALLET_INFO_TTL_MS })
+    return value
   }
 
   const controller = new AbortController()
@@ -140,19 +163,19 @@ export async function fetchWalletInfoFromZapper(opts: {
       // useful JSON body explaining the schema mismatch.
       const text = await res.text().catch(() => '')
       console.warn(`[zapper] HTTP ${res.status} body=${text.slice(0, 500)}`)
-      return null
+      return cacheAndReturn(null)
     }
     body = await res.json()
   } catch (e) {
     console.warn('[zapper] request failed:', (e as Error).message)
-    return null
+    return cacheAndReturn(null)
   } finally {
     clearTimeout(timer)
   }
 
   if (body.errors) {
     console.warn('[zapper] GraphQL errors:', body.errors)
-    return null
+    return cacheAndReturn(null)
   }
 
   const balances = body.data?.portfolio?.tokenBalances ?? []
@@ -196,9 +219,9 @@ export async function fetchWalletInfoFromZapper(opts: {
     }
   }
 
-  return {
+  return cacheAndReturn({
     address: opts.address,
     balances: [...perChain.values()].sort((a, b) => a.chainId - b.chainId),
     prices: { ETH: opts.ethPrice, POL: opts.polPrice },
-  }
+  })
 }

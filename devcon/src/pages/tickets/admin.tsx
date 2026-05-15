@@ -48,6 +48,23 @@ interface CompletedOrder {
   refundStatus?: string
   refundTxHash?: string
   refundMeta?: Record<string, unknown>
+  /** Pretix order state: 'n' pending, 'p' paid, 'e' expired, 'c' canceled.
+   *  Null when the Pretix Order couldn't be loaded (rare — orphaned row). */
+  pretixStatus?: string | null
+  /** Pretix order `testmode` flag. Surfaces a TEST badge so an admin
+   *  doesn't mistake a sandbox row for live revenue. */
+  pretixTestmode?: boolean
+  /** Pretix order total (what the order was charged). Compared against
+   *  `totalUsd` (what the buyer paid) to compute overpaid_usd. */
+  pretixTotal?: string | null
+  /** USD value the buyer paid above the order total. Only set when the
+   *  delta exceeds 1¢ (dust threshold). Null for legacy wc_attempt
+   *  rows that don't carry a comparable USD figure. */
+  overpaidUsd?: string | null
+  /** Sum of completed Pretix OrderRefunds on this order. Null when no
+   *  refund has been recorded. Drives the "Refunded" badge + button
+   *  suppression once nothing is owed. */
+  refundedAmount?: string | null
 }
 
 /** x402 rows always have a payment reference, tx hash, and Pretix order code.
@@ -73,6 +90,7 @@ interface PendingOrder {
   expectedEthAmountWeiByChain?: Record<string, string>
   metadata?: { ticketIds: number[]; addonIds?: number[]; email: string }
   env: string
+  pretixTestmode?: boolean
 }
 
 interface ChainBalance {
@@ -168,6 +186,43 @@ function sourceLabel(source: CompletedOrder['source']): string {
     case 'x402': return 'x402'
     case 'wc_attempt': return 'WalletConnect'
   }
+}
+
+/** Pretix-status code → buyer-facing label. Mirrors the recap page. */
+function statusLabel(code: string | null | undefined): string {
+  switch (code) {
+    case 'p': return 'Paid'
+    case 'n': return 'Pending'
+    case 'e': return 'Expired'
+    case 'c': return 'Canceled'
+    default: return code || '—'
+  }
+}
+
+/** SCSS class key for the small pill rendered next to each order row. */
+function statusBadgeClass(code: string | null | undefined): string {
+  switch (code) {
+    case 'p': return css['admin-badge-paid']
+    case 'n': return css['admin-badge-pending']
+    case 'e': return css['admin-badge-expired']
+    case 'c': return css['admin-badge-canceled']
+    default: return css['admin-badge-unknown']
+  }
+}
+
+function StatusBadge({ code }: { code: string | null | undefined }) {
+  if (!code) return null
+  return <span className={statusBadgeClass(code)}>{statusLabel(code)}</span>
+}
+
+function TestModeBadge({ on }: { on?: boolean }) {
+  if (!on) return null
+  return <span className={css['admin-badge-test']}>TEST</span>
+}
+
+function OverpaidBadge({ amount }: { amount?: string | null }) {
+  if (!amount) return null
+  return <span className={css['admin-badge-overpaid']} title="Buyer paid more than the order total — refund the difference">OVERPAID +${amount}</span>
 }
 
 function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
@@ -524,7 +579,7 @@ function RefundModal({
   onClose,
   onRefunded,
 }: {
-  order: X402CompletedOrder
+  order: CompletedOrder
   secret: string
   onClose: () => void
   onRefunded: () => void
@@ -539,8 +594,14 @@ function RefundModal({
   const refundChainId = order.chainId || 8453
   const refundAmount = order.totalUsd || '0'
   const usdcConfig = getUsdcConfigForChainId(refundChainId)
+  const isX402 = order.source === 'x402'
 
-  async function callRefundApi(action: string, body: Record<string, unknown>) {
+  // x402 path uses an initiate/confirm/fail CAS endpoint that gates
+  // against the X402CompletedOrder row. Legacy WC rows have no such
+  // row to gate on, so they post a single confirm-after-broadcast call
+  // to a separate endpoint that records the refund directly in Pretix
+  // (idempotency = duplicate refund_tx_hash check on the Pretix side).
+  async function callX402RefundApi(action: string, body: Record<string, unknown>) {
     const res = await fetch('/api/x402/admin/refund/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
@@ -551,17 +612,35 @@ function RefundModal({
     return json
   }
 
+  async function recordWcRefund(refundTxHash: string) {
+    const res = await fetch('/api/x402/admin/wc-refund/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
+      body: JSON.stringify({
+        pretix_order_code: order.pretixOrderCode,
+        refund_tx_hash: refundTxHash,
+        chain_id: refundChainId,
+        amount: refundAmount,
+      }),
+    })
+    const json = await res.json()
+    if (!json.success) throw new Error(json.error || 'API call failed')
+    return json
+  }
+
   async function handleRefund() {
     if (!address || !usdcConfig) return
 
     try {
-      // 1. Initiate — CAS prevents double-refund
-      setStep('signing')
-      await callRefundApi('initiate', {
-        chainId: refundChainId,
-        amount: refundAmount,
-        adminAddress: address,
-      })
+      // 1. Initiate — only for x402, where we have a CAS guard
+      if (isX402) {
+        setStep('signing')
+        await callX402RefundApi('initiate', {
+          chainId: refundChainId,
+          amount: refundAmount,
+          adminAddress: address,
+        })
+      }
 
       // 2. Switch chain if needed
       if (chain?.id !== refundChainId) {
@@ -580,10 +659,15 @@ function RefundModal({
       })
       setTxHash(hash)
 
-      // 4. Wait for confirmation
+      // 4. Record the refund. x402 has a confirm step that updates
+      // the plugin's CAS row + creates the Pretix OrderRefund; WC
+      // just creates the Pretix OrderRefund directly.
       setStep('waiting')
-      // writeContractAsync returns after tx is submitted; we confirm via API
-      await callRefundApi('confirm', { refundTxHash: hash })
+      if (isX402) {
+        await callX402RefundApi('confirm', { refundTxHash: hash })
+      } else {
+        await recordWcRefund(hash)
+      }
 
       setStep('done')
       setTimeout(() => {
@@ -595,11 +679,15 @@ function RefundModal({
       setError(msg)
       setStep('error')
 
-      // If we already initiated, mark as failed
-      try {
-        await callRefundApi('fail', { error: msg })
-      } catch {
-        // best-effort
+      // x402 only: mark the CAS row as failed so the next attempt can
+      // initiate cleanly. WC has no plugin-side ledger to flip — the
+      // admin can just click Refund again if nothing was broadcast.
+      if (isX402) {
+        try {
+          await callX402RefundApi('fail', { error: msg })
+        } catch {
+          // best-effort
+        }
       }
     }
   }
@@ -686,18 +774,30 @@ function RefundActionCell({
   isConnected,
   onRefunded,
 }: {
-  order: X402CompletedOrder
+  order: CompletedOrder
   secret: string
   isConnected: boolean
   onRefunded: () => void
 }) {
   const [showModal, setShowModal] = useState(false)
 
-  if (order.refundStatus === 'confirmed') {
+  // x402 has its own CAS-tracked "pending" state — show that explicitly
+  // since a click would race with the in-flight refund.
+  if (order.source === 'x402' && order.refundStatus === 'pending') {
+    return <span className={css['badge-pending']}>Processing...</span>
+  }
+
+  // "Fully refunded" = a Pretix OrderRefund exists AND nothing more is
+  // owed. Hide the Refund button entirely and show a green badge
+  // (with the tx link for x402 rows, which carry refundTxHash).
+  // Partial-refund case (refunded > 0 AND still overpaid) leaves the
+  // urgent button visible — there's more to refund.
+  const isFullyRefunded = !!order.refundedAmount && !order.overpaidUsd
+  if (isFullyRefunded) {
     return (
       <span className={css['badge-refunded']}>
-        Refunded
-        {order.refundTxHash && (
+        Refunded ${order.refundedAmount}
+        {order.source === 'x402' && order.refundTxHash && (
           <>
             {' '}
             <a
@@ -714,37 +814,41 @@ function RefundActionCell({
     )
   }
 
-  if (order.refundStatus === 'pending') {
-    return <span className={css['badge-pending']}>Processing...</span>
-  }
+  // Refund is only possible when we have the on-chain identity to send
+  // it from (pretixOrderCode for the Pretix-side OrderRefund record,
+  // payer for the destination, totalUsd for the amount). All three are
+  // present on every x402 row; for wc_attempt rows, pretixOrderCode and
+  // totalUsd are present whenever the original order was successfully
+  // serialized — the few legacy attempts missing those just won't get
+  // a Refund button (the `—` fallback below).
+  const canRefund = isConnected && !!order.totalUsd && !!order.pretixOrderCode
 
-  if (order.refundStatus === 'failed') {
-    return (
-      <>
-        <button
-          className={css['refund-btn']}
-          onClick={() => setShowModal(true)}
-          disabled={!isConnected || !order.totalUsd}
-          title={!isConnected ? 'Connect wallet to refund' : !order.totalUsd ? 'No amount to refund' : 'Issue USDC refund'}
-        >
-          Refund
-        </button>
-        {showModal && (
-          <RefundModal order={order} secret={secret} onClose={() => setShowModal(false)} onRefunded={onRefunded} />
-        )}
-      </>
-    )
-  }
+  // OVERPAID rows are the ones that actively need admin action. Promote
+  // the button to a filled-red urgent variant + put the dollar amount in
+  // the label so an operator scanning a long table immediately sees
+  // both "this row needs a refund" and "for how much".
+  const isOverpaid = !!order.overpaidUsd
+  const buttonLabel = isOverpaid ? `Refund $${order.overpaidUsd}` : 'Refund'
+  const buttonClass = isOverpaid ? css['refund-btn-urgent'] : css['refund-btn']
+  const buttonTitle = !isConnected
+    ? 'Connect wallet to refund'
+    : !order.totalUsd
+    ? 'No amount to refund'
+    : !order.pretixOrderCode
+    ? 'No Pretix order code to record refund against'
+    : isOverpaid
+    ? `This order is overpaid by $${order.overpaidUsd} — refund owed to buyer`
+    : 'Issue USDC refund'
 
   return (
     <>
       <button
-        className={css['refund-btn']}
+        className={buttonClass}
         onClick={() => setShowModal(true)}
-        disabled={!isConnected || !order.totalUsd}
-        title={!isConnected ? 'Connect wallet to refund' : !order.totalUsd ? 'No amount to refund' : 'Issue USDC refund'}
+        disabled={!canRefund}
+        title={buttonTitle}
       >
-        Refund
+        {buttonLabel}
       </button>
       {showModal && (
         <RefundModal order={order} secret={secret} onClose={() => setShowModal(false)} onRefunded={onRefunded} />
@@ -1497,6 +1601,7 @@ function AdminContent() {
                 <tr>
                   <th>Type</th>
                   <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <th>Status</th>
                   <th>Email</th>
                   <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
                   <th>Crypto Amount</th>
@@ -1525,6 +1630,11 @@ function AdminContent() {
                       ) : (
                         '—'
                       )}
+                    </td>
+                    <td className={css['admin-badge-cell']}>
+                      <StatusBadge code={o.pretixStatus} />
+                      <TestModeBadge on={o.pretixTestmode} />
+                      <OverpaidBadge amount={o.overpaidUsd} />
                     </td>
                     <td className={undefined}>{o.email ?? '—'}</td>
                     <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
@@ -1561,20 +1671,12 @@ function AdminContent() {
                     </td>
                     <td className={undefined}>{formatDate(o.completedAt)}</td>
                     <td>
-                      {o.source === 'x402' ? (
-                        <RefundActionCell
-                          order={o as X402CompletedOrder}
-                          secret={secret}
-                          isConnected={isConnected}
-                          onRefunded={() => fetchOrders(secret)}
-                        />
-                      ) : (
-                        // TODO(refunds): legacy WC rows can't be refunded through this UI
-                        // because the refund CAS columns live only on X402CompletedOrder. Unblock
-                        // by introducing a ManualCryptoRefund ledger keyed (source, row_id) in the
-                        // plugin; see README "Known gaps / TODOs".
-                        <span className={css.muted} title="On-chain refund is only available for x402 payments (see plugin README)">—</span>
-                      )}
+                      <RefundActionCell
+                        order={o}
+                        secret={secret}
+                        isConnected={isConnected}
+                        onRefunded={() => fetchOrders(secret)}
+                      />
                     </td>
                   </tr>
                 ))}
@@ -1701,6 +1803,12 @@ function AdminContent() {
                     <tr key={o.paymentReference}>
                       <td className={css.mono}>
                         <Copyable value={o.paymentReference}>{truncate(o.paymentReference)}</Copyable>
+                        {o.pretixTestmode && (
+                          <>
+                            {' '}
+                            <TestModeBadge on />
+                          </>
+                        )}
                       </td>
                       <td className={undefined}>${o.totalUsd}</td>
                       <td>

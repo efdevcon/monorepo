@@ -15,6 +15,7 @@ import { ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react'
 import { useRouter } from 'next/router'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import NextImage from 'next/image'
+import { LanguageToggle } from '../language-toggle'
 
 const Mobile = (props: any) => {
   const navigationData = useNavigationData()
@@ -43,6 +44,7 @@ const Mobile = (props: any) => {
     <div className={css['mobile-navigation']}>
       <div className={css['mobile-nav-logo']}>
         <NextImage src={dc8Logo} alt="Devcon 8 India" width={145} height={64} />
+        <LanguageToggle />
       </div>
       <div className={css['mobile-nav-items']}>
         {foldableItems.map((i: LinkType) => {

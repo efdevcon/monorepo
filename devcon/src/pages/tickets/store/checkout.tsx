@@ -4338,6 +4338,5 @@ export async function getStaticProps(context: { locale?: string }) {
 
   return {
     props: { faqItems },
-    revalidate: 3600, // 1 hour
   }
 }
