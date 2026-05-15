@@ -2924,8 +2924,3 @@ function CheckoutContent() {
   )
 }
 
-export async function getStaticProps() {
-  return {
-    props: {},
-  }
-}
