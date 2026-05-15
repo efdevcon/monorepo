@@ -45,6 +45,13 @@ interface OrderDetailsResponse {
     url: string
     payment_url: string | null
     payment_info: PaymentInfo | null
+    /** Pretix's `require_approval` order flag. When `true` AND `status === 'n'`,
+     *  the order is awaiting admin approval (no payment expected yet). */
+    require_approval: boolean
+    /** Sum of all completed (`state === 'done'`) refund amounts as a decimal
+     *  string. `"0.00"` when no refunds have been processed. UI compares
+     *  against `total` to render "fully" vs "partially refunded". */
+    refunded_amount: string
   }
 }
 
@@ -147,11 +154,13 @@ export default async function handler(
       }
     })
 
-    // For pending orders with Stripe, build the payment URL with return_url
-    const pendingStripePayment = (order.payments || []).find(
-      (p: any) => p.provider === 'stripe' && (p.state === 'pending' || p.state === 'created')
-    )
-    const paymentUrl = pendingStripePayment
+    // Pretix's "change payment method" URL — works for *any* pending
+    // order regardless of provider: a buyer with a stale crypto attempt
+    // gets the same retry path as one with an unfinished Stripe checkout.
+    // The page itself surfaces whatever payment options the event has
+    // configured. Null for terminal states (paid / expired / cancelled)
+    // — the buyer has nothing to retry there.
+    const paymentUrl = order.status === 'n' && !order.require_approval
       ? `${order.url}pay/change/`
       : null
 
@@ -179,6 +188,15 @@ export default async function handler(
       }
     }
 
+    // Sum of completed refunds. Pretix returns refunds at the top level
+    // of the order JSON; only `state === 'done'` refunds are actually
+    // settled (other states are pending/failed/canceled and shouldn't
+    // count against what the buyer's been credited back).
+    const refunds = ((order as unknown as { refunds?: { state: string; amount: string }[] }).refunds) || []
+    const refundedTotal = refunds
+      .filter(r => r.state === 'done')
+      .reduce((acc, r) => acc + (parseFloat(r.amount) || 0), 0)
+
     return res.status(200).json({
       success: true,
       order: {
@@ -192,6 +210,8 @@ export default async function handler(
         url: order.url,
         payment_url: paymentUrl,
         payment_info: paymentInfo,
+        require_approval: !!order.require_approval,
+        refunded_amount: refundedTotal.toFixed(2),
       },
     })
   } catch (error) {
