@@ -7,14 +7,14 @@ export interface TicketRow {
   name: string
   detail?: string
   status?: 'open' | 'coming'
-  // Countdown text to display *instead of* the OPEN tag when the wave hasn't
-  // opened yet. Setting this implies `status` should be 'open' once the wave
-  // is live (the page is responsible for swapping the row when that happens).
-  countdownText?: string
   price?: string
   date?: string
   action?: string
   actionHref?: string
+  // Countdown text rendered in the action slot (purple, right-aligned). Used
+  // for the featured-but-not-yet-live wave: the countdown sits where the
+  // "Get tickets" button would be once the wave opens.
+  actionCountdown?: string
   // Expandable content rendered below the row when the user clicks it.
   // Setting this makes the entire row clickable to toggle expansion; the
   // action link (if any) stops propagation so it still navigates normally.
@@ -32,9 +32,13 @@ interface TicketTableProps {
   subtitle: string
   rows: TicketRow[]
   tapLabel?: string
+  // Label shown on the green pill for `status: 'open'` rows. Defaults to
+  // "OPEN" — the General Admission table overrides this to "OPEN NOW" since
+  // its open-state is genuinely time-limited.
+  openLabel?: string
 }
 
-export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProps) {
+export function TicketTable({ title, subtitle, rows, tapLabel, openLabel = 'OPEN' }: TicketTableProps) {
   // Single-expansion within each table — matches the legacy ApplicationRow UX.
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
   return (
@@ -59,8 +63,12 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           const mutedChildClasses = row.muted ? 'opacity-50' : ''
 
           const actionSlot = row.muted ? (
-            <span className="inline-flex items-center justify-center sm:w-[136px] bg-[#594d73] rounded px-3 py-2 text-sm font-bold text-white tracking-[0.5px] leading-none whitespace-nowrap uppercase">
-              Sale Ended
+            <span className="text-base font-bold text-[#594d73] text-right sm:w-[136px] leading-6 whitespace-nowrap">
+              Sale ended
+            </span>
+          ) : row.actionCountdown ? (
+            <span className="inline-block text-right text-base font-bold text-[#7235ed] sm:w-[136px] leading-6 whitespace-nowrap">
+              <CountdownText value={row.actionCountdown} />
             </span>
           ) : isInteractive ? (
             isExpandable ? (
@@ -92,25 +100,18 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                   inline on sm+ so they sit on a single row alongside name. */}
               <div className={`flex-1 min-w-0 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-6 ${mutedChildClasses}`}>
                 <div className="flex-1 min-w-0 flex flex-col gap-1">
-                  <p className={`text-base leading-6 ${isEmphasized ? 'font-bold text-[#160b2b]' : 'font-medium text-[#594d73]'}`}>{row.name}</p>
+                  <p className={`text-base leading-6 ${
+                    isEmphasized ? 'font-bold text-[#160b2b]' : 'font-medium text-[#594d73]'
+                  } ${row.muted ? 'line-through' : ''}`}>{row.name}</p>
                   {row.detail && (
                     <p className="text-xs font-bold text-[#594d73] tracking-[0.25px] uppercase leading-4">{row.detail}</p>
                   )}
                 </div>
                 <div className="flex items-center gap-4 sm:gap-6">
-                  {row.status === 'open' ? (
+                  {row.status === 'open' && (
                     <span className="inline-flex items-center bg-[#aaeaba] rounded px-2 py-1 text-sm font-bold text-[#221144] tracking-[0.5px] leading-none whitespace-nowrap">
-                      OPEN NOW
+                      {openLabel}
                     </span>
-                  ) : (
-                    row.countdownText && (
-                      <span
-                        className="inline-flex items-center bg-[#ffa366] rounded px-2 py-1 text-sm font-bold text-[#221144] tracking-[0.25px] leading-none whitespace-nowrap"
-                        aria-label="Time until wave opens"
-                      >
-                        <CountdownText value={row.countdownText} />
-                      </span>
-                    )
                   )}
 
                   {row.price && (

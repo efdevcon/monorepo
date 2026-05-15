@@ -46,6 +46,47 @@ const StatusTag = ({ status, openLabel, comingLabel }: { status: 'open' | 'comin
   </span>
 )
 
+// "MAY 20" — used for the "OPENS …" pill on the General Admission column.
+const UPCOMING_DATE_FORMATTER = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+})
+
+// Tag for the General Admission column that mirrors the overview card's
+// GeneralAdmissionTag: green "OPEN NOW" when live, gray "OPENS [date]" while
+// counting down, gray "CLOSED" otherwise. Same dimensions as StatusTag so
+// the column header height stays consistent.
+const GeneralAdmissionStatusTag = () => {
+  const { featured, mounted } = useFeaturedWave()
+  if (!mounted) {
+    return (
+      <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#221144]">
+        &nbsp;
+      </span>
+    )
+  }
+  if (featured?.status === 'live') {
+    return (
+      <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#aaeaba] text-[#221144]">
+        OPEN NOW
+      </span>
+    )
+  }
+  if (featured?.status === 'countdown' && featured.upcoming) {
+    return (
+      <span className="inline-flex items-center self-start whitespace-nowrap px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
+        OPENS {UPCOMING_DATE_FORMATTER.format(featured.upcoming).toUpperCase()}
+      </span>
+    )
+  }
+  return (
+    <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
+      CLOSED
+    </span>
+  )
+}
+
 const CtaButton = ({ label, href, variant }: { label: string; href: string; variant: 'primary' | 'secondary' }) => (
   <NextLink
     href={href}
@@ -85,7 +126,11 @@ const MobileCard = ({
   <div className="flex flex-col gap-4 bg-white rounded-2xl px-5 py-6 w-full max-w-[520px] shadow-[0_1px_1px_rgba(22,11,43,0.1),0_2px_2px_rgba(22,11,43,0.08),0_4px_8px_rgba(22,11,43,0.12)]">
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <StatusTag status={column.status} openLabel={labels.tag_open} comingLabel={labels.tag_coming} />
+        {column.id === 'general_admission' ? (
+          <GeneralAdmissionStatusTag />
+        ) : (
+          <StatusTag status={column.status} openLabel={labels.tag_open} comingLabel={labels.tag_coming} />
+        )}
         <p className="text-xs text-[#594d73] leading-none">{labels.price_note}</p>
       </div>
 
@@ -270,7 +315,11 @@ export function TicketComparison() {
               key={col.id}
               className="flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 border-l border-solid border-[rgba(34,17,68,0.1)]"
             >
-              <StatusTag status={col.status} openLabel={labels.tag_open} comingLabel={labels.tag_coming} />
+              {col.id === 'general_admission' ? (
+                <GeneralAdmissionStatusTag />
+              ) : (
+                <StatusTag status={col.status} openLabel={labels.tag_open} comingLabel={labels.tag_coming} />
+              )}
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">{col.title}</h3>
                 <p className="text-xs font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{col.subtitle}</p>

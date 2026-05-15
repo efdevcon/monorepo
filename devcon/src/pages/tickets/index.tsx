@@ -10,12 +10,13 @@ import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTab
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
 import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
-import { CountdownText } from 'components/common/CountdownText'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
 import themes from '../themes.module.scss'
+import Image from 'next/image'
 import HeroBackground from './updated-hero.png'
 import ArtOverlayBg from './tickets-art-overlay-bg.png'
+import ComparisonGlyphWatermark from './comparison-glyph-watermark.png'
 import css from './tickets-landing.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
@@ -49,25 +50,33 @@ function StatusTag({
   )
 }
 
-// Format a wave opening time as "20 May 02:00 UTC" — mirrors the banner.
-const WAVE_TIME_FORMATTER = new Intl.DateTimeFormat('en', {
+// Format a wave opening time as "JUN 15" (day + month, UTC) for the inline
+// "Available [date], [times] UTC" line beneath a featured row.
+const DAY_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
   day: 'numeric',
   month: 'short',
+  timeZone: 'UTC',
+})
+const HOUR_FORMATTER = new Intl.DateTimeFormat('en', {
   hour: '2-digit',
   minute: '2-digit',
   hour12: false,
   timeZone: 'UTC',
 })
-const ROUND_LABELS = ['First round', 'Second round']
 
-// Renders the list of announced opening times (single "Opens on …" line or
-// per-round breakdown). Past rounds get struck through, EXCEPT the most-recent
-// past round when the wave is currently live — that's the round on sale right now.
-function WaveTimesList({ openTimes, isLive }: { openTimes: Date[]; isLive?: boolean }) {
+// Single-line availability annotation rendered under the featured wave's row.
+//   Single time:    "Opens May 20, 02:00 UTC"
+//   Multiple times: "Available Jun 15, 02:00 & 16:00 UTC"
+// Past times are struck through, EXCEPT the most-recent past time when the
+// wave is currently live — that's the round on sale right now.
+function WaveAvailabilityLine({ openTimes, isLive }: { openTimes: Date[]; isLive?: boolean }) {
   const now = useNow()
   if (openTimes.length === 0) return null
-  // Index of the round that's currently considered "live" (most recent past
-  // round when wave.status === 'live'). -1 if none.
+  const single = openTimes.length === 1
+  const dayMonth = DAY_MONTH_FORMATTER.format(openTimes[0])
+
+  // Index of the round currently considered "live" (most recent past round
+  // when isLive). -1 otherwise — every past round gets struck.
   let liveIdx = -1
   if (isLive && now) {
     for (let i = openTimes.length - 1; i >= 0; i--) {
@@ -77,51 +86,23 @@ function WaveTimesList({ openTimes, isLive }: { openTimes: Date[]; isLive?: bool
       }
     }
   }
+
   return (
-    <div className="flex flex-col gap-0.5 text-[#594d73] sm:text-right">
+    <p className="text-sm leading-5 text-[#594d73] text-right">
+      {single ? 'Opens ' : 'Available '}
+      {dayMonth},{' '}
       {openTimes.map((d, i) => {
-        const time = `${WAVE_TIME_FORMATTER.format(d)} UTC`
         const isPast = now ? d.getTime() <= now.getTime() : false
         const strike = isPast && i !== liveIdx
-        const pastClasses = strike ? 'line-through opacity-60' : ''
-        if (openTimes.length === 1) {
-          return (
-            <p key={i} className={`whitespace-nowrap text-sm leading-5 ${pastClasses}`}>
-              Opens {time}
-            </p>
-          )
-        }
         return (
-          <p key={i} className={`whitespace-nowrap text-xs leading-[14px] ${pastClasses}`}>
-            {ROUND_LABELS[i] ?? `Round ${i + 1}`} at {time}
-          </p>
+          <React.Fragment key={i}>
+            {i > 0 && ' & '}
+            <span className={strike ? 'line-through' : ''}>{HOUR_FORMATTER.format(d)}</span>
+          </React.Fragment>
         )
       })}
-    </div>
-  )
-}
-
-// Rich block rendered below an upcoming wave's row — countdown + opening
-// windows (mirrors the main sale banner).
-function UpcomingWaveDetails({ countdown, openTimes }: { countdown: string; openTimes: Date[] }) {
-  return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-      <p className="text-base leading-6">
-        Available in <CountdownText value={countdown} className="font-bold text-[#7235ed] leading-6" />
-      </p>
-      <WaveTimesList openTimes={openTimes} />
-    </div>
-  )
-}
-
-// Rich block rendered below the currently-live wave's row — "On sale now!"
-// label + opening windows (mirrors the main sale banner's live state).
-function LiveWaveDetails({ openTimes }: { openTimes: Date[] }) {
-  return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-      <p className="text-base leading-6 font-bold text-[#7235ed]">On sale now!</p>
-      <WaveTimesList openTimes={openTimes} isLive />
-    </div>
+      {' UTC'}
+    </p>
   )
 }
 
@@ -158,7 +139,7 @@ function GeneralAdmissionTag() {
 
   if (featured?.status === 'countdown' && featured.upcoming) {
     return (
-      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#ffa366] text-[#221144]">
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#f2f1f4] text-[#594d73]">
         OPENS {formatUpcomingDate(featured.upcoming)}
       </span>
     )
@@ -243,33 +224,32 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   // becomes a row; per-wave state drives the right-edge tag/badge and any
   // rich countdown content underneath.
   const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, countdown }) => {
-    const row: TicketRow = {
-      name: w.name,
-      price: w.price,
-      date: w.openLabel,
-    }
+    const row: TicketRow = { name: w.name, price: w.price }
     const isFeatured = w.id === featuredWaveId
+    const hasTimes = !!(w.openTimes && w.openTimes.length > 0)
+
     if (status === 'live') {
-      // Any live wave routes to the shared store CTA — no per-wave config needed.
+      // Live: OPEN badge + price + "Get tickets" button; availability line below.
       row.status = 'open'
       row.action = 'Get tickets'
       row.actionHref = '/tickets/store'
-      if (w.openTimes && w.openTimes.length > 0) {
-        row.richContent = <LiveWaveDetails openTimes={w.openTimes} />
-      }
+      if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} isLive />
     } else if (status === 'countdown') {
-      // Only the featured (current/next) wave gets the View tickets CTA and
-      // the rich countdown block. Other upcoming waves keep their openLabel
-      // shown as the date on the right.
       if (isFeatured) {
-        row.action = 'View tickets'
-        row.actionHref = '/tickets/store'
-        if (countdown && w.openTimes && w.openTimes.length > 0) {
-          row.richContent = <UpcomingWaveDetails countdown={countdown} openTimes={w.openTimes} />
-        }
+        // Featured countdown: purple countdown in action slot, availability line below.
+        if (countdown) row.actionCountdown = countdown
+        if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} />
+      } else {
+        // Non-featured upcoming: just the static "Opens [date]" column.
+        row.date = w.openLabel
       }
     } else if (status === 'closed') {
+      // Past wave — name struck through, "Sale ended" in action slot, no price.
       row.muted = true
+      row.price = undefined
+    } else {
+      // 'tbd' — wave date not yet set, fall back to the static openLabel.
+      row.date = w.openLabel
     }
     return withDetails(row)
   })
@@ -343,7 +323,10 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <hr className={css['divider']} />
 
           {/* ── General Admission ────────────────────────────────── */}
-          <section id="general-admission" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <section
+            id="general-admission"
+            className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+          >
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
                 <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
@@ -414,7 +397,10 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <hr className={css['divider']} />
 
           {/* ── Applications ─────────────────────────────────────── */}
-          <section id="applications" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <section
+            id="applications"
+            className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+          >
             <div className="flex flex-col gap-4">
               <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
                 {t('applications_section.eyebrow')}
@@ -452,7 +438,20 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <hr className={css['divider']} />
 
           {/* ── Comparison Table ─────────────────────────────────── */}
-          <TicketComparison />
+          <div className="relative">
+            {/* Decorative glyph at the bottom of the page content area,
+                behind the comparison card. */}
+            <Image
+              src={ComparisonGlyphWatermark}
+              alt=""
+              aria-hidden
+              priority={false}
+              className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 h-auto w-full select-none"
+            />
+            <div className="relative z-10">
+              <TicketComparison />
+            </div>
+          </div>
         </div>
       </div>
 

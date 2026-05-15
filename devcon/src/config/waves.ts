@@ -24,6 +24,11 @@ export interface TicketWave {
   // Short tagline rendered on the sale banner below the countdown. Use • to
   // separate bullet-style fragments (e.g. "Limited quantity • Save $350").
   description?: string
+  // Bullet points rendered on the sale banner — inline (• separated) on
+  // tablet/desktop, as a real bulleted list on mobile. The "Includes 18% GST"
+  // GST line is prepended automatically from translations; only list the
+  // wave-specific points here.
+  bannerBullets?: string[]
 }
 
 export const TICKET_WAVES: TicketWave[] = [
@@ -35,7 +40,8 @@ export const TICKET_WAVES: TicketWave[] = [
     //   02:00 UTC → 07:30 IST / 22:00 PT (previous day) — Asia-friendly window
     //   16:00 UTC → 21:30 IST / 09:00 PT — Americas-friendly window
     openTimes: [new Date(Date.UTC(2026, 4, 20, 2, 0, 0))], // , new Date(Date.UTC(2026, 4, 20, 16, 0, 0))],
-    description: 'Limited quantity • Save $350 • Purchasable using ETH (L1)',
+    description: 'Includes 18% GST • Limited quantity • Purchase using ETH (L1)',
+    bannerBullets: ['Limited quantity', 'Purchase using ETH (L1)'],
     action: 'Get tickets',
     actionHref: '/tickets/store',
   },
@@ -43,6 +49,7 @@ export const TICKET_WAVES: TicketWave[] = [
     id: 'wave-1',
     name: 'First wave',
     description: 'Limited quantity, cheaper than subsequent waves',
+    bannerBullets: ['Limited quantity', 'Cheaper than subsequent waves'],
     price: '$699',
     openLabel: 'Opens Jun 15',
     openTimes: [new Date(Date.UTC(2026, 5, 15, 2, 0, 0)), new Date(Date.UTC(2026, 5, 15, 16, 0, 0))],
