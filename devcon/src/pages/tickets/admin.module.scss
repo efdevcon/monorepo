@@ -283,27 +283,6 @@
   color: #594d73;
 }
 
-/* Low-balance modifier — applied to native-token rows when the chain's
-   relayer balance falls below the gas-sponsorship threshold. The whole
-   token block (icon + value + symbol) goes red with a soft red background
-   so the warning is visible at a glance even from across the room. */
-.wallet-token--low {
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(220, 38, 38, 0.08);
-
-  .wallet-token-val,
-  .wallet-token-sym {
-    color: #b91c1c;
-  }
-}
-
-.wallet-token-warn {
-  margin-left: 2px;
-  font-size: 13px;
-  color: #b91c1c;
-}
-
 /* ─── Filter Bar ─────────────────────────────────────────── */
 
 .filter-bar {
@@ -508,7 +487,6 @@
   font-size: 11px;
 }
 
-
 /* ─── Click-to-copy ─────────────────────────────────────── */
 
 .copyable {
@@ -693,21 +671,6 @@
   }
 }
 
-/* Urgent variant — solid red fill. Used when the row is flagged
-   OVERPAID, so the action-required state is impossible to miss on a
-   table full of normal Refund buttons. Same border + family as the
-   outline variant so the two read as the same control. */
-.refund-btn-urgent {
-  composes: refund-btn;
-  background: #dc2626;
-  color: #fff;
-  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.18);
-
-  &:hover:not(:disabled) {
-    background: #b91c1c;
-  }
-}
-
 /* ─── Refund Badges ──────────────────────────────────────── */
 
 .badge-refunded {
@@ -745,77 +708,6 @@
   white-space: nowrap;
 }
 
-/* ─── Order-state, test-mode, overpaid pills ────────────────
-   Stacked vertically inside the Status cell so multiple flags
-   can render together (e.g. PAID + TEST + OVERPAID for a test
-   order where the buyer over-sent crypto). */
-
-.admin-badge-cell {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-%admin-pill {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
-}
-
-.admin-badge-paid {
-  @extend %admin-pill;
-  background: #ecfdf5;
-  color: #059669;
-}
-
-.admin-badge-pending {
-  @extend %admin-pill;
-  background: #fff7ed;
-  color: #d97706;
-}
-
-.admin-badge-expired {
-  @extend %admin-pill;
-  background: #fef2f2;
-  color: #dc2626;
-}
-
-.admin-badge-canceled {
-  @extend %admin-pill;
-  background: #fef2f2;
-  color: #dc2626;
-}
-
-.admin-badge-unknown {
-  @extend %admin-pill;
-  background: #f3f4f6;
-  color: #4b5563;
-}
-
-.admin-badge-test {
-  @extend %admin-pill;
-  background: #fef3c7;
-  color: #92400e;
-  // Striped corner so a glance at the row makes it impossible to
-  // mistake a test order for live revenue.
-  border: 1px dashed #f59e0b;
-}
-
-.admin-badge-overpaid {
-  @extend %admin-pill;
-  background: #fee2e2;
-  color: #991b1b;
-  // Heavier weight + slight scale so OVERPAID jumps out — these
-  // rows need admin action (manual refund).
-  font-size: 11px;
-  font-weight: 800;
-}
-
 /* ─── Refund Modal ───────────────────────────────────────── */
 
 .modal-overlay {
@@ -829,41 +721,12 @@
 }
 
 .modal-card {
-  position: relative;
   background: white;
   border-radius: 16px;
   padding: 32px;
   max-width: 440px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(22, 11, 43, 0.2);
-}
-
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  color: rgba(22, 11, 43, 0.6);
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-
-  &:hover,
-  &:focus-visible {
-    background: rgba(22, 11, 43, 0.06);
-    color: rgba(22, 11, 43, 1);
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(22, 11, 43, 0.3);
-    outline-offset: 1px;
-  }
 }
 
 .modal-title {
