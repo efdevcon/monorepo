@@ -39,7 +39,7 @@ export const TICKET_WAVES: TicketWave[] = [
     // Two windows on the same day to span global timezones:
     //   02:00 UTC → 07:30 IST / 22:00 PT (previous day) — Asia-friendly window
     //   16:00 UTC → 21:30 IST / 09:00 PT — Americas-friendly window
-    openTimes: [new Date(Date.UTC(2026, 4, 20, 2, 0, 0))], // , new Date(Date.UTC(2026, 4, 20, 16, 0, 0))],
+    openTimes: [new Date(Date.UTC(2026, 4, 20, 16, 0, 0))], // , new Date(Date.UTC(2026, 4, 20, 16, 0, 0))],
     description: 'Includes 18% GST • Limited quantity • Purchase using ETH (L1)',
     bannerBullets: ['Limited quantity', 'Purchase using ETH (L1)'],
     action: 'Get tickets',
@@ -47,20 +47,20 @@ export const TICKET_WAVES: TicketWave[] = [
   },
   {
     id: 'wave-1',
-    name: 'First wave',
+    name: 'Wave 1',
     description: 'Limited quantity, cheaper than subsequent waves',
     bannerBullets: ['Limited quantity', 'Cheaper than subsequent waves'],
     price: '$699',
-    openLabel: 'Opens Jun 15',
-    openTimes: [new Date(Date.UTC(2026, 5, 15, 2, 0, 0)), new Date(Date.UTC(2026, 5, 15, 16, 0, 0))],
+    openLabel: 'Opens June',
+    // openTimes: [new Date(Date.UTC(2026, 5, 15, 2, 0, 0)), new Date(Date.UTC(2026, 5, 15, 16, 0, 0))],
   },
-  {
-    id: 'wave-2',
-    name: 'Subsequent waves',
-    price: 'More than $699',
-    openLabel: 'Opens in July',
-    // openTimes: [new Date(Date.UTC(2026, 6, 20, 2, 0, 0))],
-  },
+  // {
+  //   id: 'wave-2',
+  //   name: 'Subsequent waves',
+  //   price: 'More than $699',
+  //   openLabel: 'Opens in July',
+  //   // openTimes: [new Date(Date.UTC(2026, 6, 20, 2, 0, 0))],
+  // },
 ]
 
 // Flat list of every opening time across all waves — used by the countdown
