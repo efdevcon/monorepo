@@ -37,6 +37,9 @@ export interface CloneState {
   // Keyed by source item ID. `sourceUrl` is the source-side public media URL we cloned;
   // `targetFileId` is the Pretix `file:<uuid>` reference assigned on the target instance.
   pictures?: { [sourceItemId: string]: { sourceUrl: string; targetFileId: string } }
+  // Same shape as `pictures` but keyed by settings key (`logo_image`,
+  // `invoice_logo_image`, …) for file-typed event settings.
+  settingsFiles?: { [settingKey: string]: { sourceUrl: string; targetFileId: string } }
 }
 
 // Pretix returns numeric IDs and the rest of an opaque resource body.

@@ -3,13 +3,14 @@
  * and persists the state file after each phase.
  */
 import { PretixClient } from './pretixClient'
-import { applyEvent } from './resources/event'
+import { applyEvent, applyEventSettingsAfterTaxRules } from './resources/event'
 import { applyTaxRules } from './resources/taxRules'
 import { applyCategories } from './resources/categories'
 import { applyQuestions, linkQuestionsToItems } from './resources/questions'
 import { applyQuotasWithoutLinks, linkQuotasToItems } from './resources/quotas'
 import { applyItems } from './resources/items'
 import { applyDiscounts } from './resources/discounts'
+import { pruneOrphans } from './prune'
 import { CloneState, CliOptions, Snapshot } from './types'
 import { saveState } from './state'
 
@@ -27,10 +28,14 @@ export async function applySnapshot(opts: {
     {
       key: 'event',
       run: async () => {
-        await applyEvent({ targetClient, orgClient, snapshot, cli, targetEventSlug })
+        await applyEvent({ targetClient, orgClient, snapshot, state, cli, targetEventSlug })
       },
     },
     { key: 'tax_rules', run: () => applyTaxRules({ targetClient, snapshot, state, cli }) },
+    {
+      key: 'event_settings_tax_refs',
+      run: () => applyEventSettingsAfterTaxRules({ targetClient, snapshot, state, cli }),
+    },
     { key: 'categories', run: () => applyCategories({ targetClient, snapshot, state, cli }) },
     { key: 'questions', run: () => applyQuestions({ targetClient, snapshot, state, cli }) },
     { key: 'quotas', run: () => applyQuotasWithoutLinks({ targetClient, snapshot, state, cli }) },
@@ -50,6 +55,7 @@ export async function applySnapshot(opts: {
       const map: Record<string, string> = {
         'quotas-link': 'quotas',
         'questions-link': 'questions',
+        event_settings_tax_refs: 'tax_rules',
       }
       const effective = map[phase.key] ?? phase.key
       if (effective !== cli.only && phase.key !== cli.only) {
@@ -58,6 +64,13 @@ export async function applySnapshot(opts: {
     }
     console.log('--- phase: ' + phase.key + ' ---')
     await phase.run()
+    saveState(state)
+  }
+
+  if (cli.prune) {
+    console.log('')
+    console.log('=== prune (destructive) ===')
+    await pruneOrphans({ targetClient, state, cli })
     saveState(state)
   }
 }

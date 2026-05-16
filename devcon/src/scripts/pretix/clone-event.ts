@@ -7,7 +7,7 @@
  *   pnpm pretix:clone --push               # snapshot file → target
  *   pnpm pretix:clone                      # pull then push
  *   pnpm pretix:clone --dry-run            # plan only, no writes
- *   pnpm pretix:clone --prune              # NOT YET IMPLEMENTED — flag is parsed, no effect
+ *   pnpm pretix:clone --prune              # after apply, DELETE target resources not in source
  *   pnpm pretix:clone --only=questions     # restrict resource type
  *   pnpm pretix:clone --yes                # skip interactive confirm
  */

@@ -1,7 +1,7 @@
 import { PretixClient } from '../pretixClient'
 import { CloneState, Snapshot, RawResource, CliOptions } from '../types'
 import { saveState } from '../state'
-import { stripMultilingual, suffixMultilingual } from '../suffix'
+import { stripMultilingual } from '../suffix'
 
 const COPY_FIELDS = [
   'name',
@@ -12,7 +12,7 @@ const COPY_FIELDS = [
   'internal_name',
 ] as const
 
-/** Index key — strips suffix so source-side names match suffixed targets. */
+/** Index key — strips legacy suffix so a previously-suffixed target still adopts. */
 function pickName(resource: Record<string, unknown>): string {
   return stripMultilingual(resource.name)
 }
@@ -20,7 +20,7 @@ function pickName(resource: Record<string, unknown>): string {
 function bodyOf(src: RawResource): Record<string, unknown> {
   const out: Record<string, unknown> = {}
   for (const k of COPY_FIELDS) if (k in src) out[k] = src[k]
-  if ('name' in out) out.name = suffixMultilingual(out.name)
+  // Names are copied verbatim — no test suffix.
   return out
 }
 

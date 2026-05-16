@@ -1,7 +1,7 @@
 import { PretixClient } from '../pretixClient'
 import { CloneState, Snapshot, RawResource, CliOptions } from '../types'
 import { saveState } from '../state'
-import { stripSuffix, withSuffix } from '../suffix'
+import { stripSuffix } from '../suffix'
 
 const COPY_FIELDS_INITIAL = [
   'name',
@@ -15,7 +15,8 @@ const COPY_FIELDS_INITIAL = [
 function bodyInitial(src: RawResource): Record<string, unknown> {
   const out: Record<string, unknown> = {}
   for (const k of COPY_FIELDS_INITIAL) if (k in src) out[k] = src[k]
-  if (typeof out.name === 'string') out.name = withSuffix(out.name)
+  // Names are copied verbatim — no test suffix. Adoption-time index still
+  // strips legacy suffixes so previously-suffixed targets get re-adopted.
   // items/variations omitted here — set after items exist.
   return out
 }
