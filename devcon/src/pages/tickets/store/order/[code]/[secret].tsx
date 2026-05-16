@@ -245,7 +245,7 @@ export default function OrderConfirmationPage() {
   const formattedDate = `${day} ${month}, ${year} at ${time}`
 
   const rawCryptoAmount = pi?.amount || null
-  // pi.amount is a raw on-chain base-units integer (USDC/USDT0 = 10^6, ETH = 10^18).
+  // pi.amount is a raw onchain base-units integer (USDC/USDT0 = 10^6, ETH = 10^18).
   // Divide by the token's decimals using BigInt to avoid float precision loss on
   // wei-scale ETH values; then trim zeros for a clean display.
   const cryptoAmount = rawCryptoAmount

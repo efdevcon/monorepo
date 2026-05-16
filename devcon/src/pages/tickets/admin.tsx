@@ -28,7 +28,7 @@ const STORAGE_KEY = 'x402_admin_secret'
 const POLL_INTERVAL = 30_000
 
 /** Completed crypto orders. `source === 'x402'` supports the full feature set
- *  (gasless flow + on-chain refund button). `'wc_attempt'` is the legacy
+ *  (gasless flow + onchain refund button). `'wc_attempt'` is the legacy
  *  pre-x402 WalletConnect direct-send flow, shown read-only. */
 interface CompletedOrder {
   source: 'x402' | 'wc_attempt'
@@ -278,7 +278,7 @@ function ChainCell({ chainId }: { chainId?: number }) {
   )
 }
 
-/** Render a raw on-chain amount (wei / base units) as a human-readable decimal.
+/** Render a raw onchain amount (wei / base units) as a human-readable decimal.
  *  USDC and USDT0 use 6 decimals, ETH uses 18. Unknown tokens default to 6.
  *
  *  Implementation note: written with constructor-form BigInt (`BigInt(0)`,
@@ -693,7 +693,7 @@ function RefundModal({
   }
 
   // Click-outside is intentionally disabled on this modal — refunds send an
-  // on-chain tx, and a misclick on the backdrop (mid-signing, or while waiting
+  // onchain tx, and a misclick on the backdrop (mid-signing, or while waiting
   // for a tx to confirm) could abandon state mid-flight. Explicit close only.
   return (
     <div className={css['modal-overlay']}>
@@ -814,7 +814,7 @@ function RefundActionCell({
     )
   }
 
-  // Refund is only possible when we have the on-chain identity to send
+  // Refund is only possible when we have the onchain identity to send
   // it from (pretixOrderCode for the Pretix-side OrderRefund record,
   // payer for the destination, totalUsd for the amount). All three are
   // present on every x402 row; for wc_attempt rows, pretixOrderCode and
@@ -890,7 +890,7 @@ function ManualVerifyModal({
     setError(null)
     try {
       // Admin manual-verify deliberately omits ethPayerSignature — the plugin
-      // bypasses that gate for the recovery path and falls back to on-chain
+      // bypasses that gate for the recovery path and falls back to onchain
       // tx.from binding (see _x402_verify_and_finalize.skip_eth_payer_signature).
       const res = await fetch('/api/x402/admin/verify/', {
         method: 'POST',
@@ -935,10 +935,10 @@ function ManualVerifyModal({
         </button>
         <h3 className={css['modal-title']}>Manual verification</h3>
         <p className={css['modal-hint']} style={{ fontSize: 13, color: '#666', margin: '0 0 16px' }}>
-          Confirm a pending payment using the on-chain transaction hash. The plugin re-runs the full
+          Confirm a pending payment using the onchain transaction hash. The plugin re-runs the full
           verification (tx uniqueness, recipient, amount, payer match). The tx hash <strong>must</strong>
-          belong to the payer shown below, not anyone else. For ETH payments the off-chain
-          <em> ethPayerSignature</em> is not required here — payer binding falls back to the on-chain{' '}
+          belong to the payer shown below, not anyone else. For ETH payments the offchain
+          <em> ethPayerSignature</em> is not required here — payer binding falls back to the onchain{' '}
           <code>tx.from</code> match.
         </p>
         <div className={css['modal-details']}>
@@ -1010,7 +1010,7 @@ function ManualVerifyModal({
           </>
         )}
 
-        {step === 'submitting' && <div className={css['modal-status']}>Verifying on-chain...</div>}
+        {step === 'submitting' && <div className={css['modal-status']}>Verifying onchain...</div>}
         {step === 'done' && result && (
           <div className={css['modal-status']}>
             Verified. Pretix order <code>{result.code}</code> created.

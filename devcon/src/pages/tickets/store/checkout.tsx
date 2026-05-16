@@ -187,8 +187,8 @@ function pollMaxDurationMs(chainId: number | undefined, requiredConfs: number): 
 }
 
 /** Detect Safe (multisig smart wallets). For Safes, `eth_sendTransaction` over
- *  WalletConnect resolves with a *safeTxHash* — an off-chain hash of the Safe
- *  transaction object — instead of the on-chain tx hash. We have to bridge
+ *  WalletConnect resolves with a *safeTxHash* — an offchain hash of the Safe
+ *  transaction object — instead of the onchain tx hash. We have to bridge
  *  through the Safe Transaction Service to recover the executed hash. */
 function isSafeWallet(connector: { id?: string; name?: string } | undefined): boolean {
   if (!connector) return false
@@ -210,7 +210,7 @@ function safeTxServiceHost(chainId: number | undefined): string | null {
 }
 
 /** Poll Safe Tx Service until `transactionHash` is non-null (Safe has executed
- *  the multisig and broadcast). Resolves with the on-chain tx hash, rejects
+ *  the multisig and broadcast). Resolves with the onchain tx hash, rejects
  *  on timeout. Budget defaults to 30 minutes — multisigs (e.g. 2/3) can sit
  *  waiting for co-signers; this is the upper bound the user is expected to
  *  keep the page open. Beyond that, admin manual-verify is the recovery path. */
@@ -256,7 +256,7 @@ async function pollSafeTxService(
     await new Promise(r => setTimeout(r, 8_000))
   }
   throw new Error(
-    'Safe transaction timed out — please complete the signing in your Safe and click Retry verification with the on-chain tx hash.'
+    'Safe transaction timed out — please complete the signing in your Safe and click Retry verification with the onchain tx hash.'
   )
 }
 
@@ -492,7 +492,7 @@ function CheckoutContent() {
   // Used to lock token/network selection until verification resolves.
   const [isVerifying, setIsVerifying] = useState(false)
   // Confirmation progress surfaced from the plugin's `confirmations` /
-  // `confirmations_required` fields. Used to render "Confirming on-chain (1/3)…"
+  // `confirmations_required` fields. Used to render "Confirming onchain (1/3)…"
   // in place of the old retry-counter ("3/12 attempts") UI which was misleading
   // — it implied the system was approaching failure when it was actually just
   // waiting on the chain to mine more blocks.
@@ -536,7 +536,7 @@ function CheckoutContent() {
    *  verifyPayment instead of the live `useAccount().address` because a
    *  multisig Safe co-signer often needs to switch wallets/accounts mid-flow
    *  to provide the next signature — that switch tears down the WC session
-   *  and zeros out the live address. The on-chain tx still mines under the
+   *  and zeros out the live address. The onchain tx still mines under the
    *  Safe address regardless of which owner-EOA is currently connected, so
    *  freezing the payer at flow-start keeps verify pointed at the right
    *  account. */
@@ -585,7 +585,7 @@ function CheckoutContent() {
   const publicClient = usePublicClient()
   const [isSigningDirect, setIsSigningDirect] = useState(false)
   const [directSignError, setDirectSignError] = useState<string | null>(null)
-  /** Smart-wallet (any contract wallet) flag from on-chain `getCode`. Drives
+  /** Smart-wallet (any contract wallet) flag from onchain `getCode`. Drives
    *  the Safe-bridge fallback in the ETH-send path — useful even for non-Safe
    *  smart wallets, because we want to *try* Safe Tx Service polling and let
    *  the API itself say no via a 404. */
@@ -1086,7 +1086,7 @@ function CheckoutContent() {
     if (!msg) return 'Failed to execute transfer'
     if (/relayer cannot afford tx/i.test(msg)) return 'Payment processor is temporarily unavailable on this network. Please pick a different network below and try again.'
     if (/gas price .* exceeds cap/i.test(msg)) return 'Network fees are currently high. Please try again in a minute or switch to another network.'
-    if (/simulation reverted/i.test(msg)) return 'This transaction would fail on-chain. Please check your balance and try again.'
+    if (/simulation reverted/i.test(msg)) return 'This transaction would fail onchain. Please check your balance and try again.'
     if (/nonce has already been used/i.test(msg)) return 'This authorization has already been used. Please start a new payment.'
     if (/^insufficient /i.test(msg)) return msg // already human-readable ("Insufficient USDC balance: ...")
     return 'Failed to execute transfer. Please try again.'
@@ -1227,7 +1227,7 @@ function CheckoutContent() {
   }
 
   // ── Manual-hash submit ──
-  // Validates the hash on-chain (from=payer, to=expected, value=expected)
+  // Validates the hash onchain (from=payer, to=expected, value=expected)
   // before accepting, then hands it to whatever recovery flow is awaiting it.
   async function submitManualHash() {
     const raw = manualHashInput.trim()
@@ -1621,7 +1621,7 @@ function CheckoutContent() {
       const formattedAnswers = buildFormattedAnswers()
       // Freeze the payer at flow-start. Multisig Safe co-signers may swap
       // wallets after the first signature, dropping the WC session and
-      // zeroing useAccount().address — but the on-chain tx mines under this
+      // zeroing useAccount().address — but the onchain tx mines under this
       // (Safe) address regardless. verifyPayment reads from the ref so that
       // post-disconnect verify keeps working.
       payerAddressRef.current = address ?? null
@@ -1992,7 +1992,7 @@ function CheckoutContent() {
       // Sign a payer-proof message BEFORE sending the tx. Binds the wallet to
       // this specific paymentReference+chain so the /verify endpoint can
       // cryptographically confirm the caller owns the payer address (and is
-      // not replaying someone else's on-chain tx for a different order).
+      // not replaying someone else's onchain tx for a different order).
       //
       // Use the frozen payer address (from handleCryptoCheckout) — NOT the
       // live `useAccount().address`. MM Mobile + WC has been observed to
@@ -2071,13 +2071,13 @@ function CheckoutContent() {
         // here (any address with non-empty bytecode), but that also
         // matched EIP-7702-delegated EOAs (Rainbow and others ship this
         // for some users) and non-Safe ERC-4337 wallets, both of which
-        // return a real on-chain tx hash from `sendTransaction` and don't
+        // return a real onchain tx hash from `sendTransaction` and don't
         // need Safe-Tx-Service translation — gating on `isSafeAddress`
         // keeps the Safe-specific path narrowly scoped to Safes.
         const isSafePath = isSafeWallet(connector) || isSafeAddress
         if (isSafePath) {
           // Safe wraps eth_sendTransaction differently — the wallet returns a
-          // *safeTxHash* (off-chain hash of the Safe tx object) almost
+          // *safeTxHash* (offchain hash of the Safe tx object) almost
           // immediately, so the WC-hash-not-returned bug doesn't apply and
           // the recovery watchdog would only confuse things. Use the bare
           // sendTransactionAsync and translate via Safe Tx Service. The
@@ -2097,7 +2097,7 @@ function CheckoutContent() {
             setPurchaseError(
               err instanceof Error
                 ? err.message
-                : 'Could not retrieve the on-chain transaction from your Safe — please try again or contact support.'
+                : 'Could not retrieve the onchain transaction from your Safe — please try again or contact support.'
             )
             setPaymentStatus(null)
           }
@@ -2135,7 +2135,7 @@ function CheckoutContent() {
           //     trip — the bug at coinbase-wallet-sdk #1317 that has
           //     wagmi's connector get out of sync with the wallet);
           //   * returns a call-bundle id we poll via
-          //     `wallet_getCallsStatus` for the on-chain hash, sidestep
+          //     `wallet_getCallsStatus` for the onchain hash, sidestep
           //     the WC "wallet broadcast but didn't return hash" failure
           //     mode entirely.
           // Older EOAs / WC sessions throw `wallet_getCapabilities`
@@ -2318,7 +2318,7 @@ function CheckoutContent() {
         const req = typeof data.confirmations_required === 'number' ? data.confirmations_required : null
         if (cur !== null && req !== null) {
           setConfirmProgress({ current: cur, required: req })
-          setPaymentStatus(`Confirming on-chain (${cur}/${req})...`)
+          setPaymentStatus(`Confirming onchain (${cur}/${req})...`)
           // Recompute the time budget now that we know the chain's threshold.
           budget = pollMaxDurationMs(paymentDetails.chainId, req)
         } else {
@@ -3653,7 +3653,7 @@ function CheckoutContent() {
 
                                     {/* In-flight status banner. Renders the contextual
                                          `paymentStatus` ("Sign payer proof in Rainbow on your
-                                         phone…", "Verifying on-chain (3/12)…", etc.) the moment a
+                                         phone…", "Verifying onchain (3/12)…", etc.) the moment a
                                          flow starts. The Pay button below stays on a generic
                                          "Processing…" label so the same text isn't duplicated;
                                          this banner sits above the Pay button and is much harder
@@ -3668,7 +3668,7 @@ function CheckoutContent() {
                                     {/* Manual hash escape hatch — appears after the recovery
                                          watchdog has spent its full budget without finding the tx
                                          via Alchemy assetTransfers. Buyer can paste the hash
-                                         from their wallet's history; we validate it on-chain
+                                         from their wallet's history; we validate it onchain
                                          (from/to/value match) before accepting. */}
                                     {needsManualHash && (
                                       <div className={css['manual-hash-prompt']}>
