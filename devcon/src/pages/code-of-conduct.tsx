@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl'
 export default function CodeOfConductTemplate(props: any) {
   const t = useTranslations('common')
   return (
-    <Page theme={themes['news']}>
+    <Page theme={themes['news']} darkHeader darkFooter>
       <PageHero heroBackground={HeroBackground} path={[{ text: t('code_of_conduct_title') }]} />
 
       <div className="section">
