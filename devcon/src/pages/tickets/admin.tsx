@@ -1432,7 +1432,7 @@ function AdminContent() {
         </Head>
         <div className={css.login}>
           <div className={css['login-card']}>
-            <h1 className={css['login-title']}>x402 Payment Monitor</h1>
+            <h1 className={css['login-title']}>Crypto Payment Monitor</h1>
             <form className={css['login-form']} onSubmit={handleLogin}>
               <input
                 className={css['login-input']}
@@ -1464,7 +1464,7 @@ function AdminContent() {
       {/* Header */}
       <div className={css.header}>
         <div className={css['header-left']}>
-          <h1 className={css.title}>x402 Payment Monitor</h1>
+          <h1 className={css.title}>Crypto Payment Monitor</h1>
           {data?.env && <span className={css['env-badge']}>{data.env}</span>}
         </div>
         <div className={css['header-right']}>
@@ -1505,7 +1505,9 @@ function AdminContent() {
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Total Revenue</p>
-              <p className={css['stat-value']}>${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              <p className={css['stat-value']}>
+                ${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </p>
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Gas Sponsored</p>
@@ -1513,16 +1515,23 @@ function AdminContent() {
                 {totalGasSponsored == null
                   ? '—'
                   : totalGasSponsored.usd != null
-                    ? `$${totalGasSponsored.usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-                    : [
-                        totalGasSponsored.eth > 0 ? `${totalGasSponsored.eth.toFixed(6)} ETH` : null,
-                        totalGasSponsored.pol > 0 ? `${totalGasSponsored.pol.toFixed(4)} POL` : null,
-                      ].filter(Boolean).join(' + ') || '—'}
+                  ? `$${totalGasSponsored.usd.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}`
+                  : [
+                      totalGasSponsored.eth > 0 ? `${totalGasSponsored.eth.toFixed(6)} ETH` : null,
+                      totalGasSponsored.pol > 0 ? `${totalGasSponsored.pol.toFixed(4)} POL` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(' + ') || '—'}
               </p>
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Total Refunded</p>
-              <p className={css['stat-value']}>${totalRefunded.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+              <p className={css['stat-value']}>
+                ${totalRefunded.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </p>
             </div>
           </div>
           {data?.destinationWallet && (
@@ -1545,9 +1554,7 @@ function AdminContent() {
       )}
 
       {/* Revenue Chart */}
-      {data?.completed && data.completed.length > 0 && (
-        <RevenueChart orders={data.completed} />
-      )}
+      {data?.completed && data.completed.length > 0 && <RevenueChart orders={data.completed} />}
 
       {/* Search + Date Filter */}
       <div className={css['filter-bar']}>
@@ -1600,16 +1607,40 @@ function AdminContent() {
               <thead>
                 <tr>
                   <th>Type</th>
-                  <SortableTh label="Pretix Order" sortKey="pretixOrder" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <SortableTh
+                    label="Pretix Order"
+                    sortKey="pretixOrder"
+                    currentSort={completedSort}
+                    currentDir={completedSortDir}
+                    onSort={toggleCompletedSort}
+                  />
                   <th>Status</th>
                   <th>Email</th>
-                  <SortableTh label="Amount" sortKey="amount" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <SortableTh
+                    label="Amount"
+                    sortKey="amount"
+                    currentSort={completedSort}
+                    currentDir={completedSortDir}
+                    onSort={toggleCompletedSort}
+                  />
                   <th>Crypto Amount</th>
-                  <SortableTh label="Chain" sortKey="tokenChain" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <SortableTh
+                    label="Chain"
+                    sortKey="tokenChain"
+                    currentSort={completedSort}
+                    currentDir={completedSortDir}
+                    onSort={toggleCompletedSort}
+                  />
                   <th>Sponsored Gas</th>
                   <th>Tx Hash</th>
                   <th>Payer</th>
-                  <SortableTh label="Completed At" sortKey="completedAt" currentSort={completedSort} currentDir={completedSortDir} onSort={toggleCompletedSort} />
+                  <SortableTh
+                    label="Completed At"
+                    sortKey="completedAt"
+                    currentSort={completedSort}
+                    currentDir={completedSortDir}
+                    onSort={toggleCompletedSort}
+                  />
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -1638,9 +1669,15 @@ function AdminContent() {
                     </td>
                     <td className={undefined}>{o.email ?? '—'}</td>
                     <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
-                    <td className={undefined}><ChainCell chainId={o.chainId} /></td>
-                    <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}</td>
+                    <td>
+                      <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
+                    </td>
+                    <td className={undefined}>
+                      <ChainCell chainId={o.chainId} />
+                    </td>
+                    <td className={css.mono}>
+                      {o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}
+                    </td>
                     <td className={css.mono}>
                       {o.txHash ? (
                         <Copyable value={o.txHash}>
@@ -1703,7 +1740,9 @@ function AdminContent() {
                   <th>Payer</th>
                   <th>Payment Tx</th>
                   <th>Refund Tx</th>
-                  <th className={css['col-sorted-header']}>Refunded At <span className={css['sort-arrow']}>↓</span></th>
+                  <th className={css['col-sorted-header']}>
+                    Refunded At <span className={css['sort-arrow']}>↓</span>
+                  </th>
                   <th>Completed At</th>
                 </tr>
               </thead>
@@ -1721,8 +1760,12 @@ function AdminContent() {
                       </a>
                     </td>
                     <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td><CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} /></td>
-                    <td><ChainCell chainId={o.chainId} /></td>
+                    <td>
+                      <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
+                    </td>
+                    <td>
+                      <ChainCell chainId={o.chainId} />
+                    </td>
                     <td className={css.mono}>
                       <a
                         className={css.link}
@@ -1760,9 +1803,15 @@ function AdminContent() {
                             {o.refundTxHash.slice(0, 10)}...{o.refundTxHash.slice(-8)}
                           </a>
                         </Copyable>
-                      ) : '—'}
+                      ) : (
+                        '—'
+                      )}
                     </td>
-                    <td>{o.refundMeta?.refundedAt ? formatDate(Math.floor(new Date(o.refundMeta.refundedAt as string).getTime() / 1000)) : '—'}</td>
+                    <td>
+                      {o.refundMeta?.refundedAt
+                        ? formatDate(Math.floor(new Date(o.refundMeta.refundedAt as string).getTime() / 1000))
+                        : '—'}
+                    </td>
                     <td>{formatDate(o.completedAt)}</td>
                   </tr>
                 ))}
@@ -1788,11 +1837,23 @@ function AdminContent() {
               <thead>
                 <tr>
                   <th>Payment Ref</th>
-                  <SortableTh label="Amount" sortKey="amount" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
+                  <SortableTh
+                    label="Amount"
+                    sortKey="amount"
+                    currentSort={pendingSort}
+                    currentDir={pendingSortDir}
+                    onSort={togglePendingSort}
+                  />
                   <th>ETH Quote</th>
                   <th>Payer</th>
                   <th>Email</th>
-                  <SortableTh label="Expires At" sortKey="expiresAt" currentSort={pendingSort} currentDir={pendingSortDir} onSort={togglePendingSort} />
+                  <SortableTh
+                    label="Expires At"
+                    sortKey="expiresAt"
+                    currentSort={pendingSort}
+                    currentDir={pendingSortDir}
+                    onSort={togglePendingSort}
+                  />
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -1834,11 +1895,7 @@ function AdminContent() {
                         {isExpired && <span className={css.expired}> EXPIRED</span>}
                       </td>
                       <td>
-                        <ManualVerifyCell
-                          order={o}
-                          secret={secret}
-                          onVerified={() => fetchOrders(secret)}
-                        />
+                        <ManualVerifyCell order={o} secret={secret} onVerified={() => fetchOrders(secret)} />
                       </td>
                     </tr>
                   )
