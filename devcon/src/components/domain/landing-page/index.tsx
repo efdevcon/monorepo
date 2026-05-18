@@ -4,6 +4,7 @@ import { WhyDevconContainer } from './WhyDevconContainer'
 import { WhatToExpect } from './WhatToExpect'
 import { PhotoGallery } from './PhotoGallery'
 import { DevconSEAStats } from './DevconSEAStats'
+import { LivingConstellation } from './living-constellation'
 import { ContributeAndSupport } from './ContributeAndSupport'
 import { FaqSection } from './FaqSection'
 import { EarlyBirdBanner } from './EarlyBirdBanner'
@@ -20,6 +21,7 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
       <WhatToExpect />
       <PhotoGallery />
       <DevconSEAStats />
+      <LivingConstellation />
       <ContributeAndSupport />
       <FaqSection items={faqItems} />
       <EarlyBirdBanner />

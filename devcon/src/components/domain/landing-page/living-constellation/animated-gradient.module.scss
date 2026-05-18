@@ -1,0 +1,31 @@
+@keyframes living-constellation-gradient {
+  // 0% and 100% share the same transform so each loop blends seamlessly into
+  // the next — otherwise the circle "snaps" from the 100% position back to
+  // translate(0,0) on every iteration.
+  0%,
+  100% {
+    transform: translate(calc(var(--tx-1) * 100%), calc(var(--ty-1) * 100%));
+  }
+  25% {
+    transform: translate(calc(var(--tx-2) * 100%), calc(var(--ty-2) * 100%));
+  }
+  50% {
+    transform: translate(calc(var(--tx-3) * 100%), calc(var(--ty-3) * 100%));
+  }
+  75% {
+    transform: translate(calc(var(--tx-4) * 100%), calc(var(--ty-4) * 100%));
+  }
+}
+
+.circle {
+  position: absolute;
+  animation: living-constellation-gradient var(--duration, 9s) infinite var(--ease, ease-in-out);
+}
+
+// Soft vertical fade so the animated palette dissolves into the surrounding
+// page instead of slamming against a hard edge. Cards sit above this mask so
+// they stay fully opaque.
+.faded {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+}

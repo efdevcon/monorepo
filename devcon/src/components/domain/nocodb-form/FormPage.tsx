@@ -548,7 +548,10 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
 
       // Form data is keyed by sanitized RHF aliases (rhfFieldName); the server
       // expects original NocoDB column titles.
-      const submitData = remapToOriginalNames(formData, schema!.columns.map(c => c.column_name))
+      const submitData = remapToOriginalNames(
+        formData,
+        schema!.columns.map(c => c.column_name)
+      )
 
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
