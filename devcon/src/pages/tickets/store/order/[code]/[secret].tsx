@@ -310,15 +310,13 @@ export default function OrderConfirmationPage() {
 
           {/* Left: Ticket card */}
           <div className={css['ticket-card']}>
-            <div
-              className={`${css['ticket-banner']} ${css[`ticket-banner--${stateVariant}`]}`}
-            >
+            <div className={`${css['ticket-banner']} ${css[`ticket-banner--${stateVariant}`]}`}>
               <span className={css['ticket-banner-text']}>{bannerText}</span>
             </div>
             <div className={css['ticket-body']}>
               <div className={css['ticket-data']}>
                 <div className={css['ticket-title-block']}>
-                  <h2 className={css['ticket-event-name']}>Devcon India</h2>
+                  <h2 className={css['ticket-event-name']}>Devcon 8 India</h2>
                   <p className={css['ticket-event-meta']}>3–6 November · Jio World Centre, Mumbai</p>
                 </div>
 
@@ -371,7 +369,9 @@ export default function OrderConfirmationPage() {
                     <div className={css['share-input-group']}>
                       <div className={css['share-text']}>
                         <h3 className={css['share-title']}>Share your ticket</h3>
-                        <p className={css['share-subtitle']}>Add your ENS name or a custom handle to personalise your sharing link</p>
+                        <p className={css['share-subtitle']}>
+                          Add your ENS name or a custom handle to personalise your sharing link
+                        </p>
                       </div>
                       <div className={css['share-input-wrap']}>
                         <CircleUser size={20} />
@@ -432,12 +432,17 @@ export default function OrderConfirmationPage() {
 
               <div className={css['summary-row']}>
                 <span className={css['summary-label']}>Status</span>
-                <span className={
-                  isPaid ? css['status-badge']
-                  : isExpired ? css['status-badge-expired']
-                  : isCanceled ? css['status-badge-cancelled']
-                  : css['status-badge-pending']
-                }>
+                <span
+                  className={
+                    isPaid
+                      ? css['status-badge']
+                      : isExpired
+                      ? css['status-badge-expired']
+                      : isCanceled
+                      ? css['status-badge-cancelled']
+                      : css['status-badge-pending']
+                  }
+                >
                   {statusLabels[order.status] || order.status}
                 </span>
               </div>
@@ -525,8 +530,8 @@ export default function OrderConfirmationPage() {
                 <hr className={css['order-divider']} />
                 <div className={css['pending-payment-section']}>
                   <p className={css['pending-payment-text']}>
-                    We&apos;re confirming your payment onchain. This page will update once it&apos;s settled — you
-                    can close it and check back later, or watch the transaction at the link above.
+                    We&apos;re confirming your payment onchain. This page will update once it&apos;s settled — you can
+                    close it and check back later, or watch the transaction at the link above.
                   </p>
                 </div>
               </>
@@ -551,7 +556,11 @@ export default function OrderConfirmationPage() {
                   <p className={css['pending-payment-text']}>
                     Your order was canceled and a refund is being processed.
                     {isPartiallyRefunded ? (
-                      <> ${(totalNum - refundedNum).toFixed(2)} is still outstanding and will be returned to the wallet you paid from. </>
+                      <>
+                        {' '}
+                        ${(totalNum - refundedNum).toFixed(2)} is still outstanding and will be returned to the wallet
+                        you paid from.{' '}
+                      </>
                     ) : (
                       <> The amount you paid will be returned to the wallet you paid from. </>
                     )}
@@ -570,9 +579,7 @@ export default function OrderConfirmationPage() {
                     <span className={css['summary-label']}>
                       {isFullyRefunded ? 'Fully refunded' : 'Partially refunded'}
                     </span>
-                    <span className={css['summary-value-semi']}>
-                      ${refundedNum.toFixed(2)}
-                    </span>
+                    <span className={css['summary-value-semi']}>${refundedNum.toFixed(2)}</span>
                   </div>
                   {order.refund_tx_hash && (
                     <div className={css['summary-row']}>
@@ -607,20 +614,10 @@ export default function OrderConfirmationPage() {
                   <div className={css['save-buttons']}>
                     <div className={css['wallet-row-wrapper']}>
                       <div className={css['wallet-row']}>
-                        <a
-                          href={passbookUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={css['wallet-badge']}
-                        >
+                        <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
                           <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
                         </a>
-                        <a
-                          href={passbookUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={css['wallet-badge']}
-                        >
+                        <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
                           <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
                         </a>
                       </div>
