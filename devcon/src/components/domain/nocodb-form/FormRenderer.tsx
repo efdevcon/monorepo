@@ -3,9 +3,13 @@ import { useFormContext } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, X, FileText, Download, ExternalLink, Lock, ShieldCheck } from 'lucide-react'
 import { COUNTRIES } from './countries'
 import { renderInlineMarkdown } from './inline-markdown'
+import { supabase } from 'services/supabase-browser'
+import { AGE_RECIPIENTS, isEncryptedTitle, stripEncryptedPrefix } from 'config/encrypted-forms'
+import { packEnvelope } from 'utils/age-envelope'
+import { rhfFieldName } from './rhf-key'
 
 export interface FormColumn {
   title: string
@@ -32,6 +36,457 @@ interface FormRendererProps {
   columns: FormColumn[]
   readOnlyFields?: string[]
   hiddenFields?: string[]
+  viewId: string
+}
+
+const ATTACHMENT_MAX_BYTES = 10 * 1024 * 1024
+const ATTACHMENT_ACCEPT = '.pdf,.doc,.docx,image/png,image/jpeg,image/webp'
+
+interface NocoAttachment {
+  url?: string
+  path?: string
+  signedPath?: string
+  title: string
+  mimetype: string
+  size: number
+}
+
+function formatSize(bytes: number): string {
+  if (!bytes || bytes < 0) return ''
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
+function attachmentProxyUrl(a: NocoAttachment): string | null {
+  // Prefer absolute signed URLs, then NocoDB's `dltemp/...` signed path. Raw
+  // `download/...` paths are not lent through the proxy (no token sharing).
+  const params = new URLSearchParams()
+  if (a.url) params.set('url', a.url)
+  else if (a.signedPath) params.set('path', a.signedPath)
+  else return null
+  if (a.title) params.set('filename', a.title)
+  return `/api/nocodb/file/?${params.toString()}`
+}
+
+function AttachmentPreview({
+  attachment,
+  onRemove,
+}: {
+  attachment: NocoAttachment
+  onRemove?: () => void
+}) {
+  const fileUrl = attachmentProxyUrl(attachment)
+  const isImage = attachment.mimetype?.startsWith('image/')
+
+  return (
+    <li className="flex items-center gap-3 px-3 py-2 bg-[#f9f8fa] border border-[#dddae2] rounded-md text-sm">
+      <div className="shrink-0 w-10 h-10 flex items-center justify-center bg-white border border-[#dddae2] rounded overflow-hidden">
+        {isImage && fileUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={fileUrl} alt={attachment.title} className="w-full h-full object-cover" />
+        ) : (
+          <FileText className="w-5 h-5 text-[#594d73]" />
+        )}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-[#160b2b]">{attachment.title}</p>
+        {attachment.size > 0 && <p className="text-xs text-[#594d73]">{formatSize(attachment.size)}</p>}
+      </div>
+
+      {fileUrl && (
+        <a
+          href={fileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 p-1.5 text-[#594d73] hover:text-[#7235ed]"
+          aria-label={`Open ${attachment.title}`}
+          title="Open / download"
+        >
+          {isImage || attachment.mimetype === 'application/pdf' ? (
+            <ExternalLink className="w-4 h-4" />
+          ) : (
+            <Download className="w-4 h-4" />
+          )}
+        </a>
+      )}
+      {onRemove && (
+        <button
+          type="button"
+          onClick={onRemove}
+          className="shrink-0 p-1.5 text-[#594d73] hover:text-[#b42124]"
+          aria-label={`Remove ${attachment.title}`}
+          title="Remove"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      )}
+    </li>
+  )
+}
+
+function AttachmentField({
+  col,
+  viewId,
+  isReadOnly,
+}: {
+  col: FormColumn
+  viewId: string
+  isReadOnly: boolean
+}) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
+  // RHF parses `[...]` and `.` as path syntax — register under a safe alias
+  // and let FormPage remap to the original column name on submit.
+  const rhfKey = rhfFieldName(col.column_name)
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => {
+        if (!col.required) return true
+        return (Array.isArray(v) && v.length > 0) || `${col.title} is required`
+      },
+    })
+  }, [register, rhfKey, col.required, col.title])
+
+  // NocoDB sometimes returns attachments as a JSON-encoded string on read; normalize.
+  const rawAttachments = watch(rhfKey)
+  const attachments: NocoAttachment[] = Array.isArray(rawAttachments)
+    ? rawAttachments
+    : typeof rawAttachments === 'string'
+    ? (() => {
+        try { return JSON.parse(rawAttachments) } catch { return [] }
+      })()
+    : []
+  const hasFiles = attachments.length > 0
+  const fieldError = errors[rhfKey]
+  const errorMessage = uploadError || (fieldError?.message as string | undefined)
+
+  const handlePick = () => inputRef.current?.click()
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    e.target.value = ''
+    if (files.length === 0) return
+
+    setUploadError('')
+    for (const file of files) {
+      if (file.size > ATTACHMENT_MAX_BYTES) {
+        setUploadError(`"${file.name}" is too large (max 10MB)`)
+        return
+      }
+    }
+
+    setUploading(true)
+    try {
+      const headers: Record<string, string> = {}
+      if (supabase) {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession()
+        if (session?.access_token) {
+          headers['Authorization'] = `Bearer ${session.access_token}`
+        }
+      }
+
+      const uploaded: NocoAttachment[] = []
+      for (const file of files) {
+        const formData = new FormData()
+        formData.append('files', file)
+
+        const res = await fetch(
+          `/api/nocodb/${viewId}/upload-attachment/?column=${encodeURIComponent(col.column_name)}`,
+          { method: 'POST', headers, body: formData }
+        )
+        const result = await res.json()
+        if (!res.ok || !result.success) throw new Error(result.error || 'Upload failed')
+        if (Array.isArray(result.attachments)) uploaded.push(...result.attachments)
+      }
+
+      setValue(rhfKey, [...attachments, ...uploaded], { shouldValidate: true })
+    } catch (err) {
+      setUploadError((err as Error).message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const handleRemove = (idx: number) => {
+    const next = attachments.filter((_, i) => i !== idx)
+    setValue(rhfKey, next, { shouldValidate: true })
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={col.title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+
+      <button
+        type="button"
+        onClick={handlePick}
+        disabled={uploading || isReadOnly}
+        className="flex items-center gap-3 w-full px-4 py-2.5 bg-white border border-[#dddae2] rounded-lg text-sm text-left disabled:opacity-50 hover:border-[rgba(34,17,68,0.2)] transition-colors min-w-0"
+      >
+        <span className="font-medium text-[#7235ed] shrink-0">
+          {hasFiles ? 'Add more' : 'Choose file(s)'}
+        </span>
+        <span className="text-[#594d73] truncate">
+          {uploading ? 'Uploading…' : 'PDF, DOC, PNG, JPG up to 10MB'}
+        </span>
+      </button>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ATTACHMENT_ACCEPT}
+        multiple
+        onChange={handleChange}
+        className="hidden"
+      />
+
+      {hasFiles && (
+        <ul className="flex flex-col gap-2">
+          {attachments.map((a, idx) => (
+            <AttachmentPreview
+              key={`${a.title}-${idx}`}
+              attachment={a}
+              onRemove={isReadOnly ? undefined : () => handleRemove(idx)}
+            />
+          ))}
+        </ul>
+      )}
+
+      {errorMessage && <FieldError message={errorMessage} />}
+    </div>
+  )
+}
+
+interface EncryptedLocalMeta {
+  filename: string
+  size: number
+  mimetype: string
+}
+
+function EncryptedAttachmentField({
+  col,
+  viewId,
+  isReadOnly,
+}: {
+  col: FormColumn
+  viewId: string
+  isReadOnly: boolean
+}) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
+  // Track the original (pre-encryption) filename of the file uploaded in this
+  // session, so the user sees "passport.pdf" instead of the opaque ".age" name.
+  // Not persisted — on revisit, only the opaque name is available.
+  const [localMeta, setLocalMeta] = useState<EncryptedLocalMeta | null>(null)
+  // RHF strips `[...]` from field names; use a sanitized alias and let
+  // FormPage remap to the original column name at submit time.
+  const rhfKey = rhfFieldName(col.column_name)
+  const displayTitle = stripEncryptedPrefix(col.title)
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => {
+        if (!col.required) return true
+        return (Array.isArray(v) && v.length > 0) || `${displayTitle} is required`
+      },
+    })
+  }, [register, rhfKey, col.required, displayTitle])
+
+  const rawAttachments = watch(rhfKey)
+  const attachments: NocoAttachment[] = Array.isArray(rawAttachments)
+    ? rawAttachments
+    : typeof rawAttachments === 'string'
+    ? (() => {
+        try { return JSON.parse(rawAttachments) } catch { return [] }
+      })()
+    : []
+  const current = attachments[0]
+  const fieldError = errors[rhfKey]
+  const errorMessage = uploadError || (fieldError?.message as string | undefined)
+
+  const handlePick = () => inputRef.current?.click()
+
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+
+    setUploadError('')
+    if (file.size > ATTACHMENT_MAX_BYTES) {
+      setUploadError(`"${file.name}" is too large (max 10MB)`)
+      return
+    }
+
+    setUploading(true)
+    try {
+      // Lazy-load the age library so the ~30KB of crypto code only ships when
+      // a user actually opens an encrypted form.
+      const ageModule = await import('age-encryption')
+      const encrypter = new ageModule.Encrypter()
+      for (const r of AGE_RECIPIENTS) encrypter.addRecipient(r)
+
+      const fileBytes = new Uint8Array(await file.arrayBuffer())
+      const envelope = packEnvelope(
+        {
+          filename: file.name,
+          mimetype: file.type || 'application/octet-stream',
+          size: file.size,
+          encryptedAt: new Date().toISOString(),
+        },
+        fileBytes
+      )
+      const ciphertext = await encrypter.encrypt(envelope)
+
+      // Opaque on-disk name — leaks nothing about the submitter or file.
+      const opaqueName = `${crypto.randomUUID()}.age`
+      // Standalone Uint8Array so Blob doesn't see a shared ArrayBuffer.
+      const blobBytes = new Uint8Array(ciphertext.byteLength)
+      blobBytes.set(ciphertext)
+      const blob = new Blob([blobBytes], { type: 'application/octet-stream' })
+
+      const headers: Record<string, string> = {}
+      if (supabase) {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession()
+        if (session?.access_token) {
+          headers['Authorization'] = `Bearer ${session.access_token}`
+        }
+      }
+
+      const formData = new FormData()
+      formData.append('files', blob, opaqueName)
+      const res = await fetch(
+        `/api/nocodb/${viewId}/upload-attachment/?column=${encodeURIComponent(col.column_name)}`,
+        { method: 'POST', headers, body: formData }
+      )
+      const result = await res.json()
+      if (!res.ok || !result.success) throw new Error(result.error || 'Upload failed')
+      if (!Array.isArray(result.attachments) || result.attachments.length === 0) {
+        throw new Error('Upload returned no attachment')
+      }
+
+      setLocalMeta({ filename: file.name, size: file.size, mimetype: file.type || 'application/octet-stream' })
+      // Encrypted field is single-file: replace, don't append.
+      setValue(rhfKey, result.attachments.slice(0, 1), { shouldValidate: true })
+    } catch (err) {
+      console.error('[encrypted-upload]', err)
+      setUploadError((err as Error).message || 'Encryption or upload failed')
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const handleRemove = () => {
+    setLocalMeta(null)
+    setValue(rhfKey, [], { shouldValidate: true })
+  }
+
+  const blobUrl = current ? attachmentProxyUrl(current) : null
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <label className="text-base font-bold text-[#160b2b] leading-6 flex items-center gap-1.5">
+          <Lock className="w-4 h-4 text-[#7235ed]" aria-hidden="true" />
+          {displayTitle}
+          {col.required && <span className="text-[#b42124] ml-0.5">*</span>}
+        </label>
+        {col.description && <FieldDescription text={col.description} />}
+        <p className="text-xs text-[#594d73] flex items-start gap-1.5 leading-5">
+          <ShieldCheck className="w-3.5 h-3.5 mt-0.5 shrink-0 text-[#7235ed]" aria-hidden="true" />
+          <span>
+            Encrypted in your browser before upload. Only the visa team can decrypt this file —
+            our servers and backups never see its contents.
+          </span>
+        </p>
+      </div>
+
+      {!current ? (
+        <button
+          type="button"
+          onClick={handlePick}
+          disabled={uploading || isReadOnly}
+          className="flex items-center gap-3 w-full px-4 py-2.5 bg-white border border-[#dddae2] rounded-lg text-sm text-left disabled:opacity-50 hover:border-[rgba(34,17,68,0.2)] transition-colors min-w-0"
+        >
+          <span className="font-medium text-[#7235ed] shrink-0">Choose file</span>
+          <span className="text-[#594d73] truncate">
+            {uploading ? 'Encrypting & uploading…' : 'PDF, DOC, PNG, JPG up to 10MB'}
+          </span>
+        </button>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          <li className="flex items-center gap-3 px-3 py-2 bg-[#f9f8fa] border border-[#dddae2] rounded-md text-sm">
+            <div className="shrink-0 w-10 h-10 flex items-center justify-center bg-white border border-[#dddae2] rounded">
+              <Lock className="w-5 h-5 text-[#7235ed]" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[#160b2b]">{localMeta?.filename || 'Encrypted file'}</p>
+              <p className="text-xs text-[#594d73]">
+                {localMeta
+                  ? `${formatSize(localMeta.size)} · encrypted ✓`
+                  : `${formatSize(current.size)} · encrypted ✓`}
+              </p>
+            </div>
+            {blobUrl && (
+              <a
+                href={blobUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 p-1.5 text-[#594d73] hover:text-[#7235ed]"
+                aria-label="Download encrypted blob"
+                title="Download encrypted blob (.age)"
+              >
+                <Download className="w-4 h-4" />
+              </a>
+            )}
+            {!isReadOnly && (
+              <button
+                type="button"
+                onClick={handleRemove}
+                className="shrink-0 p-1.5 text-[#594d73] hover:text-[#b42124]"
+                aria-label="Remove file"
+                title="Remove"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </li>
+        </ul>
+      )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept={ATTACHMENT_ACCEPT}
+        onChange={handleChange}
+        className="hidden"
+      />
+
+      {errorMessage && <FieldError message={errorMessage} />}
+    </div>
+  )
 }
 
 function FieldLabel({ title, required }: { title: string; required: boolean }) {
@@ -142,7 +597,7 @@ function SearchableSelect({
   )
 }
 
-export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }: FormRendererProps) {
+export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [], viewId }: FormRendererProps) {
   const { register, setValue, watch, formState: { errors } } = useFormContext()
 
   return (
@@ -150,11 +605,29 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
       {columns.map(col => {
         if (hiddenFields.includes(col.column_name)) return null
         const isReadOnly = readOnlyFields.includes(col.column_name)
-        const error = errors[col.column_name]
+        // RHF parses `[...]` / `.` in field names — use a sanitized alias for
+        // every register/setValue/watch/errors lookup; the original column
+        // name is remapped back at submit time in FormPage.
+        const rhfKey = rhfFieldName(col.column_name)
+        const error = errors[rhfKey]
+
+        if (col.uidt === 'Attachment') {
+          if (isEncryptedTitle(col.title)) {
+            return (
+              <EncryptedAttachmentField
+                key={col.column_name}
+                col={col}
+                viewId={viewId}
+                isReadOnly={isReadOnly}
+              />
+            )
+          }
+          return <AttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
+        }
 
         // Country fields → searchable dropdown
         if (isCountryField(col)) {
-          const currentValue = watch(col.column_name) || ''
+          const currentValue = watch(rhfKey) || ''
           return (
             <div key={col.column_name} className="flex flex-col gap-3">
               <div className="flex flex-col gap-2">
@@ -163,7 +636,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
               </div>
               <SearchableSelect
                 value={currentValue}
-                onChange={val => setValue(col.column_name, val, { shouldValidate: true })}
+                onChange={val => setValue(rhfKey, val, { shouldValidate: true })}
                 options={COUNTRIES}
                 placeholder="Select a country"
                 disabled={isReadOnly}
@@ -171,7 +644,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
               {col.required && (
                 <input
                   type="hidden"
-                  {...register(col.column_name, { required: `${col.title} is required` })}
+                  {...register(rhfKey, { required: `${col.title} is required` })}
                 />
               )}
               {error && <FieldError message={error.message as string} />}
@@ -192,7 +665,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
                 maxLength={max}
                 disabled={isReadOnly}
                 className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
-                {...register(col.column_name, {
+                {...register(rhfKey, {
                   required: col.required ? `${col.title} is required` : false,
                   maxLength: { value: max, message: `Maximum ${max} characters` },
                 })}
@@ -216,7 +689,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
                 maxLength={max}
                 disabled={isReadOnly}
                 className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
-                {...register(col.column_name, {
+                {...register(rhfKey, {
                   required: col.required ? `${col.title} is required` : false,
                   maxLength: { value: max, message: `Maximum ${max} characters` },
                   pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
@@ -229,7 +702,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
 
         if (col.uidt === 'LongText') {
           const max = CHAR_LIMITS.LongText
-          const val: string = watch(col.column_name) || ''
+          const val: string = watch(rhfKey) || ''
           return (
             <div key={col.column_name} className="flex flex-col gap-3">
               <div className="flex flex-col gap-2">
@@ -242,7 +715,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
                 maxLength={max}
                 disabled={isReadOnly}
                 className="px-4 py-3 text-base border-[#dddae2] rounded-lg min-h-[120px] resize-y"
-                {...register(col.column_name, {
+                {...register(rhfKey, {
                   required: col.required ? `${col.title} is required` : false,
                   maxLength: { value: max, message: `Maximum ${max} characters` },
                 })}
@@ -281,7 +754,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
                   } catch {}
                 }}
                 className="h-10 px-4 text-base border-[#dddae2] rounded-lg cursor-pointer"
-                {...register(col.column_name, {
+                {...register(rhfKey, {
                   required: col.required ? `${col.title} is required` : false,
                 })}
               />
@@ -291,7 +764,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
         }
 
         if (col.uidt === 'SingleSelect' && col.options) {
-          const currentValue = watch(col.column_name)
+          const currentValue = watch(rhfKey)
           return (
             <div key={col.column_name} className="flex flex-col gap-3">
               <div className="flex flex-col gap-2">
@@ -300,7 +773,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
               </div>
               <Select
                 value={currentValue || ''}
-                onValueChange={val => setValue(col.column_name, val, { shouldValidate: true })}
+                onValueChange={val => setValue(rhfKey, val, { shouldValidate: true })}
                 disabled={isReadOnly}
               >
                 <SelectTrigger id={col.column_name} className="h-10 px-4 text-base border-[#dddae2] rounded-lg">
@@ -317,7 +790,7 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [] }
               {col.required && (
                 <input
                   type="hidden"
-                  {...register(col.column_name, {
+                  {...register(rhfKey, {
                     required: `${col.title} is required`,
                   })}
                 />

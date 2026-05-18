@@ -323,17 +323,11 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
             </div>
 
             <div className={css['col-3']}>
-              <Link
-                className="bold font-xs text-uppercase hover-underline"
-                to="https://ethereum.org/en/privacy-policy/"
-              >
-                {t('legal_privacy_policy')}
+              <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
+                {t('legal_ticket_sale_terms')}
               </Link>
-              <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/terms-of-use/">
-                {t('legal_terms_of_use')}
-              </Link>
-              <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/cookie-policy/">
-                {t('legal_cookie_policy')}
+              <Link className="bold font-xs text-uppercase hover-underline" to="/privacy-notice">
+                {t('legal_privacy_notice')}
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
                 {t('legal_code_of_conduct')}
@@ -347,6 +341,9 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
                 }
               >
                 {t('legal_attendee_solicitation')}
+              </Link>
+              <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/terms-of-use/">
+                {t('legal_terms_of_use')}
               </Link>
             </div>
           </div>

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
+import { rhfFieldName, remapToOriginalNames } from './rhf-key'
+import { FormSubheading } from './FormSubheading'
 import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 import { EnrollmentProofUpload } from './EnrollmentProofUpload'
-import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -302,15 +303,21 @@ function FormInner({
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
 
-  // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner)
-  const hiddenFields = verifiedEmail ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name) : []
+  // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner).
+  // For the student-application form, also hide the enrollment_proof attachment from the
+  // generic renderer — the bespoke EnrollmentProofUpload below handles it conditionally
+  // (only shown for the "blocked" eligibility bucket).
+  const hiddenFields = [
+    ...(verifiedEmail ? schema.columns.filter(c => c.uidt === 'Email').map(c => c.column_name) : []),
+    ...(formSlug === STUDENT_APPLICATION_SLUG ? ['enrollment_proof'] : []),
+  ]
 
   useEffect(() => {
     if (!verifiedEmail || !supabase) return
 
     const emailCol = schema.columns.find(c => c.uidt === 'Email')
     if (emailCol) {
-      methods.setValue(emailCol.column_name, verifiedEmail)
+      methods.setValue(rhfFieldName(emailCol.column_name), verifiedEmail)
     }
 
     setLoadingExisting(true)
@@ -329,7 +336,9 @@ function FormInner({
             setIsUpdate(true)
             for (const [key, value] of Object.entries(result.data)) {
               if (value !== null && value !== undefined) {
-                methods.setValue(key, value)
+                // Server returns the original NocoDB column names; the form
+                // is registered under sanitized aliases (see rhfFieldName).
+                methods.setValue(rhfFieldName(key), value)
               }
             }
           }
@@ -351,7 +360,9 @@ function FormInner({
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
-        <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} />
+        {schema.subheading && <FormSubheading text={schema.subheading} />}
+
+        <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} viewId={viewId} />
 
         {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
 
@@ -484,7 +495,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
               </h2>
 
               <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                {schema.successMsg ?? 'Your application has been submitted.'}
+                {schema?.successMsg ?? 'Your application has been submitted.'}
               </p>
               {formSlug === STUDENT_APPLICATION_SLUG && (
                 <>
@@ -535,10 +546,17 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
         }
       }
 
+      // Form data is keyed by sanitized RHF aliases (rhfFieldName); the server
+      // expects original NocoDB column titles.
+      const submitData = remapToOriginalNames(
+        formData,
+        schema!.columns.map(c => c.column_name)
+      )
+
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ data: formData }),
+        body: JSON.stringify({ data: submitData }),
       })
       const result = await res.json()
       if (!res.ok) throw new Error(result.error || 'Submission failed')
@@ -557,6 +575,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
           {requireOtp ? (
             <OtpGate
               title={schema.title}
+              subheading={schema.subheading}
               description={
                 formSlug === STUDENT_APPLICATION_SLUG
                   ? 'Enter your student email to start the application'
@@ -613,11 +632,8 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
               <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
                 {schema.title}
               </h2>
-              {schema.subheading && (
-                <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
-                  {renderInlineMarkdown(schema.subheading)}
-                </p>
-              )}
+              {/* schema.subheading is rendered inside FormInner so the OTP
+                  post-signin path shows it too. */}
               <FormInner
                 schema={schema}
                 methods={methods}

@@ -7,75 +7,193 @@
     "applications": "APPLICATIONS",
     "faq": "FAQ"
   },
-  "hero": {
-    "heading": "ETH Early Bird tickets launch 20 May",
-    "body_lg": "The world's biggest Ethereum and decentralized technologies conference returns 3–6 November 2026 in Mumbai, India.",
-    "body": "This initial ticket launch offers our lowest price for general admission this year. Tickets can only be purchased with ETH on Ethereum Mainnet (L1).",
-    "included_label": "INCLUDED IN TICKET",
-    "included_conference": "Full 4-day conference access",
-    "included_swag": "Event swag",
-    "included_catering": "Catering all week",
-    "subscribe_button": "Subscribe for updates",
-    "ticket_alt": "Indian Early Bird Ticket"
+  "sale_banner": {
+    "heading": "ETH Early Bird tickets on sale!",
+    "heading_countdown": "ETH Early Bird tickets launch in",
+    "subheading": "Limited quantity • Save $350 • Purchasable using ETH (L1)",
+    "price": "$349",
+    "price_original": "$699",
+    "price_note": "Includes 18% GST",
+    "cta": "Get tickets"
   },
   "overview": {
-    "heading": "Overview",
-    "body": "Tickets to Devcon India will be distributed through three different methods:",
-    "view_faq": "View FAQ",
-    "cards": [
-      { "number": "01", "title": "Sale waves", "subtitle": "GENERAL ADMISSION", "price_label": "Coming soon", "status": "May 20" },
-      { "number": "02", "title": "Community", "subtitle": "SELF-CLAIMING DISCOUNTS", "price_label": "Coming soon", "status": "TBD" },
-      { "number": "03", "title": "Applications", "subtitle": "REVIEW-BASED DISCOUNTS", "price_label": "from $25", "status": "AVAILABLE NOW", "live": true }
-    ]
-  },
-  "sale_waves": {
-    "tag": "GENERAL ADMISSION",
-    "heading": "Sale waves",
-    "body_lg": "General Admission tickets to Devcon will be distributed via waves, beginning with our Global Early Bird launch in May.",
-    "body_prefix": "Sale waves are ",
-    "body_strong": "limited time windows",
-    "body_suffix": " to purchase a general admission Devcon India ticket. Follow us on socials or subscribe to our newsletter to stay updated!",
-    "card_title": "Sale waves",
-    "card_status": "COMING SOON!",
-    "rows": [
-      { "name": "Global Early Bird", "price": "$349", "date": "Opens in May" },
-      { "name": "Waves 1-10", "price": "TBD", "date": "TBD" }
-    ]
-  },
-  "community": {
-    "tag": "SELF-CLAIMING DISCOUNTS",
-    "heading": "Community",
-    "body_lg_prefix": "Our ",
-    "body_lg_strong": "Early Access vouchers for Indian residents",
-    "body_lg_suffix": " have now ended. Thank you to everyone who reserved their place at Devcon.",
-    "body_prefix": "Community tickets are ",
-    "body_strong_1": "self-claimable",
-    "body_middle": " – no application required, just verify your eligibility and purchase directly. Tickets are ",
-    "body_strong_2": "non-transferable",
-    "body_and": " and ",
-    "body_strong_3": "limited",
-    "body_suffix": ".",
-    "card_title": "Community",
-    "card_status": "COMING SOON!",
-    "rows": [
-      { "name": "India Residents", "detail": "VIA SELF PROTOCOL", "price": "TBD", "date": "TBD" }
-    ]
-  },
-  "applications": {
-    "tag": "REVIEW-BASED DISCOUNTS",
-    "heading": "Applications",
-    "body_lg_prefix": "",
-    "body_lg_strong": "Local",
-    "body_lg_suffix": " and International student applications are now open! Supply is limited so apply early to secure your Devcon ticket.",
-    "body_prefix": "All ticket applications are ",
-    "body_strong_1": "curated and limited per round",
-    "body_middle": ". Applying earlier gives access to ",
-    "body_strong_2": "lower price tiers",
-    "body_suffix": ", subject to availability and review.",
+    "eyebrow": "OVERVIEW",
+    "heading": "Get your Devcon ticket",
+    "subheading": "There's three ways to take part in Devcon India:",
+    "tag_open": "OPEN",
+    "tag_coming": "COMING SOON",
     "learn_more": "Learn more",
+    "cards": [
+      { "title": "General Admission", "subtitle": "SALE WAVES", "status": "open" },
+      { "title": "Community", "subtitle": "SELF-CLAIMING DISCOUNTS", "status": "coming" },
+      { "title": "Applications", "subtitle": "REVIEW-BASED DISCOUNTS", "status": "open" }
+    ]
+  },
+  "general_admission": {
+    "eyebrow": "SALE WAVES",
+    "heading": "General Admission",
+    "body_strong": "Open to anyone.",
+    "body": " Tickets are released in time-limited rounds. Each sale wave has a fixed quantity at a fixed price. Future waves will open at a higher price.",
+    "subcopy_strong": "Secure tickets early",
+    "subcopy": " to access the lowest prices.",
+    "cta": "Get tickets",
+    "card_title": "General Admission",
+    "card_subtitle": "incl. 18% GST",
+    "tap_label": "TAP TO LEARN MORE"
+  },
+  "community_section": {
+    "eyebrow": "SELF-CLAIMING DISCOUNTS",
+    "heading": "Community",
+    "body_prefix": "For ",
+    "body_strong_1": "Indian residents",
+    "body_middle": " and ",
+    "body_strong_2": "active ecosystem contributors",
+    "body_suffix": " — developers, protocol members, past participants. Verify to self-claim the discount.",
+    "subcopy_prefix": "No application required. Tickets are ",
+    "subcopy_strong_1": "non-transferable",
+    "subcopy_and": " and ",
+    "subcopy_strong_2": "limited",
+    "subcopy_suffix": ".",
+    "card_title": "Community",
+    "card_subtitle": "incl. 18% GST",
+    "tap_label": "TAP TO LEARN MORE",
+    "rows": [
+      { "name": "India Early Bird", "detail": "VIA VOUCHER", "price": "$99", "date": "Opens in June" },
+      { "name": "India Resident", "detail": "VIA SELF PROTOCOL", "price": "$149", "date": "Opens in June" },
+      { "name": "Core Devs", "price": "FREE", "date": "Opens in June" },
+      { "name": "OSS Contributors", "price": "50% off", "date": "Opens in June" },
+      { "name": "Public Good Projects", "price": "50% off", "date": "Opens in June" },
+      { "name": "Past POAP Holders", "price": "10% off", "date": "Opens in June" }
+    ]
+  },
+  "criteria": {
+    "student": {
+      "heading": "All applicants should meet the following criteria:",
+      "bullets": [
+        "Currently enrolled in an accredited university degree program (Bachelor, Master, or PhD)",
+        "Studying fields such as computer science, engineering, mathematics, economics, law, governance, public policy, or other relevant disciplines",
+        "Students contributing to research, open-source projects, or academic work related to blockchain, cryptography, governance, or digital public infrastructure",
+        "Students involved in university research groups, blockchain clubs, policy initiatives, or developer communities",
+        "Students with a demonstrated interest in Ethereum and open technologies"
+      ],
+      "note_label": "Please note:",
+      "note": "Short-term courses, bootcamps, and online-only programs are not eligible."
+    }
+  },
+  "applications_section": {
+    "eyebrow": "REVIEW-BASED DISCOUNTS",
+    "heading": "Applications",
+    "body_prefix": "Open to ",
+    "body_strong_1": "Indian",
+    "body_amp": " & ",
+    "body_strong_2": "International students",
+    "body_middle": " and ",
+    "body_strong_3": "Builders",
+    "body_suffix": " from all over the world. Applications are reviewed on a rolling basis.",
+    "subcopy_strong_1": "Students can apply now",
+    "subcopy_middle_1": ". Applications are ",
+    "subcopy_strong_2": "curated",
+    "subcopy_middle_2": " and ",
+    "subcopy_strong_3": "limited per round",
+    "subcopy_suffix": ", subject to availability and review.",
     "card_title": "Applications",
-    "card_status": "AVAILABLE NOW",
-    "apply": "Apply"
+    "card_subtitle": "incl. 18% GST",
+    "tap_label": "TAP TO LEARN MORE",
+    "apply": "Apply",
+    "rows": [
+      { "name": "Indian Students", "status": "open", "price": "$25", "action": "Apply", "actionHref": "/form/student-application" },
+      { "name": "International Students", "status": "open", "price": "$99", "action": "Apply", "actionHref": "/form/student-application" },
+      { "name": "Builders", "price": "$349", "date": "Opens in June" }
+    ]
+  },
+  "comparison": {
+    "eyebrow": "DEVCON TICKETS",
+    "heading": "Which ticket is right for you?",
+    "subheading": "Compare ticket types to find your best path to Devcon",
+    "labels": {
+      "price": "PRICE",
+      "price_note": "Includes 18% GST",
+      "best_for": "BEST FOR",
+      "included": "INCLUDED",
+      "how_it_works": "HOW IT WORKS",
+      "join_devcon": "JOIN DEVCON",
+      "tag_open": "OPEN",
+      "tag_coming": "COMING SOON",
+      "swipe_hint": "SWIPE TO COMPARE TICKETS"
+    },
+    "columns": [
+      {
+        "id": "general_admission",
+        "status": "open",
+        "title": "General Admission",
+        "tab_label": "General",
+        "subtitle": "SALE WAVES",
+        "price": "$349",
+        "price_original": "$699",
+        "price_note": "ETH Early Bird • Purchasable using ETH (L1)",
+        "best_for": "Anyone — there's no eligibility criteria and we're anon-friendly.",
+        "included": [
+          { "text": "4-day conference access", "icon": "check" },
+          { "text": "Catering all week", "icon": "check" },
+          { "text": "Event swag", "icon": "check" }
+        ],
+        "how_it_works": [
+          "Limited time window to purchase",
+          "Fixed quantity per wave",
+          "Future waves open at a higher price"
+        ],
+        "cta_label": "Get tickets",
+        "cta_href": "/tickets/store",
+        "cta_variant": "primary"
+      },
+      {
+        "id": "community",
+        "status": "coming",
+        "title": "Community",
+        "tab_label": "Community",
+        "subtitle": "SELF-CLAIMING DISCOUNTS",
+        "price": "$149+",
+        "price_note": "Based on eligibility",
+        "best_for": "Indian residents and people actively contributing to or participating in Ethereum or OSS ecosystems.",
+        "included": [
+          { "text": "4-day conference access", "icon": "check" },
+          { "text": "Catering all week", "icon": "check" },
+          { "text": "Event swag", "icon": "asterisk" }
+        ],
+        "how_it_works": [
+          "Verify your eligibility based on criteria",
+          "Self-claim your discount code",
+          "Purchase at a reduced price"
+        ],
+        "cta_label": "Get started",
+        "cta_href": "#discounts",
+        "cta_variant": "secondary"
+      },
+      {
+        "id": "applications",
+        "status": "open",
+        "title": "Applications",
+        "tab_label": "Applications",
+        "subtitle": "REVIEW-BASED DISCOUNTS",
+        "price": "$25+",
+        "price_note": "Based on application type",
+        "best_for": "Indian & International students and Builders from all over the world.",
+        "included": [
+          { "text": "4-day conference access", "icon": "check" },
+          { "text": "Catering all week", "icon": "check" },
+          { "text": "Event swag", "icon": "asterisk" }
+        ],
+        "how_it_works": [
+          "Submit your application",
+          "Await review (rolling batches)",
+          "If approved, receive voucher to purchase"
+        ],
+        "cta_label": "Learn more",
+        "cta_href": "#applications",
+        "cta_variant": "secondary"
+      }
+    ],
+    "footer_note": "*Not included with some tickets"
   },
   "faq_section": {
     "heading": "Frequently asked questions",

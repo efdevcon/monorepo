@@ -66,10 +66,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         filtered[field.column_name] = row[field.column_name]
       }
     }
-    // enrollment_proof is an Attachment column, not surfaced in the form schema —
-    // pass it through so returning blocked users see their existing upload.
-    if (row.enrollment_proof !== undefined) {
-      filtered.enrollment_proof = row.enrollment_proof
+    // Pass through every Attachment column on the underlying table, even those
+    // hidden from the form view (e.g. the student-application enrollment_proof),
+    // so returning users see their previously uploaded files.
+    for (const col of allColumns) {
+      if (col.uidt === 'Attachment' && row[col.column_name] !== undefined) {
+        filtered[col.column_name] = row[col.column_name]
+      }
     }
 
     return res.status(200).json({ success: true, data: filtered })

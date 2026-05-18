@@ -6,7 +6,6 @@ import { PhotoGallery } from './PhotoGallery'
 import { DevconSEAStats } from './DevconSEAStats'
 import { LivingConstellation } from './living-constellation'
 import { ContributeAndSupport } from './ContributeAndSupport'
-import { ArtOverlay } from './ArtOverlay'
 import { FaqSection } from './FaqSection'
 import { EarlyBirdBanner } from './EarlyBirdBanner'
 
@@ -24,7 +23,6 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
       <DevconSEAStats />
       <LivingConstellation />
       <ContributeAndSupport />
-      <ArtOverlay />
       <FaqSection items={faqItems} />
       <EarlyBirdBanner />
     </div>

@@ -85,8 +85,31 @@ const MESSAGES: Record<string, MessageBundle> = {
   },
 }
 
+// Deep-merge: any key missing in `override` falls back to `base`. Arrays are
+// taken whole-cloth from `override` if present, otherwise from `base` — we
+// don't merge arrays element-wise.
+function deepMerge<T extends Record<string, any>>(base: T, override: Partial<T>): T {
+  const out: Record<string, any> = { ...base }
+  for (const key of Object.keys(override) as (keyof T)[]) {
+    const a = base[key]
+    const b = override[key]
+    if (b == null) continue
+    if (Array.isArray(b)) {
+      out[key as string] = b
+    } else if (typeof a === 'object' && typeof b === 'object' && !Array.isArray(a)) {
+      out[key as string] = deepMerge(a as Record<string, any>, b as Record<string, any>)
+    } else {
+      out[key as string] = b
+    }
+  }
+  return out as T
+}
+
 export async function getMessages(locale: string, flatten?: boolean): Promise<Record<string, any>> {
   const normalized = locale === 'default' ? 'en' : locale
-  const bundle = MESSAGES[normalized] ?? MESSAGES.en
+  const localeBundle = MESSAGES[normalized] ?? MESSAGES.en
+  // Always merge on top of English so newly-added keys still resolve while
+  // localized bundles catch up via the translation pipeline.
+  const bundle = normalized === 'en' ? localeBundle : deepMerge(MESSAGES.en, localeBundle)
   return flatten ? flattenMessages(bundle) : bundle
 }

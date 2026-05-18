@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl'
 export default function TermsOfServiceTemplate(props: any) {
   const t = useTranslations('common')
   return (
-    <Page theme={themes['news']}>
+    <Page theme={themes['news']} darkHeader darkFooter>
       <PageHero heroBackground={HeroBackground} path={[{ text: <span className="bold">{t('terms_of_service_title')}</span> }]} />
 
       <div className="section">

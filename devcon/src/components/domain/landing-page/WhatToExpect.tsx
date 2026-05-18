@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
+import NextLink from 'next/link'
 import MandalaLeft from './images/new/wte-mandala-left.svg'
 import MandalaRight from './images/new/wte-mandala-right.svg'
-import { CalendarRange, HeartHandshake, BriefcaseBusiness, Blocks, Inbox } from 'lucide-react'
-import { GetReminderDialog } from './GetReminderDialog'
+import { CalendarRange, HeartHandshake, BriefcaseBusiness, Blocks, ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useFeaturedWave, useTicketsCtaLabel } from 'hooks/useWaveStates'
 
 const icons = [CalendarRange, HeartHandshake, BriefcaseBusiness, Blocks]
 
 export const WhatToExpect = () => {
   const t = useTranslations('home.what_to_expect')
   const cards = t.raw('cards') as Array<{ title: string; intro: string; body: string }>
-  const [reminderOpen, setReminderOpen] = useState(false)
+  const { label: ctaLabel } = useTicketsCtaLabel()
+  const { featured } = useFeaturedWave()
+  // Eyebrow names the currently-featured wave ("First wave tickets") instead
+  // of a static phrase, so the section cycles with the live sale.
+  const eyebrow = featured ? `${featured.wave.name} tickets` : t('tickets_launch_eyebrow')
   return (
   <div
     className="relative px-5 sm:px-8 md:px-16 py-10 sm:py-[72px] pt-8 sm:pt-[42px] overflow-hidden"
@@ -68,23 +73,20 @@ export const WhatToExpect = () => {
         })}
       </div>
 
-      {/* Reminder CTA */}
+      {/* Ticket sale CTA */}
       <div className="flex flex-col items-center gap-3 sm:gap-4">
         <p className="text-xs sm:text-sm font-semibold text-[#7235ed] text-center tracking-[2px] uppercase">
-          {t('tickets_launch_eyebrow')}
+          {eyebrow}
         </p>
-        <button
-          type="button"
-          onClick={() => setReminderOpen(true)}
-          className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-white font-bold text-sm sm:text-base rounded-full px-6 sm:px-8 py-3.5 sm:py-4 flex items-center gap-2 min-h-9 cursor-pointer"
+        <NextLink
+          href="/tickets"
+          className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-white font-bold text-sm sm:text-base rounded-full px-6 sm:px-8 py-3.5 sm:py-4 flex items-center gap-2 min-h-9"
         >
-          {t('reminder_button')}
-          <Inbox className="w-4 h-4" strokeWidth={2.5} />
-        </button>
+          {ctaLabel}
+          <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+        </NextLink>
       </div>
     </div>
-
-    <GetReminderDialog open={reminderOpen} onOpenChange={setReminderOpen} />
   </div>
   )
 }
