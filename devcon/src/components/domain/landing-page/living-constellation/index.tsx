@@ -1,4 +1,5 @@
 import React from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import Dc8MoonBg from 'assets/icons/dc8-moon-bg.svg'
 import { LivingConstellationDesktop } from './LivingConstellationDesktop'
 import { LivingConstellationMobile } from './LivingConstellationMobile'
@@ -29,6 +30,16 @@ export function LivingConstellation() {
       <div className="relative hidden w-full aspect-[14/10] min-h-[720px] max-h-[980px] min-[1300px]:block">
         <LivingConstellationDesktop speakers={CONSTELLATION_SPEAKERS} />
       </div>
+      <a
+        href="https://archive.devcon.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative z-10 inline-flex items-center gap-2 rounded-full bg-[#7235ED] hover:bg-[#6020d0] text-white text-sm font-bold px-6 py-3 transition-colors mt-10 min-[1300px]:mt-0 min-[1300px]:mb-12"
+        style={{ fontFamily: 'Poppins, sans-serif' }}
+      >
+        Devcon archive
+        <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
+      </a>
     </section>
   )
 }

@@ -24,6 +24,10 @@ import kurtImg from './assets/portraits/kurt-opsahl.jpg'
 import muditImg from './assets/portraits/mudit-gupta.jpg'
 import tarunImg from './assets/portraits/tarun-chitra.jpg'
 import aayushImg from './assets/portraits/aayush-gupta.jpg'
+import umaImg from './assets/portraits/uma-roy.png'
+import stewartImg from './assets/portraits/stewart-brand.png'
+import kasparImg from './assets/portraits/kaspar-korjus.png'
+import coryImg from './assets/portraits/cory-doctorow.png'
 
 // Event logos
 import eventDevcon4 from './assets/event-logos/devcon4-prague.png'
@@ -48,6 +52,9 @@ import logoPopvaxIndia from './assets/company-logos/popvax-india.png'
 import logoPolygon from './assets/company-logos/polygon.png'
 import logoGauntlet from './assets/company-logos/gauntlet.png'
 import logoSettlex from './assets/company-logos/settlex.png'
+import logoSuccinct from './assets/company-logos/succinct.png'
+import logoLongNow from './assets/company-logos/long-now-foundation.png'
+import logoPactum from './assets/company-logos/pactum.png'
 
 const devcon4: ConstellationEvent = { logo: eventDevcon4, label: 'Devcon 4 Prague' }
 const devcon5: ConstellationEvent = { logo: eventDevcon5, label: 'Devcon 5 Osaka' }
@@ -69,7 +76,7 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = [
   { id: 'jesse', name: 'Jesse Pollak', title: 'Creator', company: 'Base', color: '#2563eb', image: jesseImg, event: devcon7, companyLogo: logoBase },
   { id: 'hart', name: 'Hart Montgomery', title: 'CTO', company: 'Linux Foundation', color: '#8b5cf6', image: hartImg, event: devcon7, companyLogo: logoLinuxFoundation },
   { id: 'roger', name: 'Roger Dingledine', title: 'Co-Founder', company: 'Tor Project', color: '#d946ef', image: rogerImg, event: devcon7, companyLogo: logoTorProject },
-  { id: 'david', name: 'David Hoffman', title: 'Co-Founder', company: 'Bankless', color: '#f97316', image: davidImg, event: devcon7, companyLogo: logoBankless },
+  { id: 'stewart', name: 'Stewart Brand', title: 'Co-Founder', company: 'Long Now Foundation', color: '#f97316', image: stewartImg, event: devcon7, companyLogo: logoLongNow },
   { id: 'bruno', name: 'Bruno Maçães', title: 'Author', company: 'Independent', color: '#22c55e', image: brunoImg, event: devcon7 },
   { id: 'tomasz', name: 'Tomasz Stańczak', title: 'Founder', company: 'Nethermind', color: '#06b6d4', image: tomaszImg, event: devcon7, companyLogo: logoNethermind },
   { id: 'puja', name: 'Puja Ohlhaver', title: 'Technologist', company: 'Independent', color: '#7c3aed', image: pujaImg, event: devcon7 },
@@ -78,9 +85,8 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = [
   { id: 'mudit', name: 'Mudit Gupta', title: 'CISO', company: 'Polygon', color: '#e11d48', image: muditImg, event: devcon7, companyLogo: logoPolygon },
   { id: 'tarun', name: 'Tarun Chitra', title: 'Founder', company: 'Gauntlet', color: '#f97316', image: tarunImg, event: devcon7, companyLogo: logoGauntlet },
   { id: 'aayush', name: 'Aayush Gupta', title: 'Founder', company: 'SettleX', color: '#2563eb', image: aayushImg, event: devcon7, companyLogo: logoSettlex },
-  // PLACEHOLDER portraits + entities below — fill in image, title, company, event manually.
-  { id: 'uma', name: 'Uma Roy', title: 'TBD', company: 'Independent', color: '#8b5cf6', image: vitalikImg, event: devcon7 },
-  { id: 'steward', name: 'Steward Brand', title: 'TBD', company: 'Independent', color: '#f97316', image: vitalikImg, event: devcon7 },
-  { id: 'kaspar', name: 'Kaspar Korjus', title: 'TBD', company: 'Independent', color: '#06b6d4', image: vitalikImg, event: devcon7 },
-  { id: 'cory', name: 'Cory Doctorow', title: 'TBD', company: 'Independent', color: '#e11d48', image: vitalikImg, event: devcon7 },
+  { id: 'david', name: 'David Hoffman', title: 'Co-Founder', company: 'Bankless', color: '#f97316', image: davidImg, event: devcon7, companyLogo: logoBankless },
+  { id: 'uma', name: 'Uma Roy', title: 'Co-Founder', company: 'Succinct Labs', color: '#8b5cf6', image: umaImg, event: devcon7, companyLogo: logoSuccinct },
+  { id: 'kaspar', name: 'Kaspar Korjus', title: 'Co-Founder', company: 'Pactum AI', color: '#06b6d4', image: kasparImg, event: devcon7, companyLogo: logoPactum },
+  { id: 'cory', name: 'Cory Doctorow', title: 'Author', company: 'Independent', color: '#e11d48', image: coryImg, event: devcon7 },
 ]
