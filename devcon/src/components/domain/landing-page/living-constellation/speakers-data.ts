@@ -20,11 +20,9 @@ import brunoImg from './assets/portraits/bruno-macaes.jpg'
 import tomaszImg from './assets/portraits/tomasz.jpg'
 import pujaImg from './assets/portraits/puja-ohlhaver.jpg'
 import sohamImg from './assets/portraits/soham-sankaran.jpg'
-import sunnyImg from './assets/portraits/sunny-aggarwal.jpg'
 import kurtImg from './assets/portraits/kurt-opsahl.jpg'
 import muditImg from './assets/portraits/mudit-gupta.jpg'
 import tarunImg from './assets/portraits/tarun-chitra.jpg'
-import vinayImg from './assets/portraits/vinay-gupta.jpg'
 import aayushImg from './assets/portraits/aayush-gupta.jpg'
 
 // Event logos
@@ -47,11 +45,8 @@ import logoTorProject from './assets/company-logos/tor-project.png'
 import logoBankless from './assets/company-logos/bankless.png'
 import logoNethermind from './assets/company-logos/nethermind.png'
 import logoPopvaxIndia from './assets/company-logos/popvax-india.png'
-import logoOsmosis from './assets/company-logos/osmosis.png'
-import logoFilecoinFoundation from './assets/company-logos/filecoin-foundation.png'
 import logoPolygon from './assets/company-logos/polygon.png'
 import logoGauntlet from './assets/company-logos/gauntlet.png'
-import logoMattereum from './assets/company-logos/mattereum.png'
 import logoSettlex from './assets/company-logos/settlex.png'
 
 const devcon4: ConstellationEvent = { logo: eventDevcon4, label: 'Devcon 4 Prague' }
@@ -79,10 +74,13 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = [
   { id: 'tomasz', name: 'Tomasz Stańczak', title: 'Founder', company: 'Nethermind', color: '#06b6d4', image: tomaszImg, event: devcon7, companyLogo: logoNethermind },
   { id: 'puja', name: 'Puja Ohlhaver', title: 'Technologist', company: 'Independent', color: '#7c3aed', image: pujaImg, event: devcon7 },
   { id: 'soham', name: 'Soham Sankaran', title: 'Founder', company: 'Pop Vax', color: '#22c55e', image: sohamImg, event: devcon7, companyLogo: logoPopvaxIndia },
-  { id: 'sunny', name: 'Sunny Aggarwal', title: 'Co-Founder', company: 'Osmosis', color: '#059669', image: sunnyImg, event: devcon5, companyLogo: logoOsmosis },
-  { id: 'kurt', name: 'Kurt Opsahl', title: 'General Counsel', company: 'Filecoin Foundation', color: '#0891b2', image: kurtImg, event: devcon6, companyLogo: logoFilecoinFoundation },
+  { id: 'kurt', name: 'Kurt Opsahl', title: 'General Counsel', company: 'EFF', color: '#0891b2', image: kurtImg, event: devcon6 },
   { id: 'mudit', name: 'Mudit Gupta', title: 'CISO', company: 'Polygon', color: '#e11d48', image: muditImg, event: devcon7, companyLogo: logoPolygon },
   { id: 'tarun', name: 'Tarun Chitra', title: 'Founder', company: 'Gauntlet', color: '#f97316', image: tarunImg, event: devcon7, companyLogo: logoGauntlet },
-  { id: 'vinay', name: 'Vinay Gupta', title: 'Founder', company: 'Mattereum', color: '#6366f1', image: vinayImg, event: devcon4, companyLogo: logoMattereum },
   { id: 'aayush', name: 'Aayush Gupta', title: 'Founder', company: 'SettleX', color: '#2563eb', image: aayushImg, event: devcon7, companyLogo: logoSettlex },
+  // PLACEHOLDER portraits + entities below — fill in image, title, company, event manually.
+  { id: 'uma', name: 'Uma Roy', title: 'TBD', company: 'Independent', color: '#8b5cf6', image: vitalikImg, event: devcon7 },
+  { id: 'steward', name: 'Steward Brand', title: 'TBD', company: 'Independent', color: '#f97316', image: vitalikImg, event: devcon7 },
+  { id: 'kaspar', name: 'Kaspar Korjus', title: 'TBD', company: 'Independent', color: '#06b6d4', image: vitalikImg, event: devcon7 },
+  { id: 'cory', name: 'Cory Doctorow', title: 'TBD', company: 'Independent', color: '#e11d48', image: vitalikImg, event: devcon7 },
 ]
