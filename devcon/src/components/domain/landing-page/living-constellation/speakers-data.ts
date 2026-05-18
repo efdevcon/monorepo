@@ -49,6 +49,7 @@ import logoTorProject from './assets/company-logos/tor-project.png'
 import logoBankless from './assets/company-logos/bankless.png'
 import logoNethermind from './assets/company-logos/nethermind.png'
 import logoPopvaxIndia from './assets/company-logos/popvax-india.png'
+import logoFilecoinFoundation from './assets/company-logos/filecoin-foundation.png'
 import logoPolygon from './assets/company-logos/polygon.png'
 import logoGauntlet from './assets/company-logos/gauntlet.png'
 import logoSettlex from './assets/company-logos/settlex.png'
@@ -76,17 +77,17 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = [
   { id: 'jesse', name: 'Jesse Pollak', title: 'Creator', company: 'Base', color: '#2563eb', image: jesseImg, event: devcon7, companyLogo: logoBase },
   { id: 'hart', name: 'Hart Montgomery', title: 'CTO', company: 'Linux Foundation', color: '#8b5cf6', image: hartImg, event: devcon7, companyLogo: logoLinuxFoundation },
   { id: 'roger', name: 'Roger Dingledine', title: 'Co-Founder', company: 'Tor Project', color: '#d946ef', image: rogerImg, event: devcon7, companyLogo: logoTorProject },
-  { id: 'stewart', name: 'Stewart Brand', title: 'Co-Founder', company: 'Long Now Foundation', color: '#f97316', image: stewartImg, event: devcon7, companyLogo: logoLongNow },
+  { id: 'stewart', name: 'Stewart Brand', title: 'Co-Founder', company: 'Long Now Foundation', color: '#f97316', image: stewartImg, event: devcon4, companyLogo: logoLongNow },
   { id: 'bruno', name: 'Bruno Maçães', title: 'Author', company: 'Independent', color: '#22c55e', image: brunoImg, event: devcon7 },
   { id: 'tomasz', name: 'Tomasz Stańczak', title: 'Founder', company: 'Nethermind', color: '#06b6d4', image: tomaszImg, event: devcon7, companyLogo: logoNethermind },
   { id: 'puja', name: 'Puja Ohlhaver', title: 'Technologist', company: 'Independent', color: '#7c3aed', image: pujaImg, event: devcon7 },
   { id: 'soham', name: 'Soham Sankaran', title: 'Founder', company: 'Pop Vax', color: '#22c55e', image: sohamImg, event: devcon7, companyLogo: logoPopvaxIndia },
-  { id: 'kurt', name: 'Kurt Opsahl', title: 'General Counsel', company: 'EFF', color: '#0891b2', image: kurtImg, event: devcon6 },
+  { id: 'kurt', name: 'Kurt Opsahl', title: 'General Counsel', company: 'Filecoin Foundation', color: '#0891b2', image: kurtImg, event: devcon6, companyLogo: logoFilecoinFoundation },
   { id: 'mudit', name: 'Mudit Gupta', title: 'CISO', company: 'Polygon', color: '#e11d48', image: muditImg, event: devcon7, companyLogo: logoPolygon },
   { id: 'tarun', name: 'Tarun Chitra', title: 'Founder', company: 'Gauntlet', color: '#f97316', image: tarunImg, event: devcon7, companyLogo: logoGauntlet },
   { id: 'aayush', name: 'Aayush Gupta', title: 'Founder', company: 'SettleX', color: '#2563eb', image: aayushImg, event: devcon7, companyLogo: logoSettlex },
   { id: 'david', name: 'David Hoffman', title: 'Co-Founder', company: 'Bankless', color: '#f97316', image: davidImg, event: devcon7, companyLogo: logoBankless },
   { id: 'uma', name: 'Uma Roy', title: 'Co-Founder', company: 'Succinct Labs', color: '#8b5cf6', image: umaImg, event: devcon7, companyLogo: logoSuccinct },
-  { id: 'kaspar', name: 'Kaspar Korjus', title: 'Co-Founder', company: 'Pactum AI', color: '#06b6d4', image: kasparImg, event: devcon7, companyLogo: logoPactum },
+  { id: 'kaspar', name: 'Kaspar Korjus', title: 'Co-Founder', company: 'Pactum AI', color: '#06b6d4', image: kasparImg, event: devcon4, companyLogo: logoPactum },
   { id: 'cory', name: 'Cory Doctorow', title: 'Author', company: 'Independent', color: '#e11d48', image: coryImg, event: devcon7 },
 ]
