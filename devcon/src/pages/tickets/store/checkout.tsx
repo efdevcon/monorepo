@@ -2374,6 +2374,13 @@ function CheckoutContent() {
         `Transaction hash: ${fill(txHash)}`,
       )
     }
+    // Include the current in-page error string when present so the
+    // operator has the exact failure context the buyer saw — no need to
+    // ask "what error did you get?" in a follow-up. Mirrors the
+    // wc_inject plugin's persistent-support-pill behavior.
+    if (purchaseError) {
+      lines.push(`Error shown to me: ${purchaseError}`)
+    }
     lines.push('', 'What went wrong: (please describe)', '', 'Thanks!')
     const subject = `Devcon ticket support${paymentDetails?.paymentReference ? ` — ref ${paymentDetails.paymentReference}` : ''}`
     return `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
