@@ -438,7 +438,11 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <hr className={css['divider']} />
 
           {/* ── Comparison Table ─────────────────────────────────── */}
-          <div className="relative">
+          {/* `isolate` keeps the watermark/comparison stacking contained to
+              this section so the inner z-indexes don't fight the sticky
+              header above. `pb-12` lifts the footer note off the FAQ banner
+              that follows. */}
+          <div className="relative isolate pb-8">
             {/* Decorative glyph at the bottom of the page content area,
                 behind the comparison card. */}
             <Image
@@ -446,11 +450,9 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
               alt=""
               aria-hidden
               priority={false}
-              className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 h-auto w-full select-none"
+              className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-auto w-full select-none"
             />
-            <div className="relative z-10">
-              <TicketComparison />
-            </div>
+            <TicketComparison />
           </div>
         </div>
       </div>

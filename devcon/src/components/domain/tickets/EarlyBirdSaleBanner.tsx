@@ -165,14 +165,18 @@ export function EarlyBirdSaleBanner() {
             </div>
           )}
           {showLive && (
-            <span className="inline-flex items-center self-start whitespace-nowrap rounded bg-[#aaeaba] px-3 py-2 text-base font-bold uppercase leading-none tracking-[0.5px] text-[#221144]">
+            <span className="inline-flex items-center self-center whitespace-nowrap rounded bg-[#aaeaba] px-3 py-2 text-base font-bold uppercase leading-none tracking-[0.5px] text-[#221144]">
               Open Now
             </span>
           )}
 
           <NextLink
             href="/tickets/store"
-            className="inline-flex h-10 min-h-9 w-full items-center justify-center whitespace-nowrap rounded-full border border-solid border-[rgba(34,17,68,0.1)] bg-white/80 px-8 py-4 text-base font-bold leading-none text-[#1a0d33] transition-colors hover:bg-white md:flex-1 lg:w-auto lg:flex-initial"
+            className={`inline-flex h-10 min-h-9 w-full items-center justify-center whitespace-nowrap rounded-full border border-solid px-8 py-4 text-base font-bold leading-none transition-colors md:flex-1 lg:w-auto lg:flex-initial ${
+              showLive
+                ? 'border-transparent bg-[#7235ed] text-white hover:bg-[#6028cc]'
+                : 'border-[rgba(34,17,68,0.1)] bg-white/80 text-[#1a0d33] hover:bg-white'
+            }`}
           >
             {showLive ? 'Get tickets' : 'Learn more'}
           </NextLink>

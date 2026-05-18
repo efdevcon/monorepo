@@ -1,6 +1,8 @@
 import { TICKET_WAVES, type TicketWave } from 'config/waves'
 import { useNow } from './useNow'
-import { useTicketAvailability, type TicketAvailability } from './useTicketAvailability'
+import { useTicketAvailabilityMap, type TicketAvailability } from './useTicketAvailability'
+
+const NO_AVAILABILITY: TicketAvailability = { available: null, available_number: null }
 
 export type WaveStatus = 'live' | 'countdown' | 'closed' | 'tbd'
 
@@ -53,13 +55,21 @@ function classify(
   now: Date,
   availability: TicketAvailability,
 ): WaveState {
+  const sorted = wave.openTimes ? [...wave.openTimes].sort((a, b) => a.getTime() - b.getTime()) : []
+  const upcoming = sorted.find(t => t.getTime() > now.getTime()) ?? null
+  const latestPast = [...sorted].reverse().find(t => t.getTime() <= now.getTime()) ?? null
+
+  // Pretix availability is the authoritative signal — if a quota is open for
+  // sale right now, the wave is live, even if its scheduled `openTime`
+  // hasn't been reached on the wall clock yet (e.g. someone flipped the
+  // quota live early in Pretix admin).
+  if (availability.available) {
+    return { wave, status: 'live', countdown: null, upcoming, mounted: true }
+  }
+
   if (!wave.openTimes || wave.openTimes.length === 0) {
     return { wave, status: 'tbd', countdown: null, upcoming: null, mounted: true }
   }
-
-  const sorted = [...wave.openTimes].sort((a, b) => a.getTime() - b.getTime())
-  const upcoming = sorted.find(t => t.getTime() > now.getTime()) ?? null
-  const latestPast = [...sorted].reverse().find(t => t.getTime() <= now.getTime()) ?? null
 
   if (!latestPast) {
     return {
@@ -105,12 +115,14 @@ function classify(
  */
 export function useWaveStates(): WaveState[] {
   const now = useNow()
-  const availability = useTicketAvailability()
+  const availabilityMap = useTicketAvailabilityMap()
 
   if (!now) {
     return TICKET_WAVES.map(w => ({ wave: w, status: 'countdown', countdown: null, upcoming: null, mounted: false }))
   }
-  return TICKET_WAVES.map((w, i) => classify(w, i, TICKET_WAVES, now, availability))
+  return TICKET_WAVES.map((w, i) =>
+    classify(w, i, TICKET_WAVES, now, availabilityMap[w.id] ?? NO_AVAILABILITY),
+  )
 }
 
 export interface FeaturedWaveResult {

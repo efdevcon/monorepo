@@ -27,7 +27,7 @@ export interface EthEarlyBirdWaveState {
  */
 export function useEthEarlyBirdWave(): EthEarlyBirdWaveState {
   const wave = useWaveCountdown(TICKET_WAVE_TIMES)
-  const availability = useTicketAvailability()
+  const availability = useTicketAvailability('eth-early-bird')
 
   if (!wave.mounted) {
     return { mounted: false, status: 'countdown', countdown: null, upcoming: null }

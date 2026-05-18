@@ -29,6 +29,11 @@ export interface TicketWave {
   // GST line is prepended automatically from translations; only list the
   // wave-specific points here.
   bannerBullets?: string[]
+  // Pretix quota ID backing this wave's inventory. When set, the wave's
+  // live / sold-out state on /tickets is driven by the real quota's
+  // availability (via `getQuotaAvailability`). Leave undefined to fall back
+  // to the time-only grace-window logic.
+  quotaId?: number
 }
 
 export const TICKET_WAVES: TicketWave[] = [
@@ -44,6 +49,7 @@ export const TICKET_WAVES: TicketWave[] = [
     bannerBullets: ['Limited quantity', 'Purchase using ETH (L1)'],
     action: 'Get tickets',
     actionHref: '/tickets/store',
+    // quotaId: 104,
   },
   {
     id: 'wave-1',
@@ -52,7 +58,8 @@ export const TICKET_WAVES: TicketWave[] = [
     bannerBullets: ['Limited quantity', 'Cheaper than subsequent waves'],
     price: '$699',
     openLabel: 'Opens June',
-    // openTimes: [new Date(Date.UTC(2026, 5, 15, 2, 0, 0)), new Date(Date.UTC(2026, 5, 15, 16, 0, 0))],
+    // quotaId: 97,
+    openTimes: [new Date(Date.UTC(2026, 5, 15, 2, 0, 0)), new Date(Date.UTC(2026, 5, 15, 16, 0, 0))],
   },
   // {
   //   id: 'wave-2',
