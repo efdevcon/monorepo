@@ -49,7 +49,7 @@ export const TICKET_WAVES: TicketWave[] = [
     bannerBullets: ['Limited quantity', 'Purchase using ETH (L1)'],
     action: 'Get tickets',
     actionHref: '/tickets/store',
-    quotaId: 8,
+    // quotaId: ,
   },
   {
     id: 'wave-1',
@@ -58,7 +58,7 @@ export const TICKET_WAVES: TicketWave[] = [
     bannerBullets: ['Limited quantity', 'Cheaper than subsequent waves'],
     price: '$699',
     openLabel: 'Opens June',
-    quotaId: 1,
+    // quotaId: 1,
     openTimes: [new Date(Date.UTC(2026, 5, 16, 2, 0, 0)), new Date(Date.UTC(2026, 5, 16, 16, 0, 0))],
   },
   // {
