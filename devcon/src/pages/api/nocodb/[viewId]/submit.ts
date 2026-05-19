@@ -8,6 +8,11 @@ import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumn
 // email into that column on submit — no per-form lookup needed.
 const EMAIL_COLUMN_NAME = 'Email'
 import { classifyEligibility } from 'services/email-classifier'
+import { getPaidOrdersByEmail } from 'services/pretix'
+
+// Slug of the visa-collection form. Only this form gates submissions on the
+// signed-in email having a paid Pretix order (purchaser or assigned attendee).
+const VISA_FORM_SLUG = 'visa-collection-attendees'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -100,6 +105,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     for (const key of Object.keys(data)) {
       if (!validNames.has(key)) {
         return res.status(400).json({ success: false, error: `Unknown field: ${key}` })
+      }
+    }
+
+    // Visa-form gate: signed-in email must have a paid Pretix order. We check
+    // here (post-OTP) so a bad actor can't bypass by replaying a submit POST.
+    if (verifiedEmail && config?.formSlug === VISA_FORM_SLUG) {
+      const orders = await getPaidOrdersByEmail(verifiedEmail)
+      if (orders.length === 0) {
+        return res.status(403).json({
+          success: false,
+          error: 'NO_TICKET',
+          details: `No Devcon ticket found for ${verifiedEmail}. Sign in with the email used to purchase your ticket, or reassign the ticket's attendee email in Pretix.`,
+        })
       }
     }
 

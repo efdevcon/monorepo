@@ -285,6 +285,110 @@ interface FormPageProps {
 // the "View criteria and eligibility" CTA below the submit button.
 const STUDENT_APPLICATION_SLUG = 'student-application'
 
+// Slug of the visa-collection form. Submissions are gated on the signed-in
+// email having a paid Pretix order (purchaser or assigned attendee).
+const VISA_FORM_SLUG = 'visa-collection-attendees'
+
+function VisaTicketGate({
+  email,
+  onSignOut,
+  children,
+}: {
+  email: string
+  onSignOut: () => void
+  children: () => React.ReactNode
+}) {
+  const [state, setState] = useState<'loading' | 'ok' | 'denied'>('loading')
+
+  useEffect(() => {
+    if (!email || !supabase) return
+
+    const cacheKey = `visa-ticket:${email}`
+    const cached = typeof window !== 'undefined' ? window.sessionStorage.getItem(cacheKey) : null
+    if (cached === 'ok' || cached === 'denied') {
+      setState(cached)
+      return
+    }
+
+    setState('loading')
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.access_token) {
+        setState('denied')
+        return
+      }
+
+      // Lookup failures and "no ticket found" both deny access — the user can't
+      // distinguish them and the recovery is the same (try a different email or
+      // contact support). We log the underlying error to the console for ops.
+      fetch('/api/pretix/has-ticket/', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      })
+        .then(async res => {
+          const text = await res.text()
+          let result: any
+          try {
+            result = JSON.parse(text)
+          } catch {
+            console.warn('[VisaTicketGate] non-JSON response', res.status, text.slice(0, 200))
+            setState('denied')
+            return
+          }
+          if (!result.success) {
+            console.warn('[VisaTicketGate] lookup failed', result.error, result.details)
+            setState('denied')
+            return
+          }
+          const next = result.hasTicket ? 'ok' : 'denied'
+          window.sessionStorage.setItem(cacheKey, next)
+          setState(next)
+        })
+        .catch(err => {
+          console.warn('[VisaTicketGate] network error', err?.message)
+          setState('denied')
+        })
+    })
+  }, [email])
+
+  if (state === 'loading') {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 gap-4">
+        <Image src={dc8Logo} alt="Checking ticket" width={64} height={28} className="animate-pulse opacity-60" />
+        <p className="text-sm text-[#594d73]">Checking your ticket...</p>
+      </div>
+    )
+  }
+
+  if (state === 'denied') {
+    return (
+      <div className="flex flex-col items-center gap-4 text-center">
+        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">Devcon ticket required</h3>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          A Devcon ticket is required to fill in this form. Make sure you have a ticket assigned to the email you used
+          to sign into this form.
+        </p>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          You signed in as <span className="font-bold break-all">{email}</span>. Need help? Contact{' '}
+          <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
+            support@devcon.org
+          </a>
+          .
+        </p>
+        <button
+          type="button"
+          onClick={onSignOut}
+          className="mt-2 px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
+        >
+          Use a different email
+        </button>
+      </div>
+    )
+  }
+
+  return <>{children()}</>
+}
+
 function FormInner({
   schema,
   methods,
@@ -599,33 +703,8 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
               emailPlaceholder={formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'}
               footer={formSlug === STUDENT_APPLICATION_SLUG ? <CriteriaEligibilityButton /> : null}
             >
-              {(verifiedEmail, onSignOut) =>
-                // EligibilityGate hits /check-eligibility/, which classifies the
-                // email against the student-application criteria (Indian student
-                // domains, etc.). Other OTP-required forms (e.g. visa collection)
-                // shouldn't run that check — skip the gate for them.
-                formSlug === STUDENT_APPLICATION_SLUG ? (
-                  <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
-                    {bucket => (
-                      <>
-                        <FormInner
-                          schema={schema}
-                          methods={methods}
-                          onSubmit={onSubmit}
-                          submitting={submitting}
-                          error={error}
-                          verifiedEmail={verifiedEmail}
-                          viewId={viewId}
-                          requireOtp={requireOtp}
-                          onSignOut={onSignOut}
-                          bucket={bucket}
-                          formSlug={formSlug}
-                        />
-                        <EmailClassifierDebug callerEmail={verifiedEmail} />
-                      </>
-                    )}
-                  </EligibilityGate>
-                ) : (
+              {(verifiedEmail, onSignOut) => {
+                const inner = (
                   <FormInner
                     schema={schema}
                     methods={methods}
@@ -639,7 +718,47 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                     formSlug={formSlug}
                   />
                 )
-              }
+
+                // EligibilityGate hits /check-eligibility/, which classifies the
+                // email against the student-application criteria (Indian student
+                // domains, etc.). Other OTP-required forms shouldn't run that
+                // check.
+                if (formSlug === STUDENT_APPLICATION_SLUG) {
+                  return (
+                    <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
+                      {bucket => (
+                        <>
+                          <FormInner
+                            schema={schema}
+                            methods={methods}
+                            onSubmit={onSubmit}
+                            submitting={submitting}
+                            error={error}
+                            verifiedEmail={verifiedEmail}
+                            viewId={viewId}
+                            requireOtp={requireOtp}
+                            onSignOut={onSignOut}
+                            bucket={bucket}
+                            formSlug={formSlug}
+                          />
+                          <EmailClassifierDebug callerEmail={verifiedEmail} />
+                        </>
+                      )}
+                    </EligibilityGate>
+                  )
+                }
+
+                // Visa form: signed-in email must have a paid Pretix order.
+                if (formSlug === VISA_FORM_SLUG) {
+                  return (
+                    <VisaTicketGate email={verifiedEmail} onSignOut={onSignOut}>
+                      {() => inner}
+                    </VisaTicketGate>
+                  )
+                }
+
+                return inner
+              }}
             </OtpGate>
           ) : (
             <>

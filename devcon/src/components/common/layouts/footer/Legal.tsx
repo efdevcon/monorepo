@@ -289,6 +289,14 @@ export const TermsOfService = () => {
               responsible for any Wristband that is invalidated, lost, stolen, or destroyed.
             </li>
             <li>
+              If Your Wristband is lost, stolen, damaged, destroyed, or otherwise invalidated, We may, in Our sole
+              discretion, issue You a replacement Wristband subject to verification checks and payment of any
+              applicable replacement fee. We may refuse to issue a replacement Wristband if We are not satisfied that
+              You are the valid ticket holder, or if We suspect misuse, transfer, attempted transfer, fraud,
+              unauthorised access, or any other breach of this Agreement. Any replacement Wristband may invalidate
+              the original Wristband.
+            </li>
+            <li>
               Tickets, Wristbands, and other credentials may not be sold, resold, transferred, assigned, or otherwise
               made available to any other person without Our prior written permission. Any unauthorised transfer or
               attempted transfer may result in cancellation without refund.
