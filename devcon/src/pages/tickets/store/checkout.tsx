@@ -6,7 +6,7 @@ import { Link } from 'components/common/link'
 import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag, Monitor, Smartphone, Shield } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
-import { TICKETING, pretixEventUrl } from 'config/ticketing'
+import { TICKETING } from 'config/ticketing'
 import { isEmail } from 'utils/validators'
 import { COUNTRIES } from 'utils/countries'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -379,14 +379,13 @@ function CheckoutContent() {
   // from the plugin, redirect the buyer to Pretix's hosted shop where they
   // can use whatever payment Pretix has wired up (via wc_inject for crypto +
   // Stripe / SEPA for fiat). Honor the explicit `pretixRedirectUrl` admin
-  // override if set; otherwise build the canonical shop URL via
-  // `pretixEventUrl` — drops the `/{org}/{event}/` path prefix on custom
-  // domains (`tickets.devcon.org`) and keeps it for legacy slug-based
-  // Pretix instances. Trailing slash matters — Pretix's shop is a slash route.
+  // override if set; otherwise build the canonical shop URL from base + org +
+  // event slugs. Trailing slash matters — Pretix's shop is a slash route.
   const pretixShopUrl = (() => {
     const override = (TICKETING.checkout as { pretixRedirectUrl?: string }).pretixRedirectUrl
     if (override && override.trim()) return override.trim()
-    return pretixEventUrl('/')
+    const base = TICKETING.pretix.baseUrl.replace(/\/$/, '')
+    return `${base}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/`
   })()
   const { address, isConnected, chain, connector } = useAccount()
   // Reown AppKit hook — exposes the *actual* wallet on the other side of a

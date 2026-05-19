@@ -606,30 +606,22 @@ export default function OrderConfirmationPage() {
                 always rendered when an order URL exists so pending /
                 expired / cancelled buyers still have a path to the
                 full Pretix-hosted view for support / refunds. */}
-            {isPaid && (passbookUrl || pdfUrl) && (
+            {isPaid && passbookUrl && (
               <>
                 <hr className={css['order-divider']} />
                 <div className={css['save-section']}>
                   <h3 className={css['summary-heading']}>Save Ticket</h3>
                   <div className={css['save-buttons']}>
-                    {passbookUrl && (
-                      <div className={css['wallet-row-wrapper']}>
-                        <div className={css['wallet-row']}>
-                          <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
-                            <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
-                          </a>
-                          <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
-                            <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
-                          </a>
-                        </div>
+                    <div className={css['wallet-row-wrapper']}>
+                      <div className={css['wallet-row']}>
+                        <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
+                          <img src="/assets/images/add-to-google-wallet.svg" alt="Add to Google Wallet" />
+                        </a>
+                        <a href={passbookUrl} target="_blank" rel="noopener noreferrer" className={css['wallet-badge']}>
+                          <img src="/assets/images/add-to-apple-wallet.svg" alt="Add to Apple Wallet" />
+                        </a>
                       </div>
-                    )}
-                    {pdfUrl && (
-                      <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
-                        <Download size={18} />
-                        Download (PDF)
-                      </a>
-                    )}
+                    </div>
                   </div>
                 </div>
               </>
