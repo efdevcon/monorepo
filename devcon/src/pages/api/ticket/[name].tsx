@@ -213,7 +213,12 @@ async function fetchAvatarDataUrl(name: string): Promise<{ dataUrl: string | nul
   return { dataUrl: null, transient: backup.transient }
 }
 
-function generateImage(displayName: string, avatarSrc: string | null, bgSrc: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
+function generateImage(
+  displayName: string,
+  avatarSrc: string | null,
+  bgSrc: string,
+  fonts: { bold: ArrayBuffer; medium: ArrayBuffer }
+) {
   return new ImageResponse(
     (
       <div
