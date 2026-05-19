@@ -213,12 +213,7 @@ async function fetchAvatarDataUrl(name: string): Promise<{ dataUrl: string | nul
   return { dataUrl: null, transient: backup.transient }
 }
 
-function generateImage(
-  displayName: string,
-  avatarSrc: string | null,
-  bgSrc: string,
-  fonts: { bold: ArrayBuffer; medium: ArrayBuffer }
-) {
+function generateImage(displayName: string, avatarSrc: string | null, bgSrc: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
   return new ImageResponse(
     (
       <div
@@ -323,9 +318,15 @@ function generateImage(
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Route: /api/ticket/{name}.jpg
-  const raw = (req.query.name as string) || 'Anon.jpg'
-  const nameParam = decodeURIComponent(raw.replace(/\.jpg$/i, '').replace(/\+/g, ' '))
+  // Catch-all route serves both shapes:
+  //   /api/ticket/{name}.jpg            — slug = [`{name}.jpg`]
+  //   /api/ticket/{name}/{buster}.jpg   — slug = [`{name}`, `{buster}.jpg`]
+  // The cacheBuster only exists to give social scrapers a unique URL; the
+  // generated image is keyed by `name` alone (Supabase cache).
+  const slug = req.query.slug
+  const slugArr = Array.isArray(slug) ? slug : slug ? [slug] : []
+  const rawName = slugArr.length >= 2 ? slugArr[0] : (slugArr[0] || 'Anon.jpg').replace(/\.jpg$/i, '')
+  const nameParam = decodeURIComponent(rawName.replace(/\.jpg$/i, '').replace(/\+/g, ' '))
   const displayName = nameParam || 'Anon'
 
   const proto = req.headers['x-forwarded-proto'] || 'http'
