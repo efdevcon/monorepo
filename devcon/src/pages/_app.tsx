@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'assets/css/index.scss'
 import { SEO } from 'components/domain/seo'
-import { init } from '@socialgouv/matomo-next'
+import { init, push } from '@socialgouv/matomo-next'
 // import { SessionProvider } from 'next-auth/react'
 // import { Web3ModalProvider } from 'context/web3modal'
 import { RecoilRoot } from 'recoil'
@@ -99,7 +99,14 @@ function App({ Component, pageProps }: any) {
 
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
-      init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
+      init({
+        url: MATOMO_URL,
+        siteId: MATOMO_SITE_ID,
+        onInitialization: () => {
+          push(['setCookieDomain', '*.devcon.org'])
+          push(['setExcludedQueryParams', ['code', 'gist']])
+        },
+      })
       matomoAdded = true
     }
   }, [])
