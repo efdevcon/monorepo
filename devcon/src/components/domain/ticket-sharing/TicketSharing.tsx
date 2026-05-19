@@ -185,7 +185,7 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
           (() => {
             const baseShareUrl = pageUrl?.replace(/\?share$/, '').replace(/\?share&/, '?').replace(/&share\b/, '').replace(/\/$/, '') || ''
             const shareUrl = `${baseShareUrl}/`
-            const shareText = `I just got my @EFDevcon ticket – paid with ETH!\n\nNext stop: Mumbai 🇮🇳. Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
+            const shareText = `I just got my @EFDevcon ticket — paid for with ETH!\n\nNext stop: Mumbai 🇮🇳 Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
             const xText = `${shareText}\n\n${shareUrl}`
             return (
               <div className={css.shareSection}>
