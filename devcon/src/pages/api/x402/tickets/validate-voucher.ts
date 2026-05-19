@@ -7,10 +7,20 @@
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { validateVoucher, applyVoucherDiscount, getTicketPurchaseInfo } from 'services/pretix'
+import { checkVoucherValidationRateLimit } from 'services/discountStore'
+import { getClientIp } from 'utils/getClientIp'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
+  }
+
+  // Per-IP rate limit. Voucher codes are alphanumeric and often short, so
+  // an unrate-limited endpoint is effectively a brute-force oracle.
+  const clientIp = getClientIp(req)
+  const { allowed } = await checkVoucherValidationRateLimit(clientIp)
+  if (!allowed) {
+    return res.status(429).json({ success: false, error: 'Too many requests. Please try again later.' })
   }
 
   const { code } = req.body
