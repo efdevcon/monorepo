@@ -3,6 +3,7 @@ import enHome from '../../content/en/intl/home.json'
 import enDips from '../../content/en/intl/dips.json'
 import enPastEvents from '../../content/en/intl/past_events.json'
 import enEcosystemProgram from '../../content/en/intl/ecosystem_program.json'
+import enSupportersProgram from '../../content/en/intl/supporters_program.json'
 import enBlogs from '../../content/en/intl/blogs.json'
 import enLantern from '../../content/en/intl/lantern.json'
 import enTickets from '../../content/en/intl/tickets.json'
@@ -13,6 +14,7 @@ import hiHome from '../../content/hi/intl/home.json'
 import hiDips from '../../content/hi/intl/dips.json'
 import hiPastEvents from '../../content/hi/intl/past_events.json'
 import hiEcosystemProgram from '../../content/hi/intl/ecosystem_program.json'
+import hiSupportersProgram from '../../content/hi/intl/supporters_program.json'
 import hiBlogs from '../../content/hi/intl/blogs.json'
 import hiLantern from '../../content/hi/intl/lantern.json'
 import hiTickets from '../../content/hi/intl/tickets.json'
@@ -23,6 +25,7 @@ import mrHome from '../../content/mr/intl/home.json'
 import mrDips from '../../content/mr/intl/dips.json'
 import mrPastEvents from '../../content/mr/intl/past_events.json'
 import mrEcosystemProgram from '../../content/mr/intl/ecosystem_program.json'
+import mrSupportersProgram from '../../content/mr/intl/supporters_program.json'
 import mrBlogs from '../../content/mr/intl/blogs.json'
 import mrLantern from '../../content/mr/intl/lantern.json'
 import mrTickets from '../../content/mr/intl/tickets.json'
@@ -53,6 +56,7 @@ const MESSAGES: Record<string, MessageBundle> = {
     dips: enDips as Record<string, any>,
     past_events: enPastEvents as Record<string, any>,
     ecosystem_program: enEcosystemProgram as Record<string, any>,
+    supporters_program: enSupportersProgram as Record<string, any>,
     blogs: enBlogs as Record<string, any>,
     lantern: enLantern as Record<string, any>,
     tickets: enTickets as Record<string, any>,
@@ -65,6 +69,7 @@ const MESSAGES: Record<string, MessageBundle> = {
     dips: hiDips as Record<string, any>,
     past_events: hiPastEvents as Record<string, any>,
     ecosystem_program: hiEcosystemProgram as Record<string, any>,
+    supporters_program: hiSupportersProgram as Record<string, any>,
     blogs: hiBlogs as Record<string, any>,
     lantern: hiLantern as Record<string, any>,
     tickets: hiTickets as Record<string, any>,
@@ -77,6 +82,7 @@ const MESSAGES: Record<string, MessageBundle> = {
     dips: mrDips as Record<string, any>,
     past_events: mrPastEvents as Record<string, any>,
     ecosystem_program: mrEcosystemProgram as Record<string, any>,
+    supporters_program: mrSupportersProgram as Record<string, any>,
     blogs: mrBlogs as Record<string, any>,
     lantern: mrLantern as Record<string, any>,
     tickets: mrTickets as Record<string, any>,

@@ -1,0 +1,1498 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 70% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: 62% 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 65vh !important;
+    max-height: 629px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  font-size: clamp(3rem, 9vw, 130px) !important;
+  letter-spacing: -2px !important;
+  color: #f9f8fa !important;
+  transform: translateY(-16px);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+  }
+}
+
+/* ─── Page Content Wrapper ────────────────────────────────── */
+
+.landing {
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: linear-gradient(to bottom, #fbfafc 0%, #e5ebff 80%);
+}
+
+/* ─── Typography ──────────────────────────────────────────── */
+
+.heading-2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #160b2b;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
+}
+
+.heading-3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #160b2b;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 20px;
+  }
+}
+
+.body-lg {
+  font-size: 20px;
+  font-weight: 400;
+  color: #1a0d33;
+  line-height: 1.44;
+  letter-spacing: -0.25px;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
+}
+
+.body {
+  font-size: 16px;
+  font-weight: 400;
+  color: #221144;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.body-center {
+  composes: body;
+  text-align: center;
+}
+
+.section-tag {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #7235ed;
+  margin: 0;
+}
+
+.body-small {
+  font-size: 14px;
+  font-weight: 400;
+  color: #594d73;
+  line-height: 1.43;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ─── Buttons ─────────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 32px;
+  padding-right: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f9f8fa;
+  background: #7235ed;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a0d33;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #dddae2;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+/* ─── Hero Content Section (centered) ──────────────────────── */
+
+.hero-content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 64px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at right center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%),
+    radial-gradient(ellipse at left center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%);
+
+  @media (max-width: $breakpoints-md) {
+    padding: 64px 20px 104px;
+    gap: 32px;
+  }
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+}
+
+.hero-cta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+
+  .btn-primary {
+    align-self: center;
+
+    @media (max-width: $breakpoints-md) {
+      align-self: stretch;
+    }
+  }
+}
+
+.hero-deadline {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 14px;
+  color: #594d73;
+  line-height: 1.43;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.applications-closed-card {
+  background: #ffffff;
+  border: 1px solid #ff6600;
+  border-radius: 16px;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.applications-closed-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.applications-closed-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.applications-closed-heading {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.44;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+}
+
+.applications-closed-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #594d73;
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.applications-closed-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(34, 17, 68, 0.1);
+}
+
+.applications-closed-next {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #160b2b;
+  text-align: center;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.jaali-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 271px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.jaali-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 271px;
+  pointer-events: none;
+  transform: scaleX(-1);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.jaali-bottom {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 768px;
+  height: 90px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    display: block;
+  }
+}
+
+/* ─── Community Message Banner ─────────────────────────────── */
+
+.community-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 64px;
+  text-align: center;
+  overflow: hidden;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 24px 20px;
+  }
+}
+
+.community-banner-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.community-banner-text {
+  position: relative;
+  font-size: 24px;
+  font-weight: 300;
+  color: #f9f8fa;
+  line-height: 1.5;
+  letter-spacing: -0.25px;
+
+  strong {
+    font-weight: 800;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 18px;
+  }
+}
+
+.desktop-br {
+  @media (max-width: $breakpoints-md) {
+    display: none;
+  }
+}
+
+/* ─── Overview Section ─────────────────────────────────────── */
+
+.overview-section {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 64px 0;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 48px 0;
+    gap: 48px;
+  }
+}
+
+/* ─── Image Scroller ───────────────────────────────────────── */
+
+.image-scroller-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 64px, black calc(100% - 64px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 64px, black calc(100% - 64px), transparent);
+
+  @media (max-width: $breakpoints-md) {
+    mask-image: linear-gradient(to right, transparent, black 16px, black calc(100% - 16px), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 16px, black calc(100% - 16px), transparent);
+  }
+}
+
+.image-scroller {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: scroll-loop 90s linear infinite;
+}
+
+@keyframes scroll-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 8px));
+  }
+}
+
+.scroller-item {
+  flex-shrink: 0;
+  width: 455px;
+  height: 256px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+
+  @media (max-width: $breakpoints-md) {
+    width: 291px;
+    height: 164px;
+  }
+}
+
+.scroller-image {
+  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ─── Text Section ─────────────────────────────────────────── */
+
+.text-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .body-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.bullet-list {
+  margin: 0;
+  padding-left: 24px;
+  font-size: 16px;
+  color: #1a0d33;
+  line-height: 1.5;
+  list-style: disc !important;
+
+  li {
+    margin-bottom: 8px;
+    display: list-item !important;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+  }
+}
+
+/* ─── Support Tags ─────────────────────────────────────────── */
+
+.support-tags-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  margin-bottom: 20px;
+
+  @media (max-width: $breakpoints-md) {
+    margin-bottom: 0px;
+  }
+}
+
+.support-tags-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #594d73;
+  text-align: center;
+  line-height: 1.43;
+}
+
+.support-tags {
+  display: flex;
+  gap: 16px;
+
+  @media (max-width: $breakpoints-md) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.support-tag {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #221144;
+  text-align: center;
+  line-height: 1.5;
+
+  @media (max-width: $breakpoints-md) {
+    flex: 0 0 auto;
+    padding: 16px;
+  }
+}
+
+/* ─── Two Column Details ───────────────────────────────────── */
+
+.two-col {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.detail-list {
+  margin: 0;
+  padding-left: 24px;
+  font-size: 16px;
+  color: #221144;
+  line-height: 1.5;
+  list-style: disc !important;
+
+  li {
+    margin-bottom: 4px;
+    display: list-item !important;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+  }
+}
+
+/* ─── Budget Note / CTA Row ────────────────────────────────── */
+
+.budget-note {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.wave-cta-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px 12px 24px;
+  background: white;
+  border: 1px solid #decffb;
+  border-radius: 360px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-width: $breakpoints-md) {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 24px;
+    border-radius: 24px;
+    width: 100%;
+
+    .btn-primary {
+      align-self: stretch;
+    }
+  }
+}
+
+.wave-cta-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #221144;
+  white-space: nowrap;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.wave-cta-date {
+  font-size: 20px;
+  font-weight: 800;
+  color: #221144;
+  letter-spacing: 0;
+}
+
+.budget-note-footer {
+  font-size: 14px;
+  color: #221144;
+  line-height: 1.43;
+  text-align: center;
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    font-weight: 700;
+    color: #221144;
+    text-decoration: underline;
+  }
+}
+
+/* ─── Art Overlay Section ──────────────────────────────────── */
+
+.art-overlay {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+
+  @media (max-width: $breakpoints-md) {
+    height: 180px;
+  }
+}
+
+.art-overlay-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  > * {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.art-overlay-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.art-overlay-text {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  mix-blend-mode: overlay;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ─── Other Support Section ────────────────────────────────── */
+
+.other-support {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  padding: 64px max(64px, calc((100% - 1312px) / 2));
+  background: #fff0e6;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding: 48px 20px;
+  }
+}
+
+.other-support-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.other-support-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.other-support-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  align-self: center;
+}
+
+/* ─── FAQ Accordion (matches front page) ───────────────────── */
+
+.faq-accordion {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px -1px rgba(22, 11, 43, 0.1), 0 4px 8px rgba(22, 11, 43, 0.12);
+  overflow: hidden;
+  width: 100%;
+}
+
+.faq-item {
+  position: relative;
+}
+
+.faq-border {
+  height: 1px;
+  background: #f2f1f4;
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #160b2b;
+  line-height: 1.5;
+  background: white;
+  border: none;
+  border-left: 1px solid #f2f1f4;
+  border-right: 1px solid #f2f1f4;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #fafafa;
+  }
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: #594d73;
+}
+
+.faq-answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+  background: #f2f1f4;
+  border-left: 1px solid #dddae2;
+  border-right: 1px solid #dddae2;
+}
+
+.faq-answer-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-inner {
+  overflow: hidden;
+}
+
+.faq-answer {
+  padding: 16px 32px 16px 24px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #594d73;
+}
+
+/* ─── Scroll offsets ───────────────────────────────────────── */
+
+.scroll-anchor {
+  scroll-margin-top: 100px;
+}
+
+/* ─── Supporters: shared "section-label" eyebrow text ────────── */
+
+.section-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: #594d73;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.eyebrow {
+  composes: section-tag;
+  letter-spacing: 2px;
+}
+
+.inline-link {
+  color: #7235ed;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── "Why support Devcon 8 India?" — 3-icon card ───────────── */
+
+.why-support-section {
+  margin-top: 64px;
+
+  @media (max-width: $breakpoints-md) {
+    margin-top: 40px;
+  }
+}
+
+.why-support-card {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 1px 3px 0 rgba(22, 11, 43, 0.06), 0 1px 2px 0 rgba(22, 11, 43, 0.04);
+
+  // Wrap into a stacked layout earlier — 3 narrow columns next to a wide
+  // heading get cramped well before the standard tablet breakpoint.
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 24px;
+  }
+}
+
+.why-support-heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #160b2b;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+  width: 280px;
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoints-lg) {
+    width: 100%;
+    font-size: 22px;
+  }
+}
+
+.why-support-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  flex: 1;
+  width: 100%;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.why-support-point {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.why-support-icon {
+  color: #7235ed;
+}
+
+.why-support-point-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a0d33;
+  letter-spacing: -0.25px;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.why-support-point-body {
+  font-size: 14px;
+  font-weight: 400;
+  color: #221144;
+  line-height: 1.43;
+  margin: 0;
+}
+
+/* ─── Past Supporters logo scroller (2 rows, opposite directions) */
+
+.past-supporters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  margin-top: 104px;
+  padding: 0;
+
+  @media (max-width: $breakpoints-md) {
+    margin-top: 64px;
+  }
+}
+
+.logo-row {
+  width: 100%;
+  // The InfiniteScroller wraps in its own marquee container; we just need to
+  // make sure logos line up vertically inside each row.
+  display: flex;
+  align-items: center;
+}
+
+.logo-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  // `InfiniteScroll`'s `unpadded` mode nukes `padding-right` on the direct
+  // child with `!important`; use `margin-right` instead so the gap survives
+  // between marquee duplications (otherwise the last logo of one copy
+  // butts up against the first logo of the next).
+  margin-right: 64px;
+}
+
+.logo-item {
+  flex-shrink: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Logos vary in aspect ratio — let them size naturally to 32px tall.
+  // Caps total widths so a particularly wide one doesn't dominate.
+  max-width: 200px;
+}
+
+.logo-img {
+  height: 32px;
+  width: auto !important;
+  object-fit: contain;
+}
+
+// SVG composites (Espresso, Self) — sized to 32px tall like the PNG logos.
+.logo-svg {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.logo-composite {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  color: #160b2b;
+}
+
+.logo-svg-text {
+  height: 18px;
+  width: auto;
+  display: block;
+  color: inherit;
+}
+
+/* ─── "What is" / "Who can" — two columns ──────────────────── */
+
+.details-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-top: 104px;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 64px;
+  }
+}
+
+.details-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.details-lead {
+  font-size: 18px;
+  font-weight: 400;
+  color: #1a0d33;
+  line-height: 1.5;
+  letter-spacing: -0.25px;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.details-lead-bold {
+  composes: details-lead;
+  font-weight: 700;
+}
+
+/* ─── Impact Booths section ────────────────────────────────── */
+
+.impact-section {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  margin-top: 104px;
+  padding-top: 64px;
+  border-top: 1px solid rgba(34, 17, 68, 0.08);
+
+  // Stack at <=$lg so the body copy gets the full width instead of squeezing
+  // into a narrow column next to the 400px CTA cell.
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    margin-top: 64px;
+    padding-top: 40px;
+  }
+}
+
+.impact-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.impact-tracks {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: disc;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #221144;
+
+  li {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.impact-cta-wrap {
+  flex-shrink: 0;
+  position: relative;
+  width: 400px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $breakpoints-lg) {
+    width: 100%;
+    height: auto;
+    padding: 64px 0;
+  }
+}
+
+.impact-glyph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.1;
+
+  // The Figma glyph is 382x382 centered inside a 400x220 box — it intentionally
+  // overflows top/bottom. Match that so the petals extend above and below the
+  // button without clipping the wrapper.
+  svg {
+    width: 382px;
+    height: 382px;
+    max-width: none;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    svg {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  gap: 8px;
+  padding: 16px 32px;
+  padding-left: 36px;
+  padding-right: 32px;
+  height: 56px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a0d33;
+  background: #ffffff;
+  border: 1px solid #b08df5;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px 0 rgba(22, 11, 43, 0.1), 0 1px 2px 0 rgba(22, 11, 43, 0.1);
+  transform: scale(1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.15s;
+
+  svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: #ffffff;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px 0 rgba(114, 53, 237, 0.18), 0 1px 2px 0 rgba(22, 11, 43, 0.08);
+
+    svg {
+      transform: translateX(2px);
+    }
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    width: 100%;
+    height: auto;
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
+/* ─── CROPS values — big watermark + 4 pillar words ────────── */
+
+.values-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 104px;
+
+  @media (max-width: $breakpoints-md) {
+    margin-top: 64px;
+  }
+}
+
+.crops-display {
+  position: relative;
+  width: 100%;
+  height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $breakpoints-md) {
+    height: auto;
+    min-height: 96px;
+  }
+}
+
+.crops-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 167px;
+  letter-spacing: 23px;
+  color: #7235ed;
+  opacity: 0.03;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+
+  @media (max-width: $breakpoints-lg) {
+    font-size: 120px;
+    letter-spacing: 16px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 72px;
+    letter-spacing: 10px;
+  }
+
+  @media (max-width: $breakpoints-sm) {
+    font-size: 56px;
+    letter-spacing: 7px;
+  }
+}
+
+.crops-pillars {
+  position: relative;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  color: #7235ed;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  z-index: 1;
+  text-align: center;
+
+  span {
+    line-height: 1;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    font-size: 32px;
+    gap: 28px;
+  }
+
+  // Tablet & below: stack vertically. "Censorship Resistance" is much wider
+  // than "Privacy"/"Security", so a grid leaves the short ones floating in
+  // empty space — vertical reads cleaner at every narrow width.
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 12px;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  @media (max-width: $breakpoints-sm) {
+    gap: 8px;
+    font-size: 20px;
+  }
+}
+
+/* ─── Apply Now pill + contact note ────────────────────────── */
+
+.apply-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+
+  @media (max-width: $breakpoints-md) {
+    margin-top: 32px;
+  }
+}
+
+.apply-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  background: #ffffff;
+  border: 1px solid #decffb;
+  border-radius: 360px;
+  padding: 12px;
+  padding-left: 24px;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 24px;
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.apply-pill-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #221144;
+  white-space: nowrap;
+}
+
+.apply-pill-btn {
+  align-self: auto;
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+  }
+}
+
+.contact-note {
+  font-size: 14px;
+  font-weight: 400;
+  color: #594d73;
+  line-height: 1.43;
+  text-align: center;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ─── Socials row ──────────────────────────────────────────── */
+
+.socials-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+  margin-bottom: 96px;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+}
+
+.socials-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #221144;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #dddae2;
+  border-radius: 360px;
+  color: #221144;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: #ffffff;
+    color: #7235ed;
+  }
+}

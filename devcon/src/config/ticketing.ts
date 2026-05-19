@@ -1,6 +1,5 @@
 export type TicketingEnv = 'development' | 'production'
-export const TICKETING_ENV: TicketingEnv =
-  (process.env.NEXT_PUBLIC_PRETIX_ENV as TicketingEnv) || 'development'
+export const TICKETING_ENV: TicketingEnv = (process.env.NEXT_PUBLIC_PRETIX_ENV as TicketingEnv) || 'development'
 
 const ENV_CONFIG = {
   development: {
@@ -116,8 +115,7 @@ export const isTestnet = TICKETING.chainEnv !== 'mainnet'
 
 /** Server-side only: get the Pretix API token for the active environment */
 export function getPretixApiToken(): string {
-  const token =
-    TICKETING_ENV === 'production' ? process.env.PRETIX_API_TOKEN_PROD : process.env.PRETIX_API_TOKEN_DEV
+  const token = TICKETING_ENV === 'production' ? process.env.PRETIX_API_TOKEN_PROD : process.env.PRETIX_API_TOKEN_DEV
   if (!token) throw new Error(`PRETIX_API_TOKEN_${TICKETING_ENV === 'production' ? 'PROD' : 'DEV'} is not set`)
   return token
 }

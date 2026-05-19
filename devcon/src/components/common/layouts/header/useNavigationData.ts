@@ -31,6 +31,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: t('faq'),
+            url: '/tickets/faq',
+            type: 'page',
+          },
+          {
             title: t('blog'),
             url: '/blogs',
             type: 'page',
@@ -54,6 +59,11 @@ const useNavigationData = () => {
             url: '/ecosystem-program',
             type: 'page',
           },
+          // {
+          //   title: t('supporters_program'),
+          //   url: '/supporters',
+          //   type: 'page',
+          // },
           {
             title: t('academic_program'),
             url: '/academic-program',
@@ -235,11 +245,6 @@ const useNavigationData = () => {
               ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
               : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
           type: 'page',
-        },
-        {
-          title: t('swarm_mirror'),
-          url: 'https://devcon.swarm.eth.limo/',
-          type: 'link',
         },
       ],
       // rightBottom: [

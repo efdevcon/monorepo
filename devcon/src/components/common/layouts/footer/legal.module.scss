@@ -1,3 +1,11 @@
+// Parenthesized lowercase letters for nested ordered lists in legal docs:
+// "(a)", "(b)", "(c)" — matches the docx convention for sub-items.
+@counter-style lower-alpha-paren {
+  system: extends lower-alpha;
+  prefix: '(';
+  suffix: ') ';
+}
+
 .legal {
   overflow: auto;
 
@@ -6,7 +14,55 @@
     margin-top: 0.5em;
   }
 
+  ul {
+    list-style: disc;
+    padding-left: 2em;
+    margin-bottom: 1em;
+  }
+
+  ol {
+    list-style: decimal;
+    padding-left: 2em;
+    margin-bottom: 1em;
+  }
+
+  // T&C-style compound numbering. The .docx defines section sub-items with
+  // numbering text "1.%1.", "2.%1.", "11.%1." etc. — i.e. each subsection is
+  // labelled with its parent section number ("1.1.", "1.2.", "11.15."). We
+  // mirror that by tracking the section index on a CSS counter and feeding
+  // it through the `::marker` of every direct-child nested <ol>'s items
+  // (excluding lists explicitly opted into letters via .lettered).
+  //
+  // The top-level <ol> sits flush with body text — only nested lists get
+  // indented (so each section title aligns with paragraphs above it).
+  > ol {
+    counter-reset: legal-section;
+    padding-left: 0;
+    list-style-position: inside;
+  }
+  > ol > li {
+    counter-increment: legal-section;
+  }
+  > ol > li > ol:not(.lettered) {
+    counter-reset: legal-subsection;
+    padding-left: 3em;
+    margin-top: 1em;
+  }
+  > ol > li > ol:not(.lettered) > li {
+    counter-increment: legal-subsection;
+  }
+  > ol > li > ol:not(.lettered) > li::marker {
+    content: counter(legal-section) '.' counter(legal-subsection) '. ';
+  }
+
+  // Sub-sub-lists opt in to lettered "(a) (b) (c)" markers via className.
+  ol.lettered {
+    list-style: lower-alpha-paren;
+    margin-top: 1em;
+  }
+
   li {
-    margin-left: 1em;
+    margin-left: 0;
+    margin-bottom: 1em;
   }
 }

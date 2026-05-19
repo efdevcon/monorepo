@@ -18,6 +18,7 @@ import enHome from '../../content/en/intl/home.json'
 import enDips from '../../content/en/intl/dips.json'
 import enPastEvents from '../../content/en/intl/past_events.json'
 import enEcosystemProgram from '../../content/en/intl/ecosystem_program.json'
+import enSupportersProgram from '../../content/en/intl/supporters_program.json'
 import enBlogs from '../../content/en/intl/blogs.json'
 import enLantern from '../../content/en/intl/lantern.json'
 import enTickets from '../../content/en/intl/tickets.json'
@@ -28,6 +29,7 @@ import hiHome from '../../content/hi/intl/home.json'
 import hiDips from '../../content/hi/intl/dips.json'
 import hiPastEvents from '../../content/hi/intl/past_events.json'
 import hiEcosystemProgram from '../../content/hi/intl/ecosystem_program.json'
+import hiSupportersProgram from '../../content/hi/intl/supporters_program.json'
 import hiBlogs from '../../content/hi/intl/blogs.json'
 import hiLantern from '../../content/hi/intl/lantern.json'
 import hiTickets from '../../content/hi/intl/tickets.json'
@@ -38,6 +40,7 @@ import mrHome from '../../content/mr/intl/home.json'
 import mrDips from '../../content/mr/intl/dips.json'
 import mrPastEvents from '../../content/mr/intl/past_events.json'
 import mrEcosystemProgram from '../../content/mr/intl/ecosystem_program.json'
+import mrSupportersProgram from '../../content/mr/intl/supporters_program.json'
 import mrBlogs from '../../content/mr/intl/blogs.json'
 import mrLantern from '../../content/mr/intl/lantern.json'
 import mrTickets from '../../content/mr/intl/tickets.json'
@@ -55,6 +58,7 @@ const MESSAGES: Record<string, Record<string, any>> = {
     dips: enDips,
     past_events: enPastEvents,
     ecosystem_program: enEcosystemProgram,
+    supporters_program: enSupportersProgram,
     blogs: enBlogs,
     lantern: enLantern,
     tickets: enTickets,
@@ -67,6 +71,7 @@ const MESSAGES: Record<string, Record<string, any>> = {
     dips: hiDips,
     past_events: hiPastEvents,
     ecosystem_program: hiEcosystemProgram,
+    supporters_program: hiSupportersProgram,
     blogs: hiBlogs,
     lantern: hiLantern,
     tickets: hiTickets,
@@ -79,6 +84,7 @@ const MESSAGES: Record<string, Record<string, any>> = {
     dips: mrDips,
     past_events: mrPastEvents,
     ecosystem_program: mrEcosystemProgram,
+    supporters_program: mrSupportersProgram,
     blogs: mrBlogs,
     lantern: mrLantern,
     tickets: mrTickets,
