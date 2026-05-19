@@ -73,7 +73,7 @@ const ENV_CONFIG = {
       customDomain: true,
       ticketDiscountId: '2',
       defaultQuotaId: 116,
-      testmode: false,
+      testmode: true,
     },
     checkout: {
       pretixRedirectUrl: '',
