@@ -118,7 +118,12 @@ async function resolveEnsAvatar(name: string, timeoutMs: number): Promise<string
   }
 }
 
-function generateImage(displayName: string, avatarSrc: string | null, bgSrc: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {
+function generateImage(
+  displayName: string,
+  avatarSrc: string | null,
+  bgSrc: string,
+  fonts: { bold: ArrayBuffer; medium: ArrayBuffer }
+) {
   return new ImageResponse(
     (
       <div
