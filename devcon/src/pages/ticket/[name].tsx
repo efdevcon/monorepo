@@ -2,9 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 import { TicketSharing } from 'components/domain/ticket-sharing'
 import type { GetServerSidePropsContext } from 'next'
-import { createPublicClient, http } from 'viem'
-import { mainnet } from 'viem/chains'
-import { normalize } from 'viem/ens'
 
 interface TicketProps {
   name: string
@@ -54,20 +51,42 @@ function isEnsName(name: string): boolean {
   return /\.eth$/i.test(name.trim())
 }
 
+// Resolves an ENS avatar URL with tier-1 (ensdata.net) → tier-2
+// (metadata.ens.domains) fallback. ensdata.net returns a pre-sized avatar URL
+// served from their CDN, usually faster than the canonical gateway. We return
+// a URL the browser will fetch directly; the client `<img>` has an onError
+// fallback so any late-stage failure degrades gracefully to no-avatar layout.
 async function resolveEnsAvatar(name: string, timeoutMs: number): Promise<string | null> {
+  const normalizedName = name.trim().toLowerCase()
+  const encodedName = encodeURIComponent(normalizedName)
+  const perAttemptMs = Math.max(1500, Math.floor(timeoutMs / 3))
+
+  // Tier 1: ensdata.net — pre-sized avatar from their CDN, usually fastest
   try {
-    const client = createPublicClient({
-      chain: mainnet,
-      transport: http(process.env.NEXT_PUBLIC_INFURA_APIKEY ? `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_APIKEY}` : undefined),
-    })
-    const avatar = await Promise.race([
-      client.getEnsAvatar({ name: normalize(name) }),
-      new Promise<null>(resolve => setTimeout(() => resolve(null), timeoutMs)),
-    ])
-    return avatar || null
+    const res = await fetch(`https://ensdata.net/${encodedName}`, { signal: AbortSignal.timeout(perAttemptMs) })
+    if (res.ok) {
+      const data = (await res.json()) as { avatar_small?: string; avatar?: string }
+      const url = data.avatar_small || data.avatar
+      if (url) return url
+    }
   } catch {
-    return null
+    // transient — fall through to tier 2
   }
+
+  // Tier 2: ENS metadata gateway — canonical source. HEAD is cheap; we only
+  // need to verify the URL is reachable so the browser can safely embed it.
+  const fallbackUrl = `https://metadata.ens.domains/mainnet/avatar/${encodedName}`
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(fallbackUrl, { method: 'HEAD', signal: AbortSignal.timeout(perAttemptMs) })
+      if (res.ok) return fallbackUrl
+      if (res.status === 404) break
+    } catch {
+      // transient — retry
+    }
+  }
+
+  return null
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -78,7 +97,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const baseUrl = `${proto}://${host}`
 
   const encodedName = encodeNameForPath(name)
-  const avatarUrl = isEnsName(name) ? await resolveEnsAvatar(name, 2500) : null
+  const avatarUrl = isEnsName(name) ? await resolveEnsAvatar(name, 5000) : null
 
   const imageUrl = `${baseUrl}/api/ticket/${encodedName}.jpg`
   const pageUrl = `${baseUrl}/ticket/${encodedName}`

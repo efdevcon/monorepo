@@ -185,7 +185,8 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
           (() => {
             const baseShareUrl = pageUrl?.replace(/\?share$/, '').replace(/\?share&/, '?').replace(/&share\b/, '').replace(/\/$/, '') || ''
             const shareUrl = `${baseShareUrl}/`
-            const shareText = `I'm heading to Devcon India from 3–6 November in Mumbai!\n\nJoin me and the wider Ethereum community for a week of incredible talks, workshops, experiences and more!`
+            const shareText = `I just got my @EFDevcon ticket — paid for with ETH!\n\nNext stop: Mumbai 🇮🇳 Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
+            const xText = `${shareText}\n\n${shareUrl}`
             return (
               <div className={css.shareSection}>
                 <span className={css.shareLabel}>Share</span>
@@ -194,7 +195,7 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
                     href="#"
                     onClick={e => {
                       e.preventDefault()
-                      window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank')
+                      window.open(`https://x.com/intent/post?text=${encodeURIComponent(xText)}`, '_blank')
                     }}
                     className={css.shareIcon}
                   >
@@ -204,7 +205,7 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
                     href="#"
                     onClick={e => {
                       e.preventDefault()
-                      window.open(`https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`, '_blank')
+                      window.open(`https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`, '_blank')
                     }}
                     className={css.shareIcon}
                   >
