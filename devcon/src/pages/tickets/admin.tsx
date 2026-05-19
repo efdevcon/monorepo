@@ -2,12 +2,13 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Head from 'next/head'
 import { X } from 'lucide-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain } from 'wagmi'
+import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain, useSendTransaction } from 'wagmi'
+import { waitForTransactionReceipt } from 'wagmi/actions'
 import type { Config } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
 import { wagmiAdapter } from 'context/appkit-config'
 import { parseUnits } from 'viem'
-import { getUsdcConfigForChainId } from 'types/x402'
+import { getUsdcConfigForChainId, getTokenAddressForChainSymbol } from 'types/x402'
 import css from './admin.module.scss'
 
 const queryClient = new QueryClient()
@@ -587,13 +588,29 @@ function RefundModal({
   const { address, chain } = useAccount()
   const { switchChainAsync } = useSwitchChain()
   const { writeContractAsync } = useWriteContract()
+  const { sendTransactionAsync } = useSendTransaction()
   const [step, setStep] = useState<'confirm' | 'switching' | 'signing' | 'waiting' | 'done' | 'error'>('confirm')
   const [txHash, setTxHash] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const refundChainId = order.chainId || 8453
-  const refundAmount = order.totalUsd || '0'
+  // Mirror the original payment exactly — same token, same network, same
+  // base-units amount. `order.cryptoAmount` is the raw integer in token
+  // base units (wei for ETH, 1e6-units for USDC/USDT0), recorded at
+  // verify time. Falling back to a USDC equivalent of totalUsd is the
+  // legacy behavior for very old rows that don't have `cryptoAmount`
+  // populated — kept as a fallback for backward compat but never the
+  // happy path for new payments.
+  const refundSymbol = order.tokenSymbol || 'USDC'
+  const refundRawAmount = order.cryptoAmount
+  // Pretix OrderRefund.amount is always in event currency (USD), separate
+  // from the on-chain token amount. The backend uses this for accounting;
+  // unchanged from before.
+  const refundUsd = order.totalUsd || '0'
   const usdcConfig = getUsdcConfigForChainId(refundChainId)
+  // Resolve the actual ERC20 contract for non-ETH refunds. ETH refunds use
+  // sendTransaction (no contract) so the lookup returns null.
+  const refundTokenAddress = getTokenAddressForChainSymbol(refundChainId, refundSymbol)
   const isX402 = order.source === 'x402'
 
   // x402 path uses an initiate/confirm/fail CAS endpoint that gates
@@ -620,7 +637,10 @@ function RefundModal({
         pretix_order_code: order.pretixOrderCode,
         refund_tx_hash: refundTxHash,
         chain_id: refundChainId,
-        amount: refundAmount,
+        // Pretix OrderRefund.amount is event-currency (USD), not token
+        // base units. Unchanged from before — the on-chain token amount
+        // is recorded separately on `info_data` via record_pretix_refund.
+        amount: refundUsd,
       }),
     })
     const json = await res.json()
@@ -629,7 +649,24 @@ function RefundModal({
   }
 
   async function handleRefund() {
-    if (!address || !usdcConfig) return
+    if (!address) return
+
+    // Validate refund inputs up front so we surface a clean error instead
+    // of failing mid-flow at the wallet popup.
+    if (!refundRawAmount) {
+      // Legacy x402 rows without a `cryptoAmount` value can't be refunded
+      // in the original token (we don't know the exact wei amount). Fall
+      // back to a USDC-equivalent refund of the USD total for those.
+      if (!usdcConfig) {
+        setError('No crypto amount on order and no USDC config for chain — cannot refund')
+        setStep('error')
+        return
+      }
+    } else if (refundSymbol !== 'ETH' && refundTokenAddress === undefined) {
+      setError(`No ${refundSymbol} contract address known for chain ${refundChainId}`)
+      setStep('error')
+      return
+    }
 
     try {
       // 1. Initiate — only for x402, where we have a CAS guard
@@ -637,7 +674,7 @@ function RefundModal({
         setStep('signing')
         await callX402RefundApi('initiate', {
           chainId: refundChainId,
-          amount: refundAmount,
+          amount: refundUsd,
           adminAddress: address,
         })
       }
@@ -648,21 +685,63 @@ function RefundModal({
         await switchChainAsync({ chainId: refundChainId })
       }
 
-      // 3. Send USDC transfer
+      // 3. Send the refund — branch on the original token. ETH refunds
+      // use a native sendTransaction; ERC20 refunds (USDC, USDT0) call
+      // the matching token contract's `transfer`. The recorded amount
+      // is the buyer's exact cryptoAmount, so they receive back what
+      // they sent in.
       setStep('signing')
-      const hash = await writeContractAsync({
-        address: usdcConfig.tokenAddress as `0x${string}`,
-        abi: ERC20_TRANSFER_ABI,
-        functionName: 'transfer',
-        args: [order.payer as `0x${string}`, parseUnits(refundAmount, 6)],
-        chainId: refundChainId,
-      })
+      let hash: `0x${string}`
+      if (refundRawAmount && refundSymbol === 'ETH') {
+        hash = await sendTransactionAsync({
+          to: order.payer as `0x${string}`,
+          value: BigInt(refundRawAmount),
+          chainId: refundChainId,
+        })
+      } else if (refundRawAmount && refundTokenAddress) {
+        hash = await writeContractAsync({
+          address: refundTokenAddress as `0x${string}`,
+          abi: ERC20_TRANSFER_ABI,
+          functionName: 'transfer',
+          args: [order.payer as `0x${string}`, BigInt(refundRawAmount)],
+          chainId: refundChainId,
+        })
+      } else {
+        // Legacy-row fallback: send USDC equivalent of the USD total.
+        // Only reached when `cryptoAmount` is missing on the order row.
+        if (!usdcConfig) throw new Error('No USDC config for fallback refund')
+        hash = await writeContractAsync({
+          address: usdcConfig.tokenAddress as `0x${string}`,
+          abi: ERC20_TRANSFER_ABI,
+          functionName: 'transfer',
+          args: [order.payer as `0x${string}`, parseUnits(refundUsd, 6)],
+          chainId: refundChainId,
+        })
+      }
       setTxHash(hash)
 
-      // 4. Record the refund. x402 has a confirm step that updates
-      // the plugin's CAS row + creates the Pretix OrderRefund; WC
-      // just creates the Pretix OrderRefund directly.
+      // 4. Wait for on-chain confirmation BEFORE recording the refund
+      // in Pretix and triggering the buyer's notification email. If the
+      // tx ever reverts (out of funds, gas estimation error, etc.) the
+      // earlier behavior would have written a Pretix OrderRefund and
+      // emailed the buyer pointing at a tx that doesn't exist — now we
+      // gate everything on the receipt being status='success'.
       setStep('waiting')
+      const receipt = await waitForTransactionReceipt(
+        wagmiAdapter.wagmiConfig as Config,
+        { hash, chainId: refundChainId },
+      )
+      if (receipt.status !== 'success') {
+        throw new Error(
+          `Refund transaction reverted on-chain (status=${receipt.status}). Funds were not sent.`,
+        )
+      }
+
+      // 5. Record the refund. x402 has a confirm step that updates
+      // the plugin's CAS row + creates the Pretix OrderRefund; WC
+      // just creates the Pretix OrderRefund directly. Both also
+      // trigger the refund-notification email on the plugin side —
+      // which is now guaranteed to point at a confirmed tx.
       if (isX402) {
         await callX402RefundApi('confirm', { refundTxHash: hash })
       } else {
@@ -714,7 +793,11 @@ function RefundModal({
           </div>
           <div className={css['modal-row']}>
             <span className={css['modal-label']}>Amount</span>
-            <span className={css['modal-value']}>${refundAmount} USDC</span>
+            <span className={css['modal-value']}>
+              {refundRawAmount
+                ? `${formatCryptoAmount(refundRawAmount, refundSymbol)} ${refundSymbol} ($${refundUsd})`
+                : `$${refundUsd} USDC (legacy fallback)`}
+            </span>
           </div>
           <div className={css['modal-row']}>
             <span className={css['modal-label']}>Recipient</span>
@@ -788,27 +871,32 @@ function RefundActionCell({
   }
 
   // "Fully refunded" = a Pretix OrderRefund exists AND nothing more is
-  // owed. Hide the Refund button entirely and show a green badge
-  // (with the tx link for x402 rows, which carry refundTxHash).
+  // owed. Hide the Refund button entirely and show a green badge —
+  // the on-chain tx link sits above the amount line so admins can
+  // verify the refund without leaving the table. Both x402 and
+  // wc_attempt rows surface `refundTxHash` now (the wc path extracts
+  // it from the Pretix OrderRefund.info JSON, see views_admin.py).
   // Partial-refund case (refunded > 0 AND still overpaid) leaves the
   // urgent button visible — there's more to refund.
   const isFullyRefunded = !!order.refundedAmount && !order.overpaidUsd
   if (isFullyRefunded) {
+    // When we have the on-chain refund tx, the link is the more useful
+    // affordance — clicking it shows the actual confirmed amount on the
+    // explorer. The "Refunded $X" line only shows as a fallback when
+    // the tx hash is missing (legacy rows pre-refund-tx-recording).
     return (
       <span className={css['badge-refunded']}>
-        Refunded ${order.refundedAmount}
-        {order.source === 'x402' && order.refundTxHash && (
-          <>
-            {' '}
-            <a
-              className={css.link}
-              href={txExplorerUrl(order.refundTxHash, order.chainId)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              (tx)
-            </a>
-          </>
+        {order.refundTxHash ? (
+          <a
+            className={css.link}
+            href={txExplorerUrl(order.refundTxHash, order.chainId)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View refund tx ↗
+          </a>
+        ) : (
+          <>Refunded ${order.refundedAmount}</>
         )}
       </span>
     )
@@ -838,7 +926,7 @@ function RefundActionCell({
     ? 'No Pretix order code to record refund against'
     : isOverpaid
     ? `This order is overpaid by $${order.overpaidUsd} — refund owed to buyer`
-    : 'Issue USDC refund'
+    : `Refund ${order.tokenSymbol || 'USDC'} on chain ${order.chainId || '?'}`
 
   return (
     <>
