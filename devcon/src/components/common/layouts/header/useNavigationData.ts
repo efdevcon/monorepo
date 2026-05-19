@@ -31,6 +31,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: t('faq'),
+            url: '/tickets/faq',
+            type: 'page',
+          },
+          {
             title: t('blog'),
             url: '/blogs',
             type: 'page',
