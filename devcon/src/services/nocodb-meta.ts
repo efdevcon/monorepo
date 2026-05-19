@@ -205,7 +205,16 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
     if (col.system) continue
     if (!SUPPORTED_TYPES.has(col.uidt)) continue
 
-    const title = vc.label || col.title
+    // Prefer the form-view label override (vc.label), falling back to the
+    // intrinsic column title. Exception: if the override happens to match the
+    // column's description verbatim, the form designer almost certainly typed
+    // the description into the wrong slot in NocoDB — use the column title and
+    // keep the long text as the description instead. (Seen on the youth-ticket
+    // consent checkboxes where vc.label and col.description are identical.)
+    const vcLabel = (vc.label || '').trim()
+    const colDescTrim = (col.description || '').trim()
+    const overrideShadowsDescription = vcLabel.length > 0 && vcLabel === colDescTrim
+    const title = overrideShadowsDescription || !vc.label ? col.title : vc.label
     const description = vc.help || vc.description || col.description || undefined
 
     let options: string[] | undefined
