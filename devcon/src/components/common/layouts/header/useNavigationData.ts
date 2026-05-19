@@ -236,11 +236,6 @@ const useNavigationData = () => {
               : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
           type: 'page',
         },
-        {
-          title: t('swarm_mirror'),
-          url: 'https://devcon.swarm.eth.limo/',
-          type: 'link',
-        },
       ],
       // rightBottom: [
       //   {
