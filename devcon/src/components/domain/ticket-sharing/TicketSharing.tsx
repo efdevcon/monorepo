@@ -187,28 +187,16 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
             const shareUrl = `${baseShareUrl}/`
             const shareText = `I just got my @EFDevcon ticket – paid with ETH!\n\nNext stop: Mumbai 🇮🇳. Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
             const xText = `${shareText}\n\n${shareUrl}`
+            const xHref = `https://x.com/intent/post?text=${encodeURIComponent(xText)}`
+            const farcasterHref = `https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`
             return (
               <div className={css.shareSection}>
                 <span className={css.shareLabel}>Share</span>
                 <div className={css.shareIcons}>
-                  <a
-                    href="#"
-                    onClick={e => {
-                      e.preventDefault()
-                      window.open(`https://x.com/intent/post?text=${encodeURIComponent(xText)}`, '_blank')
-                    }}
-                    className={css.shareIcon}
-                  >
+                  <a href={xHref} target="_blank" rel="noopener noreferrer" className={css.shareIcon}>
                     <IconTwitter />
                   </a>
-                  <a
-                    href="#"
-                    onClick={e => {
-                      e.preventDefault()
-                      window.open(`https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`, '_blank')
-                    }}
-                    className={css.shareIcon}
-                  >
+                  <a href={farcasterHref} target="_blank" rel="noopener noreferrer" className={css.shareIcon}>
                     <IconWarpcast />
                   </a>
                   <button
