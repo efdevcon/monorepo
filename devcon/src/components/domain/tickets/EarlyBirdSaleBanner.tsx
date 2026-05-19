@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import Image from 'next/image'
 import DevconGlyph from './eth-glyph.png'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave } from 'hooks/useWaveStates'
+import { useFeaturedWave, useTicketsStoreUrl } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
 
 const DAY_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
@@ -86,6 +86,7 @@ export function EarlyBirdSaleBanner() {
   const t = useTranslations('tickets.sale_banner')
   const { featured, mounted } = useFeaturedWave()
   const now = useNow()
+  const storeUrl = useTicketsStoreUrl()
 
   if (!mounted || !featured) return null
 
@@ -171,7 +172,7 @@ export function EarlyBirdSaleBanner() {
           )}
 
           <NextLink
-            href="/tickets/store"
+            href={storeUrl}
             className={`inline-flex h-10 min-h-9 w-full items-center justify-center whitespace-nowrap rounded-full border border-solid px-8 py-4 text-base font-bold leading-none transition-colors md:flex-1 lg:w-auto lg:flex-initial ${
               showLive
                 ? 'border-transparent bg-[#7235ed] text-white hover:bg-[#6028cc]'

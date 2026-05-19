@@ -44,12 +44,12 @@ export const TICKET_WAVES: TicketWave[] = [
     // Two windows on the same day to span global timezones:
     //   02:00 UTC → 07:30 IST / 22:00 PT (previous day) — Asia-friendly window
     //   16:00 UTC → 21:30 IST / 09:00 PT — Americas-friendly window
-    openTimes: [new Date(Date.UTC(2026, 4, 20, 16, 0, 0))], // , new Date(Date.UTC(2026, 4, 20, 16, 0, 0))],
+    openTimes: [new Date(Date.UTC(2026, 4, 20, 16, 0, 0))],
     description: 'Includes 18% GST • Limited quantity • Purchase using ETH (L1)',
     bannerBullets: ['Limited quantity', 'Purchase using ETH (L1)'],
     action: 'Get tickets',
     actionHref: '/tickets/store',
-    // quotaId: 104,
+    quotaId: 8,
   },
   {
     id: 'wave-1',
@@ -58,8 +58,8 @@ export const TICKET_WAVES: TicketWave[] = [
     bannerBullets: ['Limited quantity', 'Cheaper than subsequent waves'],
     price: '$699',
     openLabel: 'Opens June',
-    // quotaId: 97,
-    openTimes: [new Date(Date.UTC(2026, 5, 15, 2, 0, 0)), new Date(Date.UTC(2026, 5, 15, 16, 0, 0))],
+    quotaId: 1,
+    openTimes: [new Date(Date.UTC(2026, 5, 16, 2, 0, 0)), new Date(Date.UTC(2026, 5, 16, 16, 0, 0))],
   },
   // {
   //   id: 'wave-2',

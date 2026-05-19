@@ -195,7 +195,7 @@ export async function getEventSettings(): Promise<PretixEventSettings> {
 }
 
 export async function getQuotaAvailability(quotaId: number): Promise<PretixQuotaAvailability> {
-  return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 30_000)
+  return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 10_000)
 }
 
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
@@ -369,7 +369,7 @@ export async function confirmOrderPayment(
 
 /**
  * Get complete ticket purchase information including items, questions, and availability.
- * Results are cached for 60s (catalog) / 30s (availability) to avoid hammering the Pretix API.
+ * Results are cached for 60s (catalog) / 10s (availability) to avoid hammering the Pretix API.
  */
 export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurchaseInfo> {
   return cachedFetch(`ticketPurchaseInfo:${locale}`, () => _buildTicketPurchaseInfo(locale))

@@ -163,3 +163,29 @@ export function useTicketsCtaLabel(): { label: 'Get tickets' | 'View tickets'; i
   const isLive = featured?.status === 'live'
   return { label: isLive ? 'Get tickets' : 'View tickets', isLive }
 }
+
+// Earliest configured wave opening time across all `TICKET_WAVES`. The first
+// time this is in the past, all site-wide "Get tickets" CTAs switch from the
+// internal pre-sale teaser (/tickets/store) to the real external storefront.
+const FIRST_WAVE_OPEN_MS = (() => {
+  const times = TICKET_WAVES.flatMap(w => w.openTimes ?? [])
+  if (times.length === 0) return null
+  return times.reduce((min, t) => Math.min(min, t.getTime()), Number.POSITIVE_INFINITY)
+})()
+
+const INTERNAL_STORE_URL = '/tickets/store'
+const EXTERNAL_STORE_URL = 'https://tickets.devcon.org'
+
+/**
+ * Returns the URL every "Get tickets" / "View tickets" CTA should point to
+ * right now. Before the first wave opens, the site shows its own teaser
+ * storefront at `/tickets/store`. From the moment the first wave's openTime
+ * is reached, every CTA flips to the real Pretix-backed storefront at
+ * `https://tickets.devcon.org`. SSR-safe: returns the internal URL until
+ * `useNow()` mounts.
+ */
+export function useTicketsStoreUrl(): string {
+  const now = useNow()
+  if (!now || FIRST_WAVE_OPEN_MS == null) return INTERNAL_STORE_URL
+  return now.getTime() >= FIRST_WAVE_OPEN_MS ? EXTERNAL_STORE_URL : INTERNAL_STORE_URL
+}

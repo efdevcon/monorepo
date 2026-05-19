@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NextLink from 'next/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
-import { useFeaturedWave } from 'hooks/useWaveStates'
+import { useFeaturedWave, useTicketsStoreUrl } from 'hooks/useWaveStates'
 
 type IconKind = 'check' | 'asterisk'
 
@@ -232,6 +232,7 @@ export function TicketComparison() {
   }
   const rawColumns = t.raw('columns') as Column[]
   const { featured, mounted } = useFeaturedWave()
+  const storeUrl = useTicketsStoreUrl()
 
   // Inject live wave state into the General Admission column so the price /
   // status / CTA always reflect the currently-featured wave instead of the
@@ -246,6 +247,7 @@ export function TicketComparison() {
         price_original: undefined,
         price_note: 'Sale ended',
         cta_label: 'View tickets',
+        cta_href: storeUrl,
       }
     }
     const isLive = featured.status === 'live'
@@ -259,6 +261,7 @@ export function TicketComparison() {
       price_note: featured.wave.name,
       price_description: featured.wave.description,
       cta_label: isLive ? 'Get tickets' : 'View tickets',
+      cta_href: storeUrl,
     }
   })
 

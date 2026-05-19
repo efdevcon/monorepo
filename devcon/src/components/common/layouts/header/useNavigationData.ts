@@ -6,9 +6,11 @@ import LogoTickets from 'assets/images/pages/tickets.svg'
 import LogoGetInvolved from 'assets/images/pages/get-involved.svg'
 import { HandHeart, Newspaper, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
+import { useTicketsCtaLabel } from 'hooks/useWaveStates'
 
 const useNavigationData = () => {
   const t = useTranslations('common.nav')
+  const { isLive } = useTicketsCtaLabel()
 
   return {
     top: [],
@@ -120,7 +122,7 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: t('view_tickets'),
+        title: t(isLive ? 'get_tickets' : 'view_tickets'),
         url: '/tickets',
         type: 'page',
         highlight: 'tickets',

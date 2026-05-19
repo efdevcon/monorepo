@@ -8,7 +8,7 @@ import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
 import { EarlyBirdSaleBanner } from 'components/domain/tickets/EarlyBirdSaleBanner'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
-import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useTicketsStoreUrl } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
@@ -181,6 +181,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const t = useTranslations('tickets')
   const resolvedFaqItems = useStandardFaqItems(faqItems)
   const { label: ctaLabel } = useTicketsCtaLabel()
+  const storeUrl = useTicketsStoreUrl()
 
   const navLinks = [
     { title: t('nav.overview'), to: '#overview' },
@@ -232,7 +233,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
       // Live: OPEN badge + price + "Get tickets" button; availability line below.
       row.status = 'open'
       row.action = 'Get tickets'
-      row.actionHref = '/tickets/store'
+      row.actionHref = storeUrl
       if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} isLive />
     } else if (status === 'countdown') {
       if (isFeatured) {
@@ -345,7 +346,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                 </p>
               </div>
               <NextLink
-                href="/tickets/store"
+                href={storeUrl}
                 className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
               >
                 {ctaLabel}
