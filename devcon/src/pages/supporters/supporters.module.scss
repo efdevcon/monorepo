@@ -1066,7 +1066,11 @@
   display: flex;
   align-items: center;
   gap: 64px;
-  padding-right: 64px;
+  // `InfiniteScroll`'s `unpadded` mode nukes `padding-right` on the direct
+  // child with `!important`; use `margin-right` instead so the gap survives
+  // between marquee duplications (otherwise the last logo of one copy
+  // butts up against the first logo of the next).
+  margin-right: 64px;
 }
 
 .logo-item {
@@ -1084,6 +1088,28 @@
   height: 32px;
   width: auto !important;
   object-fit: contain;
+}
+
+// SVG composites (Espresso, Self) — sized to 32px tall like the PNG logos.
+.logo-svg {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.logo-composite {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  color: #160b2b;
+}
+
+.logo-svg-text {
+  height: 18px;
+  width: auto;
+  display: block;
+  color: inherit;
 }
 
 /* ─── "What is" / "Who can" — two columns ──────────────────── */

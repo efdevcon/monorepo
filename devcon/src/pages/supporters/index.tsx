@@ -16,56 +16,70 @@ import css from './supporters.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
 
-// Past-supporter logos that ship with the page. The Figma's "Past Supporters"
-// block uses a slightly different list, but the assets folder already holds
-// these long-standing partners — easy to swap individual logos later.
-import LogoArbitrum from 'assets/images/supporters-page/supporters/arbitrum.png'
-import LogoAaveGrants from 'assets/images/supporters-page/supporters/aave-grants.png'
-import LogoStarkware from 'assets/images/supporters-page/supporters/starkware.png'
-import LogoPolygon from 'assets/images/supporters-page/supporters/polygon.png'
-import LogoOptimism from 'assets/images/supporters-page/supporters/optimism.png'
-import LogoChainlink from 'assets/images/supporters-page/supporters/chainlink.png'
-import LogoLido from 'assets/images/supporters-page/supporters/lido.png'
-import LogoMetamask from 'assets/images/supporters-page/supporters/metamask.png'
-import LogoSafe from 'assets/images/supporters-page/supporters/safe.png'
-import LogoStatus from 'assets/images/supporters-page/supporters/status.png'
-import LogoAnoma from 'assets/images/supporters-page/supporters/anoma.png'
-import LogoOpenZeppelin from 'assets/images/supporters-page/supporters/open-zeppelin.png'
-import LogoChainsafe from 'assets/images/supporters-page/supporters/chainsafe.png'
-import LogoTenderly from 'assets/images/supporters-page/supporters/tenderly.png'
-import LogoLivepeer from 'assets/images/supporters-page/supporters/livepeer.png'
-import LogoRadicle from 'assets/images/supporters-page/supporters/radicle.png'
-import LogoEY from 'assets/images/supporters-page/supporters/ey.png'
-import LogoLens from 'assets/images/supporters-page/supporters/lens.png'
-import LogoEEA from 'assets/images/supporters-page/supporters/eea.png'
-import LogoBlockdaemon from 'assets/images/supporters-page/supporters/blockdaemon.png'
+// Past-supporter logos — raw source assets exported from the Figma design
+// (4283:5510..5572). PNGs for the simple wordmarks; the two composites
+// (Espresso = mark + text, Self) are inlined as SVG React components via svgr.
+import LogoArbitrum from 'assets/images/supporters-page/figma-logos/arbitrum.png'
+import LogoGnosis from 'assets/images/supporters-page/figma-logos/gnosis.png'
+import LogoAave from 'assets/images/supporters-page/figma-logos/aave.png'
+import LogoEns from 'assets/images/supporters-page/figma-logos/ens.png'
+import LogoNethermind from 'assets/images/supporters-page/figma-logos/nethermind.png'
+import LogoStarkware from 'assets/images/supporters-page/figma-logos/starkware.png'
+import LogoAztec from 'assets/images/supporters-page/figma-logos/aztec.png'
+import LogoCelo from 'assets/images/supporters-page/figma-logos/celo.png'
+import LogoRailgun from 'assets/images/supporters-page/figma-logos/railgun.png'
+import LogoXmtp from 'assets/images/supporters-page/figma-logos/xmtp.png'
+import LogoGitcoin from 'assets/images/supporters-page/figma-logos/gitcoin.png'
+import LogoTheGraph from 'assets/images/supporters-page/figma-logos/the-graph.png'
+import LogoObol from 'assets/images/supporters-page/figma-logos/obol.png'
+import LogoMorpho from 'assets/images/supporters-page/figma-logos/morpho.png'
+import LogoCowSwap from 'assets/images/supporters-page/figma-logos/cow-swap.png'
+import LogoFarcaster from 'assets/images/supporters-page/figma-logos/farcaster.png'
+import LogoRadicle from 'assets/images/supporters-page/figma-logos/radicle.png'
+import LogoRotki from 'assets/images/supporters-page/figma-logos/rotki.png'
+import LogoSelf from 'assets/images/supporters-page/figma-logos/self.png'
+import EspressoMark from 'assets/images/pages/supporters-logos/espresso-mark.svg'
+import EspressoText from 'assets/images/pages/supporters-logos/espresso-text.svg'
 
 const APPLY_URL = '/form/supporter-application'
 
-const SUPPORTER_LOGOS_ROW_1 = [
-  LogoArbitrum,
-  LogoAaveGrants,
-  LogoStarkware,
-  LogoPolygon,
-  LogoOptimism,
-  LogoChainlink,
-  LogoLido,
-  LogoMetamask,
-  LogoSafe,
-  LogoStatus,
+// Order matches the Figma's two rows (top row 4283:5385 scrolls right,
+// bottom row 4283:5420 scrolls left). Each entry renders its own logo —
+// most are PNG <Image> but Espresso and Self are composite SVGs.
+function EspressoLogo() {
+  // Mark on the left, "espresso" wordmark to the right of it.
+  return (
+    <div className={css['logo-composite']}>
+      <EspressoMark className={css['logo-svg']} style={{ height: '100%' }} />
+      <EspressoText className={css['logo-svg-text']} />
+    </div>
+  )
+}
+
+const SUPPORTER_LOGOS_ROW_1: React.ReactNode[] = [
+  <Image key="arbitrum" src={LogoArbitrum} alt="Arbitrum" className={css['logo-img']} />,
+  <Image key="gnosis" src={LogoGnosis} alt="Gnosis" className={css['logo-img']} />,
+  <Image key="aave" src={LogoAave} alt="Aave" className={css['logo-img']} />,
+  <Image key="ens" src={LogoEns} alt="ENS" className={css['logo-img']} />,
+  <Image key="nethermind" src={LogoNethermind} alt="Nethermind" className={css['logo-img']} />,
+  <Image key="starkware" src={LogoStarkware} alt="Starkware" className={css['logo-img']} />,
+  <EspressoLogo key="espresso" />,
+  <Image key="aztec" src={LogoAztec} alt="Aztec" className={css['logo-img']} />,
+  <Image key="celo" src={LogoCelo} alt="Celo" className={css['logo-img']} />,
+  <Image key="railgun" src={LogoRailgun} alt="Railgun" className={css['logo-img']} />,
 ]
 
-const SUPPORTER_LOGOS_ROW_2 = [
-  LogoAnoma,
-  LogoOpenZeppelin,
-  LogoChainsafe,
-  LogoTenderly,
-  LogoLivepeer,
-  LogoRadicle,
-  LogoEY,
-  LogoLens,
-  LogoEEA,
-  LogoBlockdaemon,
+const SUPPORTER_LOGOS_ROW_2: React.ReactNode[] = [
+  <Image key="xmtp" src={LogoXmtp} alt="XMTP" className={css['logo-img']} />,
+  <Image key="gitcoin" src={LogoGitcoin} alt="Gitcoin" className={css['logo-img']} />,
+  <Image key="thegraph" src={LogoTheGraph} alt="The Graph" className={css['logo-img']} />,
+  <Image key="obol" src={LogoObol} alt="Obol" className={css['logo-img']} />,
+  <Image key="morpho" src={LogoMorpho} alt="Morpho" className={css['logo-img']} />,
+  <Image key="cowswap" src={LogoCowSwap} alt="Cow Swap" className={css['logo-img']} />,
+  <Image key="farcaster" src={LogoFarcaster} alt="Farcaster" className={css['logo-img']} />,
+  <Image key="radicle" src={LogoRadicle} alt="Radicle" className={css['logo-img']} />,
+  <Image key="rotki" src={LogoRotki} alt="Rotki" className={css['logo-img']} />,
+  <Image key="self" src={LogoSelf} alt="Self" className={css['logo-img']} />,
 ]
 
 const WHY_SUPPORT_ICONS = [Handshake, Compass, Wrench] as const
@@ -176,7 +190,7 @@ export default function SupportersProgramPage() {
               <div className={css['logo-track']}>
                 {SUPPORTER_LOGOS_ROW_1.map((logo, i) => (
                   <div key={i} className={css['logo-item']}>
-                    <Image src={logo} alt="" className={css['logo-img']} />
+                    {logo}
                   </div>
                 ))}
               </div>
@@ -187,7 +201,7 @@ export default function SupportersProgramPage() {
               <div className={css['logo-track']}>
                 {SUPPORTER_LOGOS_ROW_2.map((logo, i) => (
                   <div key={i} className={css['logo-item']}>
-                    <Image src={logo} alt="" className={css['logo-img']} />
+                    {logo}
                   </div>
                 ))}
               </div>
