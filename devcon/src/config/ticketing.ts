@@ -8,7 +8,7 @@ const ENV_CONFIG = {
     pretix: {
       baseUrl: 'https://dcdev2.ticketh.xyz',
       organizer: 'org',
-      event: 'test',
+      event: '8',
       ticketDiscountId: '6',
       defaultQuotaId: 116,
       testmode: true,
@@ -48,23 +48,20 @@ const ENV_CONFIG = {
   production: {
     chainEnv: 'mainnet' as const,
     pretix: {
-      baseUrl: 'https://mum.ticketh.xyz',
+      baseUrl: 'https://tickets.devcon.org',
       organizer: 'devcon',
       event: '8',
       ticketDiscountId: '2',
-      defaultQuotaId: 116, // TODO: confirm production quota ID
-      // TODO: disable testmode for production
-      testmode: true,
+      defaultQuotaId: 116,
+      testmode: false,
     },
     checkout: {
       pretixRedirectUrl: '',
       useDaimoPay: false,
     },
     payment: {
-      recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
-      // TODO: replace with production recipient address
-      // recipientAddress: '0xFc488aE9cB395B150574Aa5ce8a321c9100b1ee3',
-      cryptoDiscountPercent: 3,
+      recipientAddress: '0x403A3A81abA974dEb4faF20514ae34FAf9268E28',
+      cryptoDiscountPercent: 10,
     },
     tax: {
       vatPercent: 18,
@@ -72,13 +69,10 @@ const ENV_CONFIG = {
     },
     self: {
       scope: 'devcon-india-local-discount',
-      // TODO: replace with production staging
       staging: false,
-      // TODO: replace after event
       requireEarlyAccess: false,
     },
     discount: {
-      // TODO: replace with india-early-bird
       collection: 'india-early-bird',
     },
     aadhaar: {
