@@ -55,22 +55,18 @@ function classify(
   now: Date,
   availability: TicketAvailability,
 ): WaveState {
-  const sorted = wave.openTimes ? [...wave.openTimes].sort((a, b) => a.getTime() - b.getTime()) : []
-  const upcoming = sorted.find(t => t.getTime() > now.getTime()) ?? null
-  const latestPast = [...sorted].reverse().find(t => t.getTime() <= now.getTime()) ?? null
-
-  // Pretix availability is the authoritative signal — if a quota is open for
-  // sale right now, the wave is live, even if its scheduled `openTime`
-  // hasn't been reached on the wall clock yet (e.g. someone flipped the
-  // quota live early in Pretix admin).
-  if (availability.available) {
-    return { wave, status: 'live', countdown: null, upcoming, mounted: true }
-  }
-
   if (!wave.openTimes || wave.openTimes.length === 0) {
     return { wave, status: 'tbd', countdown: null, upcoming: null, mounted: true }
   }
 
+  const sorted = [...wave.openTimes].sort((a, b) => a.getTime() - b.getTime())
+  const upcoming = sorted.find(t => t.getTime() > now.getTime()) ?? null
+  const latestPast = [...sorted].reverse().find(t => t.getTime() <= now.getTime()) ?? null
+
+  // Schedule is the primary gate: we never flip a wave to 'live' before its
+  // scheduled openTime, even if Pretix has the quota open for sale. Pretix
+  // availability is a *refinement* once the wave's window has started —
+  // checked further down to decide between live / sold-out / closed.
   if (!latestPast) {
     return {
       wave,

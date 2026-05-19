@@ -33,10 +33,12 @@ export function useEthEarlyBirdWave(): EthEarlyBirdWaveState {
     return { mounted: false, status: 'countdown', countdown: null, upcoming: null }
   }
 
-  // Live = Pretix says inventory is available, OR we're inside the 5-minute
-  // grace window after a wave just opened (UI flips immediately without
-  // waiting for the next quota poll).
-  const isLive = !!(availability.available || wave.withinGraceWindow)
+  // Live requires the schedule to have opened first (no flipping to live
+  // before the scheduled openTime even if Pretix already has stock). Once
+  // the wave has opened, Pretix availability is the live signal; the 5-min
+  // grace window covers the moment between the scheduled open and the next
+  // successful availability poll.
+  const isLive = !!wave.latest && (!!availability.available || wave.withinGraceWindow)
 
   if (isLive) {
     return { mounted: true, status: 'live', countdown: null, upcoming: wave.upcoming }
