@@ -1179,6 +1179,27 @@
   gap: 16px;
 }
 
+.impact-tracks {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: disc;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #221144;
+
+  li {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
 .impact-cta-wrap {
   flex-shrink: 0;
   position: relative;

@@ -251,12 +251,15 @@ export default function SupportersProgramPage() {
             <p className={css['eyebrow']}>{t('impact.eyebrow')}</p>
             <h3 className={css['heading-3']}>{t('impact.heading')}</h3>
             <p className={css['details-lead-bold']}>{t('impact.body_strong')}</p>
-            <p className={css['body']}>
-              {t('impact.body_p1_line_1')}
-              <br />
-              {t('impact.body_p1_line_2')}
-            </p>
-            <p className={css['body-small']}>{t('impact.body_p2')}</p>
+            <p className={css['body']}>{t('impact.body_intro')}</p>
+            <ul className={css['impact-tracks']}>
+              {(t.raw('impact.tracks') as Array<{ strong: string; body: string }>).map((track, i) => (
+                <li key={i}>
+                  <strong>{track.strong}</strong>
+                  {track.body}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className={css['impact-cta-wrap']}>
             <div className={css['impact-glyph']} aria-hidden="true">
