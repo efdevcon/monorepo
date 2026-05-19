@@ -20,10 +20,21 @@ const Ticket = (props: TicketProps) => {
     <>
       <Head>
         <title>{title}</title>
+        {/* Set the page background color in <head> so the buyer doesn't see a
+            white flash between server-render and `useEffect` applying the
+            ticket theme. The TicketSharing useEffect still sets these inline
+            (and resets them on unmount); this just covers the gap before
+            React hydrates. */}
+        <style>{`html, body { background-color: #1a0a3e; }`}</style>
         {/* Warm the OG image cache from the user's browser so by the time Twitter
             scrapes the URL (typically several seconds after the user posts), the
             JPEG is already in our Supabase cache and the scrape is a fast HIT. */}
         <link rel="preload" as="image" href={props.imageUrl} />
+        {/* Pre-fetch the avatar image in parallel with HTML parsing so it's
+            in the browser cache by the time React renders the <img> element —
+            avoids the visible pop-in when the avatar appears late. Same
+            trick as the OG preload above, but for the on-page avatar. */}
+        {props.avatarUrl && <link rel="preload" as="image" href={props.avatarUrl} />}
         <meta name="description" key="description" content={description} />
         <meta name="image" key="image" content={props.imageUrl} />
         <meta property="og:type" key="og:type" content="website" />
