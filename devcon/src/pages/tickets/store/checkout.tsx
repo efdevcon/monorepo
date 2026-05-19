@@ -793,6 +793,17 @@ function CheckoutContent() {
           setTickets(data.data.tickets || [])
           if (data.data.attendeeNameAsked != null) setAttendeeNameAsked(data.data.attendeeNameAsked)
           if (data.data.attendeeNameRequired != null) setAttendeeNameRequired(data.data.attendeeNameRequired)
+          // Proactively flip the disabled flags from the plugin's per-event
+          // toggle state. Without this, the buyer would see no warning until
+          // they actually clicked Pay and got a 404 — the reactive flip in
+          // `handlePurchase` still catches that case (defense in depth), but
+          // surfacing it on page load gives a clearer "go to the Pretix shop"
+          // hint up front.
+          const settings = data.data.pluginSettings
+          if (settings) {
+            if (!settings.x402_enabled) setCryptoDisabledForEvent(true)
+            if (!settings.fiat_purchase_enabled) setFiatDisabledForEvent(true)
+          }
         }
       } catch {
         // questions/tickets will just be empty

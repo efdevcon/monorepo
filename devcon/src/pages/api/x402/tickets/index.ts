@@ -11,6 +11,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { hasAvailableVouchers } from 'services/discountStore'
+import { getPluginSettings, type PluginSettings } from 'services/pretixPluginProxy'
 import { TicketPurchaseInfo } from 'types/pretix'
 import { BASE_USDC_CONFIG, BASE_SEPOLIA_USDC_CONFIG, SUPPORTED_ASSETS_MAINNET, SUPPORTED_ASSETS_TESTNET, SupportedAsset } from 'types/x402'
 import { getClientIp } from 'utils/getClientIp'
@@ -61,6 +62,12 @@ interface TicketsResponse {
       /** x402 v2: USDC + ETH on Ethereum, OP, Arbitrum, Base (or testnet) */
       supportedAssets: SupportedAsset[]
     }
+    /** Per-event admin toggles surfaced to the checkout UI so it can render
+     *  the "Crypto checkout is currently unavailable" / "Card payment is
+     *  currently unavailable" notices proactively, without waiting for the
+     *  buyer to click Pay and trigger a 404 from the plugin. Fails closed
+     *  (both `false`) if the plugin settings call errors out. */
+    pluginSettings: PluginSettings
   }
 }
 
@@ -86,9 +93,10 @@ export default async function handler(
 
   try {
     const locale = (req.query.locale as string) || 'en'
-    const [ticketInfo, vouchersAvailable] = await Promise.all([
+    const [ticketInfo, vouchersAvailable, pluginSettings] = await Promise.all([
       getTicketPurchaseInfo(locale),
       hasAvailableVouchers().catch(() => undefined),
+      getPluginSettings(),
     ])
 
     // Attach vouchersAvailable to voucher-required tickets
@@ -115,6 +123,7 @@ export default async function handler(
             : null,
           supportedAssets,
         },
+        pluginSettings,
       },
     }
 
