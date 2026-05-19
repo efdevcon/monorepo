@@ -15,11 +15,21 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      // Crypto-payment discount percentage. 0 disables the discount entirely
+      // (no UI, no API field, no math). Set per environment. Default 0 so a
+      // new environment doesn't accidentally ship with a discount nobody
+      // signed off on.
       cryptoDiscountPercent: 3,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
@@ -57,11 +67,21 @@ const ENV_CONFIG = {
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       recipientAddress: '0x403A3A81abA974dEb4faF20514ae34FAf9268E28',
+      relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      // Crypto-payment discount percentage. 0 disables the discount entirely
+      // (no UI, no API field, no math). Set per environment. Default 0 so a
+      // new environment doesn't accidentally ship with a discount nobody
+      // signed off on.
       cryptoDiscountPercent: 10,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
