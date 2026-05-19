@@ -9,11 +9,13 @@ import {
   getPendingOrder,
   getCompletedOrder,
 } from 'services/ticketStore'
-import { TICKETING } from 'config/ticketing'
+import { pretixEventUrl } from 'config/ticketing'
 
 function getTicketUrl(orderCode: string): string {
-  const baseUrl = TICKETING.pretix.baseUrl.replace(/\/api\/v1\/?$/, '').replace(/\/$/, '')
-  return `${baseUrl}/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}/order/${orderCode}/`
+  // `pretixEventUrl` respects the `customDomain` config flag — on Pretix
+  // custom event domains the event lives at root (`/order/CODE/`), on legacy
+  // slug-based instances it's under `/{organizer}/{event}/order/CODE/`.
+  return pretixEventUrl(`/order/${orderCode}/`)
 }
 
 interface StatusResponse {

@@ -8,6 +8,12 @@ const ENV_CONFIG = {
       baseUrl: 'https://dcdev2.ticketh.xyz',
       organizer: 'org',
       event: '8',
+      // True when `baseUrl` is a Pretix-managed custom event domain (Pretix's
+      // multidomain feature serves the event at root — `/order/...`, not
+      // `/{organizer}/{event}/order/...`). Drives URL construction in
+      // status.ts and the checkout fallback redirect. Legacy slug-based
+      // Pretix instances (e.g. dcdev2.ticketh.xyz) leave this `false`.
+      customDomain: false,
       ticketDiscountId: '6',
       defaultQuotaId: 116,
       testmode: true,
@@ -60,6 +66,11 @@ const ENV_CONFIG = {
       baseUrl: 'https://tickets.devcon.org',
       organizer: 'devcon',
       event: '8',
+      // tickets.devcon.org is a Pretix-managed custom event domain — the
+      // event is mounted at root, so user-facing URLs are /order/CODE/...
+      // (not /devcon/8/order/CODE/...). See development.pretix.customDomain
+      // for details.
+      customDomain: true,
       ticketDiscountId: '2',
       defaultQuotaId: 116,
       testmode: false,
@@ -109,6 +120,19 @@ const ENV_CONFIG = {
 }
 
 export const TICKETING = ENV_CONFIG[TICKETING_ENV]
+
+/** Build a user-facing Pretix URL that respects the event's custom-domain
+ *  setting. On a custom event domain (`tickets.devcon.org`) the event lives at
+ *  root: `/order/CODE/...`. On a legacy slug-based instance, the path needs the
+ *  `/{organizer}/{event}/` prefix. Pass the path INCLUDING leading slash, e.g.
+ *  `'/order/ABCDE/secret/'`. Returns an absolute URL. */
+export function pretixEventUrl(path: string): string {
+  const base = TICKETING.pretix.baseUrl.replace(/\/$/, '')
+  const eventPrefix = TICKETING.pretix.customDomain
+    ? ''
+    : `/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}`
+  return `${base}${eventPrefix}${path}`
+}
 
 /** Whether the chain environment is testnet (derived from config) */
 export const isTestnet = TICKETING.chainEnv !== 'mainnet'
