@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTilt } from './useTilt'
@@ -89,7 +89,22 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
 
   const [copied, setCopied] = useState(false)
   const [avatarError, setAvatarError] = useState(false)
+  const [avatarLoaded, setAvatarLoaded] = useState(false)
+  const avatarRef = useRef<HTMLImageElement | null>(null)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
+  const handleAvatarLoad = useCallback(() => setAvatarLoaded(true), [])
+
+  // Catch the race where a cached (or preloaded) avatar finishes loading
+  // *before* React's `onLoad` handler is attached — the event fires but
+  // nothing listens, so `avatarLoaded` would stay false and the image
+  // would stay at opacity 0. Inspect `img.complete + naturalWidth > 0`
+  // post-mount to recover from that case.
+  useEffect(() => {
+    const img = avatarRef.current
+    if (img && img.complete && img.naturalWidth > 0) {
+      setAvatarLoaded(true)
+    }
+  }, [avatarUrl])
 
   const hasAvatar = !!avatarUrl && !avatarError
 
@@ -145,10 +160,18 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
                 {hasAvatar && (
                   <div className={css.avatarCircle}>
                     <img
+                      ref={avatarRef}
                       src={avatarUrl!}
                       alt={`${name}'s avatar`}
-                      className={css.avatarImage}
+                      className={cn(css.avatarImage, { [css.avatarLoaded]: avatarLoaded })}
+                      onLoad={handleAvatarLoad}
                       onError={handleAvatarError}
+                      // The image is preloaded in <Head> via `<link rel="preload">`,
+                      // so by the time React renders this element the bytes are
+                      // usually already cached. Eager loading + sync decode keeps
+                      // the paint on the same frame as the rest of the ticket.
+                      loading="eager"
+                      decoding="sync"
                     />
                   </div>
                 )}
