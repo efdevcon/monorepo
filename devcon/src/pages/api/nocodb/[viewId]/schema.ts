@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { resolveFormView, getFormFields } from 'services/nocodb-meta'
+import { resolveFormView, getFormFields, getConditionalRules } from 'services/nocodb-meta'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -12,10 +12,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const meta = await resolveFormView(viewId)
-    const fields = await getFormFields(viewId)
+    const [meta, fields, conditionalRules] = await Promise.all([
+      resolveFormView(viewId),
+      getFormFields(viewId),
+      getConditionalRules(viewId),
+    ])
 
     const columns = fields.map(f => ({
+      // `id` is the NocoDB column id — surfaced so the form renderer can
+      // match conditional rules (which reference columns by id) against the
+      // rendered fields. Existing consumers ignore it harmlessly.
+      id: f.id,
       title: f.title,
       column_name: f.column_name,
       uidt: f.uidt,
@@ -29,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ...(meta.formSubheading ? { subheading: meta.formSubheading } : {}),
       ...(meta.successMsg ? { successMsg: meta.successMsg } : {}),
       columns,
+      ...(conditionalRules.length > 0 ? { conditionalRules } : {}),
     })
   } catch (err) {
     console.error('[nocodb/schema]', err)

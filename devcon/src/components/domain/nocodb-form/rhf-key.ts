@@ -1,18 +1,20 @@
 /**
- * react-hook-form treats `[...]` and `.` as path syntax — `register('[x] y')`
- * silently stores the value under `'x y'`, dropping the brackets. NocoDB
- * column titles can contain both characters (e.g. `[encrypted] Passport ...`),
- * so we register fields under a sanitized alias and remap to the original
- * column title before sending data to the server.
+ * react-hook-form parses field names as lodash-style paths. Its
+ * `stringToPath` helper does `input.replace(/["|']|\]/g, '')` and then splits
+ * on `.` / `[` — so quotes/brackets get silently stripped, and dots/brackets
+ * create nested keys. NocoDB column titles can contain ALL of these (e.g.
+ * `Minor's full name`, `[encrypted] Passport …`), so we register fields
+ * under a sanitized alias that matches what RHF actually stores under,
+ * then remap to the original column title before sending data to the server.
  *
- * We replace `[`, `]`, and `.` with a single safe character. RHF doesn't
- * parse `-` as syntax, so it's a clean substitution.
+ * The alias must exactly mirror RHF's transformation, otherwise the map
+ * can't translate the submitted keys back:
+ *   - `'` and `"` → stripped (RHF replaces with empty string)
+ *   - `[`, `]`, `.` → replaced with `-` so the key stays flat (no nesting)
  */
 
-const UNSAFE = /[\[\]\.]/g
-
 export function rhfFieldName(columnName: string): string {
-  return columnName.replace(UNSAFE, '-')
+  return columnName.replace(/['"]/g, '').replace(/[\[\]\.]/g, '-')
 }
 
 /**

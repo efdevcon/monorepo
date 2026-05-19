@@ -34,7 +34,7 @@ export interface FormField {
   options?: string[]
 }
 
-const SUPPORTED_TYPES = new Set(['SingleLineText', 'Email', 'SingleSelect', 'LongText', 'Date', 'Attachment'])
+const SUPPORTED_TYPES = new Set(['SingleLineText', 'Email', 'SingleSelect', 'LongText', 'Date', 'Attachment', 'Checkbox'])
 
 // In-memory caches — keyed by viewId / tableId.
 const viewCache = new Map<string, { data: FormViewMeta; expiresAt: number }>()
@@ -228,6 +228,80 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
 
   fieldsCache.set(viewId, { data: fields, expiresAt: Date.now() + CACHE_TTL })
   return fields
+}
+
+// ── Conditional visibility rules (auth'd view-filters endpoint) ──────
+//
+// NocoDB's form view supports "show field X only when field Y = value Z"
+// rules. They live as rows on the view's filter list — the same filters that
+// power table-view row filtering, but with `fk_parent_column_id` set to the
+// form column whose visibility is being governed.
+//
+// /api/v1/db/meta/views/{viewId}/filters returns the full list with the
+// xc-token header. We tried the public shared-view endpoint first, but it
+// only works for forms that have been explicitly "shared" in the UI (which
+// generates a separate share UUID); ours aren't.
+//
+// On any error we return an empty list and the form behaves as before.
+
+export interface ConditionalRule {
+  // Column whose visibility is governed by this rule.
+  targetColumnId: string
+  // Column whose value drives the comparison.
+  sourceColumnId: string
+  // NocoDB comparison operator — `eq`, `neq`, `anyof`, `allof`, `blank`,
+  // `notblank`, `like`, `nlike`, etc.
+  op: string
+  // Comparison RHS. For `anyof`/`allof` this is a comma-separated string.
+  value: string | null
+  // Combinator with sibling rules sharing the same target.
+  logicalOp: 'and' | 'or'
+  // Disabled rules are returned but should be ignored by consumers.
+  enabled: boolean
+}
+
+interface ViewFilter {
+  id: string
+  fk_column_id: string | null
+  fk_parent_column_id: string | null
+  fk_parent_id: string | null
+  comparison_op: string
+  value: string | null
+  logical_op?: string
+  enabled?: boolean
+  is_group?: boolean | null
+}
+
+const rulesCache = new Map<string, { data: ConditionalRule[]; expiresAt: number }>()
+
+export async function getConditionalRules(viewId: string): Promise<ConditionalRule[]> {
+  const cached = rulesCache.get(viewId)
+  if (cached && Date.now() < cached.expiresAt) return cached.data
+  if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) return []
+
+  try {
+    const list = await nocoFetch<{ list: ViewFilter[] }>(`/api/v1/db/meta/views/${viewId}/filters`)
+    const rules: ConditionalRule[] = []
+    for (const f of list.list ?? []) {
+      // Only entries with a `fk_parent_column_id` are show/hide rules — the
+      // parent column is the one whose visibility we're driving.
+      if (!f.fk_parent_column_id || !f.fk_column_id) continue
+      if (f.is_group) continue
+      rules.push({
+        targetColumnId: f.fk_parent_column_id,
+        sourceColumnId: f.fk_column_id,
+        op: f.comparison_op,
+        value: f.value ?? null,
+        logicalOp: f.logical_op === 'or' ? 'or' : 'and',
+        enabled: f.enabled !== false,
+      })
+    }
+    rulesCache.set(viewId, { data: rules, expiresAt: Date.now() + CACHE_TTL })
+    return rules
+  } catch (err) {
+    console.warn(`[nocodb-meta] getConditionalRules(${viewId}) failed; treating form as unconditional:`, err)
+    return []
+  }
 }
 
 /**

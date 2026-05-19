@@ -12,11 +12,21 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 
+interface ConditionalRule {
+  targetColumnId: string
+  sourceColumnId: string
+  op: string
+  value: string | null
+  logicalOp: 'and' | 'or'
+  enabled: boolean
+}
+
 interface SchemaResponse {
   title: string
   subheading?: string
   successMsg?: string
   columns: FormColumn[]
+  conditionalRules?: ConditionalRule[]
 }
 
 const ADMIN_EMAILS = new Set(['lasse.jacobsen@ethereum.org'])
@@ -362,7 +372,12 @@ function FormInner({
       <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
         {schema.subheading && <FormSubheading text={schema.subheading} />}
 
-        <FormRenderer columns={schema.columns} hiddenFields={hiddenFields} viewId={viewId} />
+        <FormRenderer
+          columns={schema.columns}
+          hiddenFields={hiddenFields}
+          viewId={viewId}
+          conditionalRules={schema.conditionalRules}
+        />
 
         {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
 

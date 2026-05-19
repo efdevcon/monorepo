@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox'
 import { ChevronDown, X, FileText, Download, ExternalLink, Lock, ShieldCheck } from 'lucide-react'
 import { COUNTRIES } from './countries'
 import { renderInlineMarkdown } from './inline-markdown'
@@ -12,12 +13,76 @@ import { packEnvelope } from 'utils/age-envelope'
 import { rhfFieldName } from './rhf-key'
 
 export interface FormColumn {
+  // NocoDB column id (e.g. "ca5053xfrug7k1d"). Optional for back-compat —
+  // older schema responses may omit it. Required for conditional-rule
+  // matching (rules reference columns by id, not name).
+  id?: string
   title: string
   column_name: string
   uidt: string
   required: boolean
   description?: string
   options?: string[]
+}
+
+export interface ConditionalRule {
+  targetColumnId: string
+  sourceColumnId: string
+  op: string
+  value: string | null
+  logicalOp: 'and' | 'or'
+  enabled: boolean
+}
+
+// Evaluator for one rule, against a current form value. Handles the ops the
+// NocoDB form view UI actually exposes. Unknown ops fail closed (rule does
+// not match) so a future NocoDB op never accidentally shows a field.
+function evaluateRule(op: string, current: unknown, ruleValue: string | null): boolean {
+  const currentStr = current == null ? '' : String(current)
+  const isEmpty = current == null || currentStr === ''
+  switch (op) {
+    case 'eq':
+      return currentStr === (ruleValue ?? '')
+    case 'neq':
+      return currentStr !== (ruleValue ?? '')
+    case 'null':
+    case 'empty':
+    case 'blank':
+      return isEmpty
+    case 'notnull':
+    case 'notempty':
+    case 'notblank':
+      return !isEmpty
+    case 'anyof': {
+      if (ruleValue == null) return false
+      const values = ruleValue.split(',').map(v => v.trim())
+      if (Array.isArray(current)) return current.some(c => values.includes(String(c)))
+      return values.includes(currentStr)
+    }
+    case 'allof': {
+      if (ruleValue == null) return false
+      const values = ruleValue.split(',').map(v => v.trim())
+      if (Array.isArray(current)) {
+        const cs = current.map(String)
+        return values.every(v => cs.includes(v))
+      }
+      return values.length === 1 && values[0] === currentStr
+    }
+    case 'like':
+      return ruleValue != null && currentStr.toLowerCase().includes(ruleValue.toLowerCase())
+    case 'nlike':
+      return ruleValue != null && !currentStr.toLowerCase().includes(ruleValue.toLowerCase())
+    case 'gt':
+      return ruleValue != null && Number(currentStr) > Number(ruleValue)
+    case 'gte':
+      return ruleValue != null && Number(currentStr) >= Number(ruleValue)
+    case 'lt':
+      return ruleValue != null && Number(currentStr) < Number(ruleValue)
+    case 'lte':
+      return ruleValue != null && Number(currentStr) <= Number(ruleValue)
+    default:
+      return false
+  }
 }
 
 const CHAR_LIMITS: Record<string, number> = {
@@ -37,6 +102,7 @@ interface FormRendererProps {
   readOnlyFields?: string[]
   hiddenFields?: string[]
   viewId: string
+  conditionalRules?: ConditionalRule[]
 }
 
 const ATTACHMENT_MAX_BYTES = 10 * 1024 * 1024
@@ -489,6 +555,52 @@ function EncryptedAttachmentField({
   )
 }
 
+function CheckboxField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boolean }) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const rhfKey = rhfFieldName(col.column_name)
+  const checked = !!watch(rhfKey)
+  const error = errors[rhfKey]
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => (col.required ? v === true || `${col.title} is required` : true),
+    })
+  }, [register, rhfKey, col.required, col.title])
+
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="flex items-start gap-3 cursor-pointer">
+        <Checkbox
+          id={col.column_name}
+          checked={checked}
+          disabled={isReadOnly}
+          onCheckedChange={val => setValue(rhfKey, val === true, { shouldValidate: true })}
+          className="mt-0.5 shrink-0"
+        />
+        <span className="text-base text-[#160b2b] leading-6">
+          {col.title}
+          {col.required && <span className="text-[#b42124] ml-0.5">*</span>}
+        </span>
+      </label>
+      {col.description && (
+        <div className="pl-7">
+          <FieldDescription text={col.description} />
+        </div>
+      )}
+      {error && (
+        <div className="pl-7">
+          <FieldError message={error.message as string} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 function FieldLabel({ title, required }: { title: string; required: boolean }) {
   return (
     <label className="text-base font-bold text-[#160b2b] leading-6">
@@ -597,13 +709,63 @@ function SearchableSelect({
   )
 }
 
-export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [], viewId }: FormRendererProps) {
-  const { register, setValue, watch, formState: { errors } } = useFormContext()
+export function FormRenderer({
+  columns,
+  readOnlyFields = [],
+  hiddenFields = [],
+  viewId,
+  conditionalRules = [],
+}: FormRendererProps) {
+  const { register, setValue, watch, unregister, formState: { errors } } = useFormContext()
+
+  // Build the set of column names that should be hidden right now based on
+  // conditional rules. Subscribes to all watched form values so the set
+  // recomputes every keystroke / selection change without an effect dance.
+  const watchedValues = watch()
+  const colIdToName = useMemo(() => {
+    const m = new Map<string, string>()
+    for (const c of columns) if (c.id) m.set(c.id, c.column_name)
+    return m
+  }, [columns])
+
+  const conditionallyHidden = new Set<string>()
+  for (const col of columns) {
+    if (!col.id) continue
+    const rules = conditionalRules.filter(r => r.enabled && r.targetColumnId === col.id)
+    if (rules.length === 0) continue
+    const results = rules.map(r => {
+      const sourceName = colIdToName.get(r.sourceColumnId)
+      if (!sourceName) return false
+      const currentValue = watchedValues[rhfFieldName(sourceName)]
+      return evaluateRule(r.op, currentValue, r.value)
+    })
+    // Sibling rules sharing the same target combine via their `logicalOp`.
+    // NocoDB's UI defaults to `and`; if any rule on a target says `or`, treat
+    // the group as `or` (matches NocoDB's behaviour where all siblings share
+    // the same logical op).
+    const useOr = rules.some(r => r.logicalOp === 'or')
+    const visible = useOr ? results.some(Boolean) : results.every(Boolean)
+    if (!visible) conditionallyHidden.add(col.column_name)
+  }
+
+  // RHF defaults to `shouldUnregister: false`, so once a field has been
+  // mounted its validator + value persist after it unmounts. For
+  // conditionally-hidden fields that means a stale `required` rule blocks
+  // `handleSubmit` silently when the user toggles a parent select. Drop the
+  // registration and value whenever a field becomes hidden.
+  const hiddenSnapshot = [...conditionallyHidden].sort().join('|')
+  useEffect(() => {
+    if (!hiddenSnapshot) return
+    for (const name of hiddenSnapshot.split('|')) {
+      unregister(rhfFieldName(name))
+    }
+  }, [hiddenSnapshot, unregister])
 
   return (
     <div className="flex flex-col gap-6 w-full">
       {columns.map(col => {
         if (hiddenFields.includes(col.column_name)) return null
+        if (conditionallyHidden.has(col.column_name)) return null
         const isReadOnly = readOnlyFields.includes(col.column_name)
         // RHF parses `[...]` / `.` in field names — use a sanitized alias for
         // every register/setValue/watch/errors lookup; the original column
@@ -761,6 +923,10 @@ export function FormRenderer({ columns, readOnlyFields = [], hiddenFields = [], 
               {error && <FieldError message={error.message as string} />}
             </div>
           )
+        }
+
+        if (col.uidt === 'Checkbox') {
+          return <CheckboxField key={col.column_name} col={col} isReadOnly={isReadOnly} />
         }
 
         if (col.uidt === 'SingleSelect' && col.options) {
