@@ -17,7 +17,7 @@ const EMPTY: TicketAvailability = { available: null }
 const EMPTY_MAP: TicketAvailabilityMap = {}
 
 // ── Singleton store ─────────────────────────────────────────────────────────
-// `/api/tickets/availability` is polled at most once every POLL_INTERVAL_MS
+// `/api/tickets/availability/` is polled at most once every POLL_INTERVAL_MS
 // across the entire client. Every hook consumer subscribes to the same map
 // and re-renders on the same tick, so a page with 5 surfaces still produces
 // 1 request per interval — not 5.
@@ -31,7 +31,7 @@ async function poll() {
   if (inflight) return
   inflight = true
   try {
-    const res = await fetch('/api/tickets/availability')
+    const res = await fetch('/api/tickets/availability/')
     if (!res.ok) return
     const json = await res.json()
     const waves = json?.data?.waves
