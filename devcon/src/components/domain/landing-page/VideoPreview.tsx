@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import VideoPoster from './images/new/video-preview.jpg'
+import VideoPoster from './images/new/video-thumbnail.jpg'
 import { Play } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -11,7 +11,7 @@ export const VideoPreview = () => {
   return (
     <div className="relative pb-10">
       <div className="section">
-        <div className="relative">
+        <div className="relative w-full mx-auto lg:max-w-[1000px]">
           {/* Vertical side labels — 24px outside the video on each side (desktop only) */}
           <p
             className="hidden lg:block absolute right-full top-1/2 mr-6 uppercase tracking-[3px] text-sm text-[#1a0d33] whitespace-nowrap pointer-events-none z-10"
@@ -26,15 +26,15 @@ export const VideoPreview = () => {
             {t('location_label')}
           </p>
 
-          {/* Video container with rounded corners and shadow */}
-          <div className="relative aspect-[1312/610] rounded-2xl overflow-hidden border border-[rgba(34,17,68,0.1)] shadow-[0_2px_2px_0_rgba(22,11,43,0.1),0_20px_25px_0_rgba(22,11,43,0.1),0_8px_10px_0_rgba(22,11,43,0.1)]">
+          {/* Video container — standard YouTube 16:9 aspect */}
+          <div className="relative aspect-video rounded-2xl overflow-hidden border border-[rgba(34,17,68,0.1)] shadow-[0_2px_2px_0_rgba(22,11,43,0.1),0_20px_25px_0_rgba(22,11,43,0.1),0_8px_10px_0_rgba(22,11,43,0.1)]">
             {!playing && (
               <>
                 <Image
                   src={VideoPoster}
                   alt="Mumbai video preview"
                   fill
-                  className="object-cover scale-[1.035] translate-y-[0.5%]"
+                  className="object-cover"
                   priority={false}
                 />
                 <button
@@ -49,11 +49,11 @@ export const VideoPreview = () => {
             )}
             {playing && (
               <iframe
-                src="https://www.youtube.com/embed/st_A7rRr9tk?autoplay=1&modestbranding=1&rel=0"
+                src="https://www.youtube.com/embed/Big2gK-E5i8?autoplay=1&modestbranding=1&rel=0"
                 title="Devcon Mumbai"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="absolute inset-0 w-full h-full block border-0 scale-[1.02]"
+                className="absolute inset-0 w-full h-full block border-0"
               />
             )}
           </div>
