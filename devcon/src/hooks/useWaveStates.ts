@@ -53,7 +53,7 @@ function classify(
   idx: number,
   allWaves: TicketWave[],
   now: Date,
-  availability: TicketAvailability,
+  availability: TicketAvailability
 ): WaveState {
   if (!wave.openTimes || wave.openTimes.length === 0) {
     return { wave, status: 'tbd', countdown: null, upcoming: null, mounted: true }
@@ -78,7 +78,9 @@ function classify(
   }
 
   // Has at least one past openTime. Is a later wave already activated?
-  const supersededByNext = allWaves.slice(idx + 1).some(w => (w.openTimes ?? []).some(t => t.getTime() <= now.getTime()))
+  const supersededByNext = allWaves
+    .slice(idx + 1)
+    .some(w => (w.openTimes ?? []).some(t => t.getTime() <= now.getTime()))
   if (supersededByNext) {
     return { wave, status: 'closed', countdown: null, upcoming: null, mounted: true }
   }
@@ -116,9 +118,7 @@ export function useWaveStates(): WaveState[] {
   if (!now) {
     return TICKET_WAVES.map(w => ({ wave: w, status: 'countdown', countdown: null, upcoming: null, mounted: false }))
   }
-  return TICKET_WAVES.map((w, i) =>
-    classify(w, i, TICKET_WAVES, now, availabilityMap[w.id] ?? NO_AVAILABILITY),
-  )
+  return TICKET_WAVES.map((w, i) => classify(w, i, TICKET_WAVES, now, availabilityMap[w.id] ?? NO_AVAILABILITY))
 }
 
 export interface FeaturedWaveResult {
@@ -181,7 +181,8 @@ const EXTERNAL_STORE_URL = 'https://tickets.devcon.org'
  * `useNow()` mounts.
  */
 export function useTicketsStoreUrl(): string {
-  const now = useNow()
-  if (!now || FIRST_WAVE_OPEN_MS == null) return INTERNAL_STORE_URL
-  return now.getTime() >= FIRST_WAVE_OPEN_MS ? EXTERNAL_STORE_URL : INTERNAL_STORE_URL
+  return EXTERNAL_STORE_URL
+  // const now = useNow()
+  // if (!now || FIRST_WAVE_OPEN_MS == null) return INTERNAL_STORE_URL
+  // return now.getTime() >= FIRST_WAVE_OPEN_MS ? EXTERNAL_STORE_URL : INTERNAL_STORE_URL
 }

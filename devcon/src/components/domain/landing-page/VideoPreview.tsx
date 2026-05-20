@@ -11,7 +11,7 @@ export const VideoPreview = () => {
   return (
     <div className="relative pb-10">
       <div className="section">
-        <div className="relative w-full mx-auto lg:max-w-[1000px]">
+        <div className="relative w-full mx-auto lg:max-w-[1080px]">
           {/* Vertical side labels — 24px outside the video on each side (desktop only) */}
           <p
             className="hidden lg:block absolute right-full top-1/2 mr-6 uppercase tracking-[3px] text-sm text-[#1a0d33] whitespace-nowrap pointer-events-none z-10"
