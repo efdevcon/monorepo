@@ -14,8 +14,8 @@ import { getPaidOrdersByEmail } from 'services/pretix'
 // signed-in email having a paid Pretix order (purchaser or assigned attendee).
 const VISA_FORM_SLUG = 'visa-collection-attendees'
 
-// Column on the visa table where we write the comma-separated list of Pretix
-// order codes belonging to the signed-in user.
+// Column on the visa table where we write the newline-separated list of Pretix
+// order codes belonging to the signed-in user. (LongText column.)
 const VISA_ORDER_ID_COLUMN = 'Devcon 8 Order ID'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -126,7 +126,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
       }
 
-      data[VISA_ORDER_ID_COLUMN] = orders.map(o => o.code).join(', ')
+      data[VISA_ORDER_ID_COLUMN] = orders.map(o => o.code).join('\n')
     }
 
     // Email classification & eligibility gate is specific to the student
