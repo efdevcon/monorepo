@@ -17,6 +17,10 @@ type WritingTextProps = {
   damping?: number
   wordSpacing?: number
   triggerOnScroll?: boolean
+  // Base delay added to every word's animation, on top of the per-word stagger.
+  // Use this to chain multiple WritingText instances (e.g. four phrases that
+  // should "write" one after another) without rewriting them as one block.
+  delay?: number
 }
 
 function WritingText({
@@ -29,6 +33,7 @@ function WritingText({
   damping = 15,
   wordSpacing = 0.25,
   triggerOnScroll = false,
+  delay = 0,
 }: WritingTextProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-10%' })
@@ -68,7 +73,7 @@ function WritingText({
               type: 'spring',
               stiffness,
               damping,
-              delay: i * stagger,
+              delay: delay + i * stagger,
             }}
           >
             {entry.word}

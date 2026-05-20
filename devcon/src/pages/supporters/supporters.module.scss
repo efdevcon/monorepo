@@ -1018,6 +1018,12 @@
   gap: 16px;
 }
 
+.why-support-point-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .why-support-icon {
   color: #7235ed;
 }
@@ -1158,8 +1164,6 @@
   align-items: center;
   gap: 64px;
   margin-top: 104px;
-  padding-top: 64px;
-  border-top: 1px solid rgba(34, 17, 68, 0.08);
 
   // Stack at <=$lg so the body copy gets the full width instead of squeezing
   // into a narrow column next to the 400px CTA cell.
@@ -1168,7 +1172,6 @@
     align-items: stretch;
     gap: 32px;
     margin-top: 64px;
-    padding-top: 40px;
   }
 }
 

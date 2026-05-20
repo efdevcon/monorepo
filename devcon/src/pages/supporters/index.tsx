@@ -98,6 +98,7 @@ export default function SupportersProgramPage() {
 
   const navLinks = [
     { title: t('nav.about'), to: '#about' },
+    { title: t('nav.why_support'), to: '#why-support' },
     { title: t('nav.past_supporters'), to: '#past-supporters' },
     { title: t('nav.what_is'), to: '#what-is' },
     { title: t('nav.impact_booths'), to: '#impact' },
@@ -160,7 +161,7 @@ export default function SupportersProgramPage() {
         </section>
 
         {/* ── Why support DC8 India? — 3-icon card ─────────────── */}
-        <section className={css['why-support-section']}>
+        <section id="why-support" className={cn(css['why-support-section'], css['scroll-anchor'])}>
           <div className={css['why-support-card']}>
             <h3 className={css['why-support-heading']}>
               {t('why_support.heading_line_1')}
@@ -173,8 +174,10 @@ export default function SupportersProgramPage() {
                 return (
                   <div key={i} className={css['why-support-point']}>
                     <Icon size={32} strokeWidth={1.6} className={css['why-support-icon']} />
-                    <p className={css['why-support-point-title']}>{point.title}</p>
-                    <p className={css['why-support-point-body']}>{point.body}</p>
+                    <div className={css['why-support-point-copy']}>
+                      <p className={css['why-support-point-title']}>{point.title}</p>
+                      <p className={css['why-support-point-body']}>{point.body}</p>
+                    </div>
                   </div>
                 )
               })}
@@ -278,11 +281,12 @@ export default function SupportersProgramPage() {
           <div className={css['crops-display']} aria-hidden="true">
             <div className={css['crops-watermark']}>{t('values.watermark')}</div>
             <div className={css['crops-pillars']}>
-              {cropsPillars.map(p => (
+              {cropsPillars.map((p, i) => (
                 <WritingText
                   key={p}
                   text={p}
                   triggerOnScroll
+                  delay={i * 0.18}
                   stagger={0.06}
                   stiffness={150}
                   damping={18}

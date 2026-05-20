@@ -59,11 +59,11 @@ const useNavigationData = () => {
             url: '/ecosystem-program',
             type: 'page',
           },
-          // {
-          //   title: t('supporters_program'),
-          //   url: '/supporters',
-          //   type: 'page',
-          // },
+          {
+            title: t('supporters_program'),
+            url: '/supporters',
+            type: 'page',
+          },
           {
             title: t('academic_program'),
             url: '/academic-program',
