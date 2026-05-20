@@ -339,3 +339,80 @@ export async function checkDiscountRateLimit(clientIp: string): Promise<{ allowe
   await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
   return { allowed: true }
 }
+
+const RATE_LIMIT_VOUCHER_IP_WINDOW_MINUTES = 1
+const RATE_LIMIT_VOUCHER_IP_MAX = 30
+
+/**
+ * Voucher-validation rate limit. Per IP: 30 requests / minute. Without this
+ * the public `/validate-voucher` endpoint is a brute-force oracle for the
+ * voucher code namespace (codes are alphanumeric, often short).
+ */
+export async function checkVoucherValidationRateLimit(clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_VOUCHER_IP_WINDOW_MINUTES * 60 * 1000).toISOString()
+  const ipKey = `voucher_ip:${clientIp}`
+
+  const ipCount = await supabase
+    .from('x402_verify_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('key', ipKey)
+    .gte('created_at', ipSince)
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_VOUCHER_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
+  return { allowed: true }
+}
+
+const RATE_LIMIT_VOUCHER_EMAIL_WINDOW_MINUTES = 1
+const RATE_LIMIT_VOUCHER_EMAIL_IP_MAX = 10
+const RATE_LIMIT_VOUCHER_EMAIL_ADDR_MAX = 3
+
+/**
+ * Voucher-email rate limit (M10). Per IP: 10 requests / minute; per recipient
+ * email: 3 / minute. The endpoint is unauthenticated and the email address is
+ * caller-supplied, so without this it doubles as a phishing-assist relay
+ * (Devcon-branded email sent to any address using a known-valid voucher
+ * code) and a code-existence oracle.
+ *
+ * Email address is normalised (lowercased + plus-stripped) before keying so
+ * `victim+1@x.com` and `Victim@x.com` count as the same recipient.
+ */
+export async function checkVoucherEmailRateLimit(
+  clientIp: string,
+  email: string,
+): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const since = new Date(now.getTime() - RATE_LIMIT_VOUCHER_EMAIL_WINDOW_MINUTES * 60 * 1000).toISOString()
+
+  const ipKey = `voucher_email_ip:${clientIp}`
+  const normalisedEmail = email.trim().toLowerCase().split('@')
+  const localPart = (normalisedEmail[0] || '').split('+')[0]
+  const domainPart = normalisedEmail[1] || ''
+  const emailKey = `voucher_email_addr:${localPart}@${domainPart}`
+
+  const [ipCount, emailCount] = await Promise.all([
+    supabase
+      .from('x402_verify_attempts')
+      .select('id', { count: 'exact', head: true })
+      .eq('key', ipKey)
+      .gte('created_at', since),
+    supabase
+      .from('x402_verify_attempts')
+      .select('id', { count: 'exact', head: true })
+      .eq('key', emailKey)
+      .gte('created_at', since),
+  ])
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_VOUCHER_EMAIL_IP_MAX) return { allowed: false }
+  if ((emailCount.count ?? 0) >= RATE_LIMIT_VOUCHER_EMAIL_ADDR_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([
+    { key: ipKey },
+    { key: emailKey },
+  ])
+  return { allowed: true }
+}

@@ -25,9 +25,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         waves.map(async w => {
           try {
             const data = await getQuotaAvailability(w.quotaId)
+            // Deliberately omit `available_number` from the response. The
+            // boolean `available` is enough for every UI consumer (the wave
+            // either shows "Open Now" or stays in countdown / sold-out
+            // state); the raw count is sensitive — it leaks live inventory
+            // to anyone who polls this endpoint, useful for scalper bots,
+            // competitive observers, and timing-attack flows. Keep
+            // `quotaId` because the client treats it as an opaque key, not
+            // a meaningful number.
             return [
               w.id,
-              { available: !!data.available, available_number: data.available_number ?? null, quotaId: w.quotaId },
+              { available: !!data.available, quotaId: w.quotaId },
             ] as const
           } catch (err) {
             console.error(`Unable to fetch quota ${w.quotaId} for wave ${w.id}:`, err)
@@ -38,6 +46,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       hasAvailableVouchers().catch(() => undefined),
     ])
 
+    // CDN cache: `s-maxage=30` matches the in-process `cachedFetch` TTL on
+    // `getQuotaAvailability`, so the CDN refreshes at the same cadence the
+    // server-side cache would re-fetch anyway. `stale-while-revalidate=60`
+    // lets the CDN serve a slightly-stale response while it refreshes in the
+    // background — keeps the polling endpoint responsive without the
+    // function having to run on every visitor's 60-second tick.
+    res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=60')
     return res.status(200).json({
       code: 200,
       message: '',

@@ -3,7 +3,7 @@
  *
  * For each gasless token (USDC, USDT0) on each chain:
  *   1. Check wallet balance
- *   2. Verify on-chain EIP-712 domain params match our config
+ *   2. Verify onchain EIP-712 domain params match our config
  *   3. Sign an authorization (requires TEST_PAYER_PRIVATE_KEY)
  *   4. Simulate the transferWithAuthorization call via eth_call
  *
@@ -145,7 +145,7 @@ async function checkEthBalance(chainId: number): Promise<bigint> {
   }
 }
 
-// ── On-chain EIP-712 domain verification ──
+// ── Onchain EIP-712 domain verification ──
 
 async function verifyEip712Domain(config: GaslessTokenConfig): Promise<boolean> {
   const client = getClient(config.chainId)
@@ -168,9 +168,9 @@ async function verifyEip712Domain(config: GaslessTokenConfig): Promise<boolean> 
       pass(`${config.tokenSymbol} on ${chainName}: domain matches (name="${onChainName}", version="${onChainVersion}", chainId=${onChainChainId})`)
       return true
     } else {
-      if (!nameMatch) fail(`${config.tokenSymbol} on ${chainName}: name mismatch — config="${config.eip712Name}" vs on-chain="${onChainName}"`)
-      if (!versionMatch) fail(`${config.tokenSymbol} on ${chainName}: version mismatch — config="${config.eip712Version}" vs on-chain="${onChainVersion}"`)
-      if (!chainIdMatch) fail(`${config.tokenSymbol} on ${chainName}: chainId mismatch — config=${config.chainId} vs on-chain=${onChainChainId}`)
+      if (!nameMatch) fail(`${config.tokenSymbol} on ${chainName}: name mismatch — config="${config.eip712Name}" vs onchain="${onChainName}"`)
+      if (!versionMatch) fail(`${config.tokenSymbol} on ${chainName}: version mismatch — config="${config.eip712Version}" vs onchain="${onChainVersion}"`)
+      if (!chainIdMatch) fail(`${config.tokenSymbol} on ${chainName}: chainId mismatch — config=${config.chainId} vs onchain=${onChainChainId}`)
       return false
     }
   } catch {
@@ -204,8 +204,8 @@ async function verifyEip712Domain(config: GaslessTokenConfig): Promise<boolean> 
         }
         return true
       } else {
-        if (!nameMatch) fail(`${config.tokenSymbol} on ${chainName}: name mismatch — config="${config.eip712Name}" vs on-chain="${onChainName}"`)
-        if (!versionMatch) fail(`${config.tokenSymbol} on ${chainName}: version mismatch — config="${config.eip712Version}" vs on-chain="${onChainVersion}"`)
+        if (!nameMatch) fail(`${config.tokenSymbol} on ${chainName}: name mismatch — config="${config.eip712Name}" vs onchain="${onChainName}"`)
+        if (!versionMatch) fail(`${config.tokenSymbol} on ${chainName}: version mismatch — config="${config.eip712Version}" vs onchain="${onChainVersion}"`)
         return false
       }
     } catch (e2) {

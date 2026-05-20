@@ -156,14 +156,18 @@ $order-border: #dddae2;
 }
 
 .ticket-banner--pending {
-  background: #ffe0cc;
+  background: #ffc299;
 }
 
-.ticket-banner--expired {
-  background: #f92e32;
+// Expired + cancelled banners share Figma's `red/200` soft coral
+// (#fc9799) with the standard dark foreground text. Kept as separate
+// classes so a designer can diverge them later without touching JSX.
+.ticket-banner--expired,
+.ticket-banner--cancelled {
+  background: #fc9799;
 
   .ticket-banner-text {
-    color: #f9f8fa;
+    color: #160b2b;
   }
 }
 
@@ -465,9 +469,13 @@ $order-border: #dddae2;
   line-height: 1.5;
 }
 
-.status-badge-expired {
-  background: #f92e32;
-  color: #f9f8fa;
+// Expired + cancelled badges share the same coral pink as their banner
+// (Figma `red/200`). Dark text matches the paid badge so the row scans
+// at the same weight regardless of state.
+.status-badge-expired,
+.status-badge-cancelled {
+  background: #fc9799;
+  color: #160b2b;
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0 0.8125rem;
@@ -476,8 +484,8 @@ $order-border: #dddae2;
 }
 
 .status-badge-pending {
-  background: #ffe0cc;
-  color: #1a0d33;
+  background: #ffc299;
+  color: #160b2b;
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0 0.8125rem;

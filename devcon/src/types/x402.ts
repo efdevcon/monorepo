@@ -220,6 +220,25 @@ export function getUsdcConfigForChainId(chainId: number): GaslessTokenConfig | u
   return configs.find(c => c.chainId === chainId)
 }
 
+/** Resolve the ERC20 contract address for a (chainId, symbol) pair, used by
+ *  the admin refund flow to mirror whatever token the buyer originally paid
+ *  with (USDC, USDT0). Returns `null` for native ETH — the caller branches
+ *  on that and uses `sendTransaction({ to, value })` instead of an ERC20
+ *  contract call. Returns `undefined` if the chain/symbol combo isn't in
+ *  the supported assets list (the caller should surface a clear error
+ *  rather than fall back silently). */
+export function getTokenAddressForChainSymbol(chainId: number, symbol: string): string | null | undefined {
+  if (symbol === 'ETH') return null
+  const assets = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+  const asset = assets.find(a => {
+    const m = a.chainId.match(/^eip155:(\d+)$/)
+    return m !== null && parseInt(m[1], 10) === chainId && a.symbol === symbol
+  })
+  if (!asset) return undefined
+  const m = asset.asset.match(/^eip155:\d+\/erc20:(.+)$/)
+  return m ? m[1] : undefined
+}
+
 /** Look up gasless config by chain ID + token address */
 export function getGaslessTokenConfig(chainId: number, tokenAddress: string): GaslessTokenConfig | undefined {
   const configs = isTestnet ? GASLESS_CONFIGS_TESTNET : GASLESS_CONFIGS_MAINNET
