@@ -189,11 +189,16 @@ function StoreContent({
         const res = await fetch('/api/x402/tickets/')
         const data = await res.json()
         if (data.success) {
+          // `tickets` and `paymentInfo` are absent when the x402 catalog API
+          // is disabled (TICKETING.pretix.x402ApiEnabled=false) — the
+          // endpoint returns only `pluginSettings` then. Default to empty /
+          // null so this page renders the empty-state instead of crashing.
+          const rawTickets = data.data.tickets || []
           const tix = TICKETING.overrides.soldOut
-            ? data.data.tickets.map((t: TicketInfo) => ({ ...t, available: false, availableCount: 0 }))
-            : data.data.tickets
+            ? rawTickets.map((t: TicketInfo) => ({ ...t, available: false, availableCount: 0 }))
+            : rawTickets
           setTickets(tix)
-          setPaymentInfo(data.data.paymentInfo)
+          setPaymentInfo(data.data.paymentInfo || null)
         } else {
           setError(data.error || 'Failed to load tickets')
         }

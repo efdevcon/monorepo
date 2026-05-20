@@ -48,8 +48,11 @@ function checkRateLimit(ip: string): boolean {
 
 interface TicketsResponse {
   success: true
-  data: TicketPurchaseInfo & {
-    paymentInfo: {
+  data: Partial<TicketPurchaseInfo> & {
+    /** Payment configuration. Omitted entirely when `x402ApiEnabled` is
+     *  false — clients must guard with `if (data.paymentInfo)` before
+     *  reading any nested field. */
+    paymentInfo?: {
       network: string
       chainId: number
       tokenSymbol: string
@@ -92,6 +95,42 @@ export default async function handler(
   }
 
   try {
+    // Master kill switch for the catalog. When `x402ApiEnabled` is false the
+    // storefront's x402 buyer flow is parked (e.g. production while sales run
+    // through Pretix's hosted shop) — exposing the ticket catalog through
+    // this endpoint would leak inventory, voucher state, and per-item
+    // configuration to anyone. Skip the Pretix calls entirely and return
+    // *only* `pluginSettings` — no catalog, no event metadata, and no
+    // payment shell (which would still tell a probing client what chain /
+    // recipient / discount we'd use). The checkout page reads
+    // `pluginSettings.x402_enabled` to surface the "Crypto checkout is
+    // currently unavailable" notice and falls back to the Pretix-hosted
+    // shop redirect; with paymentInfo absent, downstream consumers that
+    // need wallet wiring (e.g. the payment selector) simply don't render.
+    if (!TICKETING.pretix.x402ApiEnabled) {
+      const pluginSettings = await getPluginSettings()
+      const response: TicketsResponse = {
+        success: true,
+        data: { pluginSettings },
+      }
+      res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=120')
+      return res.status(200).json(response)
+    }
+
+    const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
+    const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
+    const paymentInfo = {
+      network: usdcConfig.network,
+      chainId: usdcConfig.chainId,
+      tokenSymbol: usdcConfig.tokenSymbol,
+      tokenAddress: usdcConfig.tokenAddress,
+      tokenDecimals: usdcConfig.tokenDecimals,
+      discountForCrypto: TICKETING.payment.cryptoDiscountPercent > 0
+        ? `${TICKETING.payment.cryptoDiscountPercent}%`
+        : null,
+      supportedAssets,
+    }
+
     const locale = (req.query.locale as string) || 'en'
     const [ticketInfo, vouchersAvailable, pluginSettings] = await Promise.all([
       getTicketPurchaseInfo(locale),
@@ -104,25 +143,12 @@ export default async function handler(
       t.requireVoucher ? { ...t, vouchersAvailable } : t
     )
 
-    const usdcConfig = isTestnet ? BASE_SEPOLIA_USDC_CONFIG : BASE_USDC_CONFIG
-    const supportedAssets: SupportedAsset[] = isTestnet ? SUPPORTED_ASSETS_TESTNET : SUPPORTED_ASSETS_MAINNET
-
     const response: TicketsResponse = {
       success: true,
       data: {
         ...ticketInfo,
         tickets,
-        paymentInfo: {
-          network: usdcConfig.network,
-          chainId: usdcConfig.chainId,
-          tokenSymbol: usdcConfig.tokenSymbol,
-          tokenAddress: usdcConfig.tokenAddress,
-          tokenDecimals: usdcConfig.tokenDecimals,
-          discountForCrypto: TICKETING.payment.cryptoDiscountPercent > 0
-            ? `${TICKETING.payment.cryptoDiscountPercent}%`
-            : null,
-          supportedAssets,
-        },
+        paymentInfo,
         pluginSettings,
       },
     }

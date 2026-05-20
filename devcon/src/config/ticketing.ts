@@ -14,6 +14,7 @@ const ENV_CONFIG = {
       // status.ts and the checkout fallback redirect. Legacy slug-based
       // Pretix instances (e.g. dcdev2.ticketh.xyz) leave this `false`.
       customDomain: false,
+      x402ApiEnabled: true,
       ticketDiscountId: '6',
       defaultQuotaId: 116,
       testmode: true,
@@ -71,6 +72,7 @@ const ENV_CONFIG = {
       // (not /devcon/8/order/CODE/...). See development.pretix.customDomain
       // for details.
       customDomain: true,
+      x402ApiEnabled: false,
       ticketDiscountId: '2',
       defaultQuotaId: 116,
       testmode: true,
