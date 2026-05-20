@@ -168,6 +168,12 @@ export async function getItems(): Promise<PretixItem[]> {
   return cachedFetch('items', () => fetchAllPages<PretixItem>('items/'))
 }
 
+/** Uncached variant for callers (eg. M9 service-bypass guard) that need the
+ *  authoritative current rules — not a snapshot up to 60s stale. */
+export async function getItemsFresh(): Promise<PretixItem[]> {
+  return fetchAllPages<PretixItem>('items/')
+}
+
 export async function getItem(itemId: number): Promise<PretixItem> {
   return fetchPretix<PretixItem>(`items/${itemId}/`)
 }
@@ -195,7 +201,7 @@ export async function getEventSettings(): Promise<PretixEventSettings> {
 }
 
 export async function getQuotaAvailability(quotaId: number): Promise<PretixQuotaAvailability> {
-  return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 10_000)
+  return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 30_000)
 }
 
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
@@ -369,7 +375,7 @@ export async function confirmOrderPayment(
 
 /**
  * Get complete ticket purchase information including items, questions, and availability.
- * Results are cached for 60s (catalog) / 10s (availability) to avoid hammering the Pretix API.
+ * Results are cached for 60s (catalog) / 30s (availability) to avoid hammering the Pretix API.
  */
 export async function getTicketPurchaseInfo(locale = 'en'): Promise<TicketPurchaseInfo> {
   return cachedFetch(`ticketPurchaseInfo:${locale}`, () => _buildTicketPurchaseInfo(locale))
@@ -443,12 +449,15 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
           categoryName: category ? getLocalizedString(category.name, locale) : '',
           minCount: addon.min_count,
           maxCount: addon.max_count,
+          multiAllowed: addon.multi_allowed,
+          priceIncluded: addon.price_included,
           items: addonItems.map((ai) => ({
             id: ai.id,
             name: getLocalizedString(ai.name, locale),
             description: getLocalizedString(ai.description, locale) || null,
             price: ai.default_price,
             available: itemAvailability.get(ai.id)?.available ?? true,
+            picture: ai.picture || null,
             variations: ai.variations
               .filter((v) => v.active)
               .map((v) => ({
@@ -547,6 +556,16 @@ export interface VoucherInfo {
   itemId: number | null
   maxUsages: number
   redeemed: number
+  /** Pretix `Voucher.min_usages` — minimum positions that must redeem the
+   *  voucher in a single order. Single-ticket carts that go below this
+   *  threshold must be rejected (cf. M9 stopgap). */
+  minUsages: number
+  /** Pretix `Voucher.variation` — when set, voucher only applies to this
+   *  variation of `itemId`. */
+  variationId: number | null
+  /** Pretix `Voucher.quota` — when set, voucher is bound to a quota
+   *  (alternative to item-bound). */
+  quotaId: number | null
   error?: string
 }
 
@@ -562,6 +581,9 @@ export async function validateVoucher(code: string): Promise<VoucherInfo> {
     itemId: null,
     maxUsages: 0,
     redeemed: 0,
+    minUsages: 1,
+    variationId: null,
+    quotaId: null,
     error,
   })
 
@@ -597,6 +619,9 @@ export async function validateVoucher(code: string): Promise<VoucherInfo> {
       itemId: voucher.item || null,
       maxUsages: voucher.max_usages || 0,
       redeemed: voucher.redeemed || 0,
+      minUsages: voucher.min_usages || 1,
+      variationId: voucher.variation || null,
+      quotaId: voucher.quota || null,
     }
   } catch (e) {
     return invalid(`Failed to validate voucher: ${(e as Error).message}`)

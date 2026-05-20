@@ -8,17 +8,34 @@ const ENV_CONFIG = {
       baseUrl: 'https://dcdev2.ticketh.xyz',
       organizer: 'org',
       event: '8',
+      // True when `baseUrl` is a Pretix-managed custom event domain (Pretix's
+      // multidomain feature serves the event at root — `/order/...`, not
+      // `/{organizer}/{event}/order/...`). Drives URL construction in
+      // status.ts and the checkout fallback redirect. Legacy slug-based
+      // Pretix instances (e.g. dcdev2.ticketh.xyz) leave this `false`.
+      customDomain: false,
+      x402ApiEnabled: true,
       ticketDiscountId: '6',
       defaultQuotaId: 116,
       testmode: true,
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
       recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      // Crypto-payment discount percentage. 0 disables the discount entirely
+      // (no UI, no API field, no math). Set per environment. Default 0 so a
+      // new environment doesn't accidentally ship with a discount nobody
+      // signed off on.
       cryptoDiscountPercent: 3,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
@@ -47,23 +64,36 @@ const ENV_CONFIG = {
   production: {
     chainEnv: 'mainnet' as const,
     pretix: {
-      baseUrl: 'https://mum.ticketh.xyz',
+      baseUrl: 'https://tickets.devcon.org',
       organizer: 'devcon',
       event: '8',
+      // tickets.devcon.org is a Pretix-managed custom event domain — the
+      // event is mounted at root, so user-facing URLs are /order/CODE/...
+      // (not /devcon/8/order/CODE/...). See development.pretix.customDomain
+      // for details.
+      customDomain: true,
+      x402ApiEnabled: false,
       ticketDiscountId: '2',
-      defaultQuotaId: 116, // TODO: confirm production quota ID
-      // TODO: disable testmode for production
+      defaultQuotaId: 116,
       testmode: true,
     },
     checkout: {
       pretixRedirectUrl: '',
-      useDaimoPay: false,
+      forcePretixRedirect: false,
+      // Buyer-facing support inbox surfaced as "Need help?" mailto in the
+      // checkout UI. Empty hides the link.
+      supportEmail: 'support@devcon.org',
     },
     payment: {
-      recipientAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
-      // TODO: replace with production recipient address
-      // recipientAddress: '0xFc488aE9cB395B150574Aa5ce8a321c9100b1ee3',
-      cryptoDiscountPercent: 3,
+      recipientAddress: '0x403A3A81abA974dEb4faF20514ae34FAf9268E28',
+      relayerAddress: '0xA163a78C0b811A984fFe1B98b4b1b95BAb24aAcD',
+      // Crypto-payment discount percentage. 0 disables the discount entirely
+      // (no UI, no API field, no math). Set per environment. Default 0 so a
+      // new environment doesn't accidentally ship with a discount nobody
+      // signed off on.
+      cryptoDiscountPercent: 10,
+      fiatEnabled: true,
+      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
@@ -71,13 +101,10 @@ const ENV_CONFIG = {
     },
     self: {
       scope: 'devcon-india-local-discount',
-      // TODO: replace with production staging
       staging: false,
-      // TODO: replace after event
       requireEarlyAccess: false,
     },
     discount: {
-      // TODO: replace with india-early-bird
       collection: 'india-early-bird',
     },
     aadhaar: {
@@ -95,6 +122,19 @@ const ENV_CONFIG = {
 }
 
 export const TICKETING = ENV_CONFIG[TICKETING_ENV]
+
+/** Build a user-facing Pretix URL that respects the event's custom-domain
+ *  setting. On a custom event domain (`tickets.devcon.org`) the event lives at
+ *  root: `/order/CODE/...`. On a legacy slug-based instance, the path needs the
+ *  `/{organizer}/{event}/` prefix. Pass the path INCLUDING leading slash, e.g.
+ *  `'/order/ABCDE/secret/'`. Returns an absolute URL. */
+export function pretixEventUrl(path: string): string {
+  const base = TICKETING.pretix.baseUrl.replace(/\/$/, '')
+  const eventPrefix = TICKETING.pretix.customDomain
+    ? ''
+    : `/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}`
+  return `${base}${eventPrefix}${path}`
+}
 
 /** Whether the chain environment is testnet (derived from config) */
 export const isTestnet = TICKETING.chainEnv !== 'mainnet'

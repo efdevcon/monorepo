@@ -58,7 +58,13 @@ export default async function handler(
     return res.status(405).setHeader('Allow', 'POST').end()
   }
 
-  if (FACILITATOR_API_KEY && req.headers['x-facilitator-key'] !== FACILITATOR_API_KEY) {
+  // Fail closed when the env var is unset — the previous `KEY && header !==`
+  // form short-circuited to "allow" if the key was missing in production,
+  // turning a misconfiguration into an open facilitator endpoint.
+  if (!FACILITATOR_API_KEY) {
+    return res.status(500).json({ isValid: false, invalidReason: 'facilitator not configured: X402_FACILITATOR_API_KEY missing' as any })
+  }
+  if (req.headers['x-facilitator-key'] !== FACILITATOR_API_KEY) {
     return res.status(401).json({ isValid: false, invalidReason: 'unauthorized' as any })
   }
 

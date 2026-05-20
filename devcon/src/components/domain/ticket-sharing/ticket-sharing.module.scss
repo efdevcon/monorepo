@@ -259,6 +259,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Fade in once the image's bytes are decoded — avoids the pop-in when the
+     <img> swaps from empty (grey circle background) to fully painted. The
+     preload in <Head> typically completes before this element mounts, so the
+     `.avatarLoaded` class is applied immediately and the fade is imperceptible
+     in the warm case. On a slow network the fade gives a smooth handoff. */
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+
+  &.avatarLoaded {
+    opacity: 1;
+  }
 }
 
 .attendeeInfo {

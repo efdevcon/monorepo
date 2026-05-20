@@ -2,13 +2,18 @@ import { useSyncExternalStore } from 'react'
 
 export interface TicketAvailability {
   available: boolean | null // null = not yet loaded
-  available_number: number | null
 }
 
 export type TicketAvailabilityMap = Record<string, TicketAvailability>
 
-const POLL_INTERVAL_MS = 10_000
-const EMPTY: TicketAvailability = { available: null, available_number: null }
+// Poll once a minute. Wave-state UX doesn't need real-time accuracy — the
+// "Open Now" / "Sold out" flip only has to land within ~90s of the actual
+// event (60s poll + 30s server-side `cachedFetch` TTL in `services/pretix`),
+// well inside the 5-minute grace window in `useEthEarlyBirdWave`. Combined
+// with the endpoint's CDN cache header (`s-maxage=30, swr=60`), most polls
+// don't even hit our function — the CDN serves them.
+const POLL_INTERVAL_MS = 60_000
+const EMPTY: TicketAvailability = { available: null }
 const EMPTY_MAP: TicketAvailabilityMap = {}
 
 // ── Singleton store ─────────────────────────────────────────────────────────
@@ -33,10 +38,7 @@ async function poll() {
     if (!waves || typeof waves !== 'object') return
     const next: TicketAvailabilityMap = {}
     for (const [waveId, entry] of Object.entries(waves) as Array<[string, TicketAvailability]>) {
-      next[waveId] = {
-        available: !!entry.available,
-        available_number: entry.available_number ?? null,
-      }
+      next[waveId] = { available: !!entry.available }
     }
     latestMap = next
     for (const cb of subscribers) cb()
