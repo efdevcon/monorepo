@@ -2,7 +2,7 @@ import { TICKET_WAVES, type TicketWave } from 'config/waves'
 import { useNow } from './useNow'
 import { useTicketAvailabilityMap, type TicketAvailability } from './useTicketAvailability'
 
-const NO_AVAILABILITY: TicketAvailability = { available: null, available_number: null }
+const NO_AVAILABILITY: TicketAvailability = { available: null }
 
 export type WaveStatus = 'live' | 'countdown' | 'closed' | 'tbd'
 
