@@ -75,7 +75,7 @@ const ENV_CONFIG = {
       x402ApiEnabled: false,
       ticketDiscountId: '2',
       defaultQuotaId: 116,
-      testmode: true,
+      testmode: false,
     },
     checkout: {
       pretixRedirectUrl: '',
