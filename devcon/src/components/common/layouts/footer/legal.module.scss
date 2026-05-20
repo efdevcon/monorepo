@@ -48,6 +48,12 @@
     padding-left: 3em;
     margin-top: 1em;
   }
+  // Sections whose body is a plain paragraph (no nested ordered list) — e.g.
+  // FORCE MAJEURE, GOVERNING LAW — also need breathing room between the
+  // section title and the paragraph, matching the gap before nested lists.
+  > ol > li > p {
+    margin-top: 1em;
+  }
   > ol > li > ol:not(.lettered) > li {
     counter-increment: legal-subsection;
   }

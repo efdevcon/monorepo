@@ -10,6 +10,7 @@ import { EnrollmentProofUpload } from './EnrollmentProofUpload'
 import { supabase } from 'services/supabase-browser'
 import Link from 'next/link'
 import Image from 'next/image'
+import { FileText } from 'lucide-react'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 
 interface ConditionalRule {
@@ -289,6 +290,11 @@ const STUDENT_APPLICATION_SLUG = 'student-application'
 // email having a paid Pretix order (purchaser or assigned attendee).
 const VISA_FORM_SLUG = 'visa-collection-attendees'
 
+// Slug of the youth-ticket request form. The two consent checkboxes on this
+// form reference the Parental Consent Form — surface a link to the full
+// document so the parent/guardian can review before agreeing.
+const YOUTH_TICKET_SLUG = 'youth-ticket'
+
 function VisaTicketGate({
   email,
   onSignOut,
@@ -488,6 +494,24 @@ function FormInner({
         {requireOtp && formSlug === STUDENT_APPLICATION_SLUG && (
           <div className="mx-auto">
             <CriteriaEligibilityButton />
+          </div>
+        )}
+
+        {formSlug === YOUTH_TICKET_SLUG && (
+          <div className="flex items-start gap-3 px-4 py-3 bg-[#f3f0ff] border border-[#decffb] rounded-lg text-sm leading-5 text-[#1a0d33]">
+            <FileText className="w-4 h-4 mt-0.5 shrink-0 text-[#7235ed]" aria-hidden="true" />
+            <p>
+              Before you submit, please review the{' '}
+              <Link
+                href="/parental-consent-form"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#7235ed] hover:underline"
+              >
+                Devcon 8 Parental Consent and Release Terms
+              </Link>
+              .
+            </p>
           </div>
         )}
 

@@ -885,3 +885,414 @@ export const PrivacyNotice = () => {
     </div>
   )
 }
+
+export const ParentalConsentForm = () => {
+  return (
+    <div className={`${css['legal']} mb-8`}>
+      <p className="font-xl bold">DEVCON 8 PARENTAL CONSENT AND RELEASE TERMS</p>
+
+      <p className="font-xl bold">
+        PLEASE READ THESE TERMS BEFORE ALLOWING YOUR CHILD/WARD TO PURCHASE A TICKET TO, ATTEND, OR PARTICIPATE IN
+        DEVCON 8.
+      </p>
+
+      <p>
+        The Ethereum Foundation will host Devcon 8 in Mumbai, India from 3 to 6 November 2026 (
+        <b>&ldquo;Devcon&rdquo;</b>).
+      </p>
+
+      <p>
+        These parental consent and release terms (<b>&ldquo;Terms&rdquo;</b>) are issued by Stiftung Ethereum, a Swiss
+        Foundation located at Zeughausgasse 7a, 6300 Zug, Switzerland (<b>&ldquo;EF&rdquo;</b>, <b>&ldquo;We&rdquo;</b>,
+        or <b>&ldquo;Us&rdquo;</b>), and apply to any parent or legal guardian who consents to their child or ward
+        under the age of 18 (the <b>&ldquo;Minor&rdquo;</b>) purchasing a ticket to, attending, accessing, or
+        participating in Devcon (the <b>&ldquo;Parent/Guardian&rdquo;</b>).
+      </p>
+
+      <p>
+        By submitting the relevant online consent form, the Parent/Guardian agrees to these Terms on behalf of
+        themselves and, to the fullest extent permitted by applicable law, the Minor.
+      </p>
+
+      <ol>
+        <li>
+          <SectionTitle>GENERAL</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian represents and warrants that they are the parent or legal guardian of the Minor and
+              have full legal authority to accept these Terms and to give the consents, releases, waivers, and
+              undertakings set out in these Terms on behalf of themselves and, to the fullest extent permitted by
+              applicable law, the Minor.
+            </li>
+            <li>
+              The Parent/Guardian approves of and gives permission for the Minor to purchase a ticket to, attend,
+              access, and participate in Devcon.
+            </li>
+            <li>The Parent/Guardian understands that the Minor&rsquo;s attendance of and participation in Devcon is voluntary.</li>
+            <li>
+              The Parent/Guardian understands and agrees that the Minor&rsquo;s purchase of a ticket to, attendance at,
+              access to, and participation in Devcon are subject to the Devcon 8 Ticket Sale Terms and Conditions, the
+              Devcon 8 Privacy Notice, the Website Terms of Use, the Privacy Policy, the Cookie Policy, the Attendee
+              Code of Conduct, the Attendee Media Policy and Media Code of Conduct, and all other rules, policies,
+              guidelines, instructions, and requirements incorporated therein or issued by EF from time to time
+              (together, the <b>&ldquo;Devcon Terms&rdquo;</b>).
+            </li>
+            <li>
+              The Parent/Guardian agrees to ensure that the Minor understands and complies with these Terms and the
+              Devcon Terms. The Parent/Guardian further agrees to be responsible for the Minor&rsquo;s compliance with
+              these Terms and the Devcon Terms.
+            </li>
+            <li>
+              The Parent/Guardian understands and agrees that EF does not provide supervision, chaperoning,
+              guardianship, or other care services for minors at Devcon. The Parent/Guardian is solely responsible for
+              ensuring that appropriate supervision, care, transport, accommodation, emergency arrangements, and other
+              support are in place for the Minor at all times.
+            </li>
+            <li>
+              EF may require the Parent/Guardian and/or the Minor to provide identity verification, age verification,
+              parental or guardianship verification, ticket verification, security screening, or other checks as a
+              condition of ticket purchase, registration, check-in, admittance to, attendance of, or participation in
+              Devcon. Failure or refusal to complete any such checks may result in refusal of admittance, expulsion,
+              cancellation of the Minor&rsquo;s ticket, or revocation of the Minor&rsquo;s Wristband or other
+              credentials without refund.
+            </li>
+            <li>
+              The Parent/Guardian agrees that submission of the relevant online consent form, including by electronic
+              signature, checkbox confirmation, typed name, or other electronic acceptance method made available by EF,
+              constitutes the Parent/Guardian&rsquo;s binding acceptance of these Terms.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>TRAVEL, VISAS, AND ENTRY REQUIREMENTS</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian is solely responsible for all costs, arrangements, and legal requirements arising out
+              of or relating to the Minor&rsquo;s attendance of Devcon. This includes, but is not limited to,
+              passports, visas, entry permits, immigration permissions, security clearances, health requirements,
+              travel documents, insurance, transport, accommodation, supervision, and all related needs and expenses.
+            </li>
+            <li>
+              EF does not provide immigration, visa, travel, tax, legal, or other professional advice. Any information,
+              letter, acknowledgement, confirmation, or other document that EF may provide in connection with Devcon is
+              provided for administrative convenience only and does not guarantee that the Minor will receive a visa,
+              be allowed to board any transport, be allowed to enter the country in which Devcon is held, or be allowed
+              to remain in that country.
+            </li>
+            <li>
+              EF shall bear no liability if the Parent/Guardian or the Minor fails to make appropriate arrangements,
+              obtains the wrong visa or entry permission, is denied a visa, is refused boarding or entry, is detained,
+              removed, required to leave the country in which Devcon is held, or is otherwise unable to attend Devcon.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>ADMITTANCE, WRISTBANDS, AND EVENT CONTROL</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian understands and agrees that the Minor must hold a valid ticket and valid credentials
+              issued by EF to be admitted to and/or attend Devcon.
+            </li>
+            <li>
+              Tickets, order confirmations, Wristbands, QR codes, badges, passes, and any other credentials issued by
+              EF are personal revocable licences, remain the sole property of EF, and are subject to the Devcon Terms.
+              They do not confer any property right, entitlement, or guaranteed right of admission.
+            </li>
+            <li>
+              EF may, in its sole discretion and without refund or other liability, refuse admittance to, remove,
+              expel, suspend, or ban the Minor from present or future events in accordance with the Devcon Terms,
+              including for any breach or suspected breach of these Terms, the Devcon Terms, the Attendee Code of
+              Conduct, or any instruction or requirement issued by EF, the venue, service providers, security
+              personnel, or applicable authorities.
+            </li>
+            <li>
+              The Parent/Guardian understands and agrees that if EF requires the Minor to leave Devcon, the Minor must
+              immediately leave the venue and any other designated Devcon area. The Parent/Guardian shall be
+              responsible for collecting, supervising, or arranging for the supervision of the Minor where required.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>CHANGES TO THE EVENT</SectionTitle>
+          <ol>
+            <li>
+              Devcon is a multi-day conference subject to the needs and requirements of, without limitation, the venue,
+              location, local authorities, attendees, speakers, sponsors, supporters, administration, safety, security,
+              legal compliance, and operations. The Parent/Guardian understands and agrees that EF may, at its sole
+              discretion, alter, restrict, postpone, reschedule, relocate, or cancel any aspect of Devcon, including,
+              but not limited to, the content, programme, format, sessions, speakers, moderators, venue, rooms,
+              capacity, access rules, health or safety requirements, dates, and timings without notice and without
+              refund, except where required by applicable law or expressly decided by EF.
+            </li>
+            <li>
+              EF may implement safety, security, health, access, or other measures, including those mandated by
+              applicable law, instructed by local authorities, or required by the venue or service providers.
+              Compliance with such measures may be mandatory for ticket purchase, registration, check-in, admittance
+              to, attendance of, or participation in Devcon.
+            </li>
+            <li>
+              EF may amend, supplement, replace, or issue additional policies, rules, guidelines, instructions, or
+              requirements relating to Devcon at any time, including for legal, regulatory, safety, security,
+              operational, venue, community, or administrative reasons. Compliance with such policies, rules,
+              guidelines, instructions, and requirements may be mandatory for ticket purchase, registration, check-in,
+              admittance to, attendance of, or participation in Devcon.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>PHOTOGRAPHY, RECORDING, LIVE STREAMING, AND VIDEO RECORDING</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian acknowledges and agrees that EF may use images or videos taken at Devcon for present
+              and future marketing, archival, educational, community, and event-related materials, including images or
+              videos that may include the Minor&rsquo;s image or likeness, subject to the Devcon Terms and applicable
+              media policies.
+            </li>
+            <li>
+              If the Parent/Guardian does not wish the Minor to appear in media images or videos at Devcon, the
+              Parent/Guardian shall review and comply with the Attendee Media Policy and any applicable opt-out or
+              media preference procedure made available by EF.
+            </li>
+            <li>
+              The Parent/Guardian understands and agrees that the Minor may not record, stream, or otherwise broadcast
+              audio or video of any and all sessions at Devcon except as permitted under the Devcon Terms or applicable
+              media policies. The Parent/Guardian further understands and agrees that the Minor is responsible for
+              compliance with all applicable intellectual property, privacy, and publicity laws, rules, and
+              regulations.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>PRIVACY AND PERSONAL DATA</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian acknowledges and agrees that EF may process personal data relating to the
+              Parent/Guardian and the Minor in connection with the Minor&rsquo;s ticket purchase, registration,
+              check-in, admittance, attendance, participation, safety, security, and administration of Devcon, in
+              accordance with the Devcon 8 Privacy Notice and the Devcon Terms.
+            </li>
+            <li>
+              Such personal data may include the Minor&rsquo;s name, contact details, ticket purchase information,
+              eligibility information, age or identity verification information, parental or guardianship consent
+              information, and any other information reasonably required for the purposes set out in the Devcon 8
+              Privacy Notice and the Devcon Terms.
+            </li>
+            <li>
+              The Parent/Guardian understands and agrees that such personal data may be processed by EF and by
+              third-party platforms, service providers, verification providers, identity verification providers,
+              sanctions screening providers, venue operators, security providers, and other persons involved in the
+              administration, safety, security, and operation of Devcon, in each case as described in the Devcon 8
+              Privacy Notice and the Devcon Terms.
+            </li>
+            <li>
+              The Parent/Guardian consents, to the extent such consent is required by applicable law, to EF&rsquo;s
+              processing of the Minor&rsquo;s personal data for the purposes of administering the Minor&rsquo;s ticket
+              purchase, registration, check-in, admittance to, attendance of, and participation in Devcon.
+            </li>
+            <li>
+              The Parent/Guardian understands that failure to provide required personal data, consents, confirmations,
+              or verification information may prevent the Minor from purchasing a ticket to, attending, accessing, or
+              participating in Devcon.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>FORCE MAJEURE</SectionTitle>
+          <p>
+            EF shall not be held responsible for any delay or failure in the performance of its obligations under these
+            Terms or the Devcon Terms to the extent that such delay or failure is caused by any event, circumstance, or
+            cause beyond EF&rsquo;s reasonable control, including, but not limited to, fire, flood, earthquakes,
+            strike, civil, governmental, or military authority, acts of God, acts of terrorism, acts of war, disease,
+            epidemics or pandemics, blackouts, insurrections, riots, civil disturbances, electrical disruptions,
+            third-party injunctions, the unavailability of all or part of the venue, or any other event, circumstance,
+            or cause that makes it illegal, impossible, or impracticable for Devcon, or any part of Devcon, to be held,
+            operated, or made available as planned. For one or more of such reasons, EF may postpone, reschedule,
+            relocate, modify, restrict, or cancel any part of or the entirety of Devcon without liability on its part.
+            In the event any part of or the entirety of Devcon cannot be held, operated, or made available as planned,
+            or is postponed, rescheduled, relocated, modified, restricted, or cancelled pursuant to this section, EF
+            shall not be liable to the Parent/Guardian or the Minor for any incidental, consequential, special, direct,
+            or indirect damages, costs, or losses incurred, including, but not limited to, transportation costs,
+            accommodation costs, visa costs, insurance costs, or financial losses. EF will review refund or fee
+            transfer requests submitted in writing on a case-by-case basis.
+          </p>
+        </li>
+
+        <li>
+          <SectionTitle>PRESENTATIONS, VIEWS, AND MATERIALS</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian acknowledges and agrees that the views expressed by any Devcon attendee, speaker,
+              sponsor, supporter, exhibitor, or other participant should not be taken as those of EF. All Devcon
+              attendees, speakers, sponsors, supporters, exhibitors, and other participants are solely responsible for
+              the content of any and all of their own presentations, publications, statements, activities, and related
+              materials. The presence of any person, project, protocol, product, service, or other initiative at Devcon
+              does not constitute EF&rsquo;s endorsement, recommendation, approval, verification, or support of that
+              person, project, protocol, product, service, or initiative.
+            </li>
+            <li>
+              As Devcon is an educational conference, none of the presentations, publications, statements, activities,
+              or related materials at or in connection with Devcon should be taken as investment, financial, trading,
+              tax, legal, regulatory, accounting, or other professional advice, or as any offer, solicitation,
+              recommendation, inducement, or promotion to buy, sell, subscribe for, hold, or otherwise deal in any
+              investment, security, financial product, or regulated product or service.
+            </li>
+            <li>
+              The Parent/Guardian acknowledges and agrees, on behalf of themselves and the Minor, that EF gives no
+              warranties in respect of any aspect of Devcon or any materials relating to or offered at Devcon and, to
+              the fullest extent possible under applicable law, disclaims all implied warranties, including, but not
+              limited to, warranties of fitness for a particular purpose, accuracy, timeliness, or merchantability.
+              Devcon is provided on an &ldquo;as-is&rdquo; basis. Neither EF nor its affiliates accept any
+              responsibility or liability for reliance by the Parent/Guardian, the Minor, or any person on any aspect
+              of Devcon or any information provided at Devcon.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>PERSONAL INJURY, LOSS, AND INDEMNIFICATION</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian acknowledges and agrees, on behalf of themselves and the Minor, that the Minor
+              attends, accesses, and participates in Devcon at their own risk. The Parent/Guardian and the Minor assume
+              all risk and danger of personal injury, death, property damage, property loss, and all other hazards and
+              losses arising from or related in any way to Devcon, whether occurring prior to, during, or after Devcon.
+            </li>
+            <li>
+              To the fullest extent permissible by applicable law, the Parent/Guardian, on behalf of themselves and the
+              Minor, releases EF and its respective directors, officers, council members, agents, employees,
+              contractors, representatives, volunteers, and service providers (collectively,{' '}
+              <b>&ldquo;Indemnitees&rdquo;</b>) from any and all claims arising out of or relating to the
+              Minor&rsquo;s purchase of a ticket to, attendance of, access to, or participation in Devcon.
+            </li>
+            <li>
+              The Parent/Guardian shall indemnify EF and hold EF harmless, together with the Indemnitees, from and
+              against any and all claims, suits, causes of action, damages, losses, liabilities, costs, and expenses,
+              including, but not limited to, reasonable attorneys&rsquo; fees and court costs, of any kind whatsoever
+              arising out of or in connection with: (a) the Minor&rsquo;s admittance to, attendance of, access to, or
+              participation in Devcon; (b) the purchase of a ticket for the Minor; (c) the Minor&rsquo;s use of the
+              Wristband or other credentials; (d) any breach of these Terms or the Devcon Terms by the Parent/Guardian
+              or the Minor; or (e) any act or omission, neglect, or wrongdoing by the Parent/Guardian or the Minor.
+            </li>
+            <li>This section shall survive the termination or expiration of these Terms.</li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>DISCLAIMER AND LIMITATION OF LIABILITY</SectionTitle>
+          <ol>
+            <li>
+              Except as required by law, neither EF nor its affiliates shall be liable for any direct, indirect,
+              special, incidental, or consequential costs, damages, or losses arising directly or indirectly from
+              Devcon or any other aspect related thereto or in connection with these Terms or the Devcon Terms.
+            </li>
+            <li>
+              EF&rsquo;s maximum aggregate liability for any claim in any way connected with or arising from Devcon,
+              these Terms, or the Devcon Terms, whether in contract, tort, or otherwise, including any negligent act or
+              omission, shall be limited to the amount paid to EF by or on behalf of the Minor under these Terms and/or
+              the Devcon Terms. The foregoing does not affect any liability which cannot be excluded or limited under
+              applicable law.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>COMPLIANCE WITH LAWS, RULES, AND REGULATIONS</SectionTitle>
+          <ol>
+            <li>
+              The Parent/Guardian acknowledges and agrees that they and the Minor are responsible for all personal
+              property brought to Devcon.
+            </li>
+            <li>
+              The Parent/Guardian agrees, and shall ensure that the Minor agrees, to comply with these Terms, the
+              Devcon Terms, all applicable Devcon rules and policies, all applicable laws, rules, ordinances,
+              regulations, sanctions, export controls, immigration requirements, and other legal requirements that
+              apply to the Parent/Guardian, the Minor, or the Minor&rsquo;s purchase of a ticket to, attendance of, or
+              participation in Devcon.
+            </li>
+            <li>
+              The Parent/Guardian agrees, and shall ensure that the Minor agrees, that the Minor&rsquo;s purchase of a
+              ticket to, attendance of, and participation in Devcon will not be for any unlawful purpose and will not
+              violate, cause EF to violate, or assist in the violation of, any law, statute, ordinance, regulation,
+              sanctions programme, export control, anti-money laundering law, anti-bribery law, anti-corruption law,
+              counter-terrorism financing law, immigration requirement, or other legal restriction applicable to the
+              Parent/Guardian, the Minor, EF, Devcon, the venue, payment providers, service providers, or the relevant
+              transaction.
+            </li>
+            <li>
+              The Parent/Guardian understands and agrees that Devcon is an educational conference and is not a sales
+              conference, employment job fair, investment conference, fundraising venue, financial promotion venue, or
+              other type of conference. The Parent/Guardian shall ensure that the Minor does not engage in any
+              unlawful, fraudulent, deceptive, non-compliant, or unauthorised activity at or in connection with Devcon,
+              including any unlawful or non-compliant solicitation, sale, marketing, fundraising, token sale,
+              securities-related activity, financial promotion, investment activity, or other regulated activity.
+            </li>
+            <li>
+              To the extent permissible by law, the Parent/Guardian, on behalf of themselves and the Minor, waives any
+              rights and claims for damages arising out of or relating to the enforcement of the Wristband control
+              restrictions, the prohibited activities restrictions, the video restrictions, and the other restrictions
+              expressly set forth in these Terms or the Devcon Terms.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>WAIVER AND SEVERABILITY</SectionTitle>
+          <ol>
+            <li>
+              No waiver by EF of any term or condition set out in these Terms or the Devcon Terms shall be deemed a
+              further or continuing waiver of such term or condition or a waiver of any other term or condition, and
+              any failure of EF to assert a right or provision under these Terms or the Devcon Terms shall not
+              constitute a waiver of such right or provision.
+            </li>
+            <li>
+              If any provision of these Terms is held by a court, arbitral tribunal, or other tribunal of competent
+              jurisdiction to be invalid, illegal, or unenforceable for any reason, such provision shall be eliminated
+              or limited to the minimum extent such that the remaining provisions of these Terms will continue in full
+              force and effect.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+          <SectionTitle>GOVERNING LAW</SectionTitle>
+          <p>
+            These Terms and all matters relating to Devcon shall be governed by and construed in accordance with the
+            laws of Switzerland, excluding treaties or international conventions such as the UN Convention on Contracts
+            for the International Sale of Goods, and without regard for conflicts of laws principles.
+          </p>
+        </li>
+
+        <li>
+          <SectionTitle>DISPUTE RESOLUTION</SectionTitle>
+          <p>
+            Any dispute, controversy, or claim arising out of or relating to these Terms, including the validity,
+            invalidity, breach, or termination thereof, shall be resolved by arbitration in accordance with the Swiss
+            Rules of International Arbitration of the Swiss Chambers&rsquo; Arbitration Institution in force on the
+            date on which the Notice of Arbitration is submitted in accordance with those Rules. The number of
+            arbitrators shall be one. The seat of the arbitration shall be Zurich unless the parties agree on a
+            different seat. The arbitral proceedings shall be conducted in English.
+          </p>
+        </li>
+
+        <li>
+          <SectionTitle>ENTIRE AGREEMENT</SectionTitle>
+          <p>
+            These Terms, together with the Devcon Terms, constitute the sole and entire agreement between the
+            Parent/Guardian and EF with respect to the Parent/Guardian&rsquo;s consent to the Minor&rsquo;s purchase of
+            a ticket to, admittance to, attendance of, access to, or participation in Devcon and supersede all prior
+            and contemporaneous understandings, agreements, representations, and warranties, both written and oral,
+            with respect to the same. The Parent/Guardian agrees that they have not accepted these Terms in reliance
+            on, and shall have no remedy in respect of, any statement, representation, covenant, warranty, undertaking,
+            or indemnity by any person other than as expressly set out in these Terms or the Devcon Terms.
+          </p>
+        </li>
+      </ol>
+    </div>
+  )
+}
