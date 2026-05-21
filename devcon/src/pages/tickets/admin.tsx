@@ -112,6 +112,28 @@ interface WalletInfo {
  *  who started the wc_inject crypto checkout but verify never completed
  *  (closed browser, RPC blip, etc.). Surfaced so an admin can recover the
  *  on-chain tx hash out-of-band and manually verify the payment. */
+interface IncomingTx {
+  txHash: string
+  chainId: number
+  chainName: string
+  symbol: string
+  rawAmount: string | null
+  decimals: number | null
+  from: string
+  to: string
+  blockNum: string | null
+  timestamp: number
+}
+
+interface IncomingTxsResponse {
+  success: boolean
+  days: number
+  receiveAddress: string
+  byChain: Record<string, { count: number; error?: string }>
+  incoming: IncomingTx[]
+  errors: Record<string, string>
+}
+
 interface WcUnpaidOrder {
   orderCode: string
   orderSecret: string
@@ -1197,8 +1219,11 @@ function WcManualVerifyModal({
   onVerified: () => void
 }) {
   const [txHash, setTxHash] = useState('')
-  const [symbol, setSymbol] = useState<string>(order.quote?.symbol ?? 'USDC')
-  const [chainId, setChainId] = useState<number>(order.quote?.chainId ?? 8453)
+  // Default to ETH on Ethereum mainnet when the buyer never reached the
+  // create-quote step — that's the most common manual-recovery case
+  // (legacy wc_inject paid in native ETH on L1).
+  const [symbol, setSymbol] = useState<string>(order.quote?.symbol ?? 'ETH')
+  const [chainId, setChainId] = useState<number>(order.quote?.chainId ?? 1)
   const [payer, setPayer] = useState<string>(order.quote?.intendedPayer ?? '')
   const [step, setStep] = useState<'form' | 'submitting' | 'done' | 'error'>('form')
   const [error, setError] = useState<string | null>(null)
@@ -1457,6 +1482,20 @@ function AdminContent() {
   const [loginError, setLoginError] = useState('')
   const [data, setData] = useState<OrdersResponse | null>(null)
   const [loading, setLoading] = useState(false)
+  const [incomingTxsData, setIncomingTxsData] = useState<IncomingTxsResponse | null>(null)
+  const [incomingTxsLoading, setIncomingTxsLoading] = useState(false)
+  const [incomingTxsDays, setIncomingTxsDays] = useState(7)
+  const [incomingTxsError, setIncomingTxsError] = useState<string | null>(null)
+
+  // Collapsible sections — all four heavy tables are collapsed on first
+  // load so the admin lands on the wallet panels + stats only and opens
+  // tables explicitly. Visibility lives in sessionStorage so re-renders
+  // (auto-poll, modal close) don't reset the user's expansion choices.
+  const [sectionsOpen, setSectionsOpen] = useState<Record<string, boolean>>({
+    completed: false, pending: false, orphan: false, wcUnpaid: false,
+  })
+  const toggleSection = (k: string) =>
+    setSectionsOpen(s => ({ ...s, [k]: !s[k] }))
   const [search, setSearch] = useState('')
   const [autoRefresh, setAutoRefresh] = useState(true)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -1496,6 +1535,29 @@ function AdminContent() {
     []
   )
 
+  const fetchIncomingTxs = useCallback(
+    async (key: string, days: number) => {
+      setIncomingTxsLoading(true)
+      setIncomingTxsError(null)
+      try {
+        const res = await fetch(`/api/x402/admin/incoming-txs/?days=${days}`, {
+          headers: { 'x-admin-key': key },
+        })
+        const json: IncomingTxsResponse = await res.json()
+        if (!res.ok || !json.success) {
+          setIncomingTxsError((json as unknown as { error?: string }).error || `HTTP ${res.status}`)
+          return
+        }
+        setIncomingTxsData(json)
+      } catch (e) {
+        setIncomingTxsError((e as Error).message || 'Network error')
+      } finally {
+        setIncomingTxsLoading(false)
+      }
+    },
+    []
+  )
+
   // Check sessionStorage on mount
   useEffect(() => {
     const stored = sessionStorage.getItem(STORAGE_KEY)
@@ -1509,6 +1571,19 @@ function AdminContent() {
   useEffect(() => {
     if (authed && secret) fetchOrders(secret)
   }, [authed, secret, fetchOrders])
+
+  // Auto-load incoming txs once on first auth so the orphan list is
+  // populated when the admin expands the section. Uses the current
+  // `incomingTxsDays` (default 7) — admin can change days + click
+  // Refresh to re-fetch with a different window. Skips the auto-fetch
+  // if the data is already loaded (e.g. on a re-render after modal
+  // close) to avoid burning Alchemy quota.
+  useEffect(() => {
+    if (authed && secret && !incomingTxsData && !incomingTxsLoading) {
+      fetchIncomingTxs(secret, incomingTxsDays)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authed, secret])
 
   // Auto-refresh
   useEffect(() => {
@@ -1759,6 +1834,47 @@ function AdminContent() {
 
   // Same idea, keyed by the quote's intended payer wallet — catches buyers
   // who retried with a different email but the same address.
+  // Set of tx hashes (lowercased) already recorded against a completed
+  // order — both x402 and legacy wc_inject share this list. Used to flag
+  // orphan transfers in the incoming-txs panel without a second backend
+  // round-trip. Also includes refunded orders' tx hashes since those
+  // were legitimate payments at one point, just reversed.
+  const knownTxHashes = useMemo(() => {
+    const s = new Set<string>()
+    for (const o of data?.completed ?? []) {
+      if (o.txHash) s.add(o.txHash.toLowerCase())
+    }
+    return s
+  }, [data?.completed])
+
+  // Per-chain block cutoff: ignore everything mined before the Devcon
+  // ticket-sale start on that chain. Without this, the orphan list
+  // surfaces years of unrelated incoming transfers that pre-date this
+  // event. Add other chains here once their cutoff blocks are confirmed.
+  const ORPHAN_BLOCK_CUTOFF_BY_CHAIN: Record<number, number> = {
+    1: 25137422, // Ethereum mainnet — Devcon sale start
+  }
+
+  // Orphans = incoming transfers whose tx hash isn't in `knownTxHashes`.
+  // Pure client-side filter so we re-derive on order data refresh too,
+  // not just when the incoming-txs panel reloads.
+  const orphanIncomingTxs = useMemo(() => {
+    return (incomingTxsData?.incoming ?? []).filter(tx => {
+      if (knownTxHashes.has(tx.txHash.toLowerCase())) return false
+      const cutoff = ORPHAN_BLOCK_CUTOFF_BY_CHAIN[tx.chainId]
+      if (cutoff != null && tx.blockNum) {
+        // `blockNum` arrives as a hex string from Alchemy (e.g. "0x18f4..").
+        try {
+          if (BigInt(tx.blockNum) <= BigInt(cutoff)) return false
+        } catch {
+          // unparseable — keep the row rather than silently dropping it
+        }
+      }
+      return true
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incomingTxsData?.incoming, knownTxHashes])
+
   const wcUnpaidQuotedByPayer = useMemo(() => {
     const m: Record<string, number> = {}
     for (const o of data?.wcUnpaid ?? []) {
@@ -1861,12 +1977,41 @@ function AdminContent() {
     exportCsv(`x402-pending-${date}.csv`, headers, rows)
   }
 
+  function exportOrphansCsv() {
+    const headers = [
+      'Chain ID', 'Chain', 'Token', 'Decimals', 'Raw Amount', 'Formatted Amount',
+      'From', 'To', 'Tx Hash', 'Block Num', 'Timestamp (UTC)', 'Tx Explorer', 'Address Explorer',
+    ]
+    const rows = orphanIncomingTxs.map(tx => {
+      const formatted = tx.rawAmount && tx.symbol ? formatCryptoAmount(tx.rawAmount, tx.symbol) : ''
+      // blockNum from Alchemy is hex; export both raw and decimal would be
+      // overkill — admins paste the hex into block explorers fine.
+      return [
+        String(tx.chainId),
+        tx.chainName,
+        tx.symbol,
+        tx.decimals != null ? String(tx.decimals) : '',
+        tx.rawAmount ?? '',
+        formatted,
+        tx.from,
+        tx.to,
+        tx.txHash,
+        tx.blockNum ?? '',
+        new Date(tx.timestamp * 1000).toISOString(),
+        txExplorerUrl(tx.txHash, tx.chainId),
+        addressExplorerUrl(tx.from, tx.chainId),
+      ]
+    })
+    const date = new Date().toISOString().slice(0, 10)
+    exportCsv(`x402-orphans-${date}.csv`, headers, rows)
+  }
+
   // Not authed — login prompt
   if (!authed) {
     return (
       <div className={css.page}>
         <Head>
-          <title>x402 Admin</title>
+          <title>Crypto Payment Monitor Admin</title>
         </Head>
         <div className={css.login}>
           <div className={css['login-card']}>
@@ -2032,11 +2177,18 @@ function AdminContent() {
       {/* Completed Orders */}
       <div className={css.section}>
         <div className={css['section-header']}>
-          <h2 className={css['section-title']}>Completed Orders ({activeCompleted.length})</h2>
+          <h2
+            className={css['section-title']}
+            onClick={() => toggleSection('completed')}
+            style={{ cursor: 'pointer', userSelect: 'none' }}
+          >
+            {sectionsOpen.completed ? '▾' : '▸'} Completed Orders ({activeCompleted.length})
+          </h2>
           <button className={css['export-btn']} onClick={exportCompletedCsv} disabled={filteredCompleted.length === 0}>
             Export CSV
           </button>
         </div>
+        {sectionsOpen.completed && (
         <div className={css['table-wrap']}>
           {activeCompleted.length === 0 ? (
             <div className={css.empty}>No completed orders</div>
@@ -2171,6 +2323,7 @@ function AdminContent() {
             </table>
           )}
         </div>
+        )}
       </div>
 
       {/* Refunded Orders */}
@@ -2274,11 +2427,18 @@ function AdminContent() {
       {/* Pending Orders */}
       <div className={css.section}>
         <div className={css['section-header']}>
-          <h2 className={css['section-title']}>Pending Orders ({filteredPending.length})</h2>
+          <h2
+            className={css['section-title']}
+            onClick={() => toggleSection('pending')}
+            style={{ cursor: 'pointer', userSelect: 'none' }}
+          >
+            {sectionsOpen.pending ? '▾' : '▸'} Pending Orders ({filteredPending.length})
+          </h2>
           <button className={css['export-btn']} onClick={exportPendingCsv} disabled={filteredPending.length === 0}>
             Export CSV
           </button>
         </div>
+        {sectionsOpen.pending && (
         <div className={css['table-wrap']}>
           {filteredPending.length === 0 ? (
             <div className={css.empty}>No pending orders</div>
@@ -2354,6 +2514,136 @@ function AdminContent() {
             </table>
           )}
         </div>
+        )}
+      </div>
+
+      {/* Orphan incoming transactions: on-chain payments to receive_address
+          (last N days, via Alchemy) that aren't linked to any known order.
+          Lets admin spot buyers who paid but whose order didn't get
+          verified — typically resolved via the Unpaid wc_inject section
+          below or by reaching out to the buyer for an order code. */}
+      <div className={css.section}>
+        <div className={css['section-header']}>
+          <h2
+            className={css['section-title']}
+            onClick={() => toggleSection('orphan')}
+            style={{ cursor: 'pointer', userSelect: 'none' }}
+          >
+            {sectionsOpen.orphan ? '▾' : '▸'} Orphan Incoming Transactions
+            {incomingTxsData && ` (${orphanIncomingTxs.length} orphan / ${incomingTxsData.incoming.length} incoming, last ${incomingTxsData.days}d)`}
+          </h2>
+          {sectionsOpen.orphan && (
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <label style={{ display: 'flex', gap: 4, alignItems: 'center', fontSize: 13 }}>
+                Days:
+                <select
+                  value={incomingTxsDays}
+                  onChange={e => setIncomingTxsDays(Number(e.target.value))}
+                  style={{ padding: '4px 6px', border: '1px solid #ccc', borderRadius: 4 }}
+                >
+                  <option value={1}>1</option>
+                  <option value={3}>3</option>
+                  <option value={7}>7</option>
+                  <option value={14}>14</option>
+                  <option value={30}>30</option>
+                </select>
+              </label>
+              <button
+                className={css['refresh-btn']}
+                onClick={() => fetchIncomingTxs(secret, incomingTxsDays)}
+                disabled={incomingTxsLoading}
+              >
+                {incomingTxsLoading ? 'Loading…' : incomingTxsData ? 'Refresh' : 'Load'}
+              </button>
+              <button
+                className={css['export-btn']}
+                onClick={exportOrphansCsv}
+                disabled={orphanIncomingTxs.length === 0}
+              >
+                Export CSV
+              </button>
+            </div>
+          )}
+        </div>
+
+        {sectionsOpen.orphan && incomingTxsError && (
+          <div className={css.empty} style={{ color: '#c00' }}>Error: {incomingTxsError}</div>
+        )}
+
+        {sectionsOpen.orphan && incomingTxsData && (
+          <>
+            {/* Per-chain summary + any Alchemy errors so the admin can see
+                which chains were actually queried successfully. */}
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', margin: '8px 0', fontSize: 12, color: '#555' }}>
+              {Object.entries(incomingTxsData.byChain).map(([chainId, s]) => (
+                <span key={chainId}>
+                  <strong>{chainName(Number(chainId))}:</strong>{' '}
+                  {s.error ? (
+                    <span style={{ color: '#c00' }} title={s.error}>error</span>
+                  ) : (
+                    <>{s.count} incoming</>
+                  )}
+                </span>
+              ))}
+            </div>
+            <div className={css['table-wrap']}>
+              {orphanIncomingTxs.length === 0 ? (
+                <div className={css.empty}>No orphan transactions in the last {incomingTxsData.days} days</div>
+              ) : (
+                <table className={css.table}>
+                  <thead>
+                    <tr>
+                      <th>Chain</th>
+                      <th>Token</th>
+                      <th>Amount</th>
+                      <th>From</th>
+                      <th>Tx Hash</th>
+                      <th>Timestamp</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orphanIncomingTxs.map(tx => (
+                      <tr key={`${tx.chainId}-${tx.txHash}`}>
+                        <td>{tx.chainName}</td>
+                        <td>{tx.symbol}</td>
+                        <td>
+                          {tx.rawAmount && tx.symbol
+                            ? `${formatCryptoAmount(tx.rawAmount, tx.symbol)} ${tx.symbol}`
+                            : '—'}
+                        </td>
+                        <td className={css.mono}>
+                          <a
+                            className={css.link}
+                            href={addressExplorerUrl(tx.from, tx.chainId)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={tx.from}
+                          >
+                            {truncate(tx.from)}
+                          </a>
+                        </td>
+                        <td className={css.mono}>
+                          <Copyable value={tx.txHash}>
+                            <a
+                              className={css.link}
+                              href={txExplorerUrl(tx.txHash, tx.chainId)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                            >
+                              {tx.txHash.slice(0, 10)}...{tx.txHash.slice(-8)}
+                            </a>
+                          </Copyable>
+                        </td>
+                        <td>{formatDate(tx.timestamp)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Unpaid wc_inject orders — Pretix orders where buyer started the
@@ -2361,8 +2651,15 @@ function AdminContent() {
           Admin manually verifies by pasting the recovered tx hash. */}
       <div className={css.section}>
         <div className={css['section-header']}>
-          <h2 className={css['section-title']}>Unpaid wc_inject Orders ({filteredWcUnpaid.length})</h2>
+          <h2
+            className={css['section-title']}
+            onClick={() => toggleSection('wcUnpaid')}
+            style={{ cursor: 'pointer', userSelect: 'none' }}
+          >
+            {sectionsOpen.wcUnpaid ? '▾' : '▸'} Unpaid wc_inject Orders ({filteredWcUnpaid.length})
+          </h2>
         </div>
+        {sectionsOpen.wcUnpaid && (
         <div className={css['table-wrap']}>
           {filteredWcUnpaid.length === 0 ? (
             <div className={css.empty}>No unpaid wc_inject orders</div>
@@ -2456,6 +2753,7 @@ function AdminContent() {
             </table>
           )}
         </div>
+        )}
       </div>
     </div>
   )

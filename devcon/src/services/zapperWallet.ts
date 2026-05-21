@@ -100,13 +100,18 @@ interface ZapperTokenBalance {
 // Zapper's GraphQL is rate-limited (the free tier trips on ~10 req/min)
 // and the admin orders endpoint hits it twice per refresh (destination +
 // relayer wallets). Multiple admin tabs / auto-poll + a 30s tick blows
-// past the limit fast. Cache results in process memory for 60s — wallet
+// past the limit fast. Cache results in process memory for 5 min — wallet
 // balances don't move that fast, and on a HIT we skip the call entirely.
-// Keyed by `(address, sorted-chain-ids, ethPrice, polPrice)` so a
-// re-quote with different prices still gets a fresh fetch.
+//
+// Cache key is `(address, sorted-chain-ids)` ONLY. Prices intentionally
+// excluded: they aren't used in the Zapper query (only attached to the
+// returned object for downstream USD math), and they fluctuate on every
+// oracle call — including them in the key was making the cache miss on
+// every poll. On a hit we return the cached portfolio but overlay the
+// caller's fresh prices so USD totals stay current.
 type CacheEntry = { value: WalletInfo | null; expiresAt: number }
 const _walletInfoCache: Map<string, CacheEntry> = new Map()
-const WALLET_INFO_TTL_MS = 60_000
+const WALLET_INFO_TTL_MS = 5 * 60_000
 
 export async function fetchWalletInfoFromZapper(opts: {
   address: string
@@ -122,10 +127,15 @@ export async function fetchWalletInfoFromZapper(opts: {
     return null
   }
 
-  const cacheKey = `${opts.address.toLowerCase()}|${[...opts.chainIds].sort((a, b) => a - b).join(',')}|${opts.ethPrice ?? ''}|${opts.polPrice ?? ''}`
+  const cacheKey = `${opts.address.toLowerCase()}|${[...opts.chainIds].sort((a, b) => a - b).join(',')}`
   const now = Date.now()
   const cached = _walletInfoCache.get(cacheKey)
   if (cached && now < cached.expiresAt) {
+    // Overlay fresh prices on the cached portfolio — the cached structure
+    // doesn't depend on price, but the consumer reads `prices` directly.
+    if (cached.value) {
+      return { ...cached.value, prices: { ETH: opts.ethPrice, POL: opts.polPrice } }
+    }
     return cached.value
   }
   const cacheAndReturn = (value: WalletInfo | null): WalletInfo | null => {

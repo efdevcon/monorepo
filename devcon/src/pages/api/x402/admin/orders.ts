@@ -12,7 +12,9 @@ import { fetchEthPriceUsd } from 'services/ethPrice'
 import { fetchWalletInfoFromZapper } from 'services/zapperWallet'
 import { checkAdminAuth } from 'utils/adminAuth'
 
-const SUPPORTED_CHAIN_IDS = [1, 10, 8453, 42161, 137]
+// Polygon (137) temporarily excluded from the admin wallet panels —
+// negligible volume vs the noise it adds. Re-add when needed.
+const SUPPORTED_CHAIN_IDS = [1, 10, 8453, 42161 /*, 137*/]
 
 /** Display-only POL/USD price from Coinbase. Unlike the ETH oracle we don't
  *  need dual-source confirmation here — this drives the admin wallet panel's
@@ -78,19 +80,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       //     relevant to operations. The native-balance threshold drives the
       //     red-flag UI in admin.tsx.
       const recipient = TICKETING.payment.recipientAddress
-      const relayer = TICKETING.payment.relayerAddress
+      // const relayer = TICKETING.payment.relayerAddress
       const [ethPriceResult, polPrice] = await Promise.all([
         fetchEthPriceUsd().catch(() => null),
         fetchPolPriceUsd(),
       ])
       const ethPrice = ethPriceResult?.price ?? null
+      // Gas relayer balance fetch temporarily disabled to halve Zapper
+      // request volume — currently the destination wallet is the only
+      // one the admin actively monitors. Re-enable by un-commenting the
+      // relayer line above + the second entry in the Promise.all below.
       const [destinationFull, gasRelayerFull] = await Promise.all([
         recipient
           ? fetchWalletInfoFromZapper({ address: recipient, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
           : Promise.resolve(null),
-        relayer
-          ? fetchWalletInfoFromZapper({ address: relayer, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
-          : Promise.resolve(null),
+        // relayer
+        //   ? fetchWalletInfoFromZapper({ address: relayer, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
+        //   : Promise.resolve(null),
+        Promise.resolve(null),
       ])
       if (destinationFull) {
         // Filter ERC-20 rows to only the tokens we actually accept. Match by
@@ -108,7 +115,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           // USDC
           '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': 'USDC', // mainnet
           '0x0b2c639c533813f4aa9d7837caf62653d097ff85': 'USDC', // optimism
-          '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359': 'USDC', // polygon
+          // '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359': 'USDC', // polygon (disabled)
           '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913': 'USDC', // base
           '0xaf88d065e77c8cc2239327c5edb3a432268e5831': 'USDC', // arbitrum
           // USD₮0
