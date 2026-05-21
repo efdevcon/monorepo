@@ -107,15 +107,42 @@ interface WalletInfo {
   prices: { ETH: number | null; POL: number | null }
 }
 
+/** Pretix order in `status='n'` (pending) with a walletconnect OrderPayment
+ *  in `created` state and no completed WCPaymentAttempt yet — i.e. a buyer
+ *  who started the wc_inject crypto checkout but verify never completed
+ *  (closed browser, RPC blip, etc.). Surfaced so an admin can recover the
+ *  on-chain tx hash out-of-band and manually verify the payment. */
+interface WcUnpaidOrder {
+  orderCode: string
+  orderSecret: string
+  email: string
+  total: string
+  createdAt: number | null
+  testmode: boolean
+  /** Last buyer-issued quote, if one was created before they dropped off.
+   *  Pre-fills chain + symbol + payer fields in the manual-verify modal;
+   *  admin can still override any of them. `null` if the buyer never
+   *  reached the create-quote step. */
+  quote: {
+    chainId: number | null
+    symbol: string | null
+    intendedPayer: string | null
+    amountRaw: string | null
+    createdAt: number | null
+    expiresAt: number | null
+  } | null
+}
+
 interface OrdersResponse {
   success: boolean
   env: string
   pretixBaseUrl: string
   pretixOrgSlug: string
   pretixEventSlug: string
-  stats: { pending: number; completed: number; x402Count?: number; legacyCount?: number }
+  stats: { pending: number; completed: number; x402Count?: number; legacyCount?: number; wcUnpaidCount?: number }
   completed: CompletedOrder[]
   pending: PendingOrder[]
+  wcUnpaid?: WcUnpaidOrder[]
   /** Wallet that receives ticket payments (recipientAddress). Shows all tokens. */
   destinationWallet?: WalletInfo | null
   /** Wallet that pays gas for EIP-3009 sponsored transfers (relayerAddress).
@@ -1152,6 +1179,261 @@ function ManualVerifyCell({
   )
 }
 
+// Recovery path for the legacy wc_inject flow: an order exists in Pretix
+// (status=pending, walletconnect payment in created state) but auto-verify
+// never landed. Admin pastes the tx hash; backend re-runs the same on-chain
+// pipeline as the buyer-driven verify, but skips the buyer-signature gate.
+function WcManualVerifyModal({
+  order,
+  secret,
+  pretixOrderUrl,
+  onClose,
+  onVerified,
+}: {
+  order: WcUnpaidOrder
+  secret: string
+  pretixOrderUrl?: string
+  onClose: () => void
+  onVerified: () => void
+}) {
+  const [txHash, setTxHash] = useState('')
+  const [symbol, setSymbol] = useState<string>(order.quote?.symbol ?? 'USDC')
+  const [chainId, setChainId] = useState<number>(order.quote?.chainId ?? 8453)
+  const [payer, setPayer] = useState<string>(order.quote?.intendedPayer ?? '')
+  const [step, setStep] = useState<'form' | 'submitting' | 'done' | 'error'>('form')
+  const [error, setError] = useState<string | null>(null)
+
+  const trimmedHash = txHash.trim()
+  const trimmedPayer = payer.trim()
+  const hashValid = /^0x[a-fA-F0-9]{64}$/.test(trimmedHash)
+  const payerValid = /^0x[a-fA-F0-9]{40}$/.test(trimmedPayer)
+  const canSubmit = hashValid && payerValid
+
+  async function handleSubmit() {
+    if (!canSubmit) return
+    setStep('submitting')
+    setError(null)
+    try {
+      const res = await fetch('/api/x402/admin/wc-verify/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
+        body: JSON.stringify({
+          orderCode: order.orderCode,
+          orderSecret: order.orderSecret,
+          txHash: trimmedHash,
+          payer: trimmedPayer,
+          chainId,
+          symbol,
+        }),
+      })
+      const body = await res.json()
+      if (!res.ok || !body.success) {
+        setError(body.error || `Verify failed (HTTP ${res.status})`)
+        setStep('error')
+        return
+      }
+      setStep('done')
+      setTimeout(() => {
+        onVerified()
+        onClose()
+      }, 2500)
+    } catch (e) {
+      setError((e as Error).message || 'Network error')
+      setStep('error')
+    }
+  }
+
+  return (
+    <div className={css['modal-overlay']}>
+      <div className={css['modal-card']}>
+        <button
+          type="button"
+          className={css['modal-close']}
+          onClick={onClose}
+          disabled={step === 'submitting'}
+          aria-label="Close"
+        >
+          <X size={18} />
+        </button>
+        <h3 className={css['modal-title']}>Manual verify (wc_inject)</h3>
+        <p className={css['modal-hint']} style={{ fontSize: 13, color: '#666', margin: '0 0 16px' }}>
+          Recover an unpaid wc_inject order using the onchain transaction hash. The plugin re-runs
+          full verification (tx uniqueness, recipient, amount, payer match). Choose the token and
+          chain the buyer actually paid in. Buyer signature is skipped — payer binding falls back to
+          the onchain <code>tx.from</code> match.
+        </p>
+        <div className={css['modal-details']}>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Order Code</span>
+            <span className={`${css['modal-value']} ${css.mono}`}>
+              {pretixOrderUrl ? (
+                <a className={css.link} href={pretixOrderUrl} target="_blank" rel="noopener noreferrer">
+                  {order.orderCode}
+                </a>
+              ) : (
+                order.orderCode
+              )}
+            </span>
+          </div>
+          <div className={css['modal-row']}>
+            <span className={css['modal-label']}>Amount</span>
+            <span className={css['modal-value']}>${order.total}</span>
+          </div>
+          {order.quote?.amountRaw && order.quote.symbol && (
+            <div className={css['modal-row']}>
+              <span className={css['modal-label']}>Quote Amount</span>
+              <span className={css['modal-value']}>
+                {formatCryptoAmount(order.quote.amountRaw, order.quote.symbol)} {order.quote.symbol}
+              </span>
+            </div>
+          )}
+          {order.quote?.intendedPayer && (
+            <div className={css['modal-row']}>
+              <span className={css['modal-label']}>Payer (quote)</span>
+              <span className={`${css['modal-value']} ${css.mono}`}>
+                <a
+                  className={css.link}
+                  href={addressExplorerUrl(order.quote.intendedPayer, order.quote.chainId ?? undefined)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={order.quote.intendedPayer}
+                >
+                  {truncate(order.quote.intendedPayer)}
+                </a>
+              </span>
+            </div>
+          )}
+          {order.email && (
+            <div className={css['modal-row']}>
+              <span className={css['modal-label']}>Email</span>
+              <span className={css['modal-value']}>{order.email}</span>
+            </div>
+          )}
+        </div>
+
+        {step === 'form' && (
+          <>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '16px 0' }}>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
+                <span style={{ fontWeight: 600 }}>Transaction hash</span>
+                <input
+                  className={css['wc-input'] ?? ''}
+                  style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace' }}
+                  placeholder="0x..."
+                  value={txHash}
+                  onChange={e => setTxHash(e.target.value)}
+                />
+                {!hashValid && txHash.length > 0 && (
+                  <span style={{ color: '#c00', fontSize: 12 }}>Must be 0x + 64 hex characters.</span>
+                )}
+              </label>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
+                <span style={{ fontWeight: 600 }}>
+                  Payer address {order.quote?.intendedPayer && <em style={{ fontWeight: 400 }}>(pre-filled from quote)</em>}
+                </span>
+                <input
+                  style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6, fontFamily: 'monospace' }}
+                  placeholder="0x..."
+                  value={payer}
+                  onChange={e => setPayer(e.target.value)}
+                />
+                {!payerValid && payer.length > 0 && (
+                  <span style={{ color: '#c00', fontSize: 12 }}>Must be 0x + 40 hex characters.</span>
+                )}
+              </label>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, flex: 1 }}>
+                  <span style={{ fontWeight: 600 }}>Token</span>
+                  <select
+                    value={symbol}
+                    onChange={e => setSymbol(e.target.value)}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6 }}
+                  >
+                    {SUPPORTED_SYMBOLS.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </label>
+                <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, flex: 1 }}>
+                  <span style={{ fontWeight: 600 }}>Chain</span>
+                  <select
+                    value={chainId}
+                    onChange={e => setChainId(Number(e.target.value))}
+                    style={{ padding: 8, border: '1px solid #ccc', borderRadius: 6 }}
+                  >
+                    {SUPPORTED_CHAINS.map(c => <option key={c} value={c}>{chainName(c)}</option>)}
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div className={css['modal-actions']}>
+              <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
+              <button
+                className={css['modal-confirm']}
+                disabled={!canSubmit}
+                onClick={handleSubmit}
+              >
+                Verify payment
+              </button>
+            </div>
+          </>
+        )}
+
+        {step === 'submitting' && <div className={css['modal-status']}>Verifying onchain...</div>}
+        {step === 'done' && (
+          <div className={css['modal-status']}>
+            Verified. Order <code>{order.orderCode}</code> marked paid.
+          </div>
+        )}
+        {step === 'error' && (
+          <>
+            <div className={css['modal-error']} style={{ marginTop: 12, padding: 12, background: '#fee', borderRadius: 6, fontSize: 13 }}>
+              {error}
+            </div>
+            <div className={css['modal-actions']}>
+              <button className={css['modal-cancel']} onClick={() => setStep('form')}>Back</button>
+              <button className={css['modal-confirm']} onClick={handleSubmit}>Retry</button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function WcManualVerifyCell({
+  order,
+  secret,
+  pretixOrderUrl,
+  onVerified,
+}: {
+  order: WcUnpaidOrder
+  secret: string
+  pretixOrderUrl?: string
+  onVerified: () => void
+}) {
+  const [showModal, setShowModal] = useState(false)
+  return (
+    <>
+      <button
+        type="button"
+        className={css['refund-btn']}
+        onClick={() => setShowModal(true)}
+        title="Manually verify this unpaid wc_inject order with a transaction hash"
+      >
+        Verify
+      </button>
+      {showModal && (
+        <WcManualVerifyModal
+          order={order}
+          secret={secret}
+          pretixOrderUrl={pretixOrderUrl}
+          onClose={() => setShowModal(false)}
+          onVerified={onVerified}
+        />
+      )}
+    </>
+  )
+}
+
 // ─── Main wrapper with WagmiProvider ─────────────────────────────
 
 export default function AdminPage() {
@@ -1441,6 +1723,74 @@ function AdminContent() {
     }
     return list
   }, [data?.pending, q, dateFrom, dateTo, pendingSort, pendingSortDir])
+
+  // Unpaid wc_inject orders: Pretix orders where the buyer started the wc
+  // checkout but auto-verify never landed (closed browser, RPC blip, etc.).
+  // Admin manual-verify by pasting the recovered tx hash.
+  const filteredWcUnpaid = useMemo(() => {
+    const list = data?.wcUnpaid?.filter(o =>
+      matchesSearch([o.orderCode, o.email, o.total, o.quote?.intendedPayer])
+    ) ?? []
+    return list.filter(o => inDateRange(o.createdAt ?? 0))
+  }, [data?.wcUnpaid, q, dateFrom, dateTo])
+
+  // Identities expected to legitimately appear on many orders (admin /
+  // recovery accounts, internal test wallets). Suppress the duplicate
+  // badge for these so it stays meaningful as a buyer-retry signal.
+  const DUPLICATE_BADGE_EMAIL_ALLOWLIST = new Set(['didier.krux@ethereum.org'])
+  const DUPLICATE_BADGE_PAYER_ALLOWLIST = new Set(['0x957e6583bb0513a3b044dfdac05a757a53b2ec49'])
+  const isDupBadgeSuppressedEmail = (email?: string | null) =>
+    !!email && DUPLICATE_BADGE_EMAIL_ALLOWLIST.has(email.toLowerCase())
+  const isDupBadgeSuppressedPayer = (payer?: string | null) =>
+    !!payer && DUPLICATE_BADGE_PAYER_ALLOWLIST.has(payer.toLowerCase())
+
+  // Per-email count of unpaid wc_inject orders that have a quote — surfaces
+  // buyers who started multiple quote attempts (likely retried after a
+  // failed broadcast). Computed off the full unfiltered list so the badge
+  // remains accurate even when the user narrows the table by search/date.
+  const wcUnpaidQuotedByEmail = useMemo(() => {
+    const m: Record<string, number> = {}
+    for (const o of data?.wcUnpaid ?? []) {
+      if (!o.quote || !o.email) continue
+      m[o.email] = (m[o.email] ?? 0) + 1
+    }
+    return m
+  }, [data?.wcUnpaid])
+
+  // Same idea, keyed by the quote's intended payer wallet — catches buyers
+  // who retried with a different email but the same address.
+  const wcUnpaidQuotedByPayer = useMemo(() => {
+    const m: Record<string, number> = {}
+    for (const o of data?.wcUnpaid ?? []) {
+      const payer = o.quote?.intendedPayer
+      if (!payer) continue
+      const key = payer.toLowerCase()
+      m[key] = (m[key] ?? 0) + 1
+    }
+    return m
+  }, [data?.wcUnpaid])
+
+  // Completed-order duplicate counters: surface buyers / wallets that paid
+  // more than once. Counts the full completed list (not just visible rows)
+  // so the badge stays accurate across search and date filters.
+  const completedByEmail = useMemo(() => {
+    const m: Record<string, number> = {}
+    for (const o of data?.completed ?? []) {
+      if (!o.email) continue
+      m[o.email] = (m[o.email] ?? 0) + 1
+    }
+    return m
+  }, [data?.completed])
+
+  const completedByPayer = useMemo(() => {
+    const m: Record<string, number> = {}
+    for (const o of data?.completed ?? []) {
+      if (!o.payer) continue
+      const key = o.payer.toLowerCase()
+      m[key] = (m[key] ?? 0) + 1
+    }
+    return m
+  }, [data?.completed])
 
   function toggleCompletedSort(key: string) {
     if (completedSort === key) {
@@ -1755,7 +2105,14 @@ function AdminContent() {
                       <TestModeBadge on={o.pretixTestmode} />
                       <OverpaidBadge amount={o.overpaidUsd} />
                     </td>
-                    <td className={undefined}>{o.email ?? '—'}</td>
+                    <td className={undefined}>
+                      {o.email ?? '—'}
+                      {o.email && !isDupBadgeSuppressedEmail(o.email) && (completedByEmail[o.email] ?? 0) > 1 && (
+                        <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                          ({completedByEmail[o.email]} orders)
+                        </span>
+                      )}
+                    </td>
                     <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
                     <td>
                       <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
@@ -1793,6 +2150,11 @@ function AdminContent() {
                       >
                         {truncate(o.payer)}
                       </a>
+                      {o.payer && !isDupBadgeSuppressedPayer(o.payer) && (completedByPayer[o.payer.toLowerCase()] ?? 0) > 1 && (
+                        <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                          ({completedByPayer[o.payer.toLowerCase()]} orders)
+                        </span>
+                      )}
                     </td>
                     <td className={undefined}>{formatDate(o.completedAt)}</td>
                     <td>
@@ -1988,6 +2350,108 @@ function AdminContent() {
                     </tr>
                   )
                 })}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
+
+      {/* Unpaid wc_inject orders — Pretix orders where buyer started the
+          legacy wc_inject crypto checkout but auto-verify never landed.
+          Admin manually verifies by pasting the recovered tx hash. */}
+      <div className={css.section}>
+        <div className={css['section-header']}>
+          <h2 className={css['section-title']}>Unpaid wc_inject Orders ({filteredWcUnpaid.length})</h2>
+        </div>
+        <div className={css['table-wrap']}>
+          {filteredWcUnpaid.length === 0 ? (
+            <div className={css.empty}>No unpaid wc_inject orders</div>
+          ) : (
+            <table className={css.table}>
+              <thead>
+                <tr>
+                  <th>Order Code</th>
+                  <th>Amount</th>
+                  <th>Quote Amount</th>
+                  <th>Email</th>
+                  <th>Quote (chain/token/payer)</th>
+                  <th>Created</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredWcUnpaid.map(o => (
+                  <tr key={o.orderCode}>
+                    <td className={css.mono}>
+                      <Copyable value={o.orderCode}>{o.orderCode}</Copyable>
+                      {o.testmode && (
+                        <>
+                          {' '}
+                          <TestModeBadge on />
+                        </>
+                      )}
+                    </td>
+                    <td>${o.total}</td>
+                    <td>
+                      {o.quote?.amountRaw && o.quote.symbol ? (
+                        <>
+                          {formatCryptoAmount(o.quote.amountRaw, o.quote.symbol)} {o.quote.symbol}
+                        </>
+                      ) : (
+                        <span style={{ color: '#999' }}>—</span>
+                      )}
+                    </td>
+                    <td>
+                      {o.email || '—'}
+                      {o.email && !isDupBadgeSuppressedEmail(o.email) && (wcUnpaidQuotedByEmail[o.email] ?? 0) > 1 && (
+                        <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                          ({wcUnpaidQuotedByEmail[o.email]} orders)
+                        </span>
+                      )}
+                    </td>
+                    <td className={css.mono} style={{ fontSize: 12 }}>
+                      {o.quote ? (
+                        <>
+                          {o.quote.symbol ?? '?'} on chain {o.quote.chainId ?? '?'}
+                          {o.quote.intendedPayer && (
+                            <>
+                              {' '}/{' '}
+                              <a
+                                className={css.link}
+                                href={addressExplorerUrl(o.quote.intendedPayer, o.quote.chainId ?? undefined)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={o.quote.intendedPayer}
+                              >
+                                {truncate(o.quote.intendedPayer)}
+                              </a>
+                              {!isDupBadgeSuppressedPayer(o.quote.intendedPayer) && (wcUnpaidQuotedByPayer[o.quote.intendedPayer.toLowerCase()] ?? 0) > 1 && (
+                                <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                                  ({wcUnpaidQuotedByPayer[o.quote.intendedPayer.toLowerCase()]} orders)
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <span style={{ color: '#999' }}>no quote</span>
+                      )}
+                    </td>
+                    <td>{o.createdAt ? formatDate(o.createdAt) : '—'}</td>
+                    <td>
+                      <WcManualVerifyCell
+                        order={o}
+                        secret={secret}
+                        pretixOrderUrl={
+                          data?.pretixBaseUrl && data?.pretixOrgSlug && data?.pretixEventSlug
+                            ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
+                            : undefined
+                        }
+                        onVerified={() => fetchOrders(secret)}
+                      />
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           )}
