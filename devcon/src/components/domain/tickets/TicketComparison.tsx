@@ -422,7 +422,7 @@ export function TicketComparison() {
         </div>
       </div>
 
-      <p className="text-sm text-[#594d73] leading-none w-full text-right">{t('footer_note')}</p>
+      <p className="text-sm text-[#594d73] leading-none w-full text-right mt-2">{t('footer_note')}</p>
     </section>
   )
 }

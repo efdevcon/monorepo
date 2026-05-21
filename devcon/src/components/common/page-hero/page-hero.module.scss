@@ -138,7 +138,10 @@
     position: sticky;
     // "Pulls up" the entire section except for the page menu, effectively making it look like just the page menu is sticky
     top: var(--negative-offset, -1000px);
-    z-index: 10;
+    // Sits above page content (the comparison table's `isolate` wrapper on
+    // /tickets is at z-auto in this context, so z-10 wasn't enough) but below
+    // the main site header at z-20.
+    z-index: 15;
 
     // Strip is always present on mobile (but not on desktop) - we have to account for that:
     // &.scrolled {
