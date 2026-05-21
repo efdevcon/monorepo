@@ -2011,7 +2011,7 @@ function AdminContent() {
     return (
       <div className={css.page}>
         <Head>
-          <title>Crypto Payment Monitor Admin</title>
+          <title>Crypto Admin</title>
         </Head>
         <div className={css.login}>
           <div className={css['login-card']}>
@@ -2041,13 +2041,13 @@ function AdminContent() {
   return (
     <div className={css.page}>
       <Head>
-        <title>x402 Admin{data?.env ? ` (${data.env})` : ''}</title>
+        <title>Crypto Admin{data?.env ? ` (${data.env})` : ''}</title>
       </Head>
 
       {/* Header */}
       <div className={css.header}>
         <div className={css['header-left']}>
-          <h1 className={css.title}>Crypto Payment Monitor</h1>
+          <h1 className={css.title}>Crypto Admin</h1>
           {data?.env && <span className={css['env-badge']}>{data.env}</span>}
         </div>
         <div className={css['header-right']}>
@@ -2189,140 +2189,142 @@ function AdminContent() {
           </button>
         </div>
         {sectionsOpen.completed && (
-        <div className={css['table-wrap']}>
-          {activeCompleted.length === 0 ? (
-            <div className={css.empty}>No completed orders</div>
-          ) : (
-            <table className={css.table}>
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <SortableTh
-                    label="Pretix Order"
-                    sortKey="pretixOrder"
-                    currentSort={completedSort}
-                    currentDir={completedSortDir}
-                    onSort={toggleCompletedSort}
-                  />
-                  <th>Status</th>
-                  <th>Email</th>
-                  <SortableTh
-                    label="Amount"
-                    sortKey="amount"
-                    currentSort={completedSort}
-                    currentDir={completedSortDir}
-                    onSort={toggleCompletedSort}
-                  />
-                  <th>Crypto Amount</th>
-                  <SortableTh
-                    label="Chain"
-                    sortKey="tokenChain"
-                    currentSort={completedSort}
-                    currentDir={completedSortDir}
-                    onSort={toggleCompletedSort}
-                  />
-                  <th>Sponsored Gas</th>
-                  <th>Tx Hash</th>
-                  <th>Payer</th>
-                  <SortableTh
-                    label="Completed At"
-                    sortKey="completedAt"
-                    currentSort={completedSort}
-                    currentDir={completedSortDir}
-                    onSort={toggleCompletedSort}
-                  />
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {activeCompleted.map(o => (
-                  <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
-                    <td>{sourceLabel(o.source)}</td>
-                    <td className={undefined}>
-                      {o.pretixOrderCode ? (
-                        <a
-                          className={css.link}
-                          href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {o.pretixOrderCode}
-                        </a>
-                      ) : (
-                        '—'
-                      )}
-                    </td>
-                    <td className={css['admin-badge-cell']}>
-                      <StatusBadge code={o.pretixStatus} />
-                      <TestModeBadge on={o.pretixTestmode} />
-                      <OverpaidBadge amount={o.overpaidUsd} />
-                    </td>
-                    <td className={undefined}>
-                      {o.email ?? '—'}
-                      {o.email && !isDupBadgeSuppressedEmail(o.email) && (completedByEmail[o.email] ?? 0) > 1 && (
-                        <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
-                          ({completedByEmail[o.email]} orders)
-                        </span>
-                      )}
-                    </td>
-                    <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td>
-                      <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
-                    </td>
-                    <td className={undefined}>
-                      <ChainCell chainId={o.chainId} />
-                    </td>
-                    <td className={css.mono}>
-                      {o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}
-                    </td>
-                    <td className={css.mono}>
-                      {o.txHash ? (
-                        <Copyable value={o.txHash}>
+          <div className={css['table-wrap']}>
+            {activeCompleted.length === 0 ? (
+              <div className={css.empty}>No completed orders</div>
+            ) : (
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <SortableTh
+                      label="Pretix Order"
+                      sortKey="pretixOrder"
+                      currentSort={completedSort}
+                      currentDir={completedSortDir}
+                      onSort={toggleCompletedSort}
+                    />
+                    <th>Status</th>
+                    <th>Email</th>
+                    <SortableTh
+                      label="Amount"
+                      sortKey="amount"
+                      currentSort={completedSort}
+                      currentDir={completedSortDir}
+                      onSort={toggleCompletedSort}
+                    />
+                    <th>Crypto Amount</th>
+                    <SortableTh
+                      label="Chain"
+                      sortKey="tokenChain"
+                      currentSort={completedSort}
+                      currentDir={completedSortDir}
+                      onSort={toggleCompletedSort}
+                    />
+                    <th>Sponsored Gas</th>
+                    <th>Tx Hash</th>
+                    <th>Payer</th>
+                    <SortableTh
+                      label="Completed At"
+                      sortKey="completedAt"
+                      currentSort={completedSort}
+                      currentDir={completedSortDir}
+                      onSort={toggleCompletedSort}
+                    />
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {activeCompleted.map(o => (
+                    <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
+                      <td>{sourceLabel(o.source)}</td>
+                      <td className={undefined}>
+                        {o.pretixOrderCode ? (
                           <a
                             className={css.link}
-                            href={txExplorerUrl(o.txHash, o.chainId)}
+                            href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={e => e.stopPropagation()}
                           >
-                            {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+                            {o.pretixOrderCode}
                           </a>
-                        </Copyable>
-                      ) : (
-                        '—'
-                      )}
-                    </td>
-                    <td className={css.mono}>
-                      <a
-                        className={css.link}
-                        href={addressExplorerUrl(o.payer, o.chainId)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={o.payer}
-                      >
-                        {truncate(o.payer)}
-                      </a>
-                      {o.payer && !isDupBadgeSuppressedPayer(o.payer) && (completedByPayer[o.payer.toLowerCase()] ?? 0) > 1 && (
-                        <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
-                          ({completedByPayer[o.payer.toLowerCase()]} orders)
-                        </span>
-                      )}
-                    </td>
-                    <td className={undefined}>{formatDate(o.completedAt)}</td>
-                    <td>
-                      <RefundActionCell
-                        order={o}
-                        secret={secret}
-                        isConnected={isConnected}
-                        onRefunded={() => fetchOrders(secret)}
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+                        ) : (
+                          '—'
+                        )}
+                      </td>
+                      <td className={css['admin-badge-cell']}>
+                        <StatusBadge code={o.pretixStatus} />
+                        <TestModeBadge on={o.pretixTestmode} />
+                        <OverpaidBadge amount={o.overpaidUsd} />
+                      </td>
+                      <td className={undefined}>
+                        {o.email ?? '—'}
+                        {o.email && !isDupBadgeSuppressedEmail(o.email) && (completedByEmail[o.email] ?? 0) > 1 && (
+                          <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                            ({completedByEmail[o.email]} orders)
+                          </span>
+                        )}
+                      </td>
+                      <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
+                      <td>
+                        <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
+                      </td>
+                      <td className={undefined}>
+                        <ChainCell chainId={o.chainId} />
+                      </td>
+                      <td className={css.mono}>
+                        {o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}
+                      </td>
+                      <td className={css.mono}>
+                        {o.txHash ? (
+                          <Copyable value={o.txHash}>
+                            <a
+                              className={css.link}
+                              href={txExplorerUrl(o.txHash, o.chainId)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                            >
+                              {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+                            </a>
+                          </Copyable>
+                        ) : (
+                          '—'
+                        )}
+                      </td>
+                      <td className={css.mono}>
+                        <a
+                          className={css.link}
+                          href={addressExplorerUrl(o.payer, o.chainId)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={o.payer}
+                        >
+                          {truncate(o.payer)}
+                        </a>
+                        {o.payer &&
+                          !isDupBadgeSuppressedPayer(o.payer) &&
+                          (completedByPayer[o.payer.toLowerCase()] ?? 0) > 1 && (
+                            <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                              ({completedByPayer[o.payer.toLowerCase()]} orders)
+                            </span>
+                          )}
+                      </td>
+                      <td className={undefined}>{formatDate(o.completedAt)}</td>
+                      <td>
+                        <RefundActionCell
+                          order={o}
+                          secret={secret}
+                          isConnected={isConnected}
+                          onRefunded={() => fetchOrders(secret)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         )}
       </div>
 
@@ -2439,81 +2441,81 @@ function AdminContent() {
           </button>
         </div>
         {sectionsOpen.pending && (
-        <div className={css['table-wrap']}>
-          {filteredPending.length === 0 ? (
-            <div className={css.empty}>No pending orders</div>
-          ) : (
-            <table className={css.table}>
-              <thead>
-                <tr>
-                  <th>Payment Ref</th>
-                  <SortableTh
-                    label="Amount"
-                    sortKey="amount"
-                    currentSort={pendingSort}
-                    currentDir={pendingSortDir}
-                    onSort={togglePendingSort}
-                  />
-                  <th>ETH Quote</th>
-                  <th>Payer</th>
-                  <th>Email</th>
-                  <SortableTh
-                    label="Expires At"
-                    sortKey="expiresAt"
-                    currentSort={pendingSort}
-                    currentDir={pendingSortDir}
-                    onSort={togglePendingSort}
-                  />
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredPending.map(o => {
-                  const isExpired = o.expiresAt < now
-                  return (
-                    <tr key={o.paymentReference}>
-                      <td className={css.mono}>
-                        <Copyable value={o.paymentReference}>{truncate(o.paymentReference)}</Copyable>
-                        {o.pretixTestmode && (
-                          <>
-                            {' '}
-                            <TestModeBadge on />
-                          </>
-                        )}
-                      </td>
-                      <td className={undefined}>${o.totalUsd}</td>
-                      <td>
-                        <PendingEthQuoteCell
-                          expectedEthByChain={o.expectedEthAmountWeiByChain}
-                          expectedChainId={o.expectedChainId}
-                        />
-                      </td>
-                      <td className={css.mono}>
-                        <a
-                          className={css.link}
-                          href={addressExplorerUrl(o.intendedPayer, o.expectedChainId)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={o.intendedPayer}
-                        >
-                          {truncate(o.intendedPayer)}
-                        </a>
-                      </td>
-                      <td>{o.metadata?.email ?? '—'}</td>
-                      <td className={undefined}>
-                        {formatDate(o.expiresAt)}
-                        {isExpired && <span className={css.expired}> EXPIRED</span>}
-                      </td>
-                      <td>
-                        <ManualVerifyCell order={o} secret={secret} onVerified={() => fetchOrders(secret)} />
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          )}
-        </div>
+          <div className={css['table-wrap']}>
+            {filteredPending.length === 0 ? (
+              <div className={css.empty}>No pending orders</div>
+            ) : (
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Payment Ref</th>
+                    <SortableTh
+                      label="Amount"
+                      sortKey="amount"
+                      currentSort={pendingSort}
+                      currentDir={pendingSortDir}
+                      onSort={togglePendingSort}
+                    />
+                    <th>ETH Quote</th>
+                    <th>Payer</th>
+                    <th>Email</th>
+                    <SortableTh
+                      label="Expires At"
+                      sortKey="expiresAt"
+                      currentSort={pendingSort}
+                      currentDir={pendingSortDir}
+                      onSort={togglePendingSort}
+                    />
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredPending.map(o => {
+                    const isExpired = o.expiresAt < now
+                    return (
+                      <tr key={o.paymentReference}>
+                        <td className={css.mono}>
+                          <Copyable value={o.paymentReference}>{truncate(o.paymentReference)}</Copyable>
+                          {o.pretixTestmode && (
+                            <>
+                              {' '}
+                              <TestModeBadge on />
+                            </>
+                          )}
+                        </td>
+                        <td className={undefined}>${o.totalUsd}</td>
+                        <td>
+                          <PendingEthQuoteCell
+                            expectedEthByChain={o.expectedEthAmountWeiByChain}
+                            expectedChainId={o.expectedChainId}
+                          />
+                        </td>
+                        <td className={css.mono}>
+                          <a
+                            className={css.link}
+                            href={addressExplorerUrl(o.intendedPayer, o.expectedChainId)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={o.intendedPayer}
+                          >
+                            {truncate(o.intendedPayer)}
+                          </a>
+                        </td>
+                        <td>{o.metadata?.email ?? '—'}</td>
+                        <td className={undefined}>
+                          {formatDate(o.expiresAt)}
+                          {isExpired && <span className={css.expired}> EXPIRED</span>}
+                        </td>
+                        <td>
+                          <ManualVerifyCell order={o} secret={secret} onVerified={() => fetchOrders(secret)} />
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
         )}
       </div>
 
@@ -2530,7 +2532,8 @@ function AdminContent() {
             style={{ cursor: 'pointer', userSelect: 'none' }}
           >
             {sectionsOpen.orphan ? '▾' : '▸'} Orphan Incoming Transactions
-            {incomingTxsData && ` (${orphanIncomingTxs.length} orphan / ${incomingTxsData.incoming.length} incoming, last ${incomingTxsData.days}d)`}
+            {incomingTxsData &&
+              ` (${orphanIncomingTxs.length} orphan / ${incomingTxsData.incoming.length} incoming, last ${incomingTxsData.days}d)`}
           </h2>
           {sectionsOpen.orphan && (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -2567,7 +2570,9 @@ function AdminContent() {
         </div>
 
         {sectionsOpen.orphan && incomingTxsError && (
-          <div className={css.empty} style={{ color: '#c00' }}>Error: {incomingTxsError}</div>
+          <div className={css.empty} style={{ color: '#c00' }}>
+            Error: {incomingTxsError}
+          </div>
         )}
 
         {sectionsOpen.orphan && incomingTxsData && (
@@ -2579,7 +2584,9 @@ function AdminContent() {
                 <span key={chainId}>
                   <strong>{chainName(Number(chainId))}:</strong>{' '}
                   {s.error ? (
-                    <span style={{ color: '#c00' }} title={s.error}>error</span>
+                    <span style={{ color: '#c00' }} title={s.error}>
+                      error
+                    </span>
                   ) : (
                     <>{s.count} incoming</>
                   )}
@@ -2660,99 +2667,103 @@ function AdminContent() {
           </h2>
         </div>
         {sectionsOpen.wcUnpaid && (
-        <div className={css['table-wrap']}>
-          {filteredWcUnpaid.length === 0 ? (
-            <div className={css.empty}>No unpaid wc_inject orders</div>
-          ) : (
-            <table className={css.table}>
-              <thead>
-                <tr>
-                  <th>Order Code</th>
-                  <th>Amount</th>
-                  <th>Quote Amount</th>
-                  <th>Email</th>
-                  <th>Quote (chain/token/payer)</th>
-                  <th>Created</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredWcUnpaid.map(o => (
-                  <tr key={o.orderCode}>
-                    <td className={css.mono}>
-                      <Copyable value={o.orderCode}>{o.orderCode}</Copyable>
-                      {o.testmode && (
-                        <>
-                          {' '}
-                          <TestModeBadge on />
-                        </>
-                      )}
-                    </td>
-                    <td>${o.total}</td>
-                    <td>
-                      {o.quote?.amountRaw && o.quote.symbol ? (
-                        <>
-                          {formatCryptoAmount(o.quote.amountRaw, o.quote.symbol)} {o.quote.symbol}
-                        </>
-                      ) : (
-                        <span style={{ color: '#999' }}>—</span>
-                      )}
-                    </td>
-                    <td>
-                      {o.email || '—'}
-                      {o.email && !isDupBadgeSuppressedEmail(o.email) && (wcUnpaidQuotedByEmail[o.email] ?? 0) > 1 && (
-                        <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
-                          ({wcUnpaidQuotedByEmail[o.email]} orders)
-                        </span>
-                      )}
-                    </td>
-                    <td className={css.mono} style={{ fontSize: 12 }}>
-                      {o.quote ? (
-                        <>
-                          {o.quote.symbol ?? '?'} on chain {o.quote.chainId ?? '?'}
-                          {o.quote.intendedPayer && (
-                            <>
-                              {' '}/{' '}
-                              <a
-                                className={css.link}
-                                href={addressExplorerUrl(o.quote.intendedPayer, o.quote.chainId ?? undefined)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                title={o.quote.intendedPayer}
-                              >
-                                {truncate(o.quote.intendedPayer)}
-                              </a>
-                              {!isDupBadgeSuppressedPayer(o.quote.intendedPayer) && (wcUnpaidQuotedByPayer[o.quote.intendedPayer.toLowerCase()] ?? 0) > 1 && (
-                                <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
-                                  ({wcUnpaidQuotedByPayer[o.quote.intendedPayer.toLowerCase()]} orders)
-                                </span>
-                              )}
-                            </>
-                          )}
-                        </>
-                      ) : (
-                        <span style={{ color: '#999' }}>no quote</span>
-                      )}
-                    </td>
-                    <td>{o.createdAt ? formatDate(o.createdAt) : '—'}</td>
-                    <td>
-                      <WcManualVerifyCell
-                        order={o}
-                        secret={secret}
-                        pretixOrderUrl={
-                          data?.pretixBaseUrl && data?.pretixOrgSlug && data?.pretixEventSlug
-                            ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
-                            : undefined
-                        }
-                        onVerified={() => fetchOrders(secret)}
-                      />
-                    </td>
+          <div className={css['table-wrap']}>
+            {filteredWcUnpaid.length === 0 ? (
+              <div className={css.empty}>No unpaid wc_inject orders</div>
+            ) : (
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Order Code</th>
+                    <th>Amount</th>
+                    <th>Quote Amount</th>
+                    <th>Email</th>
+                    <th>Quote (chain/token/payer)</th>
+                    <th>Created</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+                </thead>
+                <tbody>
+                  {filteredWcUnpaid.map(o => (
+                    <tr key={o.orderCode}>
+                      <td className={css.mono}>
+                        <Copyable value={o.orderCode}>{o.orderCode}</Copyable>
+                        {o.testmode && (
+                          <>
+                            {' '}
+                            <TestModeBadge on />
+                          </>
+                        )}
+                      </td>
+                      <td>${o.total}</td>
+                      <td>
+                        {o.quote?.amountRaw && o.quote.symbol ? (
+                          <>
+                            {formatCryptoAmount(o.quote.amountRaw, o.quote.symbol)} {o.quote.symbol}
+                          </>
+                        ) : (
+                          <span style={{ color: '#999' }}>—</span>
+                        )}
+                      </td>
+                      <td>
+                        {o.email || '—'}
+                        {o.email &&
+                          !isDupBadgeSuppressedEmail(o.email) &&
+                          (wcUnpaidQuotedByEmail[o.email] ?? 0) > 1 && (
+                            <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                              ({wcUnpaidQuotedByEmail[o.email]} orders)
+                            </span>
+                          )}
+                      </td>
+                      <td className={css.mono} style={{ fontSize: 12 }}>
+                        {o.quote ? (
+                          <>
+                            {o.quote.symbol ?? '?'} on chain {o.quote.chainId ?? '?'}
+                            {o.quote.intendedPayer && (
+                              <>
+                                {' '}
+                                /{' '}
+                                <a
+                                  className={css.link}
+                                  href={addressExplorerUrl(o.quote.intendedPayer, o.quote.chainId ?? undefined)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  title={o.quote.intendedPayer}
+                                >
+                                  {truncate(o.quote.intendedPayer)}
+                                </a>
+                                {!isDupBadgeSuppressedPayer(o.quote.intendedPayer) &&
+                                  (wcUnpaidQuotedByPayer[o.quote.intendedPayer.toLowerCase()] ?? 0) > 1 && (
+                                    <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+                                      ({wcUnpaidQuotedByPayer[o.quote.intendedPayer.toLowerCase()]} orders)
+                                    </span>
+                                  )}
+                              </>
+                            )}
+                          </>
+                        ) : (
+                          <span style={{ color: '#999' }}>no quote</span>
+                        )}
+                      </td>
+                      <td>{o.createdAt ? formatDate(o.createdAt) : '—'}</td>
+                      <td>
+                        <WcManualVerifyCell
+                          order={o}
+                          secret={secret}
+                          pretixOrderUrl={
+                            data?.pretixBaseUrl && data?.pretixOrgSlug && data?.pretixEventSlug
+                              ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
+                              : undefined
+                          }
+                          onVerified={() => fetchOrders(secret)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         )}
       </div>
     </div>

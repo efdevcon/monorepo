@@ -9,7 +9,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { pluginFetch } from 'services/pretixPluginProxy'
 import { TICKETING, TICKETING_ENV } from 'config/ticketing'
 import { fetchEthPriceUsd } from 'services/ethPrice'
-import { fetchWalletInfoFromZapper } from 'services/zapperWallet'
+import { fetchWalletInfoFromZapper, type WalletInfo } from 'services/zapperWallet'
 import { checkAdminAuth } from 'utils/adminAuth'
 
 // Polygon (137) temporarily excluded from the admin wallet panels —
@@ -97,7 +97,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // relayer
         //   ? fetchWalletInfoFromZapper({ address: relayer, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
         //   : Promise.resolve(null),
-        Promise.resolve(null),
+        // Cast widens the placeholder's type so the `if (gasRelayerFull)`
+        // branch below still type-checks while the relayer fetch is off.
+        Promise.resolve(null as WalletInfo | null),
       ])
       if (destinationFull) {
         // Filter ERC-20 rows to only the tokens we actually accept. Match by
