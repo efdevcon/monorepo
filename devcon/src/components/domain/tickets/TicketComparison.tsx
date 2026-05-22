@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NextLink from 'next/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
-import { useFeaturedWave, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useTicketsStoreUrl } from 'hooks/useWaveStates'
 
 type IconKind = 'check' | 'asterisk'
 
@@ -55,10 +55,12 @@ const UPCOMING_DATE_FORMATTER = new Intl.DateTimeFormat('en', {
 
 // Tag for the General Admission column that mirrors the overview card's
 // GeneralAdmissionTag: green "OPEN NOW" when live, gray "OPENS [date]" while
-// counting down, gray "CLOSED" otherwise. Same dimensions as StatusTag so
-// the column header height stays consistent.
+// counting down, gray pill with the static `openLabel` for an upcoming TBD
+// wave, gray "CLOSED" otherwise. Same dimensions as StatusTag so the column
+// header height stays consistent.
 const GeneralAdmissionStatusTag = () => {
   const { featured, mounted } = useFeaturedWave()
+  const waveStates = useWaveStates()
   if (!mounted) {
     return (
       <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#221144]">
@@ -77,6 +79,17 @@ const GeneralAdmissionStatusTag = () => {
     return (
       <span className="inline-flex items-center self-start whitespace-nowrap px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
         OPENS {UPCOMING_DATE_FORMATTER.format(featured.upcoming).toUpperCase()}
+      </span>
+    )
+  }
+  // Fall back to the first upcoming wave with a static `openLabel`, so a
+  // wave configured as "Opens June" (TBD without exact openTimes yet) reads
+  // as upcoming rather than CLOSED.
+  const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
+  if (upcomingTbd?.wave.openLabel) {
+    return (
+      <span className="inline-flex items-center self-start whitespace-nowrap px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
+        {upcomingTbd.wave.openLabel.toUpperCase()}
       </span>
     )
   }
@@ -279,7 +292,7 @@ export function TicketComparison() {
         <p className="text-sm sm:text-base text-[#221144] leading-6">{t('subheading')}</p>
       </div>
 
-      {/* Mobile/tablet: tab-switcher + single card + swipe hint */}
+      {/* Mobile/tablet: tab-switcher + single card */}
       <div className="flex flex-col gap-4 items-center w-full lg:hidden">
         <div className="bg-[#f2f1f4] p-1 rounded-xl flex items-center">
           {columns.map((col, idx) => {
@@ -302,10 +315,6 @@ export function TicketComparison() {
         </div>
 
         <MobileCard column={columns[activeTab]} labels={labels} />
-
-        <p className="text-[11px] font-medium text-[#756a8a] tracking-[0.25px] uppercase leading-[1.1] text-center">
-          {labels.swipe_hint || 'Swipe to compare tickets'}
-        </p>
       </div>
 
       {/* Desktop: comparison grid */}

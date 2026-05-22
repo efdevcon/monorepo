@@ -59,7 +59,7 @@ export const TICKET_WAVES: TicketWave[] = [
     price: '$699',
     openLabel: 'Opens June',
     quotaId: 1,
-    openTimes: [new Date(Date.UTC(2026, 5, 16, 2, 0, 0)), new Date(Date.UTC(2026, 5, 16, 16, 0, 0))],
+    // openTimes: [new Date(Date.UTC(2026, 5, 16, 2, 0, 0)), new Date(Date.UTC(2026, 5, 16, 16, 0, 0))],
   },
   // {
   //   id: 'wave-2',

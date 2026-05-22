@@ -3,13 +3,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
 import { CountdownText } from 'components/common/CountdownText'
 
 export const Strip = () => {
   const t = useTranslations('common.strip')
   const router = useRouter()
   const { featured } = useFeaturedWave()
+  const waveStates = useWaveStates()
   const { label: ctaLabel } = useTicketsCtaLabel()
   const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
 
@@ -17,6 +18,13 @@ export const Strip = () => {
 
   const showCountdown = featured?.status === 'countdown' && featured.countdown
   const showLive = featured?.status === 'live'
+  // Fallback: no live / countdown wave — but if there's a known upcoming
+  // wave that just doesn't have exact open times yet (status 'tbd'), use
+  // its name so the strip reads e.g. "Wave 1 coming soon" instead of the
+  // generic "Tickets coming soon".
+  const upcomingTbd = !showCountdown && !showLive
+    ? waveStates.find(s => s.status === 'tbd')
+    : undefined
   const badge = showLive ? t('badge_live') : showCountdown ? t('badge_countdown') : t('badge')
 
   return (
@@ -38,6 +46,11 @@ export const Strip = () => {
                 </>
               ) : showLive && featured ? (
                 <>{featured.wave.name} tickets on sale now!</>
+              ) : upcomingTbd ? (
+                <>
+                  {upcomingTbd.wave.name}
+                  {upcomingTbd.wave.openLabel ? ` — ${upcomingTbd.wave.openLabel}` : ' coming soon'}
+                </>
               ) : (
                 t('message')
               )}

@@ -45,17 +45,24 @@ function downloadIcs() {
 
 type Variant = 'light' | 'dark'
 
-interface AddToCalendarButtonProps {
-  className?: string
-  variant?: Variant
+interface AddToCalendarPopoverProps {
+  children: (props: { open: boolean; toggle: () => void }) => React.ReactNode
   popoverPosition?: 'top' | 'bottom'
+  popoverAlign?: 'left' | 'right'
+  className?: string
 }
 
-export const AddToCalendarButton = ({
-  className = '',
-  variant = 'light',
+/**
+ * Trigger-agnostic version of the add-to-calendar control. Takes a render-prop
+ * `children` that receives `{ open, toggle }` and renders the trigger element.
+ * Click-outside dismissal is handled by the wrapping container.
+ */
+export const AddToCalendarPopover = ({
+  children,
   popoverPosition = 'top',
-}: AddToCalendarButtonProps) => {
+  popoverAlign = 'left',
+  className = '',
+}: AddToCalendarPopoverProps) => {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -70,28 +77,19 @@ export const AddToCalendarButton = ({
     return () => document.removeEventListener('mousedown', handleClick)
   }, [open])
 
-  const buttonClass =
-    variant === 'dark'
-      ? 'bg-white/80 hover:bg-white border border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
-      : 'bg-white/80 hover:bg-white border border-[#221144]/10 text-[#1a0d33]'
-
   return (
     <div ref={containerRef} className={`relative inline-block ${className}`}>
-      <button
-        type="button"
-        onClick={() => setOpen(v => !v)}
-        className={`${buttonClass} transition-colors font-bold text-sm rounded-full px-6 py-3 flex items-center gap-2 justify-center cursor-pointer whitespace-nowrap`}
-      >
-        Add to Calendar
-        <CalendarPlus className="w-4 h-4" strokeWidth={2.5} />
-      </button>
+      {children({ open, toggle: () => setOpen(v => !v) })}
 
       {open && (
         <div
-          className={`absolute ${popoverPosition === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'} left-0 bg-white rounded-xl shadow-lg border border-[#221144]/10 p-3 flex flex-col gap-1 min-w-[180px] z-20`}
+          className={`absolute ${popoverPosition === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'} ${
+            popoverAlign === 'right' ? 'right-0' : 'left-0'
+          } bg-white rounded-xl shadow-lg border border-[#221144]/10 p-1.5 pr-7 flex flex-col gap-0.5 min-w-[180px] z-20 text-left text-sm leading-5`}
         >
           <button
-            className="absolute top-2 right-2 text-[#594d73] hover:text-[#160b2b]"
+            type="button"
+            className="absolute top-1.5 right-1.5 text-[#594d73] hover:text-[#160b2b] leading-none"
             onClick={() => setOpen(false)}
             aria-label="Close"
           >
@@ -101,13 +99,14 @@ export const AddToCalendarButton = ({
             href={getGoogleCalendarUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-lg transition-colors"
+            className="block px-2.5 py-1.5 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-md transition-colors leading-5"
             onClick={() => setOpen(false)}
           >
             Google Calendar
           </a>
           <button
-            className="px-3 py-2 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-lg transition-colors text-left"
+            type="button"
+            className="block w-full px-2.5 py-1.5 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-md transition-colors text-left leading-5"
             onClick={() => {
               downloadIcs()
               setOpen(false)
@@ -118,5 +117,37 @@ export const AddToCalendarButton = ({
         </div>
       )}
     </div>
+  )
+}
+
+interface AddToCalendarButtonProps {
+  className?: string
+  variant?: Variant
+  popoverPosition?: 'top' | 'bottom'
+}
+
+export const AddToCalendarButton = ({
+  className = '',
+  variant = 'light',
+  popoverPosition = 'top',
+}: AddToCalendarButtonProps) => {
+  const buttonClass =
+    variant === 'dark'
+      ? 'bg-white/80 hover:bg-white border border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
+      : 'bg-white/80 hover:bg-white border border-[#221144]/10 text-[#1a0d33]'
+
+  return (
+    <AddToCalendarPopover className={className} popoverPosition={popoverPosition}>
+      {({ toggle }) => (
+        <button
+          type="button"
+          onClick={toggle}
+          className={`${buttonClass} transition-colors font-bold text-sm rounded-full px-6 py-3 flex items-center gap-2 justify-center cursor-pointer whitespace-nowrap`}
+        >
+          Add to Calendar
+          <CalendarPlus className="w-4 h-4" strokeWidth={2.5} />
+        </button>
+      )}
+    </AddToCalendarPopover>
   )
 }

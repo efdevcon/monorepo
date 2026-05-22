@@ -113,13 +113,14 @@ function formatUpcomingDate(d: Date): string {
   return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(d).toUpperCase()
 }
 
-// Tag rendered on the General Admission overview card. Cycles through three
-// states driven by the featured wave:
-//   countdown → marigold pill with date of the next wave (e.g. "OPENS MAY 22")
-//   live      → green OPEN NOW pill
-//   closed/no featured → gray CLOSED pill
+// Tag rendered on the General Admission overview card. Cycles through:
+//   live                 → green OPEN NOW pill
+//   countdown            → gray pill with date of the next wave (e.g. "OPENS MAY 22")
+//   tbd with openLabel   → gray pill repeating the wave's static label (e.g. "OPENS JUNE")
+//   nothing upcoming     → gray CLOSED pill
 function GeneralAdmissionTag() {
   const { featured, mounted } = useFeaturedWave()
+  const waveStates = useWaveStates()
 
   if (!mounted) {
     return (
@@ -145,7 +146,19 @@ function GeneralAdmissionTag() {
     )
   }
 
-  // No featured wave (all closed or all tbd) → CLOSED.
+  // No live / countdown wave — fall back to the first upcoming wave that has
+  // a static `openLabel` defined (e.g. "Opens June" for a wave with no exact
+  // openTimes yet), so we don't mis-label an upcoming sale as CLOSED.
+  const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
+  if (upcomingTbd?.wave.openLabel) {
+    return (
+      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#f2f1f4] text-[#594d73]">
+        {upcomingTbd.wave.openLabel.toUpperCase()}
+      </span>
+    )
+  }
+
+  // Truly nothing upcoming → CLOSED.
   return (
     <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#594d73]">
       CLOSED

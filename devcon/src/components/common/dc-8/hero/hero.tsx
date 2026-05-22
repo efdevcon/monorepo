@@ -9,7 +9,7 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
-import { useFeaturedWave } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -48,9 +48,16 @@ export const Hero = () => {
   const t = useTranslations('home.hero')
   const stripHeight = useGetElementHeight('strip')
   const { featured } = useFeaturedWave()
+  const waveStates = useWaveStates()
   const now = useNow()
   const showCountdown = featured?.status === 'countdown' && !!featured.upcoming
   const showLive = featured?.status === 'live'
+  // Fallback when there's no live / countdown wave: surface the upcoming
+  // TBD wave's name so the eyebrow reads "Wave 1 coming soon" instead of
+  // the generic "Tickets coming soon".
+  const upcomingTbd = !showCountdown && !showLive
+    ? waveStates.find(s => s.status === 'tbd')
+    : undefined
   const parts = showCountdown && featured?.upcoming && now ? splitCountdown(featured.upcoming, now) : null
 
   return (
@@ -121,6 +128,11 @@ export const Hero = () => {
                   ) : showLive ? (
                     <p className="text-xs font-semibold text-[#aaeaba] text-center tracking-[2px] leading-none">
                       {t('tickets_launch_eyebrow_live')}
+                    </p>
+                  ) : upcomingTbd ? (
+                    <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-none">
+                      {upcomingTbd.wave.name}
+                      {upcomingTbd.wave.openLabel ? ` — ${upcomingTbd.wave.openLabel}` : ' coming soon'}
                     </p>
                   ) : (
                     <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] leading-none">

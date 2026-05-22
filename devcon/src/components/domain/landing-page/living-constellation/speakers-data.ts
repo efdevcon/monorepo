@@ -15,7 +15,7 @@ import poojaImg from './assets/portraits/pooja-ranjan.jpg'
 import jesseImg from './assets/portraits/jesse-pollak.jpg'
 import hartImg from './assets/portraits/hart-montgomery.jpg'
 import rogerImg from './assets/portraits/roger-dingledine.jpg'
-import davidImg from './assets/portraits/david-hoffman.jpg'
+// import davidImg from './assets/portraits/david-hoffman.jpg'
 import brunoImg from './assets/portraits/bruno-macaes.jpg'
 import tomaszImg from './assets/portraits/tomasz.jpg'
 import pujaImg from './assets/portraits/puja-ohlhaver.jpg'
@@ -86,7 +86,7 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = [
   { id: 'mudit', name: 'Mudit Gupta', title: 'CISO', company: 'Polygon', color: '#e11d48', image: muditImg, event: devcon7, companyLogo: logoPolygon },
   { id: 'tarun', name: 'Tarun Chitra', title: 'Founder', company: 'Gauntlet', color: '#f97316', image: tarunImg, event: devcon7, companyLogo: logoGauntlet },
   { id: 'aayush', name: 'Aayush Gupta', title: 'Founder', company: 'SettleX', color: '#2563eb', image: aayushImg, event: devcon7, companyLogo: logoSettlex },
-  { id: 'david', name: 'David Hoffman', title: 'Co-Founder', company: 'Bankless', color: '#f97316', image: davidImg, event: devcon7, companyLogo: logoBankless },
+  // { id: 'david', name: 'David Hoffman', title: 'Co-Founder', company: 'Bankless', color: '#f97316', image: davidImg, event: devcon7, companyLogo: logoBankless },
   { id: 'uma', name: 'Uma Roy', title: 'Co-Founder', company: 'Succinct Labs', color: '#8b5cf6', image: umaImg, event: devcon7, companyLogo: logoSuccinct },
   { id: 'kaspar', name: 'Kaspar Korjus', title: 'Co-Founder', company: 'Pactum AI', color: '#06b6d4', image: kasparImg, event: devcon4, companyLogo: logoPactum },
   { id: 'cory', name: 'Cory Doctorow', title: 'Author', company: 'Independent', color: '#e11d48', image: coryImg, event: devcon7 },
