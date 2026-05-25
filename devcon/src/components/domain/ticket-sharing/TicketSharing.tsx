@@ -90,6 +90,10 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
   const [copied, setCopied] = useState(false)
   const [avatarError, setAvatarError] = useState(false)
   const [avatarLoaded, setAvatarLoaded] = useState(false)
+  // Stays `true` for ~350ms after `avatarError` flips on so the slot can
+  // play its collapse animation, then gets unmounted from the DOM (which
+  // removes the leftover margin/gap as well).
+  const [avatarSlotMounted, setAvatarSlotMounted] = useState(true)
   const avatarRef = useRef<HTMLImageElement | null>(null)
   const handleAvatarError = useCallback(() => setAvatarError(true), [])
   const handleAvatarLoad = useCallback(() => setAvatarLoaded(true), [])
@@ -106,7 +110,16 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
     }
   }, [avatarUrl])
 
-  const hasAvatar = !!avatarUrl && !avatarError
+  // Once the avatar errors out, let the CSS collapse animation play, then
+  // unmount the slot so the row no longer reserves space (and the right
+  // margin disappears in the same beat as the slot itself).
+  useEffect(() => {
+    if (!avatarError) return
+    const t = setTimeout(() => setAvatarSlotMounted(false), 360)
+    return () => clearTimeout(t)
+  }, [avatarError])
+
+  const showAvatarSlot = !!avatarUrl && avatarSlotMounted
 
   const cardClass = (index: number) => {
     const isFront = index === frontIndex
@@ -155,15 +168,20 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl }: TicketSharing
         >
           <div className={css.ticketPunch}>
             <Image src={ticketFront} alt={`${name}'s Devcon ticket`} className={css.ticketImage} placeholder="blur" />
-            <div className={cn(css.ticketContent, { [css.noAvatar]: !hasAvatar })}>
+            <div className={css.ticketContent}>
               <div className={css.attendeeRow}>
-                {hasAvatar && (
-                  <div className={css.avatarCircle}>
+                {showAvatarSlot && (
+                  <div
+                    className={cn(css.avatarCircle, {
+                      [css.loaded]: avatarLoaded,
+                      [css.errored]: avatarError,
+                    })}
+                  >
                     <img
                       ref={avatarRef}
                       src={avatarUrl!}
                       alt={`${name}'s avatar`}
-                      className={cn(css.avatarImage, { [css.avatarLoaded]: avatarLoaded })}
+                      className={css.avatarImage}
                       onLoad={handleAvatarLoad}
                       onError={handleAvatarError}
                       // The image is preloaded in <Head> via `<link rel="preload">`,
