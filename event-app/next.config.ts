@@ -1,12 +1,31 @@
+import { spawnSync } from "node:child_process";
 import type { NextConfig } from "next";
 import withSerwistInit from "@serwist/next";
 
 const isStaticExport = process.env.STATIC_EXPORT === "true";
 
+// Revision string for the cache-bust key of additionalPrecacheEntries.
+// When HEAD changes, the SW refetches the entries on next install.
+const revision =
+  spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" })
+    .stdout?.trim() || crypto.randomUUID();
+
 const withSerwist = withSerwistInit({
   swSrc: "src/sw.ts",
   swDest: "public/sw.js",
   disable: process.env.NODE_ENV === "development" || isStaticExport,
+  cacheOnNavigation: false,
+  additionalPrecacheEntries: [{ url: "/", revision }],
+  reloadOnOnline: false,
+  exclude: [
+    /build-manifest\.json$/,
+    /react-loadable-manifest\.json$/,
+    /middleware-manifest\.json$/,
+    /\/server\//,
+    // Match app/api/... AND app/(group)/api/... so route groups don't slip through
+    /\/app\/(?:\([^)]+\)\/)?api\//,
+    /\/route-[a-f0-9]+\.js$/,
+  ],
 });
 
 const nextConfig: NextConfig = {

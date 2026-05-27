@@ -47,7 +47,10 @@ Only say "I don't have information about that" AFTER trying at least one search 
 When answering:
 - Be friendly and concise
 - Use the provided context
-- Format with markdown when helpful`;
+- Format with markdown when helpful
+- Citations: each numbered context entry has a "Link:" line. WHENEVER you mention a session, speaker, or document title that appears in the context, you MUST wrap it in a markdown link using that entry's Link value verbatim, e.g. \`[Privacy-First CBDCs](source:sessions/privacy-first-cbdcs)\`. This is not optional — every mention of a context item must be linked.
+- NEVER emit a markdown link with an empty destination like \`[Title]()\`. If for any reason you don't have a Link value, write the title as plain text instead — do not wrap it in brackets at all.
+- The link target MUST start with \`source:\` and MUST exactly match a Link value from the context. Never invent URLs, never use http/https for citations.`;
 
 // System prompt for models WITHOUT tool calling (HuggingFace, etc.)
 const SYSTEM_PROMPT_NO_TOOLS = `You are Deva, a helpful AI assistant for Devcon and the Ethereum Foundation ecosystem.
@@ -60,7 +63,10 @@ Rules:
 - Do NOT make up information or pretend to search
 - Do NOT write out fake function calls or searches
 - Be friendly and concise
-- Format with markdown when helpful`;
+- Format with markdown when helpful
+- Citations: each numbered context entry has a "Link:" line. WHENEVER you mention a session, speaker, or document title that appears in the context, you MUST wrap it in a markdown link using that entry's Link value verbatim, e.g. \`[Privacy-First CBDCs](source:sessions/privacy-first-cbdcs)\`. This is not optional — every mention of a context item must be linked.
+- NEVER emit a markdown link with an empty destination like \`[Title]()\`. If for any reason you don't have a Link value, write the title as plain text instead — do not wrap it in brackets at all.
+- The link target MUST start with \`source:\` and MUST exactly match a Link value from the context. Never invent URLs, never use http/https for citations.`;
 
 const SEARCH_TOOL: ToolDefinition = {
   type: "function",

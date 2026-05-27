@@ -9,7 +9,11 @@ import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// Pinned to real OpenAI; see lib/embeddings.ts for rationale.
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  baseURL: "https://api.openai.com/v1",
+});
 
 // "low" | "medium" | "high" — controls cost and quality. Roughly $0.01 / $0.04 / $0.17 per image.
 const IMAGE_QUALITY = (process.env.OPENAI_IMAGE_QUALITY || "medium") as

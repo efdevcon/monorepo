@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import type { Components } from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
 import Markdown from "react-markdown";
 import cn from "classnames";
@@ -8,6 +9,25 @@ import cn from "classnames";
 interface Message {
   role: "user" | "assistant";
   content: string;
+}
+
+// Map devcon-ai's portable `source:<id>` URIs to event-app's local routes.
+// Bot's source_ids look like `sessions/<slug>` or `speakers/<slug>`; anything
+// else falls back to a generic `/<stripped path>` so the ID stays clickable
+// even before that route exists.
+function resolveSourceUri(href: string): string | null {
+  if (!href.startsWith("source:")) return null;
+  const path = href
+    .slice("source:".length)
+    .replace(/#chunk-\d+$/, "")
+    .replace(/#\d+$/, "");
+  if (path.startsWith("sessions/")) {
+    return `/schedule/${path.slice("sessions/".length)}`;
+  }
+  if (path.startsWith("speakers/")) {
+    return `/speakers/${path.slice("speakers/".length)}`;
+  }
+  return `/${path}`;
 }
 
 interface Source {
@@ -38,6 +58,42 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
   const [showSources, setShowSources] = useState(false);
   const [debugContext, setDebugContext] = useState<string>("");
   const [showDebugContext, setShowDebugContext] = useState(false);
+
+  const markdownComponents = useMemo<Components>(
+    () => ({
+      a: ({ href, children, ...rest }) => {
+        // Model sometimes emits `[Title]()` with no destination — render as
+        // bold text so we never produce a link to the current origin.
+        if (!href || href === "#") {
+          return <strong>{children}</strong>;
+        }
+        const resolved = resolveSourceUri(href);
+        if (resolved) {
+          return (
+            <a
+              href={resolved}
+              className="text-purple-600 underline"
+              onClick={() => onToggle(false)}
+            >
+              {children}
+            </a>
+          );
+        }
+        return (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+            {...rest}
+          >
+            {children}
+          </a>
+        );
+      },
+    }),
+    [onToggle],
+  );
 
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -101,7 +157,10 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
     setDebugContext("");
 
     try {
-      const baseUrl = apiUrl || process.env.NEXT_PUBLIC_DEVABOT_API_URL || "http://localhost:3001";
+      const baseUrl =
+        apiUrl ||
+        process.env.NEXT_PUBLIC_DEVABOT_API_URL ||
+        "http://localhost:3001";
       const response = await fetch(`${baseUrl}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -276,7 +335,9 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
                 >
                   {msg.role === "assistant" ? (
                     <div className="prose prose-sm max-w-none">
-                      <Markdown>{msg.content}</Markdown>
+                      <Markdown components={markdownComponents}>
+                        {msg.content}
+                      </Markdown>
                     </div>
                   ) : (
                     msg.content
@@ -287,7 +348,9 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
               {streamingMessage && (
                 <div className="max-w-[85%] mr-auto bg-gray-100 rounded-xl rounded-bl-none p-3 text-sm">
                   <div className="prose prose-sm max-w-none">
-                    <Markdown>{streamingMessage}</Markdown>
+                    <Markdown components={markdownComponents}>
+                      {streamingMessage}
+                    </Markdown>
                   </div>
                 </div>
               )}

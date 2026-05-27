@@ -32,7 +32,8 @@ export function getChatProvider(): ChatProvider {
     case "openai":
     default:
       console.log(
-        `Using OpenAI chat provider with model: ${process.env.OPENAI_MODEL || "gpt-4o"}`
+        `Using OpenAI chat provider with model: ${process.env.OPENAI_MODEL || "gpt-4o"} ` +
+          `at ${process.env.OPENAI_BASE_URL || "https://api.openai.com/v1 (default)"}`
       );
       cachedProvider = new OpenAIChatProvider();
       break;

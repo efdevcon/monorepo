@@ -1494,6 +1494,12 @@
   color: #221144;
   transition: background 0.15s, color 0.15s;
 
+  // Brand glyphs (X, Instagram, Telegram, email) are fill-based SVGs; drive
+  // their fill from the container color so the hover state applies too.
+  svg path {
+    fill: currentColor;
+  }
+
   &:hover {
     background: #ffffff;
     color: #7235ed;

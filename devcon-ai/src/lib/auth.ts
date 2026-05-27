@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import type { NextFunction, Request, Response } from "express";
 
 let cachedAnonClient: SupabaseClient | null = null;
 let loggedMissingConfig = false;
@@ -57,4 +58,41 @@ export async function validateBearerToken(
   }
   if (!user?.email) return { ok: false, reason: "invalid" };
   return { ok: true, email: user.email };
+}
+
+/**
+ * Auth is enforced everywhere EXCEPT explicit local dev. Fail-secure: anything
+ * other than NODE_ENV=development (production, undefined, test, ...) keeps the
+ * gate on, so a misconfigured deploy can't accidentally expose the endpoints.
+ */
+export function isAuthDisabled(): boolean {
+  return process.env.NODE_ENV === "development";
+}
+
+/**
+ * Express middleware gating a route behind a valid Supabase session token
+ * (Authorization: Bearer <access_token>). Skips entirely in local dev.
+ */
+export async function requireAuth(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  if (isAuthDisabled()) {
+    next();
+    return;
+  }
+
+  const auth = await validateBearerToken(req.headers.authorization);
+  if (!auth.ok) {
+    if (auth.reason === "config") {
+      res.status(500).json({ error: "Auth not configured on server" });
+    } else {
+      res.status(401).json({ error: "Authentication required" });
+    }
+    return;
+  }
+
+  (req as Request & { userEmail?: string }).userEmail = auth.email;
+  next();
 }

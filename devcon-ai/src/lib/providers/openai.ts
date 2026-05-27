@@ -14,8 +14,25 @@ export class OpenAIChatProvider implements ChatProvider {
   private model: string;
 
   constructor() {
+    // Chat can be pointed at any OpenAI-compatible endpoint (e.g. EF Inference
+    // at https://inference.ethereum.foundation/v1). Embeddings stay on real
+    // OpenAI via the separate client in lib/embeddings.ts — so when
+    // OPENAI_BASE_URL is set, we must NOT fall back to OPENAI_API_KEY here
+    // (that key is for openai.com and will 401 against any other provider).
+    const baseURL = process.env.OPENAI_BASE_URL;
+    const explicitChatKey =
+      process.env.OPENAI_CHAT_API_KEY || process.env.EF_INFERENCE_API_KEY;
+
+    if (baseURL && !explicitChatKey) {
+      throw new Error(
+        "OPENAI_BASE_URL is set but no chat API key found. " +
+          "Set OPENAI_CHAT_API_KEY or EF_INFERENCE_API_KEY for the chat endpoint."
+      );
+    }
+
     this.client = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: explicitChatKey || process.env.OPENAI_API_KEY,
+      baseURL,
     });
     this.model = process.env.OPENAI_MODEL || "gpt-4o";
   }

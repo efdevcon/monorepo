@@ -3,7 +3,11 @@ import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { ArrowRight, Handshake, Compass, Wrench, Github, Twitter, MessageSquare } from 'lucide-react'
+import { ArrowRight, Handshake, Compass, Wrench } from 'lucide-react'
+import IconX from 'assets/icons/twitter.svg'
+import IconInstagram from 'assets/icons/instagram.svg'
+import IconTelegram from 'assets/icons/telegram.svg'
+import IconEmail from 'assets/icons/ui-email.svg'
 import InfiniteScroll from 'lib/components/infinite-scroll'
 import { WritingText } from 'components/domain/landing-page/WritingText'
 import themes from '../themes.module.scss'
@@ -328,25 +332,34 @@ export default function SupportersProgramPage() {
               aria-label="X (Twitter)"
               className={css['social-icon']}
             >
-              <Twitter size={16} strokeWidth={1.6} />
+              <IconX className="w-4 h-4" />
             </a>
             <a
-              href="https://github.com/efdevcon"
+              href="https://instagram.com/efdevcon"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="Instagram"
               className={css['social-icon']}
             >
-              <Github size={16} strokeWidth={1.6} />
+              <IconInstagram className="w-4 h-4" />
             </a>
             <a
-              href="https://forum.devcon.org"
+              href="https://t.me/+sitvvHw8D8EzN2Yx"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Forum"
+              aria-label="Telegram"
               className={css['social-icon']}
             >
-              <MessageSquare size={16} strokeWidth={1.6} />
+              <IconTelegram className="w-4 h-4" />
+            </a>
+            <a
+              href="https://paragraph.com/@efevents"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Newsletter"
+              className={css['social-icon']}
+            >
+              <IconEmail className="w-4 h-4" />
             </a>
           </div>
         </section>

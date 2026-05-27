@@ -550,6 +550,15 @@ function mergeResults3(
   return merged.slice(0, limit);
 }
 
+// Build a portable source URI the LLM can cite. Strips the chunk suffix so
+// every chunk of the same underlying document collapses to one stable ID.
+// Client apps map `source:` URIs to their own routes (e.g. sessions/foo →
+// /schedule/foo) in their markdown renderer.
+function buildSourceUri(sourceId: string): string {
+  const stripped = sourceId.replace(/#chunk-\d+$/, "").replace(/#\d+$/, "");
+  return `source:${stripped}`;
+}
+
 export function formatDocumentsForContext(documents: MatchedDocument[]): string {
   if (documents.length === 0) {
     return "No relevant documents found.";
@@ -559,7 +568,8 @@ export function formatDocumentsForContext(documents: MatchedDocument[]): string 
     .map((doc, i) => {
       const title =
         (doc.metadata as { title?: string })?.title || doc.source_id;
-      return `[${i + 1}] ${title}\nSource: ${doc.source_type}${doc.source_repo ? `/${doc.source_repo}` : ""}\n${doc.content}`;
+      const link = buildSourceUri(doc.source_id);
+      return `[${i + 1}] ${title}\nSource: ${doc.source_type}${doc.source_repo ? `/${doc.source_repo}` : ""}\nLink: ${link}\n${doc.content}`;
     })
     .join("\n\n---\n\n");
 }
@@ -580,7 +590,8 @@ export function formatExpandedDocumentsForContext(
 
   for (let i = 0; i < documents.length; i++) {
     const doc = documents[i];
-    const header = `[${i + 1}] ${doc.title}\nSource: ${doc.sourceType}${doc.sourceRepo ? `/${doc.sourceRepo}` : ""}\nRelevance: ${Math.round(doc.similarity * 100)}%\n\n`;
+    const link = buildSourceUri(doc.filePath);
+    const header = `[${i + 1}] ${doc.title}\nSource: ${doc.sourceType}${doc.sourceRepo ? `/${doc.sourceRepo}` : ""}\nLink: ${link}\nRelevance: ${Math.round(doc.similarity * 100)}%\n\n`;
 
     // Calculate how much space we have for this document's content
     const separatorLen = result.length > 0 ? 7 : 0; // "\n\n---\n\n"
