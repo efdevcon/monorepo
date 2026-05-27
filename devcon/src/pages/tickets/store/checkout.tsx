@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Markdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
-import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag, Monitor, Smartphone, Shield } from 'lucide-react'
+import { Wallet, CheckCircle, Lock, ChevronUp, ChevronDown, ArrowLeft, Check, Loader2, Minus, Plus, Tag, Monitor, Smartphone, Shield, X } from 'lucide-react'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
@@ -2358,8 +2358,10 @@ function CheckoutContent() {
   // both the persistent "Need help?" link below the Pay button and the two
   // "If you don't receive a confirmation email, please contact us" notes.
   // Single source of truth keeps the prefill template identical everywhere.
-  function buildSupportMailto(): string {
-    if (!supportEmail) return ''
+  // Returns subject + body separately (for the copy-paste popup) and a
+  // ready-to-use `mailto:` URL (for the link's default behavior).
+  function buildSupportMessage(): { subject: string; body: string; mailto: string } | null {
+    if (!supportEmail) return null
     const fill = (v: string | number | undefined | null) =>
       v == null || v === '' ? '(please fill in)' : String(v)
     const cartLines = cartItems
@@ -2377,6 +2379,8 @@ function CheckoutContent() {
     ]
     if (paymentMethod === 'crypto') {
       lines.push(
+        `Wallet: ${fill(connectedWalletName)}`,
+        `Connection: ${connectionTypeLabel(connectionKind)}`,
         `Wallet address: ${fill(address || '')}`,
         `Payment reference: ${fill(paymentDetails?.paymentReference)}`,
         `Network: ${fill(paymentDetails?.network)}`,
@@ -2386,18 +2390,27 @@ function CheckoutContent() {
         `Transaction hash: ${fill(txHash)}`,
       )
     }
-    // Include the current in-page error string when present so the
-    // operator has the exact failure context the buyer saw — no need to
-    // ask "what error did you get?" in a follow-up. Mirrors the
-    // wc_inject plugin's persistent-support-pill behavior.
-    if (purchaseError) {
-      lines.push(`Error shown to me: ${purchaseError}`)
-    }
+    // Include every currently-visible error string so the operator has
+    // the exact failure context the buyer saw — no need to ask "what
+    // error did you get?" in a follow-up. Mirrors the wc_inject plugin's
+    // persistent-support-pill behavior. Each error state corresponds to
+    // a different failure surface (purchase flow, post-tx manual hash,
+    // direct-sign), so we list them separately rather than collapsing.
+    if (purchaseError) lines.push('', `Error: ${purchaseError}`)
+    if (manualHashError) lines.push('', `Manual hash error: ${manualHashError}`)
+    if (directSignError) lines.push('', `Sign error: ${directSignError}`)
     lines.push('', 'What went wrong: (please describe)', '', 'Thanks!')
     const subject = `Devcon ticket support${paymentDetails?.paymentReference ? ` — ref ${paymentDetails.paymentReference}` : ''}`
-    return `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`
+    const body = lines.join('\n')
+    return {
+      subject,
+      body,
+      mailto: `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+    }
   }
-  const supportMailto = buildSupportMailto()
+  const supportMessage = buildSupportMessage()
+  const supportMailto = supportMessage?.mailto ?? ''
+  const [supportPopupOpen, setSupportPopupOpen] = useState(false)
 
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
@@ -2581,7 +2594,10 @@ function CheckoutContent() {
                   <p>
                     An order confirmation with your tickets will be sent to the email provided during checkout. If you
                     don&apos;t receive a confirmation email, please{' '}
-                    <a href={supportMailto || `mailto:${supportEmail}`}>
+                    <a
+                      href={supportMailto || `mailto:${supportEmail}`}
+                      onClick={() => supportMessage && setSupportPopupOpen(true)}
+                    >
                       <strong>contact us</strong>
                     </a>
                     .
@@ -4063,7 +4079,10 @@ function CheckoutContent() {
                       <div className={css['support-pill']}>
                         <p>
                           Need help?{' '}
-                          <a href={supportMailto}>
+                          <a
+                            href={supportMailto}
+                            onClick={() => setSupportPopupOpen(true)}
+                          >
                             <strong>Contact support</strong>
                           </a>
                         </p>
@@ -4369,7 +4388,189 @@ function CheckoutContent() {
           </div>
         </aside>
       </div>
+      {supportPopupOpen && supportMessage && (
+        <SupportCopyPopup
+          subject={supportMessage.subject}
+          body={supportMessage.body}
+          mailto={supportMessage.mailto}
+          supportEmail={supportEmail}
+          onClose={() => setSupportPopupOpen(false)}
+        />
+      )}
     </Page>
+  )
+}
+
+// Popup that mirrors the contact-support mailto in copy-pasteable form.
+// Opens alongside the buyer's mail client when they click any "Contact
+// support" link — useful when their mail client doesn't auto-fill mailto
+// links (corporate networks, browsers with no default handler, or when
+// the body is long enough that the mailto URL gets truncated).
+function SupportCopyPopup({
+  subject,
+  body,
+  mailto,
+  supportEmail,
+  onClose,
+}: {
+  subject: string
+  body: string
+  mailto: string
+  supportEmail: string
+  onClose: () => void
+}) {
+  const [copiedField, setCopiedField] = useState<'subject' | 'body' | 'email' | null>(null)
+  const copy = async (text: string, field: 'subject' | 'body' | 'email') => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedField(field)
+      setTimeout(() => setCopiedField(null), 1500)
+    } catch {
+      // older browsers / insecure contexts: silently no-op. Buyer can still
+      // select-all + cmd/ctrl-C from the visible field.
+    }
+  }
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        zIndex: 10000, padding: 16,
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: '#fff', borderRadius: 12, padding: 20,
+          maxWidth: 640, width: '100%', maxHeight: '90vh', overflow: 'auto',
+          boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <h3 style={{ margin: 0, fontSize: 18, fontWeight: 600 }}>Contact support</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              background: 'transparent', border: 'none', cursor: 'pointer',
+              padding: 4, lineHeight: 0,
+            }}
+          >
+            <X size={20} />
+          </button>
+        </div>
+        <p style={{ fontSize: 14, color: '#555', margin: '0 0 16px' }}>
+          Your mail client should open automatically. If it doesn&apos;t, copy the fields
+          below and send them to <strong>{supportEmail}</strong>.
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <SupportCopyField
+            label="To"
+            value={supportEmail}
+            copied={copiedField === 'email'}
+            onCopy={() => copy(supportEmail, 'email')}
+          />
+          <SupportCopyField
+            label="Subject"
+            value={subject}
+            copied={copiedField === 'subject'}
+            onCopy={() => copy(subject, 'subject')}
+          />
+          <SupportCopyField
+            label="Message"
+            value={body}
+            copied={copiedField === 'body'}
+            onCopy={() => copy(body, 'body')}
+            multiline
+          />
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 18 }}>
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              padding: '8px 16px', border: '1px solid #ccc', background: '#fff',
+              borderRadius: 6, cursor: 'pointer', fontSize: 14,
+            }}
+          >
+            Close
+          </button>
+          <a
+            href={mailto}
+            style={{
+              padding: '8px 16px', background: '#000', color: '#fff',
+              borderRadius: 6, textDecoration: 'none', fontSize: 14, fontWeight: 600,
+            }}
+          >
+            Open in mail app
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SupportCopyField({
+  label,
+  value,
+  copied,
+  onCopy,
+  multiline,
+}: {
+  label: string
+  value: string
+  copied: boolean
+  onCopy: () => void
+  multiline?: boolean
+}) {
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+        <span style={{ fontSize: 12, fontWeight: 600, color: '#555', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          {label}
+        </span>
+        <button
+          type="button"
+          onClick={onCopy}
+          style={{
+            padding: '2px 10px', fontSize: 12, fontWeight: 600,
+            background: copied ? '#1a7f37' : '#f3f3f3',
+            color: copied ? '#fff' : '#333',
+            border: '1px solid ' + (copied ? '#1a7f37' : '#ccc'),
+            borderRadius: 4, cursor: 'pointer',
+          }}
+        >
+          {copied ? 'Copied!' : 'Copy'}
+        </button>
+      </div>
+      {multiline ? (
+        <textarea
+          readOnly
+          value={value}
+          rows={Math.min(14, Math.max(6, value.split('\n').length))}
+          style={{
+            width: '100%', padding: 10, fontFamily: 'ui-monospace, monospace',
+            fontSize: 12.5, lineHeight: 1.5, border: '1px solid #ddd',
+            borderRadius: 6, resize: 'vertical', boxSizing: 'border-box',
+          }}
+          onFocus={e => e.currentTarget.select()}
+        />
+      ) : (
+        <input
+          readOnly
+          value={value}
+          style={{
+            width: '100%', padding: '8px 10px', fontFamily: 'ui-monospace, monospace',
+            fontSize: 13, border: '1px solid #ddd', borderRadius: 6, boxSizing: 'border-box',
+          }}
+          onFocus={e => e.currentTarget.select()}
+        />
+      )}
+    </div>
   )
 }
 
