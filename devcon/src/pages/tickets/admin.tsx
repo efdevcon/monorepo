@@ -1711,6 +1711,16 @@ function AdminContent() {
     [filteredCompleted]
   )
 
+  // Completed crypto payments whose Pretix order was later cancelled
+  // (status 'c'). These still appear in the completed list (the payment
+  // happened) but don't represent a live ticket, so we surface them and
+  // a net "Orders" figure that excludes them.
+  const cancelledCount = useMemo(() =>
+    activeCompleted.filter(o => o.pretixStatus === 'c').length,
+    [activeCompleted]
+  )
+  const netOrders = activeCompleted.length - cancelledCount
+
   const totalRevenue = useMemo(() =>
     activeCompleted.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
     [activeCompleted]
@@ -2081,6 +2091,14 @@ function AdminContent() {
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Completed</p>
               <p className={css['stat-value']}>{activeCompleted.length}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Paid</p>
+              <p className={css['stat-value']}>{netOrders}</p>
+            </div>
+            <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Cancelled</p>
+              <p className={css['stat-value']}>{cancelledCount}</p>
             </div>
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Refunded</p>
