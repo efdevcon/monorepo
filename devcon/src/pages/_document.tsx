@@ -6,6 +6,14 @@ export default class AppDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          {/* Favicons / app icons — SVG first for modern browsers, ICO as
+              fallback. PNG sizes cover Android/PWA contexts. */}
+          <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+          <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+          <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 

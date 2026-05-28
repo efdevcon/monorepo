@@ -10,16 +10,22 @@ import path from "path";
 import { createHash } from "crypto";
 
 // Pinned to real OpenAI; see lib/embeddings.ts for rationale.
+// maxRetries bumped from default 2 to 5 — `images.edit` occasionally gets a
+// remote socket close ("socket hang up") even at low quality. The SDK
+// retries with exponential backoff on transport-level errors.
+// Explicit 10-min timeout matches the default but documents intent.
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
   baseURL: "https://api.openai.com/v1",
+  maxRetries: 5,
+  timeout: 10 * 60 * 1000,
 });
 
-// "low" | "medium" | "high" — controls cost and quality. Roughly $0.01 / $0.04 / $0.17 per image.
-const IMAGE_QUALITY = (process.env.OPENAI_IMAGE_QUALITY || "medium") as
-  | "low"
-  | "medium"
-  | "high";
+// Reverted to "low" — "high" deterministically blows OpenAI's 60s
+// server-side budget on /v1/images/edits regardless of SDK transport. To
+// raise this above "low" or "medium" we'd need to move the call to the
+// Responses API with background: true and add a polling endpoint.
+const IMAGE_QUALITY = "low" as const;
 
 const CHARACTERS_DIR = path.join(process.cwd(), "image-references/characters");
 
@@ -96,9 +102,12 @@ function isWhitelisted(email: string): boolean {
 
 const generateSchema = z.object({
   image: z.string().min(100),
-  mode: z.enum(["style", "character", "accessories"]).default("style"),
-  // Required when mode === "character" or "accessories". Filename without extension (e.g. "aria").
+  // `crop` is one of the four Devcon values — drives the color theme.
+  // `character` is accepted for backwards compat with any old clients.
+  crop: z.string().optional(),
   character: z.string().optional(),
+  // Legacy mode param — kept for backwards compat, no longer used.
+  mode: z.enum(["style", "character", "accessories"]).default("style").optional(),
 });
 
 function characterBaseName(filename: string): string {
@@ -116,63 +125,91 @@ function findCharacter(
   );
 }
 
-function buildAccessoriesPrompt(characterName: string): string {
-  return `Photo: one or more real people. Reference: an illustrated character named "${characterName}".
+// Canonical Devcon avatar prompt — Infinite Garden / Indian lunarpunk
+// painterly-anime style, vetted in the avatar-lab. For now, every generation
+// uses this single prompt regardless of mode/character; per-crop variations
+// will be layered on once the basic flow is validated against this prompt.
+const INFINITE_GARDEN_PROMPT = `Create a contemplative character portrait inspired by Ethereum's Infinite Garden — a quiet spiritual study fused with the luminous Devcon 8 Mumbai mascot aesthetic. The presentation should feel curated, considered, and restrained: closer to a sacred manuscript plate than a magazine spread.
 
-Add the character's signature accessories (hat/headwear, glasses, jewelry, gear, scarf, badge, cloak, etc.) onto each person in the photo, and lightly restyle the rendering in the reference's illustration style.
+RENDERING STYLE:
+Painterly anime cinematic illustration. Soft brush textures, subtle grain, atmospheric lighting, volumetric glow. Soft edges, cinematic depth. Indian lunarpunk aesthetic — luminous, nocturnal, tech-nature symbiosis. NOT hyper-sharp. NOT photorealistic. NOT 3D-rendered. Visible brushwork is welcome.
 
-Hard rules:
-- Keep every face exactly as it is in the photo — same likeness, same proportions, same expression, same skin tone. Do not redraw or restyle facial geometry.
-- Keep each person's pose, body, hair, clothing, and gender presentation unchanged.
-- Only add accessories — don't replace clothing.
-- Keep the same number of people in the same positions. Don't add, remove, merge, or duplicate anyone.
-- Square portrait, no text or watermarks.`;
-}
+Feature the subject from the source photo in a calm, grounded pose with strong silhouette clarity and a sense of unhurried presence. Keep the subject as the central focus, framed with the careful visual hierarchy of a devotional plate.
 
-function buildCharacterPrompt(characterName: string): string {
-  return `Photo: one or more real people. Reference: an illustrated character named "${characterName}".
+LIKENESS:
+Preserve the subject's recognizable likeness, features, expression, age, hair shape, and skin tone — but reinterpreted as a painted anime character, not a photograph. They should be unmistakably the same person, illustrated. Don't change their identity; do paint them.
 
-Place each person from the photo into this character's costume, accessories, and scene, rendered in the reference's illustration style.
+Do not create a symmetrical half-and-half split. Instead, let a slow, controlled bloom of luminous matter grow outward from selected areas of the outfit, accessories, or aura — as if the spirit of the garden is gently overflowing into the subject. The transformation should feel intentional and sacred, like a still moment caught mid-growth in a luminous grove.
 
-Hard rules:
-- Keep every face exactly as it is in the photo — same likeness, same proportions, same expression, same skin tone. Do not redraw or restyle facial geometry.
-- Keep each person's gender presentation, body type, and approximate age unchanged.
-- Keep each person's hair color and length; tuck under hoods or hats only if the costume requires it.
-- Keep the same number of people in the same relative positions. Don't add, remove, merge, or duplicate anyone.
-- Square portrait, no text or watermarks.`;
-}
+The bloom flows organically rather than dividing the subject evenly. Let it emerge from clothing, accessories, or the air around them — never replacing the face — while preserving the recognizable silhouette and identity.
 
-function buildPrompt(
-  numStyleRefs: number,
-  featuredCharacterName?: string,
-): string {
-  const featured = featuredCharacterName?.trim();
-  const otherRefsCount = featured
-    ? Math.max(0, numStyleRefs - 1)
-    : numStyleRefs;
+The luminous material should feel like:
+- iridescent painted lacquer in deep indigo, violet, and teal
+- bioluminescent sap tinted with starlight
+- glowing cyan vines and tendrils of slow-flowing light
+- magenta sparks and warm-gold filament highlights
+- suspended petals, dewdrops, and ribbons of frozen painted light
 
-  const intro = featured
-    ? `Photo: one or more real people. Reference 1: featured character "${featured}" — only its accessories should be added.${otherRefsCount > 0 ? ` Reference${otherRefsCount > 1 ? "s" : ""} 2${otherRefsCount > 1 ? `–${otherRefsCount + 1}` : ""}: additional style guidance only (don't copy their faces, hair, or clothing).` : ""}`
-    : numStyleRefs === 1
-      ? "Photo: one or more real people. Reference: an illustration style."
-      : `Photo: one or more real people. References: ${numStyleRefs} examples of one shared illustration style (don't copy any character's face, hair, or clothing).`;
+ETHEREUM RESONANCE (subtle, latent):
+Within the painted flora and luminous matter, hide one or two whispered echoes of Ethereum's diamond silhouette — two stacked pyramids forming an upright octahedron. A petal's facets might align into that shape; a dewdrop's inner reflection might cut into it; a glowing seed-pod or bud might echo the geometry. Treat it as form latent in nature, never as a logo. The diamond must read as part of the flora — petal, fruit, gem-like dew — not as branding or jewelry. If a viewer recognizes it as "the Ethereum icon" at a glance, you have gone too far. Subtle enough that it is noticed only on a second look.
 
-  const accessoryClause = featured
-    ? `\nAlso add the featured character's signature accessories (hats, headwear, glasses, jewelry, gear, scarves, badges, cloaks, etc.) on top of each person's existing clothing — fit to each person's pose. Don't take the character's face, hair, body, clothing, or pose — only accessories.`
-    : "";
+Avoid:
+- slime aesthetics
+- horror melting
+- chaotic dripping
+- aggressive sci-fi effects
+- photorealistic skin, hyper-sharp focus, or 3D/CGI rendering
+- redrawn or altered identity
+- explicit Ethereum logos, brand glyphs, or recognizable crypto iconography
+- diamond shapes that read as cut jewelry, crystals, or repeated tessellation
 
-  return `${intro}
+The flowing forms should appear soft-edged, painted, glowing, and controlled — like vines, dewdrops, and ribbons suspended in a nocturnal sacred grove. Movement is slow and considered, never frantic. Light is volumetric and atmospheric.
 
-Restyle the photo in the reference illustration style.${accessoryClause}
+Background: a luminous Indian lunarpunk Infinite Garden at twilight — deep indigo and violet skies, scattered stars, soft teal/cyan particle glow, occasional magenta sparks, warm-gold lantern highlights, and the faint suggestion of growing forms and bioluminescent flora in the distance. Generous negative space. Avoid pure white. Avoid pure black. Centered, square composition. Cinematic depth.
 
-Hard rules:
-- Keep every face exactly as it is in the photo — same likeness, same proportions, same expression, same skin tone. Do not redraw or restyle facial geometry; restyle the rendering around it.
-- Keep each person's pose, body, hair, clothing, and gender presentation unchanged.
-- Keep the background subject matter and composition; just reinterpret it in the new style.
-- Keep the same number of people in the same positions. Don't add, remove, merge, or duplicate anyone.
-- This is a style transfer${featured ? " plus accessory overlay" : ""}, not a redesign.
-- Square portrait, no text or watermarks.`;
-}
+Optional restrained inserts: small atmospheric close-ups of painted glowing textures, organic surfaces, fragments of bloom, or quiet still-life details — painterly and contemplative, never technical, never analytical. These insets must also contain no text.
+
+NO TEXT:
+The final image must contain absolutely no text, words, letters, numbers, captions, labels, titles, headings, signatures, watermarks, logos, glyphs, or typography of any kind. No language, no calligraphy, no script, no symbols pretending to be text. The composition must be purely pictorial.
+
+Avoid:
+- any text, captions, labels, titles, or written language
+- cluttered diagrams
+- excessive callouts
+- technical breakdown panels
+- material analysis layouts
+- floating exploded clothing parts
+- combat imagery
+- heavy sci-fi interfaces
+- overt religious iconography or specific deities
+
+The final artwork should feel like a fusion of:
+- a painterly anime cinematic illustration
+- a contemplative spiritual portrait
+- an Indian lunarpunk plate
+- a moment from Ethereum's Infinite Garden
+
+Restrained yet luminous.
+Devotional yet personal.
+Painterly, not photographic.
+Refined without being branded.
+Wordless — no text, no captions, no titles, no typography of any kind.`;
+
+// Color-theme addendum mapped to the frontend's crops slider — Devcon's
+// four core values (Censorship Resistance / Open Source / Privacy /
+// Security). Selecting a value shifts the dominant color family of the
+// generation while keeping the overall lunarpunk-Infinite-Garden
+// composition unchanged.
+const CROP_COLOR_THEMES: Record<string, string> = {
+  "censorship-resistance": `COLOR THEME — CRIMSON & MAGENTA DOMINANT:
+Push the luminous matter toward defiant warmth. Lean into deep crimson, hot magenta, and rose-gold filaments. Magenta sparks should be plentiful; teal and cyan recede to faint background notes. Background nebula trends toward burgundy-violet rather than indigo. The garden glows with rebellious heat — still painterly, still restrained, but unmistakably warm.`,
+  "open-source": `COLOR THEME — TEAL & CYAN DOMINANT:
+Push the luminous matter toward oceanic openness. Lean into bright teal, glowing aqua, soft turquoise, and pale-cyan dewdrops. Tendrils and ribbons read as cool sea-light; magenta and gold recede to subtle accents only. Background nebula trends toward indigo-teal. The garden feels open, contemplative, and clear.`,
+  privacy: `COLOR THEME — DEEP VIOLET & INDIGO DOMINANT:
+Push the luminous matter toward shadowed secrecy. Lean into amethyst, deep electric violet, plum, and shadowed ultraviolet. Bloom is darker, more inward; teal and gold recede almost entirely. Background nebula is the deepest indigo-violet, with fewer stars and softer particles. The garden feels private and quiet.`,
+  security: `COLOR THEME — WARM GOLD & AMBER DOMINANT:
+Push the luminous matter toward lantern-warmth. Lean into honey-gold, burnished bronze, soft amber, and candle-warm highlights. Filaments and dewdrops glow like guarded lamplight; magenta and teal recede to subtle accents. Background nebula warms toward dusky violet-with-gold. The garden feels guarded, sheltered, and steady.`,
+};
 
 export const devconAvatarRouter: Router = Router();
 
@@ -183,6 +220,33 @@ devconAvatarRouter.use(express.json({ limit: "10mb" }));
 devconAvatarRouter.get("/characters", (_req, res) => {
   res.json({
     characters: STYLE_REFERENCES.map((r) => characterBaseName(r.name)),
+  });
+});
+
+// Returns the composed prompt that would be sent to OpenAI for a given crop
+// selection. Used by the frontend's "copy prompt" affordance. Gated to
+// OTP-verified users (same tier as /check) so the system prompt isn't
+// scrapable by anonymous clients.
+devconAvatarRouter.get("/prompt", async (req, res) => {
+  const auth = await validateBearerToken(req.headers.authorization);
+  if (!auth.ok) {
+    if (auth.reason === "config") {
+      res.status(500).json({ error: "Auth not configured on server" });
+    } else {
+      res.status(401).json({ error: "Invalid or missing token" });
+    }
+    return;
+  }
+
+  const cropParam = typeof req.query.crop === "string" ? req.query.crop.toLowerCase() : undefined;
+  const themeAddendum = cropParam ? CROP_COLOR_THEMES[cropParam] : undefined;
+  const prompt = themeAddendum
+    ? `${INFINITE_GARDEN_PROMPT}\n\n${themeAddendum}`
+    : INFINITE_GARDEN_PROMPT;
+  res.json({
+    prompt,
+    crop: cropParam ?? null,
+    themeApplied: !!themeAddendum,
   });
 });
 
@@ -230,14 +294,21 @@ devconAvatarRouter.get("/check", async (req, res) => {
       const ticketId = hashEmail(auth.email);
       const filePath = `${ticketId}.png`;
       const supabase = createServerClient();
-      const { data } = await supabase.storage
+      // List instead of download so we get `updated_at` for cache-busting.
+      // The bucket caches the public URL for a year; without a version query
+      // the browser will keep showing the same image after re-generation.
+      const { data: list } = await supabase.storage
         .from(DEVCON_AVATAR_BUCKET)
-        .download(filePath);
-      if (data) {
+        .list("", { limit: 1, search: filePath });
+      const file = list?.find((f) => f.name === filePath);
+      if (file) {
         const {
           data: { publicUrl },
         } = supabase.storage.from(DEVCON_AVATAR_BUCKET).getPublicUrl(filePath);
-        existingAvatar = publicUrl;
+        const version = file.updated_at
+          ? `?v=${encodeURIComponent(file.updated_at)}`
+          : `?v=${Date.now()}`;
+        existingAvatar = `${publicUrl}${version}`;
       }
     } catch {
       // Best-effort
@@ -291,95 +362,34 @@ devconAvatarRouter.post("/", async (req, res) => {
       return;
     }
 
-    const { image, mode, character } = parsed.data;
+    const { image, crop } = parsed.data;
     const cleanImage = image.replace(/^data:image\/[a-z]+;base64,/, "");
     const sourceMime = detectMimeFromBase64(cleanImage);
 
-    if (STYLE_REFERENCES.length === 0) {
-      res
-        .status(500)
-        .json({ error: "No style reference images configured on server" });
-      return;
-    }
-
-    let promptText: string;
-    let referenceImages: Array<{
-      base64: string;
-      mimeType: string;
-      name: string;
-    }>;
-    let storageSuffix = "";
-
-    if (mode === "character" || mode === "accessories") {
-      if (!character) {
-        res
-          .status(400)
-          .json({ error: `character is required when mode=${mode}` });
-        return;
-      }
-      const ref = findCharacter(character);
-      if (!ref) {
-        res.status(400).json({
-          error: `Unknown character "${character}". Available: ${STYLE_REFERENCES.map((r) => characterBaseName(r.name)).join(", ")}`,
-        });
-        return;
-      }
-      const charName = characterBaseName(ref.name);
-      promptText =
-        mode === "character"
-          ? buildCharacterPrompt(charName)
-          : buildAccessoriesPrompt(charName);
-      referenceImages = [ref];
-      storageSuffix =
-        mode === "character"
-          ? `-${charName.toLowerCase()}`
-          : `-acc-${charName.toLowerCase()}`;
-    } else {
-      // style mode: optionally feature one character so its accessories get added.
-      // Reorder refs so the featured character is first; the prompt instructs the
-      // model to take *only* its accessories, while using the rest for style.
-      let featuredName: string | undefined;
-      if (character) {
-        const featuredRef = findCharacter(character);
-        if (featuredRef) {
-          featuredName = characterBaseName(featuredRef.name);
-          referenceImages = [
-            featuredRef,
-            ...STYLE_REFERENCES.filter((r) => r.name !== featuredRef.name),
-          ];
-          storageSuffix = `-style-${featuredName.toLowerCase()}`;
-        } else {
-          referenceImages = STYLE_REFERENCES;
-        }
-      } else {
-        referenceImages = STYLE_REFERENCES;
-      }
-      promptText = buildPrompt(referenceImages.length, featuredName);
-    }
+    // The crops slider sends one of the four Devcon values
+    // (censorship-resistance / open-source / privacy / security). We use it
+    // to layer a color-theme addendum onto the canonical
+    // INFINITE_GARDEN_PROMPT so the dominant palette shifts per selection
+    // while the composition stays consistent.
+    const themeAddendum = crop ? CROP_COLOR_THEMES[crop.toLowerCase()] : undefined;
+    const promptText = themeAddendum
+      ? `${INFINITE_GARDEN_PROMPT}\n\n${themeAddendum}`
+      : INFINITE_GARDEN_PROMPT;
 
     const ticketId = hashEmail(auth.email);
     console.log(
-      `Generating Devcon avatar for ${auth.email} [mode=${mode}${character ? `, character=${character}` : ""}, quality=${IMAGE_QUALITY}]`,
+      `Generating Devcon avatar for ${auth.email} [crop=${crop ?? "(none)"}, theme=${themeAddendum ? "applied" : "default"}, quality=${IMAGE_QUALITY}]`,
     );
 
-    // OpenAI gpt-image-1 expects File-like objects. Convert source + each
-    // reference from base64 to File via the SDK helper.
     const sourceFile = await toFile(
       Buffer.from(cleanImage, "base64"),
       `source.${sourceMime.split("/")[1] || "png"}`,
       { type: sourceMime },
     );
-    const refFiles = await Promise.all(
-      referenceImages.map((ref, i) =>
-        toFile(Buffer.from(ref.base64, "base64"), `ref-${i}-${ref.name}`, {
-          type: ref.mimeType,
-        }),
-      ),
-    );
 
     const response = await openai.images.edit({
-      model: "gpt-image-1",
-      image: [sourceFile, ...refFiles],
+      model: "gpt-image-2-2026-04-21",
+      image: sourceFile,
       prompt: promptText,
       size: "1024x1024",
       quality: IMAGE_QUALITY,
@@ -394,7 +404,9 @@ devconAvatarRouter.post("/", async (req, res) => {
 
     const imageBuffer = Buffer.from(imageBase64, "base64");
     const supabase = createServerClient();
-    const filePath = `${ticketId}${storageSuffix}.png`;
+    // Single canonical filename per user; matches what GET /check looks up so
+    // re-visits show the latest avatar without per-mode suffix juggling.
+    const filePath = `${ticketId}.png`;
 
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from(DEVCON_AVATAR_BUCKET)
@@ -420,7 +432,17 @@ devconAvatarRouter.post("/", async (req, res) => {
 
     res.json({ image: publicUrl });
   } catch (err: any) {
-    console.error("Devcon avatar generation error:", err);
+    // Surface the underlying cause — Node's fetch hides socket-level errors
+    // (ECONNRESET, UND_ERR_SOCKET / "other side closed", DNS) in err.cause.
+    // Without this we'd just log "fetch failed" and have nothing actionable.
+    console.error("Devcon avatar generation error:", {
+      message: err?.message,
+      name: err?.name,
+      code: err?.code,
+      status: err?.status,
+      causeMessage: err?.cause?.message,
+      causeCode: err?.cause?.code,
+    });
     res.status(500).json({ error: err.message || "Generation failed" });
   }
 });

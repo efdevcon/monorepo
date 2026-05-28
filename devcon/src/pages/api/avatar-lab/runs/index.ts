@@ -52,15 +52,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).setHeader('Allow', 'GET, POST').end()
   }
 
-  const { prompt, model = 'openai', quality = 'medium', sources, label } = req.body ?? {}
+  const { prompt, model = 'openai', quality = 'auto', sources, label } = req.body ?? {}
   if (typeof prompt !== 'string' || prompt.length < 10) {
     return res.status(400).json({ success: false, error: 'prompt is required (min 10 chars)' })
   }
   if (model !== 'openai') {
     return res.status(400).json({ success: false, error: `Unsupported model: ${model}` })
   }
-  if (!['low', 'medium', 'high'].includes(quality)) {
-    return res.status(400).json({ success: false, error: 'quality must be low|medium|high' })
+  if (!['auto', 'low', 'medium', 'high'].includes(quality)) {
+    return res.status(400).json({ success: false, error: 'quality must be auto|low|medium|high' })
   }
   if (!Array.isArray(sources) || sources.length === 0 || sources.length > 8) {
     return res.status(400).json({ success: false, error: 'sources must be 1-8 entries' })

@@ -58,14 +58,18 @@ export class OpenAIChatProvider implements ChatProvider {
       message: {
         role: "assistant",
         content: message.content,
-        tool_calls: message.tool_calls?.map((tc) => ({
-          id: tc.id,
-          type: "function" as const,
-          function: {
-            name: tc.function.name,
-            arguments: tc.function.arguments,
-          },
-        })),
+        // v6 split tool_calls into a union (function | custom). We only emit
+        // function tool calls, so filter the rest before mapping.
+        tool_calls: message.tool_calls
+          ?.filter((tc): tc is Extract<typeof tc, { type: "function" }> => tc.type === "function")
+          .map((tc) => ({
+            id: tc.id,
+            type: "function" as const,
+            function: {
+              name: tc.function.name,
+              arguments: tc.function.arguments,
+            },
+          })),
       },
       finishReason: this.mapFinishReason(response.choices[0]?.finish_reason),
     };

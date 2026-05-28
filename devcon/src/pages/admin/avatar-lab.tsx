@@ -2,42 +2,56 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Page from 'components/common/layouts/page'
+import { CircularAvatarPreview } from 'components/domain/avatar/CircularAvatarPreview'
 
-// Seed prompt — Devcon-flavored adaptation of the luxury-liquid template the
-// operator shared. Free to fully replace via the textarea.
-const SEED_PROMPT = `Create a premium contemporary character identity artwork inspired by the Devcon 8 Mumbai mascot aesthetic — a quiet luxury fashion editorial fused with luminous Ethereum spirit art.
+// Seed prompt — Infinite-Garden + painterly-anime / Indian lunarpunk rendering
+// style. Replaces the previous luxury-fashion framing entirely. Free to fully
+// replace via the textarea; "reset to default" reloads from here.
+const SEED_PROMPT = `Create a contemplative character portrait inspired by Ethereum's Infinite Garden — a quiet spiritual study fused with the luminous Devcon 8 Mumbai mascot aesthetic. The presentation should feel curated, considered, and restrained: closer to a sacred manuscript plate than a magazine spread.
 
-Feature the subject from the source photo in a clean, confident pose with strong silhouette clarity and natural movement. Keep the subject as the central focus, presented with a calm premium aesthetic and refined visual hierarchy.
+RENDERING STYLE:
+Painterly anime cinematic illustration. Soft brush textures, subtle grain, atmospheric lighting, volumetric glow. Soft edges, cinematic depth. Indian lunarpunk aesthetic — luminous, nocturnal, tech-nature symbiosis. NOT hyper-sharp. NOT photorealistic. NOT 3D-rendered. Visible brushwork is welcome.
 
-IMPORTANT:
-Do not redraw the subject's face. Same likeness, same proportions, same expression, same skin tone. Restyle the rendering around the face — never the facial geometry itself.
+Feature the subject from the source photo in a calm, grounded pose with strong silhouette clarity and a sense of unhurried presence. Keep the subject as the central focus, framed with the careful visual hierarchy of a devotional plate.
 
-Do not create a symmetrical half-and-half split. Instead, introduce a controlled luminous transformation where parts of the outfit and surrounding silhouette gradually transition into flowing sculptural ribbons of light and liquid energy. The transformation should feel elegant, artistic, and premium — like frozen motion captured in a luxury editorial.
+LIKENESS:
+Preserve the subject's recognizable likeness, features, expression, age, hair shape, and skin tone — but reinterpreted as a painted anime character, not a photograph. They should be unmistakably the same person, illustrated. Don't change their identity; do paint them.
 
-The transformation flows naturally across the subject rather than dividing them evenly. Let the luminous material emerge organically from selected areas of clothing, accessories, or aura — never replacing skin or face — while preserving the recognizable silhouette and identity.
+Do not create a symmetrical half-and-half split. Instead, let a slow, controlled bloom of luminous matter grow outward from selected areas of the outfit, accessories, or aura — as if the spirit of the garden is gently overflowing into the subject. The transformation should feel intentional and sacred, like a still moment caught mid-growth in a luminous grove.
+
+The bloom flows organically rather than dividing the subject evenly. Let it emerge from clothing, accessories, or the air around them — never replacing the face — while preserving the recognizable silhouette and identity.
 
 The luminous material should feel like:
-- iridescent lacquer in deep teal, cyan, and violet
-- molten resin tinted with starlight
-- reflective ribbons of glowing cyan light
-- glossy pearl-coated fluid with soft purple highlights
+- iridescent painted lacquer in deep indigo, violet, and teal
+- bioluminescent sap tinted with starlight
+- glowing cyan vines and tendrils of slow-flowing light
+- magenta sparks and warm-gold filament highlights
+- suspended petals, dewdrops, and ribbons of frozen painted light
+
+ETHEREUM RESONANCE (subtle, latent):
+Within the painted flora and luminous matter, hide one or two whispered echoes of Ethereum's diamond silhouette — two stacked pyramids forming an upright octahedron. A petal's facets might align into that shape; a dewdrop's inner reflection might cut into it; a glowing seed-pod or bud might echo the geometry. Treat it as form latent in nature, never as a logo. The diamond must read as part of the flora — petal, fruit, gem-like dew — not as branding or jewelry. If a viewer recognizes it as "the Ethereum icon" at a glance, you have gone too far. Subtle enough that it is noticed only on a second look.
 
 Avoid:
 - slime aesthetics
 - horror melting
-- destruction or chaotic dripping
+- chaotic dripping
 - aggressive sci-fi effects
-- redrawn faces, altered likeness, or skin recoloring
+- photorealistic skin, hyper-sharp focus, or 3D/CGI rendering
+- redrawn or altered identity
+- explicit Ethereum logos, brand glyphs, or recognizable crypto iconography
+- diamond shapes that read as cut jewelry, crystals, or repeated tessellation
 
-The flowing forms should appear smooth, sculptural, reflective, and controlled, with suspended droplets, ribbons, stretched surfaces, and subtle pools integrated elegantly into the composition.
+The flowing forms should appear soft-edged, painted, glowing, and controlled — like vines, dewdrops, and ribbons suspended in a nocturnal sacred grove. Movement is slow and considered, never frantic. Light is volumetric and atmospheric.
 
-Background: deep navy-indigo with subtle purple nebula tones, scattered stars, and soft teal/cyan particle glow — the world of the Devcon 8 Mumbai mascot. Generous negative space. Avoid pure white. Centered, square composition.
+Background: a luminous Indian lunarpunk Infinite Garden at twilight — deep indigo and violet skies, scattered stars, soft teal/cyan particle glow, occasional magenta sparks, warm-gold lantern highlights, and the faint suggestion of growing forms and bioluminescent flora in the distance. Generous negative space. Avoid pure white. Avoid pure black. Centered, square composition. Cinematic depth.
 
-Optional restrained editorial inserts: small atmospheric close-ups of accessories, glowing material textures, or fabric — never analytical, never technical.
+Optional restrained inserts: small atmospheric close-ups of painted glowing textures, organic surfaces, fragments of bloom, or quiet still-life details — painterly and contemplative, never technical, never analytical. These insets must also contain no text.
 
-Understated plain-English labels in modern editorial typography are welcome, kept minimal.
+NO TEXT:
+The final image must contain absolutely no text, words, letters, numbers, captions, labels, titles, headings, signatures, watermarks, logos, glyphs, or typography of any kind. No language, no calligraphy, no script, no symbols pretending to be text. The composition must be purely pictorial.
 
 Avoid:
+- any text, captions, labels, titles, or written language
 - cluttered diagrams
 - excessive callouts
 - technical breakdown panels
@@ -45,19 +59,21 @@ Avoid:
 - floating exploded clothing parts
 - combat imagery
 - heavy sci-fi interfaces
-- text-heavy overlays
+- overt religious iconography or specific deities
 
 The final artwork should feel like a fusion of:
-- a luxury fashion campaign
-- a Devcon 8 collectible art print
-- a contemporary Ethereum design publication
-- a high-end editorial poster
+- a painterly anime cinematic illustration
+- a contemplative spiritual portrait
+- an Indian lunarpunk plate
+- a moment from Ethereum's Infinite Garden
 
-Minimal yet expressive.
-Stylish yet quietly informative.
-Artistic yet highly refined.`
+Restrained yet luminous.
+Devotional yet personal.
+Painterly, not photographic.
+Refined without being branded.
+Wordless — no text, no captions, no titles, no typography of any kind.`
 
-type Quality = 'low' | 'medium' | 'high'
+type Quality = 'auto' | 'low' | 'medium' | 'high'
 
 interface RunOutput {
   sourceFile: string
@@ -91,7 +107,9 @@ function fmtTime(iso: string): string {
 }
 
 function fileUrl(runId: string, name: string): string {
-  return `/api/avatar-lab/files/${encodeURIComponent(runId)}/${encodeURIComponent(name)}/`
+  // No trailing slash: devcon's Next config 308s dot-extensioned segments back
+  // to no-slash, and the round-trip can break <img> loads in some browsers.
+  return `/api/avatar-lab/files/${encodeURIComponent(runId)}/${encodeURIComponent(name)}`
 }
 
 function PromptLab() {
@@ -116,7 +134,7 @@ function PromptLab() {
   useEffect(() => {
     setPrompt(localStorage.getItem('avatarLabPrompt') ?? SEED_PROMPT)
     setLabel(localStorage.getItem('avatarLabLabel') ?? '')
-    setQuality((localStorage.getItem('avatarLabQuality') as Quality) ?? 'medium')
+    setQuality((localStorage.getItem('avatarLabQuality') as Quality) ?? 'auto')
     try {
       const stored = JSON.parse(localStorage.getItem('avatarLabPresets') ?? '[]') as string[]
       setSelectedPresets(new Set(stored))
@@ -266,7 +284,20 @@ function PromptLab() {
         <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-5">
           <div className="flex flex-col gap-4">
             <label className="flex flex-col gap-2">
-              <span className="text-xs uppercase tracking-wider text-[#594d73] font-bold">Prompt</span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs uppercase tracking-wider text-[#594d73] font-bold">Prompt</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm('Reset the prompt to the current default seed? Your edits will be lost.')) {
+                      setPrompt(SEED_PROMPT)
+                    }
+                  }}
+                  className="text-xs text-[#7235ed] hover:underline"
+                >
+                  reset to default
+                </button>
+              </div>
               <textarea
                 rows={20}
                 value={prompt}
@@ -292,7 +323,7 @@ function PromptLab() {
                 disabled
                 className="px-3 py-2 bg-[#fbfafc] border border-[#dddae2] rounded-lg text-sm font-mono opacity-70"
               >
-                <option>OpenAI gpt-image-1</option>
+                <option>OpenAI gpt-image-2</option>
               </select>
             </label>
             <label className="flex flex-col gap-2">
@@ -302,9 +333,10 @@ function PromptLab() {
                 onChange={e => setQuality(e.target.value as Quality)}
                 className="px-3 py-2 bg-[#fbfafc] border border-[#dddae2] rounded-lg text-sm font-mono focus:outline-none focus:border-[#7235ed]"
               >
-                <option value="low">low — ~$0.01</option>
-                <option value="medium">medium — ~$0.04</option>
-                <option value="high">high — ~$0.17</option>
+                <option value="auto">auto (model picks)</option>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high">high — may 60s-timeout</option>
               </select>
             </label>
             <div className="bg-[#f9f8fa] border border-[#dddae2] rounded-lg p-3 text-xs text-[#594d73] leading-relaxed">
@@ -485,6 +517,19 @@ function RunCard({
                   </div>
                 )}
               </div>
+
+              {outUrl && (
+                // Avatar-style preview: circular crop with brand gradient ring
+                // + curved DEVCON/MUMBAI wordmark. Same component used by the
+                // production /avatar page.
+                <CircularAvatarPreview
+                  src={outUrl}
+                  href={outUrl}
+                  id={`${run.id}-${i}`}
+                  className="flex justify-center mb-2"
+                />
+              )}
+
               <div className="text-[10px] text-[#594d73] flex justify-between gap-2">
                 <span className="truncate">{o.sourceLabel}</span>
                 <span className="shrink-0">{(o.durationMs / 1000).toFixed(1)}s</span>

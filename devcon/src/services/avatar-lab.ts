@@ -19,13 +19,13 @@ export function isLabEnabled(): boolean {
 
 export const RUNS_DIR = path.join(process.cwd(), 'avatar-lab-runs')
 export const REFS_DIR = path.join(process.cwd(), 'public', 'avatar-lab-refs')
-export const PRESET_DIRS = ['characters', 'characters-plain'] as const
+export const PRESET_DIRS = ['characters', 'characters-plain', 'profiles'] as const
 export type PresetDir = (typeof PRESET_DIRS)[number]
 
 fsSync.mkdirSync(RUNS_DIR, { recursive: true })
 
 export type LabModel = 'openai'
-export type LabQuality = 'low' | 'medium' | 'high'
+export type LabQuality = 'auto' | 'low' | 'medium' | 'high'
 
 export interface RunOutput {
   sourceFile: string
@@ -107,7 +107,7 @@ export async function generateImage(
 
   const ext = srcMime.split('/')[1] || 'png'
   const form = new FormData()
-  form.set('model', 'gpt-image-1')
+  form.set('model', 'gpt-image-2-2026-04-21')
   form.set('prompt', prompt)
   form.set('quality', quality)
   form.set('size', '1024x1024')
@@ -117,11 +117,44 @@ export async function generateImage(
     `source.${ext}`,
   )
 
-  const res = await fetch('https://api.openai.com/v1/images/edits', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: form,
-  })
+  // Generous client-side timeout so a true timeout is distinguishable from a
+  // remote socket reset (UND_ERR_SOCKET) or DNS failure.
+  const controller = new AbortController()
+  const timeoutMs = 5 * 60 * 1000
+  const timeoutHandle = setTimeout(() => controller.abort(), timeoutMs)
+
+  let res: Response
+  try {
+    res = await fetch('https://api.openai.com/v1/images/edits', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
+      body: form,
+      signal: controller.signal,
+    })
+  } catch (err) {
+    const cause = (err as any)?.cause
+    const causeBits = [
+      cause?.code,
+      cause?.message,
+      cause?.errno && `errno=${cause.errno}`,
+    ]
+      .filter(Boolean)
+      .join(' / ')
+    const aborted = controller.signal.aborted
+    console.error('[avatar-lab] OpenAI fetch failed', {
+      message: (err as Error).message,
+      cause,
+      aborted,
+    })
+    throw new Error(
+      `OpenAI request failed: ${(err as Error).message}` +
+        (aborted ? ` (aborted after ${timeoutMs / 1000}s timeout)` : '') +
+        (causeBits ? ` — ${causeBits}` : ''),
+    )
+  } finally {
+    clearTimeout(timeoutHandle)
+  }
+
   if (!res.ok) {
     const text = await res.text()
     throw new Error(`OpenAI ${res.status}: ${text.slice(0, 500)}`)

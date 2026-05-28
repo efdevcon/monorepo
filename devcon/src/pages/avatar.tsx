@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import HeroBackground from 'components/common/dc-8/hero/images/dc8-bg.png'
 import { OtpGate } from 'components/domain/nocodb-form/OtpGate'
+import { CircularAvatarPreview } from 'components/domain/avatar/CircularAvatarPreview'
 import { supabase } from 'services/supabase-browser'
 import { SEO } from 'components/domain/seo/SEO'
 
@@ -100,12 +101,34 @@ function NoTicketView({
 // CROPS — Devcon's four core values. The first stop covers "CR" (Censorship
 // Resistance, the C+R of CROPS). Each maps to a character whose traits the
 // user will inherit. Edit the `character` field to remap.
-const CROPS: { label: string; short: string; character: string }[] = [
-  { label: 'Censorship Resistance', short: 'CR', character: 'aria' },
-  { label: 'Open Source', short: 'O', character: 'lyra' },
-  { label: 'Privacy', short: 'P', character: 'pyra' },
-  { label: 'Security', short: 'S', character: 'veda' },
+const CROPS: { label: string; short: string; crop: string }[] = [
+  { label: 'Censorship Resistance', short: 'CR', crop: 'censorship-resistance' },
+  { label: 'Open Source', short: 'O', crop: 'open-source' },
+  { label: 'Privacy', short: 'P', crop: 'privacy' },
+  { label: 'Security', short: 'S', crop: 'security' },
 ]
+
+// Subtle two-tone gradient + glow for the placeholder frame, keyed by crop.
+// Same color families as CircularAvatarPreview's ring so the empty state
+// foreshadows what the generated avatar's ring will look like.
+const CROP_PLACEHOLDER_THEMES: Record<string, { gradient: string; glow: string }> = {
+  'censorship-resistance': {
+    gradient: 'linear-gradient(135deg, rgba(244,63,94,0.85), rgba(236,72,153,0.65), rgba(244,63,94,0.85))',
+    glow: '244, 63, 94',
+  },
+  'open-source': {
+    gradient: 'linear-gradient(135deg, rgba(6,182,212,0.85), rgba(45,212,191,0.65), rgba(6,182,212,0.85))',
+    glow: '6, 182, 212',
+  },
+  privacy: {
+    gradient: 'linear-gradient(135deg, rgba(124,58,237,0.85), rgba(167,139,250,0.65), rgba(124,58,237,0.85))',
+    glow: '124, 58, 237',
+  },
+  security: {
+    gradient: 'linear-gradient(135deg, rgba(245,158,11,0.85), rgba(251,191,36,0.65), rgba(245,158,11,0.85))',
+    glow: '245, 158, 11',
+  },
+}
 
 // Playful cycling status messages shown while the avatar is generating.
 const LOADING_MESSAGES: readonly string[] = [
@@ -131,20 +154,11 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
 
   const [selectedTestUrl, setSelectedTestUrl] = useState<string | null>(null)
   const [cropsIndex, setCropsIndex] = useState(0)
-  const [lightboxOpen, setLightboxOpen] = useState(false)
   const [loadingMsgIndex, setLoadingMsgIndex] = useState(0)
+  const [copyPromptState, setCopyPromptState] = useState<'idle' | 'copied' | 'error'>('idle')
   const selectedCrops = CROPS[cropsIndex]
-  const selectedCharacter = selectedCrops.character
-
-  // Close lightbox on Escape
-  useEffect(() => {
-    if (!lightboxOpen) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxOpen(false)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [lightboxOpen])
+  const selectedCrop = selectedCrops.crop
+  const placeholderTheme = CROP_PLACEHOLDER_THEMES[selectedCrop]
 
   // Cycle the playful loading message every 2.5s while generating
   useEffect(() => {
@@ -203,7 +217,7 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
       const body = {
         image: sourceBase64Ref.current!,
         mode: 'style' as const,
-        character: selectedCharacter,
+        crop: selectedCrop,
       }
 
       const res = await fetch(`${DEVCON_AI_URL}/api/devcon-avatar`, {
@@ -227,6 +241,27 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
       setShowForm(true)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleCopyPrompt = async () => {
+    try {
+      const token = await getAccessToken()
+      if (!token) throw new Error('Not signed in')
+      const res = await fetch(
+        `${DEVCON_AI_URL}/api/devcon-avatar/prompt?crop=${encodeURIComponent(selectedCrop)}`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      if (!data.prompt) throw new Error('Missing prompt in response')
+      await navigator.clipboard.writeText(data.prompt)
+      setCopyPromptState('copied')
+      setTimeout(() => setCopyPromptState('idle'), 2000)
+    } catch (err) {
+      console.error('[avatar] copy prompt failed:', err)
+      setCopyPromptState('error')
+      setTimeout(() => setCopyPromptState('idle'), 2000)
     }
   }
 
@@ -254,25 +289,11 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
           transition: 'max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease',
         }}
       >
-        <div className="flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => setLightboxOpen(true)}
-            className="rounded-lg overflow-hidden border-2 border-[rgba(77,89,199,1)] hover:border-[rgba(77,89,199,1)]/80 hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[rgba(77,89,199,1)] focus:ring-offset-2 focus:ring-offset-[#0E122F]"
-            aria-label={`View ${selectedCharacter} reference image`}
-          >
-            <img
-              src={`${DEVCON_AI_URL}/api/devcon-avatar/characters/${encodeURIComponent(selectedCharacter)}`}
-              alt={selectedCharacter}
-              className="w-10 h-10 object-cover block"
-            />
-          </button>
-          <div className="flex flex-col leading-tight">
-            <span className="text-white/40 text-[10px] uppercase tracking-widest leading-tight">
-              I most resonate with...
-            </span>
-            <span className="text-white text-sm font-semibold leading-tight">{selectedCrops.label}</span>
-          </div>
+        <div className="flex flex-col items-center justify-center leading-tight">
+          <span className="text-white/40 text-[10px] uppercase tracking-widest leading-tight">
+            I most resonate with...
+          </span>
+          <span className="text-white text-sm font-semibold leading-tight">{selectedCrops.label}</span>
         </div>
         {/* Tighter slider. The native range thumb's *center* moves from
             THUMB_RADIUS to (width - THUMB_RADIUS), not 0→width. Position
@@ -362,45 +383,69 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
             ))}
           </div>
         </div>
+        <button
+          type="button"
+          onClick={handleCopyPrompt}
+          className="mt-1 text-white/40 hover:text-white/70 text-[11px] underline-offset-4 hover:underline transition-colors"
+        >
+          {copyPromptState === 'copied'
+            ? '✓ Prompt copied'
+            : copyPromptState === 'error'
+            ? 'Copy failed'
+            : 'Copy current prompt'}
+        </button>
       </div>
 
       <div
-        className="w-56 h-56 md:w-64 md:h-64 rounded-2xl bg-white/5 flex items-center justify-center overflow-hidden shrink-0"
-        style={
-          {
-            border: '3px solid transparent',
-            boxShadow:
-              '0 0 30px rgba(77, 89, 199, 0.4), 0 0 60px rgba(77, 89, 199, 0.15), inset 0 0 30px rgba(77, 89, 199, 0.1)',
-            backgroundImage:
-              'linear-gradient(#0E122F, #0E122F), linear-gradient(135deg, rgba(77,89,199,0.8), rgba(254,122,6,0.6), rgba(77,89,199,0.8))',
-            backgroundOrigin: 'border-box',
-            backgroundClip: 'padding-box, border-box',
-            transform: hasAvatar && !showForm ? 'scale(1.05)' : 'scale(1)',
-            transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)',
-          } as React.CSSProperties
-        }
+        className="w-56 h-56 md:w-64 md:h-64 shrink-0"
+        style={{
+          transform: hasAvatar && !showForm ? 'scale(1.05)' : 'scale(1)',
+          transition: 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
       >
-        {loading ? (
-          <span
-            key={loadingMsgIndex}
-            className="text-white/60 text-sm font-medium text-center px-4 animate-in fade-in duration-500"
-          >
-            {LOADING_MESSAGES[loadingMsgIndex]}
-          </span>
-        ) : avatarUrl ? (
-          <img
+        {!loading && avatarUrl ? (
+          // Generated avatar: circular crop with brand gradient ring +
+          // curved DEVCON / MUMBAI wordmark. Clicking re-opens the form so
+          // the user can upload a different photo.
+          <CircularAvatarPreview
             src={avatarUrl}
-            alt="Devcon avatar"
-            className="w-full h-full object-cover cursor-pointer hover:brightness-75 transition-all duration-300"
+            crop={selectedCrop}
             onClick={() => setShowForm(prev => !prev)}
             title="Click to upload a different photo"
           />
-        ) : sourcePreview ? (
-          <img src={sourcePreview} alt="Source preview" className="w-full h-full object-contain" />
         ) : (
-          <svg className="w-24 h-24 text-white/30" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-          </svg>
+          <div
+            className="w-full h-full rounded-full bg-white/5 flex items-center justify-center overflow-hidden transition-[background-image,box-shadow] duration-500"
+            style={
+              {
+                border: '3px solid transparent',
+                boxShadow: placeholderTheme
+                  ? `0 0 30px rgba(${placeholderTheme.glow}, 0.4), 0 0 60px rgba(${placeholderTheme.glow}, 0.15), inset 0 0 30px rgba(${placeholderTheme.glow}, 0.1)`
+                  : '0 0 30px rgba(77, 89, 199, 0.4), 0 0 60px rgba(77, 89, 199, 0.15), inset 0 0 30px rgba(77, 89, 199, 0.1)',
+                backgroundImage: `linear-gradient(#0E122F, #0E122F), ${
+                  placeholderTheme?.gradient ??
+                  'linear-gradient(135deg, rgba(77,89,199,0.8), rgba(254,122,6,0.6), rgba(77,89,199,0.8))'
+                }`,
+                backgroundOrigin: 'border-box',
+                backgroundClip: 'padding-box, border-box',
+              } as React.CSSProperties
+            }
+          >
+            {loading ? (
+              <span
+                key={loadingMsgIndex}
+                className="text-white/60 text-sm font-medium text-center px-4 animate-in fade-in duration-500"
+              >
+                {LOADING_MESSAGES[loadingMsgIndex]}
+              </span>
+            ) : sourcePreview ? (
+              <img src={sourcePreview} alt="Source preview" className="w-full h-full object-contain" />
+            ) : (
+              <svg className="w-24 h-24 text-white/30" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+              </svg>
+            )}
+          </div>
         )}
       </div>
 
@@ -481,30 +526,6 @@ function AvatarGenerator({ initialAvatar, onSignOut }: { initialAvatar: string |
         Switch email
       </button>
 
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
-          onClick={() => setLightboxOpen(false)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${selectedCharacter} reference image`}
-        >
-          <button
-            type="button"
-            onClick={() => setLightboxOpen(false)}
-            aria-label="Close"
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition-colors"
-          >
-            ×
-          </button>
-          <img
-            src={`${DEVCON_AI_URL}/api/devcon-avatar/characters/${encodeURIComponent(selectedCharacter)}`}
-            alt={selectedCharacter}
-            onClick={e => e.stopPropagation()}
-            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-          />
-        </div>
-      )}
     </div>
   )
 }
