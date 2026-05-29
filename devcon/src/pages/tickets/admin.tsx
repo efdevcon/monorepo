@@ -1500,8 +1500,12 @@ function AdminContent() {
   const [autoRefresh, setAutoRefresh] = useState(true)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  // Date range filter — default to last 7 days
-  const [dateFrom, setDateFrom] = useState(() => new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))
+  // Date range filter — default to "since launch" (Devcon 8 ticket sale
+  // opened 2026-05-20). Keeping the default at the launch boundary means
+  // stats land on the relevant population by default, not a rolling 7-day
+  // window that excludes early-sale activity.
+  const LAUNCH_DATE = '2026-05-20'
+  const [dateFrom, setDateFrom] = useState(LAUNCH_DATE)
   const [dateTo, setDateTo] = useState(() => new Date().toISOString().slice(0, 10))
 
   // Sorting
@@ -1605,7 +1609,7 @@ function AdminContent() {
     setAuthed(true)
   }
 
-  function setDatePreset(preset: 'today' | '7d' | '30d' | 'all') {
+  function setDatePreset(preset: 'today' | '7d' | '30d' | 'launch' | 'all') {
     if (preset === 'all') {
       setDateFrom('')
       setDateTo('')
@@ -1622,10 +1626,12 @@ function AdminContent() {
     } else if (preset === '30d') {
       const d = new Date(now.getTime() - 30 * 86400000)
       setDateFrom(d.toISOString().slice(0, 10))
+    } else if (preset === 'launch') {
+      setDateFrom(LAUNCH_DATE)
     }
   }
 
-  function isActivePreset(preset: 'today' | '7d' | '30d' | 'all') {
+  function isActivePreset(preset: 'today' | '7d' | '30d' | 'launch' | 'all') {
     if (preset === 'all') return !dateFrom && !dateTo
     const now = new Date()
     const to = now.toISOString().slice(0, 10)
@@ -1633,6 +1639,7 @@ function AdminContent() {
     if (preset === 'today') return dateFrom === to
     if (preset === '7d') return dateFrom === new Date(now.getTime() - 7 * 86400000).toISOString().slice(0, 10)
     if (preset === '30d') return dateFrom === new Date(now.getTime() - 30 * 86400000).toISOString().slice(0, 10)
+    if (preset === 'launch') return dateFrom === LAUNCH_DATE
     return false
   }
 
@@ -2181,13 +2188,13 @@ function AdminContent() {
           onChange={e => setDateTo(e.target.value)}
           title="To date"
         />
-        {(['today', '7d', '30d', 'all'] as const).map(p => (
+        {(['today', '7d', '30d', 'launch', 'all'] as const).map(p => (
           <button
             key={p}
             className={`${css['preset-btn']} ${isActivePreset(p) ? css['preset-btn-active'] : ''}`}
             onClick={() => setDatePreset(p)}
           >
-            {p === 'all' ? 'All' : p === 'today' ? 'Today' : p}
+            {p === 'all' ? 'All' : p === 'today' ? 'Today' : p === 'launch' ? 'Since launch' : p}
           </button>
         ))}
       </div>
