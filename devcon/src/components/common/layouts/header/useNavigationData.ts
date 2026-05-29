@@ -75,6 +75,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: t('volunteer_program'),
+            url: '/form/volunteer-waitlist',
+            type: 'page',
+          },
+          {
             title: t('forum'),
             url: 'https://forum.devcon.org/',
             type: 'link',
