@@ -454,10 +454,23 @@ function FormInner({
         .then(result => {
           if (result.success && result.data) {
             setIsUpdate(true)
+            // NocoDB stores MultiSelect as a comma-separated string; the UI
+            // expects an array. Look up the column type by name to decide
+            // whether to split.
+            const multiSelectCols = new Set(
+              schema.columns.filter(c => c.uidt === 'MultiSelect').map(c => c.column_name)
+            )
             for (const [key, value] of Object.entries(result.data)) {
-              if (value !== null && value !== undefined) {
-                // Server returns the original NocoDB column names; the form
-                // is registered under sanitized aliases (see rhfFieldName).
+              if (value === null || value === undefined) continue
+              // Server returns the original NocoDB column names; the form
+              // is registered under sanitized aliases (see rhfFieldName).
+              if (multiSelectCols.has(key) && typeof value === 'string') {
+                const parts = value
+                  .split(',')
+                  .map(s => s.trim())
+                  .filter(Boolean)
+                methods.setValue(rhfFieldName(key), parts)
+              } else {
                 methods.setValue(rhfFieldName(key), value)
               }
             }
@@ -695,6 +708,15 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
         formData,
         schema!.columns.map(c => c.column_name)
       )
+
+      // NocoDB MultiSelect columns expect a comma-separated string on write.
+      for (const col of schema!.columns) {
+        if (col.uidt !== 'MultiSelect') continue
+        const v = submitData[col.column_name]
+        if (Array.isArray(v)) {
+          submitData[col.column_name] = v.join(',')
+        }
+      }
 
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
