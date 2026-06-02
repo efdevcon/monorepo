@@ -7,32 +7,34 @@ import themes from '../../themes.module.scss'
 // import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 // import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
+import { RedeemVoucherModal } from 'components/domain/tickets/RedeemVoucherModal'
 import { Input } from '@/components/ui/input'
-import { ArrowLeft, ArrowRight, CalendarDays, MapPin } from 'lucide-react'
-import { useFeaturedWave } from 'hooks/useWaveStates'
-import { CountdownText } from 'components/common/CountdownText'
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+  MapPin,
+  Minus,
+  Plus,
+  Ticket,
+  Coffee,
+  Shirt,
+  TicketPercent,
+} from 'lucide-react'
 import css from './store.module.scss'
 
 // Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
 const fmtPrice = (p: string) => p.replace(/\.00$/, '')
-import { TicketInfo, QuestionInfo } from 'types/pretix'
+import { TicketInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
-import SelfLogoPng from 'assets/images/self-logo.png'
-import { TICKETING } from 'config/ticketing'
+import { TICKETING, pretixEventUrl } from 'config/ticketing'
 import { getTicketPurchaseInfo } from 'services/pretix'
+import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
-
-const WAVE_TIME_FORMATTER = new Intl.DateTimeFormat('en', {
-  month: 'short',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-  hour12: false,
-  timeZone: 'UTC',
-})
 
 interface CartItem {
   ticketId: number
@@ -41,22 +43,84 @@ interface CartItem {
   quantity: number
 }
 
-interface PaymentInfo {
-  network: string
-  chainId: number
-  tokenAddress: string
-  tokenSymbol: string
-  tokenDecimals: number
-  /** Crypto-payment discount percentage as a string (e.g. "10%"), or `null`
-   *  when the discount is disabled. */
-  discountForCrypto: string | null
+// Static self-claim discounts shown in the Community section that have no
+// backend verification flow yet. Their buttons are active no-ops until the
+// corresponding flow ships.
+type CommunityPlaceholder = {
+  title: string
+  meta: string
+  description: React.ReactNode
+  price: string
+  buttonLabel: string
 }
 
-interface CartData {
-  items: CartItem[]
-  paymentInfo: PaymentInfo
-  savedAt: number
-}
+const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
+  {
+    title: 'Core Devs / Protocol Guild',
+    meta: 'Merge Pass or Protocol Guild',
+    description:
+      'This discount is reserved for Ethereum core developers; those with a Merge Pass, or Protocol Guild membership.',
+    price: 'FREE',
+    buttonLabel: 'Verify',
+  },
+  {
+    title: 'OSS Contributors',
+    meta: 'Contribution-based',
+    description: (
+      <>
+        This discounted ticket is reserved for those who have made at least 2 contributions (since Devcon SEA) to any
+        repo under the <em>efdevcon</em> or <em>ethereum</em> organizations, or any execution/consensus clients.
+      </>
+    ),
+    price: '50% off',
+    buttonLabel: 'Verify',
+  },
+  {
+    title: 'Public Good Projects',
+    meta: 'Active fundraisers',
+    description: 'This discount is reserved for those who have fundraised for Public Goods projects.',
+    price: '50% off',
+    buttonLabel: 'Connect wallet',
+  },
+  {
+    title: 'Past POAP Holders',
+    meta: 'Devcon/nect POAPs',
+    description: 'This ticket is reserved for those who collected a POAP at any past Devcon/nect event.',
+    price: '10% off',
+    buttonLabel: 'Connect wallet',
+  },
+]
+
+// Curated, application-based tickets shown in the Applications section.
+const APPLICATION_TICKETS = [
+  {
+    title: 'Indian Student 🇮🇳',
+    meta: 'Student ID required at check-in',
+    description:
+      'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum.',
+    price: '$25',
+    originalPrice: null,
+    href: '/form/student-application',
+  },
+  {
+    title: 'International Student 🌎',
+    meta: 'Student ID required at check-in',
+    description:
+      'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum.',
+    price: '$99',
+    originalPrice: null,
+    href: '/form/student-application',
+  },
+  {
+    title: 'Builder Discount 🦄',
+    meta: 'ID required at Registration',
+    description:
+      'For builders of all kinds who actively volunteer or contribute their time to the growth, research and development of Ethereum or the ecosystem.',
+    price: '$349',
+    originalPrice: '$699',
+    href: '/form/builder-application',
+  },
+] as const
 
 function useCountdown() {
   const [diff, setDiff] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
@@ -84,38 +148,6 @@ function useCountdown() {
   return diff
 }
 
-function VerifyIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={css['verify-icon']}
-    >
-      <circle
-        cx="10"
-        cy="10"
-        r="8.5"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeDasharray="3 2"
-        fill="none"
-      />
-    </svg>
-  )
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg className={css['checkout-arrow']} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  )
-}
-
-
 type StoreContentProps = {
   selfVerificationOpen: boolean
   setSelfVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -132,19 +164,14 @@ function StoreContent({
   initialTickets,
 }: StoreContentProps) {
   const countdown = useCountdown()
-  const { featured: ethEarlyBird } = useFeaturedWave()
 
-  const hasInitialData = initialTickets.length > 0
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
-  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | null>(null)
-  const [loading, setLoading] = useState(!hasInitialData)
   const [error, setError] = useState<string | null>(null)
   const [cart, setCart] = useState<CartItem[]>([])
+  const [checkoutLoading, setCheckoutLoading] = useState(false)
   const [earlyAccess, setEarlyAccess] = useState<string | null>(null)
-  const [earlyAccessValid, setEarlyAccessValid] = useState<boolean | null>(null)
-  const [earlyAccessError, setEarlyAccessError] = useState<string | null>(null)
-
   const [earlyAccessEmail, setEarlyAccessEmail] = useState<string | null>(null)
+  const [redeemOpen, setRedeemOpen] = useState(false)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -157,31 +184,6 @@ function StoreContent({
       setEarlyAccessEmail(emailParam)
     }
   }, [])
-
-  // Server-side validation of early access code
-  useEffect(() => {
-    if (!earlyAccess) return
-    setEarlyAccessValid(null)
-    setEarlyAccessError(null)
-    fetch('/api/tickets/validate-early-access/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: earlyAccess }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.valid) {
-          setEarlyAccessValid(true)
-        } else {
-          setEarlyAccessValid(false)
-          setEarlyAccessError(data.error || 'Invalid early access code')
-        }
-      })
-      .catch(() => {
-        setEarlyAccessValid(false)
-        setEarlyAccessError('Failed to validate early access code')
-      })
-  }, [earlyAccess])
 
   useEffect(() => {
     async function fetchTickets() {
@@ -198,14 +200,12 @@ function StoreContent({
             ? rawTickets.map((t: TicketInfo) => ({ ...t, available: false, availableCount: 0 }))
             : rawTickets
           setTickets(tix)
-          setPaymentInfo(data.data.paymentInfo || null)
         } else {
           setError(data.error || 'Failed to load tickets')
         }
       } catch {
         setError('Failed to load tickets')
       }
-      setLoading(false)
     }
     fetchTickets()
   }, [])
@@ -241,7 +241,6 @@ function StoreContent({
 
   const totalQty = cart.reduce((sum, c) => sum + c.quantity, 0)
   const totalCents = cart.reduce((sum, c) => sum + Math.round(parseFloat(c.price) * 100) * c.quantity, 0)
-  const totalFormatted = `$${fmtPrice((totalCents / 100).toFixed(2))} USD`
 
   const selectionText =
     totalQty === 0
@@ -251,43 +250,35 @@ function StoreContent({
           .map(c => `${c.quantity} x ${c.name}`)
           .join(', ')
 
-  const pretixCheckoutUrl = TICKETING.checkout.pretixRedirectUrl || undefined
-
-  const saveCartAndNavigate = () => {
-    if (!paymentInfo) return
-    const cartData: CartData = {
-      items: cart.filter(c => c.quantity > 0),
-      paymentInfo,
-      savedAt: Date.now(),
-    }
-    localStorage.setItem('devcon-ticket-cart', JSON.stringify(cartData))
-  }
-
-  const handleCheckout = (e: React.MouseEvent) => {
-    if (pretixCheckoutUrl) {
-      e.preventDefault()
-      saveCartAndNavigate()
-      // Redirect to Pretix shop — user selects tickets and completes payment there.
-      // Cross-origin cart pre-population is not possible (CSRF protected).
-      window.location.href = pretixCheckoutUrl
-    } else {
-      saveCartAndNavigate()
+  // Hand the buyer off to the Pretix shop with the selected tickets already in
+  // their cart (the purchase happens on Pretix, not our custom checkout page).
+  const goToPretixCheckout = () => {
+    if (checkoutLoading) return
+    const items = cart.filter(c => c.quantity > 0).map(c => ({ id: c.ticketId, quantity: c.quantity }))
+    if (items.length === 0) return
+    setCheckoutLoading(true)
+    try {
+      addItemsToPretixCartAndRedirect(items)
+    } catch (err) {
+      // CORS block / network failure (e.g. the event's allowed widget domains
+      // don't include this origin). Fall back to the plain Pretix shop so the
+      // buyer can still purchase — just without the pre-filled cart.
+      console.error('Pretix cart handoff failed, falling back to shop:', err)
+      window.location.href = pretixEventUrl('/')
     }
   }
 
   const forceSoldOut = TICKETING.overrides.soldOut
   const requireEarlyAccess = TICKETING.self.requireEarlyAccess
   const admissionTickets = tickets.filter(t => t.isAdmission && (forceSoldOut || t.available) && !t.requireVoucher)
-  const discountTicketId = TICKETING.pretix.ticketDiscountId
-    ? parseInt(TICKETING.pretix.ticketDiscountId, 10)
-    : undefined
-  const voucherTickets = tickets.filter(t =>
-    t.isAdmission && (forceSoldOut || t.available) && t.requireVoucher &&
-    (discountTicketId ? t.id === discountTicketId : true)
-  )
 
-  const displayVoucherTickets = voucherTickets
-  const isLoadingTickets = loading && !hasInitialData
+  // General Admission card — driven by the Pretix admission ticket where it
+  // exists, falling back to the Figma reference price otherwise.
+  const gaTicket = admissionTickets[0]
+  const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '699'
+  const gaOriginal =
+    gaTicket?.originalPrice && gaTicket.originalPrice !== gaTicket.price ? fmtPrice(gaTicket.originalPrice) : '999'
+  const gaQty = gaTicket ? getQuantity(gaTicket.id) : 0
 
   return (
     <>
@@ -304,12 +295,26 @@ function StoreContent({
               </div>
               <h2 className={css['sidebar-title']}>Ticket Store</h2>
               <p className={css['sidebar-description']}>
-                Reserve your Devcon India place and join thousands of builders, creators, researchers, designers and
-                thinkers at the world&apos;s biggest Ethereum conference.
+                Secure your participation in Devcon India and join thousands of builders, creators, researchers,
+                designers, and thinkers at the world&apos;s biggest Ethereum conference.
               </p>
-              <p className={css['sidebar-includes']}>
-                All tickets include full conference access, swag, and lunch for 4 days.
-              </p>
+              <div className={css['sidebar-includes']}>
+                <p className={css['sidebar-includes-label']}>Included in ticket:</p>
+                <ul className={css['sidebar-includes-list']}>
+                  <li className={css['sidebar-includes-item']}>
+                    <Ticket size={20} strokeWidth={1.5} aria-hidden="true" />
+                    Full conference access
+                  </li>
+                  <li className={css['sidebar-includes-item']}>
+                    <Coffee size={20} strokeWidth={1.5} aria-hidden="true" />
+                    Catering all week
+                  </li>
+                  <li className={css['sidebar-includes-item']}>
+                    <Shirt size={20} strokeWidth={1.5} aria-hidden="true" />
+                    Event swag bag
+                  </li>
+                </ul>
+              </div>
             </div>
             <ul className={css['sidebar-details']}>
               <li className={css['sidebar-details-item']}>
@@ -354,394 +359,204 @@ function StoreContent({
               </div>
             </div>
 
-            {/* <section className={css['section']} id="local-launch">
-              <h2 className={css['section-title']}>Local ticket launch</h2>
-              <p className={css['section-subtitle']}>Check if you qualify for the Local Early Bird discount</p>
+            {/* ─── Sale Waves ─── */}
+            <section className={css['section']} id="general-admission">
+              <div className={css['section-header']}>
+                <div className={css['section-title-row']}>
+                  <h3 className={css['section-title']}>General Admission</h3>
+                  <span className={css['open-badge']}>OPEN</span>
+                </div>
+                <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
+              </div>
+
+              {error && <p style={{ color: '#c00', marginBottom: '1rem' }}>{error}</p>}
 
               <div className={css['card']}>
-                <div className={css['card-main']}>
-                  <div className={css['card-body']}>
-                    <h3 className={css['card-title']}>Local Early Bird</h3>
-                    <p className={css['card-meta']}>Via AnonAadhaar &middot; Price increases 31 March</p>
-                    <p className={css['card-description']}>
-                      Full conference access, swag bag, plus coffee, lunch and snacks all week.
+                <div className={css['card-stacked']}>
+                  <div className={css['card-details']}>
+                    <h3 className={css['discount-card-title']}>General Admission 🎟️</h3>
+                    <p className={css['discount-card-meta']}>Anon-friendly</p>
+                    <p className={css['discount-card-desc']}>
+                      The original, anon-friendly Devcon ticket. Includes full conference access, swag bag, and catering
+                      all week.
                     </p>
                   </div>
-                  <div className={css['card-right']}>
+                  <div className={css['card-footer']}>
                     <div className={css['pricing']}>
-                      <span className={css['price-current']}>$149</span>
-                      <span className={css['price-original']}>$249</span>
+                      <span className={css['price-current']}>${gaPrice}</span>
+                      {gaOriginal !== gaPrice && <span className={css['price-original']}>${gaOriginal}</span>}
                     </div>
-                    <button type="button" className={css['verify-btn']} onClick={() => setVerificationOpen(true)}>
-                      <VerifyIcon />
-                      Verify
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section> */}
-
-            {/* <section className={css['section']} id="general-admission">
-              <h2 className={css['section-title']}>General admission</h2>
-              <p className={css['section-subtitle']}>Our General admission tickets are now live!</p>
-
-              {loading && <p>Loading tickets...</p>}
-              {error && <p style={{ color: '#c00' }}>{error}</p>}
-
-              {admissionTickets.map(ticket => (
-                <div key={ticket.id} className={css['card']}>
-                  <div className={css['card-main']}>
-                    <div className={css['card-body']}>
-                      <h3 className={css['card-title']}>Reserve: India Early Bird Ticket 🇮🇳</h3>
-                      {ticket.description && <p className={css['card-meta']}>{ticket.description}</p>}
-                      <p className={css['card-description']}>
-                        Full conference access, swag bag, plus coffee, lunch and snacks all week!
-                        {ticket.availableCount !== null && (
-                          <span
-                            style={{ display: 'block', marginTop: '0.25rem', fontSize: '0.8125rem', color: '#666' }}
-                          >
-                            {ticket.availableCount} remaining
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                    <div className={css['card-right']}>
-                      <div className={css['pricing']}>
-                        {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                          <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                        )}
-                        <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                      </div>
-                      {pretixCheckoutUrl ? (
-                        <a href={pretixCheckoutUrl} className={css['checkout-btn']}>
-                          Buy
-                          <ArrowRightIcon />
-                        </a>
-                      ) : (
+                    {!gaTicket || forceSoldOut ? (
+                      <span className={css['sold-out-badge']}>Sold out</span>
+                    ) : (
+                      <div className={css['ga-actions']}>
                         <div className={css['quantity']}>
                           <button
                             type="button"
                             className={css['quantity-btn']}
-                            onClick={() => updateCartQuantity(ticket, -1)}
+                            onClick={() => updateCartQuantity(gaTicket, -1)}
                             aria-label="Decrease quantity"
                           >
-                            −
+                            <Minus size={16} />
                           </button>
                           <Input
                             type="number"
                             className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
-                            value={getQuantity(ticket.id)}
+                            value={gaQty}
                             min={0}
-                            onChange={e => setCartQuantity(ticket, parseInt(e.target.value, 10) || 0)}
+                            onChange={e => setCartQuantity(gaTicket, parseInt(e.target.value, 10) || 0)}
                             aria-label="Quantity"
                           />
                           <button
                             type="button"
                             className={css['quantity-btn']}
-                            onClick={() => updateCartQuantity(ticket, 1)}
+                            onClick={() => updateCartQuantity(gaTicket, 1)}
                             aria-label="Increase quantity"
                           >
-                            +
+                            <Plus size={16} />
                           </button>
                         </div>
-                      )}
-                    </div>
+                        <button
+                          type="button"
+                          className={css['checkout-pill']}
+                          onClick={goToPretixCheckout}
+                          disabled={checkoutLoading}
+                        >
+                          {checkoutLoading ? 'Loading…' : 'Checkout'}
+                          <ArrowUpRight size={16} strokeWidth={2.5} />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
-              ))}
+              </div>
 
-              {!loading && admissionTickets.length === 0 && !error && (
-                <p style={{ color: '#666' }}>No tickets currently available.</p>
-              )}
-            </section> */}
+              <p className={css['gst-note']}>Prices include 18% GST</p>
+            </section>
 
-            <section className={css['section']} id="applications">
+            {/* ─── Community (self-claim discounts) ─── */}
+            <section className={css['section']} id="community">
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
-                  <h3 className={css['section-title']}>Applications</h3>
-                  <span className={css['live-badge']}>LIVE</span>
+                  <h3 className={css['section-title']}>Community</h3>
+                  <span className={css['open-badge']}>OPEN</span>
                 </div>
                 <p className={css['section-subtitle']}>
-                  Student ticket applications are now open. Supply is limited so apply early!
+                  Self-claim discounts — no application required. Tickets are non-transferable and limited.
                 </p>
               </div>
 
               <div className={css['applications-grid']}>
                 <div className={css['application-card']}>
                   <div className={css['application-card-body']}>
-                    <h3 className={css['application-card-title']}>Indian Students 🇮🇳</h3>
-                    <p className={css['application-card-meta']}>Student ID required at check-in</p>
+                    <h3 className={css['application-card-title']}>India Resident 🇮🇳</h3>
+                    <p className={css['application-card-meta']}>ID required at Registration</p>
                     <p className={css['application-card-description']}>
-                      1000 discounts will be distributed to Indian students looking to dive deeper into the free and
-                      open world of Ethereum.
+                      Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge Proofs to
+                      prove Indian residency.
                     </p>
                   </div>
                   <div className={css['application-card-footer']}>
-                    <span className={css['application-price']}>$25</span>
-                    <Link to="/form/student-application" className={css['apply-btn']}>
-                      Apply now
-                      <ArrowRight size={16} strokeWidth={2.5} />
-                    </Link>
+                    <div className={css['discount-price-wrap']}>
+                      <span className={css['application-price']}>$149</span>
+                      <span className={css['price-original']}>$349</span>
+                    </div>
+                    <button
+                      type="button"
+                      className={css['verify-self-btn']}
+                      onClick={() => setSelfVerificationOpen(true)}
+                    >
+                      <SelfLogo className={css['self-logo']} aria-hidden="true" />
+                      Verify via Self
+                    </button>
                   </div>
                 </div>
 
                 <div className={css['application-card']}>
                   <div className={css['application-card-body']}>
-                    <h3 className={css['application-card-title']}>International Students 🌎</h3>
-                    <p className={css['application-card-meta']}>Student ID required at check-in</p>
+                    <h3 className={css['application-card-title']}>India Early Bird 🇮🇳</h3>
+                    <p className={css['application-card-meta']}>ID required at Registration</p>
                     <p className={css['application-card-description']}>
-                      An additional 1000 discounts will be distributed to international students who wish to join us in
-                      Mumbai to explore Ethereum.
+                      Accessible via the vouchers we distributed during ETH Mumbai in March. Got a voucher? Redeem yours
+                      now!
                     </p>
                   </div>
                   <div className={css['application-card-footer']}>
-                    <span className={css['application-price']}>$99</span>
-                    <Link to="/form/student-application" className={css['apply-btn']}>
-                      Apply now
-                      <ArrowRight size={16} strokeWidth={2.5} />
-                    </Link>
+                    <div className={css['discount-price-wrap']}>
+                      <span className={css['application-price']}>$99</span>
+                      <span className={css['price-original']}>$149</span>
+                    </div>
+                    <button type="button" className={css['apply-btn']} onClick={() => setRedeemOpen(true)}>
+                      <TicketPercent size={16} strokeWidth={2} />
+                      Redeem voucher
+                    </button>
                   </div>
                 </div>
+
+                {COMMUNITY_PLACEHOLDERS.map(card => (
+                  <div key={card.title} className={css['application-card']}>
+                    <div className={css['application-card-body']}>
+                      <h3 className={css['application-card-title']}>{card.title}</h3>
+                      <p className={css['application-card-meta']}>{card.meta}</p>
+                      <p className={css['application-card-description']}>{card.description}</p>
+                    </div>
+                    <div className={css['application-card-footer']}>
+                      <span className={css['application-price']}>{card.price}</span>
+                      <button type="button" className={css['apply-btn']} onClick={() => {}}>
+                        {card.buttonLabel}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className={css['voucher-banner']}>
+                <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
+                  <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
+                </button>
               </div>
 
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
 
-            {/* Legacy Self.xyz Early Access flow — hidden for now, kept for future re-activation */}
-            {false && displayVoucherTickets.length > 0 && (
-              <section className={css['section']} id="discounts">
-                <div className={css['section-header']}>
-                  <div className={css['section-title-row']}>
-                    <h3 className={css['section-title']}>
-                      {requireEarlyAccess ? 'ETHMumbai Early Access' : 'Indian Residents Early Access'}
-                    </h3>
-                    {displayVoucherTickets.every(t => !t.available || t.vouchersAvailable === false) ? (
-                      <span className={css['claimed-badge']}>CLAIMED</span>
-                    ) : (
-                      <span className={css['live-badge']}>LIVE</span>
-                    )}
-                  </div>
-                  <p className={css['section-subtitle']}>
-                    {requireEarlyAccess
-                      ? 'Check if you qualify to reserve early access to India Early Bird tickets later this year (ETHMumbai exclusive)'
-                      : 'Verify Indian residency to reserve early access to India Early Bird tickets later this year'}
-                  </p>
-                </div>
-
-                <div className={css['discounts-grid']}>
-                  {displayVoucherTickets.map(ticket => {
-                    const soldOut = !ticket.available || ticket.vouchersAvailable === false
-                    return (
-                      <React.Fragment key={ticket.id}>
-                        <div
-                          className={`${css['card']} ${isLoadingTickets ? css['card--loading'] : ''} ${
-                            !isLoadingTickets &&
-                            (soldOut || (requireEarlyAccess && !(earlyAccess && earlyAccessValid === true)))
-                              ? css['card--disabled']
-                              : ''
-                          }`}
-                        >
-                          <div className={css['card-stacked']}>
-                            <div className={css['card-details']}>
-                              <h3 className={css['card-title']}>
-                                Reserve: India Early Bird Ticket (Limited availability) 🇮🇳
-                              </h3>
-                              {soldOut ? (
-                                <p className={css['sold-out-meta']}>
-                                  Sorry, all Early Access vouchers have been claimed. More local tickets will go on
-                                  sale later this year.
-                                </p>
-                              ) : (
-                                <p className={css['card-meta']}>
-                                  {requireEarlyAccess
-                                    ? 'Via Self Protocol & ETHMumbai registration'
-                                    : 'Via Self Protocol'}
-                                </p>
-                              )}
-                              <p className={css['card-description']}>
-                                Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge
-                                Proofs to prove Indian residency.
-                              </p>
-                            </div>
-                            {isLoadingTickets ? (
-                              <div className={css['card-footer']}>
-                                <div className={css['pricing']}>
-                                  <span className={css['price-label']}>Price at launch:</span>
-                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                  )}
-                                </div>
-                                <span className={css['card-disabled-message']}>Loading...</span>
-                              </div>
-                            ) : soldOut ? (
-                              <div className={css['card-footer']}>
-                                <div className={`${css['pricing']} ${css['pricing--faded']}`}>
-                                  <span className={css['price-label']}>Price at launch:</span>
-                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                  )}
-                                </div>
-                                <span className={css['sold-out-badge']}>Fully claimed</span>
-                              </div>
-                            ) : !requireEarlyAccess || (earlyAccess && earlyAccessValid === true) ? (
-                              <div className={css['card-footer']}>
-                                <div className={css['pricing']}>
-                                  <span className={css['price-label']}>Price at launch:</span>
-                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                  )}
-                                </div>
-                                <button
-                                  type="button"
-                                  className={css['verify-self-btn']}
-                                  onClick={() => setSelfVerificationOpen(true)}
-                                >
-                                  <SelfLogo className={css['self-logo']} aria-hidden="true" />
-                                  Verify via Self
-                                </button>
-                              </div>
-                            ) : earlyAccess && earlyAccessValid === null ? (
-                              <div className={css['card-footer']}>
-                                <div className={css['pricing']}>
-                                  <span className={css['price-label']}>Price at launch:</span>
-                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                  )}
-                                </div>
-                                <p className={css['card-disabled-message']}>Validating early access code...</p>
-                              </div>
-                            ) : earlyAccess && earlyAccessValid === false ? (
-                              <div className={css['card-footer']}>
-                                <div className={css['pricing']}>
-                                  <span className={css['price-label']}>Price at launch:</span>
-                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                  )}
-                                </div>
-                                <p className={css['card-disabled-message']}>
-                                  {earlyAccessError || 'Invalid early access code'}
-                                </p>
-                              </div>
-                            ) : (
-                              <div className={css['card-footer']}>
-                                <div className={css['pricing']}>
-                                  <span className={css['price-label']}>Price at launch:</span>
-                                  <span className={css['price-current']}>${fmtPrice(ticket.price)}</span>
-                                  {ticket.originalPrice && ticket.originalPrice !== ticket.price && (
-                                    <span className={css['price-original']}>${fmtPrice(ticket.originalPrice!)}</span>
-                                  )}
-                                </div>
-                                <div className={css['access-link-badge']}>
-                                  <div className={css['access-link-badge-logo']}>
-                                    <Image src={SelfLogoPng} alt="Self" width={36} height={36} />
-                                  </div>
-                                  <span>Check your email for your unique access link</span>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </React.Fragment>
-                    )
-                  })}
-                </div>
-              </section>
-            )}
-
-            <section className={css['section']} id="coming-soon">
+            {/* ─── Applications (curated) ─── */}
+            <section className={css['section']} id="applications">
               <div className={css['section-header']}>
-                <h3 className={css['section-title']}>Coming soon</h3>
-                <p className={css['section-subtitle']}>More ways to get Devcon tickets are coming later this year</p>
+                <div className={css['section-title-row']}>
+                  <h3 className={css['section-title']}>Applications</h3>
+                  <span className={css['open-badge']}>OPEN</span>
+                </div>
+                <p className={css['section-subtitle']}>
+                  Applications are curated and limited per round, subject to availability and review.
+                </p>
               </div>
 
-              <div className={css['coming-soon-grid']}>
-                <div className={css['coming-soon-card']}>
-                  <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'ETH Early Bird GA \ud83d\udc24'}</h3>
-                    <p className={css['card-meta']}>
-                      {ethEarlyBird?.status === 'live' ? (
-                        'On sale now'
-                      ) : ethEarlyBird?.status === 'countdown' && ethEarlyBird.countdown ? (
-                        <>
-                          Launches in <CountdownText value={ethEarlyBird.countdown} />
-                          {ethEarlyBird.upcoming && (
-                            <>
-                              <br />
-                              <span className="text-[#594d73] font-normal">
-                                on {WAVE_TIME_FORMATTER.format(ethEarlyBird.upcoming)} UTC
-                              </span>
-                            </>
-                          )}
-                        </>
-                      ) : (
-                        'Launches May 20'
-                      )}
-                    </p>
-                    <p className={css['card-description']}>
-                      Early-bird discount of the original, anon-friendly Devcon ticket. This wave only accepts payments in ETH on Ethereum Mainnet (L1).
-                    </p>
-                  </div>
-                  <div className={css['coming-soon-card-footer']}>
-                    <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>$349</span>
-                      <span className={css['coming-soon-price-original']}>$699</span>
+              <div className={css['applications-grid']}>
+                {APPLICATION_TICKETS.map(card => (
+                  <div key={card.title} className={css['application-card']}>
+                    <div className={css['application-card-body']}>
+                      <h3 className={css['application-card-title']}>{card.title}</h3>
+                      <p className={css['application-card-meta']}>{card.meta}</p>
+                      <p className={css['application-card-description']}>{card.description}</p>
                     </div>
-                    <span className={css['coming-soon-availability']}>Our lowest price</span>
-                  </div>
-                </div>
-
-                <div className={css['coming-soon-card']}>
-                  <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'Indian Residents \ud83c\uddee\ud83c\uddf3'}</h3>
-                    <p className={css['card-meta']}>Launch TBD</p>
-                    <p className={css['card-description']}>
-                      Indian residents can apply using{' '}
-                      <a
-                        href="https://self.xyz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={css['inline-link']}
-                      >
-                        Self.xyz
-                      </a>
-                      . Use your Aadhaar Card &amp; Zero-Knowledge Proofs to prove Indian residency.
-                    </p>
-                  </div>
-                  <div className={css['coming-soon-card-footer']}>
-                    <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>TBD</span>
+                    <div className={css['application-card-footer']}>
+                      <div className={css['discount-price-wrap']}>
+                        <span className={css['application-price']}>{card.price}</span>
+                        {card.originalPrice && <span className={css['price-original']}>{card.originalPrice}</span>}
+                      </div>
+                      <Link to={card.href} className={css['apply-btn']}>
+                        Apply now
+                        <ArrowRight size={16} strokeWidth={2.5} />
+                      </Link>
                     </div>
-                    <span className={css['coming-soon-availability']}>ID required at Registration</span>
                   </div>
-                </div>
-
-                <div className={css['coming-soon-card']}>
-                  <div className={css['coming-soon-card-body']}>
-                    <h3 className={css['coming-soon-card-title']}>{'Builder Discount \ud83e\udd84'}</h3>
-                    <p className={css['card-meta']}>Launches in June</p>
-                    <p className={css['card-description']}>
-                      For builders of all kinds who actively volunteer or contribute their time to the growth, research
-                      and development of Ethereum or the ecosystem.
-                    </p>
-                  </div>
-                  <div className={css['coming-soon-card-footer']}>
-                    <div className={css['coming-soon-card-pricing']}>
-                      <span className={css['coming-soon-price']}>TBD</span>
-                    </div>
-                    <span className={css['coming-soon-availability']}>ID required at registration</span>
-                  </div>
-                </div>
+                ))}
               </div>
 
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
           </div>
-          {!pretixCheckoutUrl && totalQty > 0 && (
+          {totalQty > 0 && (
             <div className={css['summary-sticky']}>
               <div className={css['summary-sticky-inner']}>
                 <div className={css['summary-row']}>
@@ -758,17 +573,15 @@ function StoreContent({
                   </div>
                 </div>
                 <div className={css['summary-actions']}>
-                  {totalQty > 0 ? (
-                    <Link to="/tickets/store/checkout" className={css['checkout-btn']} onClick={handleCheckout}>
-                      Checkout
-                      <ArrowRightIcon />
-                    </Link>
-                  ) : (
-                    <span className={css['checkout-btn']} aria-disabled>
-                      Checkout
-                      <ArrowRightIcon />
-                    </span>
-                  )}
+                  <button
+                    type="button"
+                    className={css['checkout-btn']}
+                    onClick={goToPretixCheckout}
+                    disabled={checkoutLoading}
+                  >
+                    {checkoutLoading ? 'Loading…' : 'Checkout'}
+                    <ArrowUpRight className={css['checkout-arrow']} size={18} strokeWidth={2} />
+                  </button>
                 </div>
               </div>
             </div>
@@ -784,6 +597,8 @@ function StoreContent({
         earlyAccess={requireEarlyAccess ? earlyAccess ?? undefined : undefined}
         email={earlyAccessEmail ?? undefined}
       />
+
+      <RedeemVoucherModal isOpen={redeemOpen} onClose={() => setRedeemOpen(false)} />
     </>
   )
 }

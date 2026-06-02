@@ -125,11 +125,42 @@
 }
 
 .sidebar-includes {
-  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-includes-label {
+  font-size: 0.875rem;
   font-weight: 700;
   color: #1a0d33;
-  line-height: 1.5;
+  line-height: 1.43;
   margin: 0;
+}
+
+.sidebar-includes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-includes-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #221144;
+  line-height: 1.43;
+
+  svg {
+    flex-shrink: 0;
+    stroke: #221144 !important;
+    fill: none !important;
+  }
 }
 
 .sidebar-details {
@@ -329,6 +360,23 @@
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Figma: 14px Poppins Bold, green bg #aaeaba, text #221144, radius 4px */
+.open-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #221144;
+  background: #aaeaba;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   line-height: 1;
   white-space: nowrap;
 }
@@ -946,4 +994,102 @@
   &:hover {
     opacity: 0.85;
   }
+}
+
+/* ─── Sale Waves / General Admission card ───── */
+
+/* Figma: 16px, Poppins Bold (700), line-height 24px (1.5) */
+.discount-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Figma: 14px, Poppins Bold (700), color #d65600 */
+.discount-card-meta {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #d65600;
+  margin: 0;
+  line-height: 1.43;
+}
+
+/* Figma: 14px, Poppins Regular (400), color #1a0d33 */
+.discount-card-desc {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a0d33;
+  margin: 0;
+  line-height: 1.43;
+}
+
+.ga-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Figma: primary #7235ed pill, white text, Poppins Bold 14px */
+.checkout-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 40px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #f9f8fa !important;
+  background: #7235ed;
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+
+  &:hover {
+    background: #5f27d6;
+  }
+}
+
+/* Price + struck-through original, used in community/application card footers */
+.discount-price-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ─── Community: "Got a voucher?" redeem banner ───── */
+.voucher-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.voucher-banner-link {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #7235ed;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.voucher-banner-prompt {
+  color: #221144;
 }

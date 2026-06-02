@@ -72,10 +72,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       setEmailConfirmed(true)
     }
   }, [email])
-  const [confirmEmail, setConfirmEmail] = useState('')
-  const [emailMismatch, setEmailMismatch] = useState(false)
-  const [emailInvalid, setEmailInvalid] = useState(false)
-  const [emailConfirmed, setEmailConfirmed] = useState(!!email)
+  const [emailConfirmed, setEmailConfirmed] = useState(true)
   const effectiveEmail = emailConfirmed ? userEmail : undefined
 
   const setErrorFromReason = (reason?: string) => {
@@ -96,17 +93,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   const isMobile = useIsMobile()
 
   const effectiveStaging = ALLOW_STAGING && useStaging
-
-  // Reset email confirmation when modal closes (keep the first field pre-filled)
-  // Skip reset if email came from URL param — user already confirmed via the link
-  useEffect(() => {
-    if (!isOpen && !email) {
-      setEmailConfirmed(false)
-      setConfirmEmail('')
-      setEmailMismatch(false)
-      setEmailInvalid(false)
-    }
-  }, [isOpen, email])
 
   useEffect(() => {
     if (!isOpen || !emailConfirmed) return
@@ -234,11 +220,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     setSelfApp(null)
     setUniversalLink('')
     setUserId(crypto.randomUUID())
-    setUserEmail(email || '')
-    setConfirmEmail('')
-    setEmailMismatch(false)
-    setEmailInvalid(false)
-    setEmailConfirmed(false)
   }
 
   const handleCopyCode = async () => {
@@ -342,73 +323,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
             </p>
 
             <hr className={css['self-divider']} aria-hidden="true" />
-
-            {!emailConfirmed && (
-              <div className={css['self-email-step']}>
-                <h3 className={css['self-heading']}>Enter your email</h3>
-                <p style={{ fontSize: '0.9rem', color: '#594d73', margin: '0 0 12px' }}>
-                  We&apos;ll send your voucher code to this email after verification.
-                </p>
-                <form
-                  onSubmit={e => {
-                    e.preventDefault()
-                    setEmailMismatch(false)
-                    setEmailInvalid(false)
-                    const trimmed = userEmail.trim()
-                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-                      setEmailInvalid(true)
-                      return
-                    }
-                    if (trimmed.toLowerCase() !== confirmEmail.trim().toLowerCase()) {
-                      setEmailMismatch(true)
-                      return
-                    }
-                    try {
-                      localStorage.setItem('devcon-voucher-email', trimmed)
-                    } catch {}
-                    setEmailConfirmed(true)
-                  }}
-                  className={css['self-email-form']}
-                >
-                  <input
-                    type="email"
-                    value={userEmail}
-                    onChange={e => {
-                      setUserEmail(e.target.value)
-                      setEmailMismatch(false)
-                      setEmailInvalid(false)
-                    }}
-                    placeholder="Enter email"
-                    required
-                    className={css['self-email-input']}
-                  />
-                  <input
-                    type="email"
-                    value={confirmEmail}
-                    onChange={e => {
-                      setConfirmEmail(e.target.value)
-                      setEmailMismatch(false)
-                    }}
-                    placeholder="Confirm email"
-                    required
-                    className={css['self-email-input']}
-                  />
-                  {emailInvalid && (
-                    <p style={{ color: '#e53e3e', fontSize: '0.8125rem', margin: 0 }}>
-                      Please enter a valid email address.
-                    </p>
-                  )}
-                  {emailMismatch && (
-                    <p style={{ color: '#e53e3e', fontSize: '0.8125rem', margin: 0 }}>
-                      Emails do not match. Please try again.
-                    </p>
-                  )}
-                  <button type="submit" className={css['self-email-btn']}>
-                    Confirm email
-                  </button>
-                </form>
-              </div>
-            )}
 
             {emailConfirmed && (
               <>
