@@ -53,9 +53,11 @@ export function CircularAvatarPreview({ src, size, id, crop, href, onClick, clas
   const fallbackId = React.useId()
   const slug = (id ?? fallbackId).replace(/[^a-z0-9_-]/gi, '_')
 
-  // Two sizing modes: explicit px via `size`, or "fill the parent" via w/h full.
+  // Two sizing modes: explicit px via `size`, or "fill the parent width" via
+  // `w-full aspect-square`. Fill mode MUST stay square (aspect-square, not
+  // h-full) or `rounded-full` renders an ellipse when the parent isn't square.
   const dimStyle = size != null ? { width: size, height: size } : undefined
-  const dimClass = size != null ? '' : 'w-full h-full'
+  const dimClass = size != null ? '' : 'w-full aspect-square'
 
   const ringGradient = (crop && CROP_RING_GRADIENTS[crop.toLowerCase()]) || DEFAULT_RING_GRADIENT
 

@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
-import { ChevronDown, X, FileText, Download, ExternalLink, Lock, ShieldCheck } from 'lucide-react'
+import { ChevronDown, X, FileText, Download, ExternalLink, Lock, ShieldCheck, Star } from 'lucide-react'
 import { COUNTRIES } from './countries'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
@@ -23,6 +23,8 @@ export interface FormColumn {
   required: boolean
   description?: string
   options?: string[]
+  // Rating-only: icon count + fill color (see FormField in nocodb-meta.ts).
+  rating?: { max: number; color?: string }
 }
 
 export interface ConditionalRule {
@@ -91,10 +93,37 @@ const CHAR_LIMITS: Record<string, number> = {
   LongText: 1000,
 }
 
+// Explicit opt-in marker: a form field whose label starts with "Country:"
+// (e.g. "Country:What is your origin country?") is rendered as a searchable
+// country <select>, with the marker stripped from the visible label. This
+// lets designers opt a field in regardless of its NocoDB type or wording —
+// country fields are sometimes modelled as a SingleSelect with no options
+// (designer expecting us to supply the list) or as plain text. Mirrors the
+// existing `[encrypted]` title-prefix convention.
+const COUNTRY_PREFIX = 'country:'
+
+// Legacy exact-title matches, kept so forms that pre-date the prefix
+// convention (e.g. the student-application "Country" field) keep working.
 const COUNTRY_FIELD_NAMES = new Set(['country', 'country of residence', 'nationality'])
 
 function isCountryField(col: FormColumn): boolean {
-  return COUNTRY_FIELD_NAMES.has(col.title.toLowerCase())
+  // NocoDB has two name slots: the underlying column title (→ `column_name`,
+  // our submission key) and the form-view label override (→ `title`, the
+  // displayed text). A designer may add the `Country:` marker to either, so
+  // check both. The legacy exact-name match only applies to the display title.
+  const title = col.title.trim().toLowerCase()
+  const colName = (col.column_name || '').trim().toLowerCase()
+  return title.startsWith(COUNTRY_PREFIX) || colName.startsWith(COUNTRY_PREFIX) || COUNTRY_FIELD_NAMES.has(title)
+}
+
+// Strips the `Country:` opt-in marker from a title for display. No-op for
+// titles that don't carry it.
+function stripCountryPrefix(title: string): string {
+  const trimmed = title.trimStart()
+  if (trimmed.toLowerCase().startsWith(COUNTRY_PREFIX)) {
+    return trimmed.slice(COUNTRY_PREFIX.length).trimStart()
+  }
+  return title
 }
 
 interface FormRendererProps {
@@ -601,6 +630,66 @@ function CheckboxField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boole
   )
 }
 
+function RatingField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boolean }) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const rhfKey = rhfFieldName(col.column_name)
+  const error = errors[rhfKey]
+  const max = col.rating?.max ?? 5
+  const color = col.rating?.color || '#fcb401'
+  const current = Number(watch(rhfKey)) || 0
+  const [hovered, setHovered] = useState(0)
+
+  // Register with a validate fn so `required` means "at least one star".
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => (col.required ? Number(v) > 0 || `${col.title} is required` : true),
+    })
+  }, [register, rhfKey, col.required, col.title])
+
+  const active = hovered || current
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={col.title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+      <div className="flex items-center gap-1.5" onMouseLeave={() => setHovered(0)}>
+        {Array.from({ length: max }, (_, i) => {
+          const value = i + 1
+          const filled = value <= active
+          return (
+            <button
+              key={value}
+              type="button"
+              disabled={isReadOnly}
+              aria-label={`${value} of ${max}`}
+              onMouseEnter={() => !isReadOnly && setHovered(value)}
+              onClick={() =>
+                // Click the current value again to clear it back to 0.
+                setValue(rhfKey, current === value ? 0 : value, { shouldValidate: true })
+              }
+              className="p-0.5 disabled:cursor-not-allowed transition-transform hover:scale-110"
+            >
+              <Star
+                className="w-7 h-7"
+                style={{ color, fill: filled ? color : 'transparent' }}
+                strokeWidth={1.5}
+              />
+            </button>
+          )
+        })}
+      </div>
+      {error && <FieldError message={error.message as string} />}
+    </div>
+  )
+}
+
 function FieldLabel({ title, required }: { title: string; required: boolean }) {
   return (
     <label className="text-base font-bold text-[#160b2b] leading-6">
@@ -790,10 +879,11 @@ export function FormRenderer({
         // Country fields → searchable dropdown
         if (isCountryField(col)) {
           const currentValue = watch(rhfKey) || ''
+          const displayTitle = stripCountryPrefix(col.title)
           return (
             <div key={col.column_name} className="flex flex-col gap-3">
               <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
+                <FieldLabel title={displayTitle} required={col.required} />
                 {col.description && <FieldDescription text={col.description} />}
               </div>
               <SearchableSelect
@@ -806,7 +896,7 @@ export function FormRenderer({
               {col.required && (
                 <input
                   type="hidden"
-                  {...register(rhfKey, { required: `${col.title} is required` })}
+                  {...register(rhfKey, { required: `${displayTitle} is required` })}
                 />
               )}
               {error && <FieldError message={error.message as string} />}
@@ -835,6 +925,39 @@ export function FormRenderer({
               {error && <FieldError message={error.message as string} />}
             </div>
           )
+        }
+
+        if (col.uidt === 'Number') {
+          return (
+            <div key={col.column_name} className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
+                <FieldLabel title={col.title} required={col.required} />
+                {col.description && <FieldDescription text={col.description} />}
+              </div>
+              <Input
+                id={col.column_name}
+                type="number"
+                inputMode="numeric"
+                step={1}
+                disabled={isReadOnly}
+                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
+                {...register(rhfKey, {
+                  required: col.required ? `${col.title} is required` : false,
+                  // Coerce the string the input yields into a number (or
+                  // undefined when blank) so the value written to NocoDB is
+                  // numeric, not a string.
+                  setValueAs: v => (v === '' || v == null ? undefined : Number(v)),
+                  validate: v =>
+                    v === undefined || !Number.isNaN(Number(v)) || `${col.title} must be a number`,
+                })}
+              />
+              {error && <FieldError message={error.message as string} />}
+            </div>
+          )
+        }
+
+        if (col.uidt === 'Rating') {
+          return <RatingField key={col.column_name} col={col} isReadOnly={isReadOnly} />
         }
 
         if (col.uidt === 'Email') {

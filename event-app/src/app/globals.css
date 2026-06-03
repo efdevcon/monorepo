@@ -5,9 +5,87 @@
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #000000;
+
+  /* Match the /devcon project: Inter for body, Poppins for headings.
+     The CSS variables are provided by next/font in src/app/layout.tsx. */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  /* Hide the native scrollbar (we render our own overlay scrollbar). This takes
+     no layout space, so the width never changes when scrollable content
+     mounts — no jitter, no reserved gutter. */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* WebKit */
 }
 
 body {
   color: var(--color-foreground);
   background: var(--color-background);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* Content-width restraint grid, ported from devcon/devconnect's `.section`.
+   Children sit in a centered middle column with side gutters; the default
+   max width is intentionally narrower here (960px). Use modifiers on the same
+   element to change the width, and child classes to break out:
+     .section            → 960px (default)
+     .section.wide       → 1280px
+     .section.constrained→ 720px
+     > .expand           → full bleed (all 3 columns)
+     > .expand-left      → middle + left gutter
+     > .expand-right     → middle + right gutter */
+.section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(48px, 1fr) minmax(auto, 960px) minmax(48px, 1fr);
+}
+.section.wide {
+  grid-template-columns: minmax(48px, 1fr) minmax(auto, 1280px) minmax(48px, 1fr);
+}
+.section.constrained {
+  grid-template-columns: minmax(48px, 1fr) minmax(auto, 720px) minmax(48px, 1fr);
+}
+@media (max-width: 768px) {
+  .section,
+  .section.wide,
+  .section.constrained {
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, 100%) minmax(16px, 1fr);
+  }
+}
+.section > * {
+  grid-column: 2 / 3;
+  min-width: 0;
+}
+.section > .expand {
+  grid-column: 1 / 4;
+}
+.section > .expand-left {
+  grid-column: 1 / 3;
+}
+.section > .expand-right {
+  grid-column: 2 / 4;
+}
+
+/* Room-screen notifications ticker. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

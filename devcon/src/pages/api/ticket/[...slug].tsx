@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import sharp from 'sharp'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { fetchEnsAvatarBytes, isEnsName } from 'services/ens-avatar'
 
 const BG = '#000000'
 
@@ -113,12 +114,6 @@ async function regenerateAndCache(displayName: string, key: string, siteUrl: str
 }
 
 const STALE_AFTER_MS = 12 * 60 * 60 * 1000
-const MAX_AVATAR_BYTES = 5 * 1024 * 1024
-const ATTEMPT_TIMEOUT_MS = 4000
-
-function isEnsName(name: string): boolean {
-  return /\.eth$/i.test(name.trim())
-}
 
 async function bytesToDataUrl(bytes: Buffer): Promise<string | null> {
   try {
@@ -129,88 +124,17 @@ async function bytesToDataUrl(bytes: Buffer): Promise<string | null> {
   }
 }
 
-// Fetches image bytes from a URL with one retry on transient failure.
-// Returns `transient: false` only on a definitive 404 (genuine miss) or success;
-// any other failure surfaces as transient so callers can skip caching.
-async function fetchImageBytes(url: string, timeoutMs: number): Promise<{ bytes: Buffer | null; transient: boolean }> {
-  let transient = false
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) })
-      if (res.status === 404) return { bytes: null, transient: false }
-      if (!res.ok) {
-        transient = true
-        continue
-      }
-      const contentLength = Number(res.headers.get('content-length') || 0)
-      if (contentLength > MAX_AVATAR_BYTES) return { bytes: null, transient: false }
-      const bytes = Buffer.from(await res.arrayBuffer())
-      if (bytes.length === 0 || bytes.length > MAX_AVATAR_BYTES) {
-        transient = true
-        continue
-      }
-      return { bytes, transient: false }
-    } catch {
-      transient = true
-    }
-  }
-  return { bytes: null, transient }
-}
-
-// Tier-2 fallback: ensdata.net runs its own resolver + avatar CDN, so it
-// often serves when metadata.ens.domains is having a bad minute.
-async function fetchEnsdataAvatarBytes(normalizedName: string): Promise<{ bytes: Buffer | null; transient: boolean }> {
-  let candidates: string[] = []
-  try {
-    const res = await fetch(`https://ensdata.net/${encodeURIComponent(normalizedName)}`, {
-      signal: AbortSignal.timeout(ATTEMPT_TIMEOUT_MS),
-    })
-    if (res.status === 404) return { bytes: null, transient: false }
-    if (!res.ok) return { bytes: null, transient: true }
-    const data = (await res.json()) as { avatar_small?: string; avatar?: string }
-    if (data.avatar_small) candidates.push(data.avatar_small)
-    if (data.avatar && data.avatar !== data.avatar_small) candidates.push(data.avatar)
-  } catch {
-    return { bytes: null, transient: true }
-  }
-  if (candidates.length === 0) return { bytes: null, transient: false }
-  for (const url of candidates) {
-    const result = await fetchImageBytes(url, ATTEMPT_TIMEOUT_MS)
-    if (result.bytes) return result
-  }
-  return { bytes: null, transient: true }
-}
-
-// Resolves the ENS avatar with tier-1 (ensdata.net) → tier-2 (ENS metadata gateway) fallback.
-// ensdata.net serves a pre-sized avatar from their own CDN, which is typically
-// faster than chaining through the gateway's NFT-metadata resolution path.
-// Returns a data URL we embed directly in @vercel/og (no runtime fetch by the renderer).
-// The `transient` flag tells the caller whether to cache the result.
+// Resolves the ENS avatar via the shared resolver (ensdata → ENS metadata
+// gateway) and converts it to a data URL we embed directly in @vercel/og
+// (no runtime fetch by the renderer). The `transient` flag tells the caller
+// whether to cache the result.
 async function fetchAvatarDataUrl(name: string): Promise<{ dataUrl: string | null; transient: boolean }> {
-  const normalizedName = name.trim().toLowerCase()
-
-  // Tier 1: ensdata.net — pre-sized avatar from their CDN, usually fastest
-  const primary = await fetchEnsdataAvatarBytes(normalizedName)
-  if (primary.bytes) {
-    const dataUrl = await bytesToDataUrl(primary.bytes)
+  const { bytes, transient } = await fetchEnsAvatarBytes(name)
+  if (bytes) {
+    const dataUrl = await bytesToDataUrl(bytes)
     if (dataUrl) return { dataUrl, transient: false }
   }
-
-  // Tier 2: ENS metadata gateway — canonical source, handles every avatar
-  // record format. We treat its result as authoritative for caching: if it
-  // 404s, the name truly has no avatar record and we cache the no-avatar render.
-  const backup = await fetchImageBytes(
-    `https://metadata.ens.domains/mainnet/avatar/${encodeURIComponent(normalizedName)}`,
-    ATTEMPT_TIMEOUT_MS,
-  )
-  if (backup.bytes) {
-    const dataUrl = await bytesToDataUrl(backup.bytes)
-    if (dataUrl) return { dataUrl, transient: false }
-  }
-
-  // Both failed. Use gateway's transient flag — it's the canonical resolver,
-  // so its 404 means "no on-chain avatar record" and we can safely cache.
-  return { dataUrl: null, transient: backup.transient }
+  return { dataUrl: null, transient }
 }
 
 function generateImage(displayName: string, avatarSrc: string | null, bgSrc: string, fonts: { bold: ArrayBuffer; medium: ArrayBuffer }) {

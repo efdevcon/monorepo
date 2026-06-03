@@ -73,7 +73,49 @@ Painterly, not photographic.
 Refined without being branded.
 Wordless — no text, no captions, no titles, no typography of any kind.`
 
+// Reference-driven variant for the image-reference approach. STYLE comes
+// entirely from the reference artwork; the source photo is treated as a
+// CHARACTER BRIEF (attributes, not exact face geometry) so the output is a
+// fully-stylized illustrated character rather than a realistic face fighting
+// the anime style. Pose is inherited from the source. The "don't copy the
+// reference's pose/body" guard matters because the references are full-body
+// character sheets (T-pose, multi-view) we do NOT want restaged.
+const SEED_PROMPT_REFERENCE = `Design a character drawn in the EXACT art style and world of the provided reference artwork — as if illustrated by the same artist, for the same project. Fully commit to the reference's level of stylization: if the reference is anime/illustrated, the result must be genuinely anime/illustrated, NOT a realistic or photographic face. Match its medium, palette, line quality, linework, shading, and proportions closely.
+
+USE THE SOURCE PHOTO AS A CHARACTER BRIEF, not a face to trace:
+Do NOT preserve the photographic facial geometry or render a realistic likeness. Instead, capture the person's overall attributes — hairstyle and hair color, eye color, mouth and smile, skin tone, facial hair, approximate age, gender presentation, build, expression, and general vibe — and design a stylized character who clearly reads as "that kind of person," redrawn natively in the reference's style. A friend should say "that looks like them, as an anime character," not "that's a photo of them."
+
+WARDROBE & ACCESSORIES from the reference:
+Dress the character in clothing, fabrics, gear, and accessories drawn from the reference artwork — the same lunarpunk garments, layered textiles, tech-woven details, jewelry, and props — re-fitted naturally to the subject's pose and build. Replace the subject's original everyday clothes entirely with this wardrobe so they look outfitted for the same world. Adapt, don't paste: the garments should sit believably on this character, not be a cut-out of the reference.
+
+POSE & FRAMING from the source:
+Keep the subject's pose, posture, head angle, framing, and crop close to the source photo. Do NOT restage them into the reference character's pose or body.
+
+STYLE & WORLD from the reference:
+Place the character in the same luminous world the reference belongs to — Ethereum's Infinite Garden, a nocturnal Indian lunarpunk setting of deep indigo/violet light, soft teal/cyan glow, faint warm-gold highlights, and gentle bioluminescent flora — but let the reference dictate how that world is painted. A subtle glowing bloom may grow from the character's clothing or surrounding air. Avoid pure white and pure black backgrounds. Centered, square composition.
+
+ETHEREUM RESONANCE (subtle, latent):
+Optionally hide one whispered echo of Ethereum's diamond silhouette (an upright octahedron) in the flora or glow — latent in nature, never a logo, noticed only on a second look.
+
+Avoid:
+- realistic or photographic rendering of the face when the reference is stylized
+- inventing a rendering style that departs from the reference artwork
+- copying the reference character's specific face, hair, or pose onto the subject (wardrobe/accessories SHOULD be borrowed; face, hair, and pose should NOT)
+- keeping the subject's original mundane street clothes
+- explicit Ethereum logos, brand glyphs, or crypto iconography
+- slime, horror melting, chaotic dripping, aggressive sci-fi effects
+- combat imagery, overt religious iconography or specific deities
+
+NO TEXT:
+The final image must contain absolutely no text, words, letters, numbers, captions, labels, watermarks, logos, glyphs, or typography of any kind. Purely pictorial.
+
+Same artist, same world as the reference. The person's attributes and pose, reimagined as a character in that style. Wordless.`
+
 type Quality = 'auto' | 'low' | 'medium' | 'high'
+
+// Only the plain (background-free) character sheets are used as style
+// references — the busier `characters` set muddies the extraction.
+const STYLE_REF_DIR = 'characters-plain'
 
 interface RunOutput {
   sourceFile: string
@@ -90,6 +132,7 @@ interface RunMeta {
   quality: Quality
   prompt: string
   label?: string
+  referenceCount?: number
   outputs: RunOutput[]
 }
 
@@ -128,6 +171,17 @@ function PromptLab() {
   const [busy, setBusy] = useState<boolean>(false)
   const [status, setStatus] = useState<string>('')
 
+  // Reference artwork passed as image inputs to generation (style applied to
+  // the target selfie). Separate from the text-extraction styleRefs.
+  const [genRefs, setGenRefs] = useState<Set<string>>(new Set())
+
+  // Style extractor — toggleable set of preset reference artworks.
+  const [styleRefs, setStyleRefs] = useState<Set<string>>(new Set())
+  const [styleRefsInit, setStyleRefsInit] = useState(false)
+  const [styleResult, setStyleResult] = useState<string>('')
+  const [styleBusy, setStyleBusy] = useState<boolean>(false)
+  const [styleErr, setStyleErr] = useState<string>('')
+
   const uploadInputRef = useRef<HTMLInputElement>(null)
 
   // Restore from localStorage on first mount.
@@ -153,6 +207,22 @@ function PromptLab() {
   useEffect(() => {
     localStorage.setItem('avatarLabPresets', JSON.stringify([...selectedPresets]))
   }, [selectedPresets])
+  useEffect(() => {
+    // Don't persist until the initial prefill has run, or we'd clobber the
+    // stored selection with an empty set on first render.
+    if (styleRefsInit) localStorage.setItem('avatarLabStyleRefs', JSON.stringify([...styleRefs]))
+  }, [styleRefs, styleRefsInit])
+
+  // Restore generation reference selection (defaults to none — opt-in).
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem('avatarLabGenRefs') ?? '[]') as string[]
+      setGenRefs(new Set(stored))
+    } catch {}
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('avatarLabGenRefs', JSON.stringify([...genRefs]))
+  }, [genRefs])
 
   const loadPresets = useCallback(async () => {
     setPresetsErr('')
@@ -161,6 +231,28 @@ function PromptLab() {
       const data = await res.json()
       if (!res.ok || !data.success) throw new Error(data.error || `HTTP ${res.status}`)
       setPresets(data.presets)
+
+      // Prefill style references with every characters-plain preset (all
+      // toggled on by default) unless the operator has a stored selection.
+      // Prune any stored keys that aren't valid characters-plain refs (e.g.
+      // stale `characters/` keys from before the extractor was restricted).
+      const allKeys = (data.presets[STYLE_REF_DIR] ?? []).map((name: string) => `${STYLE_REF_DIR}/${name}`)
+      const validKeys = new Set(allKeys)
+      const stored = localStorage.getItem('avatarLabStyleRefs')
+      let parsed: string[] | null = null
+      if (stored) {
+        try {
+          parsed = JSON.parse(stored) as string[]
+        } catch {
+          parsed = null
+        }
+      }
+      if (parsed) {
+        setStyleRefs(new Set(parsed.filter(k => validKeys.has(k))))
+      } else {
+        setStyleRefs(new Set(allKeys))
+      }
+      setStyleRefsInit(true)
     } catch (err) {
       setPresetsErr((err as Error).message)
     }
@@ -208,6 +300,56 @@ function PromptLab() {
     setUploads(prev => [...prev, ...reads])
   }
 
+  const toggleStyleRef = (key: string) => {
+    setStyleRefs(prev => {
+      const next = new Set(prev)
+      next.has(key) ? next.delete(key) : next.add(key)
+      return next
+    })
+  }
+
+  const extractStyleFromRefs = async () => {
+    if (styleRefs.size === 0) {
+      setStyleErr('Select at least one reference.')
+      return
+    }
+    const sources = [...styleRefs].map(key => {
+      const [dir, name] = key.split('/')
+      return { kind: 'preset', dir, name }
+    })
+
+    setStyleBusy(true)
+    setStyleErr('')
+    setStyleResult('')
+    try {
+      const res = await fetch('/api/avatar-lab/extract-style/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sources }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.success) throw new Error(data.error || `HTTP ${res.status}`)
+      setStyleResult(data.style)
+    } catch (err) {
+      setStyleErr((err as Error).message)
+    } finally {
+      setStyleBusy(false)
+    }
+  }
+
+  const appendStyleToPrompt = () => {
+    if (!styleResult) return
+    setPrompt(prev => `${prev.trimEnd()}\n\nEXTRACTED STYLE REFERENCE:\n${styleResult}`)
+  }
+
+  const toggleGenRef = (key: string) => {
+    setGenRefs(prev => {
+      const next = new Set(prev)
+      next.has(key) ? next.delete(key) : next.add(key)
+      return next
+    })
+  }
+
   const sourcesCount = selectedPresets.size + uploads.length
 
   const runBatch = async () => {
@@ -229,6 +371,11 @@ function PromptLab() {
       sources.push({ kind: 'upload', name: u.name, data: u.dataUrl })
     }
 
+    const references = [...genRefs].map(key => {
+      const [dir, name] = key.split('/')
+      return { kind: 'preset', dir, name }
+    })
+
     setBusy(true)
     const startedAt = Date.now()
     const tick = setInterval(
@@ -239,7 +386,7 @@ function PromptLab() {
       const res = await fetch('/api/avatar-lab/runs/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, model: 'openai', quality, label: label || undefined, sources }),
+        body: JSON.stringify({ prompt, model: 'openai', quality, label: label || undefined, sources, references }),
       })
       const data = await res.json()
       if (!res.ok || !data.success) throw new Error(data.error || `HTTP ${res.status}`)
@@ -286,17 +433,31 @@ function PromptLab() {
             <label className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs uppercase tracking-wider text-[#594d73] font-bold">Prompt</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (window.confirm('Reset the prompt to the current default seed? Your edits will be lost.')) {
-                      setPrompt(SEED_PROMPT)
-                    }
-                  }}
-                  className="text-xs text-[#7235ed] hover:underline"
-                >
-                  reset to default
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (window.confirm('Load the style-agnostic reference prompt? Your current prompt will be replaced.')) {
+                        setPrompt(SEED_PROMPT_REFERENCE)
+                      }
+                    }}
+                    className="text-xs text-[#7235ed] hover:underline"
+                    title="No rendering-style opinions — defers the look to your reference artwork"
+                  >
+                    load reference prompt
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (window.confirm('Reset the prompt to the current default seed? Your edits will be lost.')) {
+                        setPrompt(SEED_PROMPT)
+                      }
+                    }}
+                    className="text-xs text-[#7235ed] hover:underline"
+                  >
+                    reset to default
+                  </button>
+                </div>
               </div>
               <textarea
                 rows={20}
@@ -355,9 +516,141 @@ function PromptLab() {
         </div>
       </section>
 
+      <section className="mb-8">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm uppercase tracking-wider text-[#594d73] font-bold">Style extractor</h2>
+          <button
+            type="button"
+            onClick={extractStyleFromRefs}
+            disabled={styleBusy || styleRefs.size === 0}
+            className="px-3 py-1.5 bg-[#7235ed] hover:bg-[#6029d1] disabled:bg-[#dddae2] disabled:text-[#594d73] text-white rounded-full text-xs font-bold transition"
+          >
+            {styleBusy ? 'Analyzing...' : `Extract style from ${styleRefs.size} reference${styleRefs.size === 1 ? '' : 's'}`}
+          </button>
+        </div>
+        <p className="text-xs text-[#594d73] mb-3">
+          Toggle the reference artworks to draw style from. A vision model distills their shared style (palette,
+          brushwork, light, mood) into prompt-ready clauses — the images themselves are never fed to the generator,
+          so results stay consistent.
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {(presets[STYLE_REF_DIR] ?? []).map(name => {
+            const key = `${STYLE_REF_DIR}/${name}`
+            const on = styleRefs.has(key)
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => toggleStyleRef(key)}
+                aria-pressed={on}
+                className={`relative block rounded-lg overflow-hidden cursor-pointer aspect-square text-left transition-all duration-150 ${
+                  on
+                    ? 'ring-2 ring-[#7235ed] ring-offset-2 ring-offset-white shadow-[0_0_16px_rgba(114,53,237,0.45)] scale-[1.02]'
+                    : 'ring-1 ring-[#dddae2] opacity-45 hover:opacity-80 grayscale'
+                }`}
+              >
+                <img
+                  src={`/avatar-lab-refs/${STYLE_REF_DIR}/${name}`}
+                  alt={name}
+                  className="block w-full h-full object-cover"
+                />
+                {/* Selected badge */}
+                {on && (
+                  <span className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#7235ed] text-white text-[11px] font-bold flex items-center justify-center shadow">
+                    ✓
+                  </span>
+                )}
+                <div
+                  className={`px-2 py-1 text-[10px] truncate border-t ${
+                    on ? 'bg-[#7235ed] text-white border-[#7235ed] font-semibold' : 'bg-white text-[#594d73] border-[#dddae2]'
+                  }`}
+                >
+                  {name}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+
+        {styleErr && <p className="text-sm text-red-500 mb-2">{styleErr}</p>}
+        {styleResult && (
+          <div className="bg-[#f9f8fa] border border-[#dddae2] rounded-lg p-3 mt-2">
+            <textarea
+              readOnly
+              rows={8}
+              value={styleResult}
+              className="w-full px-3 py-2 bg-white border border-[#dddae2] rounded-lg text-xs font-mono leading-relaxed focus:outline-none"
+            />
+            <div className="flex gap-3 mt-2">
+              <button
+                type="button"
+                onClick={appendStyleToPrompt}
+                className="px-3 py-1.5 bg-[#7235ed] hover:bg-[#6029d1] text-white rounded-full text-xs font-bold transition"
+              >
+                Append to prompt
+              </button>
+              <button
+                type="button"
+                onClick={() => navigator.clipboard.writeText(styleResult)}
+                className="text-xs text-[#7235ed] hover:underline font-bold"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className="mb-8">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm uppercase tracking-wider text-[#594d73] font-bold">
+            Reference artwork (style){genRefs.size > 0 ? ` · ${genRefs.size} on` : ''}
+          </h2>
+        </div>
+        <p className="text-xs text-[#594d73] mb-3">
+          Optional. Selected artworks are passed to the generator <span className="font-semibold">as image inputs</span>{' '}
+          alongside each target — the model applies their style while preserving the target&apos;s likeness. (This is the
+          image-reference approach; the Style extractor above is the text approach. Use one or the other.)
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          {(presets[STYLE_REF_DIR] ?? []).map(name => {
+            const key = `${STYLE_REF_DIR}/${name}`
+            const on = genRefs.has(key)
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => toggleGenRef(key)}
+                aria-pressed={on}
+                className={`relative block rounded-lg overflow-hidden cursor-pointer aspect-square text-left transition-all duration-150 ${
+                  on
+                    ? 'ring-2 ring-[#7235ed] ring-offset-2 ring-offset-white shadow-[0_0_16px_rgba(114,53,237,0.45)] scale-[1.02]'
+                    : 'ring-1 ring-[#dddae2] opacity-45 hover:opacity-80 grayscale'
+                }`}
+              >
+                <img src={`/avatar-lab-refs/${STYLE_REF_DIR}/${name}`} alt={name} className="block w-full h-full object-cover" />
+                {on && (
+                  <span className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#7235ed] text-white text-[11px] font-bold flex items-center justify-center shadow">
+                    ✓
+                  </span>
+                )}
+                <div
+                  className={`px-2 py-1 text-[10px] truncate border-t ${
+                    on ? 'bg-[#7235ed] text-white border-[#7235ed] font-semibold' : 'bg-white text-[#594d73] border-[#dddae2]'
+                  }`}
+                >
+                  {name}
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      </section>
+
       <section className="mb-12">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm uppercase tracking-wider text-[#594d73] font-bold">Sources</h2>
+          <h2 className="text-sm uppercase tracking-wider text-[#594d73] font-bold">Sources (target)</h2>
           <label className="text-xs text-[#7235ed] hover:underline cursor-pointer flex items-center gap-2 font-bold">
             <span>Upload custom...</span>
             <input
@@ -388,8 +681,11 @@ function PromptLab() {
                         key={key}
                         type="button"
                         onClick={() => togglePreset(key)}
-                        className={`block rounded-lg overflow-hidden border-2 cursor-pointer aspect-square text-left transition ${
-                          checked ? 'border-[#7235ed]' : 'border-transparent hover:border-[#dddae2]'
+                        aria-pressed={checked}
+                        className={`relative block rounded-lg overflow-hidden cursor-pointer aspect-square text-left transition-all duration-150 ${
+                          checked
+                            ? 'ring-2 ring-[#7235ed] ring-offset-2 ring-offset-white shadow-[0_0_16px_rgba(114,53,237,0.45)] scale-[1.02]'
+                            : 'ring-1 ring-[#dddae2] opacity-45 hover:opacity-80 grayscale'
                         }`}
                       >
                         <img
@@ -397,7 +693,18 @@ function PromptLab() {
                           alt={name}
                           className="block w-full h-full object-cover"
                         />
-                        <div className="px-2 py-1 bg-white text-[10px] text-[#594d73] truncate border-t border-[#dddae2]">
+                        {checked && (
+                          <span className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#7235ed] text-white text-[11px] font-bold flex items-center justify-center shadow">
+                            ✓
+                          </span>
+                        )}
+                        <div
+                          className={`px-2 py-1 text-[10px] truncate border-t ${
+                            checked
+                              ? 'bg-[#7235ed] text-white border-[#7235ed] font-semibold'
+                              : 'bg-white text-[#594d73] border-[#dddae2]'
+                          }`}
+                        >
                           {name}
                         </div>
                       </button>
@@ -473,6 +780,12 @@ function RunCard({
             <span className="text-[#594d73]">
               {run.model} / {run.quality}
             </span>
+            {run.referenceCount ? (
+              <>
+                <span className="text-[#594d73]">·</span>
+                <span className="text-[#7235ed] font-semibold">{run.referenceCount} style ref{run.referenceCount === 1 ? '' : 's'}</span>
+              </>
+            ) : null}
             <span className="text-[#594d73]">·</span>
             <span className="text-[#594d73]">{fmtTime(run.createdAt)}</span>
           </div>

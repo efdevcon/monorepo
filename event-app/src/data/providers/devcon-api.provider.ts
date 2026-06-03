@@ -2,8 +2,9 @@ import type { Room, Session, Speaker } from "../models";
 import { BaseProvider, type SessionFilters } from "./provider-interface";
 
 const API_BASE_URL =
-  process.env.DEVCON_API_URL || "https://api.devcon.org";
-const EVENT_ID = process.env.DEVCON_API_EVENT_ID || "devcon-mumbai-playground";
+  process.env.NEXT_PUBLIC_DEVCON_API_URL || "https://api.devcon.org";
+const EVENT_ID =
+  process.env.NEXT_PUBLIC_DEVCON_API_EVENT_ID || "devcon-mumbai-playground";
 
 export class DevconApiProvider extends BaseProvider {
   private async fetchApi<T>(path: string): Promise<T> {
