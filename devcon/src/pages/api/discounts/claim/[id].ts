@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getServerSession } from 'next-auth'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
-import { getVoucherCodes } from 'utils/vouchers'
 import { GetDiscount } from '../validate/[id]'
+import { issueVoucher } from 'services/discountStore'
+import { discountCollection, discountItem } from 'config/ticketing'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id as string
@@ -36,9 +37,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const discount = data.discounts[0]
-  const voucher = await getVoucherCodes(discount.type as any, discount.index)
+
+  const itemId = discountItem(discount.type)
+  if (!itemId) {
+    return res.status(400).json({ error: 'This discount is not configured.' })
+  }
+
+  // Issue a single-use voucher that unlocks the discount ticket. Global
+  // one-per-identity: a GitHub username that already holds any community
+  // voucher gets that same code back instead of a new one.
+  let voucher: Awaited<ReturnType<typeof issueVoucher>> = null
+  try {
+    voucher = await issueVoucher(urlId, itemId, discountCollection(discount.type), discount.type)
+  } catch (err) {
+    console.error('claim/[id] issueVoucher failed:', err)
+    return res.status(502).json({ error: 'Could not issue voucher. Please try again.' })
+  }
   if (!voucher) {
-    return res.status(400).json({ error: 'No voucher available' })
+    return res.status(502).json({ error: 'Could not issue voucher. Please try again.' })
   }
 
   res.status(200).json({
@@ -46,7 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       id,
       session,
       discount: discount,
-      voucher: voucher,
+      voucher: voucher.code,
     },
   })
 }

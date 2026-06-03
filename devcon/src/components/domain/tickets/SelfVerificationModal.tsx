@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { SelfAppBuilder, getUniversalLink } from '@selfxyz/qrcode'
 import type { SelfApp } from '@selfxyz/qrcode'
-import { Copy, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import css from './VerificationModal.module.scss'
-import { TICKETING } from 'config/ticketing'
+import { TICKETING, pretixEventUrl } from 'config/ticketing'
 
 const SelfQRcodeWrapper = dynamic(() => import('@selfxyz/qrcode').then((mod) => mod.SelfQRcodeWrapper), {
   ssr: false,
@@ -18,7 +18,12 @@ type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | 'NO_VOUCHERS' | null
 
 function parseError(reason?: string): { message: string; code: ErrorCode } {
   if (!reason) return { message: 'Verification failed', code: null }
-  if (reason.includes('No vouchers available') || reason.includes('no vouchers') || reason.includes('last Early Access'))
+  if (
+    reason.includes('No vouchers available') ||
+    reason.includes('no vouchers') ||
+    reason.includes('Could not issue a voucher') ||
+    reason.includes('not configured')
+  )
     return { message: reason, code: 'NO_VOUCHERS' }
   if (reason.includes('[InvalidId]') || reason.includes('Aadhaar'))
     return { message: reason, code: 'INVALID_ID' }
@@ -53,7 +58,6 @@ function useIsMobile() {
 export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, earlyAccess, email }: SelfVerificationModalProps) {
   const [userId, setUserId] = useState(() => crypto.randomUUID())
   const [voucher, setVoucher] = useState<string | null>(null)
-  const [emailSent, setEmailSent] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [errorCode, setErrorCode] = useState<ErrorCode>(null)
   const [userEmail, setUserEmail] = useState(() => {
@@ -85,7 +89,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     setError(null)
     setErrorCode(null)
   }
-  const [copied, setCopied] = useState(false)
   const [selfApp, setSelfApp] = useState<SelfApp | null>(null)
   const [universalLink, setUniversalLink] = useState('')
   const [pollingForVoucher, setPollingForVoucher] = useState(false)
@@ -128,12 +131,17 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
 
   const handleSuccess = async () => {
     clearError()
-    const maxAttempts = 10
-    const delayMs = 2000
+    // ~36s window at one request per 3s (the background poll is paused while
+    // this runs, so the combined rate stays a steady ~20/min, well under the
+    // self-voucher rate limit).
+    const maxAttempts = 12
+    const delayMs = 3000
     let lastError: string | undefined
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       try {
-        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`)
+        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`, {
+          cache: 'no-store',
+        })
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           clearError()
@@ -157,12 +165,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     }
   }
 
-  // Email is now sent by the backend (redeem-self.ts) when the voucher is assigned.
-  // Mark emailSent based on whether an email was provided (backend will handle it).
-  useEffect(() => {
-    if (voucher && effectiveEmail) setEmailSent(true)
-  }, [voucher, effectiveEmail])
-
   // When the user returns from the Self app, start polling automatically
   useEffect(() => {
     if (!isOpen) return
@@ -184,13 +186,17 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   // regardless of WebSocket behaviour.
   // Errors are only surfaced after several consecutive polls with no voucher,
   // to avoid killing the polling loop during a backend race condition.
+  // Paused while `handleSuccess` is actively polling so the two loops never
+  // double the request rate against the self-voucher rate limit.
   const bgErrorCount = React.useRef(0)
   useEffect(() => {
-    if (!isOpen || voucher || error) return
+    if (!isOpen || voucher || error || pollingForVoucher) return
 
     const poll = async () => {
       try {
-        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`)
+        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`, {
+          cache: 'no-store',
+        })
         const data = await res.json()
         if (res.ok && data.voucherCode) {
           bgErrorCount.current = 0
@@ -210,24 +216,19 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
 
     const id = setInterval(poll, 3000)
     return () => clearInterval(id)
-  }, [isOpen, userId, voucher, error])
+  }, [isOpen, userId, voucher, error, pollingForVoucher])
 
   const handleReset = () => {
     setVoucher(null)
-    setEmailSent(false)
     clearError()
-    setCopied(false)
     setSelfApp(null)
     setUniversalLink('')
     setUserId(crypto.randomUUID())
   }
 
-  const handleCopyCode = async () => {
-    if (!voucher || typeof navigator?.clipboard?.writeText !== 'function') return
-    await navigator.clipboard.writeText(voucher)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+  // Direct link into the Pretix store's voucher redeem flow, which unlocks and
+  // applies the India Resident ticket. Goes to Pretix, not the Devcon store.
+  const claimUrl = voucher ? pretixEventUrl(`/redeem?voucher=${encodeURIComponent(voucher)}`) : ''
 
   if (!isOpen) return null
 
@@ -247,68 +248,18 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         {voucher ? (
           <div className={css['self-padded']}>
             <h2 id="self-verification-title" className={css['success-title']}>
-              {TICKETING.isShopOpen ? 'Proof successfully submitted!' : 'Early Access voucher reserved!'}
+              You&apos;re verified!
             </h2>
             <div className={css['success-text-block']}>
               <p className={css['success-intro']}>
-                Your Self proof was successfully generated and submitted. Your{' '}
-                {TICKETING.isShopOpen ? 'discount' : 'early access'} code is unique to your identity and can be found
-                below.
+                Your Self proof was verified and you&apos;re eligible for the India Resident ticket. Continue to the
+                store to claim it.
               </p>
-              {emailSent && effectiveEmail && (
-                <p className={css['success-intro']}>
-                  We&apos;ve sent an email containing your code to: <strong>{effectiveEmail}</strong>
-                </p>
-              )}
-              {TICKETING.isShopOpen ? (
-                <p className={css['success-note']}>
-                  <strong>Note:</strong> This code must be entered at checkout to purchase your discounted Devcon
-                  ticket.
-                </p>
-              ) : (
-                <p className={css['success-note']}>
-                  <strong>We&apos;ll notify you before tickets go live</strong>, so you&apos;re ready to secure yours
-                  early.
-                </p>
-              )}
             </div>
-            <hr className={css['self-divider']} aria-hidden="true" />
-            <div className={css['voucher-card']}>
-              <div className={css['voucher-card-inner']}>
-                <p className={css['voucher-card-label']}>YOUR VOUCHER CODE</p>
-                <div className={css['voucher-code-row']}>
-                  <span className={css['voucher-code']}>{voucher}</span>
-                  <button
-                    type="button"
-                    className={css['voucher-copy']}
-                    onClick={handleCopyCode}
-                    aria-label={copied ? 'Copied' : 'Copy code'}
-                    title={copied ? 'Copied' : 'Copy to clipboard'}
-                  >
-                    {copied ? <span className={css['voucher-copy-text']}>Copied</span> : <Copy size={20} aria-hidden />}
-                  </button>
-                </div>
-              </div>
-            </div>
-            {!TICKETING.isShopOpen && (
-              <p className={css['success-note']}>
-                When tickets go live, <strong>please have your code ready</strong> to use at checkout. This is how
-                you&apos;ll access the exclusive discounted price.
-              </p>
-            )}
-            {TICKETING.isShopOpen && (
-              <a
-                href={
-                  TICKETING.checkout.pretixRedirectUrl
-                    ? `${TICKETING.checkout.pretixRedirectUrl}redeem?voucher=${voucher}`
-                    : `/en/tickets/store/redeem?voucher=${voucher}`
-                }
-                className={css['voucher-cta']}
-              >
-                Go to Ticket Store
-                <ArrowRight size={20} aria-hidden />
-              </a>
-            )}
+            <a href={claimUrl} className={css['voucher-cta']}>
+              Claim your India Resident ticket
+              <ArrowRight size={20} aria-hidden />
+            </a>
             <p className={css['privacy']}>No personal data is shared!</p>
           </div>
         ) : (
@@ -451,15 +402,16 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                 {errorCode === 'NO_VOUCHERS' && (
                   <div className={css['self-aadhaar-notice']}>
                     <p>
-                      <strong className={css['error-title']}>Sorry, all voucher codes have now been reserved</strong>
+                      <strong className={css['error-title']}>
+                        Sorry, the India Resident discount is currently unavailable
+                      </strong>
                     </p>
                     <p>
-                      Your Self proof was successfully submitted however, the last Early Access codes have now been
-                      reserved.
+                      Your Self proof was verified, but we couldn&apos;t issue your India Resident ticket right now.
+                      Please try again shortly.
                     </p>
                     <p>
-                      More local tickets will go on sale in May. <strong>Follow us on socials for updates</strong> so
-                      you&apos;re ready to secure yours early.
+                      <strong>Follow us on socials for updates</strong> so you&apos;re ready to secure yours.
                     </p>
                     <p>We apologize for any inconvenience.</p>
                     <div className={css['social-links']}>

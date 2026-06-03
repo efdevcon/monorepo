@@ -16,7 +16,12 @@ const ENV_CONFIG = {
       customDomain: false,
       x402ApiEnabled: true,
       ticketDiscountId: '6',
-      defaultQuotaId: 116,
+      // Pretix item ID treated as the headline "General Admission" ticket on
+      // the store page (the one wired to the GA card's quantity + Checkout).
+      // Pins WHICH admission item is used instead of relying on Pretix's item
+      // ordering. Falls back to the first available admission item when null
+      // or when the configured item isn't currently purchasable.
+      gaItemId: 145 as number | null,
       testmode: true,
     },
     checkout: {
@@ -47,7 +52,25 @@ const ENV_CONFIG = {
       requireEarlyAccess: false,
     },
     discount: {
-      collection: 'test-india-early-bird',
+      collection: 'test-india-resident',
+      // Prefix for community-discount voucher collections (Core Devs, OSS,
+      // Public Goods, Past POAP). Dev and prod share one Supabase instance, so
+      // the prefix keeps dev claims from draining prod pools. See
+      // `discountCollection()`.
+      communityPrefix: 'test-',
+      // Pretix item IDs for each voucher-gated discount ticket. A claim issues
+      // a single-use voucher (price_mode 'none') that unlocks the matching
+      // (normally voucher-only) ticket; the price and quota live on the item.
+      // Keyed by the discount `type` from /api/discounts/validate, plus the
+      // Self-flow type (india-resident) used by redeem-self.ts.
+      items: {
+        'core-devs': 152,
+        'oss-contributors': 153,
+        'pg-projects': 154,
+        'past-attendees': 155,
+        builder: 143,
+        'india-resident': 139,
+      } as Record<string, number>,
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -58,7 +81,7 @@ const ENV_CONFIG = {
     overrides: {
       soldOut: false,
     },
-    isShopOpen: true,
+    isShopOpen: false,
     x402Agents: false,
   },
   production: {
@@ -74,7 +97,10 @@ const ENV_CONFIG = {
       customDomain: true,
       x402ApiEnabled: false,
       ticketDiscountId: '2',
-      defaultQuotaId: 116,
+      // See development.pretix.gaItemId. null = fall back to the first
+      // available admission item (set the production GA item ID here once
+      // known to make the selection deterministic).
+      gaItemId: 1 as number | null,
       testmode: false,
     },
     checkout: {
@@ -100,12 +126,28 @@ const ENV_CONFIG = {
       label: 'GST',
     },
     self: {
+      // TODO: update this to 'india-resident'
       scope: 'devcon-india-local-discount',
       staging: false,
       requireEarlyAccess: false,
     },
     discount: {
       collection: 'india-early-bird',
+      // See development.discount.communityPrefix.
+      communityPrefix: '',
+      // Production Pretix item IDs. NOTE: the prod Self flow currently uses
+      // `collection: 'india-early-bird'` above, but the configured Self discount
+      // item is keyed `india-resident` (3). If the prod Self flow should issue
+      // the India Resident item, set `collection` to 'india-resident'; otherwise
+      // add an `india-early-bird` entry here. See redeem-self.ts.
+      items: {
+        'core-devs': 44,
+        'oss-contributors': 45,
+        'pg-projects': 46,
+        'past-attendees': 47,
+        builder: 5,
+        'india-resident': 3,
+      } as Record<string, number>,
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -134,6 +176,29 @@ export function pretixEventUrl(path: string): string {
     ? ''
     : `/${TICKETING.pretix.organizer}/${TICKETING.pretix.event}`
   return `${base}${eventPrefix}${path}`
+}
+
+/** Supabase voucher-pool collection name for a community discount `type`
+ *  (e.g. `pg-projects`). Env-prefixed so dev and prod don't share pools in the
+ *  one Supabase instance: `pg-projects` -> `test-pg-projects` (dev) /
+ *  `pg-projects` (prod). */
+export function discountCollection(type: string): string {
+  return `${TICKETING.discount.communityPrefix}${type}`
+}
+
+/** Pretix item id for a community discount `type` (e.g. `oss-contributors`),
+ *  or undefined if not configured for this environment. */
+export function discountItem(type: string): number | undefined {
+  return TICKETING.discount.items[type]
+}
+
+/** Pretix item id for a voucher `collection` (e.g. `test-india-resident`).
+ *  Strips the env prefix to recover the discount `type`, then looks up the
+ *  item. Used by the Self flow, which works in collection terms. */
+export function discountItemForCollection(collection: string): number | undefined {
+  const prefix = TICKETING.discount.communityPrefix
+  const type = collection.startsWith(prefix) ? collection.slice(prefix.length) : collection
+  return discountItem(type)
 }
 
 /** Whether the chain environment is testnet (derived from config) */

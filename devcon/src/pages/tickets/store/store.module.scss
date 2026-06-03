@@ -635,6 +635,15 @@
   &:hover {
     background: #f0f0f0;
   }
+
+  &:disabled {
+    color: #bbb;
+    cursor: not-allowed;
+
+    &:hover {
+      background: #fff;
+    }
+  }
 }
 
 .verify-btn {
@@ -667,7 +676,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
+  height: 40px;
+  padding: 0.5rem 1.25rem 0.5rem 1.5rem;
+  line-height: 1;
   font-size: 1rem;
   font-weight: 700;
   color: #1a0d33;
@@ -687,8 +698,8 @@
 }
 
 .self-logo {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 

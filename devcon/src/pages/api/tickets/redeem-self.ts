@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
-import { lookupDiscountCode, validateDiscountCode, assignVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher, setVoucherEmail } from '../../../services/discountStore'
-import { sendVoucherEmail } from '../../../services/voucherEmail'
-import { TICKETING } from 'config/ticketing'
+import { lookupDiscountCode, validateDiscountCode, issueVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { TICKETING, discountItemForCollection } from 'config/ticketing'
 
 const SELF_SCOPE = TICKETING.self.scope
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
@@ -180,37 +179,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     }
 
-    // Awaited email helper — must complete before res.json() because
-    // Netlify freezes the container after the response is sent.
-    // Step 1: store email on the voucher row (so we never lose it).
-    // Step 2: send the email; voucherEmail service marks email_sent on success.
-    const trySendEmail = async (code: string) => {
-      if (!emailParam) {
-        console.warn('[redeem-self] trySendEmail called but emailParam is missing')
-        return
-      }
-      console.log('[redeem-self] trySendEmail:', { email: emailParam, voucher: code })
-      try {
-        await setVoucherEmail(code, emailParam)
-        console.log('[redeem-self] setVoucherEmail OK:', code)
-      } catch (err) {
-        console.error('[redeem-self] Failed to store voucher email:', err)
-      }
-      try {
-        const result = await sendVoucherEmail(emailParam, code, { skipValidation: true })
-        console.log('[redeem-self] sendVoucherEmail result:', result)
-      } catch (err) {
-        console.error('[redeem-self] Failed to send voucher email:', err)
-      }
-    }
-
     // Check if this identity already has a voucher (one-voucher-per-identity)
     const existingVoucher = await getAssignedVoucher(nullifier)
     if (existingVoucher) {
       voucherStore.set(verifiedUserId, existingVoucher.code)
       errorStore.delete(verifiedUserId)
       setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-      await trySendEmail(existingVoucher.code)
       return res.status(200).json({
         status: 'success',
         result: true,
@@ -241,7 +215,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           voucherStore.set(verifiedUserId, codeRecord.voucherCode)
           errorStore.delete(verifiedUserId)
           setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-          await trySendEmail(codeRecord.voucherCode)
           return res.status(200).json({
             status: 'success',
             result: true,
@@ -272,7 +245,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               voucherStore.set(verifiedUserId, recheck.voucherCode)
               errorStore.delete(verifiedUserId)
               setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-              await trySendEmail(recheck.voucherCode)
               return res.status(200).json({
                 status: 'success',
                 result: true,
@@ -297,16 +269,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Assign a voucher from the pool
-    let voucher = await assignVoucher(nullifier, voucherCollection)
-    if (!voucher) {
-      // A parallel request for the same identity may still be assigning.
-      // Wait briefly and re-check before giving up.
-      await new Promise(r => setTimeout(r, 2000))
-      voucher = await assignVoucher(nullifier, voucherCollection)
+    // Issue a voucher on the fly that unlocks the discount ticket. The item id
+    // is resolved from the collection (env-prefixed). issueVoucher is global
+    // one-per-identity: a returning nullifier gets the same code back.
+    const itemId = discountItemForCollection(voucherCollection)
+    if (!itemId) {
+      const reason = 'This discount is not configured. Please contact support.'
+      storeError(verifiedUserId, reason)
+      return res.status(200).json({
+        status: 'error',
+        result: false,
+        error_code: 'NO_VOUCHERS',
+        reason,
+      })
+    }
+    let voucher: Awaited<ReturnType<typeof issueVoucher>> = null
+    try {
+      voucher = await issueVoucher(nullifier, itemId, voucherCollection)
+    } catch (err) {
+      console.error('[redeem-self] issueVoucher failed:', err)
+      voucher = null
     }
     if (!voucher) {
-      const reason = 'No vouchers available. Please try again later.'
+      const reason = 'Could not issue a voucher. Please try again later.'
       storeError(verifiedUserId, reason)
       return res.status(200).json({
         status: 'error',
@@ -325,9 +310,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     voucherStore.set(verifiedUserId, voucher.code)
     errorStore.delete(verifiedUserId) // Clear any race-condition error from parallel request
     setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
-
-    // Send confirmation email (awaited — Netlify kills the container after res.json)
-    await trySendEmail(voucher.code)
 
     return res.status(200).json({
       status: 'success',

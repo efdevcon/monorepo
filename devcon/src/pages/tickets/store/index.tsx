@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
@@ -33,8 +33,16 @@ import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
 import { getTicketPurchaseInfo } from 'services/pretix'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
+import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
+import { WagmiProvider, type Config } from 'wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { wagmiAdapter } from 'context/appkit-config'
 
 const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
+
+// Single React Query client for the wallet (wagmi) provider that powers the
+// "Connect wallet" discount modal.
+const queryClient = new QueryClient()
 
 interface CartItem {
   ticketId: number
@@ -80,14 +88,14 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     meta: 'Active fundraisers',
     description: 'This discount is reserved for those who have fundraised for Public Goods projects.',
     price: '50% off',
-    buttonLabel: 'Connect wallet',
+    buttonLabel: 'Verify',
   },
   {
     title: 'Past POAP Holders',
     meta: 'Devcon/nect POAPs',
     description: 'This ticket is reserved for those who collected a POAP at any past Devcon/nect event.',
     price: '10% off',
-    buttonLabel: 'Connect wallet',
+    buttonLabel: 'Verify',
   },
 ]
 
@@ -172,6 +180,7 @@ function StoreContent({
   const [earlyAccess, setEarlyAccess] = useState<string | null>(null)
   const [earlyAccessEmail, setEarlyAccessEmail] = useState<string | null>(null)
   const [redeemOpen, setRedeemOpen] = useState(false)
+  const [verifyDiscountOpen, setVerifyDiscountOpen] = useState(false)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -210,26 +219,30 @@ function StoreContent({
     fetchTickets()
   }, [])
 
+  // Minimum quantity a buyer can select for a ticket once it's in the cart —
+  // the store seeds the cart with one ticket and never lets it drop below this.
+  const MIN_QTY = 1
+
+  // Clamp a desired quantity to [MIN_QTY, maxPerOrder]. `maxPerOrder` is the
+  // ticket's Pretix per-order cap; no upper bound when the item has no cap.
+  const clampQuantity = (ticket: TicketInfo, qty: number) =>
+    Math.max(MIN_QTY, ticket.maxPerOrder != null ? Math.min(qty, ticket.maxPerOrder) : qty)
+
   const updateCartQuantity = (ticket: TicketInfo, delta: number) => {
     setCart(prev => {
       const existing = prev.find(c => c.ticketId === ticket.id)
       if (existing) {
-        const newQty = Math.max(0, existing.quantity + delta)
-        if (newQty === 0) return prev.filter(c => c.ticketId !== ticket.id)
+        const newQty = clampQuantity(ticket, existing.quantity + delta)
         return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
       }
-      if (delta > 0) {
-        return [...prev, { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: delta }]
-      }
-      return prev
+      return [...prev, { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: clampQuantity(ticket, delta) }]
     })
   }
 
   const setCartQuantity = (ticket: TicketInfo, qty: number) => {
-    const newQty = Math.max(0, qty)
+    const newQty = clampQuantity(ticket, qty)
     setCart(prev => {
       const existing = prev.find(c => c.ticketId === ticket.id)
-      if (newQty === 0) return prev.filter(c => c.ticketId !== ticket.id)
       if (existing) {
         return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
       }
@@ -238,17 +251,6 @@ function StoreContent({
   }
 
   const getQuantity = (ticketId: number) => cart.find(c => c.ticketId === ticketId)?.quantity || 0
-
-  const totalQty = cart.reduce((sum, c) => sum + c.quantity, 0)
-  const totalCents = cart.reduce((sum, c) => sum + Math.round(parseFloat(c.price) * 100) * c.quantity, 0)
-
-  const selectionText =
-    totalQty === 0
-      ? 'No tickets selected'
-      : cart
-          .filter(c => c.quantity > 0)
-          .map(c => `${c.quantity} x ${c.name}`)
-          .join(', ')
 
   // Hand the buyer off to the Pretix shop with the selected tickets already in
   // their cart (the purchase happens on Pretix, not our custom checkout page).
@@ -272,13 +274,27 @@ function StoreContent({
   const requireEarlyAccess = TICKETING.self.requireEarlyAccess
   const admissionTickets = tickets.filter(t => t.isAdmission && (forceSoldOut || t.available) && !t.requireVoucher)
 
-  // General Admission card — driven by the Pretix admission ticket where it
-  // exists, falling back to the Figma reference price otherwise.
-  const gaTicket = admissionTickets[0]
+  // General Admission card — driven by the admission item pinned in ticketing
+  // config (`gaItemId`), falling back to the first available admission item
+  // when unset or not currently purchasable. Figma reference price applies
+  // when no admission ticket exists at all.
+  const gaTicket = admissionTickets.find(t => t.id === TICKETING.pretix.gaItemId) ?? admissionTickets[0]
   const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '699'
   const gaOriginal =
     gaTicket?.originalPrice && gaTicket.originalPrice !== gaTicket.price ? fmtPrice(gaTicket.originalPrice) : '999'
   const gaQty = gaTicket ? getQuantity(gaTicket.id) : 0
+
+  // Seed the cart with one GA ticket on first load so the buyer starts with a
+  // valid selection (quantity can't drop below MIN_QTY). Runs once, after the
+  // GA ticket resolves from SSR props or the client catalog fetch.
+  const seededRef = useRef(false)
+  useEffect(() => {
+    if (seededRef.current || !gaTicket || forceSoldOut) return
+    seededRef.current = true
+    setCart(prev =>
+      prev.length > 0 ? prev : [{ ticketId: gaTicket.id, name: gaTicket.name, price: gaTicket.price, quantity: MIN_QTY }]
+    )
+  }, [gaTicket, forceSoldOut])
 
   return (
     <>
@@ -395,6 +411,7 @@ function StoreContent({
                             type="button"
                             className={css['quantity-btn']}
                             onClick={() => updateCartQuantity(gaTicket, -1)}
+                            disabled={gaQty <= 1}
                             aria-label="Decrease quantity"
                           >
                             <Minus size={16} />
@@ -403,7 +420,8 @@ function StoreContent({
                             type="number"
                             className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
                             value={gaQty}
-                            min={0}
+                            min={1}
+                            max={gaTicket.maxPerOrder ?? undefined}
                             onChange={e => setCartQuantity(gaTicket, parseInt(e.target.value, 10) || 0)}
                             aria-label="Quantity"
                           />
@@ -411,6 +429,7 @@ function StoreContent({
                             type="button"
                             className={css['quantity-btn']}
                             onClick={() => updateCartQuantity(gaTicket, 1)}
+                            disabled={gaTicket.maxPerOrder != null && gaQty >= gaTicket.maxPerOrder}
                             aria-label="Increase quantity"
                           >
                             <Plus size={16} />
@@ -502,7 +521,11 @@ function StoreContent({
                     </div>
                     <div className={css['application-card-footer']}>
                       <span className={css['application-price']}>{card.price}</span>
-                      <button type="button" className={css['apply-btn']} onClick={() => {}}>
+                      <button
+                        type="button"
+                        className={css['apply-btn']}
+                        onClick={() => setVerifyDiscountOpen(true)}
+                      >
                         {card.buttonLabel}
                       </button>
                     </div>
@@ -556,36 +579,6 @@ function StoreContent({
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
           </div>
-          {totalQty > 0 && (
-            <div className={css['summary-sticky']}>
-              <div className={css['summary-sticky-inner']}>
-                <div className={css['summary-row']}>
-                  <div>
-                    <p className={css['summary-label']}>Your selection</p>
-                    <p className={css['summary-selection']}>{selectionText}</p>
-                  </div>
-                  <div>
-                    <p className={css['summary-total-label']}>Total</p>
-                    <p className={css['summary-total-value']}>
-                      ${fmtPrice((totalCents / 100).toFixed(2))}
-                      <span className={css['summary-total-currency']}> USD</span>
-                    </p>
-                  </div>
-                </div>
-                <div className={css['summary-actions']}>
-                  <button
-                    type="button"
-                    className={css['checkout-btn']}
-                    onClick={goToPretixCheckout}
-                    disabled={checkoutLoading}
-                  >
-                    {checkoutLoading ? 'Loading…' : 'Checkout'}
-                    <ArrowUpRight className={css['checkout-arrow']} size={18} strokeWidth={2} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
@@ -599,6 +592,8 @@ function StoreContent({
       />
 
       <RedeemVoucherModal isOpen={redeemOpen} onClose={() => setRedeemOpen(false)} />
+
+      <VerifyDiscountModal isOpen={verifyDiscountOpen} onClose={() => setVerifyDiscountOpen(false)} />
     </>
   )
 }
@@ -609,13 +604,17 @@ export default function TicketsStorePage({ initialTickets = [] }: { initialTicke
 
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
-      <StoreContent
-        selfVerificationOpen={selfVerificationOpen}
-        setSelfVerificationOpen={setSelfVerificationOpen}
-        useSelfStaging={useSelfStaging}
-        setUseSelfStaging={setUseSelfStaging}
-        initialTickets={initialTickets}
-      />
+      <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
+        <QueryClientProvider client={queryClient}>
+          <StoreContent
+            selfVerificationOpen={selfVerificationOpen}
+            setSelfVerificationOpen={setSelfVerificationOpen}
+            useSelfStaging={useSelfStaging}
+            setUseSelfStaging={setUseSelfStaging}
+            initialTickets={initialTickets}
+          />
+        </QueryClientProvider>
+      </WagmiProvider>
     </Page>
   )
 }
@@ -632,6 +631,7 @@ const FALLBACK_TICKET: TicketInfo = {
   availableCount: null,
   isAdmission: true,
   requireVoucher: true,
+  maxPerOrder: null,
   variations: [],
   addons: [],
 }

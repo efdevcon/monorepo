@@ -6,6 +6,10 @@
  * Usage:
  *   pnpm run pretix:generate-vouchers --count 1 --price 0.01 --tag TestLocalEarlyBird --item-id 6 --collection test-india-early-bird [--max-usages 1] [--dry-run]
  *   pnpm run pretix:generate-vouchers --count 500 --price 99 --tag IndiaEarlyBird --item-id 2 --collection india-early-bird [--dry-run] [--max-usages 1]
+ *
+ * --price is either an absolute price override (0 = free, 149 = fixed $149) or
+ * a percentage off when suffixed with `%` (e.g. 50%, 10%):
+ *   pnpm run pretix:generate-vouchers --count 5 --price 50% --tag OSS --item-id 145 --collection test-oss-contributors
  */
 import 'dotenv/config'
 import { insertDiscountVouchers } from '../../services/discountStore'
@@ -55,13 +59,21 @@ async function main() {
 
   if (count <= 0 || itemId <= 0 || !collection) {
     console.error('Usage: pnpm run pretix:generate-vouchers --count <number> --price <price> --tag <tag> --item-id <id> --collection <name> [--max-usages <n>] [--dry-run]')
-    console.error('Example: pnpm run pretix:generate-vouchers --count 10 --price 0.01 --tag TestLocalEarlyBird --item-id 2 --collection test-local-early-bird')
+    console.error('  --price accepts an absolute value (e.g. 0, 149) or a percentage off (e.g. 50%, 10%).')
+    console.error('Example: pnpm run pretix:generate-vouchers --count 10 --price 50% --tag OSS --item-id 145 --collection test-oss-contributors')
     process.exit(1)
   }
 
+  // A trailing `%` means a percentage discount (Pretix `price_mode: 'percent'`,
+  // value = the percent). Otherwise the value is an absolute price override
+  // (`price_mode: 'set'`): 0 = free, 149 = fixed $149.
+  const isPercent = price.trim().endsWith('%')
+  const priceMode = isPercent ? 'percent' : 'set'
+  const value = isPercent ? price.trim().replace(/%$/, '').trim() : price
+
   console.log('Pretix API:', eventUrl('/'))
   console.log(`Creating ${count} vouchers`)
-  console.log(`  Price: ${price}`)
+  console.log(`  Price mode: ${priceMode} (value ${value}${isPercent ? '% off' : ''})`)
   console.log(`  Tag: ${tag}`)
   console.log(`  Item ID: ${itemId}`)
   console.log(`  Collection: ${collection}`)
@@ -79,8 +91,8 @@ async function main() {
 
   for (let i = 0; i < count; i++) {
     const body = {
-      price_mode: 'set',
-      value: price,
+      price_mode: priceMode,
+      value,
       item: itemId,
       tag,
       max_usages: maxUsages,

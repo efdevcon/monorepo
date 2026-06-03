@@ -223,6 +223,41 @@ export async function createOrder(order: PretixOrderCreateRequest): Promise<Pret
   })
 }
 
+/** Create a single Pretix voucher that unlocks a specific (voucher-gated)
+ *  ticket item. `price_mode: 'none'` means the voucher does not change the
+ *  price — the item's own configured price applies; the voucher only grants
+ *  access to a normally-hidden ticket. Quota is governed by the item, so
+ *  `block_quota` is false (the voucher does not reserve inventory). */
+export async function createVoucher(opts: {
+  itemId: number
+  tag?: string
+  maxUsages?: number
+  comment?: string
+}): Promise<{ code: string; id: number }> {
+  return withRetry('createVoucher', async () => {
+    const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/vouchers/`
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({
+        item: opts.itemId,
+        price_mode: 'none',
+        max_usages: opts.maxUsages ?? 1,
+        block_quota: false,
+        tag: opts.tag ?? 'discount',
+        comment: opts.comment ?? 'Auto-issued discount voucher',
+      }),
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      throw new Error(`Pretix voucher creation failed ${response.status}: ${text}`)
+    }
+
+    return response.json()
+  })
+}
+
 export async function getOrder(orderCode: string): Promise<PretixOrder> {
   return cachedFetch(`order:${orderCode}`, () => fetchPretix<PretixOrder>(`orders/${orderCode}/`), 5_000)
 }
@@ -480,6 +515,7 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
         availableCount: availability.count,
         isAdmission: item.admission,
         requireVoucher: item.require_voucher,
+        maxPerOrder: item.max_per_order,
         variations: item.variations.map((v) => ({
           id: v.id,
           name: getLocalizedString(v.value, locale),

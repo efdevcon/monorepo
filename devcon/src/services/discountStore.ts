@@ -7,6 +7,7 @@
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { TICKETING } from 'config/ticketing'
+import { createVoucher } from './pretix'
 
 export interface DiscountCode {
   id: number
@@ -202,6 +203,76 @@ export async function assignVoucher(
 }
 
 /**
+ * Issue a voucher to an identity by creating one on the fly in Pretix.
+ *
+ * Unlike `assignVoucher` (which draws from a pre-seeded pool), this creates a
+ * fresh single-use Pretix voucher that unlocks `itemId` and records it. Used by
+ * the community discounts and the Self flow, where ticket quota and price live
+ * on the item, so no pool needs pre-seeding.
+ *
+ * Enforces one voucher per identity globally: if `assignedTo` already holds a
+ * voucher (any collection), that same code is returned and no new Pretix
+ * voucher is created.
+ */
+export async function issueVoucher(
+  assignedTo: string,
+  itemId: number,
+  collection: string,
+  tag?: string
+): Promise<DiscountVoucher | null> {
+  const supabase = getSupabase()
+
+  // One voucher per identity (global, no collection filter): re-share existing.
+  const existing = await getAssignedVoucher(assignedTo)
+  if (existing) return existing
+
+  // Create a fresh single-use voucher that unlocks the item.
+  const created = await createVoucher({
+    itemId,
+    tag: tag ?? collection,
+    maxUsages: 1,
+    comment: `Discount voucher for ${collection} (${assignedTo})`,
+  })
+
+  const now = new Date().toISOString()
+  const { data, error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .insert({
+      code: created.code,
+      pretix_voucher_id: created.id,
+      item_id: itemId,
+      tag: tag ?? collection,
+      collection,
+      assigned_to: assignedTo,
+      assigned_at: now,
+      updated_at: now,
+    })
+    .select('*')
+
+  // Unique-index race: a parallel first claim for this identity already
+  // inserted a row. Our just-created Pretix voucher is orphaned (unused, single
+  // identity only ever redeems the stored one); return the winning row.
+  if (error && error.code === '23505') {
+    const winner = await getAssignedVoucher(assignedTo)
+    if (winner) return winner
+  }
+  if (error) throw new Error(`discountStore issueVoucher insert: ${error.message}`)
+
+  const row = data?.[0]
+  if (!row) return null
+  return {
+    id: row.id,
+    code: row.code,
+    pretixVoucherId: row.pretix_voucher_id,
+    itemId: row.item_id,
+    tag: row.tag,
+    assignedTo: row.assigned_to,
+    assignedAt: row.assigned_at,
+    collection: row.collection,
+  }
+}
+
+/**
  * Get the voucher already assigned to this identity (for dedup check + polling fallback).
  */
 export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVoucher | null> {
@@ -361,6 +432,34 @@ export async function checkVoucherValidationRateLimit(clientIp: string): Promise
     .gte('created_at', ipSince)
 
   if ((ipCount.count ?? 0) >= RATE_LIMIT_VOUCHER_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
+  return { allowed: true }
+}
+
+const RATE_LIMIT_SELF_VOUCHER_WINDOW_MINUTES = 1
+const RATE_LIMIT_SELF_VOUCHER_IP_MAX = 60
+
+/**
+ * Self-voucher poll rate limit. The frontend polls this endpoint every few
+ * seconds while a voucher is being assigned, so the cap is generous (60/min/IP
+ * = up to 1/sec). The `userId` is a 122-bit UUID known only to the originating
+ * session, so this limit is purely DoS protection, not anti-enumeration — a
+ * tight per-key cap (as the email limiter has) would block legitimate polling.
+ */
+export async function checkSelfVoucherRateLimit(clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_SELF_VOUCHER_WINDOW_MINUTES * 60 * 1000).toISOString()
+  const ipKey = `selfvoucher_ip:${clientIp}`
+
+  const ipCount = await supabase
+    .from('x402_verify_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('key', ipKey)
+    .gte('created_at', ipSince)
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_SELF_VOUCHER_IP_MAX) return { allowed: false }
 
   await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
   return { allowed: true }
