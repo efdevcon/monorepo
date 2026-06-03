@@ -32,7 +32,23 @@ export interface FormField {
   required: boolean
   description?: string
   options?: string[]
+  // Rating-only: number of icons (NocoDB `meta.max`, defaults to 5) and the
+  // configured fill color (`meta.color`). Surfaced so the renderer can draw
+  // the right number of stars without re-parsing NocoDB's meta shape.
+  rating?: { max: number; color?: string }
 }
+
+const SUPPORTED_TYPES = new Set([
+  'SingleLineText',
+  'Email',
+  'SingleSelect',
+  'LongText',
+  'Date',
+  'Attachment',
+  'Checkbox',
+  'Number',
+  'Rating',
+])
 
 // In-memory caches — keyed by viewId / tableId.
 const viewCache = new Map<string, { data: FormViewMeta; expiresAt: number }>()
@@ -88,6 +104,11 @@ interface TableColumn {
   colOptions?: {
     options?: Array<{ title: string; order?: number }>
   }
+  // Rating config lives on `meta` (not colOptions): `max` icon count + `color`.
+  meta?: {
+    max?: number
+    color?: string
+  } | null
 }
 
 interface TableMeta {
@@ -224,6 +245,14 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
       options = orderedOptions.map(o => o.title)
     }
 
+    let rating: { max: number; color?: string } | undefined
+    if (col.uidt === 'Rating') {
+      rating = {
+        max: typeof col.meta?.max === 'number' && col.meta.max > 0 ? col.meta.max : 5,
+        ...(col.meta?.color ? { color: col.meta.color } : {}),
+      }
+    }
+
     fields.push({
       id: col.id,
       title,
@@ -232,6 +261,7 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
       required: !!vc.required,
       ...(description ? { description } : {}),
       ...(options ? { options } : {}),
+      ...(rating ? { rating } : {}),
     })
   }
 

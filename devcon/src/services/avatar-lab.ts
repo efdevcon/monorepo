@@ -41,6 +41,7 @@ export interface RunMeta {
   quality: LabQuality
   prompt: string
   label?: string
+  referenceCount?: number
   outputs: RunOutput[]
 }
 
@@ -97,6 +98,10 @@ export async function generateImage(
   srcMime: string,
   prompt: string,
   quality: LabQuality,
+  // Optional style-reference images. When present they're passed as
+  // additional inputs to the edit call (subject image first, references
+  // after) so the model applies their art style to the subject.
+  references: Array<{ base64: string; mime: string }> = [],
 ): Promise<Buffer> {
   if (model !== 'openai') {
     throw new Error(`Unsupported model: ${model}`)
@@ -111,11 +116,19 @@ export async function generateImage(
   form.set('prompt', prompt)
   form.set('quality', quality)
   form.set('size', '1024x1024')
-  form.set(
-    'image',
-    new Blob([Buffer.from(srcBase64, 'base64')], { type: srcMime }),
-    `source.${ext}`,
-  )
+  const subjectBlob = new Blob([Buffer.from(srcBase64, 'base64')], { type: srcMime })
+  if (references.length === 0) {
+    // Single-image form — known-good path.
+    form.set('image', subjectBlob, `source.${ext}`)
+  } else {
+    // Multi-image: subject first, then style references. OpenAI's images.edit
+    // takes the array via repeated `image[]` parts.
+    form.append('image[]', subjectBlob, `source.${ext}`)
+    references.forEach((ref, i) => {
+      const refExt = ref.mime.split('/')[1] || 'png'
+      form.append('image[]', new Blob([Buffer.from(ref.base64, 'base64')], { type: ref.mime }), `ref-${i}.${refExt}`)
+    })
+  }
 
   // Generous client-side timeout so a true timeout is distinguishable from a
   // remote socket reset (UND_ERR_SOCKET) or DNS failure.
@@ -163,6 +176,72 @@ export async function generateImage(
   const b64 = data?.data?.[0]?.b64_json
   if (!b64) throw new Error('No image in OpenAI response')
   return Buffer.from(b64, 'base64')
+}
+
+// Forces the vision model to describe transferable STYLE only — never the
+// subject/content of the reference. The "brief a painter who paints something
+// else" framing is what abstracts away from the specific picture, so the
+// result generalizes across source photos instead of trying to copy the ref.
+const STYLE_EXTRACTION_PROMPT = `You are an art-direction analyst. The attached image(s) share a single visual style. Describe ONLY their common transferable STYLE — never their subject, content, characters, or composition.
+
+Output these sections as terse comma-separated clauses I can paste directly into an image-generation prompt:
+
+1. RENDERING: medium, brushwork, line quality, texture, grain, sharpness
+2. PALETTE: dominant hues, accent hues, value range, saturation (name actual colors)
+3. LIGHT: light quality, direction, glow, contrast
+4. MOOD: 3-5 adjectives
+5. ANTI-PATTERNS: what this style is NOT (e.g. "not hyper-sharp, not photoreal")
+
+Forbidden: do not mention any person, object, scene, or layout in the images. Describe technique and atmosphere only, as if briefing a painter who will paint something completely different in the same style. Synthesize across all images into ONE coherent style description. Keep the whole response under 200 words.`
+
+/**
+ * Runs one or more reference images through a vision model and returns a
+ * single distilled, paste-ready description of their shared transferable
+ * style. Used by the avatar-lab's style-extractor so operators can fold the
+ * reference artwork's "essence" into the prompt as words rather than feeding
+ * the images as edit references (which makes gpt-image copy content and
+ * produces inconsistent results).
+ */
+export async function extractStyle(images: Array<{ base64: string; mime: string }>): Promise<string> {
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('OPENAI_API_KEY is not configured')
+  }
+  if (images.length === 0) {
+    throw new Error('At least one reference image is required')
+  }
+
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'gpt-4o',
+      max_tokens: 700,
+      messages: [
+        {
+          role: 'user',
+          content: [
+            { type: 'text', text: STYLE_EXTRACTION_PROMPT },
+            ...images.map(img => ({
+              type: 'image_url' as const,
+              image_url: { url: `data:${img.mime};base64,${img.base64}` },
+            })),
+          ],
+        },
+      ],
+    }),
+  })
+
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`OpenAI ${res.status}: ${text.slice(0, 500)}`)
+  }
+  const data = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> }
+  const content = data?.choices?.[0]?.message?.content?.trim()
+  if (!content) throw new Error('No style description in OpenAI response')
+  return content
 }
 
 export function newRunId(): string {
