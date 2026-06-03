@@ -31,7 +31,6 @@ import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
-import { getTicketPurchaseInfo } from 'services/pretix'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -619,48 +618,11 @@ export default function TicketsStorePage({ initialTickets = [] }: { initialTicke
   )
 }
 
-// Hardcoded fallback if Pretix is unreachable at build time
-const FALLBACK_TICKET: TicketInfo = {
-  id: 0,
-  name: 'India Early Bird (Limited Availability) 🇮🇳',
-  description: null,
-  price: '99.00',
-  originalPrice: '149.00',
-  currency: 'USD',
-  available: true,
-  availableCount: null,
-  isAdmission: true,
-  requireVoucher: true,
-  maxPerOrder: null,
-  variations: [],
-  addons: [],
-}
-
-export async function getStaticProps() {
-  let initialTickets: TicketInfo[] = []
-
-  try {
-    const data = await getTicketPurchaseInfo()
-    initialTickets = TICKETING.overrides.soldOut
-      ? data.tickets.map(t => ({ ...t, available: false, availableCount: 0 }))
-      : data.tickets
-  } catch {
-    // Pretix unavailable at build time — use hardcoded fallback
-    initialTickets = [FALLBACK_TICKET]
-  }
-
-  // Check Supabase voucher pool availability for voucher-required tickets
-  try {
-    const { hasAvailableVouchers } = await import('services/discountStore')
-    const vouchersAvailable = await hasAvailableVouchers()
-    initialTickets = initialTickets.map(t =>
-      t.requireVoucher ? { ...t, vouchersAvailable } : t
-    )
-  } catch {
-    // Supabase unavailable at build time — assume available
-  }
-
-  return {
-    props: { initialTickets },
-  }
-}
+// NOTE: this page intentionally has NO getStaticProps/getServerSideProps. The
+// store imports the web3 stack (appkit-config -> wagmi -> viem) plus the Self
+// SDK; running a data method forces that whole module graph to execute in the
+// Netlify runtime function, which opens thousands of viem `_esm` files per
+// request and exhausts the Lambda's file-descriptor limit (EMFILE). Keeping the
+// page statically served means that graph only runs client-side. Tickets are
+// fetched client-side via `/api/x402/tickets/` in StoreContent. (Same fix
+// previously applied to the order/checkout pages.)
