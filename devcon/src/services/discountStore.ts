@@ -29,13 +29,23 @@ export interface DiscountVoucher {
   collection: string
 }
 
+// Memoized client. createClient() was previously called on every store
+// operation, so a hot path (e.g. the self-voucher poll, which runs a SELECT +
+// INSERT per poll now that responses are no-store) spun up a fresh client each
+// time and leaked connections/file descriptors under concurrency: a likely
+// contributor to the EMFILE ("too many open files") failures in the Lambda.
+// One client per process is the supported pattern.
+let _supabase: SupabaseClient | null = null
+
 function getSupabase(): SupabaseClient {
+  if (_supabase) return _supabase
   const url = process.env.SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY
   if (!url || !key) {
     throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for discount store')
   }
-  return createClient(url, key)
+  _supabase = createClient(url, key)
+  return _supabase
 }
 
 /**
