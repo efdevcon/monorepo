@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
-import { lookupDiscountCode, validateDiscountCode, issueVoucher, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
-import { TICKETING, discountItemForCollection } from 'config/ticketing'
+import { lookupDiscountCode, validateDiscountCode, issueVoucher, DiscountSoldOutError, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { TICKETING, discountItemForCollection, discountTypeForCollection } from 'config/ticketing'
 
 const SELF_SCOPE = TICKETING.self.scope
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
@@ -270,8 +270,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Issue a voucher on the fly that unlocks the discount ticket. The item id
-    // is resolved from the collection (env-prefixed). issueVoucher is global
-    // one-per-identity: a returning nullifier gets the same code back.
+    // and type are resolved from the collection (env-prefixed). issueVoucher is
+    // global one-per-identity: a returning nullifier gets the same code back.
+    const selfType = discountTypeForCollection(voucherCollection)
     const itemId = discountItemForCollection(voucherCollection)
     if (!itemId) {
       const reason = 'This discount is not configured. Please contact support.'
@@ -285,8 +286,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     let voucher: Awaited<ReturnType<typeof issueVoucher>> = null
     try {
-      voucher = await issueVoucher(nullifier, itemId, voucherCollection)
+      voucher = await issueVoucher(nullifier, itemId, voucherCollection, { type: selfType })
     } catch (err) {
+      if (err instanceof DiscountSoldOutError) {
+        const reason = 'Sorry, this ticket is sold out.'
+        storeError(verifiedUserId, reason)
+        return res.status(200).json({
+          status: 'error',
+          result: false,
+          error_code: 'NO_VOUCHERS',
+          reason,
+        })
+      }
       console.error('[redeem-self] issueVoucher failed:', err)
       voucher = null
     }

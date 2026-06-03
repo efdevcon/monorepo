@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getServerSession } from 'next-auth'
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { GetDiscount } from '../validate/[id]'
-import { issueVoucher } from 'services/discountStore'
+import { issueVoucher, DiscountSoldOutError } from 'services/discountStore'
 import { discountCollection, discountItem } from 'config/ticketing'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -48,8 +48,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // voucher gets that same code back instead of a new one.
   let voucher: Awaited<ReturnType<typeof issueVoucher>> = null
   try {
-    voucher = await issueVoucher(urlId, itemId, discountCollection(discount.type), discount.type)
+    voucher = await issueVoucher(urlId, itemId, discountCollection(discount.type), {
+      tag: discount.type,
+      type: discount.type,
+    })
   } catch (err) {
+    if (err instanceof DiscountSoldOutError) {
+      return res.status(409).json({ error: 'This discount is sold out.' })
+    }
     console.error('claim/[id] issueVoucher failed:', err)
     return res.status(502).json({ error: 'Could not issue voucher. Please try again.' })
   }

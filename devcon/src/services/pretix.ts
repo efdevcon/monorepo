@@ -204,6 +204,13 @@ export async function getQuotaAvailability(quotaId: number): Promise<PretixQuota
   return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 30_000)
 }
 
+/** Uncached quota availability — for authoritative checks (e.g. the voucher
+ *  sold-out gate) where a 30s-stale number could wrongly let a sold-out ticket
+ *  through. */
+export async function getQuotaAvailabilityFresh(quotaId: number): Promise<PretixQuotaAvailability> {
+  return fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`)
+}
+
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
   return withRetry('createOrder', async () => {
     const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/`
@@ -256,6 +263,28 @@ export async function createVoucher(opts: {
 
     return response.json()
   })
+}
+
+/** Whether a Pretix item is currently purchasable (none of its quotas are
+ *  exhausted). Used to gate voucher issuance so we don't unlock a sold-out
+ *  ticket. Reads quota availability FRESH (uncached) so a just-changed quota is
+ *  reflected immediately — a stale "available" would wrongly let a sold-out
+ *  ticket through. An item with no quota is treated as unlimited. Fails open
+ *  (returns true) on fetch error so a transient Pretix hiccup doesn't block
+ *  legitimate claims — Pretix is the final gate at redeem time. */
+export async function isItemAvailable(itemId: number): Promise<boolean> {
+  try {
+    // Quota membership rarely changes (cached); the availability NUMBER is the
+    // volatile part, so we fetch that fresh below.
+    const quotas = await getQuotas()
+    const itemQuotas = quotas.filter(q => q.items.includes(itemId))
+    if (itemQuotas.length === 0) return true
+    const avails = await Promise.all(itemQuotas.map(q => getQuotaAvailabilityFresh(q.id)))
+    // Pretix requires capacity in EVERY quota an item belongs to.
+    return avails.every(a => a.available)
+  } catch {
+    return true
+  }
 }
 
 export async function getOrder(orderCode: string): Promise<PretixOrder> {

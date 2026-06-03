@@ -4,7 +4,7 @@ import { useAccount, useChainId, useDisconnect, useSignMessage } from 'wagmi'
 import { getSession, signIn, signOut } from 'next-auth/react'
 import { SiweMessage, generateNonce } from 'siwe'
 import { appKit } from 'context/appkit-config'
-import { pretixEventUrl } from 'config/ticketing'
+import { pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import css from './VerifyDiscountModal.module.scss'
 
 type VerifyDiscountModalProps = {
@@ -192,10 +192,11 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
   // discounts[0] (first match in backend priority order) for the GitHub id, so
   // we only let the user select that one: the first GitHub-via discount in
   // list order. Any lower GitHub-only match is shown as "included".
-  const githubLockType = DISCOUNTS.find(d => viaFor(d.type) === 'github')?.type ?? null
+  const githubLockType = DISCOUNTS.find(d => viaFor(d.type) === 'github' && !discountSoldOut(d.type))?.type ?? null
 
   const isSelectable = useCallback(
     (type: DiscountType): boolean => {
+      if (discountSoldOut(type)) return false
       const via = viaFor(type)
       if (via === 'wallet') return true
       if (via === 'github') return type === githubLockType
@@ -428,6 +429,7 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                     <BadgeCheck className={css['checkIcon']} size={24} strokeWidth={2} aria-hidden="true" />
                     <p className={css['checkText']}>
                       {d.label} - <strong>{d.discount}</strong>
+                      {discountSoldOut(d.type) && <span className={css['soldOutTag']}> (Sold out)</span>}
                     </p>
                   </div>
                 ))}
@@ -478,6 +480,19 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                     <p className={css['subtitle']}>Choose a discount to add to your cart:</p>
                     <div className={css['options']}>
                       {DISCOUNTS.map(opt => {
+                        // Sold out wins over eligibility: never selectable.
+                        if (discountSoldOut(opt.type)) {
+                          return (
+                            <div key={opt.type} className={`${css['option']} ${css['optionInvalid']}`}>
+                              <div className={css['optionLabelWrap']}>
+                                <p className={css['optionTitle']}>
+                                  {opt.label} - <strong>{opt.discount}</strong>
+                                </p>
+                                <p className={`${css['optionStatus']} ${css['optionStatusInvalid']}`}>Sold out</p>
+                              </div>
+                            </div>
+                          )
+                        }
                         const via = viaFor(opt.type)
                         const valid = via !== null
                         if (!valid) {

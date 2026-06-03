@@ -7,7 +7,7 @@
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { TICKETING } from 'config/ticketing'
-import { createVoucher } from './pretix'
+import { createVoucher, isItemAvailable } from './pretix'
 
 export interface DiscountCode {
   id: number
@@ -224,17 +224,45 @@ export async function assignVoucher(
  * voucher (any collection), that same code is returned and no new Pretix
  * voucher is created.
  */
+/** Thrown by `issueVoucher` when the discount's ticket is sold out and the
+ *  caller is trying to issue a NEW voucher. Lets endpoints return a specific
+ *  "sold out" message vs a generic failure. */
+export class DiscountSoldOutError extends Error {
+  constructor(message = 'This discount is sold out') {
+    super(message)
+    this.name = 'DiscountSoldOutError'
+  }
+}
+
+/** Whether a discount can still issue new vouchers. The config `soldOut`
+ *  override (keyed by discount `type`) wins: true = force sold out, false =
+ *  force available. Otherwise falls back to the live Pretix item quota. */
+export async function isDiscountAvailable(type: string, itemId: number): Promise<boolean> {
+  const override = TICKETING.discount.soldOut?.[type]
+  if (override !== undefined) return !override
+  return isItemAvailable(itemId)
+}
+
 export async function issueVoucher(
   assignedTo: string,
   itemId: number,
   collection: string,
-  tag?: string
+  opts: { tag?: string; type?: string } = {}
 ): Promise<DiscountVoucher | null> {
   const supabase = getSupabase()
+  const tag = opts.tag
 
   // One voucher per identity (global, no collection filter): re-share existing.
+  // This runs BEFORE the sold-out gate, so a buyer who already claimed always
+  // gets their code back even if the ticket later sells out.
   const existing = await getAssignedVoucher(assignedTo)
   if (existing) return existing
+
+  // Sold-out gate: only blocks issuing a NEW voucher. `type` lets us consult the
+  // config override; absent type skips the gate (e.g. pre-seeded pool callers).
+  if (opts.type && !(await isDiscountAvailable(opts.type, itemId))) {
+    throw new DiscountSoldOutError()
+  }
 
   // Create a fresh single-use voucher that unlocks the item.
   const created = await createVoucher({

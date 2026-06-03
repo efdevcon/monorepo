@@ -64,13 +64,33 @@ const ENV_CONFIG = {
       // Keyed by the discount `type` from /api/discounts/validate, plus the
       // Self-flow type (india-resident) used by redeem-self.ts.
       items: {
+        'general-admission': 145,
         'core-devs': 152,
         'oss-contributors': 153,
         'pg-projects': 154,
         'past-attendees': 155,
         builder: 143,
         'india-resident': 139,
+        'indian-student': 141,
+        'international-student': 142,
+        youth: 144,
       } as Record<string, number>,
+      // Manual sold-out override per discount `type`. true = force sold out
+      // (block issuing new vouchers); false = force available (skip the live
+      // Pretix quota check); absent = use live Pretix item availability.
+      // Uncomment a line to force that ticket sold out.
+      soldOut: {
+        // 'general-admission': true,
+        // 'core-devs': true,
+        // 'oss-contributors': true,
+        // 'pg-projects': true,
+        // 'past-attendees': true,
+        // builder: true,
+        // 'india-resident': true,
+        // 'indian-student': true,
+        // 'international-student': true,
+        // youth: true,
+      } as Record<string, boolean>,
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -141,13 +161,30 @@ const ENV_CONFIG = {
       // the India Resident item, set `collection` to 'india-resident'; otherwise
       // add an `india-early-bird` entry here. See redeem-self.ts.
       items: {
+        'general-admission': 1,
         'core-devs': 44,
         'oss-contributors': 45,
         'pg-projects': 46,
         'past-attendees': 47,
         builder: 5,
         'india-resident': 3,
+        'indian-student': 40,
+        'international-student': 6,
+        youth: 7,
       } as Record<string, number>,
+      // See development.discount.soldOut. Uncomment a line to force sold out.
+      soldOut: {
+        // 'general-admission': true,
+        // 'core-devs': true,
+        // 'oss-contributors': true,
+        // 'pg-projects': true,
+        // 'past-attendees': true,
+        // builder: true,
+        // 'india-resident': true,
+        // 'indian-student': true,
+        // 'international-student': true,
+        // youth: true,
+      } as Record<string, boolean>,
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -192,13 +229,26 @@ export function discountItem(type: string): number | undefined {
   return TICKETING.discount.items[type]
 }
 
+/** Whether a discount `type` is manually forced sold out via config
+ *  (`discount.soldOut[type] === true`). Drives the proactive "Sold out" state
+ *  on the store cards. The claim-time gate also enforces this, plus live Pretix
+ *  quota for types not explicitly overridden. */
+export function discountSoldOut(type: string): boolean {
+  return TICKETING.discount.soldOut?.[type] === true
+}
+
+/** Recover the discount `type` from a voucher `collection` by stripping the env
+ *  prefix (e.g. `test-india-resident` -> `india-resident`). */
+export function discountTypeForCollection(collection: string): string {
+  const prefix = TICKETING.discount.communityPrefix
+  return collection.startsWith(prefix) ? collection.slice(prefix.length) : collection
+}
+
 /** Pretix item id for a voucher `collection` (e.g. `test-india-resident`).
  *  Strips the env prefix to recover the discount `type`, then looks up the
  *  item. Used by the Self flow, which works in collection terms. */
 export function discountItemForCollection(collection: string): number | undefined {
-  const prefix = TICKETING.discount.communityPrefix
-  const type = collection.startsWith(prefix) ? collection.slice(prefix.length) : collection
-  return discountItem(type)
+  return discountItem(discountTypeForCollection(collection))
 }
 
 /** Whether the chain environment is testnet (derived from config) */

@@ -21,6 +21,7 @@ import {
   Coffee,
   Shirt,
   TicketPercent,
+  Loader2,
 } from 'lucide-react'
 import css from './store.module.scss'
 
@@ -30,7 +31,7 @@ import { TicketInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
-import { TICKETING, pretixEventUrl } from 'config/ticketing'
+import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -54,6 +55,9 @@ interface CartItem {
 // backend verification flow yet. Their buttons are active no-ops until the
 // corresponding flow ships.
 type CommunityPlaceholder = {
+  // Discount `type` from /api/discounts/validate; also the key into the config
+  // `soldOut` override and Pretix item map.
+  type: string
   title: string
   meta: string
   description: React.ReactNode
@@ -63,6 +67,7 @@ type CommunityPlaceholder = {
 
 const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
   {
+    type: 'core-devs',
     title: 'Core Devs / Protocol Guild',
     meta: 'Merge Pass or Protocol Guild',
     description:
@@ -71,6 +76,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     buttonLabel: 'Verify',
   },
   {
+    type: 'oss-contributors',
     title: 'OSS Contributors',
     meta: 'Contribution-based',
     description: (
@@ -83,6 +89,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     buttonLabel: 'Verify',
   },
   {
+    type: 'pg-projects',
     title: 'Public Good Projects',
     meta: 'Active fundraisers',
     description: 'This discount is reserved for those who have fundraised for Public Goods projects.',
@@ -90,6 +97,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     buttonLabel: 'Verify',
   },
   {
+    type: 'past-attendees',
     title: 'Past POAP Holders',
     meta: 'Devcon/nect POAPs',
     description: 'This ticket is reserved for those who collected a POAP at any past Devcon/nect event.',
@@ -101,6 +109,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
 // Curated, application-based tickets shown in the Applications section.
 const APPLICATION_TICKETS = [
   {
+    type: 'indian-student',
     title: 'Indian Student 🇮🇳',
     meta: 'Student ID required at check-in',
     description:
@@ -110,6 +119,7 @@ const APPLICATION_TICKETS = [
     href: '/form/student-application',
   },
   {
+    type: 'international-student',
     title: 'International Student 🌎',
     meta: 'Student ID required at check-in',
     description:
@@ -119,6 +129,7 @@ const APPLICATION_TICKETS = [
     href: '/form/student-application',
   },
   {
+    type: 'builder',
     title: 'Builder Discount 🦄',
     meta: 'ID required at Registration',
     description:
@@ -126,6 +137,15 @@ const APPLICATION_TICKETS = [
     price: '$349',
     originalPrice: '$699',
     href: '/form/builder-application',
+  },
+  {
+    type: 'youth',
+    title: 'Youth Ticket (3-17) 🌱',
+    meta: 'Online Consent Form + ID/Proof required at Registration',
+    description: "Whether you're a younger attendee, or bringing your child.",
+    price: '$19',
+    originalPrice: null,
+    href: 'https://devcon.org/en/form/youth-ticket/',
   },
 ] as const
 
@@ -173,6 +193,11 @@ function StoreContent({
   const countdown = useCountdown()
 
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
+  // False until the client catalog fetch resolves. The page no longer has
+  // getStaticProps, so `tickets` starts empty; without this flag the GA card
+  // would briefly render "Sold out" (no admission ticket yet) before the fetch
+  // lands. Seeded true if SSR ever provides initial tickets.
+  const [ticketsLoaded, setTicketsLoaded] = useState(initialTickets.length > 0)
   const [error, setError] = useState<string | null>(null)
   const [cart, setCart] = useState<CartItem[]>([])
   const [checkoutLoading, setCheckoutLoading] = useState(false)
@@ -213,6 +238,8 @@ function StoreContent({
         }
       } catch {
         setError('Failed to load tickets')
+      } finally {
+        setTicketsLoaded(true)
       }
     }
     fetchTickets()
@@ -401,7 +428,9 @@ function StoreContent({
                       <span className={css['price-current']}>${gaPrice}</span>
                       {gaOriginal !== gaPrice && <span className={css['price-original']}>${gaOriginal}</span>}
                     </div>
-                    {!gaTicket || forceSoldOut ? (
+                    {!ticketsLoaded ? (
+                      <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
+                    ) : !gaTicket || forceSoldOut || discountSoldOut('general-admission') ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
                       <div className={css['ga-actions']}>
@@ -479,14 +508,18 @@ function StoreContent({
                       <span className={css['application-price']}>$149</span>
                       <span className={css['price-original']}>$349</span>
                     </div>
-                    <button
-                      type="button"
-                      className={css['verify-self-btn']}
-                      onClick={() => setSelfVerificationOpen(true)}
-                    >
-                      <SelfLogo className={css['self-logo']} aria-hidden="true" />
-                      Verify via Self
-                    </button>
+                    {discountSoldOut('india-resident') ? (
+                      <span className={css['sold-out-badge']}>Sold out</span>
+                    ) : (
+                      <button
+                        type="button"
+                        className={css['verify-self-btn']}
+                        onClick={() => setSelfVerificationOpen(true)}
+                      >
+                        <SelfLogo className={css['self-logo']} aria-hidden="true" />
+                        Verify via Self
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -511,25 +544,28 @@ function StoreContent({
                   </div>
                 </div>
 
-                {COMMUNITY_PLACEHOLDERS.map(card => (
-                  <div key={card.title} className={css['application-card']}>
-                    <div className={css['application-card-body']}>
-                      <h3 className={css['application-card-title']}>{card.title}</h3>
-                      <p className={css['application-card-meta']}>{card.meta}</p>
-                      <p className={css['application-card-description']}>{card.description}</p>
+                {COMMUNITY_PLACEHOLDERS.map(card => {
+                  const cardSoldOut = discountSoldOut(card.type)
+                  return (
+                    <div key={card.title} className={css['application-card']}>
+                      <div className={css['application-card-body']}>
+                        <h3 className={css['application-card-title']}>{card.title}</h3>
+                        <p className={css['application-card-meta']}>{card.meta}</p>
+                        <p className={css['application-card-description']}>{card.description}</p>
+                      </div>
+                      <div className={css['application-card-footer']}>
+                        <span className={css['application-price']}>{card.price}</span>
+                        {cardSoldOut ? (
+                          <span className={css['sold-out-badge']}>Sold out</span>
+                        ) : (
+                          <button type="button" className={css['apply-btn']} onClick={() => setVerifyDiscountOpen(true)}>
+                            {card.buttonLabel}
+                          </button>
+                        )}
+                      </div>
                     </div>
-                    <div className={css['application-card-footer']}>
-                      <span className={css['application-price']}>{card.price}</span>
-                      <button
-                        type="button"
-                        className={css['apply-btn']}
-                        onClick={() => setVerifyDiscountOpen(true)}
-                      >
-                        {card.buttonLabel}
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
 
               <div className={css['voucher-banner']}>
@@ -566,10 +602,14 @@ function StoreContent({
                         <span className={css['application-price']}>{card.price}</span>
                         {card.originalPrice && <span className={css['price-original']}>{card.originalPrice}</span>}
                       </div>
-                      <Link to={card.href} className={css['apply-btn']}>
-                        Apply now
-                        <ArrowRight size={16} strokeWidth={2.5} />
-                      </Link>
+                      {discountSoldOut(card.type) ? (
+                        <span className={css['sold-out-badge']}>Sold out</span>
+                      ) : (
+                        <Link to={card.href} className={css['apply-btn']}>
+                          Apply now
+                          <ArrowRight size={16} strokeWidth={2.5} />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 ))}

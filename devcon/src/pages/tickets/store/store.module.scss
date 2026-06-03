@@ -617,6 +617,17 @@
   background: #fff;
 }
 
+.ga-loading {
+  color: #7235ed;
+  animation: ga-spin 0.8s linear infinite;
+}
+
+@keyframes ga-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .quantity-btn {
   width: 36px;
   height: 36px;

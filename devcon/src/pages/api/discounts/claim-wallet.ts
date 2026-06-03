@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
 import { GetDiscount } from './validate/[id]'
-import { issueVoucher } from 'services/discountStore'
+import { issueVoucher, DiscountSoldOutError } from 'services/discountStore'
 import { discountCollection, discountItem } from 'config/ticketing'
 
 // Wallet-claimable community discounts issued through this endpoint. Core Devs
@@ -69,8 +69,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // that same code back instead of a new one.
   let voucher: Awaited<ReturnType<typeof issueVoucher>> = null
   try {
-    voucher = await issueVoucher(address.toLowerCase(), itemId, discountCollection(discountType), discountType)
+    voucher = await issueVoucher(address.toLowerCase(), itemId, discountCollection(discountType), {
+      tag: discountType,
+      type: discountType,
+    })
   } catch (err) {
+    if (err instanceof DiscountSoldOutError) {
+      return res.status(409).json({ success: false, error: 'This discount is sold out.' })
+    }
     console.error('claim-wallet issueVoucher failed:', err)
     return res.status(502).json({ success: false, error: 'Could not issue voucher. Please try again.' })
   }
