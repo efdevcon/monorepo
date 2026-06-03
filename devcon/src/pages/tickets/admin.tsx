@@ -127,12 +127,29 @@ interface IncomingTx {
 
 interface IncomingTxsResponse {
   success: boolean
-  days: number
   receiveAddress: string
-  byChain: Record<string, { count: number; error?: string }>
+  refundAddress?: string
+  byChain: Record<string, { count: number; refundCount?: number; error?: string }>
   incoming: IncomingTx[]
+  /** Outgoing transfers from the refund wallet, used to match orphan
+   *  incoming txs to their corresponding refund. Same shape as incoming. */
+  outgoingRefunds?: IncomingTx[]
   errors: Record<string, string>
 }
+
+/** Orphan incoming tx augmented with a matching refund (when found).
+ *  The match key is (chainId, symbol, rawAmount, refund.to === orphan.from)
+ *  with `refund.timestamp >= orphan.timestamp`. Once a refund is claimed
+ *  by one orphan it's not reused for another. */
+interface OrphanWithRefund extends IncomingTx {
+  refundTxHash?: string
+  refundTimestamp?: number
+}
+
+/** Per-hash refunded-orphan info passed to the manual-verify modals so
+ *  they can block submission of a tx the buyer was already refunded for. */
+type RefundedOrphanInfo = { refundTxHash: string; refundTimestamp?: number; chainId: number; from: string }
+type RefundedOrphansByHash = Map<string, RefundedOrphanInfo>
 
 interface WcUnpaidOrder {
   orderCode: string
@@ -1002,11 +1019,13 @@ const SUPPORTED_CHAINS = [1, 10, 8453, 42161, 137] as const
 function ManualVerifyModal({
   order,
   secret,
+  refundedOrphans,
   onClose,
   onVerified,
 }: {
   order: PendingOrder
   secret: string
+  refundedOrphans: RefundedOrphansByHash
   onClose: () => void
   onVerified: () => void
 }) {
@@ -1019,7 +1038,11 @@ function ManualVerifyModal({
 
   const trimmedHash = txHash.trim()
   const hashValid = /^0x[a-fA-F0-9]{64}$/.test(trimmedHash)
-  const canSubmit = hashValid
+  // Block submission when the tx hash matches an orphan we've already
+  // refunded — verifying would credit the order while the buyer keeps
+  // the refund. Admin must use a different tx or cancel the refund first.
+  const refundedMatch = hashValid ? refundedOrphans.get(trimmedHash.toLowerCase()) : undefined
+  const canSubmit = hashValid && !refundedMatch
 
   async function handleSubmit() {
     if (!canSubmit) return
@@ -1134,12 +1157,41 @@ function ManualVerifyModal({
                 </label>
               </div>
             </div>
+            {refundedMatch && (
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: 12,
+                  background: '#fef2f2',
+                  border: '1px solid #fecaca',
+                  borderRadius: 6,
+                  fontSize: 13,
+                  color: '#991b1b',
+                }}
+              >
+                <strong>This transaction has already been refunded.</strong>
+                <div style={{ marginTop: 6, color: '#7f1d1d' }}>
+                  Verifying it would credit the order while the buyer still has the refund (double cost). Refund tx:{' '}
+                  <a
+                    className={css.link}
+                    href={txExplorerUrl(refundedMatch.refundTxHash, refundedMatch.chainId)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ wordBreak: 'break-all' }}
+                  >
+                    {refundedMatch.refundTxHash}
+                  </a>
+                  {refundedMatch.refundTimestamp && ` (${formatDate(refundedMatch.refundTimestamp)})`}
+                </div>
+              </div>
+            )}
             <div className={css['modal-actions']}>
               <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
               <button
                 className={css['modal-confirm']}
                 disabled={!canSubmit}
                 onClick={handleSubmit}
+                title={refundedMatch ? 'Blocked: this tx was already refunded' : undefined}
               >
                 Verify payment
               </button>
@@ -1172,10 +1224,12 @@ function ManualVerifyModal({
 function ManualVerifyCell({
   order,
   secret,
+  refundedOrphans,
   onVerified,
 }: {
   order: PendingOrder
   secret: string
+  refundedOrphans: RefundedOrphansByHash
   onVerified: () => void
 }) {
   const [showModal, setShowModal] = useState(false)
@@ -1193,6 +1247,7 @@ function ManualVerifyCell({
         <ManualVerifyModal
           order={order}
           secret={secret}
+          refundedOrphans={refundedOrphans}
           onClose={() => setShowModal(false)}
           onVerified={onVerified}
         />
@@ -1209,12 +1264,14 @@ function WcManualVerifyModal({
   order,
   secret,
   pretixOrderUrl,
+  refundedOrphans,
   onClose,
   onVerified,
 }: {
   order: WcUnpaidOrder
   secret: string
   pretixOrderUrl?: string
+  refundedOrphans: RefundedOrphansByHash
   onClose: () => void
   onVerified: () => void
 }) {
@@ -1232,7 +1289,9 @@ function WcManualVerifyModal({
   const trimmedPayer = payer.trim()
   const hashValid = /^0x[a-fA-F0-9]{64}$/.test(trimmedHash)
   const payerValid = /^0x[a-fA-F0-9]{40}$/.test(trimmedPayer)
-  const canSubmit = hashValid && payerValid
+  // Block submission when the tx hash matches an orphan already refunded.
+  const refundedMatch = hashValid ? refundedOrphans.get(trimmedHash.toLowerCase()) : undefined
+  const canSubmit = hashValid && payerValid && !refundedMatch
 
   async function handleSubmit() {
     if (!canSubmit) return
@@ -1389,12 +1448,41 @@ function WcManualVerifyModal({
                 </label>
               </div>
             </div>
+            {refundedMatch && (
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: 12,
+                  background: '#fef2f2',
+                  border: '1px solid #fecaca',
+                  borderRadius: 6,
+                  fontSize: 13,
+                  color: '#991b1b',
+                }}
+              >
+                <strong>This transaction has already been refunded.</strong>
+                <div style={{ marginTop: 6, color: '#7f1d1d' }}>
+                  Verifying it would credit the order while the buyer still has the refund (double cost). Refund tx:{' '}
+                  <a
+                    className={css.link}
+                    href={txExplorerUrl(refundedMatch.refundTxHash, refundedMatch.chainId)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ wordBreak: 'break-all' }}
+                  >
+                    {refundedMatch.refundTxHash}
+                  </a>
+                  {refundedMatch.refundTimestamp && ` (${formatDate(refundedMatch.refundTimestamp)})`}
+                </div>
+              </div>
+            )}
             <div className={css['modal-actions']}>
               <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
               <button
                 className={css['modal-confirm']}
                 disabled={!canSubmit}
                 onClick={handleSubmit}
+                title={refundedMatch ? 'Blocked: this tx was already refunded' : undefined}
               >
                 Verify payment
               </button>
@@ -1428,11 +1516,13 @@ function WcManualVerifyCell({
   order,
   secret,
   pretixOrderUrl,
+  refundedOrphans,
   onVerified,
 }: {
   order: WcUnpaidOrder
   secret: string
   pretixOrderUrl?: string
+  refundedOrphans: RefundedOrphansByHash
   onVerified: () => void
 }) {
   const [showModal, setShowModal] = useState(false)
@@ -1451,6 +1541,7 @@ function WcManualVerifyCell({
           order={order}
           secret={secret}
           pretixOrderUrl={pretixOrderUrl}
+          refundedOrphans={refundedOrphans}
           onClose={() => setShowModal(false)}
           onVerified={onVerified}
         />
@@ -1484,7 +1575,6 @@ function AdminContent() {
   const [loading, setLoading] = useState(false)
   const [incomingTxsData, setIncomingTxsData] = useState<IncomingTxsResponse | null>(null)
   const [incomingTxsLoading, setIncomingTxsLoading] = useState(false)
-  const [incomingTxsDays, setIncomingTxsDays] = useState(7)
   const [incomingTxsError, setIncomingTxsError] = useState<string | null>(null)
 
   // Collapsible sections — all four heavy tables are collapsed on first
@@ -1500,8 +1590,12 @@ function AdminContent() {
   const [autoRefresh, setAutoRefresh] = useState(true)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  // Date range filter — default to last 7 days
-  const [dateFrom, setDateFrom] = useState(() => new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10))
+  // Date range filter — default to "since launch" (Devcon 8 ticket sale
+  // opened 2026-05-20). Keeping the default at the launch boundary means
+  // stats land on the relevant population by default, not a rolling 7-day
+  // window that excludes early-sale activity.
+  const LAUNCH_DATE = '2026-05-20'
+  const [dateFrom, setDateFrom] = useState(LAUNCH_DATE)
   const [dateTo, setDateTo] = useState(() => new Date().toISOString().slice(0, 10))
 
   // Sorting
@@ -1536,11 +1630,15 @@ function AdminContent() {
   )
 
   const fetchIncomingTxs = useCallback(
-    async (key: string, days: number) => {
+    async (key: string, from: string, to: string) => {
       setIncomingTxsLoading(true)
       setIncomingTxsError(null)
       try {
-        const res = await fetch(`/api/x402/admin/incoming-txs/?days=${days}`, {
+        const qs = new URLSearchParams()
+        if (from) qs.set('dateFrom', from)
+        if (to) qs.set('dateTo', to)
+        const q = qs.toString()
+        const res = await fetch(`/api/x402/admin/incoming-txs/${q ? `?${q}` : ''}`, {
           headers: { 'x-admin-key': key },
         })
         const json: IncomingTxsResponse = await res.json()
@@ -1572,18 +1670,15 @@ function AdminContent() {
     if (authed && secret) fetchOrders(secret)
   }, [authed, secret, fetchOrders])
 
-  // Auto-load incoming txs once on first auth so the orphan list is
-  // populated when the admin expands the section. Uses the current
-  // `incomingTxsDays` (default 7) — admin can change days + click
-  // Refresh to re-fetch with a different window. Skips the auto-fetch
-  // if the data is already loaded (e.g. on a re-render after modal
-  // close) to avoid burning Alchemy quota.
+  // Auto-load incoming txs on first auth and whenever the global date
+  // range changes — the backend translates the range into per-chain
+  // `fromBlock`/`toBlock` for Alchemy so we only pull what's in view.
   useEffect(() => {
-    if (authed && secret && !incomingTxsData && !incomingTxsLoading) {
-      fetchIncomingTxs(secret, incomingTxsDays)
+    if (authed && secret) {
+      fetchIncomingTxs(secret, dateFrom, dateTo)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authed, secret])
+  }, [authed, secret, dateFrom, dateTo])
 
   // Auto-refresh
   useEffect(() => {
@@ -1605,7 +1700,7 @@ function AdminContent() {
     setAuthed(true)
   }
 
-  function setDatePreset(preset: 'today' | '7d' | '30d' | 'all') {
+  function setDatePreset(preset: 'today' | '7d' | '30d' | 'launch' | 'all') {
     if (preset === 'all') {
       setDateFrom('')
       setDateTo('')
@@ -1622,10 +1717,12 @@ function AdminContent() {
     } else if (preset === '30d') {
       const d = new Date(now.getTime() - 30 * 86400000)
       setDateFrom(d.toISOString().slice(0, 10))
+    } else if (preset === 'launch') {
+      setDateFrom(LAUNCH_DATE)
     }
   }
 
-  function isActivePreset(preset: 'today' | '7d' | '30d' | 'all') {
+  function isActivePreset(preset: 'today' | '7d' | '30d' | 'launch' | 'all') {
     if (preset === 'all') return !dateFrom && !dateTo
     const now = new Date()
     const to = now.toISOString().slice(0, 10)
@@ -1633,6 +1730,7 @@ function AdminContent() {
     if (preset === 'today') return dateFrom === to
     if (preset === '7d') return dateFrom === new Date(now.getTime() - 7 * 86400000).toISOString().slice(0, 10)
     if (preset === '30d') return dateFrom === new Date(now.getTime() - 30 * 86400000).toISOString().slice(0, 10)
+    if (preset === 'launch') return dateFrom === LAUNCH_DATE
     return false
   }
 
@@ -1857,33 +1955,74 @@ function AdminContent() {
     return s
   }, [data?.completed])
 
-  // Per-chain block cutoff: ignore everything mined before the Devcon
-  // ticket-sale start on that chain. Without this, the orphan list
-  // surfaces years of unrelated incoming transfers that pre-date this
-  // event. Add other chains here once their cutoff blocks are confirmed.
-  const ORPHAN_BLOCK_CUTOFF_BY_CHAIN: Record<number, number> = {
-    1: 25137422, // Ethereum mainnet — Devcon sale start
-  }
-
   // Orphans = incoming transfers whose tx hash isn't in `knownTxHashes`.
   // Pure client-side filter so we re-derive on order data refresh too,
-  // not just when the incoming-txs panel reloads.
-  const orphanIncomingTxs = useMemo(() => {
-    return (incomingTxsData?.incoming ?? []).filter(tx => {
+  // not just when the incoming-txs panel reloads. Each orphan is then
+  // paired with its refund (if any) from the outgoing-from-refunder feed
+  // by exact (chain, symbol, rawAmount, refund.to == orphan.from) match
+  // with refund.timestamp >= orphan.timestamp. First-come-first-serve so
+  // duplicate-amount cases don't double-claim the same refund.
+  const orphanIncomingTxs = useMemo<OrphanWithRefund[]>(() => {
+    // Backend already filters by date range + launch-cutoff via Alchemy
+    // block bounds, so here we just strip out the txs that match known
+    // orders.
+    const orphans = (incomingTxsData?.incoming ?? []).filter(tx => {
       if (knownTxHashes.has(tx.txHash.toLowerCase())) return false
-      const cutoff = ORPHAN_BLOCK_CUTOFF_BY_CHAIN[tx.chainId]
-      if (cutoff != null && tx.blockNum) {
-        // `blockNum` arrives as a hex string from Alchemy (e.g. "0x18f4..").
-        try {
-          if (BigInt(tx.blockNum) <= BigInt(cutoff)) return false
-        } catch {
-          // unparseable — keep the row rather than silently dropping it
-        }
-      }
       return true
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [incomingTxsData?.incoming, knownTxHashes])
+
+    // Refund pool, oldest first so the earliest matching refund claims an
+    // orphan (mirrors real-world chronology — earliest refund pairs with
+    // earliest qualifying orphan).
+    const refundPool = [...(incomingTxsData?.outgoingRefunds ?? [])].sort(
+      (a, b) => a.timestamp - b.timestamp,
+    )
+    const claimed = new Set<string>()
+
+    // Match oldest orphans first too, so dup-amount orphans bind refunds
+    // in order rather than the latest one stealing the earliest refund.
+    const oldestFirst = [...orphans].sort((a, b) => a.timestamp - b.timestamp)
+    const refundByOrphanHash = new Map<string, { txHash: string; timestamp: number }>()
+    for (const o of oldestFirst) {
+      if (!o.rawAmount || !o.symbol) continue
+      const match = refundPool.find(r =>
+        !claimed.has(r.txHash) &&
+        r.chainId === o.chainId &&
+        r.symbol === o.symbol &&
+        r.rawAmount === o.rawAmount &&
+        r.to === o.from &&
+        r.timestamp >= o.timestamp,
+      )
+      if (match) {
+        claimed.add(match.txHash)
+        refundByOrphanHash.set(o.txHash, { txHash: match.txHash, timestamp: match.timestamp })
+      }
+    }
+
+    // Preserve original sort order (newest first, from the API).
+    return orphans.map(o => {
+      const m = refundByOrphanHash.get(o.txHash)
+      return m ? { ...o, refundTxHash: m.txHash, refundTimestamp: m.timestamp } : o
+    })
+  }, [incomingTxsData?.incoming, incomingTxsData?.outgoingRefunds, knownTxHashes])
+
+  /** Lookup of orphan tx hashes (lowercased) that already have a matching
+   *  refund. The manual-verify modals consult this so admins can't
+   *  re-submit a tx the buyer was already refunded for — that would credit
+   *  the order AND keep the refund, double-spending the cost. */
+  const refundedOrphansByHash = useMemo(() => {
+    const m = new Map<string, { refundTxHash: string; refundTimestamp?: number; chainId: number; from: string }>()
+    for (const o of orphanIncomingTxs) {
+      if (!o.refundTxHash) continue
+      m.set(o.txHash.toLowerCase(), {
+        refundTxHash: o.refundTxHash,
+        refundTimestamp: o.refundTimestamp,
+        chainId: o.chainId,
+        from: o.from,
+      })
+    }
+    return m
+  }, [orphanIncomingTxs])
 
   const wcUnpaidQuotedByPayer = useMemo(() => {
     const m: Record<string, number> = {}
@@ -1991,6 +2130,7 @@ function AdminContent() {
     const headers = [
       'Chain ID', 'Chain', 'Token', 'Decimals', 'Raw Amount', 'Formatted Amount',
       'From', 'To', 'Tx Hash', 'Block Num', 'Timestamp (UTC)', 'Tx Explorer', 'Address Explorer',
+      'Refunded', 'Refund Tx Hash', 'Refund Timestamp (UTC)', 'Refund Tx Explorer',
     ]
     const rows = orphanIncomingTxs.map(tx => {
       const formatted = tx.rawAmount && tx.symbol ? formatCryptoAmount(tx.rawAmount, tx.symbol) : ''
@@ -2010,6 +2150,10 @@ function AdminContent() {
         new Date(tx.timestamp * 1000).toISOString(),
         txExplorerUrl(tx.txHash, tx.chainId),
         addressExplorerUrl(tx.from, tx.chainId),
+        tx.refundTxHash ? 'YES' : 'NO',
+        tx.refundTxHash ?? '',
+        tx.refundTimestamp ? new Date(tx.refundTimestamp * 1000).toISOString() : '',
+        tx.refundTxHash ? txExplorerUrl(tx.refundTxHash, tx.chainId) : '',
       ]
     })
     const date = new Date().toISOString().slice(0, 10)
@@ -2181,13 +2325,13 @@ function AdminContent() {
           onChange={e => setDateTo(e.target.value)}
           title="To date"
         />
-        {(['today', '7d', '30d', 'all'] as const).map(p => (
+        {(['today', '7d', '30d', 'launch', 'all'] as const).map(p => (
           <button
             key={p}
             className={`${css['preset-btn']} ${isActivePreset(p) ? css['preset-btn-active'] : ''}`}
             onClick={() => setDatePreset(p)}
           >
-            {p === 'all' ? 'All' : p === 'today' ? 'Today' : p}
+            {p === 'all' ? 'All' : p === 'today' ? 'Today' : p === 'launch' ? 'Since launch' : p}
           </button>
         ))}
       </div>
@@ -2525,7 +2669,12 @@ function AdminContent() {
                           {isExpired && <span className={css.expired}> EXPIRED</span>}
                         </td>
                         <td>
-                          <ManualVerifyCell order={o} secret={secret} onVerified={() => fetchOrders(secret)} />
+                          <ManualVerifyCell
+                            order={o}
+                            secret={secret}
+                            refundedOrphans={refundedOrphansByHash}
+                            onVerified={() => fetchOrders(secret)}
+                          />
                         </td>
                       </tr>
                     )
@@ -2550,28 +2699,17 @@ function AdminContent() {
             style={{ cursor: 'pointer', userSelect: 'none' }}
           >
             {sectionsOpen.orphan ? '▾' : '▸'} Orphan Incoming Transactions
-            {incomingTxsData &&
-              ` (${orphanIncomingTxs.length} orphan / ${incomingTxsData.incoming.length} incoming, last ${incomingTxsData.days}d)`}
+            {incomingTxsData && (() => {
+              const refunded = orphanIncomingTxs.filter(o => o.refundTxHash).length
+              const refundsTotal = incomingTxsData.outgoingRefunds?.length ?? 0
+              return ` (${orphanIncomingTxs.length} orphan${refunded > 0 ? ` / ${refunded} refunded` : ''} / ${incomingTxsData.incoming.length} incoming / ${refundsTotal} refunds out)`
+            })()}
           </h2>
           {sectionsOpen.orphan && (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <label style={{ display: 'flex', gap: 4, alignItems: 'center', fontSize: 13 }}>
-                Days:
-                <select
-                  value={incomingTxsDays}
-                  onChange={e => setIncomingTxsDays(Number(e.target.value))}
-                  style={{ padding: '4px 6px', border: '1px solid #ccc', borderRadius: 4 }}
-                >
-                  <option value={1}>1</option>
-                  <option value={3}>3</option>
-                  <option value={7}>7</option>
-                  <option value={14}>14</option>
-                  <option value={30}>30</option>
-                </select>
-              </label>
               <button
                 className={css['refresh-btn']}
-                onClick={() => fetchIncomingTxs(secret, incomingTxsDays)}
+                onClick={() => fetchIncomingTxs(secret, dateFrom, dateTo)}
                 disabled={incomingTxsLoading}
               >
                 {incomingTxsLoading ? 'Loading…' : incomingTxsData ? 'Refresh' : 'Load'}
@@ -2606,14 +2744,17 @@ function AdminContent() {
                       error
                     </span>
                   ) : (
-                    <>{s.count} incoming</>
+                    <>
+                      {s.count} incoming
+                      {typeof s.refundCount === 'number' && ` · ${s.refundCount} refunds out`}
+                    </>
                   )}
                 </span>
               ))}
             </div>
             <div className={css['table-wrap']}>
               {orphanIncomingTxs.length === 0 ? (
-                <div className={css.empty}>No orphan transactions in the last {incomingTxsData.days} days</div>
+                <div className={css.empty}>No orphan transactions in the selected date range</div>
               ) : (
                 <table className={css.table}>
                   <thead>
@@ -2624,6 +2765,7 @@ function AdminContent() {
                       <th>From</th>
                       <th>Tx Hash</th>
                       <th>Timestamp</th>
+                      <th>Refund</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -2661,6 +2803,35 @@ function AdminContent() {
                           </Copyable>
                         </td>
                         <td>{formatDate(tx.timestamp)}</td>
+                        <td className={css['admin-badge-cell']}>
+                          {tx.refundTxHash ? (
+                            <>
+                              <span
+                                className={css['admin-badge-paid']}
+                                title={
+                                  tx.refundTimestamp
+                                    ? `Refunded ${formatDate(tx.refundTimestamp)}`
+                                    : 'Refunded'
+                                }
+                              >
+                                REFUNDED
+                              </span>
+                              <Copyable value={tx.refundTxHash}>
+                                <a
+                                  className={`${css.link} ${css.mono}`}
+                                  href={txExplorerUrl(tx.refundTxHash, tx.chainId)}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={e => e.stopPropagation()}
+                                >
+                                  {tx.refundTxHash.slice(0, 10)}...{tx.refundTxHash.slice(-8)}
+                                </a>
+                              </Copyable>
+                            </>
+                          ) : (
+                            '—'
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -2773,6 +2944,7 @@ function AdminContent() {
                               ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
                               : undefined
                           }
+                          refundedOrphans={refundedOrphansByHash}
                           onVerified={() => fetchOrders(secret)}
                         />
                       </td>

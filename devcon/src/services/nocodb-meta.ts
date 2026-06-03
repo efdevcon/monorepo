@@ -222,7 +222,9 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
     const col = tableColsById.get(vc.fk_column_id)
     if (!col) continue
     if (col.system) continue
-    if (!SUPPORTED_TYPES.has(col.uidt)) continue
+    // Unsupported types still pass through — the renderer will surface a
+    // warning rather than silently dropping them. We avoid logging here so
+    // the meta service stays cacheable / quiet on the hot path.
 
     // Prefer the form-view label override (vc.label), falling back to the
     // intrinsic column title. Exception: if the override happens to match the
@@ -237,7 +239,7 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
     const description = vc.help || vc.description || col.description || undefined
 
     let options: string[] | undefined
-    if (col.uidt === 'SingleSelect') {
+    if (col.uidt === 'SingleSelect' || col.uidt === 'MultiSelect') {
       const rawOptions = col.colOptions?.options ?? []
       const orderedOptions = [...rawOptions].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
       options = orderedOptions.map(o => o.title)

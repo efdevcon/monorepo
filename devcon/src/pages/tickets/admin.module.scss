@@ -751,9 +751,14 @@
    order where the buyer over-sent crypto). */
 
 .admin-badge-cell {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  // Each badge is inline-block via %admin-pill. Avoid display:flex here:
+  // it strips the td's table-cell role and breaks vertical-align:middle,
+  // which top-anchors the badges in tall rows.
+  white-space: nowrap;
+
+  & > * + * {
+    margin-left: 4px;
+  }
 }
 
 %admin-pill {

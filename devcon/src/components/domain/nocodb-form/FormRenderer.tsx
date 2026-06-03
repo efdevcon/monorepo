@@ -4,7 +4,18 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
-import { ChevronDown, X, FileText, Download, ExternalLink, Lock, ShieldCheck, Star } from 'lucide-react'
+import {
+  ChevronDown,
+  X,
+  FileText,
+  Download,
+  ExternalLink,
+  Lock,
+  ShieldCheck,
+  Star,
+  Check,
+  AlertTriangle,
+} from 'lucide-react'
 import { COUNTRIES } from './countries'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
@@ -164,13 +175,7 @@ function attachmentProxyUrl(a: NocoAttachment): string | null {
   return `/api/nocodb/file/?${params.toString()}`
 }
 
-function AttachmentPreview({
-  attachment,
-  onRemove,
-}: {
-  attachment: NocoAttachment
-  onRemove?: () => void
-}) {
+function AttachmentPreview({ attachment, onRemove }: { attachment: NocoAttachment; onRemove?: () => void }) {
   const fileUrl = attachmentProxyUrl(attachment)
   const isImage = attachment.mimetype?.startsWith('image/')
 
@@ -221,15 +226,7 @@ function AttachmentPreview({
   )
 }
 
-function AttachmentField({
-  col,
-  viewId,
-  isReadOnly,
-}: {
-  col: FormColumn
-  viewId: string
-  isReadOnly: boolean
-}) {
+function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId: string; isReadOnly: boolean }) {
   const {
     register,
     setValue,
@@ -258,7 +255,11 @@ function AttachmentField({
     ? rawAttachments
     : typeof rawAttachments === 'string'
     ? (() => {
-        try { return JSON.parse(rawAttachments) } catch { return [] }
+        try {
+          return JSON.parse(rawAttachments)
+        } catch {
+          return []
+        }
       })()
     : []
   const hasFiles = attachments.length > 0
@@ -332,12 +333,8 @@ function AttachmentField({
         disabled={uploading || isReadOnly}
         className="flex items-center gap-3 w-full px-4 py-2.5 bg-white border border-[#dddae2] rounded-lg text-sm text-left disabled:opacity-50 hover:border-[rgba(34,17,68,0.2)] transition-colors min-w-0"
       >
-        <span className="font-medium text-[#7235ed] shrink-0">
-          {hasFiles ? 'Add more' : 'Choose file(s)'}
-        </span>
-        <span className="text-[#594d73] truncate">
-          {uploading ? 'Uploading…' : 'PDF, DOC, PNG, JPG up to 10MB'}
-        </span>
+        <span className="font-medium text-[#7235ed] shrink-0">{hasFiles ? 'Add more' : 'Choose file(s)'}</span>
+        <span className="text-[#594d73] truncate">{uploading ? 'Uploading…' : 'PDF, DOC, PNG, JPG up to 10MB'}</span>
       </button>
 
       <input
@@ -413,7 +410,11 @@ function EncryptedAttachmentField({
     ? rawAttachments
     : typeof rawAttachments === 'string'
     ? (() => {
-        try { return JSON.parse(rawAttachments) } catch { return [] }
+        try {
+          return JSON.parse(rawAttachments)
+        } catch {
+          return []
+        }
       })()
     : []
   const current = attachments[0]
@@ -512,8 +513,8 @@ function EncryptedAttachmentField({
         <p className="text-xs text-[#594d73] flex items-start gap-1.5 leading-5">
           <ShieldCheck className="w-3.5 h-3.5 mt-0.5 shrink-0 text-[#7235ed]" aria-hidden="true" />
           <span>
-            Encrypted in your browser before upload. Only the visa team can decrypt this file —
-            our servers and backups never see its contents.
+            Encrypted in your browser before upload. Only the visa team can decrypt this file — our servers and backups
+            never see its contents.
           </span>
         </p>
       </div>
@@ -571,15 +572,170 @@ function EncryptedAttachmentField({
         </ul>
       )}
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept={ATTACHMENT_ACCEPT}
-        onChange={handleChange}
-        className="hidden"
-      />
+      <input ref={inputRef} type="file" accept={ATTACHMENT_ACCEPT} onChange={handleChange} className="hidden" />
 
       {errorMessage && <FieldError message={errorMessage} />}
+    </div>
+  )
+}
+
+function MultiSelectField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boolean }) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const rhfKey = rhfFieldName(col.column_name)
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => {
+        if (!col.required) return true
+        return (Array.isArray(v) && v.length > 0) || `${col.title} is required`
+      },
+    })
+  }, [register, rhfKey, col.required, col.title])
+
+  // RHF may hand us the raw NocoDB comma-separated string on first load (before
+  // FormPage's normalisation runs) — accept either shape.
+  const raw = watch(rhfKey)
+  const selected: string[] = Array.isArray(raw)
+    ? raw
+    : typeof raw === 'string' && raw.length > 0
+    ? raw
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean)
+    : []
+
+  const options = col.options ?? []
+  const fieldError = errors[rhfKey]
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const toggleOption = (opt: string) => {
+    const next = selected.includes(opt) ? selected.filter(s => s !== opt) : [...selected, opt]
+    setValue(rhfKey, next, { shouldValidate: true })
+  }
+
+  const removeOption = (opt: string) => {
+    setValue(
+      rhfKey,
+      selected.filter(s => s !== opt),
+      { shouldValidate: true }
+    )
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={col.title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+
+      <div ref={containerRef} className="relative">
+        <div
+          role="button"
+          tabIndex={isReadOnly ? -1 : 0}
+          aria-disabled={isReadOnly}
+          onClick={() => {
+            if (!isReadOnly) setOpen(!open)
+          }}
+          onKeyDown={e => {
+            if (isReadOnly) return
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              setOpen(!open)
+            }
+          }}
+          style={{ border: '1px solid #dddae2' }}
+          className={`flex items-center justify-between w-full min-h-10 px-3 py-1.5 text-base rounded-lg bg-white text-left ${
+            isReadOnly ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+          }`}
+        >
+          {selected.length === 0 ? (
+            <span className="text-[#594d73]">{`Select ${col.title.toLowerCase()}`}</span>
+          ) : (
+            <span className="flex flex-wrap gap-1.5 flex-1 min-w-0">
+              {selected.map(s => (
+                <span
+                  key={s}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-[#f3f0ff] text-[#7235ed] text-sm rounded-md"
+                >
+                  {s}
+                  {!isReadOnly && (
+                    <button
+                      type="button"
+                      onClick={e => {
+                        e.stopPropagation()
+                        removeOption(s)
+                      }}
+                      className="hover:text-[#b42124]"
+                      aria-label={`Remove ${s}`}
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  )}
+                </span>
+              ))}
+            </span>
+          )}
+          <ChevronDown className="w-4 h-4 text-[#594d73] shrink-0 ml-2" />
+        </div>
+
+        {open && (
+          <div
+            style={{
+              border: '1px solid #dddae2',
+              maxHeight: 280,
+              position: 'absolute',
+              zIndex: 50,
+              marginTop: 4,
+              width: '100%',
+              background: 'white',
+              borderRadius: 8,
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              overflowY: 'auto',
+            }}
+          >
+            {options.length === 0 ? (
+              <p className="px-4 py-3 text-sm text-[#594d73]">No options</p>
+            ) : (
+              options.map(opt => {
+                const isSelected = selected.includes(opt)
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => toggleOption(opt)}
+                    className={`w-full text-left px-4 py-2 text-sm flex items-center gap-2 hover:bg-[#f3f0ff] ${
+                      isSelected ? 'bg-[#f3f0ff] font-bold text-[#7235ed]' : 'text-[#160b2b]'
+                    }`}
+                  >
+                    <span className="w-4 h-4 shrink-0 flex items-center justify-center">
+                      {isSelected && <Check className="w-4 h-4" />}
+                    </span>
+                    <span>{opt}</span>
+                  </button>
+                )
+              })
+            )}
+          </div>
+        )}
+      </div>
+
+      {fieldError && <FieldError message={fieldError.message as string} />}
     </div>
   )
 }
@@ -676,11 +832,7 @@ function RatingField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boolean
               }
               className="p-0.5 disabled:cursor-not-allowed transition-transform hover:scale-110"
             >
-              <Star
-                className="w-7 h-7"
-                style={{ color, fill: filled ? color : 'transparent' }}
-                strokeWidth={1.5}
-              />
+              <Star className="w-7 h-7" style={{ color, fill: filled ? color : 'transparent' }} strokeWidth={1.5} />
             </button>
           )
         })}
@@ -725,9 +877,7 @@ function SearchableSelect({
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const filtered = search
-    ? options.filter(o => o.toLowerCase().includes(search.toLowerCase()))
-    : options
+  const filtered = search ? options.filter(o => o.toLowerCase().includes(search.toLowerCase())) : options
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -752,14 +902,26 @@ function SearchableSelect({
         style={{ border: '1px solid #dddae2' }}
         className="flex items-center justify-between w-full h-10 px-4 text-base rounded-lg bg-white text-left disabled:opacity-50"
       >
-        <span className={value ? 'text-[#160b2b]' : 'text-[#594d73]'}>
-          {value || placeholder}
-        </span>
+        <span className={value ? 'text-[#160b2b]' : 'text-[#594d73]'}>{value || placeholder}</span>
         <ChevronDown className="w-4 h-4 text-[#594d73] shrink-0" />
       </button>
 
       {open && (
-        <div style={{ border: '1px solid #dddae2', maxHeight: 280, display: 'flex', flexDirection: 'column', position: 'absolute', zIndex: 50, marginTop: 4, width: '100%', background: 'white', borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <div
+          style={{
+            border: '1px solid #dddae2',
+            maxHeight: 280,
+            display: 'flex',
+            flexDirection: 'column',
+            position: 'absolute',
+            zIndex: 50,
+            marginTop: 4,
+            width: '100%',
+            background: 'white',
+            borderRadius: 8,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          }}
+        >
           <div style={{ padding: 8, borderBottom: '1px solid #dddae2', flexShrink: 0 }}>
             <input
               ref={inputRef}
@@ -767,7 +929,16 @@ function SearchableSelect({
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search..."
-              style={{ border: '1px solid #dddae2', width: '100%', padding: '6px 12px', fontSize: 14, borderRadius: 6, outline: 'none', display: 'block', boxSizing: 'border-box' }}
+              style={{
+                border: '1px solid #dddae2',
+                width: '100%',
+                padding: '6px 12px',
+                fontSize: 14,
+                borderRadius: 6,
+                outline: 'none',
+                display: 'block',
+                boxSizing: 'border-box',
+              }}
             />
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
@@ -805,7 +976,13 @@ export function FormRenderer({
   viewId,
   conditionalRules = [],
 }: FormRendererProps) {
-  const { register, setValue, watch, unregister, formState: { errors } } = useFormContext()
+  const {
+    register,
+    setValue,
+    watch,
+    unregister,
+    formState: { errors },
+  } = useFormContext()
 
   // Build the set of column names that should be hidden right now based on
   // conditional rules. Subscribes to all watched form values so the set
@@ -864,14 +1041,7 @@ export function FormRenderer({
 
         if (col.uidt === 'Attachment') {
           if (isEncryptedTitle(col.title)) {
-            return (
-              <EncryptedAttachmentField
-                key={col.column_name}
-                col={col}
-                viewId={viewId}
-                isReadOnly={isReadOnly}
-              />
-            )
+            return <EncryptedAttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
           }
           return <AttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
         }
@@ -894,10 +1064,7 @@ export function FormRenderer({
                 disabled={isReadOnly}
               />
               {col.required && (
-                <input
-                  type="hidden"
-                  {...register(rhfKey, { required: `${displayTitle} is required` })}
-                />
+                <input type="hidden" {...register(rhfKey, { required: `${displayTitle} is required` })} />
               )}
               {error && <FieldError message={error.message as string} />}
             </div>
@@ -947,8 +1114,7 @@ export function FormRenderer({
                   // undefined when blank) so the value written to NocoDB is
                   // numeric, not a string.
                   setValueAs: v => (v === '' || v == null ? undefined : Number(v)),
-                  validate: v =>
-                    v === undefined || !Number.isNaN(Number(v)) || `${col.title} must be a number`,
+                  validate: v => v === undefined || !Number.isNaN(Number(v)) || `${col.title} must be a number`,
                 })}
               />
               {error && <FieldError message={error.message as string} />}
@@ -978,6 +1144,39 @@ export function FormRenderer({
                   required: col.required ? `${col.title} is required` : false,
                   maxLength: { value: max, message: `Maximum ${max} characters` },
                   pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
+                })}
+              />
+              {error && <FieldError message={error.message as string} />}
+            </div>
+          )
+        }
+
+        if (col.uidt === 'URL') {
+          const max = CHAR_LIMITS.SingleLineText
+          return (
+            <div key={col.column_name} className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
+                <FieldLabel title={col.title} required={col.required} />
+                {col.description && <FieldDescription text={col.description} />}
+              </div>
+              <Input
+                id={col.column_name}
+                type="url"
+                inputMode="url"
+                placeholder="https://"
+                maxLength={max}
+                disabled={isReadOnly}
+                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
+                {...register(rhfKey, {
+                  required: col.required ? `${col.title} is required` : false,
+                  maxLength: { value: max, message: `Maximum ${max} characters` },
+                  pattern: {
+                    // Permissive URL check: any scheme + non-space rest, or a
+                    // bare domain ("example.com/path"). Matches what most users
+                    // type without forcing them to prepend https://.
+                    value: /^(?:[a-z][a-z0-9+.-]*:\/\/\S+|[\w-]+(?:\.[\w-]+)+(?:\/\S*)?)$/i,
+                    message: 'Enter a valid URL',
+                  },
                 })}
               />
               {error && <FieldError message={error.message as string} />}
@@ -1052,6 +1251,10 @@ export function FormRenderer({
           return <CheckboxField key={col.column_name} col={col} isReadOnly={isReadOnly} />
         }
 
+        if (col.uidt === 'MultiSelect' && col.options) {
+          return <MultiSelectField key={col.column_name} col={col} isReadOnly={isReadOnly} />
+        }
+
         if (col.uidt === 'SingleSelect' && col.options) {
           const currentValue = watch(rhfKey)
           return (
@@ -1089,7 +1292,18 @@ export function FormRenderer({
           )
         }
 
-        return null
+        return (
+          <div key={col.column_name} className="flex flex-col gap-2">
+            <FieldLabel title={col.title} required={col.required} />
+            {col.description && <FieldDescription text={col.description} />}
+            <div className="flex items-start gap-2 px-3 py-2 border border-red-300 bg-red-50 rounded-lg text-sm text-red-600">
+              <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
+              <span>
+                Field type <code className="font-mono">{col.uidt}</code> is not currently supported.
+              </span>
+            </div>
+          </div>
+        )
       })}
     </div>
   )
