@@ -35,8 +35,8 @@ export function Profile() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <div className="max-w-lg w-full">
+    <main className="mx-auto w-full max-w-lg px-4 py-6">
+      <div>
         <h1 className="text-3xl font-bold mb-6">Profile</h1>
 
         <div className="p-4 border rounded-lg mb-6">
