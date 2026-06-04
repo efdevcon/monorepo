@@ -5,6 +5,7 @@ import type { Components } from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
 import Markdown from "react-markdown";
 import cn from "classnames";
+import { supabase } from "@/data/auth/supabase";
 
 interface Message {
   role: "user" | "assistant";
@@ -42,12 +43,11 @@ interface Source {
 interface DevaBotProps {
   toggled: boolean;
   onToggle: (visible: boolean) => void;
-  apiUrl?: string;
 }
 
 const STORAGE_KEY = "devabot_messages";
 
-export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
+export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -157,13 +157,15 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
     setDebugContext("");
 
     try {
-      const baseUrl =
-        apiUrl ||
-        process.env.NEXT_PUBLIC_DEVABOT_API_URL ||
-        "http://localhost:3001";
-      const response = await fetch(`${baseUrl}/api/chat`, {
+      // Call our login-gated proxy (same-origin) with the Supabase token.
+      const token = (await supabase?.auth.getSession())?.data.session
+        ?.access_token;
+      const response = await fetch(`/api/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
           message: userMessage.content,
           history: messages,

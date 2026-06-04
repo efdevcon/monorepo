@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { provider } from "../providers/provider";
+import { getActiveDatasetKey } from "../dataset";
 import type { Speaker } from "../models";
 
 /**
@@ -14,7 +15,7 @@ async function speakersFetcher(): Promise<Speaker[]> {
  */
 export function useSpeakers() {
   const { data, error, isLoading, mutate } = useSWR(
-    ["speakers"],
+    [getActiveDatasetKey(), "speakers"],
     speakersFetcher,
     {
       revalidateOnFocus: false,
@@ -36,7 +37,7 @@ export function useSpeakers() {
  */
 export function useSpeaker(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
-    id ? ["speaker", id] : null,
+    id ? [getActiveDatasetKey(), "speaker", id] : null,
     () => provider.getSpeaker(id),
     {
       revalidateOnFocus: false,
@@ -57,7 +58,7 @@ export function useSpeaker(id: string) {
  */
 export function useSearchSpeakers(query: string) {
   const { data, error, isLoading, mutate } = useSWR(
-    query ? ["speakers", "search", query] : null,
+    query ? [getActiveDatasetKey(), "speakers", "search", query] : null,
     () => provider.searchSpeakers(query),
     {
       revalidateOnFocus: false,

@@ -4,6 +4,7 @@ import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { Toaster } from "sonner";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
+import { DebugPanel } from "@/components/DebugPanel";
 import APP_CONFIG from "@/CONFIG";
 
 // Match the /devcon project: Inter (body) + Poppins (headings).
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body>
         <SWRConfigProvider>{children}</SWRConfigProvider>
         <CustomScrollbar />
+        <DebugPanel />
         <Toaster position="bottom-center" richColors />
       </body>
     </html>

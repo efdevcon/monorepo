@@ -21,27 +21,15 @@ export default function PageLayout({
   return (
     <LoginTransitionProvider>
       <AuthGuard>
-        <Nav />
+        <Nav onOpenAI={() => setDevaBotOpen(true)} />
         {/* `section` restrains content width (centered column + gutters);
             bottom padding on mobile clears the floating nav bar. */}
         <div className="section pb-28 lg:pb-0">{children}</div>
         {!isKiosk && (
-          <>
-            <button
-              onClick={() => setDevaBotOpen(!devaBotOpen)}
-              className="fixed bottom-4 left-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
-            >
-              {devaBotOpen ? (
-                <span className="text-xl">&times;</span>
-              ) : (
-                <span className="text-lg">AI</span>
-              )}
-            </button>
-            <DevaBot
-              toggled={devaBotOpen}
-              onToggle={(visible) => setDevaBotOpen(visible)}
-            />
-          </>
+          <DevaBot
+            toggled={devaBotOpen}
+            onToggle={(visible) => setDevaBotOpen(visible)}
+          />
         )}
       </AuthGuard>
     </LoginTransitionProvider>

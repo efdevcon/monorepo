@@ -1,14 +1,15 @@
 import type { Room, Session, Speaker } from "../models";
+import { getActiveDataset } from "../dataset";
 import { BaseProvider, type SessionFilters } from "./provider-interface";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_DEVCON_API_URL || "https://api.devcon.org";
-const EVENT_ID =
-  process.env.NEXT_PUBLIC_DEVCON_API_EVENT_ID || "devcon-mumbai-playground";
-
 export class DevconApiProvider extends BaseProvider {
+  /** Resolved at call time so the active dataset (?dataset) is respected. */
+  private get dataset() {
+    return getActiveDataset();
+  }
+
   private async fetchApi<T>(path: string): Promise<T> {
-    const url = `${API_BASE_URL}${path}`;
+    const url = `${this.dataset.apiUrl}${path}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`DevconAPI ${res.status}: ${url}`);
     const json = await res.json();
@@ -83,7 +84,7 @@ export class DevconApiProvider extends BaseProvider {
 
   async getSessions(filters?: SessionFilters): Promise<Session[]> {
     const params = new URLSearchParams();
-    params.set("event", EVENT_ID);
+    params.set("event", this.dataset.eventId);
     if (filters?.track) params.set("track", filters.track);
     if (filters?.type) params.set("type", filters.type);
     if (filters?.roomId) params.set("room", filters.roomId);
@@ -104,7 +105,7 @@ export class DevconApiProvider extends BaseProvider {
 
   async getSessionsBySpeaker(speakerId: string): Promise<Session[]> {
     const data = await this.fetchApi<any>(
-      `/speakers/${speakerId}/sessions?event=${EVENT_ID}`
+      `/speakers/${speakerId}/sessions?event=${this.dataset.eventId}`
     );
     const items = data?.items ?? data ?? [];
     return this.validateSessions(items.map((s: any) => this.mapSession(s)));
@@ -121,7 +122,7 @@ export class DevconApiProvider extends BaseProvider {
 
   async getSpeakers(): Promise<Speaker[]> {
     const data = await this.fetchApi<any>(
-      `/speakers?event=${EVENT_ID}&size=1000`
+      `/speakers?event=${this.dataset.eventId}&size=1000`
     );
     const items = data?.items ?? data ?? [];
     return this.validateSpeakers(items.map((s: any) => this.mapSpeaker(s)));
@@ -139,7 +140,7 @@ export class DevconApiProvider extends BaseProvider {
   }
 
   async getRooms(): Promise<Room[]> {
-    const data = await this.fetchApi<any>(`/events/${EVENT_ID}/rooms`);
+    const data = await this.fetchApi<any>(`/events/${this.dataset.eventId}/rooms`);
     const items = data?.items ?? data ?? [];
     return this.validateRooms(items.map((r: any) => this.mapRoom(r)));
   }

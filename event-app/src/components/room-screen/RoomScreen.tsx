@@ -7,6 +7,7 @@ import { Clock, Users } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { useRoom, useSessions } from "@/data/hooks";
 import type { Session } from "@/data/models";
+import { useNowMs } from "@/hooks/useNow";
 import { getStatus, minutesUntil, trackColor } from "@/components/schedule/utils";
 
 const GRADIENT = "linear-gradient(to right, #7a3aff, #633cff, #bc52f1)";
@@ -29,15 +30,6 @@ function humanize(mins: number): string {
   if (h < 24) return `${h} hour${h > 1 ? "s" : ""}`;
   const d = Math.round(h / 24);
   return `${d} day${d > 1 ? "s" : ""}`;
-}
-
-function useNow(): number {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(t);
-  }, []);
-  return now;
 }
 
 /** Track / type / expertise pill (mirrors devcon's SessionBar). */
@@ -121,7 +113,7 @@ function UpcomingCard({ session }: { session: Session }) {
  * (no SCSS). Isolated under components/room-screen.
  */
 export function RoomScreen({ roomId }: { roomId: string }) {
-  const nowMs = useNow();
+  const nowMs = useNowMs();
   const { room, isLoading: roomLoading, isError, error } = useRoom(roomId);
   const { sessions, isLoading: sessionsLoading } = useSessions({ roomId });
 

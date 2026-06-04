@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Session } from "@/data/models";
+import { useNowMs } from "@/hooks/useNow";
 import { dayKey, getDays, groupByTime, type TimeGroup } from "./utils";
 
 /** Facets a session can be filtered by (each multi-select). */
@@ -23,23 +24,14 @@ function sessionValue(session: Session, facet: FilterFacet): string | undefined 
   }
 }
 
-/** Ticks every minute so "live"/"soon" status stays current. */
-function useNow(intervalMs = 60_000): number {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), intervalMs);
-    return () => clearInterval(t);
-  }, [intervalMs]);
-  return now;
-}
-
 /**
  * All schedule view state and derivations in one place, kept isolated from the
  * rendering components: selected day, search, multi-select filters, the
  * available filter options, and the time-grouped, filtered sessions.
  */
 export function useScheduleState(sessions: Session[]) {
-  const now = useNow();
+  // Ticks every minute so "live"/"soon" status stays current (URL-mockable).
+  const now = useNowMs(60_000);
   const days = useMemo(() => getDays(sessions), [sessions]);
 
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
