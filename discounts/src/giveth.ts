@@ -1,27 +1,36 @@
 import fs from 'fs'
 
-const sinceDate = '2022-10-11T00:00:00Z'
-const qualityScore = 10
+// Keep active, community-backed Giveth projects: Verified + GIVbacks-eligible,
+// with at least MIN_DONORS unique donors and a project update since SINCE_DATE.
+// All signals come from the bulk allProjects query, so no per-project calls.
+const SINCE_DATE = '2024-11-01T00:00:00Z'
+const MIN_DONORS = 5
+
+const endpoint = 'https://mainnet.serve.giveth.io/graphql'
 
 fetchProjectOwners().then(projects => {
     console.log('Filtered Projects:', projects.length);
-    const uniqueAddresses = Array.from(new Set(projects.map(i => i.adminUser.walletAddress)))
+    const uniqueAddresses = Array.from(new Set(
+        projects
+            .map(i => i.adminUser?.walletAddress)
+            .filter(a => /^0x[0-9a-fA-F]{40}$/.test(a)) // EVM addresses only (drops Solana/Stellar wallets)
+            .map(a => a.toLowerCase())
+    ))
+    console.log('Unique EVM addresses:', uniqueAddresses.length);
 
     fs.writeFileSync('outputs/pg-projects-giveth.json', JSON.stringify(uniqueAddresses, null, 2));
 });
 
 async function fetchProjectOwners(limit = 50, skip = 0, allProjects = []) {
-    console.log('Fetch verified Giveth projects', limit, skip);
-    
-    const endpoint = 'https://mainnet.serve.giveth.io/graphql';
-    const targetDate = new Date(sinceDate).getTime();
+    const sinceTime = new Date(SINCE_DATE).getTime();
     const projectsQuery = `
         query {
-            allProjects(limit: ${limit}, skip: ${skip}, sortingBy: QualityScore, filters: Verified) {
+            allProjects(limit: ${limit}, skip: ${skip}, sortingBy: MostFunded, filters: [Verified, IsGivbackEligible]) {
                 projects {
                     id
                     title
-                    qualityScore
+                    countUniqueDonors
+                    latestUpdateCreationDate
                     adminUser {
                         firstName
                         walletAddress
@@ -42,49 +51,19 @@ async function fetchProjectOwners(limit = 50, skip = 0, allProjects = []) {
     }
 
     const projectsData = await projectsResponse.json();
-    const projects = projectsData.data.allProjects.projects.filter(project => project.qualityScore >= qualityScore);
+    const projects = projectsData.data.allProjects.projects;
 
     for (const project of projects) {
-        await new Promise((r) => setTimeout(r, 250))
-        const updatesAndDonationsQuery = `
-            query {
-                getProjectUpdates(projectId: ${project.id}) {
-                    title
-                    createdAt
-                }
-                donationsByProjectId(projectId: ${project.id}) {
-                    totalCount
-                    totalUsdBalance
-                    donations {
-                        valueUsd
-                        createdAt
-                    }
-                }
-            }
-        `;
+        const hasEnoughDonors = (project.countUniqueDonors || 0) >= MIN_DONORS;
+        const recentlyUpdated = project.latestUpdateCreationDate
+            && new Date(project.latestUpdateCreationDate).getTime() >= sinceTime;
 
-        const updatesAndDonationsResponse = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: updatesAndDonationsQuery })
-        });
-
-        if (!updatesAndDonationsResponse.ok) {
-            console.error(`Error fetching updates and donations for project ${project.id}: ${updatesAndDonationsResponse.statusText}`);
-            continue;
-        }
-
-        const updatesAndDonationsData = await updatesAndDonationsResponse.json();
-        const updates = updatesAndDonationsData.data.getProjectUpdates;
-        const donations = updatesAndDonationsData.data.donationsByProjectId.donations;
-
-        const hasRecentUpdate = updates.some(update => new Date(update.createdAt).getTime() > targetDate);
-        const hasRecentDonation = donations.some(donation => new Date(donation.createdAt).getTime() > targetDate);
-
-        if (hasRecentUpdate || hasRecentDonation) {
+        if (hasEnoughDonors && recentlyUpdated) {
             allProjects.push(project);
         }
     }
+
+    console.log('Fetched verified Giveth projects', skip, '->', skip + projects.length, '| kept so far:', allProjects.length);
 
     if (projects.length === limit) {
         return fetchProjectOwners(limit, skip + limit, allProjects);
