@@ -80,6 +80,49 @@ h6 {
   grid-column: 2 / 4;
 }
 
+/* Venue-map control buttons (filters, Find, home, zoom).
+   Frosted-glass pills matching the app nav: translucent white + blur + the
+   same #E1E4EA hairline border. Ported from devconnect's `basic-button`
+   family, restyled to glass. */
+.basic-button {
+  height: 40px;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #353548;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.basic-button.small-button {
+  height: 32px;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+}
+.basic-button.square-button {
+  width: 40px;
+  padding: 0;
+}
+.basic-button.small-button.square-button {
+  width: 32px;
+  height: 32px;
+}
+.basic-button.white-button,
+.glass {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e1e4ea;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.basic-button.white-button:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
 /* Room-screen notifications ticker. */
 @keyframes marquee {
   from {

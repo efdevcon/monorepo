@@ -19,6 +19,7 @@ const APP_CONFIG = {
   SCHEDULE_ENABLED: true, // /schedule, /schedule/[id]
   SPEAKERS_ENABLED: true, // /speakers, /speakers/[id]
   ROOMS_ENABLED: true, // /room-screens/[id]
+  MAP_ENABLED: true, // /map (venue map)
 
   // Development settings
   RUNTIME_VALIDATION: process.env.NODE_ENV === "development",

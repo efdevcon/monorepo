@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import cn from "classnames";
-import { CalendarDays, Home, Sparkles, Tv, User, Users } from "lucide-react";
+import { CalendarDays, Home, Map, Sparkles, Tv, User, Users } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
@@ -34,6 +34,13 @@ const NAV_ITEMS: NavItem[] = [
     short: "Speakers",
     icon: Users,
     enabled: APP_CONFIG.SPEAKERS_ENABLED,
+  },
+  {
+    href: "/map",
+    label: "Venue Map",
+    short: "Map",
+    icon: Map,
+    enabled: APP_CONFIG.MAP_ENABLED,
   },
   {
     href: "/room-screens",

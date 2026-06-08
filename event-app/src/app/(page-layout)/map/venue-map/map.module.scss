@@ -1,0 +1,147 @@
+@font-face {
+    font-family: 'MapFont';
+    src: url('/fonts/map-font.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes pulse-shadow {
+    0%, 100% {
+        filter: drop-shadow(0px 0px 3px #0173de) !important;
+    }
+    50% {
+        filter: drop-shadow(0px 0px 6px #0173de) !important;
+    }
+}
+
+.pulse {
+    animation: pulse-shadow 2s ease-in-out infinite;
+}
+
+.map {
+    svg * {
+        transition: opacity 0.3s ease, filter 0.3s ease;
+
+        font-family: 'Roboto', sans-serif;
+
+        /* Things without IDs are never clickable */
+        &:not([id]) {
+            pointer-events: none !important;
+        }
+
+        &[id^='image'], &[id='coworking-3'], &[id='futbol-field_2'], &[id='chillout-area_2'], &[id='open-air-cinema_2'], &[id='interview-room'], &[id='Registration'], &[id='registration-2'], &[id='coworking'], &[id='coworking-2'], text, &[id='registration-4'], &[id='registration-3'] {
+            pointer-events: none !important;
+        }
+
+        /* Certain text should have the special voxel font */
+        &[id$='-STAGE'], &[id$='-DISTRICT'], &[id^='meeting-point'], &[id='BOOTCAMP'], &[id='SECOND-FLOOR'], &[id$='-HALL'], &[id$='AMPHITHEATER'], &[id$='-SPACE'], &[id='Exit'], &[id='Entrance'] {
+            * {
+                font-family: 'MapFont', sans-serif;
+            }
+        }
+
+        /* Districts should not be clickable unless its a path (the building shape) */
+        &[id$='-DISTRICT'] {
+            > :not(path) {
+                pointer-events: none !important;
+
+                * {
+                    pointer-events: none !important;
+                }
+            }
+        }
+
+        /* When things are named like this, they are most often figma filler and should not be clickable */ 
+        &[id^='Vector'] {
+            pointer-events: none;
+
+            * {
+                pointer-events: none;
+            }
+        }
+
+        /* exceptions to the Vector rule above */
+        &[id^='meeting-point'], &[id="BUILDINGS"] {
+            * {
+                pointer-events: auto;
+            }
+        }
+
+        /* Building names should not be clickable */
+        &[id='BUILDINGS-NAME'] * {
+            pointer-events: none !important;
+        }
+
+        &[id^='building-'] {
+            * {
+                font-family: 'Roboto', sans-serif !important;
+            }
+        }
+
+        pointer-events: auto;
+    }
+
+    // When not zoomed in, hide the info and icons and make them unclickable
+    &:not(.zoomed-in) {
+        g[id='INFO'], g[id='ICONS'] {
+            opacity: 0;
+            pointer-events: none !important;
+
+            * {
+                pointer-events: none !important;
+            }
+        }
+    }
+
+    &.zoomed-in {
+        g[id='BUILDINGS-NAME'] {
+            opacity: 0;
+            pointer-events: none !important;
+        }
+
+        g[id="BUILDINGS"] * {
+            pointer-events: none !important;
+        }
+
+        // Exceptions: these should remain clickable
+        g[id="BUILDINGS"] [id^='poi-bleachers'],
+        g[id="BUILDINGS"] [id^='onboarding'],
+        g[id="BUILDINGS"] [id^='registration'] {
+            pointer-events: auto !important;
+        }
+    }
+
+    // &.zoomed-in {
+    //     g[id='Info'], g[id='Icons'] {
+    //         opacity: 1;
+    //         pointer-events: auto;
+    //     }
+    // }
+
+    &.highlight-active {
+        // :not(.highlighted) {
+        //     transition: all 0.3s ease;
+        //     // filter: saturate(0.3) brightness(0.7);
+        //     scale: 0.9;
+        // }
+
+        .highlighted {
+            border: 2px solid black;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        // .highlighted {
+        //     transition: filter 0.3s ease;
+        //     filter: none !important;
+        // }
+    }
+}
+
+// .has-selection-or-hover {
+//     :not(.highlighted):not(g) {
+//         opacity: 0.5 !important;
+//         stroke: black !important;
+//         stroke-width: 2px !important;
+//         transition: all 0.3s ease;
+//     }
+// }
