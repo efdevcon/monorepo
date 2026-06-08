@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import cn from "classnames";
 import { useUser } from "@/data/auth/useUser";
 import { useLoginTransition } from "./LoginTransition";
+import { InstallAppButton } from "./InstallAppButton";
 import { OtpInput } from "./OtpInput";
 
 const RESEND_COOLDOWN = 30;
@@ -174,6 +175,11 @@ export function Auth({
           </div>
         </>
       )}
+
+      {/* Install-as-app (mobile web only) */}
+      <div className="mt-6 flex justify-center">
+        <InstallAppButton />
+      </div>
 
       <Footer />
     </Shell>

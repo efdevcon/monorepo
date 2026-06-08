@@ -40,9 +40,9 @@ h6 {
 
 /* Content-width restraint grid, ported from devcon/devconnect's `.section`.
    Children sit in a centered middle column with side gutters; the default
-   max width is intentionally narrower here (960px). Use modifiers on the same
+   max width is intentionally narrow here (680px). Use modifiers on the same
    element to change the width, and child classes to break out:
-     .section            → 960px (default)
+     .section            → 680px (default)
      .section.wide       → 1280px
      .section.constrained→ 720px
      > .expand           → full bleed (all 3 columns)
@@ -51,7 +51,7 @@ h6 {
 .section {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(48px, 1fr) minmax(auto, 960px) minmax(48px, 1fr);
+  grid-template-columns: minmax(48px, 1fr) minmax(auto, 680px) minmax(48px, 1fr);
 }
 .section.wide {
   grid-template-columns: minmax(48px, 1fr) minmax(auto, 1280px) minmax(48px, 1fr);

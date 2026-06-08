@@ -85,11 +85,19 @@ export async function getPaidTicketsByEmail(
   const data = await response.json();
   const orders = data.results ?? [];
 
+  // SECURITY: Pretix `search` matches orders by contact email too, so an order
+  // can contain positions assigned to OTHER attendees. The signed-in user must
+  // only ever get their OWN tickets — keep only positions whose attendee email
+  // (falling back to the order email) equals the authenticated email.
+  const wanted = email.toLowerCase();
+  const ownedByUser = (p: any, orderEmail: string) =>
+    (p.attendee_email || orderEmail || "").toLowerCase() === wanted;
+
   return orders
     .map((order: any): Order => {
-      // Real tickets are positions that are not add-ons.
+      // Real tickets are non-add-on positions assigned to the signed-in user.
       const ticketPositions = order.positions.filter(
-        (p: any) => !p.addon_to
+        (p: any) => !p.addon_to && ownedByUser(p, order.email)
       );
 
       const tickets = ticketPositions.map((position: any) => {

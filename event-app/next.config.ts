@@ -15,7 +15,13 @@ const withSerwist = withSerwistInit({
   swDest: "public/sw.js",
   disable: process.env.NODE_ENV === "development" || isStaticExport,
   cacheOnNavigation: false,
-  additionalPrecacheEntries: [{ url: "/", revision }],
+  // Precache the core app-shell routes so they boot offline / on first launch.
+  additionalPrecacheEntries: [
+    { url: "/", revision },
+    { url: "/schedule", revision },
+    { url: "/speakers", revision },
+    { url: "/login", revision },
+  ],
   reloadOnOnline: false,
   exclude: [
     /build-manifest\.json$/,

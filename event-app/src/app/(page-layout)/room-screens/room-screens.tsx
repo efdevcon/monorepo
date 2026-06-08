@@ -20,7 +20,7 @@ export default function RoomScreens() {
   }
 
   return (
-    <div className="p-4">
+    <div className="py-6">
       <BackButton className="text-blue-500 hover:underline mb-4 block cursor-pointer" />
 
       <h1 className="text-2xl font-bold mb-4">Room Screens</h1>

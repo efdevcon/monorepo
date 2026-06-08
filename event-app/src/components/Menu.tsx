@@ -9,7 +9,7 @@ export function Menu() {
   const name = user?.email?.split("@")[0];
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 py-6">
+    <main className="py-6">
       {/* Welcome hero */}
       <section className="relative mb-6 overflow-hidden rounded-2xl bg-[#3D00BF]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
