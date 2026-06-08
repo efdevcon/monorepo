@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import cn from "classnames";
 import { useUser } from "@/data/auth/useUser";
+import { useRouter } from "@/routing";
 import { useLoginTransition } from "./LoginTransition";
 import { InstallAppButton } from "./InstallAppButton";
 import { OtpInput } from "./OtpInput";
@@ -22,6 +23,7 @@ export function Auth({
 }: { onSkip?: () => void; leaving?: boolean } = {}) {
   const { user, loading, hasInitialized, sendOtp, verifyOtp, signOut } =
     useUser();
+  const router = useRouter();
   const { play } = useLoginTransition();
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -49,9 +51,16 @@ export function Auth({
       <Shell>
         <h1 className="text-2xl font-bold mb-1">You&apos;re signed in</h1>
         <p className="text-[#939393] mb-8">{user.email}</p>
-        <PrimaryButton onClick={signOut} disabled={busy}>
-          {busy ? loading : "Sign out"}
+        <PrimaryButton onClick={() => router.push("/")} disabled={busy}>
+          Continue to app
         </PrimaryButton>
+        <button
+          onClick={signOut}
+          disabled={busy}
+          className="mt-3 w-full cursor-pointer rounded-full border border-[#E1E4EA] py-3 px-5 font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-50"
+        >
+          {busy ? loading : "Sign out"}
+        </button>
       </Shell>
     );
   }
