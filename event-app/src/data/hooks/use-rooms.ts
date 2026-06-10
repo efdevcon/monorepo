@@ -29,22 +29,21 @@ export function useRooms() {
 }
 
 /**
- * Hook to fetch a single room by ID
+ * Hook to fetch a single room by ID. Derives from the cached rooms list so it
+ * resolves offline once the list has loaded (the provider already implemented
+ * `getRoom` by scanning `getRooms()`, but under a separate cache key — sharing
+ * the list cache is what makes it offline-available).
  */
 export function useRoom(id: string) {
-  const { data, error, isLoading, mutate } = useSWR(
-    id ? [getActiveDatasetKey(), "room", id] : null,
-    () => provider.getRoom(id),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { rooms, isLoading, error, mutate } = useRooms();
+  const room = id ? rooms.find((r) => r.id === id) ?? null : null;
 
   return {
-    room: data ?? null,
-    isLoading,
-    isError: error,
-    error,
+    room,
+    isLoading: isLoading && !room,
+    // Offline-first: don't surface an error if we have cached data to render.
+    isError: room ? undefined : error,
+    error: room ? undefined : error,
     mutate,
   };
 }

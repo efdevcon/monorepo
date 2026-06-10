@@ -2,9 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
+import { CacheWarmer } from "@/components/CacheWarmer";
 import { Toaster } from "sonner";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { DebugPanel } from "@/components/DebugPanel";
+import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import APP_CONFIG from "@/CONFIG";
 
 // Match the /devcon project: Inter (body) + Poppins (headings).
@@ -58,9 +60,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
-        <SWRConfigProvider>{children}</SWRConfigProvider>
+        <SWRConfigProvider>
+          <CacheWarmer />
+          {children}
+        </SWRConfigProvider>
         <CustomScrollbar />
         <DebugPanel />
+        <ServiceWorkerUpdater />
         <Toaster position="bottom-center" richColors />
       </body>
     </html>

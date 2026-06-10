@@ -33,42 +33,39 @@ export function useSessions(filters?: SessionFilters) {
 }
 
 /**
- * Hook to fetch a single session by ID
+ * Hook to fetch a single session by ID.
+ *
+ * Derives from the cached full session list instead of fetching `/sessions/:id`
+ * separately, so a session never opened while online still renders offline once
+ * the list has loaded. The list endpoint returns the same fields, so nothing is
+ * lost by selecting from it.
  */
 export function useSession(id: string) {
-  const ds = getActiveDatasetKey();
-  const { data, error, isLoading, mutate } = useSWR(
-    id ? [ds, "session", id] : null,
-    () => provider.getSession(id),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { sessions, isLoading, error, mutate } = useSessions();
+  const session = id ? sessions.find((s) => s.id === id) ?? null : null;
 
   return {
-    session: data ?? null,
-    isLoading,
-    isError: error,
-    error,
+    session,
+    isLoading: isLoading && !session,
+    // Offline-first: don't surface an error if we have cached data to render.
+    isError: session ? undefined : error,
+    error: session ? undefined : error,
     mutate,
   };
 }
 
 /**
- * Hook to fetch sessions by speaker ID
+ * Hook to fetch sessions by speaker ID. Filters the cached full list so it works
+ * offline (and shares the same cache as the schedule).
  */
 export function useSessionsBySpeaker(speakerId: string) {
-  const ds = getActiveDatasetKey();
-  const { data, error, isLoading, mutate } = useSWR(
-    speakerId ? [ds, "sessions", "speaker", speakerId] : null,
-    () => provider.getSessionsBySpeaker(speakerId),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { sessions, isLoading, error, mutate } = useSessions();
+  const filtered = speakerId
+    ? sessions.filter((s) => s.speakers?.some((sp) => sp.id === speakerId))
+    : [];
 
   return {
-    sessions: data ?? [],
+    sessions: filtered,
     isLoading,
     isError: error,
     error,
@@ -77,20 +74,14 @@ export function useSessionsBySpeaker(speakerId: string) {
 }
 
 /**
- * Hook to fetch sessions by track
+ * Hook to fetch sessions by track. Filters the cached full list (offline-safe).
  */
 export function useSessionsByTrack(track: string) {
-  const ds = getActiveDatasetKey();
-  const { data, error, isLoading, mutate } = useSWR(
-    track ? [ds, "sessions", "track", track] : null,
-    () => provider.getSessionsByTrack(track),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { sessions, isLoading, error, mutate } = useSessions();
+  const filtered = track ? sessions.filter((s) => s.track === track) : [];
 
   return {
-    sessions: data ?? [],
+    sessions: filtered,
     isLoading,
     isError: error,
     error,
@@ -99,20 +90,14 @@ export function useSessionsByTrack(track: string) {
 }
 
 /**
- * Hook to fetch sessions by day
+ * Hook to fetch sessions by day. Filters the cached full list (offline-safe).
  */
 export function useSessionsByDay(day: string) {
-  const ds = getActiveDatasetKey();
-  const { data, error, isLoading, mutate } = useSWR(
-    day ? [ds, "sessions", "day", day] : null,
-    () => provider.getSessionsByDay(day),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { sessions, isLoading, error, mutate } = useSessions();
+  const filtered = day ? sessions.filter((s) => s.day === day || s.date === day) : [];
 
   return {
-    sessions: data ?? [],
+    sessions: filtered,
     isLoading,
     isError: error,
     error,
