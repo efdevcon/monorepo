@@ -22,7 +22,7 @@ const consensusClients = [
 const sinceDate = '2024-11-01T00:00:00Z'
 // Bots: any login ending in "[bot]" plus these extras that don't follow that convention.
 const excludedBots = ['actions-user', 'eth-bot', 'tempoxyz-bot']
-const isBot = (login: string) => login.endsWith('[bot]') || login.endsWith('-bot') || excludedBots.includes(login)
+const isBot = (login: string) => !!login && (login.endsWith('[bot]') || login.endsWith('-bot') || excludedBots.includes(login))
 const headers = { Authorization: `token ${process.env.GITHUB_TOKEN}` }
 
 fetchContributors().then(contributors => {
@@ -88,7 +88,7 @@ async function countCommitsForRepos(repos, contributorCommits) {
             if (commits.length === 0) break
 
             commits.forEach(c => {
-                if (c.author && !isBot(c.author.login)) {
+                if (c.author?.login && !isBot(c.author.login)) {
                     const login = c.author.login
                     const currentCount = contributorCommits.get(login) || 0
                     contributorCommits.set(login, currentCount + 1)
