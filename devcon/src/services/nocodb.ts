@@ -45,3 +45,13 @@ export async function updateRow(viewId: string, rowId: number, data: Record<stri
   const api = getApi()
   return api.dbTableRow.update('noco', baseId, tableId, rowId, data)
 }
+
+export async function getRowById(viewId: string, rowId: number): Promise<any | null> {
+  const { baseId, tableId } = await resolveFormView(viewId)
+  const api = getApi()
+  try {
+    return await api.dbTableRow.read('noco', baseId, tableId, rowId)
+  } catch {
+    return null
+  }
+}

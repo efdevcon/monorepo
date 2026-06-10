@@ -335,6 +335,39 @@ export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVo
 }
 
 /**
+ * Find a voucher already assigned to ANY of the given identities (e.g. a
+ * person's lowercased wallet, GitHub login, and email). Vouchers are keyed by a
+ * single `assigned_to` string, so a person who connected different identities
+ * across submissions would otherwise dedup only on the one that was stored.
+ * Checking the whole identity set lets one human be matched no matter which of
+ * their identities a prior voucher was keyed by. Returns the earliest match.
+ */
+export async function getVoucherByAnyIdentity(identities: string[]): Promise<DiscountVoucher | null> {
+  const ids = Array.from(new Set(identities.map(s => s.trim()).filter(Boolean)))
+  if (ids.length === 0) return null
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .select('*')
+    .in('assigned_to', ids)
+    .order('assigned_at', { ascending: true })
+    .limit(1)
+  if (error) throw new Error(`discountStore getVoucherByAnyIdentity: ${error.message}`)
+  const row = data?.[0]
+  if (!row) return null
+  return {
+    id: row.id,
+    code: row.code,
+    pretixVoucherId: row.pretix_voucher_id,
+    itemId: row.item_id,
+    tag: row.tag,
+    assignedTo: row.assigned_to,
+    assignedAt: row.assigned_at,
+    collection: row.collection,
+  }
+}
+
+/**
  * Fetch all existing codes for a collection (for dedup before bulk insert).
  */
 export async function getExistingCodes(collection: string = TICKETING.discount.collection): Promise<Set<string>> {
