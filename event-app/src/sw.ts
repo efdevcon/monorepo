@@ -24,6 +24,41 @@ const serwist = new Serwist({
   clientsClaim: false,
   navigationPreload: false,
   runtimeCaching: [
+    // Next.js App Router fetches RSC payloads (header `RSC: 1`) for client-side
+    // navigation and reconciliation. These are NOT `destination: "document"`
+    // requests, so without dedicated rules they'd hit the network and fail
+    // offline — and Next.js reacts to a failed RSC fetch by forcing a hard
+    // navigation, which (with no offline document either) produces an infinite
+    // reload loop. Cache them (separate cache from HTML to avoid key collisions
+    // on the same URL) so navigations resolve offline. Mirrors @serwist/next's
+    // `defaultCache`. Must precede the document rule.
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin &&
+        request.headers.get("RSC") === "1" &&
+        request.headers.get("Next-Router-Prefetch") === "1" &&
+        !url.pathname.startsWith("/api/"),
+      handler: new NetworkFirst({
+        cacheName: "pages-rsc-prefetch",
+        networkTimeoutSeconds: 5,
+        plugins: [
+          new CacheableResponsePlugin({ statuses: [200] }),
+          new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
+        ],
+      }),
+    },
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin && request.headers.get("RSC") === "1" && !url.pathname.startsWith("/api/"),
+      handler: new NetworkFirst({
+        cacheName: "pages-rsc",
+        networkTimeoutSeconds: 5,
+        plugins: [
+          new CacheableResponsePlugin({ statuses: [200] }),
+          new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
+        ],
+      }),
+    },
     {
       matcher: ({ request }) => request.destination === "document",
       handler: new NetworkFirst({
@@ -106,6 +141,19 @@ const serwist = new Serwist({
       }),
     },
   ],
+  // When a document navigation can't be served (offline, on a route that isn't
+  // precached and was never cached — e.g. a dynamic detail page opened for the
+  // first time offline), fall back to the precached /offline page instead of
+  // failing. A failed top-level navigation is what lets the reload loop run
+  // forever; guaranteeing the document side always resolves stops it.
+  fallbacks: {
+    entries: [
+      {
+        url: "/offline",
+        matcher: ({ request }) => request.destination === "document",
+      },
+    ],
+  },
 });
 
 serwist.addEventListeners();

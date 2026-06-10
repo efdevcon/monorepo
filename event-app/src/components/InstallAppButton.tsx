@@ -1,6 +1,6 @@
 "use client";
 
-import { createElement, useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Download, Share } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
@@ -39,8 +39,31 @@ export function useShouldShowInstall(): boolean {
   return shouldShow;
 }
 
-/** iOS-in-a-non-Safari-browser can't install — point them to Safari. */
-function IOSNonSafariModal({ onClose }: { onClose: () => void }) {
+/** iOS has no programmatic install — Safari requires the user to tap
+ *  Share → Add to Home Screen, and other iOS browsers can't install at all
+ *  (so they must reopen the page in Safari first). Either way we render our
+ *  own instructions rather than relying on the install web component, which
+ *  has no reliable Apple flow. */
+function IOSInstallModal({ onClose }: { onClose: () => void }) {
+  const safari = isSafari();
+
+  const steps: ReactNode[] = [
+    ...(safari
+      ? []
+      : [
+          <>
+            Open this page in <b>Safari</b>.
+          </>,
+        ]),
+    <>
+      Tap the <Share className="inline-block h-4 w-4 align-text-bottom" /> Share
+      button.
+    </>,
+    <>
+      Choose <b>“Add to Home Screen”</b>.
+    </>,
+  ];
+
   return createPortal(
     <div
       className="fixed inset-0 z-[95] flex items-end justify-center bg-black/60 p-4 backdrop-blur-sm sm:items-center"
@@ -55,20 +78,16 @@ function IOSNonSafariModal({ onClose }: { onClose: () => void }) {
         </div>
         <h3 className="mb-1 text-lg font-bold">Install {APP_CONFIG.APP_NAME}</h3>
         <p className="mb-5 text-sm text-gray-500">
-          To install on your iPhone, open this page in Safari first.
+          {safari
+            ? "Add this app to your Home Screen for the full experience."
+            : "To install on your iPhone, open this page in Safari first."}
         </p>
         <ol className="mb-6 space-y-3 text-left text-sm text-gray-600">
-          <li className="flex gap-3">
-            <Step n={1} /> Open it in <b>Safari</b>.
-          </li>
-          <li className="flex gap-3">
-            <Step n={2} /> Tap the{" "}
-            <Share className="inline-block h-4 w-4 align-text-bottom" /> Share
-            button.
-          </li>
-          <li className="flex gap-3">
-            <Step n={3} /> Choose <b>“Add to Home Screen”</b>.
-          </li>
+          {steps.map((content, i) => (
+            <li key={i} className="flex gap-3">
+              <Step n={i + 1} /> {content}
+            </li>
+          ))}
         </ol>
         <button
           onClick={onClose}
@@ -148,7 +167,10 @@ export function InstallAppButton({
 }) {
   const shouldShow = useShouldShowInstall();
   const [open, setOpen] = useState(false);
-  const showIosInstructions = open && isIOS() && !isSafari();
+  // iOS (Safari or otherwise) can't install programmatically — always show our
+  // own Share → Add to Home Screen instructions. The web component is only used
+  // for Android, where `beforeinstallprompt` provides a real install flow.
+  const showIosInstructions = open && isIOS();
 
   if (!shouldShow) return null;
 
@@ -166,7 +188,7 @@ export function InstallAppButton({
         {label}
       </button>
 
-      {showIosInstructions && <IOSNonSafariModal onClose={() => setOpen(false)} />}
+      {showIosInstructions && <IOSInstallModal onClose={() => setOpen(false)} />}
       {open && !showIosInstructions && (
         <PwaInstallElement onClose={() => setOpen(false)} />
       )}
