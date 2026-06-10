@@ -173,6 +173,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'POST') {
     const decision = req.body?.decision
+    const comment = typeof req.body?.comment === 'string' ? (req.body.comment as string) : undefined
+
+    // Save an admin note on its own (no decision).
+    if (decision === undefined && comment !== undefined) {
+      const noteRecord = await getRowById(VIEW_ID, id)
+      if (!noteRecord) {
+        res.status(404).json({ success: false, error: 'Builder application not found' })
+        return
+      }
+      await updateRow(VIEW_ID, id, { 'Admin Notes': comment })
+      res.status(200).json({ success: true, comment })
+      return
+    }
+
     if (decision !== 'Approved' && decision !== 'Rejected') {
       res.status(400).json({ success: false, error: "decision must be 'Approved' or 'Rejected'" })
       return
@@ -183,6 +197,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(404).json({ success: false, error: 'Builder application not found' })
       return
     }
+    // Persist any note the admin typed before deciding.
+    const noteUpdate = comment !== undefined ? { 'Admin Notes': comment } : {}
 
     if (decision === 'Rejected') {
       // Email the applicant — but only on the transition INTO Rejected, so
@@ -195,7 +211,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         emailed = sent.success
         if (!sent.success) console.warn('[builder/review] rejection email failed:', sent.error)
       }
-      await updateRow(VIEW_ID, id, { Decision: 'Rejected' })
+      await updateRow(VIEW_ID, id, { Decision: 'Rejected', ...noteUpdate })
       res.status(200).json({ success: true, decision: 'Rejected', emailed })
       return
     }
@@ -261,6 +277,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       Decision: 'Approved',
       'Voucher Code': voucher.code,
       'Voucher Sent': emailed,
+      ...noteUpdate,
     })
 
     res.status(200).json({ success: true, decision: 'Approved', code: voucher.code, emailed, reused })

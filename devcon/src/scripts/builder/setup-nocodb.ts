@@ -69,6 +69,7 @@ const COLUMNS: ColDef[] = [
   { title: 'Matched Repos', uidt: 'LongText' },
   { title: 'Matched Count', uidt: 'Number' },
   { title: 'Match Source', uidt: 'SingleLineText' },
+  { title: 'Admin Notes', uidt: 'LongText' },
   { title: 'Decision', uidt: 'SingleSelect', options: ['Pending', 'Approved', 'Rejected'] },
   { title: 'Voucher Sent', uidt: 'Checkbox' },
   { title: 'Voucher Code', uidt: 'SingleLineText' },

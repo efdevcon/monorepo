@@ -216,6 +216,9 @@ export default function BuilderReviewPage() {
   const [error, setError] = useState<string | null>(null)
   const [actioning, setActioning] = useState(false)
   const [actionResult, setActionResult] = useState<string | null>(null)
+  const [comment, setComment] = useState('')
+  const [savedComment, setSavedComment] = useState('')
+  const [savingComment, setSavingComment] = useState(false)
 
   useEffect(() => {
     const s = sessionStorage.getItem(ADMIN_KEY_STORAGE)
@@ -244,6 +247,11 @@ export default function BuilderReviewPage() {
           return
         }
         setRecord(json.record)
+        {
+          const note = String(json.record?.['Admin Notes'] ?? '')
+          setComment(note)
+          setSavedComment(note)
+        }
         setMatchedRepos(Array.isArray(json.matchedRepos) ? json.matchedRepos : [])
         setTalent(json.talent ?? null)
         setGithub(json.github ?? null)
@@ -308,7 +316,7 @@ export default function BuilderReviewPage() {
       const res = await fetch(`/api/builder/review/${id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
-        body: JSON.stringify({ decision }),
+        body: JSON.stringify({ decision, comment }),
       })
       const json = await res.json()
       if (!res.ok || !json.success) {
@@ -333,6 +341,29 @@ export default function BuilderReviewPage() {
       setError((e as Error).message)
     } finally {
       setActioning(false)
+    }
+  }
+
+  async function saveComment() {
+    if (!id || !secret) return
+    setSavingComment(true)
+    setError(null)
+    try {
+      const res = await fetch(`/api/builder/review/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
+        body: JSON.stringify({ comment }),
+      })
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        setError(json.error || 'Could not save note')
+        return
+      }
+      setSavedComment(comment)
+    } catch (e) {
+      setError((e as Error).message)
+    } finally {
+      setSavingComment(false)
     }
   }
 
@@ -871,6 +902,37 @@ export default function BuilderReviewPage() {
                   </div>
                 </div>
               )}
+
+              {/* Admin notes — private, reviewer-only comment on this application */}
+              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <Section title="Admin notes">
+                  <textarea
+                    value={comment}
+                    onChange={e => setComment(e.target.value)}
+                    placeholder="Add a private note about this application (visible to reviewers only)…"
+                    rows={3}
+                    className="w-full px-3 py-2 border border-[#dddae2] rounded-lg text-sm text-[#160b2b] leading-5 resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7235ed]/30"
+                  />
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={saveComment}
+                      disabled={savingComment || comment === savedComment}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#160b2b] text-white text-sm font-semibold hover:bg-[#2d1a55] disabled:opacity-50 transition-colors"
+                    >
+                      {savingComment && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
+                      Save note
+                    </button>
+                    {comment !== savedComment ? (
+                      <span className="text-xs text-[#a86510]">Unsaved changes</span>
+                    ) : savedComment ? (
+                      <span className="inline-flex items-center gap-1 text-xs text-[#137a3e]">
+                        <Check className="w-3.5 h-3.5" aria-hidden="true" /> Saved
+                      </span>
+                    ) : null}
+                  </div>
+                </Section>
+              </div>
 
               {/* Meta */}
               <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
