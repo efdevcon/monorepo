@@ -26,8 +26,12 @@ export function useSessions(filters?: SessionFilters) {
     sessions: data ?? [],
     isLoading,
     isValidating,
-    isError: error,
-    error,
+    // Offline-first: a failed background revalidation must not hide data we
+    // already have cached. Only report an error when there's no data at all
+    // (`data` is undefined until the first successful fetch — an empty array
+    // means a successful fetch that returned nothing).
+    isError: data !== undefined ? undefined : error,
+    error: data !== undefined ? undefined : error,
     mutate,
   };
 }
