@@ -1,46 +1,31 @@
 import useSWR from "swr";
 import { provider } from "../providers/provider";
+import { getActiveDatasetKey } from "../dataset";
 import type { Session } from "../models";
 import type { SessionFilters } from "../providers/provider-interface";
 
 /**
- * Fetcher function for SWR
- */
-async function sessionsFetcher(
-  filters?: SessionFilters
-): Promise<Session[]> {
-  return provider.getSessions(filters);
-}
-
-/**
- * Hook to fetch all sessions with optional filters
+ * Hook to fetch all sessions with optional filters.
+ * SWR keys are namespaced by the active dataset so switching datasets doesn't
+ * serve another dataset's cached data.
  */
 export function useSessions(filters?: SessionFilters) {
-  const key = filters ? ["sessions", filters] : ["sessions"];
+  const ds = getActiveDatasetKey();
+  const key = filters ? [ds, "sessions", filters] : [ds, "sessions"];
 
   const { data, error, isLoading, isValidating, mutate } = useSWR(
     key,
-    () => {
-      console.log("[useSessions] fetcher called");
-      return sessionsFetcher(filters).then((r) => {
-        console.log("[useSessions] fetcher resolved:", r.length, "sessions");
-        return r;
-      }).catch((e) => {
-        console.error("[useSessions] fetcher error:", e);
-        throw e;
-      });
-    },
+    () => provider.getSessions(filters),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: true,
     }
   );
 
-  console.log("[useSessions] state:", { isLoading, isValidating, hasData: !!data, hasError: !!error, dataLength: data?.length });
-
   return {
     sessions: data ?? [],
     isLoading,
+    isValidating,
     isError: error,
     error,
     mutate,
@@ -51,8 +36,9 @@ export function useSessions(filters?: SessionFilters) {
  * Hook to fetch a single session by ID
  */
 export function useSession(id: string) {
+  const ds = getActiveDatasetKey();
   const { data, error, isLoading, mutate } = useSWR(
-    id ? ["session", id] : null,
+    id ? [ds, "session", id] : null,
     () => provider.getSession(id),
     {
       revalidateOnFocus: false,
@@ -72,8 +58,9 @@ export function useSession(id: string) {
  * Hook to fetch sessions by speaker ID
  */
 export function useSessionsBySpeaker(speakerId: string) {
+  const ds = getActiveDatasetKey();
   const { data, error, isLoading, mutate } = useSWR(
-    speakerId ? ["sessions", "speaker", speakerId] : null,
+    speakerId ? [ds, "sessions", "speaker", speakerId] : null,
     () => provider.getSessionsBySpeaker(speakerId),
     {
       revalidateOnFocus: false,
@@ -93,8 +80,9 @@ export function useSessionsBySpeaker(speakerId: string) {
  * Hook to fetch sessions by track
  */
 export function useSessionsByTrack(track: string) {
+  const ds = getActiveDatasetKey();
   const { data, error, isLoading, mutate } = useSWR(
-    track ? ["sessions", "track", track] : null,
+    track ? [ds, "sessions", "track", track] : null,
     () => provider.getSessionsByTrack(track),
     {
       revalidateOnFocus: false,
@@ -114,8 +102,9 @@ export function useSessionsByTrack(track: string) {
  * Hook to fetch sessions by day
  */
 export function useSessionsByDay(day: string) {
+  const ds = getActiveDatasetKey();
   const { data, error, isLoading, mutate } = useSWR(
-    day ? ["sessions", "day", day] : null,
+    day ? [ds, "sessions", "day", day] : null,
     () => provider.getSessionsByDay(day),
     {
       revalidateOnFocus: false,

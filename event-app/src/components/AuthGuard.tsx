@@ -1,16 +1,19 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useUser } from "@/data/auth/useUser";
 import { useSkipLogin } from "@/data/auth/useSkipLogin";
 import { useLoginTransition } from "./LoginTransition";
 import { Auth } from "./Auth";
 
 /**
- * Gates its children behind login. Shows the login screen when the user is
- * neither signed in nor has chosen to skip. The skip choice is persisted, so
- * skipped users pass straight through on subsequent visits.
+ * Gates its children behind login. The guard OWNS the login screen (a single
+ * `Auth` instance) — it renders it when logged out (or on /login even if
+ * skipped) and during the transition's first phase. Because it's always the
+ * same instance, toggling `leaving` fades it instead of remounting (no flash).
  */
 export function AuthGuard({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const { user, hasInitialized } = useUser();
   const { skipped, ready, skip } = useSkipLogin();
   const { play, playing, revealApp } = useLoginTransition();
@@ -28,14 +31,14 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // During the transition's first phase, keep the (fading) login screen mounted
-  // behind the overlay; hand off to the app once the image has filled.
-  if (playing && !revealApp) {
-    return <Auth onSkip={handleSkip} leaving />;
-  }
+  // Logged-out users see the login screen everywhere; a skipped guest only sees
+  // it on /login (where they go to sign in). During the transition's phase 1 we
+  // keep it mounted (and fading) regardless.
+  const showLogin = !user && (!skipped || pathname === "/login");
+  const leaving = playing && !revealApp;
 
-  if (!user && !skipped) {
-    return <Auth onSkip={handleSkip} />;
+  if (showLogin || leaving) {
+    return <Auth onSkip={handleSkip} leaving={leaving} />;
   }
 
   return <>{children}</>;

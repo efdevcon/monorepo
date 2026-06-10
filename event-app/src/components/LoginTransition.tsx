@@ -1,8 +1,21 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "@/routing";
+
+/** True below the `lg` breakpoint (where the login hero image is hidden). */
+function useIsMobile(): boolean {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const update = () => setMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return mobile;
+}
 
 const DURATION = 2.4; // seconds
 // grow from right (0 → 0.4) · hold (0.4 → 0.6) · reveal app from right (0.6 → 1)
@@ -45,13 +58,28 @@ export function LoginTransitionProvider({
   const [playing, setPlaying] = useState(false);
   const [revealApp, setRevealApp] = useState(false);
   const router = useRouter();
+  const isMobile = useIsMobile();
+
+  // Desktop continues the right-half hero panel (offset, centered). Mobile has
+  // no visible hero, so the image wipes in from the right edge / off-screen.
+  const lInitial = isMobile ? "100%" : "50%";
+  const lKeyframes = isMobile
+    ? ["100%", "-8%", "-8%", "-8%"]
+    : ["50%", "-8%", "-8%", "-8%"];
+  const xInitial = isMobile ? "0%" : "25%";
+  const xKeyframes = isMobile
+    ? ["0%", "0%", "0%", "0%"]
+    : ["25%", "0%", "0%", "0%"];
 
   const play = () => {
-    router.push("/");
     setPlaying(true);
-    // Mount the app during the hold — while the image is full and opaque — so
-    // the mount cost is hidden and the fade that follows stays smooth.
-    setTimeout(() => setRevealApp(true), DURATION * TIMES[1] * 1000);
+    // Navigate + mount the app during the hold — while the image fully covers
+    // the screen — so the route swap / remount is hidden (no flash of the form
+    // unmounting/remounting before the transition plays).
+    setTimeout(() => {
+      setRevealApp(true);
+      router.push("/");
+    }, DURATION * TIMES[1] * 1000);
   };
 
   return (
@@ -66,7 +94,7 @@ export function LoginTransitionProvider({
           className="fixed inset-0 z-[70] pointer-events-none"
           style={
             {
-              "--l": "50%",
+              "--l": lInitial,
               "--r": "108%",
               maskImage: MASK,
               WebkitMaskImage: MASK,
@@ -75,10 +103,10 @@ export function LoginTransitionProvider({
           // Framer animates CSS variables at runtime; its types don't model
           // custom-property keys, so cast. (Only the mask edges live here — the
           // image transform is animated natively below.)
-          initial={{ "--l": "50%", "--r": "108%" } as Record<string, string>}
+          initial={{ "--l": lInitial, "--r": "108%" } as Record<string, string>}
           animate={
             {
-              "--l": ["50%", "-8%", "-8%", "-8%"],
+              "--l": lKeyframes,
               "--r": ["108%", "108%", "108%", "-8%"],
             } as Record<string, string[]>
           }
@@ -95,8 +123,8 @@ export function LoginTransitionProvider({
               in the window; scale zooms toward center. Synced to the mask. */}
           <motion.div
             className="absolute inset-0"
-            initial={{ x: "25%", scale: 1 }}
-            animate={{ x: ["25%", "0%", "0%", "0%"], scale: 1.18 }}
+            initial={{ x: xInitial, scale: 1 }}
+            animate={{ x: xKeyframes, scale: 1.18 }}
             transition={{
               duration: DURATION,
               times: TIMES,
@@ -119,7 +147,7 @@ export function LoginTransitionProvider({
               <motion.img
                 src="/login/devcon-8-logo.svg"
                 alt="Devcon 8 India"
-                className="w-[26vw]"
+                className="w-[60vw] lg:w-[26vw]"
                 style={{ filter: "brightness(0) invert(1)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

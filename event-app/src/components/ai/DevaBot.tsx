@@ -5,6 +5,16 @@ import type { Components } from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
 import Markdown from "react-markdown";
 import cn from "classnames";
+import {
+  ArrowUp,
+  ChevronDown,
+  FileText,
+  Loader2,
+  Search,
+  Sparkles,
+  X,
+} from "lucide-react";
+import { supabase } from "@/data/auth/supabase";
 
 interface Message {
   role: "user" | "assistant";
@@ -42,12 +52,11 @@ interface Source {
 interface DevaBotProps {
   toggled: boolean;
   onToggle: (visible: boolean) => void;
-  apiUrl?: string;
 }
 
 const STORAGE_KEY = "devabot_messages";
 
-export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
+export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -157,13 +166,15 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
     setDebugContext("");
 
     try {
-      const baseUrl =
-        apiUrl ||
-        process.env.NEXT_PUBLIC_DEVABOT_API_URL ||
-        "http://localhost:3001";
-      const response = await fetch(`${baseUrl}/api/chat`, {
+      // Call our login-gated proxy (same-origin) with the Supabase token.
+      const token = (await supabase?.auth.getSession())?.data.session
+        ?.access_token;
+      const response = await fetch(`/api/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
           message: userMessage.content,
           history: messages,
@@ -235,7 +246,7 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
     <AnimatePresence>
       {toggled && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-black/60"
+          className="fixed inset-0 z-[10000] bg-black/50 backdrop-blur-sm"
           onClick={() => onToggle(false)}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -243,40 +254,67 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
         >
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 h-full w-[400px] max-w-full bg-white shadow-xl flex flex-col"
+            className="absolute right-0 flex h-full w-[420px] max-w-full flex-col bg-white shadow-2xl"
             initial={{ [isSmallScreen ? "y" : "x"]: "100%" }}
             animate={{ [isSmallScreen ? "y" : "x"]: "0%" }}
             exit={{ [isSmallScreen ? "y" : "x"]: "100%" }}
             transition={{ duration: 0.3 }}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="font-bold text-lg">Deva AI</h2>
+            {/* Header — devcon logo + Deva AI badge */}
+            <div className="flex items-center justify-between gap-3 border-b border-[#E1E4EA] px-4 py-3">
+              <div className="flex items-center gap-2.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/login/devcon-8-logo.svg"
+                  alt="Devcon 8 India"
+                  className="h-7 w-auto"
+                />
+                <span className="inline-flex items-center gap-1 rounded-full bg-[#f3eeff] px-2 py-0.5 text-xs font-semibold text-[#7D52F4]">
+                  <Sparkles className="h-3 w-3" />
+                  Deva AI
+                </span>
+              </div>
               <button
                 onClick={() => onToggle(false)}
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300"
+                aria-label="Close"
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
               >
-                ✕
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            {/* Sources toggle */}
+            {/* Sources (collapsible) */}
             {sources.length > 0 && (
-              <div className="px-4 py-2 bg-yellow-50 border-b">
+              <div className="border-b border-[#E1E4EA] px-4 py-2">
                 <button
                   onClick={() => setShowSources(!showSources)}
-                  className="text-xs font-mono text-yellow-800"
+                  className="flex cursor-pointer items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-700"
                 >
-                  🔍 {sources.length} sources fetched (click to {showSources ? "hide" : "show"})
+                  <Search className="h-3.5 w-3.5" />
+                  {sources.length} source{sources.length > 1 ? "s" : ""}
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 transition-transform",
+                      showSources && "rotate-180"
+                    )}
+                  />
                 </button>
                 {showSources && (
-                  <div className="mt-2 space-y-2 max-h-48 overflow-y-auto">
+                  <div className="mt-2 max-h-48 space-y-1.5 overflow-y-auto">
                     {sources.map((s, i) => (
-                      <div key={s.id} className="text-xs font-mono bg-yellow-100 p-2 rounded">
-                        <div className="font-bold">
-                          [{i + 1}] {s.source_id} ({(s.similarity * 100).toFixed(1)}%)
+                      <div
+                        key={s.id}
+                        className="rounded-lg bg-gray-50 p-2 text-xs"
+                      >
+                        <div className="font-semibold text-gray-700">
+                          [{i + 1}] {s.source_id}{" "}
+                          <span className="font-normal text-gray-400">
+                            {(s.similarity * 100).toFixed(0)}%
+                          </span>
                         </div>
-                        <div className="text-yellow-700 mt-1">{s.content_preview}</div>
+                        <div className="mt-0.5 line-clamp-2 text-gray-500">
+                          {s.content_preview}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -284,30 +322,38 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
               </div>
             )}
 
-            {/* Debug context toggle */}
-            {debugContext && (
-              <div className="px-4 py-2 bg-blue-50 border-b">
+            {/* Debug context — dev only */}
+            {process.env.NODE_ENV === "development" && debugContext && (
+              <div className="border-b border-[#E1E4EA] px-4 py-2">
                 <button
                   onClick={() => setShowDebugContext(!showDebugContext)}
-                  className="text-xs font-mono text-blue-800"
+                  className="flex cursor-pointer items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-gray-700"
                 >
-                  📄 Full context: {debugContext.length.toLocaleString()} chars (click to {showDebugContext ? "hide" : "show"})
+                  <FileText className="h-3.5 w-3.5" />
+                  Context · {debugContext.length.toLocaleString()} chars
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 transition-transform",
+                      showDebugContext && "rotate-180"
+                    )}
+                  />
                 </button>
                 {showDebugContext && (
-                  <div className="mt-2 max-h-96 overflow-y-auto">
-                    <pre className="text-xs font-mono bg-blue-100 p-2 rounded whitespace-pre-wrap break-words">
-                      {debugContext}
-                    </pre>
-                  </div>
+                  <pre className="mt-2 max-h-96 overflow-y-auto whitespace-pre-wrap break-words rounded-lg bg-gray-50 p-2 text-[11px] text-gray-500">
+                    {debugContext}
+                  </pre>
                 )}
               </div>
             )}
 
             {/* Error state */}
             {error && (
-              <div className="p-4 bg-red-50 text-red-600 text-sm">
-                {error}
-                <button onClick={() => setError("")} className="ml-2 underline">
+              <div className="flex items-center justify-between gap-2 bg-red-50 px-4 py-2 text-sm text-red-600">
+                <span>{error}</span>
+                <button
+                  onClick={() => setError("")}
+                  className="shrink-0 cursor-pointer text-xs underline"
+                >
                   Dismiss
                 </button>
               </div>
@@ -316,21 +362,28 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
             {/* Messages */}
             <div
               ref={messagesContainerRef}
-              className="flex-1 overflow-y-auto p-4 space-y-3"
+              className="flex-1 space-y-3 overflow-y-auto bg-gray-50/50 p-4 pb-24"
             >
               {messages.length === 0 && !streamingMessage && (
-                <div className="text-center text-gray-500 mt-20">
-                  <p className="text-lg font-medium mb-2">Ask me anything</p>
-                  <p className="text-sm">About Devcon, speakers, schedule, and more.</p>
+                <div className="mt-16 flex flex-col items-center text-center">
+                  <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#f3eeff] text-[#7D52F4]">
+                    <Sparkles className="h-6 w-6" />
+                  </span>
+                  <p className="text-lg font-bold">Ask Deva anything</p>
+                  <p className="mt-1 max-w-[16rem] text-sm text-gray-500">
+                    Speakers, schedule, sessions — ask away.
+                  </p>
                 </div>
               )}
 
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  className={cn("max-w-[85%] p-3 rounded-xl text-sm", {
-                    "ml-auto bg-purple-600 text-white rounded-br-none": msg.role === "user",
-                    "mr-auto bg-gray-100 rounded-bl-none": msg.role === "assistant",
+                  className={cn("max-w-[85%] px-3.5 py-2.5 text-sm", {
+                    "ml-auto rounded-2xl rounded-br-md bg-[#7D52F4] text-white":
+                      msg.role === "user",
+                    "mr-auto rounded-2xl rounded-bl-md border border-[#E1E4EA] bg-white shadow-sm":
+                      msg.role === "assistant",
                   })}
                 >
                   {msg.role === "assistant" ? (
@@ -346,7 +399,7 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
               ))}
 
               {streamingMessage && (
-                <div className="max-w-[85%] mr-auto bg-gray-100 rounded-xl rounded-bl-none p-3 text-sm">
+                <div className="mr-auto max-w-[85%] rounded-2xl rounded-bl-md border border-[#E1E4EA] bg-white p-3.5 text-sm shadow-sm">
                   <div className="prose prose-sm max-w-none">
                     <Markdown components={markdownComponents}>
                       {streamingMessage}
@@ -356,29 +409,34 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
               )}
 
               {isLoading && !streamingMessage && (
-                <div className="max-w-[85%] mr-auto bg-gray-100 rounded-xl rounded-bl-none p-3 text-sm text-gray-500">
-                  Thinking...
+                <div className="mr-auto flex max-w-[85%] gap-1 rounded-2xl rounded-bl-md border border-[#E1E4EA] bg-white px-4 py-3 shadow-sm">
+                  {[0, 0.15, 0.3].map((d) => (
+                    <span
+                      key={d}
+                      className="h-1.5 w-1.5 animate-bounce rounded-full bg-gray-400"
+                      style={{ animationDelay: `${d}s` }}
+                    />
+                  ))}
                 </div>
               )}
 
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Actions */}
-            {messages.length > 0 && !isLoading && (
-              <div className="px-4 pb-2">
+            {/* Floating input — overlays the chat instead of a docked footer */}
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-start gap-2 px-3 pt-8 bg-gradient-to-t from-white via-white/90 to-transparent"
+              style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
+            >
+              {messages.length > 0 && !isLoading && (
                 <button
                   onClick={handleReset}
-                  className="text-xs text-gray-500 hover:text-gray-700"
+                  className="pointer-events-auto cursor-pointer rounded-full border border-[#E1E4EA] bg-white/90 px-3 py-1.5 text-xs font-medium text-gray-500 shadow-sm backdrop-blur transition-colors hover:bg-gray-100"
                 >
                   Clear conversation
                 </button>
-              </div>
-            )}
-
-            {/* Input */}
-            <div className="p-4 border-t">
-              <div className="flex gap-2">
+              )}
+              <div className="pointer-events-auto flex w-full items-center gap-1 rounded-full border border-[#E1E4EA] bg-white py-1.5 pl-4 pr-1.5 shadow-lg transition-colors hover:border-gray-300 focus-within:border-[#7D52F4] focus-within:hover:border-[#7D52F4]">
                 <input
                   ref={inputRef}
                   type="text"
@@ -390,19 +448,40 @@ export default function DevaBot({ toggled, onToggle, apiUrl }: DevaBotProps) {
                       handleSend();
                     }
                   }}
-                  placeholder="Ask me anything..."
-                  className="flex-1 px-4 py-2 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  placeholder={isLoading ? "Waiting for response…" : "Ask me anything…"}
+                  className="flex-1 bg-transparent text-sm outline-none"
                   disabled={isLoading}
                 />
+                {query && !isLoading && (
+                  <button
+                    onClick={() => {
+                      setQuery("");
+                      inputRef.current?.focus();
+                    }}
+                    aria-label="Clear"
+                    className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
                 <button
                   onClick={handleSend}
                   disabled={isLoading || !query.trim()}
+                  aria-label="Send"
                   className={cn(
-                    "w-10 h-10 rounded-full flex items-center justify-center transition-colors",
-                    query.trim() ? "bg-purple-600 text-white" : "bg-gray-200 text-gray-400"
+                    "flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors",
+                    isLoading
+                      ? "text-gray-400"
+                      : query.trim()
+                        ? "cursor-pointer bg-[#7D52F4] text-white hover:bg-[#6A3FD1]"
+                        : "bg-gray-200 text-gray-400"
                   )}
                 >
-                  ↑
+                  {isLoading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <ArrowUp className="h-5 w-5" />
+                  )}
                 </button>
               </div>
             </div>

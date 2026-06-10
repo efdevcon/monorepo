@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { provider } from "../providers/provider";
+import { getActiveDatasetKey } from "../dataset";
 import type { Room } from "../models";
 
 /**
@@ -13,7 +14,7 @@ async function roomsFetcher(): Promise<Room[]> {
  * Hook to fetch all rooms
  */
 export function useRooms() {
-  const { data, error, isLoading, mutate } = useSWR(["rooms"], roomsFetcher, {
+  const { data, error, isLoading, mutate } = useSWR([getActiveDatasetKey(), "rooms"], roomsFetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: true,
   });
@@ -32,7 +33,7 @@ export function useRooms() {
  */
 export function useRoom(id: string) {
   const { data, error, isLoading, mutate } = useSWR(
-    id ? ["room", id] : null,
+    id ? [getActiveDatasetKey(), "room", id] : null,
     () => provider.getRoom(id),
     {
       revalidateOnFocus: false,

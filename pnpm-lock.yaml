@@ -1725,12 +1725,25 @@ importers:
       '@capacitor/ios':
         specifier: ^8.0.1
         version: 8.0.1(@capacitor/core@8.0.1)
+      '@khmyznikov/pwa-install':
+        specifier: ^0.6.3
+        version: 0.6.3(@lit/react@1.0.8(@types/react@19.2.2))(@types/dom-chromium-installation-events@101.0.4)(@types/web-app-manifest@1.0.9)(lit@3.3.0)
+      '@mdi/js':
+        specifier: ^7.4.47
+        version: 7.4.47
+      '@mdi/react':
+        specifier: ^1.6.1
+        version: 1.6.1
       '@meerkat-events/react':
         specifier: ^0.1.0
         version: 0.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@serwist/next':
         specifier: ^9.5.11
+<<<<<<< HEAD
         version: 9.5.11(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.100.0))(react@19.2.3)(typescript@5.9.3)(webpack@5.100.2(@swc/core@1.13.5))
+=======
+        version: 9.5.11(next@16.1.1(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.44.0))(react@19.2.3)(typescript@5.9.3)(webpack@5.100.2(@swc/core@1.13.5))
+>>>>>>> main
       '@supabase/supabase-js':
         specifier: ^2.106.2
         version: 2.106.2
@@ -1751,7 +1764,14 @@ importers:
         version: 1.17.0(react@19.2.3)
       next:
         specifier: 16.1.1
+<<<<<<< HEAD
         version: 16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.100.0)
+=======
+        version: 16.1.1(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.44.0)
+      panzoom:
+        specifier: ^9.4.3
+        version: 9.4.3
+>>>>>>> main
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
@@ -1764,6 +1784,9 @@ importers:
       react-markdown:
         specifier: ^10.1.0
         version: 10.1.0(@types/react@19.2.2)(react@19.2.3)
+      sass:
+        specifier: ^1.44.0
+        version: 1.44.0
       sonner:
         specifier: ^1.7.0
         version: 1.7.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -5238,6 +5261,14 @@ packages:
 
   '@keplr-wallet/unit@0.12.156':
     resolution: {integrity: sha512-GGMOFsGCTv36ZWEBt8ONgYw64zYRsYmaV4ZccNHGo8NGWwQwB6OhcVYpwvjbZdB4K9tsQNJQEv16qsSpurDBGQ==}
+
+  '@khmyznikov/pwa-install@0.6.3':
+    resolution: {integrity: sha512-1GoPVcltXCZgXa7kovAYqodSWNmUW26RaNoF6KbSGfEZ6r6OLwHrUm/+vYFlDUBaIgYHo5Xi301bN4mG51KZRA==}
+    peerDependencies:
+      '@lit/react': ^1.0.8
+      '@types/dom-chromium-installation-events': ^101.0.4
+      '@types/web-app-manifest': ^1.0.9
+      lit: ^3.3.1
 
   '@leapwallet/cosmos-social-login-capsule-provider@0.0.41':
     resolution: {integrity: sha512-bspkrnc/1FPI2EV0ssCxbySgGPj8+huj5Qesm4wuGJvbr4WDjb4QZZn7j3f7ZQXbGz3jYuc75TVCXcOCFHkDAQ==}
@@ -9083,8 +9114,13 @@ packages:
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
+<<<<<<< HEAD
   '@types/debug@4.1.13':
     resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
+=======
+  '@types/dom-chromium-installation-events@101.0.4':
+    resolution: {integrity: sha512-jV4HXmW5D18bpndzAPF1REGE5xagQqrAexHgX9WoWIPpNaaHtsHQgu5uFbL2z0NIc9fOD0TIC1TRpJhYA1OPxw==}
+>>>>>>> main
 
   '@types/dotenv@8.2.3':
     resolution: {integrity: sha512-g2FXjlDX/cYuc5CiQvyU/6kkbP1JtmGzh0obW50zD7OKeILVL0NSpPWLXVfqoAGQjom2/SLLx9zHq0KXvD6mbw==}
@@ -9486,6 +9522,9 @@ packages:
 
   '@types/validate-npm-package-name@4.0.2':
     resolution: {integrity: sha512-lrpDziQipxCEeK5kWxvljWYhUvOiB2A9izZd9B2AFarYAkqZshb4lPbRs7zKEic6eGtH8V/2qJW+dPp9OtF6bw==}
+
+  '@types/web-app-manifest@1.0.9':
+    resolution: {integrity: sha512-aVz1aXTubyL6nvVRyz9W7QR60zHLTiCGAafqYRc/RYUjA1GFc4npUUr7RlfO1+yP6gVvxzFmIVp8ULLYqhBRdA==}
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
@@ -29582,6 +29621,13 @@ snapshots:
     transitivePeerDependencies:
       - starknet
 
+  '@khmyznikov/pwa-install@0.6.3(@lit/react@1.0.8(@types/react@19.2.2))(@types/dom-chromium-installation-events@101.0.4)(@types/web-app-manifest@1.0.9)(lit@3.3.0)':
+    dependencies:
+      '@lit/react': 1.0.8(@types/react@19.2.2)
+      '@types/dom-chromium-installation-events': 101.0.4
+      '@types/web-app-manifest': 1.0.9
+      lit: 3.3.0
+
   '@leapwallet/cosmos-social-login-capsule-provider@0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
     dependencies:
       '@cosmjs/amino': 0.31.3
@@ -29634,7 +29680,6 @@ snapshots:
   '@lit/react@1.0.8(@types/react@19.2.2)':
     dependencies:
       '@types/react': 19.2.2
-    optional: true
 
   '@lit/reactive-element@1.6.3':
     dependencies:
@@ -35956,7 +36001,11 @@ snapshots:
     transitivePeerDependencies:
       - browserslist
 
+<<<<<<< HEAD
   '@serwist/next@9.5.11(next@16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.100.0))(react@19.2.3)(typescript@5.9.3)(webpack@5.100.2(@swc/core@1.13.5))':
+=======
+  '@serwist/next@9.5.11(next@16.1.1(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.44.0))(react@19.2.3)(typescript@5.9.3)(webpack@5.100.2(@swc/core@1.13.5))':
+>>>>>>> main
     dependencies:
       '@serwist/build': 9.5.11(browserslist@4.28.2)(typescript@5.9.3)
       '@serwist/utils': 9.5.11(browserslist@4.28.2)
@@ -35965,7 +36014,11 @@ snapshots:
       browserslist: 4.28.2
       glob: 13.0.6
       kolorist: 1.8.0
+<<<<<<< HEAD
       next: 16.1.1(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.100.0)
+=======
+      next: 16.1.1(@babel/core@7.28.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.44.0)
+>>>>>>> main
       react: 19.2.3
       semver: 7.7.4
       serwist: 9.5.11(browserslist@4.28.2)(typescript@5.9.3)
@@ -38625,9 +38678,13 @@ snapshots:
     dependencies:
       '@types/ms': 2.1.0
 
+<<<<<<< HEAD
   '@types/debug@4.1.13':
     dependencies:
       '@types/ms': 2.1.0
+=======
+  '@types/dom-chromium-installation-events@101.0.4': {}
+>>>>>>> main
 
   '@types/dotenv@8.2.3':
     dependencies:
@@ -39074,6 +39131,8 @@ snapshots:
   '@types/valid-url@1.0.7': {}
 
   '@types/validate-npm-package-name@4.0.2': {}
+
+  '@types/web-app-manifest@1.0.9': {}
 
   '@types/web-bluetooth@0.0.20': {}
 

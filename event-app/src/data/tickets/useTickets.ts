@@ -40,13 +40,19 @@ async function fetchTickets(): Promise<{ tickets: Order[] }> {
  * a `refresh()` that revalidates.
  */
 export function useTickets() {
-  const { user } = useUser();
+  const { user, hasInitialized } = useUser();
 
-  const { data, error, isLoading, isValidating, mutate } = useSWR(
+  const { data, error, isValidating, mutate } = useSWR(
     user ? ["tickets", user.id] : null,
     fetchTickets,
     { revalidateOnFocus: false, dedupingInterval: 10_000 }
   );
+
+  // "Loading" until auth resolves AND the first fetch has returned (data or
+  // error). Avoids a flash of the empty state before the SWR key is even set
+  // (which only happens once `user` is known).
+  const loading =
+    !hasInitialized || (!!user && data === undefined && error === undefined);
 
   const tickets = data?.tickets ?? [];
 
@@ -88,7 +94,9 @@ export function useTickets() {
   return {
     tickets,
     qrCodes,
-    isLoading: isLoading || isValidating,
+    isLoading: loading,
+    /** True during a background revalidation (e.g. Refresh) when data exists. */
+    isRefreshing: isValidating && data !== undefined,
     error: error as Error | undefined,
     refresh: () => mutate(),
   };

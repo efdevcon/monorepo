@@ -76,7 +76,7 @@ const useNavigationData = () => {
           },
           {
             title: t('volunteer_program'),
-            url: '/form/volunteer-waitlist',
+            url: '/form/volunteer',
             type: 'page',
           },
           {

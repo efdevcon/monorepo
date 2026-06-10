@@ -35,14 +35,14 @@ export function Profile() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <div className="max-w-lg w-full">
-        <h1 className="text-3xl font-bold mb-6">Profile</h1>
-
-        <div className="p-4 border rounded-lg mb-6">
-          <span className="text-sm text-gray-500 block">Signed in as</span>
-          <span className="font-semibold break-all">{user.email}</span>
-        </div>
+    <main className="py-6">
+      <div>
+        <h1 className="mb-6 text-lg font-bold">
+          Hello!{" "}
+          <span className="font-bold break-all text-[#7D52F4]">
+            {user.email}
+          </span>
+        </h1>
 
         <div className="mb-8">
           <Tickets />
@@ -51,7 +51,7 @@ export function Profile() {
         <button
           onClick={handleSignOut}
           disabled={busy}
-          className="w-full rounded-full border border-[#E1E4EA] py-3 px-5 font-medium hover:bg-gray-50 disabled:opacity-50 transition-colors"
+          className="w-full cursor-pointer rounded-full bg-[#7D52F4] py-3 px-5 font-medium text-white transition-colors hover:bg-[#6A3FD1] disabled:cursor-default disabled:opacity-50"
         >
           {busy ? loading : "Sign out"}
         </button>

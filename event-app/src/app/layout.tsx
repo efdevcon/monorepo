@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { Toaster } from "sonner";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
+import { DebugPanel } from "@/components/DebugPanel";
 import APP_CONFIG from "@/CONFIG";
 
 // Match the /devcon project: Inter (body) + Poppins (headings).
@@ -23,10 +24,30 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: APP_CONFIG.APP_NAME,
   description: APP_CONFIG.APP_DESCRIPTION,
+  // Devcon icon set (copied from the devcon site).
   icons: {
-    icon: "/app-icon.png",
-    apple: "/app-icon.png",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_CONFIG.APP_NAME,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -39,6 +60,7 @@ export default function RootLayout({
       <body>
         <SWRConfigProvider>{children}</SWRConfigProvider>
         <CustomScrollbar />
+        <DebugPanel />
         <Toaster position="bottom-center" richColors />
       </body>
     </html>
