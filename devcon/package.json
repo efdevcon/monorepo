@@ -32,7 +32,8 @@
     "early-access:generate-codes": "ts-node src/scripts/generate-early-access-codes.ts",
     "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts",
     "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts",
-    "forms:decrypt": "tsx scripts/decrypt.ts"
+    "forms:decrypt": "tsx scripts/decrypt.ts",
+    "sync:discount-data": "tsx src/scripts/sync-discount-data.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
