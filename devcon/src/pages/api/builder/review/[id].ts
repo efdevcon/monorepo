@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkAdminAuth } from 'utils/adminAuth'
-import { getRowById, updateRow } from 'services/nocodb'
+import { getRowById, updateRow, listRows } from 'services/nocodb'
 import {
   issueVoucher,
   setVoucherEmail,
@@ -131,6 +131,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ? { code: existing.code, collection: existing.collection, assignedTo: existing.assignedTo }
       : null
 
+    // Prev/next neighbors (ordered by Id) for in-review navigation. Best-effort:
+    // a failure here must not break loading the application itself.
+    let nav: { prevId: number | null; nextId: number | null; position: number; total: number } = {
+      prevId: null,
+      nextId: null,
+      position: 0,
+      total: 0,
+    }
+    try {
+      const ids = (await listRows(VIEW_ID))
+        .map(r => Number(r['Id']))
+        .filter(Number.isFinite)
+        .sort((a, b) => a - b)
+      const idx = ids.indexOf(id)
+      nav = {
+        prevId: idx > 0 ? ids[idx - 1] : null,
+        nextId: idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : null,
+        position: idx >= 0 ? idx + 1 : 0,
+        total: ids.length,
+      }
+    } catch (err) {
+      console.warn('[builder/review] nav lookup failed:', err)
+    }
+
     res.status(200).json({
       success: true,
       record,
@@ -142,6 +166,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       pastDevcons,
       autoDiscounts,
       existingVoucher,
+      nav,
     })
     return
   }

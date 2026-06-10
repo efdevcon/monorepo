@@ -134,15 +134,25 @@ async function createColumn(col: ColDef): Promise<void> {
   console.log(`  + created: ${col.title} (${col.uidt})`)
 }
 
-// Best-effort: a formula column that renders the admin review link per row.
-// Formula column creation is NocoDB-version-sensitive; on failure we log and
-// continue (admins can still open /builder-review/<Id> by hand).
-async function ensureReviewLinkColumn(existingTitles: Set<string>): Promise<void> {
-  if (existingTitles.has('Review')) {
-    console.log('  = exists: Review')
-    return
+// Best-effort: a formula column that renders the admin review link per row as a
+// CLICKABLE hyperlink. NocoDB renders a plain CONCAT result as text, so we wrap
+// it in the URL() formula function, which marks the output as a link you can
+// click straight from the grid. Auto-derived from the row Id (a static URL/Link
+// column can't auto-fill from Id). Formula creation is NocoDB-version-sensitive;
+// on failure we log and continue (admins can still open the URL by hand).
+async function ensureReviewLinkColumn(existing: Array<{ id: string; title: string }>): Promise<void> {
+  const formula = `URL(CONCAT("${REVIEW_BASE_URL}/en/builder-review/", {Id}))`
+  // Always (re)create so the column picks up the current clickable-URL formula,
+  // even if an older text-only "Review" formula already exists.
+  const current = existing.find((c) => c.title === 'Review')
+  if (current) {
+    try {
+      await deleteColumn(current.id)
+      console.log('  ~ dropped existing "Review" to recreate as a clickable link')
+    } catch (e) {
+      console.warn(`  ! could not drop existing "Review" column: ${(e as Error).message}`)
+    }
   }
-  const formula = `CONCAT("${REVIEW_BASE_URL}/builder-review/", {Id})`
   const body = { title: 'Review', uidt: 'Formula', formula_raw: formula, formula }
   let res = await fetch(`${BASE_URL}/api/v2/meta/tables/${TABLE_ID}/columns`, {
     method: 'POST',
@@ -157,11 +167,11 @@ async function ensureReviewLinkColumn(existingTitles: Set<string>): Promise<void
     })
   }
   if (!res.ok) {
-    console.warn(`  ! could not create "Review" formula column (${res.status}): ${await res.text()}`)
-    console.warn('    Add it manually in NocoDB, or open /builder-review/<Id> directly.')
+    console.warn(`  ! could not create "Review" link column (${res.status}): ${await res.text()}`)
+    console.warn('    Add it manually in NocoDB, or open /en/builder-review/<Id> directly.')
     return
   }
-  console.log('  + created: Review (Formula link)')
+  console.log('  + created: Review (clickable link)')
 }
 
 async function ensureFormConfigRow(): Promise<void> {
@@ -218,7 +228,7 @@ async function main() {
   }
 
   console.log('--- review link column ---')
-  await ensureReviewLinkColumn(new Set(existing.map((c) => c.title)))
+  await ensureReviewLinkColumn(existing)
 
   console.log('--- form config ---')
   await ensureFormConfigRow()

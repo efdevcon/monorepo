@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import Head from 'next/head'
 import Page from 'components/common/layouts/page'
 import type { TalentInfo } from 'services/builder/talent'
@@ -17,6 +18,9 @@ import {
   ExternalLink,
   Loader2,
   AlertTriangle,
+  Ticket,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react'
 
 const ADMIN_KEY_STORAGE = 'x402_admin_secret'
@@ -202,6 +206,12 @@ export default function BuilderReviewPage() {
   const [pastDevcons, setPastDevcons] = useState<string[]>([])
   const [autoDiscounts, setAutoDiscounts] = useState<AutoDiscount[]>([])
   const [existingVoucher, setExistingVoucher] = useState<ExistingVoucher | null>(null)
+  const [nav, setNav] = useState<{ prevId: number | null; nextId: number | null; position: number; total: number }>({
+    prevId: null,
+    nextId: null,
+    position: 0,
+    total: 0,
+  })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [actioning, setActioning] = useState(false)
@@ -242,6 +252,7 @@ export default function BuilderReviewPage() {
         setPastDevcons(Array.isArray(json.pastDevcons) ? json.pastDevcons : [])
         setAutoDiscounts(Array.isArray(json.autoDiscounts) ? json.autoDiscounts : [])
         setExistingVoucher(json.existingVoucher ?? null)
+        setNav(json.nav ?? { prevId: null, nextId: null, position: 0, total: 0 })
       } catch (e) {
         setError((e as Error).message)
       } finally {
@@ -254,6 +265,28 @@ export default function BuilderReviewPage() {
   useEffect(() => {
     if (secret && id) load(secret)
   }, [secret, id, load])
+
+  // Clear any post-decision message/error when switching to a different
+  // applicant (the page doesn't remount on prev/next, so this state would
+  // otherwise carry over). Keyed on id only, so the reload after a decision
+  // (same id) keeps the just-set confirmation.
+  useEffect(() => {
+    setActionResult(null)
+    setError(null)
+  }, [id])
+
+  // Left/right arrow keys navigate to the previous/next application (ignored
+  // while typing in a field).
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const t = e.target as HTMLElement | null
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return
+      if (e.key === 'ArrowLeft' && nav.prevId != null) router.push(`/en/builder-review/${nav.prevId}`)
+      else if (e.key === 'ArrowRight' && nav.nextId != null) router.push(`/en/builder-review/${nav.nextId}`)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [nav.prevId, nav.nextId, router])
 
   function submitSecret(e: React.FormEvent) {
     e.preventDefault()
@@ -376,6 +409,44 @@ export default function BuilderReviewPage() {
 
           {record && (
             <>
+              {/* Prev / next navigation (ordered by application Id; ← → keys also work) */}
+              {nav.total > 0 && (
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm text-[#594d73]">
+                    Application {nav.position} of {nav.total}
+                    <span className="hidden sm:inline text-[#9b93ad]"> · use ← → keys</span>
+                  </span>
+                  <div className="flex items-center gap-2">
+                    {nav.prevId != null ? (
+                      <Link
+                        href={`/en/builder-review/${nav.prevId}`}
+                        passHref
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[#dddae2] text-sm font-medium text-[#160b2b] hover:border-[#160b2b] hover:bg-[#f9f8fa] transition-colors"
+                      >
+                        <ChevronLeft className="w-4 h-4" /> Prev
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[#eee] text-sm font-medium text-[#c4bdd1] cursor-not-allowed">
+                        <ChevronLeft className="w-4 h-4" /> Prev
+                      </span>
+                    )}
+                    {nav.nextId != null ? (
+                      <Link
+                        href={`/en/builder-review/${nav.nextId}`}
+                        passHref
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[#dddae2] text-sm font-medium text-[#160b2b] hover:border-[#160b2b] hover:bg-[#f9f8fa] transition-colors"
+                      >
+                        Next <ChevronRight className="w-4 h-4" />
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[#eee] text-sm font-medium text-[#c4bdd1] cursor-not-allowed">
+                        Next <ChevronRight className="w-4 h-4" />
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Header */}
               <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-4">
                 <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -836,34 +907,59 @@ export default function BuilderReviewPage() {
                 </Section>
               </div>
 
-              {/* Actions — sticky bottom bar; docks to a vertical panel on the
-                  right once the viewport is wide enough to clear the content. */}
-              <div className="sticky bottom-4 z-30 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[rgba(34,17,68,0.12)] bg-white p-4 shadow-lg min-[1400px]:fixed min-[1400px]:bottom-auto min-[1400px]:right-6 min-[1400px]:top-1/2 min-[1400px]:w-64 min-[1400px]:-translate-y-1/2 min-[1400px]:flex-col min-[1400px]:items-stretch min-[1400px]:justify-start">
-                <div className="text-sm">
-                  {actionResult ? (
-                    <span className="text-[#137a3e] font-medium">{actionResult}</span>
-                  ) : (
-                    <span className="text-[#594d73]">Approve mints a builder voucher and emails the applicant.</span>
-                  )}
-                </div>
-                <div className="flex items-center gap-3 min-[1400px]:flex-col min-[1400px]:items-stretch">
-                  <button
-                    type="button"
-                    onClick={() => decide('Rejected')}
-                    disabled={actioning}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#b42124] text-[#b42124] font-bold hover:bg-[#fdeaea] disabled:opacity-50 transition-colors min-[1400px]:w-full"
-                  >
-                    <X className="w-4 h-4" /> Reject
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => decide('Approved')}
-                    disabled={actioning}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#137a3e] text-white font-bold hover:bg-[#0f6532] disabled:opacity-50 transition-colors min-[1400px]:w-full"
-                  >
-                    {actioning ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
-                    Approve &amp; send voucher
-                  </button>
+              {/* Actions — sticky bottom bar. */}
+              <div className="sticky bottom-4 z-30 rounded-2xl border border-[rgba(34,17,68,0.12)] bg-white shadow-[0_8px_30px_rgba(22,11,43,0.14)]">
+                <div className="flex flex-wrap items-center justify-between gap-4 p-4">
+                  {/* Status / helper line */}
+                  <div className="flex items-start gap-2.5 text-sm min-w-0 flex-1">
+                    {actionResult ? (
+                      <>
+                        <Check className="w-4 h-4 text-[#137a3e] shrink-0 mt-0.5" aria-hidden="true" />
+                        <span className="font-medium text-[#137a3e] leading-5">{actionResult}</span>
+                      </>
+                    ) : decision === 'Approved' || decision === 'Rejected' ? (
+                      <>
+                        <span className={`px-2.5 py-0.5 rounded-full border text-xs font-bold shrink-0 ${pill.cls}`}>
+                          {pill.label}
+                        </span>
+                        <span className="text-[#594d73] leading-5">Already decided — you can re-run a decision below.</span>
+                      </>
+                    ) : (
+                      <>
+                        <Ticket className="w-4 h-4 text-[#7235ed] shrink-0 mt-0.5" aria-hidden="true" />
+                        <span className="text-[#594d73] leading-5">
+                          <span className="font-medium text-[#160b2b]">Approve</span> mints a builder voucher and emails
+                          it to the applicant. <span className="font-medium text-[#160b2b]">Reject</span> emails a
+                          decline notice.
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex items-center gap-2.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => decide('Rejected')}
+                      disabled={actioning}
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#dddae2] text-[#b42124] font-semibold hover:border-[#b42124] hover:bg-[#fdeaea] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b42124]/40 active:scale-[0.98] disabled:opacity-50 transition-all"
+                    >
+                      <X className="w-4 h-4" aria-hidden="true" /> Reject
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => decide('Approved')}
+                      disabled={actioning}
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#137a3e] text-white font-bold shadow-sm hover:bg-[#0f6532] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#137a3e]/40 active:scale-[0.98] disabled:opacity-50 transition-all"
+                    >
+                      {actioning ? (
+                        <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                      ) : (
+                        <Check className="w-4 h-4" aria-hidden="true" />
+                      )}
+                      Approve &amp; send voucher
+                    </button>
+                  </div>
                 </div>
               </div>
             </>
