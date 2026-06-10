@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
@@ -8,10 +8,13 @@ import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
 import { EnrollmentProofUpload } from './EnrollmentProofUpload'
 import { supabase } from 'services/supabase-browser'
+import { useBuilderConnect } from 'context/BuilderConnectContext'
+import { isGithubTitle, isWalletTitle } from 'config/form-field-markers'
 import Link from 'next/link'
 import Image from 'next/image'
 import { FileText } from 'lucide-react'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
+import { FormHeaderImage } from './FormHeaderImage'
 
 interface ConditionalRule {
   targetColumnId: string
@@ -422,6 +425,28 @@ function FormInner({
 }) {
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
+  const errorRef = useRef<HTMLParagraphElement>(null)
+  const { qualifyingDiscount } = useBuilderConnect()
+
+  // When a submission error appears, scroll it into view — on a long form the
+  // error sits near the submit button and is easy to miss otherwise.
+  useEffect(() => {
+    if (error) errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [error])
+
+  // On validation failure, scroll to the first invalid field so the applicant
+  // sees what's blocking the submit instead of a button that "did nothing".
+  // We scroll to the first rendered error message (DOM order = field order),
+  // which works for every field type — including ones registered without a DOM
+  // <input name> (e.g. the Role multi-select). Deferred so the error elements
+  // have rendered after react-hook-form sets validation state.
+  const scrollToFirstError = () => {
+    if (typeof document === 'undefined') return
+    setTimeout(() => {
+      const el = document.querySelector<HTMLElement>('[data-field-error]')
+      el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 0)
+  }
 
   // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner).
   // For the student-application form, also hide the enrollment_proof attachment from the
@@ -460,8 +485,16 @@ function FormInner({
             const multiSelectCols = new Set(
               schema.columns.filter(c => c.uidt === 'MultiSelect').map(c => c.column_name)
             )
+            // Connector fields (GitHub / wallet) must reflect the LIVE connection
+            // (NextAuth session / signed proof), not the stored value — otherwise
+            // a disconnected user gets silently "reconnected" from their saved row
+            // on refresh. They re-populate via their own restore logic instead.
+            const connectorCols = new Set(
+              schema.columns.filter(c => isGithubTitle(c.title) || isWalletTitle(c.title)).map(c => c.column_name)
+            )
             for (const [key, value] of Object.entries(result.data)) {
               if (value === null || value === undefined) continue
+              if (connectorCols.has(key)) continue
               // Server returns the original NocoDB column names; the form
               // is registered under sanitized aliases (see rhfFieldName).
               if (multiSelectCols.has(key) && typeof value === 'string') {
@@ -492,8 +525,25 @@ function FormInner({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
+      <form onSubmit={methods.handleSubmit(onSubmit, scrollToFirstError)} className="flex flex-col gap-6 w-full">
         {schema.subheading && <FormSubheading text={schema.subheading} />}
+
+        {qualifyingDiscount && (
+          <div className="flex flex-col gap-2 rounded-xl border border-[#b7e6c9] bg-[#e6f7ed] p-4">
+            <p className="text-base font-bold text-[#137a3e]">
+              🎉 You already qualify for{' '}
+              {qualifyingDiscount.discount >= 100 ? 'a FREE ticket' : `${qualifyingDiscount.discount}% off`} via{' '}
+              {qualifyingDiscount.name}!
+            </p>
+            <p className="text-sm text-[#3b3450] leading-5">
+              You don&apos;t need to apply here — claim it instantly at the{' '}
+              <a href="/en/tickets/store/" className="font-bold text-[#137a3e] underline">
+                ticket store
+              </a>
+              . Connect the same GitHub / wallet there and the discount is applied automatically.
+            </p>
+          </div>
+        )}
 
         <FormRenderer
           columns={schema.columns}
@@ -528,7 +578,11 @@ function FormInner({
           </div>
         )}
 
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        {error && (
+          <p ref={errorRef} className="text-red-500 text-sm text-center scroll-mt-24">
+            {error}
+          </p>
+        )}
 
         <div className={`flex items-center w-full ${onSignOut ? 'justify-between' : 'justify-center'}`}>
           {onSignOut && (
@@ -571,6 +625,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
   const [submitted, setSubmitted] = useState(false)
 
   const methods = useForm<Record<string, any>>()
+  const { walletProof } = useBuilderConnect()
 
   useEffect(() => {
     if (!viewId) return
@@ -618,7 +673,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
         <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
           <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4">
             <div className="flex flex-col items-center gap-4">
-              <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+              <FormHeaderImage />
               <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
                 {schema?.title || 'Form'}
               </h2>
@@ -644,7 +699,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
         <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
           <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4">
             <div className="flex flex-col items-center gap-4">
-              <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+              <FormHeaderImage />
 
               <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
                 Thank you!
@@ -718,10 +773,13 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
         }
       }
 
+      const body: Record<string, unknown> = { data: submitData }
+      if (walletProof) body.walletProof = walletProof
+
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ data: submitData }),
+        body: JSON.stringify(body),
       })
       const result = await res.json()
       if (!res.ok) throw new Error(result.error || 'Submission failed')
@@ -808,7 +866,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
             </OtpGate>
           ) : (
             <>
-              <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+              <FormHeaderImage />
               <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
                 {schema.title}
               </h2>

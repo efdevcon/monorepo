@@ -17,9 +17,12 @@ import {
   AlertTriangle,
 } from 'lucide-react'
 import { COUNTRIES } from './countries'
+import { GithubConnectField } from './GithubConnectField'
+import { WalletConnectField } from './WalletConnectField'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import { AGE_RECIPIENTS, isEncryptedTitle, stripEncryptedPrefix } from 'config/encrypted-forms'
+import { isGithubTitle, stripGithubPrefix, isWalletTitle, stripWalletPrefix } from 'config/form-field-markers'
 import { packEnvelope } from 'utils/age-envelope'
 import { rhfFieldName } from './rhf-key'
 
@@ -856,7 +859,13 @@ function FieldDescription({ text }: { text: string }) {
 }
 
 function FieldError({ message }: { message: string }) {
-  return <p className="text-sm text-red-500">{message}</p>
+  // data-field-error lets the form scroll to the first invalid field on submit
+  // (works for every field type, incl. ones without a DOM <input name>).
+  return (
+    <p data-field-error className="text-sm text-red-500 scroll-mt-24">
+      {message}
+    </p>
+  )
 }
 
 function SearchableSelect({
@@ -1068,6 +1077,30 @@ export function FormRenderer({
               )}
               {error && <FieldError message={error.message as string} />}
             </div>
+          )
+        }
+
+        if (isGithubTitle(col.title)) {
+          return (
+            <GithubConnectField
+              key={col.column_name}
+              columnName={col.column_name}
+              label={stripGithubPrefix(col.title)}
+              required={col.required}
+              description={col.description}
+            />
+          )
+        }
+
+        if (isWalletTitle(col.title)) {
+          return (
+            <WalletConnectField
+              key={col.column_name}
+              columnName={col.column_name}
+              label={stripWalletPrefix(col.title)}
+              required={col.required}
+              description={col.description}
+            />
           )
         }
 

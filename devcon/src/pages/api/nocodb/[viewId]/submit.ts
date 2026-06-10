@@ -9,6 +9,14 @@ import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumn
 const EMAIL_COLUMN_NAME = 'Email'
 import { classifyEligibility } from 'services/email-classifier'
 import { getPaidOrdersByEmail } from 'services/pretix'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '../../auth/[...nextauth]'
+import { verifyProof } from 'services/builder/proof'
+import { getContributions } from 'services/builder/github-contributions'
+import type { NotableCandidate } from 'services/builder/github-contributions'
+import { parseRepoList } from 'services/builder/repo-ref'
+import { scoreBuilder } from 'services/builder/scoring'
+import { getPastDevconEvents } from 'services/builder/poap-attendees'
 
 // Slug of the visa-collection form. Only this form gates submissions on the
 // signed-in email having a paid Pretix order (purchaser or assigned attendee).
@@ -155,6 +163,63 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Map our cached "blocked" bucket to the NocoDB option label "proof-required".
       // (Cache keeps "blocked" — only the value written to NocoDB is renamed.)
       data['Email Classification'] = bucket === 'blocked' ? 'proof-required' : bucket
+    }
+
+    // Builder-application branch. The server is authoritative: it reads the
+    // proof tokens from the TOP-LEVEL body (not `data`), verifies them, derives
+    // the trusted GitHub username / wallet address, pulls the user's contributed
+    // repos, scores them against the manually-claimed repos, and injects the
+    // script-output columns. This MUST run after the field-validation block above
+    // because the injected columns (Matched Repos / Matched Count / Match Source)
+    // are not part of the form-visible allowed-field set.
+    if (config?.formSlug === 'builder-application') {
+      // GitHub identity is the existing NextAuth GitHub session (set via the
+      // shared /signin popup). Read it server-side — never trust a client value.
+      const session = await getServerSession(req, res, authOptions)
+      const githubUsername = session?.type === 'github' ? session.id : null
+
+      // Wallet stays on its own SIWE→proof flow (not NextAuth) so it can coexist
+      // with the GitHub session — NextAuth is single-session.
+      const walletProof = typeof req.body?.walletProof === 'string' ? req.body.walletProof : ''
+      const walletAddress = walletProof ? verifyProof(walletProof, 'wallet') : null
+
+      // Server is authoritative: overwrite any client-supplied display values with verified ones.
+      if (githubUsername) data['GitHub Username'] = githubUsername
+      else delete data['GitHub Username']
+      if (walletAddress) {
+        data['Wallet Address'] = walletAddress
+        // POAP URL and Talent Protocol URL are admin-only columns derived from the
+        // verified wallet (both resolve by address). Never trust client values.
+        data['POAP URL'] = `https://collectors.poap.xyz/scan/${walletAddress}`
+        data['Talent Protocol URL'] = `https://talent.app/${walletAddress}`
+        // Auto-detect past Devcon/Devconnect attendance from the wallet's POAPs.
+        data['Past Devcon POAPs'] = getPastDevconEvents(walletAddress).join(', ')
+      } else {
+        delete data['Wallet Address']
+        delete data['POAP URL']
+        delete data['Talent Protocol URL']
+        delete data['Past Devcon POAPs']
+      }
+
+      const claimedRepos = parseRepoList(typeof data['Contributed Repos'] === 'string' ? data['Contributed Repos'] : '')
+
+      let contributedRepos = new Set<string>()
+      let notableCandidates: NotableCandidate[] = []
+      if (githubUsername) {
+        try {
+          const data = await getContributions(githubUsername)
+          contributedRepos = data.repos
+          notableCandidates = data.notableCandidates
+        } catch {
+          contributedRepos = new Set<string>()
+        }
+      }
+
+      const score = await scoreBuilder({ githubUsername, contributedRepos, claimedRepos, notableRepos: notableCandidates })
+
+      data['Matched Repos'] = JSON.stringify(score.matchedRepos)
+      data['Matched Count'] = score.matchedCount
+      data['Match Source'] = score.matchSource
     }
 
     data['Submission Date'] = new Date().toISOString()
