@@ -16,7 +16,7 @@ never payout addresses and are excluded.
 
 Docs: https://docs.oso.xyz/docs/developer/get-started/python
 
-Run (from the discounts/ dir, with the OSO key in src/.env as OCTANT_API_KEY):
+Run (from the discounts/ dir, with the OSO key in .env as OCTANT_API_KEY):
     .venv-oso/bin/python src/optimism.py
 """
 
@@ -33,7 +33,7 @@ CHAIN_RANK = {"MAINNET": 0, "OPTIMISM": 1, "BASE": 2, "ARBITRUM_ONE": 3}
 
 
 def main():
-    cfg = dotenv_values("src/.env")
+    cfg = dotenv_values(".env")
     os.environ["OSO_API_KEY"] = cfg["OCTANT_API_KEY"]
     client = Client()
 

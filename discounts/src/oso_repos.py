@@ -51,7 +51,7 @@ def sql_list(names):
 
 
 def main():
-    cfg = dotenv_values("src/.env")
+    cfg = dotenv_values(".env")
     os.environ["OSO_API_KEY"] = cfg["OCTANT_API_KEY"]
     client = Client()
 

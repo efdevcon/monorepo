@@ -11,7 +11,7 @@ multiple rounds we keep only the recipient address from its most recent round.
 
 Docs: https://docs.oso.xyz/docs/developer/get-started/python
 
-Run (from the discounts/ dir, with the OSO key in src/.env as OCTANT_API_KEY):
+Run (from the discounts/ dir, with the OSO key in .env as OCTANT_API_KEY):
     .venv-oso/bin/python src/gitcoin.py
 """
 
@@ -27,7 +27,7 @@ ROUNDS_FILE = "outputs/gitcoin-rounds.json"
 
 
 def main():
-    cfg = dotenv_values("src/.env")
+    cfg = dotenv_values(".env")
     os.environ["OSO_API_KEY"] = cfg["OCTANT_API_KEY"]
     client = Client()
 
