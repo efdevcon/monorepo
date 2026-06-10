@@ -54,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
   } catch (err) {
     if (err instanceof DiscountSoldOutError) {
-      return res.status(409).json({ error: 'This discount is sold out.' })
+      return res.status(409).json({ error: 'Sorry, this discount is now sold out.' })
     }
     console.error('claim/[id] issueVoucher failed:', err)
     return res.status(502).json({ error: 'Could not issue voucher. Please try again.' })

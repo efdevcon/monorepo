@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, BadgeCheck, Eye, Github, Loader2 } from 'lucide-react'
+import { ArrowUpRight, BadgeCheck, CircleX, Eye, Github, Loader2 } from 'lucide-react'
 import { useAccount, useChainId, useDisconnect, useSignMessage } from 'wagmi'
 import { getSession, signIn, signOut } from 'next-auth/react'
 import { SiweMessage, generateNonce } from 'siwe'
@@ -12,12 +12,13 @@ type VerifyDiscountModalProps = {
   onClose: () => void
 }
 
-// The four community discounts surfaced on the store. `type` matches the
-// allowlist keys returned by /api/discounts/validate. `methods` is which
-// identity can satisfy the discount (drives claim routing). Order follows the
-// backend priority (core-devs > oss > pg > past) so the GitHub "highest value
-// wins" lock is deterministic and matches what /api/discounts/claim issues.
-type DiscountType = 'core-devs' | 'oss-contributors' | 'pg-projects' | 'past-attendees'
+// The community discounts surfaced in this modal. `type` matches the allowlist
+// keys returned by /api/discounts/validate. `methods` is which identity can
+// satisfy the discount (drives claim routing). Order follows the backend
+// priority (core-devs > pg > past) so the GitHub "highest value wins" lock is
+// deterministic and matches what /api/discounts/claim issues. (OSS Contributors
+// moved to the Builder application form, so it's intentionally not listed here.)
+type DiscountType = 'core-devs' | 'pg-projects' | 'past-attendees'
 type Method = 'wallet' | 'github'
 
 const DISCOUNTS: {
@@ -35,14 +36,6 @@ const DISCOUNTS: {
     methods: ['wallet', 'github'],
     validMsg: 'Core contributor verified!',
     invalidMsg: 'No Merge Pass, Protocol Guild, or core-dev match found.',
-  },
-  {
-    type: 'oss-contributors',
-    label: 'OSS Contributors',
-    discount: '50% off',
-    methods: ['github'],
-    validMsg: 'Valid OSS contributions found!',
-    invalidMsg: 'No qualifying OSS contributions found.',
   },
   {
     type: 'pg-projects',
@@ -424,32 +417,42 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                 Verify with your wallet or GitHub and we&apos;ll check whether you&apos;re eligible for:
               </p>
               <div className={css['checks']}>
-                {DISCOUNTS.map(d => (
-                  <div key={d.type} className={css['checkRow']}>
-                    <BadgeCheck className={css['checkIcon']} size={24} strokeWidth={2} aria-hidden="true" />
-                    <p className={css['checkText']}>
-                      {d.label} - <strong>{d.discount}</strong>
-                      {discountSoldOut(d.type) && <span className={css['soldOutTag']}> (Sold out)</span>}
-                    </p>
-                  </div>
-                ))}
+                {[...DISCOUNTS]
+                  // Available discounts first, sold-out ones sink to the bottom.
+                  .sort((a, b) => Number(discountSoldOut(a.type)) - Number(discountSoldOut(b.type)))
+                  .map(d => {
+                    const soldOut = discountSoldOut(d.type)
+                    return (
+                      <div key={d.type} className={css['checkRow']}>
+                        {soldOut ? (
+                          <CircleX className={css['checkIconSoldOut']} size={24} strokeWidth={2} aria-hidden="true" />
+                        ) : (
+                          <BadgeCheck className={css['checkIcon']} size={24} strokeWidth={2} aria-hidden="true" />
+                        )}
+                        {soldOut ? (
+                          <p className={css['checkText']}>
+                            {d.label} <span className={css['soldOutTag']}>(Sold out)</span>
+                          </p>
+                        ) : (
+                          <p className={css['checkText']}>
+                            {d.label} - <strong>{d.discount}</strong>
+                          </p>
+                        )}
+                      </div>
+                    )
+                  })}
               </div>
               <div className={css['divider']} />
               <div className={css['disclaimer']}>
                 <Eye className={css['disclaimerIcon']} size={24} strokeWidth={2} aria-hidden="true" />
-                <p className={css['disclaimerText']}>We only read your public wallet and GitHub data</p>
+                <p className={css['disclaimerText']}>We only read your public data</p>
               </div>
             </div>
             <div className={css['stackSm']}>
               <button type="button" className={css['primaryBtn']} onClick={handleConnect}>
                 Connect wallet
               </button>
-              <button
-                type="button"
-                className={css['githubBtn']}
-                onClick={handleGithubSignIn}
-                disabled={githubAuthing}
-              >
+              <button type="button" className={css['githubBtn']} onClick={handleGithubSignIn} disabled={githubAuthing}>
                 <Github size={18} aria-hidden="true" />
                 {githubAuthing ? 'Opening GitHub…' : 'Sign in with GitHub'}
               </button>
@@ -461,7 +464,7 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
         {step === 'checking' && (
           <div className={css['stackMd']}>
             <h2 className={`${css['title']} ${css['titleCenter']}`}>
-              {checkingMethod === 'github' ? 'Checking OSS contributions' : 'Checking on-chain history'}
+              {checkingMethod === 'github' ? 'Checking your GitHub account' : 'Checking on-chain history'}
             </h2>
             <div className={css['checkingSpinnerWrap']}>
               <Loader2 className={css['spinnerLg']} size={40} aria-hidden="true" />
@@ -554,7 +557,18 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                     </div>
                   </div>
                   {alsoVerify}
-                  <button type="button" className={css['primaryBtn']} disabled={!selected || claiming} onClick={handleClaim}>
+                  {error && (
+                    <div className={css['errorBanner']}>
+                      <CircleX className={css['errorBannerIcon']} size={20} strokeWidth={2} aria-hidden="true" />
+                      <span>{error}</span>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    className={css['primaryBtn']}
+                    disabled={!selected || claiming}
+                    onClick={handleClaim}
+                  >
                     {claiming ? (
                       <>
                         <Loader2 className={css['spinner']} size={16} aria-hidden="true" />
@@ -567,7 +581,6 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                       </>
                     )}
                   </button>
-                  {error && <p className={css['errorText']}>{error}</p>}
                 </>
               ) : (
                 <>

@@ -121,6 +121,11 @@
   color: #7235ed;
 }
 
+.checkIconSoldOut {
+  flex-shrink: 0;
+  color: #b42124;
+}
+
 .disclaimerIcon {
   flex-shrink: 0;
   color: #221144;
@@ -360,6 +365,25 @@
   line-height: 1.43;
   margin: 0;
   text-align: center;
+}
+
+/* Claim error banner (e.g. "Sorry, this discount is now sold out.") */
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #fff0f0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #b42124;
+  line-height: 1.43;
+}
+
+.errorBannerIcon {
+  flex-shrink: 0;
+  color: #b42124;
 }
 
 /* ── "Also verify with…" secondary affordances ── */

@@ -19,7 +19,7 @@ import {
   Plus,
   Ticket,
   Coffee,
-  Shirt,
+  Ribbon,
   TicketPercent,
   Loader2,
 } from 'lucide-react'
@@ -76,19 +76,6 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     buttonLabel: 'Verify',
   },
   {
-    type: 'oss-contributors',
-    title: 'OSS Contributors',
-    meta: 'Contribution-based',
-    description: (
-      <>
-        This discounted ticket is reserved for those who have made at least 2 contributions (since Devcon SEA) to any
-        repo under the <em>efdevcon</em> or <em>ethereum</em> organizations, or any execution/consensus clients.
-      </>
-    ),
-    price: '50% off',
-    buttonLabel: 'Verify',
-  },
-  {
     type: 'pg-projects',
     title: 'Public Good Projects',
     meta: 'Active fundraisers',
@@ -133,7 +120,7 @@ const APPLICATION_TICKETS = [
     title: 'Builder Discount 🦄',
     meta: 'ID required at Registration',
     description:
-      'For builders of all kinds who actively volunteer or contribute their time to the growth, research and development of Ethereum or the ecosystem.',
+      'For builders of all kinds, including open-source contributors, who actively volunteer or contribute their time to the growth, research and development of Ethereum or the ecosystem.',
     price: '$349',
     originalPrice: '$699',
     href: '/form/builder-application',
@@ -352,7 +339,7 @@ function StoreContent({
                     Catering all week
                   </li>
                   <li className={css['sidebar-includes-item']}>
-                    <Shirt size={20} strokeWidth={1.5} aria-hidden="true" />
+                    <Ribbon size={20} strokeWidth={1.5} aria-hidden="true" />
                     Event swag bag
                   </li>
                 </ul>
@@ -360,11 +347,11 @@ function StoreContent({
             </div>
             <ul className={css['sidebar-details']}>
               <li className={css['sidebar-details-item']}>
-                <CalendarDays size={24} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
+                <CalendarDays size={20} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
                 3–6 November 2026
               </li>
               <li className={css['sidebar-details-item']}>
-                <MapPin size={24} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
+                <MapPin size={20} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
                 Jio World Centre, Mumbai, India
               </li>
             </ul>
