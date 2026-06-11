@@ -97,7 +97,7 @@ const FORM_HEADING = 'Devcon Builder Discount Application'
 
 const FORM_SUBHEADING =
   'We appreciate the people who actively contribute to Ethereum and the wider ecosystem. We openly invite builders of all kinds — developers, designers, researchers, community organizers, artists, and more (individuals, not companies) — to apply for a discounted Devcon ticket.\n\n' +
-  'Are you a current student or educator with a valid student ID? [Apply for a Student ticket instead](https://devcon.org/en/form/student-application/) — it gets a better rate.\n\n' +
+  'Are you a current student with a valid student email address? [Apply for a Student ticket instead](https://devcon.org/en/form/student-application/) — it gets a better rate.\n\n' +
   'Connect your GitHub (and, optionally, a wallet) so we can recognize your contributions, then tell us about yourself and why a discounted ticket would help. Please write as yourself — applications that read more AI than human are less likely to be approved.\n\n' +
   'The data you share is used only to verify your identity at Devcon and to contact you about Devcon events. It is never shared with any third party.'
 
