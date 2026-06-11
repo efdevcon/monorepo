@@ -2,6 +2,7 @@
 
 import { createElement, useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Download, Share } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
@@ -65,13 +66,21 @@ function IOSInstallModal({ onClose }: { onClose: () => void }) {
   ];
 
   return createPortal(
-    <div
+    <motion.div
       className="fixed inset-0 z-[95] flex items-end justify-center bg-black/60 p-4 backdrop-blur-sm sm:items-center"
       onClick={onClose}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
-      <div
+      <motion.div
         className="w-full overflow-hidden rounded-3xl bg-white shadow-2xl sm:max-w-sm"
         onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, y: 28, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 28, scale: 0.98 }}
+        transition={{ type: "spring", damping: 28, stiffness: 340 }}
       >
         {/* Devcon art header, fading into the white card body */}
         <div className="relative h-32 w-full">
@@ -112,8 +121,8 @@ function IOSInstallModal({ onClose }: { onClose: () => void }) {
             Got it
           </button>
         </div>
-      </div>
-    </div>,
+      </motion.div>
+    </motion.div>,
     document.body
   );
 }
@@ -205,7 +214,9 @@ export function InstallAppButton({
         {label}
       </button>
 
-      {showIosInstructions && <IOSInstallModal onClose={() => setOpen(false)} />}
+      <AnimatePresence>
+        {showIosInstructions && <IOSInstallModal key="ios-install" onClose={() => setOpen(false)} />}
+      </AnimatePresence>
       {open && !showIosInstructions && (
         <PwaInstallElement onClose={() => setOpen(false)} />
       )}
