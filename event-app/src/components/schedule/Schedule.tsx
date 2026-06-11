@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { CalendarRange, List, Search, SlidersHorizontal } from "lucide-react";
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { DayTabs } from "./DayTabs";
 import { ScheduleFilters } from "./ScheduleFilters";
 import { SessionCard } from "./SessionCard";
+import { ScheduleTimeline } from "./ScheduleTimeline";
 import { useScheduleState } from "./useScheduleState";
+
+type ViewMode = "list" | "timeline";
 
 /**
  * Self-contained schedule view: day selector, search, multi-select filters and
@@ -30,13 +33,39 @@ export function Schedule() {
     activeFilterCount,
     filterOptions,
     groups,
+    daySessions,
     resultCount,
   } = useScheduleState(sessions);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [view, setView] = useState<ViewMode>("list");
 
   return (
     <main className="py-6">
-      <h1 className="mb-4 text-2xl font-bold">Schedule</h1>
+      <div className="mb-4 flex items-center justify-between gap-2">
+        <h1 className="text-2xl font-bold">Schedule</h1>
+        <div className="flex shrink-0 gap-1 rounded-lg bg-[#EFEBFF] p-1">
+          {(
+            [
+              { mode: "list", label: "List", Icon: List },
+              { mode: "timeline", label: "Timeline", Icon: CalendarRange },
+            ] as const
+          ).map(({ mode, label, Icon }) => (
+            <button
+              key={mode}
+              onClick={() => setView(mode)}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                view === mode
+                  ? "bg-white text-[#7D52F4] shadow-sm"
+                  : "text-[#7D52F4]/70 hover:text-[#7D52F4]"
+              )}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Search + filter toggle */}
       <div className="mb-4 flex gap-2">
@@ -102,6 +131,8 @@ export function Schedule() {
             ? "No sessions match your filters."
             : "No sessions scheduled for this day."}
         </p>
+      ) : view === "timeline" ? (
+        <ScheduleTimeline sessions={daySessions} nowMs={now} />
       ) : (
         <div className="space-y-6">
           {groups.map((group) => (

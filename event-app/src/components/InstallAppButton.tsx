@@ -70,31 +70,48 @@ function IOSInstallModal({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       <div
-        className="w-full rounded-2xl bg-white p-6 text-center shadow-2xl sm:max-w-sm"
+        className="w-full overflow-hidden rounded-3xl bg-white shadow-2xl sm:max-w-sm"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f3eeff] text-[#7D52F4]">
-          <Download className="h-6 w-6" />
+        {/* Devcon art header, fading into the white card body */}
+        <div className="relative h-32 w-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/login/backdrop.jpg"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#160b2b]/40 via-[#160b2b]/5 to-white" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/login/devcon-8-logo.svg"
+            alt="Devcon"
+            className="absolute left-1/2 top-[44%] w-28 -translate-x-1/2 -translate-y-1/2 drop-shadow"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </div>
-        <h3 className="mb-1 text-lg font-bold">Install {APP_CONFIG.APP_NAME}</h3>
-        <p className="mb-5 text-sm text-gray-500">
-          {safari
-            ? "Add this app to your Home Screen for the full experience."
-            : "To install on your iPhone, open this page in Safari first."}
-        </p>
-        <ol className="mb-6 space-y-3 text-left text-sm text-gray-600">
-          {steps.map((content, i) => (
-            <li key={i} className="flex gap-3">
-              <Step n={i + 1} /> {content}
-            </li>
-          ))}
-        </ol>
-        <button
-          onClick={onClose}
-          className="w-full cursor-pointer rounded-full bg-[#7D52F4] py-2.5 font-medium text-white transition-colors hover:bg-[#6A3FD1]"
-        >
-          Got it
-        </button>
+
+        <div className="px-6 pb-6 text-center">
+          <h3 className="text-lg font-bold">Install {APP_CONFIG.APP_NAME}</h3>
+          <p className="mb-5 mt-1 text-sm text-gray-500">
+            {safari
+              ? "Add this app to your Home Screen for the full experience."
+              : "To install on your iPhone, open this page in Safari first."}
+          </p>
+          <ol className="mb-6 space-y-3 text-left text-sm text-gray-600">
+            {steps.map((content, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <Step n={i + 1} /> <span className="pt-0.5">{content}</span>
+              </li>
+            ))}
+          </ol>
+          <button
+            onClick={onClose}
+            className="w-full cursor-pointer rounded-full bg-[#7D52F4] py-2.5 font-medium text-white transition-colors hover:bg-[#6A3FD1] active:scale-[0.98]"
+          >
+            Got it
+          </button>
+        </div>
       </div>
     </div>,
     document.body

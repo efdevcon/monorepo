@@ -117,13 +117,27 @@ const serwist = new Serwist({
       }),
     },
     {
-      matcher: /\.(?:png|jpg|jpeg|svg|gif|webp|ico)$/i,
+      // Match by request destination, not URL extension: speaker avatars and
+      // other images come from cross-origin CDNs and often have no file
+      // extension (or carry query strings, or go through /_next/image), so an
+      // extension-only matcher missed them and they never cached for offline.
+      // `destination === "image"` covers every <img> / next/image request
+      // regardless of URL shape or origin. The extension test is a fallback for
+      // images referenced where the destination isn't reported (e.g. some CSS
+      // background-image fetches).
+      matcher: ({ request, url }) =>
+        request.destination === "image" ||
+        /\.(?:png|jpg|jpeg|svg|gif|webp|avif|ico)$/i.test(url.pathname),
       handler: new CacheFirst({
         cacheName: "static-images",
         plugins: [
           new ExpirationPlugin({
-            maxEntries: 100,
+            maxEntries: 400,
             maxAgeSeconds: 30 * 24 * 60 * 60,
+            // Cross-origin images are opaque responses, which count heavily
+            // toward the storage quota — drop the cache rather than error out
+            // if we ever hit the limit.
+            purgeOnQuotaError: true,
           }),
         ],
       }),

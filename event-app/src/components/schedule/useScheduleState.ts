@@ -126,10 +126,14 @@ export function useScheduleState(sessions: Session[]) {
     return groupByTime(matches);
   }, [sessions, selectedDay, filters, search]);
 
-  const resultCount = useMemo(
-    () => groups.reduce((n, g) => n + g.sessions.length, 0),
+  // Flat, filtered sessions for the selected day (timeline view needs them
+  // ungrouped). Derived from the same groups so filters/search stay in sync.
+  const daySessions = useMemo(
+    () => groups.flatMap((g) => g.sessions),
     [groups]
   );
+
+  const resultCount = daySessions.length;
 
   return {
     now,
@@ -144,6 +148,7 @@ export function useScheduleState(sessions: Session[]) {
     activeFilterCount,
     filterOptions,
     groups,
+    daySessions,
     resultCount,
   };
 }
