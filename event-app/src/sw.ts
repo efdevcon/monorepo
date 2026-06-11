@@ -21,7 +21,11 @@ declare const self: ServiceWorkerGlobalScope;
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: false,
-  clientsClaim: false,
+  // Take control of the page as soon as this worker activates, so offline works
+  // on first install without needing a reopen. Safe only because skipWaiting is
+  // false — updates still wait for the user, so a new worker never claims a page
+  // running an older build's assets. Do NOT set both to true.
+  clientsClaim: true,
   navigationPreload: false,
   runtimeCaching: [
     // Next.js App Router fetches RSC payloads (header `RSC: 1`) for client-side

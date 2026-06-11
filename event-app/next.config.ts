@@ -27,8 +27,6 @@ const withSerwist = withSerwistInit({
     { url: "/speakers", revision },
     { url: "/map", revision },
     { url: "/profile", revision },
-    { url: "/room-screens", revision },
-    { url: "/data-visualizer", revision },
     { url: "/login", revision },
     // Offline fallback served by the SW when a document navigation can't be
     // fulfilled offline (see `fallbacks` in src/sw.ts).
