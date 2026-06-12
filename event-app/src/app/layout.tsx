@@ -60,6 +60,21 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
+        {/* Capture Chromium's `beforeinstallprompt` as early as possible (before
+            hydration) so the "Install app" button can fire the real native
+            prompt later. If we only listened after React mounts, the event would
+            have already fired and been missed — which is why tap-to-install was
+            unreliable on Chrome/Brave/Vanadium. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){window.__deferredInstallPrompt=window.__deferredInstallPrompt||null;" +
+              "window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();" +
+              "window.__deferredInstallPrompt=e;window.dispatchEvent(new Event('install-prompt-available'));});" +
+              "window.addEventListener('appinstalled',function(){window.__deferredInstallPrompt=null;" +
+              "window.dispatchEvent(new Event('install-prompt-available'));});})();",
+          }}
+        />
         <SWRConfigProvider>
           <CacheWarmer />
           {children}

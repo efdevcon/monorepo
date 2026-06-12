@@ -1,11 +1,24 @@
 "use client";
 
-import { createElement, useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Download, Share } from "lucide-react";
+import { Download, Share, MoreVertical } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
+
+/** The Chromium-only install event, captured early in src/app/layout.tsx. */
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[];
+  readonly userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+  prompt(): Promise<void>;
+}
+
+declare global {
+  interface Window {
+    __deferredInstallPrompt: BeforeInstallPromptEvent | null;
+  }
+}
 
 function isStandalone(): boolean {
   if (typeof window === "undefined") return false;
@@ -40,30 +53,71 @@ export function useShouldShowInstall(): boolean {
   return shouldShow;
 }
 
-/** iOS has no programmatic install — Safari requires the user to tap
- *  Share → Add to Home Screen, and other iOS browsers can't install at all
- *  (so they must reopen the page in Safari first). Either way we render our
- *  own instructions rather than relying on the install web component, which
- *  has no reliable Apple flow. */
-function IOSInstallModal({ onClose }: { onClose: () => void }) {
-  const safari = isSafari();
+/**
+ * Subscribes to the `beforeinstallprompt` event captured in the root layout.
+ * Returns the deferred prompt when Chromium has offered a native install, or
+ * null otherwise (iOS, Firefox, criteria not met, already installed).
+ */
+function useInstallPrompt(): BeforeInstallPromptEvent | null {
+  const [prompt, setPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  useEffect(() => {
+    const sync = () => setPrompt(window.__deferredInstallPrompt ?? null);
+    sync();
+    window.addEventListener("install-prompt-available", sync);
+    window.addEventListener("appinstalled", sync);
+    return () => {
+      window.removeEventListener("install-prompt-available", sync);
+      window.removeEventListener("appinstalled", sync);
+    };
+  }, []);
+  return prompt;
+}
 
-  const steps: ReactNode[] = [
-    ...(safari
-      ? []
-      : [
-          <>
-            Open this page in <b>Safari</b>.
-          </>,
-        ]),
-    <>
-      Tap the <Share className="inline-block h-4 w-4 align-text-bottom" /> Share
-      button.
-    </>,
-    <>
-      Choose <b>“Add to Home Screen”</b>.
-    </>,
-  ];
+/** Platform-aware manual install steps, for browsers with no native prompt. */
+function manualInstructions(): { intro: string; steps: ReactNode[] } {
+  if (isIOS()) {
+    const safari = isSafari();
+    return {
+      intro: safari
+        ? "Add this app to your Home Screen for the full experience."
+        : "To install on your iPhone, open this page in Safari first.",
+      steps: [
+        ...(safari
+          ? []
+          : [
+              <>
+                Open this page in <b>Safari</b>.
+              </>,
+            ]),
+        <>
+          Tap the <Share className="inline-block h-4 w-4 align-text-bottom" /> Share
+          button.
+        </>,
+        <>
+          Choose <b>“Add to Home Screen”</b>.
+        </>,
+      ],
+    };
+  }
+  // Android / desktop browsers that don't fire `beforeinstallprompt` (e.g.
+  // Firefox, or hardened Chromium builds that gate installs).
+  return {
+    intro: "Add this app to your home screen for the full experience.",
+    steps: [
+      <>
+        Open your browser&apos;s menu{" "}
+        <MoreVertical className="inline-block h-4 w-4 align-text-bottom" />.
+      </>,
+      <>
+        Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.
+      </>,
+    ],
+  };
+}
+
+/** Instructions card shown when no native install prompt is available. */
+function InstallInstructionsModal({ onClose }: { onClose: () => void }) {
+  const { intro, steps } = manualInstructions();
 
   return createPortal(
     <motion.div
@@ -102,11 +156,7 @@ function IOSInstallModal({ onClose }: { onClose: () => void }) {
 
         <div className="px-6 pb-6 text-center">
           <h3 className="text-lg font-bold">Install {APP_CONFIG.APP_NAME}</h3>
-          <p className="mb-5 mt-1 text-sm text-gray-500">
-            {safari
-              ? "Add this app to your Home Screen for the full experience."
-              : "To install on your iPhone, open this page in Safari first."}
-          </p>
+          <p className="mb-5 mt-1 text-sm text-gray-500">{intro}</p>
           <ol className="mb-6 space-y-3 text-left text-sm text-gray-600">
             {steps.map((content, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -135,54 +185,10 @@ function Step({ n }: { n: number }) {
   );
 }
 
-/** The @khmyznikov/pwa-install web component (Android + iOS Safari).
- *  The package defines a custom element at import time and touches browser
- *  globals (HTMLElement / customElements) with no SSR guard, so we load it
- *  dynamically on the client only — never at module top level. */
-function PwaInstallElement({ onClose }: { onClose: () => void }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = useRef<any>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    import("@khmyznikov/pwa-install").then(() => {
-      if (!cancelled) ref.current?.showDialog?.(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.addEventListener("pwa-install-success-event", onClose);
-    el.addEventListener("pwa-user-choice-result-event", onClose);
-    return () => {
-      el.removeEventListener("pwa-install-success-event", onClose);
-      el.removeEventListener("pwa-user-choice-result-event", onClose);
-    };
-  }, [onClose]);
-
-  if (typeof document === "undefined") return null;
-
-  return createPortal(
-    createElement("pwa-install", {
-      ref,
-      "manifest-url": "/manifest.webmanifest",
-      name: APP_CONFIG.APP_NAME,
-      description: APP_CONFIG.APP_DESCRIPTION,
-      icon: "/android-chrome-512x512.png",
-      "manual-apple": "true",
-      "manual-chrome": "true",
-    }),
-    document.body
-  );
-}
-
 /**
- * "Install app" button + install flow, mirroring the lingodeck approach
- * (`@khmyznikov/pwa-install`). Only renders on mobile web before install.
+ * "Install app" button + install flow. Only renders on mobile web before
+ * install. On Chromium it fires the real native install prompt (captured early
+ * in the root layout); everywhere else it shows platform-aware manual steps.
  */
 export function InstallAppButton({
   className,
@@ -192,19 +198,35 @@ export function InstallAppButton({
   label?: string;
 }) {
   const shouldShow = useShouldShowInstall();
-  const [open, setOpen] = useState(false);
-  // iOS (Safari or otherwise) can't install programmatically — always show our
-  // own Share → Add to Home Screen instructions. The web component is only used
-  // for Android, where `beforeinstallprompt` provides a real install flow.
-  const showIosInstructions = open && isIOS();
+  const installPrompt = useInstallPrompt();
+  const [showInstructions, setShowInstructions] = useState(false);
 
   if (!shouldShow) return null;
+
+  const handleClick = async () => {
+    if (installPrompt) {
+      // Real native install (Chrome / Brave / Edge / Samsung / etc.).
+      try {
+        await installPrompt.prompt();
+        await installPrompt.userChoice;
+      } catch {
+        // Prompt already consumed or blocked — fall through to clearing it.
+      } finally {
+        // The event is single-use; drop it so a later tap shows manual steps.
+        window.__deferredInstallPrompt = null;
+        window.dispatchEvent(new Event("install-prompt-available"));
+      }
+      return;
+    }
+    // No native prompt (iOS, Firefox, hardened Chromium) → manual instructions.
+    setShowInstructions(true);
+  };
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={handleClick}
         className={
           className ??
           "inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#E1E4EA] px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
@@ -215,11 +237,13 @@ export function InstallAppButton({
       </button>
 
       <AnimatePresence>
-        {showIosInstructions && <IOSInstallModal key="ios-install" onClose={() => setOpen(false)} />}
+        {showInstructions && (
+          <InstallInstructionsModal
+            key="install-instructions"
+            onClose={() => setShowInstructions(false)}
+          />
+        )}
       </AnimatePresence>
-      {open && !showIosInstructions && (
-        <PwaInstallElement onClose={() => setOpen(false)} />
-      )}
     </>
   );
 }
