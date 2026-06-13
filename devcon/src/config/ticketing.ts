@@ -91,6 +91,10 @@ const ENV_CONFIG = {
         // 'international-student': true,
         // youth: true,
       } as Record<string, boolean>,
+      // Auto-approve builder applications at submit time (instantly mint + email
+      // the voucher) when they clearly qualify. false = every application waits
+      // for manual review. The qualifying rules live in qualifiesForAutoApproval().
+      builderAutoApprove: true,
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -185,6 +189,10 @@ const ENV_CONFIG = {
         // 'international-student': true,
         // youth: true,
       } as Record<string, boolean>,
+      // Auto-approve builder applications at submit time (instantly mint + email
+      // the voucher) when they clearly qualify. false = every application waits
+      // for manual review. The qualifying rules live in qualifiesForAutoApproval().
+      builderAutoApprove: false,
     },
     aadhaar: {
       nullifierSeed: 14687622115861671582408676159101191136114,
@@ -227,6 +235,12 @@ export function discountCollection(type: string): string {
  *  or undefined if not configured for this environment. */
 export function discountItem(type: string): number | undefined {
   return TICKETING.discount.items[type]
+}
+
+/** Whether builder applications should be auto-approved at submit time (instant
+ *  voucher) when they qualify. Toggle per-env via `discount.builderAutoApprove`. */
+export function builderAutoApproveEnabled(): boolean {
+  return TICKETING.discount.builderAutoApprove === true
 }
 
 /** Whether a discount `type` is manually forced sold out via config

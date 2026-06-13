@@ -1,14 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkAdminAuth } from 'utils/adminAuth'
 import { getRowById, updateRow, listRows } from 'services/nocodb'
-import {
-  issueVoucher,
-  setVoucherEmail,
-  setVoucherEmailSent,
-  getVoucherByAnyIdentity,
-  DiscountSoldOutError,
-} from 'services/discountStore'
-import { sendVoucherEmail } from 'services/voucherEmail'
+import { getVoucherByAnyIdentity } from 'services/discountStore'
+import { builderIdentities, issueBuilderVoucher } from 'services/builder/voucher'
 import { sendBuilderRejectionEmail } from 'services/builder/email'
 import { getTalentProfile } from 'services/builder/talent'
 import { getGithubProfile } from 'services/builder/github-profile'
@@ -18,21 +12,8 @@ import { matchEthglobalProjects } from 'services/builder/ethglobal'
 import { parseRepoList } from 'services/builder/repo-ref'
 import { getPastDevconEvents } from 'services/builder/poap-attendees'
 import { GetDiscount } from '../../discounts/validate/[id]'
-import { discountItem, discountCollection } from 'config/ticketing'
 
 const VIEW_ID = 'vwmee9a1l1dyqg34' // Builder Application form view
-const BUILDER_DISCOUNT_TYPE = 'builder'
-
-// A person's voucher-dedup identities, in priority order (wallet > GitHub >
-// email). Lowercased to match the keyspace the community discount flows use
-// (claim/[id] and claim-wallet store lowercased wallet / GitHub login), so a
-// builder approval reuses any voucher the person already holds in ANY program.
-function builderIdentities(record: Record<string, any>): string[] {
-  const wallet = String(record['Wallet Address'] || '').trim().toLowerCase()
-  const github = String(record['GitHub Username'] || '').trim().toLowerCase()
-  const email = String(record['Email'] || '').trim().toLowerCase()
-  return [wallet, github, email].filter(Boolean)
-}
 
 interface MatchedRepo {
   repo: string
@@ -216,71 +197,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return
     }
 
-    // Approved: mint + email a builder voucher.
+    // Approved: mint (or reuse) + email a builder voucher via the shared helper.
     const email = String(record['Email'] || '').trim()
     if (!email) {
       res.status(400).json({ success: false, error: 'No email on this application — cannot issue a voucher.' })
       return
     }
 
-    const itemId = discountItem(BUILDER_DISCOUNT_TYPE)
-    if (!itemId) {
-      res.status(500).json({ success: false, error: 'Builder discount is not configured (no Pretix item).' })
-      return
-    }
-
-    // One discount per person: if this human already holds a voucher under ANY
-    // of their identities (wallet / GitHub / email, across all programs), reuse
-    // it instead of minting a second. Otherwise mint a builder voucher keyed by
-    // their highest-priority identity (wallet > GitHub > email).
-    const identities = builderIdentities(record)
-    let voucher: Awaited<ReturnType<typeof issueVoucher>> = await getVoucherByAnyIdentity(identities)
-    const reused = Boolean(voucher)
-    if (!voucher) {
-      const primaryIdentity = identities[0] || email.toLowerCase()
-      try {
-        voucher = await issueVoucher(primaryIdentity, itemId, discountCollection(BUILDER_DISCOUNT_TYPE), {
-          tag: BUILDER_DISCOUNT_TYPE,
-          type: BUILDER_DISCOUNT_TYPE,
-        })
-      } catch (err) {
-        if (err instanceof DiscountSoldOutError) {
-          res.status(409).json({ success: false, error: 'The builder discount ticket is sold out.' })
-          return
-        }
-        console.error('[builder/review] issueVoucher failed:', err)
-        res.status(502).json({ success: false, error: 'Could not issue voucher. Please try again.' })
-        return
-      }
-    }
-    if (!voucher) {
-      res.status(409).json({ success: false, error: 'Could not issue a voucher (pool exhausted).' })
-      return
-    }
-
-    // Email the voucher to the applicant.
-    let emailed = false
-    try {
-      const sent = await sendVoucherEmail(email, voucher.code)
-      if (sent.success) {
-        await setVoucherEmail(voucher.code, email)
-        await setVoucherEmailSent(voucher.code)
-        emailed = true
+    const result = await issueBuilderVoucher(email, builderIdentities(record))
+    if (!result.ok) {
+      if (result.error === 'not-configured') {
+        res.status(500).json({ success: false, error: 'Builder discount is not configured (no Pretix item).' })
+      } else if (result.error === 'sold-out') {
+        res.status(409).json({ success: false, error: 'The builder discount ticket is sold out.' })
+      } else if (result.error === 'exhausted') {
+        res.status(409).json({ success: false, error: 'Could not issue a voucher (pool exhausted).' })
       } else {
-        console.warn('[builder/review] sendVoucherEmail failed:', sent.error)
+        res.status(502).json({ success: false, error: 'Could not issue voucher. Please try again.' })
       }
-    } catch (err) {
-      console.warn('[builder/review] sendVoucherEmail threw:', err)
+      return
     }
 
     await updateRow(VIEW_ID, id, {
       Decision: 'Approved',
-      'Voucher Code': voucher.code,
-      'Voucher Sent': emailed,
+      'Voucher Code': result.code,
+      'Voucher Sent': result.emailed,
       ...noteUpdate,
     })
 
-    res.status(200).json({ success: true, decision: 'Approved', code: voucher.code, emailed, reused })
+    res.status(200).json({ success: true, decision: 'Approved', code: result.code, emailed: result.emailed, reused: result.reused })
     return
   }
 

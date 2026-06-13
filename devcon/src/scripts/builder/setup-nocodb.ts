@@ -71,6 +71,7 @@ const COLUMNS: ColDef[] = [
   { title: 'Match Source', uidt: 'SingleLineText' },
   { title: 'Admin Notes', uidt: 'LongText' },
   { title: 'Decision', uidt: 'SingleSelect', options: ['Pending', 'Approved', 'Rejected'] },
+  { title: 'Auto Approved', uidt: 'Checkbox' },
   { title: 'Voucher Sent', uidt: 'Checkbox' },
   { title: 'Voucher Code', uidt: 'SingleLineText' },
   { title: 'Submission Date', uidt: 'DateTime' },

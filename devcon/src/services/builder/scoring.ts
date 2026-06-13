@@ -1,6 +1,12 @@
 import { lookupRepo } from './list'
 import { getRepoStarsFromGitHub, didContributeToRepo } from './github-contributions'
 import type { NotableCandidate } from './github-contributions'
+// The OSS Contributors list: GitHub logins with 2+ recent commits to EF /
+// Ethereum / client repos (time-bounded, regenerated each cycle). It's the
+// authoritative "active EF / Ethereum contributor" signal for auto-approval.
+import ossContributors from 'discounts/oss-contributors.json'
+
+const OSS_CONTRIBUTORS = new Set((ossContributors as string[]).map(s => s.toLowerCase()))
 
 // Minimum stars for a non-listed repo to count as "notable".
 const NOTABLE_MIN_STARS = 100
@@ -149,4 +155,26 @@ export async function scoreBuilder(input: ScoreInput, deps: ScoreDeps = defaultD
     matchedCount: listCount,
     matchSource: parts.join(', ') || 'no matches',
   }
+}
+
+/**
+ * Auto-approval rule for builder applications, evaluated at submit time:
+ *   A) the connected GitHub login is on the OSS Contributors list — i.e. a
+ *      recent EF / Ethereum / client contributor with 2+ commits, OR
+ *   B) repos in at least 2 of the 3 curated lists (EF/Ethereum, OSS, web3).
+ * For B, only curated-list matches count ("notable"/unverified don't).
+ */
+export function qualifiesForAutoApproval(
+  githubUsername: string | null | undefined,
+  matchedRepos: MatchedRepo[]
+): { approve: boolean; reason: string | null } {
+  if (githubUsername && OSS_CONTRIBUTORS.has(githubUsername.toLowerCase())) {
+    return { approve: true, reason: 'recent EF / Ethereum contributor (2+ commits)' }
+  }
+  const lists = new Set<'web2' | 'web3' | 'core'>()
+  for (const r of matchedRepos) {
+    if (r.source === 'list' && r.list) lists.add(r.list)
+  }
+  if (lists.size >= 2) return { approve: true, reason: `matched ${lists.size} of 3 curated lists` }
+  return { approve: false, reason: null }
 }
