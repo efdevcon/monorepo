@@ -183,10 +183,12 @@
   border: none;
   border-radius: 9999px;
   cursor: pointer;
+  text-decoration: none;
   transition: background 0.15s, opacity 0.15s;
 
   &:hover:not(:disabled) {
     background: #5f2bc9;
+    color: #f9f8fa;
   }
 
   &:disabled {

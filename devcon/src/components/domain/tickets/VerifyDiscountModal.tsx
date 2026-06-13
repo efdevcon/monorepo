@@ -126,19 +126,72 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
     [validate]
   )
 
-  // Reset to a clean slate each time the modal opens (keep the wallet connected).
+  // On open: reset transient UI state, then re-hydrate from any identity the
+  // user already connected in a previous open (wallet lives in wagmi, the
+  // GitHub identity in the NextAuth session) so we don't make them reconnect.
   useEffect(() => {
     if (!isOpen) return
-    setStep('prompt')
-    setWalletElig(null)
-    setGithubElig(null)
-    setGithubId(null)
     setSelected(null)
     setClaiming(false)
     setError(null)
-    setCheckingMethod(null)
     setAwaitingConnect(false)
     setGithubAuthing(false)
+
+    const hasWallet = isConnected && !!address
+    // Optimistic baseline so we never flash the previous open's results.
+    setStep(hasWallet ? 'checking' : 'prompt')
+    setCheckingMethod(hasWallet ? 'wallet' : null)
+    if (!hasWallet) setWalletElig(null)
+
+    let cancelled = false
+    ;(async () => {
+      let ghId: string | null = null
+      try {
+        const session = (await getSession()) as { id?: string; type?: string } | null
+        if (session?.type === 'github' && session.id) ghId = session.id
+      } catch {
+        ghId = null
+      }
+      if (cancelled) return
+
+      // Nothing connected → stay on the prompt.
+      if (!hasWallet && !ghId) {
+        setWalletElig(null)
+        setGithubElig(null)
+        setGithubId(null)
+        setStep('prompt')
+        return
+      }
+
+      setStep('checking')
+      if (hasWallet && address) {
+        try {
+          const elig = await validate(address)
+          if (!cancelled) setWalletElig(elig)
+        } catch {
+          if (!cancelled) setWalletElig(new Set<DiscountType>())
+        }
+      }
+      if (ghId) {
+        setGithubId(ghId)
+        try {
+          const elig = await validate(ghId)
+          if (!cancelled) setGithubElig(elig)
+        } catch {
+          if (!cancelled) setGithubElig(new Set<DiscountType>())
+        }
+      } else {
+        setGithubElig(null)
+        setGithubId(null)
+      }
+      if (!cancelled) setStep('results')
+    })()
+
+    return () => {
+      cancelled = true
+    }
+    // Intentionally only re-runs on open; reads the current wallet/session then.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
 
   // Close on Escape.
@@ -280,12 +333,6 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
     }
   }
 
-  const handleCloseAll = () => {
-    if (isConnected) disconnect()
-    if (githubId) signOut({ redirect: false }).catch(() => {})
-    onClose()
-  }
-
   const handleClaim = async () => {
     if (!selected || claiming) return
     const via = viaFor(selected)
@@ -389,12 +436,13 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
     step === 'results' ? (
       <div className={css['alsoVerify']}>
         {walletElig === null && (
-          <button type="button" className={css['linkBtn']} onClick={handleConnect}>
+          <button type="button" className={css['primaryBtn']} onClick={handleConnect}>
             Also check with your wallet
           </button>
         )}
         {githubElig === null && (
-          <button type="button" className={css['linkBtn']} onClick={handleGithubSignIn} disabled={githubAuthing}>
+          <button type="button" className={css['githubBtn']} onClick={handleGithubSignIn} disabled={githubAuthing}>
+            <Github size={18} aria-hidden="true" />
             {githubAuthing ? 'Opening GitHub…' : 'Also check with GitHub'}
           </button>
         )}
@@ -603,9 +651,6 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                     </p>
                   </div>
                   {alsoVerify}
-                  <button type="button" className={css['secondaryBtn']} onClick={handleCloseAll}>
-                    Close
-                  </button>
                 </>
               )}
             </div>
