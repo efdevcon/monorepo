@@ -128,7 +128,7 @@ const APPLICATION_TICKETS = [
   {
     type: 'youth',
     title: 'Youth Ticket (3-17) 🌱',
-    meta: 'Online Consent Form + ID/Proof required at Registration',
+    meta: 'Online consent form + ID required at registration',
     description: "Whether you're a younger attendee, or bringing your child.",
     price: '$19',
     originalPrice: null,
@@ -324,8 +324,8 @@ function StoreContent({
               </div>
               <h2 className={css['sidebar-title']}>Ticket Store</h2>
               <p className={css['sidebar-description']}>
-                Secure your participation in Devcon India and join thousands of builders, creators, researchers,
-                designers, and thinkers at the world&apos;s biggest Ethereum conference.
+                Secure your place at Devcon India, where the people behind decentralized systems come together to learn,
+                build, and connect.
               </p>
               <div className={css['sidebar-includes']}>
                 <p className={css['sidebar-includes-label']}>Included in ticket:</p>
@@ -545,7 +545,11 @@ function StoreContent({
                         {cardSoldOut ? (
                           <span className={css['sold-out-badge']}>Sold out</span>
                         ) : (
-                          <button type="button" className={css['apply-btn']} onClick={() => setVerifyDiscountOpen(true)}>
+                          <button
+                            type="button"
+                            className={css['apply-btn']}
+                            onClick={() => setVerifyDiscountOpen(true)}
+                          >
                             {card.buttonLabel}
                           </button>
                         )}
