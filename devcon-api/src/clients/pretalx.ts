@@ -56,10 +56,11 @@ export async function GetSlots(config: PretalxInstanceConfig = PRETALX_CONFIG) {
 }
 
 export async function GetSubmissions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
-  const [submissions, slots, rawRooms] = await Promise.all([
+  const [submissions, slots, rawRooms, speakers] = await Promise.all([
     exhaustResource(`submissions?questions=all`, config),
     GetSlots(config).catch(() => []),
     exhaustResource('rooms', config).catch(() => []),
+    exhaustResource(`speakers?questions=all`, config).catch(() => []),
   ])
 
   // Build lookups
@@ -67,6 +68,10 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
   const roomIdToSlug = new Map<number, string>(
     rawRooms.map((r: any) => [r.id, r.name?.en ? defaultSlugify(r.name.en) : String(r.id)])
   )
+  // Unlike /talks, /submissions returns `speakers` as an array of codes (not
+  // full objects), so mapSession can't derive a name/slug from them. Resolve
+  // each code to its full speaker object up front.
+  const speakerMap = new Map<string, any>(speakers.map((s: any) => [s.code, s]))
 
   return submissions
     .filter((i: any) => i.state === (params.state ?? 'confirmed'))
@@ -82,6 +87,13 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
             room: roomSlug ? { en: roomSlug } : null,
           }
         }
+      }
+      // Resolve speaker codes (or partial objects) to full speaker objects.
+      if (Array.isArray(i.speakers)) {
+        i.speakers = i.speakers.map((sp: any) => {
+          const code = typeof sp === 'string' ? sp : sp?.code
+          return speakerMap.get(code) ?? (sp && typeof sp === 'object' ? sp : { code })
+        })
       }
       return mapSession(i, params, config)
     })
