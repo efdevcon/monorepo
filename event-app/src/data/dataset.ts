@@ -45,3 +45,8 @@ export function getActiveDatasetKey(): DatasetKey {
 export function getActiveDataset(): Dataset {
   return DATASETS[getActiveDatasetKey()];
 }
+
+/** Resolve the dataset that serves a given event id, if any. */
+export function datasetForEventId(eventId: string): Dataset | undefined {
+  return Object.values(DATASETS).find((d) => d.eventId === eventId);
+}

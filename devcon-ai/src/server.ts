@@ -4,6 +4,7 @@ import cors from "cors";
 import { searchRouter } from "./routes/search.js";
 import { chatRouter } from "./routes/chat.js";
 import { fuzzyRouter } from "./routes/fuzzy.js";
+import { datasetsRouter } from "./routes/datasets.js";
 import { generateImageRouter } from "./routes/generate-image.js";
 import { baseModelRouter } from "./routes/base-model.js";
 import { devconAvatarRouter } from "./routes/devcon-avatar.js";
@@ -28,6 +29,7 @@ app.get("/health", (_req, res) => {
 app.use("/api/search", requireAuth, searchRouter);
 app.use("/api/chat", requireAuth, chatRouter);
 app.use("/api/fuzzy", requireAuth, fuzzyRouter);
+app.use("/api/datasets", requireAuth, datasetsRouter);
 app.use("/api/generate-image", requireAuth, generateImageRouter);
 app.use("/api/base-model", requireAuth, baseModelRouter);
 app.use("/api/devcon-avatar", devconAvatarRouter);

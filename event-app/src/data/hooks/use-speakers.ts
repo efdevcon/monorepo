@@ -11,7 +11,12 @@ async function speakersFetcher(): Promise<Speaker[]> {
 }
 
 /**
- * Hook to fetch all speakers
+ * Hook to fetch all speakers for the active dataset.
+ *
+ * Scoped to the active `?dataset` (like sessions/rooms) and keyed by it, so
+ * speakers from one edition never leak into another — switching datasets serves
+ * a separate cache entry. Each speaker is stamped with its `eventId`/`eventLabel`
+ * so provenance is verifiable.
  */
 export function useSpeakers() {
   const { data, error, isLoading, mutate } = useSWR(

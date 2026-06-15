@@ -11,6 +11,7 @@ export function toHtml(markdown: string, slice?: number) {
   return md.render(markdown)
 }
 
-export function defaultSlugify(text: string): string {
+export function defaultSlugify(text: string | undefined | null): string {
+  if (!text || typeof text !== 'string') return ''
   return slugify(text, { lower: true, strict: true, trim: true })
 }

@@ -178,7 +178,9 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
     keywords: keywords,
     tags: tags,
     language: 'en',
-    speakers: params.inclContacts ? i.speakers.map((i: any) => mapSpeaker(i, params, config)) : i.speakers.map((i: any) => defaultSlugify(i.name)),
+    speakers: params.inclContacts
+      ? (i.speakers ?? []).map((i: any) => mapSpeaker(i, params, config))
+      : (i.speakers ?? []).map((i: any) => defaultSlugify(i.name || i.code)),
     eventId: config.eventId,
   }
 
@@ -211,7 +213,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   const telegram = findAnswer(config.PRETALX_QUESTIONS_TELEGRAM)
 
   let speaker: any = {
-    id: defaultSlugify(i.name),
+    id: defaultSlugify(i.name || i.code),
     sourceId: i.code,
     name: i.name,
     avatar: i.avatar ?? CreateBlockie(i.name || i.code),
