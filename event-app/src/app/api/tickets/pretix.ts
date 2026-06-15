@@ -24,6 +24,22 @@ interface PretixItem {
   [key: string]: unknown;
 }
 
+/** Build the Pretix store from env. Returns null if not configured. */
+export function getStoreFromEnv(): PretixStore | null {
+  const apiKey = process.env.PRETIX_API_KEY;
+  const organizerSlug = process.env.PRETIX_ORGANIZER;
+  const eventSlug = process.env.PRETIX_EVENT;
+  if (!apiKey || !organizerSlug || !eventSlug) return null;
+
+  return {
+    url: process.env.PRETIX_API_URL || "https://ticketh.xyz",
+    organizerSlug,
+    eventSlug,
+    eventName: process.env.PRETIX_EVENT_NAME || "Devcon",
+    apiKey,
+  };
+}
+
 const localized = (
   value: string | { en: string; [key: string]: string } | undefined
 ): string | undefined => (typeof value === "object" ? value?.en : value);
