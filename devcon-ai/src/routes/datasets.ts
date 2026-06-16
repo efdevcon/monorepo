@@ -87,7 +87,7 @@ datasetsRouter.get("/documents", async (req, res) => {
 
     let query = supabase
       .from("documents")
-      .select("source_id, source_type, source_repo, metadata, updated_at", {
+      .select("source_id, source_type, source_repo, metadata, updated_at, content", {
         count: "exact",
       })
       .order("source_id", { ascending: true })
@@ -107,6 +107,7 @@ datasetsRouter.get("/documents", async (req, res) => {
       source_repo: string | null;
       metadata: Record<string, unknown> | null;
       updated_at: string;
+      content: string;
     }[];
     const documents = rows.map((row) => {
       const title = row.metadata?.["title"];
@@ -116,6 +117,7 @@ datasetsRouter.get("/documents", async (req, res) => {
         source_repo: row.source_repo,
         title: typeof title === "string" ? title : null,
         updated_at: row.updated_at,
+        content: row.content,
       };
     });
 

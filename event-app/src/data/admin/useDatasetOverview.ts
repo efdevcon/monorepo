@@ -31,11 +31,13 @@ export async function adminFetch(
 }
 
 async function describeError(res: Response): Promise<string> {
+  // Prefer the server's specific message (e.g. "Token rejected: jwt expired",
+  // "No Authorization token reached the server", "Inference service unreachable").
+  const body = await res.json().catch(() => null);
+  if (body?.error) return body.error;
   if (res.status === 403) return "Forbidden — this tool requires an @ethereum.org account.";
   if (res.status === 401) return "Not signed in.";
-  // Surface the upstream message (e.g. "Inference service unreachable at …").
-  const body = await res.json().catch(() => null);
-  return body?.error ?? `HTTP ${res.status}`;
+  return `HTTP ${res.status}`;
 }
 
 /** Loads the RAG corpus overview (total docs + per-dataset counts). */

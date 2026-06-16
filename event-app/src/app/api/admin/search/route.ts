@@ -1,19 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DEVABOT_URL, requireEthereumOrg } from "@/data/admin/adminApiAuth";
 
-// Per-request: reads the caller's Authorization header + query params.
 export const dynamic = "force-dynamic";
 
-/** EF-only proxy: browse corpus documents (paginated/filterable). */
-export async function GET(request: NextRequest) {
+/**
+ * EF-only proxy for RAG-only retrieval: forwards to the backend's
+ * `/api/search/expanded` (the chat flow's retrieval step, no LLM) and returns
+ * the matched documents + the formatted context as JSON.
+ */
+export async function POST(request: NextRequest) {
   const auth = await requireEthereumOrg(request);
   if (!auth.ok) return auth.response;
 
-  // Forward the dataset/pagination query params verbatim.
-  const qs = request.nextUrl.search;
+  const body = await request.text();
   try {
-    const upstream = await fetch(`${DEVABOT_URL}/api/datasets/documents${qs}`, {
+    const upstream = await fetch(`${DEVABOT_URL}/api/search/expanded`, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
+      body,
     });
     const data = await upstream.text();
     return new NextResponse(data, {

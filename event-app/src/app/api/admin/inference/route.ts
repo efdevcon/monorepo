@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DEVABOT_URL, requireEthereumOrg } from "@/data/admin/adminApiAuth";
 
+export const dynamic = "force-dynamic";
+
 /**
  * EF-only proxy to the DevaBot RAG service for the admin inference debugger.
  * Enforces an `@ethereum.org` session server-side, then forwards the request

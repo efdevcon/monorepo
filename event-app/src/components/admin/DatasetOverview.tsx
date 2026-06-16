@@ -151,6 +151,7 @@ interface BrowseDoc {
   source_repo: string | null;
   title: string | null;
   updated_at: string;
+  content: string;
 }
 
 const PAGE_SIZE = 50;
@@ -168,6 +169,7 @@ function DatasetBrowser({
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [openDoc, setOpenDoc] = useState<string | null>(null);
 
   const load = useCallback(
     async (offset: number, search: string) => {
@@ -212,21 +214,40 @@ function DatasetBrowser({
         className="mb-2 w-full rounded-lg border border-[#E1E4EA] px-3 py-1.5 text-xs outline-none focus:border-[#7D52F4]"
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
-      <ul className="max-h-64 space-y-1 overflow-y-auto">
-        {docs.map((d, i) => (
-          <li
-            key={`${d.source_id}-${i}`}
-            className="flex items-start gap-1.5 rounded px-1.5 py-1 text-xs hover:bg-gray-50"
-          >
-            <FileText className="mt-0.5 h-3 w-3 shrink-0 text-gray-300" />
-            <div className="min-w-0">
-              {d.title && (
-                <p className="truncate font-medium text-gray-700">{d.title}</p>
+      <ul className="max-h-80 space-y-1 overflow-y-auto">
+        {docs.map((d, i) => {
+          const key = `${d.source_id}-${i}`;
+          const isOpen = openDoc === key;
+          return (
+            <li key={key} className="rounded text-xs">
+              <button
+                onClick={() => setOpenDoc(isOpen ? null : key)}
+                className="flex w-full items-start gap-1.5 rounded px-1.5 py-1 text-left hover:bg-gray-50"
+              >
+                <FileText className="mt-0.5 h-3 w-3 shrink-0 text-gray-300" />
+                <div className="min-w-0 flex-1">
+                  {d.title && (
+                    <p className="truncate font-medium text-gray-700">
+                      {d.title}
+                    </p>
+                  )}
+                  <p className="truncate text-gray-400">{d.source_id}</p>
+                </div>
+                <ChevronDown
+                  className={cn(
+                    "mt-0.5 h-3 w-3 shrink-0 text-gray-300 transition-transform",
+                    isOpen && "rotate-180"
+                  )}
+                />
+              </button>
+              {isOpen && (
+                <pre className="mx-1.5 mb-1 mt-0.5 max-h-72 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-gray-50 p-2.5 text-[11px] leading-relaxed text-gray-600">
+                  {d.content || "(empty)"}
+                </pre>
               )}
-              <p className="truncate text-gray-400">{d.source_id}</p>
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
       <div className="mt-1.5 flex items-center justify-between text-[11px] text-gray-400">
         <span>

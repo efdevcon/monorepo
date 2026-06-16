@@ -3,30 +3,127 @@
 import { useMemo, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import cn from "classnames";
+import type { Components } from "react-markdown";
 import {
   Database,
+  ExternalLink,
   FileText,
+  Layers,
+  Link2,
   Loader2,
   Play,
   Search,
+  Sparkles,
   Trash2,
   Wrench,
 } from "lucide-react";
-import { supabase } from "@/data/auth/supabase";
+import { Link } from "@/routing";
 import {
   type InferenceRound,
   type InferenceRun,
   type InferenceSource,
 } from "@/data/cache/cache-db";
 import { useInferenceHistory } from "@/data/admin/useInferenceHistory";
-import { useDatasetOverview } from "@/data/admin/useDatasetOverview";
+import { adminFetch, useDatasetOverview } from "@/data/admin/useDatasetOverview";
 import { DatasetOverview } from "./DatasetOverview";
+
+type RunMode = "rag" | "inference";
+
+// CMS docs are synced from these repo paths (see .github/workflows/rag-sync.yml),
+// so a document's file_path resolves to an exact source file on GitHub.
+const GITHUB_CMS_BASE: Record<string, string> = {
+  devcon: "https://github.com/efdevcon/monorepo/blob/main/devcon/cms/",
+  devconnect: "https://github.com/efdevcon/monorepo/blob/main/devconnect/cms/",
+};
+
+interface DocLink {
+  href: string;
+  label: string;
+  external: boolean;
+}
+
+/** Strip a chunk suffix (`#chunk-5` / `#5`) from a source id. */
+const stripChunk = (id: string) => id.replace(/#chunk-\d+$/, "").replace(/#\d+$/, "");
+
+/**
+ * Resolve where a retrieved document "lives" so we can link to it:
+ *  - sessions  → in-app `/schedule/<id>` (id from metadata.session_id or source_id)
+ *  - speakers  → in-app `/speakers/<id>`
+ *  - CMS docs  → the exact source file on GitHub (deterministic from file_path)
+ */
+function resolveDocLink(doc: InferenceSource): DocLink | null {
+  const meta = (doc.metadata ?? {}) as Record<string, unknown>;
+  const path = stripChunk(doc.source_id);
+
+  const rawSessionId = meta.session_id;
+  const sessionId =
+    typeof rawSessionId === "string" || typeof rawSessionId === "number"
+      ? String(rawSessionId)
+      : path.startsWith("sessions/")
+        ? path.slice("sessions/".length)
+        : null;
+  if (sessionId) {
+    return { href: `/schedule/${sessionId}`, label: `Session ${sessionId}`, external: false };
+  }
+
+  if (path.startsWith("speakers/")) {
+    const id = path.slice("speakers/".length);
+    return { href: `/speakers/${id}`, label: `Speaker ${id}`, external: false };
+  }
+
+  const base = doc.source_repo ? GITHUB_CMS_BASE[doc.source_repo] : undefined;
+  if (base) {
+    const filePath = typeof meta.file_path === "string" ? meta.file_path : path;
+    return { href: `${base}${filePath}`, label: filePath, external: true };
+  }
+
+  return null;
+}
+
+/** Map a model citation `source:<id>` to an in-app route (mirrors DevaBot). */
+function resolveSourceUri(href: string): string | null {
+  if (!href.startsWith("source:")) return null;
+  const path = stripChunk(href.slice("source:".length));
+  if (path.startsWith("sessions/")) return `/schedule/${path.slice("sessions/".length)}`;
+  if (path.startsWith("speakers/")) return `/speakers/${path.slice("speakers/".length)}`;
+  return `/${path}`;
+}
+
+/** Markdown renderer that turns `source:` citations into clickable app links. */
+const answerMarkdownComponents: Components = {
+  a: ({ href, children, ...rest }) => {
+    if (!href || href === "#") return <strong>{children}</strong>;
+    const resolved = resolveSourceUri(href);
+    if (resolved) {
+      return (
+        <Link href={resolved} className="text-[#7D52F4] underline">
+          {children}
+        </Link>
+      );
+    }
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className="underline" {...rest}>
+        {children}
+      </a>
+    );
+  },
+};
+
+/** Pull a useful message out of a failed admin-API response. */
+async function runError(res: Response): Promise<string> {
+  const body = await res.json().catch(() => null);
+  if (body?.error) return body.error;
+  if (res.status === 403) return "Forbidden — this tool requires an @ethereum.org account.";
+  if (res.status === 401) return "Not signed in.";
+  return `HTTP ${res.status}`;
+}
 
 /** Live, in-progress view of a run (superset of the persisted InferenceRun). */
 interface RunView {
   id?: string;
   timestamp?: number;
   query: string;
+  ragOnly?: boolean;
   sourceRepo?: string;
   toolCalls: { query: string; reason?: string }[];
   rounds: InferenceRound[];
@@ -68,6 +165,7 @@ function pulledFrom(documents: InferenceSource[]): { repo: string; count: number
 
 export function InferenceTest() {
   const [query, setQuery] = useState("");
+  const [mode, setMode] = useState<RunMode>("rag");
   const [sourceRepo, setSourceRepo] = useState<string>("");
   const [running, setRunning] = useState(false);
   const [run, setRun] = useState<RunView>(EMPTY_RUN);
@@ -92,10 +190,67 @@ export function InferenceTest() {
     return [...seen].sort().map((repo) => ({ repo, label: repo }));
   }, [overview.data, runs]);
 
-  const handleRun = async () => {
+  const handleRun = () => {
     const q = query.trim();
     if (running || !q) return;
+    if (mode === "rag") runRagOnly(q);
+    else runInference(q);
+  };
 
+  /** Retrieval only — hits the no-LLM `/api/admin/search` (chat's RAG step). */
+  const runRagOnly = async (q: string) => {
+    setRunning(true);
+    const live: RunView = {
+      ...EMPTY_RUN,
+      query: q,
+      ragOnly: true,
+      sourceRepo: sourceRepo || undefined,
+    };
+    setRun(live);
+    try {
+      const res = await adminFetch("/api/admin/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: q, ...(sourceRepo ? { sourceRepo } : {}) }),
+      });
+      if (!res.ok) throw new Error(await runError(res));
+      const data = await res.json();
+      const documents: InferenceSource[] = (data.documents ?? []).map((d: any) => ({
+        source_id: d.source_id,
+        source_repo: d.source_repo,
+        source_type: d.source_type,
+        similarity: d.similarity,
+        content_preview: d.content_preview ?? "",
+        metadata: d.metadata,
+      }));
+      const saved: InferenceRun = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        timestamp: Date.now(),
+        query: q,
+        ragOnly: true,
+        sourceRepo: sourceRepo || undefined,
+        toolCalls: [],
+        rounds: [{ label: "Retrieval", documents }],
+        context: data.context ?? "",
+        answer: "",
+      };
+      await addRun(saved);
+      setRun({ ...saved });
+    } catch (e: any) {
+      setRun({ ...live, error: e?.message || "Retrieval failed." });
+    } finally {
+      setRunning(false);
+    }
+  };
+
+  /** Escalate a query to the full inference flow (LLM + agentic search). */
+  const runFullInference = (q: string) => {
+    setMode("inference");
+    runInference(q);
+  };
+
+  /** Full inference — streams the SSE pipeline from `/api/admin/inference`. */
+  const runInference = async (q: string) => {
     setRunning(true);
     const live: RunView = { ...EMPTY_RUN, query: q, sourceRepo: sourceRepo || undefined };
     setRun(live);
@@ -111,16 +266,12 @@ export function InferenceTest() {
       setRun({ ...live, toolCalls: [...toolCalls], rounds: [...rounds], context, answer });
 
     try {
-      const token = (await supabase?.auth.getSession())?.data.session?.access_token;
       const controller = new AbortController();
       abortRef.current = controller;
 
-      const res = await fetch("/api/admin/inference", {
+      const res = await adminFetch("/api/admin/inference", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: q,
           history: [],
@@ -129,13 +280,7 @@ export function InferenceTest() {
         signal: controller.signal,
       });
 
-      if (!res.ok) {
-        const detail =
-          res.status === 403
-            ? "Forbidden — this tool requires an @ethereum.org account."
-            : `HTTP ${res.status}`;
-        throw new Error(detail);
-      }
+      if (!res.ok) throw new Error(await runError(res));
 
       const reader = res.body?.getReader();
       if (!reader) throw new Error("No response body");
@@ -200,6 +345,7 @@ export function InferenceTest() {
   const loadRun = (r: InferenceRun) => {
     setRun({ ...r });
     setQuery(r.query);
+    setMode(r.ragOnly ? "rag" : "inference");
     setSourceRepo(r.sourceRepo ?? "");
   };
 
@@ -228,6 +374,30 @@ export function InferenceTest() {
 
       {/* Controls */}
       <div className="mb-4 rounded-xl border border-[#E1E4EA] p-4">
+        {/* Mode: retrieval-only vs full inference */}
+        <div className="mb-3 inline-flex gap-1 rounded-lg bg-[#EFEBFF] p-1">
+          {(
+            [
+              { m: "rag", label: "RAG only", Icon: Layers },
+              { m: "inference", label: "Full inference", Icon: Sparkles },
+            ] as const
+          ).map(({ m, label, Icon }) => (
+            <button
+              key={m}
+              onClick={() => setMode(m)}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                mode === m
+                  ? "bg-white text-[#7D52F4] shadow-sm"
+                  : "text-[#7D52F4]/70 hover:text-[#7D52F4]"
+              )}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </button>
+          ))}
+        </div>
+
         <div className="flex flex-col gap-2 sm:flex-row">
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -235,7 +405,11 @@ export function InferenceTest() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleRun()}
-              placeholder="Ask the knowledge base…"
+              placeholder={
+                mode === "rag"
+                  ? "Test retrieval for a query…"
+                  : "Ask the knowledge base…"
+              }
               className="w-full rounded-xl border border-[#E1E4EA] py-2.5 pl-9 pr-3 outline-none focus:border-[#7D52F4]"
             />
           </div>
@@ -254,7 +428,7 @@ export function InferenceTest() {
             ) : (
               <Play className="h-4 w-4" />
             )}
-            Run
+            {mode === "rag" ? "Retrieve" : "Run"}
           </button>
         </div>
 
@@ -345,12 +519,25 @@ export function InferenceTest() {
               {/* Full context */}
               {run.context && <ContextBlock context={run.context} />}
 
-              {/* Answer */}
-              {(run.answer || running) && (
+              {/* RAG-only: offer to escalate the same query to full inference */}
+              {run.ragOnly && !running && run.rounds.length > 0 && (
+                <button
+                  onClick={() => runFullInference(run.query)}
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#7D52F4] px-4 py-2.5 text-sm font-medium text-[#7D52F4] transition-colors hover:bg-[#f3eeff]"
+                >
+                  <Sparkles className="h-4 w-4" />
+                  Run full inference on this query
+                </button>
+              )}
+
+              {/* Answer (inference mode only) */}
+              {!run.ragOnly && (run.answer || running) && (
                 <div className="rounded-xl border border-[#E1E4EA] p-4">
                   <h2 className="mb-2 text-sm font-semibold">Answer</h2>
                   <div className="prose prose-sm max-w-none">
-                    <Markdown>{run.answer || "…"}</Markdown>
+                    <Markdown components={answerMarkdownComponents}>
+                      {run.answer || "…"}
+                    </Markdown>
                   </div>
                 </div>
               )}
@@ -398,6 +585,7 @@ export function InferenceTest() {
                       >
                         <p className="truncate text-sm font-medium">{r.query}</p>
                         <p className="mt-0.5 text-[11px] text-gray-400">
+                          {r.ragOnly ? "RAG · " : ""}
                           {timeLabel(r.timestamp)} · {docCount} docs
                           {r.sourceRepo ? ` · ${r.sourceRepo}` : ""}
                         </p>
@@ -468,6 +656,23 @@ function RetrievalRound({ round }: { round: InferenceRound }) {
               <p className="mt-1.5 line-clamp-2 text-xs text-gray-500">
                 {d.content_preview}
               </p>
+              {(() => {
+                const link = resolveDocLink(d);
+                if (!link) return null;
+                const cls =
+                  "mt-1.5 inline-flex max-w-full items-center gap-1 truncate text-[11px] font-medium text-[#7D52F4] hover:underline";
+                return link.external ? (
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                    <ExternalLink className="h-3 w-3 shrink-0" />
+                    <span className="truncate">{link.label}</span>
+                  </a>
+                ) : (
+                  <Link href={link.href} className={cls}>
+                    <Link2 className="h-3 w-3 shrink-0" />
+                    <span className="truncate">{link.label}</span>
+                  </Link>
+                );
+              })()}
             </li>
           ))}
         </ol>

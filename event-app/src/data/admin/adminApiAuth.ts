@@ -36,10 +36,15 @@ export async function requireEthereumOrg(
     /^Bearer\s+/i,
     ""
   );
+  // Distinct messages so a 401 in prod is diagnosable: "no token" points at the
+  // client/session, "token rejected" at an expired token or project mismatch.
   if (!token) {
     return {
       ok: false,
-      response: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
+      response: NextResponse.json(
+        { error: "No Authorization token reached the server." },
+        { status: 401 }
+      ),
     };
   }
 
@@ -51,14 +56,20 @@ export async function requireEthereumOrg(
   if (error || !user) {
     return {
       ok: false,
-      response: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
+      response: NextResponse.json(
+        { error: `Token rejected${error?.message ? `: ${error.message}` : "."}` },
+        { status: 401 }
+      ),
     };
   }
 
   if (!user.email?.toLowerCase().endsWith(ALLOWED_DOMAIN)) {
     return {
       ok: false,
-      response: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
+      response: NextResponse.json(
+        { error: `${user.email ?? "This account"} is not an @ethereum.org account.` },
+        { status: 403 }
+      ),
     };
   }
 

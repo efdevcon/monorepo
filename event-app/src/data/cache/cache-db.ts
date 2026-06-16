@@ -31,6 +31,8 @@ export interface InferenceRun {
   id: string;
   timestamp: number;
   query: string;
+  /** True if this was a retrieval-only run (no LLM inference). */
+  ragOnly?: boolean;
   /** Dataset filters the run was scoped to (empty = all). */
   sourceType?: string;
   sourceRepo?: string;
