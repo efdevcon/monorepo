@@ -2,32 +2,24 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'components/common/link'
 import { Search, ArrowRight } from 'lucide-react'
 import cn from 'classnames'
+import { useLocale, useTranslations } from 'next-intl'
 import { EVENT_TYPES, type EventType, type RoadEvent } from './events'
 
 // Where "Apply now" (get an event listed) points — the rtd-event-form.
 const LISTING_FORM_URL = '/form/rtd-event-form'
 
-const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-const MONTHS_LONG = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-]
-
-// Date helpers parse the ISO string directly (no Date()) to stay timezone-safe.
-function dayMonthLabel(iso: string): string {
-  const [, m, d] = iso.split('-').map(Number)
-  return `${d} ${MONTHS_SHORT[m - 1]}`
+// ISO 'YYYY-MM-DD' (or 'YYYY-MM') → a UTC Date, so locale date formatters
+// don't shift the day across timezones.
+function isoToUTCDate(iso: string): Date {
+  const [y, m, d] = iso.split('-').map(Number)
+  return new Date(Date.UTC(y, (m || 1) - 1, d || 1))
 }
 function monthKey(iso: string): string {
   const [y, m] = iso.split('-')
   return `${y}-${m}`
 }
-function monthLabel(key: string): string {
-  const [y, m] = key.split('-').map(Number)
-  return `${MONTHS_LONG[m - 1]} ${y}`
-}
 
-type MonthGroup = { key: string; label: string; events: RoadEvent[] }
+type MonthGroup = { key: string; events: RoadEvent[] }
 
 function groupByMonth(events: RoadEvent[]): MonthGroup[] {
   const map = new Map<string, RoadEvent[]>()
@@ -36,10 +28,10 @@ function groupByMonth(events: RoadEvent[]): MonthGroup[] {
     if (!map.has(key)) map.set(key, [])
     map.get(key)!.push(e)
   }
-  return [...map.entries()].map(([key, evs]) => ({ key, label: monthLabel(key), events: evs }))
+  return [...map.entries()].map(([key, evs]) => ({ key, events: evs }))
 }
 
-function EventCard({ event }: { event: RoadEvent }) {
+function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }) {
   return (
     <Link
       to={event.url ?? LISTING_FORM_URL}
@@ -57,7 +49,7 @@ function EventCard({ event }: { event: RoadEvent }) {
       <div className="flex flex-col gap-3 p-5">
         <h3 className="text-base font-bold leading-[1.1] text-[#160b2b]">{event.title}</h3>
         <p className="flex items-center gap-1 text-sm leading-none">
-          <span className="font-semibold text-[#1a0d33]">{dayMonthLabel(event.date)}</span>
+          <span className="font-semibold text-[#1a0d33]">{dateLabel}</span>
           <span className="text-[#594d73]">•</span>
           <span className="text-[#594d73]">{event.host}</span>
         </p>
@@ -66,7 +58,15 @@ function EventCard({ event }: { event: RoadEvent }) {
   )
 }
 
-function PastToggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
+function PastToggle({
+  value,
+  onChange,
+  label,
+}: {
+  value: boolean
+  onChange: (v: boolean) => void
+  label: string
+}) {
   return (
     <label className="flex shrink-0 cursor-pointer items-center gap-3 text-sm text-[#1a0d33]">
       <button
@@ -86,12 +86,22 @@ function PastToggle({ value, onChange }: { value: boolean; onChange: (v: boolean
           )}
         />
       </button>
-      Show past events
+      {label}
     </label>
   )
 }
 
 export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
+  const t = useTranslations('road_to_devcon')
+  const locale = useLocale()
+  const monthFmt = useMemo(
+    () => new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric', timeZone: 'UTC' }),
+    [locale]
+  )
+  const dayFmt = useMemo(
+    () => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', timeZone: 'UTC' }),
+    [locale]
+  )
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<Set<EventType>>(new Set())
   const [showPast, setShowPast] = useState(false)
@@ -148,15 +158,15 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
       {/* Heading + search */}
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[2px] text-[#7235ed]">Get involved</p>
-          <h2 className="mt-3 text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px]">Road to Devcon events</h2>
+          <p className="text-sm font-semibold uppercase tracking-[2px] text-[#7235ed]">{t('events.eyebrow')}</p>
+          <h2 className="mt-3 text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px]">{t('events.title')}</h2>
         </div>
         <div className="relative w-full lg:w-[320px]">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#594d73]" />
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Search by event, type or city"
+            placeholder={t('events.search_placeholder')}
             className="w-full rounded-lg border border-[rgba(34,17,68,0.1)] bg-white py-2.5 pl-9 pr-3 text-sm text-[#160b2b] outline-none placeholder:text-[#594d73] focus:border-[#7235ed]"
           />
         </div>
@@ -179,7 +189,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
                   : 'border-[rgba(34,17,68,0.1)] text-[#1a0d33] hover:bg-[rgba(114,53,237,0.06)]'
               )}
             >
-              {type}
+              {t(`events.types.${type}`)}
             </button>
           )
         })}
@@ -207,37 +217,39 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
               <div className="min-w-0 flex-1 pb-12">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-baseline gap-2">
-                    <h3 className="text-xl font-extrabold leading-none text-[#160b2b]">{group.label}</h3>
+                    <h3 className="text-xl font-extrabold leading-none text-[#160b2b]">
+                      {monthFmt.format(isoToUTCDate(group.key))}
+                    </h3>
                     <span className="text-base text-[#594d73]">
-                      {group.events.length} event{group.events.length === 1 ? '' : 's'}
+                      {t('events.count', { count: group.events.length })}
                     </span>
                   </div>
-                  {gi === 0 && <PastToggle value={showPast} onChange={setShowPast} />}
+                  {gi === 0 && (
+                    <PastToggle value={showPast} onChange={setShowPast} label={t('events.show_past')} />
+                  )}
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1250px]:grid-cols-3">
                   {group.events.map(event => (
-                    <EventCard key={event.id} event={event} />
+                    <EventCard key={event.id} event={event} dateLabel={dayFmt.format(isoToUTCDate(event.date))} />
                   ))}
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <p className="py-12 text-center text-[#594d73]">No events match your filters.</p>
+          <p className="py-12 text-center text-[#594d73]">{t('events.empty')}</p>
         )}
       </div>
 
       {/* "Get listed" CTA */}
       <div className="relative mt-4 flex items-center justify-center gap-6 overflow-hidden rounded-2xl bg-white/70 px-6 py-6 shadow-[0_2px_8px_rgba(34,17,68,0.08)]">
-        <p className="text-center text-lg font-extrabold text-[#160b2b] sm:text-xl">
-          Hosting a related event? Get it listed here
-        </p>
+        <p className="text-center text-lg font-extrabold text-[#160b2b] sm:text-xl">{t('events.cta_text')}</p>
         <Link
           to={LISTING_FORM_URL}
           className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-[#5f23d6]"
         >
-          Apply now
+          {t('events.cta_button')}
         </Link>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

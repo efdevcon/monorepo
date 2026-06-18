@@ -9,6 +9,8 @@ import enLantern from '../../content/en/intl/lantern.json'
 import enTickets from '../../content/en/intl/tickets.json'
 import enApplications from '../../content/en/intl/applications.json'
 import enAbout from '../../content/en/intl/about.json'
+import enRoadToDevcon from '../../content/en/intl/road_to_devcon.json'
+import enAcademicProgram from '../../content/en/intl/academic_program.json'
 import hiCommon from '../../content/hi/intl/common.json'
 import hiHome from '../../content/hi/intl/home.json'
 import hiDips from '../../content/hi/intl/dips.json'
@@ -20,6 +22,8 @@ import hiLantern from '../../content/hi/intl/lantern.json'
 import hiTickets from '../../content/hi/intl/tickets.json'
 import hiApplications from '../../content/hi/intl/applications.json'
 import hiAbout from '../../content/hi/intl/about.json'
+import hiRoadToDevcon from '../../content/hi/intl/road_to_devcon.json'
+import hiAcademicProgram from '../../content/hi/intl/academic_program.json'
 import mrCommon from '../../content/mr/intl/common.json'
 import mrHome from '../../content/mr/intl/home.json'
 import mrDips from '../../content/mr/intl/dips.json'
@@ -31,6 +35,8 @@ import mrLantern from '../../content/mr/intl/lantern.json'
 import mrTickets from '../../content/mr/intl/tickets.json'
 import mrApplications from '../../content/mr/intl/applications.json'
 import mrAbout from '../../content/mr/intl/about.json'
+import mrRoadToDevcon from '../../content/mr/intl/road_to_devcon.json'
+import mrAcademicProgram from '../../content/mr/intl/academic_program.json'
 
 export function flattenMessages(nestedMessages: any, prefix = '') {
   return Object.keys(nestedMessages).reduce((messages: any, key) => {
@@ -62,6 +68,8 @@ const MESSAGES: Record<string, MessageBundle> = {
     tickets: enTickets as Record<string, any>,
     applications: enApplications as Record<string, any>,
     about: enAbout as Record<string, any>,
+    road_to_devcon: enRoadToDevcon as Record<string, any>,
+    academic_program: enAcademicProgram as Record<string, any>,
   },
   hi: {
     common: hiCommon as Record<string, any>,
@@ -75,6 +83,8 @@ const MESSAGES: Record<string, MessageBundle> = {
     tickets: hiTickets as Record<string, any>,
     applications: hiApplications as Record<string, any>,
     about: hiAbout as Record<string, any>,
+    road_to_devcon: hiRoadToDevcon as Record<string, any>,
+    academic_program: hiAcademicProgram as Record<string, any>,
   },
   mr: {
     common: mrCommon as Record<string, any>,
@@ -88,6 +98,8 @@ const MESSAGES: Record<string, MessageBundle> = {
     tickets: mrTickets as Record<string, any>,
     applications: mrApplications as Record<string, any>,
     about: mrAbout as Record<string, any>,
+    road_to_devcon: mrRoadToDevcon as Record<string, any>,
+    academic_program: mrAcademicProgram as Record<string, any>,
   },
 }
 

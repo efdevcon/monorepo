@@ -1,32 +1,17 @@
 import React from 'react'
 import { Link } from 'components/common/link'
 import { University, Sprout, Handshake, ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
+// Text comes from the `road_to_devcon.programs.<key>` i18n keys.
 const PROGRAMS = [
-  {
-    icon: University,
-    title: 'Academic',
-    description:
-      'Shape the next generation of Ethereum builders at your campus and bring your community to Devcon in Mumbai this November.',
-    to: '/academic-program',
-  },
-  {
-    icon: Sprout,
-    title: 'Ecosystem',
-    description:
-      'We fund local projects, events, and contributors creating spaces for learning, experimentation, and coordination on the road to Devcon 8 India.',
-    to: '/ecosystem-program',
-  },
-  {
-    icon: Handshake,
-    title: 'Supporters',
-    description:
-      'The Supporters Program is how teams across the ecosystem contribute to Devcon and take their place within it.',
-    to: '/supporters',
-  },
+  { icon: University, to: '/academic-program', key: 'academic' },
+  { icon: Sprout, to: '/ecosystem-program', key: 'ecosystem' },
+  { icon: Handshake, to: '/supporters', key: 'supporters' },
 ] as const
 
 export function RoadToDevconPrograms() {
+  const t = useTranslations('road_to_devcon')
   return (
     <section
       className="section relative z-10 py-16 text-white"
@@ -41,25 +26,25 @@ export function RoadToDevconPrograms() {
     >
       <div className="flex flex-col gap-8">
         <h2 className="text-center text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px] text-[#f9f8fa] [text-shadow:0px_2px_4px_rgba(34,17,68,0.2)]">
-          Join the Devcon Programs
+          {t('programs.title')}
         </h2>
 
         <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
-          {PROGRAMS.map(({ icon: Icon, title, description, to }) => (
+          {PROGRAMS.map(({ icon: Icon, to, key }) => (
             <div
-              key={title}
+              key={key}
               className="flex flex-col gap-4 rounded-2xl border border-white/20 bg-[rgba(34,17,68,0.15)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]"
             >
               <Icon size={32} strokeWidth={1.5} className="text-[#b08df5]" />
               <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-extrabold leading-[26px] text-[#f9f8fa]">{title}</h3>
-                <p className="text-sm font-light leading-5 text-[#f9f8fa]">{description}</p>
+                <h3 className="text-xl font-extrabold leading-[26px] text-[#f9f8fa]">{t(`programs.${key}.title`)}</h3>
+                <p className="text-sm font-light leading-5 text-[#f9f8fa]">{t(`programs.${key}.description`)}</p>
               </div>
               <Link
                 to={to}
                 className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-[#b08df5] transition-colors hover:text-white"
               >
-                Learn more
+                {t('common.learn_more')}
                 <ArrowRight size={14} strokeWidth={2.5} />
               </Link>
             </div>

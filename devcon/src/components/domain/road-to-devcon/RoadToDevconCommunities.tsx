@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import InfiniteScroll from 'lib/components/infinite-scroll'
 
 // Ecosystem logos — same source assets as the Supporters page
@@ -67,6 +68,7 @@ function LogoRow({ logos, reverse }: { logos: { src: any; alt: string }[]; rever
 }
 
 export function RoadToDevconCommunities() {
+  const t = useTranslations('road_to_devcon')
   return (
     // `.section` provides the 1312px-centered grid; `.expand` lets the marquee
     // break out to the full viewport width (edge to edge).
@@ -74,18 +76,18 @@ export function RoadToDevconCommunities() {
       {/* Heading + CTA (centered column) */}
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[2px] text-[#7235ed]">Our co-creators</p>
+          <p className="text-sm font-semibold uppercase tracking-[2px] text-[#7235ed]">{t('communities.eyebrow')}</p>
           <h2 className="mt-3 text-[32px] font-extrabold leading-[1.2] tracking-[-0.5px]">
-            Road to Devcon communities
+            {t('communities.title')}
           </h2>
         </div>
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <p className="text-base font-medium text-[#1a0d33]">Want to help create Devcon with us?</p>
+          <p className="text-base font-medium text-[#1a0d33]">{t('communities.cta_text')}</p>
           <Link
             to={CONTACT_URL}
             className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[rgba(34,17,68,0.1)] bg-white/80 px-8 py-3.5 text-base font-bold text-[#1a0d33] transition-colors hover:bg-white"
           >
-            Get in touch
+            {t('communities.cta_button')}
             <ArrowRight size={16} strokeWidth={2} />
           </Link>
         </div>
