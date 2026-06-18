@@ -37,7 +37,7 @@ export function ServiceWorkerUpdater() {
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-gray-900">Update available</p>
-              <p className="truncate text-xs text-gray-500">A new version is ready.</p>
+              <p className="text-xs text-gray-500">A new version is ready.</p>
             </div>
             <button
               onClick={reload}

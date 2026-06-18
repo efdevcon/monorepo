@@ -1,5 +1,10 @@
 import { Api } from 'nocodb-sdk'
-import { resolveFormView, getFormFields as getFormFieldsFromMeta, getAllTableColumns } from './nocodb-meta'
+import {
+  resolveFormView,
+  resolveViewTable,
+  getFormFields as getFormFieldsFromMeta,
+  getAllTableColumns,
+} from './nocodb-meta'
 import type { FormField } from './nocodb-meta'
 
 export { getAllTableColumns }
@@ -27,6 +32,31 @@ export async function createRow(viewId: string, data: Record<string, any>) {
   const { baseId, tableId } = await resolveFormView(viewId)
   const api = getApi()
   return api.dbTableRow.create('noco', baseId, tableId, data)
+}
+
+/**
+ * List rows of the table backing a form view. Paginates through all records
+ * (capped) so callers get the full set. Read-only; safe for public listings.
+ */
+export async function listViewRows(
+  viewId: string,
+  opts: { pageSize?: number; maxRows?: number } = {}
+): Promise<any[]> {
+  const { baseId, tableId } = await resolveViewTable(viewId)
+  const api = getApi()
+  const pageSize = opts.pageSize ?? 100
+  const maxRows = opts.maxRows ?? 500
+  const rows: any[] = []
+  let offset = 0
+  while (rows.length < maxRows) {
+    const result = await api.dbTableRow.list('noco', baseId, tableId, { limit: pageSize, offset })
+    const page = (result as any)?.list ?? []
+    rows.push(...page)
+    const isLast = (result as any)?.pageInfo?.isLastPage ?? page.length < pageSize
+    if (isLast) break
+    offset += pageSize
+  }
+  return rows
 }
 
 export async function findRowByEmail(viewId: string, emailColumn: string, email: string): Promise<any | null> {

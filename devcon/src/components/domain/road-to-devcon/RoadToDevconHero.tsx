@@ -154,14 +154,29 @@ export function RoadToDevconHero({ height = '100vh' }: RoadToDevconHeroProps = {
                 ? 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 aspect-square z-[5]'
                 : 'absolute left-1/2 -translate-x-1/2 w-[19%] z-[5]'
             }
-            style={isMobile ? { width: devaWrapperWidth } : { top: 'calc(28% - 150px)' }}
+            style={isMobile ? { width: devaWrapperWidth } : { top: 'calc(28% - 120px)' }}
           >
-            <motion.img
-              src={`${ASSET_BASE}/deva.webp`}
-              alt="Deva"
-              className={isMobile ? 'absolute left-1/2 top-[20%] -translate-x-1/2 w-[23%]' : 'w-full'}
-              style={{ x: devaX, y: devaY }}
-            />
+            {isMobile ? (
+              // Centering (-translate-x-1/2) lives on this static wrapper; the
+              // drift (framer `x`/`y`) lives on the img. Keeping them on
+              // separate elements avoids framer's inline `transform` clobbering
+              // the Tailwind translate (which would shove the mascot right).
+              <div className="absolute left-1/2 top-[23%] w-[23%] -translate-x-1/2">
+                <motion.img
+                  src={`${ASSET_BASE}/deva.png`}
+                  alt="Deva"
+                  className="w-full"
+                  style={{ x: devaX, y: devaY }}
+                />
+              </div>
+            ) : (
+              <motion.img
+                src={`${ASSET_BASE}/deva.png`}
+                alt="Deva"
+                className="w-full"
+                style={{ x: devaX, y: devaY }}
+              />
+            )}
           </div>
 
           {/* Centered logo */}

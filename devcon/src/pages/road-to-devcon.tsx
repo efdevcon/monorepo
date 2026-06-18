@@ -3,7 +3,12 @@ import { Header } from 'components/common/layouts/header'
 import { Footer } from 'components/common/layouts/footer'
 import { Link } from 'components/common/link'
 import { RoadToDevconHero } from 'components/domain/road-to-devcon/RoadToDevconHero'
+import { RoadToDevconEvents } from 'components/domain/road-to-devcon/RoadToDevconEvents'
+import { RoadToDevconCommunities } from 'components/domain/road-to-devcon/RoadToDevconCommunities'
+import { RoadToDevconPrograms } from 'components/domain/road-to-devcon/RoadToDevconPrograms'
 import { University, Sprout, ArrowRight } from 'lucide-react'
+import { getRoadToDevconEvents } from 'services/rtd-events'
+import { ROAD_TO_DEVCON_EVENTS, type RoadEvent } from 'components/domain/road-to-devcon/events'
 import themes from './themes.module.scss'
 import css from './road-to-devcon.module.scss'
 
@@ -49,7 +54,7 @@ function ProgramCardItem({ icon, title, description, to }: ProgramCard) {
 function AboutSection() {
   return (
     <section
-      className="relative z-10 w-full text-white px-6 md:px-16 py-16"
+      className="section relative z-10 text-white py-16"
       style={{ background: 'linear-gradient(rgba(33, 20, 71, 0) 0px, rgb(33, 20, 71) 200px, rgb(33, 20, 71) 100%)' }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -77,7 +82,7 @@ function AboutSection() {
   )
 }
 
-export default function RoadToDevconPage() {
+export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
   return (
     <div className={`${css['layout']} ${themes['index']}`}>
       <Header withHero />
@@ -87,6 +92,12 @@ export default function RoadToDevconPage() {
       <div className="w-full relative z-10">
         <AboutSection />
 
+        <RoadToDevconEvents events={events} />
+
+        <RoadToDevconCommunities />
+
+        <RoadToDevconPrograms />
+
         <Footer dark />
       </div>
     </div>
@@ -94,5 +105,15 @@ export default function RoadToDevconPage() {
 }
 
 export async function getStaticProps() {
-  return { props: {} }
+  // Build the events into the page (ISR, 30 min) so they're always present —
+  // no client fetch / loading state. Falls back to the bundled seed if NocoDB
+  // is unreachable at build/revalidate time so the section is never empty.
+  let events: RoadEvent[]
+  try {
+    events = await getRoadToDevconEvents()
+  } catch (e) {
+    console.error('[road-to-devcon] event fetch failed, using seed:', e)
+    events = ROAD_TO_DEVCON_EVENTS
+  }
+  return { props: { events }, revalidate: 1800 }
 }
