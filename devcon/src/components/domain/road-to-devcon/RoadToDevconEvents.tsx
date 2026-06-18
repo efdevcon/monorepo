@@ -147,12 +147,12 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
       className="section relative z-10 py-16 text-[#160b2b]"
       style={{
         // Lavender base + the DC8 lotus/moon graphic anchored to the bottom,
-        // scaled to full width while preserving its aspect (no distortion).
+        // constrained to 800px wide (capped at 90vw) with aspect preserved.
         backgroundColor: '#ECEAFB',
         backgroundImage: 'url(/road-to-devcon/moon-bg.svg)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center bottom',
-        backgroundSize: '100% auto',
+        backgroundSize: 'min(800px, 90vw) auto',
       }}
     >
       {/* Heading + search */}

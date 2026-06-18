@@ -299,36 +299,36 @@ async function sync() {
 
   console.log(`${chunksToUpsert.length} chunks need updating${force ? " (force mode)" : ""}`);
 
-  if (chunksToUpsert.length === 0) {
-    console.log("All documents are up to date");
-    return;
-  }
+  if (chunksToUpsert.length > 0) {
+    // Create embeddings for new/changed chunks
+    const chunksWithEmbeddings = await createEmbeddings(openai, chunksToUpsert);
 
-  // Create embeddings for new/changed chunks
-  const chunksWithEmbeddings = await createEmbeddings(openai, chunksToUpsert);
+    // Upsert to Supabase
+    const { error } = await supabase.from("documents").upsert(
+      chunksWithEmbeddings.map((chunk) => ({
+        content: chunk.content,
+        embedding: chunk.embedding,
+        source_type: chunk.sourceType,
+        source_repo: chunk.sourceRepo,
+        source_id: chunk.sourceId,
+        source_hash: chunk.sourceHash,
+        metadata: chunk.metadata,
+      })),
+      {
+        onConflict: "source_type,source_repo,source_id",
+      }
+    );
 
-  // Upsert to Supabase
-  const { error } = await supabase.from("documents").upsert(
-    chunksWithEmbeddings.map((chunk) => ({
-      content: chunk.content,
-      embedding: chunk.embedding,
-      source_type: chunk.sourceType,
-      source_repo: chunk.sourceRepo,
-      source_id: chunk.sourceId,
-      source_hash: chunk.sourceHash,
-      metadata: chunk.metadata,
-    })),
-    {
-      onConflict: "source_type,source_repo,source_id",
+    if (error) {
+      console.error("Error upserting documents:", error);
+      process.exit(1);
     }
-  );
 
-  if (error) {
-    console.error("Error upserting documents:", error);
-    process.exit(1);
+    console.log(`Successfully synced ${chunksWithEmbeddings.length} documents`);
+  } else {
+    console.log("All documents are up to date");
   }
-
-  console.log(`Successfully synced ${chunksWithEmbeddings.length} documents`);
+  // Cleanup below still runs: deletions produce no upserts but must remove orphans.
 
   // Clean up old chunks that no longer exist
   const currentSourceIds = new Set(allChunks.map((c) => c.sourceId));
