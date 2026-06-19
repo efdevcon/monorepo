@@ -91,6 +91,9 @@ export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
               <Link
                 key={item.href}
                 href={href}
+                // Full prefetch (RSC included) so the SW caches each route's
+                // payload — enables smooth offline navigation between nav routes.
+                prefetch
                 className={cn(
                   "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   active
@@ -131,6 +134,7 @@ export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
                 <Link
                   key={item.href}
                   href={href}
+                  prefetch
                   className={cn(
                     "flex flex-col items-center justify-center gap-0.5 rounded-full px-3 py-1.5 text-[10px] font-medium transition-colors",
                     active ? "text-[#7D52F4]" : "text-gray-500 hover:text-gray-900"

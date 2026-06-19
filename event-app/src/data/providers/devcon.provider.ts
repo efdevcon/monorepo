@@ -1,4 +1,5 @@
 import { BaseProvider, type SessionFilters } from "./provider-interface";
+import { datasetForEventId, getActiveDataset } from "../dataset";
 import type { Room, Session, Speaker } from "../models";
 
 // Pretalx API types
@@ -335,9 +336,15 @@ export class DevconProvider extends BaseProvider {
   // SPEAKER METHODS
   // --------------------------------------------------------------------------
 
-  async getSpeakers(): Promise<Speaker[]> {
+  async getSpeakers(eventId?: string): Promise<Speaker[]> {
     const { speakers } = await this.loadAll();
-    return this.validateSpeakers(speakers);
+    const event = eventId ?? getActiveDataset().eventId;
+    const stamped = speakers.map((s) => ({
+      ...s,
+      eventId: event,
+      eventLabel: datasetForEventId(event)?.label ?? event,
+    }));
+    return this.validateSpeakers(stamped);
   }
 
   async getSpeaker(id: string): Promise<Speaker> {

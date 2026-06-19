@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Bug } from "lucide-react";
+import { Bug, FlaskConical } from "lucide-react";
+import { Link } from "@/routing";
 import { DATASETS, getActiveDatasetKey, type DatasetKey } from "@/data/dataset";
 
 /** local Date → "YYYY-MM-DDTHH:mm" for a datetime-local input. */
@@ -123,6 +124,19 @@ export function DebugPanel() {
             >
               Reset
             </button>
+          </div>
+
+          {/* Tools */}
+          <div className="mt-4 border-t border-[#E1E4EA] pt-3">
+            <p className="mb-2 text-xs font-medium text-gray-500">Tools</p>
+            <Link
+              href="/admin/inference-test"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm font-medium text-[#7D52F4] hover:bg-[#f3eeff]"
+            >
+              <FlaskConical className="h-4 w-4" />
+              Inference debugger
+            </Link>
           </div>
         </div>
       )}

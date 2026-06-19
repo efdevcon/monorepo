@@ -109,3 +109,88 @@ export function groupByTime(sessions: Session[]): TimeGroup[] {
   }
   return groups;
 }
+
+// --- Timeline view -----------------------------------------------------------
+
+/** One time column in the timeline = this many minutes, rendered this wide. */
+export const SLOT_MINUTES = 10;
+export const SLOT_WIDTH = 100; // px per slot
+
+const SLOT_MS = SLOT_MINUTES * 60_000;
+
+/** Label shown when a session has no assigned room. */
+export const NO_ROOM_LABEL = "TBA";
+
+/** A room's name as used for grouping/sorting in the timeline. */
+const roomName = (s: Session) => s.room?.name ?? NO_ROOM_LABEL;
+
+/**
+ * Distinct rooms present in the sessions, ordered like devcon's timeline:
+ * "Main Stage" first, then any "Stage …", then the rest alphabetically.
+ */
+export function sortRooms(sessions: Session[]): string[] {
+  const rooms = [...new Set(sessions.map(roomName))];
+  return rooms.sort((a, b) => {
+    if (a === "Main Stage") return -1;
+    if (b === "Main Stage") return 1;
+    const aStage = a.toLowerCase().startsWith("stage");
+    const bStage = b.toLowerCase().startsWith("stage");
+    if (aStage && !bStage) return -1;
+    if (bStage && !aStage) return 1;
+    return a.localeCompare(b);
+  });
+}
+
+export interface Timeline {
+  rooms: string[];
+  /** Start-of-slot timestamps (ms), spanning the day's first start → last end. */
+  slots: number[];
+  /** Grid origin (ms) — left edge of the first slot. */
+  startMs: number;
+  /** Sessions grouped by room name. */
+  byRoom: Record<string, Session[]>;
+}
+
+/** Round a timestamp (ms) down to the start of its `SLOT_MINUTES` slot. */
+const floorToSlot = (ms: number) => ms - (ms % SLOT_MS);
+
+/**
+ * Build the room lanes and time axis for the timeline from a day's sessions.
+ * Slots run from the earliest start (floored to a slot) to the latest end
+ * (plus one slot of trailing padding), at `SLOT_MINUTES` resolution.
+ */
+export function buildTimeline(sessions: Session[]): Timeline {
+  const rooms = sortRooms(sessions);
+  const byRoom: Record<string, Session[]> = {};
+  for (const r of rooms) byRoom[r] = [];
+
+  let min = Infinity;
+  let max = -Infinity;
+  for (const s of sessions) {
+    byRoom[roomName(s)].push(s);
+    min = Math.min(min, ms(s.start));
+    max = Math.max(max, ms(s.end));
+  }
+  for (const r of rooms) byRoom[r].sort((a, b) => a.start - b.start);
+
+  const startMs = floorToSlot(min);
+  const endMs = floorToSlot(max) + SLOT_MS; // one slot of trailing padding
+  const slots: number[] = [];
+  for (let t = startMs; t <= endMs; t += SLOT_MS) slots.push(t);
+
+  return { rooms, slots, startMs, byRoom };
+}
+
+/** Horizontal offset (px) of a timestamp (ms) from the grid origin. */
+export const offsetPx = (timeMs: number, startMs: number) =>
+  ((timeMs - startMs) / SLOT_MS) * SLOT_WIDTH;
+
+/** Pixel placement of a session within its room lane. */
+export function sessionBox(
+  session: Session,
+  startMs: number
+): { left: number; width: number } {
+  const left = offsetPx(ms(session.start), startMs);
+  const width = offsetPx(ms(session.end), startMs) - left;
+  return { left, width: Math.max(width, SLOT_WIDTH / 2) };
+}

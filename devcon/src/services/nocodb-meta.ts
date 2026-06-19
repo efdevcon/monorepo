@@ -195,6 +195,27 @@ export async function resolveFormView(viewId: string): Promise<FormViewMeta> {
   return data
 }
 
+/**
+ * Resolve a view id to its {baseId, tableId} for READING records, tolerant of
+ * views the forms-meta endpoint can't describe (e.g. grid views, or forms that
+ * 500 on `/meta/forms/:id`). Tries the rich form-view path first, then falls
+ * back to resolving the table from the view's first column.
+ */
+export async function resolveViewTable(viewId: string): Promise<{ baseId: string; tableId: string }> {
+  try {
+    const v = await resolveFormView(viewId)
+    return { baseId: v.baseId, tableId: v.tableId }
+  } catch {
+    const cols = await nocoFetch<{ list: Array<{ fk_column_id: string }> }>(
+      `/api/v1/db/meta/views/${viewId}/columns`
+    )
+    const firstColId = cols.list?.[0]?.fk_column_id
+    if (!firstColId) throw new Error(`Cannot resolve table for view ${viewId}: no columns`)
+    const column = await nocoFetch<ColumnMeta>(`/api/v1/db/meta/columns/${firstColId}`)
+    return { baseId: column.base_id, tableId: column.fk_model_id }
+  }
+}
+
 export async function getFormFields(viewId: string): Promise<FormField[]> {
   const cached = fieldsCache.get(viewId)
   if (cached && Date.now() < cached.expiresAt) return cached.data

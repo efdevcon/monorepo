@@ -188,8 +188,11 @@ export class DummyProvider extends BaseProvider {
     return this.validateSessions(sessions);
   }
 
-  async getSpeakers(): Promise<Speaker[]> {
-    return this.validateSpeakers(this.dummySpeakers);
+  async getSpeakers(eventId?: string): Promise<Speaker[]> {
+    const stamped = eventId
+      ? this.dummySpeakers.map((s) => ({ ...s, eventId, eventLabel: eventId }))
+      : this.dummySpeakers;
+    return this.validateSpeakers(stamped);
   }
 
   async getSpeaker(id: string): Promise<Speaker> {

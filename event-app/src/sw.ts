@@ -21,9 +21,48 @@ declare const self: ServiceWorkerGlobalScope;
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: false,
-  clientsClaim: false,
+  // Take control of the page as soon as this worker activates, so offline works
+  // on first install without needing a reopen. Safe only because skipWaiting is
+  // false — updates still wait for the user, so a new worker never claims a page
+  // running an older build's assets. Do NOT set both to true.
+  clientsClaim: true,
   navigationPreload: false,
   runtimeCaching: [
+    // Next.js App Router fetches RSC payloads (header `RSC: 1`) for client-side
+    // navigation and reconciliation. These are NOT `destination: "document"`
+    // requests, so without dedicated rules they'd hit the network and fail
+    // offline — and Next.js reacts to a failed RSC fetch by forcing a hard
+    // navigation, which (with no offline document either) produces an infinite
+    // reload loop. Cache them (separate cache from HTML to avoid key collisions
+    // on the same URL) so navigations resolve offline. Mirrors @serwist/next's
+    // `defaultCache`. Must precede the document rule.
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin &&
+        request.headers.get("RSC") === "1" &&
+        request.headers.get("Next-Router-Prefetch") === "1" &&
+        !url.pathname.startsWith("/api/"),
+      handler: new NetworkFirst({
+        cacheName: "pages-rsc-prefetch",
+        networkTimeoutSeconds: 5,
+        plugins: [
+          new CacheableResponsePlugin({ statuses: [200] }),
+          new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
+        ],
+      }),
+    },
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin && request.headers.get("RSC") === "1" && !url.pathname.startsWith("/api/"),
+      handler: new NetworkFirst({
+        cacheName: "pages-rsc",
+        networkTimeoutSeconds: 5,
+        plugins: [
+          new CacheableResponsePlugin({ statuses: [200] }),
+          new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
+        ],
+      }),
+    },
     {
       matcher: ({ request }) => request.destination === "document",
       handler: new NetworkFirst({
@@ -82,13 +121,27 @@ const serwist = new Serwist({
       }),
     },
     {
-      matcher: /\.(?:png|jpg|jpeg|svg|gif|webp|ico)$/i,
+      // Match by request destination, not URL extension: speaker avatars and
+      // other images come from cross-origin CDNs and often have no file
+      // extension (or carry query strings, or go through /_next/image), so an
+      // extension-only matcher missed them and they never cached for offline.
+      // `destination === "image"` covers every <img> / next/image request
+      // regardless of URL shape or origin. The extension test is a fallback for
+      // images referenced where the destination isn't reported (e.g. some CSS
+      // background-image fetches).
+      matcher: ({ request, url }) =>
+        request.destination === "image" ||
+        /\.(?:png|jpg|jpeg|svg|gif|webp|avif|ico)$/i.test(url.pathname),
       handler: new CacheFirst({
         cacheName: "static-images",
         plugins: [
           new ExpirationPlugin({
-            maxEntries: 100,
+            maxEntries: 400,
             maxAgeSeconds: 30 * 24 * 60 * 60,
+            // Cross-origin images are opaque responses, which count heavily
+            // toward the storage quota — drop the cache rather than error out
+            // if we ever hit the limit.
+            purgeOnQuotaError: true,
           }),
         ],
       }),
@@ -106,6 +159,19 @@ const serwist = new Serwist({
       }),
     },
   ],
+  // When a document navigation can't be served (offline, on a route that isn't
+  // precached and was never cached — e.g. a dynamic detail page opened for the
+  // first time offline), fall back to the precached /offline page instead of
+  // failing. A failed top-level navigation is what lets the reload loop run
+  // forever; guaranteeing the document side always resolves stops it.
+  fallbacks: {
+    entries: [
+      {
+        url: "/offline",
+        matcher: ({ request }) => request.destination === "document",
+      },
+    ],
+  },
 });
 
 serwist.addEventListeners();

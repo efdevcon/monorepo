@@ -17,6 +17,10 @@ export const SpeakerSchema: z.ZodType<Speaker> = z.lazy(() =>
     description: z.string().optional(),
     tracks: z.array(z.string()).optional(),
     eventDays: z.array(z.number()).optional(),
+    // Provenance: which event/edition (and thus pretalx instance) this speaker
+    // came from. Stamped by the data provider at fetch time.
+    eventId: z.string().optional(),
+    eventLabel: z.string().optional(),
     sessions: z.lazy(() => {
       const { SessionSchema } = require("./sessions");
       return z.array(SessionSchema as SessionSchemaType).optional();
@@ -36,5 +40,9 @@ export type Speaker = {
   description?: string;
   tracks?: string[];
   eventDays?: number[];
+  /** Provenance: the event/edition id this speaker was fetched for. */
+  eventId?: string;
+  /** Human-readable label for `eventId` (e.g. "Devcon 7"). */
+  eventLabel?: string;
   sessions?: import("./sessions").Session[];
 };

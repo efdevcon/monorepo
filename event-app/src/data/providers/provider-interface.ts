@@ -74,10 +74,11 @@ export interface IEventDataProvider {
   // --------------------------------------------------------------------------
 
   /**
-   * Get all speakers
+   * Get all speakers for an event. Defaults to the active dataset's event when
+   * `eventId` is omitted. Returned speakers are stamped with their `eventId`.
    * Returns validated Speaker[] using SpeakerSchema
    */
-  getSpeakers(): Promise<Speaker[]>;
+  getSpeakers(eventId?: string): Promise<Speaker[]>;
 
   /**
    * Get a single speaker by ID
@@ -172,7 +173,7 @@ export abstract class BaseProvider implements IEventDataProvider {
 
   abstract getSessionsByDay(day: string): Promise<Session[]>;
 
-  abstract getSpeakers(): Promise<Speaker[]>;
+  abstract getSpeakers(eventId?: string): Promise<Speaker[]>;
 
   abstract getSpeaker(id: string): Promise<Speaker>;
 

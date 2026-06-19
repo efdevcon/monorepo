@@ -1,5 +1,5 @@
 import type { Room, Session, Speaker } from "../models";
-import { getActiveDataset } from "../dataset";
+import { datasetForEventId, getActiveDataset } from "../dataset";
 import { BaseProvider, type SessionFilters } from "./provider-interface";
 
 export class DevconApiProvider extends BaseProvider {
@@ -49,7 +49,9 @@ export class DevconApiProvider extends BaseProvider {
         ? this.mapRoom(raw.slot_room)
         : undefined,
       speakers: (raw.speakers ?? []).map((s: any) =>
-        typeof s === "string" ? { id: s, name: s } : this.mapSpeaker(s)
+        typeof s === "string"
+          ? this.stampEvent({ id: s, name: s }, this.dataset.eventId)
+          : this.mapSpeaker(s, this.dataset.eventId)
       ),
       tags: typeof raw.tags === "string"
         ? raw.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
@@ -58,17 +60,29 @@ export class DevconApiProvider extends BaseProvider {
     };
   }
 
-  private mapSpeaker(raw: any): Speaker {
+  private mapSpeaker(raw: any, eventId: string): Speaker {
+    return this.stampEvent(
+      {
+        id: raw.id,
+        name: raw.name ?? "",
+        description: raw.description ?? "",
+        avatar: raw.avatar ?? "",
+        twitter: raw.twitter,
+        github: raw.github,
+        role: raw.role,
+        company: raw.company,
+        website: raw.website,
+      },
+      eventId
+    );
+  }
+
+  /** Tag a speaker with its event provenance (id + human-readable label). */
+  private stampEvent(speaker: Speaker, eventId: string): Speaker {
     return {
-      id: raw.id,
-      name: raw.name ?? "",
-      description: raw.description ?? "",
-      avatar: raw.avatar ?? "",
-      twitter: raw.twitter,
-      github: raw.github,
-      role: raw.role,
-      company: raw.company,
-      website: raw.website,
+      ...speaker,
+      eventId,
+      eventLabel: datasetForEventId(eventId)?.label ?? eventId,
     };
   }
 
@@ -120,17 +134,18 @@ export class DevconApiProvider extends BaseProvider {
     return sessions.filter((s) => s.day === day || s.date === day);
   }
 
-  async getSpeakers(): Promise<Speaker[]> {
+  async getSpeakers(eventId?: string): Promise<Speaker[]> {
+    const event = eventId ?? this.dataset.eventId;
     const data = await this.fetchApi<any>(
-      `/speakers?event=${this.dataset.eventId}&size=1000`
+      `/speakers?event=${event}&size=1000`
     );
     const items = data?.items ?? data ?? [];
-    return this.validateSpeakers(items.map((s: any) => this.mapSpeaker(s)));
+    return this.validateSpeakers(items.map((s: any) => this.mapSpeaker(s, event)));
   }
 
   async getSpeaker(id: string): Promise<Speaker> {
     const data = await this.fetchApi<any>(`/speakers/${id}`);
-    return this.validateSpeaker(this.mapSpeaker(data));
+    return this.validateSpeaker(this.mapSpeaker(data, this.dataset.eventId));
   }
 
   async searchSpeakers(query: string): Promise<Speaker[]> {

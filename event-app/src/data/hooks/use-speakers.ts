@@ -11,7 +11,12 @@ async function speakersFetcher(): Promise<Speaker[]> {
 }
 
 /**
- * Hook to fetch all speakers
+ * Hook to fetch all speakers for the active dataset.
+ *
+ * Scoped to the active `?dataset` (like sessions/rooms) and keyed by it, so
+ * speakers from one edition never leak into another — switching datasets serves
+ * a separate cache entry. Each speaker is stamped with its `eventId`/`eventLabel`
+ * so provenance is verifiable.
  */
 export function useSpeakers() {
   const { data, error, isLoading, mutate } = useSWR(
@@ -26,47 +31,50 @@ export function useSpeakers() {
   return {
     speakers: data ?? [],
     isLoading,
-    isError: error,
-    error,
+    // Offline-first: a failed background revalidation must not hide data we
+    // already have cached. Only report an error when there's no data at all
+    // (`data` is undefined until the first successful fetch — an empty array
+    // means a successful fetch that returned nothing).
+    isError: data !== undefined ? undefined : error,
+    error: data !== undefined ? undefined : error,
     mutate,
   };
 }
 
 /**
- * Hook to fetch a single speaker by ID
+ * Hook to fetch a single speaker by ID.
+ *
+ * Derives from the cached speakers list rather than fetching `/speakers/:id`
+ * on its own. That single network call per id meant a detail page never opened
+ * while online had no cached entry and failed offline; sharing the list cache
+ * makes every speaker available offline once the list has loaded once.
  */
 export function useSpeaker(id: string) {
-  const { data, error, isLoading, mutate } = useSWR(
-    id ? [getActiveDatasetKey(), "speaker", id] : null,
-    () => provider.getSpeaker(id),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { speakers, isLoading, error, mutate } = useSpeakers();
+  const speaker = id ? speakers.find((s) => s.id === id) ?? null : null;
 
   return {
-    speaker: data ?? null,
-    isLoading,
-    isError: error,
-    error,
+    speaker,
+    // Only "loading" while we have nothing to show yet.
+    isLoading: isLoading && !speaker,
+    // Offline-first: don't surface an error if we have cached data to render.
+    isError: speaker ? undefined : error,
+    error: speaker ? undefined : error,
     mutate,
   };
 }
 
 /**
- * Hook to search speakers by query string
+ * Hook to search speakers by query string. Filters the cached list client-side
+ * so search works offline too.
  */
 export function useSearchSpeakers(query: string) {
-  const { data, error, isLoading, mutate } = useSWR(
-    query ? [getActiveDatasetKey(), "speakers", "search", query] : null,
-    () => provider.searchSpeakers(query),
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { speakers, isLoading, error, mutate } = useSpeakers();
+  const q = query.trim().toLowerCase();
+  const results = q ? speakers.filter((s) => s.name.toLowerCase().includes(q)) : [];
 
   return {
-    speakers: data ?? [],
+    speakers: results,
     isLoading,
     isError: error,
     error,

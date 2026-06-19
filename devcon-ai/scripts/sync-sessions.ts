@@ -1,55 +1,44 @@
 /**
- * Devcon API Sessions Sync Script
+ * Devcon Sessions Sync Script
  *
- * Fetches Devcon 7 sessions from the API and embeds them into the RAG knowledge base.
+ * Embeds Devcon sessions into the RAG knowledge base, reading from the
+ * committed `devcon-api/data` files (the same source of truth the API loads
+ * into memory on boot) rather than the live API. Intended to run right after
+ * `pnpm sync:pretalx` in the Pretalx sync workflow, so RAG stays in step with
+ * the schedule data committed to the repo.
  *
  * Usage:
- *   pnpm sync:devcon-api
+ *   pnpm sync:sessions [--event devcon-7] [--data-path ../devcon-api/data] [--force]
  */
 
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 import OpenAI from "openai";
 import * as crypto from "crypto";
+import * as fs from "fs";
+import * as path from "path";
 
 // Configuration
 const CHUNK_SIZE = 1500; // Characters per chunk
 const CHUNK_OVERLAP = 200; // Overlap between chunks
-const API_URL = "https://api.devcon.org/sessions?event=devcon-7&size=1000";
 const SOURCE_TYPE = "devcon-api";
-const SOURCE_REPO = "devcon-7";
+const DEFAULT_EVENT = "devcon-7";
+const DEFAULT_DATA_PATH = "../devcon-api/data";
 
-interface Speaker {
-  name: string;
-}
-
-interface Room {
-  name: string;
-}
-
-interface Session {
+// Shape of a session as stored on disk in devcon-api/data/sessions/<event>/*.json
+interface DiskSession {
   id: string;
-  title: string;
-  description: string;
-  type: string;
-  track: string;
-  expertise: string;
-  speakers: Speaker[];
-  tags: string;
-  slot_start: string;
-  slot_end: string;
-  slot_room: Room | null;
-  sources_youtubeId: string;
-}
-
-interface ApiResponse {
-  status: number;
-  message: string;
-  data: {
-    total: number;
-    currentPage: number;
-    items: Session[];
-  };
+  title?: string;
+  description?: string;
+  type?: string;
+  track?: string;
+  expertise?: string;
+  tags?: string[];
+  speakers?: string[]; // speaker IDs
+  slot_start?: number | string | null;
+  slot_end?: number | string | null;
+  slot_roomId?: string | null;
+  sources_youtubeId?: string;
 }
 
 interface DocumentChunk {
@@ -62,22 +51,47 @@ interface DocumentChunk {
 }
 
 // Parse command line arguments
-function parseArgs(): { force: boolean } {
+function parseArgs(): { force: boolean; event: string; dataPath: string } {
   const args = process.argv.slice(2);
   let force = false;
+  let event = DEFAULT_EVENT;
+  let dataPath = DEFAULT_DATA_PATH;
 
-  for (const arg of args) {
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
     if (arg === "--force") {
       force = true;
+    } else if (arg === "--event") {
+      event = args[++i];
+    } else if (arg === "--data-path") {
+      dataPath = args[++i];
     }
   }
 
-  return { force };
+  return { force, event, dataPath };
 }
 
 // Create content hash for change detection
 function hashContent(content: string): string {
   return crypto.createHash("sha256").update(content).digest("hex").slice(0, 16);
+}
+
+// Read every *.json file in a directory, parsed. Returns [] if dir is absent.
+function readJsonDir<T>(dir: string): T[] {
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")) as T);
+}
+
+// Build id -> name lookup from a directory of {id, name} json files
+function buildNameMap(dir: string): Map<string, string> {
+  const map = new Map<string, string>();
+  for (const item of readJsonDir<{ id: string; name?: string }>(dir)) {
+    if (item.id && item.name) map.set(item.id, item.name);
+  }
+  return map;
 }
 
 // Split content into overlapping chunks
@@ -121,8 +135,8 @@ function chunkContent(content: string, title?: string): string[] {
 }
 
 // Format session into embeddable content
-function formatSessionContent(session: Session): string {
-  const speakerNames = session.speakers?.map((s) => s.name).join("; ") || "";
+function formatSessionContent(session: DiskSession, speakerNames: string[]): string {
+  const tags = (session.tags || []).join(", ");
 
   const metadataLines = [
     `Type: ${session.type || "Unknown"}`,
@@ -132,8 +146,8 @@ function formatSessionContent(session: Session): string {
 
   const parts = [
     metadataLines,
-    speakerNames ? `Speakers: ${speakerNames}` : null,
-    session.tags ? `Tags: ${session.tags}` : null,
+    speakerNames.length ? `Speakers: ${speakerNames.join("; ")}` : null,
+    tags ? `Tags: ${tags}` : null,
     "",
     session.description || "",
   ].filter((part) => part !== null);
@@ -142,10 +156,19 @@ function formatSessionContent(session: Session): string {
 }
 
 // Process a single session into document chunks
-function processSession(session: Session): DocumentChunk[] {
-  const content = formatSessionContent(session);
+function processSession(
+  session: DiskSession,
+  event: string,
+  speakerMap: Map<string, string>,
+  roomMap: Map<string, string>
+): DocumentChunk[] {
+  const speakerNames = (session.speakers || [])
+    .map((id) => speakerMap.get(id) || id)
+    .filter(Boolean);
+  const room = session.slot_roomId ? roomMap.get(session.slot_roomId) || null : null;
+
+  const content = formatSessionContent(session, speakerNames);
   const title = session.title || "Untitled Session";
-  const speakerNames = session.speakers?.map((s) => s.name) || [];
 
   console.log(`Processing session: ${title} (${content.length} chars)`);
 
@@ -154,7 +177,7 @@ function processSession(session: Session): DocumentChunk[] {
   return chunks.map((chunk, index) => ({
     content: chunk,
     sourceType: SOURCE_TYPE,
-    sourceRepo: SOURCE_REPO,
+    sourceRepo: event,
     sourceId: chunks.length > 1
       ? `sessions/${session.id}#chunk-${index}`
       : `sessions/${session.id}`,
@@ -166,10 +189,10 @@ function processSession(session: Session): DocumentChunk[] {
       track: session.track || null,
       expertise: session.expertise || null,
       speakers: speakerNames,
-      tags: session.tags || null,
-      slot_start: session.slot_start || null,
-      slot_end: session.slot_end || null,
-      room: session.slot_room?.name || null,
+      tags: (session.tags || []).join(", ") || null,
+      slot_start: session.slot_start ?? null,
+      slot_end: session.slot_end ?? null,
+      room,
       youtube_id: session.sources_youtubeId || null,
       chunk_index: index,
       total_chunks: chunks.length,
@@ -177,23 +200,22 @@ function processSession(session: Session): DocumentChunk[] {
   }));
 }
 
-// Fetch sessions from Devcon API
-async function fetchSessions(): Promise<Session[]> {
-  console.log(`Fetching sessions from ${API_URL}`);
-
-  const response = await fetch(API_URL);
-
-  if (!response.ok) {
-    throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+// Load sessions for an event from the committed devcon-api data files
+function loadSessions(
+  dataPath: string,
+  event: string
+): { sessions: DiskSession[]; speakerMap: Map<string, string>; roomMap: Map<string, string> } {
+  const sessionsDir = path.join(dataPath, "sessions", event);
+  if (!fs.existsSync(sessionsDir)) {
+    throw new Error(`Sessions directory not found: ${sessionsDir}`);
   }
 
-  const data: ApiResponse = await response.json();
+  const sessions = readJsonDir<DiskSession>(sessionsDir);
+  // Speakers are stored flat across all events; rooms are per-event.
+  const speakerMap = buildNameMap(path.join(dataPath, "speakers"));
+  const roomMap = buildNameMap(path.join(dataPath, "rooms", event));
 
-  if (!data.data?.items || !Array.isArray(data.data.items)) {
-    throw new Error("Invalid API response: expected data.items array");
-  }
-
-  return data.data.items;
+  return { sessions, speakerMap, roomMap };
 }
 
 // Create embeddings for chunks
@@ -227,10 +249,10 @@ async function createEmbeddings(
 
 // Main sync function
 async function sync() {
-  const { force } = parseArgs();
+  const { force, event, dataPath } = parseArgs();
 
-  console.log(`Syncing Devcon 7 sessions from API`);
-  console.log(`Source: ${SOURCE_TYPE}/${SOURCE_REPO}`);
+  console.log(`Syncing ${event} sessions into RAG`);
+  console.log(`Source: ${SOURCE_TYPE}/${event} (from ${dataPath})`);
 
   // Initialize clients
   const supabase = createClient(
@@ -242,8 +264,8 @@ async function sync() {
     apiKey: process.env.OPENAI_API_KEY!,
   });
 
-  // Fetch sessions from API
-  const sessions = await fetchSessions();
+  // Load sessions from the committed data files
+  const { sessions, speakerMap, roomMap } = loadSessions(dataPath, event);
   console.log(`Found ${sessions.length} sessions`);
 
   if (sessions.length === 0) {
@@ -254,7 +276,7 @@ async function sync() {
   // Process sessions into chunks
   const allChunks: DocumentChunk[] = [];
   for (const session of sessions) {
-    const chunks = processSession(session);
+    const chunks = processSession(session, event, speakerMap, roomMap);
     allChunks.push(...chunks);
   }
   console.log(`Created ${allChunks.length} chunks from ${sessions.length} sessions`);
@@ -264,7 +286,7 @@ async function sync() {
     .from("documents")
     .select("source_id, source_hash")
     .eq("source_type", SOURCE_TYPE)
-    .eq("source_repo", SOURCE_REPO);
+    .eq("source_repo", event);
 
   const existingMap = new Map(
     (existingDocs || []).map((d) => [d.source_id, d.source_hash])
@@ -308,7 +330,7 @@ async function sync() {
     console.log("All documents are up to date");
   }
 
-  // Clean up old chunks that no longer exist (orphaned sessions)
+  // Clean up old chunks that no longer exist (orphaned/canceled sessions)
   const currentSourceIds = new Set(allChunks.map((c) => c.sourceId));
   const sourceIdsToDelete = [...existingMap.keys()].filter(
     (id) => !currentSourceIds.has(id)
@@ -319,7 +341,7 @@ async function sync() {
       .from("documents")
       .delete()
       .eq("source_type", SOURCE_TYPE)
-      .eq("source_repo", SOURCE_REPO)
+      .eq("source_repo", event)
       .in("source_id", sourceIdsToDelete);
 
     if (deleteError) {

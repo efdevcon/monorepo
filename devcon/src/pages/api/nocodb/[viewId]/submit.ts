@@ -19,6 +19,7 @@ import { scoreBuilder, qualifiesForAutoApproval } from 'services/builder/scoring
 import { getPastDevconEvents } from 'services/builder/poap-attendees'
 import { builderIdentities, issueBuilderVoucher } from 'services/builder/voucher'
 import { builderAutoApproveEnabled } from 'config/ticketing'
+import { isApprovedSpeaker } from 'services/pretalx'
 
 // Slug of the visa-collection form. Only this form gates submissions on the
 // signed-in email having a paid Pretix order (purchaser or assigned attendee).
@@ -122,21 +123,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Visa-form gate: signed-in email must have a paid Pretix order. We check
-    // here (post-OTP) so a bad actor can't bypass by replaying a submit POST.
-    // On success, autofill the comma-separated list of order codes so the
-    // visa team doesn't have to ask the user to enter them by hand.
+    // Visa-form gate: signed-in email must have a paid Pretix order OR be an
+    // approved (accepted/confirmed) Pretalx speaker. We check here (post-OTP) so
+    // a bad actor can't bypass by replaying a submit POST. On success we autofill
+    // the order-id column: the newline-separated order codes for ticket holders,
+    // or the literal "Approved Speaker" for speakers (who have no Pretix order),
+    // so the visa team can tell the eligibility basis apart.
     if (verifiedEmail && config?.formSlug === VISA_FORM_SLUG) {
       const orders = await getPaidOrdersByEmail(verifiedEmail)
-      if (orders.length === 0) {
+      if (orders.length > 0) {
+        data[VISA_ORDER_ID_COLUMN] = orders.map(o => o.code).join('\n')
+      } else if (await isApprovedSpeaker(verifiedEmail)) {
+        data[VISA_ORDER_ID_COLUMN] = 'Approved Speaker'
+      } else {
         return res.status(403).json({
           success: false,
           error: 'NO_TICKET',
-          details: `No Devcon ticket found for ${verifiedEmail}. Sign in with the email used to purchase your ticket, or reassign the ticket's attendee email in Pretix.`,
+          details: `No Devcon ticket or approved speaker profile found for ${verifiedEmail}. Sign in with the email used to purchase your ticket or submit your talk, or reassign the ticket's attendee email in Pretix.`,
         })
       }
-
-      data[VISA_ORDER_ID_COLUMN] = orders.map(o => o.code).join('\n')
     }
 
     // Email classification & eligibility gate is specific to the student

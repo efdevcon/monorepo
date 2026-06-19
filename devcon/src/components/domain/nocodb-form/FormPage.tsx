@@ -196,15 +196,9 @@ function EligibilityGate({
   useEffect(() => {
     if (!email || !supabase) return
 
-    const cacheKey = `eligibility:${email}`
-    const cached = typeof window !== 'undefined' ? window.sessionStorage.getItem(cacheKey) : null
-
-    if (cached) {
-      setBucket(cached as EligibilityBucket)
-      setLoading(false)
-      return
-    }
-
+    // No client-side caching of the verdict — always re-check so a stale or
+    // transient classification (or a server-side whitelist change) can't persist
+    // for the whole session. The expensive work is cached server-side.
     setLoading(true)
     setError('')
 
@@ -228,7 +222,6 @@ function EligibilityGate({
             throw new Error(`Server returned non-JSON (${res.status}): ${text.slice(0, 120)}`)
           }
           if (!result.success) throw new Error(result.error || `Eligibility check failed (${res.status})`)
-          window.sessionStorage.setItem(cacheKey, result.bucket)
           setBucket(result.bucket)
         })
         .catch(err => {
@@ -308,17 +301,16 @@ function VisaTicketGate({
   children: () => React.ReactNode
 }) {
   const [state, setState] = useState<'loading' | 'ok' | 'denied'>('loading')
+  // Why the user is eligible — drives the "Valid speaker" tag on the form.
+  const [basis, setBasis] = useState<'ticket' | 'speaker' | null>(null)
 
   useEffect(() => {
     if (!email || !supabase) return
 
-    const cacheKey = `visa-ticket:${email}`
-    const cached = typeof window !== 'undefined' ? window.sessionStorage.getItem(cacheKey) : null
-    if (cached === 'ok' || cached === 'denied') {
-      setState(cached)
-      return
-    }
-
+    // No client-side caching of the verdict: eligibility can change underneath a
+    // session (ticket purchased, speaker approved/un-approved, config fixed), and
+    // a stale result — a denial especially — is worse than a cheap re-check. The
+    // expensive lookups are already cached server-side.
     setState('loading')
 
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -349,9 +341,8 @@ function VisaTicketGate({
             setState('denied')
             return
           }
-          const next = result.hasTicket ? 'ok' : 'denied'
-          window.sessionStorage.setItem(cacheKey, next)
-          setState(next)
+          setBasis(result.eligibility ?? null)
+          setState(result.hasTicket ? 'ok' : 'denied')
         })
         .catch(err => {
           console.warn('[VisaTicketGate] network error', err?.message)
@@ -372,10 +363,10 @@ function VisaTicketGate({
   if (state === 'denied') {
     return (
       <div className="flex flex-col items-center gap-4 text-center">
-        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">Devcon ticket required</h3>
+        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">Devcon ticket or speaker access required</h3>
         <p className="text-sm text-[#1a0d33] leading-5">
-          A Devcon ticket is required to fill in this form. Make sure you have a ticket assigned to the email you used
-          to sign into this form.
+          A Devcon ticket or an approved speaker profile is required to fill in this form. Make sure your ticket — or
+          the email you submitted your talk with — matches the email you used to sign into this form.
         </p>
         <p className="text-sm text-[#1a0d33] leading-5">
           You signed in as <span className="font-bold break-all">{email}</span>. Need help? Contact{' '}
@@ -395,7 +386,18 @@ function VisaTicketGate({
     )
   }
 
-  return <>{children()}</>
+  return (
+    <>
+      {basis === 'speaker' && (
+        <div className="mb-4 flex justify-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e9f9ef] px-3 py-1 text-sm font-bold text-[#1a7f47]">
+            <span aria-hidden>✓</span> Valid speaker
+          </span>
+        </div>
+      )}
+      {children()}
+    </>
+  )
 }
 
 function FormInner({

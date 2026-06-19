@@ -4,6 +4,7 @@ import { useSession } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { use, useState } from "react";
 import { Link, BackButton } from "@/routing";
+import { supabase } from "@/data/auth/supabase";
 import {
   MeerkatProvider,
   useQuestions,
@@ -95,13 +96,37 @@ function SessionQA({ sessionId }: { sessionId: string }) {
   const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
   const sessionUrl = useSessionUrl(sessionId);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [tokenError, setTokenError] = useState<string | null>(null);
   const [debugToken, setDebugToken] = useState<{ raw: string; header: unknown; payload: unknown } | null>(null);
 
   async function handleAskQuestion() {
     setIsGenerating(true);
+    setTokenError(null);
     try {
-      const res = await fetch("/api/meerkat", { method: "POST" });
-      if (!res.ok) throw new Error("Failed to generate token");
+      // Attach the Supabase access token so the server can verify the user and
+      // their ticket before issuing the handover JWT.
+      const accessToken = (await supabase?.auth.getSession())?.data.session
+        ?.access_token;
+      if (!accessToken) {
+        setTokenError("Please sign in to ask a question.");
+        return;
+      }
+
+      const res = await fetch("/api/meerkat", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      if (!res.ok) {
+        const { error } = await res.json().catch(() => ({ error: null }));
+        setTokenError(
+          res.status === 403
+            ? error || "A valid ticket is required to ask questions."
+            : res.status === 401
+              ? "Please sign in to ask a question."
+              : error || "Failed to generate token. Please try again."
+        );
+        return;
+      }
       const { token } = await res.json();
 
       // TODO: Remove this debug block once Meerkat integration is live — redirect instead:
@@ -114,6 +139,7 @@ function SessionQA({ sessionId }: { sessionId: string }) {
       setDebugToken({ raw: token, header, payload });
     } catch (err) {
       console.error("Failed to generate token:", err);
+      setTokenError("Failed to generate token. Please try again.");
     } finally {
       setIsGenerating(false);
     }
@@ -133,6 +159,10 @@ function SessionQA({ sessionId }: { sessionId: string }) {
           </button>
         </div>
       </div>
+
+      {tokenError && (
+        <p className="mb-3 text-sm text-red-500">{tokenError}</p>
+      )}
 
       {debugToken && (
         <div className="mb-4 p-3 bg-gray-50 border border-dashed border-gray-300 rounded text-xs font-mono space-y-3">

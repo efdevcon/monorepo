@@ -15,12 +15,22 @@ const withSerwist = withSerwistInit({
   swDest: "public/sw.js",
   disable: process.env.NODE_ENV === "development" || isStaticExport,
   cacheOnNavigation: false,
-  // Precache the core app-shell routes so they boot offline / on first launch.
+  // Precache the app-shell routes so they boot offline / on first launch, even
+  // cold (before any online navigation warms the runtime cache). These are just
+  // light client shells — all data is fetched at runtime via SWR/Dexie — so the
+  // HTML is cheap to precache. Covers every static nav destination; dynamic
+  // detail routes (/schedule/[id], /speakers/[id], …) rely on runtime RSC
+  // caching + the document fallback instead.
   additionalPrecacheEntries: [
     { url: "/", revision },
     { url: "/schedule", revision },
     { url: "/speakers", revision },
+    { url: "/map", revision },
+    { url: "/profile", revision },
     { url: "/login", revision },
+    // Offline fallback served by the SW when a document navigation can't be
+    // fulfilled offline (see `fallbacks` in src/sw.ts).
+    { url: "/offline", revision },
   ],
   reloadOnOnline: false,
   exclude: [
