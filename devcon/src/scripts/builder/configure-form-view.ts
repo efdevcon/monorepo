@@ -39,22 +39,23 @@ interface FieldCfg {
 
 const FIELD_CONFIG: FieldCfg[] = [
   {
+    title: 'Full Name',
+    required: true,
+    description:
+      'Please enter your full name as it appears on your ID – we require ID to be shown when you register at the event.',
+  },
+  {
+    // Renders as the combined "Connections" block (GitHub + wallet). This field's
+    // description is the block's shared helper; the wallet field's is unused.
     title: 'GitHub Username',
     label: `${GITHUB_PREFIX} GitHub Username`,
     description:
-      'Connect your GitHub so we can automatically match your contributions against known OSS / web3 projects.',
+      'Connect your GitHub and/or a wallet to verify your OSS and web3 contributions, as well as your onchain identity.',
   },
   {
     title: 'Wallet Address',
     label: `${WALLET_PREFIX} Wallet Address`,
-    description:
-      'Recommended — connect a wallet to link your POAPs / onchain identity; it helps demonstrate your contributions.',
-  },
-  {
-    title: 'Full Name',
-    required: true,
-    description:
-      'What is your name as it appears on your ID? We check IDs at registration to prevent reselling/scalping; this is only used to verify your identity at Devcon and is never shared with third parties.',
+    description: 'Connect a wallet to link your POAPs / onchain identity.',
   },
   { title: 'Country', required: true, description: 'Country of origin.' },
   {
@@ -67,33 +68,31 @@ const FIELD_CONFIG: FieldCfg[] = [
   {
     title: 'Contributed Repos',
     description:
-      "Repos you've contributed to — one per line. We auto-fill these from your connected GitHub and match them against known OSS / web3 projects and ETHGlobal hackathons. Built a team or fork project (e.g. at a hackathon) we might miss? Add its repo here too.",
+      "Connect your GitHub and we'll verify repos across OSS, Web3 and Hackathons. Alternatively, you can add significant repos here, 1-per-line, we might not detect.",
   },
-  { title: 'Devfolio URL', description: 'Your Devfolio profile. e.g. https://devfolio.co/@yourname' },
-  // Talent Protocol URL and POAP URL are intentionally NOT listed: they're
-  // admin-only columns the server auto-populates from the connected wallet
-  // address (talent.app/<address> and collectors.poap.xyz/scan/<address>).
+  // Devfolio URL, Talent Protocol URL and POAP URL are intentionally NOT listed:
+  // they're admin-only / auto-detected. Devfolio is now auto-detected from the
+  // GitHub login in the review tool; Talent + POAP are server-populated from the
+  // connected wallet (talent.app/<address> and collectors.poap.xyz/scan/<address>).
   { title: 'Personal Website', description: 'Personal website or portfolio. e.g. https://yourname.xyz' },
   { title: 'Social URL', description: 'Twitter / X or other social profile. e.g. https://x.com/yourname' },
   {
+    // Single consolidated essay. Data is stored in the existing "Why Ethereum"
+    // column; the form-view label shows the broader prompt. ("Goals" and
+    // "Gender" are no longer collected.)
     title: 'Why Ethereum',
     required: true,
+    label: 'Why would you like to attend Devcon?',
     description:
-      'Why are you passionate about Ethereum / what do you build? (max ~250 words). Write as yourself — applications that read more AI than human are less likely to be approved.',
+      "You can reference the values you're passionate about or what you currently build or contribute to. Please write in your own words; AI-generated responses are likely to result in a rejection.",
   },
-  {
-    title: 'Goals',
-    required: true,
-    description: 'What do you hope to accomplish by attending Devcon? Note your two main points (max ~250 words).',
-  },
-  { title: 'Gender', description: 'How do you describe your gender?' },
 ]
 
 const CONFIG_BY_TITLE = new Map<string, { order: number; cfg: FieldCfg }>(
   FIELD_CONFIG.map((cfg, i) => [cfg.title, { order: i + 1, cfg }]),
 )
 
-const FORM_HEADING = 'Devcon Builder Discount Application'
+const FORM_HEADING = 'OSS & Ethereum Builders application'
 
 const FORM_SUBHEADING =
   'We appreciate the people who actively contribute to Ethereum and the wider ecosystem. We openly invite builders of all kinds — developers, designers, researchers, community organizers, artists, and more (individuals, not companies) — to apply for a discounted Devcon ticket.\n\n' +

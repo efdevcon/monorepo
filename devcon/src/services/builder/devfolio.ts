@@ -26,6 +26,63 @@ function parseUsername(url: string): string | null {
   return m ? m[1] : null
 }
 
+// Devfolio's public global search (same endpoint the discover page uses; no auth
+// needed). Returns candidate builder handles for a free-text query (name/handle).
+async function searchDevfolioBuilders(query: string, size = 5): Promise<string[]> {
+  const q = query.trim()
+  if (!q) return []
+  try {
+    const res = await fetch('https://api.devfolio.co/api/search/global', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', accept: 'application/json', Referer: 'https://devfolio.co/' },
+      body: JSON.stringify({ q, from: 0, size }),
+    })
+    if (!res.ok) return []
+    const json: any = await res.json()
+    const handles: string[] = []
+    for (const r of json?.result ?? []) {
+      if (r?.type !== 'builder' || typeof r?.url !== 'string') continue
+      const m = r.url.match(/devfolio\.co\/@([A-Za-z0-9_-]+)/i)
+      if (m) handles.push(m[1])
+    }
+    return handles
+  } catch {
+    return []
+  }
+}
+
+/**
+ * Auto-detect a builder's Devfolio profile (applicants no longer submit a URL).
+ * We find candidates via Devfolio's public global search (by name + GitHub
+ * login, plus the login as a guess), then fetch each and return ONLY one whose
+ * LINKED GitHub matches the applicant — so the result is always GitHub-verified,
+ * never a name collision. Returns null if nothing verifies.
+ */
+export async function getDevfolioProfileByGithub(
+  githubUsername: string,
+  fullName?: string
+): Promise<DevfolioInfo | null> {
+  const login = githubUsername.trim().toLowerCase()
+  if (!login) return null
+
+  const handles = new Set<string>()
+  for (const q of [fullName, githubUsername].filter(Boolean) as string[]) {
+    for (const h of await searchDevfolioBuilders(q)) handles.add(h)
+  }
+  handles.add(githubUsername) // common case: Devfolio handle == GitHub handle
+
+  let checked = 0
+  for (const handle of handles) {
+    if (checked >= 8) break // bound the number of profile fetches
+    checked++
+    const profile = await getDevfolioProfile(`https://devfolio.co/@${handle}`)
+    if (profile && profile.github === login) {
+      return { ...profile, githubVerified: true }
+    }
+  }
+  return null
+}
+
 const num = (v: unknown): number => (typeof v === 'number' ? v : Number(v) || 0)
 
 export async function getDevfolioProfile(url: string): Promise<DevfolioInfo | null> {

@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, type Config, useAccount, useDisconnect, useSignMessage } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
 import { SiweMessage } from 'siwe'
+import { Wallet } from 'lucide-react'
 // Importing appkit-config runs createAppKit() (module side-effect), registering the
 // AppKit singleton that useAppKit() requires. This is only pulled in when the wallet
 // field is actually rendered (the parent loads this module via next/dynamic), so
@@ -17,6 +18,9 @@ interface Props {
   label: string
   required?: boolean
   description?: string
+  // When true, render only the button/connected state (no label/description) —
+  // used inside the combined "Connections" block, which owns the heading.
+  hideHeader?: boolean
 }
 
 const queryClient = new QueryClient()
@@ -26,7 +30,7 @@ const queryClient = new QueryClient()
 const STORAGE_KEY = 'builder:wallet'
 const STORAGE_TTL_MS = 55 * 60 * 1000 // restore only while the proof is still valid
 
-function WalletWidget({ columnName, label, required, description }: Props) {
+function WalletWidget({ columnName, label, required, description, hideHeader }: Props) {
   const { setValue, watch } = useFormContext()
   const { walletProof, setWalletProof, reportDiscount } = useBuilderConnect()
   const { open } = useAppKit()
@@ -147,21 +151,23 @@ function WalletWidget({ columnName, label, required, description }: Props) {
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-base font-bold text-[#160b2b] leading-6">
-        {label}
-        {required && <span className="text-[#b42124] ml-0.5">*</span>}
-      </label>
-      {description ? <p className="text-sm text-[#594d73] leading-5">{description}</p> : null}
+      {!hideHeader && (
+        <>
+          <label className="text-base font-bold text-[#160b2b] leading-6">
+            {label}
+            {required && <span className="text-[#b42124] ml-0.5">*</span>}
+          </label>
+          {description ? <p className="text-sm text-[#594d73] leading-5">{description}</p> : null}
+        </>
+      )}
       {connected ? (
-        <div className="flex items-center gap-3 px-4 py-2.5 bg-[#f9f8fa] border border-[#dddae2] rounded-lg text-sm w-fit max-w-full">
-          <span className="text-[#160b2b] min-w-0">
-            &#10003;{' '}
-            <span className="font-medium sm:hidden">{shortStored}</span>
-            <span className="font-medium hidden sm:inline break-all">{stored}</span>
-          </span>
+        <div className="flex items-center gap-2 w-full px-4 py-2.5 bg-[#f9f8fa] border border-[#dddae2] rounded-lg text-sm">
+          <span className="text-[#594d73] shrink-0">Connected:</span>
+          <Wallet className="w-4 h-4 text-[#7235ed] shrink-0" aria-hidden="true" />
+          <span className="font-medium text-[#160b2b] truncate">{shortStored}</span>
           <button
             type="button"
-            className="ml-1 text-sm text-[#594d73] underline hover:text-[#160b2b] transition-colors"
+            className="ml-auto shrink-0 font-medium text-[#7235ed] underline hover:opacity-80 transition-opacity"
             onClick={clearWallet}
           >
             Disconnect
@@ -171,7 +177,7 @@ function WalletWidget({ columnName, label, required, description }: Props) {
         // Connected via the wallet, but not yet signed. The signature normally
         // auto-fires on connect; this loud prompt is the fallback if the user
         // dismissed it, so the required step can't be silently missed.
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-full">
           <div className="flex items-start gap-2 px-4 py-2.5 bg-[#fff8e6] border border-[#f0dca8] rounded-lg text-sm">
             <span className="text-[#9a6b00] leading-5">
               Wallet connected{address ? ` (${address.slice(0, 6)}…${address.slice(-4)})` : ''}.{' '}
@@ -183,7 +189,7 @@ function WalletWidget({ columnName, label, required, description }: Props) {
             type="button"
             onClick={verify}
             disabled={busy}
-            className="inline-flex w-fit items-center gap-2 rounded-md bg-[#7235ed] px-4 py-2 text-sm font-bold text-white hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
+            className="inline-flex w-fit items-center gap-2 rounded-full bg-[#7235ed] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
           >
             {busy ? 'Check your wallet…' : 'Verify wallet'}
           </button>
@@ -200,7 +206,7 @@ function WalletWidget({ columnName, label, required, description }: Props) {
           type="button"
           onClick={connect}
           disabled={busy}
-          className="inline-flex w-fit items-center gap-2 rounded-md bg-[#160b2b] px-4 py-2 text-sm text-white disabled:opacity-50"
+          className="inline-flex w-fit items-center gap-2 rounded-full bg-[#7235ed] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
         >
           {busy ? 'Connecting…' : 'Connect wallet'}
         </button>

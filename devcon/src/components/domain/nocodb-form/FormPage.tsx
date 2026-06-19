@@ -428,7 +428,6 @@ function FormInner({
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
   const errorRef = useRef<HTMLParagraphElement>(null)
-  const { qualifyingDiscount } = useBuilderConnect()
 
   // When a submission error appears, scroll it into view — on a long form the
   // error sits near the submit button and is easy to miss otherwise.
@@ -529,23 +528,6 @@ function FormInner({
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit, scrollToFirstError)} className="flex flex-col gap-6 w-full">
         {schema.subheading && <FormSubheading text={schema.subheading} />}
-
-        {qualifyingDiscount && (
-          <div className="flex flex-col gap-2 rounded-xl border border-[#b7e6c9] bg-[#e6f7ed] p-4">
-            <p className="text-base font-bold text-[#137a3e]">
-              🎉 You already qualify for{' '}
-              {qualifyingDiscount.discount >= 100 ? 'a FREE ticket' : `${qualifyingDiscount.discount}% off`} via{' '}
-              {qualifyingDiscount.name}!
-            </p>
-            <p className="text-sm text-[#3b3450] leading-5">
-              You don&apos;t need to apply here — claim it instantly at the{' '}
-              <a href="/en/tickets/store/" className="font-bold text-[#137a3e] underline">
-                ticket store
-              </a>
-              . Connect the same GitHub / wallet there and the discount is applied automatically.
-            </p>
-          </div>
-        )}
 
         <FormRenderer
           columns={schema.columns}

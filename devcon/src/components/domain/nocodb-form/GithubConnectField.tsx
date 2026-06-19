@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { Check, Github } from 'lucide-react'
+import { Github } from 'lucide-react'
 import { getSession, signOut } from 'next-auth/react'
 import { useBuilderConnect, checkAutoDiscount } from 'context/BuilderConnectContext'
 import { rhfFieldName } from './rhf-key'
@@ -10,6 +10,9 @@ interface Props {
   label: string
   required?: boolean
   description?: string
+  // When true, render only the button/connected state (no label/description) —
+  // used inside the combined "Connections" block, which owns the heading.
+  hideHeader?: boolean
 }
 
 // Reuses the app's existing NextAuth GitHub OAuth: opens the shared `/signin`
@@ -21,7 +24,7 @@ interface Props {
 // the connected user's list-matched repos.
 const CONTRIBUTED_REPOS_COLUMN = 'Contributed Repos'
 
-export function GithubConnectField({ columnName, label, required, description }: Props) {
+export function GithubConnectField({ columnName, label, required, description, hideHeader }: Props) {
   const { setValue, watch, getValues } = useFormContext()
   const { reportDiscount } = useBuilderConnect()
   const fieldKey = rhfFieldName(columnName)
@@ -113,26 +116,27 @@ export function GithubConnectField({ columnName, label, required, description }:
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-col gap-2">
-        <label className="text-base font-bold text-[#160b2b] leading-6">
-          {label}
-          {required && <span className="text-[#b42124] ml-0.5">*</span>}
-        </label>
-        {description ? <p className="text-sm text-[#594d73] leading-5">{description}</p> : null}
-      </div>
+      {!hideHeader && (
+        <div className="flex flex-col gap-2">
+          <label className="text-base font-bold text-[#160b2b] leading-6">
+            {label}
+            {required && <span className="text-[#b42124] ml-0.5">*</span>}
+          </label>
+          {description ? <p className="text-sm text-[#594d73] leading-5">{description}</p> : null}
+        </div>
+      )}
 
       {connected ? (
-        <div className="flex items-center gap-3 px-4 py-2.5 bg-[#f9f8fa] border border-[#dddae2] rounded-lg text-sm w-fit">
-          <Check className="w-4 h-4 text-[#7235ed] shrink-0" aria-hidden="true" />
-          <span className="text-[#160b2b]">
-            Connected as <span className="font-medium">@{username}</span>
-          </span>
+        <div className="flex items-center gap-2 w-full px-4 py-2.5 bg-[#f9f8fa] border border-[#dddae2] rounded-lg text-sm">
+          <span className="text-[#594d73] shrink-0">Verified as:</span>
+          <Github className="w-4 h-4 text-[#160b2b] shrink-0" aria-hidden="true" />
+          <span className="font-medium text-[#160b2b] truncate">{username}</span>
           <button
             type="button"
             onClick={disconnect}
-            className="ml-1 text-[#594d73] underline hover:text-[#160b2b] transition-colors"
+            className="ml-auto shrink-0 font-medium text-[#7235ed] underline hover:opacity-80 transition-opacity"
           >
-            Disconnect
+            Sign out
           </button>
         </div>
       ) : (
@@ -140,10 +144,10 @@ export function GithubConnectField({ columnName, label, required, description }:
           type="button"
           onClick={connect}
           disabled={authing}
-          className="inline-flex w-fit items-center gap-2 px-4 py-2.5 bg-[#160b2b] text-white text-sm font-medium rounded-lg hover:bg-[#2d1a55] transition-colors disabled:opacity-50"
+          className="inline-flex w-fit items-center gap-2 px-5 py-2.5 bg-[#160b2b] text-white text-sm font-semibold rounded-full hover:bg-[#2d1a55] transition-colors disabled:opacity-50"
         >
           <Github className="w-4 h-4 shrink-0" aria-hidden="true" />
-          {authing ? 'Connecting…' : 'Connect GitHub'}
+          {authing ? 'Connecting…' : 'Sign in with GitHub'}
         </button>
       )}
     </div>

@@ -840,7 +840,8 @@ export default function BuilderReviewPage() {
               {/* Essays */}
               <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-4">
                 <Section title="Application">
-                  <Essay label="Why are you passionate about Ethereum?" text={record['Why Ethereum']} />
+                  <Essay label="Why would you like to attend Devcon?" text={record['Why Ethereum']} />
+                  {/* Goals / Gender are no longer collected; still shown for older applications. */}
                   <Essay label="What do you hope to accomplish?" text={record['Goals']} />
                   <Essay label="Gender" text={record['Gender']} />
                 </Section>

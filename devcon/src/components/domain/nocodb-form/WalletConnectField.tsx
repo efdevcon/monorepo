@@ -6,6 +6,9 @@ interface Props {
   label: string
   required?: boolean
   description?: string
+  // When true, render only the button/connected state (no label/description) —
+  // used inside the combined "Connections" block, which owns the heading.
+  hideHeader?: boolean
 }
 
 // The wallet widget needs WagmiProvider + AppKit (createAppKit) mounted above its

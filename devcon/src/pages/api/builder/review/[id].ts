@@ -7,7 +7,7 @@ import { sendBuilderRejectionEmail } from 'services/builder/email'
 import { getTalentProfile } from 'services/builder/talent'
 import { getGithubProfile } from 'services/builder/github-profile'
 import { getContributedRepos } from 'services/builder/github-contributions'
-import { getDevfolioProfile } from 'services/builder/devfolio'
+import { getDevfolioProfileByGithub } from 'services/builder/devfolio'
 import { matchEthglobalProjects } from 'services/builder/ethglobal'
 import { parseRepoList } from 'services/builder/repo-ref'
 import { getPastDevconEvents } from 'services/builder/poap-attendees'
@@ -58,18 +58,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Talent Protocol (by wallet) + GitHub profile/activity (by login).
     const wallet = String(record['Wallet Address'] || '').trim()
     const ghLogin = String(record['GitHub Username'] || '').trim()
-    const devfolioUrl = String(record['Devfolio URL'] || '').trim()
+    // Devfolio is no longer collected on the form; auto-detect it from the
+    // GitHub login (only surfaced when the profile's linked GitHub matches).
     const [talent, github, devfolio, contributedRepos] = await Promise.all([
       wallet ? getTalentProfile(wallet) : Promise.resolve(null),
       ghLogin ? getGithubProfile(ghLogin) : Promise.resolve(null),
-      devfolioUrl ? getDevfolioProfile(devfolioUrl) : Promise.resolve(null),
+      ghLogin ? getDevfolioProfileByGithub(ghLogin, String(record['Full Name'] || '')) : Promise.resolve(null),
       ghLogin ? getContributedRepos(ghLogin) : Promise.resolve(new Set<string>()),
     ])
-    // Verify the Devfolio profile actually belongs to the applicant: its linked
-    // GitHub must match the applicant's connected login.
-    if (devfolio && devfolio.github && ghLogin) {
-      devfolio.githubVerified = devfolio.github.toLowerCase() === ghLogin.toLowerCase()
-    }
 
     // Cross-match against ETHGlobal hackathon projects — using both their GitHub
     // pull and any repos they manually listed (team-org projects often can't be
