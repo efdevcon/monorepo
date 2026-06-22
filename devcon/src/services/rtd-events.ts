@@ -6,12 +6,7 @@
  * route or getStaticProps, never the browser.
  */
 import { listViewRows } from './nocodb'
-import {
-  EVENT_TYPES,
-  gradientFor,
-  type EventType,
-  type RoadEvent,
-} from 'components/domain/road-to-devcon/events'
+import { EVENT_TYPES, gradientFor, type EventType, type RoadEvent } from 'components/domain/road-to-devcon/events'
 
 const RTD_EVENT_FORM_VIEW_ID = 'vwbigbclgtvfvr62'
 
@@ -99,8 +94,8 @@ function isVisible(row: Record<string, any>): boolean {
     // Status values carry decoration/emoji (e.g. "Approved ✅"), so match on
     // substring rather than equality.
     const s = String(status).toLowerCase()
-    if (['reject', 'declin', 'pending', 'spam', 'hidden', 'draft'].some(k => s.includes(k))) return false
-    return ['approved', 'published', 'live', 'accepted'].some(k => s.includes(k))
+    // if (['reject', 'declin', 'pending', 'spam', 'hidden', 'draft'].some(k => s.includes(k))) return false
+    return ['approved'].some(k => s.includes(k)) // human note: whole function is overkill, but this is pretty safe and legible unless someone goes wild on the column names
   }
   return true // no gating column → show it
 }

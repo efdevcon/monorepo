@@ -262,6 +262,9 @@ async function sync() {
 
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY!,
+    // Pin to real OpenAI — the SDK otherwise inherits OPENAI_BASE_URL from the
+    // env (a chat proxy in dev), which 401s on embedding requests.
+    baseURL: "https://api.openai.com/v1",
   });
 
   // Load sessions from the committed data files

@@ -80,6 +80,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: t('community_hubs'),
+            url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
+            type: 'link',
+          },
+          {
             title: t('forum'),
             url: 'https://forum.devcon.org/',
             type: 'link',

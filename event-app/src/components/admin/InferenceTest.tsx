@@ -80,16 +80,21 @@ function resolveDocLink(doc: InferenceSource): DocLink | null {
   return null;
 }
 
-/** Map a model citation `source:<id>` to an in-app route (mirrors DevaBot). */
+/**
+ * Map a model citation `source:<id>` to an in-app route, or null if we don't
+ * link it. Only structured app data (sessions, speakers) links; CMS/website
+ * content is too unstructured to map reliably, so it renders as plain text.
+ * Mirrors DevaBot.
+ */
 function resolveSourceUri(href: string): string | null {
   if (!href.startsWith("source:")) return null;
   const path = stripChunk(href.slice("source:".length));
   if (path.startsWith("sessions/")) return `/schedule/${path.slice("sessions/".length)}`;
   if (path.startsWith("speakers/")) return `/speakers/${path.slice("speakers/".length)}`;
-  return `/${path}`;
+  return null;
 }
 
-/** Markdown renderer that turns `source:` citations into clickable app links. */
+/** Markdown renderer that turns `source:` citations into clickable links. */
 const answerMarkdownComponents: Components = {
   a: ({ href, children, ...rest }) => {
     if (!href || href === "#") return <strong>{children}</strong>;
@@ -101,6 +106,8 @@ const answerMarkdownComponents: Components = {
         </Link>
       );
     }
+    // Unstructured CMS/website citation — render the label as plain text.
+    if (href.startsWith("source:")) return <>{children}</>;
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className="underline" {...rest}>
         {children}
@@ -125,7 +132,7 @@ interface RunView {
   query: string;
   ragOnly?: boolean;
   sourceRepo?: string;
-  toolCalls: { query: string; reason?: string }[];
+  toolCalls: { query: string; reason?: string; source?: string }[];
   rounds: InferenceRound[];
   context: string;
   answer: string;
@@ -257,7 +264,7 @@ export function InferenceTest() {
 
     // Mutable accumulators; we re-emit a fresh object into state on each event
     // so the visualization streams in as the SSE arrives.
-    const toolCalls: { query: string; reason?: string }[] = [];
+    const toolCalls: { query: string; reason?: string; source?: string }[] = [];
     const rounds: InferenceRound[] = [];
     let pendingLabel = "Initial retrieval";
     let context = "";
@@ -308,7 +315,7 @@ export function InferenceTest() {
             pendingLabel = "Follow-up retrieval";
             push();
           } else if (data.type === "tool_call") {
-            toolCalls.push({ query: data.query, reason: data.reason });
+            toolCalls.push({ query: data.query, reason: data.reason, source: data.source });
             pendingLabel = `Search: “${data.query}”`;
             push();
           } else if (data.type === "debug_context") {
@@ -352,7 +359,7 @@ export function InferenceTest() {
   const lastRound = run.rounds[run.rounds.length - 1];
 
   return (
-    <main className="py-6">
+    <main className="expand px-6 py-6 lg:px-12">
       <header className="mb-5">
         <h1 className="text-2xl font-bold">Inference debugger</h1>
         <p className="mt-1 text-sm text-gray-500">
@@ -459,7 +466,7 @@ export function InferenceTest() {
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_300px]">
+      <div className="grid gap-4 lg:grid-cols-[1fr_340px]">
         {/* Current run */}
         <section className="min-w-0">
           {run.error && (
@@ -484,6 +491,20 @@ export function InferenceTest() {
                   <ul className="space-y-1.5">
                     {run.toolCalls.map((tc, i) => (
                       <li key={i} className="text-sm">
+                        {tc.source && (
+                          <span
+                            className={cn(
+                              "mr-1.5 rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+                              tc.source === "sessions"
+                                ? "bg-[#EFEBFF] text-[#7D52F4]"
+                                : tc.source === "content"
+                                  ? "bg-blue-50 text-blue-600"
+                                  : "bg-gray-100 text-gray-500"
+                            )}
+                          >
+                            {tc.source}
+                          </span>
+                        )}
                         <span className="font-medium">“{tc.query}”</span>
                         {tc.reason && (
                           <span className="text-gray-500"> — {tc.reason}</span>
@@ -546,7 +567,7 @@ export function InferenceTest() {
         </section>
 
         {/* History */}
-        <aside className="min-w-0">
+        <aside className="min-w-0 lg:sticky lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto">
           <div className="mb-2 flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-700">
               History ({runs.length})
@@ -623,7 +644,7 @@ function RetrievalRound({ round }: { round: InferenceRound }) {
       {round.documents.length === 0 ? (
         <p className="text-sm text-gray-400">No documents retrieved.</p>
       ) : (
-        <ol className="space-y-2">
+        <ol className="grid gap-2 md:grid-cols-2">
           {round.documents.map((d, i) => (
             <li key={`${d.source_id}-${i}`} className="rounded-lg bg-gray-50 p-2.5">
               <div className="flex items-center gap-2">

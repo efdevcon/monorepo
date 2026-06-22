@@ -37,7 +37,7 @@ export interface InferenceRun {
   sourceType?: string;
   sourceRepo?: string;
   /** Search tool invocations the model decided to make. */
-  toolCalls: { query: string; reason?: string }[];
+  toolCalls: { query: string; reason?: string; source?: string }[];
   /** Retrieval rounds in order (round 0 = initial search). */
   rounds: InferenceRound[];
   /** Full context string handed to the model (from the `debug_context` event). */
@@ -47,9 +47,31 @@ export interface InferenceRun {
   error?: string;
 }
 
+/** One message in a saved Deva chat conversation. */
+export interface ConversationMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+/**
+ * A saved Deva chatbot conversation. Persisted in IndexedDB (not localStorage)
+ * so a user can close the app, go offline, and later resume or revisit any past
+ * conversation. Browser-local and single-user — not synced.
+ */
+export interface Conversation {
+  id: string;
+  createdAt: number;
+  /** Last activity — history is ordered by this (most recent first). */
+  updatedAt: number;
+  /** Display title, derived from the first user message. */
+  title: string;
+  messages: ConversationMessage[];
+}
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
+  conversations!: Table<Conversation, string>;
 
   constructor() {
     super("SWRCacheDB");
@@ -60,6 +82,10 @@ class CacheDB extends Dexie {
     // Dexie carries `cache` forward unchanged.
     this.version(2).stores({
       inferenceRuns: "&id, timestamp",
+    });
+    // v3: Deva chatbot conversation history (resume / revisit past chats).
+    this.version(3).stores({
+      conversations: "&id, updatedAt",
     });
   }
 }
