@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'components/common/link'
-import { CircleFadingArrowUp, Newspaper, CalendarPlus2, HandHeart, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { CircleFadingArrowUp, Newspaper, CalendarPlus2, Users, HandHeart, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 // Translatable text comes from intl; these are the per-card layout meta (icon + link)
@@ -8,6 +8,7 @@ const cardMeta = [
   { icon: CircleFadingArrowUp, href: 'https://forum.devcon.org', external: true },
   { icon: Newspaper, href: 'https://devcon.org/Devcon__Devconnect_Presskit.pdf', external: true },
   { icon: CalendarPlus2, href: '/ecosystem-program', external: false },
+  { icon: Users, href: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657', external: true },
   { icon: HandHeart, href: '/form/volunteer', external: false },
 ]
 
@@ -29,10 +30,15 @@ export const ContributeAndSupport = () => {
         {cards.map((c, i) => {
           const meta = cardMeta[i]
           const Icon = meta.icon
+          // Odd count → center the final lone tile across the 2-col row at the
+          // normal single-column width (gap is 16px at md, so 50% - 8px).
+          const centerLast = cards.length % 2 === 1 && i === cards.length - 1
           return (
             <div
               key={i}
-              className="bg-white border border-[#221144]/10 rounded-2xl p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 justify-between min-h-[148px] sm:min-h-[168px]"
+              className={`bg-white border border-[#221144]/10 rounded-2xl p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 justify-between min-h-[148px] sm:min-h-[168px]${
+                centerLast ? ' md:col-span-2 md:w-[calc(50%-8px)] md:mx-auto' : ''
+              }`}
             >
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
