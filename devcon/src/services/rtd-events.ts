@@ -23,7 +23,16 @@ const FIELDS = {
   types: ['Type', 'Event Type', 'Tags', 'Category', 'Format'],
   published: ['Published', 'Approved', 'Visible'],
   status: ['Status', 'Approval Status'],
+  updatedPostApproval: ['Updated post-approval', 'Updated Post-Approval', 'Updated post approval'],
 } as const
+
+/** Interpret a NocoDB checkbox/boolean cell as true. */
+function isChecked(v: any): boolean {
+  if (v === true) return true
+  if (typeof v === 'number') return v !== 0
+  if (typeof v === 'string') return ['true', '1', 'yes', 'checked'].includes(v.trim().toLowerCase())
+  return false
+}
 
 function pick(row: Record<string, any>, keys: readonly string[]): any {
   for (const k of keys) {
@@ -83,6 +92,9 @@ function parseTypes(value: any): EventType[] {
 
 /** A row is shown unless a Published/Approved flag or Status column says otherwise. */
 function isVisible(row: Record<string, any>): boolean {
+  // Edited after approval → hide until an admin re-reviews and clears the flag.
+  if (isChecked(pick(row, FIELDS.updatedPostApproval))) return false
+
   const published = pick(row, FIELDS.published)
   if (published !== undefined) {
     if (typeof published === 'boolean') return published
@@ -126,8 +138,9 @@ export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
       city: String(city),
       date,
       types,
-      url: rawUrl ? String(rawUrl) : undefined,
-      image: attachmentImageUrl(pick(row, FIELDS.image)),
+      // null, not undefined — getStaticProps serializes null but throws on undefined.
+      url: rawUrl ? String(rawUrl) : null,
+      image: attachmentImageUrl(pick(row, FIELDS.image)) ?? null,
       gradient: gradientFor(id),
     })
   }

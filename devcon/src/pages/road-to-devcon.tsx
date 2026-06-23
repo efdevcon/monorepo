@@ -120,5 +120,8 @@ export async function getStaticProps(context: any) {
     console.error('[road-to-devcon] event fetch failed, using seed:', e)
     events = ROAD_TO_DEVCON_EVENTS
   }
-  return { props: { events, messages }, revalidate: 1800 }
+  // getStaticProps can't serialize `undefined`; round-trip through JSON to drop
+  // any undefined-valued optional fields so a missing value never crashes the page.
+  const safeEvents: RoadEvent[] = JSON.parse(JSON.stringify(events))
+  return { props: { events: safeEvents, messages }, revalidate: 1800 }
 }

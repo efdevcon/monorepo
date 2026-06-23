@@ -28,9 +28,10 @@ export interface RoadEvent {
   /** ISO date (YYYY-MM-DD) the event starts. */
   date: string
   types: EventType[]
-  url?: string
+  // null (not undefined) for missing optionals — getStaticProps can't serialize undefined.
+  url?: string | null
   /** Event image/logo (proxied NocoDB attachment URL). Falls back to `gradient`. */
-  image?: string
+  image?: string | null
   /** Tailwind gradient classes used as the card's placeholder artwork. */
   gradient: string
 }
