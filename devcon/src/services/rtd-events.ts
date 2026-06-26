@@ -109,7 +109,10 @@ function isVisible(row: Record<string, any>): boolean {
     // if (['reject', 'declin', 'pending', 'spam', 'hidden', 'draft'].some(k => s.includes(k))) return false
     return ['approved'].some(k => s.includes(k)) // human note: whole function is overkill, but this is pretty safe and legible unless someone goes wild on the column names
   }
-  return true // no gating column → show it
+  // Fail-closed: with no approval/published signal, hide the row rather than
+  // leak an unreviewed submission onto the public page. A row shows only when a
+  // Published/Approved flag is truthy or a Status column says "approved".
+  return false
 }
 
 export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
