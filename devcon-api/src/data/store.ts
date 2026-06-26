@@ -76,19 +76,14 @@ export function initStore() {
 
   console.log(`Loaded ${events.length} events, ${rooms.length} rooms, ${speakers.length} speakers, ${sessions.length} sessions`)
 
-  // Build vectors for related sessions (using raw sessions with string speaker IDs)
-  const dictionary = buildDictionary(rawSessions, true)
+  // Related-sessions vectors are intentionally NOT built. The `/sessions/:id/related`
+  // endpoint and its vectorize machinery are kept in code but no client uses it,
+  // so we skip the per-session vectorization here (and on re-sync) to save boot
+  // work. `getRelatedSessions` returns null while these maps are empty — to
+  // re-enable, rebuild `vectorizedSessionsMap`/`allVectorizedSessions` from
+  // `rawSessions` via buildDictionary/vectorizeSession.
   vectorizedSessionsMap = new Map()
-  allVectorizedSessions = rawSessions.map((session: any) => {
-    const vs: VectorizedSession = {
-      session,
-      vector: vectorizeSession(session, dictionary),
-    }
-    vectorizedSessionsMap.set(session.id, vs)
-    return vs
-  })
-
-  console.log(`Vectorized ${allVectorizedSessions.length} sessions for related lookup`)
+  allVectorizedSessions = []
 }
 
 // --- Event queries ---
@@ -383,6 +378,43 @@ export function deleteSession(id: string) {
   }
 
   return true
+}
+
+/**
+ * Atomically replace all in-memory sessions for one event (zero-downtime).
+ *
+ * The caller does the slow async work (fetch from Pretalx, ensure speakers) and
+ * passes the full raw session list. We resolve + build the new arrays in locals,
+ * then swap the module refs in one synchronous step. Because Node is
+ * single-threaded and there is NO `await` in this function, no in-flight request
+ * can observe a half-built store — readers see either the old set or the new
+ * set, never a partial one.
+ */
+export function replaceEventSessions(eventId: string, rawSessions: any[]): number {
+  const resolved = rawSessions.map((data) => {
+    const resolvedSpeakers = (data.speakers || [])
+      .map((id: string) => (typeof id === 'string' ? speakerMap.get(id) : id))
+      .filter(Boolean)
+    const slot_room = data.slot_roomId ? roomMap.get(data.slot_roomId) || null : null
+    return { ...data, speakers: resolvedSpeakers, slot_room }
+  })
+
+  // Keep other events' sessions untouched; replace only this event's.
+  const nextSessions = sessions.filter((s) => s.eventId !== eventId).concat(resolved)
+  const nextMap = new Map<string, any>()
+  for (const s of nextSessions) {
+    nextMap.set(s.id, s)
+    if (s.sourceId) nextMap.set(s.sourceId, s)
+  }
+
+  // --- Atomic swap (synchronous, no await) ---
+  sessions = nextSessions
+  sessionMap = nextMap
+  const event = events.find((e) => e.id === eventId)
+  if (event) event.nrOfSessions = resolved.length
+  // -------------------------------------------
+
+  return resolved.length
 }
 
 export function findSpeaker(id: string) {

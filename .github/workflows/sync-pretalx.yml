@@ -5,6 +5,11 @@ on:
     - cron: "0 23 30 * *"
   workflow_dispatch:
 
+# Serialize runs so two syncs can't race to commit the same data files.
+concurrency:
+  group: pretalx-sync-devcon-7
+  cancel-in-progress: false
+
 jobs:
   build:
     defaults:
@@ -31,7 +36,10 @@ jobs:
           add: "devcon-api/data"
           default_author: github_actions
           message: "[action] Pretalx Sync"
-          pull: "--rebase --autostash"
+          # Sync output is the source of truth (regenerated from Pretalx, incl. a
+          # changing `version` timestamp), so on a rebase conflict keep ours.
+          # `-X theirs` favours the replayed local commit during `pull --rebase`.
+          pull: "--rebase --autostash -X theirs"
       - name: Sync sessions to RAG DB
         working-directory: ./devcon-ai
         env:
