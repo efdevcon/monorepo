@@ -55,18 +55,13 @@ const useNavigationData = () => {
             icon: HandHeart,
           },
           {
-            title: t('ecosystem_program'),
-            url: '/ecosystem-program',
+            title: t('road_to_devcon'),
+            url: '/road-to-devcon',
             type: 'page',
           },
           {
             title: t('supporters_program'),
             url: '/supporters',
-            type: 'page',
-          },
-          {
-            title: t('academic_program'),
-            url: '/academic-program',
             type: 'page',
           },
           {
