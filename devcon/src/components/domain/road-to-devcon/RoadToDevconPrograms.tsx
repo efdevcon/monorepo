@@ -33,7 +33,7 @@ export function RoadToDevconPrograms() {
           {PROGRAMS.map(({ icon: Icon, to, key }) => (
             <div
               key={key}
-              className="flex flex-col gap-4 rounded-2xl border border-white/20 bg-[rgba(34,17,68,0.15)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]"
+              className="flex flex-col gap-4 rounded-2xl outline outline-white/20 bg-[rgba(34,17,68,0.15)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]"
             >
               <Icon size={32} strokeWidth={1.5} className="text-[#b08df5]" />
               <div className="flex flex-col gap-2">
