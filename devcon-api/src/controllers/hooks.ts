@@ -9,7 +9,8 @@ import dayjs from 'dayjs'
 
 const WORKFLOW_MAP: Record<string, string[]> = {
   'devcon-7': ['sync-pretalx.yml'],
-  'devcon-mumbai-playground': ['sync-pretalx-devcon-mumbai-playground.yml', 'run-of-show-devcon-mumbai-playground.yml'],
+  'test-devcon-8': ['sync-pretalx-test-devcon-8.yml', 'run-of-show-test-devcon-8.yml'],
+  'devcon8': ['sync-pretalx-devcon8.yml', 'run-of-show-devcon8.yml'],
 }
 
 export const hooksRouter = Router()

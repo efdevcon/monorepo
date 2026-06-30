@@ -1,0 +1,48 @@
+name: Pretalx Sync (test-devcon-8)
+
+on:
+  schedule:
+    - cron: "0 23 30 * *"
+  workflow_dispatch:
+
+# Serialize runs so two syncs can't race to commit the same data files.
+concurrency:
+  group: pretalx-sync-test-devcon-8
+  cancel-in-progress: false
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ./devcon-api
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - run: pnpm sync:pretalx:test
+        env:
+          PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: "devcon-api/data"
+          default_author: github_actions
+          message: "[action] Pretalx Sync (test-devcon-8)"
+          # Sync output is the source of truth (regenerated from Pretalx, incl. a
+          # changing `version` timestamp), so on a rebase conflict keep ours.
+          # `-X theirs` favours the replayed local commit during `pull --rebase`.
+          pull: "--rebase --autostash -X theirs"
+      - name: Sync sessions to RAG DB
+        working-directory: ./devcon-ai
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          pnpm install
+          pnpm sync:sessions --event test-devcon-8

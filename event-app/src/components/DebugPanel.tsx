@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { Bug, FlaskConical } from "lucide-react";
 import { Link } from "@/routing";
-import { DATASETS, getActiveDatasetKey, type DatasetKey } from "@/data/dataset";
+import {
+  DATASETS,
+  DEFAULT_DATASET_KEY,
+  getActiveDatasetKey,
+  type DatasetKey,
+} from "@/data/dataset";
 
 /** local Date → "YYYY-MM-DDTHH:mm" for a datetime-local input. */
 function toInputValue(d: Date): string {
@@ -15,7 +20,7 @@ function toInputValue(d: Date): string {
 
 /**
  * Dev-only debug panel: mock the current time (`mockNow`/`mockSpeed`) and swap
- * the event dataset (current ↔ Devcon 7). Applying writes the URL query params
+ * the event dataset (test-devcon-8 / devcon8 / Devcon 7). Applying writes the URL query params
  * and reloads, so the time hook and data provider pick them up. Visible only in
  * development or when `?debug` is present.
  */
@@ -47,7 +52,7 @@ export function DebugPanel() {
     else p.delete("mockNow");
     if (mockSpeed) p.set("mockSpeed", mockSpeed);
     else p.delete("mockSpeed");
-    if (dataset !== "current") p.set("dataset", dataset);
+    if (dataset !== DEFAULT_DATASET_KEY) p.set("dataset", dataset);
     else p.delete("dataset");
     p.set("debug", "1"); // keep the panel available after reload
     window.location.search = p.toString();

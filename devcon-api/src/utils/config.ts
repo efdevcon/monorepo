@@ -113,11 +113,18 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
 
     DEFAULT_LIMIT: 100,
   },
-  'devcon-mumbai-playground': {
-    eventId: 'devcon-mumbai-playground',
+  'test-devcon-8': {
+    eventId: 'test-devcon-8',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
     PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
-    PRETALX_EVENT_NAME: 'devcon-mumbai-playground',
+    PRETALX_EVENT_NAME: 'test-devcon-8',
+    DEFAULT_LIMIT: 100,
+  },
+  'devcon8': {
+    eventId: 'devcon8',
+    PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
+    PRETALX_EVENT_NAME: 'devcon8',
     DEFAULT_LIMIT: 100,
   },
 }
