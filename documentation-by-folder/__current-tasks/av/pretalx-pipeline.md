@@ -7,6 +7,10 @@ at startup (and also gets updated on the fly via webhook when pretalx changes).
 
 Rough flow: Pretalx new schedule published → webhook plugin calls our hook listener on api.render.com -> API syncs the schedule into memory, and sync script puts JSON files in git (so its ready on next start up and we can trail the changes)
 
+Committing to the repo also restarts the api (with no downtime/render boots in parallel) which picks up any changes at boot time, so we can use the same data pipeline to enrich sessions with AV data like stream id and youtube ids - can also do it via webhook and load it in memory in real time like we do for pretalx data, but more complex - your call
+
+Check the mermaid chart below for a suggested complete architecture
+
 The sync script is `devcon-api/src/scripts/sync-pretalx.ts` (currently configured for devcon-7 and devcon-mumbai-playground, just fyi, would need to swap this to point to the production event at some point).
 
 Note that speakers are not keyed by speaker email (hashed with a salt) so we don't leak speaker emails
@@ -31,12 +35,14 @@ For actually getting the video urls as sessions are streamed, you'd need to buil
 
 ```mermaid
 flowchart TD
-    PX[Pretalx] -->|REST API + PRETALX_API_KEY<br/>rooms · talks · speakers · slots| SYNC[sync-pretalx.ts<br/>cron / webhook / manual]
-    SYNC -->|map + normalize<br/>slug id · sourceId · hashed email| JSON[/data/*.json<br/>sessions · speakers · rooms · events/]
-    JSON -->|github.ts contents API| GH[(GitHub repo<br/>efdevcon/monorepo)]
-    SYNC -.notify.-> MK[Meerkat schedule sync]
-    GH -.post-commit.-> RAG[devcon-ai sync:sessions<br/>→ Supabase RAG/vector DB]
-    GH -->|on API boot| STORE[store.ts<br/>load JSON → in-memory maps<br/>resolve refs · vectorize]
-    STORE -->|HTTP| API[GET /sessions · /speakers · /rooms]
-    note["⚠ no DB · data IS the repo<br/>changes need a restart to show"]
+    PX[Pretalx<br/>schedule published] -->|webhook| API[devcon-api]
+    AV[AV] -->|enrich sessions with stream/video URL<br/>via git commit| DATA
+    API -->|update in real time| STORE[in-memory store]
+    API -->|trigger| GHA[GitHub Action]
+    GHA --> ROS[generate run of show]
+    ROS -.-> AV
+    GHA -->|commit Pretalx data| DATA[(devcon-api/data<br/> - devcon monorepo)]
+    DATA -.triggers api restart and is the source of truth at boot-up, giving us eventual consistency.-> API
+    API -->|fetch sessions / speakers| APP[Devcon App]
+    API -->|fetch sessions| MK[Meerkat]
 ```
