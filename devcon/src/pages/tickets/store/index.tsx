@@ -689,7 +689,7 @@ function StoreContent({
                   <div className={css['coming-soon-card-footer']}>
                     <div className={css['coming-soon-card-pricing']}>
                       <span className={css['coming-soon-price']}>$349</span>
-                      <span className={css['coming-soon-price-original']}>$699</span>
+                      <span className={css['coming-soon-price-original']}>TBD</span>
                     </div>
                     <span className={css['coming-soon-availability']}>Our lowest price</span>
                   </div>
@@ -723,7 +723,7 @@ function StoreContent({
                 <div className={css['coming-soon-card']}>
                   <div className={css['coming-soon-card-body']}>
                     <h3 className={css['coming-soon-card-title']}>{'Builder Discount \ud83e\udd84'}</h3>
-                    <p className={css['card-meta']}>Launches in June</p>
+                    <p className={css['card-meta']}>Launches in July</p>
                     <p className={css['card-description']}>
                       For builders of all kinds who actively volunteer or contribute their time to the growth, research
                       and development of Ethereum or the ecosystem.

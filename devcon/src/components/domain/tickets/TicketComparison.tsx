@@ -258,7 +258,7 @@ export function TicketComparison() {
         ...col,
         status: 'coming',
         price_original: undefined,
-        price_note: 'Sale ended',
+        price_note: 'First round sale ended',
         cta_label: 'View tickets',
         cta_href: storeUrl,
       }
