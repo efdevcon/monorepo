@@ -109,7 +109,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   )
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<Set<EventType>>(new Set())
-  const [showPast, setShowPast] = useState(false)
+  const [showPast, setShowPast] = useState(true)
   // Resolved on the client only, so SSR (todayISO = null) renders every event
   // and avoids a hydration mismatch from the past-events filter.
   const [todayISO, setTodayISO] = useState<string | null>(null)
