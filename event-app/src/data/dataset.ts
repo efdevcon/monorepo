@@ -12,6 +12,12 @@ export interface Dataset {
   label: string;
   apiUrl: string;
   eventId: string;
+  /**
+   * Start of the conference (UTC ISO), i.e. morning of day 1 in the event's
+   * local timezone. The debug panel uses this to mock "now" to the beginning of
+   * the selected conference so schedule/live/today logic lands on day 1.
+   */
+  startDate: string;
 }
 
 const ENV_API =
@@ -24,18 +30,24 @@ export const DATASETS: Record<DatasetKey, Dataset> = {
     label: "Test (test-devcon-8)",
     apiUrl: ENV_API,
     eventId: "test-devcon-8",
+    // 2026-11-03 09:00 Asia/Kolkata (UTC+5:30)
+    startDate: "2026-11-03T03:30:00Z",
   },
   devcon8: {
     key: "devcon8",
     label: "Devcon 8 (devcon8)",
     apiUrl: ENV_API,
     eventId: "devcon8",
+    // 2026-11-03 09:00 Asia/Kolkata (UTC+5:30)
+    startDate: "2026-11-03T03:30:00Z",
   },
   "devcon-7": {
     key: "devcon-7",
     label: "Devcon 7",
     apiUrl: ENV_API,
     eventId: "devcon-7",
+    // 2024-11-12 09:00 Asia/Bangkok (UTC+7)
+    startDate: "2024-11-12T02:00:00Z",
   },
 };
 

@@ -2,7 +2,37 @@
 
 import NextLink from "next/link";
 import { useRouter as useNextRouter } from "next/navigation";
-import { ReactNode, useContext, createContext, useCallback } from "react";
+import { ReactNode, useContext, createContext, useCallback, useEffect, useState } from "react";
+
+// Debug/dev query params that should follow the user across internal navigation
+// so a selected dataset and mocked time persist between pages. These live only
+// in the URL (no separate storage), so carrying them forward is all that's
+// needed. See DebugPanel and src/data/dataset.ts / hooks/useNow.ts.
+const CARRIED_PARAMS = ["dataset", "mockNow", "mockSpeed", "debug"];
+
+function withCarriedParams(href: string): string {
+  if (typeof window === "undefined") return href;
+  // Only touch internal, non-anchor paths.
+  if (/^([a-z]+:)?\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return href;
+  }
+  const current = new URLSearchParams(window.location.search);
+  const carried = CARRIED_PARAMS.filter((k) => current.has(k));
+  if (carried.length === 0) return href;
+
+  const hashIndex = href.indexOf("#");
+  const hash = hashIndex >= 0 ? href.slice(hashIndex) : "";
+  const pathAndQuery = hashIndex >= 0 ? href.slice(0, hashIndex) : href;
+  const [path, existingQuery = ""] = pathAndQuery.split("?");
+
+  const params = new URLSearchParams(existingQuery);
+  for (const k of carried) {
+    // Don't override a param the href already sets explicitly.
+    if (!params.has(k)) params.set(k, current.get(k) as string);
+  }
+  const qs = params.toString();
+  return `${path}${qs ? `?${qs}` : ""}${hash}`;
+}
 
 // Context for native navigation - null in web context
 interface NativeNavigationContextValue {
@@ -24,11 +54,18 @@ interface LinkProps {
 export function Link({ href, children, className, ...nextLinkProps }: LinkProps & React.ComponentProps<typeof NextLink>) {
   const nativeNav = useContext(NativeNavigationContext);
 
+  // Augment the href with carried debug params only after mount: SSR and the
+  // first client render must match `href` to avoid a hydration mismatch on the
+  // anchor's href; afterwards we carry dataset/mock-time params forward.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const finalHref = mounted ? withCarriedParams(href) : href;
+
   if (nativeNav) {
     return (
       <div
-        onClick={() => nativeNav.navigate(href)}
-        onKeyDown={(e) => e.key === "Enter" && nativeNav.navigate(href)}
+        onClick={() => nativeNav.navigate(withCarriedParams(href))}
+        onKeyDown={(e) => e.key === "Enter" && nativeNav.navigate(withCarriedParams(href))}
         role="button"
         tabIndex={0}
         className={className}
@@ -39,7 +76,7 @@ export function Link({ href, children, className, ...nextLinkProps }: LinkProps 
   }
 
   return (
-    <NextLink href={href} className={className} {...nextLinkProps}>
+    <NextLink href={finalHref} className={className} {...nextLinkProps}>
       {children}
     </NextLink>
   );
@@ -52,11 +89,12 @@ export function useRouter() {
 
   const push = useCallback(
     (href: string) => {
+      const target = withCarriedParams(href);
       if (nativeNav) {
-        nativeNav.navigate(href);
+        nativeNav.navigate(target);
         return;
       }
-      nextRouter.push(href);
+      nextRouter.push(target);
     },
     [nativeNav, nextRouter]
   );

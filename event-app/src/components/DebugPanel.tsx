@@ -50,6 +50,15 @@ export function DebugPanel() {
     getActiveDatasetKey()
   );
 
+  // Selecting a dataset mocks "now" to the beginning of that conference so the
+  // schedule/live/today logic lands on day 1. Users can still tweak the field
+  // afterwards before applying.
+  const handleDatasetChange = (key: DatasetKey) => {
+    setDataset(key);
+    const start = DATASETS[key]?.startDate;
+    if (start) setMockNow(toInputValue(new Date(start)));
+  };
+
   if (!enabled) return null;
 
   const apply = () => {
@@ -112,7 +121,7 @@ export function DebugPanel() {
           </label>
           <select
             value={dataset}
-            onChange={(e) => setDataset(e.target.value as DatasetKey)}
+            onChange={(e) => handleDatasetChange(e.target.value as DatasetKey)}
             className="mb-4 w-full rounded-lg border border-[#E1E4EA] px-2 py-1.5 outline-none focus:border-[#7D52F4]"
           >
             {Object.values(DATASETS).map((d) => (
