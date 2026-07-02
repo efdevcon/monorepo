@@ -46,8 +46,9 @@ export const DATASETS: Record<DatasetKey, Dataset> = {
     label: "Devcon 7",
     apiUrl: ENV_API,
     eventId: "devcon-7",
-    // 2024-11-12 09:00 Asia/Bangkok (UTC+7)
-    startDate: "2024-11-12T02:00:00Z",
+    // Day 2 peak: 2024-11-13 15:30 Asia/Bangkok (UTC+7) — ~17 rooms live, so the
+    // room screens and schedule look full on load.
+    startDate: "2024-11-13T08:30:00Z",
   },
 };
 

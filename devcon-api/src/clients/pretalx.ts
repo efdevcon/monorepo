@@ -104,9 +104,13 @@ export async function GetSessions(params: Partial<RequestParams> = {}, config: P
     const talks = await exhaustResource(`talks?questions=all&expand=answers.question,track,submission_type,tags`, config)
     return talks.map((i: any) => mapSession(i, params, config))
   } catch {
-    // /talks requires a published schedule — fall back to confirmed submissions
-    console.log('No published schedule, falling back to submissions...')
-    return GetSubmissions({ ...params, state: 'confirmed' }, config)
+    // /talks requires a published schedule — fall back to confirmed submissions.
+    // Only keep scheduled ones (with a slot): unscheduled confirmed talks have no
+    // time/room and would otherwise render as 1970-01-01 in an "unassigned" stage.
+    // This mirrors the published-schedule path, which only returns scheduled talks.
+    console.log('No published schedule, falling back to confirmed (scheduled) submissions...')
+    const submissions = await GetSubmissions({ ...params, state: 'confirmed' }, config)
+    return submissions.filter((s: any) => s.slot_start)
   }
 }
 
