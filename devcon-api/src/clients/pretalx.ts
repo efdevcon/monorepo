@@ -47,7 +47,7 @@ export async function GetSpeakers(params: Partial<RequestParams> = {}, config: P
     console.warn('EMAIL_SECRET is not set. Skipping email hashing.')
   }
 
-  const speakersData = await exhaustResource(`speakers?questions=all`, config)
+  const speakersData = await exhaustResource(`speakers?questions=all&expand=answers.question,track,submission_type`, config)
   return speakersData.map((i: any) => mapSpeaker(i, params, config)).filter((s: any) => s.sourceId !== 'ADDJPN')
 }
 
@@ -57,10 +57,10 @@ export async function GetSlots(config: PretalxInstanceConfig = PRETALX_CONFIG) {
 
 export async function GetSubmissions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   const [submissions, slots, rawRooms, speakers] = await Promise.all([
-    exhaustResource(`submissions?questions=all`, config),
+    exhaustResource(`submissions?questions=all&expand=answers.question,track,submission_type`, config),
     GetSlots(config).catch(() => []),
     exhaustResource('rooms', config).catch(() => []),
-    exhaustResource(`speakers?questions=all`, config).catch(() => []),
+    exhaustResource(`speakers?questions=all&expand=answers.question,track,submission_type`, config).catch(() => []),
   ])
 
   // Build lookups
@@ -101,7 +101,7 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
 
 export async function GetSessions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   try {
-    const talks = await exhaustResource(`talks?questions=all`, config)
+    const talks = await exhaustResource(`talks?questions=all&expand=answers.question,track,submission_type`, config)
     return talks.map((i: any) => mapSession(i, params, config))
   } catch {
     // /talks requires a published schedule — fall back to confirmed submissions
@@ -111,12 +111,12 @@ export async function GetSessions(params: Partial<RequestParams> = {}, config: P
 }
 
 export async function GetSession(id: string, params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
-  const data = await get(`submissions/${id}?questions=all`, config)
+  const data = await get(`submissions/${id}?questions=all&expand=answers.question,track,submission_type`, config)
   return mapSession(data, params, config)
 }
 
 export async function GetSpeaker(id: string, params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
-  const data = await get(`speakers/${id}?questions=all`, config)
+  const data = await get(`speakers/${id}?questions=all&expand=answers.question,track,submission_type`, config)
   return mapSpeaker(data, params, config)
 }
 
@@ -160,16 +160,16 @@ async function get(slug: string, config: PretalxInstanceConfig) {
 
 function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   const expertise = config.PRETALX_QUESTIONS_EXPERTISE
-    ? (i.answers?.find((i: any) => i.question.id === config.PRETALX_QUESTIONS_EXPERTISE)?.answer as string)
+    ? (i.answers?.find((i: any) => i.question?.id === config.PRETALX_QUESTIONS_EXPERTISE)?.answer as string)
     : undefined
   const predefinedTags = config.PRETALX_QUESTIONS_TAGS
-    ? arrayify(i.answers?.find((i: any) => i.question.id === config.PRETALX_QUESTIONS_TAGS)?.answer)
+    ? arrayify(i.answers?.find((i: any) => i.question?.id === config.PRETALX_QUESTIONS_TAGS)?.answer)
     : []
   const audience = config.PRETALX_QUESTIONS_AUDIENCE
-    ? (i.answers?.find((i: any) => i.question.id === config.PRETALX_QUESTIONS_AUDIENCE)?.answer as string)
+    ? (i.answers?.find((i: any) => i.question?.id === config.PRETALX_QUESTIONS_AUDIENCE)?.answer as string)
     : undefined
   const keywords = config.PRETALX_QUESTIONS_KEYWORDS
-    ? arrayify(i.answers?.find((i: any) => i.question.id === config.PRETALX_QUESTIONS_KEYWORDS)?.answer)
+    ? arrayify(i.answers?.find((i: any) => i.question?.id === config.PRETALX_QUESTIONS_KEYWORDS)?.answer)
     : []
 
   let tags: string[] = []
@@ -181,8 +181,15 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
     sourceId: i.code,
     title: i.title,
     description: i.description ?? i.abstract,
-    track: i.track?.en ?? '',
-    type: mapSubmissionType(i.submission_type_id) || i.submission_type?.en || 'Talk',
+    // Newer pretalx (mum.speakat.xyz) returns track/submission_type as expanded
+    // objects `{id, name:{en}}`; older instances used a bare `{en}` / numeric id.
+    // Read both shapes so the migrated events keep their track labels and types.
+    track: i.track?.name?.en ?? i.track?.en ?? '',
+    type:
+      mapSubmissionType(i.submission_type_id ?? i.submission_type?.id) ||
+      i.submission_type?.name?.en ||
+      i.submission_type?.en ||
+      'Talk',
     expertise: expertise ?? '',
     audience: audience ?? '',
     featured: i.is_featured ?? false,
@@ -215,7 +222,7 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
 
 function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   const findAnswer = (questionId: number | undefined) =>
-    questionId ? i.answers?.find((i: any) => i.question.id === questionId)?.answer : undefined
+    questionId ? i.answers?.find((i: any) => i.question?.id === questionId)?.answer : undefined
 
   const twitter = findAnswer(config.PRETALX_QUESTIONS_TWITTER)
   const github = findAnswer(config.PRETALX_QUESTIONS_GITHUB)
