@@ -241,14 +241,21 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   const ens = findAnswer(config.PRETALX_QUESTIONS_ENS)
   const telegram = findAnswer(config.PRETALX_QUESTIONS_TELEGRAM)
 
+  // Prefer a real avatar URL. Newer pretalx (mum.speakat.xyz) exposes it as
+  // `avatar_url`; older data used `avatar`. Skip retired speak.devcon.org media
+  // (devcon-7's old host is offline) so those fall back to a blockie instead of
+  // a broken image; live hosts (mum) keep their real avatars.
+  const avatarUrl = i.avatar ?? i.avatar_url
+  const avatar =
+    avatarUrl && !avatarUrl.includes('speak.devcon.org')
+      ? avatarUrl
+      : CreateBlockie(i.name || i.code)
+
   let speaker: any = {
     id: defaultSlugify(i.name || i.code),
     sourceId: i.code,
     name: i.name,
-    // Deliberate: fall back to a generated blockie rather than use mum's
-    // `avatar_url`. Those URLs point at the retired speak.devcon.org media host
-    // (dead), so wiring them in would show broken images. Blockies at least render.
-    avatar: i.avatar ?? CreateBlockie(i.name || i.code),
+    avatar,
     description: i.biography ?? '',
   }
 
