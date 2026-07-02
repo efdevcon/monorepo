@@ -3,8 +3,8 @@ name: Pretalx Sync
 on:
   schedule:
     - cron: "0 23 30 * *"
-    # TEMPORARY one-off test run at 2026-07-02 12:50 UTC. Remove after checking.
-    - cron: "50 12 2 7 *"
+    # TEMPORARY one-off test run at 2026-07-02 13:47 UTC. Remove after checking.
+    - cron: "47 13 2 7 *"
   workflow_dispatch:
 
 # Serialize runs so two syncs can't race to commit the same data files.
