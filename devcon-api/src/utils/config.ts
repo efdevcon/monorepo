@@ -95,10 +95,9 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
   'devcon-7': {
     eventId: 'devcon-7',
     // Migrated to the mum.speakat.xyz instance (speak.devcon.org retired). Uses
-    // the mum team token. NOTE: that token must be granted access to the
-    // devcon7-sea event on mum, and the PRETALX_QUESTIONS_* IDs below must match
-    // the mum copy's question IDs, before a re-sync will work. Already-committed
-    // devcon-7 data continues to serve regardless.
+    // the mum team token, which has been granted read access to devcon7-sea on
+    // mum (verified), and the PRETALX_QUESTIONS_* IDs below were verified to
+    // match the mum copy's question IDs, so speaker social links map correctly.
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
     PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
     PRETALX_EVENT_NAME: 'devcon7-sea',
