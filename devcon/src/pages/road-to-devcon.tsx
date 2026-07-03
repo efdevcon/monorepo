@@ -4,8 +4,7 @@ import { Footer } from 'components/common/layouts/footer'
 import { Link } from 'components/common/link'
 import { RoadToDevconHero } from 'components/domain/road-to-devcon/RoadToDevconHero'
 import { RoadToDevconEvents } from 'components/domain/road-to-devcon/RoadToDevconEvents'
-// Temporarily disabled — pink "co-creators" logo marquee section. Re-add later.
-// import { RoadToDevconCommunities } from 'components/domain/road-to-devcon/RoadToDevconCommunities'
+import { RoadToDevconCommunities } from 'components/domain/road-to-devcon/RoadToDevconCommunities'
 import { RoadToDevconPrograms } from 'components/domain/road-to-devcon/RoadToDevconPrograms'
 import { University, Sprout, ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -95,8 +94,7 @@ export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
 
         <RoadToDevconEvents events={events} />
 
-        {/* Temporarily disabled — pink "co-creators" logo marquee. Re-add later. */}
-        {/* <RoadToDevconCommunities /> */}
+        <RoadToDevconCommunities />
 
         <RoadToDevconPrograms />
 
