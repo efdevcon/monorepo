@@ -5,10 +5,11 @@ import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
-import { EarlyBirdSaleBanner } from 'components/domain/tickets/EarlyBirdSaleBanner'
+import { LaunchBanner } from 'components/domain/tickets/LaunchBanner'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
-import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsCtaLabel, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 import { useNow } from 'hooks/useNow'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
@@ -41,8 +42,8 @@ function StatusTag({
 }) {
   return (
     <span
-      className={`inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase ${
-        status === 'open' ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
+      className={`inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap ${
+        status === 'open' ? 'bg-[#80df98] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
       }`}
     >
       {status === 'open' ? openLabel : comingLabel}
@@ -106,15 +107,14 @@ function WaveAvailabilityLine({ openTimes, isLive }: { openTimes: Date[]; isLive
   )
 }
 
-// Format the featured wave's next opening time as "MAY 20" (uppercase,
-// UTC-based so it matches the publicly-announced launch date regardless of
-// viewer's local timezone).
-function formatUpcomingDate(d: Date): string {
-  return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(d).toUpperCase()
+// Format a wave opening time as "JULY" (month only, uppercase, UTC). Status
+// tags stay month-only — the launch banner carries the exact date.
+function formatUpcomingMonth(d: Date): string {
+  return new Intl.DateTimeFormat('en', { month: 'long', timeZone: 'UTC' }).format(d).toUpperCase()
 }
 
 // Tag rendered on the General Admission overview card. Cycles through:
-//   live                 → green OPEN NOW pill
+//   live                 → green OPEN pill
 //   countdown            → gray pill with date of the next wave (e.g. "OPENS MAY 22")
 //   tbd with openLabel   → gray pill repeating the wave's static label (e.g. "OPENS JUNE")
 //   nothing upcoming     → gray CLOSED pill
@@ -122,68 +122,22 @@ function GeneralAdmissionTag() {
   const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
 
-  if (!mounted) {
-    return (
-      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#221144]">
-        &nbsp;
-      </span>
-    )
-  }
+  // Renders through the same StatusTag as the Community / Applications cards
+  // so all three tags share identical typography — only the label varies.
+  if (!mounted) return <StatusTag status="coming" openLabel="" comingLabel={' '} />
+  if (featured?.status === 'live') return <StatusTag status="open" openLabel="OPEN" comingLabel="" />
 
-  if (featured?.status === 'live') {
-    return (
-      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#aaeaba] text-[#221144]">
-        OPEN NOW
-      </span>
-    )
-  }
-
+  let label = 'CLOSED'
   if (featured?.status === 'countdown' && featured.upcoming) {
-    return (
-      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#f2f1f4] text-[#594d73]">
-        OPENS {formatUpcomingDate(featured.upcoming)}
-      </span>
-    )
+    label = `OPENS ${formatUpcomingMonth(featured.upcoming)}`
+  } else {
+    // No live / countdown wave — fall back to the first upcoming wave that
+    // has a static `openLabel` defined (e.g. "Opens June" for a wave with no
+    // exact openTimes yet), so we don't mis-label an upcoming sale as CLOSED.
+    const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
+    if (upcomingTbd?.wave.openLabel) label = upcomingTbd.wave.openLabel.toUpperCase()
   }
-
-  // No live / countdown wave — fall back to the first upcoming wave that has
-  // a static `openLabel` defined (e.g. "Opens June" for a wave with no exact
-  // openTimes yet), so we don't mis-label an upcoming sale as CLOSED.
-  const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
-  if (upcomingTbd?.wave.openLabel) {
-    return (
-      <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase whitespace-nowrap bg-[#f2f1f4] text-[#594d73]">
-        {upcomingTbd.wave.openLabel.toUpperCase()}
-      </span>
-    )
-  }
-
-  // Truly nothing upcoming → CLOSED.
-  return (
-    <span className="inline-flex items-center px-3 py-2.5 rounded text-sm font-bold tracking-[0.5px] leading-none uppercase bg-[#f2f1f4] text-[#594d73]">
-      CLOSED
-    </span>
-  )
-}
-
-// Student application criteria — shown in expandable row content under both
-// "Indian Students" and "International Students" rows in the Applications table.
-function StudentCriteria() {
-  const t = useTranslations('tickets.criteria.student')
-  const bullets = t.raw('bullets') as string[]
-  return (
-    <>
-      <p className="font-bold">{t('heading')}</p>
-      <ul className="list-disc pl-5 flex flex-col gap-1.5">
-        {bullets.map((b, i) => (
-          <li key={i}>{b}</li>
-        ))}
-      </ul>
-      <p>
-        <strong>{t('note_label')}</strong> {t('note')}
-      </p>
-    </>
-  )
+  return <StatusTag status="coming" openLabel="" comingLabel={label} />
 }
 
 interface TicketsPageProps {
@@ -193,7 +147,7 @@ interface TicketsPageProps {
 export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const t = useTranslations('tickets')
   const resolvedFaqItems = useStandardFaqItems(faqItems)
-  const { label: ctaLabel } = useTicketsCtaLabel()
+  const { label: ctaLabel, isLive } = useTicketsCtaLabel()
   const storeUrl = useTicketsStoreUrl()
 
   const navLinks = [
@@ -211,24 +165,15 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const communityRowsRaw = t.raw('community_section.rows') as TicketRow[]
   const applicationRowsRaw = t.raw('applications_section.rows') as TicketRow[]
 
-  // Per-wave state for the General Admission rows. The "featured" wave is the
-  // currently live one, or the next upcoming one — only it shows the rich
-  // countdown + opening times block below the row. Other waves just render
-  // their static openLabel on the right.
+  // Per-wave state for the General Admission rows.
   const waveStates = useWaveStates()
-  const featuredWaveId = (() => {
-    const live = waveStates.find(s => s.status === 'live')
-    if (live) return live.wave.id
-    const countdown = waveStates.find(s => s.status === 'countdown')
-    return countdown?.wave.id ?? null
-  })()
 
-  // Maps a row name → expandable details JSX. Anything not in the map renders
-  // as a normal (non-expandable) row. Easy to add more detail blocks here.
-  const detailsByName: Record<string, React.ReactNode> = {
-    'Indian Students': <StudentCriteria />,
-    'International Students': <StudentCriteria />,
-  }
+  // Maps a row name → expandable details JSX. Kept as an empty object so
+  // future detail panels can be re-enabled per-row without changing the
+  // wiring below. The "tap to learn more" affordance was removed from the
+  // Applications section per the latest design — students see criteria
+  // on the application form page itself (/form/student-application).
+  const detailsByName: Record<string, React.ReactNode> = {}
   function withDetails(row: TicketRow): TicketRow {
     const details = detailsByName[row.name]
     return details ? { ...row, details } : row
@@ -237,38 +182,76 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   // General Admission rows derived from the canonical wave config. Each wave
   // becomes a row; per-wave state drives the right-edge tag/badge and any
   // rich countdown content underneath.
-  const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, countdown }) => {
-    const row: TicketRow = { name: w.name, price: w.price }
-    const isFeatured = w.id === featuredWaveId
+  const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, upcoming }) => {
+    const row: TicketRow = {
+      name: w.name,
+      price: w.price,
+      ethPrice: w.ethPrice,
+      fiatPrice: w.fiatPrice,
+    }
     const hasTimes = !!(w.openTimes && w.openTimes.length > 0)
 
     if (status === 'live') {
-      // Live: OPEN badge + price + "Get tickets" button; availability line below.
+      // Live: OPEN badge + price + "Get tickets" button. The availability
+      // line below the row only appears for multi-round waves (where "which
+      // round is selling right now" is real information) — for a single
+      // opening time it would just restate a launch date that already
+      // passed, which the during-launch Figma omits.
       row.status = 'open'
       row.action = 'Get tickets'
       row.actionHref = storeUrl
-      if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} isLive />
+      if (hasTimes && w.openTimes!.length > 1) {
+        row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} isLive />
+      }
     } else if (status === 'countdown') {
-      if (isFeatured) {
-        // Featured countdown: purple countdown in action slot, availability line below.
-        if (countdown) row.actionCountdown = countdown
-        if (hasTimes) row.richContent = <WaveAvailabilityLine openTimes={w.openTimes!} />
+      // Upcoming wave: the status column shows the static openLabel (e.g.
+      // "Opens July") — the launch banner above owns the countdown
+      // presentation. Falls back to a formatted opening date for waves
+      // without an openLabel.
+      row.date = w.openLabel ?? (upcoming ? `Opens ${DAY_MONTH_FORMATTER.format(upcoming)}` : undefined)
+    } else if (status === 'closed') {
+      // Past wave — name struck through, "Sale ended" in action slot.
+      // Prices STAY VISIBLE (also struck-through) per the latest Figma:
+      // the closed wave sits as an audit row so buyers can see what the
+      // now-closed pricing was. TicketTable applies `line-through` to
+      // the price content when `row.muted` is true.
+      row.muted = true
+    } else {
+      // 'tbd' — wave date not yet set. When the wave declares an explicit
+      // action + actionHref (e.g. General Admission wants to expose
+      // "Get tickets" as a persistent CTA even before its official
+      // opening window is announced), surface it. Otherwise fall back
+      // to the static openLabel (e.g. Final Waves showing "Date TBA").
+      if (w.action && w.actionHref) {
+        row.action = w.action
+        row.actionHref = w.actionHref
       } else {
-        // Non-featured upcoming: just the static "Opens [date]" column.
         row.date = w.openLabel
       }
-    } else if (status === 'closed') {
-      // Past wave — name struck through, "Sale ended" in action slot, no price.
-      row.muted = true
-      row.price = undefined
-    } else {
-      // 'tbd' — wave date not yet set, fall back to the static openLabel.
-      row.date = w.openLabel
     }
     return withDetails(row)
   })
-  const communityRows: TicketRow[] = communityRowsRaw.map(withDetails)
-  const applicationRows: TicketRow[] = applicationRowsRaw.map(withDetails)
+  // Community self-claiming discounts open at the global ticket launch.
+  // Before launch their rows show the launch date instead of "Get started"
+  // (and the overview card / comparison column read COMING SOON); from the
+  // launch moment they flip to their live CTAs, matching the during-launch
+  // Figma where every Community row is claimable.
+  const { launched } = useIsLaunched()
+  const communityRows: TicketRow[] = communityRowsRaw.map(row => {
+    const r = withDetails(row)
+    if (launched) return r
+    return { ...r, action: undefined, actionHref: undefined, date: t('community_section.pre_launch_status') }
+  })
+  // Sanctuary Tech Builders applications also open at the global launch
+  // (student applications are already open). Identified by its form href
+  // since row names are translated.
+  const applicationRows: TicketRow[] = applicationRowsRaw.map(row => {
+    const r = withDetails(row)
+    if (!launched && r.actionHref?.includes('builder-application')) {
+      return { ...r, action: undefined, actionHref: undefined, date: t('applications_section.pre_launch_status') }
+    }
+    return r
+  })
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -283,8 +266,8 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
 
       <div className={cn(css['landing'], 'section')}>
         <div className="flex flex-col gap-12 md:gap-16">
-          {/* ── ETH Early Bird sale banner ───────────────────────── */}
-          <EarlyBirdSaleBanner />
+          {/* ── Global ticket launch banner (countdown → on sale) ── */}
+          <LaunchBanner />
 
           {/* ── Overview ─────────────────────────────────────────── */}
           <section id="overview" className="scroll-mt-36 flex flex-col gap-8 items-center">
@@ -300,11 +283,21 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
 
             <div className="flex flex-col md:flex-row gap-4 w-full">
               {overviewCards.map((card, i) => {
-                // General Admission tag cycles based on the live ETH Early Bird state:
-                //   countdown → display the precise public-facing date (e.g. "MAY 20")
-                //   live      → green "OPEN" tag
-                //   closed    → gray "CLOSED" tag
-                const isGeneral = card.title === 'General Admission'
+                // Cards render in a fixed order across locales (General
+                // Admission, Community, Applications) — identify by index
+                // since titles are translated.
+                //
+                // General Admission's tag cycles with the featured wave
+                // (OPENS [date] → OPEN NOW → CLOSED). Community opens at
+                // the global ticket launch, so its static "coming" status
+                // flips to open once launched.
+                const isGeneral = i === 0
+                const isCommunity = i === 1
+                const cardStatus = isCommunity && launched ? 'open' : card.status
+                // Community's pre-launch tag names the launch date ("OPENS
+                // JUL 14", same as General Admission) instead of the generic
+                // COMING SOON label.
+                const comingLabel = isCommunity ? `OPENS ${formatUpcomingMonth(GLOBAL_LAUNCH_TIME)}` : tagComing
                 return (
                   <div key={i} className="flex-1 flex items-center gap-2 bg-white rounded-2xl px-6 py-8 min-w-0">
                     <div className="flex-1 min-w-0 flex flex-col gap-1">
@@ -318,7 +311,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                     {isGeneral ? (
                       <GeneralAdmissionTag />
                     ) : (
-                      <StatusTag status={card.status} openLabel={tagOpen} comingLabel={tagComing} />
+                      <StatusTag status={cardStatus} openLabel={tagOpen} comingLabel={comingLabel} />
                     )}
                   </div>
                 )
@@ -339,7 +332,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           {/* ── General Admission ────────────────────────────────── */}
           <section
             id="general-admission"
-            className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+            className="scroll-mt-36 grid grid-cols-1 min-[1440px]:grid-cols-2 gap-8 min-[1440px]:gap-16 items-start"
           >
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-4">
@@ -358,13 +351,17 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                   {t('general_admission.subcopy')}
                 </p>
               </div>
-              <NextLink
-                href={storeUrl}
-                className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
-              >
-                {ctaLabel}
-                <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-              </NextLink>
+              {/* Store CTA only renders while a wave is on sale — no
+                  pre-launch "View tickets" teaser button. */}
+              {isLive && (
+                <NextLink
+                  href={storeUrl}
+                  className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
+                >
+                  {ctaLabel}
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+                </NextLink>
+              )}
             </div>
 
             <TicketTable
@@ -377,7 +374,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           <hr className={css['divider']} />
 
           {/* ── Community ────────────────────────────────────────── */}
-          <section id="discounts" className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <section id="discounts" className="scroll-mt-36 grid grid-cols-1 min-[1440px]:grid-cols-2 gap-8 min-[1440px]:gap-16 items-start">
             <div className="flex flex-col gap-4">
               <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
                 {t('community_section.eyebrow')}
@@ -399,6 +396,18 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                 <strong>{t('community_section.subcopy_strong_2')}</strong>
                 {t('community_section.subcopy_suffix')}
               </p>
+              {/* Store CTA only appears once the global launch has opened
+                  the Community discounts — before that the section has no
+                  actionable destination. */}
+              {launched && (
+                <NextLink
+                  href={storeUrl}
+                  className="mt-2 inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-white/80 hover:bg-white border border-solid border-[rgba(34,17,68,0.1)] transition-colors rounded-full text-base font-bold text-[#1a0d33] leading-none"
+                >
+                  {t('community_section.cta')}
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+                </NextLink>
+              )}
             </div>
 
             <TicketTable
@@ -413,7 +422,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
           {/* ── Applications ─────────────────────────────────────── */}
           <section
             id="applications"
-            className="scroll-mt-36 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
+            className="scroll-mt-36 grid grid-cols-1 min-[1440px]:grid-cols-2 gap-8 min-[1440px]:gap-16 items-start"
           >
             <div className="flex flex-col gap-4">
               <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
@@ -439,13 +448,21 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                 <strong>{t('applications_section.subcopy_strong_3')}</strong>
                 {t('applications_section.subcopy_suffix')}
               </p>
+              {launched && (
+                <NextLink
+                  href={storeUrl}
+                  className="mt-2 inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-white/80 hover:bg-white border border-solid border-[rgba(34,17,68,0.1)] transition-colors rounded-full text-base font-bold text-[#1a0d33] leading-none"
+                >
+                  {t('applications_section.cta')}
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+                </NextLink>
+              )}
             </div>
 
             <TicketTable
               title={t('applications_section.card_title')}
               subtitle={t('applications_section.card_subtitle')}
               rows={applicationRows}
-              tapLabel={t('applications_section.tap_label')}
             />
           </section>
 

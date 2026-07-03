@@ -8,11 +8,11 @@
     "faq": "FAQ"
   },
   "sale_banner": {
-    "heading": "ETH Early Bird tickets on sale!",
-    "heading_countdown": "ETH Early Bird tickets launch in",
-    "subheading": "Limited quantity • Save $350 • Purchasable using ETH (L1)",
-    "price": "$349",
-    "price_original": "$699",
+    "launch_eyebrow": "GLOBAL TICKET LAUNCH",
+    "heading": "General Admission tickets on sale!",
+    "subheading": "Limited quantity • $499 via ETH • $999 via Fiat",
+    "price": "$499 ETH",
+    "price_countdown": "$499 via ETH",
     "price_note": "Includes 18% GST",
     "cta": "Get tickets"
   },
@@ -24,9 +24,21 @@
     "tag_coming": "COMING SOON",
     "learn_more": "Learn more",
     "cards": [
-      { "title": "General Admission", "subtitle": "SALE WAVES", "status": "open" },
-      { "title": "Community", "subtitle": "SELF-CLAIMING DISCOUNTS", "status": "coming" },
-      { "title": "Applications", "subtitle": "REVIEW-BASED DISCOUNTS", "status": "open" }
+      {
+        "title": "General Admission",
+        "subtitle": "SALE WAVES",
+        "status": "open"
+      },
+      {
+        "title": "Community",
+        "subtitle": "SELF-CLAIMING DISCOUNTS",
+        "status": "coming"
+      },
+      {
+        "title": "Applications",
+        "subtitle": "REVIEW-BASED DISCOUNTS",
+        "status": "open"
+      }
     ]
   },
   "general_admission": {
@@ -56,15 +68,44 @@
     "subcopy_suffix": ".",
     "card_title": "Community",
     "card_subtitle": "incl. 18% GST",
+    "pre_launch_status": "Opens July",
     "tap_label": "TAP TO LEARN MORE",
     "rows": [
-      { "name": "India Early Bird", "detail": "VIA VOUCHER", "price": "$99", "date": "Opens in June" },
-      { "name": "India Resident", "detail": "VIA SELF PROTOCOL", "price": "$149", "date": "Opens in June" },
-      { "name": "Core Devs", "price": "FREE", "date": "Opens in June" },
-      { "name": "OSS Contributors", "price": "50% off", "date": "Opens in June" },
-      { "name": "Public Good Projects", "price": "50% off", "date": "Opens in June" },
-      { "name": "Past POAP Holders", "price": "10% off", "date": "Opens in June" }
-    ]
+      {
+        "name": "India Early Bird",
+        "detail": "VIA VOUCHER",
+        "ethPrice": "$99",
+        "fiatPrice": "$99",
+        "action": "Get started",
+        "actionHref": "/en/tickets/store"
+      },
+      {
+        "name": "India Resident",
+        "ethPrice": "$149",
+        "fiatPrice": "$149",
+        "action": "Get started",
+        "actionHref": "/en/tickets/store"
+      },
+      {
+        "name": "Ethereum Public Goods",
+        "ethPrice": "$349",
+        "action": "Get started",
+        "actionHref": "/en/tickets/store"
+      },
+      {
+        "name": "Past POAP Holders",
+        "ethPrice": "$449",
+        "action": "Get started",
+        "actionHref": "/en/tickets/store"
+      },
+      {
+        "name": "Core Devs",
+        "ethPrice": "FREE",
+        "action": "Get started",
+        "actionHref": "/en/tickets/store"
+      }
+    ],
+    "cta": "Get started"
   },
   "criteria": {
     "student": {
@@ -88,9 +129,9 @@
     "body_amp": " & ",
     "body_strong_2": "International students",
     "body_middle": " and ",
-    "body_strong_3": "Builders",
+    "body_strong_3": "Sanctuary Tech Builders",
     "body_suffix": " from all over the world. Applications are reviewed on a rolling basis.",
-    "subcopy_strong_1": "Students can apply now",
+    "subcopy_strong_1": "Everyone can apply now",
     "subcopy_middle_1": ". Applications are ",
     "subcopy_strong_2": "curated",
     "subcopy_middle_2": " and ",
@@ -98,13 +139,35 @@
     "subcopy_suffix": ", subject to availability and review.",
     "card_title": "Applications",
     "card_subtitle": "incl. 18% GST",
+    "pre_launch_status": "Opens July",
     "tap_label": "TAP TO LEARN MORE",
     "apply": "Apply",
     "rows": [
-      { "name": "Indian Students", "status": "open", "price": "$25", "action": "Apply", "actionHref": "/form/student-application" },
-      { "name": "International Students", "status": "open", "price": "$99", "action": "Apply", "actionHref": "/form/student-application" },
-      { "name": "Builders", "price": "$349", "date": "Opens in June" }
-    ]
+      {
+        "name": "Indian Students",
+        "ethPrice": "$25",
+        "fiatPrice": "$25",
+        "status": "open",
+        "action": "Apply",
+        "actionHref": "/form/student-application"
+      },
+      {
+        "name": "International Students",
+        "ethPrice": "$49",
+        "fiatPrice": "$99",
+        "status": "open",
+        "action": "Apply",
+        "actionHref": "/form/student-application"
+      },
+      {
+        "name": "Sanctuary Tech Builders",
+        "ethPrice": "$349",
+        "fiatPrice": "$499",
+        "action": "Apply",
+        "actionHref": "/form/builder-application"
+      }
+    ],
+    "cta": "Learn more"
   },
   "comparison": {
     "eyebrow": "DEVCON TICKETS",
@@ -128,14 +191,22 @@
         "title": "General Admission",
         "tab_label": "General",
         "subtitle": "SALE WAVES",
-        "price": "$349",
-        "price_original": "$699",
-        "price_note": "ETH Early Bird • Purchasable using ETH (L1)",
+        "price": "$499+",
+        "price_note": "$499 via ETH • $999 via Fiat",
         "best_for": "Anyone — there's no eligibility criteria and we're anon-friendly.",
         "included": [
-          { "text": "4-day conference access", "icon": "check" },
-          { "text": "Catering all week", "icon": "check" },
-          { "text": "Event swag", "icon": "check" }
+          {
+            "text": "4-day conference access",
+            "icon": "check"
+          },
+          {
+            "text": "Catering all week",
+            "icon": "check"
+          },
+          {
+            "text": "Event swag",
+            "icon": "check"
+          }
         ],
         "how_it_works": [
           "Limited time window to purchase",
@@ -156,9 +227,18 @@
         "price_note": "Based on eligibility",
         "best_for": "Indian residents and people actively contributing to or participating in Ethereum or OSS ecosystems.",
         "included": [
-          { "text": "4-day conference access", "icon": "check" },
-          { "text": "Catering all week", "icon": "check" },
-          { "text": "Event swag", "icon": "asterisk" }
+          {
+            "text": "4-day conference access",
+            "icon": "check"
+          },
+          {
+            "text": "Catering all week",
+            "icon": "check"
+          },
+          {
+            "text": "Event swag",
+            "icon": "asterisk"
+          }
         ],
         "how_it_works": [
           "Verify your eligibility based on criteria",
@@ -179,9 +259,18 @@
         "price_note": "Based on application type",
         "best_for": "Indian & International students and Builders from all over the world.",
         "included": [
-          { "text": "4-day conference access", "icon": "check" },
-          { "text": "Catering all week", "icon": "check" },
-          { "text": "Event swag", "icon": "asterisk" }
+          {
+            "text": "4-day conference access",
+            "icon": "check"
+          },
+          {
+            "text": "Catering all week",
+            "icon": "check"
+          },
+          {
+            "text": "Event swag",
+            "icon": "asterisk"
+          }
         ],
         "how_it_works": [
           "Submit your application",

@@ -1,4 +1,4 @@
-import { TICKET_WAVES, type TicketWave } from 'config/waves'
+import { GLOBAL_LAUNCH_TIME, TICKET_WAVES, type TicketWave } from 'config/waves'
 import { useNow } from './useNow'
 import { useTicketAvailabilityMap, type TicketAvailability } from './useTicketAvailability'
 
@@ -87,8 +87,13 @@ function classify(
 
   // No later wave has activated — this wave owns the "current" slot.
   // Live iff Pretix says inventory available OR we're inside the grace window.
+  // Waves without a `quotaId` are schedule-only: with no Pretix quota to
+  // consult, the schedule alone keeps them live from their openTime until a
+  // later wave supersedes them (otherwise they'd silently flip to 'closed'
+  // 5 minutes after opening because availability never loads).
   const withinGrace = now.getTime() - latestPast.getTime() < GRACE_WINDOW_MS
-  if (availability.available || withinGrace) {
+  const pretixAvailable = wave.quotaId != null ? availability.available : true
+  if (pretixAvailable || withinGrace) {
     return { wave, status: 'live', countdown: null, upcoming, mounted: true }
   }
 
@@ -119,6 +124,24 @@ export function useWaveStates(): WaveState[] {
     return TICKET_WAVES.map(w => ({ wave: w, status: 'countdown', countdown: null, upcoming: null, mounted: false }))
   }
   return TICKET_WAVES.map((w, i) => classify(w, i, TICKET_WAVES, now, availabilityMap[w.id] ?? NO_AVAILABILITY))
+}
+
+export interface LaunchedResult {
+  mounted: boolean
+  launched: boolean
+}
+
+/**
+ * True once the global ticket launch moment (GLOBAL_LAUNCH_TIME, 14 July)
+ * has passed. Drives the before/during split for surfaces that open at the
+ * global launch but aren't a sale wave themselves — e.g. the Community
+ * self-claiming discounts (overview card tag, table row CTAs, comparison
+ * column status). SSR-safe: `launched` stays false until `useNow` mounts.
+ */
+export function useIsLaunched(): LaunchedResult {
+  const now = useNow()
+  if (!now) return { mounted: false, launched: false }
+  return { mounted: true, launched: now.getTime() >= GLOBAL_LAUNCH_TIME.getTime() }
 }
 
 export interface FeaturedWaveResult {
@@ -160,29 +183,14 @@ export function useTicketsCtaLabel(): { label: 'Get tickets' | 'View tickets'; i
   return { label: isLive ? 'Get tickets' : 'View tickets', isLive }
 }
 
-// Earliest configured wave opening time across all `TICKET_WAVES`. The first
-// time this is in the past, all site-wide "Get tickets" CTAs switch from the
-// internal pre-sale teaser (/tickets/store) to the real external storefront.
-const FIRST_WAVE_OPEN_MS = (() => {
-  const times = TICKET_WAVES.flatMap(w => w.openTimes ?? [])
-  if (times.length === 0) return null
-  return times.reduce((min, t) => Math.min(min, t.getTime()), Number.POSITIVE_INFINITY)
-})()
-
 const INTERNAL_STORE_URL = '/tickets/store'
-const EXTERNAL_STORE_URL = 'https://tickets.devcon.org'
 
 /**
- * Returns the URL every "Get tickets" / "View tickets" CTA should point to
- * right now. Before the first wave opens, the site shows its own teaser
- * storefront at `/tickets/store`. From the moment the first wave's openTime
- * is reached, every CTA flips to the real Pretix-backed storefront at
- * `https://tickets.devcon.org`. SSR-safe: returns the internal URL until
- * `useNow()` mounts.
+ * Returns the URL every "Get tickets" / "View tickets" CTA should point to.
+ * Always the site's own storefront at `/tickets/store` — buyers land there
+ * first (it handles wave gating and availability) rather than being sent
+ * straight to the external Pretix shop.
  */
 export function useTicketsStoreUrl(): string {
-  return EXTERNAL_STORE_URL
-  // const now = useNow()
-  // if (!now || FIRST_WAVE_OPEN_MS == null) return INTERNAL_STORE_URL
-  // return now.getTime() >= FIRST_WAVE_OPEN_MS ? EXTERNAL_STORE_URL : INTERNAL_STORE_URL
+  return INTERNAL_STORE_URL
 }

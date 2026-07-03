@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import NextLink from 'next/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
-import { useFeaturedWave, useWaveStates, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 
 type IconKind = 'check' | 'asterisk'
 
@@ -29,6 +30,12 @@ interface Column {
   cta_label: string
   cta_href: string
   cta_variant: 'primary' | 'secondary'
+  // Per-column override for the "coming" tag text; falls back to the shared
+  // labels.tag_coming ("COMING SOON") when unset.
+  coming_label?: string
+  // When true the JOIN DEVCON row renders no CTA for this column — used for
+  // GA / Community before the global launch, when there's nothing to buy yet.
+  hide_cta?: boolean
 }
 
 const IncludedIcon = ({ kind }: { kind: IconKind }) => {
@@ -38,66 +45,50 @@ const IncludedIcon = ({ kind }: { kind: IconKind }) => {
 
 const StatusTag = ({ status, openLabel, comingLabel }: { status: 'open' | 'coming'; openLabel: string; comingLabel: string }) => (
   <span
-    className={`inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase ${
-      status === 'open' ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
+    className={`inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase whitespace-nowrap ${
+      status === 'open' ? 'bg-[#80df98] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
     }`}
   >
     {status === 'open' ? openLabel : comingLabel}
   </span>
 )
 
-// "MAY 20" — used for the "OPENS …" pill on the General Admission column.
-const UPCOMING_DATE_FORMATTER = new Intl.DateTimeFormat('en', {
-  month: 'short',
-  day: 'numeric',
+// "JULY" — month-only label for the "OPENS …" tags; the launch banner
+// carries the exact date.
+const UPCOMING_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
+  month: 'long',
   timeZone: 'UTC',
 })
 
 // Tag for the General Admission column that mirrors the overview card's
-// GeneralAdmissionTag: green "OPEN NOW" when live, gray "OPENS [date]" while
+// GeneralAdmissionTag: green "OPEN" when live, gray "OPENS [date]" while
 // counting down, gray pill with the static `openLabel` for an upcoming TBD
 // wave, gray "CLOSED" otherwise. Same dimensions as StatusTag so the column
 // header height stays consistent.
 const GeneralAdmissionStatusTag = () => {
   const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
+
+  // Renders through the same StatusTag as the other columns so all tags
+  // share identical typography — only the label varies.
   if (!mounted) {
-    return (
-      <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#221144]">
-        &nbsp;
-      </span>
-    )
+    return <StatusTag status="coming" openLabel="" comingLabel={' '} />
   }
   if (featured?.status === 'live') {
-    return (
-      <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#aaeaba] text-[#221144]">
-        OPEN NOW
-      </span>
-    )
+    return <StatusTag status="open" openLabel="OPEN" comingLabel="" />
   }
+
+  let label = 'CLOSED'
   if (featured?.status === 'countdown' && featured.upcoming) {
-    return (
-      <span className="inline-flex items-center self-start whitespace-nowrap px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
-        OPENS {UPCOMING_DATE_FORMATTER.format(featured.upcoming).toUpperCase()}
-      </span>
-    )
+    label = `OPENS ${UPCOMING_MONTH_FORMATTER.format(featured.upcoming).toUpperCase()}`
+  } else {
+    // Fall back to the first upcoming wave with a static `openLabel`, so a
+    // wave configured as "Opens June" (TBD without exact openTimes yet)
+    // reads as upcoming rather than CLOSED.
+    const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
+    if (upcomingTbd?.wave.openLabel) label = upcomingTbd.wave.openLabel.toUpperCase()
   }
-  // Fall back to the first upcoming wave with a static `openLabel`, so a
-  // wave configured as "Opens June" (TBD without exact openTimes yet) reads
-  // as upcoming rather than CLOSED.
-  const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
-  if (upcomingTbd?.wave.openLabel) {
-    return (
-      <span className="inline-flex items-center self-start whitespace-nowrap px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
-        {upcomingTbd.wave.openLabel.toUpperCase()}
-      </span>
-    )
-  }
-  return (
-    <span className="inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase bg-[#f2f1f4] text-[#594d73]">
-      CLOSED
-    </span>
-  )
+  return <StatusTag status="coming" openLabel="" comingLabel={label} />
 }
 
 const CtaButton = ({ label, href, variant }: { label: string; href: string; variant: 'primary' | 'secondary' }) => (
@@ -142,7 +133,11 @@ const MobileCard = ({
         {column.id === 'general_admission' ? (
           <GeneralAdmissionStatusTag />
         ) : (
-          <StatusTag status={column.status} openLabel={labels.tag_open} comingLabel={labels.tag_coming} />
+          <StatusTag
+            status={column.status}
+            openLabel={labels.tag_open}
+            comingLabel={column.coming_label ?? labels.tag_coming}
+          />
         )}
         <p className="text-xs text-[#594d73] leading-none">{labels.price_note}</p>
       </div>
@@ -198,17 +193,19 @@ const MobileCard = ({
       </ul>
     </div>
 
-    <NextLink
-      href={column.cta_href}
-      className={`inline-flex items-center justify-center gap-2 min-h-9 px-8 py-4 rounded-full text-base font-bold leading-none transition-colors w-full ${
-        column.cta_variant === 'primary'
-          ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
-          : 'bg-white hover:bg-white/90 border border-solid border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
-      }`}
-    >
-      {column.cta_label}
-      <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-    </NextLink>
+    {!column.hide_cta && (
+      <NextLink
+        href={column.cta_href}
+        className={`inline-flex items-center justify-center gap-2 min-h-9 px-8 py-4 rounded-full text-base font-bold leading-none transition-colors w-full ${
+          column.cta_variant === 'primary'
+            ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
+            : 'bg-white hover:bg-white/90 border border-solid border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
+        }`}
+      >
+        {column.cta_label}
+        <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+      </NextLink>
+    )}
   </div>
 )
 
@@ -245,12 +242,26 @@ export function TicketComparison() {
   }
   const rawColumns = t.raw('columns') as Column[]
   const { featured, mounted } = useFeaturedWave()
+  const { launched } = useIsLaunched()
   const storeUrl = useTicketsStoreUrl()
 
   // Inject live wave state into the General Admission column so the price /
   // status / CTA always reflect the currently-featured wave instead of the
   // static eth-early-bird snapshot baked into translations.
   const columns: Column[] = rawColumns.map(col => {
+    // Community self-claiming discounts open at the global ticket launch:
+    // "OPENS JUL 14" before (same treatment as General Admission), OPEN
+    // during (matches the during-launch Figma where all three columns
+    // read OPEN).
+    if (col.id === 'community') {
+      return launched
+        ? { ...col, status: 'open' }
+        : {
+            ...col,
+            coming_label: `OPENS ${UPCOMING_MONTH_FORMATTER.format(GLOBAL_LAUNCH_TIME).toUpperCase()}`,
+            hide_cta: true,
+          }
+    }
     if (col.id !== 'general_admission' || !mounted) return col
     if (!featured) {
       // No featured wave — sale has ended across the board.
@@ -264,17 +275,22 @@ export function TicketComparison() {
       }
     }
     const isLive = featured.status === 'live'
+    // Per Figma the GA price cell reads "$499+" with a sublabel breaking
+    // down the ETH vs Fiat cost ("$499 via ETH • $999 via Fiat"), derived
+    // from the featured wave so the comparison always tracks the current
+    // sale wave. The "+" signals later waves open at a higher price.
+    const ethPrice = featured.wave.ethPrice ?? featured.wave.price
+    const fiatPrice = featured.wave.fiatPrice
     return {
       ...col,
       status: isLive ? 'open' : 'coming',
-      price: featured.wave.price,
-      // Strikethrough original price is only meaningful for the discounted
-      // ETH Early Bird wave.
-      price_original: featured.wave.id === 'eth-early-bird' ? col.price_original : undefined,
-      price_note: featured.wave.name,
-      price_description: featured.wave.description,
+      price: `${ethPrice}+`,
+      price_original: undefined,
+      price_note: fiatPrice ? `${ethPrice} via ETH • ${fiatPrice} via Fiat` : featured.wave.name,
+      price_description: undefined,
       cta_label: isLive ? 'Get tickets' : 'View tickets',
       cta_href: storeUrl,
+      hide_cta: !launched,
     }
   })
 
@@ -330,7 +346,11 @@ export function TicketComparison() {
               {col.id === 'general_admission' ? (
                 <GeneralAdmissionStatusTag />
               ) : (
-                <StatusTag status={col.status} openLabel={labels.tag_open} comingLabel={labels.tag_coming} />
+                <StatusTag
+                  status={col.status}
+                  openLabel={labels.tag_open}
+                  comingLabel={col.coming_label ?? labels.tag_coming}
+                />
               )}
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">{col.title}</h3>
@@ -425,7 +445,7 @@ export function TicketComparison() {
               key={col.id}
               className={`flex-1 min-w-0 flex items-center px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
             >
-              <CtaButton label={col.cta_label} href={col.cta_href} variant={col.cta_variant} />
+              {!col.hide_cta && <CtaButton label={col.cta_label} href={col.cta_href} variant={col.cta_variant} />}
             </div>
           ))}
         </div>

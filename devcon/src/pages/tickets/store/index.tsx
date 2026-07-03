@@ -12,7 +12,6 @@ import { Input } from '@/components/ui/input'
 import {
   ArrowLeft,
   ArrowRight,
-  ArrowUpRight,
   CalendarDays,
   MapPin,
   Minus,
@@ -27,6 +26,58 @@ import css from './store.module.scss'
 
 // Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
 const fmtPrice = (p: string) => p.replace(/\.00$/, '')
+import { EthGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
+
+/*
+ * Price displays per the store Figma (node 4650:6814):
+ *   – ETH-payable price → green chip (harit/100) with the ETH tile
+ *   – fiat price        → dark $ tile + muted bold price, no chip bg
+ *   – same price via either method → both tiles side by side + one price
+ */
+const EthPriceChip = ({ price }: { price: string }) => (
+  <span className="inline-flex items-center gap-1.5 rounded bg-[#d5f4dd] px-1.5 py-1">
+    <EthGlyphTile size={20} />
+    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
+  </span>
+)
+
+const FiatPriceTag = ({ price }: { price: string }) => (
+  <span className="inline-flex items-center gap-1.5">
+    <FiatGlyphTile size={20} />
+    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#594d73]">{price}</span>
+  </span>
+)
+
+const CombinedPriceTag = ({ price }: { price: string }) => (
+  <span className="inline-flex items-center gap-2">
+    <span className="inline-flex items-center gap-1">
+      <EthGlyphTile size={20} />
+      <FiatGlyphTile size={20} />
+    </span>
+    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
+  </span>
+)
+
+// Renders the right chip combination for a card's pricing shape. The green
+// chip only appears when BOTH payment methods exist (it highlights the
+// cheaper ETH option); ETH-only tickets render the bare tile + price.
+const CardPrice = ({ eth, fiat, combined }: { eth?: string; fiat?: string; combined?: string }) => (
+  <span className="inline-flex items-center gap-4">
+    {combined ? (
+      <CombinedPriceTag price={combined} />
+    ) : eth && !fiat ? (
+      <span className="inline-flex items-center gap-2">
+        <EthGlyphTile size={20} />
+        <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{eth}</span>
+      </span>
+    ) : (
+      <>
+        {eth && <EthPriceChip price={eth} />}
+        {fiat && <FiatPriceTag price={fiat} />}
+      </>
+    )}
+  </span>
+)
 import { TicketInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
@@ -51,36 +102,37 @@ interface CartItem {
   quantity: number
 }
 
+// Pricing shape shared by store cards: `combined` = one price payable via
+// either ETH or fiat (both tiles, single figure); otherwise `eth`/`fiat`
+// render as separate chip + tag; `free` renders plain bold "FREE".
+type CardPricing = {
+  eth?: string
+  fiat?: string
+  combined?: string
+  free?: boolean
+}
+
 // Static self-claim discounts shown in the Community section that have no
 // backend verification flow yet. Their buttons are active no-ops until the
-// corresponding flow ships.
-type CommunityPlaceholder = {
+// corresponding flow ships. Order matches the store Figma: Ethereum Public
+// Goods, Past POAP Holders, then Core Devs.
+type CommunityPlaceholder = CardPricing & {
   // Discount `type` from /api/discounts/validate; also the key into the config
   // `soldOut` override and Pretix item map.
   type: string
   title: string
   meta: string
   description: React.ReactNode
-  price: string
   buttonLabel: string
 }
 
 const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
   {
-    type: 'core-devs',
-    title: 'Core Devs / Protocol Guild',
-    meta: 'Merge Pass or Protocol Guild',
-    description:
-      'This discount is reserved for Ethereum core developers; those with a Merge Pass, or Protocol Guild membership.',
-    price: 'FREE',
-    buttonLabel: 'Verify',
-  },
-  {
     type: 'pg-projects',
-    title: 'Public Good Projects',
+    title: 'Ethereum Public Goods',
     meta: 'Active fundraisers',
-    description: 'This discount is reserved for those who have fundraised for Public Goods projects.',
-    price: '50% off',
+    description: 'This discount is reserved for those who are fundraising for Public Goods projects.',
+    eth: '$349',
     buttonLabel: 'Verify',
   },
   {
@@ -88,21 +140,31 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     title: 'Past POAP Holders',
     meta: 'Devcon/nect POAPs',
     description: 'This ticket is reserved for those who collected a POAP at any past Devcon/nect event.',
-    price: '10% off',
+    eth: '$449',
+    buttonLabel: 'Verify',
+  },
+  {
+    type: 'core-devs',
+    title: 'Core Devs',
+    meta: 'Merge Pass or Protocol Guild',
+    description:
+      'This discount is reserved for Ethereum core developers; those with a Merge Pass, or Protocol Guild membership.',
+    free: true,
     buttonLabel: 'Verify',
   },
 ]
 
 // Curated, application-based tickets shown in the Applications section.
-const APPLICATION_TICKETS = [
+const APPLICATION_TICKETS: Array<
+  CardPricing & { type: string; title: string; meta: string; description: string; href: string }
+> = [
   {
     type: 'indian-student',
     title: 'Indian Student 🇮🇳',
     meta: 'Student ID required at check-in',
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum.',
-    price: '$25',
-    originalPrice: null,
+    combined: '$25',
     href: '/form/student-application',
   },
   {
@@ -111,30 +173,21 @@ const APPLICATION_TICKETS = [
     meta: 'Student ID required at check-in',
     description:
       'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum.',
-    price: '$99',
-    originalPrice: null,
+    eth: '$49',
+    fiat: '$99',
     href: '/form/student-application',
   },
   {
     type: 'builder',
-    title: 'Builder Discount 🦄',
-    meta: 'ID required at Registration',
+    title: 'Sanctuary Tech Builders',
+    meta: 'Contribution-based',
     description:
       'For builders of all kinds, including open-source contributors, who actively volunteer or contribute their time to the growth, research and development of Ethereum or the ecosystem.',
-    price: '$349',
-    originalPrice: '$699',
+    eth: '$349',
+    fiat: '$499',
     href: '/form/builder-application',
   },
-  {
-    type: 'youth',
-    title: 'Youth Ticket (3-17) 🌱',
-    meta: 'Online consent form + ID required at registration',
-    description: "Whether you're a younger attendee, or bringing your child.",
-    price: '$19',
-    originalPrice: null,
-    href: 'https://devcon.org/en/form/youth-ticket/',
-  },
-] as const
+]
 
 function useCountdown() {
   const [diff, setDiff] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
@@ -392,7 +445,7 @@ function StoreContent({
             <section className={css['section']} id="general-admission">
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
-                  <h3 className={css['section-title']}>General Admission</h3>
+                  <h3 className={css['section-title']}>Sale Waves</h3>
                   <span className={css['open-badge']}>OPEN</span>
                 </div>
                 <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
@@ -411,10 +464,13 @@ function StoreContent({
                     </p>
                   </div>
                   <div className={css['card-footer']}>
-                    <div className={css['pricing']}>
-                      <span className={css['price-current']}>${gaPrice}</span>
-                      {gaOriginal !== gaPrice && <span className={css['price-original']}>${gaOriginal}</span>}
-                    </div>
+                    {/* Per Figma: ETH-payable price in the green chip, fiat
+                        price alongside — two payment options, not a discount
+                        strikethrough. */}
+                    <CardPrice
+                      eth={`$${gaPrice}`}
+                      fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined}
+                    />
                     {!ticketsLoaded ? (
                       <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
                     ) : !gaTicket || forceSoldOut || discountSoldOut('general-admission') ? (
@@ -457,7 +513,7 @@ function StoreContent({
                           disabled={checkoutLoading}
                         >
                           {checkoutLoading ? 'Loading…' : 'Checkout'}
-                          <ArrowUpRight size={16} strokeWidth={2.5} />
+                          <ArrowRight size={16} strokeWidth={2.5} />
                         </button>
                       </div>
                     )}
@@ -483,6 +539,24 @@ function StoreContent({
               <div className={css['applications-grid']}>
                 <div className={css['application-card']}>
                   <div className={css['application-card-body']}>
+                    <h3 className={css['application-card-title']}>India Early Bird 🇮🇳</h3>
+                    <p className={css['application-card-meta']}>ID required at Registration</p>
+                    <p className={css['application-card-description']}>
+                      Accessible via the vouchers we distributed during ETH Mumbai in March. Got a voucher? Redeem yours
+                      now!
+                    </p>
+                  </div>
+                  <div className={css['application-card-footer']}>
+                    <CardPrice combined="$99" />
+                    <button type="button" className={css['apply-btn']} onClick={() => setRedeemOpen(true)}>
+                      <TicketPercent size={16} strokeWidth={2} />
+                      Redeem voucher
+                    </button>
+                  </div>
+                </div>
+
+                <div className={css['application-card']}>
+                  <div className={css['application-card-body']}>
                     <h3 className={css['application-card-title']}>India Resident 🇮🇳</h3>
                     <p className={css['application-card-meta']}>ID required at Registration</p>
                     <p className={css['application-card-description']}>
@@ -491,10 +565,7 @@ function StoreContent({
                     </p>
                   </div>
                   <div className={css['application-card-footer']}>
-                    <div className={css['discount-price-wrap']}>
-                      <span className={css['application-price']}>$149</span>
-                      <span className={css['price-original']}>$349</span>
-                    </div>
+                    <CardPrice combined="$149" />
                     {discountSoldOut('india-resident') ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
@@ -510,27 +581,6 @@ function StoreContent({
                   </div>
                 </div>
 
-                <div className={css['application-card']}>
-                  <div className={css['application-card-body']}>
-                    <h3 className={css['application-card-title']}>India Early Bird 🇮🇳</h3>
-                    <p className={css['application-card-meta']}>ID required at Registration</p>
-                    <p className={css['application-card-description']}>
-                      Accessible via the vouchers we distributed during ETH Mumbai in March. Got a voucher? Redeem yours
-                      now!
-                    </p>
-                  </div>
-                  <div className={css['application-card-footer']}>
-                    <div className={css['discount-price-wrap']}>
-                      <span className={css['application-price']}>$99</span>
-                      <span className={css['price-original']}>$149</span>
-                    </div>
-                    <button type="button" className={css['apply-btn']} onClick={() => setRedeemOpen(true)}>
-                      <TicketPercent size={16} strokeWidth={2} />
-                      Redeem voucher
-                    </button>
-                  </div>
-                </div>
-
                 {COMMUNITY_PLACEHOLDERS.map(card => {
                   const cardSoldOut = discountSoldOut(card.type)
                   return (
@@ -541,7 +591,11 @@ function StoreContent({
                         <p className={css['application-card-description']}>{card.description}</p>
                       </div>
                       <div className={css['application-card-footer']}>
-                        <span className={css['application-price']}>{card.price}</span>
+                        {card.free ? (
+                          <span className={css['application-price']}>FREE</span>
+                        ) : (
+                          <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
+                        )}
                         {cardSoldOut ? (
                           <span className={css['sold-out-badge']}>Sold out</span>
                         ) : (
@@ -589,16 +643,12 @@ function StoreContent({
                       <p className={css['application-card-description']}>{card.description}</p>
                     </div>
                     <div className={css['application-card-footer']}>
-                      <div className={css['discount-price-wrap']}>
-                        <span className={css['application-price']}>{card.price}</span>
-                        {card.originalPrice && <span className={css['price-original']}>{card.originalPrice}</span>}
-                      </div>
+                      <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
                       {discountSoldOut(card.type) ? (
                         <span className={css['sold-out-badge']}>Sold out</span>
                       ) : (
                         <Link to={card.href} className={css['apply-btn']}>
                           Apply now
-                          <ArrowRight size={16} strokeWidth={2.5} />
                         </Link>
                       )}
                     </div>

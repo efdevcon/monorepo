@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
+import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 
 /**
  * Central "current time" source for the site. Returns a Date that updates on
@@ -54,6 +55,12 @@ function ensureYear(input: string): string {
 function parseMockNow(raw: string): number | null {
   const s = raw.trim()
   if (!s) return null
+
+  // Dedicated shorthand for previewing the launched /tickets page:
+  //   ?mockNow=launch  → 1 minute past the global ticket launch moment
+  // so the banner / GA row / comparison table all render their "during
+  // launch" state without having to remember the exact date.
+  if (s.toLowerCase() === 'launch') return GLOBAL_LAUNCH_TIME.getTime() + 60_000
 
   // 1) Try direct parse first (year-defaulted + UTC-forced).
   let t = Date.parse(toUtcString(ensureYear(s)))

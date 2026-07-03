@@ -34,7 +34,7 @@ export const Strip = () => {
           <div className="flex items-center gap-4 min-w-0">
             <span
               className={`${
-                showLive ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#ffa366] text-[#160b2b]'
+                showLive ? 'bg-[#80df98] text-[#221144]' : 'bg-[#ffa366] text-[#160b2b]'
               } text-xs font-bold leading-4 px-2 py-1 rounded tracking-[1px] uppercase whitespace-nowrap shrink-0`}
             >
               {badge}
