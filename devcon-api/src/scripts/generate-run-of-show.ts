@@ -24,7 +24,7 @@ function authenticateGoogle() {
   return google
 }
 
-const eventId = process.argv[2] || 'devcon-mumbai-playground'
+const eventId = process.argv[2] || 'devcon8'
 
 console.log(`Generating Run of Show for: ${eventId}`)
 

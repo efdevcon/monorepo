@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { Bug, FlaskConical } from "lucide-react";
 import { Link } from "@/routing";
-import { DATASETS, getActiveDatasetKey, type DatasetKey } from "@/data/dataset";
+import {
+  DATASETS,
+  DEFAULT_DATASET_KEY,
+  getActiveDatasetKey,
+  type DatasetKey,
+} from "@/data/dataset";
 
 /** local Date → "YYYY-MM-DDTHH:mm" for a datetime-local input. */
 function toInputValue(d: Date): string {
@@ -15,17 +20,23 @@ function toInputValue(d: Date): string {
 
 /**
  * Dev-only debug panel: mock the current time (`mockNow`/`mockSpeed`) and swap
- * the event dataset (current ↔ Devcon 7). Applying writes the URL query params
- * and reloads, so the time hook and data provider pick them up. Visible only in
- * development or when `?debug` is present.
+ * the event dataset (test-devcon-8 / devcon8 / Devcon 7). Applying writes the URL query params
+ * and reloads, so the time hook and data provider pick them up. Visible in
+ * development, when `?debug` is present, or when NEXT_PUBLIC_ENABLE_DEBUG=true.
  */
 export function DebugPanel() {
   const params =
     typeof window !== "undefined"
       ? new URLSearchParams(window.location.search)
       : new URLSearchParams();
+  // Available in local dev, when `?debug` is in the URL, or in any environment
+  // (incl. production) when NEXT_PUBLIC_ENABLE_DEBUG is set at build time. The
+  // env flag is the supported way to turn this on in production without abusing
+  // NODE_ENV (a non-standard NODE_ENV breaks the Next.js production build).
   const enabled =
-    process.env.NODE_ENV === "development" || params.has("debug");
+    process.env.NODE_ENV === "development" ||
+    process.env.NEXT_PUBLIC_ENABLE_DEBUG === "true" ||
+    params.has("debug");
 
   const [open, setOpen] = useState(false);
   const [mockNow, setMockNow] = useState(() => {
@@ -39,6 +50,15 @@ export function DebugPanel() {
     getActiveDatasetKey()
   );
 
+  // Selecting a dataset mocks "now" to the beginning of that conference so the
+  // schedule/live/today logic lands on day 1. Users can still tweak the field
+  // afterwards before applying.
+  const handleDatasetChange = (key: DatasetKey) => {
+    setDataset(key);
+    const start = DATASETS[key]?.startDate;
+    if (start) setMockNow(toInputValue(new Date(start)));
+  };
+
   if (!enabled) return null;
 
   const apply = () => {
@@ -47,7 +67,7 @@ export function DebugPanel() {
     else p.delete("mockNow");
     if (mockSpeed) p.set("mockSpeed", mockSpeed);
     else p.delete("mockSpeed");
-    if (dataset !== "current") p.set("dataset", dataset);
+    if (dataset !== DEFAULT_DATASET_KEY) p.set("dataset", dataset);
     else p.delete("dataset");
     p.set("debug", "1"); // keep the panel available after reload
     window.location.search = p.toString();
@@ -101,7 +121,7 @@ export function DebugPanel() {
           </label>
           <select
             value={dataset}
-            onChange={(e) => setDataset(e.target.value as DatasetKey)}
+            onChange={(e) => handleDatasetChange(e.target.value as DatasetKey)}
             className="mb-4 w-full rounded-lg border border-[#E1E4EA] px-2 py-1.5 outline-none focus:border-[#7D52F4]"
           >
             {Object.values(DATASETS).map((d) => (

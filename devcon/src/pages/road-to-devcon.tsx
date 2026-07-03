@@ -4,8 +4,7 @@ import { Footer } from 'components/common/layouts/footer'
 import { Link } from 'components/common/link'
 import { RoadToDevconHero } from 'components/domain/road-to-devcon/RoadToDevconHero'
 import { RoadToDevconEvents } from 'components/domain/road-to-devcon/RoadToDevconEvents'
-// Temporarily disabled — pink "co-creators" logo marquee section. Re-add later.
-// import { RoadToDevconCommunities } from 'components/domain/road-to-devcon/RoadToDevconCommunities'
+import { RoadToDevconCommunities } from 'components/domain/road-to-devcon/RoadToDevconCommunities'
 import { RoadToDevconPrograms } from 'components/domain/road-to-devcon/RoadToDevconPrograms'
 import { University, Sprout, ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -35,7 +34,7 @@ function ProgramCardItem({
   learnMore: string
 }) {
   return (
-    <div className="rounded-2xl border border-white/20 bg-[rgba(242,241,244,0.08)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]">
+    <div className="rounded-2xl outline outline-white/20 bg-[rgba(242,241,244,0.08)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]">
       {icon}
       <h3 className="mt-6 text-xl font-extrabold">{title}</h3>
       <p className="mt-2 text-sm font-light leading-relaxed text-white">{description}</p>
@@ -95,8 +94,7 @@ export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
 
         <RoadToDevconEvents events={events} />
 
-        {/* Temporarily disabled — pink "co-creators" logo marquee. Re-add later. */}
-        {/* <RoadToDevconCommunities /> */}
+        <RoadToDevconCommunities />
 
         <RoadToDevconPrograms />
 
@@ -120,5 +118,8 @@ export async function getStaticProps(context: any) {
     console.error('[road-to-devcon] event fetch failed, using seed:', e)
     events = ROAD_TO_DEVCON_EVENTS
   }
-  return { props: { events, messages }, revalidate: 1800 }
+  // getStaticProps can't serialize `undefined`; round-trip through JSON to drop
+  // any undefined-valued optional fields so a missing value never crashes the page.
+  const safeEvents: RoadEvent[] = JSON.parse(JSON.stringify(events))
+  return { props: { events: safeEvents, messages }, revalidate: 1800 }
 }

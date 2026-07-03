@@ -75,7 +75,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    return res.status(200).json({ success: true, data: filtered })
+    // Whether this submission has already been approved (read from the admin
+    // "Status" column, which isn't part of the form view). Lets the client warn
+    // the user that editing an approved submission triggers re-review.
+    const approved = String(row['Status'] ?? '').toLowerCase().includes('approved')
+
+    return res.status(200).json({ success: true, data: filtered, approved })
   } catch (err) {
     console.error('[nocodb/submission]', err)
     const msg = (err as Error).message

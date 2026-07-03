@@ -290,6 +290,7 @@ const VISA_FORM_SLUG = 'visa-collection-attendees'
 // form reference the Parental Consent Form — surface a link to the full
 // document so the parent/guardian can review before agreeing.
 const YOUTH_TICKET_SLUG = 'youth-ticket'
+const RTD_EVENT_FORM_SLUG = 'rtd-event-form'
 
 function VisaTicketGate({
   email,
@@ -427,6 +428,9 @@ function FormInner({
 }) {
   const [loadingExisting, setLoadingExisting] = useState(false)
   const [isUpdate, setIsUpdate] = useState(false)
+  // True when the user's existing submission has already been approved — editing
+  // it will require re-review, so we warn them.
+  const [approvedUpdate, setApprovedUpdate] = useState(false)
   const errorRef = useRef<HTMLParagraphElement>(null)
 
   // When a submission error appears, scroll it into view — on a long form the
@@ -480,6 +484,7 @@ function FormInner({
         .then(result => {
           if (result.success && result.data) {
             setIsUpdate(true)
+            if (result.approved) setApprovedUpdate(true)
             // NocoDB stores MultiSelect as a comma-separated string; the UI
             // expects an array. Look up the column type by name to decide
             // whether to split.
@@ -528,6 +533,13 @@ function FormInner({
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit, scrollToFirstError)} className="flex flex-col gap-6 w-full">
         {schema.subheading && <FormSubheading text={schema.subheading} />}
+
+        {formSlug === RTD_EVENT_FORM_SLUG && approvedUpdate && (
+          <div className="rounded-xl border border-[#f0c000]/40 bg-[#fff8e1] px-4 py-3 text-sm leading-5 text-[#5c4a00]">
+            This event has already been approved. If you change it, we will have to review it again before it can be
+            accepted on our website.
+          </div>
+        )}
 
         <FormRenderer
           columns={schema.columns}

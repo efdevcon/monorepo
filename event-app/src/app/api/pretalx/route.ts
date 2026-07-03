@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BASE_URL = "https://speak.ticketh.xyz";
-const EVENT_SLUG = "testopesto-2026";
+const BASE_URL = "https://mum.speakat.xyz";
+const EVENT_SLUG = "test-devcon-8";
 const API_KEY = process.env.PRETALX_API_KEY;
 
 /**

@@ -1,30 +1,80 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import type { Components } from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
-import Markdown from "react-markdown";
+import Markdown, { defaultUrlTransform } from "react-markdown";
 import cn from "classnames";
 import {
   ArrowUp,
   ChevronDown,
+  Clock,
   FileText,
   Loader2,
+  Plus,
   Search,
   Sparkles,
+  Trash2,
   X,
 } from "lucide-react";
 import { supabase } from "@/data/auth/supabase";
+import { useConversations } from "@/data/ai/useConversations";
+import type { Conversation } from "@/data/cache/cache-db";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-// Map devcon-ai's portable `source:<id>` URIs to event-app's local routes.
-// Bot's source_ids look like `sessions/<slug>` or `speakers/<slug>`; anything
-// else falls back to a generic `/<stripped path>` so the ID stays clickable
-// even before that route exists.
+function makeConversationId(): string {
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+/** Title a conversation by its first user message. */
+function deriveTitle(messages: Message[]): string {
+  const first = messages.find((m) => m.role === "user")?.content.trim();
+  if (!first) return "New conversation";
+  return first.length > 60 ? first.slice(0, 60) + "…" : first;
+}
+
+function relativeTime(ts: number): string {
+  const diff = Date.now() - ts;
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "just now";
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  const d = Math.floor(h / 24);
+  return `${d}d ago`;
+}
+
+// The model occasionally emits `[label] (source:id)` with a stray space, which
+// breaks CommonMark's inline-link parsing and leaks the raw `(source:...)` text
+// into the message. Tighten any whitespace between the label and the citation so
+// it parses as a proper link.
+function normalizeCitations(text: string): string {
+  return (
+    text
+      // The model sometimes wraps a citation in an inline code span
+      // (`` `[Title](source:id)` ``), which renders as monospace text instead
+      // of a link. Unwrap those backticks.
+      .replace(/`(\[[^\]]*\]\s*\(source:[^)]+\))`/g, "$1")
+      // Tighten any whitespace between the label and the citation so CommonMark
+      // parses it as an inline link rather than leaking the raw text.
+      .replace(/\]\s+\(source:/g, "](source:")
+  );
+}
+
+// react-markdown (v10) sanitizes link URLs and strips unknown schemes like
+// `source:`. Preserve our citation scheme; sanitize everything else as usual.
+function citationUrlTransform(url: string): string {
+  return url.startsWith("source:") ? url : defaultUrlTransform(url);
+}
+
+// Map a citation `source:<id>` to an internal app route, or null if we don't
+// link it. We only link structured app data — sessions and speakers, which have
+// real routes here. CMS/website content is too unstructured to map to a reliable
+// page, so it's rendered as plain text rather than a guessed/broken link.
 function resolveSourceUri(href: string): string | null {
   if (!href.startsWith("source:")) return null;
   const path = href
@@ -37,7 +87,7 @@ function resolveSourceUri(href: string): string | null {
   if (path.startsWith("speakers/")) {
     return `/speakers/${path.slice("speakers/".length)}`;
   }
-  return `/${path}`;
+  return null;
 }
 
 interface Source {
@@ -81,12 +131,18 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
           return (
             <a
               href={resolved}
-              className="text-purple-600 underline"
               onClick={() => onToggle(false)}
+              className="font-medium text-[#7D52F4] underline decoration-[#7D52F4]/40 underline-offset-2 transition-colors hover:decoration-[#7D52F4]"
             >
               {children}
             </a>
           );
+        }
+        // A `source:` citation we deliberately don't link (CMS/website content
+        // is too unstructured to map to a reliable page) — show its label as
+        // plain text instead of a broken link.
+        if (href.startsWith("source:")) {
+          return <>{children}</>;
         }
         return (
           <a
@@ -104,28 +160,100 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
     [onToggle],
   );
 
+  const {
+    conversations,
+    loaded: historyLoaded,
+    save: saveConversation,
+    remove: removeConversation,
+  } = useConversations();
+  const [currentId, setCurrentId] = useState<string | null>(null);
+  const [showHistory, setShowHistory] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  // Refs mirror the active conversation so async handlers don't read stale state.
+  const currentIdRef = useRef<string | null>(null);
+  const createdAtRef = useRef<number>(0);
+  const didInitRef = useRef(false);
 
-  // Load messages from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        setMessages(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to load messages:", e);
+  // Upsert the active conversation into IndexedDB. Creates an id on first save.
+  const persistConversation = useCallback(
+    (msgs: Message[]) => {
+      if (msgs.length === 0) return;
+      if (!currentIdRef.current) {
+        currentIdRef.current = makeConversationId();
+        createdAtRef.current = Date.now();
+        setCurrentId(currentIdRef.current);
       }
-    }
+      saveConversation({
+        id: currentIdRef.current,
+        createdAt: createdAtRef.current,
+        updatedAt: Date.now(),
+        title: deriveTitle(msgs),
+        messages: msgs,
+      });
+    },
+    [saveConversation]
+  );
+
+  // Load a saved conversation into the chat view.
+  const openConversation = useCallback((conv: Conversation) => {
+    currentIdRef.current = conv.id;
+    createdAtRef.current = conv.createdAt;
+    setCurrentId(conv.id);
+    setMessages(conv.messages);
+    setStreamingMessage("");
+    setError("");
+    setSources([]);
+    setDebugContext("");
+    setShowHistory(false);
   }, []);
 
-  // Save messages to localStorage
+  // Start a fresh chat (the previous one is already saved in history).
+  const startNewChat = useCallback(() => {
+    currentIdRef.current = null;
+    createdAtRef.current = Date.now();
+    setCurrentId(null);
+    setMessages([]);
+    setStreamingMessage("");
+    setError("");
+    setSources([]);
+    setDebugContext("");
+    setShowHistory(false);
+  }, []);
+
+  // On first load: migrate any legacy single-conversation localStorage into the
+  // table, then resume the most recent conversation.
   useEffect(() => {
-    if (messages.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    if (!historyLoaded || didInitRef.current) return;
+    didInitRef.current = true;
+
+    const legacy =
+      typeof window !== "undefined"
+        ? localStorage.getItem(STORAGE_KEY)
+        : null;
+    if (legacy) {
+      try {
+        const msgs = JSON.parse(legacy) as Message[];
+        if (Array.isArray(msgs) && msgs.length > 0) {
+          currentIdRef.current = makeConversationId();
+          createdAtRef.current = Date.now();
+          setCurrentId(currentIdRef.current);
+          setMessages(msgs);
+          persistConversation(msgs);
+        }
+      } catch {
+        /* ignore malformed legacy data */
+      }
+      localStorage.removeItem(STORAGE_KEY);
+      return;
     }
-  }, [messages]);
+
+    if (conversations.length > 0) {
+      openConversation(conversations[0]);
+    }
+  }, [historyLoaded, conversations, persistConversation, openConversation]);
 
   // Check screen size
   useEffect(() => {
@@ -158,6 +286,8 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
     const userMessage: Message = { role: "user", content: query.trim() };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
+    // Persist immediately so the conversation survives even if the reply fails.
+    persistConversation(newMessages);
     setQuery("");
     setIsLoading(true);
     setStreamingMessage("");
@@ -190,13 +320,15 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
 
       const decoder = new TextDecoder();
       let assistantContent = "";
+      let buffer = "";
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split("\n");
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? ""; // keep any partial line for the next chunk
 
         for (const line of lines) {
           if (line.startsWith("data: ")) {
@@ -224,7 +356,12 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
 
       // Add assistant message to history
       if (assistantContent) {
-        setMessages([...newMessages, { role: "assistant", content: assistantContent }]);
+        const finalMessages: Message[] = [
+          ...newMessages,
+          { role: "assistant", content: assistantContent },
+        ];
+        setMessages(finalMessages);
+        persistConversation(finalMessages);
       }
       setStreamingMessage("");
     } catch (e: any) {
@@ -235,12 +372,6 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
     }
   };
 
-  const handleReset = () => {
-    setMessages([]);
-    setStreamingMessage("");
-    setError("");
-    localStorage.removeItem(STORAGE_KEY);
-  };
 
   return (
     <AnimatePresence>
@@ -274,13 +405,36 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
                   Deva AI
                 </span>
               </div>
-              <button
-                onClick={() => onToggle(false)}
-                aria-label="Close"
-                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
-              >
-                <X className="h-5 w-5" />
-              </button>
+              <div className="flex items-center gap-0.5">
+                <button
+                  onClick={startNewChat}
+                  aria-label="New chat"
+                  title="New chat"
+                  className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
+                >
+                  <Plus className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => setShowHistory((v) => !v)}
+                  aria-label="History"
+                  title="History"
+                  className={cn(
+                    "flex h-8 w-8 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-gray-100",
+                    showHistory
+                      ? "bg-[#f3eeff] text-[#7D52F4]"
+                      : "text-gray-400 hover:text-gray-700"
+                  )}
+                >
+                  <Clock className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => onToggle(false)}
+                  aria-label="Close"
+                  className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
             </div>
 
             {/* Sources (collapsible) */}
@@ -359,13 +513,62 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
               </div>
             )}
 
+            {showHistory ? (
+              /* Conversation history — resume or revisit a past chat */
+              <div className="flex-1 overflow-y-auto bg-gray-50/50 p-3">
+                {conversations.length === 0 ? (
+                  <p className="mt-16 text-center text-sm text-gray-400">
+                    No past conversations yet.
+                  </p>
+                ) : (
+                  <ul className="space-y-1.5">
+                    {conversations.map((c) => (
+                      <li key={c.id}>
+                        <div
+                          className={cn(
+                            "group flex items-start gap-2 rounded-lg border p-2.5 transition-colors",
+                            currentId === c.id
+                              ? "border-[#7D52F4] bg-[#f3eeff]"
+                              : "border-[#E1E4EA] bg-white hover:bg-gray-50"
+                          )}
+                        >
+                          <button
+                            onClick={() => openConversation(c)}
+                            className="min-w-0 flex-1 text-left"
+                          >
+                            <p className="truncate text-sm font-medium text-gray-800">
+                              {c.title}
+                            </p>
+                            <p className="mt-0.5 text-[11px] text-gray-400">
+                              {relativeTime(c.updatedAt)} · {c.messages.length}{" "}
+                              message{c.messages.length === 1 ? "" : "s"}
+                            </p>
+                          </button>
+                          <button
+                            onClick={() => {
+                              removeConversation(c.id);
+                              if (currentId === c.id) startNewChat();
+                            }}
+                            aria-label="Delete conversation"
+                            className="shrink-0 rounded p-1 text-gray-300 opacity-0 transition-opacity hover:text-red-500 group-hover:opacity-100"
+                          >
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <>
             {/* Messages */}
             <div
               ref={messagesContainerRef}
               className="flex-1 space-y-3 overflow-y-auto bg-gray-50/50 p-4 pb-24"
             >
               {messages.length === 0 && !streamingMessage && (
-                <div className="mt-16 flex flex-col items-center text-center">
+                <div className="flex h-full flex-col items-center justify-center text-center">
                   <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#f3eeff] text-[#7D52F4]">
                     <Sparkles className="h-6 w-6" />
                   </span>
@@ -388,8 +591,11 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
                 >
                   {msg.role === "assistant" ? (
                     <div className="prose prose-sm max-w-none">
-                      <Markdown components={markdownComponents}>
-                        {msg.content}
+                      <Markdown
+                        components={markdownComponents}
+                        urlTransform={citationUrlTransform}
+                      >
+                        {normalizeCitations(msg.content)}
                       </Markdown>
                     </div>
                   ) : (
@@ -401,8 +607,11 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
               {streamingMessage && (
                 <div className="mr-auto max-w-[85%] rounded-2xl rounded-bl-md border border-[#E1E4EA] bg-white p-3.5 text-sm shadow-sm">
                   <div className="prose prose-sm max-w-none">
-                    <Markdown components={markdownComponents}>
-                      {streamingMessage}
+                    <Markdown
+                      components={markdownComponents}
+                      urlTransform={citationUrlTransform}
+                    >
+                      {normalizeCitations(streamingMessage)}
                     </Markdown>
                   </div>
                 </div>
@@ -428,14 +637,6 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
               className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-start gap-2 px-3 pt-8 bg-gradient-to-t from-white via-white/90 to-transparent"
               style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
             >
-              {messages.length > 0 && !isLoading && (
-                <button
-                  onClick={handleReset}
-                  className="pointer-events-auto cursor-pointer rounded-full border border-[#E1E4EA] bg-white/90 px-3 py-1.5 text-xs font-medium text-gray-500 shadow-sm backdrop-blur transition-colors hover:bg-gray-100"
-                >
-                  Clear conversation
-                </button>
-              )}
               <div className="pointer-events-auto flex w-full items-center gap-1 rounded-full border border-[#E1E4EA] bg-white py-1.5 pl-4 pr-1.5 shadow-lg transition-colors hover:border-gray-300 focus-within:border-[#7D52F4] focus-within:hover:border-[#7D52F4]">
                 <input
                   ref={inputRef}
@@ -485,6 +686,8 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
                 </button>
               </div>
             </div>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}

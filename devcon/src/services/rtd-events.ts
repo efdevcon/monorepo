@@ -6,12 +6,7 @@
  * route or getStaticProps, never the browser.
  */
 import { listViewRows } from './nocodb'
-import {
-  EVENT_TYPES,
-  gradientFor,
-  type EventType,
-  type RoadEvent,
-} from 'components/domain/road-to-devcon/events'
+import { EVENT_TYPES, gradientFor, type EventType, type RoadEvent } from 'components/domain/road-to-devcon/events'
 
 const RTD_EVENT_FORM_VIEW_ID = 'vwbigbclgtvfvr62'
 
@@ -28,7 +23,16 @@ const FIELDS = {
   types: ['Type', 'Event Type', 'Tags', 'Category', 'Format'],
   published: ['Published', 'Approved', 'Visible'],
   status: ['Status', 'Approval Status'],
+  updatedPostApproval: ['Updated post-approval', 'Updated Post-Approval', 'Updated post approval'],
 } as const
+
+/** Interpret a NocoDB checkbox/boolean cell as true. */
+function isChecked(v: any): boolean {
+  if (v === true) return true
+  if (typeof v === 'number') return v !== 0
+  if (typeof v === 'string') return ['true', '1', 'yes', 'checked'].includes(v.trim().toLowerCase())
+  return false
+}
 
 function pick(row: Record<string, any>, keys: readonly string[]): any {
   for (const k of keys) {
@@ -88,6 +92,9 @@ function parseTypes(value: any): EventType[] {
 
 /** A row is shown unless a Published/Approved flag or Status column says otherwise. */
 function isVisible(row: Record<string, any>): boolean {
+  // Edited after approval → hide until an admin re-reviews and clears the flag.
+  if (isChecked(pick(row, FIELDS.updatedPostApproval))) return false
+
   const published = pick(row, FIELDS.published)
   if (published !== undefined) {
     if (typeof published === 'boolean') return published
@@ -99,10 +106,13 @@ function isVisible(row: Record<string, any>): boolean {
     // Status values carry decoration/emoji (e.g. "Approved ✅"), so match on
     // substring rather than equality.
     const s = String(status).toLowerCase()
-    if (['reject', 'declin', 'pending', 'spam', 'hidden', 'draft'].some(k => s.includes(k))) return false
-    return ['approved', 'published', 'live', 'accepted'].some(k => s.includes(k))
+    // if (['reject', 'declin', 'pending', 'spam', 'hidden', 'draft'].some(k => s.includes(k))) return false
+    return ['approved'].some(k => s.includes(k)) // human note: whole function is overkill, but this is pretty safe and legible unless someone goes wild on the column names
   }
-  return true // no gating column → show it
+  // Fail-closed: with no approval/published signal, hide the row rather than
+  // leak an unreviewed submission onto the public page. A row shows only when a
+  // Published/Approved flag is truthy or a Status column says "approved".
+  return false
 }
 
 export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
@@ -131,8 +141,9 @@ export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
       city: String(city),
       date,
       types,
-      url: rawUrl ? String(rawUrl) : undefined,
-      image: attachmentImageUrl(pick(row, FIELDS.image)),
+      // null, not undefined — getStaticProps serializes null but throws on undefined.
+      url: rawUrl ? String(rawUrl) : null,
+      image: attachmentImageUrl(pick(row, FIELDS.image)) ?? null,
       gradient: gradientFor(id),
     })
   }

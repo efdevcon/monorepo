@@ -1,6 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getActiveDataset } from "@/data/dataset";
+
+// Opt-in, per-deployment preview mode. When enabled AND no explicit `?mockNow`
+// is present, the clock starts at the active dataset's conference start
+// (`startDate`) on initial load, so schedule / live / today logic reflects the
+// event without any manual mocking. OFF by default so the real live-event clock
+// is never affected; a preview/staging deploy sets NEXT_PUBLIC_MOCK_NOW_TO_EVENT_START=true.
+const AUTO_MOCK_EVENT_START =
+  process.env.NEXT_PUBLIC_MOCK_NOW_TO_EVENT_START === "true";
 
 /**
  * Central "current time" source. Returns a `Date` that updates on a fixed
@@ -87,7 +96,13 @@ export function useNow(intervalMs: number = 1000): Date | null {
 
   useEffect(() => {
     const realStart = Date.now();
-    const mockStart = mockNowParam ? parseMockNow(mockNowParam) : null;
+    // Explicit `?mockNow` always wins; otherwise fall back to the active
+    // dataset's conference start when preview auto-mock is enabled.
+    let mockStart = mockNowParam ? parseMockNow(mockNowParam) : null;
+    if (mockStart == null && AUTO_MOCK_EVENT_START) {
+      const t = Date.parse(getActiveDataset().startDate);
+      mockStart = Number.isNaN(t) ? null : t;
+    }
     const parsedSpeed = mockSpeedParam ? parseFloat(mockSpeedParam) : NaN;
     const speed = isNaN(parsedSpeed) || parsedSpeed <= 0 ? 1 : parsedSpeed;
 

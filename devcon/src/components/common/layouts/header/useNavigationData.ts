@@ -55,18 +55,13 @@ const useNavigationData = () => {
             icon: HandHeart,
           },
           {
-            title: t('ecosystem_program'),
-            url: '/ecosystem-program',
+            title: t('road_to_devcon'),
+            url: '/road-to-devcon',
             type: 'page',
           },
           {
             title: t('supporters_program'),
             url: '/supporters',
-            type: 'page',
-          },
-          {
-            title: t('academic_program'),
-            url: '/academic-program',
             type: 'page',
           },
           {
@@ -78,6 +73,11 @@ const useNavigationData = () => {
             title: t('volunteer_program'),
             url: '/form/volunteer',
             type: 'page',
+          },
+          {
+            title: t('community_hubs'),
+            url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
+            type: 'link',
           },
           {
             title: t('forum'),

@@ -44,7 +44,7 @@ const APPLICATION_ROWS: ApplicationRow[] = [
     id: 'builders',
     name: 'Builders',
     price: 'TBD',
-    date: 'Opens in June',
+    date: 'Opens in July',
     live: false,
   },
 ]

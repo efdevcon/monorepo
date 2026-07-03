@@ -8,6 +8,9 @@ import { EVENT_TYPES, type EventType, type RoadEvent } from './events'
 // Where "Apply now" (get an event listed) points — the rtd-event-form.
 const LISTING_FORM_URL = '/form/rtd-event-form'
 
+// On-brand fallback cover for events with no uploaded image/logo.
+const DEFAULT_EVENT_IMAGE = '/road-to-devcon/bg.jpg'
+
 // ISO 'YYYY-MM-DD' (or 'YYYY-MM') → a UTC Date, so locale date formatters
 // don't shift the day across timezones.
 function isoToUTCDate(iso: string): Date {
@@ -38,10 +41,12 @@ function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }
       className="group flex flex-col overflow-hidden rounded-2xl border border-[rgba(34,17,68,0.1)] bg-white transition-shadow hover:shadow-[0_8px_24px_rgba(34,17,68,0.12)]"
     >
       <div className={cn('relative h-[200px] w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
-        {event.image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={event.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={event.image || DEFAULT_EVENT_IMAGE}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         <span className="absolute right-3 top-3 rounded bg-[rgba(34,17,68,0.7)] px-2.5 py-2 text-xs font-bold uppercase leading-none tracking-[0.5px] text-white backdrop-blur-[3px]">
           {event.city}
         </span>
@@ -104,7 +109,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   )
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<Set<EventType>>(new Set())
-  const [showPast, setShowPast] = useState(false)
+  const [showPast, setShowPast] = useState(true)
   // Resolved on the client only, so SSR (todayISO = null) renders every event
   // and avoids a hydration mismatch from the past-events filter.
   const [todayISO, setTodayISO] = useState<string | null>(null)

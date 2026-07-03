@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import { searchRouter } from "./routes/search.js";
 import { chatRouter } from "./routes/chat.js";
+import { recommendRouter } from "./routes/recommend.js";
+import { faqRouter } from "./routes/faq.js";
 import { fuzzyRouter } from "./routes/fuzzy.js";
 import { datasetsRouter } from "./routes/datasets.js";
 import { generateImageRouter } from "./routes/generate-image.js";
@@ -28,6 +30,8 @@ app.get("/health", (_req, res) => {
 // /api/devcon-avatar gates itself per-route (bearer token + ticket whitelist).
 app.use("/api/search", requireAuth, searchRouter);
 app.use("/api/chat", requireAuth, chatRouter);
+app.use("/api/recommend", requireAuth, recommendRouter);
+app.use("/api/faq", requireAuth, faqRouter);
 app.use("/api/fuzzy", requireAuth, fuzzyRouter);
 app.use("/api/datasets", requireAuth, datasetsRouter);
 app.use("/api/generate-image", requireAuth, generateImageRouter);

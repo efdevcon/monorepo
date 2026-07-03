@@ -94,8 +94,12 @@ export interface PretalxInstanceConfig {
 export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
   'devcon-7': {
     eventId: 'devcon-7',
-    PRETALX_API_KEY: process.env.PRETALX_API_KEY,
-    PRETALX_BASE_URI: 'https://speak.devcon.org/api',
+    // Migrated to the mum.speakat.xyz instance (speak.devcon.org retired). Uses
+    // the mum team token, which has been granted read access to devcon7-sea on
+    // mum (verified), and the PRETALX_QUESTIONS_* IDs below were verified to
+    // match the mum copy's question IDs, so speaker social links map correctly.
+    PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
     PRETALX_EVENT_NAME: 'devcon7-sea',
 
     PRETALX_QUESTIONS_GITHUB: 61,
@@ -113,11 +117,18 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
 
     DEFAULT_LIMIT: 100,
   },
-  'devcon-mumbai-playground': {
-    eventId: 'devcon-mumbai-playground',
+  'test-devcon-8': {
+    eventId: 'test-devcon-8',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
     PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
-    PRETALX_EVENT_NAME: 'devcon-mumbai-playground',
+    PRETALX_EVENT_NAME: 'test-devcon-8',
+    DEFAULT_LIMIT: 100,
+  },
+  'devcon8': {
+    eventId: 'devcon8',
+    PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
+    PRETALX_EVENT_NAME: 'devcon8',
     DEFAULT_LIMIT: 100,
   },
 }

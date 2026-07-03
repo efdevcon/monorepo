@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'devcon/cms/**'
+      - 'devcon/content/**'
       - 'devconnect/cms/**'
 
   # Manual trigger
@@ -45,7 +45,7 @@ jobs:
         with:
           filters: |
             devcon:
-              - 'devcon/cms/**'
+              - 'devcon/content/**'
             devconnect:
               - 'devconnect/cms/**'
 
@@ -91,7 +91,7 @@ jobs:
           npx tsx scripts/sync-documents.ts \
             --source-type github \
             --source-repo devcon \
-            --path ../devcon/cms
+            --path ../devcon/content/en
 
   sync-devconnect:
     name: Sync Devconnect Content

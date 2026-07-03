@@ -21,6 +21,56 @@ export interface ExpandedDocument {
   metadata: Record<string, unknown>;
 }
 
+const STOP_WORDS = new Set([
+  "what", "is", "the", "a", "an", "are", "how", "when", "where", "who",
+  "which", "do", "does", "can", "could", "would", "should", "will", "to",
+  "of", "in", "for", "on", "with", "at", "by", "from", "about", "and", "or",
+  "but", "not", "this", "that", "these", "those", "there", "here", "have",
+  "has", "had", "been", "being", "was", "were", "may", "might", "must",
+  "shall", "need", "want", "like", "just", "also", "very", "really", "only",
+  "even", "still", "already", "always", "never", "often", "sometimes",
+  "usually", "probably", "maybe", "perhaps", "actually", "basically",
+  "certainly", "definitely", "especially", "exactly", "generally", "likely",
+  "simply", "specifically",
+  // Result-type words: describe the *kind* of result wanted, not its content.
+  // Stripping them stops queries like "capture the flag sessions" from being
+  // diluted/misled by the generic word "sessions".
+  "session", "sessions", "talk", "talks", "presentation", "presentations",
+]);
+
+// Corpus-ubiquitous brand words. They appear in nearly every document (esp.
+// every session), so a lexical match on them is meaningless — a bare "devcon"
+// would otherwise score 1.0 against all 600+ sessions and drown out the content
+// that actually answers a general question. We drop them from lexical scoring
+// (fuzzy / title / coverage) and let such queries fall back to vector search.
+const UBIQUITOUS_TERMS = new Set(["devcon", "devcons", "devconnect", "ethereum"]);
+
+// Significant keywords from a query: lowercased, punctuation-stripped, with
+// stop-words, result-type words, and ubiquitous brand terms removed. Shared by
+// fuzzy search and scoring.
+function extractKeywords(query: string): string[] {
+  return query
+    .toLowerCase()
+    .replace(/[^\w\s]/g, "")
+    .split(/\s+/)
+    .filter(
+      (word) =>
+        word.length > 2 &&
+        !STOP_WORDS.has(word) &&
+        !UBIQUITOUS_TERMS.has(word)
+    );
+}
+
+// Fraction of query keywords that appear in `text` (case-insensitive). Used for
+// title boosting (a hit in the title is a far stronger relevance signal than a
+// body mention) and for rewarding documents that cover more of the query.
+function keywordCoverage(text: string | undefined, keywords: string[]): number {
+  if (!text || keywords.length === 0) return 0;
+  const haystack = text.toLowerCase();
+  const hits = keywords.filter((k) => haystack.includes(k)).length;
+  return hits / keywords.length;
+}
+
 export async function searchDocuments(
   query: string,
   options: SearchOptions = {}
@@ -68,8 +118,14 @@ export async function searchDocuments(
       .map((d) => ({ id: d.source_id, similarity: d.similarity }))
   );
 
-  // Merge: exact matches first, then fuzzy, then vector
-  return mergeResults3(exactResults, ftsResults, vectorResults, matchCount);
+  // Merge with a unified relevance score (title boost + multi-term + multi-source)
+  return scoreAndMergeResults(
+    exactResults,
+    ftsResults,
+    vectorResults,
+    extractKeywords(query),
+    matchCount
+  );
 }
 
 interface ChunkExpansionOptions {
@@ -89,8 +145,8 @@ export async function searchAndExpandDocuments(
 ): Promise<ExpandedDocument[]> {
   const { maxDocuments = 5, sourceType, sourceRepo } = options;
   const {
-    chunksBefore = 2,
-    chunksAfter = 2,
+    chunksBefore = 3,
+    chunksAfter = 3,
     maxCharsPerDocument = 6000,
   } = expansionOptions;
 
@@ -120,7 +176,7 @@ export async function searchAndExpandDocuments(
   const expandedDocs: ExpandedDocument[] = [];
   const expandedRegions = new Set<string>(); // "filePath:chunkIndex" to avoid duplicate regions
 
-  // Take top chunks by similarity (already sorted by mergeResults3)
+  // Take top chunks by relevance (already ranked by scoreAndMergeResults)
   const topChunks = matchedChunks.slice(0, maxDocuments * 2);
 
   for (const chunk of topChunks) {
@@ -221,6 +277,83 @@ export async function searchAndExpandDocuments(
 }
 
 /**
+ * Reassemble the full text of a single document from its chunks, for the
+ * agent's `expand_context` tool ("read more of this document" instead of
+ * re-searching). Accepts a source_id from a prior result — with or without a
+ * `source:` prefix or `#chunk-N` suffix — and returns the whole document
+ * stitched in chunk order, capped at `maxChars`.
+ */
+export async function getDocumentContext(
+  sourceId: string,
+  options: {
+    sourceType?: string;
+    sourceRepo?: string;
+    maxChars?: number;
+  } = {}
+): Promise<ExpandedDocument | null> {
+  const { sourceType, sourceRepo, maxChars = 8000 } = options;
+  const supabase = createServerClient();
+
+  const filePath = sourceId
+    .trim()
+    .replace(/^source:/, "")
+    .replace(/#chunk-\d+$/, "")
+    .replace(/#\d+$/, "");
+
+  let queryBuilder = supabase
+    .from("documents")
+    .select("id, content, source_type, source_repo, source_id, metadata")
+    .or(`source_id.eq.${filePath},source_id.like.${filePath}#chunk-%`);
+
+  if (sourceType) queryBuilder = queryBuilder.eq("source_type", sourceType);
+  if (sourceRepo) queryBuilder = queryBuilder.eq("source_repo", sourceRepo);
+
+  const { data, error } = (await queryBuilder.order("source_id", {
+    ascending: true,
+  })) as unknown as {
+    data: Array<{
+      id: string;
+      content: string;
+      source_type: string;
+      source_repo: string | null;
+      source_id: string;
+      metadata: Record<string, unknown>;
+    }> | null;
+    error: Error | null;
+  };
+
+  if (error || !data || data.length === 0) return null;
+
+  // Order by chunk index, then stitch up to the char budget.
+  const sorted = data
+    .map((c) => ({
+      ...c,
+      chunkIndex: (c.metadata as { chunk_index?: number })?.chunk_index ?? 0,
+    }))
+    .sort((a, b) => a.chunkIndex - b.chunkIndex);
+
+  let content = "";
+  for (const c of sorted) {
+    if (content.length + c.content.length > maxChars) {
+      content += "\n\n[...truncated]";
+      break;
+    }
+    content += (content ? "\n\n" : "") + c.content;
+  }
+
+  const first = sorted[0];
+  return {
+    filePath,
+    title: (first.metadata as { title?: string })?.title || filePath,
+    content,
+    sourceType: first.source_type,
+    sourceRepo: first.source_repo,
+    similarity: 1,
+    metadata: first.metadata,
+  };
+}
+
+/**
  * Get chunk index from metadata or source_id
  */
 function getChunkIndex(chunk: MatchedDocument): number {
@@ -295,96 +428,7 @@ async function fullTextSearch(
   options: { matchCount: number; sourceType?: string; sourceRepo?: string }
 ): Promise<MatchedDocument[]> {
   // Extract keywords, prioritize longer/more specific words
-  const stopWords = new Set([
-    "what",
-    "is",
-    "the",
-    "a",
-    "an",
-    "are",
-    "how",
-    "when",
-    "where",
-    "who",
-    "which",
-    "do",
-    "does",
-    "can",
-    "could",
-    "would",
-    "should",
-    "will",
-    "to",
-    "of",
-    "in",
-    "for",
-    "on",
-    "with",
-    "at",
-    "by",
-    "from",
-    "about",
-    "and",
-    "or",
-    "but",
-    "not",
-    "this",
-    "that",
-    "these",
-    "those",
-    "there",
-    "here",
-    "have",
-    "has",
-    "had",
-    "been",
-    "being",
-    "was",
-    "were",
-    "will",
-    "would",
-    "could",
-    "should",
-    "may",
-    "might",
-    "must",
-    "shall",
-    "need",
-    "want",
-    "like",
-    "just",
-    "also",
-    "very",
-    "really",
-    "only",
-    "even",
-    "still",
-    "already",
-    "always",
-    "never",
-    "often",
-    "sometimes",
-    "usually",
-    "probably",
-    "maybe",
-    "perhaps",
-    "actually",
-    "basically",
-    "certainly",
-    "definitely",
-    "especially",
-    "exactly",
-    "generally",
-    "likely",
-    "simply",
-    "specifically",
-  ]);
-
-  const words = query
-    .toLowerCase()
-    .replace(/[^\w\s]/g, "")
-    .split(/\s+/)
-    .filter((word) => word.length > 2 && !stopWords.has(word));
+  const words = extractKeywords(query);
 
   if (words.length === 0) {
     return [];
@@ -431,11 +475,14 @@ async function fullTextSearch(
     })
   );
 
-  // Sort by similarity and return top results
-  // Filter out results with similarity=1 (database function bug returns 1 for all matches)
-  const sorted = Array.from(allResults.values())
-    .filter((d) => d.similarity < 1)
-    .sort((a, b) => b.similarity - a.similarity);
+  // Sort by similarity and return top results.
+  // NOTE: word_similarity returns 1.0 for a verbatim word match (e.g. searching
+  // "flag" against a doc containing "Flag") — that's the *strongest* lexical
+  // signal, not a bug, so we keep those hits at the top rather than filtering
+  // them out.
+  const sorted = Array.from(allResults.values()).sort(
+    (a, b) => b.similarity - a.similarity
+  );
 
   return sorted.slice(0, options.matchCount).map((d) => ({
     id: d.id,
@@ -508,46 +555,102 @@ async function exactTextSearch(
   }));
 }
 
-function mergeResults3(
+// Relevance weights for the unified score. Tuned so a title match or a verbatim
+// lexical hit beats a weak vector match, and a doc that satisfies more than one
+// signal (e.g. matches the title AND ranks in vector space) rises to the top.
+const SCORE_WEIGHTS = {
+  exact: 1.0, // verbatim phrase hit (ILIKE)
+  title: 1.0, // query keywords appear in the document title
+  fuzzy: 0.5, // word_similarity 0..1 (1.0 == verbatim word)
+  vector: 1.0, // cosine similarity 0..1 (typically lower-magnitude here)
+  coverage: 0.5, // fraction of query keywords present in the content
+  multiSource: 0.1, // small bonus per extra source that surfaced the doc
+  content: 0.25, // tie-breaker bias toward CMS content over sessions
+};
+
+// CMS / website content lives under source_type "github"; sessions under
+// "devcon-api". General/practical questions should default to content, so when
+// both compete (unscoped search) content gets a small score nudge. Strong
+// session matches still win — this only tips ties. The model can scope a search
+// to sessions explicitly when it's a talk/topic/interest query.
+const CONTENT_SOURCE_TYPE = "github";
+
+/**
+ * Merge exact / fuzzy / vector results into a single ranking.
+ *
+ * Each source uses a different similarity scale, so instead of interleaving by
+ * position we combine the signals into one score per document: the raw
+ * per-source similarities, plus a title-match boost, keyword coverage, and a
+ * small multi-source bonus. Documents are then ranked by that combined score.
+ * The per-source `similarity` is preserved on the returned docs for display.
+ */
+function scoreAndMergeResults(
   exactResults: MatchedDocument[],
   ftsResults: MatchedDocument[],
   vectorResults: MatchedDocument[],
+  keywords: string[],
   limit: number
 ): MatchedDocument[] {
-  // Interleave results from all methods to ensure each gets representation.
-  // Fuzzy and vector use different similarity scales so we can't sort together.
-  const seen = new Set<string>();
-  const merged: MatchedDocument[] = [];
-
-  const addDoc = (doc: MatchedDocument) => {
-    if (!seen.has(doc.id)) {
-      seen.add(doc.id);
-      merged.push(doc);
-    }
-  };
-
-  // Round-robin: take from each source in turn, exact first
-  const sources = [exactResults, vectorResults, ftsResults];
-  const indices = [0, 0, 0];
-
-  // Exact matches all go first (they're high confidence verbatim hits)
-  for (const doc of exactResults) addDoc(doc);
-  indices[0] = exactResults.length;
-
-  // Then interleave vector and fuzzy
-  while (merged.length < limit) {
-    let added = false;
-    for (let s = 1; s < sources.length; s++) {
-      if (indices[s] < sources[s].length) {
-        addDoc(sources[s][indices[s]]);
-        indices[s]++;
-        added = true;
-      }
-    }
-    if (!added) break;
+  interface Aggregate {
+    doc: MatchedDocument;
+    vectorSim: number;
+    fuzzySim: number;
+    isExact: boolean;
   }
 
-  return merged.slice(0, limit);
+  const agg = new Map<string, Aggregate>();
+
+  // Establish each document's representative object, preferring the
+  // highest-confidence source: exact > fuzzy > vector.
+  const ensure = (doc: MatchedDocument): Aggregate => {
+    const existing = agg.get(doc.id);
+    if (existing) return existing;
+    const entry: Aggregate = {
+      doc,
+      vectorSim: 0,
+      fuzzySim: 0,
+      isExact: false,
+    };
+    agg.set(doc.id, entry);
+    return entry;
+  };
+
+  for (const doc of exactResults) ensure(doc).isExact = true;
+  for (const doc of ftsResults) {
+    const entry = ensure(doc);
+    entry.fuzzySim = Math.max(entry.fuzzySim, doc.similarity);
+  }
+  for (const doc of vectorResults) {
+    const entry = ensure(doc);
+    entry.vectorSim = Math.max(entry.vectorSim, doc.similarity);
+  }
+
+  const scored = [...agg.values()]
+    .map((entry) => {
+      const title = (entry.doc.metadata as { title?: string })?.title;
+      const titleScore = keywordCoverage(title, keywords);
+      const coverage = keywordCoverage(entry.doc.content, keywords);
+      const sourceCount =
+        (entry.isExact ? 1 : 0) +
+        (entry.fuzzySim > 0 ? 1 : 0) +
+        (entry.vectorSim > 0 ? 1 : 0);
+
+      const score =
+        (entry.isExact ? SCORE_WEIGHTS.exact : 0) +
+        SCORE_WEIGHTS.title * titleScore +
+        SCORE_WEIGHTS.fuzzy * entry.fuzzySim +
+        SCORE_WEIGHTS.vector * entry.vectorSim +
+        SCORE_WEIGHTS.coverage * coverage +
+        SCORE_WEIGHTS.multiSource * Math.max(0, sourceCount - 1) +
+        (entry.doc.source_type === CONTENT_SOURCE_TYPE
+          ? SCORE_WEIGHTS.content
+          : 0);
+
+      return { doc: entry.doc, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit).map((s) => s.doc);
 }
 
 // Build a portable source URI the LLM can cite. Strips the chunk suffix so

@@ -276,6 +276,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     if (existingRow) {
+      // rtd-event-form: flag when an already-approved event is edited, so
+      // reviewers know to re-check it. The "is this an update" signal is the
+      // existing row itself (keyed to the OTP-verified email), and approval
+      // state is read from that row's Status — both server-side truth. We
+      // strip any client-supplied value so a submitter can't set/clear it.
+      if (config?.formSlug === 'rtd-event-form') {
+        delete (data as Record<string, unknown>)['Updated post-approval']
+        const status = String(existingRow['Status'] ?? '').toLowerCase()
+        if (status.includes('approved')) {
+          data['Updated post-approval'] = true
+        }
+      }
       await updateRow(viewId, existingRow.Id, data)
       return res.status(200).json({ success: true, updated: true, autoApproved })
     }
