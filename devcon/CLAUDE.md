@@ -60,7 +60,11 @@ Recoil for global state (`src/state/main.ts`). React Context for Web3Modal/AppKi
 
 ### Internationalization
 
-Locales: `default`, `en`, `es`. Middleware handles i18n routing.
+Locales: `default`, `en`, `hi`, `mr` (next.config.js). Middleware handles i18n routing.
+
+- Intl strings live in `content/<locale>/intl/*.json`, imported and registered per-namespace in `src/utils/intl.ts`. `getMessages(locale)` deep-merges the locale bundle **on top of `en`**, so missing hi/mr files or keys automatically fall back to English.
+- **Only author content in `content/en/`.** Never hand-create or hand-edit `hi`/`mr` files: a GitHub Action (`.github/workflows/devcon-translate.yml`, root repo) runs on every push to `main` touching `devcon/content/en/**` and machine-translates changed files to Hindi and Marathi via `pnpm translate-content`, committing the results. Hand-made hi/mr files get overwritten by it, and until then they *override* the en fallback (risking stale copy).
+- `content/.manifest.json` tracks source-file hashes so only changed en files are re-translated; don't edit it manually.
 
 ## Code Style
 
