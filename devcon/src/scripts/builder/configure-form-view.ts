@@ -95,7 +95,7 @@ const CONFIG_BY_TITLE = new Map<string, { order: number; cfg: FieldCfg }>(
 const FORM_HEADING = 'Sanctuary Tech Builders application'
 
 const FORM_SUBHEADING =
-  'We value the people who build sanctuary tech: the open, decentralized, privacy-preserving technology that keeps the internet free and self-sovereign. Builders of all kinds; developers, designers, researchers, organizers, artists, and more – can apply for a discounted ticket.'
+  'We value the builders of sanctuary tech: open, decentralized, privacy-preserving technology that keeps the internet free and self-sovereign. Developers, designers, researchers, organizers, artists, and more can apply for a discounted ticket.'
 
 const FORM_SUCCESS_MSG =
   'Thanks for applying! Our team will review your application and follow up by email. Keep an eye on your inbox.'
