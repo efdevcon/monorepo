@@ -493,6 +493,11 @@ export default function BuilderReviewPage() {
                       {record['Team'] ? ` · ${record['Team']}` : ''}
                       {record['Submission Date'] ? ` · ${new Date(record['Submission Date']).toLocaleDateString()}` : ''}
                     </p>
+                    {record['Referral Code'] && (
+                      <p className="text-sm text-[#594d73]">
+                        Referral code: <span className="text-[#160b2b] font-medium">{record['Referral Code']}</span>
+                      </p>
+                    )}
                   </div>
                   <span className={`px-3 py-1 rounded-full border text-sm font-bold ${pill.cls}`}>{pill.label}</span>
                 </div>

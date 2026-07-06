@@ -72,6 +72,7 @@ const COLUMNS: ColDef[] = [
   { title: 'Admin Notes', uidt: 'LongText' },
   { title: 'Decision', uidt: 'SingleSelect', options: ['Pending', 'Approved', 'Rejected'] },
   { title: 'Strong Candidate', uidt: 'Checkbox' },
+  { title: 'Referral Code', uidt: 'SingleLineText' },
   { title: 'Voucher Sent', uidt: 'Checkbox' },
   { title: 'Voucher Code', uidt: 'SingleLineText' },
   { title: 'Submission Date', uidt: 'DateTime' },

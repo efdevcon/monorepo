@@ -226,6 +226,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data['Matched Count'] = score.matchedCount
       data['Match Source'] = score.matchSource
 
+      // Referral code (hidden, captured from the URL client-side). Untrusted
+      // tracking value — just store a trimmed, length-capped copy.
+      const referralCode = typeof req.body?.referralCode === 'string' ? req.body.referralCode.trim().slice(0, 100) : ''
+      if (referralCode) data['Referral Code'] = referralCode
+
       // Flag likely-approvals so reviewers can spot them fast. This is a HINT
       // only — it never approves or issues a voucher; a human still decides.
       data['Strong Candidate'] = evaluateStrongCandidate(githubUsername, score.matchedRepos).strong

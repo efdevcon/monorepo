@@ -623,6 +623,21 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
   const methods = useForm<Record<string, any>>()
   const { walletProof } = useBuilderConnect()
 
+  // Referral code: captured from the URL (?ref=…) as a hidden value and sent with
+  // the submission so we can attribute applicants. Persisted in sessionStorage so
+  // it survives the OTP step / a page refresh.
+  const referralRef = useRef<string>('')
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search)
+      const fromUrl = (params.get('ref') || params.get('referral') || '').trim()
+      if (fromUrl) sessionStorage.setItem('builder:ref', fromUrl)
+      referralRef.current = fromUrl || sessionStorage.getItem('builder:ref') || ''
+    } catch {
+      // ignore — referral is best-effort
+    }
+  }, [])
+
   useEffect(() => {
     if (!viewId) return
 
@@ -771,6 +786,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
 
       const body: Record<string, unknown> = { data: submitData }
       if (walletProof) body.walletProof = walletProof
+      if (referralRef.current) body.referralCode = referralRef.current
 
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
