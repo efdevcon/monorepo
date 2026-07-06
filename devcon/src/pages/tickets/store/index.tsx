@@ -182,7 +182,7 @@ const APPLICATION_TICKETS: Array<
     title: 'Sanctuary Tech Builders',
     meta: 'Contribution-based',
     description:
-      'For builders of all kinds, including open-source contributors, who actively volunteer or contribute their time to the growth, research and development of Ethereum or the ecosystem.',
+      'For developers, designers, researchers, organizers, artists, and everyone else building the open, decentralized, privacy-preserving technology that keeps the internet free and self-sovereign.',
     eth: '$349',
     fiat: '$499',
     href: '/form/builder-application',
