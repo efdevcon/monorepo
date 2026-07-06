@@ -182,7 +182,7 @@ const APPLICATION_TICKETS: Array<
     title: 'Sanctuary Tech Builders',
     meta: 'Contribution-based',
     description:
-      'For developers, designers, researchers, organizers, artists, and everyone else building the open, decentralized, privacy-preserving technology that keeps the internet free and self-sovereign.',
+      'For developers, designers and everyone building the open, privacy-preserving, decentralized technologies that keeps the internet free and self-sovereign.',
     eth: '$349',
     fiat: '$499',
     href: '/form/builder-application',
@@ -345,7 +345,7 @@ function StoreContent({
   // when unset or not currently purchasable. Figma reference price applies
   // when no admission ticket exists at all.
   const gaTicket = admissionTickets.find(t => t.id === TICKETING.pretix.gaItemId) ?? admissionTickets[0]
-  const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '699'
+  const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '499'
   const gaOriginal =
     gaTicket?.originalPrice && gaTicket.originalPrice !== gaTicket.price ? fmtPrice(gaTicket.originalPrice) : '999'
   const gaQty = gaTicket ? getQuantity(gaTicket.id) : 0
