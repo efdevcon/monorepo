@@ -30,7 +30,7 @@ function buildRejectionHtml(name: string): string {
             <td style="background: #1a0d33 url('https://devcon.org/email/header-bg.png') center/cover no-repeat; padding: 32px 32px 24px; text-align: center;">
               <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
               <p style="margin: 12px 0 0; font-size: 14px; color: #ffffff;">
-                Builder application update
+                Sanctuary Tech Builders application update
               </p>
             </td>
           </tr>
@@ -41,9 +41,9 @@ function buildRejectionHtml(name: string): string {
                 ${greeting}
               </p>
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
-                Thank you for applying for a Devcon builder discount. We received an incredible number of
-                applications this year, and after careful review we're unable to offer you a builder discount
-                this time.
+                Thank you for applying for a Sanctuary Tech Builders discount. We received an incredible number
+                of applications this year, and after careful review we're unable to offer you a discount this
+                time.
               </p>
               <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 We'd still love to see you at Devcon. You can explore ticket options and any other discounts
@@ -80,7 +80,7 @@ export async function sendBuilderRejectionEmail(
 ): Promise<{ success: boolean; error?: string }> {
   return sendMail({
     to: email.trim(),
-    subject: 'Your Devcon builder application',
+    subject: 'Your Sanctuary Tech Builders application',
     html: buildRejectionHtml((name || '').trim()),
     fromName: 'Devcon',
   })

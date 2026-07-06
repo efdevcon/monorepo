@@ -92,13 +92,10 @@ const CONFIG_BY_TITLE = new Map<string, { order: number; cfg: FieldCfg }>(
   FIELD_CONFIG.map((cfg, i) => [cfg.title, { order: i + 1, cfg }]),
 )
 
-const FORM_HEADING = 'OSS & Ethereum Builders application'
+const FORM_HEADING = 'Sanctuary Tech Builders application'
 
 const FORM_SUBHEADING =
-  'We appreciate the people who actively contribute to Ethereum and the wider ecosystem. We openly invite builders of all kinds — developers, designers, researchers, community organizers, artists, and more (individuals, not companies) — to apply for a discounted Devcon ticket.\n\n' +
-  'Are you a current student with a valid student email address? [Apply for a Student ticket instead](https://devcon.org/en/form/student-application/) — it gets a better rate.\n\n' +
-  'Connect your GitHub (and, optionally, a wallet) so we can recognize your contributions, then tell us about yourself and why a discounted ticket would help. Please write as yourself — applications that read more AI than human are less likely to be approved.\n\n' +
-  'The data you share is used only to verify your identity at Devcon and to contact you about Devcon events. It is never shared with any third party.'
+  'We value the people who build sanctuary tech: the open, decentralized, privacy-preserving technology that keeps the internet free and self-sovereign. Builders of all kinds; developers, designers, researchers, organizers, artists, and more – can apply for a discounted ticket.'
 
 const FORM_SUCCESS_MSG =
   'Thanks for applying! Our team will review your application and follow up by email. Keep an eye on your inbox.'
