@@ -499,8 +499,20 @@ export default function BuilderReviewPage() {
 
                 <div className="flex flex-wrap gap-2">
                   {record['Strong Candidate'] && (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e6f7ed] text-[#137a3e] border border-[#b7e6c9] text-sm font-bold">
-                      <Check className="w-4 h-4" aria-hidden="true" /> Strong candidate
+                    <span className="group relative inline-flex">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e6f7ed] text-[#137a3e] border border-[#b7e6c9] text-sm font-bold cursor-help">
+                        <Check className="w-4 h-4" aria-hidden="true" /> Strong candidate
+                      </span>
+                      <span className="pointer-events-none absolute right-full top-0 mr-2 z-40 hidden w-80 rounded-lg bg-[#160b2b] p-3 text-xs leading-5 text-white shadow-lg group-hover:block">
+                        <span className="font-bold">Auto-flagged as a likely approval</span> — a reviewer still decides.
+                        Flagged when either:
+                        <span className="mt-1 block">
+                          • recent EF / Ethereum / client contributor (on the OSS Contributors list, 2+ commits), or
+                        </span>
+                        <span className="block">
+                          • contributed to repos in at least 2 of the 3 curated lists (EF/Ethereum, OSS, web3).
+                        </span>
+                      </span>
                     </span>
                   )}
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3f0ff] text-[#7235ed] border border-[#decffb] text-sm font-bold">
