@@ -370,7 +370,7 @@ export default function BuilderReviewPage() {
   // ── Admin-key gate ──────────────────────────────────────────────
   if (!secret) {
     return (
-      <Page darkHeader darkFooter>
+      <Page hideHeader hideFooter>
         <Head>
           <title>Builder Review</title>
         </Head>
@@ -425,13 +425,13 @@ export default function BuilderReviewPage() {
     })
 
   return (
-    <Page darkHeader darkFooter>
+    <Page hideHeader hideFooter>
       <Head>
         <title>{record ? `Review: ${record['Full Name'] || `#${id}`}` : 'Builder Review'}</title>
       </Head>
-      <div className="min-h-[80vh] bg-[#fbfafc] py-12 px-4">
+      <div className="min-h-[80vh] bg-[#fbfafc] py-4 px-4">
         <div className="max-w-[820px] mx-auto flex flex-col gap-6">
-          {loading && (
+          {loading && !record && (
             <div className="flex items-center gap-2 text-[#594d73]">
               <Loader2 className="w-4 h-4 animate-spin" /> Loading…
             </div>
@@ -444,8 +444,13 @@ export default function BuilderReviewPage() {
               {nav.total > 0 && (
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-sm text-[#594d73]">
-                    Application {nav.position} of {nav.total}
+                    Builder Application {nav.position} of {nav.total}
                     <span className="hidden sm:inline text-[#9b93ad]"> · use ← → keys</span>
+                    {loading && (
+                      <span className="inline-flex items-center gap-1.5 ml-2 align-[-4px] px-2.5 py-1 rounded-full bg-[#7235ed] text-white text-xs font-bold">
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" /> Loading…
+                      </span>
+                    )}
                   </span>
                   <div className="flex items-center gap-2">
                     {nav.prevId != null ? (
@@ -503,6 +508,23 @@ export default function BuilderReviewPage() {
                   </span>
                 </div>
 
+                {record['Match Source'] && (
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-sm text-[#594d73]">Match summary:</span>
+                    {parseMatchSummary(String(record['Match Source'])).map(({ label, count }) => (
+                      <span
+                        key={label}
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-bold ${matchSummaryCls(
+                          label
+                        )}`}
+                      >
+                        {label}
+                        <span className="opacity-70">{count}</span>
+                      </span>
+                    ))}
+                  </div>
+                )}
+
                 {roles.length > 0 && (
                   <div className="flex flex-wrap gap-2">
                     {roles.map(r => (
@@ -529,6 +551,123 @@ export default function BuilderReviewPage() {
                     ))}
                   </div>
                 )}
+              </div>
+
+              {/* Already-has-a-voucher warning — this person already holds a voucher
+                  under one of their identities (wallet / GitHub / email), in any
+                  program. Approving will REUSE this code, not mint a new one. */}
+              {existingVoucher && (
+                <div className="rounded-2xl border border-[#f3c2c2] bg-[#fdf2f2] p-5 flex gap-3">
+                  <AlertTriangle className="w-5 h-5 text-[#b42124] shrink-0 mt-0.5" />
+                  <div className="flex flex-col gap-1 min-w-0">
+                    <p className="text-sm font-bold text-[#b42124]">Already has a voucher</p>
+                    <p className="text-sm text-[#7a2a2c] leading-5">
+                      This person already holds voucher{' '}
+                      <span className="font-mono font-bold">{existingVoucher.code}</span>
+                      {existingVoucher.collection ? ` (${existingVoucher.collection})` : ''}, matched on{' '}
+                      <span className="font-medium">{existingVoucher.assignedTo}</span>. Approving will reuse this
+                      code rather than issue a second one.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Already-qualifies warning — vouchers are one-per-identity, so issuing
+                  a builder voucher to someone who can already self-claim a discount
+                  would double-allocate. */}
+              {autoDiscounts.length > 0 && (
+                <div className="rounded-2xl border border-[#f3d9ad] bg-[#fffaf0] p-5 flex gap-3">
+                  <AlertTriangle className="w-5 h-5 text-[#a86510] shrink-0 mt-0.5" />
+                  <div className="flex flex-col gap-2 min-w-0">
+                    <p className="text-sm font-bold text-[#a86510]">Already qualifies for an automatic discount</p>
+                    <div className="flex flex-wrap gap-2">
+                      {autoDiscounts.map(d => (
+                        <span
+                          key={d.type}
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff5e6] text-[#a86510] border border-[#f3d9ad] text-sm font-bold"
+                        >
+                          {d.name}: {d.discount >= 100 ? 'FREE' : `${d.discount}% off`}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-[#7a5a1a] leading-5">
+                      They can self-claim this at the{' '}
+                      <a
+                        href="/en/tickets/store/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline font-medium"
+                      >
+                        ticket store
+                      </a>
+                      . Vouchers are one-per-identity, so issuing a builder voucher (50% off) on top would
+                      double-allocate
+                      {autoDiscounts.some(d => d.discount >= 50)
+                        ? ' — and they already qualify for an equal or better discount.'
+                        : '.'}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Meta */}
+              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <Section title="Admin">
+                  <div className="grid sm:grid-cols-2 gap-2 text-sm">
+                    <p className="text-[#594d73]">
+                      Email: <span className="text-[#160b2b] font-medium">{record['Email'] || '—'}</span>
+                    </p>
+                    <p className="text-[#594d73]">
+                      Voucher sent: <span className="text-[#160b2b] font-medium">{record['Voucher Sent'] ? 'Yes' : 'No'}</span>
+                    </p>
+                    {record['Voucher Code'] && (
+                      <p className="text-[#594d73] sm:col-span-2">
+                        Voucher code: <span className="text-[#160b2b] font-mono font-medium">{record['Voucher Code']}</span>
+                      </p>
+                    )}
+                  </div>
+                </Section>
+              </div>
+
+              {/* Admin notes — private, reviewer-only comment on this application */}
+              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <Section title="Admin notes">
+                  <textarea
+                    value={comment}
+                    onChange={e => setComment(e.target.value)}
+                    placeholder="Add a private note about this application (visible to reviewers only)…"
+                    rows={3}
+                    className="w-full px-3 py-2 border border-[#dddae2] bg-[#f9f8fa] focus:bg-white rounded-lg text-sm text-[#160b2b] leading-5 resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7235ed]/30"
+                  />
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={saveComment}
+                      disabled={savingComment || comment === savedComment}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#160b2b] text-white text-sm font-semibold hover:bg-[#2d1a55] disabled:opacity-50 transition-colors"
+                    >
+                      {savingComment && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
+                      Save note
+                    </button>
+                    {comment !== savedComment ? (
+                      <span className="text-xs text-[#a86510]">Unsaved changes</span>
+                    ) : savedComment ? (
+                      <span className="inline-flex items-center gap-1 text-xs text-[#137a3e]">
+                        <Check className="w-3.5 h-3.5" aria-hidden="true" /> Saved
+                      </span>
+                    ) : null}
+                  </div>
+                </Section>
+              </div>
+
+              {/* Essays */}
+              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-4">
+                <Section title="Application">
+                  <Essay label="Why would you like to attend Devcon?" text={record['Why Ethereum']} />
+                  {/* Goals / Gender are no longer collected; still shown for older applications. */}
+                  <Essay label="What do you hope to accomplish?" text={record['Goals']} />
+                  <Essay label="Gender" text={record['Gender']} />
+                </Section>
               </div>
 
               {/* Links */}
@@ -839,139 +978,6 @@ export default function BuilderReviewPage() {
                   {unlistedClaimed.length > 0 && (
                     <Essay label="Other claimed repos (not matched above)" text={unlistedClaimed.join('\n')} />
                   )}
-                </Section>
-              </div>
-
-              {/* Essays */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-4">
-                <Section title="Application">
-                  <Essay label="Why would you like to attend Devcon?" text={record['Why Ethereum']} />
-                  {/* Goals / Gender are no longer collected; still shown for older applications. */}
-                  <Essay label="What do you hope to accomplish?" text={record['Goals']} />
-                  <Essay label="Gender" text={record['Gender']} />
-                </Section>
-              </div>
-
-              {/* Already-has-a-voucher warning — this person already holds a voucher
-                  under one of their identities (wallet / GitHub / email), in any
-                  program. Approving will REUSE this code, not mint a new one. */}
-              {existingVoucher && (
-                <div className="rounded-2xl border border-[#f3c2c2] bg-[#fdf2f2] p-5 flex gap-3">
-                  <AlertTriangle className="w-5 h-5 text-[#b42124] shrink-0 mt-0.5" />
-                  <div className="flex flex-col gap-1 min-w-0">
-                    <p className="text-sm font-bold text-[#b42124]">Already has a voucher</p>
-                    <p className="text-sm text-[#7a2a2c] leading-5">
-                      This person already holds voucher{' '}
-                      <span className="font-mono font-bold">{existingVoucher.code}</span>
-                      {existingVoucher.collection ? ` (${existingVoucher.collection})` : ''}, matched on{' '}
-                      <span className="font-medium">{existingVoucher.assignedTo}</span>. Approving will reuse this
-                      code rather than issue a second one.
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Already-qualifies warning — vouchers are one-per-identity, so issuing
-                  a builder voucher to someone who can already self-claim a discount
-                  would double-allocate. */}
-              {autoDiscounts.length > 0 && (
-                <div className="rounded-2xl border border-[#f3d9ad] bg-[#fffaf0] p-5 flex gap-3">
-                  <AlertTriangle className="w-5 h-5 text-[#a86510] shrink-0 mt-0.5" />
-                  <div className="flex flex-col gap-2 min-w-0">
-                    <p className="text-sm font-bold text-[#a86510]">Already qualifies for an automatic discount</p>
-                    <div className="flex flex-wrap gap-2">
-                      {autoDiscounts.map(d => (
-                        <span
-                          key={d.type}
-                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff5e6] text-[#a86510] border border-[#f3d9ad] text-sm font-bold"
-                        >
-                          {d.name}: {d.discount >= 100 ? 'FREE' : `${d.discount}% off`}
-                        </span>
-                      ))}
-                    </div>
-                    <p className="text-sm text-[#7a5a1a] leading-5">
-                      They can self-claim this at the{' '}
-                      <a
-                        href="/en/tickets/store/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline font-medium"
-                      >
-                        ticket store
-                      </a>
-                      . Vouchers are one-per-identity, so issuing a builder voucher (50% off) on top would
-                      double-allocate
-                      {autoDiscounts.some(d => d.discount >= 50)
-                        ? ' — and they already qualify for an equal or better discount.'
-                        : '.'}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Admin notes — private, reviewer-only comment on this application */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
-                <Section title="Admin notes">
-                  <textarea
-                    value={comment}
-                    onChange={e => setComment(e.target.value)}
-                    placeholder="Add a private note about this application (visible to reviewers only)…"
-                    rows={3}
-                    className="w-full px-3 py-2 border border-[#dddae2] rounded-lg text-sm text-[#160b2b] leading-5 resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7235ed]/30"
-                  />
-                  <div className="flex items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={saveComment}
-                      disabled={savingComment || comment === savedComment}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#160b2b] text-white text-sm font-semibold hover:bg-[#2d1a55] disabled:opacity-50 transition-colors"
-                    >
-                      {savingComment && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
-                      Save note
-                    </button>
-                    {comment !== savedComment ? (
-                      <span className="text-xs text-[#a86510]">Unsaved changes</span>
-                    ) : savedComment ? (
-                      <span className="inline-flex items-center gap-1 text-xs text-[#137a3e]">
-                        <Check className="w-3.5 h-3.5" aria-hidden="true" /> Saved
-                      </span>
-                    ) : null}
-                  </div>
-                </Section>
-              </div>
-
-              {/* Meta */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
-                <Section title="Admin">
-                  <div className="grid sm:grid-cols-2 gap-2 text-sm">
-                    <p className="text-[#594d73]">
-                      Email: <span className="text-[#160b2b] font-medium">{record['Email'] || '—'}</span>
-                    </p>
-                    <p className="text-[#594d73]">
-                      Voucher sent: <span className="text-[#160b2b] font-medium">{record['Voucher Sent'] ? 'Yes' : 'No'}</span>
-                    </p>
-                    {record['Voucher Code'] && (
-                      <p className="text-[#594d73] sm:col-span-2">
-                        Voucher code: <span className="text-[#160b2b] font-mono font-medium">{record['Voucher Code']}</span>
-                      </p>
-                    )}
-                    {record['Match Source'] && (
-                      <div className="sm:col-span-2 flex flex-wrap items-center gap-2">
-                        <span className="text-[#594d73]">Match summary:</span>
-                        {parseMatchSummary(String(record['Match Source'])).map(({ label, count }) => (
-                          <span
-                            key={label}
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-bold ${matchSummaryCls(
-                              label
-                            )}`}
-                          >
-                            {label}
-                            <span className="opacity-70">{count}</span>
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
                 </Section>
               </div>
 
