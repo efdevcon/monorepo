@@ -158,23 +158,25 @@ export async function scoreBuilder(input: ScoreInput, deps: ScoreDeps = defaultD
 }
 
 /**
- * Auto-approval rule for builder applications, evaluated at submit time:
- *   A) the connected GitHub login is on the OSS Contributors list — i.e. a
- *      recent EF / Ethereum / client contributor with 2+ commits, OR
+ * "Strong candidate" heuristic, evaluated at submit time to flag applicants a
+ * reviewer is likely to approve. It does NOT approve anyone — a human still
+ * decides; it just surfaces the obvious yeses. Strong when:
+ *   A) the connected GitHub login is on the OSS Contributors list — a recent
+ *      EF / Ethereum / client contributor with 2+ commits, OR
  *   B) repos in at least 2 of the 3 curated lists (EF/Ethereum, OSS, web3).
  * For B, only curated-list matches count ("notable"/unverified don't).
  */
-export function qualifiesForAutoApproval(
+export function evaluateStrongCandidate(
   githubUsername: string | null | undefined,
   matchedRepos: MatchedRepo[]
-): { approve: boolean; reason: string | null } {
+): { strong: boolean; reason: string | null } {
   if (githubUsername && OSS_CONTRIBUTORS.has(githubUsername.toLowerCase())) {
-    return { approve: true, reason: 'recent EF / Ethereum contributor (2+ commits)' }
+    return { strong: true, reason: 'recent EF / Ethereum contributor (2+ commits)' }
   }
   const lists = new Set<'web2' | 'web3' | 'core'>()
   for (const r of matchedRepos) {
     if (r.source === 'list' && r.list) lists.add(r.list)
   }
-  if (lists.size >= 2) return { approve: true, reason: `matched ${lists.size} of 3 curated lists` }
-  return { approve: false, reason: null }
+  if (lists.size >= 2) return { strong: true, reason: `matched ${lists.size} of 3 curated lists` }
+  return { strong: false, reason: null }
 }

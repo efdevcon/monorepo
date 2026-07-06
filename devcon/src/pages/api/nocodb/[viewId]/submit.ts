@@ -15,10 +15,8 @@ import { verifyProof } from 'services/builder/proof'
 import { getContributions } from 'services/builder/github-contributions'
 import type { NotableCandidate } from 'services/builder/github-contributions'
 import { parseRepoList } from 'services/builder/repo-ref'
-import { scoreBuilder, qualifiesForAutoApproval } from 'services/builder/scoring'
+import { scoreBuilder, evaluateStrongCandidate } from 'services/builder/scoring'
 import { getPastDevconEvents } from 'services/builder/poap-attendees'
-import { builderIdentities, issueBuilderVoucher } from 'services/builder/voucher'
-import { builderAutoApproveEnabled } from 'config/ticketing'
 import { isApprovedSpeaker } from 'services/pretalx'
 
 // Slug of the visa-collection form. Only this form gates submissions on the
@@ -179,10 +177,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // script-output columns. This MUST run after the field-validation block above
     // because the injected columns (Matched Repos / Matched Count / Match Source)
     // are not part of the form-visible allowed-field set.
-    // Set when the builder branch determines the applicant qualifies for instant
-    // approval (see qualifiesForAutoApproval). Acted on at write time below.
-    let builderAutoApprove: { approve: boolean; reason: string | null } = { approve: false, reason: null }
-
     if (config?.formSlug === 'builder-application') {
       // GitHub identity is the existing NextAuth GitHub session (set via the
       // shared /signin popup). Read it server-side — never trust a client value.
@@ -232,9 +226,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data['Matched Count'] = score.matchedCount
       data['Match Source'] = score.matchSource
 
-      builderAutoApprove = builderAutoApproveEnabled()
-        ? qualifiesForAutoApproval(githubUsername, score.matchedRepos)
-        : { approve: false, reason: null }
+      // Flag likely-approvals so reviewers can spot them fast. This is a HINT
+      // only — it never approves or issues a voucher; a human still decides.
+      data['Strong Candidate'] = evaluateStrongCandidate(githubUsername, score.matchedRepos).strong
     }
 
     data['Submission Date'] = new Date().toISOString()
@@ -245,34 +239,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (verifiedEmail && config?.requireOtp) {
       data[EMAIL_COLUMN_NAME] = verifiedEmail
       existingRow = await findRowByEmail(viewId, EMAIL_COLUMN_NAME, verifiedEmail)
-    }
-
-    // Builder auto-approve: instantly issue + email the voucher when the applicant
-    // clearly qualifies. Skipped if a prior submission was already decided (so we
-    // never override a manual decision or re-email on re-submit). Best-effort —
-    // if issuing fails, the application is simply left pending for manual review.
-    let autoApproved = false
-    if (config?.formSlug === 'builder-application' && builderAutoApprove.approve && verifiedEmail) {
-      const priorDecision = existingRow?.['Decision']
-      const alreadyDecided = priorDecision === 'Approved' || priorDecision === 'Rejected'
-      if (!alreadyDecided) {
-        const identities = builderIdentities({
-          'Wallet Address': data['Wallet Address'],
-          'GitHub Username': data['GitHub Username'],
-          Email: verifiedEmail,
-        })
-        const result = await issueBuilderVoucher(verifiedEmail, identities)
-        if (result.ok) {
-          data['Decision'] = 'Approved'
-          data['Auto Approved'] = true
-          data['Voucher Code'] = result.code
-          data['Voucher Sent'] = result.emailed
-          data['Admin Notes'] = `Auto-approved on submit — ${builderAutoApprove.reason}.`
-          autoApproved = true
-        } else {
-          console.warn('[builder auto-approve] voucher issue failed, left for review:', result.error)
-        }
-      }
     }
 
     if (existingRow) {
@@ -289,11 +255,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       }
       await updateRow(viewId, existingRow.Id, data)
-      return res.status(200).json({ success: true, updated: true, autoApproved })
+      return res.status(200).json({ success: true, updated: true })
     }
 
     await createRow(viewId, data)
-    return res.status(200).json({ success: true, autoApproved })
+    return res.status(200).json({ success: true })
   } catch (err) {
     const axiosBody = (err as any)?.response?.data
     console.error('[nocodb/submit]', err, axiosBody ? { axiosBody } : '')

@@ -493,6 +493,11 @@ export default function BuilderReviewPage() {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
+                  {record['Strong Candidate'] && (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e6f7ed] text-[#137a3e] border border-[#b7e6c9] text-sm font-bold">
+                      <Check className="w-4 h-4" aria-hidden="true" /> Strong candidate
+                    </span>
+                  )}
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3f0ff] text-[#7235ed] border border-[#decffb] text-sm font-bold">
                     {record['Matched Count'] ?? 0} list match{(record['Matched Count'] ?? 0) === 1 ? '' : 'es'}
                   </span>
