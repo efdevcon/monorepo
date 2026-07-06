@@ -40,7 +40,7 @@ const DISCOUNTS: {
   {
     type: 'pg-projects',
     label: 'Public Good Projects',
-    discount: '50% off',
+    discount: '30% off',
     methods: ['wallet'],
     validMsg: 'Valid contribution verified!',
     invalidMsg: 'No valid Public Goods contributions found.',

@@ -94,7 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const eligibleDiscounts = Array.from(eligibleMap.values()).sort((a, b) => b.discount - a.discount)
 
     // The subset that warrants a "don't double-allocate" warning banner: Core
-    // Devs / Protocol Guild (free) and Public Good Projects (50%). OSS
+    // Devs / Protocol Guild (free) and Public Good Projects (30%). OSS
     // Contributors is now part of the builder discount, and Past-POAP (10%) is
     // worse than the builder discount — neither is a meaningful alternative.
     const WARN_DISCOUNT_TYPES = new Set(['core-devs', 'pg-projects'])

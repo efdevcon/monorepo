@@ -617,9 +617,9 @@ export default function BuilderReviewPage() {
                       >
                         ticket store
                       </a>
-                      . Vouchers are one-per-identity, so issuing a builder voucher (50% off) on top would
+                      . Vouchers are one-per-identity, so issuing a builder voucher (30% off) on top would
                       double-allocate
-                      {autoDiscounts.some(d => d.discount >= 50)
+                      {autoDiscounts.some(d => d.discount >= 30)
                         ? ' — and they already qualify for an equal or better discount.'
                         : '.'}
                     </p>

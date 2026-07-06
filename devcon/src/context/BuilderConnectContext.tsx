@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
 
 // An automatic discount tier the applicant qualifies for (Core Devs free,
-// Public Goods 50%, Past POAP 10%, …) — detected from their connected GitHub /
+// Public Goods 30%, Past POAP 10%, …) — detected from their connected GitHub /
 // wallet via the existing /api/discounts/validate endpoint.
 export interface QualifyingDiscount {
   type: string
@@ -10,7 +10,7 @@ export interface QualifyingDiscount {
 }
 
 // Only these tiers are worth steering a builder applicant to the store instead:
-// Core Devs / Protocol Guild (free) and Public Good Projects (50%). OSS
+// Core Devs / Protocol Guild (free) and Public Good Projects (30%). OSS
 // Contributors is now folded into the builder discount, and Past-POAP (10%) is
 // worse than applying as a builder — so neither is surfaced.
 const WARN_DISCOUNT_TYPES = new Set(['core-devs', 'pg-projects'])
