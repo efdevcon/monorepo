@@ -116,12 +116,11 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = [
   {
     id: 'hsiao',
     name: 'Hsiao-Wei Wang',
-    title: 'Executive Director',
-    company: 'Ethereum Foundation',
+    title: 'Researcher',
+    company: 'Independent',
     color: '#f43f5e',
     image: hsiaoImg,
     event: devcon6,
-    companyLogo: logoEthereumFoundation,
   },
   {
     id: 'justin',
