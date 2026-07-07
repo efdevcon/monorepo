@@ -49,29 +49,31 @@ const APPLICATION_ROWS: ApplicationRow[] = [
   },
 ]
 
-function ApplicationsClosedCard() {
-  const t = useTranslations('ecosystem_program.applications_closed')
-  return (
-    <div className={css['applications-closed-card']}>
-      <div className={css['applications-closed-inner']}>
-        <div className={css['applications-closed-text']}>
-          <p className={css['applications-closed-heading']}>{t('heading')}</p>
-          <div className={css['applications-closed-body']}>
-            <p>{t('thank_you')}</p>
-            <p>
-              {t('deadline_prefix')}
-              <strong>{t('deadline_date')}</strong>
-            </p>
-          </div>
-        </div>
-        <div className={css['applications-closed-divider']} />
-        <p className={css['applications-closed-next']}>
-          {t('round_2_prefix')} <strong>{t('round_2_date')}</strong>
-        </p>
-      </div>
-    </div>
-  )
-}
+// Kept for re-closing the round: swap the two CTA blocks back for <ApplicationsClosedCard />
+// (intl keys live under ecosystem_program.applications_closed).
+// function ApplicationsClosedCard() {
+//   const t = useTranslations('ecosystem_program.applications_closed')
+//   return (
+//     <div className={css['applications-closed-card']}>
+//       <div className={css['applications-closed-inner']}>
+//         <div className={css['applications-closed-text']}>
+//           <p className={css['applications-closed-heading']}>{t('heading')}</p>
+//           <div className={css['applications-closed-body']}>
+//             <p>{t('thank_you')}</p>
+//             <p>
+//               {t('deadline_prefix')}
+//               <strong>{t('deadline_date')}</strong>
+//             </p>
+//           </div>
+//         </div>
+//         <div className={css['applications-closed-divider']} />
+//         <p className={css['applications-closed-next']}>
+//           {t('round_2_prefix')} <strong>{t('round_2_date')}</strong>
+//         </p>
+//       </div>
+//     </div>
+//   )
+// }
 
 export default function EcosystemProgramPage() {
   const t = useTranslations('ecosystem_program')
@@ -139,7 +141,14 @@ export default function EcosystemProgramPage() {
           </div>
 
           <div className={css['hero-cta-block']}>
-            <ApplicationsClosedCard />
+            <Link to="https://esp.ethereum.foundation/applicants/rfp/rtd8_india" className={css['btn-primary']}>
+              {t('hero.apply_button')}
+              <ArrowRight size={16} strokeWidth={2} />
+            </Link>
+            <div className={css['hero-deadline']}>
+              <span>{t('hero.deadline_label')}</span>
+              <strong>{t('hero.deadline_date')}</strong>
+            </div>
           </div>
         </section>
 
@@ -259,12 +268,16 @@ export default function EcosystemProgramPage() {
 
           {/* Budget Note + CTA */}
           <div id="apply" className={cn(css['budget-note'], css['scroll-anchor'])}>
-            <p className={css['body-small']}>
-              <strong>{t('budget_note.note_strong')}</strong>
-              {t('budget_note.note_body')}
-            </p>
-
-            <ApplicationsClosedCard />
+            <div className={css['wave-cta-row']}>
+              <div className={css['wave-cta-info']}>
+                <span>{t('budget_note.wave_label')}</span>
+                <span className={css['wave-cta-date']}>{t('budget_note.wave_date')}</span>
+              </div>
+              <Link to="https://esp.ethereum.foundation/applicants/rfp/rtd8_india" className={css['btn-primary']}>
+                {t('budget_note.apply_button')}
+                <ArrowRight size={16} strokeWidth={2} />
+              </Link>
+            </div>
 
             <p className={css['budget-note-footer']}>
               {t('budget_note.footer_prefix')}
