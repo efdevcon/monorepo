@@ -4,7 +4,9 @@ import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
 import { SEO } from 'components/domain/seo'
-import { ArrowRight, ArrowUpRight, CircleCheckBig, LockKeyholeOpen, Users } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, CircleCheckBig, LockKeyholeOpen, MoveUp, Users } from 'lucide-react'
+import StackingCards, { StackingCardItem } from 'components/common/stacking-cards'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import themes from '../themes.module.scss'
 import HeroBackground from 'components/common/dc-8/hero/images/devcon-8-india-bg.png'
 import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
@@ -34,15 +36,15 @@ import Process5 from './images/process/speaker-process-05.jpg'
 import Process6 from './images/process/speaker-process-06.jpg'
 import css from './speaker-applications.module.scss'
 import cn from 'classnames'
-import useIsTouchDevice from 'hooks/useIsTouchDevice'
 import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
+import type { GetStaticPropsContext } from 'next'
 
 const APPLY_URL = 'https://mum.speakat.xyz/devcon8/cfp'
 const WISHLIST_URL = 'https://ef-events.notion.site/devcon-8-talks-wishlist'
-// TODO: real URLs pending
-const GUIDELINES_URL = '#'
-const REVIEW_CRITERIA_URL = '#'
+const GUIDELINES_URL = '/application-guidelines'
+// Anchor id comes from application-guidelines.tsx's SECTION_KEYS (underscores → hyphens)
+const REVIEW_CRITERIA_URL = '/application-guidelines#review-criteria'
 
 const WHY_SPEAK_ICONS = [Users, LockKeyholeOpen, CircleCheckBig]
 
@@ -76,17 +78,34 @@ const TRACK_BACK_COLORS = [
 
 const PROCESS_IMAGES = [Process1, Process2, Process3, Process4, Process5, Process6]
 
+// Mobile stacking-card backgrounds from Figma, same order as PROCESS_IMAGES
+const PROCESS_STACK_COLORS = [
+  '#ffc299', // marigold 200
+  '#fecbcc', // red 100
+  '#ffcce3', // kamala 100
+  '#d3bff9', // purple 100
+  '#dbdbef', // indigo 100
+  '#aaeaba', // harit 200
+]
+
 export default function SpeakerApplicationsPage() {
   const t = useTranslations('speaker_applications')
-  const isTouchDevice = useIsTouchDevice()
   const [flippedTrack, setFlippedTrack] = React.useState<number | null>(null)
 
-  // Desktop flips via CSS :hover only; taps drive the flip where hover isn't available
-  const handleTrackTap = (i: number) => {
-    if (!isTouchDevice) return
-
+  // Desktop flips via CSS :hover; the click toggle covers touch, keyboard, and AT users
+  const handleTrackToggle = (i: number) => {
     setFlippedTrack(prev => (prev === i ? null : i))
   }
+
+  // On mobile the process title is sticky through the card stack; fade it out as the
+  // last card lands so it doesn't linger over the CTA while the pile scrolls away.
+  // Harmless on desktop: by this progress the non-sticky title is far off-screen.
+  const processHeaderRef = React.useRef<HTMLDivElement>(null)
+  const { scrollYProgress: processProgress } = useScroll({
+    target: processHeaderRef,
+    offset: ['start start', 'end end'],
+  })
+  const processTitleOpacity = useTransform(processProgress, [0.93, 0.99], [1, 0])
 
   const navLinks = [
     { title: t('nav.about'), to: '#about' },
@@ -98,22 +117,44 @@ export default function SpeakerApplicationsPage() {
   ]
 
   const datesBarItems = t.raw('dates_bar.items') as Array<{ label: string; value: string }>
-  const whySpeakCards = t.raw('why_speak.cards') as Array<{
-    title: string
-    p1: string
-    p2?: string
-    p2_prefix?: string
-    p2_strong?: string
-    p2_suffix?: string
-  }>
-  const formatCards = t.raw('formats.cards') as Array<{ title: string; duration: string; description: string }>
-  const trackItems = t.raw('tracks.items') as Array<{
-    title: string
-    description: string
-    tags: string[]
-    more: string
-  }>
-  const processCards = t.raw('process.cards') as Array<{ line_1: string; line_2: string }>
+  // Icons/images/colors are matched to these lists by position, so cap each list
+  // at its visual array's length — a locale file with extra items must not
+  // render an undefined image
+  const whySpeakCards = (
+    t.raw('why_speak.cards') as Array<{
+      title: string
+      p1: string
+      p2?: string
+      p2_prefix?: string
+      p2_strong?: string
+      p2_suffix?: string
+    }>
+  ).slice(0, WHY_SPEAK_ICONS.length)
+  const formatCards = (t.raw('formats.cards') as Array<{ title: string; duration: string; description: string }>).slice(
+    0,
+    FORMAT_IMAGES.length
+  )
+  const trackItems = (
+    t.raw('tracks.items') as Array<{
+      title: string
+      description: string
+      tags: string[]
+      more: string
+    }>
+  ).slice(0, TRACK_IMAGES.length)
+  const processCards = (t.raw('process.cards') as Array<{ line_1: string; line_2: string }>).slice(
+    0,
+    PROCESS_IMAGES.length
+  )
+
+  const renderContactLine = (visibilityClass: string) => (
+    <p className={cn(css['body'], visibilityClass)}>
+      {t('final_cta.contact_prefix')}
+      <a href={`mailto:${t('final_cta.contact_email')}`} className={css['text-link']}>
+        {t('final_cta.contact_email')}
+      </a>
+    </p>
+  )
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -228,7 +269,7 @@ export default function SpeakerApplicationsPage() {
                 {formatCards.map((card, i) => (
                   <div key={card.title} className={css['format-card']}>
                     <div className={css['format-card-image']}>
-                      <Image src={FORMAT_IMAGES[i]} alt={card.title} fill sizes="(max-width: 768px) 100vw, 238px" />
+                      <Image src={FORMAT_IMAGES[i]} alt={card.title} fill sizes="(max-width: 640px) 100vw, 238px" />
                     </div>
                     <div className={css['format-card-copy']}>
                       <p className={css['format-card-title']}>{card.title}</p>
@@ -263,7 +304,13 @@ export default function SpeakerApplicationsPage() {
 
               <div className={css['tracks-grid']}>
                 {trackItems.map((item, i) => (
-                  <div key={item.title} className={css['track-card']} onClick={() => handleTrackTap(i)}>
+                  <button
+                    type="button"
+                    key={item.title}
+                    className={css['track-card']}
+                    onClick={() => handleTrackToggle(i)}
+                    aria-expanded={flippedTrack === i}
+                  >
                     <div className={cn(css['track-card-inner'], { [css['is-flipped']]: flippedTrack === i })}>
                       <div className={css['track-card-front']}>
                         <div className={css['track-card-icon']}>
@@ -286,7 +333,7 @@ export default function SpeakerApplicationsPage() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
 
@@ -301,17 +348,14 @@ export default function SpeakerApplicationsPage() {
 
             {/* ── Process Section ──────────────────────────────── */}
             <section id="process" className={cn(css['process-section'], css['scroll-anchor'])}>
-              <div className={css['process-header']}>
-                <h2 className={css['heading-2']}>{t('process.heading')}</h2>
+              <div className={css['process-header']} ref={processHeaderRef}>
+                <motion.h2 className={css['heading-2']} style={{ opacity: processTitleOpacity }}>
+                  {t('process.heading')}
+                </motion.h2>
                 <div className={css['process-grid']}>
                   {processCards.map((card, i) => (
                     <div key={card.line_1} className={css['process-card']}>
-                      <Image
-                        src={PROCESS_IMAGES[i]}
-                        alt=""
-                        fill
-                        sizes="(max-width: 768px) 100vw, 427px"
-                      />
+                      <Image src={PROCESS_IMAGES[i]} alt="" fill sizes="427px" />
                       <p className={css['process-card-caption']}>
                         {card.line_1}
                         <br />
@@ -320,13 +364,55 @@ export default function SpeakerApplicationsPage() {
                     </div>
                   ))}
                 </div>
+
+                {/* Mobile-only scroll-driven stack; visibility swapped with .process-grid at $breakpoints-sm */}
+                <StackingCards totalCards={processCards.length} className={css['process-stack']}>
+                  {processCards.map((card, i) => {
+                    const isLast = i === processCards.length - 1
+                    return (
+                      <StackingCardItem
+                        key={card.line_1}
+                        index={i}
+                        // Pin position and peek step are defined on .process-stack in the SCSS
+                        // module (centered in the viewport, clamped below the sticky title)
+                        topPosition={`calc(var(--stack-top-base) + ${i} * var(--stack-top-step))`}
+                        className={css['process-stack-item']}
+                      >
+                        <div className={css['process-stack-card']} style={{ backgroundColor: PROCESS_STACK_COLORS[i] }}>
+                          <div className={css['process-stack-title-row']}>
+                            <p className={css['process-stack-label']}>{t('process.stack_label')}</p>
+                            <p className={css['process-stack-counter']}>
+                              {String(i + 1).padStart(2, '0')}/{String(processCards.length).padStart(2, '0')}
+                            </p>
+                          </div>
+                          {/* No <br/> here: the mobile card is narrower than the desktop caption,
+                              so the copy reflows naturally instead of forcing ragged breaks */}
+                          <p className={css['process-stack-heading']}>
+                            {card.line_1} {card.line_2}
+                          </p>
+                          <div className={css['process-stack-image']}>
+                            <Image src={PROCESS_IMAGES[i]} alt="" fill sizes="100vw" />
+                          </div>
+                          <p className={css['process-stack-footer']}>
+                            {isLast ? <CircleCheckBig size={16} strokeWidth={2} /> : <MoveUp size={16} strokeWidth={2} />}
+                            {isLast ? t('process.the_end') : t('process.scroll_to_continue')}
+                          </p>
+                        </div>
+                      </StackingCardItem>
+                    )
+                  })}
+                  {/* Sticky items can't travel past their natural position when they're the
+                      last child — this tail gives the final card room to settle on the pile
+                      while the CTA (pulled up by .process-stack's margin) rises beneath it */}
+                  <div className={css['process-stack-tail']} aria-hidden="true" />
+                </StackingCards>
               </div>
 
               <div className={css['cta-stack']}>
                 <p className={css['body']}>{t('process.callout')}</p>
                 <Link to={REVIEW_CRITERIA_URL} className={css['btn-secondary']}>
                   {t('process.criteria_button')}
-                  <ArrowUpRight size={16} strokeWidth={2} />
+                  <ArrowRight size={16} strokeWidth={2} />
                 </Link>
               </div>
             </section>
@@ -346,12 +432,7 @@ export default function SpeakerApplicationsPage() {
                       {t('final_cta.guidelines_link')}
                     </Link>
                   </p>
-                  <p className={cn(css['body'], css['contact-desktop'])}>
-                    {t('final_cta.contact_prefix')}
-                    <a href={`mailto:${t('final_cta.contact_email')}`} className={css['text-link']}>
-                      {t('final_cta.contact_email')}
-                    </a>
-                  </p>
+                  {renderContactLine(css['contact-desktop'])}
                 </div>
               </div>
 
@@ -366,12 +447,7 @@ export default function SpeakerApplicationsPage() {
                 </Link>
               </div>
 
-              <p className={cn(css['body'], css['contact-mobile'])}>
-                {t('final_cta.contact_prefix')}
-                <a href={`mailto:${t('final_cta.contact_email')}`} className={css['text-link']}>
-                  {t('final_cta.contact_email')}
-                </a>
-              </p>
+              {renderContactLine(css['contact-mobile'])}
             </section>
           </div>
         </div>
@@ -380,8 +456,8 @@ export default function SpeakerApplicationsPage() {
   )
 }
 
-export async function getStaticProps(context: any) {
-  const locale: string = context.locale ?? 'en'
+export async function getStaticProps(context: GetStaticPropsContext) {
+  const locale = context.locale ?? 'en'
   const messages = await getMessages(locale)
   return { props: { messages } }
 }

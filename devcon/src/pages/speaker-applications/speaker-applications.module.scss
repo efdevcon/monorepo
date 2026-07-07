@@ -1,5 +1,20 @@
 @use 'assets/css/partials/index' as *;
 
+/* ─── Local tokens ────────────────────────────────────────── */
+
+/* Matches the header's switch to the mobile foldout nav */
+$nav-fold: 1250px;
+
+/* DC-8 page palette (bespoke to this design; not in the global _colors.scss brand set) */
+$ink-heading: #160b2b;
+$ink-body: #221144;
+$ink-dark: #1a0d33;
+$ink-muted: #594d73;
+$accent-purple: #7235ed;
+$accent-purple-light: #b08df5;
+$off-white: #f9f8fa;
+$hairline: rgba(34, 17, 68, 0.1);
+
 /* ─── Hero Override (PageHero) ────────────────────────────── */
 
 .hero-no-side-gradient {
@@ -58,7 +73,7 @@
   /* Sized so the title spans ~70% of the viewport width */
   font-size: clamp(3rem, 11vw, 160px) !important;
   letter-spacing: -3px !important;
-  color: #f9f8fa !important;
+  color: $off-white !important;
   text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
   transform: translateY(-16px);
 
@@ -82,7 +97,7 @@
 .heading-2 {
   font-size: 32px;
   font-weight: 800;
-  color: #160b2b;
+  color: $ink-heading;
   line-height: 1.2;
   letter-spacing: -0.5px;
   margin: 0;
@@ -95,7 +110,7 @@
 .body {
   font-size: 16px;
   font-weight: 400;
-  color: #221144;
+  color: $ink-body;
   line-height: 1.5;
   letter-spacing: 0;
   margin: 0;
@@ -107,7 +122,8 @@
 
 /* ─── Buttons & Links ─────────────────────────────────────── */
 
-.btn-primary {
+/* Shared pill-button chassis; variants only set colors and hover treatment */
+%btn-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -117,23 +133,14 @@
   padding-right: 28px;
   font-size: 16px;
   font-weight: 700;
-  color: #f9f8fa;
-  background: #7235ed;
-  border: none;
   border-radius: 9999px;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 150ms ease-out, opacity 150ms ease-out;
   min-height: 36px;
   white-space: nowrap;
 
   svg {
     flex-shrink: 0;
-  }
-
-  &:hover {
-    opacity: 0.9;
-    transform: scale(1.03);
   }
 
   &:active {
@@ -146,42 +153,29 @@
   }
 }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  gap: 8px;
-  padding: 16px 32px;
-  padding-right: 28px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #1a0d33;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(34, 17, 68, 0.1);
-  border-radius: 9999px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 150ms ease-out, background 150ms ease-out;
-  min-height: 36px;
-  white-space: nowrap;
+.btn-primary {
+  @extend %btn-pill;
+  color: $off-white;
+  background: $accent-purple;
+  border: none;
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
 
-  svg {
-    flex-shrink: 0;
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
   }
+}
+
+.btn-secondary {
+  @extend %btn-pill;
+  color: $ink-dark;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid $hairline;
+  transition: transform 150ms ease-out, background 150ms ease-out;
 
   &:hover {
     background: rgba(255, 255, 255, 1);
     transform: scale(1.03);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
-
-  @media (max-width: $breakpoints-md) {
-    width: 100%;
-    align-self: stretch;
   }
 }
 
@@ -189,7 +183,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5;
-  color: #7235ed;
+  color: $accent-purple;
   text-decoration: none;
 
   &:hover {
@@ -211,12 +205,12 @@
   background: radial-gradient(ellipse at right center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%),
     radial-gradient(ellipse at left center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%);
 
-  @media (max-width: 1250px) {
+  @media (max-width: $nav-fold) {
     padding: 64px 32px;
   }
 
   @media (max-width: $breakpoints-md) {
-    padding: 64px 20px;
+    padding: 56px 20px 64px 20px;
     gap: 32px;
   }
 }
@@ -238,12 +232,9 @@
   align-items: center;
   position: relative;
 
+  /* Re-center within this centered stack; %btn-pill's width: 100% still takes over at mobile */
   .btn-primary {
     align-self: center;
-
-    @media (max-width: $breakpoints-md) {
-      align-self: stretch;
-    }
   }
 
   @media (max-width: $breakpoints-md) {
@@ -251,9 +242,9 @@
   }
 }
 
-.jaali-left {
+.jaali-left,
+.jaali-right {
   position: absolute;
-  left: 0;
   top: 0;
   height: 100%;
   width: 271px;
@@ -269,23 +260,13 @@
   }
 }
 
+.jaali-left {
+  left: 0;
+}
+
 .jaali-right {
-  position: absolute;
   right: 0;
-  top: 0;
-  height: 100%;
-  width: 271px;
-  pointer-events: none;
   transform: scaleX(-1);
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (max-width: $breakpoints-lg) {
-    display: none;
-  }
 }
 
 .jaali-bottom {
@@ -333,7 +314,7 @@
   align-items: center;
   font-size: 14px;
   line-height: 1.43;
-  color: #1a0d33;
+  color: $ink-dark;
 
   strong {
     font-weight: 700;
@@ -387,18 +368,17 @@
     height: auto;
   }
 
-  @media (max-width: 1250px) {
+  @media (max-width: $nav-fold) {
     display: none;
   }
 }
 
-/* Shared horizontal rhythm: 64px gutters, content capped at 1312px.
-   1250px matches the header's switch to the mobile foldout nav. */
+/* Shared horizontal rhythm: 64px gutters, content capped at 1312px */
 %section-gutters {
   padding-left: max(64px, calc((100% - 1312px) / 2));
   padding-right: max(64px, calc((100% - 1312px) / 2));
 
-  @media (max-width: 1250px) {
+  @media (max-width: $nav-fold) {
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -450,8 +430,7 @@
   opacity: 0.07;
   pointer-events: none;
 
-  /* 1250px matches the header's switch to the mobile foldout nav */
-  @media (max-width: 1250px) {
+  @media (max-width: $nav-fold) {
     top: auto;
     bottom: 0;
     transform: none;
@@ -479,8 +458,8 @@
   outline: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(242, 241, 244, 0.08);
   backdrop-filter: blur(6px);
-  box-shadow: 0px 2px 8px 0px rgba(34, 17, 68, 0.15);
-  color: #f9f8fa;
+  box-shadow: 0px 2px 8px 0px rgba($ink-body, 0.15);
+  color: $off-white;
 
   @media (max-width: $breakpoints-md) {
     padding: 20px;
@@ -494,7 +473,7 @@
 
   svg {
     flex-shrink: 0;
-    color: #b08df5;
+    color: $accent-purple-light;
   }
 }
 
@@ -521,12 +500,12 @@
 
   strong {
     font-weight: 700;
-    color: #b08df5;
+    color: $accent-purple-light;
   }
 }
 
 .track-topics-link {
-  color: #b08df5;
+  color: $accent-purple-light;
 
   &:hover {
     text-decoration: underline;
@@ -574,7 +553,7 @@
     object-fit: contain;
   }
 
-  @media (max-width: 1250px) {
+  @media (max-width: $nav-fold) {
     display: none;
   }
 }
@@ -605,7 +584,7 @@
   align-items: center;
   padding: 20px;
   border-radius: 16px;
-  outline: 1px solid rgba(34, 17, 68, 0.1);
+  outline: 1px solid $hairline;
   background: rgba(255, 255, 255, 0.66);
   backdrop-filter: blur(6px);
 
@@ -645,7 +624,7 @@
 .format-card-title {
   font-size: 20px;
   font-weight: 800;
-  color: #160b2b;
+  color: $ink-heading;
   line-height: 1.3;
   margin: 0;
 }
@@ -662,14 +641,14 @@
 
 .format-card-description {
   font-size: 14px;
-  color: #221144;
+  color: $ink-body;
   line-height: 1.43;
   margin: 0;
 }
 
 .muted-note {
   font-size: 14px;
-  color: #594d73;
+  color: $ink-muted;
   line-height: 1.43;
   text-align: center;
   margin: 0;
@@ -685,13 +664,10 @@
   width: 100%;
   position: relative;
 
+  /* Re-center within this centered stack; %btn-pill's width: 100% still takes over at mobile */
   .btn-primary,
   .btn-secondary {
     align-self: center;
-
-    @media (max-width: $breakpoints-md) {
-      align-self: stretch;
-    }
   }
 }
 
@@ -732,6 +708,19 @@
 .track-card {
   perspective: 1100px;
   cursor: pointer;
+  /* Rendered as a <button>: strip the native chrome */
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px solid $accent-purple;
+    outline-offset: 4px;
+    border-radius: 16px;
+  }
 }
 
 /* Shared timing for the flip rotation and the hover shadow */
@@ -742,7 +731,6 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   height: 100%;
   transform-style: preserve-3d;
   transition: transform $track-flip-transition;
-  will-change: transform;
 
   &.is-flipped {
     transform: rotateY(-180deg);
@@ -774,7 +762,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   -webkit-backface-visibility: hidden;
   padding: 24px;
   border-radius: 16px;
-  outline: 1px solid rgba(34, 17, 68, 0.1);
+  outline: 1px solid $hairline;
   transition: box-shadow $track-flip-transition;
 
   @media (max-width: $breakpoints-md) {
@@ -824,7 +812,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
 .track-card-title {
   font-size: 20px;
   font-weight: 700;
-  color: #160b2b;
+  color: $ink-heading;
   line-height: 1.2;
   letter-spacing: -0.5px;
   text-align: center;
@@ -849,7 +837,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
-  color: #160b2b;
+  color: $ink-heading;
   margin: 0;
 
   @media (max-width: $breakpoints-md) {
@@ -861,7 +849,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
 .track-card-back-description {
   font-size: 14px;
   line-height: 20px;
-  color: #160b2b;
+  color: $ink-heading;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 6;
@@ -886,31 +874,28 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   min-width: 0;
 }
 
-.track-card-tag {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  line-height: 1;
-  color: #594d73;
-  padding: 6px;
-  border: 1px solid #594d73;
-  border-radius: 4px;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
+.track-card-tag,
 .track-card-tag-more {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   line-height: 1;
-  color: #594d73;
-  flex-shrink: 0;
+  color: $ink-muted;
   white-space: nowrap;
+}
+
+.track-card-tag {
+  padding: 6px;
+  border: 1px solid $ink-muted;
+  border-radius: 4px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-card-tag-more {
+  flex-shrink: 0;
 }
 
 .tracks-cta {
@@ -933,6 +918,15 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  /* Keep the section title visible while the mobile card stack plays out.
+     128px clears the fixed header + sub-nav (~94px) with breathing room */
+  @media (max-width: $breakpoints-sm) {
+    .heading-2 {
+      position: sticky;
+      top: 128px;
+    }
+  }
 }
 
 .process-grid {
@@ -944,9 +938,118 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: $breakpoints-md) {
-    grid-template-columns: 1fr;
+  /* Below sm the grid is replaced by the scroll-driven .process-stack */
+  @media (max-width: $breakpoints-sm) {
+    display: none;
   }
+}
+
+/* ─── Mobile stacking cards (<sm) ─────────────────────────── */
+
+.process-stack {
+  display: none;
+
+  @media (max-width: $breakpoints-sm) {
+    display: block;
+
+    /* Estimated card height: the image is (100vw - gutters 40 - card padding 48)
+       wide at aspect 321:359 (×1.1184); the fixed rest is 48 padding + 20 label
+       + 52 two-line heading + 20 footer + 3×24 gaps = 212px */
+    --stack-card-h: calc((100vw - 88px) * 1.1184 + 212px);
+
+    /* Cards pin centered in the viewport, but never higher than 180px —
+       clearing the fixed header (~94px) plus the sticky section title */
+    --stack-top-base: max(180px, calc((100svh - var(--stack-card-h)) / 2));
+
+    /* Per-card peek step: wider on tall phones, compressed on short ones */
+    --stack-top-step: clamp(6px, (100svh - 660px) / 15, 14px);
+
+    /* The last card rests a scroll segment above the stack's end; pull the
+       following CTA up into that space so it rises under the pinned pile */
+    margin-bottom: min(0px, calc(var(--stack-card-h) + var(--stack-top-base) - 100svh));
+  }
+}
+
+/* Each item's height is one card's scroll segment. svh minus the pin offset
+   means the next card's edge reaches the fold right as the current one
+   settles — no empty dwell between cards. Floored at the card height so
+   cards never overlap while in normal flow */
+.process-stack-item {
+  height: max(calc(100svh - var(--stack-top-base)), var(--stack-card-h));
+}
+
+/* Travel room for the last card's pin; mirrors the CTA pull-up margin on
+   .process-stack so the CTA is fully in view by the time the card releases */
+.process-stack-tail {
+  height: max(0px, calc(100svh - var(--stack-top-base) - var(--stack-card-h)));
+}
+
+.process-stack-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 -4px 8px rgba(34, 17, 68, 0.2), 0 -1px 2px rgba(34, 17, 68, 0.1);
+}
+
+.process-stack-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: $ink-body;
+    margin: 0;
+  }
+}
+
+.process-stack-label {
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.process-stack-counter {
+  flex-shrink: 0;
+}
+
+.process-stack-heading {
+  font-size: 20px;
+  font-weight: 800;
+  color: $ink-body;
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  text-align: center;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.process-stack-image {
+  position: relative;
+  aspect-ratio: 321 / 359;
+  border: 4px solid #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.process-stack-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: $ink-body;
+  margin: 0;
 }
 
 .process-card {
@@ -970,7 +1073,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   max-width: calc(100% - 32px);
   font-size: 18px;
   font-weight: 600;
-  color: #221144;
+  color: $ink-body;
   line-height: 1.3;
   letter-spacing: -0.25px;
   text-align: center;
@@ -1034,7 +1137,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   gap: 16px;
   padding: 12px 12px 12px 24px;
   background: #ffffff;
-  border: 1px solid rgba(34, 17, 68, 0.1);
+  border: 1px solid $hairline;
   border-radius: 360px;
   box-shadow: 10px 2px 41.7px 0px rgba(89, 20, 226, 0.45), 0px 4px 16px 0px rgba(89, 20, 226, 0.2),
     0px 1px 2px 0px rgba(89, 20, 226, 0.1);
@@ -1050,10 +1153,6 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
     padding: 16px 24px;
     border-radius: 24px;
     width: 100%;
-
-    .btn-primary {
-      align-self: stretch;
-    }
   }
 }
 
@@ -1062,7 +1161,7 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   gap: 8px;
   align-items: center;
   white-space: nowrap;
-  color: #221144;
+  color: $ink-body;
 
   @media (max-width: $breakpoints-md) {
     flex-direction: column;
