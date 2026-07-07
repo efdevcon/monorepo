@@ -98,7 +98,7 @@ const FORM_SUBHEADING =
   'We value the builders of sanctuary tech: open, decentralized, privacy-preserving technology that keeps the internet free and self-sovereign. Developers, designers, researchers, organizers, artists, and more can apply for a discounted ticket.'
 
 const FORM_SUCCESS_MSG =
-  'Thanks for applying! Our team will review your application and follow up by email. Keep an eye on your inbox.'
+  'Thanks for applying! Our team will review your application and follow up by email within 2 weeks. Keep an eye on your inbox.'
 
 async function setFormMeta(): Promise<void> {
   const body = { heading: FORM_HEADING, subheading: FORM_SUBHEADING, success_msg: FORM_SUCCESS_MSG }
