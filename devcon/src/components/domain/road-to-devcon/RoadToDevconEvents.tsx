@@ -40,7 +40,8 @@ function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }
       to={event.url ?? LISTING_FORM_URL}
       className="group flex flex-col overflow-hidden rounded-2xl border border-[rgba(34,17,68,0.1)] bg-white transition-shadow hover:shadow-[0_8px_24px_rgba(34,17,68,0.12)]"
     >
-      <div className={cn('relative h-[200px] w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
+      {/* Standard social/OG image ratio (1200x630); height follows card width. */}
+      <div className={cn('relative aspect-[1200/630] w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={event.image || DEFAULT_EVENT_IMAGE}
