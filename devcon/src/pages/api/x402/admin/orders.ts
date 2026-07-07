@@ -1,5 +1,5 @@
 /**
- * Thin proxy: forwards to Pretix plugin /plugin/x402/admin/orders.
+ * Thin proxy: forwards to Pretix plugin /plugin/admin/orders.
  * All business logic (order listing, stats) lives in the plugin now.
  *
  * Keep the existing ADMIN_SECRET check — devcon-next still enforces admin auth
@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       completed?: Array<Record<string, unknown>>
       pending?: Array<Record<string, unknown>>
       error?: string
-    }>('/plugin/x402/admin/orders/', { method: 'GET' })
+    }>('/plugin/admin/orders/', { method: 'GET' })
 
     // Stamp env + base URL so the admin UI can label rows by environment
     // when multiple Pretix instances are proxied through the same build.

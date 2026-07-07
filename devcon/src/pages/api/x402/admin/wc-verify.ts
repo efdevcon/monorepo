@@ -1,5 +1,5 @@
 /**
- * Thin proxy: forwards to Pretix plugin /plugin/x402/admin/wc-verify.
+ * Thin proxy: forwards to Pretix plugin /plugin/admin/wc-verify.
  * Admin-operated manual verification for the legacy wc_inject flow —
  * counterpart of /admin/verify (x402). Used when a buyer's auto-verify
  * didn't complete (closed browser, RPC blip, slow wallet broadcast).
@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   if (!checkAdminAuth(req, res)) return
   try {
-    const { status, body } = await pluginFetch('/plugin/x402/admin/wc-verify/', {
+    const { status, body } = await pluginFetch('/plugin/admin/wc-verify/', {
       method: 'POST',
       body: req.body,
     })

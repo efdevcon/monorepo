@@ -1,5 +1,5 @@
 /**
- * Thin proxy: forwards to Pretix plugin /plugin/x402/admin/wc-refund.
+ * Thin proxy: forwards to Pretix plugin /plugin/admin/wc-refund.
  * Records an on-chain refund of a legacy WalletConnect (pre-x402) order
  * as a Pretix OrderRefund. Idempotency lives plugin-side (duplicate
  * refund_tx_hash → 409). All other business logic is the plugin.
@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   let proxyResult: { status: number; body: unknown }
   try {
-    proxyResult = await pluginFetch('/plugin/x402/admin/wc-refund/', {
+    proxyResult = await pluginFetch('/plugin/admin/wc-refund/', {
       method: 'POST',
       body,
     })
