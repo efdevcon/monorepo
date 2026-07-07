@@ -1,6 +1,6 @@
 # ai-content-prep.yml
 
-    Old webhook to ingest content for the Devcon SEA chatbot - I'd just delete this
+    Old webhook to ingest content for the Devcon SEA chatbot - I'd just delete this.
 
 # devcon-archive.yml
 

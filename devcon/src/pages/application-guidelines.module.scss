@@ -1,0 +1,504 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+/* Mirrors src/pages/tickets/faq.module.scss so the hero reads identically. */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 70% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: center 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 564px !important;
+    max-height: 564px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  font-size: clamp(3rem, 9vw, 130px) !important;
+  letter-spacing: -2px !important;
+  color: #f9f8fa !important;
+  text-shadow: 0 2px 8px rgba(34, 17, 68, 0.2);
+  transform: translateY(-16px);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+  }
+}
+
+/* ─── Layout container (matches Figma 1120px content width) ─ */
+
+$content-max-width: 1120px;
+
+/* ─── Main Section ────────────────────────────────────────── */
+
+.main {
+  position: relative;
+  padding: 64px 0 80px;
+  /* NOTE: cannot use overflow:hidden here — it would break position:sticky on
+     the sidebar. */
+  /* Purple radial bloom on the bottom edge + warm-bottom linear tint, matching
+     the FAQ page so the two content pages share a palette. */
+  background:
+    radial-gradient(50% 13.91% at 50% 100%, #d3bff9 0%, #decffb 23.56%, rgba(222, 207, 251, 0) 100%),
+    linear-gradient(0deg, #e5ebff 19.98%, #fbfafc 100%);
+
+  @media (max-width: $breakpoints-md) {
+    padding: 40px 0 56px;
+  }
+}
+
+.main-bg-moon {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(1440px, 100%);
+  height: 722px;
+  overflow: hidden; /* clip the moon SVG to just its top half */
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.main-inner {
+  position: relative;
+  z-index: 1;
+  max-width: $content-max-width;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  @media (max-width: $breakpoints-md) {
+    gap: 40px;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  width: 100%;
+
+  @media (max-width: $breakpoints-xl) {
+    flex-direction: column-reverse;
+    gap: 32px;
+  }
+}
+
+/* ─── Content column (Left) ───────────────────────────────── */
+
+.content-column {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  /* Keep body copy to a readable measure. On desktop it sits left with the
+     sidebar to its right; once the sidebar collapses into the mobile sub-nav
+     (below xl) the column is centered instead of floating left. */
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @media (max-width: $breakpoints-xl) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    gap: 32px;
+  }
+}
+
+.page-heading {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+  margin: 0;
+  white-space: pre-line;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
+}
+
+.section-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Desktop: clear the sticky header only. Mobile: also clear the sticky
+     .mobile-nav (~48px) so the section title isn't hidden behind it. */
+  scroll-margin-top: 100px;
+
+  @media (max-width: $breakpoints-xl) {
+    scroll-margin-top: 120px;
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #160b2b;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 20px;
+  }
+}
+
+.section-title-icon {
+  flex-shrink: 0;
+  color: #ff6600;
+}
+
+/* ─── Prose (react-markdown output) ───────────────────────── */
+
+.prose {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #160b2b;
+
+  /* Mobile: Figma "paragraph small" — 14px / 20px line-height. */
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  p {
+    margin: 0 0 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    color: #160b2b;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin: 8px 0 16px;
+    list-style: disc outside;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ol {
+    list-style: decimal outside;
+  }
+
+  li {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a,
+  a > strong {
+    color: #7235ed !important;
+    font-weight: 700;
+    text-decoration: none !important;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* ─── Apply CTA (Decision section) ────────────────────────── */
+
+.apply-button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 16px 28px;
+  background: #7235ed;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #5f28d1;
+  }
+}
+
+.apply-button-arrow {
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+/* ─── Sidebar (Right) ─────────────────────────────────────── */
+/* Desktop sidebar: hidden on mobile (replaced by .mobile-nav outside main-inner) */
+
+.sidebar {
+  flex-shrink: 0;
+  width: 280px;
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+
+  @media (max-width: $breakpoints-xl) {
+    display: none;
+  }
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 20px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  color: #221144;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.15s, border-color 0.15s;
+  /* Per-item left border. Inactive items form a continuous grey rail (the list
+     has no gap between items); the active item swaps to purple, overlapping the
+     rail exactly at the same position. */
+  border-left: 1px solid rgba(34, 17, 68, 0.1);
+
+  &:hover {
+    color: #7235ed;
+  }
+}
+
+.sidebar-item-active {
+  font-weight: 700;
+  color: #7235ed;
+  border-left-color: #7235ed;
+}
+
+/* ─── Mobile sticky category nav ──────────────────────────── */
+/* Rendered outside .main-inner so the dark-purple strip spans the full viewport
+   width. Hidden on desktop (≥ xl breakpoint). Mirrors the FAQ page. */
+
+.mobile-nav {
+  display: none;
+
+  @media (max-width: $breakpoints-xl) {
+    display: block;
+    position: sticky;
+    /* Site header is sticky at top: 0 with height ~54px on mobile; pin below it. */
+    top: 54px;
+    z-index: 10;
+    background: linear-gradient(180deg, #261847 0%, #3a2862 100%);
+  }
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 16px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > li {
+    flex-shrink: 0;
+  }
+}
+
+.mobile-nav-item {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #dddae2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #c4aaf7;
+  }
+}
+
+.mobile-nav-item-active {
+  color: #c4aaf7;
+  font-weight: 700;
+}
+
+/* ─── Contact CTA band ────────────────────────────────────── */
+
+.cta-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(34, 17, 68, 0.1);
+  margin: 0;
+  border: none;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 80px;
+  background: rgba(255, 255, 255, 0.33);
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 4px rgba(34, 17, 68, 0.06), 0 1px 2px rgba(34, 17, 68, 0.08);
+  text-align: center;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 24px;
+  }
+}
+
+.contact-heading {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: #1a0d33;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 20px;
+  }
+}
+
+.contact-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  /* Reserve room on the right for the decorative @ watermark so it never
+     overlaps the label (which can be long, e.g. "Reach out to speak@devcon.org"). */
+  padding: 20px 68px 20px 28px;
+  background: white;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a0d33;
+  text-decoration: none;
+  max-width: 100%;
+  overflow: hidden;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #f9f8fa;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+  }
+}
+
+.contact-button-text {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-button-watermark {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  opacity: 0.25;
+  color: #1a0d33;
+  pointer-events: none;
+}

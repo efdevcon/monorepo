@@ -60,7 +60,12 @@ Recoil for global state (`src/state/main.ts`). React Context for Web3Modal/AppKi
 
 ### Internationalization
 
-Locales: `default`, `en`, `es`. Middleware handles i18n routing.
+Locales: `default`, `en`, `hi`, `mr` (next.config.js). Middleware handles i18n routing.
+
+- Intl strings live in `content/<locale>/intl/*.json`, imported and registered per-namespace in `src/utils/intl.ts`. `getMessages(locale)` deep-merges the locale bundle **on top of `en`**, so missing hi/mr files or keys automatically fall back to English.
+- **Only author content in `content/en/`.** Never hand-write `hi`/`mr` content: a GitHub Action (`.github/workflows/devcon-translate.yml`, root repo) runs on every push to `main` touching `devcon/content/en/**` and machine-translates changed files to Hindi and Marathi via `pnpm translate-content`, committing the results. Hand-made hi/mr content gets overwritten by it, and until then it *overrides* the en fallback (risking stale copy).
+- **When adding a new intl namespace**: commit the en JSON plus *empty* `{}` files at `content/hi/intl/<ns>.json` and `content/mr/intl/<ns>.json`, and register all three locales in `src/utils/intl.ts` (imports + `MESSAGES` entries). The workflow only commits content files, never `intl.ts` — without the hi/mr registration its translations land on disk but are never served; the empty `{}` merges to pure en until translations arrive.
+- `content/.manifest.json` tracks source-file hashes so only changed en files are re-translated; don't edit it manually.
 
 ## Code Style
 
