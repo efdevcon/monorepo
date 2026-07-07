@@ -20,12 +20,13 @@ import css from './ecosystem-program.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
 import { ApplicationsTable, type ApplicationRow } from 'components/domain/applications-table'
+import { useIsLaunched } from 'hooks/useWaveStates'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6]
 
 const SUPPORT_TAG_COLORS = ['#ffe0cc', '#f0d7f4', '#d6d5f6', '#cddff4', '#cdf4d7']
 
-const APPLICATION_ROWS: ApplicationRow[] = [
+const STUDENT_APPLICATION_ROWS: ApplicationRow[] = [
   {
     id: 'indian-students',
     name: 'Indian Students',
@@ -39,13 +40,6 @@ const APPLICATION_ROWS: ApplicationRow[] = [
     price: '$99',
     applyUrl: '/form/student-application',
     live: true,
-  },
-  {
-    id: 'builders',
-    name: 'Builders',
-    price: 'TBD',
-    date: 'Opens in July',
-    live: false,
   },
 ]
 
@@ -78,6 +72,28 @@ const APPLICATION_ROWS: ApplicationRow[] = [
 export default function EcosystemProgramPage() {
   const t = useTranslations('ecosystem_program')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  // Sanctuary Tech Builders applications open at the global ticket launch
+  // (config/waves.ts GLOBAL_LAUNCH_TIME) — before that the row shows the
+  // launch month, after it flips live with the Apply link.
+  const { launched } = useIsLaunched()
+  const applicationRowsResolved: ApplicationRow[] = [
+    ...STUDENT_APPLICATION_ROWS,
+    launched
+      ? {
+          id: 'builders',
+          name: 'Sanctuary Tech Builders',
+          price: '$349',
+          applyUrl: '/form/builder-application',
+          live: true,
+        }
+      : {
+          id: 'builders',
+          name: 'Sanctuary Tech Builders',
+          price: '$349',
+          date: 'Opens July',
+          live: false,
+        },
+  ]
 
   const navLinks = [
     { title: t('nav.about'), to: '#about' },
@@ -329,7 +345,7 @@ export default function EcosystemProgramPage() {
           </div>
 
           <div className={css['other-support-right']}>
-            <ApplicationsTable rows={APPLICATION_ROWS} status={t('other_support.card_status')} />
+            <ApplicationsTable rows={applicationRowsResolved} status={t('other_support.card_status')} />
 
             <div className={css['faq-accordion']}>
               {faqItems.map((item, i) => (

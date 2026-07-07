@@ -20,6 +20,7 @@ import Photo5 from './photo-5.png'
 import css from '../ecosystem-program/ecosystem-program.module.scss'
 import cn from 'classnames'
 import { ApplicationsTable, type ApplicationRow } from 'components/domain/applications-table'
+import { useIsLaunched } from 'hooks/useWaveStates'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5]
 
@@ -34,6 +35,10 @@ const CONTACT_EMAIL = 'university@ethereum.foundation'
 export default function AcademicProgramPage() {
   const t = useTranslations('academic_program')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  // Sanctuary Tech Builders applications open at the global ticket launch
+  // (config/waves.ts GLOBAL_LAUNCH_TIME) — before that the row shows the
+  // launch month, after it flips live with the Apply link.
+  const { launched } = useIsLaunched()
 
   const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>
 
@@ -71,7 +76,21 @@ export default function AcademicProgramPage() {
       applyUrl: '/form/student-application',
       live: true,
     },
-    { id: 'builders', name: t('other_support.rows.2.name'), price: 'TBD', date: t('other_support.builders_date'), live: false },
+    launched
+      ? {
+          id: 'builders',
+          name: t('other_support.rows.2.name'),
+          price: '$349',
+          applyUrl: '/form/builder-application',
+          live: true,
+        }
+      : {
+          id: 'builders',
+          name: t('other_support.rows.2.name'),
+          price: '$349',
+          date: t('other_support.builders_date'),
+          live: false,
+        },
   ]
 
   const FAQ_ITEMS = [
