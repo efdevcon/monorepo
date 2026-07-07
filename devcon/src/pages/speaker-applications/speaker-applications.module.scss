@@ -1,0 +1,1189 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Local tokens ────────────────────────────────────────── */
+
+/* Matches the header's switch to the mobile foldout nav */
+$nav-fold: 1250px;
+
+/* DC-8 page palette (bespoke to this design; not in the global _colors.scss brand set) */
+$ink-heading: #160b2b;
+$ink-body: #221144;
+$ink-dark: #1a0d33;
+$ink-muted: #594d73;
+$accent-purple: #7235ed;
+$accent-purple-light: #b08df5;
+$off-white: #f9f8fa;
+$hairline: rgba(34, 17, 68, 0.1);
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 40% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: center 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 78vh !important;
+    max-height: 755px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  /* Sized so the title spans ~70% of the viewport width */
+  font-size: clamp(3rem, 11vw, 160px) !important;
+  letter-spacing: -3px !important;
+  color: $off-white !important;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-16px);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+    letter-spacing: -2px !important;
+  }
+}
+
+/* ─── Page Content Wrapper ────────────────────────────────── */
+
+.landing {
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: #fbfafc;
+}
+
+/* ─── Typography ──────────────────────────────────────────── */
+
+.heading-2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: $ink-heading;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
+}
+
+.body {
+  font-size: 16px;
+  font-weight: 400;
+  color: $ink-body;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ─── Buttons & Links ─────────────────────────────────────── */
+
+/* Shared pill-button chassis; variants only set colors and hover treatment */
+%btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 32px;
+  padding-right: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.btn-primary {
+  @extend %btn-pill;
+  color: $off-white;
+  background: $accent-purple;
+  border: none;
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+.btn-secondary {
+  @extend %btn-pill;
+  color: $ink-dark;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid $hairline;
+  transition: transform 150ms ease-out, background 150ms ease-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.03);
+  }
+}
+
+.text-link {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: $accent-purple;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ─── Hero Content Section ────────────────────────────────── */
+
+.hero-content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 64px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at right center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%),
+    radial-gradient(ellipse at left center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%);
+
+  @media (max-width: $nav-fold) {
+    padding: 64px 32px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding: 56px 20px 64px 20px;
+    gap: 32px;
+  }
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  position: relative;
+}
+
+.hero-cta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+
+  /* Re-center within this centered stack; %btn-pill's width: 100% still takes over at mobile */
+  .btn-primary {
+    align-self: center;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+  }
+}
+
+.jaali-left,
+.jaali-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 271px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.jaali-left {
+  left: 0;
+}
+
+.jaali-right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.jaali-bottom {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 768px;
+  height: 90px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    display: block;
+  }
+}
+
+/* ─── Dates Bar ───────────────────────────────────────────── */
+
+.dates-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 24px;
+  background: #ffa366;
+  flex-wrap: wrap;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 16px 20px;
+  }
+}
+
+.dates-bar-item {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.43;
+  color: $ink-dark;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ─── Main Gradient Container ─────────────────────────────── */
+/* One shared fill behind all main sections, approximating the layered
+   radial gradient stack from the Figma container (node 4615:2715). */
+
+.main-gradient {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* Bottom-right orange glow height: % of the whole container, so shrink it
+     on mobile where the stacked sections make the container much taller */
+  --corner-glow-height: 15%;
+  background-image: radial-gradient(ellipse 60% 18% at 15% 99%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0) 99%),
+    radial-gradient(ellipse 55% var(--corner-glow-height) at 100% 100%, rgba(255, 163, 102, 1) 0%, rgba(255, 163, 102, 1) 35%, rgba(255, 194, 153, 0) 99%),
+    radial-gradient(ellipse 45% 12% at 50% 62%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 35%, rgba(222, 207, 251, 0) 99%),
+    radial-gradient(ellipse 50% 12% at 0% 22%, rgba(255, 224, 204, 1) 0%, rgba(255, 224, 204, 0) 100%),
+    radial-gradient(ellipse 50% 12% at 100% 22%, rgba(255, 224, 204, 1) 0%, rgba(255, 224, 204, 0) 100%),
+    radial-gradient(ellipse 55% 8% at 0% 0%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 24%, rgba(222, 207, 251, 0) 100%),
+    radial-gradient(ellipse 55% 8% at 100% 0%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 24%, rgba(222, 207, 251, 0) 100%),
+    linear-gradient(0deg, #ffe0cc 0%, #e5ebff 45.7%, #fbfafc 100%);
+
+  @media (max-width: $breakpoints-md) {
+    --corner-glow-height: 5%;
+  }
+}
+
+.main-sections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.moon-bg {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  width: 100%;
+  /* The SVG's own layers sit at 0.25 opacity; 0.6 here nets the ~15% from the design */
+  opacity: 0.6;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: $nav-fold) {
+    display: none;
+  }
+}
+
+/* Shared horizontal rhythm: 64px gutters, content capped at 1312px */
+%section-gutters {
+  padding-left: max(64px, calc((100% - 1312px) / 2));
+  padding-right: max(64px, calc((100% - 1312px) / 2));
+
+  @media (max-width: $nav-fold) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ─── Why Speak Section ───────────────────────────────────── */
+
+.why-speak-section {
+  @extend %section-gutters;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.why-speak-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 48px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  background-image: radial-gradient(ellipse 66% 42% at 50% 100%, rgba(69, 50, 108, 1) 0%, rgba(69, 50, 108, 0) 100%),
+    linear-gradient(90deg, #211447 0%, #211447 100%);
+
+  .heading-2 {
+    color: #ffffff;
+    position: relative;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.why-speak-art {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 393px;
+  height: auto;
+  opacity: 0.07;
+  pointer-events: none;
+
+  @media (max-width: $nav-fold) {
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+}
+
+.why-speak-grid {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  position: relative;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+  }
+}
+
+.why-speak-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 12px;
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(242, 241, 244, 0.08);
+  backdrop-filter: blur(6px);
+  box-shadow: 0px 2px 8px 0px rgba($ink-body, 0.15);
+  color: $off-white;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 20px;
+  }
+}
+
+.why-speak-item-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  svg {
+    flex-shrink: 0;
+    color: $accent-purple-light;
+  }
+}
+
+.why-speak-item-title {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.why-speak-item-body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+
+  p {
+    margin: 0 0 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    color: $accent-purple-light;
+  }
+}
+
+.track-topics-link {
+  color: $accent-purple-light;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ─── Formats Section ─────────────────────────────────────── */
+
+.formats-section {
+  @extend %section-gutters;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+
+  @media (max-width: $breakpoints-md) {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+.formats-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.rings-left,
+.rings-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 409px;
+  height: 599px;
+  opacity: 0.03;
+  pointer-events: none;
+
+  img {
+    object-fit: contain;
+  }
+
+  @media (max-width: $nav-fold) {
+    display: none;
+  }
+}
+
+.rings-left {
+  left: 0;
+}
+
+.rings-right {
+  right: 0;
+}
+
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  position: relative;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.format-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 16px;
+  outline: 1px solid $hairline;
+  background: rgba(255, 255, 255, 0.66);
+  backdrop-filter: blur(6px);
+
+  @media (max-width: $breakpoints-sm) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.format-card-image {
+  position: relative;
+  flex-shrink: 0;
+  width: 238px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+
+  @media (max-width: $breakpoints-sm) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.format-card-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.format-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: $ink-heading;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.format-card-duration {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ff6600;
+  line-height: 1;
+  margin: 0;
+}
+
+.format-card-description {
+  font-size: 14px;
+  color: $ink-body;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.muted-note {
+  font-size: 14px;
+  color: $ink-muted;
+  line-height: 1.43;
+  text-align: center;
+  margin: 0;
+  position: relative;
+}
+
+.cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  position: relative;
+
+  /* Re-center within this centered stack; %btn-pill's width: 100% still takes over at mobile */
+  .btn-primary,
+  .btn-secondary {
+    align-self: center;
+  }
+}
+
+/* ─── Tracks Section ──────────────────────────────────────── */
+
+.tracks-section {
+  @extend %section-gutters;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  position: relative;
+}
+
+.tracks-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards flip 180° on the y-axis to reveal track details: hover-driven on
+   desktop, tap-driven where hover isn't available (state set in the page) */
+.track-card {
+  perspective: 1100px;
+  cursor: pointer;
+  /* Rendered as a <button>: strip the native chrome */
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px solid $accent-purple;
+    outline-offset: 4px;
+    border-radius: 16px;
+  }
+}
+
+/* Shared timing for the flip rotation and the hover shadow */
+$track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
+
+.track-card-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform $track-flip-transition;
+
+  &.is-flipped {
+    transform: rotateY(-180deg);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .track-card:hover .track-card-inner {
+    transform: rotateY(-180deg);
+  }
+
+  .track-card:hover .track-card-front,
+  .track-card:hover .track-card-back {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track-card-inner,
+  .track-card-front,
+  .track-card-back {
+    transition: none;
+  }
+}
+
+.track-card-front,
+.track-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 24px;
+  border-radius: 16px;
+  outline: 1px solid $hairline;
+  transition: box-shadow $track-flip-transition;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 16px;
+  }
+}
+
+/* The front stays in normal flow so it sets the card height;
+   the back overlays it, pre-rotated to face away */
+.track-card-front {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  background: #ffffff;
+  transform: rotateY(0deg);
+}
+
+.track-card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(-180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  overflow: hidden;
+  /* background-color set inline per track */
+}
+
+.track-card-icon {
+  position: relative;
+  width: 160px;
+  height: 160px;
+
+  img {
+    object-fit: contain;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 108px;
+    height: 108px;
+  }
+}
+
+.track-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: $ink-heading;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
+}
+
+/* Shrinks before the tag row does, so long copy can never run into the tags */
+.track-card-back-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.track-card-back-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: $ink-heading;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.track-card-back-description {
+  font-size: 14px;
+  line-height: 20px;
+  color: $ink-heading;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 12px;
+    line-height: 16px;
+    -webkit-line-clamp: 5;
+  }
+}
+
+/* Single row: pills shrink and ellipsize instead of wrapping,
+   and the "+ N more" label always stays beside them */
+.track-card-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.track-card-tag,
+.track-card-tag-more {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: $ink-muted;
+  white-space: nowrap;
+}
+
+.track-card-tag {
+  padding: 6px;
+  border: 1px solid $ink-muted;
+  border-radius: 4px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-card-tag-more {
+  flex-shrink: 0;
+}
+
+.tracks-cta {
+  margin-top: 16px;
+}
+
+/* ─── Process Section ─────────────────────────────────────── */
+
+.process-section {
+  @extend %section-gutters;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  position: relative;
+}
+
+.process-header {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  /* Keep the section title visible while the mobile card stack plays out.
+     128px clears the fixed header + sub-nav (~94px) with breathing room */
+  @media (max-width: $breakpoints-sm) {
+    .heading-2 {
+      position: sticky;
+      top: 128px;
+    }
+  }
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 16px;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Below sm the grid is replaced by the scroll-driven .process-stack */
+  @media (max-width: $breakpoints-sm) {
+    display: none;
+  }
+}
+
+/* ─── Mobile stacking cards (<sm) ─────────────────────────── */
+
+.process-stack {
+  display: none;
+
+  @media (max-width: $breakpoints-sm) {
+    display: block;
+
+    /* Estimated card height: the image is (100vw - gutters 40 - card padding 48)
+       wide at aspect 321:359 (×1.1184); the fixed rest is 48 padding + 20 label
+       + 52 two-line heading + 20 footer + 3×24 gaps = 212px */
+    --stack-card-h: calc((100vw - 88px) * 1.1184 + 212px);
+
+    /* Cards pin centered in the viewport, but never higher than 180px —
+       clearing the fixed header (~94px) plus the sticky section title */
+    --stack-top-base: max(180px, calc((100svh - var(--stack-card-h)) / 2));
+
+    /* Per-card peek step: wider on tall phones, compressed on short ones */
+    --stack-top-step: clamp(6px, (100svh - 660px) / 15, 14px);
+
+    /* The last card rests a scroll segment above the stack's end; pull the
+       following CTA up into that space so it rises under the pinned pile */
+    margin-bottom: min(0px, calc(var(--stack-card-h) + var(--stack-top-base) - 100svh));
+  }
+}
+
+/* Each item's height is one card's scroll segment. svh minus the pin offset
+   means the next card's edge reaches the fold right as the current one
+   settles — no empty dwell between cards. Floored at the card height so
+   cards never overlap while in normal flow */
+.process-stack-item {
+  height: max(calc(100svh - var(--stack-top-base)), var(--stack-card-h));
+}
+
+/* Travel room for the last card's pin; mirrors the CTA pull-up margin on
+   .process-stack so the CTA is fully in view by the time the card releases */
+.process-stack-tail {
+  height: max(0px, calc(100svh - var(--stack-top-base) - var(--stack-card-h)));
+}
+
+.process-stack-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 -4px 8px rgba(34, 17, 68, 0.2), 0 -1px 2px rgba(34, 17, 68, 0.1);
+}
+
+.process-stack-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  p {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: $ink-body;
+    margin: 0;
+  }
+}
+
+.process-stack-label {
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.process-stack-counter {
+  flex-shrink: 0;
+}
+
+.process-stack-heading {
+  font-size: 20px;
+  font-weight: 800;
+  color: $ink-body;
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  text-align: center;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.process-stack-image {
+  position: relative;
+  aspect-ratio: 321 / 359;
+  border: 4px solid #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.process-stack-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: $ink-body;
+  margin: 0;
+}
+
+.process-card {
+  position: relative;
+  aspect-ratio: 427 / 479;
+  border-radius: 12px;
+  outline: 1px solid #ffffff;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.process-card-caption {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  font-size: 18px;
+  font-weight: 600;
+  color: $ink-body;
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  text-align: center;
+  margin: 0;
+  z-index: 1;
+}
+
+/* ─── Final CTA Section ───────────────────────────────────── */
+
+.final-cta-section {
+  @extend %section-gutters;
+  display: flex;
+  gap: 64px;
+  align-items: center;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  position: relative;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+}
+
+.final-cta-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.final-cta-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* "Got a question?" line renders inside the copy on desktop,
+   but below the pill at 1024px and under */
+.contact-desktop {
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.contact-mobile {
+  display: none;
+
+  @media (max-width: $breakpoints-lg) {
+    display: block;
+    margin-top: -8px;
+  }
+}
+
+.final-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 12px 12px 24px;
+  background: #ffffff;
+  border: 1px solid $hairline;
+  border-radius: 360px;
+  box-shadow: 10px 2px 41.7px 0px rgba(89, 20, 226, 0.45), 0px 4px 16px 0px rgba(89, 20, 226, 0.2),
+    0px 1px 2px 0px rgba(89, 20, 226, 0.1);
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoints-lg) {
+    align-self: center;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 24px;
+    border-radius: 24px;
+    width: 100%;
+  }
+}
+
+.final-cta-pill-text {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  white-space: nowrap;
+  color: $ink-body;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.final-cta-pill-label {
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.final-cta-pill-date {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ─── Scroll offsets ──────────────────────────────────────── */
+
+.scroll-anchor {
+  scroll-margin-top: 100px;
+}
