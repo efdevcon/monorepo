@@ -83,6 +83,7 @@ import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
+import { useIsLaunched } from 'hooks/useWaveStates'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -231,6 +232,13 @@ function StoreContent({
   initialTickets,
 }: StoreContentProps) {
   const countdown = useCountdown()
+  // Global ticket launch gate (config/waves.ts GLOBAL_LAUNCH_TIME). Before
+  // the launch, GA checkout and the Community self-claim flows show an
+  // "Opens July" label instead of their buttons — same before/during split
+  // as the /tickets landing page. Student applications stay open; the
+  // Sanctuary Tech Builders application opens at launch. Preview the
+  // launched view with ?mockNow=launch.
+  const { launched } = useIsLaunched()
 
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
   // False until the client catalog fetch resolves. The page no longer has
@@ -446,7 +454,11 @@ function StoreContent({
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Sale Waves</h3>
-                  <span className={css['open-badge']}>OPEN</span>
+                  {launched ? (
+                    <span className={css['open-badge']}>OPEN</span>
+                  ) : (
+                    <span className={css['opens-badge']}>Opens July</span>
+                  )}
                 </div>
                 <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
               </div>
@@ -471,7 +483,9 @@ function StoreContent({
                       eth={`$${gaPrice}`}
                       fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined}
                     />
-                    {!ticketsLoaded ? (
+                    {!launched ? (
+                      <span className={css['opens-label']}>Opens July</span>
+                    ) : !ticketsLoaded ? (
                       <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
                     ) : !gaTicket || forceSoldOut || discountSoldOut('general-admission') ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
@@ -529,7 +543,11 @@ function StoreContent({
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Community</h3>
-                  <span className={css['open-badge']}>OPEN</span>
+                  {launched ? (
+                    <span className={css['open-badge']}>OPEN</span>
+                  ) : (
+                    <span className={css['opens-badge']}>Opens July</span>
+                  )}
                 </div>
                 <p className={css['section-subtitle']}>
                   Self-claim discounts — no application required. Tickets are non-transferable and limited.
@@ -548,10 +566,14 @@ function StoreContent({
                   </div>
                   <div className={css['application-card-footer']}>
                     <CardPrice combined="$99" />
-                    <button type="button" className={css['apply-btn']} onClick={() => setRedeemOpen(true)}>
-                      <TicketPercent size={16} strokeWidth={2} />
-                      Redeem voucher
-                    </button>
+                    {!launched ? (
+                      <span className={css['opens-label']}>Opens July</span>
+                    ) : (
+                      <button type="button" className={css['apply-btn']} onClick={() => setRedeemOpen(true)}>
+                        <TicketPercent size={16} strokeWidth={2} />
+                        Redeem voucher
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -566,7 +588,9 @@ function StoreContent({
                   </div>
                   <div className={css['application-card-footer']}>
                     <CardPrice combined="$149" />
-                    {discountSoldOut('india-resident') ? (
+                    {!launched ? (
+                      <span className={css['opens-label']}>Opens July</span>
+                    ) : discountSoldOut('india-resident') ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
                       <button
@@ -596,7 +620,9 @@ function StoreContent({
                         ) : (
                           <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
                         )}
-                        {cardSoldOut ? (
+                        {!launched ? (
+                          <span className={css['opens-label']}>Opens July</span>
+                        ) : cardSoldOut ? (
                           <span className={css['sold-out-badge']}>Sold out</span>
                         ) : (
                           <button
@@ -613,11 +639,14 @@ function StoreContent({
                 })}
               </div>
 
-              <div className={css['voucher-banner']}>
-                <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
-                  <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
-                </button>
-              </div>
+              {/* Voucher redemption also opens at launch — no entry point before. */}
+              {launched && (
+                <div className={css['voucher-banner']}>
+                  <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
+                    <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
+                  </button>
+                </div>
+              )}
 
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
@@ -644,7 +673,12 @@ function StoreContent({
                     </div>
                     <div className={css['application-card-footer']}>
                       <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
-                      {discountSoldOut(card.type) ? (
+                      {/* Sanctuary Tech Builders applications open at the
+                          global launch; student applications are already
+                          open (same split as the /tickets landing page). */}
+                      {!launched && card.type === 'builder' ? (
+                        <span className={css['opens-label']}>Opens July</span>
+                      ) : discountSoldOut(card.type) ? (
                         <span className={css['sold-out-badge']}>Sold out</span>
                       ) : (
                         <Link to={card.href} className={css['apply-btn']}>

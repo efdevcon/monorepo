@@ -379,6 +379,35 @@
   white-space: nowrap;
 }
 
+/* Pre-launch section tag — gray variant of .open-badge, mirrors the
+   /tickets landing "OPENS JULY" StatusTag treatment. */
+.opens-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #221144;
+  background: #f2f1f4;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Pre-launch card action slot — muted "Opens July" label sitting where the
+   buy/verify/apply button will appear at launch. Matches the /tickets table
+   status column (Poppins Medium 16, muted-foreground). */
+.opens-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #594d73;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
 /* Figma: 24px, Poppins ExtraBold (800), line-height 1.2, letter-spacing -0.5px */
 .section-title {
   font-size: 1.5rem;
