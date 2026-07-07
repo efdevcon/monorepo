@@ -5,6 +5,7 @@ import { getSession, signIn, signOut } from 'next-auth/react'
 import { SiweMessage, generateNonce } from 'siwe'
 import { appKit } from 'context/appkit-config'
 import { pretixEventUrl, discountSoldOut } from 'config/ticketing'
+import { EthGlyphTile } from 'components/domain/tickets/TicketTable'
 import css from './VerifyDiscountModal.module.scss'
 
 type VerifyDiscountModalProps = {
@@ -39,8 +40,8 @@ const DISCOUNTS: {
   },
   {
     type: 'pg-projects',
-    label: 'Public Good Projects',
-    discount: '30% off',
+    label: 'Ethereum Public Goods',
+    discount: '$349',
     methods: ['wallet'],
     validMsg: 'Valid contribution verified!',
     invalidMsg: 'No valid Public Goods contributions found.',
@@ -48,12 +49,25 @@ const DISCOUNTS: {
   {
     type: 'past-attendees',
     label: 'Past POAP Holders',
-    discount: '10% off',
+    discount: '$449',
     methods: ['wallet'],
     validMsg: 'Valid POAP found!',
     invalidMsg: 'No valid Devcon/nect POAPs found.',
   },
 ]
+
+// Price display per the Figma popup states (nodes 4707:16809/16982/17623):
+// plain bold FREE with no chip, or the store-card green ETH chip for dollar
+// prices — label sits left, price right.
+const DiscountPrice = ({ value }: { value: string }) =>
+  value === 'FREE' ? (
+    <strong className={css['priceFree']}>FREE</strong>
+  ) : (
+    <span className={css['pricePill']}>
+      <EthGlyphTile size={16} />
+      {value}
+    </span>
+  )
 
 type Step = 'prompt' | 'checking' | 'results' | 'error'
 
@@ -465,30 +479,20 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                 Verify with your wallet or GitHub and we&apos;ll check whether you&apos;re eligible for:
               </p>
               <div className={css['checks']}>
-                {[...DISCOUNTS]
-                  // Available discounts first, sold-out ones sink to the bottom.
-                  .sort((a, b) => Number(discountSoldOut(a.type)) - Number(discountSoldOut(b.type)))
-                  .map(d => {
-                    const soldOut = discountSoldOut(d.type)
-                    return (
-                      <div key={d.type} className={css['checkRow']}>
-                        {soldOut ? (
-                          <CircleX className={css['checkIconSoldOut']} size={24} strokeWidth={2} aria-hidden="true" />
-                        ) : (
-                          <BadgeCheck className={css['checkIcon']} size={24} strokeWidth={2} aria-hidden="true" />
-                        )}
-                        {soldOut ? (
-                          <p className={css['checkText']}>
-                            {d.label} <span className={css['soldOutTag']}>(Sold out)</span>
-                          </p>
-                        ) : (
-                          <p className={css['checkText']}>
-                            {d.label} - <strong>{d.discount}</strong>
-                          </p>
-                        )}
-                      </div>
-                    )
-                  })}
+                {DISCOUNTS.map(d => {
+                  const soldOut = discountSoldOut(d.type)
+                  return (
+                    <div key={d.type} className={css['checkRow']}>
+                      <BadgeCheck className={css['checkIcon']} size={24} strokeWidth={2} aria-hidden="true" />
+                      <p className={`${css['checkText']} ${css['checkLabel']}`}>{d.label}</p>
+                      {soldOut ? (
+                        <span className={css['soldOutPill']}>Sold out</span>
+                      ) : (
+                        <DiscountPrice value={d.discount} />
+                      )}
+                    </div>
+                  )
+                })}
               </div>
               <div className={css['divider']} />
               <div className={css['disclaimer']}>
@@ -536,8 +540,9 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                           return (
                             <div key={opt.type} className={`${css['option']} ${css['optionInvalid']}`}>
                               <div className={css['optionLabelWrap']}>
-                                <p className={css['optionTitle']}>
-                                  {opt.label} - <strong>{opt.discount}</strong>
+                                <p className={css['optionTitleRow']}>
+                                  <span className={css['optionTitle']}>{opt.label}</span>
+                                  <DiscountPrice value={opt.discount} />
                                 </p>
                                 <p className={`${css['optionStatus']} ${css['optionStatusInvalid']}`}>Sold out</p>
                               </div>
@@ -550,8 +555,9 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                           return (
                             <div key={opt.type} className={`${css['option']} ${css['optionInvalid']}`}>
                               <div className={css['optionLabelWrap']}>
-                                <p className={css['optionTitle']}>
-                                  {opt.label} - <strong>{opt.discount}</strong>
+                                <p className={css['optionTitleRow']}>
+                                  <span className={css['optionTitle']}>{opt.label}</span>
+                                  <DiscountPrice value={opt.discount} />
                                 </p>
                                 <p className={`${css['optionStatus']} ${css['optionStatusInvalid']}`}>
                                   {opt.invalidMsg}
@@ -566,8 +572,9 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                           return (
                             <div key={opt.type} className={`${css['option']} ${css['optionIncluded']}`}>
                               <div className={css['optionLabelWrap']}>
-                                <p className={css['optionTitle']}>
-                                  {opt.label} - <strong>{opt.discount}</strong>
+                                <p className={css['optionTitleRow']}>
+                                  <span className={css['optionTitle']}>{opt.label}</span>
+                                  <DiscountPrice value={opt.discount} />
                                 </p>
                                 <p className={`${css['optionStatus']} ${css['optionStatusValid']}`}>
                                   Eligible (a higher discount applies)
@@ -592,8 +599,9 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                               {sel && <span className={css['radioDot']} />}
                             </span>
                             <span className={css['optionLabelWrap']}>
-                              <span className={css['optionTitle']}>
-                                {opt.label} - <strong>{opt.discount}</strong>
+                              <span className={css['optionTitleRow']}>
+                                <span className={css['optionTitle']}>{opt.label}</span>
+                                <DiscountPrice value={opt.discount} />
                               </span>
                               <span className={`${css['optionStatus']} ${css['optionStatusValid']}`}>
                                 {opt.validMsg}

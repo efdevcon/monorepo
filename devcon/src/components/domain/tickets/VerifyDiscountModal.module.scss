@@ -121,11 +121,6 @@
   color: #7235ed;
 }
 
-.checkIconSoldOut {
-  flex-shrink: 0;
-  color: #b42124;
-}
-
 .disclaimerIcon {
   flex-shrink: 0;
   color: #221144;
@@ -145,9 +140,59 @@
   }
 }
 
-.soldOutTag {
-  color: #b42124;
+/* ── Price display (Figma 2A/2B/2C) ──
+   Rows show the label on the left and the actual price on the right:
+   plain bold FREE, a green ETH chip for dollar prices, or a red pill
+   when the discount is sold out. Mirrors the store cards' chip style. */
+.checkLabel {
+  flex: 1;
+  min-width: 0;
+}
+
+.priceFree {
+  font-size: 1rem;
   font-weight: 700;
+  color: #221144;
+  letter-spacing: -0.25px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.pricePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 4px;
+  background: #d5f4dd;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #221144;
+  letter-spacing: -0.25px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.soldOutPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #fbeaea;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #b42124;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Option first line: label left, price right. */
+.optionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .divider {
