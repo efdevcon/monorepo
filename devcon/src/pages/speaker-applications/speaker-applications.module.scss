@@ -1,0 +1,1090 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 40% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: center 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 78vh !important;
+    max-height: 755px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  /* Sized so the title spans ~70% of the viewport width */
+  font-size: clamp(3rem, 11vw, 160px) !important;
+  letter-spacing: -3px !important;
+  color: #f9f8fa !important;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-16px);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+    letter-spacing: -2px !important;
+  }
+}
+
+/* ─── Page Content Wrapper ────────────────────────────────── */
+
+.landing {
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background: #fbfafc;
+}
+
+/* ─── Typography ──────────────────────────────────────────── */
+
+.heading-2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #160b2b;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
+}
+
+.body {
+  font-size: 16px;
+  font-weight: 400;
+  color: #221144;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ─── Buttons & Links ─────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 32px;
+  padding-right: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f9f8fa;
+  background: #7235ed;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 32px;
+  padding-right: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a0d33;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 150ms ease-out, background 150ms ease-out;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.text-link {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #7235ed;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ─── Hero Content Section ────────────────────────────────── */
+
+.hero-content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 64px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at right center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%),
+    radial-gradient(ellipse at left center, rgba(255, 240, 230, 1) 0%, rgba(255, 240, 230, 0) 70%);
+
+  @media (max-width: 1250px) {
+    padding: 64px 32px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding: 64px 20px;
+    gap: 32px;
+  }
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  position: relative;
+}
+
+.hero-cta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+
+  .btn-primary {
+    align-self: center;
+
+    @media (max-width: $breakpoints-md) {
+      align-self: stretch;
+    }
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+  }
+}
+
+.jaali-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 271px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.jaali-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 271px;
+  pointer-events: none;
+  transform: scaleX(-1);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.jaali-bottom {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 768px;
+  height: 90px;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    display: block;
+  }
+}
+
+/* ─── Dates Bar ───────────────────────────────────────────── */
+
+.dates-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 24px;
+  background: #ffa366;
+  flex-wrap: wrap;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 16px 20px;
+  }
+}
+
+.dates-bar-item {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #1a0d33;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ─── Main Gradient Container ─────────────────────────────── */
+/* One shared fill behind all main sections, approximating the layered
+   radial gradient stack from the Figma container (node 4615:2715). */
+
+.main-gradient {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* Bottom-right orange glow height: % of the whole container, so shrink it
+     on mobile where the stacked sections make the container much taller */
+  --corner-glow-height: 15%;
+  background-image: radial-gradient(ellipse 60% 18% at 15% 99%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0) 99%),
+    radial-gradient(ellipse 55% var(--corner-glow-height) at 100% 100%, rgba(255, 163, 102, 1) 0%, rgba(255, 163, 102, 1) 35%, rgba(255, 194, 153, 0) 99%),
+    radial-gradient(ellipse 45% 12% at 50% 62%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 35%, rgba(222, 207, 251, 0) 99%),
+    radial-gradient(ellipse 50% 12% at 0% 22%, rgba(255, 224, 204, 1) 0%, rgba(255, 224, 204, 0) 100%),
+    radial-gradient(ellipse 50% 12% at 100% 22%, rgba(255, 224, 204, 1) 0%, rgba(255, 224, 204, 0) 100%),
+    radial-gradient(ellipse 55% 8% at 0% 0%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 24%, rgba(222, 207, 251, 0) 100%),
+    radial-gradient(ellipse 55% 8% at 100% 0%, rgba(211, 191, 249, 1) 0%, rgba(222, 207, 251, 1) 24%, rgba(222, 207, 251, 0) 100%),
+    linear-gradient(0deg, #ffe0cc 0%, #e5ebff 45.7%, #fbfafc 100%);
+
+  @media (max-width: $breakpoints-md) {
+    --corner-glow-height: 5%;
+  }
+}
+
+.main-sections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.moon-bg {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  width: 100%;
+  /* The SVG's own layers sit at 0.25 opacity; 0.6 here nets the ~15% from the design */
+  opacity: 0.6;
+  pointer-events: none;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1250px) {
+    display: none;
+  }
+}
+
+/* Shared horizontal rhythm: 64px gutters, content capped at 1312px.
+   1250px matches the header's switch to the mobile foldout nav. */
+%section-gutters {
+  padding-left: max(64px, calc((100% - 1312px) / 2));
+  padding-right: max(64px, calc((100% - 1312px) / 2));
+
+  @media (max-width: 1250px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ─── Why Speak Section ───────────────────────────────────── */
+
+.why-speak-section {
+  @extend %section-gutters;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.why-speak-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 48px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  background-image: radial-gradient(ellipse 66% 42% at 50% 100%, rgba(69, 50, 108, 1) 0%, rgba(69, 50, 108, 0) 100%),
+    linear-gradient(90deg, #211447 0%, #211447 100%);
+
+  .heading-2 {
+    color: #ffffff;
+    position: relative;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.why-speak-art {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 393px;
+  height: auto;
+  opacity: 0.07;
+  pointer-events: none;
+
+  /* 1250px matches the header's switch to the mobile foldout nav */
+  @media (max-width: 1250px) {
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+}
+
+.why-speak-grid {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  position: relative;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+  }
+}
+
+.why-speak-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 12px;
+  outline: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(242, 241, 244, 0.08);
+  backdrop-filter: blur(6px);
+  box-shadow: 0px 2px 8px 0px rgba(34, 17, 68, 0.15);
+  color: #f9f8fa;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 20px;
+  }
+}
+
+.why-speak-item-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  svg {
+    flex-shrink: 0;
+    color: #b08df5;
+  }
+}
+
+.why-speak-item-title {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.why-speak-item-body {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+
+  p {
+    margin: 0 0 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    color: #b08df5;
+  }
+}
+
+.track-topics-link {
+  color: #b08df5;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ─── Formats Section ─────────────────────────────────────── */
+
+.formats-section {
+  @extend %section-gutters;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+
+  @media (max-width: $breakpoints-md) {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+.formats-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.rings-left,
+.rings-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 409px;
+  height: 599px;
+  opacity: 0.03;
+  pointer-events: none;
+
+  img {
+    object-fit: contain;
+  }
+
+  @media (max-width: 1250px) {
+    display: none;
+  }
+}
+
+.rings-left {
+  left: 0;
+}
+
+.rings-right {
+  right: 0;
+}
+
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+  position: relative;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.format-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 16px;
+  outline: 1px solid rgba(34, 17, 68, 0.1);
+  background: rgba(255, 255, 255, 0.66);
+  backdrop-filter: blur(6px);
+
+  @media (max-width: $breakpoints-sm) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.format-card-image {
+  position: relative;
+  flex-shrink: 0;
+  width: 238px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+
+  @media (max-width: $breakpoints-sm) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.format-card-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.format-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #160b2b;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.format-card-duration {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ff6600;
+  line-height: 1;
+  margin: 0;
+}
+
+.format-card-description {
+  font-size: 14px;
+  color: #221144;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.muted-note {
+  font-size: 14px;
+  color: #594d73;
+  line-height: 1.43;
+  text-align: center;
+  margin: 0;
+  position: relative;
+}
+
+.cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  position: relative;
+
+  .btn-primary,
+  .btn-secondary {
+    align-self: center;
+
+    @media (max-width: $breakpoints-md) {
+      align-self: stretch;
+    }
+  }
+}
+
+/* ─── Tracks Section ──────────────────────────────────────── */
+
+.tracks-section {
+  @extend %section-gutters;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  position: relative;
+}
+
+.tracks-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards flip 180° on the y-axis to reveal track details: hover-driven on
+   desktop, tap-driven where hover isn't available (state set in the page) */
+.track-card {
+  perspective: 1100px;
+  cursor: pointer;
+}
+
+/* Shared timing for the flip rotation and the hover shadow */
+$track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
+
+.track-card-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform $track-flip-transition;
+  will-change: transform;
+
+  &.is-flipped {
+    transform: rotateY(-180deg);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .track-card:hover .track-card-inner {
+    transform: rotateY(-180deg);
+  }
+
+  .track-card:hover .track-card-front,
+  .track-card:hover .track-card-back {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track-card-inner,
+  .track-card-front,
+  .track-card-back {
+    transition: none;
+  }
+}
+
+.track-card-front,
+.track-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 24px;
+  border-radius: 16px;
+  outline: 1px solid rgba(34, 17, 68, 0.1);
+  transition: box-shadow $track-flip-transition;
+
+  @media (max-width: $breakpoints-md) {
+    padding: 16px;
+  }
+}
+
+/* The front stays in normal flow so it sets the card height;
+   the back overlays it, pre-rotated to face away */
+.track-card-front {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  background: #ffffff;
+  transform: rotateY(0deg);
+}
+
+.track-card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(-180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  overflow: hidden;
+  /* background-color set inline per track */
+}
+
+.track-card-icon {
+  position: relative;
+  width: 160px;
+  height: 160px;
+
+  img {
+    object-fit: contain;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 108px;
+    height: 108px;
+  }
+}
+
+.track-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 16px;
+  }
+}
+
+/* Shrinks before the tag row does, so long copy can never run into the tags */
+.track-card-back-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.track-card-back-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #160b2b;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.track-card-back-description {
+  font-size: 14px;
+  line-height: 20px;
+  color: #160b2b;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 12px;
+    line-height: 16px;
+    -webkit-line-clamp: 5;
+  }
+}
+
+/* Single row: pills shrink and ellipsize instead of wrapping,
+   and the "+ N more" label always stays beside them */
+.track-card-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.track-card-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #594d73;
+  padding: 6px;
+  border: 1px solid #594d73;
+  border-radius: 4px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-card-tag-more {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #594d73;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.tracks-cta {
+  margin-top: 16px;
+}
+
+/* ─── Process Section ─────────────────────────────────────── */
+
+.process-section {
+  @extend %section-gutters;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  position: relative;
+}
+
+.process-header {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 16px;
+
+  @media (max-width: $breakpoints-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoints-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.process-card {
+  position: relative;
+  aspect-ratio: 427 / 479;
+  border-radius: 12px;
+  outline: 1px solid #ffffff;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.process-card-caption {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  font-size: 18px;
+  font-weight: 600;
+  color: #221144;
+  line-height: 1.3;
+  letter-spacing: -0.25px;
+  text-align: center;
+  margin: 0;
+  z-index: 1;
+}
+
+/* ─── Final CTA Section ───────────────────────────────────── */
+
+.final-cta-section {
+  @extend %section-gutters;
+  display: flex;
+  gap: 64px;
+  align-items: center;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  position: relative;
+
+  @media (max-width: $breakpoints-lg) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+}
+
+.final-cta-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.final-cta-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* "Got a question?" line renders inside the copy on desktop,
+   but below the pill at 1024px and under */
+.contact-desktop {
+  @media (max-width: $breakpoints-lg) {
+    display: none;
+  }
+}
+
+.contact-mobile {
+  display: none;
+
+  @media (max-width: $breakpoints-lg) {
+    display: block;
+    margin-top: -8px;
+  }
+}
+
+.final-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 12px 12px 24px;
+  background: #ffffff;
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  border-radius: 360px;
+  box-shadow: 10px 2px 41.7px 0px rgba(89, 20, 226, 0.45), 0px 4px 16px 0px rgba(89, 20, 226, 0.2),
+    0px 1px 2px 0px rgba(89, 20, 226, 0.1);
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoints-lg) {
+    align-self: center;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 24px;
+    border-radius: 24px;
+    width: 100%;
+
+    .btn-primary {
+      align-self: stretch;
+    }
+  }
+}
+
+.final-cta-pill-text {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  white-space: nowrap;
+  color: #221144;
+
+  @media (max-width: $breakpoints-md) {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.final-cta-pill-label {
+  font-size: 14px;
+  line-height: 1.43;
+  margin: 0;
+}
+
+.final-cta-pill-date {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* ─── Scroll offsets ──────────────────────────────────────── */
+
+.scroll-anchor {
+  scroll-margin-top: 100px;
+}
