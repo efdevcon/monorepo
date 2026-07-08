@@ -35,6 +35,9 @@ export interface TicketRow {
   richContent?: React.ReactNode
   // When true the row is rendered de-emphasized (e.g. a past/closed wave).
   muted?: boolean
+  // Like `muted` but WITHOUT the strikethrough — a future/TBA tier (e.g. Final
+  // Waves): name + ETH price render in the muted purple foreground.
+  dimmed?: boolean
 }
 
 interface TicketTableProps {
@@ -156,9 +159,17 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           // no rows do — all "VIA VOUCHER" / "VIA SELF PROTOCOL" hints
           // were dropped in the latest design pass, but the field
           // stays wired for future use).
+          // Name/price color: muted (struck) for closed rows, muted (un-struck)
+          // for dimmed future tiers (e.g. Final Waves), else the normal dark fg.
+          const nameClass = row.muted
+            ? 'text-[#594d73] line-through'
+            : row.dimmed
+              ? 'text-[#594d73]'
+              : 'text-[#160b2b]'
+          const ethColorClass = row.dimmed ? 'text-[#594d73]' : 'text-[#221144]'
           const productBlock = (
             <div className="flex-1 min-w-0 flex flex-col gap-1">
-              <p className={`text-base leading-6 font-medium ${row.muted ? 'text-[#594d73] line-through' : 'text-[#160b2b]'}`}>
+              <p className={`text-base leading-6 font-medium ${nameClass}`}>
                 {row.name}
               </p>
               {row.detail && (
@@ -177,7 +188,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           const strikeClass = row.muted ? 'line-through' : ''
 
           const ethContent = ethPrice ? (
-            <span className={`text-base font-bold text-[#221144] leading-none ${strikeClass}`}>
+            <span className={`text-base font-bold ${ethColorClass} leading-none ${strikeClass}`}>
               {ethPrice}
             </span>
           ) : null
@@ -188,7 +199,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           // inside a green chip (no ETH glyph).
           const isFreeEth = ethPrice === 'FREE'
           const ethPill = ethPrice ? (
-            <span className={`inline-flex items-center gap-1.5 bg-[#d5f4dd] rounded px-2 py-1 text-base font-bold text-[#221144] leading-none ${strikeClass}`}>
+            <span className={`inline-flex items-center gap-1.5 bg-[#d5f4dd] rounded px-2 py-1 text-base font-bold ${ethColorClass} leading-none ${strikeClass}`}>
               {!isFreeEth && <EthGlyphTile size={16} />}
               {ethPrice}
             </span>

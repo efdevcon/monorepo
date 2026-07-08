@@ -128,8 +128,12 @@ function GeneralAdmissionTag() {
   if (featured?.status === 'live') return <StatusTag status="open" openLabel="OPEN" comingLabel="" />
 
   let label = 'CLOSED'
+  const paused = waveStates.find(s => s.paused)
   if (featured?.status === 'countdown' && featured.upcoming) {
     label = `OPENS ${formatUpcomingMonth(featured.upcoming)}`
+  } else if (paused?.pausedLabel) {
+    // GA sale paused (coming-soon / closed) — show its label ("REOPENS AUG" / "SOLD OUT").
+    label = paused.pausedLabel.toUpperCase()
   } else {
     // No live / countdown wave — fall back to the first upcoming wave that
     // has a static `openLabel` defined (e.g. "Opens June" for a wave with no
@@ -182,12 +186,13 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   // General Admission rows derived from the canonical wave config. Each wave
   // becomes a row; per-wave state drives the right-edge tag/badge and any
   // rich countdown content underneath.
-  const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, upcoming }) => {
+  const generalRows: TicketRow[] = waveStates.map(({ wave: w, status, upcoming, paused, pausedLabel }) => {
     const row: TicketRow = {
       name: w.name,
       price: w.price,
       ethPrice: w.ethPrice,
       fiatPrice: w.fiatPrice,
+      dimmed: w.dimmed,
     }
     const hasTimes = !!(w.openTimes && w.openTimes.length > 0)
 
@@ -210,12 +215,19 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
       // without an openLabel.
       row.date = w.openLabel ?? (upcoming ? `Opens ${DAY_MONTH_FORMATTER.format(upcoming)}` : undefined)
     } else if (status === 'closed') {
-      // Past wave — name struck through, "Sale ended" in action slot.
-      // Prices STAY VISIBLE (also struck-through) per the latest Figma:
-      // the closed wave sits as an audit row so buyers can see what the
-      // now-closed pricing was. TicketTable applies `line-through` to
-      // the price content when `row.muted` is true.
-      row.muted = true
+      if (paused) {
+        // GA sale paused (coming-soon / closed). Show the paused label
+        // ("Reopens Aug" / "Sold out") in the status slot, hide the CTA, and
+        // keep the price visible and un-struck — the sale is paused, not retired.
+        row.date = pausedLabel
+      } else {
+        // Past wave — name struck through, "Sale ended" in action slot.
+        // Prices STAY VISIBLE (also struck-through) per the latest Figma:
+        // the closed wave sits as an audit row so buyers can see what the
+        // now-closed pricing was. TicketTable applies `line-through` to
+        // the price content when `row.muted` is true.
+        row.muted = true
+      }
     } else {
       // 'tbd' — wave date not yet set. When the wave declares an explicit
       // action + actionHref (e.g. General Admission wants to expose

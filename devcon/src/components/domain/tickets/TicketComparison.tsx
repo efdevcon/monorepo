@@ -79,8 +79,12 @@ const GeneralAdmissionStatusTag = () => {
   }
 
   let label = 'CLOSED'
+  const paused = waveStates.find(s => s.paused)
   if (featured?.status === 'countdown' && featured.upcoming) {
     label = `OPENS ${UPCOMING_MONTH_FORMATTER.format(featured.upcoming).toUpperCase()}`
+  } else if (paused?.pausedLabel) {
+    // GA sale paused (coming-soon / closed) — show its label ("REOPENS AUG" / "SOLD OUT").
+    label = paused.pausedLabel.toUpperCase()
   } else {
     // Fall back to the first upcoming wave with a static `openLabel`, so a
     // wave configured as "Opens June" (TBD without exact openTimes yet)
@@ -242,6 +246,7 @@ export function TicketComparison() {
   }
   const rawColumns = t.raw('columns') as Column[]
   const { featured, mounted } = useFeaturedWave()
+  const waveStates = useWaveStates()
   const { launched } = useIsLaunched()
   const storeUrl = useTicketsStoreUrl()
 
@@ -263,8 +268,27 @@ export function TicketComparison() {
           }
     }
     if (col.id !== 'general_admission' || !mounted) return col
+    // GA sale paused (coming-soon / closed): keep the wave's price visible, hide
+    // the CTA, and let GeneralAdmissionStatusTag render the paused label
+    // ("REOPENS AUG" / "SOLD OUT"). Checked before the featured branch since the
+    // paused wave is now the featured one.
+    const paused = waveStates.find(s => s.paused)
+    if (paused) {
+      const ethPrice = paused.wave.ethPrice ?? paused.wave.price
+      const fiatPrice = paused.wave.fiatPrice
+      return {
+        ...col,
+        status: 'coming',
+        coming_label: paused.pausedLabel?.toUpperCase(),
+        price: `${ethPrice}+`,
+        price_original: undefined,
+        price_note: fiatPrice ? `${ethPrice} via ETH • ${fiatPrice} via Fiat` : paused.wave.name,
+        price_description: undefined,
+        hide_cta: true,
+      }
+    }
     if (!featured) {
-      // No featured wave — sale has ended across the board.
+      // No featured wave and not paused — sale has ended across the board.
       return {
         ...col,
         status: 'coming',

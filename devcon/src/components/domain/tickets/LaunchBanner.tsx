@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import Image from 'next/image'
 import DevconGlyph from './eth-glyph.png'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useGaSaleState, useTicketsStoreUrl } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
 
 // "JUL 14" / "16:00" (UTC) — second eyebrow line under GLOBAL TICKET LAUNCH.
@@ -62,10 +62,14 @@ function CountdownSeparator() {
 export function LaunchBanner() {
   const t = useTranslations('tickets.sale_banner')
   const { featured, mounted } = useFeaturedWave()
+  const saleState = useGaSaleState()
   const now = useNow()
   const storeUrl = useTicketsStoreUrl()
 
-  if (!mounted || !featured) return null
+  // Only shown for the 'open' sale state (the global-launch countdown before it
+  // opens, then the live "on sale" card). The 'coming-soon' / 'closed' states
+  // show no launch banner — their status rides on the strip + GA table instead.
+  if (!mounted || !featured || saleState !== 'open') return null
 
   const { wave, status, upcoming } = featured
   const showCountdown = status === 'countdown' && upcoming && now

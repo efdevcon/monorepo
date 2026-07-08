@@ -1,8 +1,16 @@
-import { GLOBAL_LAUNCH_TIME, TICKET_WAVES, type TicketWave } from 'config/waves'
+import { useRouter } from 'next/router'
+import {
+  GLOBAL_LAUNCH_TIME,
+  CURRENT_WAVE_ID,
+  GA_SALE_STATE,
+  GA_COMING_SOON_OPENS_AT,
+  GA_COMING_SOON_LABEL,
+  GA_CLOSED_LABEL,
+  TICKET_WAVES,
+  type GaSaleState,
+  type TicketWave,
+} from 'config/waves'
 import { useNow } from './useNow'
-import { useTicketAvailabilityMap, type TicketAvailability } from './useTicketAvailability'
-
-const NO_AVAILABILITY: TicketAvailability = { available: null }
 
 export type WaveStatus = 'live' | 'countdown' | 'closed' | 'tbd'
 
@@ -14,9 +22,15 @@ export interface WaveState {
   // Next opening time for this wave (null if none upcoming or wave is tbd).
   upcoming: Date | null
   mounted: boolean
+  // True when the wave is 'closed' specifically because the GA sale is paused
+  // ('coming-soon' or 'closed') rather than superseded/sold out. Signals
+  // consumers to show `pausedLabel` and keep the price visible (un-struck),
+  // vs the "Sale ended" treatment for retired waves.
+  paused?: boolean
+  // The label to render in the status slot / tags when `paused` (e.g.
+  // "Reopens Aug" for coming-soon, "Sold out" for closed).
+  pausedLabel?: string
 }
-
-const GRACE_WINDOW_MS = 5 * 60_000
 
 function pad(n: number): string {
   return n.toString().padStart(2, '0')
@@ -33,83 +47,60 @@ function formatRemaining(target: Date, now: Date): string {
 }
 
 /**
- * Classifies a single wave at a given moment.
+ * Classifies a single wave at a given moment, position-relative to the current
+ * wave (CURRENT_WAVE_ID → `currentIdx`). No reliance on close/reopen dates or a
+ * Pretix availability poll — the current wave's state is the manual GA_SALE_STATE
+ * switch. `openTimes` are used only to show a pre-open countdown (e.g. GA
+ * counting down to the global launch).
  *
- * Rules:
- *   - No openTimes configured                          → 'tbd'
- *   - All openTimes in the future                      → 'countdown' (to first)
- *   - At least one openTime in the past, AND a later
- *     wave (by index in TICKET_WAVES) has also opened  → 'closed' (implicitly
- *                                                        superseded by next wave)
- *   - At least one openTime in the past, no later wave
- *     activated, AND Pretix says available OR we're in
- *     the 5-min grace window after that openTime       → 'live'
- *   - Past openings exist but no live state, AND THIS
- *     wave has another upcoming round                  → 'countdown' (to next round)
- *   - Otherwise                                        → 'closed'
+ * Rules (by position vs the current wave):
+ *   - idx <  currentIdx  → 'closed' ("Sale ended" — a past round)
+ *   - idx === currentIdx → paused (coming-soon/closed) · countdown (future
+ *                          openTime not yet reached) · else 'live'
+ *   - idx >  currentIdx  → 'countdown' (future openTime) · else 'tbd' (openLabel)
  */
 function classify(
   wave: TicketWave,
   idx: number,
-  allWaves: TicketWave[],
+  currentIdx: number,
   now: Date,
-  availability: TicketAvailability
+  pausedLabel: string | null,
+  comingSoonAt: Date | null
 ): WaveState {
-  if (!wave.openTimes || wave.openTimes.length === 0) {
-    return { wave, status: 'tbd', countdown: null, upcoming: null, mounted: true }
-  }
-
-  const sorted = [...wave.openTimes].sort((a, b) => a.getTime() - b.getTime())
+  const sorted = wave.openTimes ? [...wave.openTimes].sort((a, b) => a.getTime() - b.getTime()) : []
   const upcoming = sorted.find(t => t.getTime() > now.getTime()) ?? null
   const latestPast = [...sorted].reverse().find(t => t.getTime() <= now.getTime()) ?? null
 
-  // Schedule is the primary gate: we never flip a wave to 'live' before its
-  // scheduled openTime, even if Pretix has the quota open for sale. Pretix
-  // availability is a *refinement* once the wave's window has started —
-  // checked further down to decide between live / sold-out / closed.
-  if (!latestPast) {
-    return {
-      wave,
-      status: 'countdown',
-      countdown: upcoming ? formatRemaining(upcoming, now) : null,
-      upcoming,
-      mounted: true,
-    }
-  }
-
-  // Has at least one past openTime. Is a later wave already activated?
-  const supersededByNext = allWaves
-    .slice(idx + 1)
-    .some(w => (w.openTimes ?? []).some(t => t.getTime() <= now.getTime()))
-  if (supersededByNext) {
+  // A round earlier than the current wave → superseded → "Sale ended".
+  if (idx < currentIdx) {
     return { wave, status: 'closed', countdown: null, upcoming: null, mounted: true }
   }
 
-  // No later wave has activated — this wave owns the "current" slot.
-  // Live iff Pretix says inventory available OR we're inside the grace window.
-  // Waves without a `quotaId` are schedule-only: with no Pretix quota to
-  // consult, the schedule alone keeps them live from their openTime until a
-  // later wave supersedes them (otherwise they'd silently flip to 'closed'
-  // 5 minutes after opening because availability never loads).
-  const withinGrace = now.getTime() - latestPast.getTime() < GRACE_WINDOW_MS
-  const pretixAvailable = wave.quotaId != null ? availability.available : true
-  if (pretixAvailable || withinGrace) {
+  if (idx === currentIdx) {
+    // 'coming-soon' with a scheduled reopen → count down to it. The strip /
+    // hero / banner render "… available in 5d 20h …"; CTA stays hidden.
+    if (comingSoonAt != null) {
+      return { wave, status: 'countdown', countdown: formatRemaining(comingSoonAt, now), upcoming: comingSoonAt, mounted: true }
+    }
+    // Paused with a static label: 'closed' ("Reopens Aug") or 'coming-soon'
+    // without a date. Row shows `pausedLabel`, CTA hidden, price kept.
+    if (pausedLabel != null) {
+      return { wave, status: 'closed', countdown: null, upcoming, mounted: true, paused: true, pausedLabel }
+    }
+    // Open, but a scheduled openTime is still in the future → pre-open countdown
+    // (e.g. GA before the global launch). Otherwise live.
+    if (upcoming && !latestPast) {
+      return { wave, status: 'countdown', countdown: formatRemaining(upcoming, now), upcoming, mounted: true }
+    }
     return { wave, status: 'live', countdown: null, upcoming, mounted: true }
   }
 
-  // Not live, but another round of this same wave is still upcoming → show
-  // a countdown to that next round rather than marking the wave closed.
-  if (upcoming) {
-    return {
-      wave,
-      status: 'countdown',
-      countdown: formatRemaining(upcoming, now),
-      upcoming,
-      mounted: true,
-    }
+  // A round later than the current wave → upcoming. Countdown if it has a
+  // future openTime, else 'tbd' (renders its static openLabel, e.g. "Date TBA").
+  if (upcoming && !latestPast) {
+    return { wave, status: 'countdown', countdown: formatRemaining(upcoming, now), upcoming, mounted: true }
   }
-
-  return { wave, status: 'closed', countdown: null, upcoming: null, mounted: true }
+  return { wave, status: 'tbd', countdown: null, upcoming: null, mounted: true }
 }
 
 /**
@@ -118,12 +109,49 @@ function classify(
  */
 export function useWaveStates(): WaveState[] {
   const now = useNow()
-  const availabilityMap = useTicketAvailabilityMap()
+  const saleState = useGaSaleState()
 
   if (!now) {
     return TICKET_WAVES.map(w => ({ wave: w, status: 'countdown', countdown: null, upcoming: null, mounted: false }))
   }
-  return TICKET_WAVES.map((w, i) => classify(w, i, TICKET_WAVES, now, availabilityMap[w.id] ?? NO_AVAILABILITY))
+  // The current wave is defined by the CURRENT_WAVE_ID pointer; everything else
+  // is positioned relative to it (earlier = ended, later = upcoming).
+  const currentIdx = TICKET_WAVES.findIndex(w => w.id === CURRENT_WAVE_ID)
+  // Resolve the current wave's paused label / coming-soon countdown target from
+  // the sale state. Only the current wave receives these.
+  let pausedLabel: string | null = null
+  let comingSoonAt: Date | null = null
+  if (saleState === 'closed') {
+    pausedLabel = GA_CLOSED_LABEL
+  } else if (saleState === 'coming-soon') {
+    if (GA_COMING_SOON_OPENS_AT && GA_COMING_SOON_OPENS_AT.getTime() > now.getTime()) {
+      comingSoonAt = GA_COMING_SOON_OPENS_AT
+    } else {
+      pausedLabel = GA_COMING_SOON_LABEL
+    }
+  }
+  return TICKET_WAVES.map((w, i) =>
+    classify(w, i, currentIdx, now, i === currentIdx ? pausedLabel : null, i === currentIdx ? comingSoonAt : null)
+  )
+}
+
+/**
+ * Current General Admission sale state: 'open' | 'coming-soon' | 'closed'.
+ * Driven by the single GA_SALE_STATE config switch, with `?mockNow=…` overriding
+ * it for previews:
+ *   ?mockNow=launch | open    → 'open'
+ *   ?mockNow=coming-soon|soon → 'coming-soon'
+ *   ?mockNow=closed           → 'closed'
+ * (the same params also advance the clock in `useNow`). When paused, the GA
+ * row/tags show the state's label and the CTA is hidden across /tickets.
+ */
+export function useGaSaleState(): GaSaleState {
+  const router = useRouter()
+  const m = typeof router.query.mockNow === 'string' ? router.query.mockNow.toLowerCase() : null
+  if (m === 'closed') return 'closed'
+  if (m === 'coming-soon' || m === 'comingsoon' || m === 'soon') return 'coming-soon'
+  if (m === 'launch' || m === 'open') return 'open'
+  return GA_SALE_STATE
 }
 
 export interface LaunchedResult {
@@ -152,15 +180,22 @@ export interface FeaturedWaveResult {
 /**
  * Returns the wave that should be promoted in single-wave displays (banner,
  * hero strip, store card, overview pill). The featured wave is:
- *   1. The currently 'live' wave, if any.
- *   2. Otherwise the next 'countdown' wave by config order.
- *   3. Otherwise null (all waves are 'closed' or 'tbd' with no future opening).
+ *   1. The current wave (CURRENT_WAVE_ID) whenever it's the focus — live,
+ *      counting down, OR paused (coming-soon/closed). Keeps every surface on GA
+ *      instead of falling through to a later "Date TBA" wave (e.g. Final Waves).
+ *   2. Otherwise the first 'live' wave, then the first 'countdown' wave.
+ *   3. Otherwise null.
  */
 export function useFeaturedWave(): FeaturedWaveResult {
   const states = useWaveStates()
 
   if (states.length === 0 || !states[0].mounted) {
     return { mounted: false, featured: null }
+  }
+
+  const current = states.find(s => s.wave.id === CURRENT_WAVE_ID)
+  if (current && (current.status === 'live' || current.status === 'countdown' || current.paused)) {
+    return { mounted: true, featured: current }
   }
 
   const live = states.find(s => s.status === 'live')

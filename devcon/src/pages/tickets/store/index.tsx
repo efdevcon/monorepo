@@ -83,7 +83,8 @@ import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
-import { useIsLaunched } from 'hooks/useWaveStates'
+import { GA_CLOSED_LABEL } from 'config/waves'
+import { useIsLaunched, useGaSaleState } from 'hooks/useWaveStates'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -162,7 +163,7 @@ const APPLICATION_TICKETS: Array<
   {
     type: 'indian-student',
     title: 'Indian Student 🇮🇳',
-    meta: 'Student ID required at check-in',
+    meta: 'ID required at check-in',
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum.',
     combined: '$25',
@@ -171,7 +172,7 @@ const APPLICATION_TICKETS: Array<
   {
     type: 'international-student',
     title: 'International Student 🌎',
-    meta: 'Student ID required at check-in',
+    meta: 'ID required at check-in',
     description:
       'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum.',
     eth: '$49',
@@ -187,6 +188,15 @@ const APPLICATION_TICKETS: Array<
     eth: '$349',
     fiat: '$499',
     href: '/form/builder-application',
+  },
+  {
+    type: 'youth',
+    title: 'Youth Ticket (3-17) 🌱',
+    meta: 'Consent form submission & ID required at check-in',
+    description: "Whether you're a younger attendee, or bringing your child.",
+    eth: '$19',
+    fiat: '$19',
+    href: '/form/youth-ticket',
   },
 ]
 
@@ -239,6 +249,13 @@ function StoreContent({
   // Sanctuary Tech Builders application opens at launch. Preview the
   // launched view with ?mockNow=launch.
   const { launched } = useIsLaunched()
+  // General Admission sale state (config/waves GA_SALE_STATE, overridable via
+  // ?mockNow=coming-soon|closed). GA is only purchasable when 'open'; the
+  // paused states close the buy controls: 'coming-soon' → "Opens July",
+  // 'closed' → GA_CLOSED_LABEL ("Reopens Aug").
+  const gaSaleState = useGaSaleState()
+  const gaClosed = gaSaleState === 'closed'
+  const gaOpen = gaSaleState === 'open'
 
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
   // False until the client catalog fetch resolves. The page no longer has
@@ -309,7 +326,10 @@ function StoreContent({
         const newQty = clampQuantity(ticket, existing.quantity + delta)
         return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
       }
-      return [...prev, { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: clampQuantity(ticket, delta) }]
+      return [
+        ...prev,
+        { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: clampQuantity(ticket, delta) },
+      ]
     })
   }
 
@@ -366,7 +386,9 @@ function StoreContent({
     if (seededRef.current || !gaTicket || forceSoldOut) return
     seededRef.current = true
     setCart(prev =>
-      prev.length > 0 ? prev : [{ ticketId: gaTicket.id, name: gaTicket.name, price: gaTicket.price, quantity: MIN_QTY }]
+      prev.length > 0
+        ? prev
+        : [{ ticketId: gaTicket.id, name: gaTicket.name, price: gaTicket.price, quantity: MIN_QTY }]
     )
   }, [gaTicket, forceSoldOut])
 
@@ -454,7 +476,9 @@ function StoreContent({
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Sale Waves</h3>
-                  {launched ? (
+                  {gaClosed ? (
+                    <span className={css['opens-badge']}>{GA_CLOSED_LABEL}</span>
+                  ) : gaOpen && launched ? (
                     <span className={css['open-badge']}>OPEN</span>
                   ) : (
                     <span className={css['opens-badge']}>Opens July</span>
@@ -479,11 +503,10 @@ function StoreContent({
                     {/* Per Figma: ETH-payable price in the green chip, fiat
                         price alongside — two payment options, not a discount
                         strikethrough. */}
-                    <CardPrice
-                      eth={`$${gaPrice}`}
-                      fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined}
-                    />
-                    {!launched ? (
+                    <CardPrice eth={`$${gaPrice}`} fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined} />
+                    {gaClosed ? (
+                      <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
+                    ) : !gaOpen || !launched ? (
                       <span className={css['opens-label']}>Opens July</span>
                     ) : !ticketsLoaded ? (
                       <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />

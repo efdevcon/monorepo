@@ -52,10 +52,12 @@ export const Hero = () => {
   const now = useNow()
   const showCountdown = featured?.status === 'countdown' && !!featured.upcoming
   const showLive = featured?.status === 'live'
-  // Fallback when there's no live / countdown wave: surface the upcoming
-  // TBD wave's name so the eyebrow reads "Wave 1 coming soon" instead of
-  // the generic "Tickets coming soon".
-  const upcomingTbd = !showCountdown && !showLive
+  // Current wave paused (coming-soon / closed) — keep the widget on it.
+  const showPaused = !showCountdown && !showLive && !!featured?.paused
+  // Fallback when there's no live / countdown / paused current wave: surface the
+  // upcoming TBD wave's name. Skipped when paused so we don't jump ahead to a
+  // later "Date TBA" wave (e.g. Final Waves).
+  const upcomingTbd = !showCountdown && !showLive && !showPaused
     ? waveStates.find(s => s.status === 'tbd')
     : undefined
   const parts = showCountdown && featured?.upcoming && now ? splitCountdown(featured.upcoming, now) : null
@@ -128,6 +130,10 @@ export const Hero = () => {
                   ) : showLive ? (
                     <p className="text-xs font-semibold text-[#aaeaba] text-center tracking-[2px] leading-none">
                       {t('tickets_launch_eyebrow_live')}
+                    </p>
+                  ) : showPaused && featured ? (
+                    <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-none">
+                      {featured.pausedLabel ?? 'Coming soon'}
                     </p>
                   ) : upcomingTbd ? (
                     <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-none">

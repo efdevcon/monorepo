@@ -18,14 +18,19 @@ export const Strip = () => {
 
   const showCountdown = featured?.status === 'countdown' && featured.countdown
   const showLive = featured?.status === 'live'
-  // Fallback: no live / countdown wave — but if there's a known upcoming
-  // wave that just doesn't have exact open times yet (status 'tbd'), use
-  // its name so the strip reads e.g. "Wave 1 coming soon" instead of the
-  // generic "Tickets coming soon".
-  const upcomingTbd = !showCountdown && !showLive
+  // Current wave paused (coming-soon / closed) — keep the strip on it (e.g.
+  // "General Admission — Reopens Aug") rather than the generic message.
+  const showPaused = !showCountdown && !showLive && !!featured?.paused
+  // Fallback: no live / countdown / paused current wave — but if there's a
+  // known upcoming wave that just doesn't have exact open times yet (status
+  // 'tbd'), use its name. Skipped when the current wave is paused so we don't
+  // jump ahead to a later "Date TBA" wave (e.g. Final Waves).
+  const upcomingTbd = !showCountdown && !showLive && !showPaused
     ? waveStates.find(s => s.status === 'tbd')
     : undefined
-  const badge = showLive ? t('badge_live') : showCountdown ? t('badge_countdown') : t('badge')
+  // "On sale" when live; "Coming soon" while counting down or paused
+  // (coming-soon / closed both read as reopening); generic otherwise.
+  const badge = showLive ? t('badge_live') : showCountdown || showPaused ? t('badge_countdown') : t('badge')
 
   return (
     <div id="strip" className="bg-[#1a0d33] w-full">
@@ -46,6 +51,11 @@ export const Strip = () => {
                 </>
               ) : showLive && featured ? (
                 <>{t('message_live')}</>
+              ) : showPaused && featured ? (
+                <>
+                  {featured.wave.name}
+                  {featured.pausedLabel ? ` — ${featured.pausedLabel}` : ' coming soon'}
+                </>
               ) : upcomingTbd ? (
                 <>
                   {upcomingTbd.wave.name}

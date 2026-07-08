@@ -37,11 +37,16 @@ export interface TicketWave {
   // GST line is prepended automatically from translations; only list the
   // wave-specific points here.
   bannerBullets?: string[]
-  // Pretix quota ID backing this wave's inventory. When set, the wave's
-  // live / sold-out state on /tickets is driven by the real quota's
-  // availability (via `getQuotaAvailability`). Leave undefined to fall back
-  // to the time-only grace-window logic.
+  // Pretix quota ID backing this wave's inventory. DORMANT: wave state is now
+  // schedule-only + the manual GA_SALE_STATE switch, so the live availability
+  // poll (`/api/tickets/availability/`) is disabled and this is no longer read
+  // by the wave-state logic. Kept as a reference to which Pretix quota backs
+  // each wave; re-wire `useWaveStates` to `useTicketAvailabilityMap` to restore
+  // automatic sold-out detection.
   quotaId?: number
+  // Renders the row de-emphasized (muted purple name + ETH price, no
+  // strikethrough) — used for the Final Waves future/TBA tier per Figma.
+  dimmed?: boolean
 }
 
 // The global General Admission ticket launch moment. Exported so `useNow`
@@ -49,6 +54,46 @@ export interface TicketWave {
 // any surface can reference the canonical launch time without re-deriving it
 // from the waves list.
 export const GLOBAL_LAUNCH_TIME = new Date(Date.UTC(2026, 6, 14, 16, 0, 0))
+
+// ── Current sale wave ────────────────────────────────────────────────────
+// Points at the wave that is currently "the active sale" (matched by `id`).
+// The wave-state logic is position-relative to this pointer, with no reliance
+// on close/reopen dates:
+//   - waves BEFORE it (config order) → "Sale ended"
+//   - the current wave               → driven by GA_SALE_STATE below
+//   - waves AFTER it                 → upcoming (their openLabel / "Date TBA")
+// Because it's an explicit pointer (not derived from the sequence), the current
+// wave and the next wave can both be General Admission — just keep it pointed at
+// GA and toggle GA_SALE_STATE across rounds. Move it (e.g. to 'final-waves')
+// only when a genuinely different wave becomes the active sale.
+export const CURRENT_WAVE_ID = 'wave-ga'
+
+// ── Current sale state ───────────────────────────────────────────────────
+// THE single switch for the current wave (CURRENT_WAVE_ID). One of:
+//   'open'        — selling normally (row shows price + "Get tickets").
+//   'coming-soon' — reopening at a known time: the strip / hero / banner count
+//                   down to GA_COMING_SOON_OPENS_AT ("General Admission tickets
+//                   available in 5d 20h …"), badge reads "Coming soon". CTA
+//                   hidden, price kept.
+//   'closed'      — reopening later, no exact time yet: shows GA_CLOSED_LABEL
+//                   ("Reopens Aug"), no timer. CTA hidden, price kept.
+// The overview / comparison tags flip to match. Nothing else needs editing.
+// Preview: `?mockNow=coming-soon` or `?mockNow=closed`.
+export type GaSaleState = 'open' | 'coming-soon' | 'closed'
+export const GA_SALE_STATE: GaSaleState = 'coming-soon'
+
+// Time the 'coming-soon' state counts down to. Defaults to the global launch
+// (14 Jul 2026, 16:00 UTC) so the surfaces read "Available on Jul 14, 16:00
+// UTC" / "available in 5d 20h …". When set (and still in the future) they show
+// a live countdown; if it's null or already past, 'coming-soon' falls back to
+// the GA_COMING_SOON_LABEL text with no timer. Set to a later date for a
+// subsequent round's reopen.
+export const GA_COMING_SOON_OPENS_AT: Date | null = GLOBAL_LAUNCH_TIME
+
+// Status labels. Coming-soon normally shows a countdown, so its label is only a
+// no-date fallback; closed always shows its label.
+export const GA_COMING_SOON_LABEL = 'Coming soon'
+export const GA_CLOSED_LABEL = 'Reopens Aug'
 
 export const TICKET_WAVES: TicketWave[] = [
   {
@@ -86,9 +131,6 @@ export const TICKET_WAVES: TicketWave[] = [
     // launched view at /tickets?mockNow=launch (or any mockNow past this
     // time). Adjust the hour here if the announced opening time changes.
     openTimes: [GLOBAL_LAUNCH_TIME],
-    // Status-column label while the wave counts down. Kept month-only per
-    // design — the launch banner carries the exact date.
-    openLabel: 'Opens July',
     description: 'Limited quantity • $499 via ETH • $999 via Fiat',
     bannerBullets: ['Limited quantity', '$499 via ETH • $999 via Fiat'],
     action: 'Get tickets',
@@ -99,10 +141,11 @@ export const TICKET_WAVES: TicketWave[] = [
     // `classify` in hooks/useWaveStates).
   },
   {
-    id: 'wave-1',
+    id: 'final-waves',
     name: 'Final Waves',
-    description: 'Limited quantity, cheaper than subsequent waves',
-    bannerBullets: ['Limited quantity', 'Cheaper than subsequent waves'],
+    // The last, highest-priced release — not cheaper than anything after it.
+    description: 'Limited quantity • Final release',
+    bannerBullets: ['Limited quantity', 'Final release'],
     // Dual-priced per the latest Figma. Legacy `price` mirrors ethPrice
     // for any consumer that hasn't migrated to the two-field shape.
     price: '$599',
@@ -112,6 +155,9 @@ export const TICKET_WAVES: TicketWave[] = [
     // opening window is announced. Displayed when the wave has no
     // openTimes and no live status.
     openLabel: 'Date TBA',
+    // Rendered de-emphasized (muted purple name + ETH price, no strikethrough)
+    // per Figma — signals a future/TBA tier distinct from the active waves.
+    dimmed: true,
     quotaId: 1,
     // openTimes: [new Date(Date.UTC(2026, 5, 16, 2, 0, 0)), new Date(Date.UTC(2026, 5, 16, 16, 0, 0))],
   },
