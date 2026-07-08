@@ -86,6 +86,7 @@ const Mobile = (props: any) => {
 type Section = {
   header: string
   headerIcon?: React.ComponentType<{ size?: number; className?: string }>
+  newColumn?: boolean
   items: LinkType[]
 }
 
@@ -95,7 +96,7 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
 
   for (const c of links) {
     if (c.type === 'header') {
-      current = { header: c.title, headerIcon: c.icon, items: [] }
+      current = { header: c.title, headerIcon: c.icon, newColumn: c.newColumn, items: [] }
       sections.push(current)
     } else if (current) {
       current.items.push(c)
@@ -108,36 +109,52 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
   return sections
 }
 
+// A 'header' link with newColumn starts a new column in the desktop foldout
+function groupSectionsIntoColumns(sections: Section[]): Section[][] {
+  const columns: Section[][] = []
+
+  for (const section of sections) {
+    if (!columns.length || section.newColumn) columns.push([])
+    columns[columns.length - 1].push(section)
+  }
+
+  return columns
+}
+
 const FoldoutContent = ({ sections, currentPath, onLinkClick }: { sections: Section[]; currentPath?: string; onLinkClick?: () => void }) => (
   <div className={css['foldout-sections']}>
-    {sections.map((section, sIdx) => (
-      <div key={sIdx} className={css['foldout-section']}>
-        {section.header && (
-          <div className={css['foldout-header']}>
-            {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
-            {section.header}
+    {groupSectionsIntoColumns(sections).map((column, colIdx) => (
+      <div key={colIdx} className={css['foldout-column']}>
+        {column.map((section, sIdx) => (
+          <div key={sIdx} className={css['foldout-section']}>
+            {section.header && (
+              <div className={css['foldout-header']}>
+                {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
+                {section.header}
+              </div>
+            )}
+            <div className={css['foldout-items']}>
+              {section.items.map((c, cIdx) => {
+                const isExternal = c.url?.startsWith('http')
+                const isActive = currentPath && c.url && !isExternal &&
+                  currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
+                return (
+                  <Link
+                    key={cIdx}
+                    className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
+                    to={c.url}
+                    onClick={onLinkClick}
+                  >
+                    <span className="inline-flex items-center gap-1">
+                      {c.title}
+                      {isExternal && <ArrowUpRight size={14} strokeWidth={2} />}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
-        )}
-        <div className={css['foldout-items']}>
-          {section.items.map((c, cIdx) => {
-            const isExternal = c.url?.startsWith('http')
-            const isActive = currentPath && c.url && !isExternal &&
-              currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
-            return (
-              <Link
-                key={cIdx}
-                className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
-                to={c.url}
-                onClick={onLinkClick}
-              >
-                <span className="inline-flex items-center gap-1">
-                  {c.title}
-                  {isExternal && <ArrowUpRight size={14} strokeWidth={2} />}
-                </span>
-              </Link>
-            )
-          })}
-        </div>
+        ))}
       </div>
     ))}
   </div>

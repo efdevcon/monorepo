@@ -51,6 +51,8 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    // Override the global .bold class (600) — design spec is Poppins Bold
+    font-weight: 700;
     margin-right: 20px;
     position: relative;
     transition: background 200ms ease, backdrop-filter 200ms ease, box-shadow 200ms ease;
@@ -141,6 +143,19 @@
 
 .foldout-sections {
   display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+  // In the mobile accordion the same content stacks in a single column
+  @media (max-width: 1250px) {
+    flex-direction: column;
+  }
+}
+
+.foldout-column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
   flex-direction: column;
   gap: 16px;
 }
@@ -148,7 +163,7 @@
 .foldout-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .foldout-items {
@@ -360,7 +375,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #594d73 !important;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(34, 17, 68, 0.1);
 }
 
