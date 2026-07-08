@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
 import { Link } from 'components/common/link'
 import { Search, ArrowRight } from 'lucide-react'
 import cn from 'classnames'
@@ -8,8 +9,9 @@ import { EVENT_TYPES, type EventType, type RoadEvent } from './events'
 // Where "Apply now" (get an event listed) points — the rtd-event-form.
 const LISTING_FORM_URL = '/form/rtd-event-form'
 
-// On-brand fallback cover for events with no uploaded image/logo.
-const DEFAULT_EVENT_IMAGE = '/road-to-devcon/bg.jpg'
+// On-brand fallback cover for events with no uploaded image/logo
+// (card-sized WebP pre-generated from bg.jpg, since cards skip the optimizer).
+const DEFAULT_EVENT_IMAGE = '/road-to-devcon/bg-card.webp'
 
 // ISO 'YYYY-MM-DD' (or 'YYYY-MM') → a UTC Date, so locale date formatters
 // don't shift the day across timezones.
@@ -42,12 +44,10 @@ function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }
     >
       {/* Standard social/OG image ratio (1200x630); height follows card width. */}
       <div className={cn('relative aspect-[1200/630] w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={event.image || DEFAULT_EVENT_IMAGE}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        {/* unoptimized: images are pre-resized card WebPs served straight from
+            Supabase's CDN with immutable caching — routing them through
+            /_next/image would re-transform on every deploy for no gain. */}
+        <Image src={event.image || DEFAULT_EVENT_IMAGE} alt="" fill unoptimized className="object-cover" />
         <span className="absolute right-3 top-3 rounded bg-[rgba(34,17,68,0.7)] px-2.5 py-2 text-xs font-bold uppercase leading-none tracking-[0.5px] text-white backdrop-blur-[3px]">
           {event.city}
         </span>

@@ -30,7 +30,7 @@ export interface RoadEvent {
   types: EventType[]
   // null (not undefined) for missing optionals — getStaticProps can't serialize undefined.
   url?: string | null
-  /** Event image/logo (proxied NocoDB attachment URL). Falls back to `gradient`. */
+  /** Event image/logo (public Supabase Storage URL mirrored from NocoDB). Falls back to `gradient`. */
   image?: string | null
   /** Tailwind gradient classes used as the card's placeholder artwork. */
   gradient: string
