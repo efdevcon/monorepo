@@ -13,9 +13,14 @@ export const WhatToExpect = () => {
   const cards = t.raw('cards') as Array<{ title: string; intro: string; body: string }>
   const { label: ctaLabel } = useTicketsCtaLabel()
   const { featured } = useFeaturedWave()
-  // Eyebrow names the currently-featured wave ("First wave tickets") instead
-  // of a static phrase, so the section cycles with the live sale.
-  const eyebrow = featured ? `${featured.wave.name} tickets` : t('tickets_launch_eyebrow')
+  // Eyebrow: during the live sale it reads "General Admission available now!";
+  // before launch it names the upcoming wave, else the generic join prompt.
+  const eyebrow =
+    featured?.status === 'live'
+      ? t('tickets_launch_eyebrow_live')
+      : featured
+        ? `${featured.wave.name} tickets`
+        : t('tickets_launch_eyebrow')
   return (
   <div
     className="relative px-5 sm:px-8 md:px-16 py-10 sm:py-[72px] pt-8 sm:pt-[42px] overflow-hidden"

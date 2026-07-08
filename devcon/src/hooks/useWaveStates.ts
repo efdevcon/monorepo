@@ -174,19 +174,19 @@ export function useFeaturedWave(): FeaturedWaveResult {
 
 /**
  * Site-wide convenience for CTAs that route to the store. Returns "Get tickets"
- * when a wave is currently on sale and "View tickets" otherwise, so the label
- * reflects what users will actually see when they arrive at /tickets/store.
+ * when a wave is currently on sale and "Join the event" otherwise, so the label
+ * invites people in even when no wave is active on /tickets/store.
  */
-export function useTicketsCtaLabel(): { label: 'Get tickets' | 'View tickets'; isLive: boolean } {
+export function useTicketsCtaLabel(): { label: 'Get tickets' | 'Join the event'; isLive: boolean } {
   const { featured } = useFeaturedWave()
   const isLive = featured?.status === 'live'
-  return { label: isLive ? 'Get tickets' : 'View tickets', isLive }
+  return { label: isLive ? 'Get tickets' : 'Join the event', isLive }
 }
 
 const INTERNAL_STORE_URL = '/tickets/store'
 
 /**
- * Returns the URL every "Get tickets" / "View tickets" CTA should point to.
+ * Returns the URL every "Get tickets" / "Join the event" CTA should point to.
  * Always the site's own storefront at `/tickets/store` — buyers land there
  * first (it handles wave gating and availability) rather than being sent
  * straight to the external Pretix shop.

@@ -45,7 +45,7 @@ export const Strip = () => {
                   {featured.wave.name} tickets available in <CountdownText value={featured.countdown} />
                 </>
               ) : showLive && featured ? (
-                <>{featured.wave.name} tickets on sale now!</>
+                <>{t('message_live')}</>
               ) : upcomingTbd ? (
                 <>
                   {upcomingTbd.wave.name}
