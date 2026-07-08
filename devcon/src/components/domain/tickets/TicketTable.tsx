@@ -54,13 +54,16 @@ export function EthGlyphTile({ size = 14 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect width="20" height="20" rx="4" fill="#627eea" />
-      <g fill="#ffffff" fillOpacity="0.95">
-        <path d="M10 3.5v4.9l4.1 1.85z" />
-        <path d="M10 3.5L5.9 10.25 10 8.4z" fillOpacity="0.6" />
-        <path d="M10 13.4v3.1l4.1-5.7z" />
-        <path d="M10 16.5v-3.1L5.9 10.8z" fillOpacity="0.6" />
-        <path d="M10 12.55l4.1-2.3-4.1-1.85z" fillOpacity="0.2" />
-        <path d="M5.9 10.25l4.1 2.3v-4.15z" fillOpacity="0.6" />
+      {/* Official Ethereum diamond (viewBox 0 0 256 417), scaled into the tile.
+          Facets use solid light-blue tints (per Figma) rather than white-at-opacity,
+          which keeps them crisp instead of muddying against the blue background. */}
+      <g transform="translate(5.3 2.27) scale(0.0367)">
+        <polygon fill="#f8fbfc" points="127.962 0 0 212.32 127.962 287.959 127.962 154.158" />
+        <polygon fill="#d4dbf9" points="127.9611 0 125.1661 9.5 125.1661 285.168 127.9611 287.958 255.9231 212.32" />
+        <polygon fill="#d4dcfe" points="0.0009 212.3208 127.9609 287.9578 127.9609 154.1588" />
+        <polygon fill="#8ca2f6" points="127.9611 287.9577 255.9211 212.3207 127.9611 154.1587" />
+        <polygon fill="#ffffff" points="127.962 416.9052 127.962 312.1852 0 236.5852" />
+        <polygon fill="#d5ddff" points="127.9611 312.1866 126.3861 314.1066 126.3861 412.3056 127.9611 416.9066 255.9991 236.5866" />
       </g>
     </svg>
   )
