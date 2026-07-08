@@ -400,7 +400,7 @@ export default function AboutPage() {
             {t('get_involved.body_prefix')}
             <strong>{t('get_involved.body_strong')}</strong>
             {t('get_involved.body_middle')}
-            <Link to="/dips" style={{ color: '#7235ed', textDecoration: 'underline' }}>
+            <Link to="/dips" style={{ color: '#7235ed', fontWeight: 700, textDecoration: 'none' }}>
               {t('get_involved.body_link')}
             </Link>
           </p>

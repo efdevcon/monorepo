@@ -2,10 +2,12 @@
  * Road to Devcon community events, sourced from the NocoDB "rtd-event-form"
  * submissions (form view id `vwbigbclgtvfvr62`).
  *
- * Server-only: relies on NOCODB_BASE_URL + NOCODB_API_TOKEN. Call from an API
- * route or getStaticProps, never the browser.
+ * Server-only: relies on NOCODB_BASE_URL + NOCODB_API_TOKEN (and Supabase
+ * credentials for image mirroring). Call from an API route or getStaticProps,
+ * never the browser.
  */
 import { listViewRows } from './nocodb'
+import { ensurePublicEventImage, type NocoAttachment } from './rtd-event-images'
 import { EVENT_TYPES, gradientFor, type EventType, type RoadEvent } from 'components/domain/road-to-devcon/events'
 
 const RTD_EVENT_FORM_VIEW_ID = 'vwbigbclgtvfvr62'
@@ -42,12 +44,8 @@ function pick(row: Record<string, any>, keys: readonly string[]): any {
   return undefined
 }
 
-/**
- * Turn a NocoDB attachment cell into a same-origin image URL via the
- * `/api/nocodb/file` proxy (which only accepts NocoDB's short-lived signed
- * `/dltemp/` URLs). Returns undefined for non-image or empty attachments.
- */
-function attachmentImageUrl(value: any): string | undefined {
+/** Parse a NocoDB attachment cell and return its first image attachment, if any. */
+function firstImageAttachment(value: any): NocoAttachment | undefined {
   let arr = value
   if (typeof value === 'string') {
     try {
@@ -59,9 +57,17 @@ function attachmentImageUrl(value: any): string | undefined {
   if (!Array.isArray(arr) || arr.length === 0) return undefined
   const a = arr[0]
   if (a?.mimetype && !String(a.mimetype).startsWith('image/')) return undefined
+  return a
+}
+
+/**
+ * Fallback image URL through the `/api/nocodb/file` proxy (short-lived signed
+ * URL, uncacheable — only used when mirroring to Supabase Storage fails).
+ */
+function proxyImageUrl(a: NocoAttachment): string | undefined {
   const name = a?.title ? `&filename=${encodeURIComponent(a.title)}` : ''
-  if (a?.signedUrl) return `/api/nocodb/file?url=${encodeURIComponent(a.signedUrl)}${name}`
-  if (a?.signedPath) return `/api/nocodb/file?path=${encodeURIComponent(a.signedPath)}${name}`
+  if (a?.signedUrl) return `/api/nocodb/file/?url=${encodeURIComponent(a.signedUrl)}${name}`
+  if (a?.signedPath) return `/api/nocodb/file/?path=${encodeURIComponent(a.signedPath)}${name}`
   return undefined
 }
 
@@ -119,6 +125,7 @@ export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
   const rows = await listViewRows(RTD_EVENT_FORM_VIEW_ID)
 
   const events: RoadEvent[] = []
+  const images: Array<{ event: RoadEvent; rowId: string | number; att: NocoAttachment }> = []
   for (const row of rows) {
     if (!isVisible(row)) continue
 
@@ -129,12 +136,13 @@ export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
 
     const types = parseTypes(pick(row, FIELDS.types))
     const rawUrl = pick(row, FIELDS.url)
-    const id = `nocodb-${row.Id ?? row.id ?? title}`
+    const rowId = row.Id ?? row.id ?? String(title)
+    const id = `nocodb-${rowId}`
 
     let city = pick(row, FIELDS.city)
     if (!city) city = types.includes('Virtual') ? 'Virtual' : 'TBA'
 
-    events.push({
+    const event: RoadEvent = {
       id,
       title: String(title),
       host: String(pick(row, FIELDS.host) ?? '').trim() || 'Community',
@@ -143,10 +151,29 @@ export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
       types,
       // null, not undefined — getStaticProps serializes null but throws on undefined.
       url: rawUrl ? String(rawUrl) : null,
-      image: attachmentImageUrl(pick(row, FIELDS.image)) ?? null,
+      image: null,
       gradient: gradientFor(id),
-    })
+    }
+    events.push(event)
+
+    const att = firstImageAttachment(pick(row, FIELDS.image))
+    if (att) images.push({ event, rowId, att })
   }
+
+  // Mirror attachments into Supabase Storage (no-op after the first time) so
+  // cards get stable public URLs. Runs only at build/revalidate, never per
+  // visitor. A failed mirror falls back to the uncacheable proxy URL rather
+  // than dropping the image.
+  await Promise.all(
+    images.map(async ({ event, rowId, att }) => {
+      try {
+        event.image = (await ensurePublicEventImage(rowId, att)) ?? proxyImageUrl(att) ?? null
+      } catch (e) {
+        console.warn(`[rtd-events] image mirror failed for row ${rowId}, using proxy:`, (e as Error).message)
+        event.image = proxyImageUrl(att) ?? null
+      }
+    })
+  )
 
   events.sort((a, b) => a.date.localeCompare(b.date))
   return events

@@ -11,6 +11,7 @@ import enApplications from '../../content/en/intl/applications.json'
 import enAbout from '../../content/en/intl/about.json'
 import enRoadToDevcon from '../../content/en/intl/road_to_devcon.json'
 import enAcademicProgram from '../../content/en/intl/academic_program.json'
+import enSpeakerApplications from '../../content/en/intl/speaker_applications.json'
 import enApplicationGuidelines from '../../content/en/intl/application_guidelines.json'
 import hiCommon from '../../content/hi/intl/common.json'
 import hiHome from '../../content/hi/intl/home.json'
@@ -25,6 +26,7 @@ import hiApplications from '../../content/hi/intl/applications.json'
 import hiAbout from '../../content/hi/intl/about.json'
 import hiRoadToDevcon from '../../content/hi/intl/road_to_devcon.json'
 import hiAcademicProgram from '../../content/hi/intl/academic_program.json'
+import hiSpeakerApplications from '../../content/hi/intl/speaker_applications.json'
 import hiApplicationGuidelines from '../../content/hi/intl/application_guidelines.json'
 import mrCommon from '../../content/mr/intl/common.json'
 import mrHome from '../../content/mr/intl/home.json'
@@ -39,6 +41,7 @@ import mrApplications from '../../content/mr/intl/applications.json'
 import mrAbout from '../../content/mr/intl/about.json'
 import mrRoadToDevcon from '../../content/mr/intl/road_to_devcon.json'
 import mrAcademicProgram from '../../content/mr/intl/academic_program.json'
+import mrSpeakerApplications from '../../content/mr/intl/speaker_applications.json'
 import mrApplicationGuidelines from '../../content/mr/intl/application_guidelines.json'
 
 export function flattenMessages(nestedMessages: any, prefix = '') {
@@ -73,6 +76,7 @@ const MESSAGES: Record<string, MessageBundle> = {
     about: enAbout as Record<string, any>,
     road_to_devcon: enRoadToDevcon as Record<string, any>,
     academic_program: enAcademicProgram as Record<string, any>,
+    speaker_applications: enSpeakerApplications as Record<string, any>,
     application_guidelines: enApplicationGuidelines as Record<string, any>,
   },
   hi: {
@@ -89,6 +93,7 @@ const MESSAGES: Record<string, MessageBundle> = {
     about: hiAbout as Record<string, any>,
     road_to_devcon: hiRoadToDevcon as Record<string, any>,
     academic_program: hiAcademicProgram as Record<string, any>,
+    speaker_applications: hiSpeakerApplications as Record<string, any>,
     application_guidelines: hiApplicationGuidelines as Record<string, any>,
   },
   mr: {
@@ -105,6 +110,7 @@ const MESSAGES: Record<string, MessageBundle> = {
     about: mrAbout as Record<string, any>,
     road_to_devcon: mrRoadToDevcon as Record<string, any>,
     academic_program: mrAcademicProgram as Record<string, any>,
+    speaker_applications: mrSpeakerApplications as Record<string, any>,
     application_guidelines: mrApplicationGuidelines as Record<string, any>,
   },
 }
