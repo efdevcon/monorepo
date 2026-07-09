@@ -194,8 +194,7 @@ const APPLICATION_TICKETS: Array<
     title: 'Youth Ticket (3-17) 🌱',
     meta: 'Consent form submission & ID required at check-in',
     description: "Whether you're a younger attendee, or bringing your child.",
-    eth: '$19',
-    fiat: '$19',
+    combined: '$19',
     href: '/form/youth-ticket',
   },
 ]
