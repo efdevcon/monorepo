@@ -3,8 +3,7 @@ import LogoProgram from 'assets/images/pages/program.svg'
 import LogoAbout from 'assets/images/pages/about.svg'
 import LogoBogota from 'assets/images/pages/bogota.svg'
 import LogoTickets from 'assets/images/pages/tickets.svg'
-import LogoGetInvolved from 'assets/images/pages/get-involved.svg'
-import { HandHeart, Newspaper, CirclePlay, History } from 'lucide-react'
+import { HeartHandshake, MicVocal, Users, Newspaper, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
 
 const useNavigationData = () => {
@@ -43,20 +42,19 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: t('get_involved'),
+        title: t('participate'),
         url: '#',
         type: 'links',
-        logo: LogoGetInvolved,
         links: [
           {
-            title: t('community'),
+            title: t('contribute'),
             url: '#',
             type: 'header',
-            icon: HandHeart,
+            icon: HeartHandshake,
           },
           {
-            title: t('road_to_devcon'),
-            url: '/road-to-devcon',
+            title: t('volunteer_program'),
+            url: '/form/volunteer',
             type: 'page',
           },
           {
@@ -65,13 +63,52 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: t('dips'),
-            url: '/dips',
+            title: t('speakers'),
+            url: '#',
+            type: 'header',
+            icon: MicVocal,
+          },
+          {
+            title: t('speak_at_devcon'),
+            url: '/speaker-applications',
             type: 'page',
           },
           {
-            title: t('volunteer_program'),
-            url: '/form/volunteer',
+            title: t('media'),
+            url: '#',
+            type: 'header',
+            icon: Newspaper,
+            newColumn: true,
+          },
+          {
+            title: t('media_press'),
+            url: 'https://docs.google.com/forms/d/e/1FAIpQLSdfwTWGKT9QaKhPcAUK9Md0lqnXFl8Y44RQ6ih9-GFFH7L3ew/viewform',
+            type: 'link',
+          },
+          {
+            title: t('press_kit'),
+            url:
+              process.env.NODE_ENV === 'development'
+                ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
+                : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+            type: 'page',
+          },
+        ],
+      },
+      {
+        title: t('community'),
+        url: '#',
+        type: 'links',
+        links: [
+          {
+            title: t('community'),
+            url: '#',
+            type: 'header',
+            icon: Users,
+          },
+          {
+            title: t('road_to_devcon'),
+            url: '/road-to-devcon',
             type: 'page',
           },
           {
@@ -85,17 +122,8 @@ const useNavigationData = () => {
             type: 'link',
           },
           {
-            title: t('press'),
-            url: '#',
-            type: 'header',
-            icon: Newspaper,
-          },
-          {
-            title: t('press_kit'),
-            url:
-              process.env.NODE_ENV === 'development'
-                ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
-                : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+            title: t('dips'),
+            url: '/dips',
             type: 'page',
           },
         ],
