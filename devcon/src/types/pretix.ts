@@ -257,6 +257,9 @@ export interface TicketInfo {
   vouchersAvailable?: boolean
   isAdmission: boolean
   requireVoucher: boolean
+  /** Pretix `Item.max_per_order` — the maximum quantity of this item allowed
+   *  in a single order. null means no per-order cap. */
+  maxPerOrder: number | null
   variations: {
     id: number
     name: string

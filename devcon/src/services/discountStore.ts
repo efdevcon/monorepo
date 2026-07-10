@@ -7,6 +7,7 @@
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { TICKETING } from 'config/ticketing'
+import { createVoucher, isItemAvailable } from './pretix'
 
 export interface DiscountCode {
   id: number
@@ -28,13 +29,23 @@ export interface DiscountVoucher {
   collection: string
 }
 
+// Memoized client. createClient() was previously called on every store
+// operation, so a hot path (e.g. the self-voucher poll, which runs a SELECT +
+// INSERT per poll now that responses are no-store) spun up a fresh client each
+// time and leaked connections/file descriptors under concurrency: a likely
+// contributor to the EMFILE ("too many open files") failures in the Lambda.
+// One client per process is the supported pattern.
+let _supabase: SupabaseClient | null = null
+
 function getSupabase(): SupabaseClient {
+  if (_supabase) return _supabase
   const url = process.env.SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY
   if (!url || !key) {
     throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required for discount store')
   }
-  return createClient(url, key)
+  _supabase = createClient(url, key)
+  return _supabase
 }
 
 /**
@@ -202,6 +213,104 @@ export async function assignVoucher(
 }
 
 /**
+ * Issue a voucher to an identity by creating one on the fly in Pretix.
+ *
+ * Unlike `assignVoucher` (which draws from a pre-seeded pool), this creates a
+ * fresh single-use Pretix voucher that unlocks `itemId` and records it. Used by
+ * the community discounts and the Self flow, where ticket quota and price live
+ * on the item, so no pool needs pre-seeding.
+ *
+ * Enforces one voucher per identity globally: if `assignedTo` already holds a
+ * voucher (any collection), that same code is returned and no new Pretix
+ * voucher is created.
+ */
+/** Thrown by `issueVoucher` when the discount's ticket is sold out and the
+ *  caller is trying to issue a NEW voucher. Lets endpoints return a specific
+ *  "sold out" message vs a generic failure. */
+export class DiscountSoldOutError extends Error {
+  constructor(message = 'This discount is sold out') {
+    super(message)
+    this.name = 'DiscountSoldOutError'
+  }
+}
+
+/** Whether a discount can still issue new vouchers. The config `soldOut`
+ *  override (keyed by discount `type`) wins: true = force sold out, false =
+ *  force available. Otherwise falls back to the live Pretix item quota. */
+export async function isDiscountAvailable(type: string, itemId: number): Promise<boolean> {
+  const override = TICKETING.discount.soldOut?.[type]
+  if (override !== undefined) return !override
+  return isItemAvailable(itemId)
+}
+
+export async function issueVoucher(
+  assignedTo: string,
+  itemId: number,
+  collection: string,
+  opts: { tag?: string; type?: string } = {}
+): Promise<DiscountVoucher | null> {
+  const supabase = getSupabase()
+  const tag = opts.tag
+
+  // One voucher per identity (global, no collection filter): re-share existing.
+  // This runs BEFORE the sold-out gate, so a buyer who already claimed always
+  // gets their code back even if the ticket later sells out.
+  const existing = await getAssignedVoucher(assignedTo)
+  if (existing) return existing
+
+  // Sold-out gate: only blocks issuing a NEW voucher. `type` lets us consult the
+  // config override; absent type skips the gate (e.g. pre-seeded pool callers).
+  if (opts.type && !(await isDiscountAvailable(opts.type, itemId))) {
+    throw new DiscountSoldOutError()
+  }
+
+  // Create a fresh single-use voucher that unlocks the item.
+  const created = await createVoucher({
+    itemId,
+    tag: tag ?? collection,
+    maxUsages: 1,
+    comment: `Discount voucher for ${collection} (${assignedTo})`,
+  })
+
+  const now = new Date().toISOString()
+  const { data, error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .insert({
+      code: created.code,
+      pretix_voucher_id: created.id,
+      item_id: itemId,
+      tag: tag ?? collection,
+      collection,
+      assigned_to: assignedTo,
+      assigned_at: now,
+      updated_at: now,
+    })
+    .select('*')
+
+  // Unique-index race: a parallel first claim for this identity already
+  // inserted a row. Our just-created Pretix voucher is orphaned (unused, single
+  // identity only ever redeems the stored one); return the winning row.
+  if (error && error.code === '23505') {
+    const winner = await getAssignedVoucher(assignedTo)
+    if (winner) return winner
+  }
+  if (error) throw new Error(`discountStore issueVoucher insert: ${error.message}`)
+
+  const row = data?.[0]
+  if (!row) return null
+  return {
+    id: row.id,
+    code: row.code,
+    pretixVoucherId: row.pretix_voucher_id,
+    itemId: row.item_id,
+    tag: row.tag,
+    assignedTo: row.assigned_to,
+    assignedAt: row.assigned_at,
+    collection: row.collection,
+  }
+}
+
+/**
  * Get the voucher already assigned to this identity (for dedup check + polling fallback).
  */
 export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVoucher | null> {
@@ -222,6 +331,39 @@ export async function getAssignedVoucher(assignedTo: string): Promise<DiscountVo
     assignedTo: data.assigned_to,
     assignedAt: data.assigned_at,
     collection: data.collection,
+  }
+}
+
+/**
+ * Find a voucher already assigned to ANY of the given identities (e.g. a
+ * person's lowercased wallet, GitHub login, and email). Vouchers are keyed by a
+ * single `assigned_to` string, so a person who connected different identities
+ * across submissions would otherwise dedup only on the one that was stored.
+ * Checking the whole identity set lets one human be matched no matter which of
+ * their identities a prior voucher was keyed by. Returns the earliest match.
+ */
+export async function getVoucherByAnyIdentity(identities: string[]): Promise<DiscountVoucher | null> {
+  const ids = Array.from(new Set(identities.map(s => s.trim()).filter(Boolean)))
+  if (ids.length === 0) return null
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('devcon8_early_access_vouchers')
+    .select('*')
+    .in('assigned_to', ids)
+    .order('assigned_at', { ascending: true })
+    .limit(1)
+  if (error) throw new Error(`discountStore getVoucherByAnyIdentity: ${error.message}`)
+  const row = data?.[0]
+  if (!row) return null
+  return {
+    id: row.id,
+    code: row.code,
+    pretixVoucherId: row.pretix_voucher_id,
+    itemId: row.item_id,
+    tag: row.tag,
+    assignedTo: row.assigned_to,
+    assignedAt: row.assigned_at,
+    collection: row.collection,
   }
 }
 
@@ -361,6 +503,34 @@ export async function checkVoucherValidationRateLimit(clientIp: string): Promise
     .gte('created_at', ipSince)
 
   if ((ipCount.count ?? 0) >= RATE_LIMIT_VOUCHER_IP_MAX) return { allowed: false }
+
+  await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
+  return { allowed: true }
+}
+
+const RATE_LIMIT_SELF_VOUCHER_WINDOW_MINUTES = 1
+const RATE_LIMIT_SELF_VOUCHER_IP_MAX = 60
+
+/**
+ * Self-voucher poll rate limit. The frontend polls this endpoint every few
+ * seconds while a voucher is being assigned, so the cap is generous (60/min/IP
+ * = up to 1/sec). The `userId` is a 122-bit UUID known only to the originating
+ * session, so this limit is purely DoS protection, not anti-enumeration — a
+ * tight per-key cap (as the email limiter has) would block legitimate polling.
+ */
+export async function checkSelfVoucherRateLimit(clientIp: string): Promise<{ allowed: boolean }> {
+  const supabase = getSupabase()
+  const now = new Date()
+  const ipSince = new Date(now.getTime() - RATE_LIMIT_SELF_VOUCHER_WINDOW_MINUTES * 60 * 1000).toISOString()
+  const ipKey = `selfvoucher_ip:${clientIp}`
+
+  const ipCount = await supabase
+    .from('x402_verify_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('key', ipKey)
+    .gte('created_at', ipSince)
+
+  if ((ipCount.count ?? 0) >= RATE_LIMIT_SELF_VOUCHER_IP_MAX) return { allowed: false }
 
   await supabase.from('x402_verify_attempts').insert([{ key: ipKey }])
   return { allowed: true }

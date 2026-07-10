@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
 import { Download, CircleUser, ExternalLink } from 'lucide-react'
+import { createPublicClient, http, getAddress } from 'viem'
+import { mainnet } from 'viem/chains'
 import themes from '../../../../themes.module.scss'
 import css from './confirmation.module.scss'
 
@@ -78,6 +80,34 @@ export default function OrderConfirmationPage() {
 
     fetchOrder()
   }, [orderCode, orderSecret])
+
+  // Crypto orders: reverse-resolve the paying address to its primary ENS name
+  // (mainnet) and pre-fill the share handle if they have one and haven't typed
+  // anything yet. Best-effort — lookup failures are ignored.
+  useEffect(() => {
+    const pi = order?.payment_info
+    const payer = pi?.payer
+    const isCryptoPaid = order?.status === 'p' && (order?.payment_provider === 'walletconnect' || !!pi?.tx_hash)
+    if (!payer || !isCryptoPaid) return
+    let cancelled = false
+    ;(async () => {
+      try {
+        const key = process.env.NEXT_PUBLIC_ALCHEMY_APIKEY
+        const client = createPublicClient({
+          chain: mainnet,
+          transport: key ? http(`https://eth-mainnet.g.alchemy.com/v2/${key}`) : http(),
+        })
+        const name = await client.getEnsName({ address: getAddress(payer) })
+        // Don't clobber anything the buyer may have already typed.
+        if (!cancelled && name) setShareName(prev => prev || name)
+      } catch {
+        /* ENS is best-effort; ignore lookup/parse failures */
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [order])
 
   if (loading) {
     return (
@@ -394,7 +424,10 @@ export default function OrderConfirmationPage() {
                         // Trailing slash matches next.config.js `trailingSlash: true`, avoiding
                         // a 308 hop on Twitter's scrape.
                         const v = Date.now().toString(36)
-                        window.open(`/ticket/${ticketName}/${v}/?share`, '_blank')
+                        // Flag crypto payments so the share text can say "paid for with ETH";
+                        // fiat orders omit it. The param drives a prop only — pageUrl is
+                        // built from path segments, so it never leaks into the shared link.
+                        window.open(`/ticket/${ticketName}/${v}/?share${isCrypto ? '&eth=1' : ''}`, '_blank')
                       }}
                     >
                       Generate sharing link

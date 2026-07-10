@@ -1,36 +1,64 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { CalendarPlus, X } from 'lucide-react'
 
-const EVENT = {
+export interface CalendarEventSpec {
+  title: string
+  description: string
+  location?: string
+  // All-day range (YYYY-MM-DD, exclusive end date) for multi-day events…
+  startDate?: string
+  endDate?: string
+  // …or exact UTC instants for timed events (take precedence when set).
+  start?: Date
+  end?: Date
+  filename?: string
+}
+
+const DEVCON_EVENT: CalendarEventSpec = {
   title: 'Devcon 8',
   location: 'Jio World Centre, Mumbai, India',
   startDate: '2026-11-03',
   endDate: '2026-11-07', // exclusive end date for all-day events
   description: 'Devcon is the Ethereum conference for developers, thinkers, and makers. https://devcon.org',
+  filename: 'devcon-8.ics',
 }
 
-function getGoogleCalendarUrl() {
+// "2026-07-14T16:00:00.000Z" → "20260714T160000Z" (ICS / Google UTC instant)
+function toCalendarInstant(d: Date): string {
+  return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z')
+}
+
+function formatDates(event: CalendarEventSpec): { start: string; end: string; allDay: boolean } {
+  if (event.start && event.end) {
+    return { start: toCalendarInstant(event.start), end: toCalendarInstant(event.end), allDay: false }
+  }
+  return { start: event.startDate!.replace(/-/g, ''), end: event.endDate!.replace(/-/g, ''), allDay: true }
+}
+
+function getGoogleCalendarUrl(event: CalendarEventSpec) {
+  const { start, end } = formatDates(event)
   const params = new URLSearchParams({
     action: 'TEMPLATE',
-    text: EVENT.title,
-    dates: `${EVENT.startDate.replace(/-/g, '')}/${EVENT.endDate.replace(/-/g, '')}`,
-    details: EVENT.description,
-    location: EVENT.location,
+    text: event.title,
+    dates: `${start}/${end}`,
+    details: event.description,
+    ...(event.location ? { location: event.location } : {}),
   })
   return `https://calendar.google.com/calendar/render?${params.toString()}`
 }
 
-function downloadIcs() {
+function downloadIcs(event: CalendarEventSpec) {
+  const { start, end, allDay } = formatDates(event)
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//Devcon//devcon.org//EN',
     'BEGIN:VEVENT',
-    `DTSTART;VALUE=DATE:${EVENT.startDate.replace(/-/g, '')}`,
-    `DTEND;VALUE=DATE:${EVENT.endDate.replace(/-/g, '')}`,
-    `SUMMARY:${EVENT.title}`,
-    `DESCRIPTION:${EVENT.description}`,
-    `LOCATION:${EVENT.location}`,
+    allDay ? `DTSTART;VALUE=DATE:${start}` : `DTSTART:${start}`,
+    allDay ? `DTEND;VALUE=DATE:${end}` : `DTEND:${end}`,
+    `SUMMARY:${event.title}`,
+    `DESCRIPTION:${event.description}`,
+    ...(event.location ? [`LOCATION:${event.location}`] : []),
     'END:VEVENT',
     'END:VCALENDAR',
   ]
@@ -38,7 +66,7 @@ function downloadIcs() {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = 'devcon-8.ics'
+  a.download = event.filename ?? 'devcon-8.ics'
   a.click()
   URL.revokeObjectURL(url)
 }
@@ -50,6 +78,9 @@ interface AddToCalendarPopoverProps {
   popoverPosition?: 'top' | 'bottom'
   popoverAlign?: 'left' | 'right'
   className?: string
+  // Calendar entry offered by the popover; defaults to the Devcon 8 event.
+  // Pass a custom spec for other moments (e.g. the ticket launch reminder).
+  event?: CalendarEventSpec
 }
 
 /**
@@ -62,6 +93,7 @@ export const AddToCalendarPopover = ({
   popoverPosition = 'top',
   popoverAlign = 'left',
   className = '',
+  event = DEVCON_EVENT,
 }: AddToCalendarPopoverProps) => {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -96,7 +128,7 @@ export const AddToCalendarPopover = ({
             <X size={14} />
           </button>
           <a
-            href={getGoogleCalendarUrl()}
+            href={getGoogleCalendarUrl(event)}
             target="_blank"
             rel="noopener noreferrer"
             className="block px-2.5 py-1.5 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-md transition-colors leading-5"
@@ -108,7 +140,7 @@ export const AddToCalendarPopover = ({
             type="button"
             className="block w-full px-2.5 py-1.5 text-sm font-medium text-[#160b2b] hover:bg-[#f2f1f4] rounded-md transition-colors text-left leading-5"
             onClick={() => {
-              downloadIcs()
+              downloadIcs(event)
               setOpen(false)
             }}
           >

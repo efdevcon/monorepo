@@ -8,11 +8,11 @@
     "faq": "सतत विचारले जाणारे प्रश्न"
   },
   "sale_banner": {
-    "heading": "ETH अर्ली बर्ड तिकीट विक्रीसाठी उपलब्ध!",
-    "heading_countdown": "ETH अर्ली बर्ड तिकीट लाँच होणार",
-    "subheading": "मर्यादित प्रमाण • $350 वाचवा • ETH (L1) वापरून खरेदी करता येईल",
-    "price": "$349",
-    "price_original": "लवकरच जाहीर",
+    "launch_eyebrow": "ग्लोबल तिकीट लाँच",
+    "heading": "जनरल ॲडमिशन तिकीट विक्रीसाठी उपलब्ध!",
+    "subheading": "मर्यादित प्रमाण • $499 ETH द्वारे • $999 फिएट द्वारे",
+    "price": "$499 ETH",
+    "price_countdown": "$499 ETH द्वारे",
     "price_note": "18% GST समाविष्ट",
     "cta": "तिकीट मिळवा"
   },
@@ -67,37 +67,45 @@
     "subcopy_strong_2": "मर्यादित",
     "subcopy_suffix": " आहेत.",
     "card_title": "समुदाय",
-    "card_subtitle": "18% GST सह",
+    "card_subtitle": "18% GST समाविष्ट",
+    "pre_launch_status": "जुलैमध्ये उघडेल",
     "tap_label": "अधिक जाणून घेण्यासाठी टॅप करा",
     "rows": [
       {
-        "name": "इंडिया अर्ली बर्ड",
-        "detail": "व्हाउचरद्वारे",
-        "price": "$99",
-        "date": "जुलैमध्ये उघडेल"
+        "name": "India Early Bird",
+        "detail": "व्हाउचर द्वारे",
+        "ethPrice": "$99",
+        "fiatPrice": "$99",
+        "action": "सुरुवात करा",
+        "actionHref": "/en/tickets/store"
       },
       {
-        "name": "इंडिया रहिवासी",
-        "detail": "सेल्फ प्रोटोकॉलद्वारे",
-        "price": "$149",
-        "date": "जुलैमध्ये उघडेल"
+        "name": "India Resident",
+        "ethPrice": "$149",
+        "fiatPrice": "$149",
+        "action": "सुरुवात करा",
+        "actionHref": "/en/tickets/store"
       },
       {
-        "name": "कोर डेव्ह",
-        "price": "मोफत",
-        "date": "जुलैमध्ये उघडेल"
+        "name": "Ethereum Public Goods",
+        "ethPrice": "$349",
+        "action": "सुरुवात करा",
+        "actionHref": "/en/tickets/store"
       },
       {
-        "name": "पब्लिक गुड प्रोजेक्ट्स",
-        "price": "लवकरच जाहीर",
-        "date": "जुलैमध्ये उघडेल"
+        "name": "Past POAP Holders",
+        "ethPrice": "$449",
+        "action": "सुरुवात करा",
+        "actionHref": "/en/tickets/store"
       },
       {
-        "name": "पूर्वीचे POAP धारक",
-        "price": "10% सूट",
-        "date": "जुलैमध्ये उघडेल"
+        "name": "Core Devs",
+        "ethPrice": "FREE",
+        "action": "सुरुवात करा",
+        "actionHref": "/en/tickets/store"
       }
-    ]
+    ],
+    "cta": "सुरुवात करा"
   },
   "criteria": {
     "student": {
@@ -121,39 +129,45 @@
     "body_amp": " आणि ",
     "body_strong_2": "आंतरराष्ट्रीय विद्यार्थी",
     "body_middle": " आणि ",
-    "body_strong_3": "बिल्डर्स",
+    "body_strong_3": "Sanctuary Tech Builders",
     "body_suffix": " जगभरातून. अर्ज सतत पुनरावलोकन केले जातात.",
-    "subcopy_strong_1": "विद्यार्थी आत्ताच अर्ज करू शकतात",
+    "subcopy_strong_1": "सर्वजण आत्ताच अर्ज करू शकतात",
     "subcopy_middle_1": ". अर्ज ",
     "subcopy_strong_2": "क्युरेटेड",
     "subcopy_middle_2": " आणि ",
     "subcopy_strong_3": "प्रत्येक फेरीसाठी मर्यादित",
     "subcopy_suffix": " आहेत, उपलब्धता आणि पुनरावलोकनावर अवलंबून.",
     "card_title": "अर्ज",
-    "card_subtitle": "18% GST सह",
+    "card_subtitle": "18% GST समाविष्ट",
+    "pre_launch_status": "जुलैमध्ये उघडेल",
     "tap_label": "अधिक जाणून घेण्यासाठी टॅप करा",
     "apply": "अर्ज करा",
     "rows": [
       {
         "name": "भारतीय विद्यार्थी",
+        "ethPrice": "$25",
+        "fiatPrice": "$25",
         "status": "open",
-        "price": "$25",
         "action": "अर्ज करा",
         "actionHref": "/form/student-application"
       },
       {
         "name": "आंतरराष्ट्रीय विद्यार्थी",
+        "ethPrice": "$49",
+        "fiatPrice": "$99",
         "status": "open",
-        "price": "$99",
         "action": "अर्ज करा",
         "actionHref": "/form/student-application"
       },
       {
-        "name": "बिल्डर्स",
-        "price": "लवकरच जाहीर",
-        "date": "जुलैमध्ये उघडेल"
+        "name": "Sanctuary Tech Builders",
+        "ethPrice": "$349",
+        "fiatPrice": "$499",
+        "action": "अर्ज करा",
+        "actionHref": "/form/builder-application"
       }
-    ]
+    ],
+    "cta": "अधिक जाणून घ्या"
   },
   "comparison": {
     "eyebrow": "DEVCON तिकीटे",
@@ -177,10 +191,9 @@
         "title": "सामान्य प्रवेश",
         "tab_label": "सामान्य",
         "subtitle": "विक्री लाटा",
-        "price": "$349+",
-        "price_original": "लवकरच जाहीर",
-        "price_note": "ETH अर्ली बर्ड • ETH (L1) वापरून खरेदी करता येईल",
-        "best_for": "कोणालाही — कोणतीही पात्रता आवश्यकता नाही आणि आम्ही अ‍ॅनॉन-फ्रेंडली आहोत.",
+        "price": "$499+",
+        "price_note": "$499 ETH द्वारे • $999 फिएट द्वारे",
+        "best_for": "कोणालाही — कोणतीही पात्रता आवश्यकता नाही आणि आम्ही अनॉन-फ्रेंडली आहोत.",
         "included": [
           {
             "text": "४ दिवसांचे परिषद प्रवेश",
@@ -227,11 +240,7 @@
             "icon": "asterisk"
           }
         ],
-        "how_it_works": [
-          "निकषांवर आधारित पात्रता सत्यापित करा",
-          "स्वतःची सवलत कोड मिळवा",
-          "कमी किमतीत खरेदी करा"
-        ],
+        "how_it_works": ["निकषांनुसार पात्रता सत्यापित करा", "स्वतःची सवलत कोड मिळवा", "कमी किमतीत खरेदी करा"],
         "cta_label": "सुरू करा",
         "cta_href": "#discounts",
         "cta_variant": "secondary"

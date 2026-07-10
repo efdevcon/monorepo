@@ -115,9 +115,9 @@
   }
 }
 
-/* Figma: 16px, Poppins Regular (400), line-height 24px (1.5) */
+/* Figma: 14px (paragraph/small), Poppins Regular (400), line-height 1.5 */
 .sidebar-description {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 400;
   color: #1a0d33;
   line-height: 1.5;
@@ -125,27 +125,60 @@
 }
 
 .sidebar-includes {
-  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-includes-label {
+  font-size: 0.875rem;
   font-weight: 700;
   color: #1a0d33;
-  line-height: 1.5;
+  line-height: 1.43;
   margin: 0;
+}
+
+.sidebar-includes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-includes-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #221144;
+  line-height: 1.43;
+
+  svg {
+    flex-shrink: 0;
+    stroke: #221144 !important;
+    fill: none !important;
+  }
 }
 
 .sidebar-details {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  // Date + location are hidden on mobile (the mobile layout goes straight from
+  // "Included in ticket" to the countdown); shown only in the desktop sidebar.
+  display: none;
 
   @media (min-width: $breakpoints-lg) {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
   }
 }
 
-/* Figma: 16px, Poppins Regular (400), line-height 24px (1.5), color #1a0d33 */
+/* Figma: 14px (paragraph/small), Poppins Regular (400), line-height 1.5, color #1a0d33 */
 .sidebar-details-item {
   display: flex;
   align-items: center;
@@ -159,10 +192,6 @@
     flex-shrink: 0;
     stroke: #1a0d33 !important;
     fill: none !important;
-  }
-
-  @media (min-width: $breakpoints-lg) {
-    font-size: 1rem;
   }
 }
 
@@ -333,6 +362,52 @@
   white-space: nowrap;
 }
 
+/* Figma: 14px Poppins Bold, green bg #80df98 (harit/300), text #221144, radius 4px */
+.open-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #221144;
+  background: #80df98;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Pre-launch section tag — gray variant of .open-badge, mirrors the
+   /tickets landing "OPENS JULY" StatusTag treatment. */
+.opens-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #221144;
+  background: #f2f1f4;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Pre-launch card action slot — muted "Opens July" label sitting where the
+   buy/verify/apply button will appear at launch. Matches the /tickets table
+   status column (Poppins Medium 16, muted-foreground). */
+.opens-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #594d73;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
 /* Figma: 24px, Poppins ExtraBold (800), line-height 1.2, letter-spacing -0.5px */
 .section-title {
   font-size: 1.5rem;
@@ -362,7 +437,7 @@
   background: #fff;
   border-radius: 8px;
   border: 1px solid #dddae2;
-  padding: 1.5rem;
+  padding: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -569,6 +644,17 @@
   background: #fff;
 }
 
+.ga-loading {
+  color: #7235ed;
+  animation: ga-spin 0.8s linear infinite;
+}
+
+@keyframes ga-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .quantity-btn {
   width: 36px;
   height: 36px;
@@ -586,6 +672,15 @@
 
   &:hover {
     background: #f0f0f0;
+  }
+
+  &:disabled {
+    color: #bbb;
+    cursor: not-allowed;
+
+    &:hover {
+      background: #fff;
+    }
   }
 }
 
@@ -619,8 +714,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
+  height: 40px;
+  padding: 0.5rem 1.25rem 0.5rem 1.5rem;
+  line-height: 1;
+  font-size: 0.875rem;
   font-weight: 700;
   color: #1a0d33;
   background: rgba(255, 255, 255, 0.8);
@@ -639,8 +736,8 @@
 }
 
 .self-logo {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
@@ -946,4 +1043,102 @@
   &:hover {
     opacity: 0.85;
   }
+}
+
+/* ─── Sale Waves / General Admission card ───── */
+
+/* Figma: 16px, Poppins Bold (700), line-height 24px (1.5) */
+.discount-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #160b2b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Figma: 14px, Poppins Bold (700), color #d65600 */
+.discount-card-meta {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #d65600;
+  margin: 0;
+  line-height: 1.43;
+}
+
+/* Figma: 14px, Poppins Regular (400), color #1a0d33 */
+.discount-card-desc {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1a0d33;
+  margin: 0;
+  line-height: 1.43;
+}
+
+.ga-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Figma: primary #7235ed pill, white text, Poppins Bold 14px */
+.checkout-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 40px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #f9f8fa !important;
+  background: #7235ed;
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+
+  &:hover {
+    background: #5f27d6;
+  }
+}
+
+/* Price + struck-through original, used in community/application card footers */
+.discount-price-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ─── Community: "Got a voucher?" redeem banner ───── */
+.voucher-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.voucher-banner-link {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #7235ed;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.voucher-banner-prompt {
+  color: #221144;
 }

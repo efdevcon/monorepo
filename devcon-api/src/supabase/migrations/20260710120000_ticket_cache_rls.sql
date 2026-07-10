@@ -1,0 +1,12 @@
+-- Enable Row Level Security on ticket_cache (R1-B1 hardening).
+--
+-- The original ticket_cache migration (20251107153645_ticket_cache.sql) created
+-- the table WITHOUT RLS, unlike every sibling table (coupons, x402_*), so the
+-- public `anon` key could read and write it via PostgREST — a full attendee PII
+-- + ticket-secret leak, plus an email->ticket enumeration oracle.
+--
+-- Enabling RLS with NO anon policy denies the anon/Data API entirely, while the
+-- server's service_role key bypasses RLS and keeps working (ticket_cache is a
+-- server-only cache written/read by the API route). Idempotent: a no-op on any
+-- environment where RLS is already enabled.
+ALTER TABLE ticket_cache ENABLE ROW LEVEL SECURITY;

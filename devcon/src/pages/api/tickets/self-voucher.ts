@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getClientIp } from '../../../utils/getClientIp'
-import { checkVoucherEmailRateLimit } from '../../../services/discountStore'
+import { checkSelfVoucherRateLimit } from '../../../services/discountStore'
 
 // Read from the same globalThis stores that redeem-self writes to
 const g = globalThis as unknown as {
@@ -9,6 +9,13 @@ const g = globalThis as unknown as {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // This endpoint is polled repeatedly at the same URL while a voucher is being
+  // assigned. Without no-store the browser caches the first `{pending:true}`
+  // response and serves it (via 304 revalidation) for the rest of the polling
+  // window, so the voucher — stored server-side after the backend POST — is
+  // never observed and the UI reports "Verification timed out".
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate')
+
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
     return res.status(405).end(`Method ${req.method} Not Allowed`)
@@ -19,14 +26,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Missing userId' })
   }
 
-  // M15: rate-limit per IP. Voucher codes are bearer secrets, and the
-  // polling key (`userId`) used to be a free-text query param with no
-  // throttle — anyone who learned an `assigned_to` value (from logs,
-  // network capture, or a Supabase leak) could hammer this endpoint.
-  // Reuse `checkVoucherEmailRateLimit` (10/min/IP) — it's a generic
-  // per-IP+per-key bucket on the existing Supabase counter table.
+  // M15: rate-limit per IP. Voucher codes are bearer secrets and `userId` used
+  // to be a free-text query param with no throttle. The limit is per-IP DoS
+  // protection (the userId is a 122-bit UUID, not enumerable). Use the
+  // poll-tuned limiter (60/min/IP) — the email limiter's 3/min per-key cap
+  // would block legitimate polling within seconds.
   const clientIp = getClientIp(req)
-  const { allowed } = await checkVoucherEmailRateLimit(clientIp, `selfvoucher:${userId}`)
+  const { allowed } = await checkSelfVoucherRateLimit(clientIp)
   if (!allowed) {
     return res.status(429).json({ pending: true })
   }

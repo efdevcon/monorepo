@@ -19,7 +19,8 @@ import Photo4 from './photo-4.png'
 import Photo5 from './photo-5.png'
 import css from '../ecosystem-program/ecosystem-program.module.scss'
 import cn from 'classnames'
-import { ApplicationsTable, type ApplicationRow } from 'components/domain/applications-table'
+import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
+import { useIsLaunched } from 'hooks/useWaveStates'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5]
 
@@ -34,6 +35,10 @@ const CONTACT_EMAIL = 'university@ethereum.foundation'
 export default function AcademicProgramPage() {
   const t = useTranslations('academic_program')
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  // Sanctuary Tech Builders applications open at the global ticket launch
+  // (config/waves.ts GLOBAL_LAUNCH_TIME) — before that the row shows the
+  // launch month, after it flips live with the Apply link.
+  const { launched } = useIsLaunched()
 
   const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>
 
@@ -56,22 +61,35 @@ export default function AcademicProgramPage() {
     color,
   }))
 
-  const APPLICATION_ROWS: ApplicationRow[] = [
+  const APPLICATION_ROWS: TicketRow[] = [
     {
-      id: 'indian-students',
       name: t('other_support.rows.0.name'),
-      price: '$25',
-      applyUrl: '/form/student-application',
-      live: true,
+      ethPrice: '$25',
+      fiatPrice: '$25',
+      action: 'Apply',
+      actionHref: '/form/student-application',
     },
     {
-      id: 'international-students',
       name: t('other_support.rows.1.name'),
-      price: '$99',
-      applyUrl: '/form/student-application',
-      live: true,
+      ethPrice: '$49',
+      fiatPrice: '$99',
+      action: 'Apply',
+      actionHref: '/form/student-application',
     },
-    { id: 'builders', name: t('other_support.rows.2.name'), price: 'TBD', date: t('other_support.builders_date'), live: false },
+    launched
+      ? {
+          name: t('other_support.rows.2.name'),
+          ethPrice: '$349',
+          fiatPrice: '$499',
+          action: 'Apply',
+          actionHref: '/form/builder-application',
+        }
+      : {
+          name: t('other_support.rows.2.name'),
+          ethPrice: '$349',
+          fiatPrice: '$499',
+          date: t('other_support.builders_date'),
+        },
   ]
 
   const FAQ_ITEMS = [
@@ -268,7 +286,11 @@ export default function AcademicProgramPage() {
           </div>
 
           <div className={css['other-support-right']}>
-            <ApplicationsTable rows={APPLICATION_ROWS} status={t('other_support.card_status')} />
+            <TicketTable
+              title={t('other_support.card_title')}
+              subtitle={t('other_support.card_subtitle')}
+              rows={APPLICATION_ROWS}
+            />
 
             <div className={css['faq-accordion']}>
               {FAQ_ITEMS.map((item, i) => (

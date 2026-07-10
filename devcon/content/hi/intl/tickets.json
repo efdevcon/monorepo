@@ -8,11 +8,11 @@
     "faq": "सामान्य प्रश्न"
   },
   "sale_banner": {
-    "heading": "ETH अर्ली बर्ड टिकट बिक्री पर!",
-    "heading_countdown": "ETH अर्ली बर्ड टिकट लॉन्च में",
-    "subheading": "सीमित मात्रा • $350 बचाएं • ETH (L1) से खरीद सकते हैं",
-    "price": "$349",
-    "price_original": "TBD",
+    "launch_eyebrow": "ग्लोबल टिकट लॉन्च",
+    "heading": "जनरल एडमिशन टिकट बिक्री पर!",
+    "subheading": "सीमित मात्रा • $499 ETH से • $999 फिएट से",
+    "price": "$499 ETH",
+    "price_countdown": "$499 ETH से",
     "price_note": "18% GST शामिल है",
     "cta": "टिकट प्राप्त करें"
   },
@@ -68,36 +68,44 @@
     "subcopy_suffix": " हैं।",
     "card_title": "समुदाय",
     "card_subtitle": "18% GST सहित",
+    "pre_launch_status": "जुलाई में खुलेगा",
     "tap_label": "अधिक जानने के लिए टैप करें",
     "rows": [
       {
         "name": "इंडिया अर्ली बर्ड",
-        "detail": "वाउचर के माध्यम से",
-        "price": "$99",
-        "date": "जुलाई में खुलेगा"
+        "detail": "वाउचर द्वारा",
+        "ethPrice": "$99",
+        "fiatPrice": "$99",
+        "action": "शुरू करें",
+        "actionHref": "/en/tickets/store"
       },
       {
         "name": "इंडिया निवासी",
-        "detail": "सेल्फ प्रोटोकॉल के माध्यम से",
-        "price": "$149",
-        "date": "जुलाई में खुलेगा"
+        "ethPrice": "$149",
+        "fiatPrice": "$149",
+        "action": "शुरू करें",
+        "actionHref": "/en/tickets/store"
       },
       {
-        "name": "कोर डेव्स",
-        "price": "मुफ्त",
-        "date": "जुलाई में खुलेगा"
-      },
-      {
-        "name": "पब्लिक गुड प्रोजेक्ट्स",
-        "price": "TBD",
-        "date": "जुलाई में खुलेगा"
+        "name": "एथेरियम पब्लिक गुड्स",
+        "ethPrice": "$349",
+        "action": "शुरू करें",
+        "actionHref": "/en/tickets/store"
       },
       {
         "name": "पिछले POAP धारक",
-        "price": "10% छूट",
-        "date": "जुलाई में खुलेगा"
+        "ethPrice": "$449",
+        "action": "शुरू करें",
+        "actionHref": "/en/tickets/store"
+      },
+      {
+        "name": "कोर डेव्स",
+        "ethPrice": "FREE",
+        "action": "शुरू करें",
+        "actionHref": "/en/tickets/store"
       }
-    ]
+    ],
+    "cta": "शुरू करें"
   },
   "criteria": {
     "student": {
@@ -121,9 +129,9 @@
     "body_amp": " और ",
     "body_strong_2": "अंतरराष्ट्रीय छात्र",
     "body_middle": " और ",
-    "body_strong_3": "निर्माताओं",
-    "body_suffix": " के लिए, जो दुनिया भर से हैं। आवेदन निरंतर समीक्षा के आधार पर देखे जाते हैं।",
-    "subcopy_strong_1": "छात्र अभी आवेदन कर सकते हैं",
+    "body_strong_3": "Sanctuary Tech Builders",
+    "body_suffix": " दुनिया भर से। आवेदन निरंतर समीक्षा के आधार पर देखे जाते हैं।",
+    "subcopy_strong_1": "हर कोई अभी आवेदन कर सकता है",
     "subcopy_middle_1": "। आवेदन ",
     "subcopy_strong_2": "क्यूरेटेड",
     "subcopy_middle_2": " और ",
@@ -131,29 +139,35 @@
     "subcopy_suffix": " हैं, उपलब्धता और समीक्षा के अधीन।",
     "card_title": "आवेदन",
     "card_subtitle": "18% GST सहित",
+    "pre_launch_status": "जुलाई में खुलेगा",
     "tap_label": "अधिक जानने के लिए टैप करें",
     "apply": "आवेदन करें",
     "rows": [
       {
         "name": "भारतीय छात्र",
+        "ethPrice": "$25",
+        "fiatPrice": "$25",
         "status": "open",
-        "price": "$25",
         "action": "आवेदन करें",
         "actionHref": "/form/student-application"
       },
       {
         "name": "अंतरराष्ट्रीय छात्र",
+        "ethPrice": "$49",
+        "fiatPrice": "$99",
         "status": "open",
-        "price": "$99",
         "action": "आवेदन करें",
         "actionHref": "/form/student-application"
       },
       {
-        "name": "निर्माता",
-        "price": "TBD",
-        "date": "जुलाई में खुलेगा"
+        "name": "Sanctuary Tech Builders",
+        "ethPrice": "$349",
+        "fiatPrice": "$499",
+        "action": "आवेदन करें",
+        "actionHref": "/form/builder-application"
       }
-    ]
+    ],
+    "cta": "और जानें"
   },
   "comparison": {
     "eyebrow": "DEVCON टिकट",
@@ -177,10 +191,9 @@
         "title": "सामान्य प्रवेश",
         "tab_label": "सामान्य",
         "subtitle": "बिक्री चरण",
-        "price": "$349+",
-        "price_original": "TBD",
-        "price_note": "ETH अर्ली बर्ड • ETH (L1) से खरीद सकते हैं",
-        "best_for": "कोई भी — कोई पात्रता मानदंड नहीं है और हम गुमनामता का समर्थन करते हैं।",
+        "price": "$499+",
+        "price_note": "$499 ETH से • $999 फिएट से",
+        "best_for": "कोई भी — कोई पात्रता मानदंड नहीं है और हम गुमनाम-अनुकूल हैं।",
         "included": [
           {
             "text": "4-दिन सम्मेलन प्रवेश",

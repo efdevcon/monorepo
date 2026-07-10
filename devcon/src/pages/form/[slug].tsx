@@ -1,6 +1,7 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import { getFormConfigBySlug, isFormOpen, type NocodbFormConfig } from 'services/form-config'
 import FormPage from 'components/domain/nocodb-form/FormPage'
+import { BuilderConnectProvider } from 'context/BuilderConnectContext'
 
 interface Props {
   config: NocodbFormConfig
@@ -8,12 +9,14 @@ interface Props {
 
 export default function SlugFormPage({ config }: Props) {
   return (
-    <FormPage
-      viewId={config.formViewId}
-      requireOtp={config.requireOtp}
-      closed={!isFormOpen(config)}
-      formSlug={config.formSlug}
-    />
+    <BuilderConnectProvider>
+      <FormPage
+        viewId={config.formViewId}
+        requireOtp={config.requireOtp}
+        closed={!isFormOpen(config)}
+        formSlug={config.formSlug}
+      />
+    </BuilderConnectProvider>
   )
 }
 

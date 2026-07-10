@@ -1,23 +1,28 @@
 import fs from 'fs'
 
 const organizations = ['efdevcon', 'ethereum']
+// Geth (ethereum/go-ethereum) is covered via the 'ethereum' org scan above.
 const executionClients = [
     'NethermindEth/nethermind',
     'paradigmxyz/reth',
-    'hyperledger/besu',
-    'ledgerwatch/erigon'
+    'besu-eth/besu',
+    'erigontech/erigon',
+    'lambdaclass/ethrex',
+    'status-im/nimbus-eth1'
 ]
 const consensusClients = [
     'sigp/lighthouse',
     'ChainSafe/lodestar',
-    'prysmaticlabs/prysm',
+    'OffchainLabs/prysm',
     'Consensys/teku',
     'status-im/nimbus-eth2',
     'grandinetech/grandine'
 ]
 
-const sinceDate = '2022-10-11T00:00:00Z'
-const excludedBots = ['dependabot[bot]', 'github-actions[bot]', 'tina-cloud-app[bot]', 'allcontributors[bot]', 'actions-user', 'core-repository-dispatch-app[bot]']
+const sinceDate = '2024-11-01T00:00:00Z'
+// Bots: any login ending in "[bot]" plus these extras that don't follow that convention.
+const excludedBots = ['actions-user', 'eth-bot', 'tempoxyz-bot']
+const isBot = (login: string) => !!login && (login.endsWith('[bot]') || login.endsWith('-bot') || excludedBots.includes(login))
 const headers = { Authorization: `token ${process.env.GITHUB_TOKEN}` }
 
 fetchContributors().then(contributors => {
@@ -83,7 +88,7 @@ async function countCommitsForRepos(repos, contributorCommits) {
             if (commits.length === 0) break
 
             commits.forEach(c => {
-                if (c.author && !excludedBots.includes(c.author.login)) {
+                if (c.author?.login && !isBot(c.author.login)) {
                     const login = c.author.login
                     const currentCount = contributorCommits.get(login) || 0
                     contributorCommits.set(login, currentCount + 1)

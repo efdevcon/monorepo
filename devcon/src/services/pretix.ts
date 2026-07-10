@@ -204,6 +204,13 @@ export async function getQuotaAvailability(quotaId: number): Promise<PretixQuota
   return cachedFetch(`quota_avail_${quotaId}`, () => fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`), 30_000)
 }
 
+/** Uncached quota availability — for authoritative checks (e.g. the voucher
+ *  sold-out gate) where a 30s-stale number could wrongly let a sold-out ticket
+ *  through. */
+export async function getQuotaAvailabilityFresh(quotaId: number): Promise<PretixQuotaAvailability> {
+  return fetchPretix<PretixQuotaAvailability>(`quotas/${quotaId}/availability/`)
+}
+
 export async function createOrder(order: PretixOrderCreateRequest): Promise<PretixOrder> {
   return withRetry('createOrder', async () => {
     const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/orders/`
@@ -221,6 +228,63 @@ export async function createOrder(order: PretixOrderCreateRequest): Promise<Pret
 
     return response.json()
   })
+}
+
+/** Create a single Pretix voucher that unlocks a specific (voucher-gated)
+ *  ticket item. `price_mode: 'none'` means the voucher does not change the
+ *  price — the item's own configured price applies; the voucher only grants
+ *  access to a normally-hidden ticket. Quota is governed by the item, so
+ *  `block_quota` is false (the voucher does not reserve inventory). */
+export async function createVoucher(opts: {
+  itemId: number
+  tag?: string
+  maxUsages?: number
+  comment?: string
+}): Promise<{ code: string; id: number }> {
+  return withRetry('createVoucher', async () => {
+    const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/vouchers/`
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({
+        item: opts.itemId,
+        price_mode: 'none',
+        max_usages: opts.maxUsages ?? 1,
+        block_quota: false,
+        tag: opts.tag ?? 'discount',
+        comment: opts.comment ?? 'Auto-issued discount voucher',
+      }),
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      throw new Error(`Pretix voucher creation failed ${response.status}: ${text}`)
+    }
+
+    return response.json()
+  })
+}
+
+/** Whether a Pretix item is currently purchasable (none of its quotas are
+ *  exhausted). Used to gate voucher issuance so we don't unlock a sold-out
+ *  ticket. Reads quota availability FRESH (uncached) so a just-changed quota is
+ *  reflected immediately — a stale "available" would wrongly let a sold-out
+ *  ticket through. An item with no quota is treated as unlimited. Fails open
+ *  (returns true) on fetch error so a transient Pretix hiccup doesn't block
+ *  legitimate claims — Pretix is the final gate at redeem time. */
+export async function isItemAvailable(itemId: number): Promise<boolean> {
+  try {
+    // Quota membership rarely changes (cached); the availability NUMBER is the
+    // volatile part, so we fetch that fresh below.
+    const quotas = await getQuotas()
+    const itemQuotas = quotas.filter(q => q.items.includes(itemId))
+    if (itemQuotas.length === 0) return true
+    const avails = await Promise.all(itemQuotas.map(q => getQuotaAvailabilityFresh(q.id)))
+    // Pretix requires capacity in EVERY quota an item belongs to.
+    return avails.every(a => a.available)
+  } catch {
+    return true
+  }
 }
 
 export async function getOrder(orderCode: string): Promise<PretixOrder> {
@@ -480,6 +544,7 @@ async function _buildTicketPurchaseInfo(locale: string): Promise<TicketPurchaseI
         availableCount: availability.count,
         isAdmission: item.admission,
         requireVoucher: item.require_voucher,
+        maxPerOrder: item.max_per_order,
         variations: item.variations.map((v) => ({
           id: v.id,
           name: getLocalizedString(v.value, locale),

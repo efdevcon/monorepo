@@ -1,15 +1,25 @@
 import fs from 'fs'
 
+const SOURCES = {
+    Gitcoin: 'outputs/pg-projects-gitcoin.json',
+    Giveth: 'outputs/pg-projects-giveth.json',
+    Octant: 'outputs/pg-projects-octant.json',
+    Optimism: 'outputs/pg-projects-optimism.json',
+}
+
 parse()
 
+// Merge the public-goods project sources into a single de-duplicated address list.
 async function parse() {
-    const clr = JSON.parse(fs.readFileSync('outputs/pg-projects-clrfund.json', 'utf-8'))
-    const gitcoin = JSON.parse(fs.readFileSync('outputs/pg-projects-gitcoin.json', 'utf-8'))
-    const giveth = JSON.parse(fs.readFileSync('outputs/pg-projects-giveth.json', 'utf-8'))
-    const octant = JSON.parse(fs.readFileSync('outputs/pg-projects-octant.json', 'utf-8'))
+    const lists: Record<string, string[]> = {}
+    for (const [name, file] of Object.entries(SOURCES)) {
+        lists[name] = (JSON.parse(fs.readFileSync(file, 'utf-8')) as string[]).map(a => a.toLowerCase())
+    }
 
-    const uniques = Array.from(new Set([...clr, ...gitcoin, ...giveth, ...octant]))
+    const uniques = Array.from(new Set(Object.values(lists).flat()))
 
-    console.log('Clr.fund', clr.length, 'Gitcoin', gitcoin.length, 'Giveth', giveth.length, 'Octant', octant.length, 'Unique', uniques.length)
-    fs.writeFileSync('outputs/pg-projects.json', JSON.stringify(uniques, null, 2), 'utf-8');
+    const counts = Object.entries(lists).map(([name, list]) => `${name} ${list.length}`).join(', ')
+    console.log(`${counts}, Unique ${uniques.length}`)
+
+    fs.writeFileSync('outputs/pg-projects.json', JSON.stringify(uniques, null, 2), 'utf-8')
 }

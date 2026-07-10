@@ -17,9 +17,13 @@ import {
   AlertTriangle,
 } from 'lucide-react'
 import { COUNTRIES } from './countries'
+import { GithubConnectField } from './GithubConnectField'
+import { WalletConnectField } from './WalletConnectField'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import { AGE_RECIPIENTS, isEncryptedTitle, stripEncryptedPrefix } from 'config/encrypted-forms'
+import { isGithubTitle, isWalletTitle, stripWalletPrefix } from 'config/form-field-markers'
+import { useBuilderConnect } from 'context/BuilderConnectContext'
 import { packEnvelope } from 'utils/age-envelope'
 import { rhfFieldName } from './rhf-key'
 
@@ -856,7 +860,13 @@ function FieldDescription({ text }: { text: string }) {
 }
 
 function FieldError({ message }: { message: string }) {
-  return <p className="text-sm text-red-500">{message}</p>
+  // data-field-error lets the form scroll to the first invalid field on submit
+  // (works for every field type, incl. ones without a DOM <input name>).
+  return (
+    <p data-field-error className="text-sm text-red-500 scroll-mt-24">
+      {message}
+    </p>
+  )
 }
 
 function SearchableSelect({
@@ -983,6 +993,9 @@ export function FormRenderer({
     unregister,
     formState: { errors },
   } = useFormContext()
+  // Auto-discount the applicant already qualifies for (builder form only; null
+  // elsewhere). Rendered inside the Connections block once they connect.
+  const { qualifyingDiscount } = useBuilderConnect()
 
   // Build the set of column names that should be hidden right now based on
   // conditional rules. Subscribes to all watched form values so the set
@@ -1068,6 +1081,66 @@ export function FormRenderer({
               )}
               {error && <FieldError message={error.message as string} />}
             </div>
+          )
+        }
+
+        // GitHub + wallet render together as one "Connections" block (the GitHub
+        // field owns the heading/helper; the wallet field collapses into it).
+        if (isGithubTitle(col.title)) {
+          const walletCol = columns.find(c => isWalletTitle(c.title))
+          return (
+            <div key={col.column_name} className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
+                <FieldLabel title="Connections" required={Boolean(col.required || walletCol?.required)} />
+                {col.description && <FieldDescription text={col.description} />}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <GithubConnectField columnName={col.column_name} label="" required={col.required} hideHeader />
+                {walletCol && (
+                  <WalletConnectField
+                    columnName={walletCol.column_name}
+                    label=""
+                    required={walletCol.required}
+                    hideHeader
+                  />
+                )}
+              </div>
+              {qualifyingDiscount && (
+                <div className="flex flex-col gap-1 rounded-xl border border-[#b7e6c9] bg-[#e6f7ed] p-4">
+                  <p className="flex items-start gap-2 text-base font-bold text-[#137a3e]">
+                    <Check className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>
+                      You qualify for{' '}
+                      {qualifyingDiscount.discount >= 100
+                        ? `a FREE ${qualifyingDiscount.name} ticket!`
+                        : `${qualifyingDiscount.discount}% off via ${qualifyingDiscount.name}!`}
+                    </span>
+                  </p>
+                  <p className="pl-7 text-sm text-[#3b3450] leading-5">
+                    You don&apos;t need to apply — claim your ticket now at the{' '}
+                    <a href="/en/tickets/store/" className="font-bold text-[#137a3e] underline">
+                      ticket store
+                    </a>
+                    . Verify using the same GitHub / wallet and the discount will be detected automatically.
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        }
+
+        if (isWalletTitle(col.title)) {
+          // Already rendered inside the combined Connections block above when a
+          // GitHub field exists; otherwise render the wallet field on its own.
+          if (columns.some(c => isGithubTitle(c.title))) return null
+          return (
+            <WalletConnectField
+              key={col.column_name}
+              columnName={col.column_name}
+              label={stripWalletPrefix(col.title)}
+              required={col.required}
+              description={col.description}
+            />
           )
         }
 

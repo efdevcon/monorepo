@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { supabase } from 'services/supabase-browser'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import Image from 'next/image'
-import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Mail } from 'lucide-react'
 import { FormSubheading } from './FormSubheading'
+import { FormHeaderImage } from './FormHeaderImage'
 
 interface OtpGateProps {
   children: (verifiedEmail: string, onSignOut: () => void) => React.ReactNode
@@ -150,7 +149,7 @@ export function OtpGate({
   if (step === 'email') {
     return (
       <div className="flex flex-col items-center gap-4 w-full">
-        <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+        <FormHeaderImage />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
           {title || DEFAULT_TITLE}
@@ -204,7 +203,7 @@ export function OtpGate({
   if (step === 'code') {
     return (
       <div className="flex flex-col items-center gap-4 w-full">
-        <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+        <FormHeaderImage />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
           Enter verification code
@@ -270,7 +269,7 @@ export function OtpGate({
   return (
     <>
       <div className="flex flex-col items-center gap-6 w-full">
-        <Image src={dc8Logo} alt="Devcon 8 India" width={127} height={56} />
+        <FormHeaderImage />
 
         <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
           {title || 'Verify your email'}

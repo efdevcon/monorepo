@@ -138,6 +138,19 @@ export const authOptions: AuthOptions = {
         })
     ],
     callbacks: {
+        // Capture the GitHub login + id ONCE at sign-in (the `profile` is only
+        // present then) and stash them on the JWT. This avoids re-fetching the
+        // login from GitHub's API on every session read — the connect flow polls
+        // getSession() ~1x/sec, and those uncached calls hit GitHub's rate limit,
+        // which made the session fall back to the numeric id (token.sub).
+        async jwt({ token, profile }) {
+            const login = (profile as { login?: string; id?: number } | undefined)?.login
+            if (login) {
+                ;(token as Record<string, unknown>).login = login
+                ;(token as Record<string, unknown>).githubId = (profile as { id?: number }).id
+            }
+            return token
+        },
         async session({ session, token }) {
             if (!token.sub) {
               return session
@@ -147,21 +160,28 @@ export const authOptions: AuthOptions = {
             session.type = token.sub.startsWith('0x') ? 'ethereum' : 'github'
 
             if (session.type === 'github') {
-                const response = await fetch('https://api.github.com/user/' + token.sub, {
-                    headers: {
-                        Authorization: `token ${process.env.GITHUB_TOKEN}`
-                    }
-                })
-
-                if (response.status === 200) {
-                    const user = await response.json()
-                    if (user) { 
-                        session.id = user.login
-                        session.userId = user.id
-                    }
+                const cachedLogin = (token as Record<string, unknown>).login as string | undefined
+                if (cachedLogin) {
+                    // Resolved at sign-in — no per-request GitHub API call.
+                    session.id = cachedLogin
+                    session.userId = (token as Record<string, unknown>).githubId as number | undefined
                 } else {
-                    console.error('Unable to fetch Github user', response.status, response.statusText)
-                    console.log(response)
+                    // Fallback for JWTs issued before login was captured: fetch once.
+                    const response = await fetch('https://api.github.com/user/' + token.sub, {
+                        headers: {
+                            Authorization: `token ${process.env.GITHUB_TOKEN}`,
+                        },
+                    })
+
+                    if (response.status === 200) {
+                        const user = await response.json()
+                        if (user?.login) {
+                            session.id = user.login
+                            session.userId = user.id
+                        }
+                    } else {
+                        console.error('Unable to fetch Github user', response.status, response.statusText)
+                    }
                 }
             }
 

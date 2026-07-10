@@ -10,6 +10,12 @@ console.log(`[ticketing] Environment: ${ticketingEnv}`)
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['lib'],
+  // pnpm workspace root (one level up). Without this, Next's output file
+  // tracing misses the hoisted `.pnpm` deps (react, viem, ...), so the Netlify
+  // runtime falls back to per-request blob-store reads of those files
+  // (readFileFallbackBlobStore) and exhausts file descriptors -> EMFILE. Tracing
+  // from the workspace root bundles them onto the function's disk instead.
+  outputFileTracingRoot: path.join(__dirname, '..'),
   reactStrictMode: true,
   staticPageGenerationTimeout: 300,
   images: {

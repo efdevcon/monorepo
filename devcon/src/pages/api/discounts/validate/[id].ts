@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import coreDevs from "discounts/core-devs.json"
-import daoParticipants from "discounts/dao-participants.json"
 import ossContributors from "discounts/oss-contributors.json"
 import pgProjects from "discounts/pg-projects.json"
 import pastAttendees from "discounts/past-attendees.json"
@@ -24,10 +23,7 @@ export function GetDiscount(id: string) {
         discounts.push({ type: 'oss-contributors', name: 'OSS Contributors', discount: 50, index: ossContributors.findIndex(i => i.toLowerCase() === id.toLowerCase())})
     }
     if (pgProjects.findIndex(i => i.toLowerCase() === id.toLowerCase()) >= 0) {
-        discounts.push({ type: 'pg-projects', name: 'Public Goods Projects', discount: 50, index: pgProjects.findIndex(i => i.toLowerCase() === id.toLowerCase())})
-    }
-    if (daoParticipants.findIndex(i => i.toLowerCase() === id.toLowerCase()) >= 0) {
-        discounts.push({ type: 'dao-participants', name: 'DAO Participants', discount: 25, index: daoParticipants.findIndex(i => i.toLowerCase() === id.toLowerCase())})
+        discounts.push({ type: 'pg-projects', name: 'Public Goods Projects', discount: 30, index: pgProjects.findIndex(i => i.toLowerCase() === id.toLowerCase())})
     }
     if (pastAttendees.findIndex(i => i.toLowerCase() === id.toLowerCase()) >= 0) {
         discounts.push({ type: 'past-attendees', name: 'Past Attendees', discount: 10, index: pastAttendees.findIndex(i => i.toLowerCase() === id.toLowerCase())})
@@ -66,10 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         discounts.push({ list: 'OSS Contributors', discount: 50 });
     }
     if (pgProjects.some(i => i.toLowerCase() === id.toLowerCase())) {
-        discounts.push({ list: 'Public Good Projects', discount: 50 });
-    }
-    if (daoParticipants.some(i => i.toLowerCase() === id.toLowerCase())) {
-        discounts.push({ list: 'DAO Participants', discount: 25 });
+        discounts.push({ list: 'Public Good Projects', discount: 30 });
     }
     if (pastAttendees.some(i => i.toLowerCase() === id.toLowerCase())) {
         discounts.push({ list: 'Past Attendees', discount: 10 });

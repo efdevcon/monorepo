@@ -9,6 +9,14 @@ import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumn
 const EMAIL_COLUMN_NAME = 'Email'
 import { classifyEligibility } from 'services/email-classifier'
 import { getPaidOrdersByEmail } from 'services/pretix'
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '../../auth/[...nextauth]'
+import { verifyProof } from 'services/builder/proof'
+import { getContributions } from 'services/builder/github-contributions'
+import type { NotableCandidate } from 'services/builder/github-contributions'
+import { parseRepoList } from 'services/builder/repo-ref'
+import { scoreBuilder, evaluateStrongCandidate } from 'services/builder/scoring'
+import { getPastDevconEvents } from 'services/builder/poap-attendees'
 import { isApprovedSpeaker } from 'services/pretalx'
 
 // Slug of the visa-collection form. Only this form gates submissions on the
@@ -162,30 +170,97 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data['Email Classification'] = bucket === 'blocked' ? 'proof-required' : bucket
     }
 
+    // Builder-application branch. The server is authoritative: it reads the
+    // proof tokens from the TOP-LEVEL body (not `data`), verifies them, derives
+    // the trusted GitHub username / wallet address, pulls the user's contributed
+    // repos, scores them against the manually-claimed repos, and injects the
+    // script-output columns. This MUST run after the field-validation block above
+    // because the injected columns (Matched Repos / Matched Count / Match Source)
+    // are not part of the form-visible allowed-field set.
+    if (config?.formSlug === 'builder-application') {
+      // GitHub identity is the existing NextAuth GitHub session (set via the
+      // shared /signin popup). Read it server-side — never trust a client value.
+      const session = await getServerSession(req, res, authOptions)
+      const githubUsername = session?.type === 'github' ? session.id : null
+
+      // Wallet stays on its own SIWE→proof flow (not NextAuth) so it can coexist
+      // with the GitHub session — NextAuth is single-session.
+      const walletProof = typeof req.body?.walletProof === 'string' ? req.body.walletProof : ''
+      const walletAddress = walletProof ? verifyProof(walletProof, 'wallet') : null
+
+      // Server is authoritative: overwrite any client-supplied display values with verified ones.
+      if (githubUsername) data['GitHub Username'] = githubUsername
+      else delete data['GitHub Username']
+      if (walletAddress) {
+        data['Wallet Address'] = walletAddress
+        // POAP URL and Talent Protocol URL are admin-only columns derived from the
+        // verified wallet (both resolve by address). Never trust client values.
+        data['POAP URL'] = `https://collectors.poap.xyz/scan/${walletAddress}`
+        data['Talent Protocol URL'] = `https://talent.app/${walletAddress}`
+        // Auto-detect past Devcon/Devconnect attendance from the wallet's POAPs.
+        data['Past Devcon POAPs'] = getPastDevconEvents(walletAddress).join(', ')
+      } else {
+        delete data['Wallet Address']
+        delete data['POAP URL']
+        delete data['Talent Protocol URL']
+        delete data['Past Devcon POAPs']
+      }
+
+      const claimedRepos = parseRepoList(typeof data['Contributed Repos'] === 'string' ? data['Contributed Repos'] : '')
+
+      let contributedRepos = new Set<string>()
+      let notableCandidates: NotableCandidate[] = []
+      if (githubUsername) {
+        try {
+          const data = await getContributions(githubUsername)
+          contributedRepos = data.repos
+          notableCandidates = data.notableCandidates
+        } catch {
+          contributedRepos = new Set<string>()
+        }
+      }
+
+      const score = await scoreBuilder({ githubUsername, contributedRepos, claimedRepos, notableRepos: notableCandidates })
+
+      data['Matched Repos'] = JSON.stringify(score.matchedRepos)
+      data['Matched Count'] = score.matchedCount
+      data['Match Source'] = score.matchSource
+
+      // Referral code (hidden, captured from the URL client-side). Untrusted
+      // tracking value — just store a trimmed, length-capped copy.
+      const referralCode = typeof req.body?.referralCode === 'string' ? req.body.referralCode.trim().slice(0, 100) : ''
+      if (referralCode) data['Referral Code'] = referralCode
+
+      // Flag likely-approvals so reviewers can spot them fast. This is a HINT
+      // only — it never approves or issues a voucher; a human still decides.
+      data['Strong Candidate'] = evaluateStrongCandidate(githubUsername, score.matchedRepos).strong
+    }
+
     data['Submission Date'] = new Date().toISOString()
 
-    // For OTP-required forms: write the OTP-verified email into the
-    // conventional "Email" column and upsert by email so re-submissions
-    // edit the existing row.
+    // For OTP-required forms: write the OTP-verified email into the conventional
+    // "Email" column and look up any existing row (re-submissions edit it).
+    let existingRow: any = null
     if (verifiedEmail && config?.requireOtp) {
       data[EMAIL_COLUMN_NAME] = verifiedEmail
-      const existingRow = await findRowByEmail(viewId, EMAIL_COLUMN_NAME, verifiedEmail)
-      if (existingRow) {
-        // rtd-event-form: flag when an already-approved event is edited, so
-        // reviewers know to re-check it. The "is this an update" signal is the
-        // existing row itself (keyed to the OTP-verified email), and approval
-        // state is read from that row's Status — both server-side truth. We
-        // strip any client-supplied value so a submitter can't set/clear it.
-        if (config.formSlug === 'rtd-event-form') {
-          delete (data as Record<string, unknown>)['Updated post-approval']
-          const status = String(existingRow['Status'] ?? '').toLowerCase()
-          if (status.includes('approved')) {
-            data['Updated post-approval'] = true
-          }
+      existingRow = await findRowByEmail(viewId, EMAIL_COLUMN_NAME, verifiedEmail)
+    }
+
+    if (existingRow) {
+      // rtd-event-form: flag when an already-approved event is edited, so
+      // reviewers know to re-check it. The "is this an update" signal is the
+      // existing row itself (keyed to the OTP-verified email), and approval
+      // state is read from that row's Status — both server-side truth. We
+      // strip any client-supplied value so a submitter can't set/clear it.
+      if (config?.formSlug === 'rtd-event-form') {
+        delete (data as Record<string, unknown>)['Updated post-approval']
+        const status = String(existingRow['Status'] ?? '').toLowerCase()
+        if (status.includes('approved')) {
+          data['Updated post-approval'] = true
         }
-        await updateRow(viewId, existingRow.Id, data)
-        return res.status(200).json({ success: true, updated: true })
       }
+      await updateRow(viewId, existingRow.Id, data)
+      return res.status(200).json({ success: true, updated: true })
     }
 
     await createRow(viewId, data)

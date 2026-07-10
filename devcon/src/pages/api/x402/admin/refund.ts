@@ -1,5 +1,5 @@
 /**
- * Thin proxy: forwards to Pretix plugin /plugin/x402/admin/refund.
+ * Thin proxy: forwards to Pretix plugin /plugin/admin/refund.
  * All business logic (refund initiation, confirmation, failure) lives in the plugin now.
  *
  * Keep the existing ADMIN_SECRET check — devcon-next still enforces admin auth
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   let proxyResult: { status: number; body: unknown }
   try {
     proxyResult = await pluginFetch(
-      `/plugin/x402/admin/refund/?action=${encodeURIComponent(action)}`,
+      `/plugin/admin/refund/?action=${encodeURIComponent(action)}`,
       {
         method: 'POST',
         body,

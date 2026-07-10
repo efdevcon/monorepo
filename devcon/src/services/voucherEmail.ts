@@ -4,35 +4,24 @@
  * Used by both the redeem-self backend (automatic) and send-voucher-email API (manual re-send).
  */
 
-import nodemailer from 'nodemailer'
 import { validateVoucher, getTicketPurchaseInfo } from 'services/pretix'
 import { setVoucherEmail, setVoucherEmailSent } from 'services/discountStore'
+import { getTransporter, sendWithRetry } from 'services/mailer'
+import { pretixEventUrl } from 'config/ticketing'
 
 // Dedup: prevent the same voucher+email combo from being sent twice
 // (Self SDK posts the proof twice, both requests trigger trySendEmail)
 const recentlySent = new Set<string>()
 
-function getTransporter() {
-  const smtpHost = process.env.SMTP_SERVICE || 'email-smtp.us-west-2.amazonaws.com'
-  const smtpUser = process.env.SMTP_USERNAME
-  const smtpPass = process.env.SMTP_PASSWORD
-
-  if (!smtpUser || !smtpPass) {
-    throw new Error('SMTP credentials not configured')
-  }
-
-  return nodemailer.createTransport({
-    host: smtpHost,
-    port: 465,
-    secure: true,
-    auth: { user: smtpUser, pass: smtpPass },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
-  })
-}
-
 function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPrice: string): string {
+  // Deep-link straight to the Pretix store with the voucher pre-applied.
+  const redeemUrl = pretixEventUrl(`/redeem?voucher=${encodeURIComponent(voucherCode)}`)
+  // Only show the price line when we actually resolved real numbers (not the
+  // '—' / 'XX' placeholders used when Pretix is unreachable).
+  const hasPrices = /^\d/.test(discountedPrice) && /^\d/.test(originalPrice)
+  const priceLine = hasPrices
+    ? `With this voucher you'll pay <strong>$${discountedPrice}</strong> instead of $${originalPrice}.`
+    : `This voucher applies your discount automatically at checkout.`
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -69,22 +58,12 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
                   ${voucherCode}
                 </p>
               </div>
-              <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
-                This code is reserved and linked to your Aadhaar ID. When tickets go on sale, you'll pay
-                <strong>$${discountedPrice}</strong> instead of $${originalPrice}.
+              <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
+                ${priceLine} Click below to redeem it now and secure your ticket.
               </p>
-              <hr style="border: none; border-top: 1px solid #dddae2; margin: 24px 0;" />
-              <h3 style="margin: 0 0 12px; font-size: 18px; font-weight: 700; color: #1a0d33;">
-                What happens next?
-              </h3>
-              <ul style="margin: 0 0 24px; padding-left: 20px; font-size: 15px; line-height: 1.6; color: #1a0d33;">
-                <li style="margin-bottom: 8px;">We'll notify you before tickets go live so you're ready to secure yours early.</li>
-                <li style="margin-bottom: 8px;">When tickets go live, we'll send you a reminder with a <strong>direct link</strong> to purchase your ticket.</li>
-                <li>Your exclusive <strong>$${discountedPrice}</strong> price will be applied automatically.</li>
-              </ul>
               <div style="text-align: center;">
-                <a href="https://devcon.org" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #ffffff; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
-                  Visit devcon.org
+                <a href="${redeemUrl}" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #ffffff; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
+                  Redeem your voucher
                 </a>
               </div>
             </td>
@@ -104,29 +83,6 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
   </table>
 </body>
 </html>`
-}
-
-async function sendWithRetry(
-  transporter: nodemailer.Transporter,
-  mailOptions: nodemailer.SendMailOptions,
-  retries = 2
-): Promise<void> {
-  for (let attempt = 0; attempt <= retries; attempt++) {
-    try {
-      await transporter.sendMail(mailOptions)
-      return
-    } catch (err: unknown) {
-      const isRetryable =
-        err instanceof Error &&
-        ('code' in err && (err as { code?: string }).code === 'ETIMEDOUT' ||
-         'code' in err && (err as { code?: string }).code === 'ESOCKET' ||
-         'code' in err && (err as { code?: string }).code === 'ECONNRESET')
-      if (!isRetryable || attempt === retries) throw err
-      // Brief pause before retry, create a fresh transport for the new attempt
-      await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
-      transporter = getTransporter()
-    }
-  }
 }
 
 /**

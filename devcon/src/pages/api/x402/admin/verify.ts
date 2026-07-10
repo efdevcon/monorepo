@@ -1,5 +1,5 @@
 /**
- * Thin proxy: forwards to Pretix plugin /plugin/x402/admin/verify.
+ * Thin proxy: forwards to Pretix plugin /plugin/admin/verify.
  * Admin-operated manual verification — used when a buyer's auto-verify
  * flow didn't complete (browser crash, wallet disconnected, RPC blip).
  *
@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   if (!checkAdminAuth(req, res)) return
   try {
-    const { status, body } = await pluginFetch('/plugin/x402/admin/verify/', {
+    const { status, body } = await pluginFetch('/plugin/admin/verify/', {
       method: 'POST',
       body: req.body,
     })

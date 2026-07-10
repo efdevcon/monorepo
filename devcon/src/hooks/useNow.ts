@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
+import { GLOBAL_LAUNCH_TIME, GA_COMING_SOON_OPENS_AT } from 'config/waves'
 
 /**
  * Central "current time" source for the site. Returns a Date that updates on
@@ -54,6 +55,23 @@ function ensureYear(input: string): string {
 function parseMockNow(raw: string): number | null {
   const s = raw.trim()
   if (!s) return null
+
+  // Shorthands for previewing the launched / paused sale states — all advance
+  // the clock to just past the global launch so the surrounding rows read
+  // correctly (ETH Early Bird "Sale ended", etc.). Which sale state shows is
+  // driven separately by `useGaSaleState`, which reads the same param:
+  //   ?mockNow=launch | open              → open (live)
+  //   ?mockNow=coming-soon | soon | closed → paused
+  const low = s.toLowerCase()
+  if (low === 'launch' || low === 'open') return GLOBAL_LAUNCH_TIME.getTime() + 60_000
+  // Coming-soon preview: land ~5 days before the configured reopen so the
+  // countdown renders a realistic value (falls back to just past launch).
+  if (low === 'coming-soon' || low === 'comingsoon' || low === 'soon') {
+    return GA_COMING_SOON_OPENS_AT
+      ? GA_COMING_SOON_OPENS_AT.getTime() - 5 * 86_400_000
+      : GLOBAL_LAUNCH_TIME.getTime() + 86_400_000
+  }
+  if (low === 'closed') return GLOBAL_LAUNCH_TIME.getTime() + 86_400_000
 
   // 1) Try direct parse first (year-defaulted + UTC-forced).
   let t = Date.parse(toUtcString(ensureYear(s)))

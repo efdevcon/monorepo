@@ -32,7 +32,8 @@
     "early-access:generate-codes": "ts-node src/scripts/generate-early-access-codes.ts",
     "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts",
     "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts",
-    "forms:decrypt": "tsx scripts/decrypt.ts"
+    "forms:decrypt": "tsx scripts/decrypt.ts",
+    "sync:discount-data": "tsx src/scripts/sync-discount-data.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
@@ -80,7 +81,7 @@
     "matter-js": "^0.18.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
-    "next": "16.1.1",
+    "next": "16.2.6",
     "next-auth": "^4.24.7",
     "next-intl": "^2.3.5",
     "nocodb-sdk": "^0.301.3",
@@ -127,7 +128,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.1",
+    "@netlify/plugin-nextjs": "^5.15.11",
     "@svgr/webpack": "^6.2.1",
     "@tinacms/cli": "^1.5.39",
     "@types/matter-js": "^0.19.6",
