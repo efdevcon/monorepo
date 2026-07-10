@@ -643,7 +643,8 @@ export async function getStaticProps(context: any) {
         data: content.data,
         query: content.query,
       },
-      ticketQuota,
+      // `undefined` is not JSON-serializable in getStaticProps props
+      ticketQuota: ticketQuota ?? null,
     },
     revalidate: 3600,
   }
