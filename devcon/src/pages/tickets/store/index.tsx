@@ -580,7 +580,7 @@ function StoreContent({
                 <div className={css['application-card']}>
                   <div className={css['application-card-body']}>
                     <h3 className={css['application-card-title']}>India Early Bird 🇮🇳</h3>
-                    <p className={css['application-card-meta']}>ID required at Registration</p>
+                    <p className={css['application-card-meta']}>ID required at check-in</p>
                     <p className={css['application-card-description']}>
                       Accessible via the vouchers we distributed during ETH Mumbai in March. Got a voucher? Redeem yours
                       now!
@@ -602,7 +602,7 @@ function StoreContent({
                 <div className={css['application-card']}>
                   <div className={css['application-card-body']}>
                     <h3 className={css['application-card-title']}>India Resident 🇮🇳</h3>
-                    <p className={css['application-card-meta']}>ID required at Registration</p>
+                    <p className={css['application-card-meta']}>ID required at check-in</p>
                     <p className={css['application-card-description']}>
                       Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge Proofs to
                       prove Indian residency.
