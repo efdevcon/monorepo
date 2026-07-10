@@ -10,6 +10,7 @@ interface TicketProps {
   pageUrl: string
   ogUrl: string
   share: boolean
+  paidWithEth: boolean
 }
 
 const Ticket = (props: TicketProps) => {
@@ -52,7 +53,7 @@ const Ticket = (props: TicketProps) => {
         <meta name="twitter:image:alt" key="twitter:image:alt" content={`${props.name} - Devcon India Ticket`} />
         <meta name="theme-color" key="theme-color" content="#1a0a3e" />
       </Head>
-      <TicketSharing name={props.name} avatarUrl={props.avatarUrl} share={props.share} pageUrl={props.pageUrl} />
+      <TicketSharing name={props.name} avatarUrl={props.avatarUrl} share={props.share} pageUrl={props.pageUrl} paidWithEth={props.paidWithEth} />
     </>
   )
 }
@@ -74,6 +75,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const name = (slug[0] || 'Anon').replace(/\+/g, ' ')
   const cacheBuster = slug[1] || ''
   const share = context.query.share !== undefined
+  // Only crypto orders pass `eth=1`; fiat orders omit the "paid for with ETH" line.
+  const paidWithEth = context.query.eth === '1'
   const proto = context.req.headers['x-forwarded-proto'] || 'https'
   const host = context.req.headers.host || 'devcon.org'
   const baseUrl = `${proto}://${host}`
@@ -105,6 +108,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       pageUrl,
       ogUrl,
       share,
+      paidWithEth,
     },
   }
 }

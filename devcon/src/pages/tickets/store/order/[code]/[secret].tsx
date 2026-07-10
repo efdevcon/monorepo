@@ -424,7 +424,10 @@ export default function OrderConfirmationPage() {
                         // Trailing slash matches next.config.js `trailingSlash: true`, avoiding
                         // a 308 hop on Twitter's scrape.
                         const v = Date.now().toString(36)
-                        window.open(`/ticket/${ticketName}/${v}/?share`, '_blank')
+                        // Flag crypto payments so the share text can say "paid for with ETH";
+                        // fiat orders omit it. The param drives a prop only — pageUrl is
+                        // built from path segments, so it never leaks into the shared link.
+                        window.open(`/ticket/${ticketName}/${v}/?share${isCrypto ? '&eth=1' : ''}`, '_blank')
                       }}
                     >
                       Generate sharing link
