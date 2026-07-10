@@ -42,7 +42,6 @@ export function SEO(props: SEOProps) {
   const globalDescription =
     'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers. Join us 3–6 November 2026 in Mumbai, India.'
   const globalImage = 'https://www.devcon.org/assets/images/new-og.jpg'
-  const canonical = props.canonicalUrl || ''
 
   let description = globalDescription
   if (props.description) {
@@ -62,8 +61,12 @@ export function SEO(props: SEOProps) {
     image = props.imageUrl
   }
 
-  const siteUrl = SITE_URL
-  const url = `${siteUrl}${router?.pathname || '/'}`.replace(/\/$/, '')
+  const locales = ['en', 'hi', 'mr']
+  // asPath excludes the locale prefix; strip query/hash and keep the trailing slash (trailingSlash: true)
+  const path = (router?.asPath || '/').split(/[?#]/)[0]
+  const localizedUrl = (locale: string) => `${SITE_URL}${locale}${path.endsWith('/') ? path : `${path}/`}`
+  const currentLocale = locales.includes(lang) ? lang : 'en'
+  const url = props.canonicalUrl || localizedUrl(currentLocale)
 
   return (
     <>
@@ -80,7 +83,12 @@ export function SEO(props: SEOProps) {
         {title && <meta property="og:title" key="og:title" content={title} />}
         {description && <meta property="og:description" key="og:description" content={description} />}
         {image && <meta property="og:image" key="og:image" content={image} />}
-        {canonical && <link rel="canonical" href={canonical} />}
+        {!props.noIndex && <link rel="canonical" key="canonical" href={url} />}
+        {!props.noIndex &&
+          locales.map(locale => (
+            <link rel="alternate" hrefLang={locale} key={`alternate-${locale}`} href={localizedUrl(locale)} />
+          ))}
+        {!props.noIndex && <link rel="alternate" hrefLang="x-default" key="alternate-x-default" href={localizedUrl('en')} />}
         {props.author?.name && <link itemProp="name" href={props.author?.name} />}
         {props.author?.url && <link itemProp="url" href={props.author.url} />}
 

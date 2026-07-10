@@ -10,4 +10,6 @@ export interface Link {
   links?: Link[]
   highlight?: string
   icon?: React.ComponentType<{ size?: number; className?: string }>
+  // On a 'header' link: start a new column in the desktop foldout
+  newColumn?: boolean
 }
