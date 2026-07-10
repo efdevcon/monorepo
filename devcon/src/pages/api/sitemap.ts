@@ -1,60 +1,48 @@
-import { NextApiRequest, NextApiResponse } from "next"
-// import { GetPages } from "services/page"
-import { SITE_URL } from "utils/constants"
+import { NextApiRequest, NextApiResponse } from 'next'
+import { SITE_URL } from 'utils/constants'
 
-const GetPages = (lang: string) => [
-    {
-        id: '404',
-        lang: lang,
-        slug: '/',
-    },
+const LOCALES = ['en', 'hi', 'mr']
+
+// Public, indexable routes (no locale prefix, trailing slash to match `trailingSlash: true`).
+// Transactional, personal, and admin routes (checkout, /ticket/, signin, admin, forms) are deliberately excluded.
+const ROUTES = [
+  { path: '', changefreq: 'daily', priority: '1.0' },
+  { path: 'tickets/', changefreq: 'weekly', priority: '0.8' },
+  { path: 'tickets/store/', changefreq: 'weekly', priority: '0.8' },
+  { path: 'tickets/faq/', changefreq: 'weekly', priority: '0.8' },
+  { path: 'speaker-applications/', changefreq: 'weekly', priority: '0.8' },
+  { path: 'blogs/', changefreq: 'weekly', priority: '0.8' },
+  { path: 'about/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'academic-program/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'application-guidelines/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'code-of-conduct/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'dips/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'ecosystem-program/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'past-events/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'road-to-devcon/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'supporters/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'parental-consent-form/', changefreq: 'monthly', priority: '0.4' },
+  { path: 'privacy-notice/', changefreq: 'monthly', priority: '0.4' },
+  { path: 'terms-of-service/', changefreq: 'monthly', priority: '0.4' },
 ]
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    const baseUrl = SITE_URL
-    const currentDate = new Date().toISOString()
-    const launchDate = new Date(2022, 2).toISOString()
+  const entries = ROUTES.flatMap(route =>
+    LOCALES.map(
+      locale => `    <url>
+        <loc>${SITE_URL}${locale}/${route.path}</loc>
+        <changefreq>${route.changefreq}</changefreq>
+        <priority>${route.priority}</priority>
+    </url>`
+    )
+  ).join('\n')
 
-    const pages = [...GetPages('en'), GetPages('es')].flat()
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</urlset>`
 
-    // PWA Release
-    // <url>
-    //     <loc>${baseUrl}app</loc>
-    //     <lastmod>${launchDate}</lastmod>
-    //     <changefreq>daily</changefreq>
-    //     <priority>0.8</priority>
-    // </url>
-
-    const priorities = ['blogs', 'devcon-week', 'dips', 'faq', 'news', 'tickets', 'program']
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            <url>
-                <loc>${baseUrl}</loc>
-                <lastmod>${currentDate}</lastmod>
-                <changefreq>daily</changefreq>
-                <priority>1.0</priority>
-            </url>
-
-            ${pages.map(i => {
-        if (i.id === '404') return ``
-        if (priorities.includes(i.id)) {
-            return `<url>
-                        <loc>${baseUrl}${i.lang}${i.slug}</loc>
-                        <lastmod>${currentDate}</lastmod>
-                        <changefreq>weekly</changefreq>
-                        <priority>0.8</priority>
-                    </url>`
-        }
-        return `<url>
-                        <loc>${baseUrl}${i.lang}${i.slug}</loc>
-                        <lastmod>${launchDate}</lastmod>
-                        <changefreq>monthly</changefreq>
-                        <priority>0.6</priority>
-                    </url>`
-    })}
-        </urlset>`
-
-    res.setHeader('Content-Type', 'text/xml')
-    res.write(sitemap)
-    res.end()
+  res.setHeader('Content-Type', 'text/xml')
+  res.write(sitemap)
+  res.end()
 }
