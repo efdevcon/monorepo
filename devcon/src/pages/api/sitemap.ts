@@ -43,7 +43,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                         <changefreq>monthly</changefreq>
                         <priority>0.6</priority>
                     </url>`
-    })}
+    }).join('')}
         </urlset>`
 
     res.setHeader('Content-Type', 'text/xml')

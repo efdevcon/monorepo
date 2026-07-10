@@ -37,7 +37,6 @@ export function SEO(props: SEOProps) {
   const globalTitle = 'Devcon 2024' // Bogotá, Oct 11 → 14'
   const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
   const globalImage = 'https://www.devcon.org/assets/images/dc7-og.png'
-  const canonical = props.canonicalUrl || ''
 
   let description = globalDescription
   if (props.description) {
@@ -57,8 +56,33 @@ export function SEO(props: SEOProps) {
     image = props.imageUrl
   }
 
+  // Pages that also exist on the current devcon.org site: canonicalize them cross-domain
+  // so search engines consolidate ranking signals on the live site instead of this archive.
+  const supersededByDevconOrg = [
+    '/',
+    '/about/',
+    '/blogs/',
+    '/code-of-conduct/',
+    '/dips/',
+    '/past-events/',
+    '/privacy-notice/',
+    '/road-to-devcon/',
+    '/speaker-applications/',
+    '/supporters/',
+    '/terms-of-service/',
+    '/tickets/',
+  ]
+
   const siteUrl = SITE_URL
-  const url = `${siteUrl}${router?.pathname || '/'}`.replace(/\/$/, '')
+  // asPath excludes the locale prefix; strip query/hash and keep the trailing slash (trailingSlash: true)
+  const path = (router?.asPath || '/').split(/[?#]/)[0]
+  const normalizedPath = path.endsWith('/') ? path : `${path}/`
+  const currentLocale = router?.locale && router.locale !== 'default' ? router.locale : 'en'
+  const selfUrl = `${siteUrl}${currentLocale}${normalizedPath}`
+  const canonical =
+    props.canonicalUrl ||
+    (supersededByDevconOrg.includes(normalizedPath) ? `https://devcon.org/en${normalizedPath}` : selfUrl)
+  const url = selfUrl
 
   return (
     <>
@@ -75,7 +99,7 @@ export function SEO(props: SEOProps) {
         {title && <meta property="og:title" key="og:title" content={title} />}
         {description && <meta property="og:description" key="og:description" content={description} />}
         {image && <meta property="og:image" key="og:image" content={image} />}
-        {canonical && <link rel="canonical" href={canonical} />}
+        {canonical && <link rel="canonical" key="canonical" href={canonical} />}
         {props.author?.name && <link itemProp="name" href={props.author?.name} />}
         {props.author?.url && <link itemProp="url" href={props.author.url} />}
 
