@@ -36,16 +36,15 @@ export interface RoadEvent {
   gradient: string
 }
 
-// Placeholder artwork gradients (mirrors the design's colourful card images).
+// The 6 fixed placeholder gradients from the design (all top→bottom).
+// Figma "Gradients (6)" — node 4785:7974.
 const G = {
-  teal: 'from-[#4bfcde] to-[#a9befd]',
-  violet: 'from-[#c8a9fd] to-[#8b5cf6]',
-  sunset: 'from-[#f7a8d8] to-[#fde08a]',
-  ocean: 'from-[#67e8f9] to-[#6366f1]',
-  lime: 'from-[#bef264] to-[#34d399]',
-  coral: 'from-[#fda4af] to-[#fb923c]',
-  indigo: 'from-[#a5b4fc] to-[#7c3aed]',
-  rose: 'from-[#fecdd3] to-[#e879f9]',
+  teal: 'from-[#4bfcde] to-[#a9befd]', // 01
+  violet: 'from-[#ab99df] to-[#ecaafe]', // 02
+  sunset: 'from-[#eeadfc] to-[#ffed7a]', // 03
+  orchid: 'from-[#ecaafe] to-[#ab99df]', // 04
+  lemon: 'from-[#ffed7a] to-[#eeadfc]', // 05
+  sky: 'from-[#a9befd] to-[#4bfcde]', // 06
 }
 
 /** Ordered palette so NocoDB-backed events (no image) get stable placeholder art. */
@@ -66,7 +65,7 @@ export const ROAD_TO_DEVCON_EVENTS: RoadEvent[] = [
     city: 'Mumbai',
     date: '2026-05-28',
     types: ['Meetup', 'Open Source'],
-    gradient: G.indigo,
+    gradient: G.orchid,
   },
   {
     id: 'solidity-study-bengaluru-29',
@@ -102,7 +101,7 @@ export const ROAD_TO_DEVCON_EVENTS: RoadEvent[] = [
     city: 'Bengaluru',
     date: '2026-06-06',
     types: ['Privacy', 'Meetup'],
-    gradient: G.ocean,
+    gradient: G.sky,
   },
   {
     id: 'security-workshop-hyderabad',
@@ -111,7 +110,7 @@ export const ROAD_TO_DEVCON_EVENTS: RoadEvent[] = [
     city: 'Hyderabad',
     date: '2026-06-14',
     types: ['Security', 'Educational'],
-    gradient: G.lime,
+    gradient: G.lemon,
   },
   {
     id: 'ai-x-ethereum-online',
@@ -120,7 +119,7 @@ export const ROAD_TO_DEVCON_EVENTS: RoadEvent[] = [
     city: 'Virtual',
     date: '2026-06-21',
     types: ['AI', 'Virtual', 'Presentation'],
-    gradient: G.rose,
+    gradient: G.orchid,
   },
   {
     id: 'eth-policy-roundtable-delhi',
@@ -129,7 +128,7 @@ export const ROAD_TO_DEVCON_EVENTS: RoadEvent[] = [
     city: 'Delhi',
     date: '2026-07-04',
     types: ['Policy', 'Conference'],
-    gradient: G.coral,
+    gradient: G.sky,
   },
   {
     id: 'open-source-day-pune',
@@ -138,7 +137,7 @@ export const ROAD_TO_DEVCON_EVENTS: RoadEvent[] = [
     city: 'Pune',
     date: '2026-07-12',
     types: ['Open Source', 'Meetup'],
-    gradient: G.indigo,
+    gradient: G.lemon,
   },
   {
     id: 'devcon-india-conference-mumbai',

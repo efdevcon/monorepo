@@ -57,7 +57,7 @@ export function RoadToDevconCommunities() {
             <Link
               key={community.name}
               to={community.href}
-              className="flex h-10 shrink-0 items-center justify-center transition-transform hover:scale-105 sm:h-16"
+              className="flex h-10 shrink-0 items-center justify-center transition-transform hover:scale-105 sm:h-14"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={community.src} alt={community.name} className="h-full w-auto object-contain" />

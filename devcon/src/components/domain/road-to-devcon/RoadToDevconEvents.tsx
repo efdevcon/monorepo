@@ -9,10 +9,6 @@ import { EVENT_TYPES, type EventType, type RoadEvent } from './events'
 // Where "Apply now" (get an event listed) points — the rtd-event-form.
 const LISTING_FORM_URL = '/form/rtd-event-form'
 
-// On-brand fallback cover for events with no uploaded image/logo
-// (card-sized WebP pre-generated from bg.jpg, since cards skip the optimizer).
-const DEFAULT_EVENT_IMAGE = '/road-to-devcon/bg-card.webp'
-
 // ISO 'YYYY-MM-DD' (or 'YYYY-MM') → a UTC Date, so locale date formatters
 // don't shift the day across timezones.
 function isoToUTCDate(iso: string): Date {
@@ -40,14 +36,15 @@ function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }
   return (
     <Link
       to={event.url ?? LISTING_FORM_URL}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-[rgba(34,17,68,0.1)] bg-white transition-shadow hover:shadow-[0_8px_24px_rgba(34,17,68,0.12)]"
+      className="group flex flex-col overflow-hidden rounded-2xl outline outline-1 outline-[#221144]/10 bg-white transition-[box-shadow,transform] duration-150 ease-out hover:scale-[1.03] hover:shadow-md hover:shadow-[#221144]/10 active:scale-[0.97] active:shadow-none"
     >
       {/* Standard social/OG image ratio (1200x630); height follows card width. */}
       <div className={cn('relative aspect-[1200/630] w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
-        {/* unoptimized: images are pre-resized card WebPs served straight from
-            Supabase's CDN with immutable caching — routing them through
-            /_next/image would re-transform on every deploy for no gain. */}
-        <Image src={event.image || DEFAULT_EVENT_IMAGE} alt="" fill unoptimized className="object-cover" />
+        {/* Only render an image when the event actually has one — otherwise the
+            card's random gradient (on the container) shows through. unoptimized:
+            images are pre-resized card WebPs served straight from Supabase's CDN
+            with immutable caching, so /_next/image would only re-transform for no gain. */}
+        {event.image && <Image src={event.image} alt="" fill unoptimized className="object-cover" />}
         <span className="absolute right-3 top-3 rounded bg-[rgba(34,17,68,0.7)] px-2.5 py-2 text-xs font-bold uppercase leading-none tracking-[0.5px] text-white backdrop-blur-[3px]">
           {event.city}
         </span>
@@ -152,13 +149,14 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
     <section
       className="section relative z-10 py-16 text-[#160b2b]"
       style={{
-        // Lavender base + the DC8 lotus/moon graphic anchored to the bottom,
-        // constrained to 800px wide (capped at 90vw) with aspect preserved.
+        // Lavender base + the DC8 lotus/moon graphic anchored bottom-center at a
+        // fixed 1440px width (the design frame width) — it fills the width on
+        // desktop and crops symmetrically on narrower screens rather than shrinking.
         backgroundColor: '#ECEAFB',
         backgroundImage: 'url(/road-to-devcon/moon-bg.svg)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center bottom',
-        backgroundSize: 'min(800px, 90vw) auto',
+        backgroundSize: '1440px auto',
       }}
     >
       {/* Heading + search */}
@@ -220,7 +218,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
                 />
               </div>
 
-              <div className="min-w-0 flex-1 pb-12">
+              <div className="min-w-0 flex-1 pb-6">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-baseline gap-2">
                     <h3 className="text-xl font-extrabold leading-none text-[#160b2b]">
@@ -248,12 +246,19 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
         )}
       </div>
 
+      {/* Co-hosted-by strip — text + logo in a row on desktop, stacked on mobile */}
+      <div className="mt-8 flex flex-col items-center justify-center gap-x-4 gap-y-3 sm:flex-row">
+        <p className="text-base font-medium text-[#221144]">{t('events.cohosted_by')}</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/road-to-devcon/geode-labs.png" alt="Geode Labs" className="h-10 w-auto object-contain" />
+      </div>
+
       {/* "Get listed" CTA */}
-      <div className="relative mt-4 flex items-center justify-center gap-6 overflow-hidden rounded-2xl bg-white/70 px-6 py-6 shadow-[0_2px_8px_rgba(34,17,68,0.08)]">
+      <div className="relative mt-8 flex flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl bg-white/70 px-6 py-6 shadow-[0_2px_8px_rgba(34,17,68,0.08)] md:flex-row md:gap-6">
         <p className="text-center text-lg font-extrabold text-[#160b2b] sm:text-xl">{t('events.cta_text')}</p>
         <Link
           to={LISTING_FORM_URL}
-          className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-[#5f23d6]"
+          className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-[#5f23d6] md:w-auto"
         >
           {t('events.cta_button')}
         </Link>
