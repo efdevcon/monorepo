@@ -38,9 +38,9 @@ const ENV_CONFIG = {
       // (no UI, no API field, no math). Set per environment. Default 0 so a
       // new environment doesn't accidentally ship with a discount nobody
       // signed off on.
-      cryptoDiscountPercent: 3,
+      cryptoDiscountPercent: 0,
       fiatEnabled: true,
-      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
+      enabledTokens: ['ETH'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
@@ -137,24 +137,25 @@ const ENV_CONFIG = {
       // (no UI, no API field, no math). Set per environment. Default 0 so a
       // new environment doesn't accidentally ship with a discount nobody
       // signed off on.
-      cryptoDiscountPercent: 10,
+      cryptoDiscountPercent: 0,
       fiatEnabled: true,
-      enabledTokens: ['ETH', 'USDC', 'USDT0'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
+      enabledTokens: ['ETH'] as readonly ('ETH' | 'USDC' | 'USDT0')[],
     },
     tax: {
       vatPercent: 18,
       label: 'GST',
     },
     self: {
-      // TODO: update this to 'india-resident'
-      scope: 'devcon-india-local-discount',
-      staging: false,
+      scope: 'india-resident',
+      // TODO: change to false before tickets go live
+      staging: true,
       requireEarlyAccess: false,
     },
     discount: {
-      collection: 'india-early-bird',
+      collection: 'india-resident',
       // See development.discount.communityPrefix.
-      communityPrefix: '',
+      // TODO: remove before tickets go live
+      communityPrefix: 'test-',
       // Production Pretix item IDs. NOTE: the prod Self flow currently uses
       // `collection: 'india-early-bird'` above, but the configured Self discount
       // item is keyed `india-resident` (3). If the prod Self flow should issue
