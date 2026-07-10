@@ -3,6 +3,12 @@ import { SiweMessage } from 'siwe'
 import { GetDiscount } from './validate/[id]'
 import { issueVoucher, DiscountSoldOutError } from 'services/discountStore'
 import { discountCollection, discountItem } from 'config/ticketing'
+import { verifyProof } from 'services/builder/proof'
+
+// The SIWE signature is a pure wallet-ownership proof (no on-chain tx), so we
+// pin it to a single chain id. This closes the M26 cross-chain replay: a
+// signature the wallet produced on another chain won't validate here.
+const EXPECTED_CHAIN_ID = 1
 
 // Wallet-claimable community discounts issued through this endpoint. Core Devs
 // is included because its allowlist (core-devs.json) holds ETH addresses as
@@ -29,22 +35,51 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  const { message, signature, discountType } = req.body || {}
-  if (!message || !signature || !discountType) {
-    return res.status(400).json({ success: false, error: 'Missing message, signature, or discountType' })
+  const { message, signature, discountType, nonceToken } = req.body || {}
+  if (!message || !signature || !discountType || !nonceToken) {
+    return res.status(400).json({ success: false, error: 'Missing message, signature, discountType, or nonceToken' })
   }
   if (!ALLOWED_TYPES.includes(discountType)) {
     return res.status(400).json({ success: false, error: 'Invalid discountType' })
   }
 
-  // Verify the signature corresponds to the address embedded in the message.
-  // We don't pin domain/nonce here: the claim is idempotent per (address, type)
-  // — a replayed signature just re-fetches the same voucher for the same
-  // wallet — so the only property we need is proof of address control.
+  // M25/M26: fully bind the SIWE verification so a signature is only valid for
+  // THIS site, a nonce WE issued, this chain, and within its expiry — otherwise
+  // any signature the listed wallet ever produced elsewhere replays into voucher
+  // theft. `nonceToken` is a short-lived server-signed token from
+  // /api/discounts/claim-wallet-nonce (the client echoes it back); its embedded
+  // nonce must match the one in the signed message.
+  if (verifyProof(nonceToken, 'wallet') !== 'nonce') {
+    return res.status(401).json({ success: false, error: 'Invalid or expired nonce' })
+  }
+  const expectedNonce = String(nonceToken).replace(/[^a-zA-Z0-9]/g, '').slice(0, 32)
+
+  // Bind to our host (anti-phishing): a SIWE message solicited for another
+  // domain won't verify. Prefer NEXTAUTH_URL; fall back to the request host.
+  let expectedDomain: string | undefined
+  try {
+    expectedDomain = process.env.NEXTAUTH_URL ? new URL(process.env.NEXTAUTH_URL).host : undefined
+  } catch {
+    expectedDomain = undefined
+  }
+  if (!expectedDomain && typeof req.headers.host === 'string') expectedDomain = req.headers.host
+
   let address: string
   try {
     const siwe = new SiweMessage(message)
-    const result = await siwe.verify({ signature })
+    // A message with no expiry would be a perpetual token even with `time` set.
+    if (!siwe.expirationTime) {
+      return res.status(401).json({ success: false, error: 'Signature message must set an expiration time' })
+    }
+    if (siwe.chainId !== EXPECTED_CHAIN_ID) {
+      return res.status(401).json({ success: false, error: 'Unexpected signature chain' })
+    }
+    const result = await siwe.verify({
+      signature,
+      nonce: expectedNonce, // kills replay of signatures made for another context
+      domain: expectedDomain, // kills cross-site replay
+      time: new Date().toISOString(), // enforces the message's expirationTime
+    })
     if (!result.success || !result.data?.address) {
       return res.status(401).json({ success: false, error: 'Invalid signature' })
     }

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, BadgeCheck, CircleX, Eye, Github, Loader2 } from 'lucide-react'
-import { useAccount, useChainId, useDisconnect, useSignMessage } from 'wagmi'
+import { useAccount, useDisconnect, useSignMessage } from 'wagmi'
 import { getSession, signIn, signOut } from 'next-auth/react'
-import { SiweMessage, generateNonce } from 'siwe'
+import { SiweMessage } from 'siwe'
 import { appKit } from 'context/appkit-config'
 import { pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import { EthGlyphTile } from 'components/domain/tickets/TicketTable'
@@ -83,7 +83,6 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
   const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
-  const chainId = useChainId()
 
   const [step, setStep] = useState<Step>('prompt')
   // Eligible discount types per verified identity. null = that identity hasn't
@@ -357,20 +356,28 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
 
       if (via === 'wallet') {
         if (!address) throw new Error('Wallet not connected')
+        // Fetch a short-lived server nonce so the backend can bind the
+        // signature to a challenge WE issued (anti-replay; see M25/M26).
+        const nonceRes = await fetch('/api/discounts/claim-wallet-nonce/')
+        const nonceBody = await nonceRes.json()
+        if (!nonceRes.ok || !nonceBody?.nonce || !nonceBody?.nonceToken) {
+          throw new Error('Could not start wallet verification. Please try again.')
+        }
         const message = new SiweMessage({
           domain: window.location.host,
           address,
           statement: 'Verify wallet ownership to claim your Devcon ticket discount.',
           uri: window.location.origin,
           version: '1',
-          chainId: chainId || 1,
-          nonce: generateNonce(),
+          chainId: 1, // ownership proof is chain-agnostic; pinned to match the backend
+          nonce: nonceBody.nonce,
+          expirationTime: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
         }).prepareMessage()
         const signature = await signMessageAsync({ message })
         const res = await fetch('/api/discounts/claim-wallet/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message, signature, discountType: selected }),
+          body: JSON.stringify({ message, signature, discountType: selected, nonceToken: nonceBody.nonceToken }),
         })
         const body = await res.json()
         if (!res.ok || !body?.success || !body?.data?.voucher) {
