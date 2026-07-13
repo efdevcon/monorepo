@@ -23,6 +23,23 @@ function storeError(userId: string, reason: string) {
   setTimeout(() => errorStore.delete(userId), 30 * 60 * 1000)
 }
 
+// The buyer's email now travels in `userDefinedData` (packed into the proof's
+// userContextData) rather than a `?email=` query on the endpoint, which broke
+// the Self iOS deeplink. It comes back on the verified result as the hex tail;
+// decode it best-effort (right-padded with zero bytes). Falls back to the
+// legacy query param for any client still sending it that way.
+function decodeUserDefinedData(hex?: string): string | undefined {
+  if (!hex) return undefined
+  const clean = hex.replace(/^0x/, '').replace(/(00)+$/, '')
+  if (!clean || clean.length % 2 !== 0) return undefined
+  try {
+    const s = Buffer.from(clean, 'hex').toString('utf8').trim()
+    return s || undefined
+  } catch {
+    return undefined
+  }
+}
+
 // Extract userId from userContextData using the same logic as SelfBackendVerifier.
 // The UUID is packed at bytes 32–64 (hex chars 64–128) of the context data.
 function extractUserId(userContextData?: string): string | undefined {
@@ -150,7 +167,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Dynamic voucher assignment from Supabase pool
     const earlyAccessCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
-    const emailParam = (req.query.email ?? req.body.email) as string | undefined
+    const emailParam =
+      decodeUserDefinedData(result.userData?.userDefinedData) ?? ((req.query.email ?? req.body.email) as string | undefined)
     console.log('[redeem-self] emailParam:', emailParam, '| earlyAccess:', earlyAccessCode, '| userId:', verifiedUserId)
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
