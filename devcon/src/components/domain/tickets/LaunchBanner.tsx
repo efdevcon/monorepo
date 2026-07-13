@@ -66,15 +66,22 @@ export function LaunchBanner() {
   const now = useNow()
   const storeUrl = useTicketsStoreUrl()
 
-  // Only shown for the 'open' sale state (the global-launch countdown before it
-  // opens, then the live "on sale" card). The 'coming-soon' / 'closed' states
-  // show no launch banner — their status rides on the strip + GA table instead.
-  if (!mounted || !featured || saleState !== 'open') return null
+  if (!mounted || !featured) return null
 
   const { wave, status, upcoming } = featured
-  const showCountdown = status === 'countdown' && upcoming && now
-  const showLive = status === 'live'
-  const parts = showCountdown ? getCountdownParts(upcoming, now) : null
+  // The live "on sale" card only renders once the sale is actually 'open'.
+  const showLive = saleState === 'open' && status === 'live'
+  // The global-launch countdown renders whenever the featured wave is counting
+  // down to a scheduled open — both in the 'open' state (before its openTime)
+  // and in the pre-launch 'coming-soon' state (counting down to
+  // GA_COMING_SOON_OPENS_AT). The 'closed' state, or a 'coming-soon' with no
+  // scheduled time (paused, no timer), shows no banner — their status rides on
+  // the strip + GA table instead.
+  const showCountdown =
+    (saleState === 'open' || saleState === 'coming-soon') && status === 'countdown' && !!upcoming && !!now
+  if (!showCountdown && !showLive) return null
+
+  const parts = showCountdown && upcoming && now ? getCountdownParts(upcoming, now) : null
 
   // "JUL 14, 16:00 UTC" — derived from the wave's opening windows so the
   // banner tracks config/waves.ts; multiple same-day windows join with " & ".
