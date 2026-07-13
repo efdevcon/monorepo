@@ -144,7 +144,7 @@ async function createColumn(col: ColDef): Promise<void> {
 // column can't auto-fill from Id). Formula creation is NocoDB-version-sensitive;
 // on failure we log and continue (admins can still open the URL by hand).
 async function ensureReviewLinkColumn(existing: Array<{ id: string; title: string }>): Promise<void> {
-  const formula = `URL(CONCAT("${REVIEW_BASE_URL}/en/builder-review/", {Id}))`
+  const formula = `URL(CONCAT("${REVIEW_BASE_URL}/en/builder-review/", {Id}, "/"))`
   // Always (re)create so the column picks up the current clickable-URL formula,
   // even if an older text-only "Review" formula already exists.
   const current = existing.find((c) => c.title === 'Review')
@@ -171,7 +171,7 @@ async function ensureReviewLinkColumn(existing: Array<{ id: string; title: strin
   }
   if (!res.ok) {
     console.warn(`  ! could not create "Review" link column (${res.status}): ${await res.text()}`)
-    console.warn('    Add it manually in NocoDB, or open /en/builder-review/<Id> directly.')
+    console.warn('    Add it manually in NocoDB, or open /en/builder-review/<Id>/ directly.')
     return
   }
   console.log('  + created: Review (clickable link)')

@@ -498,6 +498,14 @@ export default function BuilderReviewPage() {
                         Referral code: <span className="text-[#160b2b] font-medium">{record['Referral Code']}</span>
                       </p>
                     )}
+                    <a
+                      href={`https://form.devcon.org/wx5thjwz/pzerie4iw55aae0/mj5drwikc8fxslp/vwtb958w9fgbjy40/builder-application-builder-application?rowId=${id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[#7235ed] hover:underline"
+                    >
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" /> Open in NocoDB
+                    </a>
                   </div>
                   <span className={`px-3 py-1 rounded-full border text-sm font-bold ${pill.cls}`}>{pill.label}</span>
                 </div>

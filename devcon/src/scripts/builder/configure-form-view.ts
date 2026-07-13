@@ -68,7 +68,7 @@ const FIELD_CONFIG: FieldCfg[] = [
   {
     title: 'Contributed Repos',
     description:
-      "Connect your GitHub and we'll verify repos across OSS, Web3 and Hackathons. Alternatively, you can add significant repos here, 1-per-line, we might not detect.",
+      "Connect your GitHub and we'll verify repos across OSS, Web3 and Hackathons. Alternatively, you can add significant repos we might not detect here, one per line in owner/repo format (e.g. ethereum/ethereum-org-website).",
   },
   // Devfolio URL, Talent Protocol URL and POAP URL are intentionally NOT listed:
   // they're admin-only / auto-detected. Devfolio is now auto-detected from the

@@ -53,6 +53,7 @@ export interface TicketWave {
 // can resolve the `?mockNow=launch` shorthand to "just after launch" and so
 // any surface can reference the canonical launch time without re-deriving it
 // from the waves list.
+// 14 Jul 2026 16:00 UTC
 export const GLOBAL_LAUNCH_TIME = new Date(Date.UTC(2026, 6, 14, 16, 0, 0))
 
 // ── Current sale wave ────────────────────────────────────────────────────
