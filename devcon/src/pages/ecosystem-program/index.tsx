@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import themes from '../themes.module.scss'
 import HeroBackground from './hero-bg.png'
 import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
@@ -71,7 +71,6 @@ const STUDENT_APPLICATION_ROWS: TicketRow[] = [
 
 export default function EcosystemProgramPage() {
   const t = useTranslations('ecosystem_program')
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   // Sanctuary Tech Builders applications open at the global ticket launch
   // (config/waves.ts GLOBAL_LAUNCH_TIME) — before that the row shows the
   // launch month, after it flips live with the Apply link.
@@ -120,7 +119,6 @@ export default function EcosystemProgramPage() {
     suffix: string
   }>
   const applicationRows = t.raw('other_support.rows') as Array<{ name: string; price: string; date: string }>
-  const faqItems = t.raw('other_support.faq') as Array<{ q: string; a: string }>
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -349,32 +347,6 @@ export default function EcosystemProgramPage() {
               subtitle={t('other_support.card_subtitle')}
               rows={applicationRowsResolved}
             />
-
-            <div className={css['faq-accordion']}>
-              {faqItems.map((item, i) => (
-                <div key={i} className={css['faq-item']}>
-                  <button
-                    type="button"
-                    className={css['faq-trigger']}
-                    onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
-                    aria-expanded={openFaqIndex === i}
-                  >
-                    <span>{item.q}</span>
-                    {openFaqIndex === i ? (
-                      <ChevronUp size={16} strokeWidth={2} className={css['faq-chevron']} />
-                    ) : (
-                      <ChevronDown size={16} strokeWidth={2} className={css['faq-chevron']} />
-                    )}
-                  </button>
-                  <div className={cn(css['faq-answer-wrap'], openFaqIndex === i && css['faq-answer-open'])}>
-                    <div className={css['faq-answer-inner']}>
-                      <div className={css['faq-answer']}>{item.a}</div>
-                    </div>
-                  </div>
-                  {i < faqItems.length - 1 && <div className={css['faq-border']} />}
-                </div>
-              ))}
-            </div>
           </div>
         </section>
       </div>

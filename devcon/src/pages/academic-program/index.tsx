@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
-import { ArrowRight, ChevronDown, ChevronUp, Microscope, Globe, Rocket } from 'lucide-react'
+import { ArrowRight, Microscope, Globe, Rocket } from 'lucide-react'
 import themes from '../themes.module.scss'
 import HeroBackground from '../ecosystem-program/hero-bg.png'
 import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
@@ -34,7 +34,6 @@ const CONTACT_EMAIL = 'university@ethereum.foundation'
 
 export default function AcademicProgramPage() {
   const t = useTranslations('academic_program')
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   // Sanctuary Tech Builders applications open at the global ticket launch
   // (config/waves.ts GLOBAL_LAUNCH_TIME) — before that the row shows the
   // launch month, after it flips live with the Apply link.
@@ -90,13 +89,6 @@ export default function AcademicProgramPage() {
           fiatPrice: '$499',
           date: t('other_support.builders_date'),
         },
-  ]
-
-  const FAQ_ITEMS = [
-    {
-      q: t('other_support.faq.0.q'),
-      a: t('other_support.faq.0.a'),
-    },
   ]
 
   return (
@@ -291,32 +283,6 @@ export default function AcademicProgramPage() {
               subtitle={t('other_support.card_subtitle')}
               rows={APPLICATION_ROWS}
             />
-
-            <div className={css['faq-accordion']}>
-              {FAQ_ITEMS.map((item, i) => (
-                <div key={i} className={css['faq-item']}>
-                  <button
-                    type="button"
-                    className={css['faq-trigger']}
-                    onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
-                    aria-expanded={openFaqIndex === i}
-                  >
-                    <span>{item.q}</span>
-                    {openFaqIndex === i ? (
-                      <ChevronUp size={16} strokeWidth={2} className={css['faq-chevron']} />
-                    ) : (
-                      <ChevronDown size={16} strokeWidth={2} className={css['faq-chevron']} />
-                    )}
-                  </button>
-                  <div className={cn(css['faq-answer-wrap'], openFaqIndex === i && css['faq-answer-open'])}>
-                    <div className={css['faq-answer-inner']}>
-                      <div className={css['faq-answer']}>{item.a}</div>
-                    </div>
-                  </div>
-                  {i < FAQ_ITEMS.length - 1 && <div className={css['faq-border']} />}
-                </div>
-              ))}
-            </div>
           </div>
         </section>
       </div>
