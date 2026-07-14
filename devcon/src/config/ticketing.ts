@@ -14,7 +14,7 @@ const ENV_CONFIG = {
       // status.ts and the checkout fallback redirect. Legacy slug-based
       // Pretix instances (e.g. dcdev2.ticketh.xyz) leave this `false`.
       customDomain: false,
-      x402ApiEnabled: true,
+      x402ApiEnabled: false,
       ticketDiscountId: '6',
       // Pretix item ID treated as the headline "General Admission" ticket on
       // the store page (the one wired to the GA card's quantity + Checkout).
@@ -47,7 +47,7 @@ const ENV_CONFIG = {
       label: 'GST',
     },
     self: {
-      scope: 'devcon-india-local-discount',
+      scope: 'test-india-resident',
       staging: true,
       requireEarlyAccess: false,
     },
@@ -175,7 +175,7 @@ const ENV_CONFIG = {
       } as Record<string, number>,
       // See development.discount.soldOut. Uncomment a line to force sold out.
       soldOut: {
-        // 'general-admission': true,
+        'general-admission': true,
         // 'core-devs': true,
         // 'oss-contributors': true,
         // 'pg-projects': true,

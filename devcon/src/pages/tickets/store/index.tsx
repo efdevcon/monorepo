@@ -270,6 +270,13 @@ function StoreContent({
   const [redeemOpen, setRedeemOpen] = useState(false)
   const [verifyDiscountOpen, setVerifyDiscountOpen] = useState(false)
 
+  // "Parked": the x402 catalog is off (sales run through Pretix's hosted shop),
+  // so `/api/x402/tickets/` returns no tickets. In that mode we source the GA
+  // item + a fresh quota check straight from Pretix (`/api/tickets/ga-availability/`)
+  // so the store still shows the cart selector and a genuine sold-out. null = loading.
+  const parked = !TICKETING.pretix.x402ApiEnabled
+  const [gaInfo, setGaInfo] = useState<{ available: boolean; ticket: TicketInfo | null } | null>(null)
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const code = params.get('early-access')
@@ -308,6 +315,24 @@ function StoreContent({
     }
     fetchTickets()
   }, [])
+
+  // Parked state: pull GA item + real availability from Pretix directly (not the
+  // disabled x402 catalog) so the cart selector and sold-out reflect reality.
+  useEffect(() => {
+    if (!parked) return
+    let cancelled = false
+    fetch('/api/tickets/ga-availability/')
+      .then(r => r.json())
+      .then(d => {
+        if (!cancelled) setGaInfo({ available: d?.available !== false, ticket: d?.ticket ?? null })
+      })
+      .catch(() => {
+        if (!cancelled) setGaInfo({ available: true, ticket: null }) // fail open
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [parked])
 
   // Minimum quantity a buyer can select for a ticket once it's in the cart —
   // the store seeds the cart with one ticket and never lets it drop below this.
@@ -371,11 +396,23 @@ function StoreContent({
   // config (`gaItemId`), falling back to the first available admission item
   // when unset or not currently purchasable. Figma reference price applies
   // when no admission ticket exists at all.
-  const gaTicket = admissionTickets.find(t => t.id === TICKETING.pretix.gaItemId) ?? admissionTickets[0]
+  const catalogGaTicket = admissionTickets.find(t => t.id === TICKETING.pretix.gaItemId) ?? admissionTickets[0]
+  // In parked mode the x402 catalog is empty, so drive GA from the Pretix-direct
+  // info; otherwise use the x402 catalog ticket as before.
+  const gaTicket = parked ? gaInfo?.ticket ?? undefined : catalogGaTicket
   const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '499'
   const gaOriginal =
     gaTicket?.originalPrice && gaTicket.originalPrice !== gaTicket.price ? fmtPrice(gaTicket.originalPrice) : '999'
   const gaQty = gaTicket ? getQuantity(gaTicket.id) : 0
+
+  // GA card state, unified across parked (Pretix-direct) and non-parked (x402
+  // catalog) modes. A manual force-sold-out (the `overrides.soldOut` config
+  // switch or a per-type discount sold-out) wins in BOTH modes and short-circuits
+  // the availability fetch; otherwise parked mode uses the REAL Pretix quota.
+  const gaForcedSoldOut = forceSoldOut || discountSoldOut('general-admission')
+  const gaLoading = gaForcedSoldOut ? false : parked ? gaInfo === null : !ticketsLoaded
+  const gaSoldOut =
+    gaForcedSoldOut || (parked ? gaInfo !== null && (!gaInfo.available || !gaTicket) : !gaTicket)
 
   // Seed the cart with one GA ticket on first load so the buyer starts with a
   // valid selection (quantity can't drop below MIN_QTY). Runs once, after the
@@ -508,9 +545,9 @@ function StoreContent({
                       <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
                     ) : !gaOpen || !launched ? (
                       <span className={css['opens-label']}>Opens July</span>
-                    ) : !ticketsLoaded ? (
+                    ) : gaLoading ? (
                       <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
-                    ) : !gaTicket || forceSoldOut || discountSoldOut('general-admission') ? (
+                    ) : gaSoldOut || !gaTicket ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
                       <div className={css['ga-actions']}>
