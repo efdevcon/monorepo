@@ -175,7 +175,7 @@ const ENV_CONFIG = {
       } as Record<string, number>,
       // See development.discount.soldOut. Uncomment a line to force sold out.
       soldOut: {
-        'general-admission': true,
+        // 'general-admission': true,
         // 'core-devs': true,
         // 'oss-contributors': true,
         // 'pg-projects': true,
