@@ -268,7 +268,6 @@ export default function AcademicProgramPage() {
                     <li key={i}>{t.rich(`other_support.bullets.${i}`, { strong })}</li>
                   ))}
                 </ul>
-                <p>{t('other_support.body_outro')}</p>
               </div>
             </div>
             <Link to="/tickets" className={css['btn-secondary']}>

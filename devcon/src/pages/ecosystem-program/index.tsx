@@ -332,7 +332,6 @@ export default function EcosystemProgramPage() {
                     </li>
                   ))}
                 </ul>
-                <p>{t('other_support.body_outro')}</p>
               </div>
             </div>
             <Link to="/tickets" className={css['btn-secondary']}>
