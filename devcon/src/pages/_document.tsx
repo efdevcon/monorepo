@@ -4,7 +4,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 export default class AppDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" data-scroll-behavior="smooth">
         <Head>
           {/* Favicons / app icons — SVG first for modern browsers, ICO as
               fallback. PNG sizes cover Android/PWA contexts. */}

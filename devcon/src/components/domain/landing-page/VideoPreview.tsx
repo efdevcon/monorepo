@@ -34,6 +34,7 @@ export const VideoPreview = () => {
                   src={VideoPoster}
                   alt="Mumbai video preview"
                   fill
+                  sizes="(max-width: 1080px) 100vw, 1080px"
                   className="object-cover"
                   priority={false}
                 />

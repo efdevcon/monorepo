@@ -126,6 +126,7 @@ export const PageHero = (props: PageHeroProps) => {
                 className={`object-cover h-full w-full`}
                 src={props.heroBackground}
                 alt="Hero background"
+                priority
               ></ImageNew>
             </div>
           </div>
