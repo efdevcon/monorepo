@@ -9,7 +9,7 @@ import { CountdownText } from 'components/common/CountdownText'
 export const Strip = () => {
   const t = useTranslations('common.strip')
   const router = useRouter()
-  const { featured } = useFeaturedWave()
+  const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
   const { label: ctaLabel } = useTicketsCtaLabel()
   const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
@@ -40,11 +40,17 @@ export const Strip = () => {
             <span
               className={`${
                 showLive ? 'bg-[#80df98] text-[#221144]' : 'bg-[#ffa366] text-[#160b2b]'
+              } ${
+                mounted ? '' : 'invisible'
               } text-xs font-bold leading-4 px-2 py-1 rounded tracking-[1px] uppercase whitespace-nowrap shrink-0`}
             >
               {badge}
             </span>
-            <p className="text-[#f9f8fa] text-sm font-bold leading-5 whitespace-nowrap overflow-hidden text-ellipsis">
+            <p
+              className={`text-[#f9f8fa] text-sm font-bold leading-5 whitespace-nowrap overflow-hidden text-ellipsis ${
+                mounted ? '' : 'invisible'
+              }`}
+            >
               {showCountdown && featured ? (
                 <>
                   {featured.wave.name} tickets available in <CountdownText value={featured.countdown} />
