@@ -447,6 +447,7 @@ function StoreContent({
                 src={StoreCountdownBanner}
                 alt=""
                 fill
+                priority
                 className={css['countdown-banner-bg']}
                 sizes="(max-width: 1024px) 100vw, 1400px"
               />
