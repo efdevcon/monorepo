@@ -148,7 +148,7 @@ const ENV_CONFIG = {
     self: {
       scope: 'india-resident',
       // TODO: change to false before tickets go live
-      staging: true,
+      staging: false,
       requireEarlyAccess: false,
     },
     discount: {
