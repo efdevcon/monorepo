@@ -38,8 +38,9 @@ function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }
       to={event.url ?? LISTING_FORM_URL}
       className="group flex flex-col overflow-hidden rounded-2xl outline outline-1 outline-[#221144]/10 bg-white transition-[box-shadow,transform] duration-150 ease-out hover:scale-[1.03] hover:shadow-md hover:shadow-[#221144]/10 active:scale-[0.97] active:shadow-none"
     >
-      {/* Standard social/OG image ratio (1200x630); height follows card width. */}
-      <div className={cn('relative aspect-[1200/630] w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
+      {/* Standard 16:9 image ratio; height follows card width. Lets uploaders use a
+          standard size without cropping; object-cover still handles off-ratio images. */}
+      <div className={cn('relative aspect-video w-full overflow-hidden bg-gradient-to-b', event.gradient)}>
         {/* Only render an image when the event actually has one — otherwise the
             card's random gradient (on the container) shows through. unoptimized:
             images are pre-resized card WebPs served straight from Supabase's CDN
@@ -249,8 +250,13 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
       {/* Co-hosted-by strip — text + logo in a row on desktop, stacked on mobile */}
       <div className="mt-8 flex flex-col items-center justify-center gap-x-4 gap-y-3 sm:flex-row">
         <p className="text-base font-medium text-[#221144]">{t('events.cohosted_by')}</p>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/road-to-devcon/geode-labs.png" alt="Geode Labs" className="h-10 w-auto object-contain" />
+        <Link
+          to="https://geode.build/"
+          className="inline-flex cursor-pointer transition-transform duration-150 ease-out hover:scale-[1.03]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/road-to-devcon/geode-labs.png" alt="Geode Labs" className="h-10 w-auto object-contain" />
+        </Link>
       </div>
 
       {/* "Get listed" CTA */}
@@ -258,7 +264,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
         <p className="text-center text-lg font-extrabold text-[#160b2b] sm:text-xl">{t('events.cta_text')}</p>
         <Link
           to={LISTING_FORM_URL}
-          className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-colors hover:bg-[#5f23d6] md:w-auto"
+          className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-[background-color,transform] duration-150 ease-out hover:scale-[1.03] hover:bg-[#5f23d6] active:scale-[0.97] md:w-auto"
         >
           {t('events.cta_button')}
         </Link>

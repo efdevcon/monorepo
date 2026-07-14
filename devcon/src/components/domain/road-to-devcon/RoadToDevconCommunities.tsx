@@ -43,7 +43,7 @@ export function RoadToDevconCommunities() {
             <p className="text-base font-medium text-[#1a0d33]">{t('communities.cta_text')}</p>
             <Link
               to={CONTACT_URL}
-              className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full border border-[rgba(34,17,68,0.1)] bg-white/80 px-8 py-3.5 text-base font-bold text-[#1a0d33] transition-colors hover:bg-white sm:w-auto"
+              className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full outline outline-1 outline-[#221144]/10 bg-white/80 px-8 py-3.5 text-base font-bold text-[#1a0d33] transition-[background-color,transform] duration-150 ease-out hover:scale-[1.03] hover:bg-white active:scale-[0.97] sm:w-auto"
             >
               {t('communities.cta_button')}
               <ArrowRight size={16} strokeWidth={2} />
