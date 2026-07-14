@@ -34,7 +34,7 @@ function ProgramCardItem({
   learnMore: string
 }) {
   return (
-    <div className="rounded-2xl outline outline-white/20 bg-[rgba(242,241,244,0.08)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]">
+    <div className="rounded-2xl outline outline-1 outline-white/20 bg-[rgba(242,241,244,0.08)] p-6 shadow-[0_2px_8px_0_rgba(34,17,68,0.15)] backdrop-blur-[6px]">
       {icon}
       <h3 className="mt-6 text-xl font-extrabold">{title}</h3>
       <p className="mt-2 text-sm font-light leading-relaxed text-white">{description}</p>
