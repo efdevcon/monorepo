@@ -6,7 +6,7 @@ import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWav
 
 export const EarlyBirdBanner = () => {
   const t = useTranslations('home.early_bird')
-  const { featured } = useFeaturedWave()
+  const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
   const { label: ctaLabel } = useTicketsCtaLabel()
 
@@ -25,7 +25,11 @@ export const EarlyBirdBanner = () => {
 
   return (
     <div className="bg-[#ffa366] py-8 sm:py-10 px-5 sm:px-8 md:px-16 flex flex-col items-center justify-center gap-5 sm:gap-6">
-      <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] text-center">
+      <h2
+        className={`text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] text-center ${
+          mounted ? '' : 'invisible'
+        }`}
+      >
         {heading}
       </h2>
       <NextLink

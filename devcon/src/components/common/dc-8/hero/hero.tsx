@@ -47,7 +47,7 @@ const CountdownSeparator = () => <div className="w-px h-4 bg-white/10" aria-hidd
 export const Hero = () => {
   const t = useTranslations('home.hero')
   const stripHeight = useGetElementHeight('strip')
-  const { featured } = useFeaturedWave()
+  const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
   const now = useNow()
   const showCountdown = featured?.status === 'countdown' && !!featured.upcoming
@@ -107,7 +107,15 @@ export const Hero = () => {
               {/* Ticket sale widget */}
               <div className="backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(150,142,166,0.19)] rounded-lg p-4 flex flex-col gap-4">
                 <div className="flex flex-col gap-3">
-                  {showCountdown && featured ? (
+                  {!mounted ? (
+                    // Hidden placeholder reserving the countdown's height, so the
+                    // widget doesn't flash the fallback eyebrow and then grow into
+                    // the countdown once the client clock resolves the wave state.
+                    <div className="flex flex-col gap-3 items-center invisible" aria-hidden="true">
+                      <p className="text-xs font-semibold text-center tracking-[2px] uppercase leading-4">Coming soon</p>
+                      <div className="w-full min-h-[44px]" />
+                    </div>
+                  ) : showCountdown && featured ? (
                     <div className="flex flex-col gap-3 items-center">
                       <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-4">
                         Available on {featured.upcoming ? `${HERO_DATE_FORMATTER.format(featured.upcoming)} UTC` : ''}
