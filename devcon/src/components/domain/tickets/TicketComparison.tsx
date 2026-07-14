@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NextLink from 'next/link'
+import { Link } from 'components/common/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
 import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl } from 'hooks/useWaveStates'
@@ -96,8 +96,8 @@ const GeneralAdmissionStatusTag = () => {
 }
 
 const CtaButton = ({ label, href, variant }: { label: string; href: string; variant: 'primary' | 'secondary' }) => (
-  <NextLink
-    href={href}
+  <Link
+    to={href}
     className={`inline-flex items-center justify-center gap-2 min-h-9 px-8 py-4 rounded-full text-base font-bold leading-none transition-colors ${
       variant === 'primary'
         ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
@@ -106,7 +106,7 @@ const CtaButton = ({ label, href, variant }: { label: string; href: string; vari
   >
     {label}
     <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-  </NextLink>
+  </Link>
 )
 
 // Mobile (<lg): single card matching Figma's tab-based comparison layout.
@@ -198,8 +198,8 @@ const MobileCard = ({
     </div>
 
     {!column.hide_cta && (
-      <NextLink
-        href={column.cta_href}
+      <Link
+        to={column.cta_href}
         className={`inline-flex items-center justify-center gap-2 min-h-9 px-8 py-4 rounded-full text-base font-bold leading-none transition-colors w-full ${
           column.cta_variant === 'primary'
             ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
@@ -208,7 +208,7 @@ const MobileCard = ({
       >
         {column.cta_label}
         <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-      </NextLink>
+      </Link>
     )}
   </div>
 )

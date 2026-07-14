@@ -94,7 +94,7 @@ export const GA_COMING_SOON_OPENS_AT: Date | null = GLOBAL_LAUNCH_TIME
 // Status labels. Coming-soon normally shows a countdown, so its label is only a
 // no-date fallback; closed always shows its label.
 export const GA_COMING_SOON_LABEL = 'Coming soon'
-export const GA_CLOSED_LABEL = 'Reopens Aug'
+export const GA_CLOSED_LABEL = 'Reopens August'
 
 export const TICKET_WAVES: TicketWave[] = [
   {
