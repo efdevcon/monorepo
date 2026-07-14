@@ -148,14 +148,14 @@ const ENV_CONFIG = {
     self: {
       scope: 'india-resident',
       // TODO: change to false before tickets go live
-      staging: true,
+      staging: false,
       requireEarlyAccess: false,
     },
     discount: {
       collection: 'india-resident',
       // See development.discount.communityPrefix.
       // TODO: remove before tickets go live
-      communityPrefix: 'test-',
+      communityPrefix: '',
       // Production Pretix item IDs. NOTE: the prod Self flow currently uses
       // `collection: 'india-early-bird'` above, but the configured Self discount
       // item is keyed `india-resident` (3). If the prod Self flow should issue
@@ -194,7 +194,7 @@ const ENV_CONFIG = {
       goalsIdentifier: 'FNXHWF39',
     },
     overrides: {
-      soldOut: true,
+      soldOut: false,
     },
     isShopOpen: false,
     x402Agents: false,
