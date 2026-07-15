@@ -110,6 +110,12 @@ function App({ Component, pageProps }: any) {
         siteId: MATOMO_SITE_ID,
         onInitialization: () => {
           push(['setCookieDomain', '*.devcon.org'])
+          // Treat tickets.devcon.org (Pretix shop) as internal navigation, not
+          // an outlink — required for the cross-domain Matomo funnel. The shop
+          // side mirrors this via the pretix_eth matomo-bridge.js inject
+          // (setCookieDomain + setDomains), so both domains share one
+          // first-party `_pk_id` visitor cookie scoped to `.devcon.org`.
+          push(['setDomains', ['*.devcon.org']])
           push(['setExcludedQueryParams', ['code', 'gist']])
         },
       })
