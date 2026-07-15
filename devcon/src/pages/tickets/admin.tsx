@@ -158,18 +158,25 @@ interface WcUnpaidOrder {
   total: string
   createdAt: number | null
   testmode: boolean
-  /** Last buyer-issued quote, if one was created before they dropped off.
-   *  Pre-fills chain + symbol + payer fields in the manual-verify modal;
-   *  admin can still override any of them. `null` if the buyer never
-   *  reached the create-quote step. */
-  quote: {
-    chainId: number | null
-    symbol: string | null
-    intendedPayer: string | null
-    amountRaw: string | null
-    createdAt: number | null
-    expiresAt: number | null
-  } | null
+  /** Newest buyer-issued quote (pre-fills the manual-verify modal); `null` if
+   *  the buyer never reached the create-quote step. See `quotes` for the full
+   *  list when a buyer retried with different wallets/tokens/amounts. */
+  quote: WcQuote | null
+  /** Every quote across the order's WC payments (created + canceled), newest
+   *  first. The manual-verify modal shows these as a picker so the admin can
+   *  bind to the exact attempt that matches the real on-chain payment. */
+  quotes?: WcQuote[]
+}
+
+interface WcQuote {
+  /** Stable id used to bind the manual verify to this exact quote. */
+  quoteId: string | null
+  chainId: number | null
+  symbol: string | null
+  intendedPayer: string | null
+  amountRaw: string | null
+  createdAt: number | null
+  expiresAt: number | null
 }
 
 interface OrdersResponse {
@@ -1016,6 +1023,17 @@ function RefundActionCell({
 const SUPPORTED_SYMBOLS = ['USDC', 'USDT0', 'ETH'] as const
 const SUPPORTED_CHAINS = [1, 10, 8453, 42161, 137] as const
 
+/** Lock background page scroll while a modal is open; restore on unmount. */
+function useLockBodyScroll() {
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [])
+}
+
 function ManualVerifyModal({
   order,
   secret,
@@ -1029,6 +1047,7 @@ function ManualVerifyModal({
   onClose: () => void
   onVerified: () => void
 }) {
+  useLockBodyScroll()
   const [txHash, setTxHash] = useState('')
   const [symbol, setSymbol] = useState<string>('USDC')
   const [chainId, setChainId] = useState<number>(order.expectedChainId ?? 8453)
@@ -1275,6 +1294,7 @@ function WcManualVerifyModal({
   onClose: () => void
   onVerified: () => void
 }) {
+  useLockBodyScroll()
   const [txHash, setTxHash] = useState('')
   // Default to ETH on Ethereum mainnet when the buyer never reached the
   // create-quote step — that's the most common manual-recovery case
@@ -1284,6 +1304,26 @@ function WcManualVerifyModal({
   const [payer, setPayer] = useState<string>(order.quote?.intendedPayer ?? '')
   const [step, setStep] = useState<'form' | 'submitting' | 'done' | 'error'>('form')
   const [error, setError] = useState<string | null>(null)
+
+  // A buyer who retried with different wallets/tokens leaves several quotes with
+  // different payers/amounts. The admin picks the one matching the real on-chain
+  // payment; we bind the verify to that exact quote (its payer + amount).
+  const quotes: WcQuote[] =
+    order.quotes && order.quotes.length > 0 ? order.quotes : order.quote ? [order.quote] : []
+  const [selectedQuoteId, setSelectedQuoteId] = useState<string | null>(quotes[0]?.quoteId ?? null)
+  // Override the quote's validity window (tx mined outside it, e.g. slow/retried
+  // payment). `force` verifies against the typed payer when there's NO usable
+  // quote — on-chain tx + payer + one-time dedup still enforced server-side.
+  const [overrideWindow, setOverrideWindow] = useState(false)
+  const [force, setForce] = useState(false)
+
+  function selectQuote(q: WcQuote) {
+    setSelectedQuoteId(q.quoteId)
+    setForce(false)
+    if (q.intendedPayer) setPayer(q.intendedPayer)
+    if (q.symbol) setSymbol(q.symbol)
+    if (q.chainId != null) setChainId(q.chainId)
+  }
 
   const trimmedHash = txHash.trim()
   const trimmedPayer = payer.trim()
@@ -1308,6 +1348,10 @@ function WcManualVerifyModal({
           payer: trimmedPayer,
           chainId,
           symbol,
+          // Bind to the selected quote; or force-verify against the typed payer
+          // when the order has no usable quote.
+          ...(force ? { force: true } : selectedQuoteId ? { quoteId: selectedQuoteId } : {}),
+          ...(overrideWindow ? { overrideQuoteWindow: true } : {}),
         }),
       })
       const body = await res.json()
@@ -1398,6 +1442,86 @@ function WcManualVerifyModal({
         {step === 'form' && (
           <>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '16px 0' }}>
+              {/* Quote section — always shown so the admin sees exactly what the
+                  verify binds to: none (must Force), one (auto-bound), or many
+                  (pick the attempt matching the real payment). */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 13 }}>
+                <span style={{ fontWeight: 600 }}>
+                  Quote to verify against{quotes.length > 1 ? ` — ${quotes.length} attempts, pick one` : ''}
+                </span>
+                {quotes.length === 0 ? (
+                  <span
+                    style={{
+                      fontSize: 12,
+                      color: '#8a6d1b',
+                      background: '#fdf6e3',
+                      border: '1px solid #f0e0b0',
+                      borderRadius: 8,
+                      padding: '8px 10px',
+                    }}
+                  >
+                    No quote on this order — tick <strong>Force verify</strong> below and enter the payer manually.
+                  </span>
+                ) : (
+                  <>
+                    {quotes.length > 1 && (
+                      <span style={{ fontSize: 12, color: '#666' }}>
+                        The buyer retried with different wallets/tokens — pick the attempt matching the actual
+                        on-chain payment (its payer and amount are used for verification).
+                      </span>
+                    )}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {quotes.map((q, i) => {
+                        const active = !force && selectedQuoteId === q.quoteId
+                        return (
+                          <label
+                            key={q.quoteId ?? i}
+                            style={{
+                              display: 'flex',
+                              gap: 10,
+                              alignItems: 'flex-start',
+                              padding: '10px 12px',
+                              border: `1px solid ${active ? '#7235ed' : '#e5e7eb'}`,
+                              borderRadius: 10,
+                              cursor: force ? 'default' : 'pointer',
+                              background: active ? '#f6f2ff' : '#fff',
+                              opacity: force ? 0.5 : 1,
+                              transition: 'border-color .12s, background .12s',
+                            }}
+                          >
+                            <input
+                              type="radio"
+                              name="wc-quote"
+                              checked={active}
+                              onChange={() => selectQuote(q)}
+                              disabled={force}
+                              style={{ marginTop: 3, width: 16, height: 16, accentColor: '#7235ed', flexShrink: 0 }}
+                            />
+                            <span style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
+                              <span style={{ fontWeight: 600, fontSize: 13 }}>
+                                {q.amountRaw && q.symbol
+                                  ? `${formatCryptoAmount(q.amountRaw, q.symbol)} ${q.symbol}`
+                                  : q.symbol ?? '—'}{' '}
+                                <span style={{ fontWeight: 400, color: '#666' }}>on {chainName(q.chainId ?? 1)}</span>
+                              </span>
+                              <span
+                                className={css.mono}
+                                style={{ fontSize: 12, color: '#444' }}
+                                title={q.intendedPayer ?? ''}
+                              >
+                                {q.intendedPayer ? truncate(q.intendedPayer) : '—'}
+                              </span>
+                              {q.createdAt && (
+                                <span style={{ fontSize: 11, color: '#8a8a8a' }}>{formatDate(q.createdAt)}</span>
+                              )}
+                            </span>
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </>
+                )}
+              </div>
               <label style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13 }}>
                 <span style={{ fontWeight: 600 }}>Transaction hash</span>
                 <input
@@ -1446,6 +1570,48 @@ function WcManualVerifyModal({
                     {SUPPORTED_CHAINS.map(c => <option key={c} value={c}>{chainName(c)}</option>)}
                   </select>
                 </label>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {[
+                  {
+                    on: overrideWindow,
+                    set: setOverrideWindow,
+                    title: 'Override quote time window',
+                    desc: "Tx mined outside the quote's validity — slow or retried payment.",
+                  },
+                  {
+                    on: force,
+                    set: setForce,
+                    title: 'Force verify with the entered payer',
+                    desc: 'No matching quote on the order. On-chain tx, payer and one-time dedup still enforced.',
+                  },
+                ].map(opt => (
+                  <label
+                    key={opt.title}
+                    style={{
+                      display: 'flex',
+                      gap: 10,
+                      alignItems: 'flex-start',
+                      padding: '10px 12px',
+                      border: `1px solid ${opt.on ? '#7235ed' : '#e5e7eb'}`,
+                      borderRadius: 10,
+                      background: opt.on ? '#f6f2ff' : '#fff',
+                      cursor: 'pointer',
+                      transition: 'border-color .12s, background .12s',
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={opt.on}
+                      onChange={e => opt.set(e.target.checked)}
+                      style={{ marginTop: 2, width: 16, height: 16, accentColor: '#7235ed', flexShrink: 0 }}
+                    />
+                    <span style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <span style={{ fontSize: 13, fontWeight: 600 }}>{opt.title}</span>
+                      <span style={{ fontSize: 12, color: '#666', lineHeight: 1.4 }}>{opt.desc}</span>
+                    </span>
+                  </label>
+                ))}
               </div>
             </div>
             {refundedMatch && (

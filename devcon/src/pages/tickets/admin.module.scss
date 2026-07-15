@@ -831,6 +831,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  padding: 24px;
 }
 
 .modal-card {
@@ -838,9 +839,14 @@
   background: white;
   border-radius: 16px;
   padding: 32px;
-  max-width: 440px;
+  max-width: 560px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(22, 11, 43, 0.2);
+  // Tall content (quote picker + fields) scrolls inside the card; the padded
+  // overlay keeps it off the viewport edges. Background scroll is locked via
+  // useLockBodyScroll while the modal is open.
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
 }
 
 .modal-close {
