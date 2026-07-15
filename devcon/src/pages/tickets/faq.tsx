@@ -3,7 +3,7 @@ import type { GetStaticProps } from 'next'
 import ReactMarkdown from 'react-markdown'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
-import { ChevronDown, AtSign, ArrowUpRight } from 'lucide-react'
+import { ChevronDown, AtSign, ArrowUpRight, Search, CircleX } from 'lucide-react'
 import themes from '../themes.module.scss'
 import HeroBackground from '../past-events-hero.png'
 import MoonBackground from 'assets/images/pages/faq-moon-bg.svg'
@@ -29,6 +29,83 @@ function shortLabel(category: string) {
   return category.split(/\s+/)[0]
 }
 
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+// Wrap query matches in <mark> for plain strings (questions).
+function highlightString(text: string, query: string, markClass: string): React.ReactNode {
+  if (!query) return text
+  const parts = text.split(new RegExp(`(${escapeRegExp(query)})`, 'gi'))
+  if (parts.length === 1) return text
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <mark key={i} className={markClass}>
+        {part}
+      </mark>
+    ) : (
+      part
+    )
+  )
+}
+
+// Rehype plugin that wraps query matches in <mark> inside rendered answers.
+// Walks the hast tree and splits text nodes; hand-rolled to avoid pulling in
+// unist-util-visit for a ~20-line walk.
+function createHighlightPlugin(query: string, markClass: string) {
+  return () => (tree: { children?: HastNode[] }) => {
+    if (!query) return
+    const pattern = new RegExp(`(${escapeRegExp(query)})`, 'gi')
+    const walk = (node: { children?: HastNode[] }) => {
+      if (!node.children) return
+      const next: HastNode[] = []
+      for (const child of node.children) {
+        // String.split ignores the regex's stateful lastIndex, unlike .test()
+        const parts = child.type === 'text' && typeof child.value === 'string' ? child.value.split(pattern) : null
+        if (parts && parts.length > 1) {
+          parts.forEach((part, i) => {
+            if (!part) return
+            next.push(
+              i % 2 === 1
+                ? { type: 'element', tagName: 'mark', properties: { className: [markClass] }, children: [{ type: 'text', value: part }] }
+                : { type: 'text', value: part }
+            )
+          })
+        } else {
+          walk(child)
+          next.push(child)
+        }
+      }
+      node.children = next
+    }
+    walk(tree)
+  }
+}
+
+type HastNode = {
+  type: string
+  value?: string
+  tagName?: string
+  properties?: Record<string, unknown>
+  children?: HastNode[]
+}
+
+// Answers are raw Markdown; search should match the visible text, not link
+// URLs or emphasis markers. Regex-based on purpose — good enough for search,
+// not worth a parser dependency.
+function stripMarkdown(md: string) {
+  return md
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/(\*\*|__|~~|`|\*|_)/g, '')
+    .replace(/^\s{0,3}(#{1,6}|[-*+]|\d+\.)\s+/gm, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
+}
+
 function groupByCategory(items: FaqItem[], categories: string[]) {
   const bucket = new Map<string, FaqItem[]>()
   for (const cat of categories) bucket.set(cat, [])
@@ -43,7 +120,36 @@ function groupByCategory(items: FaqItem[], categories: string[]) {
 }
 
 export default function FaqPage({ faq }: Props) {
-  const groups = useMemo(() => groupByCategory(faq.items, faq.categories), [faq])
+  // Search: `query` tracks the input directly; `debouncedQuery` drives
+  // filtering so the list doesn't churn on every keystroke.
+  const [query, setQuery] = useState('')
+  const [debouncedQuery, setDebouncedQuery] = useState('')
+
+  useEffect(() => {
+    const id = setTimeout(() => setDebouncedQuery(query), 300)
+    return () => clearTimeout(id)
+  }, [query])
+
+  // Searchable text per item, built once per data load rather than per keystroke.
+  const corpus = useMemo(() => {
+    const map = new Map<number, string>()
+    for (const item of faq.items) {
+      map.set(item.id, `${item.question.toLowerCase()}\n${stripMarkdown(item.answer)}`)
+    }
+    return map
+  }, [faq.items])
+
+  const activeQuery = debouncedQuery.trim().toLowerCase()
+  const isSearching = activeQuery.length > 0
+
+  const visibleItems = useMemo(
+    () => (activeQuery ? faq.items.filter(item => (corpus.get(item.id) ?? '').includes(activeQuery)) : faq.items),
+    [faq.items, corpus, activeQuery]
+  )
+
+  const groups = useMemo(() => groupByCategory(visibleItems, faq.categories), [visibleItems, faq.categories])
+
+  const highlightPlugin = useMemo(() => createHighlightPlugin(activeQuery, css['highlight']), [activeQuery])
   // Only one question can be open at a time.
   const [openId, setOpenId] = useState<number | null>(null)
   // Active category follows scroll position so the sidebar highlight matches
@@ -107,6 +213,12 @@ export default function FaqPage({ faq }: Props) {
 
   const toggle = (id: number) => {
     setOpenId(prev => (prev === id ? null : id))
+  }
+
+  // Set both states so clearing takes effect immediately, skipping the debounce.
+  const clearSearch = () => {
+    setQuery('')
+    setDebouncedQuery('')
   }
 
   const handleNavClick = (cat: string) => (e: React.MouseEvent) => {
@@ -185,7 +297,40 @@ export default function FaqPage({ faq }: Props) {
           <div className={css['content']}>
             {/* Left: accordions grouped by category */}
             <div className={css['faq-column']}>
-            {groups.length === 0 && <div className={css['empty']}>No questions available yet. Check back soon.</div>}
+            <div className={css['search']}>
+              <div className={css['search-input-wrap']}>
+                <Search size={16} strokeWidth={2} className={css['search-icon']} aria-hidden="true" />
+                <input
+                  type="search"
+                  className={css['search-input']}
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  placeholder="Search by term"
+                  aria-label="Search FAQs"
+                />
+                <span className={css['search-count']} role="status" aria-live="polite">
+                  {isSearching ? `${visibleItems.length} ${visibleItems.length === 1 ? 'result' : 'results'}` : ''}
+                </span>
+                {query.length > 0 && (
+                  <button type="button" className={css['search-clear']} onClick={clearSearch}>
+                    <CircleX size={16} strokeWidth={2} aria-hidden="true" />
+                    Clear
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {groups.length === 0 &&
+              (isSearching ? (
+                <div className={css['empty']}>
+                  No results for &ldquo;{debouncedQuery.trim()}&rdquo;.{' '}
+                  <button type="button" className={css['empty-clear']} onClick={clearSearch}>
+                    Clear search
+                  </button>
+                </div>
+              ) : (
+                <div className={css['empty']}>No questions available yet. Check back soon.</div>
+              ))}
 
             {groups.map(group => (
               <div
@@ -200,7 +345,10 @@ export default function FaqPage({ faq }: Props) {
                 <p className={css['category-title']}>{group.category}</p>
                 <div className={css['accordion']}>
                   {group.items.map(item => {
-                    const isOpen = openId === item.id
+                    // While searching, show every match expanded so answer-only
+                    // matches are visible; the single-open behavior (and the
+                    // previously open item) comes back when the query clears.
+                    const isOpen = isSearching || openId === item.id
                     return (
                       <div key={item.id} className={css['faq-item']}>
                         <button
@@ -210,7 +358,7 @@ export default function FaqPage({ faq }: Props) {
                           aria-expanded={isOpen}
                           aria-controls={`faq-answer-${item.id}`}
                         >
-                          <span>{item.question}</span>
+                          <span>{isSearching ? highlightString(item.question, activeQuery, css['highlight']) : item.question}</span>
                           <ChevronDown
                             size={16}
                             strokeWidth={2}
@@ -225,7 +373,9 @@ export default function FaqPage({ faq }: Props) {
                           <div className={css['answer-inner']}>
                             <div className={css['answer']}>
                               {item.answer ? (
-                                <ReactMarkdown>{item.answer}</ReactMarkdown>
+                                <ReactMarkdown rehypePlugins={isSearching ? [highlightPlugin] : []}>
+                                  {item.answer}
+                                </ReactMarkdown>
                               ) : (
                                 <p>Answer coming soon.</p>
                               )}
