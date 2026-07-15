@@ -177,6 +177,9 @@ interface WcQuote {
   amountRaw: string | null
   createdAt: number | null
   expiresAt: number | null
+  /** USD price the quote was created for (`order_total_usd`). Older history
+   *  entries predate this field; the UI falls back to the order total. */
+  orderTotalUsd?: string | null
 }
 
 interface OrdersResponse {
@@ -1504,6 +1507,11 @@ function WcManualVerifyModal({
                                   : q.symbol ?? '—'}{' '}
                                 <span style={{ fontWeight: 400, color: '#666' }}>on {chainName(q.chainId ?? 1)}</span>
                               </span>
+                              {(q.orderTotalUsd ?? order.total) && (
+                                <span style={{ fontSize: 12, color: '#444' }}>
+                                  Quote price: <strong>${q.orderTotalUsd ?? order.total}</strong>
+                                </span>
+                              )}
                               <span
                                 className={css.mono}
                                 style={{ fontSize: 12, color: '#444' }}
