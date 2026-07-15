@@ -300,6 +300,10 @@
 
 .section {
   margin-bottom: 2.5rem;
+  /* Clear the sticky site header when scrolling to #general-admission /
+     #community / #applications anchors. Unlike the FAQ page there is no
+     extra sticky mobile-nav, so the mobile offset is smaller, not larger. */
+  scroll-margin-top: 80px;
 
   &:last-of-type {
     margin-bottom: 0;
