@@ -28,6 +28,11 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Light-only rendering: Apple Mail / Outlook iOS respect this and skip
+       dark-mode inversion. Gmail ignores it; the header text uses #fffffe
+       so Gmail's pure-white remap passes it through. -->
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
   <title>Your Devcon India Voucher Code</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f5f3f7; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -37,16 +42,20 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <td style="background: #1a0d33 url('https://devcon.org/email/header-bg.png') center/cover no-repeat; padding: 32px 32px 24px; text-align: center;">
+            <!-- No text in the dark band: Gmail mobile dark mode recolors both the
+                 dark background (lightened) and any light text (darkened). The logo
+                 is an image so it is never recolored; the tagline lives in the body
+                 below, where Gmail's dark-on-light remap behaves correctly. -->
+            <td bgcolor="#1a0d33" style="background-color: #1a0d33; background-image: url('https://devcon.org/email/header-bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 32px; text-align: center;">
               <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
-              <p style="margin: 12px 0 0; font-size: 14px; color: #ffffff;">
-                Your voucher code is reserved
-              </p>
             </td>
           </tr>
           <!-- Body -->
           <tr>
             <td style="padding: 32px;">
+              <p style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #7235ed; text-transform: uppercase; letter-spacing: 1px; text-align: center;">
+                Your voucher code is reserved
+              </p>
               <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 800; color: #1a0d33;">
                 Your Voucher Code
               </h2>
@@ -62,7 +71,7 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
                 ${priceLine} Click below to redeem it now and secure your ticket.
               </p>
               <div style="text-align: center;">
-                <a href="${redeemUrl}" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #ffffff; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
+                <a href="${redeemUrl}" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #fffffe; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
                   Redeem your voucher
                 </a>
               </div>

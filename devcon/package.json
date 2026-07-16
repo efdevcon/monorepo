@@ -32,6 +32,8 @@
     "early-access:generate-codes": "ts-node src/scripts/generate-early-access-codes.ts",
     "pretix:generate-vouchers": "ts-node src/scripts/pretix/generate-vouchers.ts",
     "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts",
+    "pretix:export-early-bird-emails": "ts-node src/scripts/pretix/export-early-bird-emails.ts",
+    "send-early-bird-reminder": "ts-node src/scripts/send-early-bird-reminder.ts",
     "forms:decrypt": "tsx scripts/decrypt.ts",
     "sync:discount-data": "tsx src/scripts/sync-discount-data.ts"
   },
