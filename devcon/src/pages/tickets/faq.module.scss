@@ -22,7 +22,7 @@
       object-position: center 70% !important;
 
       @media (max-width: $breakpoints-md) {
-        object-position: 62% 50% !important;
+        object-position: center 50% !important;
       }
     }
   }
@@ -49,15 +49,6 @@
     text-align: center;
     width: 100%;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.55);
-  }
 }
 
 .hero-title {
@@ -67,6 +58,8 @@
   font-size: clamp(3rem, 9vw, 130px) !important;
   letter-spacing: -2px !important;
   color: #f9f8fa !important;
+  /* Same treatment as the speaker-applications hero title */
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
   transform: translateY(-16px);
 
   @media (max-width: $breakpoints-md) {
@@ -174,7 +167,9 @@ $content-max-width: 1120px;
   bottom: 0;
   transform: translateX(-50%);
   width: min(1440px, 100%);
-  height: 722px;
+  /* Clamp to the section height: when the section is short (e.g. the
+     no-results state) a fixed 722px would poke above it into the intro band. */
+  height: min(722px, 100%);
   overflow: hidden; /* clip the moon SVG to just its top half */
   opacity: 0.15;
   pointer-events: none;
@@ -230,6 +225,107 @@ $content-max-width: 1120px;
   @media (max-width: $breakpoints-xl) {
     max-width: 100%;
   }
+}
+
+/* ─── Search ──────────────────────────────────────────────── */
+
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* The wrap is the visual "input": a flex row so the count and Clear button
+   sit inside the bar at their natural widths. */
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: white;
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  border-radius: 16px;
+
+  &:focus-within {
+    border-color: #7235ed;
+  }
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #160b2b;
+
+  &::placeholder {
+    color: #594d73;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  /* We render our own clear button. */
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+    display: none;
+  }
+}
+
+.search-icon {
+  flex-shrink: 0;
+  color: #594d73;
+  pointer-events: none;
+}
+
+.search-count {
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #594d73;
+  white-space: nowrap;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.search-clear {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px 4px 4px;
+  /* Cancel the padding out of the layout so the hover fill can bleed
+     beyond the text without pushing the bar's contents around. */
+  margin: -4px -8px -4px -4px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #7235ed;
+
+  &:hover {
+    background: #efe7fd;
+  }
+}
+
+.highlight {
+  background: #ffc299;
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+  margin: 0 -1px;
 }
 
 .category-group {
@@ -591,4 +687,19 @@ $content-max-width: 1120px;
   padding: 64px 16px;
   color: #594d73;
   font-size: 16px;
+}
+
+.empty-clear {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: #7235ed;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
