@@ -41,7 +41,7 @@ import { getMessages } from 'utils/intl'
 import type { GetStaticPropsContext } from 'next'
 
 const APPLY_URL = 'https://mum.speakat.xyz/devcon8/cfp'
-const WISHLIST_URL = 'https://ef-events.notion.site/devcon-8-talks-wishlist'
+const WISHLIST_URL = 'https://notes.ethereum.org/@devcon/devcon8-talks-wishlist'
 const GUIDELINES_URL = '/application-guidelines'
 // Anchor id comes from application-guidelines.tsx's SECTION_KEYS (underscores → hyphens)
 const REVIEW_CRITERIA_URL = '/application-guidelines#review-criteria'
