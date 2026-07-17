@@ -27,16 +27,23 @@ function buildRejectionHtml(name: string): string {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <td style="background: #1a0d33 url('https://devcon.org/email/header-bg.png') center/cover no-repeat; padding: 32px 32px 24px; text-align: center;">
-              <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
-              <p style="margin: 12px 0 0; font-size: 14px; color: #ffffff;">
-                Sanctuary Tech Builders application update
-              </p>
+            <!-- Full-width image header: the same artwork as the devcon.org/en/form/*
+                 pages (wordmark baked into the image). A plain <img> is never
+                 recolored by dark mode (Gmail mobile included) and renders in every
+                 client, unlike the old CSS-background + SVG-logo band (Gmail also
+                 drops the background shorthand and never renders SVG images). The
+                 tagline lives in the body below, where dark-mode remaps of dark
+                 text on a light background behave correctly. -->
+            <td style="padding: 0;">
+              <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
             </td>
           </tr>
           <!-- Body -->
           <tr>
             <td style="padding: 32px;">
+              <p style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #7235ed; text-transform: uppercase; letter-spacing: 1px; text-align: center;">
+                Sanctuary Tech Builders application update
+              </p>
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 ${greeting}
               </p>

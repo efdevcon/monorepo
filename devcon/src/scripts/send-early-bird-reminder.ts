@@ -68,13 +68,12 @@ function buildReminderHtml(voucherCode: string): string {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <!-- No text in the dark band: Gmail mobile dark mode recolors both the
-                 dark background (lightened) and any light text (darkened), and it
-                 ignores meta color-scheme, !important, and near-white values. The
-                 logo is an image so it is never recolored; the tagline lives in the
-                 body below, where Gmail's dark-on-light remap behaves correctly. -->
-            <td bgcolor="#1a0d33" style="background-color: #1a0d33; background-image: url('https://devcon.org/email/header-bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 32px; text-align: center;">
-              <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
+            <!-- Full-width image header: the same artwork as the devcon.org/en/form/*
+                 pages (wordmark baked into the image). A plain <img> is never
+                 recolored by dark mode (Gmail mobile included) and renders in every
+                 client, unlike the old CSS-background + SVG-logo band. -->
+            <td style="padding: 0;">
+              <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
             </td>
           </tr>
           <!-- Body -->
