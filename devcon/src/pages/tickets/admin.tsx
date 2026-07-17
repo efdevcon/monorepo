@@ -200,6 +200,11 @@ interface SalesStatsData {
   }
   items?: SalesItemStats[]
   daily?: SalesDailyStats[]
+  vouchers?:
+    | { collection: string; generated: number; assigned: number; emailed: number; redeemed: number }[]
+    | null
+  applications?: { label: string; url: string; total: number; byStatus: Record<string, number> }[] | null
+  sourceErrors?: string[]
 }
 
 interface PendingOrder {
@@ -2892,8 +2897,125 @@ function AdminContent() {
               </table>
             </div>
 
+            {/* Early-access voucher pipeline (Supabase) + builder applications
+                (NocoDB). Independent sources; sourceErrors surfaces failures
+                without hiding the Pretix numbers above. */}
+            {(salesData.vouchers?.length || salesData.applications) && (
+              <>
+                <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                  {!!salesData.vouchers?.length && (
+                    <div style={{ flex: '1 1 320px', minWidth: 0 }}>
+                      <div style={{ margin: '12px 0 4px', fontSize: 13, fontWeight: 600, color: '#333' }}>Vouchers</div>
+                      <div className={css['table-wrap']}>
+                        <table className={css.table}>
+                          <thead>
+                            <tr>
+                              <th>Collection</th>
+                              <th>Generated</th>
+                              <th>Redeemed</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {salesData.vouchers.map(v => (
+                              <tr key={v.collection}>
+                                <td>{v.collection}</td>
+                                <td>
+                                  <strong>{v.generated}</strong>
+                                  {/* every current flow assigns at creation, so the two
+                                      counts match; call out the gap if they ever diverge */}
+                                  {v.assigned !== v.generated && (
+                                    <span style={{ color: '#8a8a8a', fontSize: 11 }}> ({v.assigned} assigned)</span>
+                                  )}
+                                </td>
+                                <td>
+                                  {/* counted from PAID order positions carrying the
+                                      voucher, i.e. actual tickets sold with it */}
+                                  <strong>{v.redeemed}</strong>
+                                  {v.generated > 0 && (
+                                    <span style={{ color: '#8a8a8a', fontSize: 11 }}>
+                                      {' '}
+                                      ({Math.round((v.redeemed / v.generated) * 100)}%)
+                                    </span>
+                                  )}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+                  {!!salesData.applications?.length && (
+                    <div style={{ flex: '1 1 380px', minWidth: 0 }}>
+                      <div style={{ margin: '12px 0 4px', fontSize: 13, fontWeight: 600, color: '#333' }}>Applications</div>
+                      <div className={css['table-wrap']}>
+                        <table className={css.table}>
+                          <thead>
+                            <tr>
+                              <th>Form</th>
+                              <th>Total</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {salesData.applications.map(app => (
+                              <tr key={app.label}>
+                                <td>
+                                  <a className={css.link} href={app.url} target="_blank" rel="noopener noreferrer">
+                                    {app.label}
+                                  </a>
+                                </td>
+                                <td>
+                                  <strong>{app.total}</strong>
+                                </td>
+                                <td>
+                                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                                    {Object.entries(app.byStatus)
+                                      .sort((a, b) => b[1] - a[1])
+                                      .map(([status, count]) => {
+                                        const s = status.toLowerCase()
+                                        const tone = /approved|validated/.test(s)
+                                          ? { bg: '#e6f4ea', fg: '#2a8a3c' }
+                                          : /reject/.test(s)
+                                          ? { bg: '#fdecea', fg: '#c00' }
+                                          : { bg: '#f2f1f4', fg: '#594d73' }
+                                        return (
+                                          <span
+                                            key={status}
+                                            style={{
+                                              background: tone.bg,
+                                              color: tone.fg,
+                                              borderRadius: 9999,
+                                              padding: '1px 8px',
+                                              fontSize: 11,
+                                              fontWeight: 600,
+                                              whiteSpace: 'nowrap',
+                                            }}
+                                          >
+                                            {count} {status}
+                                          </span>
+                                        )
+                                      })}
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+            {!!salesData.sourceErrors?.length && (
+              <div style={{ margin: '8px 0', fontSize: 12, color: '#c00' }}>
+                Some sources failed: {salesData.sourceErrors.join(' · ')}
+              </div>
+            )}
+
             {/* Daily (UTC days, newest first) */}
-            <div style={{ margin: '12px 0 4px', fontSize: 13, fontWeight: 600, color: '#333' }}>Daily (UTC)</div>
+            <div style={{ margin: '12px 0 4px', fontSize: 13, fontWeight: 600, color: '#333' }}>Daily sales (UTC)</div>
             <div className={css['table-wrap']}>
               <table className={css.table}>
                 <thead>

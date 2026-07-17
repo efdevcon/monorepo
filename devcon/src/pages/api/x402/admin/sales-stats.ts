@@ -17,8 +17,38 @@
  *   - ETH/fiat percentages exclude the "other" lane (comps, manual).
  */
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { createClient } from '@supabase/supabase-js'
 import { checkAdminAuth } from 'utils/adminAuth'
 import { TICKETING, getPretixApiToken } from 'config/ticketing'
+
+/** NocoDB application tables surfaced on the dashboard. Table ids come from
+ *  the form.devcon.org URLs (…/<baseId>/<tableId>/<viewId>/…); statusField is
+ *  each table's review column, and rows with an empty status count under
+ *  emptyLabel. Fetched via the NocoDB v2 records API (paginated). */
+const APPLICATION_SOURCES = [
+  // src/pages/api/builder/review/[id].ts drives this table's Decision field
+  {
+    label: 'Builder',
+    tableId: 'mj5drwikc8fxslp',
+    statusField: 'Decision',
+    emptyLabel: 'pending',
+    url: 'https://form.devcon.org/wx5thjwz/pzerie4iw55aae0/mj5drwikc8fxslp/vwtb958w9fgbjy40/builder-application-builder-application',
+  },
+  {
+    label: 'Students',
+    tableId: 'm500tv5ywq983co',
+    statusField: 'Status',
+    emptyLabel: 'to process',
+    url: 'https://form.devcon.org/wx5thjwz/pzerie4iw55aae0/m500tv5ywq983co/vwcph6o6x0yp78zj/student-application-grid',
+  },
+  {
+    label: 'Youth',
+    tableId: 'mnniomolz1z8634',
+    statusField: 'Status',
+    emptyLabel: 'to process',
+    url: 'https://form.devcon.org/wx5thjwz/pzerie4iw55aae0/mnniomolz1z8634/vw2o8speg56br66p/youth-ticket-application-youth-ticket',
+  },
+] as const
 
 interface LaneCounts {
   total: number
@@ -79,6 +109,20 @@ export interface SalesStatsResponse {
   }
   items?: ItemStats[]
   daily?: DailyStats[]
+  /** Early-access voucher pipeline from devcon8_early_access_vouchers, per
+   *  collection: generated (rows) → assigned (claimed by an identity) →
+   *  emailed (voucher email sent) → redeemed (the Pretix voucher has been
+   *  used on an order; joined by code against Pretix's voucher list).
+   *  Null on Supabase failure (see errors). */
+  vouchers?:
+    | { collection: string; generated: number; assigned: number; emailed: number; redeemed: number }[]
+    | null
+  /** Form applications from NocoDB (builder / students / youth), each with
+   *  its review-status distribution. Sources that failed are simply absent
+   *  (named in sourceErrors); null when every source failed. */
+  applications?: { label: string; url: string; total: number; byStatus: Record<string, number> }[] | null
+  /** Non-fatal source failures (Pretix stats still returned). */
+  sourceErrors?: string[]
 }
 
 function normalizeBaseUrl(url: string): string {
@@ -105,7 +149,7 @@ interface PretixOrderLite {
   datetime: string
   total: string
   payments?: { provider: string; state: string }[]
-  positions?: { item: number }[]
+  positions?: { item: number; voucher?: number | null }[]
 }
 
 /** Shape of every paginated Pretix list response. Annotating the parsed
@@ -177,6 +221,48 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       quotasUrl = data.next
     }
 
+    // ── Secondary sources (failure-isolated: a Supabase or NocoDB outage
+    // must not take down the Pretix sales numbers) ──
+    const sourceErrors: string[] = []
+
+    // Early-access voucher pipeline per collection. Fetched BEFORE the orders
+    // sweep so `redeemed` can be counted from actual PAID order positions
+    // (via the position's voucher id), not Pretix's voucher counter, which
+    // also counts pending orders.
+    const voucherAgg = new Map<string, { generated: number; assigned: number; emailed: number; redeemed: number }>()
+    const voucherCollectionById = new Map<number, string>()
+    let vouchersOk = false
+    try {
+      const supabaseUrl = process.env.SUPABASE_URL
+      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+      if (!supabaseUrl || !supabaseKey) throw new Error('Supabase env not configured')
+      const supabase = createClient(supabaseUrl, supabaseKey)
+      const PAGE = 1000
+      for (let from = 0; ; from += PAGE) {
+        const { data: rows, error } = await supabase
+          .from('devcon8_early_access_vouchers')
+          .select('collection, assigned_to, email_sent, pretix_voucher_id')
+          .range(from, from + PAGE - 1)
+        if (error) throw new Error(error.message)
+        for (const row of rows ?? []) {
+          const key = row.collection || '(none)'
+          let c = voucherAgg.get(key)
+          if (!c) {
+            c = { generated: 0, assigned: 0, emailed: 0, redeemed: 0 }
+            voucherAgg.set(key, c)
+          }
+          c.generated++
+          if (row.assigned_to) c.assigned++
+          if (row.email_sent) c.emailed++
+          if (row.pretix_voucher_id != null) voucherCollectionById.set(row.pretix_voucher_id, key)
+        }
+        if (!rows || rows.length < PAGE) break
+      }
+      vouchersOk = true
+    } catch (e) {
+      sourceErrors.push(`vouchers: ${(e as Error).message}`)
+    }
+
     const itemStats = new Map<number, ItemStats>()
     const dailyStats = new Map<string, DailyStats>()
     const totals = {
@@ -219,6 +305,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         if (lane === 'fiat') day.fiatRevenueUsd += revenue
 
         for (const pos of positions) {
+          // Voucher redemption "based on tickets sold": this position sits on
+          // a PAID order and was bought with a tracked early-access voucher.
+          if (pos.voucher != null) {
+            const collection = voucherCollectionById.get(pos.voucher)
+            if (collection) {
+              const c = voucherAgg.get(collection)
+              if (c) c.redeemed++
+            }
+          }
           const meta = itemMeta.get(pos.item)
           const kind: 'ticket' | 'swag' = meta?.admission === false ? 'swag' : 'ticket'
           let item = itemStats.get(pos.item)
@@ -257,6 +352,46 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       url = data.next
     }
 
+    const vouchers: SalesStatsResponse['vouchers'] = vouchersOk
+      ? [...voucherAgg.entries()].map(([collection, c]) => ({ collection, ...c })).sort((a, b) => b.generated - a.generated)
+      : null
+
+    // Form applications (builder / students / youth) by review status.
+    let applications: SalesStatsResponse['applications'] = null
+    {
+      const nocoBase = process.env.NOCODB_BASE_URL
+      const nocoToken = process.env.NOCODB_API_TOKEN
+      const results: { label: string; url: string; total: number; byStatus: Record<string, number> }[] = []
+      for (const src of APPLICATION_SOURCES) {
+        try {
+          if (!nocoBase || !nocoToken) throw new Error('NocoDB env not configured')
+          const byStatus: Record<string, number> = {}
+          let total = 0
+          for (let offset = 0; ; offset += 200) {
+            // No `fields=` filter: NocoDB 404s when a named field doesn't
+            // exist on the table (e.g. Youth has no Status column yet), and
+            // these tables are small enough to fetch whole rows.
+            const r = await fetch(`${nocoBase}/api/v2/tables/${src.tableId}/records?limit=200&offset=${offset}`, {
+              headers: { 'xc-token': nocoToken },
+            })
+            if (!r.ok) throw new Error(`NocoDB ${r.status}`)
+            const page: { list?: Record<string, unknown>[] } = await r.json()
+            const rows = page.list ?? []
+            for (const row of rows) {
+              total++
+              const status = String(row[src.statusField] || src.emptyLabel)
+              byStatus[status] = (byStatus[status] ?? 0) + 1
+            }
+            if (rows.length < 200) break
+          }
+          results.push({ label: src.label, url: src.url, total, byStatus })
+        } catch (e) {
+          sourceErrors.push(`applications/${src.label}: ${(e as Error).message}`)
+        }
+      }
+      applications = results.length ? results : null
+    }
+
     const paidLaneTickets = totals.eth + totals.fiat
     const paidLaneRevenue = totals.ethRevenueUsd + totals.fiatRevenueUsd
     const round2 = (n: number) => Math.round(n * 100) / 100
@@ -274,6 +409,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         ethPctRevenue: paidLaneRevenue ? round2((totals.ethRevenueUsd / paidLaneRevenue) * 100) : null,
         fiatPctRevenue: paidLaneRevenue ? round2((totals.fiatRevenueUsd / paidLaneRevenue) * 100) : null,
       },
+      vouchers,
+      applications,
+      ...(sourceErrors.length ? { sourceErrors } : {}),
       items: [...itemStats.values()].sort((a, b) => b.total - a.total),
       daily: [...dailyStats.values()]
         .map(d => ({
