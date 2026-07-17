@@ -82,7 +82,7 @@ const useNavigationData = () => {
           },
           {
             title: t('media_press'),
-            url: 'https://docs.google.com/forms/d/e/1FAIpQLSdfwTWGKT9QaKhPcAUK9Md0lqnXFl8Y44RQ6ih9-GFFH7L3ew/viewform',
+            url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
             type: 'link',
           },
           {
