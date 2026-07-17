@@ -27,13 +27,6 @@ function buildRejectionHtml(name: string): string {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <!-- Full-width image header: the same artwork as the devcon.org/en/form/*
-                 pages (wordmark baked into the image). A plain <img> is never
-                 recolored by dark mode (Gmail mobile included) and renders in every
-                 client, unlike the old CSS-background + SVG-logo band (Gmail also
-                 drops the background shorthand and never renders SVG images). The
-                 tagline lives in the body below, where dark-mode remaps of dark
-                 text on a light background behave correctly. -->
             <td style="padding: 0;">
               <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
             </td>
@@ -89,6 +82,5 @@ export async function sendBuilderRejectionEmail(
     to: email.trim(),
     subject: 'Your Sanctuary Tech Builders application',
     html: buildRejectionHtml((name || '').trim()),
-    fromName: 'Devcon',
   })
 }

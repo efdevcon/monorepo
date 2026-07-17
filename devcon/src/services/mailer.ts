@@ -5,6 +5,14 @@
 
 import nodemailer from 'nodemailer'
 
+/** Canonical sender for ALL transactional email, matching the Pretix shop's
+ *  sender so everything a buyer receives comes from one recognizable identity.
+ *  SMTP_FROM overrides the address (not the display name) if ever needed.
+ *  The address must be SES-verified (the devcon.org domain identity). */
+export const FROM_ADDRESS = process.env.SMTP_FROM || 'tickets@devcon.org'
+export const DEFAULT_FROM_NAME = 'Devcon Team 🦄'
+export const DEFAULT_FROM = `"${DEFAULT_FROM_NAME}" <${FROM_ADDRESS}>`
+
 export function getTransporter() {
   const smtpHost = process.env.SMTP_SERVICE || 'email-smtp.us-west-2.amazonaws.com'
   const smtpUser = process.env.SMTP_USERNAME
@@ -54,7 +62,7 @@ export async function sendMail({
   to,
   subject,
   html,
-  fromName = 'Devcon',
+  fromName = DEFAULT_FROM_NAME,
 }: {
   to: string
   subject: string
@@ -63,8 +71,7 @@ export async function sendMail({
 }): Promise<{ success: boolean; error?: string }> {
   try {
     const transporter = getTransporter()
-    const smtpFrom = process.env.SMTP_FROM || 'noreply@devcon.org'
-    await sendWithRetry(transporter, { from: `"${fromName}" <${smtpFrom}>`, to, subject, html })
+    await sendWithRetry(transporter, { from: `"${fromName}" <${FROM_ADDRESS}>`, to, subject, html })
     return { success: true }
   } catch (error) {
     console.error('[mailer] send failed:', error)

@@ -6,7 +6,7 @@
 
 import { validateVoucher, getTicketPurchaseInfo } from 'services/pretix'
 import { setVoucherEmail, setVoucherEmailSent } from 'services/discountStore'
-import { getTransporter, sendWithRetry } from 'services/mailer'
+import { getTransporter, sendWithRetry, DEFAULT_FROM } from 'services/mailer'
 import { pretixEventUrl } from 'config/ticketing'
 
 // Dedup: prevent the same voucher+email combo from being sent twice
@@ -28,9 +28,6 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Light-only rendering: Apple Mail / Outlook iOS respect this and skip
-       dark-mode inversion. Gmail ignores it; the header text uses #fffffe
-       so Gmail's pure-white remap passes it through. -->
   <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
   <title>Your Devcon India Voucher Code</title>
@@ -42,10 +39,6 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <!-- Full-width image header: the same artwork as the devcon.org/en/form/*
-                 pages (wordmark baked into the image). A plain <img> is never
-                 recolored by dark mode (Gmail mobile included) and renders in every
-                 client, unlike the old CSS-background + SVG-logo band. -->
             <td style="padding: 0;">
               <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
             </td>
@@ -160,10 +153,9 @@ export async function sendVoucherEmail(
     }
 
     const transporter = getTransporter()
-    const smtpFrom = process.env.SMTP_FROM || 'noreply@devcon.org'
 
     await sendWithRetry(transporter, {
-      from: `"Devcon India" <${smtpFrom}>`,
+      from: DEFAULT_FROM,
       to: trimmedEmail,
       subject: 'Your Devcon India Voucher Code',
       html: buildEmailHtml(trimmedCode, discountedPrice, originalPrice),

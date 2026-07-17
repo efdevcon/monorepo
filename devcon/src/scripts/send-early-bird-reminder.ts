@@ -23,12 +23,14 @@
 import 'dotenv/config'
 import * as fs from 'fs'
 import * as path from 'path'
-import { getTransporter, sendWithRetry } from '../services/mailer'
+import { getTransporter, sendWithRetry, DEFAULT_FROM } from '../services/mailer'
 import { pretixEventUrl } from '../config/ticketing'
 
 // ---- Campaign copy (India Early Bird, GA sale open) ----
 const SUBJECT = '🎟️ Devcon India tickets are live: redeem your $99 Early Bird voucher'
 const PRICE = '99'
+// Sender comes from the shared mailer (DEFAULT_FROM), which matches the
+// Pretix shop sender: "Devcon Team 🦄" <tickets@devcon.org>.
 const MATOMO_PARAMS = 'mtm_campaign=early-bird-reminder&mtm_source=email&mtm_medium=email'
 
 function argValue(flag: string): string | null {
@@ -46,6 +48,15 @@ function redeemUrl(code: string): string {
   return pretixEventUrl(`/redeem?voucher=${encodeURIComponent(code)}&${MATOMO_PARAMS}`)
 }
 
+// Template notes (kept out of the HTML: comments in the body are shipped to
+// recipients, and spam scanners flag a literal "<img>" token inside comments
+// as an image without alt, costing spam-score points):
+//   - Header is a full-width image (same artwork as devcon.org/en/form/*,
+//     wordmark baked in). A plain image tag is never recolored by dark mode
+//     (Gmail mobile included), unlike the old CSS-background + SVG-logo band.
+//   - The meta color-scheme pair makes Apple Mail / Outlook iOS skip their
+//     automatic dark-mode inversion. Gmail ignores it; that's why no text
+//     sits on a dark background anywhere in this template.
 function buildReminderHtml(voucherCode: string): string {
   const url = redeemUrl(voucherCode)
   return `
@@ -54,9 +65,6 @@ function buildReminderHtml(voucherCode: string): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Declare light-only rendering: Apple Mail / Outlook iOS respect this and
-       skip their automatic dark-mode inversion, keeping the header dark and
-       its text white as designed. Gmail ignores it (see #fffffe note below). -->
   <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
   <title>Devcon India tickets are live</title>
@@ -68,10 +76,6 @@ function buildReminderHtml(voucherCode: string): string {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
           <!-- Header -->
           <tr>
-            <!-- Full-width image header: the same artwork as the devcon.org/en/form/*
-                 pages (wordmark baked into the image). A plain <img> is never
-                 recolored by dark mode (Gmail mobile included) and renders in every
-                 client, unlike the old CSS-background + SVG-logo band. -->
             <td style="padding: 0;">
               <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
             </td>
@@ -218,7 +222,6 @@ async function main() {
   console.log('')
 
   const transporter = getTransporter()
-  const smtpFrom = process.env.SMTP_FROM || 'noreply@devcon.org'
   const resultsPath = `generated-codes/reminder-results-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`
   fs.mkdirSync(path.dirname(resultsPath), { recursive: true })
   fs.writeFileSync(resultsPath, 'code,email,status\n')
@@ -230,7 +233,7 @@ async function main() {
     const to = testTo ?? r.email
     try {
       await sendWithRetry(transporter, {
-        from: `"Devcon India" <${smtpFrom}>`,
+        from: DEFAULT_FROM,
         to,
         subject: SUBJECT,
         html: buildReminderHtml(r.code),
