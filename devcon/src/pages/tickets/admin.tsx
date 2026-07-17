@@ -78,6 +78,130 @@ type X402CompletedOrder = CompletedOrder & {
   pretixOrderCode: string
 }
 
+/** Sales breakdown from /api/x402/admin/sales-stats/ — aggregated straight
+ *  from Pretix so it includes fiat (Stripe) orders the crypto lists miss. */
+interface SalesLaneCounts {
+  total: number
+  eth: number
+  fiat: number
+  other: number
+}
+interface SalesItemStats extends SalesLaneCounts {
+  itemId: number
+  name: string
+  /** 'ticket' = admission item; 'swag' = add-ons (scarf, shirt, chess set…). */
+  kind: 'ticket' | 'swag'
+  quotaSize: number | null
+  quotaLeft: number | null
+  quotaShared: boolean
+  quotaClosed: boolean
+}
+
+/** Quota composition for the sales tables: one segmented bar where the whole
+ *  width IS the quota, split into
+ *    sold (purple) · reserved (amber: unredeemed blocking vouchers + pending
+ *    orders + carts, derived as size − sold − available) · available (gray
+ *    track; Pretix's available_number = purchasable right now — labeled
+ *    "available", not "free", to avoid colliding with the Free/comp lane)
+ *  with the same numbers spelled out underneath — no mental arithmetic
+ *  needed. A closed quota keeps only the sold segment and says "closed"
+ *  (its leftover size isn't purchasable, so it's neither reserved nor
+ *  available). */
+function QuotaBarCell({ it }: { it: SalesItemStats }) {
+  if (!it.quotaSize) return <span style={{ color: '#8a8a8a' }}>∞</span>
+  const size = it.quotaSize
+  const sold = Math.min(it.total, size)
+  const free = it.quotaClosed ? 0 : it.quotaLeft ?? Math.max(0, size - sold)
+  const reserved = it.quotaClosed ? 0 : Math.max(0, size - sold - free)
+  const pctOf = (n: number) => (n / size) * 100
+  // Legend dots use the exact same colors as the bar segments below, so the
+  // mapping label ↔ segment is visual, not inferred.
+  const COLORS = { sold: '#7235ed', reserved: '#e0a63a', available: '#eeecf2' }
+  const Dot = ({ color, border }: { color: string; border?: boolean }) => (
+    <span
+      style={{
+        display: 'inline-block',
+        width: 7,
+        height: 7,
+        borderRadius: '50%',
+        background: color,
+        border: border ? '1px solid #c9c4d4' : undefined,
+        marginRight: 4,
+        verticalAlign: 'baseline',
+      }}
+    />
+  )
+  const parts: React.ReactNode[] = [
+    <span key="sold" style={{ whiteSpace: 'nowrap' }}>
+      <Dot color={COLORS.sold} />
+      {sold} sold
+    </span>,
+  ]
+  if (reserved > 0)
+    parts.push(
+      <span key="reserved" style={{ whiteSpace: 'nowrap' }}>
+        <Dot color={COLORS.reserved} />
+        {reserved} reserved
+      </span>
+    )
+  if (!it.quotaClosed)
+    parts.push(
+      <span key="available" style={{ whiteSpace: 'nowrap' }}>
+        {/* the available segment is the light track itself — bordered dot so
+            it stays visible on the white table background */}
+        <Dot color={COLORS.available} border />
+        {free} available
+      </span>
+    )
+  return (
+    <div
+      style={{ minWidth: 170 }}
+      title={
+        (it.quotaShared ? 'Quota shared with other items — indicative. ' : '') +
+        (reserved > 0 ? 'Reserved = unredeemed voucher holds + in-progress checkouts. ' : '') +
+        (it.quotaClosed ? 'Quota closed for sale; leftover size is not purchasable.' : '')
+      }
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 11, marginBottom: 2 }}>
+        <span style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{parts}</span>
+        <span style={{ color: it.quotaClosed ? '#c00' : '#8a8a8a', fontWeight: it.quotaClosed ? 600 : 400 }}>
+          {it.quotaClosed ? 'closed' : `of ${size}${it.quotaShared ? '*' : ''}`}
+        </span>
+      </div>
+      <div style={{ display: 'flex', height: 6, borderRadius: 3, background: it.quotaClosed ? '#dddae2' : COLORS.available, overflow: 'hidden' }}>
+        <div style={{ width: `${pctOf(sold)}%`, background: COLORS.sold }} />
+        {reserved > 0 && <div style={{ width: `${pctOf(reserved)}%`, background: COLORS.reserved }} />}
+      </div>
+    </div>
+  )
+}
+interface SalesDailyStats extends SalesLaneCounts {
+  date: string
+  orders: number
+  swag: number
+  revenueUsd: number
+  ethRevenueUsd: number
+  fiatRevenueUsd: number
+}
+interface SalesStatsData {
+  success: boolean
+  error?: string
+  generatedAt?: string
+  totals?: SalesLaneCounts & {
+    orders: number
+    swag: number
+    revenueUsd: number
+    ethRevenueUsd: number
+    fiatRevenueUsd: number
+    ethPctTickets: number | null
+    fiatPctTickets: number | null
+    ethPctRevenue: number | null
+    fiatPctRevenue: number | null
+  }
+  items?: SalesItemStats[]
+  daily?: SalesDailyStats[]
+}
+
 interface PendingOrder {
   paymentReference: string
   totalUsd: string
@@ -1771,6 +1895,7 @@ function AdminContent() {
   // tables explicitly. Visibility lives in sessionStorage so re-renders
   // (auto-poll, modal close) don't reset the user's expansion choices.
   const [sectionsOpen, setSectionsOpen] = useState<Record<string, boolean>>({
+    sales: false,
     completed: false,
     pending: false,
     orphan: false,
@@ -1849,6 +1974,32 @@ function AdminContent() {
       setIncomingTxsLoading(false)
     }
   }, [])
+
+  // Ticket sales breakdown (from Pretix, includes fiat) — loaded once on
+  // auth + manual refresh. Independent of the crypto orders poll.
+  const [salesData, setSalesData] = useState<SalesStatsData | null>(null)
+  const [salesLoading, setSalesLoading] = useState(false)
+  const [salesError, setSalesError] = useState<string | null>(null)
+  const fetchSalesStats = useCallback(async (key: string) => {
+    setSalesLoading(true)
+    setSalesError(null)
+    try {
+      const res = await fetch('/api/x402/admin/sales-stats/', { headers: { 'x-admin-key': key } })
+      const json: SalesStatsData = await res.json()
+      if (!res.ok || !json.success) {
+        setSalesError(json.error || `HTTP ${res.status}`)
+        return
+      }
+      setSalesData(json)
+    } catch (e) {
+      setSalesError((e as Error).message || 'Network error')
+    } finally {
+      setSalesLoading(false)
+    }
+  }, [])
+  useEffect(() => {
+    if (authed && secret) fetchSalesStats(secret)
+  }, [authed, secret, fetchSalesStats])
 
   // Check sessionStorage on mount
   useEffect(() => {
@@ -2297,6 +2448,42 @@ function AdminContent() {
     }
   }
 
+  // Ticket-sales exports (the Pretix-sourced breakdown incl. fiat) — one file
+  // per table so each opens as a clean sheet.
+  function exportSalesByItemCsv() {
+    const date = new Date().toISOString().slice(0, 10)
+    const rows = (salesData?.items ?? []).map(it => [
+      it.kind,
+      it.name,
+      String(it.total),
+      String(it.eth),
+      String(it.fiat),
+      String(it.other),
+    ])
+    exportCsv(`ticket-sales-by-item-${date}.csv`, ['kind', 'item', 'total', 'eth', 'fiat', 'free_comp'], rows)
+  }
+
+  function exportSalesDailyCsv() {
+    const date = new Date().toISOString().slice(0, 10)
+    const rows = (salesData?.daily ?? []).map(d => [
+      d.date,
+      String(d.orders),
+      String(d.total),
+      String(d.eth),
+      String(d.fiat),
+      String(d.other),
+      String(d.swag),
+      d.revenueUsd.toFixed(2),
+      d.ethRevenueUsd.toFixed(2),
+      d.fiatRevenueUsd.toFixed(2),
+    ])
+    exportCsv(
+      `ticket-sales-daily-${date}.csv`,
+      ['date_utc', 'orders', 'tickets', 'eth_tickets', 'fiat_tickets', 'comp_tickets', 'swag_units', 'revenue_usd', 'eth_revenue_usd', 'fiat_revenue_usd'],
+      rows
+    )
+  }
+
   function exportCompletedCsv() {
     const headers = [
       'Pretix Order',
@@ -2508,11 +2695,11 @@ function AdminContent() {
     return (
       <div className={css.page}>
         <Head>
-          <title>Crypto Admin</title>
+          <title>Ticket Admin</title>
         </Head>
         <div className={css.login}>
           <div className={css['login-card']}>
-            <h1 className={css['login-title']}>Crypto Payment Monitor</h1>
+            <h1 className={css['login-title']}>Ticket Admin</h1>
             <form className={css['login-form']} onSubmit={handleLogin}>
               <input
                 className={css['login-input']}
@@ -2538,13 +2725,13 @@ function AdminContent() {
   return (
     <div className={css.page}>
       <Head>
-        <title>Crypto Admin{data?.env ? ` (${data.env})` : ''}</title>
+        <title>Ticket Admin{data?.env ? ` (${data.env})` : ''}</title>
       </Head>
 
       {/* Header */}
       <div className={css.header}>
         <div className={css['header-left']}>
-          <h1 className={css.title}>Crypto Admin</h1>
+          <h1 className={css.title}>Ticket Admin</h1>
           {data?.env && <span className={css['env-badge']}>{data.env}</span>}
         </div>
         <div className={css['header-right']}>
@@ -2565,6 +2752,191 @@ function AdminContent() {
             {loading ? 'Loading...' : 'Refresh'}
           </button>
         </div>
+      </div>
+
+      {/* Ticket Sales — aggregated from Pretix (source of truth incl. fiat/
+          Stripe orders, which the crypto-only lists below never see). */}
+      <div className={css.section}>
+        <div className={css['section-header']}>
+          <h2
+            className={css['section-title']}
+            onClick={() => toggleSection('sales')}
+            style={{ cursor: 'pointer', userSelect: 'none' }}
+          >
+            {sectionsOpen.sales ? '▾' : '▸'} Ticket Sales
+            {salesData?.totals && ` (${salesData.totals.total} tickets)`}
+            <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 400, color: '#8a8a8a' }}>
+              from Pretix, includes fiat
+            </span>
+          </h2>
+          {sectionsOpen.sales && (
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <button className={css['refresh-btn']} onClick={() => fetchSalesStats(secret)} disabled={salesLoading}>
+                {salesLoading ? 'Loading…' : 'Refresh'}
+              </button>
+              <button
+                className={css['export-btn']}
+                onClick={exportSalesByItemCsv}
+                disabled={!salesData?.items?.length}
+                title="One row per ticket type / swag item, with lane counts"
+              >
+                Export items CSV
+              </button>
+              <button
+                className={css['export-btn']}
+                onClick={exportSalesDailyCsv}
+                disabled={!salesData?.daily?.length}
+                title="One row per UTC day: orders, tickets, ETH/fiat, swag, revenue"
+              >
+                Export daily CSV
+              </button>
+            </div>
+          )}
+        </div>
+        {sectionsOpen.sales && salesError && (
+          <div className={css.empty} style={{ color: '#c00' }}>
+            Error: {salesError}
+          </div>
+        )}
+        {sectionsOpen.sales && !salesData && !salesError && (
+          <div className={css.empty}>{salesLoading ? 'Loading sales data…' : 'No data'}</div>
+        )}
+        {sectionsOpen.sales && salesData?.totals && (
+          <>
+            {/* Lane summary: tickets + ETH vs fiat split (comps excluded from %) */}
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', margin: '8px 0', fontSize: 13, color: '#333' }}>
+              <span>
+                <strong>{salesData.totals.total}</strong> tickets · <strong>{salesData.totals.swag}</strong> swag ·{' '}
+                <strong>{salesData.totals.orders}</strong> orders
+              </span>
+              <span>
+                ETH <strong>{salesData.totals.eth}</strong>
+                {salesData.totals.ethPctTickets != null && ` (${salesData.totals.ethPctTickets}%)`}
+                {' · '}Fiat <strong>{salesData.totals.fiat}</strong>
+                {salesData.totals.fiatPctTickets != null && ` (${salesData.totals.fiatPctTickets}%)`}
+                {salesData.totals.other > 0 && <> · Free/comp <strong>{salesData.totals.other}</strong></>}
+              </span>
+              <span>
+                Revenue <strong>${salesData.totals.revenueUsd.toLocaleString()}</strong>
+                {salesData.totals.ethPctRevenue != null &&
+                  ` (ETH ${salesData.totals.ethPctRevenue}% / fiat ${salesData.totals.fiatPctRevenue}%)`}
+              </span>
+            </div>
+
+            {/* By ticket type (admission items only; swag has its own table) */}
+            <div className={css['table-wrap']}>
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Ticket type</th>
+                    <th>Total</th>
+                    <th>ETH</th>
+                    <th>Fiat</th>
+                    <th>Free/comp</th>
+                    <th>Quota</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(salesData.items ?? [])
+                    .filter(it => it.kind === 'ticket')
+                    .map(it => (
+                      <tr key={it.itemId}>
+                        <td>{it.name}</td>
+                        <td>
+                          <strong>{it.total}</strong>
+                        </td>
+                        <td>{it.eth || '—'}</td>
+                        <td>{it.fiat || '—'}</td>
+                        <td>{it.other || '—'}</td>
+                        <td>
+                          <QuotaBarCell it={it} />
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Swag / add-on items (non-admission Pretix items) */}
+            <div style={{ margin: '12px 0 4px', fontSize: 13, fontWeight: 600, color: '#333' }}>Swag items</div>
+            <div className={css['table-wrap']}>
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Total</th>
+                    <th>ETH</th>
+                    <th>Fiat</th>
+                    <th>Free/comp</th>
+                    <th>Quota</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(salesData.items ?? [])
+                    .filter(it => it.kind === 'swag')
+                    .map(it => (
+                      <tr key={it.itemId}>
+                        <td>{it.name}</td>
+                        <td>
+                          <strong>{it.total}</strong>
+                        </td>
+                        <td>{it.eth || '—'}</td>
+                        <td>{it.fiat || '—'}</td>
+                        <td>{it.other || '—'}</td>
+                        <td>
+                          <QuotaBarCell it={it} />
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Daily (UTC days, newest first) */}
+            <div style={{ margin: '12px 0 4px', fontSize: 13, fontWeight: 600, color: '#333' }}>Daily (UTC)</div>
+            <div className={css['table-wrap']}>
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Orders</th>
+                    <th>Tickets</th>
+                    <th>ETH</th>
+                    <th>Fiat</th>
+                    <th>Swag</th>
+                    <th>Revenue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(salesData.daily ?? []).map(d => (
+                    <tr key={d.date}>
+                      <td className={css.mono}>{d.date}</td>
+                      <td>{d.orders}</td>
+                      <td>
+                        <strong>{d.total}</strong>
+                      </td>
+                      <td>{d.eth || '—'}</td>
+                      <td>{d.fiat || '—'}</td>
+                      <td>{d.swag || '—'}</td>
+                      <td>${d.revenueUsd.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Crypto payments — visible divider: everything below is the on-chain
+          side (wallets, crypto order lifecycle, recovery tools), as opposed to
+          the all-lanes Ticket Sales view above. */}
+      <div style={{ margin: '32px 0 8px', paddingTop: 16, borderTop: '2px solid #dddae2' }}>
+        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: '#1a0d33' }}>Crypto Payments</h2>
+        <p style={{ margin: '4px 0 0', fontSize: 12, color: '#8a8a8a' }}>
+          On-chain payment operations: wallets, order lifecycle, recovery tools. Fiat orders live in Pretix
+          and only appear in the Ticket Sales summary above.
+        </p>
       </div>
 
       {/* Stats + Wallet */}
