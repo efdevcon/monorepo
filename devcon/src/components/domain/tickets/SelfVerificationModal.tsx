@@ -14,11 +14,6 @@ const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/red
 const SELF_SCOPE = TICKETING.self.scope
 const ALLOW_STAGING = TICKETING.self.staging
 
-// Self relayer + redirect hosts (from @selfxyz/sdk-common's WS_DB_RELAYER /
-// REDIRECT_URL). Hardcoded to avoid a deep transitive import.
-const SELF_WS_URL = 'wss://websocket.self.xyz'
-const SELF_REDIRECT_URL = 'https://redirect.self.xyz'
-
 type ErrorCode = 'INVALID_ID' | 'NOT_INDIAN' | 'UNDER_18' | 'NO_VOUCHERS' | null
 
 function parseError(reason?: string): { message: string; code: ErrorCode } {
@@ -96,8 +91,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   }
   const [selfApp, setSelfApp] = useState<SelfApp | null>(null)
   const [universalLink, setUniversalLink] = useState('')
-  // Short session-based deeplink for mobile (see the relayer effect below).
-  const [sessionLink, setSessionLink] = useState('')
   const [pollingForVoucher, setPollingForVoucher] = useState(false)
   const hasOpenedSelfApp = React.useRef(false)
   const isMobile = useIsMobile()
@@ -108,16 +101,11 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     if (!isOpen || !emailConfirmed) return
 
     try {
-      // Keep the endpoint a CLEAN, static URL. The buyer's email travels in
-      // `userDefinedData` instead — it rides inside the proof's userContextData
-      // and is readable server-side after verification. A `?email=a%40b` query
-      // on the endpoint gets URL-encoded a second time inside the deeplink's
-      // `?selfApp=` JSON; the Self iOS app fails to parse that nested encoding
-      // ("We couldn't load verification"), while Android tolerates it.
       let endpoint = SELF_ENDPOINT
       const params: string[] = []
       if (effectiveStaging) params.push('staging=true')
       if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
+      if (effectiveEmail) params.push(`email=${encodeURIComponent(effectiveEmail)}`)
       if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
 
       const app = new SelfAppBuilder({
@@ -127,7 +115,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
         endpointType: effectiveStaging ? 'staging_https' : 'https',
         userId,
         userIdType: 'uuid',
-        userDefinedData: effectiveEmail || '',
         disclosures: {
           nationality: true,
           minimumAge: 18,
@@ -141,48 +128,6 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
       setError('Failed to initialize verification. Please try again.')
     }
   }, [isOpen, userId, effectiveStaging, earlyAccess, effectiveEmail, emailConfirmed])
-
-  // Mobile deeplink workaround. Self's full-payload universal link
-  // (redirect.self.xyz?selfApp=<JSON>) fails to load in the iOS Self app —
-  // reproducible in Self's OWN playground — while the short session link
-  // (redirect.self.xyz?sessionId=<id>) works. So on mobile we open the same
-  // relayer WebSocket the desktop QR uses, register the config for a session id
-  // we control, and point the button at that short link. The proof result still
-  // returns via the endpoint -> voucher -> polling path (handleSuccess below),
-  // so this socket's only job is to hand the app its config on connect.
-  useEffect(() => {
-    if (!isMobile || !isOpen || !emailConfirmed || !selfApp) return
-    let cancelled = false
-    let disconnect: (() => void) | undefined
-    ;(async () => {
-      try {
-        const { io } = await import('socket.io-client')
-        if (cancelled) return
-        const sessionId = crypto.randomUUID()
-        const socket = io(`${SELF_WS_URL}/websocket`, {
-          path: '/',
-          query: { sessionId, clientType: 'web' },
-          transports: ['websocket'],
-        })
-        socket.on('mobile_status', (data: { status?: string }) => {
-          // When the Self app joins this session, push it the config — mirrors
-          // the SDK's SelfQRcode 'self_app' emit on mobile_connected.
-          if (data?.status === 'mobile_connected') {
-            socket.emit('self_app', { ...selfApp, sessionId })
-          }
-        })
-        disconnect = () => socket.disconnect()
-        setSessionLink(`${SELF_REDIRECT_URL}?sessionId=${sessionId}`)
-      } catch (e) {
-        console.error('Failed to open Self relayer session:', e)
-      }
-    })()
-    return () => {
-      cancelled = true
-      setSessionLink('')
-      disconnect?.()
-    }
-  }, [isMobile, isOpen, emailConfirmed, selfApp])
 
   const handleSuccess = async () => {
     clearError()
@@ -532,7 +477,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                   (isMobile ? (
                     <div className={css['continue-wrap']}>
                       <a
-                        href={sessionLink || universalLink || '#'}
+                        href={universalLink || '#'}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={css['redeem-btn']}
@@ -540,8 +485,8 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                           display: 'block',
                           textAlign: 'center',
                           textDecoration: 'none',
-                          pointerEvents: sessionLink || universalLink ? 'auto' : 'none',
-                          opacity: sessionLink || universalLink ? 1 : 0.6,
+                          pointerEvents: universalLink ? 'auto' : 'none',
+                          opacity: universalLink ? 1 : 0.6,
                         }}
                         onClick={() => {
                           hasOpenedSelfApp.current = true
