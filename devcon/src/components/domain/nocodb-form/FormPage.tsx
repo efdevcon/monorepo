@@ -623,14 +623,16 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
   const methods = useForm<Record<string, any>>()
   const { walletProof } = useBuilderConnect()
 
-  // Referral code: captured from the URL (?ref=…) as a hidden value and sent with
-  // the submission so we can attribute applicants. Persisted in sessionStorage so
-  // it survives the OTP step / a page refresh.
+  // Referral code: captured from the URL (?mtm_campaign=…) as a hidden value and
+  // sent with the submission so we can attribute applicants. Using the Matomo
+  // campaign param means the same link is attributed in Matomo analytics too.
+  // `ref`/`referral` are kept as fallbacks so links already in circulation keep
+  // working. Persisted in sessionStorage so it survives the OTP step / a refresh.
   const referralRef = useRef<string>('')
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search)
-      const fromUrl = (params.get('ref') || params.get('referral') || '').trim()
+      const fromUrl = (params.get('mtm_campaign') || params.get('ref') || params.get('referral') || '').trim()
       if (fromUrl) sessionStorage.setItem('builder:ref', fromUrl)
       referralRef.current = fromUrl || sessionStorage.getItem('builder:ref') || ''
     } catch {
