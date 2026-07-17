@@ -116,6 +116,9 @@ function buildReminderHtml(voucherCode: string): string {
           <!-- Footer -->
           <tr>
             <td style="padding: 24px 32px; background: #f9f8fa; border-top: 1px solid #dddae2; text-align: center;">
+              <p style="margin: 0 0 12px; font-size: 13px; color: #594d73; line-height: 1.5;">
+                Follow <a href="https://x.com/EFDevcon" style="color: #7235ed; font-weight: 600; text-decoration: none;">@EFDevcon</a> on X for the latest Devcon 8 announcements, opportunities, and updates as we get closer to Mumbai.
+              </p>
               <p style="margin: 0; font-size: 13px; color: #594d73; line-height: 1.5;">
                 See you in Mumbai! 🇮🇳<br />
                 The Devcon Team 💜
