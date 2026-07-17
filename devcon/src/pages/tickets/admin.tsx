@@ -978,6 +978,26 @@ function RefundActionCell({
     )
   }
 
+  // GATING: a healthy PAID order gets no Refund button. Refunding a live
+  // order on-chain without cancelling it in Pretix leaves the buyer with a
+  // valid ticket AND their money back, while Pretix still counts the order
+  // as revenue. The correct full-refund flow is: cancel the order in Pretix
+  // first → it appears in the Cancelled Orders section → refund from there.
+  // The button stays for:
+  //   - overpaid rows (refund the excess, ticket stays valid)
+  //   - cancelled/expired/pending orders (anything not 'p')
+  const isHealthyPaid = order.pretixStatus === 'p' && !order.overpaidUsd
+  if (isHealthyPaid) {
+    return (
+      <span
+        style={{ color: '#8a8a8a', fontSize: 12 }}
+        title="To refund a paid order, cancel it in Pretix first — it will appear in the Cancelled Orders section with a Refund button."
+      >
+        —
+      </span>
+    )
+  }
+
   // Refund is only possible when we have the onchain identity to send
   // it from (pretixOrderCode for the Pretix-side OrderRefund record,
   // payer for the destination, totalUsd for the amount). All three are
@@ -1006,12 +1026,7 @@ function RefundActionCell({
 
   return (
     <>
-      <button
-        className={buttonClass}
-        onClick={() => setShowModal(true)}
-        disabled={!canRefund}
-        title={buttonTitle}
-      >
+      <button className={buttonClass} onClick={() => setShowModal(true)} disabled={!canRefund} title={buttonTitle}>
         {buttonLabel}
       </button>
       {showModal && (
@@ -1756,10 +1771,21 @@ function AdminContent() {
   // tables explicitly. Visibility lives in sessionStorage so re-renders
   // (auto-poll, modal close) don't reset the user's expansion choices.
   const [sectionsOpen, setSectionsOpen] = useState<Record<string, boolean>>({
-    completed: false, pending: false, orphan: false, wcUnpaid: false,
+    completed: false,
+    pending: false,
+    orphan: false,
+    wcUnpaid: false,
+    refunded: false,
+    cancelled: false,
   })
-  const toggleSection = (k: string) =>
-    setSectionsOpen(s => ({ ...s, [k]: !s[k] }))
+  const toggleSection = (k: string) => setSectionsOpen(s => ({ ...s, [k]: !s[k] }))
+  // Orphan panel: test dust (tiny ETH transfers used for wallet testing) is
+  // hidden by default so real orphans stand out; the toggle reveals them.
+  const [showTestTxs, setShowTestTxs] = useState(false)
+  // Unpaid panel: orders where the buyer never reached the quote step are
+  // plain checkout abandonments (Pretix expires them on its own) — hidden by
+  // default so the recoverable, quote-carrying orders stand out.
+  const [showNoQuoteUnpaid, setShowNoQuoteUnpaid] = useState(false)
   const [search, setSearch] = useState('')
   const [autoRefresh, setAutoRefresh] = useState(true)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -1778,57 +1804,51 @@ function AdminContent() {
   const [pendingSort, setPendingSort] = useState<string | null>('expiresAt')
   const [pendingSortDir, setPendingSortDir] = useState<SortDir>('desc')
 
-  const fetchOrders = useCallback(
-    async (key: string) => {
-      setLoading(true)
-      try {
-        const res = await fetch('/api/x402/admin/orders/', {
-          headers: { 'x-admin-key': key },
-        })
-        if (res.status === 401) {
-          sessionStorage.removeItem(STORAGE_KEY)
-          setAuthed(false)
-          setSecret('')
-          setLoginError('Invalid secret')
-          return
-        }
-        const json: OrdersResponse = await res.json()
-        setData(json)
-      } catch {
-        // network error — keep existing data
-      } finally {
-        setLoading(false)
+  const fetchOrders = useCallback(async (key: string) => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/x402/admin/orders/', {
+        headers: { 'x-admin-key': key },
+      })
+      if (res.status === 401) {
+        sessionStorage.removeItem(STORAGE_KEY)
+        setAuthed(false)
+        setSecret('')
+        setLoginError('Invalid secret')
+        return
       }
-    },
-    []
-  )
+      const json: OrdersResponse = await res.json()
+      setData(json)
+    } catch {
+      // network error — keep existing data
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
-  const fetchIncomingTxs = useCallback(
-    async (key: string, from: string, to: string) => {
-      setIncomingTxsLoading(true)
-      setIncomingTxsError(null)
-      try {
-        const qs = new URLSearchParams()
-        if (from) qs.set('dateFrom', from)
-        if (to) qs.set('dateTo', to)
-        const q = qs.toString()
-        const res = await fetch(`/api/x402/admin/incoming-txs/${q ? `?${q}` : ''}`, {
-          headers: { 'x-admin-key': key },
-        })
-        const json: IncomingTxsResponse = await res.json()
-        if (!res.ok || !json.success) {
-          setIncomingTxsError((json as unknown as { error?: string }).error || `HTTP ${res.status}`)
-          return
-        }
-        setIncomingTxsData(json)
-      } catch (e) {
-        setIncomingTxsError((e as Error).message || 'Network error')
-      } finally {
-        setIncomingTxsLoading(false)
+  const fetchIncomingTxs = useCallback(async (key: string, from: string, to: string) => {
+    setIncomingTxsLoading(true)
+    setIncomingTxsError(null)
+    try {
+      const qs = new URLSearchParams()
+      if (from) qs.set('dateFrom', from)
+      if (to) qs.set('dateTo', to)
+      const q = qs.toString()
+      const res = await fetch(`/api/x402/admin/incoming-txs/${q ? `?${q}` : ''}`, {
+        headers: { 'x-admin-key': key },
+      })
+      const json: IncomingTxsResponse = await res.json()
+      if (!res.ok || !json.success) {
+        setIncomingTxsError((json as unknown as { error?: string }).error || `HTTP ${res.status}`)
+        return
       }
-    },
-    []
-  )
+      setIncomingTxsData(json)
+    } catch (e) {
+      setIncomingTxsError((e as Error).message || 'Network error')
+    } finally {
+      setIncomingTxsLoading(false)
+    }
+  }, [])
 
   // Check sessionStorage on mount
   useEffect(() => {
@@ -1925,9 +1945,10 @@ function AdminContent() {
 
   // Completed orders: search + date + sort
   const filteredCompleted = useMemo(() => {
-    let list = data?.completed.filter(o =>
-      matchesSearch([o.pretixOrderCode, o.txHash, o.payer, o.paymentReference, o.totalUsd, o.tokenSymbol])
-    ) ?? []
+    let list =
+      data?.completed.filter(o =>
+        matchesSearch([o.pretixOrderCode, o.txHash, o.payer, o.paymentReference, o.totalUsd, o.tokenSymbol])
+      ) ?? []
     list = list.filter(o => inDateRange(o.completedAt))
 
     if (completedSort) {
@@ -1935,7 +1956,7 @@ function AdminContent() {
         let cmp = 0
         switch (completedSort) {
           case 'amount':
-            cmp = (parseFloat(a.totalUsd || '0')) - (parseFloat(b.totalUsd || '0'))
+            cmp = parseFloat(a.totalUsd || '0') - parseFloat(b.totalUsd || '0')
             break
           case 'completedAt':
             cmp = a.completedAt - b.completedAt
@@ -1947,8 +1968,9 @@ function AdminContent() {
             // CompletedOrder.tokenSymbol is `string | null | undefined` since we
             // started carrying legacy rows (wc_attempt) that can have null symbols;
             // formatTokenChainText only accepts `string | undefined`. Coerce.
-            cmp = formatTokenChainText(a.tokenSymbol ?? undefined, a.chainId)
-              .localeCompare(formatTokenChainText(b.tokenSymbol ?? undefined, b.chainId))
+            cmp = formatTokenChainText(a.tokenSymbol ?? undefined, a.chainId).localeCompare(
+              formatTokenChainText(b.tokenSymbol ?? undefined, b.chainId)
+            )
             break
         }
         return completedSortDir === 'asc' ? cmp : -cmp
@@ -1957,49 +1979,45 @@ function AdminContent() {
     return list
   }, [data?.completed, q, dateFrom, dateTo, completedSort, completedSortDir])
 
-  // Split completed into active (non-refunded) and refunded
-  const activeCompleted = useMemo(() =>
-    filteredCompleted.filter(o => o.refundStatus !== 'confirmed'),
-    [filteredCompleted]
-  )
+  // Fully refunded = a completed Pretix OrderRefund covers everything owed.
+  // Source-agnostic: matches the row badge's logic, so WalletConnect refunds
+  // and manual refunds recorded in Pretix count too, not just the legacy x402
+  // CAS flow (kept only as a fallback signal for historical rows).
+  const isOrderFullyRefunded = (o: CompletedOrder) =>
+    o.refundStatus === 'confirmed' || (!!o.refundedAmount && !o.overpaidUsd)
 
-  // Refunds are x402-only today — refundStatus/refundTxHash/refundMeta are
-  // only populated for x402 rows. This filter narrows both the lifecycle state
-  // and the source, which makes the downstream non-null field access safe.
-  const refundedOrders = useMemo(() =>
-    filteredCompleted
-      .filter((o): o is X402CompletedOrder => (
-        o.source === 'x402' &&
-        o.refundStatus === 'confirmed' &&
-        o.paymentReference !== null &&
-        o.txHash !== null &&
-        o.pretixOrderCode !== null
-      ))
-      .sort((a, b) => {
-        const aTime = a.refundMeta?.refundedAt ? new Date(a.refundMeta.refundedAt as string).getTime() : 0
-        const bTime = b.refundMeta?.refundedAt ? new Date(b.refundMeta.refundedAt as string).getTime() : 0
-        return bTime - aTime
+  // Split completed into active (non-refunded) and refunded — the same
+  // predicate on both sides so the stats always sum back to the full list.
+  const activeCompleted = useMemo(() => filteredCompleted.filter(o => !isOrderFullyRefunded(o)), [filteredCompleted])
+
+  const refundedOrders = useMemo(
+    () =>
+      filteredCompleted.filter(isOrderFullyRefunded).sort((a, b) => {
+        const t = (o: CompletedOrder) =>
+          o.refundMeta?.refundedAt ? new Date(o.refundMeta.refundedAt as string).getTime() : 0
+        return t(b) - t(a) || b.completedAt - a.completedAt
       }),
     [filteredCompleted]
   )
 
   // Completed crypto payments whose Pretix order was later cancelled
-  // (status 'c'). These still appear in the completed list (the payment
-  // happened) but don't represent a live ticket, so we surface them and
-  // a net "Orders" figure that excludes them.
-  const cancelledCount = useMemo(() =>
-    activeCompleted.filter(o => o.pretixStatus === 'c').length,
+  // (status 'c'). The payment happened but there's no live ticket, so they
+  // get their own section (they're the prime refund candidates) and a net
+  // "Orders" figure that excludes them. Fully-refunded cancelled orders are
+  // already in refundedOrders, not here.
+  const cancelledOrders = useMemo(() => activeCompleted.filter(o => o.pretixStatus === 'c'), [activeCompleted])
+  // What the main Completed table shows: paid, live, not refunded.
+  const liveCompleted = useMemo(() => activeCompleted.filter(o => o.pretixStatus !== 'c'), [activeCompleted])
+  const cancelledCount = cancelledOrders.length
+  const netOrders = liveCompleted.length
+
+  const totalRevenue = useMemo(
+    () => activeCompleted.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
     [activeCompleted]
   )
-  const netOrders = activeCompleted.length - cancelledCount
 
-  const totalRevenue = useMemo(() =>
-    activeCompleted.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
-    [activeCompleted]
-  )
-
-  const totalRefunded = useMemo(() =>
-    refundedOrders.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
+  const totalRefunded = useMemo(
+    () => refundedOrders.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
     [refundedOrders]
   )
 
@@ -2053,15 +2071,16 @@ function AdminContent() {
 
   // Pending orders: search + date + sort
   const filteredPending = useMemo(() => {
-    let list = data?.pending.filter(o =>
-      matchesSearch([
-        o.paymentReference,
-        o.totalUsd,
-        o.intendedPayer,
-        o.metadata?.email,
-        o.expectedChainId?.toString(),
-      ])
-    ) ?? []
+    let list =
+      data?.pending.filter(o =>
+        matchesSearch([
+          o.paymentReference,
+          o.totalUsd,
+          o.intendedPayer,
+          o.metadata?.email,
+          o.expectedChainId?.toString(),
+        ])
+      ) ?? []
     list = list.filter(o => inDateRange(o.createdAt))
 
     if (pendingSort) {
@@ -2085,11 +2104,22 @@ function AdminContent() {
   // checkout but auto-verify never landed (closed browser, RPC blip, etc.).
   // Admin manual-verify by pasting the recovered tx hash.
   const filteredWcUnpaid = useMemo(() => {
-    const list = data?.wcUnpaid?.filter(o =>
-      matchesSearch([o.orderCode, o.email, o.total, o.quote?.intendedPayer])
-    ) ?? []
+    const list =
+      data?.wcUnpaid?.filter(o => matchesSearch([o.orderCode, o.email, o.total, o.quote?.intendedPayer])) ?? []
     return list.filter(o => inDateRange(o.createdAt ?? 0))
   }, [data?.wcUnpaid, q, dateFrom, dateTo])
+
+  // No-quote rows = buyer created the Pretix order but never connected a
+  // wallet / signed a challenge, so no payment can exist for them (nothing to
+  // manually verify against). They're checkout abandonments that Pretix
+  // auto-expires; hidden by default behind the showNoQuoteUnpaid toggle.
+  // Force-verify remains possible on them when revealed (rare orphan-match).
+  const hasQuote = (o: WcUnpaidOrder) => !!o.quote || (o.quotes?.length ?? 0) > 0
+  const wcUnpaidNoQuoteCount = useMemo(() => filteredWcUnpaid.filter(o => !hasQuote(o)).length, [filteredWcUnpaid])
+  const visibleWcUnpaid = useMemo(
+    () => (showNoQuoteUnpaid ? filteredWcUnpaid : filteredWcUnpaid.filter(hasQuote)),
+    [filteredWcUnpaid, showNoQuoteUnpaid]
+  )
 
   // Identities expected to legitimately appear on many orders (admin /
   // recovery accounts, internal test wallets). Suppress the duplicate
@@ -2148,9 +2178,7 @@ function AdminContent() {
     // Refund pool, oldest first so the earliest matching refund claims an
     // orphan (mirrors real-world chronology — earliest refund pairs with
     // earliest qualifying orphan).
-    const refundPool = [...(incomingTxsData?.outgoingRefunds ?? [])].sort(
-      (a, b) => a.timestamp - b.timestamp,
-    )
+    const refundPool = [...(incomingTxsData?.outgoingRefunds ?? [])].sort((a, b) => a.timestamp - b.timestamp)
     const claimed = new Set<string>()
 
     // Match oldest orphans first too, so dup-amount orphans bind refunds
@@ -2159,13 +2187,14 @@ function AdminContent() {
     const refundByOrphanHash = new Map<string, { txHash: string; timestamp: number }>()
     for (const o of oldestFirst) {
       if (!o.rawAmount || !o.symbol) continue
-      const match = refundPool.find(r =>
-        !claimed.has(r.txHash) &&
-        r.chainId === o.chainId &&
-        r.symbol === o.symbol &&
-        r.rawAmount === o.rawAmount &&
-        r.to === o.from &&
-        r.timestamp >= o.timestamp,
+      const match = refundPool.find(
+        r =>
+          !claimed.has(r.txHash) &&
+          r.chainId === o.chainId &&
+          r.symbol === o.symbol &&
+          r.rawAmount === o.rawAmount &&
+          r.to === o.from &&
+          r.timestamp >= o.timestamp
       )
       if (match) {
         claimed.add(match.txHash)
@@ -2179,6 +2208,25 @@ function AdminContent() {
       return m ? { ...o, refundTxHash: m.txHash, refundTimestamp: m.timestamp } : o
     })
   }, [incomingTxsData?.incoming, incomingTxsData?.outgoingRefunds, knownTxHashes])
+
+  // A "test tx" is a dust-sized ETH transfer (< 0.00002 ETH) used for wallet
+  // testing. Hidden from the orphan table by default (see showTestTxs).
+  // ETH-only on purpose: tiny stablecoin amounts can be real underpayments.
+  const TEST_TX_MAX_ETH = 0.00002
+  const isTestTx = useCallback(
+    (tx: IncomingTx) =>
+      tx.symbol === 'ETH' && !!tx.rawAmount && Number(tx.rawAmount) / 10 ** (tx.decimals ?? 18) < TEST_TX_MAX_ETH,
+    []
+  )
+  const orphanTestTxCount = useMemo(() => orphanIncomingTxs.filter(isTestTx).length, [orphanIncomingTxs, isTestTx])
+  // What the orphan table renders. The refund-guard map below deliberately
+  // stays on the FULL list — hiding a test tx must not weaken the
+  // already-refunded check in the manual-verify modals. CSV export also
+  // exports the full list.
+  const visibleOrphanTxs = useMemo(
+    () => (showTestTxs ? orphanIncomingTxs : orphanIncomingTxs.filter(tx => !isTestTx(tx))),
+    [orphanIncomingTxs, showTestTxs, isTestTx]
+  )
 
   /** Lookup of orphan tx hashes (lowercased) that already have a matching
    *  refund. The manual-verify modals consult this so admins can't
@@ -2233,7 +2281,7 @@ function AdminContent() {
 
   function toggleCompletedSort(key: string) {
     if (completedSort === key) {
-      setCompletedSortDir(d => d === 'asc' ? 'desc' : 'asc')
+      setCompletedSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
     } else {
       setCompletedSort(key)
       setCompletedSortDir('desc')
@@ -2242,7 +2290,7 @@ function AdminContent() {
 
   function togglePendingSort(key: string) {
     if (pendingSort === key) {
-      setPendingSortDir(d => d === 'asc' ? 'desc' : 'asc')
+      setPendingSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
     } else {
       setPendingSort(key)
       setPendingSortDir('desc')
@@ -2250,7 +2298,20 @@ function AdminContent() {
   }
 
   function exportCompletedCsv() {
-    const headers = ['Pretix Order', 'Email', 'Amount (USD)', 'Crypto Amount', 'Token', 'Chain', 'Gas Cost (ETH)', 'Tx Hash', 'Payer', 'Completed At', 'Refund Status', 'Refund Tx Hash']
+    const headers = [
+      'Pretix Order',
+      'Email',
+      'Amount (USD)',
+      'Crypto Amount',
+      'Token',
+      'Chain',
+      'Gas Cost (ETH)',
+      'Tx Hash',
+      'Payer',
+      'Completed At',
+      'Refund Status',
+      'Refund Tx Hash',
+    ]
     // Coerce nullable fields to '' — legacy `wc_attempt` rows may carry
     // null pretixOrderCode/txHash/tokenSymbol; the CSV exporter expects
     // `string[][]`, not `(string | null)[][]`.
@@ -2274,16 +2335,14 @@ function AdminContent() {
 
   function exportPendingCsv() {
     const now = Math.floor(Date.now() / 1000)
-    const headers = [
-      'Payment Ref', 'Amount', 'ETH Quote',
-      'Payer', 'Email', 'Created At', 'Expires At', 'Status',
-    ]
+    const headers = ['Payment Ref', 'Amount', 'ETH Quote', 'Payer', 'Email', 'Created At', 'Expires At', 'Status']
     const rows = filteredPending.map(o => {
       // Pre-quote: per-chain ETH amounts are all the same value derived from
       // USD ÷ ETH price. Take the first if not bound to a specific chain yet.
-      const primaryEth = o.expectedChainId != null
-        ? o.expectedEthAmountWeiByChain?.[String(o.expectedChainId)]
-        : Object.values(o.expectedEthAmountWeiByChain || {})[0]
+      const primaryEth =
+        o.expectedChainId != null
+          ? o.expectedEthAmountWeiByChain?.[String(o.expectedChainId)]
+          : Object.values(o.expectedEthAmountWeiByChain || {})[0]
       const ethStr = primaryEth ? formatCryptoAmount(primaryEth, 'ETH') : ''
       return [
         o.paymentReference,
@@ -2302,9 +2361,23 @@ function AdminContent() {
 
   function exportOrphansCsv() {
     const headers = [
-      'Chain ID', 'Chain', 'Token', 'Decimals', 'Raw Amount', 'Formatted Amount',
-      'From', 'To', 'Tx Hash', 'Block Num', 'Timestamp (UTC)', 'Tx Explorer', 'Address Explorer',
-      'Refunded', 'Refund Tx Hash', 'Refund Timestamp (UTC)', 'Refund Tx Explorer',
+      'Chain ID',
+      'Chain',
+      'Token',
+      'Decimals',
+      'Raw Amount',
+      'Formatted Amount',
+      'From',
+      'To',
+      'Tx Hash',
+      'Block Num',
+      'Timestamp (UTC)',
+      'Tx Explorer',
+      'Address Explorer',
+      'Refunded',
+      'Refund Tx Hash',
+      'Refund Timestamp (UTC)',
+      'Refund Tx Explorer',
     ]
     const rows = orphanIncomingTxs.map(tx => {
       const formatted = tx.rawAmount && tx.symbol ? formatCryptoAmount(tx.rawAmount, tx.symbol) : ''
@@ -2333,6 +2406,102 @@ function AdminContent() {
     const date = new Date().toISOString().slice(0, 10)
     exportCsv(`x402-orphans-${date}.csv`, headers, rows)
   }
+
+  // Whether the Paid table needs its Actions column at all: after the
+  // healthy-paid gating the only actionable rows there are overpaid ones
+  // (refund the excess) and legacy in-flight refunds. When none are visible
+  // the whole column is dashes, so it's dropped to save width.
+  const paidHasActions = liveCompleted.some(
+    o => !!o.overpaidUsd || (o.source === 'x402' && o.refundStatus === 'pending')
+  )
+
+  // Shared row renderer for the Paid and Cancelled order tables — same
+  // columns, badges, dup-detection, and Refund action in both (cancelled-but-
+  // paid orders are the prime refund candidates, so they keep the button).
+  // `withActions=false` drops the Actions cell (must match the table's thead).
+  const renderCompletedRow = (o: CompletedOrder, withActions = true) => (
+    <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
+      <td>{sourceLabel(o.source)}</td>
+      <td>
+        {o.pretixOrderCode ? (
+          <a
+            className={css.link}
+            href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {o.pretixOrderCode}
+          </a>
+        ) : (
+          '—'
+        )}
+      </td>
+      <td className={css['admin-badge-cell']}>
+        <StatusBadge code={o.pretixStatus} />
+        <TestModeBadge on={o.pretixTestmode} />
+        <OverpaidBadge amount={o.overpaidUsd} />
+      </td>
+      <td>
+        {o.email ?? '—'}
+        {o.email && !isDupBadgeSuppressedEmail(o.email) && (completedByEmail[o.email] ?? 0) > 1 && (
+          <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+            ({completedByEmail[o.email]} orders)
+          </span>
+        )}
+      </td>
+      <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
+      <td>
+        <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
+      </td>
+      {/* Chain + Sponsored Gas columns hidden: we only sell ETH on Ethereum
+          today, so they were constant noise forcing horizontal scroll.
+          Uncomment here AND in the Completed/Cancelled <thead>s to restore.
+      <td>
+        <ChainCell chainId={o.chainId} />
+      </td>
+      <td className={css.mono}>{o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}</td>
+      */}
+      <td className={css.mono}>
+        {o.txHash ? (
+          <Copyable value={o.txHash}>
+            <a
+              className={css.link}
+              href={txExplorerUrl(o.txHash, o.chainId)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+            >
+              {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
+            </a>
+          </Copyable>
+        ) : (
+          '—'
+        )}
+      </td>
+      <td className={css.mono}>
+        <a
+          className={css.link}
+          href={addressExplorerUrl(o.payer, o.chainId)}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={o.payer}
+        >
+          {truncate(o.payer)}
+        </a>
+        {o.payer && !isDupBadgeSuppressedPayer(o.payer) && (completedByPayer[o.payer.toLowerCase()] ?? 0) > 1 && (
+          <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
+            ({completedByPayer[o.payer.toLowerCase()]} orders)
+          </span>
+        )}
+      </td>
+      <td>{formatDate(o.completedAt)}</td>
+      {withActions && (
+        <td>
+          <RefundActionCell order={o} secret={secret} isConnected={isConnected} onRefunded={() => fetchOrders(secret)} />
+        </td>
+      )}
+    </tr>
+  )
 
   // Not authed — login prompt
   if (!authed) {
@@ -2402,14 +2571,21 @@ function AdminContent() {
       {data?.stats && (
         <div className={css.stats}>
           <div className={css['stat-grid']}>
+            {/* "Pending" tile hidden: counted X402PendingOrder reservations from
+                the retired x402 gasless flow; no new rows can appear.
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Pending</p>
               <p className={css['stat-value']}>{filteredPending.length}</p>
             </div>
+            */}
+            {/* "Completed" tile (activeCompleted = paid + cancelled, non-refunded)
+                hidden: redundant now that Paid/Cancelled/Refunded tiles mirror the
+                three disjoint sections below.
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Completed</p>
               <p className={css['stat-value']}>{activeCompleted.length}</p>
             </div>
+            */}
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Paid</p>
               <p className={css['stat-value']}>{netOrders}</p>
@@ -2428,6 +2604,9 @@ function AdminContent() {
                 ${totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
             </div>
+            {/* Gas Sponsored tile hidden: gas sponsoring was part of the retired
+                gasless flow; with direct ETH-on-Ethereum payments it's always
+                empty. Uncomment to restore (totalGasSponsored still computes).
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Gas Sponsored</p>
               <p className={css['stat-value']}>
@@ -2446,6 +2625,7 @@ function AdminContent() {
                       .join(' + ') || '—'}
               </p>
             </div>
+            */}
             <div className={css['stat-card']}>
               <p className={css['stat-label']}>Total Refunded</p>
               <p className={css['stat-value']}>
@@ -2510,7 +2690,9 @@ function AdminContent() {
         ))}
       </div>
 
-      {/* Completed Orders */}
+      {/* Paid Orders — successful crypto payments with a live (non-cancelled,
+          non-refunded) Pretix order. Cancelled and Refunded have their own
+          sections below; the three are disjoint. */}
       <div className={css.section}>
         <div className={css['section-header']}>
           <h2
@@ -2518,7 +2700,7 @@ function AdminContent() {
             onClick={() => toggleSection('completed')}
             style={{ cursor: 'pointer', userSelect: 'none' }}
           >
-            {sectionsOpen.completed ? '▾' : '▸'} Completed Orders ({activeCompleted.length})
+            {sectionsOpen.completed ? '▾' : '▸'} Paid Orders ({liveCompleted.length})
           </h2>
           <button className={css['export-btn']} onClick={exportCompletedCsv} disabled={filteredCompleted.length === 0}>
             Export CSV
@@ -2526,8 +2708,8 @@ function AdminContent() {
         </div>
         {sectionsOpen.completed && (
           <div className={css['table-wrap']}>
-            {activeCompleted.length === 0 ? (
-              <div className={css.empty}>No completed orders</div>
+            {liveCompleted.length === 0 ? (
+              <div className={css.empty}>No paid orders</div>
             ) : (
               <table className={css.table}>
                 <thead>
@@ -2550,6 +2732,8 @@ function AdminContent() {
                       onSort={toggleCompletedSort}
                     />
                     <th>Crypto Amount</th>
+                    {/* Chain + Sponsored Gas hidden (ETH-on-Ethereum only) —
+                        see the matching comment in renderCompletedRow.
                     <SortableTh
                       label="Chain"
                       sortKey="tokenChain"
@@ -2558,6 +2742,7 @@ function AdminContent() {
                       onSort={toggleCompletedSort}
                     />
                     <th>Sponsored Gas</th>
+                    */}
                     <th>Tx Hash</th>
                     <th>Payer</th>
                     <SortableTh
@@ -2567,14 +2752,98 @@ function AdminContent() {
                       currentDir={completedSortDir}
                       onSort={toggleCompletedSort}
                     />
+                    {paidHasActions && <th>Actions</th>}
+                  </tr>
+                </thead>
+                <tbody>{liveCompleted.map(o => renderCompletedRow(o, paidHasActions))}</tbody>
+              </table>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Cancelled Orders — payment completed but the Pretix order was later
+          cancelled (and not yet fully refunded): the refund work queue.
+          Sits above Refunded so the actionable section comes first. */}
+      {cancelledOrders.length > 0 && (
+        <div className={css.section}>
+          <div className={css['section-header']}>
+            <h2
+              className={css['section-title']}
+              onClick={() => toggleSection('cancelled')}
+              style={{ cursor: 'pointer', userSelect: 'none' }}
+            >
+              {sectionsOpen.cancelled ? '▾' : '▸'} Cancelled Orders ({cancelledOrders.length})
+              <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 400, color: '#8a8a8a' }}>to refund with EOA</span>
+            </h2>
+          </div>
+          {sectionsOpen.cancelled && (
+            <div className={css['table-wrap']}>
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Pretix Order</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Amount</th>
+                    <th>Crypto Amount</th>
+                    {/* Chain + Sponsored Gas hidden (ETH-on-Ethereum only) —
+                        see the matching comment in renderCompletedRow.
+                    <th>Chain</th>
+                    <th>Sponsored Gas</th>
+                    */}
+                    <th>Tx Hash</th>
+                    <th>Payer</th>
+                    <th>Completed At</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
+                {/* Explicit arrow: .map(renderCompletedRow) would pass the array
+                    index as the withActions param. */}
+                <tbody>{cancelledOrders.map(o => renderCompletedRow(o, true))}</tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Refunded Orders */}
+      {refundedOrders.length > 0 && (
+        <div className={css.section}>
+          <div className={css['section-header']}>
+            <h2
+              className={css['section-title']}
+              onClick={() => toggleSection('refunded')}
+              style={{ cursor: 'pointer', userSelect: 'none' }}
+            >
+              {sectionsOpen.refunded ? '▾' : '▸'} Refunded Orders ({refundedOrders.length})
+            </h2>
+          </div>
+          {sectionsOpen.refunded && (
+            <div className={css['table-wrap']}>
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Pretix Order</th>
+                    <th>Amount</th>
+                    <th>Crypto Amount</th>
+                    {/* Chain hidden (ETH-on-Ethereum only) — matching cell
+                        commented in the row below.
+                    <th>Chain</th>
+                    */}
+                    <th>Payer</th>
+                    <th>Payment Tx</th>
+                    <th>Refund Tx</th>
+                    <th className={css['col-sorted-header']}>
+                      Refunded At <span className={css['sort-arrow']}>↓</span>
+                    </th>
+                  </tr>
+                </thead>
                 <tbody>
-                  {activeCompleted.map(o => (
+                  {refundedOrders.map(o => (
                     <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
-                      <td>{sourceLabel(o.source)}</td>
-                      <td className={undefined}>
+                      <td>
                         {o.pretixOrderCode ? (
                           <a
                             className={css.link}
@@ -2588,28 +2857,25 @@ function AdminContent() {
                           '—'
                         )}
                       </td>
-                      <td className={css['admin-badge-cell']}>
-                        <StatusBadge code={o.pretixStatus} />
-                        <TestModeBadge on={o.pretixTestmode} />
-                        <OverpaidBadge amount={o.overpaidUsd} />
-                      </td>
-                      <td className={undefined}>
-                        {o.email ?? '—'}
-                        {o.email && !isDupBadgeSuppressedEmail(o.email) && (completedByEmail[o.email] ?? 0) > 1 && (
-                          <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
-                            ({completedByEmail[o.email]} orders)
-                          </span>
-                        )}
-                      </td>
-                      <td className={undefined}>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
+                      <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
                       <td>
                         <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
                       </td>
-                      <td className={undefined}>
+                      {/* Chain hidden (ETH-on-Ethereum only)
+                      <td>
                         <ChainCell chainId={o.chainId} />
                       </td>
+                      */}
                       <td className={css.mono}>
-                        {o.gasCostWei ? formatGasCost(o.gasCostWei, o.chainId, walletPrices) : '—'}
+                        <a
+                          className={css.link}
+                          href={addressExplorerUrl(o.payer, o.chainId)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={o.payer}
+                        >
+                          {truncate(o.payer)}
+                        </a>
                       </td>
                       <td className={css.mono}>
                         {o.txHash ? (
@@ -2629,140 +2895,53 @@ function AdminContent() {
                         )}
                       </td>
                       <td className={css.mono}>
-                        <a
-                          className={css.link}
-                          href={addressExplorerUrl(o.payer, o.chainId)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={o.payer}
-                        >
-                          {truncate(o.payer)}
-                        </a>
-                        {o.payer &&
-                          !isDupBadgeSuppressedPayer(o.payer) &&
-                          (completedByPayer[o.payer.toLowerCase()] ?? 0) > 1 && (
-                            <span style={{ marginLeft: 6, color: '#c80', fontSize: 12, fontWeight: 600 }}>
-                              ({completedByPayer[o.payer.toLowerCase()]} orders)
-                            </span>
-                          )}
+                        {o.refundTxHash ? (
+                          <Copyable value={o.refundTxHash}>
+                            <a
+                              className={css.link}
+                              href={txExplorerUrl(o.refundTxHash, o.chainId)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                            >
+                              {o.refundTxHash.slice(0, 10)}...{o.refundTxHash.slice(-8)}
+                            </a>
+                          </Copyable>
+                        ) : (
+                          '—'
+                        )}
                       </td>
-                      <td className={undefined}>{formatDate(o.completedAt)}</td>
+                      {/* Merged Refunded At / Completed At: most refund records
+                          (wc / manual) don't carry a refund timestamp, so the two
+                          columns were near-duplicates. Show the refund time when
+                          known, else the payment-completion time with a hint. */}
                       <td>
-                        <RefundActionCell
-                          order={o}
-                          secret={secret}
-                          isConnected={isConnected}
-                          onRefunded={() => fetchOrders(secret)}
-                        />
+                        {o.refundMeta?.refundedAt ? (
+                          formatDate(Math.floor(new Date(o.refundMeta.refundedAt as string).getTime() / 1000))
+                        ) : (
+                          <span title="Exact refund time not recorded; showing when the payment completed.">
+                            {formatDate(o.completedAt)}
+                            <span style={{ color: '#8a8a8a', fontSize: 11 }}> (paid)</span>
+                          </span>
+                        )}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Refunded Orders */}
-      {refundedOrders.length > 0 && (
-        <div className={css.section}>
-          <div className={css['section-header']}>
-            <h2 className={css['section-title']}>Refunded Orders ({refundedOrders.length})</h2>
-          </div>
-          <div className={css['table-wrap']}>
-            <table className={css.table}>
-              <thead>
-                <tr>
-                  <th>Pretix Order</th>
-                  <th>Amount</th>
-                  <th>Crypto Amount</th>
-                  <th>Chain</th>
-                  <th>Payer</th>
-                  <th>Payment Tx</th>
-                  <th>Refund Tx</th>
-                  <th className={css['col-sorted-header']}>
-                    Refunded At <span className={css['sort-arrow']}>↓</span>
-                  </th>
-                  <th>Completed At</th>
-                </tr>
-              </thead>
-              <tbody>
-                {refundedOrders.map(o => (
-                  <tr key={o.paymentReference}>
-                    <td>
-                      <a
-                        className={css.link}
-                        href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {o.pretixOrderCode}
-                      </a>
-                    </td>
-                    <td>{o.totalUsd ? `$${o.totalUsd}` : '—'}</td>
-                    <td>
-                      <CryptoAmountCell cryptoAmount={o.cryptoAmount} tokenSymbol={o.tokenSymbol ?? undefined} />
-                    </td>
-                    <td>
-                      <ChainCell chainId={o.chainId} />
-                    </td>
-                    <td className={css.mono}>
-                      <a
-                        className={css.link}
-                        href={addressExplorerUrl(o.payer, o.chainId)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={o.payer}
-                      >
-                        {truncate(o.payer)}
-                      </a>
-                    </td>
-                    <td className={css.mono}>
-                      <Copyable value={o.txHash}>
-                        <a
-                          className={css.link}
-                          href={txExplorerUrl(o.txHash, o.chainId)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={e => e.stopPropagation()}
-                        >
-                          {o.txHash.slice(0, 10)}...{o.txHash.slice(-8)}
-                        </a>
-                      </Copyable>
-                    </td>
-                    <td className={css.mono}>
-                      {o.refundTxHash ? (
-                        <Copyable value={o.refundTxHash}>
-                          <a
-                            className={css.link}
-                            href={txExplorerUrl(o.refundTxHash, o.chainId)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={e => e.stopPropagation()}
-                          >
-                            {o.refundTxHash.slice(0, 10)}...{o.refundTxHash.slice(-8)}
-                          </a>
-                        </Copyable>
-                      ) : (
-                        '—'
-                      )}
-                    </td>
-                    <td>
-                      {o.refundMeta?.refundedAt
-                        ? formatDate(Math.floor(new Date(o.refundMeta.refundedAt as string).getTime() / 1000))
-                        : '—'}
-                    </td>
-                    <td>{formatDate(o.completedAt)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Pending Orders */}
+      {/* Pending Orders section hidden: it listed X402PendingOrder reservations
+          (payment reference + locked prices created BEFORE any Pretix order)
+          from the retired x402 gasless flow — with x402 off, no new rows can
+          ever appear. Not the same as "Unpaid wc_inject Orders" below, which
+          are real Pretix orders awaiting payment in the live WC flow and stay
+          visible. Remove this comment (and the Pending stat tile above) to
+          restore.
+
       <div className={css.section}>
         <div className={css['section-header']}>
           <h2
@@ -2859,6 +3038,7 @@ function AdminContent() {
           </div>
         )}
       </div>
+      End of hidden Pending Orders section */}
 
       {/* Orphan incoming transactions: on-chain payments to receive_address
           (last N days, via Alchemy) that aren't linked to any known order.
@@ -2873,14 +3053,27 @@ function AdminContent() {
             style={{ cursor: 'pointer', userSelect: 'none' }}
           >
             {sectionsOpen.orphan ? '▾' : '▸'} Orphan Incoming Transactions
-            {incomingTxsData && (() => {
-              const refunded = orphanIncomingTxs.filter(o => o.refundTxHash).length
-              const refundsTotal = incomingTxsData.outgoingRefunds?.length ?? 0
-              return ` (${orphanIncomingTxs.length} orphan${refunded > 0 ? ` / ${refunded} refunded` : ''} / ${incomingTxsData.incoming.length} incoming / ${refundsTotal} refunds out)`
-            })()}
+            {/* Count = orphans still needing attention (visible, not yet
+                refunded). Refunded/test/incoming detail lives in the table. */}
+            {incomingTxsData && ` (${visibleOrphanTxs.filter(o => !o.refundTxHash).length})`}
           </h2>
           {sectionsOpen.orphan && (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  fontSize: 12,
+                  color: '#555',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+                title={`Test txs are ETH transfers under ${TEST_TX_MAX_ETH} ETH`}
+              >
+                <input type="checkbox" checked={showTestTxs} onChange={e => setShowTestTxs(e.target.checked)} />
+                Show test txs{orphanTestTxCount > 0 ? ` (${orphanTestTxCount})` : ''}
+              </label>
               <button
                 className={css['refresh-btn']}
                 onClick={() => fetchIncomingTxs(secret, dateFrom, dateTo)}
@@ -2907,9 +3100,19 @@ function AdminContent() {
 
         {sectionsOpen.orphan && incomingTxsData && (
           <>
-            {/* Per-chain summary + any Alchemy errors so the admin can see
+            {/* Orphan totals (the detail dropped from the section header) +
+                per-chain summary + any Alchemy errors so the admin can see
                 which chains were actually queried successfully. */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', margin: '8px 0', fontSize: 12, color: '#555' }}>
+              <span>
+                <strong>Orphans:</strong>{' '}
+                {visibleOrphanTxs.filter(o => !o.refundTxHash).length} open
+                {(() => {
+                  const refunded = orphanIncomingTxs.filter(o => o.refundTxHash).length
+                  return refunded > 0 ? ` · ${refunded} refunded` : ''
+                })()}
+                {!showTestTxs && orphanTestTxCount > 0 && ` · ${orphanTestTxCount} test hidden`}
+              </span>
               {Object.entries(incomingTxsData.byChain).map(([chainId, s]) => (
                 <span key={chainId}>
                   <strong>{chainName(Number(chainId))}:</strong>{' '}
@@ -2927,8 +3130,13 @@ function AdminContent() {
               ))}
             </div>
             <div className={css['table-wrap']}>
-              {orphanIncomingTxs.length === 0 ? (
-                <div className={css.empty}>No orphan transactions in the selected date range</div>
+              {visibleOrphanTxs.length === 0 ? (
+                <div className={css.empty}>
+                  No orphan transactions in the selected date range
+                  {!showTestTxs &&
+                    orphanTestTxCount > 0 &&
+                    ` (${orphanTestTxCount} test tx${orphanTestTxCount > 1 ? 's' : ''} hidden)`}
+                </div>
               ) : (
                 <table className={css.table}>
                   <thead>
@@ -2943,7 +3151,7 @@ function AdminContent() {
                     </tr>
                   </thead>
                   <tbody>
-                    {orphanIncomingTxs.map(tx => (
+                    {visibleOrphanTxs.map(tx => (
                       <tr key={`${tx.chainId}-${tx.txHash}`}>
                         <td>{tx.chainName}</td>
                         <td>{tx.symbol}</td>
@@ -2982,11 +3190,7 @@ function AdminContent() {
                             <>
                               <span
                                 className={css['admin-badge-paid']}
-                                title={
-                                  tx.refundTimestamp
-                                    ? `Refunded ${formatDate(tx.refundTimestamp)}`
-                                    : 'Refunded'
-                                }
+                                title={tx.refundTimestamp ? `Refunded ${formatDate(tx.refundTimestamp)}` : 'Refunded'}
                               >
                                 REFUNDED
                               </span>
@@ -3026,13 +3230,40 @@ function AdminContent() {
             onClick={() => toggleSection('wcUnpaid')}
             style={{ cursor: 'pointer', userSelect: 'none' }}
           >
-            {sectionsOpen.wcUnpaid ? '▾' : '▸'} Unpaid wc_inject Orders ({filteredWcUnpaid.length})
+            {sectionsOpen.wcUnpaid ? '▾' : '▸'} Unpaid Orders ({visibleWcUnpaid.length})
+            <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 400, color: '#8a8a8a' }}>
+              to manually verify with a tx hash if the buyer had an issue while verifying their payment
+            </span>
           </h2>
+          {sectionsOpen.wcUnpaid && (
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 12,
+                color: '#555',
+                cursor: 'pointer',
+                userSelect: 'none',
+              }}
+              title="Orders without a quote: the buyer never connected a wallet, so no payment can exist for them. Pretix expires them automatically."
+            >
+              <input
+                type="checkbox"
+                checked={showNoQuoteUnpaid}
+                onChange={e => setShowNoQuoteUnpaid(e.target.checked)}
+              />
+              Show orders without quote{wcUnpaidNoQuoteCount > 0 ? ` (${wcUnpaidNoQuoteCount})` : ''}
+            </label>
+          )}
         </div>
         {sectionsOpen.wcUnpaid && (
           <div className={css['table-wrap']}>
-            {filteredWcUnpaid.length === 0 ? (
-              <div className={css.empty}>No unpaid wc_inject orders</div>
+            {visibleWcUnpaid.length === 0 ? (
+              <div className={css.empty}>
+                No unpaid orders
+                {!showNoQuoteUnpaid && wcUnpaidNoQuoteCount > 0 && ` (${wcUnpaidNoQuoteCount} without quote hidden)`}
+              </div>
             ) : (
               <table className={css.table}>
                 <thead>
@@ -3047,7 +3278,7 @@ function AdminContent() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredWcUnpaid.map(o => (
+                  {visibleWcUnpaid.map(o => (
                     <tr key={o.orderCode}>
                       <td className={css.mono}>
                         <Copyable value={o.orderCode}>{o.orderCode}</Copyable>
