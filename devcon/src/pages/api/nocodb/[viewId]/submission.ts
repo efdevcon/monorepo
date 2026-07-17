@@ -87,6 +87,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (msg.includes('Form view not found')) {
       return res.status(404).json({ success: false, error: 'Form not found' })
     }
-    return res.status(500).json({ success: false, error: 'Failed to fetch submission', details: msg })
+    return res.status(500).json({ success: false, error: 'Failed to fetch submission' })
   }
 }

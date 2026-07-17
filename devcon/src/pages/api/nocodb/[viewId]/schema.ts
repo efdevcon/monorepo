@@ -40,11 +40,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ...(conditionalRules.length > 0 ? { conditionalRules } : {}),
     })
   } catch (err) {
+    // Full error (incl. upstream NocoDB URL/status) goes to the server log
+    // only — echoing it to the public response leaked internal API paths.
     console.error('[nocodb/schema]', err)
     const msg = (err as Error).message
     if (msg.includes('Form view not found')) {
       return res.status(404).json({ success: false, error: 'Form not found' })
     }
-    return res.status(500).json({ success: false, error: 'Failed to load form schema', details: msg })
+    return res.status(500).json({ success: false, error: 'Failed to load form schema' })
   }
 }
