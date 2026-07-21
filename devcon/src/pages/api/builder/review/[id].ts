@@ -200,7 +200,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return
     }
 
-    const result = await issueBuilderVoucher(email, builderIdentities(record))
+    const result = await issueBuilderVoucher(email, builderIdentities(record), String(record['Full Name'] || ''))
     if (!result.ok) {
       if (result.error === 'not-configured') {
         res.status(500).json({ success: false, error: 'Builder discount is not configured (no Pretix item).' })

@@ -5,7 +5,7 @@ import {
   setVoucherEmailSent,
   DiscountSoldOutError,
 } from 'services/discountStore'
-import { sendVoucherEmail } from 'services/voucherEmail'
+import { sendBuilderApprovalEmail } from 'services/builder/email'
 import { discountItem, discountCollection } from 'config/ticketing'
 
 export const BUILDER_DISCOUNT_TYPE = 'builder'
@@ -30,7 +30,7 @@ export type IssueResult =
  * person: if any of their identities already holds a voucher (any program), it's
  * reused instead of minting a second.
  */
-export async function issueBuilderVoucher(email: string, identities: string[]): Promise<IssueResult> {
+export async function issueBuilderVoucher(email: string, identities: string[], name?: string): Promise<IssueResult> {
   const itemId = discountItem(BUILDER_DISCOUNT_TYPE)
   if (!itemId) return { ok: false, error: 'not-configured' }
 
@@ -53,16 +53,16 @@ export async function issueBuilderVoucher(email: string, identities: string[]): 
 
   let emailed = false
   try {
-    const sent = await sendVoucherEmail(email, voucher.code)
+    const sent = await sendBuilderApprovalEmail(email, voucher.code, name)
     if (sent.success) {
       await setVoucherEmail(voucher.code, email)
       await setVoucherEmailSent(voucher.code)
       emailed = true
     } else {
-      console.warn('[builder voucher] sendVoucherEmail failed:', sent.error)
+      console.warn('[builder voucher] sendBuilderApprovalEmail failed:', sent.error)
     }
   } catch (err) {
-    console.warn('[builder voucher] sendVoucherEmail threw:', err)
+    console.warn('[builder voucher] sendBuilderApprovalEmail threw:', err)
   }
 
   return { ok: true, code: voucher.code, emailed, reused }
