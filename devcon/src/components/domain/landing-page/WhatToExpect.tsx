@@ -62,7 +62,7 @@ export const WhatToExpect = () => {
             i > 0 ? 'lg:border-l lg:border-l-[rgba(34,17,68,0.1)]' : '',
           ].join(' ')
           return (
-            <div key={i} className={`flex flex-col gap-6 items-start pt-6 pb-8 sm:pt-8 sm:pb-12 px-5 ${borders}`}>
+            <div key={i} className={`flex flex-col gap-6 items-start pt-6 pb-8 sm:pt-8 sm:pb-12 px-5 sm:px-8 ${borders}`}>
               <div className="bg-white/60 rounded-full p-3 flex items-center">
                 <Icon className="w-8 h-8 text-[#FF6600]" strokeWidth={1.75} />
               </div>
