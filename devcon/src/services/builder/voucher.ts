@@ -5,7 +5,7 @@ import {
   setVoucherEmailSent,
   DiscountSoldOutError,
 } from 'services/discountStore'
-import { sendVoucherEmail } from 'services/voucherEmail'
+import { sendBuilderApprovalEmail } from 'services/builder/email'
 import { discountItem, discountCollection } from 'config/ticketing'
 
 export const BUILDER_DISCOUNT_TYPE = 'builder'
@@ -25,12 +25,18 @@ export type IssueResult =
   | { ok: false; error: 'not-configured' | 'sold-out' | 'exhausted' | 'failed' }
 
 /**
- * Mint (or reuse) a builder voucher for this applicant and email it. Shared by
- * the admin Approve action and the submit-time auto-approve. One voucher per
- * person: if any of their identities already holds a voucher (any program), it's
- * reused instead of minting a second.
+ * Mint (or reuse) a builder voucher for this applicant and email it. Used by
+ * the admin Approve action. One voucher per person: if any of their identities
+ * already holds a voucher (any program), it's reused instead of minting a
+ * second. Pass skipEmail when the applicant was already notified, so the
+ * voucher still resolves without a duplicate email.
  */
-export async function issueBuilderVoucher(email: string, identities: string[]): Promise<IssueResult> {
+export async function issueBuilderVoucher(
+  email: string,
+  identities: string[],
+  name?: string,
+  opts?: { skipEmail?: boolean }
+): Promise<IssueResult> {
   const itemId = discountItem(BUILDER_DISCOUNT_TYPE)
   if (!itemId) return { ok: false, error: 'not-configured' }
 
@@ -52,17 +58,19 @@ export async function issueBuilderVoucher(email: string, identities: string[]): 
   if (!voucher) return { ok: false, error: 'exhausted' }
 
   let emailed = false
-  try {
-    const sent = await sendVoucherEmail(email, voucher.code)
-    if (sent.success) {
-      await setVoucherEmail(voucher.code, email)
-      await setVoucherEmailSent(voucher.code)
-      emailed = true
-    } else {
-      console.warn('[builder voucher] sendVoucherEmail failed:', sent.error)
+  if (!opts?.skipEmail) {
+    try {
+      const sent = await sendBuilderApprovalEmail(email, voucher.code, name)
+      if (sent.success) {
+        await setVoucherEmail(voucher.code, email)
+        await setVoucherEmailSent(voucher.code)
+        emailed = true
+      } else {
+        console.warn('[builder voucher] sendBuilderApprovalEmail failed:', sent.error)
+      }
+    } catch (err) {
+      console.warn('[builder voucher] sendBuilderApprovalEmail threw:', err)
     }
-  } catch (err) {
-    console.warn('[builder voucher] sendVoucherEmail threw:', err)
   }
 
   return { ok: true, code: voucher.code, emailed, reused }

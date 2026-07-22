@@ -28,7 +28,9 @@ interface MatchedRepo {
 // POST -> { decision: 'Approved' | 'Rejected' }. On Approve: mints a single-use
 //         builder voucher, emails it to the applicant, and records the code +
 //         Voucher Sent on the row. issueVoucher is idempotent per identity, so
-//         re-approving returns the same code rather than minting a duplicate.
+//         re-approving returns the same code rather than minting a duplicate —
+//         and the email is only sent once (skipped when Voucher Sent is already
+//         set, mirroring the reject-side transition guard).
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Review data + live enrichment must always be current — never cache.
   res.setHeader('Cache-Control', 'no-store, max-age=0')
@@ -200,7 +202,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return
     }
 
-    const result = await issueBuilderVoucher(email, builderIdentities(record))
+    // Only email on the transition INTO Approved (like the reject side) — but
+    // keyed on Voucher Sent rather than Decision alone, so a failed first send
+    // can still be retried by re-approving.
+    const alreadyEmailed = record['Decision'] === 'Approved' && Boolean(record['Voucher Sent'])
+    const result = await issueBuilderVoucher(email, builderIdentities(record), String(record['Full Name'] || ''), {
+      skipEmail: alreadyEmailed,
+    })
     if (!result.ok) {
       if (result.error === 'not-configured') {
         res.status(500).json({ success: false, error: 'Builder discount is not configured (no Pretix item).' })
@@ -217,7 +225,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await updateRow(VIEW_ID, id, {
       Decision: 'Approved',
       'Voucher Code': result.code,
-      'Voucher Sent': result.emailed,
+      // Never downgrade the flag: a skipped (deduped) send returns emailed=false.
+      'Voucher Sent': result.emailed || Boolean(record['Voucher Sent']),
       ...noteUpdate,
     })
 

@@ -1,7 +1,8 @@
 /**
  * Voucher Email Service
  * Sends voucher confirmation emails via AWS SES SMTP.
- * Used by both the redeem-self backend (automatic) and send-voucher-email API (manual re-send).
+ * Used by the send-voucher-email API (manual re-send from the ticket-store redeem page).
+ * Builder approvals use their own template (services/builder/email.ts).
  */
 
 import { validateVoucher, getTicketPurchaseInfo } from 'services/pretix'
