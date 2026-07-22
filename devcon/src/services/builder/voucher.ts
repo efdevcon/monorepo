@@ -25,11 +25,11 @@ export type IssueResult =
   | { ok: false; error: 'not-configured' | 'sold-out' | 'exhausted' | 'failed' }
 
 /**
- * Mint (or reuse) a builder voucher for this applicant and email it. Shared by
- * the admin Approve action and the submit-time auto-approve. One voucher per
- * person: if any of their identities already holds a voucher (any program), it's
- * reused instead of minting a second. Pass skipEmail when the applicant was
- * already notified, so the voucher still resolves without a duplicate email.
+ * Mint (or reuse) a builder voucher for this applicant and email it. Used by
+ * the admin Approve action. One voucher per person: if any of their identities
+ * already holds a voucher (any program), it's reused instead of minting a
+ * second. Pass skipEmail when the applicant was already notified, so the
+ * voucher still resolves without a duplicate email.
  */
 export async function issueBuilderVoucher(
   email: string,
