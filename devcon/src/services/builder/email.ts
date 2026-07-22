@@ -54,6 +54,14 @@ function buildApprovalHtml(name: string, voucherCode: string): string {
                   Redeem your discount
                 </a>
               </div>
+              <div style="background: #f2f1f4; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 24px;">
+                <p style="margin: 0 0 4px; font-size: 12px; font-weight: 600; color: #594d73; text-transform: uppercase; letter-spacing: 1px;">
+                  DISCOUNT CODE
+                </p>
+                <p style="margin: 0; font-size: 20px; font-weight: 800; color: #7235ed; letter-spacing: 1px;">
+                  ${escapeHtml(voucherCode)}
+                </p>
+              </div>
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 <strong>Please redeem this voucher within 1 month of receiving this email!</strong>
               </p>
