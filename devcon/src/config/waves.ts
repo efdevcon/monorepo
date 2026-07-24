@@ -81,7 +81,7 @@ export const CURRENT_WAVE_ID = 'wave-ga'
 // The overview / comparison tags flip to match. Nothing else needs editing.
 // Preview: `?mockNow=coming-soon` or `?mockNow=closed`.
 export type GaSaleState = 'open' | 'coming-soon' | 'closed'
-export const GA_SALE_STATE: GaSaleState = 'open'
+export const GA_SALE_STATE: GaSaleState = 'closed'
 
 // Time the 'coming-soon' state counts down to. Defaults to the global launch
 // (14 Jul 2026, 16:00 UTC) so the surfaces read "Available on Jul 14, 16:00
