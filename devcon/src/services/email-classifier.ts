@@ -10,6 +10,7 @@ import {
   WHITELISTED_UNIVERSITY_DOMAINS,
   TOP_INDIAN_UNIVERSITY_DOMAINS,
   OTHER_INDIAN_UNIVERSITY_DOMAINS,
+  INTERNATIONAL_UNIVERSITY_DOMAINS,
 } from './whitelisted-domains'
 
 // ── Domain lists ──────────────────────────────────────────────────────
@@ -332,6 +333,11 @@ export interface EligibilityResult {
   bucket: EligibilityBucket
   email: string
   domain: string | null
+  /** True when the domain is an exact match on one of the curated whitelists
+   *  (top/other Indian or international) — a deterministic verdict, unlike the
+   *  heuristic/AI `ai-university` path. Whitelisted applicants are trusted
+   *  enough to be auto-validated. */
+  whitelisted: boolean
 }
 
 // AI-branch verdicts are cached in Supabase so that `check-eligibility` and
@@ -384,23 +390,30 @@ export async function classifyEligibility(rawEmail: string): Promise<Eligibility
   const email = rawEmail.trim().toLowerCase()
   const domain = email.split('@')[1] ?? null
 
-  if (!domain) return { bucket: 'blocked', email, domain: null }
+  if (!domain) return { bucket: 'blocked', email, domain: null, whitelisted: false }
 
   if (TOP_INDIAN_UNIVERSITY_DOMAINS.has(domain)) {
-    return { bucket: 'top-indian-university', email, domain }
+    return { bucket: 'top-indian-university', email, domain, whitelisted: true }
   }
 
   if (OTHER_INDIAN_UNIVERSITY_DOMAINS.has(domain)) {
-    return { bucket: 'other-indian-university', email, domain }
+    return { bucket: 'other-indian-university', email, domain, whitelisted: true }
+  }
+
+  // Curated non-Indian universities: whitelisted, but labelled with the
+  // existing `ai-university` bucket (the NocoDB select has no separate option
+  // for them, and reviewers read that bucket as "recognized university").
+  if (INTERNATIONAL_UNIVERSITY_DOMAINS.has(domain)) {
+    return { bucket: 'ai-university', email, domain, whitelisted: true }
   }
 
   const cached = await readCachedAiBucket(email)
-  if (cached) return { bucket: cached, email, domain }
+  if (cached) return { bucket: cached, email, domain, whitelisted: false }
 
   const classification = await classifyEmailWithAI(email)
   const bucket: EligibilityBucket =
     classification.organizationType === 'university' ? 'ai-university' : 'blocked'
 
   await writeCachedAiBucket(email, bucket)
-  return { bucket, email, domain }
+  return { bucket, email, domain, whitelisted: false }
 }

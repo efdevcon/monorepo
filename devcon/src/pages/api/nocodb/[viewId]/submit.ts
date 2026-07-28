@@ -148,8 +148,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // "Email Classification" column doesn't exist on those NocoDB tables and
     // would cause writes to fail).
     const isStudentApplication = config?.formSlug === 'student-application'
+    let autoValidateStudent = false
     if (verifiedEmail && isStudentApplication) {
-      const { bucket } = await classifyEligibility(verifiedEmail)
+      const { bucket, whitelisted } = await classifyEligibility(verifiedEmail)
+      // Whitelist matches are deterministic (curated university domains), so
+      // those applications skip manual review: Status is set to Validated on
+      // creation. AI-classified / proof-required applications still land in
+      // the default "To review" state.
+      autoValidateStudent = whitelisted
 
       if (bucket === 'blocked') {
         const proof = data.enrollment_proof
@@ -259,10 +265,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           data['Updated post-approval'] = true
         }
       }
+      // On re-submission, auto-validate ONLY rows still awaiting review — a
+      // reviewer's explicit decision (Reject, Approval Sent, …) must never be
+      // overwritten by the applicant editing their application.
+      if (autoValidateStudent) {
+        const status = String(existingRow['Status'] ?? '').toLowerCase()
+        if (!status || status === 'to review') data['Status'] = 'Validated'
+      }
       await updateRow(viewId, existingRow.Id, data)
       return res.status(200).json({ success: true, updated: true })
     }
 
+    if (autoValidateStudent) data['Status'] = 'Validated'
     await createRow(viewId, data)
     return res.status(200).json({ success: true })
   } catch (err) {

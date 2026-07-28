@@ -34,6 +34,7 @@
     "pretix:expire-unused-vouchers": "ts-node src/scripts/pretix/expire-unused-vouchers.ts",
     "pretix:export-early-bird-emails": "ts-node src/scripts/pretix/export-early-bird-emails.ts",
     "send-early-bird-reminder": "ts-node src/scripts/send-early-bird-reminder.ts",
+    "students:bulk-validate": "ts-node src/scripts/students/bulk-validate-whitelisted.ts",
     "forms:decrypt": "tsx scripts/decrypt.ts",
     "sync:discount-data": "tsx src/scripts/sync-discount-data.ts"
   },
