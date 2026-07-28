@@ -48,6 +48,9 @@ export async function issueBuilderVoucher(
       voucher = await issueVoucher(primaryIdentity, itemId, discountCollection(BUILDER_DISCOUNT_TYPE), {
         tag: BUILDER_DISCOUNT_TYPE,
         type: BUILDER_DISCOUNT_TYPE,
+        // The approval email tells applicants to redeem within 1 month; Pretix
+        // enforces it via the voucher's valid_until.
+        validityDays: 31,
       })
     } catch (err) {
       if (err instanceof DiscountSoldOutError) return { ok: false, error: 'sold-out' }

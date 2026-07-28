@@ -240,6 +240,8 @@ export async function createVoucher(opts: {
   tag?: string
   maxUsages?: number
   comment?: string
+  /** ISO timestamp after which the voucher can no longer be redeemed. Omit for no expiry. */
+  validUntil?: string
 }): Promise<{ code: string; id: number }> {
   return withRetry('createVoucher', async () => {
     const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/vouchers/`
@@ -253,6 +255,7 @@ export async function createVoucher(opts: {
         block_quota: false,
         tag: opts.tag ?? 'discount',
         comment: opts.comment ?? 'Auto-issued discount voucher',
+        ...(opts.validUntil ? { valid_until: opts.validUntil } : {}),
       }),
     })
 

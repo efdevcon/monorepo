@@ -247,7 +247,7 @@ export async function issueVoucher(
   assignedTo: string,
   itemId: number,
   collection: string,
-  opts: { tag?: string; type?: string } = {}
+  opts: { tag?: string; type?: string; validityDays?: number } = {}
 ): Promise<DiscountVoucher | null> {
   const supabase = getSupabase()
   const tag = opts.tag
@@ -264,12 +264,16 @@ export async function issueVoucher(
     throw new DiscountSoldOutError()
   }
 
-  // Create a fresh single-use voucher that unlocks the item.
+  // Create a fresh single-use voucher that unlocks the item. `validityDays`
+  // sets a Pretix-enforced redemption deadline counted from creation.
   const created = await createVoucher({
     itemId,
     tag: tag ?? collection,
     maxUsages: 1,
     comment: `Discount voucher for ${collection} (${assignedTo})`,
+    ...(opts.validityDays
+      ? { validUntil: new Date(Date.now() + opts.validityDays * 24 * 60 * 60 * 1000).toISOString() }
+      : {}),
   })
 
   const now = new Date().toISOString()
