@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { Video } from "@/components/domain/archive";
 import { getRelatedSessions, getSessionBySlug } from "@/services/devcon";
 
@@ -8,9 +9,9 @@ export default async function Index({ params }: any) {
     slug,
     event.startsWith("devcon") ? event : `devcon-${event}`
   );
-  const related = await getRelatedSessions(session?.id);
+  if (!session) notFound();
 
-  if (!session) return null;
+  const related = await getRelatedSessions(session.id);
 
   return <Video video={session} relatedVideos={related} />;
 }
