@@ -35,7 +35,8 @@ export function SEO(props: SEOProps) {
   // console.log(pageContext, 'page contxt hello')
 
   const globalTitle = 'Devcon 7 SEA'
-  const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
+  const globalDescription =
+    'Devcon 7 — Southeast Asia. The Ethereum conference for developers, researchers, thinkers, and makers. Bangkok, Thailand, Nov 12–15, 2024.'
   // Self-hosted, social-sized (1200x627, <300KB) — crawlers like X/WhatsApp drop
   // images near 5MB, and the old www.devcon.org URL added a cross-domain 301.
   const globalImage = `${SITE_URL}assets/images/dc7-og-social.jpg`
