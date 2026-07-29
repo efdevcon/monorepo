@@ -1,0 +1,26 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+  /* Entrance curve (stronger than the ease-out keyword so the settle reads
+     as one motion); --reveal-delay staggers siblings */
+  transition: opacity 500ms cubic-bezier(0.32, 0.72, 0, 1), transform 500ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Rise + fade only, no scale (must precede .shown so the reset wins) */
+.flat {
+  transform: translateY(16px);
+}
+
+.shown {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -8,7 +8,12 @@ const JWC_URL = 'https://www.jioworldcentre.com/'
 const MAP_URL =
   'https://www.google.com/maps?vet=10CAAQoqAOahcKEwiwsoiy-sqUAxUAAAAAHQAAAAAQHw..i&pvq=OiUweDNiZTdjOTFjZTU1NjYxNjc6MHgzOTliZGIwNmZhYjY4YTdl&um=1&ie=UTF-8&fb=1&gl=uk&sa=X&ftid=0x3be7c91ce5566167:0x399bdb06fab68a7e'
 
-export const VenueDetails = () => {
+type VenueDetailsProps = {
+  // Optional trailing item, e.g. "Support: Devcon Telegram" on the Travel Guide
+  support?: { label: string; text: string; href: string }
+}
+
+export const VenueDetails = ({ support }: VenueDetailsProps) => {
   const t = useTranslations('home.venue')
   return (
     <div className="bg-[#ffa366] flex flex-col md:flex-row items-center justify-center px-6 py-3 text-[#221144] text-sm leading-5 gap-x-4 gap-y-1 text-center">
@@ -51,6 +56,19 @@ export const VenueDetails = () => {
           {t('address')}
         </a>
       </span>
+      {support && (
+        <span>
+          <strong className="font-bold">{support.label}</strong>{' '}
+          <a
+            href={support.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#5914e2] font-bold hover:underline focus-visible:underline focus:outline-none"
+          >
+            {support.text}
+          </a>
+        </span>
+      )}
     </div>
   )
 }

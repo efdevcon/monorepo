@@ -1,0 +1,267 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Local tokens ────────────────────────────────────────── */
+/* DC-8 page palette, matching speaker-applications / about */
+$ink-heading: #160b2b;
+$ink-body: #221144;
+$ink-dark: #1a0d33;
+$ink-muted: #594d73;
+$accent-purple: #7235ed;
+$off-white: #f9f8fa;
+$hairline: rgba(34, 17, 68, 0.1);
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+/* Same treatment as speaker-applications (the increased-height hero),
+   with object-position tuned for the BMC-building hero photo */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 65% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: center 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 78vh !important;
+    max-height: 755px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  /* Sized so the title spans ~70% of the viewport width */
+  font-size: clamp(3rem, 11vw, 160px) !important;
+  letter-spacing: -3px !important;
+  color: $off-white !important;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-16px);
+
+  @media (max-width: $breakpoints-md) {
+    font-size: clamp(4rem, 20vw, 7rem) !important;
+    letter-spacing: -2px !important;
+  }
+}
+
+/* ─── Typography ──────────────────────────────────────────── */
+
+.heading-2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: $ink-heading;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  @media (max-width: $breakpoints-md) {
+    font-size: 24px;
+  }
+}
+
+.heading-3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: $ink-heading;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.25px;
+  color: $ink-dark;
+  margin: 0;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: $ink-body;
+  margin: 0;
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    color: $accent-purple;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ─── Markdown prose (accordion panels, tips, rich paragraphs) ── */
+
+.prose {
+  font-size: 16px;
+  line-height: 1.5;
+  color: $ink-body;
+
+  p {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin: 0 0 12px;
+    list-style: disc outside;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ol {
+    list-style: decimal outside;
+  }
+
+  li {
+    margin: 0 0 4px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a,
+  a > strong {
+    color: $accent-purple;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ─── Good to know (Snapshot overrides) ───────────────────── */
+/* The design uses 16px rows with taller padding than Snapshot's 14px default */
+
+.good-to-know {
+  li {
+    font-size: 16px;
+    padding: 14px 8px;
+  }
+}
+
+/* ─── Buttons ─────────────────────────────────────────────── */
+
+%btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 28px 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.btn-primary {
+  @extend %btn-pill;
+  color: $off-white;
+  background: $accent-purple;
+  border: none;
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+
+  /* Must come after :hover — same specificity, and :active always co-occurs
+     with :hover on mouse, so the later rule wins the press state */
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn-secondary {
+  @extend %btn-pill;
+  color: $ink-dark;
+  background: rgba(255, 255, 255, 0.8);
+  outline: 1px solid $hairline;
+  transition: transform 150ms ease-out, background 150ms ease-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ─── Scroll offsets ──────────────────────────────────────── */
+
+.scroll-anchor {
+  scroll-margin-top: 100px;
+}
