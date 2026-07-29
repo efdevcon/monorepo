@@ -194,7 +194,7 @@ export function VerificationModal({
             <h3 className={css['heading']}>Generate a QR code</h3>
             <ol className={css['steps']}>
               <li>
-                Open the mAadhaar app on{' '}
+                Open the Aadhaar app on{' '}
                 <a href="https://apps.apple.com/in/app/aadhaar/id6744029871" target="_blank" rel="noopener noreferrer">
                   iOS
                 </a>{' '}
