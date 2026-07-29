@@ -301,7 +301,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                     <li>
                       Download the mAadhaar app on{' '}
                       <a
-                        href="https://apps.apple.com/in/app/maadhaar/id1435469474"
+                        href="https://apps.apple.com/in/app/aadhaar/id6744029871"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

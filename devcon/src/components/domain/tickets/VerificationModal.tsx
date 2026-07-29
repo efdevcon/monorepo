@@ -195,7 +195,7 @@ export function VerificationModal({
             <ol className={css['steps']}>
               <li>
                 Open the mAadhaar app on{' '}
-                <a href="https://apps.apple.com/in/app/maadhaar/id1435469474" target="_blank" rel="noopener noreferrer">
+                <a href="https://apps.apple.com/in/app/aadhaar/id6744029871" target="_blank" rel="noopener noreferrer">
                   iOS
                 </a>{' '}
                 or{' '}
