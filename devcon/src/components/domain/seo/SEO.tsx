@@ -25,7 +25,7 @@ export function SEO(props: SEOProps) {
   const pageContext = usePageContext()
   const separator = props.separator ?? '—'
 
-  let title = 'Devcon 2024' // Bogotá, Oct 11 → 14'
+  let title = 'Devcon 7 SEA'
   if (pageContext?.current?.title && pageContext?.current?.title !== title) {
     title = `${pageContext?.current.title} ${separator} ${title}`
   } else if (props.title) {
@@ -34,7 +34,7 @@ export function SEO(props: SEOProps) {
 
   // console.log(pageContext, 'page contxt hello')
 
-  const globalTitle = 'Devcon 2024' // Bogotá, Oct 11 → 14'
+  const globalTitle = 'Devcon 7 SEA'
   const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
   // Self-hosted, social-sized (1200x627, <300KB) — crawlers like X/WhatsApp drop
   // images near 5MB, and the old www.devcon.org URL added a cross-domain 301.
