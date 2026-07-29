@@ -36,7 +36,9 @@ export function SEO(props: SEOProps) {
 
   const globalTitle = 'Devcon 2024' // Bogotá, Oct 11 → 14'
   const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
-  const globalImage = 'https://www.devcon.org/assets/images/dc7-og.png'
+  // Self-hosted, social-sized (1200x627, <300KB) — crawlers like X/WhatsApp drop
+  // images near 5MB, and the old www.devcon.org URL added a cross-domain 301.
+  const globalImage = `${SITE_URL}assets/images/dc7-og-social.jpg`
 
   let description = globalDescription
   if (props.description) {
@@ -56,8 +58,10 @@ export function SEO(props: SEOProps) {
     image = props.imageUrl
   }
 
-  // Pages that also exist on the current devcon.org site: canonicalize them cross-domain
-  // so search engines consolidate ranking signals on the live site instead of this archive.
+  // Pages that also exist on the current devcon.org site get noindex'd so the archive
+  // doesn't compete in search. Deliberately NOT a cross-domain canonical: the contents
+  // differ (DC7 vs current event) so Google ignores the hint, while social scrapers
+  // (Telegram, iMessage) follow it and show the current event's card for archive links.
   const supersededByDevconOrg = [
     '/',
     '/about/',
@@ -79,9 +83,8 @@ export function SEO(props: SEOProps) {
   const normalizedPath = path.endsWith('/') ? path : `${path}/`
   const currentLocale = router?.locale && router.locale !== 'default' ? router.locale : 'en'
   const selfUrl = `${siteUrl}${currentLocale}${normalizedPath}`
-  const canonical =
-    props.canonicalUrl ||
-    (supersededByDevconOrg.includes(normalizedPath) ? `https://devcon.org/en${normalizedPath}` : selfUrl)
+  const canonical = props.canonicalUrl || selfUrl
+  const noindex = supersededByDevconOrg.includes(normalizedPath)
   const url = selfUrl
 
   return (
@@ -99,7 +102,10 @@ export function SEO(props: SEOProps) {
         {title && <meta property="og:title" key="og:title" content={title} />}
         {description && <meta property="og:description" key="og:description" content={description} />}
         {image && <meta property="og:image" key="og:image" content={image} />}
+        {image === globalImage && <meta property="og:image:width" key="og:image:width" content="1200" />}
+        {image === globalImage && <meta property="og:image:height" key="og:image:height" content="627" />}
         {canonical && <link rel="canonical" key="canonical" href={canonical} />}
+        {noindex && <meta name="robots" key="robots" content="noindex,follow" />}
         {props.author?.name && <link itemProp="name" href={props.author?.name} />}
         {props.author?.url && <link itemProp="url" href={props.author.url} />}
 
