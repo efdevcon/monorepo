@@ -129,7 +129,18 @@ export function VerificationModal({
                   {copied ? (
                     <span className={css['voucher-copy-text']}>Copied</span>
                   ) : (
-                    <svg className={css['voucher-copy-icon']} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <svg
+                      className={css['voucher-copy-icon']}
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
                       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                     </svg>
@@ -145,7 +156,18 @@ export function VerificationModal({
                 className={css['voucher-cta']}
               >
                 Go to Ticket Store
-                <svg className={css['voucher-cta-icon']} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <svg
+                  className={css['voucher-cta-icon']}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
@@ -178,7 +200,7 @@ export function VerificationModal({
                 </a>{' '}
                 or{' '}
                 <a
-                  href="https://play.google.com/store/apps/details?id=in.gov.uidai.mAadhaarPlus"
+                  href="https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -200,11 +222,7 @@ export function VerificationModal({
                   {useTestAadhaar ? 'Test' : 'Real'}
                 </span>
               </div>
-              <button
-                type="button"
-                className={css['test-mode-btn']}
-                onClick={() => setUseTestAadhaar(!useTestAadhaar)}
-              >
+              <button type="button" className={css['test-mode-btn']} onClick={() => setUseTestAadhaar(!useTestAadhaar)}>
                 Switch to {useTestAadhaar ? 'real' : 'test'}
               </button>
             </div>

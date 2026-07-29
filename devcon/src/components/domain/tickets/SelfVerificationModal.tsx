@@ -309,7 +309,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                       </a>{' '}
                       or{' '}
                       <a
-                        href="https://play.google.com/store/apps/details?id=in.gov.uidai.mAadhaarPlus"
+                        href="https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
