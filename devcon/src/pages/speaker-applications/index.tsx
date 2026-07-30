@@ -40,7 +40,7 @@ import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
 import type { GetStaticPropsContext } from 'next'
 
-const APPLY_URL = 'https://mum.speakat.xyz/devcon8/cfp'
+const APPLY_URL = 'https://cfp.devcon.org/devcon8/cfp'
 const WISHLIST_URL = 'https://notes.ethereum.org/@devcon/devcon8-talks-wishlist'
 const GUIDELINES_URL = '/application-guidelines'
 // Anchor id comes from application-guidelines.tsx's SECTION_KEYS (underscores → hyphens)

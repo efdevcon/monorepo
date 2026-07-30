@@ -14,7 +14,7 @@ import cn from 'classnames'
 import { getMessages } from 'utils/intl'
 
 // Where the "Apply to speak" CTA points (Devcon 8 India Call for Proposals).
-const APPLY_URL = 'https://mum.speakat.xyz/devcon8/cfp'
+const APPLY_URL = 'https://cfp.devcon.org/devcon8/cfp'
 
 // Fixed, ordered section keys. Each maps to `sections.<key>` in the
 // `application_guidelines` intl namespace and to an anchor id (underscores → hyphens).
