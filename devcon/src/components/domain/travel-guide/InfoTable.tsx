@@ -6,16 +6,31 @@ interface InfoTableProps {
   columns: [string, string]
   rows: Array<[string, string]>
   className?: string
+  /** Below 768px, stack each row's cells vertically (name over description) */
+  stackOnMobile?: boolean
 }
 
 // Two-column fact table with the dark-purple header band (zone/feel,
 // emergency numbers, metro routes on the Travel Guide)
-export const InfoTable = ({ columns, rows, className }: InfoTableProps) => {
+export const InfoTable = ({ columns, rows, className, stackOnMobile }: InfoTableProps) => {
   return (
-    <div className={cn(css['table'], className)}>
+    <div className={cn(css['table'], stackOnMobile && css['stack-mobile'], className)}>
       <div className={css['header']}>
-        <p>{columns[0]}</p>
-        <p>{columns[1]}</p>
+        {stackOnMobile ? (
+          <>
+            {/* Stacked rows get a single combined header label on mobile */}
+            <p className="max-md:hidden">{columns[0]}</p>
+            <p className="max-md:hidden">{columns[1]}</p>
+            <p className="md:hidden">
+              {columns[0]} & {columns[1]}
+            </p>
+          </>
+        ) : (
+          <>
+            <p>{columns[0]}</p>
+            <p>{columns[1]}</p>
+          </>
+        )}
       </div>
       {rows.map(([label, value]) => (
         <div key={label} className={css['row']}>

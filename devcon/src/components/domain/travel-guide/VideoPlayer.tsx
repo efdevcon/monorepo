@@ -13,14 +13,14 @@ interface VideoPlayerProps {
 
 // Poster + play affordance that swaps to a native <video> on click — the same
 // click-to-load pattern (and play button) as landing-page/VideoPreview, with a
-// self-hosted file instead of a YouTube iframe. The 4:3 media is pillarboxed
-// inside the 16:9 frame like the design.
+// self-hosted file instead of a YouTube iframe. The frame is 4:3 to match the
+// media, so it fills edge to edge at every breakpoint (no pillarboxing).
 export const VideoPlayer = ({ src, title, poster, posterAlt = '', caption, className }: VideoPlayerProps) => {
   const [playing, setPlaying] = React.useState(false)
 
   return (
     <div className={className}>
-      <div className="relative aspect-video rounded-2xl overflow-hidden bg-black flex items-center justify-center px-2">
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black flex items-center justify-center">
         {playing ? (
           <video src={src} title={title} autoPlay controls playsInline className="h-full aspect-[4/3] object-contain" />
         ) : (
@@ -41,7 +41,7 @@ export const VideoPlayer = ({ src, title, poster, posterAlt = '', caption, class
           </>
         )}
       </div>
-      {caption && <div className="px-6 pt-4 text-sm leading-5 text-[#594d73]">{caption}</div>}
+      {caption && <div className="pt-[16px] text-[12px] leading-[16px] text-[#594d73]">{caption}</div>}
     </div>
   )
 }

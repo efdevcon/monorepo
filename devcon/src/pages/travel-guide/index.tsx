@@ -138,15 +138,15 @@ const ArtBanner = ({
   const glyphStyle = glyphColor ? ({ '--fill-0': glyphColor } as React.CSSProperties) : undefined
 
   return (
-    <div className="relative overflow-hidden py-10 px-6 text-center" style={{ background }}>
+    <div className="relative overflow-hidden py-[40px] px-[20px] md:px-[32px] xl:px-6 text-center" style={{ background }}>
       <div
-        className="absolute top-1/2 -translate-y-1/2 -left-14 w-[110px] pointer-events-none [&_svg]:w-full [&_svg]:h-auto"
+        className="absolute top-1/2 -translate-y-1/2 -left-[55px] w-[110px] pointer-events-none [&_svg]:w-full [&_svg]:h-auto"
         style={glyphStyle}
       >
         <Dc8LogomarkWhite />
       </div>
       <div
-        className="absolute top-1/2 -translate-y-1/2 -right-14 w-[110px] pointer-events-none [&_svg]:w-full [&_svg]:h-auto"
+        className="absolute top-1/2 -translate-y-1/2 -right-[55px] w-[110px] pointer-events-none [&_svg]:w-full [&_svg]:h-auto"
         style={glyphStyle}
       >
         <Dc8LogomarkWhite />
@@ -166,7 +166,7 @@ const NOTE_ICONS = [Ban, HandHeart, Tag, CircleCheckBig, CameraOff]
 const WEAR_ICONS = [Shirt, HandHeart, MapPin]
 
 const AdvisoryLinks = ({ label, names }: { label: string; names: string[] }) => (
-  <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
+  <p className={css['body']}>
     {label}{' '}
     {names.slice(0, ADVISORY_URLS.length).map((name, i) => (
       <React.Fragment key={name}>
@@ -201,7 +201,7 @@ export default function TravelGuidePage() {
     <Page theme={themes['tickets']} withHero darkFooter>
       <SEO title={t('title')} />
       <PageHero
-        className={`${css['hero-no-side-gradient']} !mb-0`}
+        className={`${css['hero-no-side-gradient']} ${css['tg-gutters']} !mb-0`}
         titleClassName={css['hero-title']}
         title={t('title')}
         heroBackground={HeroBackground}
@@ -212,26 +212,24 @@ export default function TravelGuidePage() {
       {/* overflow-anchor: none — Chrome's scroll anchoring otherwise latches
           onto content below an expanding dropdown and auto-scrolls the page,
           making panels appear to expand upward out of view */}
-      <div className="[overflow-anchor:none]">
+      <div className={cn('[overflow-anchor:none]', css['tg-gutters'])}>
 
       {/* Section: Aamchi Mumbai! — intro + Good to know */}
       <div
         id="mumbai"
-        className={cn('section', css['scroll-anchor'])}
+        className={cn('section', css['scroll-anchor'], css['section-pad'], css['section-pad-tight'])}
         style={{
-          paddingTop: '4rem',
-          paddingBottom: '4rem',
           background: 'radial-gradient(ellipse at center bottom, rgba(255,224,204,1) 0%, rgba(251,250,252,1) 75%)',
         }}
       >
-        <div className="two-columns" style={{ gap: '4rem' }}>
-          <div className="left flex flex-col gap-6 items-start">
+        <div className="flex flex-col gap-[32px] md:gap-[48px] lg:flex-row lg:gap-[64px]">
+          <div className="left flex flex-col gap-[16px] md:gap-6 items-start lg:flex-1 lg:min-w-0">
             <h2 className={css['heading-2']}>{t('intro.heading')}</h2>
             <div className="flex flex-col gap-3">
               <p className={css['lead']}>{t('intro.lead')}</p>
               <p className={css['body']}>{t('intro.body')}</p>
             </div>
-            <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+            <div className="w-full md:w-auto mt-[8px] md:mt-0 flex flex-col md:flex-row md:flex-wrap gap-3">
               <Link to="/tickets" className={css['btn-primary']}>
                 {t('intro.cta_tickets')}
                 <ArrowRight size={16} />
@@ -242,7 +240,7 @@ export default function TravelGuidePage() {
               </Link>
             </div>
           </div>
-          <div className="right">
+          <div className="right lg:flex-1 lg:min-w-0">
             <h3 className={css['heading-3']} style={{ marginBottom: 24 }}>
               {t('intro.good_to_know_heading')}
             </h3>
@@ -284,9 +282,9 @@ export default function TravelGuidePage() {
       />
 
       {/* Section: Welcome to Mumbai */}
-      <div style={{ background: '#e5ebff', paddingTop: '3rem', paddingBottom: '4rem' }}>
+      <div className={cn(css['section-pad'], css['section-pad-welcome'])} style={{ background: '#e5ebff' }}>
         {/* City image marquee */}
-        <div className="mb-16 overflow-hidden">
+        <div className="mb-[48px] lg:mb-[64px] overflow-hidden">
           <InfiniteScroll nDuplications={2} speed="80s" marqueeClassName="!h-[174px]">
             <div className="flex gap-3 pr-3 h-full">
               {CAROUSEL_IMAGES.map((src, i) => (
@@ -299,8 +297,8 @@ export default function TravelGuidePage() {
         </div>
 
         <div className="section">
-          <div className="two-columns" style={{ gap: '4rem' }}>
-            <div className="left flex flex-col gap-6">
+          <div className="flex flex-col gap-[24px] md:gap-[48px] lg:flex-row lg:gap-[64px]">
+            <div className="left flex flex-col gap-6 lg:flex-1 lg:min-w-0">
               <h2 className={css['heading-2']}>{t('welcome.heading')}</h2>
               <div className="flex flex-col gap-3">
                 <p className={css['lead']}>{t('welcome.lead')}</p>
@@ -308,26 +306,39 @@ export default function TravelGuidePage() {
                 <p className={css['body']}>{t('welcome.body_2')}</p>
               </div>
             </div>
-            <div className="right flex flex-col gap-4">
+            <div className="right flex flex-col gap-[16px] lg:flex-1 lg:min-w-0">
               <InfoTable
+                stackOnMobile
                 columns={(t.raw('welcome.zone_table.columns') as [string, string])}
                 rows={t.raw('welcome.zone_table.rows') as Array<[string, string]>}
               />
-              <p className="text-sm leading-5 text-[#594d73] px-6">{t('welcome.zone_caption')}</p>
+              <p className="text-sm leading-5 text-[#594d73] px-0 md:px-6">{t('welcome.zone_caption')}</p>
             </div>
           </div>
 
           {/* Devcon in Mumbai card with video */}
           <div
-            className="mt-16 rounded-2xl outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)] p-8 flex flex-col lg:flex-row gap-8 lg:gap-16 lg:items-center"
+            className="relative mt-[48px] lg:mt-[64px] rounded-2xl outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)] p-[20px] md:p-[32px] flex flex-col lg:flex-row gap-[24px] lg:gap-[64px] lg:items-center"
           >
-            <div className="flex-1 flex flex-col gap-3">
-              <p className={css['lead']}>{t('welcome.devcon_lead')}</p>
+            {/* Faint jaali texture behind the content (2x PNG shown at half
+                size). -z-10 keeps it above the card's milky fill but under the
+                text/video — the card's backdrop-filter makes it a stacking
+                context, so the negative z stays inside the card. */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -z-10 rounded-2xl pointer-events-none bg-repeat opacity-60"
+              style={{ backgroundImage: 'url(/travel-guide/jaali-full-bleed-pattern.png)', backgroundSize: '813px 537px' }}
+            />
+            {/* Desktop: text keeps its ~half-card measure while the video
+                narrows to ~424px, centered in the remaining space */}
+            <div className="lg:flex-1 xl:flex-none xl:w-[48%] flex flex-col gap-3">
+              <h3 className={css['heading-3']}>{t('welcome.devcon_lead')}</h3>
               <p className={css['body']}>{t('welcome.devcon_body_1')}</p>
               <Markdown className={css['prose']}>{t('welcome.devcon_body_2')}</Markdown>
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="lg:flex-1 min-w-0 xl:flex xl:flex-col xl:items-center">
               <VideoPlayer
+                className="w-full xl:w-[440px] xl:max-w-full"
                 src="/travel-guide/kanishk-excited-for-devcon-mumbai.mp4"
                 title="Excited for Devcon Mumbai, by @kanishkkhurana"
                 poster={VideoDevconMumbaiThumb}
@@ -354,11 +365,9 @@ export default function TravelGuidePage() {
       {/* Section: Getting to Mumbai */}
       <div
         id="getting-there"
-        className={cn('relative', css['scroll-anchor'])}
+        className={cn('relative', css['scroll-anchor'], css['section-pad'], css['section-pad-tight'])}
         style={{
           background: 'linear-gradient(to top, #fbfafc 8.5%, #e5ebff 100%)',
-          paddingTop: '4rem',
-          paddingBottom: '4rem',
         }}
       >
         {/* Top half of the moon graphic pinned to the section bottom (same
@@ -370,15 +379,15 @@ export default function TravelGuidePage() {
           <MoonBg />
         </div>
         <div className="section relative">
-          <div className="two-columns" style={{ gap: '4rem' }}>
-            <div className="left flex flex-col gap-6 lg:sticky lg:top-36 lg:self-start">
+          <div className="flex flex-col gap-[32px] md:gap-[48px] lg:flex-row lg:gap-[64px]">
+            <div className="left flex flex-col gap-6 lg:flex-1 lg:min-w-0 lg:sticky lg:top-36 lg:self-start">
               <h2 className={css['heading-2']}>{t('getting_there.heading')}</h2>
               <div className="flex flex-col gap-3">
                 <p className={css['lead']}>{t('getting_there.lead')}</p>
                 <p className={css['body']}>{t('getting_there.body')}</p>
               </div>
             </div>
-            <div className="right">
+            <div className="right lg:flex-1 lg:min-w-0">
               <AccordionGroup
                 className="gap-6"
                 revealStagger={120}
@@ -409,6 +418,7 @@ export default function TravelGuidePage() {
                         ))}
                         <InfoTable
                           className="!rounded"
+                          stackOnMobile
                           columns={(t.raw('getting_there.air.route_table.columns') as [string, string])}
                           rows={t.raw('getting_there.air.route_table.rows') as Array<[string, string]>}
                         />
@@ -457,15 +467,15 @@ export default function TravelGuidePage() {
           </div>
 
           {/* Travel Tips + Welcome Booth cards */}
-          <RevealGroup className="mt-12 flex flex-col md:flex-row gap-6 items-stretch">
-            <Reveal delay={120} className="flex-1">
+          <RevealGroup className="mt-[48px] flex flex-col md:flex-row gap-[24px] items-stretch">
+            <Reveal delay={120} className="md:flex-1">
               <div className="h-full rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-6 flex flex-col gap-6">
                 <h3 className={css['heading-3']}>{t('getting_there.tips_heading')}</h3>
                 <Markdown className={css['prose']}>{t('getting_there.tips')}</Markdown>
                 <Markdown className={cn(css['prose'], 'mt-auto')}>{t('getting_there.tips_visa')}</Markdown>
               </div>
             </Reveal>
-            <Reveal delay={240} className="flex-1">
+            <Reveal delay={240} className="md:flex-1">
               <div className="h-full relative rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] overflow-hidden p-6 flex flex-col justify-end min-h-96">
               <Image
                 src={WelcomeBoothCard}
@@ -509,24 +519,22 @@ export default function TravelGuidePage() {
       {/* Section: Where to stay */}
       <div
         id="where-to-stay"
-        className={css['scroll-anchor']}
+        className={cn(css['scroll-anchor'], css['section-pad'])}
         style={{
           background: 'linear-gradient(to bottom, #efe7fd 0%, #fff0e6 100%)',
-          paddingTop: '4rem',
-          paddingBottom: '4rem',
         }}
       >
         {/* .section is a 3-column grid (gutter/content/gutter): gap-y only —
             an x gap would inset the content column off the global margins */}
-        <div className="section gap-y-12">
-          <div className="flex flex-col gap-6">
+        <div className="section gap-y-[48px]">
+          <div className="flex flex-col gap-[16px] md:gap-6">
             <h2 className={css['heading-2']}>{t('stay.heading')}</h2>
-            <div className="two-columns" style={{ gap: '4rem' }}>
-              <div className="left flex flex-col gap-3">
+            <div className="flex flex-col gap-[12px] md:gap-[48px] lg:flex-row lg:gap-[64px]">
+              <div className="left flex flex-col gap-3 lg:flex-1 lg:min-w-0">
                 <p className={css['lead']}>{t('stay.lead')}</p>
                 <Markdown className={css['prose']}>{t('stay.body')}</Markdown>
               </div>
-              <div className="right" style={{ marginTop: 0 }}>
+              <div className="right lg:flex-1 lg:min-w-0">
                 <Markdown className={css['prose']}>{t('stay.aside')}</Markdown>
               </div>
             </div>
@@ -536,30 +544,30 @@ export default function TravelGuidePage() {
               dropdown ladder together */}
           <RevealGroup className="flex flex-col gap-6">
             <h3 className={css['heading-3']}>{t('stay.options_heading')}</h3>
-            <div className="flex flex-col md:flex-row gap-3 items-stretch">
+            <div className="flex flex-col md:flex-row gap-[12px] items-stretch">
               {(t.raw('stay.hotels') as Array<{ name: string; body: string; cta: string }>)
                 .slice(0, HOTEL_META.length)
                 .map((hotel, i) => {
                   const meta = HOTEL_META[i]
                   return (
-                    <Reveal key={hotel.name} delay={i * 120} className="flex-1">
+                    <Reveal key={hotel.name} delay={i * 120} className="md:flex-1">
                     <a
                       href={meta.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group h-full flex flex-col justify-between gap-6 rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-6 transition-[background-color,box-shadow,transform] duration-150 [transition-timing-function:ease-out] hover:bg-white hover:shadow-md hover:scale-[1.03] active:scale-[0.97]"
+                      className="group h-full flex flex-col justify-between gap-6 rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-[20px] md:p-6 transition-[background-color,box-shadow,transform] duration-150 [transition-timing-function:ease-out] hover:bg-white hover:shadow-md hover:scale-[1.03] active:scale-[0.97]"
                     >
                       <div className="flex flex-col gap-6">
-                        <div className="h-8 flex items-start">
+                        <div className="h-[32px] flex items-start">
                           {meta.Logo ? (
-                            <meta.Logo className="h-8 w-auto" aria-label={meta.logoAlt} />
+                            <meta.Logo className="h-[32px] w-auto" aria-label={meta.logoAlt} />
                           ) : (
-                            meta.logoImg && <Image src={meta.logoImg} alt={meta.logoAlt} className="h-8 w-auto" />
+                            meta.logoImg && <Image src={meta.logoImg} alt={meta.logoAlt} className="h-[32px] w-auto" />
                           )}
                         </div>
                         <div className="flex flex-col gap-3">
                           <p className="text-xl font-extrabold leading-[1.3] text-[#1a0d33]">{hotel.name}</p>
-                          <p className="text-sm leading-5 text-[#221144]">{hotel.body}</p>
+                          <p className="text-[14px] leading-[20px] text-[#221144]">{hotel.body}</p>
                         </div>
                       </div>
                       <span className="flex items-center gap-1 text-sm font-bold text-[#7235ed] group-hover:underline">
@@ -588,8 +596,8 @@ export default function TravelGuidePage() {
 
           <div className="flex flex-col gap-6">
             <h3 className={css['heading-3']}>{t('stay.neighborhoods_heading')}</h3>
-            <div className="flex flex-col lg:flex-row gap-12 items-start">
-              <div className="w-full lg:w-[427px] lg:shrink-0">
+            <div className="flex flex-col gap-[24px] xl:flex-row xl:gap-12 items-start">
+              <div className="w-full xl:w-[427px] xl:shrink-0">
                 <AccordionGroup
                   className="!gap-3"
                   singleOpen
@@ -623,7 +631,7 @@ export default function TravelGuidePage() {
                   ]}
                 />
               </div>
-              <div className="flex-1 w-full grid grid-cols-2 gap-3 lg:sticky lg:top-36">
+              <div className="order-first xl:order-none w-full grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-[12px] xl:flex-1 xl:sticky xl:top-36">
                 {[
                   { src: CitySeaLink, alt: 'Bandra–Worli Sea Link' },
                   { src: CityTowersDusk, alt: 'High-rise towers in central Mumbai at dusk' },
@@ -635,7 +643,7 @@ export default function TravelGuidePage() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      sizes="(max-width: 1024px) 50vw, 430px"
+                      sizes="(max-width: 1279px) 50vw, 430px"
                       className="object-cover"
                     />
                   </div>
@@ -649,20 +657,22 @@ export default function TravelGuidePage() {
       {/* Section: Safety */}
       <div
         id="safety"
-        className={cn('relative', css['scroll-anchor'])}
-        style={{ background: '#fff0e6', paddingTop: '4rem', paddingBottom: '6rem' }}
+        className={cn('relative overflow-x-clip', css['scroll-anchor'], css['section-pad'], css['section-pad-safety'])}
+        style={{ background: '#fff0e6' }}
       >
         {/* Jaali fretwork along the section bottom, behind the content —
-            full strength, nudged 4px down to blend into the orange banner below */}
+            full strength, nudged 4px down to blend into the orange banner below.
+            min-w keeps the pattern legible on small screens (the section clips
+            the horizontal overhang via overflow-x-clip). */}
         <div
           aria-hidden="true"
-          className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-full max-w-[1440px] aspect-[1440/84] pointer-events-none [&_svg]:w-full [&_svg]:h-full"
+          className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-full min-w-[1080px] max-w-[1440px] aspect-[1440/84] pointer-events-none [&_svg]:w-full [&_svg]:h-full"
         >
           <JaaliBottom />
         </div>
         <div className="section relative">
-          <div className="two-columns" style={{ gap: '4rem' }}>
-            <div className="left flex flex-col gap-6">
+          <div className="flex flex-col gap-[48px] lg:flex-row lg:gap-[64px]">
+            <div className="left flex flex-col gap-6 lg:flex-1 lg:min-w-0">
               <h2 className={css['heading-2']} style={{ color: '#1a0d33' }}>
                 {t('safety.heading')}
               </h2>
@@ -675,7 +685,7 @@ export default function TravelGuidePage() {
                 <AdvisoryLinks label={t('safety.advisories_label')} names={t.raw('safety.advisories') as string[]} />
               </div>
             </div>
-            <div className="right flex flex-col gap-6" style={{ marginTop: 0 }}>
+            <div className="right flex flex-col gap-6 lg:flex-1 lg:min-w-0">
               <InfoTable
                 columns={(t.raw('safety.emergency_table.columns') as [string, string])}
                 rows={t.raw('safety.emergency_table.rows') as Array<[string, string]>}
@@ -772,14 +782,12 @@ export default function TravelGuidePage() {
       {/* Section: Culture */}
       <div
         id="culture"
-        className={css['scroll-anchor']}
+        className={cn(css['scroll-anchor'], css['section-pad'])}
         style={{
           background: 'linear-gradient(to top, #e5ebff 26%, #fbfafc 100%)',
-          paddingTop: '4rem',
-          paddingBottom: '4rem',
         }}
       >
-        <div className="section gap-y-16">
+        <div className="section gap-y-[48px] md:gap-y-[64px]">
           <div className="flex flex-col gap-6">
             <h2 className={css['heading-2']} style={{ color: '#1a0d33' }}>
               {t('culture.heading')}
@@ -789,7 +797,7 @@ export default function TravelGuidePage() {
             </h3>
             {/* One trigger for the whole grid — every set plays its ladder
                 sequentially without further scrolling */}
-            <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-12">
+            <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px] gap-y-[24px] lg:gap-y-[48px]">
               {(t.raw('culture.sights') as Array<{ title: string; body: string }>)
                 .slice(0, SIGHT_IMAGES.length)
                 .map((sight, i) => (
@@ -803,8 +811,8 @@ export default function TravelGuidePage() {
                     </Reveal>
                     <Reveal delay={i * 120 + 60} scale={false} className="min-w-0">
                       <div className="flex flex-col gap-2">
-                        <p className="text-base font-bold leading-6 text-[#1a0d33]">{sight.title}</p>
-                        <p className="text-sm leading-5 text-[#221144]">{sight.body}</p>
+                        <p className="text-[16px] font-bold leading-[24px] text-[#1a0d33]">{sight.title}</p>
+                        <p className="text-[14px] leading-[20px] text-[#221144]">{sight.body}</p>
                       </div>
                     </Reveal>
                   </div>
@@ -816,13 +824,13 @@ export default function TravelGuidePage() {
             <h3 className={css['heading-3']} style={{ color: '#1a0d33' }}>
               {t('culture.notes_heading')}
             </h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-[12px]">
               {(t.raw('culture.notes') as string[]).slice(0, NOTE_ICONS.length).map((note, i) => {
                 const NoteIcon = NOTE_ICONS[i]
                 return (
                   <div
                     key={note}
-                    className="flex items-center gap-3 pl-4 pr-5 py-5 rounded-lg outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)]"
+                    className="w-full md:w-auto flex items-center gap-[12px] p-[16px] md:pl-4 md:pr-5 md:py-5 rounded-lg outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)]"
                   >
                     <NoteIcon size={24} className="shrink-0 text-[#ff6600]" />
                     <Markdown className="text-base leading-6 text-[#221144] [&_strong]:font-bold">{note}</Markdown>
@@ -836,7 +844,7 @@ export default function TravelGuidePage() {
             <h3 className={css['heading-3']} style={{ color: '#1a0d33' }}>
               {t('culture.wear_heading')}
             </h3>
-            <div className="flex flex-col md:flex-row gap-3 items-stretch">
+            <div className="flex flex-col md:flex-row gap-[12px] items-stretch">
               {(t.raw('culture.wear') as Array<{ title: string; body: string }>)
                 .slice(0, WEAR_ICONS.length)
                 .map((item, i) => {
@@ -844,12 +852,12 @@ export default function TravelGuidePage() {
                   return (
                     <div
                       key={item.title}
-                      className="flex-1 flex flex-col gap-3 p-5 rounded-lg outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)]"
+                      className="md:flex-1 flex flex-col gap-[12px] p-[20px] rounded-lg outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)]"
                     >
                       <WearIcon size={24} className="shrink-0 text-[#ff6600]" />
                       <div className="flex flex-col gap-1">
-                        <p className="text-base font-bold leading-6 text-[#221144]">{item.title}</p>
-                        <p className="text-sm leading-5 text-[#221144]">{item.body}</p>
+                        <p className="text-[16px] font-bold leading-[24px] text-[#221144]">{item.title}</p>
+                        <p className="text-[14px] leading-[20px] text-[#221144]">{item.body}</p>
                       </div>
                     </div>
                   )
@@ -861,8 +869,8 @@ export default function TravelGuidePage() {
             <h3 className={css['heading-3']} style={{ color: '#1a0d33' }}>
               {t('culture.festivals_heading')}
             </h3>
-            <div className="two-columns" style={{ gap: '4rem' }}>
-              <div className="left flex flex-col gap-3">
+            <div className="flex flex-col gap-[48px] lg:flex-row lg:gap-[64px]">
+              <div className="left flex flex-col gap-3 lg:flex-1 lg:min-w-0">
                 <Markdown className={cn(css['prose'], '[&_strong]:text-[#7235ed]')}>{t('culture.diwali_1')}</Markdown>
                 <p className={css['body']}>{t('culture.diwali_2')}</p>
                 <p className={css['body']}>{t('culture.diwali_3')}</p>
@@ -872,7 +880,7 @@ export default function TravelGuidePage() {
                 <p className={css['body']}>{t('culture.bollywood_2')}</p>
                 <Markdown className={css['prose']}>{t('culture.bollywood_3')}</Markdown>
               </div>
-              <div className="right" style={{ marginTop: 0 }}>
+              <div className="right lg:flex-1 lg:min-w-0">
                 <VideoPlayer
                   src="/travel-guide/nidzi-local-culture.mp4"
                   title="Must-dos when visiting India, by @nidhisinghattri"
@@ -901,12 +909,13 @@ export default function TravelGuidePage() {
       {/* Section: Payments & Crypto */}
       <div
         id="payments"
-        className={css['scroll-anchor']}
-        style={{ background: '#e5ebff', paddingTop: '4rem', paddingBottom: '4rem' }}
+        className={cn(css['scroll-anchor'], css['section-pad'])}
+        style={{ background: '#e5ebff' }}
       >
         <div className="section">
-          <div className="two-columns" style={{ gap: '4rem' }}>
-            <div className="left flex flex-col gap-6">
+          {/* Single column at both new tiers — only the full desktop splits */}
+          <div className="flex flex-col gap-[24px] md:gap-[48px] xl:flex-row xl:gap-[64px]">
+            <div className="left flex flex-col gap-6 xl:flex-1 xl:min-w-0">
               <h2 className={css['heading-2']}>{t('payments.heading')}</h2>
               <div className="flex flex-col gap-3">
                 <h3 className={css['heading-3']} style={{ color: '#1a0d33' }}>
@@ -925,8 +934,8 @@ export default function TravelGuidePage() {
                 ]}
               />
             </div>
-            <div className="right" style={{ marginTop: 0 }}>
-              <div className="relative rounded-2xl outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)] p-8 flex flex-col gap-6">
+            <div className="right xl:flex-1 xl:min-w-0">
+              <div className="relative rounded-2xl outline outline-1 outline-white/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-[6px] shadow-[0px_2px_8px_0px_rgba(34,17,68,0.06),0px_1px_2px_0px_rgba(34,17,68,0.1)] p-[24px] md:p-[32px] flex flex-col gap-6">
                 <h3 className={css['heading-3']}>{t('payments.digital_heading')}</h3>
                 <div className="flex flex-col gap-3">
                   <p className={css['body']}>{t('payments.digital_1')}</p>
@@ -941,12 +950,10 @@ export default function TravelGuidePage() {
       {/* Section: Side events & Community */}
       <div
         id="events"
-        className={cn('relative', css['scroll-anchor'])}
+        className={cn('relative', css['scroll-anchor'], css['section-pad'])}
         style={{
           background:
             'linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.2) 100%), linear-gradient(to bottom, #eeadfc 0%, #ffed7a 100%)',
-          paddingTop: '4rem',
-          paddingBottom: '4rem',
         }}
       >
         {/* Jaali fretwork on the right edge, behind the content — aspect kept
@@ -959,8 +966,8 @@ export default function TravelGuidePage() {
           <JaaliSide />
         </div>
         <div className="section relative">
-          <div className="two-columns lg:items-center" style={{ gap: '4rem' }}>
-            <div className="left flex flex-col gap-6 items-start">
+          <div className="flex flex-col gap-[24px] lg:flex-row lg:gap-[64px] lg:items-center">
+            <div className="left flex flex-col gap-[16px] md:gap-6 items-start lg:flex-1 lg:min-w-0">
               <h2 className={css['heading-2']}>{t('events.heading')}</h2>
               <div className="flex flex-col gap-3">
                 <p className={css['lead']}>{t('events.lead')}</p>
@@ -972,9 +979,11 @@ export default function TravelGuidePage() {
                 <ArrowRight size={16} />
               </Link>
             </div>
-            <div className="right" style={{ marginTop: 0 }}>
-              <div className="flex flex-col gap-3 h-[430px]">
-                <div className="relative flex-1 rounded-2xl overflow-hidden">
+            {/* Images sit above the text when stacked; the large hackathon
+                image only exists in the side-by-side layout */}
+            <div className="right order-first lg:order-none lg:flex-1 lg:min-w-0">
+              <div className="flex flex-col gap-[12px] lg:h-[430px]">
+                <div className="hidden lg:block relative lg:flex-1 rounded-2xl overflow-hidden">
                   <Image
                     src={RtdHackathon}
                     alt={t('events.image_alt_1')}
@@ -983,8 +992,9 @@ export default function TravelGuidePage() {
                     className="object-cover"
                   />
                 </div>
-                <div className="flex-1 flex gap-3 min-h-0">
-                  <div className="relative flex-1 rounded-2xl overflow-hidden">
+                <div className="flex gap-[12px] h-[220px] lg:h-auto lg:flex-1 lg:min-h-0">
+                  {/* Mobile flips the emphasis: wide image first (250/128 @430) */}
+                  <div className="relative w-2/3 md:w-auto md:flex-1 rounded-2xl overflow-hidden">
                     <Image
                       src={RtdMeetup}
                       alt={t('events.image_alt_2')}
@@ -993,13 +1003,22 @@ export default function TravelGuidePage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="relative w-2/3 rounded-2xl overflow-hidden">
+                  <div className="relative flex-1 md:flex-none md:w-2/3 rounded-2xl overflow-hidden">
+                    {/* Mobile shows the hackathon hall here (the design drops
+                        the group photo); md+ shows the group photo as before */}
+                    <Image
+                      src={RtdHackathon}
+                      alt={t('events.image_alt_1')}
+                      fill
+                      sizes="33vw"
+                      className="object-cover md:hidden"
+                    />
                     <Image
                       src={RtdGroup}
                       alt={t('events.image_alt_3')}
                       fill
                       sizes="(max-width: 1024px) 60vw, 417px"
-                      className="object-cover object-bottom"
+                      className="object-cover object-bottom hidden md:block"
                     />
                   </div>
                 </div>

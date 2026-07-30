@@ -16,7 +16,7 @@ type VenueDetailsProps = {
 export const VenueDetails = ({ support }: VenueDetailsProps) => {
   const t = useTranslations('home.venue')
   return (
-    <div className="bg-[#ffa366] flex flex-col md:flex-row items-center justify-center px-6 py-3 text-[#221144] text-sm leading-5 gap-x-4 gap-y-1 text-center">
+    <div className="bg-[#ffa366] flex flex-col md:flex-row md:flex-wrap items-center justify-center px-6 py-[12px] text-[#221144] text-[14px] leading-[20px] gap-x-4 gap-y-[8px] md:gap-y-1 text-center">
       <span className="flex items-center gap-2">
         <strong className="font-bold">{t('label_venue')}</strong>
         <a
@@ -26,11 +26,11 @@ export const VenueDetails = ({ support }: VenueDetailsProps) => {
           aria-label={t('name')}
           className="inline-flex items-center shrink-0"
         >
-          <Image src={JwcLogo} alt={t('name')} className="h-7 w-auto shrink-0" />
+          <Image src={JwcLogo} alt={t('name')} className="h-[28px] w-auto shrink-0" />
         </a>
       </span>
-      {/* Dates: hidden on tablet and below. Click opens the add-to-calendar popover. */}
-      <span className="hidden lg:inline">
+      {/* Click opens the add-to-calendar popover */}
+      <span>
         <strong className="font-bold">{t('label_dates')}</strong>{' '}
         <AddToCalendarPopover popoverPosition="bottom">
           {({ toggle }) => (
@@ -45,8 +45,7 @@ export const VenueDetails = ({ support }: VenueDetailsProps) => {
         </AddToCalendarPopover>
       </span>
       <span>
-        {/* "Address:" label hidden on tablet and below */}
-        <strong className="font-bold hidden lg:inline">{t('label_address')}</strong>{' '}
+        <strong className="font-bold">{t('label_address')}</strong>{' '}
         <a
           href={MAP_URL}
           target="_blank"

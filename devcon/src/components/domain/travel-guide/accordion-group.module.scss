@@ -43,6 +43,10 @@ $hairline: rgba(34, 17, 68, 0.1);
   cursor: pointer;
   text-align: left;
   font-family: inherit;
+
+  @media (max-width: 767px) {
+    padding: 20px;
+  }
 }
 
 .item-open .trigger {
@@ -101,6 +105,10 @@ $hairline: rgba(34, 17, 68, 0.1);
 
 .content {
   padding: 0 24px 24px;
+
+  @media (max-width: 767px) {
+    padding: 0 20px 20px;
+  }
 
   /* Hairline between the header and the panel body. Shown/hidden instantly
      with the open state — while collapsing, the panel must not carry the
