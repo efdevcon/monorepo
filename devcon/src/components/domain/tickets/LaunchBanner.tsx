@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import Image from 'next/image'
 import DevconGlyph from './eth-glyph.png'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useGaSaleState, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useGaSaleState, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
 
 // "JUL 14" / "16:00" (UTC) — second eyebrow line under GLOBAL TICKET LAUNCH.
@@ -65,8 +65,52 @@ export function LaunchBanner() {
   const saleState = useGaSaleState()
   const now = useNow()
   const storeUrl = useTicketsStoreUrl()
+  const offer = useSpecialOffer()
 
-  if (!mounted || !featured) return null
+  if (!mounted) return null
+
+  // Special voucher promo (config/waves.ts): repurposes the banner to promote
+  // the 11%-off voucher until the offer expires, then falls back to the
+  // regular launch banner. The CTA routes to the store (like the live-sale
+  // banner does) — the store's GA card carries the actual redeem deep-link.
+  if (offer.active) {
+    return (
+      <div
+        className="relative overflow-hidden rounded-2xl border-2 border-solid border-[#ffa366] shadow-[0_20px_25px_-5px_rgba(22,11,43,0.1),0_8px_10px_-6px_rgba(22,11,43,0.1)]"
+        style={{ background: 'linear-gradient(180deg, #1A0D33 0%, #45326C 100%)' }}
+      >
+        <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <Image src={DevconGlyph} alt="" className="h-[354px] w-[208px] select-none opacity-10" />
+        </div>
+        <div className="relative flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between md:gap-8 md:px-8 md:py-6">
+          <div className="flex flex-col gap-2">
+            <p className="text-2xl font-extrabold leading-none tracking-[-1px] text-white [text-shadow:0_1px_2px_rgba(34,17,68,0.2)] md:text-[32px]">
+              {t('special_heading')}
+            </p>
+            <p className="text-sm leading-none text-[#f2f1f4]">
+              {t('special_subheading', { date: DAY_MONTH_FORMATTER.format(offer.endsAt) })}
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
+            <div className="flex flex-row items-center justify-between gap-2 md:flex-col md:items-end">
+              <p className="text-2xl font-extrabold leading-none tracking-[-1px] text-white [text-shadow:0_1px_2px_rgba(34,17,68,0.2)] md:text-[32px]">
+                {t('special_price')}
+              </p>
+              <p className="text-sm leading-none text-[#f2f1f4] md:text-right">{t('special_price_note')}</p>
+            </div>
+            <NextLink
+              href={storeUrl}
+              className="inline-flex h-12 min-h-9 w-full items-center justify-center whitespace-nowrap rounded-full border border-solid border-[#7235ed] bg-[#7235ed] px-8 py-4 text-xl font-bold leading-none text-[#f9f8fa] transition-colors hover:bg-[#6028cc] md:w-auto"
+            >
+              {t('special_cta')}
+            </NextLink>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (!featured) return null
 
   const { wave, status, upcoming } = featured
   // The live "on sale" card only renders once the sale is actually 'open'.

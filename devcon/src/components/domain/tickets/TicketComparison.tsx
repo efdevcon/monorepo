@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'components/common/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
-import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 
 type IconKind = 'check' | 'asterisk'
@@ -68,11 +68,17 @@ const UPCOMING_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
 const GeneralAdmissionStatusTag = () => {
   const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
+  const offer = useSpecialOffer()
 
   // Renders through the same StatusTag as the other columns so all tags
   // share identical typography — only the label varies.
   if (!mounted) {
     return <StatusTag status="coming" openLabel="" comingLabel={' '} />
+  }
+  // Special voucher promo: GA is purchasable via the voucher, so the tag goes
+  // green instead of the contradictory gray "REOPENS …" label.
+  if (offer.active) {
+    return <StatusTag status="open" openLabel="11% OFF" comingLabel="" />
   }
   if (featured?.status === 'live') {
     return <StatusTag status="open" openLabel="OPEN" comingLabel="" />
@@ -249,6 +255,7 @@ export function TicketComparison() {
   const waveStates = useWaveStates()
   const { launched } = useIsLaunched()
   const storeUrl = useTicketsStoreUrl()
+  const offer = useSpecialOffer()
 
   // Inject live wave state into the General Admission column so the price /
   // status / CTA always reflect the currently-featured wave instead of the
@@ -276,6 +283,14 @@ export function TicketComparison() {
     if (paused) {
       const ethPrice = paused.wave.ethPrice ?? paused.wave.price
       const fiatPrice = paused.wave.fiatPrice
+      // Special voucher promo: GA is purchasable via the voucher while the
+      // regular sale is paused — show the store CTA like the live state (the
+      // status tag reads "11% OFF" via GeneralAdmissionStatusTag; the store's
+      // GA card carries the actual redeem deep-link). Otherwise hide the CTA
+      // and show the paused label.
+      const offerProps = offer.active
+        ? { hide_cta: false, cta_label: 'Get tickets', cta_href: storeUrl }
+        : { hide_cta: true }
       return {
         ...col,
         status: 'coming',
@@ -284,7 +299,7 @@ export function TicketComparison() {
         price_original: undefined,
         price_note: fiatPrice ? `${ethPrice} via ETH • ${fiatPrice} via Fiat` : paused.wave.name,
         price_description: undefined,
-        hide_cta: true,
+        ...offerProps,
       }
     }
     if (!featured) {

@@ -8,7 +8,7 @@ import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
 import { LaunchBanner } from 'components/domain/tickets/LaunchBanner'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
-import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsCtaLabel, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsCtaLabel, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 import { useNow } from 'hooks/useNow'
 import { getFaqData } from 'services/faq'
@@ -121,10 +121,14 @@ function formatUpcomingMonth(d: Date): string {
 function GeneralAdmissionTag() {
   const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
+  const offer = useSpecialOffer()
 
   // Renders through the same StatusTag as the Community / Applications cards
   // so all three tags share identical typography — only the label varies.
   if (!mounted) return <StatusTag status="coming" openLabel="" comingLabel={' '} />
+  // Special voucher promo: GA IS purchasable right now (via the voucher), so
+  // the tag goes green instead of the contradictory gray "REOPENS …" label.
+  if (offer.active) return <StatusTag status="open" openLabel="11% OFF" comingLabel="" />
   if (featured?.status === 'live') return <StatusTag status="open" openLabel="OPEN" comingLabel="" />
 
   let label = 'CLOSED'
@@ -153,6 +157,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const resolvedFaqItems = useStandardFaqItems(faqItems)
   const { label: ctaLabel, isLive } = useTicketsCtaLabel()
   const storeUrl = useTicketsStoreUrl()
+  const offer = useSpecialOffer()
 
   const navLinks = [
     { title: t('nav.overview'), to: '#overview' },
@@ -215,7 +220,21 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
       // without an openLabel.
       row.date = w.openLabel ?? (upcoming ? `Opens ${DAY_MONTH_FORMATTER.format(upcoming)}` : undefined)
     } else if (status === 'closed') {
-      if (paused) {
+      if (paused && offer.active) {
+        // GA sale paused, but the special voucher promo makes the ticket
+        // purchasable right now at 11% off — route to the store (same as the
+        // live state) instead of the contradictory "Reopens …" label, and
+        // call out the discount under the row so the full prices above don't
+        // read as the final price. The store's GA card carries the actual
+        // redeem deep-link.
+        row.action = 'Get tickets'
+        row.actionHref = storeUrl
+        row.actionNote = (
+          <p className="text-xs font-semibold leading-4 text-[#7235ed] whitespace-nowrap">
+            11% off until {DAY_MONTH_FORMATTER.format(offer.endsAt)}
+          </p>
+        )
+      } else if (paused) {
         // GA sale paused (coming-soon / closed). Show the paused label
         // ("Reopens Aug" / "Sold out") in the status slot, hide the CTA, and
         // keep the price visible and un-struck — the sale is paused, not retired.

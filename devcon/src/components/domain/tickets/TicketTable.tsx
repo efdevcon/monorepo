@@ -25,6 +25,11 @@ export interface TicketRow {
   // for the featured-but-not-yet-live wave: the countdown sits where the
   // "Get tickets" button would be once the wave opens.
   actionCountdown?: string
+  // Small annotation rendered directly beneath the action/status slot inside
+  // the STATUS column (e.g. "11% off until Aug 11" under "Get tickets").
+  // Unlike `richContent` it lives inside the main row, so the ETH/FIAT column
+  // backgrounds stretch to cover it.
+  actionNote?: React.ReactNode
   // Expandable content rendered below the row when the user clicks it.
   // Setting this makes the entire row clickable to toggle expansion; the
   // action link (if any) stops propagation so it still navigates normally.
@@ -283,7 +288,10 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                 <div className={`w-[88px] shrink-0 self-stretch ${fiatCellBg} flex items-center justify-center`}>
                   {fiatContent}
                 </div>
-                <div className="w-[140px] shrink-0 flex items-center justify-end">{actionSlot}</div>
+                <div className="w-[140px] shrink-0 flex flex-col items-end justify-center gap-0.5 py-2">
+                  {actionSlot}
+                  {row.actionNote}
+                </div>
               </div>
               {/* Mobile row */}
               <div className="md:hidden flex flex-col gap-3 p-4">
@@ -293,7 +301,12 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                     {ethPill}
                     {fiatPill}
                   </div>
-                  {actionSlot && <div className="ml-auto shrink-0">{actionSlot}</div>}
+                  {actionSlot && (
+                    <div className="ml-auto shrink-0 flex flex-col items-end gap-0.5">
+                      {actionSlot}
+                      {row.actionNote}
+                    </div>
+                  )}
                 </div>
               </div>
             </>

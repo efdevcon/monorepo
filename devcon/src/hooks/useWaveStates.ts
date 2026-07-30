@@ -6,11 +6,29 @@ import {
   GA_COMING_SOON_OPENS_AT,
   GA_COMING_SOON_LABEL,
   GA_CLOSED_LABEL,
+  GA_REOPENS_AT,
+  SPECIAL_OFFER,
   TICKET_WAVES,
   type GaSaleState,
   type TicketWave,
 } from 'config/waves'
+import { pretixEventUrl } from 'config/ticketing'
 import { useNow } from './useNow'
+
+/**
+ * Special voucher promo state (config/waves.ts SPECIAL_OFFER). `active` is
+ * false before hydration (useNow → null) and after `endsAt`, so surfaces
+ * automatically revert to the regular wave rendering when the offer expires.
+ * `url` is the Pretix redeem deep-link with the voucher pre-applied.
+ */
+export function useSpecialOffer(): { active: boolean; url: string; endsAt: Date } {
+  const now = useNow()
+  return {
+    active: SPECIAL_OFFER.active && !!now && now.getTime() < SPECIAL_OFFER.endsAt.getTime(),
+    url: pretixEventUrl(`/redeem?voucher=${encodeURIComponent(SPECIAL_OFFER.voucherCode)}`),
+    endsAt: SPECIAL_OFFER.endsAt,
+  }
+}
 
 export type WaveStatus = 'live' | 'countdown' | 'closed' | 'tbd'
 
@@ -137,20 +155,27 @@ export function useWaveStates(): WaveState[] {
 
 /**
  * Current General Admission sale state: 'open' | 'coming-soon' | 'closed'.
- * Driven by the single GA_SALE_STATE config switch, with `?mockNow=…` overriding
- * it for previews:
- *   ?mockNow=launch | open    → 'open'
- *   ?mockNow=coming-soon|soon → 'coming-soon'
- *   ?mockNow=closed           → 'closed'
- * (the same params also advance the clock in `useNow`). When paused, the GA
- * row/tags show the state's label and the CTA is hidden across /tickets.
+ * Driven by the single GA_SALE_STATE config switch, with two overrides:
+ *   1. `?mockNow=…` state shorthands for previews:
+ *        ?mockNow=launch | open    → 'open'
+ *        ?mockNow=coming-soon|soon → 'coming-soon'
+ *        ?mockNow=closed           → 'closed'
+ *      (the same params also advance the clock in `useNow`).
+ *   2. The scheduled reopen (GA_REOPENS_AT): once the clock passes it, the
+ *      state reads 'open' automatically — no deploy needed on reopen day.
+ *      Date-style mocks (`?mockNow=aug12`) trip this too, so the post-reopen
+ *      site can be previewed without a config edit.
+ * When paused, the GA row/tags show the state's label and the CTA is hidden
+ * across /tickets.
  */
 export function useGaSaleState(): GaSaleState {
   const router = useRouter()
+  const now = useNow()
   const m = typeof router.query.mockNow === 'string' ? router.query.mockNow.toLowerCase() : null
   if (m === 'closed') return 'closed'
   if (m === 'coming-soon' || m === 'comingsoon' || m === 'soon') return 'coming-soon'
   if (m === 'launch' || m === 'open') return 'open'
+  if (GA_REOPENS_AT && now && now.getTime() >= GA_REOPENS_AT.getTime()) return 'open'
   return GA_SALE_STATE
 }
 
@@ -214,8 +239,12 @@ export function useFeaturedWave(): FeaturedWaveResult {
  */
 export function useTicketsCtaLabel(): { label: 'Get tickets' | 'View tickets'; isLive: boolean } {
   const { featured } = useFeaturedWave()
+  const offer = useSpecialOffer()
   const isLive = featured?.status === 'live'
-  return { label: isLive ? 'Get tickets' : 'View tickets', isLive }
+  // Active "Get tickets" whenever buying is possible right now — a live sale
+  // OR the special voucher promo; passive "View tickets" otherwise. `isLive`
+  // keeps its strict meaning (regular sale live) for gating logic.
+  return { label: isLive || offer.active ? 'Get tickets' : 'View tickets', isLive }
 }
 
 const INTERNAL_STORE_URL = '/tickets/store'

@@ -2,16 +2,21 @@ import React from 'react'
 import NextLink from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useSpecialOffer } from 'hooks/useWaveStates'
 
 export const EarlyBirdBanner = () => {
   const t = useTranslations('home.early_bird')
   const { featured, mounted } = useFeaturedWave()
   const waveStates = useWaveStates()
   const { label: ctaLabel } = useTicketsCtaLabel()
+  const offer = useSpecialOffer()
 
-  const showLive = featured?.status === 'live'
-  const showCountdown = featured?.status === 'countdown'
+  // Tickets ARE purchasable during the special voucher promo, so the banner
+  // reads "available now" then too — "coming soon" next to a "Get tickets"
+  // button would contradict the site-wide 11%-off messaging (which the strip,
+  // hero and /tickets surfaces already carry; no need to repeat it here).
+  const showLive = featured?.status === 'live' || offer.active
+  const showCountdown = !showLive && featured?.status === 'countdown'
   // Mirror the header Strip / hero: when no wave is live or counting down, fall
   // back to the next wave that's announced but has no exact open time yet.
   const upcomingTbd = !showLive && !showCountdown ? waveStates.find(s => s.status === 'tbd') : undefined

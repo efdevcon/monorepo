@@ -9,7 +9,7 @@ import IconTelegram from 'assets/icons/telegram.svg'
 import IconEmail from 'assets/icons/ui-email.svg'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
-import { useFeaturedWave, useWaveStates } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useSpecialOffer } from 'hooks/useWaveStates'
 import { useNow } from 'hooks/useNow'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -20,6 +20,13 @@ const HERO_DATE_FORMATTER = new Intl.DateTimeFormat('en', {
   hour: '2-digit',
   minute: '2-digit',
   hour12: false,
+  timeZone: 'UTC',
+})
+
+// "Aug 11" — special-offer end date in the eyebrow.
+const OFFER_ENDS_FORMATTER = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  day: 'numeric',
   timeZone: 'UTC',
 })
 
@@ -61,6 +68,8 @@ export const Hero = () => {
     ? waveStates.find(s => s.status === 'tbd')
     : undefined
   const parts = showCountdown && featured?.upcoming && now ? splitCountdown(featured.upcoming, now) : null
+  // Special voucher promo: takes over the widget until it expires (config/waves.ts).
+  const { active: showOffer, endsAt: offerEndsAt } = useSpecialOffer()
 
   return (
     <div className="relative w-full h-[90vh] md:h-screen overflow-hidden">
@@ -115,6 +124,17 @@ export const Hero = () => {
                       <p className="text-xs font-semibold text-center tracking-[2px] uppercase leading-4">Coming soon</p>
                       <div className="w-full min-h-[44px]" />
                     </div>
+                  ) : showOffer ? (
+                    <div className="flex flex-col gap-3 items-center">
+                      <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-4">
+                        {t('special_offer_eyebrow', { date: OFFER_ENDS_FORMATTER.format(offerEndsAt) })}
+                      </p>
+                      <div className="flex items-center justify-center w-full min-h-[44px]">
+                        <p className="text-2xl font-extrabold text-white text-center leading-[28.8px] tracking-[-0.5px]">
+                          {t('special_offer_title')}
+                        </p>
+                      </div>
+                    </div>
                   ) : showCountdown && featured ? (
                     <div className="flex flex-col gap-3 items-center">
                       <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-4">
@@ -164,13 +184,23 @@ export const Hero = () => {
                       </div>
                     </div>
                   )}
+                  {showOffer && (
+                    <p className="text-xs text-[#9188a2] text-right leading-4 -mt-2">{t('special_offer_gst_note')}</p>
+                  )}
                 </div>
 
+                {/* Always route to /tickets (not straight to Pretix), so buyers
+                    see every ticket type they may be eligible for; the offer
+                    banner at the top of that page carries the journey on
+                    (→ store → Pretix redeem). */}
                 <NextLink
                   href="/tickets"
                   className="bg-[#7235ed] hover:bg-[#6028cc] transition-colors text-[#f9f8fa] font-bold text-sm leading-none rounded-full min-h-8 py-2 pl-4 pr-3 flex gap-1 items-center justify-center w-full"
                 >
-                  {showLive ? t('get_tickets_button') : t('view_tickets_button')}
+                  {/* "Get tickets" whenever buying is possible right now (live
+                      sale OR active voucher promo); passive "View tickets"
+                      only when nothing is purchasable. */}
+                  {showOffer || showLive ? t('get_tickets_button') : t('view_tickets_button')}
                   <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
                 </NextLink>
               </div>

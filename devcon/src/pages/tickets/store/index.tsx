@@ -84,7 +84,7 @@ import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import { GA_CLOSED_LABEL } from 'config/waves'
-import { useIsLaunched, useGaSaleState } from 'hooks/useWaveStates'
+import { useIsLaunched, useGaSaleState, useSpecialOffer } from 'hooks/useWaveStates'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -255,6 +255,10 @@ function StoreContent({
   const gaSaleState = useGaSaleState()
   const gaClosed = gaSaleState === 'closed'
   const gaOpen = gaSaleState === 'open'
+  // Special voucher promo (config/waves.ts): while the regular GA sale is
+  // paused, the GA card sells via the voucher deep-link at 11% off instead of
+  // showing the dead-end "Reopens …" badge. Expires with the offer.
+  const offer = useSpecialOffer()
 
   const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
   // False until the client catalog fetch resolves. The page no longer has
@@ -513,7 +517,9 @@ function StoreContent({
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Sale Waves</h3>
-                  {gaClosed ? (
+                  {gaClosed && offer.active ? (
+                    <span className={css['open-badge']}>11% OFF</span>
+                  ) : gaClosed ? (
                     <span className={css['opens-badge']}>{GA_CLOSED_LABEL}</span>
                   ) : gaOpen && launched ? (
                     <span className={css['open-badge']}>OPEN</span>
@@ -541,7 +547,14 @@ function StoreContent({
                         price alongside — two payment options, not a discount
                         strikethrough. */}
                     <CardPrice eth={`$${gaPrice}`} fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined} />
-                    {gaClosed ? (
+                    {gaClosed && offer.active ? (
+                      // Ethereum-turns-11 promo: the voucher deep-link is the
+                      // purchase path while the regular sale is paused.
+                      <a href={offer.url} className={css['checkout-pill']}>
+                        <TicketPercent size={16} strokeWidth={2} />
+                        Redeem 11% off
+                      </a>
+                    ) : gaClosed ? (
                       <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
                     ) : !gaOpen || !launched ? (
                       <span className={css['opens-label']}>Opens July</span>

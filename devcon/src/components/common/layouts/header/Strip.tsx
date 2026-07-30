@@ -3,8 +3,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useWaveStates, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useSpecialOffer } from 'hooks/useWaveStates'
 import { CountdownText } from 'components/common/CountdownText'
+
+// "Aug 11" — special-offer end date in the strip message.
+const OFFER_ENDS_FORMATTER = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+})
 
 export const Strip = () => {
   const t = useTranslations('common.strip')
@@ -14,10 +21,15 @@ export const Strip = () => {
   const { label: ctaLabel } = useTicketsCtaLabel()
   const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
 
+  // Special voucher promo (config/waves.ts): strip advertises the offer until
+  // it expires. The CTA still routes to /tickets (not straight to Pretix), so
+  // buyers see every ticket type they may be eligible for first.
+  const { active: showOffer, endsAt: offerEndsAt } = useSpecialOffer()
+
   if (isTickets) return null
 
-  const showCountdown = featured?.status === 'countdown' && featured.countdown
-  const showLive = featured?.status === 'live'
+  const showCountdown = !showOffer && featured?.status === 'countdown' && featured.countdown
+  const showLive = !showOffer && featured?.status === 'live'
   // Current wave paused (coming-soon / closed) — keep the strip on it (e.g.
   // "General Admission — Reopens Aug") rather than the generic message.
   const showPaused = !showCountdown && !showLive && !!featured?.paused
@@ -28,9 +40,16 @@ export const Strip = () => {
   const upcomingTbd = !showCountdown && !showLive && !showPaused
     ? waveStates.find(s => s.status === 'tbd')
     : undefined
-  // "On sale" when live; "Coming soon" while counting down or paused
-  // (coming-soon / closed both read as reopening); generic otherwise.
-  const badge = showLive ? t('badge_live') : showCountdown || showPaused ? t('badge_countdown') : t('badge')
+  // "Special offer" during the promo; "On sale" when live; "Coming soon" while
+  // counting down or paused (coming-soon / closed both read as reopening);
+  // generic otherwise.
+  const badge = showOffer
+    ? t('special_badge')
+    : showLive
+    ? t('badge_live')
+    : showCountdown || showPaused
+    ? t('badge_countdown')
+    : t('badge')
 
   return (
     <div id="strip" className="bg-[#1a0d33] w-full">
@@ -51,7 +70,9 @@ export const Strip = () => {
                 mounted ? '' : 'invisible'
               }`}
             >
-              {showCountdown && featured ? (
+              {showOffer ? (
+                <>{t('special_message', { date: OFFER_ENDS_FORMATTER.format(offerEndsAt) })}</>
+              ) : showCountdown && featured ? (
                 <>
                   {featured.wave.name} tickets available in <CountdownText value={featured.countdown} />
                 </>
