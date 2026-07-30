@@ -126,7 +126,9 @@ export const Hero = () => {
                     </div>
                   ) : showOffer ? (
                     <div className="flex flex-col gap-3 items-center">
-                      <p className="text-xs font-semibold text-[#ffa366] text-center tracking-[2px] uppercase leading-4">
+                      {/* Green "on sale" accent (not the orange coming-soon one):
+                          tickets are purchasable right now via the voucher. */}
+                      <p className="text-xs font-semibold text-[#aaeaba] text-center tracking-[2px] uppercase leading-4">
                         {t('special_offer_eyebrow', { date: OFFER_ENDS_FORMATTER.format(offerEndsAt) })}
                       </p>
                       <div className="flex items-center justify-center w-full min-h-[44px]">
