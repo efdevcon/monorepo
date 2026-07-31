@@ -9,6 +9,7 @@ import { validateVoucher, getTicketPurchaseInfo } from 'services/pretix'
 import { setVoucherEmail, setVoucherEmailSent } from 'services/discountStore'
 import { getTransporter, sendWithRetry, DEFAULT_FROM } from 'services/mailer'
 import { pretixEventUrl } from 'config/ticketing'
+import { EMAIL_HEADER_ROW, EMAIL_COLOR_SCHEME_META } from "services/emailLayout"
 
 // Dedup: prevent the same voucher+email combo from being sent twice
 // (Self SDK posts the proof twice, both requests trigger trySendEmail)
@@ -29,8 +30,7 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light" />
-  <meta name="supported-color-schemes" content="light" />
+${EMAIL_COLOR_SCHEME_META}
   <title>Your Devcon India Voucher Code</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f5f3f7; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -38,12 +38,7 @@ function buildEmailHtml(voucherCode: string, discountedPrice: string, originalPr
     <tr>
       <td align="center">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
-          <!-- Header -->
-          <tr>
-            <td style="padding: 0;">
-              <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
-            </td>
-          </tr>
+${EMAIL_HEADER_ROW}
           <!-- Body -->
           <tr>
             <td style="padding: 32px;">

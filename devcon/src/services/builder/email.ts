@@ -4,6 +4,7 @@
 
 import { sendMail } from 'services/mailer'
 import { pretixEventUrl } from 'config/ticketing'
+import { EMAIL_HEADER_ROW, EMAIL_COLOR_SCHEME_META, emailEyebrow } from 'services/emailLayout'
 
 // Escape applicant-supplied text before interpolating it into the email HTML.
 function escapeHtml(s: string): string {
@@ -20,6 +21,7 @@ function buildApprovalHtml(name: string, voucherCode: string): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+${EMAIL_COLOR_SCHEME_META}
   <title>Your Sanctuary Tech Builder application has been approved</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f5f3f7; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -27,18 +29,11 @@ function buildApprovalHtml(name: string, voucherCode: string): string {
     <tr>
       <td align="center">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
-          <!-- Header -->
-          <tr>
-            <td style="background: #1a0d33 url('https://devcon.org/email/header-bg.png') center/cover no-repeat; padding: 32px 32px 24px; text-align: center;">
-              <img src="https://devcon.org/email/devcon-logo-white.svg" alt="Devcon 8 India" width="149" height="64" style="display: inline-block; max-width: 149px;" />
-              <p style="margin: 12px 0 0; font-size: 14px; color: #ffffff;">
-                Sanctuary Tech Builders application update
-              </p>
-            </td>
-          </tr>
+${EMAIL_HEADER_ROW}
           <!-- Body -->
           <tr>
             <td style="padding: 32px;">
+${emailEyebrow('Sanctuary Tech Builders application update')}
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 ${greeting}
               </p>
@@ -105,6 +100,7 @@ function buildRejectionHtml(name: string): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+${EMAIL_COLOR_SCHEME_META}
   <title>Your Devcon Builder Application</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f5f3f7; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -112,18 +108,11 @@ function buildRejectionHtml(name: string): string {
     <tr>
       <td align="center">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 560px; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(22, 11, 43, 0.08);">
-          <!-- Header -->
-          <tr>
-            <td style="padding: 0;">
-              <img src="https://devcon.org/email/email-header.png" alt="Devcon 8 India" width="560" style="display: block; width: 100%; max-width: 560px; height: auto;" />
-            </td>
-          </tr>
+${EMAIL_HEADER_ROW}
           <!-- Body -->
           <tr>
             <td style="padding: 32px;">
-              <p style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #7235ed; text-transform: uppercase; letter-spacing: 1px; text-align: center;">
-                Sanctuary Tech Builders application update
-              </p>
+${emailEyebrow('Sanctuary Tech Builders application update')}
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 ${greeting}
               </p>
