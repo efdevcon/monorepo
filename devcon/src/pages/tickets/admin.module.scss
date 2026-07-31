@@ -20,7 +20,9 @@
   border: 1px solid #dddae2;
   border-radius: 16px;
   padding: 40px;
-  max-width: 400px;
+  /* Roomy on purpose: the passwords are long, so the field gets the full card
+     width and the submit button sits below it rather than beside it. */
+  max-width: 520px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -36,25 +38,62 @@
 
 .login-form {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.login-input {
+/* Input + reveal toggle share one bordered box, so the eye sits inside the
+   field rather than next to the Enter button. */
+.login-field {
   flex: 1;
-  padding: 10px 14px;
+  display: flex;
+  align-items: center;
   border: 1px solid #dddae2;
   border-radius: 8px;
-  font-size: 14px;
-  font-family: inherit;
-  outline: none;
+  background: white;
 
-  &:focus {
+  &:focus-within {
     border-color: #7235ed;
   }
 }
 
+/* Monospace + letter-spacing so a long random secret can actually be read
+   back character by character when revealed. */
+.login-input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  letter-spacing: 0.2px;
+  outline: none;
+
+  &::placeholder {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    letter-spacing: normal;
+  }
+}
+
+.login-reveal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px 0 4px;
+  border: none;
+  background: none;
+  color: #594d73;
+  cursor: pointer;
+
+  &:hover {
+    color: #160b2b;
+  }
+}
+
 .login-btn {
-  padding: 10px 20px;
+  padding: 12px 20px;
   background: #7235ed;
   color: #f9f8fa;
   border: none;
@@ -68,6 +107,19 @@
   &:hover {
     opacity: 0.9;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+.login-hint {
+  color: #594d73;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  margin: -12px 0 0;
 }
 
 .login-error {
@@ -109,6 +161,43 @@
   border-radius: 4px;
   background: #7235ed;
   color: #f9f8fa;
+}
+
+/* Access level of the password in use. Read-only is amber and loud (it
+   explains all the missing buttons); admin is a quiet dark chip. */
+.role-badge-admin,
+.role-badge-readonly {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.role-badge-admin {
+  background: #160b2b;
+  color: #f9f8fa;
+}
+
+.role-badge-readonly {
+  background: #f59e0b;
+  color: #160b2b;
+}
+
+.readonly-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: -8px 0 24px;
+  padding: 10px 14px;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid #f59e0b;
+  border-radius: 8px;
+  background: #fffbeb;
+  color: #7c4a03;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .header-right {

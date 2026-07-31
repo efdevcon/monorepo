@@ -381,11 +381,23 @@ export default function RedeemPage({ adminBypass }: { adminBypass?: boolean }) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const secret = query.secret as string | undefined
-  const adminBypass = !!secret && secret === process.env.X402_ADMIN_SECRET
-
+export const getServerSideProps: GetServerSideProps = async (/* { query } */) => {
+  // DISABLED: `?secret=<admin password>` used to force the shop open so a
+  // voucher could be redeemed while the sale is paused. It put the full-access
+  // admin password into a URL, and URLs leak — server access logs, browser
+  // history, the `Referer` header on any outgoing click, CDN caches, error
+  // reporting. One shared link burns the password that also authorizes refunds.
+  //
+  // To bring it back, give it its own low-value token (e.g. TICKETS_BYPASS_TOKEN)
+  // rather than reusing TICKETS_ADMIN_PASSWORD:
+  //
+  //   const secret = query.secret as string | undefined
+  //   const adminBypass = !!secret && secret === process.env.TICKETS_BYPASS_TOKEN
+  //   return { props: { adminBypass } }
+  //
+  // The `adminBypass` prop and its `isShopOpen` branch above are left in place
+  // so re-enabling is only this function.
   return {
-    props: { adminBypass },
+    props: { adminBypass: false },
   }
 }

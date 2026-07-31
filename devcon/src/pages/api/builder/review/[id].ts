@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { checkAdminAuth } from 'utils/adminAuth'
+import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getRowById, updateRow, listRows } from 'services/nocodb'
 import { getVoucherByAnyIdentity } from 'services/discountStore'
 import { builderIdentities, issueBuilderVoucher } from 'services/builder/voucher'
@@ -23,7 +23,8 @@ interface MatchedRepo {
   source: string
 }
 
-// Admin "builder review" endpoint (shared admin key via x-admin-key).
+// Admin "builder review" endpoint. Gated by its own BUILDER_REVIEW_PASSWORD
+// (sent as x-admin-key) — the ticket admin passwords do not open it.
 // GET  -> the full record + parsed matched repos.
 // POST -> { decision: 'Approved' | 'Rejected' }. On Approve: mints a single-use
 //         builder voucher, emails it to the applicant, and records the code +
@@ -34,7 +35,7 @@ interface MatchedRepo {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Review data + live enrichment must always be current — never cache.
   res.setHeader('Cache-Control', 'no-store, max-age=0')
-  if (!checkAdminAuth(req, res)) return
+  if (!checkBuilderReviewAuth(req, res)) return
 
   const rawId = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id
   const id = Number(rawId)

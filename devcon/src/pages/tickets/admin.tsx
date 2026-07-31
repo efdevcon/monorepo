@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Head from 'next/head'
-import { X } from 'lucide-react'
+import { X, Eye, EyeOff } from 'lucide-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain, useSendTransaction } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -9,6 +9,7 @@ import { useAppKit } from '@reown/appkit/react'
 import { wagmiAdapter } from 'context/appkit-config'
 import { parseUnits } from 'viem'
 import { getUsdcConfigForChainId, getTokenAddressForChainSymbol } from 'types/x402'
+import { readStoredPassword, storePassword, clearStoredPassword, TICKETS_ADMIN_PASSWORD_KEY } from 'utils/adminPassword'
 import css from './admin.module.scss'
 
 const queryClient = new QueryClient()
@@ -25,8 +26,28 @@ const ERC20_TRANSFER_ABI = [
   },
 ] as const
 
-const STORAGE_KEY = 'x402_admin_secret'
 const POLL_INTERVAL = 30_000
+
+/**
+ * Access level of the entered password, resolved server-side by
+ * /api/x402/admin/whoami/ (TICKETS_ADMIN_PASSWORD → 'admin',
+ * TICKETS_READONLY_PASSWORD → 'readonly'). Everything that writes — refunds,
+ * manual verification, the connected wallet, and the background poll — is
+ * hidden in 'readonly', and the API rejects it there too (403).
+ */
+type AdminRole = 'admin' | 'readonly'
+
+/** Returns the role for a password, or null when it matches neither secret. */
+async function resolveRole(key: string): Promise<AdminRole | null> {
+  try {
+    const res = await fetch('/api/x402/admin/whoami/', { headers: { 'x-admin-key': key } })
+    if (!res.ok) return null
+    const json: { success?: boolean; role?: AdminRole } = await res.json()
+    return json.success && json.role ? json.role : null
+  } catch {
+    return null
+  }
+}
 
 /** Completed crypto orders. `source === 'x402'` supports the full feature set
  *  (gasless flow + onchain refund button). `'wc_attempt'` is the legacy
@@ -1887,8 +1908,17 @@ function AdminContent() {
 
   const [secret, setSecret] = useState('')
   const [authed, setAuthed] = useState(false)
+  // null until the password is checked against /whoami/. `readOnly` is the
+  // single switch every write affordance below keys off.
+  const [role, setRole] = useState<AdminRole | null>(null)
+  const readOnly = role === 'readonly'
   const [inputSecret, setInputSecret] = useState('')
   const [loginError, setLoginError] = useState('')
+  const [loginBusy, setLoginBusy] = useState(false)
+  // Reveal toggle on the login field — these passwords are long and pasted or
+  // typed from a manager, so being able to check them matters more here than
+  // shoulder-surfing does on an internal dashboard.
+  const [showPassword, setShowPassword] = useState(false)
   const [data, setData] = useState<OrdersResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [incomingTxsData, setIncomingTxsData] = useState<IncomingTxsResponse | null>(null)
@@ -1941,10 +1971,11 @@ function AdminContent() {
         headers: { 'x-admin-key': key },
       })
       if (res.status === 401) {
-        sessionStorage.removeItem(STORAGE_KEY)
+        clearStoredPassword(TICKETS_ADMIN_PASSWORD_KEY)
         setAuthed(false)
         setSecret('')
-        setLoginError('Invalid secret')
+        setRole(null)
+        setLoginError('Invalid password')
         return
       }
       const json: OrdersResponse = await res.json()
@@ -2006,12 +2037,25 @@ function AdminContent() {
     if (authed && secret) fetchSalesStats(secret)
   }, [authed, secret, fetchSalesStats])
 
-  // Check sessionStorage on mount
+  // Restore the stored password on mount and re-resolve its role server-side
+  // (never trust a cached role — the secrets can be rotated between visits).
+  // A key that no longer matches anything is dropped and the login shows.
   useEffect(() => {
-    const stored = sessionStorage.getItem(STORAGE_KEY)
-    if (stored) {
+    const stored = readStoredPassword(TICKETS_ADMIN_PASSWORD_KEY)
+    if (!stored) return
+    let cancelled = false
+    resolveRole(stored).then(r => {
+      if (cancelled) return
+      if (!r) {
+        clearStoredPassword(TICKETS_ADMIN_PASSWORD_KEY)
+        return
+      }
       setSecret(stored)
+      setRole(r)
       setAuthed(true)
+    })
+    return () => {
+      cancelled = true
     }
   }, [])
 
@@ -2019,6 +2063,12 @@ function AdminContent() {
   useEffect(() => {
     if (authed && secret) fetchOrders(secret)
   }, [authed, secret, fetchOrders])
+
+  // A read-only session has no use for a wallet (every on-chain action is
+  // hidden), so drop one that auto-reconnected from an earlier admin session.
+  useEffect(() => {
+    if (readOnly && isConnected) disconnect()
+  }, [readOnly, isConnected, disconnect])
 
   // Auto-load incoming txs on first auth and whenever the global date
   // range changes — the backend translates the range into per-chain
@@ -2030,24 +2080,53 @@ function AdminContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authed, secret, dateFrom, dateTo])
 
-  // Auto-refresh
+  // Auto-refresh — off in read-only sessions (a viewer shouldn't be holding a
+  // 30s poll on the Pretix/Alchemy-backed endpoints open all day).
   useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current)
-    if (authed && secret && autoRefresh) {
+    if (authed && secret && autoRefresh && !readOnly) {
       timerRef.current = setInterval(() => fetchOrders(secret), POLL_INTERVAL)
     }
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
     }
-  }, [authed, secret, autoRefresh, fetchOrders])
+  }, [authed, secret, autoRefresh, readOnly, fetchOrders])
 
-  function handleLogin(e: React.FormEvent) {
+  // Login resolves the role server-side first, so a wrong password fails here
+  // (instead of silently on the first data fetch) and the UI knows up front
+  // whether this is an admin or a read-only session.
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
-    if (!inputSecret.trim()) return
+    const key = inputSecret.trim()
+    if (!key || loginBusy) return
     setLoginError('')
-    sessionStorage.setItem(STORAGE_KEY, inputSecret.trim())
-    setSecret(inputSecret.trim())
+    setLoginBusy(true)
+    const r = await resolveRole(key)
+    setLoginBusy(false)
+    if (!r) {
+      setLoginError('Invalid password')
+      return
+    }
+    storePassword(TICKETS_ADMIN_PASSWORD_KEY, key)
+    setSecret(key)
+    setRole(r)
     setAuthed(true)
+    setInputSecret('')
+    setShowPassword(false)
+  }
+
+  // Clears the stored password and drops any connected wallet, so the next
+  // person (or the same person with the other password) starts clean.
+  function handleLogout() {
+    clearStoredPassword(TICKETS_ADMIN_PASSWORD_KEY)
+    if (isConnected) disconnect()
+    setSecret('')
+    setRole(null)
+    setAuthed(false)
+    setData(null)
+    setSalesData(null)
+    setIncomingTxsData(null)
+    setLoginError('')
   }
 
   function setDatePreset(preset: 'today' | '7d' | '30d' | 'launch' | 'all') {
@@ -2603,9 +2682,10 @@ function AdminContent() {
   // healthy-paid gating the only actionable rows there are overpaid ones
   // (refund the excess) and legacy in-flight refunds. When none are visible
   // the whole column is dashes, so it's dropped to save width.
-  const paidHasActions = liveCompleted.some(
-    o => !!o.overpaidUsd || (o.source === 'x402' && o.refundStatus === 'pending')
-  )
+  // Read-only sessions never get an Actions column (here or in the Cancelled /
+  // Pending / Unpaid tables below) — the API would reject the calls anyway.
+  const paidHasActions =
+    !readOnly && liveCompleted.some(o => !!o.overpaidUsd || (o.source === 'x402' && o.refundStatus === 'pending'))
 
   // Shared row renderer for the Paid and Cancelled order tables — same
   // columns, badges, dup-detection, and Refund action in both (cancelled-but-
@@ -2706,18 +2786,37 @@ function AdminContent() {
           <div className={css['login-card']}>
             <h1 className={css['login-title']}>Ticket Admin</h1>
             <form className={css['login-form']} onSubmit={handleLogin}>
-              <input
-                className={css['login-input']}
-                type="password"
-                placeholder="Admin secret"
-                value={inputSecret}
-                onChange={e => setInputSecret(e.target.value)}
-                autoFocus
-              />
-              <button className={css['login-btn']} type="submit">
-                Enter
+              <div className={css['login-field']}>
+                <input
+                  className={css['login-input']}
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  value={inputSecret}
+                  onChange={e => setInputSecret(e.target.value)}
+                  autoComplete="current-password"
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  className={css['login-reveal']}
+                  onClick={() => setShowPassword(v => !v)}
+                  title={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
+              <button className={css['login-btn']} type="submit" disabled={loginBusy}>
+                {loginBusy ? 'Checking…' : 'Enter'}
               </button>
             </form>
+            <p className={css['login-hint']}>
+              Admin password for full access, or the read-only password to view the dashboard without refunds or
+              manual verification.
+            </p>
             {loginError && <p className={css['login-error']}>{loginError}</p>}
           </div>
         </div>
@@ -2738,26 +2837,53 @@ function AdminContent() {
         <div className={css['header-left']}>
           <h1 className={css.title}>Ticket Admin</h1>
           {data?.env && <span className={css['env-badge']}>{data.env}</span>}
+          {/* Which password is in use — always visible, so nobody wonders why
+              the refund buttons are missing (or assumes they are). */}
+          <span className={readOnly ? css['role-badge-readonly'] : css['role-badge-admin']}>
+            {readOnly ? '🔒 Read-only' : 'Admin'}
+          </span>
         </div>
         <div className={css['header-right']}>
-          {isConnected ? (
-            <button className={css['wallet-btn']} onClick={() => disconnect()} title={address}>
-              {truncate(address || '', 4)} — Disconnect
-            </button>
-          ) : (
-            <button className={css['wallet-btn-connect']} onClick={() => open()}>
-              Connect Wallet
-            </button>
-          )}
-          <label className={css['refresh-toggle']}>
-            <input type="checkbox" checked={autoRefresh} onChange={e => setAutoRefresh(e.target.checked)} />
+          {/* No wallet in read-only: nothing here can spend from it. */}
+          {!readOnly &&
+            (isConnected ? (
+              <button className={css['wallet-btn']} onClick={() => disconnect()} title={address}>
+                {truncate(address || '', 4)} — Disconnect
+              </button>
+            ) : (
+              <button className={css['wallet-btn-connect']} onClick={() => open()}>
+                Connect Wallet
+              </button>
+            ))}
+          <label
+            className={css['refresh-toggle']}
+            title={readOnly ? 'Auto-refresh is disabled in read-only mode' : undefined}
+          >
+            <input
+              type="checkbox"
+              checked={autoRefresh && !readOnly}
+              disabled={readOnly}
+              onChange={e => setAutoRefresh(e.target.checked)}
+            />
             Auto-refresh (30s)
           </label>
           <button className={css['refresh-btn']} onClick={() => fetchOrders(secret)} disabled={loading}>
             {loading ? 'Loading...' : 'Refresh'}
           </button>
+          <button className={css['refresh-btn']} onClick={handleLogout} title="Forget the stored password">
+            Log out
+          </button>
         </div>
       </div>
+
+      {/* Read-only banner — spells out exactly what is unavailable, so a
+          viewer doesn't hunt for buttons that were removed on purpose. */}
+      {readOnly && (
+        <div className={css['readonly-bar']}>
+          <strong>Read-only mode.</strong> Refunds, manual verification, wallet connection and auto-refresh are
+          disabled. Log out and sign in with the admin password to make changes.
+        </div>
+      )}
 
       {/* Ticket Sales — aggregated from Pretix (source of truth incl. fiat/
           Stripe orders, which the crypto-only lists below never see). */}
@@ -3290,12 +3416,12 @@ function AdminContent() {
                     <th>Tx Hash</th>
                     <th>Payer</th>
                     <th>Completed At</th>
-                    <th>Actions</th>
+                    {!readOnly && <th>Actions</th>}
                   </tr>
                 </thead>
                 {/* Explicit arrow: .map(renderCompletedRow) would pass the array
                     index as the withActions param. */}
-                <tbody>{cancelledOrders.map(o => renderCompletedRow(o, true))}</tbody>
+                <tbody>{cancelledOrders.map(o => renderCompletedRow(o, !readOnly))}</tbody>
               </table>
             </div>
           )}
@@ -3475,7 +3601,7 @@ function AdminContent() {
                       currentDir={pendingSortDir}
                       onSort={togglePendingSort}
                     />
-                    <th>Actions</th>
+                    {!readOnly && <th>Actions</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -3515,14 +3641,16 @@ function AdminContent() {
                           {formatDate(o.expiresAt)}
                           {isExpired && <span className={css.expired}> EXPIRED</span>}
                         </td>
-                        <td>
-                          <ManualVerifyCell
-                            order={o}
-                            secret={secret}
-                            refundedOrphans={refundedOrphansByHash}
-                            onVerified={() => fetchOrders(secret)}
-                          />
-                        </td>
+                        {!readOnly && (
+                          <td>
+                            <ManualVerifyCell
+                              order={o}
+                              secret={secret}
+                              refundedOrphans={refundedOrphansByHash}
+                              onVerified={() => fetchOrders(secret)}
+                            />
+                          </td>
+                        )}
                       </tr>
                     )
                   })}
@@ -3768,7 +3896,7 @@ function AdminContent() {
                     <th>Email</th>
                     <th>Quote (chain/token/payer)</th>
                     <th>Created</th>
-                    <th>Actions</th>
+                    {!readOnly && <th>Actions</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -3834,19 +3962,21 @@ function AdminContent() {
                         )}
                       </td>
                       <td>{o.createdAt ? formatDate(o.createdAt) : '—'}</td>
-                      <td>
-                        <WcManualVerifyCell
-                          order={o}
-                          secret={secret}
-                          pretixOrderUrl={
-                            data?.pretixBaseUrl && data?.pretixOrgSlug && data?.pretixEventSlug
-                              ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
-                              : undefined
-                          }
-                          refundedOrphans={refundedOrphansByHash}
-                          onVerified={() => fetchOrders(secret)}
-                        />
-                      </td>
+                      {!readOnly && (
+                        <td>
+                          <WcManualVerifyCell
+                            order={o}
+                            secret={secret}
+                            pretixOrderUrl={
+                              data?.pretixBaseUrl && data?.pretixOrgSlug && data?.pretixEventSlug
+                                ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
+                                : undefined
+                            }
+                            refundedOrphans={refundedOrphansByHash}
+                            onVerified={() => fetchOrders(secret)}
+                          />
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>

@@ -21,9 +21,29 @@ import {
   Ticket,
   ChevronLeft,
   ChevronRight,
+  Eye,
+  EyeOff,
 } from 'lucide-react'
+import { readStoredPassword, storePassword, clearStoredPassword, BUILDER_REVIEW_PASSWORD_KEY } from 'utils/adminPassword'
 
-const ADMIN_KEY_STORAGE = 'x402_admin_secret'
+// Gated by BUILDER_REVIEW_PASSWORD — its own credential, stored under its own
+// key (utils/adminPassword). The ticket admin dashboard's passwords do not
+// unlock this page, and this one grants nothing over there: reviewing
+// applications and refunding orders are separate jobs.
+
+// Shared card chrome. The page is a long stack of panels, so each one needs to
+// read as its own surface: a cool hairline (rather than the old flat 10% black)
+// plus a 1px lift against the tinted page background. Defined once so every
+// panel stays identical.
+const CARD =
+  'bg-white border border-[#e5e1ed] rounded-2xl shadow-[0_1px_2px_rgba(22,11,43,0.05),0_4px_12px_-6px_rgba(22,11,43,0.06)]'
+
+// Same lift for the coloured status panels, which keep their own tint/border.
+const PANEL_SHADOW = 'shadow-[0_1px_2px_rgba(22,11,43,0.04)]'
+
+// Page backdrop — a touch more tint than the near-white it replaced, so white
+// cards separate from it without needing heavier borders.
+const PAGE_BG = 'bg-[#f5f3f9]'
 
 interface AutoDiscount {
   type: string
@@ -197,6 +217,7 @@ export default function BuilderReviewPage() {
 
   const [secret, setSecret] = useState<string | null>(null)
   const [secretInput, setSecretInput] = useState('')
+  const [showSecret, setShowSecret] = useState(false)
   const [record, setRecord] = useState<Record<string, any> | null>(null)
   const [matchedRepos, setMatchedRepos] = useState<MatchedRepo[]>([])
   const [talent, setTalent] = useState<TalentInfo | null>(null)
@@ -221,7 +242,7 @@ export default function BuilderReviewPage() {
   const [savingComment, setSavingComment] = useState(false)
 
   useEffect(() => {
-    const s = sessionStorage.getItem(ADMIN_KEY_STORAGE)
+    const s = readStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)
     if (s) setSecret(s)
   }, [])
 
@@ -236,9 +257,9 @@ export default function BuilderReviewPage() {
           cache: 'no-store',
         })
         if (res.status === 401) {
-          sessionStorage.removeItem(ADMIN_KEY_STORAGE)
+          clearStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)
           setSecret(null)
-          setError('Invalid admin key.')
+          setError('Invalid password.')
           return
         }
         const json = await res.json()
@@ -300,7 +321,7 @@ export default function BuilderReviewPage() {
     e.preventDefault()
     const k = secretInput.trim()
     if (!k) return
-    sessionStorage.setItem(ADMIN_KEY_STORAGE, k)
+    storePassword(BUILDER_REVIEW_PASSWORD_KEY, k)
     setSecret(k)
   }
 
@@ -367,28 +388,48 @@ export default function BuilderReviewPage() {
     }
   }
 
-  // ── Admin-key gate ──────────────────────────────────────────────
+  // ── Password gate ───────────────────────────────────────────────
   if (!secret) {
     return (
       <Page hideHeader hideFooter>
         <Head>
           <title>Builder Review</title>
         </Head>
-        <div className="min-h-[70vh] flex items-center justify-center bg-[#fbfafc] py-16">
+        <div className={`min-h-[70vh] flex items-center justify-center ${PAGE_BG} py-16`}>
           <form
             onSubmit={submitSecret}
-            className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[420px] w-full mx-4 flex flex-col gap-4"
+            className={`${CARD} p-8 max-w-[520px] w-full mx-4 flex flex-col gap-4`}
           >
             <h1 className="text-2xl font-extrabold text-[#160b2b]">Builder Review</h1>
-            <p className="text-sm text-[#594d73]">Enter the admin key to view this application.</p>
-            <input
-              type="password"
-              value={secretInput}
-              onChange={e => setSecretInput(e.target.value)}
-              placeholder="Admin key"
-              className="h-11 px-4 border border-[#dddae2] rounded-lg text-base"
-              autoFocus
-            />
+            <p className="text-sm text-[#594d73]">
+              Enter the builder review password to view this application. It is separate from the ticket admin
+              passwords.
+            </p>
+            {/* Monospace + reveal toggle: these passwords are long, so they
+                need to be readable back when typed or pasted. */}
+            <div className="flex items-center border border-[#dddae2] rounded-lg focus-within:border-[#7235ed]">
+              <input
+                type={showSecret ? 'text' : 'password'}
+                value={secretInput}
+                onChange={e => setSecretInput(e.target.value)}
+                placeholder="Builder review password"
+                className="h-11 flex-1 min-w-0 px-4 bg-transparent rounded-lg font-mono text-sm outline-none"
+                autoComplete="current-password"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                autoFocus
+              />
+              <button
+                type="button"
+                onClick={() => setShowSecret(v => !v)}
+                className="px-3 text-[#594d73] hover:text-[#160b2b]"
+                title={showSecret ? 'Hide password' : 'Show password'}
+                aria-label={showSecret ? 'Hide password' : 'Show password'}
+              >
+                {showSecret ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
             <button
               type="submit"
@@ -409,6 +450,14 @@ export default function BuilderReviewPage() {
   const otherRole = String(record?.['Other Role'] || '').trim()
   const decision = record?.['Decision'] as string | undefined
   const pill = decisionPill(decision)
+  // True when the voucher we found under this person's identities is the one
+  // this application already produced (same code recorded on the row) — a
+  // result, not a duplicate-allocation risk. A code that doesn't match came
+  // from somewhere else and still warrants the warning.
+  const issuedByThisApplication =
+    decision === 'Approved' &&
+    !!existingVoucher &&
+    String(record?.['Voucher Code'] || '').trim() === existingVoucher.code
   const ghUsername = String(record?.['GitHub Username'] || '').trim()
   const wallet = String(record?.['Wallet Address'] || '').trim()
 
@@ -429,7 +478,7 @@ export default function BuilderReviewPage() {
       <Head>
         <title>{record ? `Review: ${record['Full Name'] || `#${id}`}` : 'Builder Review'}</title>
       </Head>
-      <div className="min-h-[80vh] bg-[#fbfafc] py-4 px-4">
+      <div className={`min-h-[80vh] ${PAGE_BG} py-4 px-4`}>
         <div className="max-w-[820px] mx-auto flex flex-col gap-6">
           {loading && !record && (
             <div className="flex items-center gap-2 text-[#594d73]">
@@ -484,7 +533,7 @@ export default function BuilderReviewPage() {
               )}
 
               {/* Header */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-4">
+              <div className={`${CARD} p-6 flex flex-col gap-4`}>
                 <div className="flex items-start justify-between gap-4 flex-wrap">
                   <div className="flex flex-col gap-1">
                     <h1 className="text-2xl font-extrabold text-[#160b2b]">{record['Full Name'] || `Application #${id}`}</h1>
@@ -578,30 +627,50 @@ export default function BuilderReviewPage() {
                 )}
               </div>
 
-              {/* Already-has-a-voucher warning — this person already holds a voucher
-                  under one of their identities (wallet / GitHub / email), in any
-                  program. Approving will REUSE this code, not mint a new one. */}
-              {existingVoucher && (
-                <div className="rounded-2xl border border-[#f3c2c2] bg-[#fdf2f2] p-5 flex gap-3">
-                  <AlertTriangle className="w-5 h-5 text-[#b42124] shrink-0 mt-0.5" />
-                  <div className="flex flex-col gap-1 min-w-0">
-                    <p className="text-sm font-bold text-[#b42124]">Already has a voucher</p>
-                    <p className="text-sm text-[#7a2a2c] leading-5">
-                      This person already holds voucher{' '}
-                      <span className="font-mono font-bold">{existingVoucher.code}</span>
-                      {existingVoucher.collection ? ` (${existingVoucher.collection})` : ''}, matched on{' '}
-                      <span className="font-medium">{existingVoucher.assignedTo}</span>. Approving will reuse this
-                      code rather than issue a second one.
-                    </p>
+              {/* Voucher panel. Two very different meanings, so two treatments:
+                    – the voucher THIS application issued (approved, codes match)
+                      → a green confirmation, nothing to decide.
+                    – any other pre-existing voucher held under one of their
+                      identities (wallet / GitHub / email), in any program
+                      → a red warning, because approving would reuse that code
+                        rather than mint a new one. */}
+              {existingVoucher &&
+                (issuedByThisApplication ? (
+                  <div className={`rounded-2xl border border-[#b7e6c9] bg-[#f3fbf6] p-5 flex gap-3 ${PANEL_SHADOW}`}>
+                    <Ticket className="w-5 h-5 text-[#137a3e] shrink-0 mt-0.5" />
+                    <div className="flex flex-col gap-1 min-w-0">
+                      <p className="text-sm font-bold text-[#137a3e]">Voucher issued</p>
+                      <p className="text-sm text-[#1d5b36] leading-5">
+                        Approved, with voucher <span className="font-mono font-bold">{existingVoucher.code}</span>
+                        {existingVoucher.collection ? ` (${existingVoucher.collection})` : ''} assigned to{' '}
+                        <span className="font-medium">{existingVoucher.assignedTo}</span>.{' '}
+                        {record['Voucher Sent']
+                          ? 'The email has been sent.'
+                          : 'The email has not gone out yet — approving again sends it.'}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )}
+                ) : (
+                  <div className={`rounded-2xl border border-[#f3c2c2] bg-[#fdf2f2] p-5 flex gap-3 ${PANEL_SHADOW}`}>
+                    <AlertTriangle className="w-5 h-5 text-[#b42124] shrink-0 mt-0.5" />
+                    <div className="flex flex-col gap-1 min-w-0">
+                      <p className="text-sm font-bold text-[#b42124]">Already has a voucher</p>
+                      <p className="text-sm text-[#7a2a2c] leading-5">
+                        This person already holds voucher{' '}
+                        <span className="font-mono font-bold">{existingVoucher.code}</span>
+                        {existingVoucher.collection ? ` (${existingVoucher.collection})` : ''}, matched on{' '}
+                        <span className="font-medium">{existingVoucher.assignedTo}</span>. Approving will reuse this
+                        code rather than issue a second one.
+                      </p>
+                    </div>
+                  </div>
+                ))}
 
               {/* Already-qualifies warning — vouchers are one-per-identity, so issuing
                   a builder voucher to someone who can already self-claim a discount
                   would double-allocate. */}
               {autoDiscounts.length > 0 && (
-                <div className="rounded-2xl border border-[#f3d9ad] bg-[#fffaf0] p-5 flex gap-3">
+                <div className={`rounded-2xl border border-[#f3d9ad] bg-[#fffaf0] p-5 flex gap-3 ${PANEL_SHADOW}`}>
                   <AlertTriangle className="w-5 h-5 text-[#a86510] shrink-0 mt-0.5" />
                   <div className="flex flex-col gap-2 min-w-0">
                     <p className="text-sm font-bold text-[#a86510]">Already qualifies for an automatic discount</p>
@@ -636,7 +705,7 @@ export default function BuilderReviewPage() {
               )}
 
               {/* Meta */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+              <div className={`${CARD} p-6`}>
                 <Section title="Admin">
                   <div className="grid sm:grid-cols-2 gap-2 text-sm">
                     <p className="text-[#594d73]">
@@ -655,7 +724,7 @@ export default function BuilderReviewPage() {
               </div>
 
               {/* Admin notes — private, reviewer-only comment on this application */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+              <div className={`${CARD} p-6`}>
                 <Section title="Admin notes">
                   <textarea
                     value={comment}
@@ -686,7 +755,7 @@ export default function BuilderReviewPage() {
               </div>
 
               {/* Essays */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-4">
+              <div className={`${CARD} p-6 flex flex-col gap-4`}>
                 <Section title="Application">
                   <Essay label="Why would you like to attend Devcon?" text={record['Why Ethereum']} />
                   {/* Goals / Gender are no longer collected; still shown for older applications. */}
@@ -696,7 +765,7 @@ export default function BuilderReviewPage() {
               </div>
 
               {/* Links */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+              <div className={`${CARD} p-6`}>
                 <Section title="Identity & links">
                   <div className="flex flex-wrap gap-2">
                     <LinkChip
@@ -742,7 +811,7 @@ export default function BuilderReviewPage() {
 
               {/* Talent Protocol */}
               {talent && (
-                <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <div className={`${CARD} p-6`}>
                   <Section title="Talent Protocol">
                     <div className="flex items-start gap-4 flex-wrap">
                       {talent.imageUrl && (
@@ -802,7 +871,7 @@ export default function BuilderReviewPage() {
 
               {/* Devfolio */}
               {devfolio && (
-                <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <div className={`${CARD} p-6`}>
                   <Section title="Devfolio (hackathons)">
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="text-base font-bold text-[#160b2b]">{devfolio.name || `@${devfolio.username}`}</span>
@@ -848,7 +917,7 @@ export default function BuilderReviewPage() {
 
               {/* ETHGlobal hackathons (matched via GitHub repos) */}
               {ethglobal.length > 0 && (
-                <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <div className={`${CARD} p-6`}>
                   <Section title="ETHGlobal hackathons">
                     <p className="text-sm text-[#594d73]">
                       {ethglobal.length} project{ethglobal.length === 1 ? '' : 's'} matched via their GitHub
@@ -888,7 +957,7 @@ export default function BuilderReviewPage() {
 
               {/* GitHub activity */}
               {github && (
-                <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6">
+                <div className={`${CARD} p-6`}>
                   <Section title="GitHub activity">
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="text-base font-bold text-[#160b2b]">@{github.login}</span>
@@ -955,7 +1024,7 @@ export default function BuilderReviewPage() {
               )}
 
               {/* Contributions */}
-              <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-6 flex flex-col gap-5">
+              <div className={`${CARD} p-6 flex flex-col gap-5`}>
                 <Section title="Contributions">
                   {matchedRepos.length === 0 ? (
                     <p className="text-sm text-[#594d73]">No matched repos.</p>
@@ -1007,7 +1076,7 @@ export default function BuilderReviewPage() {
               </div>
 
               {/* Actions — sticky bottom bar. */}
-              <div className="sticky bottom-4 z-30 rounded-2xl border border-[rgba(34,17,68,0.12)] bg-white shadow-[0_8px_30px_rgba(22,11,43,0.14)]">
+              <div className="sticky bottom-4 z-30 rounded-2xl border border-[#ded8ea] bg-white shadow-[0_10px_34px_-6px_rgba(22,11,43,0.18)]">
                 <div className="flex flex-wrap items-center justify-between gap-4 p-4">
                   {/* Status / helper line */}
                   <div className="flex items-start gap-2.5 text-sm min-w-0 flex-1">

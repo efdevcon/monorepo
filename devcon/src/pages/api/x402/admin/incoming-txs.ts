@@ -215,7 +215,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
-  if (!checkAdminAuth(req, res)) return
+  if (!checkAdminAuth(req, res, { allowReadonly: true })) return
 
   const receiveAddress = (TICKETING.payment.recipientAddress || '').toLowerCase()
   if (!receiveAddress) {
