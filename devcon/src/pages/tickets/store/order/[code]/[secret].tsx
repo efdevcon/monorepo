@@ -153,6 +153,11 @@ export default function OrderConfirmationPage() {
     if (isCrypto) return 'Crypto'
     if (isStripe) return 'Card (Stripe)'
     if (order.payment_provider === 'banktransfer') return 'Bank transfer'
+    // Pretix's `free` provider: a 100%-off voucher covered the whole order, so
+    // it confirms a zero-amount payment inline. Without this the row rendered
+    // the bare identifier ("free"), which these buyers now see for real — the
+    // plugin redirects them here since pretix-eth 7.14.13.
+    if (order.payment_provider === 'free') return 'Free (voucher)'
     if (order.payment_provider) return order.payment_provider
     return 'Awaiting payment method'
   })()
