@@ -68,6 +68,7 @@ export const AccordionGroup = ({ items, className, defaultOpenId, singleOpen, re
               role="region"
               className={cn(css['content-wrap'], { [css['content-open']]: isOpen })}
               aria-hidden={!isOpen}
+              inert={!isOpen}
             >
               <div className={css['content-inner']}>
                 <div className={css['content']}>{item.children}</div>

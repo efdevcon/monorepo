@@ -115,10 +115,6 @@ const ADVISORY_URLS = [
   'https://www.nederlandwereldwijd.nl/reisadvies/india',
 ]
 
-// Snapshot values that must never be machine-translated
-const TIMEZONE_VALUE = 'UTC+5:30'
-const AVG_TEMP_VALUE = '30–32 °C day / 24–26 °C evening'
-
 const snapshotValue = (value: string) => <span style={{ fontWeight: 400, color: '#221144' }}>{value}</span>
 
 // Full-bleed banner with the Devcon 8 logomarks bleeding off both edges.
@@ -230,11 +226,16 @@ export default function TravelGuidePage() {
               <p className={css['body']}>{t('intro.body')}</p>
             </div>
             <div className="w-full md:w-auto mt-[8px] md:mt-0 flex flex-col md:flex-row md:flex-wrap gap-3">
-              <Link to="/tickets" className={css['btn-primary']}>
+              <Link to="/tickets" className={css['btn-primary']} target="_blank" rel="noopener noreferrer">
                 {t('intro.cta_tickets')}
                 <ArrowRight size={16} />
               </Link>
-              <Link to="/speaker-applications#tracks" className={css['btn-secondary']}>
+              <Link
+                to="/speaker-applications#tracks"
+                className={css['btn-secondary']}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t('intro.cta_whats_on')}
                 <ArrowRight size={16} />
               </Link>
@@ -247,7 +248,11 @@ export default function TravelGuidePage() {
             <div className={css['good-to-know']}>
               <Snapshot
                 items={[
-                  { Icon: Clock3, title: t('intro.snapshot_labels.timezone'), right: snapshotValue(TIMEZONE_VALUE) },
+                  {
+                    Icon: Clock3,
+                    title: t('intro.snapshot_labels.timezone'),
+                    right: snapshotValue(t('intro.snapshot_values.timezone')),
+                  },
                   {
                     Icon: Banknote,
                     title: t('intro.snapshot_labels.currency'),
@@ -258,7 +263,11 @@ export default function TravelGuidePage() {
                     title: t('intro.snapshot_labels.languages'),
                     right: snapshotValue(t('intro.snapshot_values.languages')),
                   },
-                  { Icon: Thermometer, title: t('intro.snapshot_labels.avg_temp'), right: snapshotValue(AVG_TEMP_VALUE) },
+                  {
+                    Icon: Thermometer,
+                    title: t('intro.snapshot_labels.avg_temp'),
+                    right: snapshotValue(t('intro.snapshot_values.avg_temp')),
+                  },
                   {
                     Icon: Sun,
                     title: t('intro.snapshot_labels.event_weather'),
