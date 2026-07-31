@@ -191,7 +191,7 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
     sourceId: i.code,
     title: i.title,
     description: i.description ?? i.abstract,
-    // Newer pretalx (mum.speakat.xyz) returns track/submission_type as expanded
+    // Newer pretalx (cfp.devcon.org) returns track/submission_type as expanded
     // objects `{id, name:{en}}`; older instances used a bare `{en}` / numeric id.
     // Read both shapes so the migrated events keep their track labels and types.
     track: i.track?.name?.en ?? i.track?.en ?? '',
@@ -241,10 +241,10 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   const ens = findAnswer(config.PRETALX_QUESTIONS_ENS)
   const telegram = findAnswer(config.PRETALX_QUESTIONS_TELEGRAM)
 
-  // Prefer a real avatar URL. Newer pretalx (mum.speakat.xyz) exposes it as
+  // Prefer a real avatar URL. Newer pretalx (cfp.devcon.org) exposes it as
   // `avatar_url`; older data used `avatar`. Skip retired speak.devcon.org media
   // (devcon-7's old host is offline) so those fall back to a blockie instead of
-  // a broken image; live hosts (mum) keep their real avatars.
+  // a broken image; media served by the live host keeps its real avatars.
   const avatarUrl = i.avatar ?? i.avatar_url
   const avatar =
     avatarUrl && !avatarUrl.includes('speak.devcon.org')

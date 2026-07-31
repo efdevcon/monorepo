@@ -26,8 +26,10 @@ jobs:
       - run: pnpm sync:pretalx
         env:
           PRETALX_API_KEY: ${{ secrets.PRETALX_API_KEY }}
-          # devcon-7 migrated to the mum.speakat.xyz instance; its config now
-          # reads PRETALX_API_KEY_MUMBAI (speak.devcon.org is retired).
+          # devcon-7 lives on the cfp.devcon.org instance and reads
+          # PRETALX_API_KEY_MUMBAI — the token for that instance, named before
+          # the mum.speakat.xyz → cfp.devcon.org rename (speak.devcon.org is
+          # retired).
           PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}

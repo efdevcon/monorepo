@@ -19,7 +19,7 @@ More context in /documentation-by-folder/\_actions
 
 # Testing the data flow
 
-The pretalx instance runs at "https://mum.speakat.xyz"
+The pretalx instance runs at "https://cfp.devcon.org"
 
 The production/real event is not hooked up - I have been testing with "devcon-mumbai-playground", so that is also what is connected to github actions and so forth on a new schedule publish. You can swap this for the production instance at a later time.
 

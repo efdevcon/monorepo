@@ -91,15 +91,23 @@ export interface PretalxInstanceConfig {
   DEFAULT_LIMIT: number
 }
 
+// All events live on one Pretalx instance, reached at https://cfp.devcon.org
+// (previously mum.speakat.xyz, before that speak.devcon.org — both retired).
+// The old host still 301-redirects here, but never rely on that: `fetch` drops
+// the Authorization header on a cross-origin redirect, so a request aimed at
+// the old domain arrives unauthenticated and comes back 401.
+//
+// PRETALX_API_KEY_MUMBAI is the token for this instance. The env var keeps its
+// name so the GitHub secret and every workflow stay valid — it is the same
+// team token, just a renamed host.
 export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
   'devcon-7': {
     eventId: 'devcon-7',
-    // Migrated to the mum.speakat.xyz instance (speak.devcon.org retired). Uses
-    // the mum team token, which has been granted read access to devcon7-sea on
-    // mum (verified), and the PRETALX_QUESTIONS_* IDs below were verified to
-    // match the mum copy's question IDs, so speaker social links map correctly.
+    // The team token has read access to devcon7-sea here (verified), and the
+    // PRETALX_QUESTIONS_* IDs below were verified against this instance's
+    // question IDs, so speaker social links map correctly.
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
-    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
+    PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'devcon7-sea',
 
     PRETALX_QUESTIONS_GITHUB: 61,
@@ -120,14 +128,14 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
   'test-devcon-8': {
     eventId: 'test-devcon-8',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
-    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
+    PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'test-devcon-8',
     DEFAULT_LIMIT: 100,
   },
   'devcon8': {
     eventId: 'devcon8',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
-    PRETALX_BASE_URI: 'https://mum.speakat.xyz/api',
+    PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'devcon8',
     DEFAULT_LIMIT: 100,
   },

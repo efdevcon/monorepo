@@ -8,7 +8,10 @@
  * In-flight requests are de-duped so a burst of submits triggers a single fetch.
  *
  * Config is env-driven (set these in the Netlify runtime env):
- *   PRETALX_BASE_URL   — API base incl. /api, e.g. https://speak.devcon.org/api
+ *   PRETALX_BASE_URL   — API base incl. /api: https://cfp.devcon.org/api
+ *                        (the instance moved from mum.speakat.xyz; the old host
+ *                        only 301-redirects, and a cross-origin redirect drops
+ *                        the Authorization header → 401, so point straight here)
  *   PRETALX_EVENT_SLUG — event slug, e.g. devcon-8
  *   PRETALX_API_KEY    — organizer/team token (needs access to speaker emails)
  */

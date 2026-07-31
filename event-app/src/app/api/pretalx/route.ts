@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BASE_URL = "https://mum.speakat.xyz";
+const BASE_URL = "https://cfp.devcon.org";
 const EVENT_SLUG = "test-devcon-8";
 const API_KEY = process.env.PRETALX_API_KEY;
 

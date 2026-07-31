@@ -1,21 +1,21 @@
 import { getPretalxConfig, getEventIdByPretalxSlug, PRETALX_INSTANCES } from './config'
 
-describe('pretalx config: dual mum.speakat.xyz events', () => {
+describe('pretalx config: dual cfp.devcon.org events', () => {
   test('registers test-devcon-8 and devcon8 instances', () => {
     expect(PRETALX_INSTANCES['test-devcon-8']).toBeDefined()
     expect(PRETALX_INSTANCES['devcon8']).toBeDefined()
   })
 
-  test('eventId equals slug and points at mum.speakat.xyz', () => {
+  test('eventId equals slug and points at cfp.devcon.org', () => {
     const test8 = getPretalxConfig('test-devcon-8')
     expect(test8.eventId).toBe('test-devcon-8')
     expect(test8.PRETALX_EVENT_NAME).toBe('test-devcon-8')
-    expect(test8.PRETALX_BASE_URI).toBe('https://mum.speakat.xyz/api')
+    expect(test8.PRETALX_BASE_URI).toBe('https://cfp.devcon.org/api')
 
     const devcon8 = getPretalxConfig('devcon8')
     expect(devcon8.eventId).toBe('devcon8')
     expect(devcon8.PRETALX_EVENT_NAME).toBe('devcon8')
-    expect(devcon8.PRETALX_BASE_URI).toBe('https://mum.speakat.xyz/api')
+    expect(devcon8.PRETALX_BASE_URI).toBe('https://cfp.devcon.org/api')
   })
 
   test('reverse lookup maps both slugs to their eventId', () => {
