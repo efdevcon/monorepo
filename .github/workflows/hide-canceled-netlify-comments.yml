@@ -1,12 +1,13 @@
 name: Hide canceled Netlify deploy preview comments
 
-# Netlify posts a "Deploy Preview ... canceled" PR comment for every site whose
-# `ignore` build command skips an unrelated monorepo folder (expected, not a failure).
+# Netlify posts one comment per site and edits it in place as the deploy
+# progresses (processing -> canceled/ready), so the "canceled" text only ever
+# shows up via an `edited` event, never the initial `created` one.
 # This just collapses that specific comment after the fact — it never touches
 # Netlify, builds, or deploys, and only reacts to a comment already posted.
 on:
   issue_comment:
-    types: [created]
+    types: [edited]
 
 permissions:
   issues: write
