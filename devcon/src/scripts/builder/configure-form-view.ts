@@ -73,7 +73,7 @@ const FIELD_CONFIG: FieldCfg[] = [
   // Devfolio URL, Talent Protocol URL and POAP URL are intentionally NOT listed:
   // they're admin-only / auto-detected. Devfolio is now auto-detected from the
   // GitHub login in the review tool; Talent + POAP are server-populated from the
-  // connected wallet (talent.app/<address> and collectors.poap.xyz/scan/<address>).
+  // connected wallet (talent.app/<address> and poap.in/address/<address>).
   { title: 'Personal Website', description: 'Personal website or portfolio. e.g. https://yourname.xyz' },
   { title: 'Social URL', description: 'Twitter / X or other social profile. e.g. https://x.com/yourname' },
   {

@@ -201,7 +201,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         data['Wallet Address'] = walletAddress
         // POAP URL and Talent Protocol URL are admin-only columns derived from the
         // verified wallet (both resolve by address). Never trust client values.
-        data['POAP URL'] = `https://collectors.poap.xyz/scan/${walletAddress}`
+        data['POAP URL'] = `https://poap.in/address/${walletAddress}`
         data['Talent Protocol URL'] = `https://talent.app/${walletAddress}`
         // Auto-detect past Devcon/Devconnect attendance from the wallet's POAPs.
         data['Past Devcon POAPs'] = getPastDevconEvents(walletAddress).join(', ')
