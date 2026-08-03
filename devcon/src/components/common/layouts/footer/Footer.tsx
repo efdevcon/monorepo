@@ -140,7 +140,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
             </ul>
 
             <ul className={css['list']}>
-              <li className="semi-bold">{t('community_section_heading')}</li>
+              <li className="semi-bold">{t('links_section_heading')}</li>
               {footerData?.right.map((link: LinkType, index: number) => {
                 return (
                   <li className="" key={index}>

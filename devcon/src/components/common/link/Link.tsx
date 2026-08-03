@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { default as NextLink } from 'next/link'
 import NorthEast from 'assets/icons/north_east.svg'
-import LinkIndicator from 'assets/icons/link-indicator.svg'
+import { ArrowUpRight } from 'lucide-react'
 import css from './link.module.scss'
 
 type LinkProps = {
@@ -62,7 +62,8 @@ const Link = React.forwardRef<any, LinkProps>(
           {indicateExternal && (
             <span className={css['external-indicator']} data-type="external-indicator">
               &nbsp;
-              <LinkIndicator className={`${css['icon']} icon`} />
+              {/* No global `icon` class: it forces fill onto lucide's stroke paths */}
+              <ArrowUpRight className={css['icon']} strokeWidth={2} />
             </span>
           )}
         </a>

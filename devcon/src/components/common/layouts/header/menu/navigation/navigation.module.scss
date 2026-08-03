@@ -87,12 +87,34 @@
   color: white !important;
 }
 
-.foldout {
+// Owns menu placement: moved/resized via inline transform/width, morphing
+// between nav items. The 8px padding-top is the hover bridge across the
+// visual gap between the nav bar and the card.
+.foldout-positioner {
   position: absolute;
   z-index: 10;
   top: 100%;
   left: 0;
-  right: 0;
+  padding-top: 8px;
+  will-change: transform;
+  transition: transform 200ms cubic-bezier(0.32, 0.72, 0, 1), width 200ms cubic-bezier(0.32, 0.72, 0, 1);
+
+  // Keyboard-initiated changes snap instead of morphing
+  &[data-instant] {
+    transition: none;
+
+    .foldout {
+      transition: none;
+    }
+
+    .foldout-content-enter,
+    .foldout-content-exit {
+      animation: none;
+    }
+  }
+}
+
+.foldout {
   padding: 12px;
   background: linear-gradient(to top, #f0f3ff 20%, #fbfafc 100%);
   border: 1px solid rgba(34, 17, 68, 0.1);
@@ -102,59 +124,63 @@
   font-weight: normal;
   text-transform: none;
   white-space: nowrap;
-  animation: foldoutAppear 200ms ease-out;
+  transform-origin: top left;
+  animation: foldoutAppear 200ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition: height 200ms cubic-bezier(0.32, 0.72, 0, 1), opacity 150ms ease-in, transform 150ms ease-in;
   overflow: hidden;
 }
 
-// Entering content
+// Close is transition-based so re-hovering mid-close retargets smoothly
+.foldout-closing {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+// Clipping window for the two absolutely-positioned content layers; their
+// fixed widths keep the card's height/width morph a pure clip, not a reflow
+.foldout-viewport {
+  position: relative;
+  height: 100%;
+}
+
+// Entering content — delayed so the exit is mostly cleared before the new
+// items appear (fill-mode: both holds it invisible during the delay).
+// delay + duration = 200ms, matching the card's position/size morph so
+// content and container land together
 .foldout-content-enter {
+  position: absolute;
+  top: 0;
+  left: 0;
   animation-duration: 150ms;
-  animation-timing-function: ease-out;
+  animation-delay: 50ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
   animation-fill-mode: both;
 
-  &.enter-from-right {
-    animation-name: slideInFromRight;
-  }
-
+  // Direction classes kept as hooks in case a directional shift returns
+  &.enter-from-right,
   &.enter-from-left {
-    animation-name: slideInFromLeft;
+    animation-name: contentFadeIn;
   }
 }
 
-// Exiting content
+// Exiting content — clears ~30% faster than the enter so the two menus
+// don't sit legibly stacked mid-fade (double-exposure ghosting)
 .foldout-content-exit {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  animation-duration: 150ms;
-  animation-timing-function: ease-in;
+  top: 0;
+  left: 0;
+  animation-duration: 140ms;
+  animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   animation-fill-mode: both;
   pointer-events: none;
 
-  &.exit-left {
-    animation-name: slideOutToLeft;
-  }
-
+  &.exit-left,
   &.exit-right {
-    animation-name: slideOutToRight;
+    animation-name: contentFadeOut;
   }
 }
 
 .foldout-sections {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-
-  // In the mobile accordion the same content stacks in a single column
-  @media (max-width: 1250px) {
-    flex-direction: column;
-  }
-}
-
-.foldout-column {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -170,6 +196,19 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
+}
+
+// Section laid out in two columns (row-major), e.g. Participate's CONTRIBUTE
+.foldout-items-two-col {
+  @media (min-width: 1251px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 12px;
+  }
+}
+
+.nav-chevron {
+  transition: transform 200ms ease;
 }
 
 .foldout-link-active {
@@ -206,47 +245,39 @@
   }
 }
 
-@keyframes slideInFromRight {
+// Dropdown-to-dropdown content swap: a pure cross-fade with a 2px blur
+// melting away — no directional travel
+@keyframes contentFadeIn {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    filter: blur(2px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    filter: blur(0px);
   }
 }
 
-@keyframes slideInFromLeft {
+@keyframes contentFadeOut {
   from {
-    opacity: 0;
-    transform: translateX(-100%);
+    opacity: 1;
+    filter: blur(0px);
   }
   to {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 0;
+    filter: blur(2px);
   }
 }
 
-@keyframes slideOutToLeft {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideOutToRight {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(100%);
+@media (prefers-reduced-motion: reduce) {
+  .foldout-positioner,
+  .foldout,
+  .foldout-content-enter,
+  .foldout-content-exit,
+  .nav-chevron,
+  .mobile-accordion-panel {
+    transition: none;
+    animation: none;
   }
 }
 

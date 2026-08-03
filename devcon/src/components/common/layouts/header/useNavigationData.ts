@@ -1,10 +1,8 @@
 import { useTranslations } from 'next-intl'
-import LogoProgram from 'assets/images/pages/program.svg'
 import LogoAbout from 'assets/images/pages/about.svg'
-import LogoBogota from 'assets/images/pages/bogota.svg'
-import LogoTickets from 'assets/images/pages/tickets.svg'
-import { HeartHandshake, MicVocal, Users, Newspaper, CirclePlay, History } from 'lucide-react'
+import { HeartHandshake, MicVocal, Users, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
+import Dc8Glyph from 'assets/icons/dc8-glyph-small.svg'
 
 const useNavigationData = () => {
   const t = useTranslations('common.nav')
@@ -42,26 +40,30 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: t('participate'),
+        title: t('attend'),
         url: '#',
         type: 'links',
         links: [
           {
-            title: t('contribute'),
+            title: t('devcon_8_india'),
             url: '#',
             type: 'header',
-            icon: HeartHandshake,
+            icon: Dc8Glyph,
           },
           {
-            title: t('volunteer_program'),
-            url: '/form/volunteer',
+            title: t('tickets'),
+            url: '/tickets',
             type: 'page',
           },
-          {
-            title: t('supporters_program'),
-            url: '/supporters',
-            type: 'page',
-          },
+          // Travel Guide lands here once its page merges
+        ],
+      },
+      {
+        title: t('participate'),
+        url: '#',
+        type: 'links',
+        foldoutWidth: 464,
+        links: [
           {
             title: t('speakers'),
             url: '#',
@@ -74,24 +76,33 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: t('media'),
+            title: t('contribute'),
             url: '#',
             type: 'header',
-            icon: Newspaper,
-            newColumn: true,
+            icon: HeartHandshake,
+            columns: 2,
+          },
+          // Row-major order for the 2-column desktop grid:
+          // Volunteer | Road to Devcon / Community Hubs | Submit a DIP
+          {
+            title: t('volunteer_program'),
+            url: '/form/volunteer',
+            type: 'page',
           },
           {
-            title: t('media_press'),
-            url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
+            title: t('road_to_devcon'),
+            url: '/road-to-devcon',
+            type: 'page',
+          },
+          {
+            title: t('community_hubs'),
+            url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
             type: 'link',
           },
           {
-            title: t('press_kit'),
-            url:
-              process.env.NODE_ENV === 'development'
-                ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
-                : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
-            type: 'page',
+            title: t('submit_dip'),
+            url: 'https://forum.devcon.org/t/start-here-how-to-submit-your-proposal/7090',
+            type: 'link',
           },
         ],
       },
@@ -107,24 +118,14 @@ const useNavigationData = () => {
             icon: Users,
           },
           {
-            title: t('road_to_devcon'),
-            url: '/road-to-devcon',
+            title: t('dips'),
+            url: '/dips',
             type: 'page',
-          },
-          {
-            title: t('community_hubs'),
-            url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
-            type: 'link',
           },
           {
             title: t('forum'),
             url: 'https://forum.devcon.org/',
             type: 'link',
-          },
-          {
-            title: t('dips'),
-            url: '/dips',
-            type: 'page',
           },
         ],
       },
@@ -177,6 +178,11 @@ const useNavigationData = () => {
           url: '/about',
           type: 'page',
         },
+        {
+          title: t('faq'),
+          url: '/tickets/faq',
+          type: 'page',
+        },
         // {
         //   title: 'Program',
         //   url: '/programming',
@@ -198,21 +204,6 @@ const useNavigationData = () => {
         //   type: 'page',
         // },
 
-        // {
-        //   title: 'Apply To Speak',
-        //   url: '/speaker-applications',
-        //   type: 'page',
-        // },
-        // {
-        //   title: 'Volunteer',
-        //   url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
-        //   type: 'url',
-        // },
-        // {
-        //   title: 'FAQ',
-        //   url: '/faq',
-        //   type: 'page',
-        // },
         {
           title: t('blog'),
           url: '/blogs',
@@ -230,46 +221,26 @@ const useNavigationData = () => {
         },
       ],
       right: [
-        // {
-        //   title: 'RTD',
-        //   url: '/road-to-devcon#events',
-        //   type: 'page',
-        // },
-        // {
-        //   title: 'Devcon Week',
-        //   url: '/devcon-week',
-        //   type: 'page',
-        // },
-        // {
-        //   title: 'Supporters',
-        //   url: '/supporters',
-        //   type: 'page',
-        // },
         {
-          title: t('dips'),
-          url: '/dips',
+          title: t('supporters'),
+          url: '/supporters',
           type: 'page',
         },
         {
-          title: t('forum'),
-          url: 'https://forum.devcon.org/',
+          title: t('volunteers'),
+          url: '/form/volunteer',
+          type: 'page',
+        },
+        {
+          title: t('community_hubs'),
+          url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
           type: 'link',
         },
         {
-          title: t('github'),
-          url: 'https://github.com/efdevcon/',
+          title: t('media_press'),
+          url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
           type: 'link',
         },
-        {
-          title: t('devconnect'),
-          url: 'https://devconnect.org',
-          type: 'link',
-        },
-        // {
-        //   title: 'Press & Media',
-        //   url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
-        //   type: 'link',
-        // },
         {
           title: t('press_kit'),
           // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
@@ -277,6 +248,11 @@ const useNavigationData = () => {
             process.env.NODE_ENV === 'development'
               ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
               : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+          type: 'page',
+        },
+        {
+          title: t('dips'),
+          url: '/dips',
           type: 'page',
         },
       ],
