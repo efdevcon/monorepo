@@ -55,7 +55,11 @@ const useNavigationData = () => {
             url: '/tickets',
             type: 'page',
           },
-          // Travel Guide lands here once its page merges
+          {
+            title: t('travel_guide'),
+            url: '/travel-guide',
+            type: 'page',
+          },
         ],
       },
       {
