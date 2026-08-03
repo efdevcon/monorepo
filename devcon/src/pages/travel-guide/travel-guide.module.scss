@@ -1,0 +1,427 @@
+@use 'assets/css/partials/index' as *;
+
+/* ─── Local tokens ────────────────────────────────────────── */
+/* DC-8 page palette, matching speaker-applications / about */
+$ink-heading: #160b2b;
+$ink-body: #221144;
+$ink-dark: #1a0d33;
+$ink-muted: #594d73;
+$accent-purple: #7235ed;
+$off-white: #f9f8fa;
+$hairline: rgba(34, 17, 68, 0.1);
+
+/* ─── Hero Override (PageHero) ────────────────────────────── */
+/* Same treatment as speaker-applications (the increased-height hero),
+   with object-position tuned for the BMC-building hero photo */
+
+.hero-no-side-gradient {
+  --theme-gradient-background-color: transparent !important;
+  --theme-gradient: none !important;
+  /* Shadow under the hero's bottom edge (= the sub-nav strip). Must live on
+     the hero: the strip's own backdrop-filter makes it a backdrop root and
+     Chromium drops outer box-shadows on it. Replaces the default heavy
+     0 2px 4px black @ 43%. */
+  --header-shadow: 0px 1px 4px rgba(34, 17, 68, 0.15);
+
+  [class*='background-layer-theme'] {
+    display: none !important;
+  }
+
+  background: #fff;
+
+  [class*='background-image'] {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    width: 100% !important;
+    left: 0 !important;
+
+    img {
+      object-position: center 65% !important;
+
+      @media (max-width: $breakpoints-md) {
+        object-position: center 50% !important;
+      }
+    }
+  }
+
+  [class*='background-layer'] :global(.section) {
+    display: block !important;
+  }
+
+  [data-type='page-hero-content'] {
+    position: relative;
+    height: 78vh !important;
+    max-height: 755px !important;
+  }
+
+  [data-type='page-hero-content'] > * {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-type='page-hero-title-block'] {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Sub-nav strip per Figma (4851:12343): more opaque fill, no hairlines,
+     12px semibold items. px values because the root font-size is 14px ≤1024. */
+  [class*='page-navigation-container'] {
+    background: rgba(255, 255, 255, 0.77);
+    backdrop-filter: blur(3px);
+    border-top: none;
+    border-bottom: none;
+
+    [class*='page-navigation'] {
+      padding-top: 16px;
+      padding-bottom: 16px; /* was 14px; with the borders gone, 16+12+16 = 44px */
+
+      > * {
+        padding-right: 24px;
+      }
+    }
+
+    a,
+    [class*='page-navigation'] > div {
+      font-size: 12px !important;
+      line-height: 1 !important;
+      font-weight: 600 !important; /* semibold */
+      letter-spacing: 0.25px !important;
+      color: #160b2b;
+    }
+  }
+}
+
+.hero-title {
+  font-family: 'Chloe' !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  /* Sized so the title spans ~70% of the viewport width */
+  font-size: clamp(3rem, 11vw, 160px) !important;
+  letter-spacing: -3px !important;
+  color: $off-white !important;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-16px);
+
+  /* sm Desktop: fixed 160px (the clamp's 11vw only reaches 160 above ~1454px) */
+  @media (min-width: $breakpoints-lg) and (max-width: ($breakpoints-xl - 1)) {
+    font-size: 160px !important;
+    letter-spacing: -4px !important;
+  }
+
+  @media (max-width: ($breakpoints-lg - 1)) {
+    font-size: 111px !important;
+    letter-spacing: -2px !important;
+  }
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    /* Mobile keeps the tablet's 111px scale but wraps to two centered lines
+       (the em max-width forces the wrap as the font scales down on small
+       phones). Tight leading so the stacked lines read as one lockup. */
+    font-size: clamp(4rem, 26vw, 111px) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -2px !important;
+    max-width: 4.4em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ─── Responsive layout tiers ─────────────────────────────── */
+/* Figma "sm Desktop (1024px)" and "sm Tablet (768px)": 32px page gutters at
+   both tiers, page-scoped so other pages keep the global 64/16 .section
+   gutters. Two class selectors so this outranks the global .section rules. */
+
+.tg-gutters :global(.section) {
+  @media (min-width: $breakpoints-md) and (max-width: ($breakpoints-xl - 1)) {
+    grid-template-columns: minmax(32px, 1fr) minmax(auto, 1312px) minmax(32px, 1fr);
+  }
+
+  /* Mobile (Figma "lg Mobile 430"): 20px gutters, content 390 @430 */
+  @media (max-width: ($breakpoints-md - 1)) {
+    grid-template-columns: minmax(20px, 1fr) minmax(auto, 1312px) minmax(20px, 1fr);
+  }
+}
+
+/* Section vertical padding: uniform 48px at both new tiers, the shipped
+   desktop values from ≥1280. In px because the root font-size is 14px ≤1024. */
+
+.section-pad {
+  padding-top: 48px;
+  padding-bottom: 48px;
+
+  @media (min-width: $breakpoints-xl) {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* Mobile-only tighter sections (Figma: intro + getting-there at 32px) */
+.section-pad-tight {
+  @media (max-width: ($breakpoints-md - 1)) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+.section-pad-welcome {
+  @media (min-width: $breakpoints-xl) {
+    padding-top: 48px; /* was 3rem */
+  }
+}
+
+.section-pad-safety {
+  /* Room for the jaali fretwork at every tier (declared after .section-pad
+     so this bottom padding wins the cascade) */
+  padding-bottom: 96px;
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    padding-bottom: 88px;
+  }
+}
+
+/* ─── Typography ──────────────────────────────────────────── */
+
+.heading-2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: $ink-heading;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  /* 24px across the whole tablet tier (32px from the sm-desktop tier up) */
+  @media (max-width: ($breakpoints-lg - 1)) {
+    font-size: 24px;
+  }
+}
+
+.heading-3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: $ink-heading;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    font-size: 22px;
+  }
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.25px;
+  color: $ink-dark;
+  margin: 0;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: $ink-body;
+  margin: 0;
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    font-size: 14px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    color: $accent-purple;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ─── Markdown prose (accordion panels, tips, rich paragraphs) ── */
+
+.prose {
+  font-size: 16px;
+  line-height: 1.5;
+  color: $ink-body;
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    font-size: 14px;
+  }
+
+  p {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin: 0 0 12px;
+    list-style: disc outside;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ol {
+    list-style: decimal outside;
+  }
+
+  li {
+    margin: 0 0 4px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a,
+  a > strong {
+    color: $accent-purple;
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ─── Good to know (Snapshot overrides) ───────────────────── */
+/* The design uses 16px rows with taller padding than Snapshot's 14px default */
+
+.good-to-know {
+  li {
+    font-size: 16px;
+    padding: 14px 8px;
+
+    > svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 16px;
+    }
+
+    /* Labels never shrink (their text would overflow into the value);
+       the right-aligned value shrinks and wraps instead */
+    > *:not(:last-child) {
+      flex-shrink: 0;
+    }
+
+    > *:last-child {
+      /* Snapshot pins its value cell with flex-shrink: 0 — undo that so
+         long values shrink and wrap instead of overflowing the row */
+      flex-shrink: 1;
+      min-width: 0;
+      text-align: right;
+      line-height: 1.2;
+    }
+
+    /* Mobile: 44px row pitch (20px content + 12px around the hairline);
+       the design drops the labels — each row is just icon + value,
+       left-aligned with a 16px gap after the icon */
+    @media (max-width: ($breakpoints-md - 1)) {
+      font-size: 14px;
+      padding: 12px 8px;
+
+      > span:not(:last-child) {
+        display: none;
+      }
+
+      > *:last-child {
+        margin-left: 0;
+        text-align: left;
+      }
+    }
+  }
+}
+
+/* ─── Buttons ─────────────────────────────────────────────── */
+
+%btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 8px;
+  padding: 16px 28px 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 36px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  /* Mobile design shows full-width stacked buttons (390x48) */
+  @media (max-width: ($breakpoints-md - 1)) {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.btn-primary {
+  @extend %btn-pill;
+  color: $off-white;
+  background: $accent-purple;
+  border: none;
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+
+  /* Must come after :hover — same specificity, and :active always co-occurs
+     with :hover on mouse, so the later rule wins the press state */
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn-secondary {
+  @extend %btn-pill;
+  color: $ink-dark;
+  background: rgba(255, 255, 255, 0.8);
+  outline: 1px solid $hairline;
+  transition: transform 150ms ease-out, background 150ms ease-out;
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ─── Scroll offsets ──────────────────────────────────────── */
+
+.scroll-anchor {
+  scroll-margin-top: 100px;
+}

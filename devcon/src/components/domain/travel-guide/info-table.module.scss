@@ -1,0 +1,78 @@
+$ink-heading: #160b2b;
+$hairline: rgba(34, 17, 68, 0.1);
+
+.table {
+  background: white;
+  outline: 1px solid $hairline;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.header,
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  min-height: 48px;
+
+  > * {
+    flex: 1 0 0;
+    min-width: 0;
+    padding: 8px 0;
+  }
+}
+
+.header {
+  /* Flattened from the Figma header art (vertical dark-purple gradient) */
+  background: linear-gradient(to bottom, #4b3567 0%, #241338 100%);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.row {
+  border-top: 1px solid $hairline;
+  font-size: 16px;
+  line-height: 24px;
+  color: $ink-heading;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.label {
+  font-weight: 700;
+}
+
+/* Mobile variant (zone/route tables): the two cells stack inside a taller
+   row — name on top, description under it — per the 430px Figma frame.
+   Header row and the emergency table keep the side-by-side layout. */
+.stack-mobile {
+  @media (max-width: 767px) {
+    .row {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 64px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      > * {
+        flex: none;
+        width: 100%;
+        padding: 0;
+      }
+
+      > *:last-child {
+        font-size: 14px;
+        line-height: 20px;
+        color: #594d73; /* muted value line under the bold label */
+      }
+    }
+  }
+}

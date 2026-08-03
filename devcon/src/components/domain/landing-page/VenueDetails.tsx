@@ -8,10 +8,15 @@ const JWC_URL = 'https://www.jioworldcentre.com/'
 const MAP_URL =
   'https://www.google.com/maps?vet=10CAAQoqAOahcKEwiwsoiy-sqUAxUAAAAAHQAAAAAQHw..i&pvq=OiUweDNiZTdjOTFjZTU1NjYxNjc6MHgzOTliZGIwNmZhYjY4YTdl&um=1&ie=UTF-8&fb=1&gl=uk&sa=X&ftid=0x3be7c91ce5566167:0x399bdb06fab68a7e'
 
-export const VenueDetails = () => {
+type VenueDetailsProps = {
+  // Optional trailing item, e.g. "Support: Devcon Telegram" on the Travel Guide
+  support?: { label: string; text: string; href: string }
+}
+
+export const VenueDetails = ({ support }: VenueDetailsProps) => {
   const t = useTranslations('home.venue')
   return (
-    <div className="bg-[#ffa366] flex flex-col md:flex-row items-center justify-center px-6 py-3 text-[#221144] text-sm leading-5 gap-x-4 gap-y-1 text-center">
+    <div className="bg-[#ffa366] flex flex-col md:flex-row md:flex-wrap items-center justify-center px-6 py-[12px] text-[#221144] text-[14px] leading-[20px] gap-x-4 gap-y-[8px] md:gap-y-1 text-center">
       <span className="flex items-center gap-2">
         <strong className="font-bold">{t('label_venue')}</strong>
         <a
@@ -21,11 +26,11 @@ export const VenueDetails = () => {
           aria-label={t('name')}
           className="inline-flex items-center shrink-0"
         >
-          <Image src={JwcLogo} alt={t('name')} className="h-7 w-auto shrink-0" />
+          <Image src={JwcLogo} alt={t('name')} className="h-[28px] w-auto shrink-0" />
         </a>
       </span>
-      {/* Dates: hidden on tablet and below. Click opens the add-to-calendar popover. */}
-      <span className="hidden lg:inline">
+      {/* Click opens the add-to-calendar popover */}
+      <span>
         <strong className="font-bold">{t('label_dates')}</strong>{' '}
         <AddToCalendarPopover popoverPosition="bottom">
           {({ toggle }) => (
@@ -40,8 +45,7 @@ export const VenueDetails = () => {
         </AddToCalendarPopover>
       </span>
       <span>
-        {/* "Address:" label hidden on tablet and below */}
-        <strong className="font-bold hidden lg:inline">{t('label_address')}</strong>{' '}
+        <strong className="font-bold">{t('label_address')}</strong>{' '}
         <a
           href={MAP_URL}
           target="_blank"
@@ -51,6 +55,19 @@ export const VenueDetails = () => {
           {t('address')}
         </a>
       </span>
+      {support && (
+        <span>
+          <strong className="font-bold">{support.label}</strong>{' '}
+          <a
+            href={support.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#5914e2] font-bold hover:underline focus-visible:underline focus:outline-none"
+          >
+            {support.text}
+          </a>
+        </span>
+      )}
     </div>
   )
 }
