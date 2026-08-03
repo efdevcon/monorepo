@@ -61,8 +61,8 @@ const Mobile = (props: any) => {
                 {i.title}
                 <ChevronDown
                   size={20}
+                  className={css['nav-chevron']}
                   style={{
-                    transition: 'transform 200ms ease',
                     transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
                   }}
                 />
@@ -86,7 +86,7 @@ const Mobile = (props: any) => {
 type Section = {
   header: string
   headerIcon?: React.ComponentType<{ size?: number; className?: string }>
-  newColumn?: boolean
+  columns?: number
   items: LinkType[]
 }
 
@@ -96,7 +96,7 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
 
   for (const c of links) {
     if (c.type === 'header') {
-      current = { header: c.title, headerIcon: c.icon, newColumn: c.newColumn, items: [] }
+      current = { header: c.title, headerIcon: c.icon, columns: c.columns, items: [] }
       sections.push(current)
     } else if (current) {
       current.items.push(c)
@@ -109,71 +109,101 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
   return sections
 }
 
-// A 'header' link with newColumn starts a new column in the desktop foldout
-function groupSectionsIntoColumns(sections: Section[]): Section[][] {
-  const columns: Section[][] = []
-
-  for (const section of sections) {
-    if (!columns.length || section.newColumn) columns.push([])
-    columns[columns.length - 1].push(section)
-  }
-
-  return columns
-}
-
 const FoldoutContent = ({ sections, currentPath, onLinkClick }: { sections: Section[]; currentPath?: string; onLinkClick?: () => void }) => (
   <div className={css['foldout-sections']}>
-    {groupSectionsIntoColumns(sections).map((column, colIdx) => (
-      <div key={colIdx} className={css['foldout-column']}>
-        {column.map((section, sIdx) => (
-          <div key={sIdx} className={css['foldout-section']}>
-            {section.header && (
-              <div className={css['foldout-header']}>
-                {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
-                {section.header}
-              </div>
-            )}
-            <div className={css['foldout-items']}>
-              {section.items.map((c, cIdx) => {
-                const isExternal = c.url?.startsWith('http')
-                const isActive = currentPath && c.url && !isExternal &&
-                  currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
-                return (
-                  <Link
-                    key={cIdx}
-                    className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
-                    to={c.url}
-                    onClick={onLinkClick}
-                  >
-                    <span className="inline-flex items-center gap-1">
-                      {c.title}
-                      {isExternal && <ArrowUpRight size={14} strokeWidth={2} />}
-                    </span>
-                  </Link>
-                )
-              })}
-            </div>
+    {sections.map((section, sIdx) => (
+      <div key={sIdx} className={css['foldout-section']}>
+        {section.header && (
+          <div className={css['foldout-header']}>
+            {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
+            {section.header}
           </div>
-        ))}
+        )}
+        <div className={`${css['foldout-items']} ${section.columns === 2 ? css['foldout-items-two-col'] : ''}`}>
+          {section.items.map((c, cIdx) => {
+            const isExternal = c.url?.startsWith('http')
+            const isActive = currentPath && c.url && !isExternal &&
+              currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
+            return (
+              <Link
+                key={cIdx}
+                className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
+                to={c.url}
+                onClick={onLinkClick}
+              >
+                <span className="inline-flex items-center gap-1">
+                  {c.title}
+                  {isExternal && <ArrowUpRight size={16} strokeWidth={2} />}
+                </span>
+              </Link>
+            )
+          })}
+        </div>
       </div>
     ))}
   </div>
 )
 
+const DEFAULT_FOLDOUT_WIDTH = 320
+// Card chrome around the content on each axis: 12px padding + 1px border, both sides (border-box)
+const FOLDOUT_CHROME = 26
+// Matches the .foldout-closing transition duration in navigation.module.scss
+const FOLDOUT_CLOSE_MS = 150
+
 export const Navigation = (props: any) => {
   const navigationData = useNavigationData()
   const router = useRouter()
   const currentPath = router.pathname
+  // Hover/focus target; null while the menu plays its close transition
   const [activeItem, setActiveItem] = React.useState<string | null>(null)
+  // Last opened item; keeps content mounted during the close transition
+  const [renderedItem, setRenderedItem] = React.useState<string | null>(null)
   const [exitingItem, setExitingItem] = React.useState<string | null>(null)
   const [direction, setDirection] = React.useState<'left' | 'right'>('right')
+  // True once the open menu has switched items; the content swap animation
+  // only runs then — first open rides the card's foldoutAppear instead.
+  // (Not derived from exitingItem: its onAnimationEnd cleanup would strip
+  // the enter class mid-animation.)
+  const [isSwap, setIsSwap] = React.useState(false)
+  // Suppresses the position/size morph for keyboard-initiated changes
+  const [instant, setInstant] = React.useState(false)
+  const [menuX, setMenuX] = React.useState(0)
+  const [menuHeight, setMenuHeight] = React.useState<number | null>(null)
   const prevActiveRef = React.useRef<string | null>(null)
+  const activeIndexRef = React.useRef<number>(-1)
+  const itemRefs = React.useRef<(HTMLLIElement | null)[]>([])
+  const activeContentRef = React.useRef<HTMLDivElement | null>(null)
+  const closeTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  const instantTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Escape returns focus to the nav item; that focus event must not reopen the menu
+  const suppressNextFocusRef = React.useRef(false)
+
+  // Measure the active content after it mounts/swaps, before paint
+  React.useLayoutEffect(() => {
+    if (renderedItem && activeContentRef.current) {
+      setMenuHeight(activeContentRef.current.offsetHeight + FOLDOUT_CHROME)
+    }
+  }, [renderedItem])
+
+  // Keep the menu anchored to its nav item across window resizes
+  React.useEffect(() => {
+    const onResize = () => {
+      const el = itemRefs.current[activeIndexRef.current]
+      if (el) setMenuX(el.offsetLeft)
+    }
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+      if (instantTimerRef.current) clearTimeout(instantTimerRef.current)
+    }
+  }, [])
 
   if (props.mobile) {
     return <Mobile {...props} />
   }
 
-  // Sort: items with children first, then the rest
+  // Sort: items with children first, then the rest (stable, so authored order is display order)
   const sorted = [...navigationData.site].sort((a: LinkType, b: LinkType) => {
     const aHas = a.links && a.links.length > 0 ? 0 : 1
     const bHas = b.links && b.links.length > 0 ? 0 : 1
@@ -183,32 +213,62 @@ export const Navigation = (props: any) => {
   const foldableItems = sorted.filter((i: LinkType) => i.links && i.links.length > 0)
   const plainItems = sorted.filter((i: LinkType) => !i.links || i.links.length === 0)
 
-  const handleSetActive = (title: string) => {
+  const handleSetActive = (title: string, source: 'pointer' | 'keyboard' = 'pointer') => {
+    // Re-hover during the close transition retargets it back open
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+    setActiveItem(title)
+
+    if (source === 'keyboard') {
+      if (instantTimerRef.current) clearTimeout(instantTimerRef.current)
+      setInstant(true)
+      instantTimerRef.current = setTimeout(() => setInstant(false), 100)
+    }
+
     const prev = prevActiveRef.current
     if (prev === title) return
 
+    const nextIdx = foldableItems.findIndex((i: LinkType) => i.title === title)
+    const el = itemRefs.current[nextIdx]
+    if (el) setMenuX(el.offsetLeft)
+    activeIndexRef.current = nextIdx
+
     if (prev && prev !== title) {
       const prevIdx = foldableItems.findIndex((i: LinkType) => i.title === prev)
-      const nextIdx = foldableItems.findIndex((i: LinkType) => i.title === title)
       setDirection(nextIdx > prevIdx ? 'right' : 'left')
       setExitingItem(prev)
+      setIsSwap(true)
+    } else {
+      setIsSwap(false)
     }
 
-    setActiveItem(title)
+    setRenderedItem(title)
     prevActiveRef.current = title
   }
 
   const handleClearActive = () => {
     setActiveItem(null)
-    setExitingItem(null)
-    prevActiveRef.current = null
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+    closeTimerRef.current = setTimeout(() => {
+      setRenderedItem(null)
+      setExitingItem(null)
+      setIsSwap(false)
+      setMenuHeight(null)
+      prevActiveRef.current = null
+      activeIndexRef.current = -1
+      closeTimerRef.current = null
+    }, FOLDOUT_CLOSE_MS)
   }
 
-  const activeNavItem = activeItem ? foldableItems.find((i: LinkType) => i.title === activeItem) : null
-  const activeSections = activeNavItem?.links?.length ? groupLinksIntoSections(activeNavItem.links) : []
+  const renderedNavItem = renderedItem ? foldableItems.find((i: LinkType) => i.title === renderedItem) : null
+  const renderedSections = renderedNavItem?.links?.length ? groupLinksIntoSections(renderedNavItem.links) : []
+  const menuWidth = renderedNavItem?.foldoutWidth ?? DEFAULT_FOLDOUT_WIDTH
 
   const exitingNavItem = exitingItem ? foldableItems.find((i: LinkType) => i.title === exitingItem) : null
   const exitingSections = exitingNavItem?.links?.length ? groupLinksIntoSections(exitingNavItem.links) : []
+  const exitingWidth = exitingNavItem?.foldoutWidth ?? DEFAULT_FOLDOUT_WIDTH
 
   const renderPlainLink = (i: LinkType) => {
     let className = `${css['foldout-link']} bold`
@@ -293,7 +353,7 @@ export const Navigation = (props: any) => {
         if (activeItem === title) {
           handleClearActive()
         } else {
-          handleSetActive(title)
+          handleSetActive(title, 'keyboard')
         }
         break
       case 'Escape':
@@ -304,7 +364,7 @@ export const Navigation = (props: any) => {
         e.preventDefault()
         const next = foldableItems[index + 1]
         if (next) {
-          handleSetActive(next.title)
+          handleSetActive(next.title, 'keyboard')
           // Focus the next item
           const nextEl = document.querySelector(`[data-nav-item="${index + 1}"]`) as HTMLElement
           nextEl?.focus()
@@ -315,7 +375,7 @@ export const Navigation = (props: any) => {
         e.preventDefault()
         const prev = foldableItems[index - 1]
         if (prev) {
-          handleSetActive(prev.title)
+          handleSetActive(prev.title, 'keyboard')
           const prevEl = document.querySelector(`[data-nav-item="${index - 1}"]`) as HTMLElement
           prevEl?.focus()
         }
@@ -324,11 +384,11 @@ export const Navigation = (props: any) => {
       case 'ArrowDown':
         e.preventDefault()
         if (activeItem === title) {
-          // Focus the first link in the foldout
-          const firstLink = document.querySelector(`.${css['foldout-link-item']}`) as HTMLElement
+          // Focus the first link in the active foldout content (not the exiting layer)
+          const firstLink = activeContentRef.current?.querySelector(`.${css['foldout-link-item']}`) as HTMLElement
           firstLink?.focus()
         } else {
-          handleSetActive(title)
+          handleSetActive(title, 'keyboard')
         }
         break
     }
@@ -337,9 +397,10 @@ export const Navigation = (props: any) => {
   const handleFoldoutKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       e.preventDefault()
+      // Return focus to the nav item the menu belongs to
+      const idx = foldableItems.findIndex((i: LinkType) => i.title === renderedItem)
       handleClearActive()
-      // Return focus to the active nav item
-      const idx = foldableItems.findIndex((i: LinkType) => i.title === activeItem)
+      suppressNextFocusRef.current = true
       const navEl = document.querySelector(`[data-nav-item="${idx}"]`) as HTMLElement
       navEl?.focus()
     }
@@ -360,22 +421,31 @@ export const Navigation = (props: any) => {
               <li
                 className={`plain bold ${isActive ? css['nav-item-active'] : ''}`}
                 key={`foldable-${index}`}
+                ref={el => {
+                  itemRefs.current[index] = el
+                }}
                 role="menuitem"
                 tabIndex={0}
                 aria-haspopup="true"
                 aria-expanded={isActive}
                 data-nav-item={index}
                 onMouseEnter={() => handleSetActive(i.title)}
-                onFocus={() => handleSetActive(i.title)}
+                onFocus={() => {
+                  if (suppressNextFocusRef.current) {
+                    suppressNextFocusRef.current = false
+                    return
+                  }
+                  handleSetActive(i.title, 'keyboard')
+                }}
                 onKeyDown={e => handleKeyDown(e, i.title, index)}
               >
                 {i.title}
                 <ChevronDown
                   size={16}
                   color={isActive ? 'white' : 'currentColor'}
+                  className={css['nav-chevron']}
                   style={{
                     margin: '0 0 0 4px',
-                    transition: 'transform 200ms ease',
                     transform: isActive ? 'rotate(180deg)' : 'rotate(0deg)',
                   }}
                 />
@@ -384,25 +454,41 @@ export const Navigation = (props: any) => {
           })}
         </ul>
 
-        {activeItem && activeSections.length > 0 && (
-          <div className={css['foldout']} role="menu" onKeyDown={handleFoldoutKeyDown}>
-            {/* Exiting content */}
-            {exitingItem && exitingSections.length > 0 && (
-              <div
-                key={`exit-${exitingItem}`}
-                className={`${css['foldout-content-exit']} ${direction === 'right' ? css['exit-left'] : css['exit-right']}`}
-                onAnimationEnd={() => setExitingItem(null)}
-              >
-                <FoldoutContent sections={exitingSections} currentPath={currentPath} />
-              </div>
-            )}
-
-            {/* Entering content */}
+        {renderedItem && renderedSections.length > 0 && (
+          <div
+            className={css['foldout-positioner']}
+            data-instant={instant || undefined}
+            style={{ transform: `translateX(${menuX}px)`, width: menuWidth }}
+          >
             <div
-              key={activeItem}
-              className={`${css['foldout-content-enter']} ${direction === 'right' ? css['enter-from-right'] : css['enter-from-left']}`}
+              className={`${css['foldout']} ${!activeItem ? css['foldout-closing'] : ''}`}
+              role="menu"
+              onKeyDown={handleFoldoutKeyDown}
+              style={{ height: menuHeight ?? undefined }}
             >
-              <FoldoutContent sections={activeSections} currentPath={currentPath} />
+              <div className={css['foldout-viewport']}>
+                {/* Exiting content */}
+                {exitingItem && exitingSections.length > 0 && (
+                  <div
+                    key={`exit-${exitingItem}`}
+                    className={`${css['foldout-content-exit']} ${direction === 'right' ? css['exit-left'] : css['exit-right']}`}
+                    style={{ width: exitingWidth - FOLDOUT_CHROME }}
+                    onAnimationEnd={() => setExitingItem(null)}
+                  >
+                    <FoldoutContent sections={exitingSections} currentPath={currentPath} />
+                  </div>
+                )}
+
+                {/* Entering content */}
+                <div
+                  key={renderedItem}
+                  ref={activeContentRef}
+                  className={isSwap ? `${css['foldout-content-enter']} ${direction === 'right' ? css['enter-from-right'] : css['enter-from-left']}` : ''}
+                  style={{ width: menuWidth - FOLDOUT_CHROME }}
+                >
+                  <FoldoutContent sections={renderedSections} currentPath={currentPath} />
+                </div>
+              </div>
             </div>
           </div>
         )}

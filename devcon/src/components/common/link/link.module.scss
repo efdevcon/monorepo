@@ -1,10 +1,15 @@
 .external-indicator {
   text-decoration: none;
+  // Breaks are allowed around inline svgs even after &nbsp; — keep the
+  // arrow glued to the last word of the label
+  white-space: nowrap;
 
+  // Lucide ArrowUpRight (stroke-based); sized relative to the surrounding
+  // text. inline-block overrides Tailwind preflight's svg { display: block }
   .icon {
-    font-size: 0.6em;
-    position: relative;
-    top: -3px;
-    fill: currentColor;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
   }
 }

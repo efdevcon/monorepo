@@ -142,7 +142,9 @@
         background-image: none;
       }
 
-      *:not(:global(.footer-logo) *) {
+      // Blanket-fill for legacy fill-based svgs; lucide icons are stroke-based
+      // and must be excluded or their open paths render as filled shapes
+      *:not(:global(.footer-logo) *):not(:global(.lucide)):not(:global(.lucide) *) {
         fill: #c7c7d0 !important;
       }
     }
