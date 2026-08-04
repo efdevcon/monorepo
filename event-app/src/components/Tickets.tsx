@@ -81,7 +81,7 @@ export function Tickets() {
           {!user && (
             <p className="mt-3 text-sm text-gray-400">
               Already have a ticket?{" "}
-              <Link href="/login" className="text-[#7D52F4] hover:underline">
+              <Link href="/ticket" className="text-[#7D52F4] hover:underline">
                 Sign in
               </Link>{" "}
               with the email that has a ticket associated with it.

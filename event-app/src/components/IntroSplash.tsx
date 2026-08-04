@@ -1,10 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "@/routing";
+import { isStandalone } from "./InstallAppButton";
 
-/** True below the `lg` breakpoint (where the login hero image is hidden). */
+const STORAGE_KEY = "event_app_intro_seen";
+
+/** True below the `lg` breakpoint (where the hero image is hidden). */
 function useIsMobile(): boolean {
   const [mobile, setMobile] = useState(false);
   useEffect(() => {
@@ -18,7 +20,7 @@ function useIsMobile(): boolean {
 }
 
 const DURATION = 2.4; // seconds
-// grow from right (0 → 0.4) · hold (0.4 → 0.6) · reveal app from right (0.6 → 1)
+// grow from right (0 → 0.4) · hold (0.4 → 0.6) · reveal from right (0.6 → 1)
 const TIMES = [0, 0.4, 0.6, 1];
 
 // Soft-edged mask: the image is visible between --l and --r, feathered over an
@@ -26,42 +28,28 @@ const TIMES = [0, 0.4, 0.6, 1];
 const MASK =
   "linear-gradient(to right, transparent var(--l), #000 calc(var(--l) + 8%), #000 calc(var(--r) - 8%), transparent var(--r))";
 
-type LoginTransitionContextValue = {
-  play: () => void;
-  /** True for the whole transition. */
-  playing: boolean;
-  /** True once the image has filled the screen — app may mount behind it. */
-  revealApp: boolean;
-};
-
-const LoginTransitionContext = createContext<LoginTransitionContextValue>({
-  play: () => {},
-  playing: false,
-  revealApp: false,
-});
-
-export const useLoginTransition = () => useContext(LoginTransitionContext);
-
 /**
- * Cinematic login → app transition. Lives ABOVE the AuthGuard.
- *
- * A window over a full-screen image grows from the right half (matching the
- * login hero panel) to full screen, holds (while the app mounts behind it),
- * then the image's right edge recedes leftward, revealing the app from the
- * right. The image is full-screen the whole time, so its crop never changes.
+ * One-time cinematic welcome, played over the app the first time it's
+ * launched as an installed PWA (standalone display mode) on a device —
+ * never again after. Skipped entirely for ordinary browser-tab visits, so
+ * it reads as "welcome to your app" rather than an interruption on a casual
+ * link click. Purely decorative: the app underneath is always mounted, this
+ * never gates content (unlike the old login-gate transition it's adapted
+ * from).
  */
-export function LoginTransitionProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function IntroSplash({ children }: { children: React.ReactNode }) {
   const [playing, setPlaying] = useState(false);
-  const [revealApp, setRevealApp] = useState(false);
-  const router = useRouter();
   const isMobile = useIsMobile();
 
-  // Desktop continues the right-half hero panel (offset, centered). Mobile has
-  // no visible hero, so the image wipes in from the right edge / off-screen.
+  useEffect(() => {
+    if (!isStandalone()) return;
+    if (localStorage.getItem(STORAGE_KEY) === "true") return;
+    localStorage.setItem(STORAGE_KEY, "true");
+    setPlaying(true);
+  }, []);
+
+  // Desktop grows from a right-half panel (matching the old login hero).
+  // Mobile has no visible hero, so the image wipes in from off-screen right.
   const lInitial = isMobile ? "100%" : "50%";
   const lKeyframes = isMobile
     ? ["100%", "-8%", "-8%", "-8%"]
@@ -71,19 +59,8 @@ export function LoginTransitionProvider({
     ? ["0%", "0%", "0%", "0%"]
     : ["25%", "0%", "0%", "0%"];
 
-  const play = () => {
-    setPlaying(true);
-    // Navigate + mount the app during the hold — while the image fully covers
-    // the screen — so the route swap / remount is hidden (no flash of the form
-    // unmounting/remounting before the transition plays).
-    setTimeout(() => {
-      setRevealApp(true);
-      router.push("/");
-    }, DURATION * TIMES[1] * 1000);
-  };
-
   return (
-    <LoginTransitionContext.Provider value={{ play, playing, revealApp }}>
+    <>
       {children}
 
       {playing && (
@@ -111,10 +88,7 @@ export function LoginTransitionProvider({
             } as Record<string, string[]>
           }
           transition={{ duration: DURATION, times: TIMES, ease: "easeInOut" }}
-          onAnimationComplete={() => {
-            setPlaying(false);
-            setRevealApp(false);
-          }}
+          onAnimationComplete={() => setPlaying(false)}
         >
           {/* Transform layer: holds the image AND the centered logo so they
               move/zoom together. Native Framer transforms (smoothly
@@ -157,6 +131,6 @@ export function LoginTransitionProvider({
           </motion.div>
         </motion.div>
       )}
-    </LoginTransitionContext.Provider>
+    </>
   );
 }

@@ -5,6 +5,7 @@ import APP_CONFIG from "@/CONFIG";
 import { use, useState } from "react";
 import { Link, BackButton } from "@/routing";
 import { supabase } from "@/data/auth/supabase";
+import { useUser } from "@/data/auth/useUser";
 import {
   MeerkatProvider,
   useQuestions,
@@ -92,23 +93,26 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 }
 
 function SessionQA({ sessionId }: { sessionId: string }) {
+  const { user } = useUser();
   // WIP: realtime disabled until Meerkat integration is avaiable
   const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
   const sessionUrl = useSessionUrl(sessionId);
   const [isGenerating, setIsGenerating] = useState(false);
   const [tokenError, setTokenError] = useState<string | null>(null);
+  const [needsSignIn, setNeedsSignIn] = useState(false);
   const [debugToken, setDebugToken] = useState<{ raw: string; header: unknown; payload: unknown } | null>(null);
 
   async function handleAskQuestion() {
     setIsGenerating(true);
     setTokenError(null);
+    setNeedsSignIn(false);
     try {
       // Attach the Supabase access token so the server can verify the user and
       // their ticket before issuing the handover JWT.
       const accessToken = (await supabase?.auth.getSession())?.data.session
         ?.access_token;
       if (!accessToken) {
-        setTokenError("Please sign in to ask a question.");
+        setNeedsSignIn(true);
         return;
       }
 
@@ -117,13 +121,15 @@ function SessionQA({ sessionId }: { sessionId: string }) {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (!res.ok) {
+        if (res.status === 401) {
+          setNeedsSignIn(true);
+          return;
+        }
         const { error } = await res.json().catch(() => ({ error: null }));
         setTokenError(
           res.status === 403
             ? error || "A valid ticket is required to ask questions."
-            : res.status === 401
-              ? "Please sign in to ask a question."
-              : error || "Failed to generate token. Please try again."
+            : error || "Failed to generate token. Please try again."
         );
         return;
       }
@@ -150,15 +156,31 @@ function SessionQA({ sessionId }: { sessionId: string }) {
       <div className="flex items-center justify-between mb-3">
         <h2 className="font-semibold">Questions</h2>
         <div className="flex items-center gap-3 text-sm">
-          <button
-            onClick={handleAskQuestion}
-            disabled={isGenerating}
-            className="text-blue-500 hover:underline disabled:opacity-50 cursor-pointer"
-          >
-            {isGenerating ? "Loading..." : "Ask a question"}
-          </button>
+          {user ? (
+            <button
+              onClick={handleAskQuestion}
+              disabled={isGenerating}
+              className="text-blue-500 hover:underline disabled:opacity-50 cursor-pointer"
+            >
+              {isGenerating ? "Loading..." : "Ask a question"}
+            </button>
+          ) : (
+            <Link href="/ticket" className="text-blue-500 hover:underline">
+              Sign in to ask a question
+            </Link>
+          )}
         </div>
       </div>
+
+      {needsSignIn && (
+        <p className="mb-3 text-sm text-gray-500">
+          Your session expired.{" "}
+          <Link href="/ticket" className="text-blue-500 font-medium hover:underline">
+            Sign in
+          </Link>{" "}
+          to ask a question.
+        </p>
+      )}
 
       {tokenError && (
         <p className="mb-3 text-sm text-red-500">{tokenError}</p>

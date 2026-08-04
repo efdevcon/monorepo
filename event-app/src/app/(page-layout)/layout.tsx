@@ -3,9 +3,8 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
-import { AuthGuard } from "@/components/AuthGuard";
 import { Nav } from "@/components/Nav";
-import { LoginTransitionProvider } from "@/components/LoginTransition";
+import { IntroSplash } from "@/components/IntroSplash";
 
 export default function PageLayout({
   children,
@@ -19,19 +18,17 @@ export default function PageLayout({
   const isKiosk = pathname.startsWith("/room-screens/");
 
   return (
-    <LoginTransitionProvider>
-      <AuthGuard>
-        <Nav onOpenAI={() => setDevaBotOpen(true)} />
-        {/* `section` restrains content width (centered column + gutters);
-            bottom padding on mobile clears the floating nav bar. */}
-        <div className="section pb-28 lg:pb-0">{children}</div>
-        {!isKiosk && (
-          <DevaBot
-            toggled={devaBotOpen}
-            onToggle={(visible) => setDevaBotOpen(visible)}
-          />
-        )}
-      </AuthGuard>
-    </LoginTransitionProvider>
+    <IntroSplash>
+      <Nav onOpenAI={() => setDevaBotOpen(true)} />
+      {/* `section` restrains content width (centered column + gutters);
+          bottom padding on mobile clears the floating nav bar. */}
+      <div className="section pb-28 lg:pb-0">{children}</div>
+      {!isKiosk && (
+        <DevaBot
+          toggled={devaBotOpen}
+          onToggle={(visible) => setDevaBotOpen(visible)}
+        />
+      )}
+    </IntroSplash>
   );
 }

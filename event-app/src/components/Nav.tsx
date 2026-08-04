@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import cn from "classnames";
-import { CalendarDays, Home, Map, Sparkles, Tv, User, Users } from "lucide-react";
+import { CalendarDays, Home, Map, Sparkles, Ticket, Tv, Users } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
@@ -50,7 +50,7 @@ const NAV_ITEMS: NavItem[] = [
     enabled: APP_CONFIG.ROOMS_ENABLED,
     hideOnMobile: true,
   },
-  { href: "/profile", label: "Profile", short: "Profile", icon: User, enabled: true },
+  { href: "/ticket", label: "Tickets", short: "Tickets", icon: Ticket, enabled: true },
 ];
 
 function isActive(pathname: string, href: string): boolean {
@@ -65,16 +65,11 @@ function isActive(pathname: string, href: string): boolean {
  */
 export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
-  const { user, hasInitialized } = useUser();
+  const { user } = useUser();
   const items = NAV_ITEMS.filter((i) => i.enabled);
 
-  // Resolve the link target up front: Profile goes straight to /login when
-  // logged out, so we don't navigate to /profile and bounce (URL flash).
-  const targetHref = (item: NavItem) =>
-    item.href === "/profile" && hasInitialized && !user ? "/login" : item.href;
-
-  // No nav on the login screen or the full-screen room-screen kiosk.
-  if (pathname === "/login" || pathname.startsWith("/room-screens/")) {
+  // No nav on the full-screen room-screen kiosk.
+  if (pathname.startsWith("/room-screens/")) {
     return null;
   }
 
@@ -84,13 +79,12 @@ export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
       <header className="hidden lg:flex sticky top-0 z-30 justify-center px-4 py-3">
         <nav className="flex items-center gap-1 rounded-full border border-[#E1E4EA] bg-white/80 px-2 py-1.5 shadow-sm backdrop-blur">
           {items.map((item) => {
-            const href = targetHref(item);
-            const active = isActive(pathname, href);
+            const active = isActive(pathname, item.href);
             const Icon = item.icon;
             return (
               <Link
                 key={item.href}
-                href={href}
+                href={item.href}
                 // Full prefetch (RSC included) so the SW caches each route's
                 // payload — enables smooth offline navigation between nav routes.
                 prefetch
@@ -127,13 +121,12 @@ export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           {items
             .filter((item) => !item.hideOnMobile)
             .map((item) => {
-              const href = targetHref(item);
-              const active = isActive(pathname, href);
+              const active = isActive(pathname, item.href);
               const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
-                  href={href}
+                  href={item.href}
                   prefetch
                   className={cn(
                     "flex flex-col items-center justify-center gap-0.5 rounded-full px-3 py-1.5 text-[10px] font-medium transition-colors",
