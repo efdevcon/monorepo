@@ -120,6 +120,39 @@ Details that matter:
   anonymously and private events 401 while public ones keep working. The secret name
   `PRETALX_API_KEY_MUMBAI` predates the rename and is kept as-is.
 
+### 2a. Field recap: everything the AV team writes, and how
+
+Three write paths. Both endpoints authenticate with the `?apiKey=` query param and
+commit to git with `[skip deploy]`.
+
+**Path A - `PUT /sessions/sources/:id`** (the day-of enrichment endpoint). ⚠️ It is a
+**full replace, not a patch**: every omitted field is reset to `''` / `0`
+(`sessions.ts`, `body.x ?? ''`), so a partial payload wipes the fields you didn't
+send - always send the complete set. Bumps the event version (hardcoded to devcon-7,
+blocker #1).
+
+| Field | Consumed by |
+|---|---|
+| `sources_youtubeId` | YouTube embed in devcon-app + archive; `yt.ts` thumbnail/description push; coverage stats |
+| `sources_streamethId` | StreamEth iframe tab |
+| `sources_swarmHash` | Swarm player (devcon-app only; also gates the player-switcher pills, §7.3) |
+| `sources_ipfsHash` | Archive IPFS tab (dead gateway, §6) - vestigial since DC6 |
+| `sources_livepeerId` | Nothing (1 session ever had one) |
+| `transcript_vtt` | Nothing - never parsed anywhere (§8) |
+| `transcript_text` | LLM/AI consumption only |
+| `duration` | Duration display in app + archive |
+
+**Path B - `PUT /sessions/:id`** (generic session update). True partial merge - only
+sent keys change, unknown keys are rejected. Can update *any* existing session field,
+notably `resources_slides`, title/description corrections, `slot_*` moves. Gotcha: it
+does **not** bump the event version, so clients and OG cards may serve stale data
+until something else bumps it.
+
+**Path C - hand-edited git commit** (no endpoint). Per-room livestream config in
+`data/rooms/<event>/*.json`: `youtubeStreamUrl_1..4` (one per event day) and
+`translationUrl`. Survives Pretalx syncs only via spread order (§5.3). This is also
+currently the only way to author event metadata (`data/events/<event>.json`, #12).
+
 ## 2b. Automation inventory - every Pretalx/AV entry point
 
 One table for everything that runs (or is supposed to run) without a human editing JSON
@@ -260,6 +293,10 @@ at `18.2.1`, DC6-era track names. Dead.
    self-heals). Unnoticed so far because publishes and enrichment haven't overlapped -
    during the event they will. Fix: overlay the existing store's enriched fields onto
    the fresh Pretalx data before the swap (~5 lines).
+5. **A partial enrichment `PUT` erases the rest.** `PUT /sessions/sources/:id` is a
+   full replace - omitted fields reset to empty (§2a). An AV tool that sends only the
+   YouTube ID wipes the session's swarm hash, transcripts and duration. Fix: switch the
+   handler to `?? existing` semantics, or document "always send all fields" to vendors.
 
 ## 6. Source coverage on disk
 
