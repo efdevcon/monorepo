@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import APP_CONFIG from "@/CONFIG";
 
 /**
  * Same-origin redirector used as the `start_url` of the personalized
@@ -16,19 +17,19 @@ export async function GET(request: NextRequest) {
   const redirectParam = request.nextUrl.searchParams.get("redirect");
 
   if (!supabaseUrl || !redirectParam) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(APP_CONFIG.APP_ORIGIN);
   }
 
   let target: URL;
   try {
     target = new URL(redirectParam);
   } catch {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(APP_CONFIG.APP_ORIGIN);
   }
 
   const allowedHost = new URL(supabaseUrl).host;
   if (target.host !== allowedHost || target.pathname !== "/auth/v1/verify") {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(APP_CONFIG.APP_ORIGIN);
   }
 
   return NextResponse.redirect(target);

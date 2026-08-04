@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     }
 
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
-    const origin = new URL(request.url).origin;
+    const origin = APP_CONFIG.APP_ORIGIN;
     const { data, error } = await supabaseAdmin.auth.admin.generateLink({
       type: "magiclink",
       email: user.email,

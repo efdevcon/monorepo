@@ -15,6 +15,12 @@ const APP_CONFIG = {
   APP_NAME: "Devcon App v2",
   APP_DESCRIPTION: "Ethereum knitting club.",
 
+  // Public origin of this deployment. Used server-side (e.g.
+  // /api/manifest-bridge) to build redirect URLs — deriving it from the
+  // incoming request's own URL isn't reliable behind Netlify's serverless
+  // function proxying, which doesn't necessarily preserve the public host.
+  APP_ORIGIN: process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app",
+
   // Feature flags - enable/disable routes
   SCHEDULE_ENABLED: true, // /schedule, /schedule/[id]
   SPEAKERS_ENABLED: true, // /speakers, /speakers/[id]
