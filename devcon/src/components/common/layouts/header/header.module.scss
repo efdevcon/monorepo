@@ -99,10 +99,20 @@
     transition: --nav-grad-from 0.6s cubic-bezier(0.22, 1, 0.36, 1), --nav-grad-to 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  // transform is included because this shorthand outranks .nav-chevron's own
+  // transition (navigation.module.scss) — without it the chevron rotation
+  // snaps on hero pages while animating everywhere else
   :global(.lucide-chevron-down),
   :global(.lucide-chevron-up) {
-    transition: color 0.2s ease, stroke 0.2s ease;
+    transition: color 0.2s ease, stroke 0.2s ease, transform 200ms ease;
     stroke: white !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.lucide-chevron-down),
+    :global(.lucide-chevron-up) {
+      transition: color 0.2s ease, stroke 0.2s ease;
+    }
   }
 
   &.filled {

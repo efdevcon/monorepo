@@ -1,0 +1,31 @@
+// Enter/exit mirrors the nav foldouts (navigation.module.scss): keyframe
+// appear on open, transition-based close so re-hovering mid-close retargets
+.menu-card {
+  transform-origin: top right;
+  animation: menuAppear 200ms cubic-bezier(0.32, 0.72, 0, 1);
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
+
+// Duration must match CLOSE_MS in LanguageToggle.tsx
+.menu-closing {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-card {
+    transition: none;
+    animation: none;
+  }
+}
