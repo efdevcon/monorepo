@@ -3,9 +3,12 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Download, Share, MoreVertical } from "lucide-react";
+import { toast } from "sonner";
+import { Copy, Download, Share, MoreVertical } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
+import { useUser } from "@/data/auth/useUser";
+import { supabase } from "@/data/auth/supabase";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
 interface BeforeInstallPromptEvent extends Event {
@@ -37,6 +40,60 @@ function isSafari(): boolean {
   if (typeof navigator === "undefined") return false;
   const ua = navigator.userAgent;
   return /Safari/i.test(ua) && !/CriOS|FxiOS|OPiOS|EdgiOS/i.test(ua);
+}
+
+/**
+ * True when installing needs a hop through Safari first: signed in, on iOS,
+ * in a non-Safari browser (e.g. having just followed the reminder email's
+ * magic link in Brave/Chrome), and not already installed. Drives both the
+ * proactive banner on /ticket and the fallback option in the install modal.
+ */
+export function useShouldShowSafariBridge(): boolean {
+  const { user } = useUser();
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    setShow(!!user && isIOS() && !isSafari() && !isStandalone());
+  }, [user]);
+  return show;
+}
+
+/**
+ * Gets a fresh sign-in link (via /api/manifest-bridge) and, on iOS, tries to
+ * hand it straight to Safari via the `x-safari-https://` scheme — unlike
+ * the same trick failing from inside Gmail's in-app browser, this is a real
+ * standalone browser (Brave/Chrome) navigating via JS, which iOS generally
+ * does hand off to the OS. Copies the link to the clipboard regardless, as
+ * a fallback: the handoff isn't guaranteed since it happens after an async
+ * fetch, and iOS sometimes blocks app-handoff attempts not tied directly to
+ * the tap that triggered them.
+ */
+export function useCopySignInLink(): () => Promise<void> {
+  return async () => {
+    try {
+      const accessToken = (await supabase?.auth.getSession())?.data.session
+        ?.access_token;
+      if (!accessToken) throw new Error("Not signed in");
+
+      const res = await fetch("/api/manifest-bridge", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      if (!res.ok) throw new Error("Failed to create sign-in link");
+      const manifest = await res.json();
+      const link: string = manifest.start_url;
+
+      await navigator.clipboard.writeText(link).catch(() => {});
+
+      if (isIOS() && !isSafari()) {
+        window.location.href = link.replace(/^https:\/\//, "x-safari-https://");
+        toast.success("Opening in Safari… link copied too, in case it doesn't switch automatically");
+      } else {
+        toast.success("Link copied — paste it into Safari's address bar");
+      }
+    } catch {
+      toast.error("Couldn't create a sign-in link. Try again in a moment.");
+    }
+  };
 }
 
 /**
@@ -116,7 +173,17 @@ function manualInstructions(): { intro: string; steps: ReactNode[] } {
 }
 
 /** Instructions card shown when no native install prompt is available. */
-function InstallInstructionsModal({ onClose }: { onClose: () => void }) {
+function InstallInstructionsModal({
+  onClose,
+  onCopySignInLink,
+}: {
+  onClose: () => void;
+  /** Present only when signed in on iOS in a non-Safari browser — copies a
+   *  fresh sign-in link to the clipboard to paste into Safari, so the
+   *  session carries over (Safari is required to install, but the app was
+   *  opened in e.g. Brave/Chrome, which have separate storage). */
+  onCopySignInLink?: () => void;
+}) {
   const { intro, steps } = manualInstructions();
 
   return createPortal(
@@ -164,6 +231,15 @@ function InstallInstructionsModal({ onClose }: { onClose: () => void }) {
               </li>
             ))}
           </ol>
+          {onCopySignInLink && (
+            <button
+              onClick={onCopySignInLink}
+              className="mb-3 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#E1E4EA] py-2.5 font-medium text-gray-700 transition-colors hover:bg-gray-50 active:scale-[0.98]"
+            >
+              <Copy className="h-4 w-4" />
+              Copy sign-in link for Safari
+            </button>
+          )}
           <button
             onClick={onClose}
             className="w-full cursor-pointer rounded-full bg-[#7D52F4] py-2.5 font-medium text-white transition-colors hover:bg-[#6A3FD1] active:scale-[0.98]"
@@ -200,6 +276,8 @@ export function InstallAppButton({
   const shouldShow = useShouldShowInstall();
   const installPrompt = useInstallPrompt();
   const [showInstructions, setShowInstructions] = useState(false);
+  const { user } = useUser();
+  const copySignInLink = useCopySignInLink();
 
   if (!shouldShow) return null;
 
@@ -241,6 +319,9 @@ export function InstallAppButton({
           <InstallInstructionsModal
             key="install-instructions"
             onClose={() => setShowInstructions(false)}
+            onCopySignInLink={
+              user && isIOS() && !isSafari() ? copySignInLink : undefined
+            }
           />
         )}
       </AnimatePresence>
