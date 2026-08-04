@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useUser } from "@/data/auth/useUser";
+import { InstallAppButton } from "./InstallAppButton";
 import { TicketSignIn } from "./TicketSignIn";
 import { Tickets } from "./Tickets";
 
@@ -52,6 +53,10 @@ export function Ticket() {
 
             <div className="mb-8">
               <Tickets />
+            </div>
+
+            <div className="mb-4 flex justify-center">
+              <InstallAppButton />
             </div>
 
             <button

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "@/data/hooks";
+import { SessionMedia } from "@/components/schedule/SessionMedia";
 import APP_CONFIG from "@/CONFIG";
 import { use, useState } from "react";
 import { Link, BackButton } from "@/routing";
@@ -48,6 +49,8 @@ export default function Session({ params, id: directId }: SessionClientProps) {
       </BackButton>
 
       <h1 className="text-2xl font-bold mb-2">{session.title}</h1>
+
+      <SessionMedia session={session} />
 
       <div className="space-y-2 text-gray-600 mb-4">
         <p>

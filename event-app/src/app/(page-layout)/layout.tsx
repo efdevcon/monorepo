@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
 import { Nav } from "@/components/Nav";
 import { IntroSplash } from "@/components/IntroSplash";
+import { InstallBridge } from "@/components/InstallBridge";
 
 export default function PageLayout({
   children,
@@ -19,6 +20,7 @@ export default function PageLayout({
 
   return (
     <IntroSplash>
+      <InstallBridge />
       <Nav onOpenAI={() => setDevaBotOpen(true)} />
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the floating nav bar. */}

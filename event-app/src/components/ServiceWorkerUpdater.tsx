@@ -97,9 +97,18 @@ export function ServiceWorkerUpdater() {
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
 
+    // Also poll on an interval: a tab that's left open and focused the whole
+    // time (never backgrounded) would otherwise never re-check and could sit
+    // on a stale build indefinitely, only "fixed" by a hard refresh.
+    const CHECK_INTERVAL_MS = 60_000;
+    const intervalId = window.setInterval(() => {
+      registration?.update().catch(() => {});
+    }, CHECK_INTERVAL_MS);
+
     return () => {
       navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
       document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.clearInterval(intervalId);
       if (toastId !== undefined) toast.dismiss(toastId);
     };
   }, []);
