@@ -1,5 +1,8 @@
 # Pretalx → devcon-api → repo (schedule data pipeline)
 
+> For a full map of the AV stack and a Devcon 8 readiness assessment (blockers,
+> automation inventory, dormant code), see [av-stack-overview.md](./av-stack-overview.md).
+
 Pretalx is the source of truth for talks, speakers, rooms and the
 schedule. devcon-api has **no database** — instead the synced data lives as plain JSON files
 committed into the repo (`devcon-api/data/`), and the running API loads those files into memory
