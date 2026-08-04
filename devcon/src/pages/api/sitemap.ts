@@ -14,6 +14,7 @@ const ROUTES = [
   { path: 'blogs/', changefreq: 'weekly', priority: '0.8' },
   { path: 'about/', changefreq: 'monthly', priority: '0.6' },
   { path: 'academic-program/', changefreq: 'monthly', priority: '0.6' },
+  { path: 'childcare/', changefreq: 'monthly', priority: '0.6' },
   { path: 'application-guidelines/', changefreq: 'monthly', priority: '0.6' },
   { path: 'code-of-conduct/', changefreq: 'monthly', priority: '0.6' },
   { path: 'dips/', changefreq: 'monthly', priority: '0.6' },
