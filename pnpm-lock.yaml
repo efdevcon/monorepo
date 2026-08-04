@@ -1725,9 +1725,6 @@ importers:
       '@capacitor/ios':
         specifier: ^8.0.1
         version: 8.0.1(@capacitor/core@8.0.1)
-      '@khmyznikov/pwa-install':
-        specifier: ^0.6.3
-        version: 0.6.3(@lit/react@1.0.8(@types/react@19.2.2))(@types/dom-chromium-installation-events@101.0.4)(@types/web-app-manifest@1.0.9)(lit@3.3.0)
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
@@ -5253,14 +5250,6 @@ packages:
 
   '@keplr-wallet/unit@0.12.156':
     resolution: {integrity: sha512-GGMOFsGCTv36ZWEBt8ONgYw64zYRsYmaV4ZccNHGo8NGWwQwB6OhcVYpwvjbZdB4K9tsQNJQEv16qsSpurDBGQ==}
-
-  '@khmyznikov/pwa-install@0.6.3':
-    resolution: {integrity: sha512-1GoPVcltXCZgXa7kovAYqodSWNmUW26RaNoF6KbSGfEZ6r6OLwHrUm/+vYFlDUBaIgYHo5Xi301bN4mG51KZRA==}
-    peerDependencies:
-      '@lit/react': ^1.0.8
-      '@types/dom-chromium-installation-events': ^101.0.4
-      '@types/web-app-manifest': ^1.0.9
-      lit: ^3.3.1
 
   '@leapwallet/cosmos-social-login-capsule-provider@0.0.41':
     resolution: {integrity: sha512-bspkrnc/1FPI2EV0ssCxbySgGPj8+huj5Qesm4wuGJvbr4WDjb4QZZn7j3f7ZQXbGz3jYuc75TVCXcOCFHkDAQ==}
@@ -9157,9 +9146,6 @@ packages:
   '@types/debug@4.1.13':
     resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
 
-  '@types/dom-chromium-installation-events@101.0.4':
-    resolution: {integrity: sha512-jV4HXmW5D18bpndzAPF1REGE5xagQqrAexHgX9WoWIPpNaaHtsHQgu5uFbL2z0NIc9fOD0TIC1TRpJhYA1OPxw==}
-
   '@types/dotenv@8.2.3':
     resolution: {integrity: sha512-g2FXjlDX/cYuc5CiQvyU/6kkbP1JtmGzh0obW50zD7OKeILVL0NSpPWLXVfqoAGQjom2/SLLx9zHq0KXvD6mbw==}
     deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
@@ -9560,9 +9546,6 @@ packages:
 
   '@types/validate-npm-package-name@4.0.2':
     resolution: {integrity: sha512-lrpDziQipxCEeK5kWxvljWYhUvOiB2A9izZd9B2AFarYAkqZshb4lPbRs7zKEic6eGtH8V/2qJW+dPp9OtF6bw==}
-
-  '@types/web-app-manifest@1.0.9':
-    resolution: {integrity: sha512-aVz1aXTubyL6nvVRyz9W7QR60zHLTiCGAafqYRc/RYUjA1GFc4npUUr7RlfO1+yP6gVvxzFmIVp8ULLYqhBRdA==}
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
@@ -29691,13 +29674,6 @@ snapshots:
     transitivePeerDependencies:
       - starknet
 
-  '@khmyznikov/pwa-install@0.6.3(@lit/react@1.0.8(@types/react@19.2.2))(@types/dom-chromium-installation-events@101.0.4)(@types/web-app-manifest@1.0.9)(lit@3.3.0)':
-    dependencies:
-      '@lit/react': 1.0.8(@types/react@19.2.2)
-      '@types/dom-chromium-installation-events': 101.0.4
-      '@types/web-app-manifest': 1.0.9
-      lit: 3.3.0
-
   '@leapwallet/cosmos-social-login-capsule-provider@0.0.41(@cosmjs/encoding@0.34.0)(@cosmjs/proto-signing@0.34.0)(fp-ts@2.16.9)':
     dependencies:
       '@cosmjs/amino': 0.31.3
@@ -29750,6 +29726,7 @@ snapshots:
   '@lit/react@1.0.8(@types/react@19.2.2)':
     dependencies:
       '@types/react': 19.2.2
+    optional: true
 
   '@lit/reactive-element@1.6.3':
     dependencies:
@@ -38766,8 +38743,6 @@ snapshots:
     dependencies:
       '@types/ms': 2.1.0
 
-  '@types/dom-chromium-installation-events@101.0.4': {}
-
   '@types/dotenv@8.2.3':
     dependencies:
       dotenv: 16.6.1
@@ -39213,8 +39188,6 @@ snapshots:
   '@types/valid-url@1.0.7': {}
 
   '@types/validate-npm-package-name@4.0.2': {}
-
-  '@types/web-app-manifest@1.0.9': {}
 
   '@types/web-bluetooth@0.0.20': {}
 
