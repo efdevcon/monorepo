@@ -1,4 +1,4 @@
-import type { Room, Session, Speaker } from "../models";
+import type { ConferenceEvent, Room, Session, Speaker } from "../models";
 import { datasetForEventId, getActiveDataset } from "../dataset";
 import { BaseProvider, type SessionFilters } from "./provider-interface";
 
@@ -57,6 +57,11 @@ export class DevconApiProvider extends BaseProvider {
         ? raw.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
         : raw.tags ?? [],
       resources: [],
+      // AV enrichment: the API serves '' for un-enriched sessions - normalise
+      // to undefined so `session.sources_youtubeId` is cleanly falsy.
+      sources_youtubeId: raw.sources_youtubeId || undefined,
+      sources_streamethId: raw.sources_streamethId || undefined,
+      sources_swarmHash: raw.sources_swarmHash || undefined,
     };
   }
 
@@ -93,6 +98,12 @@ export class DevconApiProvider extends BaseProvider {
       description: raw.description ?? "",
       info: raw.info ?? "",
       capacity: raw.capacity,
+      // Livestream config (hand-authored per event in devcon-api room JSONs).
+      youtubeStreamUrl_1: raw.youtubeStreamUrl_1 || undefined,
+      youtubeStreamUrl_2: raw.youtubeStreamUrl_2 || undefined,
+      youtubeStreamUrl_3: raw.youtubeStreamUrl_3 || undefined,
+      youtubeStreamUrl_4: raw.youtubeStreamUrl_4 || undefined,
+      translationUrl: raw.translationUrl || undefined,
     };
   }
 
@@ -165,5 +176,15 @@ export class DevconApiProvider extends BaseProvider {
     const room = rooms.find((r) => r.id === id);
     if (!room) throw new Error(`Room ${id} not found`);
     return room;
+  }
+
+  async getEvent(): Promise<ConferenceEvent> {
+    const data = await this.fetchApi<any>(`/events/${this.dataset.eventId}`);
+    return this.validateEvent({
+      id: data.id ?? this.dataset.eventId,
+      title: data.title || undefined,
+      startDate: data.startDate || undefined,
+      endDate: data.endDate || undefined,
+    });
   }
 }

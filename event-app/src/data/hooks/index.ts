@@ -10,3 +10,5 @@ export {
 export { useSpeakers, useSpeaker, useSearchSpeakers } from "./use-speakers";
 
 export { useRooms, useRoom } from "./use-rooms";
+
+export { useEvent } from "./use-event";

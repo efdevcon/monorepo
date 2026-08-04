@@ -1,4 +1,4 @@
-import { GetData, GetSpeakerData } from '@/clients/filesystem'
+import { GetData, GetRoomData, GetSpeakerData } from '@/clients/filesystem'
 import { vectorizeSession, buildDictionary, GetRecommendedVectorSearch, VectorizedSession } from '@/clients/recommendation'
 
 // In-memory data loaded from JSON files at startup
@@ -9,7 +9,13 @@ let sessions: any[] = []
 
 // Lookup maps for fast access
 let speakerMap: Map<string, any> = new Map()
+// Keyed by `${eventId}/${roomId}` - room ids repeat across events
+// (main-stage, stage-1, ...), so a flat id key would collide.
 let roomMap: Map<string, any> = new Map()
+
+function roomKey(eventId: string, roomId: string) {
+  return `${eventId}/${roomId}`
+}
 let sessionMap: Map<string, any> = new Map()
 
 // Vectorized sessions for related sessions lookup
@@ -33,7 +39,7 @@ export const ENRICHED_SESSION_FIELDS = [
 export function initStore() {
   console.log('Loading data into memory...')
 
-  rooms = GetData('rooms')
+  rooms = GetRoomData()
   const rawEvents = GetData('events')
   speakers = GetSpeakerData()
   const rawSessions = GetData('sessions')
@@ -48,7 +54,7 @@ export function initStore() {
 
   roomMap = new Map()
   for (const r of rooms) {
-    roomMap.set(r.id, r)
+    roomMap.set(roomKey(r.eventId, r.id), r)
   }
 
   // Resolve sessions: expand speaker IDs to objects, attach room object
@@ -57,7 +63,7 @@ export function initStore() {
       .map((id: string) => speakerMap.get(id))
       .filter(Boolean)
 
-    const slot_room = session.slot_roomId ? roomMap.get(session.slot_roomId) || null : null
+    const slot_room = session.slot_roomId ? roomMap.get(roomKey(session.eventId, session.slot_roomId)) || null : null
 
     return {
       ...session,
@@ -76,7 +82,7 @@ export function initStore() {
   // Resolve events: attach rooms and session count
   events = rawEvents.map((event: any) => {
     const eventRooms = (event.rooms || [])
-      .map((id: string) => roomMap.get(id))
+      .map((id: string) => roomMap.get(roomKey(event.id, id)))
       .filter(Boolean)
 
     const nrOfSessions = sessions.filter((s: any) => s.eventId === event.id).length
@@ -330,7 +336,7 @@ export function updateSession(id: string, data: any) {
 
   // Re-resolve room if changed
   if (data.slot_roomId !== undefined) {
-    updated.slot_room = data.slot_roomId ? roomMap.get(data.slot_roomId) || null : null
+    updated.slot_room = data.slot_roomId ? roomMap.get(roomKey(updated.eventId, data.slot_roomId)) || null : null
   }
 
   sessions[index] = updated
@@ -355,7 +361,7 @@ export function createSession(data: any) {
     })
     .filter(Boolean)
 
-  const slot_room = data.slot_roomId ? roomMap.get(data.slot_roomId) || null : null
+  const slot_room = data.slot_roomId ? roomMap.get(roomKey(data.eventId, data.slot_roomId)) || null : null
 
   const session = {
     ...data,
@@ -409,7 +415,7 @@ export function replaceEventSessions(eventId: string, rawSessions: any[]): numbe
     const resolvedSpeakers = (data.speakers || [])
       .map((id: string) => (typeof id === 'string' ? speakerMap.get(id) : id))
       .filter(Boolean)
-    const slot_room = data.slot_roomId ? roomMap.get(data.slot_roomId) || null : null
+    const slot_room = data.slot_roomId ? roomMap.get(roomKey(eventId, data.slot_roomId)) || null : null
 
     // Pretalx payloads never carry the AV enrichment fields, so a resync must
     // not drop them from the serving copy (the git files keep them; this keeps

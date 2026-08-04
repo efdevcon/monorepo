@@ -33,3 +33,18 @@ test('replaceEventSessions preserves enrichment the raw payload lacks', () => {
   expect(after.duration).toBe(999) // preserved
   expect(after.title).toContain('(edited in Pretalx)') // Pretalx still wins for its own fields
 })
+
+test('same-id rooms from different events do not collide', () => {
+  // devcon-7's main-stage carries livestream config; the playground and DC8
+  // test events reuse room ids without it, and a flat roomMap let whichever
+  // event loads last clobber the others.
+  const session = store
+    .getAllSessions()
+    .find((s: any) => s.eventId === 'devcon-7' && s.slot_roomId === 'main-stage')
+  expect(session).toBeDefined()
+  expect(session.slot_room?.youtubeStreamUrl_1).toBeTruthy()
+
+  const dc7Rooms = store.getEventRooms('devcon-7')
+  const mainStage = dc7Rooms.find((r: any) => r.id === 'main-stage')
+  expect(mainStage?.youtubeStreamUrl_1).toBeTruthy()
+})

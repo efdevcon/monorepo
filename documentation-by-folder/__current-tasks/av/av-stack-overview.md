@@ -336,7 +336,24 @@ at `18.2.1`, DC6-era track names. Dead.
 5. **Archive playlists are dead code.** `archive/src/services/playlists.ts` + 24 JSON
    files are never imported by any route, and use the old Gatsby path scheme.
    `Video.tsx` renders a `playlists` prop the page never passes.
-6. **Production `/events` publicly serves three phantom events** (live-verified
+6. ✅ FIXED 2026-08 (§12b) **Room ids collide across events in the store.**
+   `roomMap` was keyed by bare room id, but ids repeat across event folders
+   (`main-stage`, `stage-1..3`, `music-stage`, `workshop-*`, ...), so whichever
+   event's folder loads last (alphabetical: test-devcon-8) silently overwrote the
+   others. **Live on production today**: DC7 sessions on main-stage/stage-1-3/5/
+   music-stage serve another event's room object and have lost their
+   `youtubeStreamUrl_*` config in API responses (breakout/classroom/stage-4/6
+   survive only because their ids are unique to DC7). For DC8 this would have meant
+   test-devcon-8 rooms shadowing the real event's stream config. Fixed by stamping
+   rooms with their event folder (`GetRoomData`) and namespacing the map key to
+   `eventId/roomId`.
+7. **Session ids have the same latent collision** - `sessionMap` is keyed by bare
+   slug, and 5 duplicates already exist (test-devcon-8 mirrors 4 DC7 talks;
+   `securing-ethereum` exists in devcon-1 and devcon-7), last-loaded wins. Harder to
+   fix than rooms because `GET /sessions/:id` is a public bare-id contract
+   (archive/app deep links). Not fixed; needs a decision (e.g. prefer the newest
+   event on conflict, or event-scoped lookups).
+8. **Production `/events` publicly serves three phantom events** (live-verified
    2026-08-04): `0` (stray `data/events/0.json`, an artifact of `import-yt.ts:77`
    `ensureEventFile()`), `devcon-mumbai-playground` (test instance, removed from
    `PRETALX_INSTANCES` but its data files remain), and `test-devcon-8`. `initStore`
@@ -558,6 +575,32 @@ fix (TDD), full suite 19 tests green, `tsc --noEmit` clean. Sections above are m
   mocked, nothing touches the network.
 - `package.json`: jest `moduleNameMapper` for the `@/` / `@lib/` aliases (mirrors
   tsconfig 1:1) - without it no test importing `app` can run at all.
+
+### §12b. Second round, same day
+
+Building the event-app AV slice surfaced a production bug; both the fix and the
+slice landed together:
+
+- **devcon-api: room-collision fix (§7.6).** `GetRoomData()` stamps each room with
+  its event folder; `roomMap` keys are now `eventId/roomId`, and every resolution
+  site (boot, event rooms, updateSession, createSession, webhook resync) passes the
+  session's event. Found because the new event-app livestream logic read
+  `slot_room.youtubeStreamUrl_2` from the live API and got a playground room
+  instead of DC7's main-stage. Regression test in `store.test.ts`; API responses now
+  also carry `eventId` on room objects (additive). The session-id twin of this bug
+  (§7.7) is documented but not fixed.
+- **event-app: first AV surface (the "schema + minimal player" slice).**
+  `SessionSchema` gained `sources_{youtubeId,streamethId,swarmHash}`, `RoomSchema`
+  gained `youtubeStreamUrl_1..4` + `translationUrl` (the zod models used to strip
+  these at validation), the provider passes them through, and a new
+  `EventSchema`/`getEvent()`/`useEvent()` exposes event start/end dates. New
+  `SessionMedia` component on the session page: recording embed (YouTube, else
+  StreamEth) when sources exist; otherwise the room's stream for the session's
+  conference day (derived from the event startDate - no day-of-month hardcodes -
+  via the mockable `useNow` clock) when the session is live or starting within the
+  hour; otherwise nothing. Verified headless against devcon-7 data: recording
+  renders, mocked-live session picks the correct day-2 main-stage stream, idle
+  session renders nothing.
 
 ### Still open after this changelog
 

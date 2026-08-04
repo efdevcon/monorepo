@@ -1,6 +1,7 @@
 import { z } from "zod";
-import type { Room, Session, Speaker, User } from "../models";
+import type { ConferenceEvent, Room, Session, Speaker, User } from "../models";
 import {
+  EventSchema,
   RoomSchema,
   SessionSchema,
   SpeakerSchema,
@@ -44,6 +45,13 @@ export interface IEventDataProvider {
    * Returns validated Session[] using SessionSchema
    */
   getSessions(filters?: SessionFilters): Promise<Session[]>;
+
+  /**
+   * Get the active event's metadata (title, start/end dates).
+   * Optional: providers without an events endpoint may omit it; consumers
+   * must treat the event as unknown in that case.
+   */
+  getEvent?(): Promise<ConferenceEvent>;
 
   /**
    * Get a single session by ID
@@ -134,6 +142,10 @@ export abstract class BaseProvider implements IEventDataProvider {
    * Validate and parse data using Zod schemas with toast notifications
    * Skips validation if RUNTIME_VALIDATION is false in CONFIG
    */
+  protected validateEvent(data: unknown): ConferenceEvent {
+    return validateWithToast(() => EventSchema.parse(data), data, "Event");
+  }
+
   protected validateRoom(data: unknown): Room {
     return validateWithToast(() => RoomSchema.parse(data), data, "Room");
   }

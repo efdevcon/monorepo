@@ -23,6 +23,12 @@ export const SessionSchema = z.object({
   image: z.string().optional(),
   resources: z.array(z.string()).optional(),
   tags: z.array(z.string()).optional(),
+  // AV enrichment, written to devcon-api during/after the event via
+  // PUT /sessions/sources/:id. Optional: sessions without a recording (and
+  // stale cached sessions) simply lack them.
+  sources_youtubeId: z.string().optional(),
+  sources_streamethId: z.string().optional(),
+  sources_swarmHash: z.string().optional(),
 });
 
 export type Session = z.infer<typeof SessionSchema>;

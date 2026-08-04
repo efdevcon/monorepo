@@ -34,6 +34,20 @@ export function GetData(folder: string, fileExtension = '.json') {
   return files
 }
 
+export function GetRoomData(): Array<any> {
+  // Rooms live at data/rooms/<eventId>/<roomId>.json and carry no eventId in
+  // the file itself - stamp it from the directory name so same-id rooms from
+  // different events (main-stage, stage-1, music-stage, ...) stay distinct.
+  const files: any[] = []
+  const dir = join(process.cwd(), 'data', 'rooms')
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue
+    const eventRooms = GetData(join('rooms', entry.name))
+    files.push(...eventRooms.map((r) => ({ ...r, eventId: entry.name })))
+  }
+  return files
+}
+
 export function GetSpeakerData(): Array<any> {
   const speakers = GetData('speakers')
   return speakers.map((i) => {
