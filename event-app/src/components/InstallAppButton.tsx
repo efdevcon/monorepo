@@ -43,16 +43,22 @@ function isSafari(): boolean {
 }
 
 /**
- * True when installing needs a hop through Safari first: signed in, on iOS,
- * in a non-Safari browser (e.g. having just followed the reminder email's
- * magic link in Brave/Chrome), and not already installed. Drives both the
- * proactive banner on /ticket and the fallback option in the install modal.
+ * True when installing may need a hop through Safari first: signed in, on
+ * iOS, not already installed. Drives both the proactive banner on /ticket
+ * and the fallback option in the install modal.
+ *
+ * Deliberately NOT gated on "not Safari" — several iOS browsers (Brave
+ * included) don't add a distinguishing token to their User-Agent, so they
+ * can be indistinguishable from real Safari, which made this silently hide
+ * exactly when it was needed. Showing it unconditionally on iOS is harmless
+ * even when already in Safari (worst case, a redundant option) and far more
+ * reliable than trying to detect the negative case.
  */
 export function useShouldShowSafariBridge(): boolean {
   const { user } = useUser();
   const [show, setShow] = useState(false);
   useEffect(() => {
-    setShow(!!user && isIOS() && !isSafari() && !isStandalone());
+    setShow(!!user && isIOS() && !isStandalone());
   }, [user]);
   return show;
 }
@@ -84,7 +90,10 @@ export function useCopySignInLink(): () => Promise<void> {
 
       await navigator.clipboard.writeText(link).catch(() => {});
 
-      if (isIOS() && !isSafari()) {
+      if (isIOS()) {
+        // Harmless even if we're already in Safari — it just re-opens the
+        // same link there. See useShouldShowSafariBridge on why this isn't
+        // gated on "not Safari".
         window.location.href = link.replace(/^https:\/\//, "x-safari-https://");
         toast.success("Opening in Safari… link copied too, in case it doesn't switch automatically");
       } else {
@@ -319,9 +328,7 @@ export function InstallAppButton({
           <InstallInstructionsModal
             key="install-instructions"
             onClose={() => setShowInstructions(false)}
-            onCopySignInLink={
-              user && isIOS() && !isSafari() ? copySignInLink : undefined
-            }
+            onCopySignInLink={user && isIOS() ? copySignInLink : undefined}
           />
         )}
       </AnimatePresence>

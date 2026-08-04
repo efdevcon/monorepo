@@ -5,10 +5,12 @@ import { useShouldShowSafariBridge, useCopySignInLink } from "./InstallAppButton
 
 /**
  * Prominent CTA for the case that actually happens after the reminder
- * email: the magic link opens in the phone's default browser (Brave,
+ * email: the magic link often opens in the phone's default browser (Brave,
  * Chrome...) instead of Safari. Installing the PWA on iOS only works from
  * Safari, so this is the primary action in that state — not a fallback
- * buried in the install modal.
+ * buried in the install modal. Shown unconditionally on iOS (not gated on
+ * detecting "not Safari" — see useShouldShowSafariBridge), so the copy
+ * below is written to hold up even if shown while already in Safari.
  */
 export function SafariBridgeBanner() {
   const shouldShow = useShouldShowSafariBridge();
@@ -19,7 +21,7 @@ export function SafariBridgeBanner() {
   return (
     <div className="mb-6 rounded-2xl border border-[#7D52F4]/20 bg-[#f3eeff] p-4 text-center">
       <p className="mb-3 text-sm font-medium text-[#1B1B1B]">
-        You&apos;re not in Safari — installing on iPhone only works from Safari.
+        Installing on iPhone only works from Safari.
       </p>
       <button
         onClick={copySignInLink}
@@ -29,8 +31,8 @@ export function SafariBridgeBanner() {
         Copy sign-in link for Safari
       </button>
       <p className="mt-2 text-xs text-gray-500">
-        Paste it into Safari&apos;s address bar, then use Share → Add to Home
-        Screen.
+        Not already there? Paste this into Safari&apos;s address bar, then use
+        Share → Add to Home Screen.
       </p>
     </div>
   );
