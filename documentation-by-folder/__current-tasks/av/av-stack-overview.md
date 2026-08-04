@@ -11,7 +11,8 @@ the time. This document maps what
 actually exists, separates live from dormant, and lists what will break for DC8 if
 untouched.
 
-No implementation is proposed here - this is an assessment; decisions belong with the
+Sections 1-9 are assessment only; §10 suggests sequencing and §11 records the
+architecture recommendations from the review discussion. Decisions belong with the
 AV team.
 
 _Assessment date: 2026-08-04. Coverage counts, live-API observations and line
@@ -250,6 +251,15 @@ at `18.2.1`, DC6-era track names. Dead.
 3. **Livestream config survives only by spread order.** Room stream URLs persist across
    sync purely because of `{...roomFs, ...room}` at `sync-pretalx.ts:105-118` (Pretalx
    never returns those keys). Reversing that spread silently wipes livestream config.
+4. **A schedule publish drops AV enrichment from the *serving* copy.** The webhook
+   resync builds sessions purely from the Pretalx payload (`hooks.ts`
+   `pretalxToStoreData`) and `store.replaceEventSessions` swaps them in wholesale - no
+   merge with the enriched sessions already in memory. `sources_*`, transcripts and
+   duration vanish from the live API until the sync workflow's commit redeploys the API
+   minutes later (the git files preserve them via `{...fsSession, ...session}`, so it
+   self-heals). Unnoticed so far because publishes and enrichment haven't overlapped -
+   during the event they will. Fix: overlay the existing store's enriched fields onto
+   the fresh Pretalx data before the swap (~5 lines).
 
 ## 6. Source coverage on disk
 
@@ -363,8 +373,9 @@ at `18.2.1`, DC6-era track names. Dead.
 ## 10. Suggested sequencing (for discussion with the AV team)
 
 **Before DC8 content exists** - unblock the pipeline:
-1. Fix the `'devcon-7'` hardcode in `sessions.ts:126` (blocker #1). Highest severity,
-   smallest diff.
+1. Fix the `'devcon-7'` hardcode in `sessions.ts:126` (blocker #1) and the
+   webhook memory-merge gap (§5.4). Highest severity, smallest diffs - together they
+   make the enrichment path solid (§11.5).
 2. Map `PRETALX_QUESTIONS_*` and `submission_type` IDs for `devcon8` (#4, #5).
 3. Rotate `GITHUB_TOKEN` (Render) off the former maintainer's account; reconfirm ownership of the
    `PRETALX_API_KEY(_MUMBAI)` secrets against cfp.devcon.org (#10).
@@ -389,6 +400,54 @@ at `18.2.1`, DC6-era track names. Dead.
 12. Either build the `/related` vectors or point the archive at
     `devcon-ai/recommend` (§7.2).
 13. Swap the dead `cloudflare-ipfs.com` gateway (§6).
+
+## 11. Architecture recommendations (from the review discussion)
+
+Guiding constraint: **during the event the infra must not go down, no matter what** -
+Pretalx being slow or venue internet dropping are expected, not exceptional.
+
+1. **Keep the serving architecture as is.** Its accidental genius is that nothing at
+   runtime depends on Pretalx: the API serves from memory, boots from git, and only
+   talks to Pretalx on a schedule publish. If Pretalx is slow or down mid-event,
+   nothing user-facing degrades - updates just wait. A database or a live-Pretalx
+   dependency would both be steps backward on availability. Client-side resilience is
+   covered by event-app's offline-first design (Dexie + SWR).
+2. **"Pretalx as source of truth" - adopt as an editing surface, not a serving path.**
+   Pretalx custom fields are fine for anything decided *before* the event (room stream
+   URLs, translation URLs), ingested at sync time - that would also kill the
+   hand-edited room-JSON overlays (#2). But never let a consumer read Pretalx at
+   runtime (this includes not activating event-app's dormant direct-Pretalx provider
+   for the event).
+3. **Keep `PUT /sessions/sources/:id` for day-of enrichment.** It updates memory
+   instantly, commits to git for the next boot, doesn't touch Pretalx, triggers no
+   resync, and can't collide with the run-of-show sheet. Moving day-of enrichment into
+   Pretalx doesn't fit its update model: the webhook only fires on schedule publish, so
+   real-time updates would mean constant re-publishes (each one a full resync that also
+   destroys the AV team's run-of-show edits, §5.1) or a new answers-poller - more
+   infra, not less.
+4. **Rejected: dual-writing enrichment to Pretalx custom fields.** Technically possible
+   without a resync (`POST/PATCH /api/events/{event}/answers/`), but: it puts Pretalx
+   in the enrichment hot path (fail the PUT, or build fire-and-forget retry
+   machinery); two writable copies drift, and the sync's `{...fsSession, ...session}`
+   precedence means a stale Pretalx answer would clobber a newer git correction on
+   every publish; and it needs an organizer-scoped token in the API's env - a much
+   bigger blast radius than the current narrow key. Git history already provides the
+   durability argument.
+5. **The two code fixes that matter for event days:** the `'devcon-7'` version-bump
+   hardcode in the enrichment endpoint (#1) and the memory-merge gap (§5.4). Both are
+   small; together they make the enrichment path genuinely solid.
+6. **Social/OG images: keep on-demand rendering.** The cards are pure derived
+   artifacts (title + speakers + track art), regenerated automatically on change via
+   the `?v=` cache-bust; storing them upstream in Pretalx would only create a stale
+   second copy, and Pretalx has no per-session image slot anything reads. Their
+   failure mode is crawler-facing and cosmetic, not event-critical. If belt-and-braces
+   is wanted later, the right "upstream" is pre-rendering to static files at sync time
+   (the resurrected DC6 pattern, §8) - after the real blockers. What matters this
+   year: re-brand `social-ticket` (#6) and keep its `API_URL` Netlify env set (it
+   silently defaults to `localhost:4000`).
+7. **Cheap availability insurance:** Render is the only real single point of failure -
+   consider CDN caching on the hot `GET` endpoints for event days so even an API
+   restart mid-keynote is invisible.
 
 ## Verification
 
