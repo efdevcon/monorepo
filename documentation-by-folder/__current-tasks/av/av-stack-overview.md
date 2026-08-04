@@ -16,7 +16,9 @@ architecture recommendations from the review discussion. Decisions belong with t
 AV team.
 
 _Assessment date: 2026-08-04. Coverage counts, live-API observations and line
-references are as of this date._
+references are as of this date. Items marked ✅ FIXED were implemented the same day -
+§12 is the changelog; line references in the original findings describe the
+pre-fix code._
 
 ---
 
@@ -93,9 +95,9 @@ Details that matter:
 - `WORKFLOW_MAP` wires **devcon8's and test-devcon-8's run-of-show to regenerate on
   every schedule publish**; devcon-7's does not (sync only).
 - The webhook also accepts slug-less `POST /hooks/pretalx/schedule` and resolves the
-  event from the Pretalx slug in the payload - **falling back to `devcon-7`** for an
-  unknown slug (`hooks.ts:32`). A webhook from a new/renamed Pretalx event would
-  silently resync devcon-7.
+  event from the Pretalx slug in the payload. ✅ FIXED 2026-08 (§12): it used to
+  **fall back to `devcon-7`** for an unknown slug, silently resyncing the wrong
+  event; unknown slugs now get a 400 + warning log (`hooks.ts`).
 - Both sync workflows also have a **monthly cron fallback** (`0 23 30 * *`), so data
   refreshes even if no schedule is published.
 - The devcon-7 sync additionally runs `createPresentations()` (Google Slides) and a
@@ -107,11 +109,11 @@ Details that matter:
   if the env var is missing the sync just **warns and skips hashing**
   (`pretalx.ts:46-47`) - no hard failure. No in-repo consumer today (the visa speaker
   form queries Pretalx directly), but treat the secret as stable.
-- **AV write auth is a query-string API key**: `PUT /sessions/:id` and
-  `PUT /sessions/sources/:id` check `?apiKey=` against `SERVER_CONFIG.API_KEYS` with a
-  plain `includes()` (`src/middleware/apikey.ts`). Keys handed to AV vendors will land
-  in URLs - and therefore in Render access logs and any proxy logs. Fine for now, but
-  know it when issuing DC8 vendor keys (a header would be the low-effort upgrade).
+- **AV write auth**: `PUT /sessions/:id` and `PUT /sessions/sources/:id` check an API
+  key against `SERVER_CONFIG.API_KEYS` (`src/middleware/apikey.ts`). ✅ IMPROVED
+  2026-08 (§12): the key is now accepted via the `x-api-key` **header** (preferred -
+  query-string keys land in Render/proxy access logs); `?apiKey=` still works for
+  existing tooling. Issue DC8 vendor keys with the header form.
 - **Pretalx instance:** everything lives on `https://cfp.devcon.org` (migrated from
   `mum.speakat.xyz` in Aug 2026; `speak.devcon.org` retired before that). All
   `PRETALX_BASE_URI` entries in `devcon-api/src/utils/config.ts` now point there.
@@ -122,14 +124,14 @@ Details that matter:
 
 ### 2a. Field recap: everything the AV team writes, and how
 
-Three write paths. Both endpoints authenticate with the `?apiKey=` query param and
-commit to git with `[skip deploy]`.
+Three write paths. Both endpoints authenticate with an API key (`x-api-key` header
+preferred, `?apiKey=` query still accepted) and commit to git with `[skip deploy]`.
 
-**Path A - `PUT /sessions/sources/:id`** (the day-of enrichment endpoint). ⚠️ It is a
-**full replace, not a patch**: every omitted field is reset to `''` / `0`
-(`sessions.ts`, `body.x ?? ''`), so a partial payload wipes the fields you didn't
-send - always send the complete set. Bumps the event version (hardcoded to devcon-7,
-blocker #1).
+**Path A - `PUT /sessions/sources/:id`** (the day-of enrichment endpoint).
+✅ FIXED 2026-08 (§12): now **patch semantics** - omitted fields keep their current
+value, an explicit `''` clears (it used to be a full replace where a partial payload
+wiped everything unsent). Bumps the version of the session's own event (the devcon-7
+hardcode of blocker #1 is gone).
 
 | Field | Consumed by |
 |---|---|
@@ -144,9 +146,9 @@ blocker #1).
 
 **Path B - `PUT /sessions/:id`** (generic session update). True partial merge - only
 sent keys change, unknown keys are rejected. Can update *any* existing session field,
-notably `resources_slides`, title/description corrections, `slot_*` moves. Gotcha: it
-does **not** bump the event version, so clients and OG cards may serve stale data
-until something else bumps it.
+notably `resources_slides`, title/description corrections, `slot_*` moves.
+✅ FIXED 2026-08 (§12): it now bumps the event version too (it used not to, so
+corrections could serve stale to clients and OG cards indefinitely).
 
 **Path C - hand-edited git commit** (no endpoint). Per-room livestream config in
 `data/rooms/<event>/*.json`: `youtubeStreamUrl_1..4` (one per event day) and
@@ -212,18 +214,18 @@ Ranked by severity. Each is a separate fix.
 
 | # | Issue | Location | Effect |
 |---|---|---|---|
-| 1 | `updateEventVersion('devcon-7')` hardcoded in the AV ingestion endpoint | `devcon-api/src/controllers/sessions.ts:126` | Every DC8 video `PUT` bumps **DC7's** cache-bust token. DC8 clients never see new videos. |
+| 1 | ✅ FIXED 2026-08 (§12) - `updateEventVersion('devcon-7')` hardcoded in the AV ingestion endpoint | `devcon-api/src/controllers/sessions.ts:126` | Every DC8 video `PUT` bumps **DC7's** cache-bust token. DC8 clients never see new videos. |
 | 2 | `devcon8` rooms have no `youtubeStreamUrl_*` / `translationUrl` fields | `devcon-api/data/rooms/devcon8/*.json` | All DC8 sessions render "No livestream available". |
 | 3 | Day→stream mapping hardcoded to Bangkok + Nov 12–15 2024 | `devcon-app/src/components/domain/app/dc7/sessions/index.tsx:1646-1653` (`.add(7,'hours')`, `day == 12..15`) | Even with URLs populated, DC8 dates/timezone fall through to no-stream. Only applies if DC8 ships on devcon-app - if it ships on event-app the fix is moot, but a bigger one replaces it: event-app has **no AV surface at all** (§2c). |
-| 4 | `PRETALX_QUESTIONS_*` IDs unmapped for `devcon8` / `test-devcon-8` | `devcon-api/src/utils/config.ts:94-147` | Speaker socials, expertise, audience, tags, keywords all silently empty. |
-| 5 | `submission_type` numeric IDs hardcoded to DC7's | `devcon-api/src/clients/pretalx.ts:280-286` | DC8 sessions fall through to the **raw Pretalx type name** (`submission_type.name.en`, `pretalx.ts:199-202`), `'Talk'` only as last resort. Labels won't match the app's canonical set (`Talk`/`Lightning Talk`/`Workshop`/`Panel`/`Music`), so type filters break; keynote-IDs→`Talk` normalisation is lost. |
+| 4 | ✅ FIXED 2026-08 (§12) - `PRETALX_QUESTIONS_*` IDs were unmapped for `devcon8` / `test-devcon-8` | `devcon-api/src/utils/config.ts:94-147` | Speaker socials, expertise, audience, tags, keywords all silently empty. |
+| 5 | ✅ FIXED 2026-08 (§12) - `submission_type` numeric IDs were hardcoded to DC7's | `devcon-api/src/clients/pretalx.ts:280-286` | DC8 sessions fall through to the **raw Pretalx type name** (`submission_type.name.en`, `pretalx.ts:199-202`), `'Talk'` only as last resort. Labels won't match the app's canonical set (`Talk`/`Lightning Talk`/`Workshop`/`Panel`/`Music`), so type filters break; keynote-IDs→`Talk` normalisation is lost. |
 | 6 | `social-ticket` is entirely DC7 Bangkok-branded | `social-ticket/public/dc7/`, track artwork | It is the **YouTube thumbnail generator** (see §4). DC8 uploads would get DC7 branding. |
-| 7 | Run-of-show renders times in **UTC** | `devcon-api/src/scripts/generate-run-of-show.ts:224-228` (`d.utc().format('HH:mm')`) | Wrong wall-clock for stage crew (IST is UTC+5:30). |
-| 8 | `stats-video.ts` hardcoded to devcon-7 + Nov dates | `devcon-api/src/scripts/stats-video.ts:6,19-25` | The only AV coverage report can't be run for DC8. |
+| 7 | ✅ FIXED 2026-08 (§12) - run-of-show rendered times in **UTC** | `devcon-api/src/scripts/generate-run-of-show.ts:224-228` (`d.utc().format('HH:mm')`) | Wrong wall-clock for stage crew (IST is UTC+5:30). |
+| 8 | ✅ FIXED 2026-08 (§12) - `stats-video.ts` was hardcoded to devcon-7 + Nov dates | `devcon-api/src/scripts/stats-video.ts:6,19-25` | The only AV coverage report can't be run for DC8. |
 | 9 | `yt.ts` uses `@google-cloud/local-auth` (interactive browser OAuth) | `devcon-api/src/clients/google.ts:42` | Cannot run in CI; YouTube push is manual-only. Nuance: a service-account path exists (`AuthenticateServiceAccount`, used by `import-yt.ts`) but service accounts can only *read* YouTube - writes (thumbnails/titles) need the channel owner's OAuth, so CI would require a stored refresh token. |
 | 10 | Workflow dispatch + git commits authenticated with a former maintainer's **personal access token** | `devcon-api/src/services/github.ts:96` (`TriggerWorkflow`) and `CommitSession`, via `GITHUB_TOKEN` in the API's Render env (the workflow files themselves use the repo-scoped `secrets.GITHUB_TOKEN`, which is fine) | Webhook→workflow triggering and AV session commits die when the account is deprovisioned. `PRETALX_API_KEY(_MUMBAI)` repo secrets need an owner too. |
 | 11 | Meerkat schedule sync ping gated to devcon-7 **and** hardcoded to `meerkat.events/api/v1/sync/devcon/devcon-7` | `devcon-api/src/scripts/sync-pretalx.ts:17-18,38` | DC8 schedule publishes never notify Meerkat (session Q&A), so its session list goes stale. Needs an event-parameterised endpoint agreed with the Meerkat team (see `documentation-by-folder/__current-tasks/meerkat/meerkat.md`). |
-| 12 | `devcon8` event metadata is empty - the file holds only `rooms` + `version`, where devcon-7 has `title`, `edition`, `description`, `startDate`/`endDate`, `location`, `venue_*` | `devcon-api/data/events/devcon8.json` | The API serves a nameless, dateless DC8 event. Nothing fills it: `syncEventData()` only bumps `version` (`sync-pretalx.ts`) - event metadata is **hand-authored**, so someone must write it. Apps that key off event dates (day indexing, "day 1..4" labels) have nothing to derive from. |
+| 12 | ✅ FIXED 2026-08 (§12) - `devcon8` event metadata was empty - the file holds only `rooms` + `version`, where devcon-7 has `title`, `edition`, `description`, `startDate`/`endDate`, `location`, `venue_*` | `devcon-api/data/events/devcon8.json` | The API serves a nameless, dateless DC8 event. Nothing fills it: `syncEventData()` only bumps `version` (`sync-pretalx.ts`) - event metadata is **hand-authored**, so someone must write it. Apps that key off event dates (day indexing, "day 1..4" labels) have nothing to derive from. |
 
 ## 4. The non-obvious dependency: `social-ticket` is the YouTube thumbnail generator
 
@@ -284,7 +286,7 @@ at `18.2.1`, DC6-era track names. Dead.
 3. **Livestream config survives only by spread order.** Room stream URLs persist across
    sync purely because of `{...roomFs, ...room}` at `sync-pretalx.ts:105-118` (Pretalx
    never returns those keys). Reversing that spread silently wipes livestream config.
-4. **A schedule publish drops AV enrichment from the *serving* copy.** The webhook
+4. ✅ FIXED 2026-08 (§12) **A schedule publish used to drop AV enrichment from the *serving* copy.** The webhook
    resync builds sessions purely from the Pretalx payload (`hooks.ts`
    `pretalxToStoreData`) and `store.replaceEventSessions` swaps them in wholesale - no
    merge with the enriched sessions already in memory. `sources_*`, transcripts and
@@ -293,7 +295,7 @@ at `18.2.1`, DC6-era track names. Dead.
    self-heals). Unnoticed so far because publishes and enrichment haven't overlapped -
    during the event they will. Fix: overlay the existing store's enriched fields onto
    the fresh Pretalx data before the swap (~5 lines).
-5. **A partial enrichment `PUT` erases the rest.** `PUT /sessions/sources/:id` is a
+5. ✅ FIXED 2026-08 (§12) **A partial enrichment `PUT` used to erase the rest.** `PUT /sessions/sources/:id` is a
    full replace - omitted fields reset to empty (§2a). An AV tool that sends only the
    YouTube ID wipes the session's swarm hash, transcripts and duration. Fix: switch the
    handler to `?? existing` semantics, or document "always send all fields" to vendors.
@@ -410,10 +412,10 @@ at `18.2.1`, DC6-era track names. Dead.
 ## 10. Suggested sequencing (for discussion with the AV team)
 
 **Before DC8 content exists** - unblock the pipeline:
-1. Fix the `'devcon-7'` hardcode in `sessions.ts:126` (blocker #1) and the
-   webhook memory-merge gap (§5.4). Highest severity, smallest diffs - together they
-   make the enrichment path solid (§11.5).
-2. Map `PRETALX_QUESTIONS_*` and `submission_type` IDs for `devcon8` (#4, #5).
+1. ✅ DONE 2026-08 (§12) - the `'devcon-7'` hardcode and the webhook memory-merge
+   gap (§5.4) are fixed; the enrichment path is solid (§11.5).
+2. ✅ DONE 2026-08 (§12) - `PRETALX_QUESTIONS_*` and `submission_type` IDs mapped
+   for `devcon8` and `test-devcon-8` (#4, #5).
 3. Rotate `GITHUB_TOKEN` (Render) off the former maintainer's account; reconfirm ownership of the
    `PRETALX_API_KEY(_MUMBAI)` secrets against cfp.devcon.org (#10).
 4. Decide run-of-show mutability policy before the DC8 CFP schedule publishes (§5.1) -
@@ -426,11 +428,11 @@ at `18.2.1`, DC6-era track names. Dead.
    day-of-month/timezone hardcode (#3). If event-app: extend the zod schemas with
    `sources_*` / room stream fields and build the livestream + recording UI from
    scratch. This decision gates everything below.
-7. Hand-author `devcon8` event metadata (title, dates, venue - #12) and populate room
-   stream fields (#2).
+7. Event metadata: ✅ DONE 2026-08 (§12) - `devcon8.json` authored (#12). Room
+   stream fields (#2) still pending (need the DC8 YouTube channels).
 8. Re-brand or replace `social-ticket` for DC8, since it feeds YouTube thumbnails (#6).
-9. Fix run-of-show UTC → event-local time (#7).
-10. Generalise `stats-video.ts` to take an event id (#8).
+9. ✅ DONE 2026-08 (§12) - run-of-show UTC → event-local time (#7).
+10. ✅ DONE 2026-08 (§12) - `stats-video.ts` takes an event id (#8).
 
 **Independent of DC8** - cheap credibility wins:
 11. `slidesUrl` → `resources_slides` (§7.1). One-line fix, unlocks 814 sessions' slides.
@@ -472,7 +474,8 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    durability argument.
 5. **The two code fixes that matter for event days:** the `'devcon-7'` version-bump
    hardcode in the enrichment endpoint (#1) and the memory-merge gap (§5.4). Both are
-   small; together they make the enrichment path genuinely solid.
+   small; together they make the enrichment path genuinely solid. ✅ DONE 2026-08
+   (§12), plus patch semantics on the enrichment PUT (§5.5).
 6. **Social/OG images: keep on-demand rendering.** The cards are pure derived
    artifacts (title + speakers + track art), regenerated automatically on change via
    the `?v=` cache-bust; storing them upstream in Pretalx would only create a stale
@@ -485,6 +488,83 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
 7. **Cheap availability insurance:** Render is the only real single point of failure -
    consider CDN caching on the hot `GET` endpoints for event days so even an API
    restart mid-keynote is invisible.
+
+## 12. Changelog: fixes implemented 2026-08-04
+
+All in `devcon-api/`; every behavioral change carries a test that failed before the
+fix (TDD), full suite 19 tests green, `tsc --noEmit` clean. Sections above are marked
+✅ FIXED where they describe pre-fix behavior.
+
+### Enrichment endpoint (`src/controllers/sessions.ts`)
+
+- **Version bump uses the session's own event** (was hardcoded `'devcon-7'`, blocker
+  #1). Why: every DC8 video PUT bumped DC7's cache token, so DC8 clients and the
+  `?v=` OG-card cache-bust would never see new videos.
+- **Patch semantics on `PUT /sessions/sources/:id`** (`body.x ?? data.x ?? fallback`,
+  was `body.x ?? ''` - §5.5). Why: a vendor tool sending only a YouTube ID silently
+  wiped the session's swarm hash, transcripts and duration. Omitted = keep, explicit
+  `''` = clear; documented in the swagger comment.
+- **Generic `PUT /sessions/:id` bumps the event version too.** Why: title/slides
+  corrections updated memory but never told clients to refetch.
+
+### Resync safety (`src/data/store.ts`, `src/controllers/hooks.ts`)
+
+- **Enrichment survives the webhook resync in memory** (§5.4): `replaceEventSessions`
+  now carries `ENRICHED_SESSION_FIELDS` (`sources_*`, transcripts, duration) over from
+  the previous in-memory copy; Pretalx still wins for its own fields. Why: a schedule
+  publish dropped all videos from the serving copy until the next redeploy - certain
+  to bite during the event when publishes and enrichment overlap.
+- **Unknown Pretalx slugs are rejected** (400 + warning; the `|| 'devcon-7'` fallback
+  is gone). Why: a webhook from a new/renamed Pretalx event silently resynced
+  devcon-7. The test mocks the Pretalx client and asserts the sync is never invoked.
+
+### Auth (`src/middleware/apikey.ts`)
+
+- **`x-api-key` header accepted** alongside `?apiKey=`. Why: query-string keys land in
+  Render/proxy access logs; DC8 vendor keys should travel in the header.
+
+### DC8 configuration (`src/utils/config.ts`, `src/clients/pretalx.ts`, `data/events/devcon8.json`)
+
+- **`PRETALX_QUESTIONS_*` mapped for devcon8 + test-devcon-8** (blocker #4), ids
+  fetched live from cfp.devcon.org. Deliberate omissions are commented in the config:
+  DC8 merged Website+Github into one question (mapped to WEBSITE), has Bluesky (170)
+  instead of Lens, and no Keywords question; the test event also lacks Farcaster and
+  Tags. Why: without these, speaker socials/expertise/audience/tags sync silently
+  empty.
+- **`mapSubmissionType` extended with DC8 + test-devcon-8 ids** (blocker #5).
+  Talk/Keynote → `Talk`, workshops (1h/1h30/2h) → `Workshop`, Mixed Formats →
+  `Panel`, Lightning Talk → `Lightning Talk`. "Experience" (89/100) intentionally
+  unmapped - a genuinely new format, better shown as itself than mislabeled. Verified
+  end-to-end with a real sync of test-devcon-8 (types and expertise populate).
+- **`devcon8.json` metadata authored** (blocker #12): Devcon 8, edition 8, 3-6 Nov
+  2026, Mumbai, Jio World Centre (+ address/website/directions), key-parity with
+  devcon-7 verified. Values sourced from devcon.org's own copy. Why: nothing fills
+  this file automatically; the API served a nameless, dateless DC8 event.
+
+### Scripts (`src/scripts/generate-run-of-show.ts`, `src/scripts/stats-video.ts`)
+
+- **Run-of-show renders event-local time** via `EVENT_TIMEZONES` (devcon8 →
+  `Asia/Kolkata`); `main()` guarded by `require.main === module` so the file is
+  importable by tests (blocker #7). Why: the sheet is wall-clock for the stage crew
+  and IST is UTC+5:30 - an offset UTC formatting can never produce.
+- **`stats-video.ts` takes an event id** (`pnpm stats:v devcon8`) and derives days
+  from the event file's start/end dates (blocker #8). devcon-7 output verified
+  identical to the old script (51/107/126/52 sessions per day).
+
+### Test infrastructure
+
+- Four new test files (`sessions.test.ts` x6 tests, `hooks.test.ts` x2,
+  `store.test.ts` x1, `generate-run-of-show.test.ts` x2); GitHub and Pretalx clients
+  mocked, nothing touches the network.
+- `package.json`: jest `moduleNameMapper` for the `@/` / `@lib/` aliases (mirrors
+  tsconfig 1:1) - without it no test importing `app` can run at all.
+
+### Still open after this changelog
+
+Blockers #2 (room stream fields - needs DC8 YouTube channels), #3/#6/#9/#10/#11
+(app decision, social-ticket rebrand, YouTube OAuth, token rotation, Meerkat
+endpoint), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
+spread-order fragility), and the §11.7 CDN-caching insurance.
 
 ## Verification
 

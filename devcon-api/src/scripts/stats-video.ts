@@ -1,35 +1,49 @@
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import fs from 'fs'
+import path from 'path'
 
-const LIMIT = 15
+dayjs.extend(utc)
+
+const eventId = process.argv[2] || 'devcon-7'
+
+// One entry per event day; day N uses the room's youtubeStreamUrl_N.
+function eventDays(): dayjs.Dayjs[] {
+  const eventFile = path.resolve(__dirname, `../../data/events/${eventId}.json`)
+  const event = JSON.parse(fs.readFileSync(eventFile, 'utf8'))
+  if (!event.startDate || !event.endDate) {
+    throw new Error(`${eventId} has no startDate/endDate in data/events/${eventId}.json`)
+  }
+  const days: dayjs.Dayjs[] = []
+  let d = dayjs.utc(event.startDate)
+  const end = dayjs.utc(event.endDate)
+  while (d.isBefore(end) || d.isSame(end, 'day')) {
+    days.push(d)
+    d = d.add(1, 'day')
+  }
+  return days
+}
 
 async function main() {
-  const res = await fetch('https://api.devcon.org/sessions?size=1000&event=devcon-7')
+  const res = await fetch(`https://api.devcon.org/sessions?size=1000&event=${eventId}`)
   const { data } = await res.json()
   const sessions = data.items
 
-  console.log('Total sessions (all days) #', sessions.length)
+  console.log(`Event: ${eventId} - total sessions (all days) #`, sessions.length)
   console.log()
-  const days = [12, 13, 14, 15]
 
-  for (const day of days) {
+  eventDays().forEach((dayDate, index) => {
+    const day = dayDate.date()
+    const streamField = `youtubeStreamUrl_${index + 1}`
     const daySessions = sessions.filter(
-      (i: any) =>
-        dayjs(i.slot_start).isSame(dayjs(`Nov ${day}, 2024`), 'day') &&
-        !i.doNotRecord &&
-        (day === 12
-          ? i.slot_room.youtubeStreamUrl_1
-          : day === 13
-          ? i.slot_room.youtubeStreamUrl_2
-          : day === 14
-          ? i.slot_room.youtubeStreamUrl_3
-          : i.slot_room.youtubeStreamUrl_4)
+      (i: any) => dayjs.utc(i.slot_start).isSame(dayDate, 'day') && !i.doNotRecord && i.slot_room?.[streamField]
     )
     const processedVideos = daySessions.filter((i: any) => !!i.sources_youtubeId || !!i.sources_streamethId)
     const missingVideos = daySessions.filter((i: any) => !i.sources_youtubeId && !i.sources_streamethId)
     const onYoutube = daySessions.filter((i: any) => !!i.sources_youtubeId)
     const onStreameth = daySessions.filter((i: any) => !!i.sources_streamethId)
 
-    console.log('Missing videos on Nov', day)
+    console.log('Missing videos on', dayDate.format('MMM D'))
     const groupedByRoom = missingVideos.reduce((acc: Record<string, any[]>, session: any) => {
       const roomId = session.slot_roomId
       if (!acc[roomId]) acc[roomId] = []
@@ -52,7 +66,7 @@ async function main() {
     console.log(`On Youtube (day ${day}) #`, onYoutube.length)
     console.log(`On Streameth (day ${day}) #`, onStreameth.length)
     console.log('')
-  }
+  })
 }
 
 main()

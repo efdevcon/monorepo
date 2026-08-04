@@ -2,8 +2,10 @@ import { SERVER_CONFIG } from '@/utils/config'
 import { Request, Response, NextFunction } from 'express'
 
 export function isAuthorized(req: Request): boolean {
-  const apiKey = req.query.apiKey
-  if (!apiKey || typeof apiKey !== 'string') {
+  const headerKey = req.header('x-api-key')
+  const queryKey = req.query.apiKey
+  const apiKey = headerKey || (typeof queryKey === 'string' ? queryKey : undefined)
+  if (!apiKey) {
     return false
   }
 

@@ -278,11 +278,25 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
 }
 
 function mapSubmissionType(type: number) {
+  // devcon-7 (Bangkok)
   if (type === 52 || type === 32 || type === 51) return 'Talk' // includes keynotes
   if (type === 36) return 'Lightning Talk'
   if (type === 33 || type === 34 || type === 40) return 'Workshop'
   if (type === 41) return 'Panel'
   if (type === 38) return 'Music'
+  // devcon8 (Mumbai) - ids from cfp.devcon.org/api/events/devcon8/submission-types/
+  if (type === 85 || type === 86) return 'Talk' // Talk, Keynote
+  if (type === 83) return 'Lightning Talk'
+  if (type === 90 || type === 91 || type === 93) return 'Workshop' // 1h30, 2h, 1h
+  if (type === 87) return 'Panel' // Mixed Formats (AMA / Roundtable / Fireside)
+  // 89 "Experience" is intentionally unmapped: a genuinely new format, so it
+  // falls through to the raw Pretalx name rather than a wrong canonical label.
+  // test-devcon-8 (mirror of devcon8)
+  if (type === 97 || type === 98) return 'Talk' // Talk, Keynote
+  if (type === 95) return 'Lightning Talk'
+  if (type === 99 || type === 101 || type === 102) return 'Workshop' // 1h, 1h30, 2h
+  if (type === 96) return 'Panel' // Mixed Formats
+  // 100 "Experience" intentionally unmapped, as above.
 }
 
 function notEmptyOrInvalid(value: string | undefined) {

@@ -88,6 +88,8 @@ export async function UpdateSession(req: Request, res: Response) {
   try {
     const updatedData = store.updateSession(data.id, body)
 
+    store.updateEventVersion(data.eventId, Date.now().toString())
+
     await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
@@ -100,7 +102,7 @@ export async function UpdateSession(req: Request, res: Response) {
 export async function UpdateSessionSources(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
   // #swagger.parameters['apiKey'] = { in: 'query', required: true, type: 'string', description: 'API key for authentication' }
-  // #swagger.parameters['body'] = { in: 'body', schema: { sources_ipfsHash: 'QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG', sources_youtubeId: 'TRoO5fD7TI4', sources_swarmHash: 'e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850', sources_livepeerId: 'LPO5ID', duration: 3065 } }
+  // #swagger.parameters['body'] = { in: 'body', schema: { sources_ipfsHash: 'QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG', sources_youtubeId: 'TRoO5fD7TI4', sources_swarmHash: 'e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850', sources_livepeerId: 'LPO5ID', duration: 3065 }, description: 'Patch semantics: omitted fields keep their current value; send an explicit empty string to clear a field.' }
 
   const body = req.body
   if (!body) return res.status(400).send({ status: 400, message: 'No Body' })
@@ -110,20 +112,20 @@ export async function UpdateSessionSources(req: Request, res: Response) {
 
   try {
     const updatedData = store.updateSession(data.id, {
-      sources_ipfsHash: body.sources_ipfsHash ?? '',
-      sources_youtubeId: body.sources_youtubeId ?? '',
-      sources_swarmHash: body.sources_swarmHash ?? '',
-      sources_livepeerId: body.sources_livepeerId ?? '',
-      sources_streamethId: body.sources_streamethId ?? '',
-      transcript_vtt: body.transcript_vtt ?? '',
-      transcript_text: body.transcript_text ?? '',
-      duration: body.duration ?? 0,
+      sources_ipfsHash: body.sources_ipfsHash ?? data.sources_ipfsHash ?? '',
+      sources_youtubeId: body.sources_youtubeId ?? data.sources_youtubeId ?? '',
+      sources_swarmHash: body.sources_swarmHash ?? data.sources_swarmHash ?? '',
+      sources_livepeerId: body.sources_livepeerId ?? data.sources_livepeerId ?? '',
+      sources_streamethId: body.sources_streamethId ?? data.sources_streamethId ?? '',
+      transcript_vtt: body.transcript_vtt ?? data.transcript_vtt ?? '',
+      transcript_text: body.transcript_text ?? data.transcript_text ?? '',
+      duration: body.duration ?? data.duration ?? 0,
     })
     console.log('Updated session', updatedData.id)
 
     const version = Date.now().toString()
     console.log('Updating event version...', version)
-    store.updateEventVersion('devcon-7', version)
+    store.updateEventVersion(data.eventId, version)
 
     // TODO: update AI transcripts
 

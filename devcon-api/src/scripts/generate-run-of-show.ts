@@ -4,8 +4,10 @@ import { GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
 import { getPretalxConfig } from '@/utils/config'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
 
 dayjs.extend(utc)
+dayjs.extend(timezone)
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 
@@ -25,6 +27,16 @@ function authenticateGoogle() {
 }
 
 const eventId = process.argv[2] || 'devcon8'
+
+// Times on the sheet are wall-clock for the stage crew, so render in the
+// event's local timezone, not UTC (IST is UTC+5:30 - a half-hour offset
+// plain UTC formatting can never produce).
+export const EVENT_TIMEZONES: Record<string, string> = {
+  'devcon-7': 'Asia/Bangkok',
+  'devcon8': 'Asia/Kolkata',
+  'test-devcon-8': 'Asia/Kolkata',
+}
+const EVENT_TZ = EVENT_TIMEZONES[eventId] ?? 'UTC'
 
 console.log(`Generating Run of Show for: ${eventId}`)
 
@@ -221,10 +233,9 @@ function resolveSpeakerNames(session: SessionData, allSpeakers: any[]): string {
     .join(', ')
 }
 
-function formatTime(value: number | string | null): string {
+export function formatTime(value: number | string | null, tz: string = EVENT_TZ): string {
   if (!value) return ''
-  const d = typeof value === 'number' ? dayjs(value) : dayjs(value)
-  return d.utc().format('HH:mm')
+  return dayjs(value).tz(tz).format('HH:mm')
 }
 
 function getDurationMinutes(start: number | string | null, end: number | string | null): number {
@@ -493,9 +504,11 @@ async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: numb
   }
 }
 
-main()
-  .then(() => process.exit(0))
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
+if (require.main === module) {
+  main()
+    .then(() => process.exit(0))
+    .catch((e) => {
+      console.error(e)
+      process.exit(1)
+    })
+}

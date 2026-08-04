@@ -28,8 +28,13 @@ export async function UpdateSchedule(req: Request, res: Response) {
   try {
     const data = PretalxScheduleUpdate.parse(req.body)
 
-    // Resolve eventId from route param, or from pretalx event slug in payload
-    const eventId = req.params.eventId || getEventIdByPretalxSlug(data.event) || 'devcon-7'
+    // Resolve eventId from route param, or from pretalx event slug in payload.
+    // No fallback: an unknown slug must not silently resync another event.
+    const eventId = req.params.eventId || getEventIdByPretalxSlug(data.event)
+    if (!eventId) {
+      console.warn('Pretalx webhook for unknown event slug, ignoring:', data.event)
+      return res.status(400).send('Unknown event slug')
+    }
     const config = getPretalxConfig(eventId)
 
     console.log('Pretalx Webhook plugin', data.event, data.user, data.schedule, `(eventId: ${eventId})`)

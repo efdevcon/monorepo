@@ -30,4 +30,14 @@ describe('pretalx config: dual cfp.devcon.org events', () => {
   test('devcon-7 instance is untouched', () => {
     expect(getPretalxConfig('devcon-7').PRETALX_EVENT_NAME).toBe('devcon7-sea')
   })
+  test('devcon8 and test-devcon-8 have Pretalx question mappings', () => {
+    const devcon8 = PRETALX_INSTANCES['devcon8']
+    expect(devcon8.PRETALX_QUESTIONS_EXPERTISE).toBe(144)
+    expect(devcon8.PRETALX_QUESTIONS_TWITTER).toBe(142)
+    expect(devcon8.PRETALX_QUESTIONS_TAGS).toBe(146)
+
+    const testEvent = PRETALX_INSTANCES['test-devcon-8']
+    expect(testEvent.PRETALX_QUESTIONS_EXPERTISE).toBe(156)
+    expect(testEvent.PRETALX_QUESTIONS_TWITTER).toBe(164)
+  })
 })

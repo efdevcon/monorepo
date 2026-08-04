@@ -16,6 +16,20 @@ let sessionMap: Map<string, any> = new Map()
 let vectorizedSessionsMap: Map<string, VectorizedSession> = new Map()
 let allVectorizedSessions: VectorizedSession[] = []
 
+// Fields written by the AV enrichment endpoints, never present in Pretalx
+// payloads. Carried across webhook resyncs so a schedule publish can't drop
+// videos from the serving copy (see av-stack-overview.md §5.4).
+export const ENRICHED_SESSION_FIELDS = [
+  'sources_youtubeId',
+  'sources_ipfsHash',
+  'sources_swarmHash',
+  'sources_livepeerId',
+  'sources_streamethId',
+  'transcript_vtt',
+  'transcript_text',
+  'duration',
+] as const
+
 export function initStore() {
   console.log('Loading data into memory...')
 
@@ -396,7 +410,21 @@ export function replaceEventSessions(eventId: string, rawSessions: any[]): numbe
       .map((id: string) => (typeof id === 'string' ? speakerMap.get(id) : id))
       .filter(Boolean)
     const slot_room = data.slot_roomId ? roomMap.get(data.slot_roomId) || null : null
-    return { ...data, speakers: resolvedSpeakers, slot_room }
+
+    // Pretalx payloads never carry the AV enrichment fields, so a resync must
+    // not drop them from the serving copy (the git files keep them; this keeps
+    // memory consistent until the next boot).
+    const previous = sessionMap.get(data.id)
+    const enriched: Record<string, any> = {}
+    if (previous) {
+      for (const field of ENRICHED_SESSION_FIELDS) {
+        const incoming = data[field]
+        const isEmpty = incoming === undefined || incoming === '' || incoming === 0
+        if (isEmpty && previous[field]) enriched[field] = previous[field]
+      }
+    }
+
+    return { ...data, ...enriched, speakers: resolvedSpeakers, slot_room }
   })
 
   // Keep other events' sessions untouched; replace only this event's.

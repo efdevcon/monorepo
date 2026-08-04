@@ -130,6 +130,17 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
     PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'test-devcon-8',
+
+    // Question ids fetched from cfp.devcon.org/api/events/test-devcon-8/questions/
+    // (2026-08-04). The test event has no Github, Farcaster, Lens, Tags or
+    // Keywords questions; those keys are omitted on purpose.
+    PRETALX_QUESTIONS_TWITTER: 164, // "What is your X profile?"
+    PRETALX_QUESTIONS_WEBSITE: 166, // "Personal Website, Github, or other relevant link"
+    PRETALX_QUESTIONS_ENS: 167, // "Do you have a public Ethereum address or ENS you want to share?"
+    PRETALX_QUESTIONS_TELEGRAM: 162, // "What is your Telegram handle? ..."
+    PRETALX_QUESTIONS_EXPERTISE: 156, // "The session assumes..."
+    PRETALX_QUESTIONS_AUDIENCE: 158, // "Which of the following best describes your target audience?"
+
     DEFAULT_LIMIT: 100,
   },
   'devcon8': {
@@ -137,6 +148,20 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
     PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'devcon8',
+
+    // Question ids fetched from cfp.devcon.org/api/events/devcon8/questions/
+    // (2026-08-04). DC8 merged Website+Github into one question (mapped to
+    // WEBSITE); it has Bluesky (170) instead of Lens, and no Keywords
+    // question - unmapped keys are omitted on purpose.
+    PRETALX_QUESTIONS_TWITTER: 142, // "Twitter/X profile"
+    PRETALX_QUESTIONS_WEBSITE: 143, // "Personal Website, Github, or other relevant link"
+    PRETALX_QUESTIONS_FARCASTER: 171, // "Farcaster profile"
+    PRETALX_QUESTIONS_ENS: 141, // "Do you have a public Ethereum address or ENS you want to share?"
+    PRETALX_QUESTIONS_TELEGRAM: 136, // "What is your Telegram handle? ..."
+    PRETALX_QUESTIONS_EXPERTISE: 144, // "The session assumes..."
+    PRETALX_QUESTIONS_AUDIENCE: 145, // "Which of the following best describes your target audience?"
+    PRETALX_QUESTIONS_TAGS: 146, // "Select 1-3 tags that apply to your talk/workshop."
+
     DEFAULT_LIMIT: 100,
   },
 }
