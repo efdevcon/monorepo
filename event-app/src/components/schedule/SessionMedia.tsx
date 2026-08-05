@@ -3,40 +3,17 @@
 import { useEvent } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
-import { getStatus } from "@/components/schedule/utils";
-
-const DAY_MS = 86_400_000;
-
-const STREAM_FIELDS = [
-  "youtubeStreamUrl_1",
-  "youtubeStreamUrl_2",
-  "youtubeStreamUrl_3",
-  "youtubeStreamUrl_4",
-] as const;
-
-/**
- * 1-based conference day for a session, anchored on the event's startDate
- * (UTC calendar days). Returns null when the event dates are unknown or the
- * session falls outside the covered range.
- */
-function eventDayIndex(
-  sessionStartMs: number,
-  eventStartIso?: string
-): number | null {
-  if (!eventStartIso) return null;
-  const eventStartMs = Date.parse(eventStartIso);
-  if (Number.isNaN(eventStartMs)) return null;
-  const index =
-    Math.floor(sessionStartMs / DAY_MS) - Math.floor(eventStartMs / DAY_MS) + 1;
-  return index >= 1 && index <= STREAM_FIELDS.length ? index : null;
-}
+import { getStatus, streamUrlForDay } from "@/components/schedule/utils";
 
 /**
  * Recording / livestream for a session:
  * - recording available (YouTube, else StreamEth) -> embed it
  * - no recording, session live or starting within the hour -> embed the
  *   room's stream for that conference day
- * - otherwise render nothing (no dead placeholder boxes)
+ * - while live or imminent and room has translationUrl -> render "Live translation
+ *   available" link (with or without an embed)
+ * - otherwise render nothing (no dead placeholder boxes when neither embed nor
+ *   translation link is available)
  */
 export function SessionMedia({ session }: { session: Session }) {
   const nowMs = useNowMs(30_000);
@@ -48,33 +25,45 @@ export function SessionMedia({ session }: { session: Session }) {
       ? `https://streameth.org/embed/?session=${session.sources_streamethId}&vod=true`
       : null;
 
+  const status = session.room ? getStatus(session, nowMs) : null;
+  const isLiveish = status === "live" || status === "soon";
+  const translationUrl = isLiveish ? (session.room?.translationUrl ?? null) : null;
+
   let streamSrc: string | null = null;
-  if (!recordingSrc && session.room) {
-    const status = getStatus(session, nowMs);
-    if (status === "live" || status === "soon") {
-      const day = eventDayIndex(session.start * 1000, event?.startDate);
-      if (day) streamSrc = session.room[STREAM_FIELDS[day - 1]] ?? null;
-    }
+  if (!recordingSrc && session.room && isLiveish) {
+    streamSrc = streamUrlForDay(session.room, session.start * 1000, event?.startDate);
   }
 
   const src = recordingSrc ?? streamSrc;
-  if (!src) return null;
+  if (!src && !translationUrl) return null;
 
   return (
     <div className="mb-4">
       {streamSrc && (
         <p className="mb-1 text-sm font-semibold text-red-600">Livestream</p>
       )}
-      <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
-        <iframe
-          src={src}
-          title={session.title}
-          className="h-full w-full border-0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          loading="lazy"
-        />
-      </div>
+      {src && (
+        <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+          <iframe
+            src={src}
+            title={session.title}
+            className="h-full w-full border-0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      )}
+      {translationUrl && (
+        <a
+          href={translationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-block text-sm font-semibold text-[#7D52F4] underline"
+        >
+          Live translation available
+        </a>
+      )}
     </div>
   );
 }

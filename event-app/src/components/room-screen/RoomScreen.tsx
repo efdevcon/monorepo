@@ -5,10 +5,10 @@ import cn from "classnames";
 import QRCode from "qrcode";
 import { Clock, Users } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
-import { useRoom, useSessions } from "@/data/hooks";
+import { useEvent, useRoom, useSessions } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
-import { getStatus, minutesUntil, trackColor } from "@/components/schedule/utils";
+import { getStatus, minutesUntil, streamUrlForDay, trackColor } from "@/components/schedule/utils";
 
 const GRADIENT = "linear-gradient(to right, #7a3aff, #633cff, #bc52f1)";
 const GLASS = "bg-white/80 backdrop-blur-[10px]";
@@ -144,6 +144,20 @@ export function RoomScreen({ roomId }: { roomId: string }) {
       .then(setQr)
       .catch(() => setQr(null));
   }, [currentSession]);
+
+  const { event } = useEvent();
+  const streamUrl = streamUrlForDay(room ?? undefined, nowMs, event?.startDate);
+  const [streamQr, setStreamQr] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!streamUrl) {
+      setStreamQr(null);
+      return;
+    }
+    QRCode.toDataURL(streamUrl, { margin: 1, width: 256 })
+      .then(setStreamQr)
+      .catch(() => setStreamQr(null));
+  }, [streamUrl]);
 
   if (!APP_CONFIG.ROOMS_ENABLED) {
     return <div className="p-4 text-gray-500">Room screens are not enabled</div>;
@@ -331,6 +345,22 @@ export function RoomScreen({ roomId }: { roomId: string }) {
                 Open in app
               </p>
             </div>
+
+            {streamQr && (
+              <div className="mx-[1em] mt-[5em] flex flex-col items-center justify-center">
+                <div className="flex aspect-square shrink-0 items-center justify-center rounded-2xl border border-solid border-[#dfd8fc] p-[1em]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={streamQr}
+                    alt="Livestream QR code"
+                    style={{ height: "auto", maxWidth: "10em", width: "100%" }}
+                  />
+                </div>
+                <p className="mt-[0.7em] shrink-0 rounded-2xl bg-[#e11d48] px-[1em] py-[0.5em] text-center text-[0.75vw] font-semibold !leading-[1.2em] text-white">
+                  Watch livestream
+                </p>
+              </div>
+            )}
           </div>
 
           <div

@@ -1,4 +1,4 @@
-import type { Session } from "@/data/models";
+import type { Room, Session } from "@/data/models";
 
 /** Session timing is stored as unix seconds. */
 const ms = (unixSeconds: number) => unixSeconds * 1000;
@@ -193,4 +193,41 @@ export function sessionBox(
   const left = offsetPx(ms(session.start), startMs);
   const width = offsetPx(ms(session.end), startMs) - left;
   return { left, width: Math.max(width, SLOT_WIDTH / 2) };
+}
+
+const DAY_MS = 86_400_000;
+
+export const STREAM_FIELDS = [
+  "youtubeStreamUrl_1",
+  "youtubeStreamUrl_2",
+  "youtubeStreamUrl_3",
+  "youtubeStreamUrl_4",
+] as const;
+
+/**
+ * 1-based conference day for a timestamp, anchored on the event's startDate
+ * (UTC calendar days). Null when event dates are unknown or the timestamp
+ * falls outside the covered range.
+ */
+export function eventDayIndex(
+  tMs: number,
+  eventStartIso?: string
+): number | null {
+  if (!eventStartIso) return null;
+  const eventStartMs = Date.parse(eventStartIso);
+  if (Number.isNaN(eventStartMs)) return null;
+  const index =
+    Math.floor(tMs / DAY_MS) - Math.floor(eventStartMs / DAY_MS) + 1;
+  return index >= 1 && index <= STREAM_FIELDS.length ? index : null;
+}
+
+/** The room's livestream embed URL for whichever conference day tMs falls on. */
+export function streamUrlForDay(
+  room: Room | undefined,
+  tMs: number,
+  eventStartIso?: string
+): string | null {
+  if (!room) return null;
+  const day = eventDayIndex(tMs, eventStartIso);
+  return day ? (room[STREAM_FIELDS[day - 1]] ?? null) : null;
 }

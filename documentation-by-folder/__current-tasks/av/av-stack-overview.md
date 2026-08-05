@@ -18,7 +18,8 @@ AV team.
 _Assessment date: 2026-08-04. Coverage counts, live-API observations and line
 references are as of this date. Items marked ✅ FIXED were implemented the same day -
 §12 is the changelog; line references in the original findings describe the
-pre-fix code._
+pre-fix code. On 2026-08-05 the §2c app decision landed (event-app) and its AV
+surface was built - §12c is that changelog._
 
 ---
 
@@ -176,18 +177,21 @@ by hand. "Manual" means someone runs a pnpm script locally.
 
 ## 2c. The app question: devcon-app (DC7) vs event-app (DC8 PWA)
 
-The handover doc positions `event-app` as the new PWA going forward (offline-first:
-Dexie + SWR, Serwist service worker, optional native iOS/Android via Capacitor - see
-`documentation-by-folder/event-app/event-app.md`). This changes how the devcon-app
-blockers should be read:
+✅ DECIDED 2026-08-05: **event-app carries DC8's AV surface** (see §12c for what was
+built). The handover doc positions `event-app` as the new PWA going forward
+(offline-first: Dexie + SWR, Serwist service worker, optional native iOS/Android via
+Capacitor - see `documentation-by-folder/event-app/event-app.md`). devcon-app stays
+DC7-only; its blocker #3 is moot.
 
-- **event-app has no AV surface at all.** No player, iframe, or `<video>` anywhere.
-  More fundamentally, its zod models **strip the AV fields at validation**:
-  `SessionSchema` has no `sources_*` fields and `RoomSchema` has no
-  `youtubeStreamUrl_*` / `translationUrl` (`event-app/src/data/models/{sessions,rooms}.ts`).
-  Even with devcon-api fully populated, no stream URL can reach a component today. If
-  DC8 ships on event-app, blocker #3's devcon-app fix is moot - but the entire
-  livestream/recording UI has to be **built**, schemas first.
+- **event-app's AV surface now exists** (it originally had none - the zod models
+  stripped the AV fields at validation). Today: `SessionSchema` carries `sources_*`,
+  `RoomSchema` carries `youtubeStreamUrl_1..4` / `translationUrl`
+  (`event-app/src/data/models/{sessions,rooms}.ts`), the provider maps them
+  (normalising the API's `''` to `undefined`), and `SessionMedia.tsx` embeds
+  recordings (YouTube, else StreamEth) with a live-stream fallback selected by
+  event-relative day indexing (`eventDayIndex`/`streamUrlForDay` in
+  `components/schedule/utils.ts`), plus a "Live translation available" link while a
+  session is live/imminent and its room has a `translationUrl`.
 - **Data source:** the active provider is `DevconApiProvider` → devcon-api, with a
   runtime-switchable dataset (`?dataset`) offering `test-devcon-8`, `devcon8` and
   `devcon-7` (`event-app/src/data/dataset.ts`). A second, currently **inactive**
@@ -196,10 +200,12 @@ blockers should be read:
   (`event-app/src/app/api/pretalx/route.ts:4`); flip that slug if the provider is ever
   reactivated.
 - **Room screens (venue signage) live here now:** `/room-screens/[id]` renders a
-  per-room now/next display with a QR code into the app. The "Resources / Livestreams"
-  box is **text-only** ("if the room is full, please watch on livestream") - no stream
-  embed, consistent with the schema gap above. devcon-app has the DC7 predecessor at
-  `devcon-app/src/pages/room-screens/[id].tsx` (also no stream embed).
+  per-room now/next display with a QR code into the app. ✅ As of 2026-08-05 the
+  "Resources / Livestreams" box also renders a second **"Watch livestream" QR** for
+  the room's stream on the current conference day (anchored on *now* via the mockable
+  clock, unlike SessionMedia which anchors on the session's own day - intentional).
+  Hidden when no stream URL exists; degrades to no-QR offline. devcon-app has the DC7
+  predecessor at `devcon-app/src/pages/room-screens/[id].tsx` (text-only, no QR).
 - **Meerkat's user-facing half** is in event-app: `POST /api/meerkat` gates on a
   Supabase session + paid Pretix ticket, then hands off with a 5-min HS256 JWT
   (secret shared with Meerkat). The schedule-sync half is §3 #11.
@@ -216,7 +222,7 @@ Ranked by severity. Each is a separate fix.
 |---|---|---|---|
 | 1 | ✅ FIXED 2026-08 (§12) - `updateEventVersion('devcon-7')` hardcoded in the AV ingestion endpoint | `devcon-api/src/controllers/sessions.ts:126` | Every DC8 video `PUT` bumps **DC7's** cache-bust token. DC8 clients never see new videos. |
 | 2 | `devcon8` rooms have no `youtubeStreamUrl_*` / `translationUrl` fields | `devcon-api/data/rooms/devcon8/*.json` | All DC8 sessions render "No livestream available". |
-| 3 | Day→stream mapping hardcoded to Bangkok + Nov 12–15 2024 | `devcon-app/src/components/domain/app/dc7/sessions/index.tsx:1646-1653` (`.add(7,'hours')`, `day == 12..15`) | Even with URLs populated, DC8 dates/timezone fall through to no-stream. Only applies if DC8 ships on devcon-app - if it ships on event-app the fix is moot, but a bigger one replaces it: event-app has **no AV surface at all** (§2c). |
+| 3 | ✅ RESOLVED BY DECISION 2026-08-05 (§2c, §12c) - day→stream mapping hardcoded to Bangkok + Nov 12–15 2024 | `devcon-app/src/components/domain/app/dc7/sessions/index.tsx:1646-1653` (`.add(7,'hours')`, `day == 12..15`) | DC8 ships on event-app, so this devcon-app hardcode is moot and stays as-is. event-app's replacement uses event-relative UTC-day indexing off `event.startDate`; verified equivalent to DC7's URL_N-equals-local-day convention for IST session hours. Caveat: the math assumes `startDate` stays midnight-UTC form - changing it to local-midnight shifts every stream index by one. |
 | 4 | ✅ FIXED 2026-08 (§12) - `PRETALX_QUESTIONS_*` IDs were unmapped for `devcon8` / `test-devcon-8` | `devcon-api/src/utils/config.ts:94-147` | Speaker socials, expertise, audience, tags, keywords all silently empty. |
 | 5 | ✅ FIXED 2026-08 (§12) - `submission_type` numeric IDs were hardcoded to DC7's | `devcon-api/src/clients/pretalx.ts:280-286` | DC8 sessions fall through to the **raw Pretalx type name** (`submission_type.name.en`, `pretalx.ts:199-202`), `'Talk'` only as last resort. Labels won't match the app's canonical set (`Talk`/`Lightning Talk`/`Workshop`/`Panel`/`Music`), so type filters break; keynote-IDs→`Talk` normalisation is lost. |
 | 6 | `social-ticket` is entirely DC7 Bangkok-branded | `social-ticket/public/dc7/`, track artwork | It is the **YouTube thumbnail generator** (see §4). DC8 uploads would get DC7 branding. |
@@ -441,10 +447,9 @@ at `18.2.1`, DC6-era track names. Dead.
    `notifyClients()` (#11).
 
 **Before DC8 doors open** - livestream surface:
-6. **Decide which app carries DC8's AV surface** (§2c). If devcon-app: fix the
-   day-of-month/timezone hardcode (#3). If event-app: extend the zod schemas with
-   `sources_*` / room stream fields and build the livestream + recording UI from
-   scratch. This decision gates everything below.
+6. ✅ DONE 2026-08-05 (§12c) - **event-app carries DC8's AV surface** (§2c). Schemas
+   extended, livestream/recording embed + translation link + room-screen stream QR
+   built and verified headlessly. devcon-app's #3 hardcode left as-is (moot).
 7. Event metadata: ✅ DONE 2026-08 (§12) - `devcon8.json` authored (#12). Room
    stream fields (#2) still pending (need the DC8 YouTube channels).
 8. Re-brand or replace `social-ticket` for DC8, since it feeds YouTube thumbnails (#6).
@@ -602,10 +607,44 @@ slice landed together:
   renders, mocked-live session picks the correct day-2 main-stage stream, idle
   session renders nothing.
 
-### Still open after this changelog
+## 12c. Changelog: event-app AV surface, 2026-08-05
 
-Blockers #2 (room stream fields - needs DC8 YouTube channels), #3/#6/#9/#10/#11
-(app decision, social-ticket rebrand, YouTube OAuth, token rotation, Meerkat
+The §2c decision was made (event-app) and the surface completed the next day. All
+changes verified by per-task review plus a whole-change review, and headlessly with
+playwright (API stubs + `?mockNow`): live session embeds the day's stream and shows
+the translation link, a recording wins over the stream, the room screen renders the
+livestream QR. `tsc --noEmit` clean.
+
+- **Shared day→stream helpers**: `eventDayIndex(tMs, eventStartIso)` and
+  `streamUrlForDay(room, tMs, eventStartIso)` extracted from `SessionMedia` into
+  `event-app/src/components/schedule/utils.ts` (UTC-calendar-day indexing, 1-based,
+  bounded by `STREAM_FIELDS`).
+- **Room screens** (`RoomScreen.tsx`): second QR ("Watch livestream") for the current
+  day's room stream, same QR options as the session QR, anchored on *now*; hidden when
+  no URL, no crash offline.
+- **Translation**: `SessionMedia` renders a "Live translation available" link
+  (plain anchor, new tab) while a session is live or starts within the hour and its
+  room has `translationUrl` - with or without an embed.
+- **Timezone validation**: the UTC-day math was traced against DC7's
+  `.add(7,'hours')` convention - no off-by-one for IST session hours, provided
+  `startDate` stays midnight-UTC form (see the #3 caveat).
+- **Test data**: `data/rooms/test-devcon-8/{keynote-stage,stage-1}.json` seeded with
+  the real DC7 livestream VODs, one distinct video per day slot (keynote-stage carries
+  DC7 main-stage days 1-4, stage-1 carries DC7 breakout-1 days 1-4; all eight verified
+  alive via YouTube oEmbed, `www.youtube.com/embed/...` form), and DC7's real
+  translation portal (`https://stm.live/Mainstage`, still live) as `translationUrl`;
+  `data/events/test-devcon-8.json` gained `startDate`/`endDate`
+  (copied from devcon8) - without them `eventDayIndex` returns null and the seeded
+  config is unreachable (caught by the final review; the verification stub had masked
+  it). `?dataset=test-devcon-8` is now testable end to end once this data deploys.
+- Known accepted residual: the pre-existing bare-slug session collision (§7) means two
+  DC7-mirrored slugs in test-devcon-8 can surface the seeded URLs if deep-linked
+  during their November windows - root cause unchanged, deliberately not fixed here.
+
+### Still open after these changelogs
+
+Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube channels),
+#6/#9/#10/#11 (social-ticket rebrand, YouTube OAuth, token rotation, Meerkat
 endpoint), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
 spread-order fragility), and the §11.7 CDN-caching insurance.
 
