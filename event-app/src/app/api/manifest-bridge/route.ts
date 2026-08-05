@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import APP_CONFIG from "@/CONFIG";
 import { getRequestOrigin } from "../_lib/origin";
-import { signBridgeToken, verifyBridgeToken } from "../_lib/bridgeToken";
+import { signBridgeToken, verifyBridgeToken } from "@/data/auth/bridgeToken";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

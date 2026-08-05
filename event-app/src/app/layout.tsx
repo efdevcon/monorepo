@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { DebugPanel } from "@/components/DebugPanel";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
+import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import APP_CONFIG from "@/CONFIG";
 
 // Match the /devcon project: Inter (body) + Poppins (headings).
@@ -60,6 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
+        <PersonalizedManifestLink />
         {/* iOS native launch-screen images, shown while the installed PWA
             boots — before any JS runs. Standard Apple device-size set. */}
         <link
