@@ -12,7 +12,6 @@ import cn from 'classnames'
 const KLAY_WEBSITE = 'https://klay.co.in/foundational-development-program/mumbai/equinox/'
 const KLAY_MAPS = 'https://maps.app.goo.gl/DWE3nzzDEXACjStT9'
 const KLAY_EMAIL = 'shilpa.tlc1361@klay.co.in'
-const KLAY_PHONE = '+91 8591180038'
 
 export default function ChildcarePage() {
   return (
@@ -101,8 +100,7 @@ export default function ChildcarePage() {
                     availability, and childcare arrangements.
                   </p>
                   <p>
-                    Shilpa Waghmare — <a href={`mailto:${KLAY_EMAIL}`}>{KLAY_EMAIL}</a> —{' '}
-                    <a href={`tel:${KLAY_PHONE.replace(/\s/g, '')}`}>{KLAY_PHONE}</a>
+                    Shilpa Waghmare — <a href={`mailto:${KLAY_EMAIL}`}>{KLAY_EMAIL}</a>
                   </p>
                 </div>
               </div>
