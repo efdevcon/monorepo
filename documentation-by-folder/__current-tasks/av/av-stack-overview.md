@@ -171,7 +171,7 @@ by hand. "Manual" means someone runs a pnpm script locally.
 | `pnpm yt` → `syncDescriptions()` | Rewrites YouTube **titles** (truncated to fit "by <speaker>" + a hardcoded `\| Devcon SEA` suffix into 100 chars) and **descriptions** (from session description + tags), ledger `youtube-descriptions.json` | **Commented out** in `main()` (`yt.ts:11-12`) | devcon-7 + SEA branding hardcoded | Disabled |
 | `pnpm import:yt` | Imports YouTube playlists (`data/playlists.json`) into session JSONs - how devconnect-arg's 418 sessions got in | Manual, Google **service account** | `eventId = 'devconnect-arg'` hardcoded (`import-yt.ts:137`) | Manual |
 | `pnpm stats:v` | AV source-coverage report | Manual | devcon-7 + Nov 2024 dates hardcoded (§3 #8) | Manual |
-| social-ticket OG routes | On-demand edge-rendered cards (see §4) | HTTP, `devcon-social.netlify.app` | DC7 branding | Live |
+| social-ticket OG routes | On-demand edge-rendered cards (see §4) | HTTP, `devcon-social.netlify.app` | DC7 branding | ✅ Superseded 2026-08 (§12d): schedule/av/schedule-u cards now served by `devcon.org/api/social/*` with a Supabase render cache; old app still hosts the `/[name]` attendee card + archive OG |
 | `generate-images.yml` (nested `.github`) | DC6 lower-thirds + social cards | Hourly cron in a nested `.github` GitHub never executes | DC6 | Dead (§8) |
 | `pnpm slides` | Google Slides migration | Manual | `data/slides/` gone → throws | Dead (§9) |
 
@@ -225,7 +225,7 @@ Ranked by severity. Each is a separate fix.
 | 3 | ✅ RESOLVED BY DECISION 2026-08-05 (§2c, §12c) - day→stream mapping hardcoded to Bangkok + Nov 12–15 2024 | `devcon-app/src/components/domain/app/dc7/sessions/index.tsx:1646-1653` (`.add(7,'hours')`, `day == 12..15`) | DC8 ships on event-app, so this devcon-app hardcode is moot and stays as-is. event-app's replacement uses event-relative UTC-day indexing off `event.startDate`; verified equivalent to DC7's URL_N-equals-local-day convention for IST session hours. Caveat: the math assumes `startDate` stays midnight-UTC form - changing it to local-midnight shifts every stream index by one. |
 | 4 | ✅ FIXED 2026-08 (§12) - `PRETALX_QUESTIONS_*` IDs were unmapped for `devcon8` / `test-devcon-8` | `devcon-api/src/utils/config.ts:94-147` | Speaker socials, expertise, audience, tags, keywords all silently empty. |
 | 5 | ✅ FIXED 2026-08 (§12) - `submission_type` numeric IDs were hardcoded to DC7's | `devcon-api/src/clients/pretalx.ts:280-286` | DC8 sessions fall through to the **raw Pretalx type name** (`submission_type.name.en`, `pretalx.ts:199-202`), `'Talk'` only as last resort. Labels won't match the app's canonical set (`Talk`/`Lightning Talk`/`Workshop`/`Panel`/`Music`), so type filters break; keynote-IDs→`Talk` normalisation is lost. |
-| 6 | `social-ticket` is entirely DC7 Bangkok-branded | `social-ticket/public/dc7/`, track artwork | It is the **YouTube thumbnail generator** (see §4). DC8 uploads would get DC7 branding. |
+| 6 | ◐ INFRA REPLACED 2026-08 (§12d), asset swap remaining - `social-ticket` was entirely DC7 Bangkok-branded | was `social-ticket/public/dc7/`; now `devcon/public/social/dc8/` + the location/date copy and `Asia/Bangkok` times inside `devcon/src/pages/api/social/{schedule,av}/[id].tsx` | It is the **YouTube thumbnail generator** (see §4). The rendering stack was rebuilt on devcon.org with a Supabase cache; the DC7 art was copied to `dc8/` as placeholders by explicit decision. Remaining for the rebrand: swap the `dc8/` PNGs (same filenames, drop-in) and update the hardcoded "Bangkok, Thailand / 12-15 Nov 2024" block + `Asia/Bangkok` timezone in the two card templates. |
 | 7 | ✅ FIXED 2026-08 (§12) - run-of-show rendered times in **UTC** | `devcon-api/src/scripts/generate-run-of-show.ts:224-228` (`d.utc().format('HH:mm')`) | Wrong wall-clock for stage crew (IST is UTC+5:30). |
 | 8 | ✅ FIXED 2026-08 (§12) - `stats-video.ts` was hardcoded to devcon-7 + Nov dates | `devcon-api/src/scripts/stats-video.ts:6,19-25` | The only AV coverage report can't be run for DC8. |
 | 9 | `yt.ts` uses `@google-cloud/local-auth` (interactive browser OAuth) | `devcon-api/src/clients/google.ts:42` | Cannot run in CI; YouTube push is manual-only. Nuance: a service-account path exists (`AuthenticateServiceAccount`, used by `import-yt.ts`) but service accounts can only *read* YouTube - writes (thumbnails/titles) need the channel owner's OAuth, so CI would require a stored refresh token. |
@@ -452,7 +452,9 @@ at `18.2.1`, DC6-era track names. Dead.
    built and verified headlessly. devcon-app's #3 hardcode left as-is (moot).
 7. Event metadata: ✅ DONE 2026-08 (§12) - `devcon8.json` authored (#12). Room
    stream fields (#2) still pending (need the DC8 YouTube channels).
-8. Re-brand or replace `social-ticket` for DC8, since it feeds YouTube thumbnails (#6).
+8. ◐ HALF DONE 2026-08 (§12d) - `social-ticket` replaced by cached devcon.org routes;
+   remaining: swap the `dc8/` placeholder art + the hardcoded DC7 location/date/timezone
+   in the card templates (#6).
 9. ✅ DONE 2026-08 (§12) - run-of-show UTC → event-local time (#7).
 10. ✅ DONE 2026-08 (§12) - `stats-video.ts` takes an event id (#8).
 
@@ -506,7 +508,9 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    is wanted later, the right "upstream" is pre-rendering to static files at sync time
    (the resurrected DC6 pattern, §8) - after the real blockers. What matters this
    year: re-brand `social-ticket` (#6) and keep its `API_URL` Netlify env set (it
-   silently defaults to `localhost:4000`).
+   silently defaults to `localhost:4000`). ✅ Implemented 2026-08 (§12d) as the
+   Supabase-cached variant on devcon.org: still on-demand, but render-once with
+   stale-serving, deploy-proof storage, and no localhost default.
 7. **Cheap availability insurance:** Render is the only real single point of failure -
    consider CDN caching on the hot `GET` endpoints for event days so even an API
    restart mid-keynote is invisible.
@@ -641,10 +645,48 @@ livestream QR. `tsc --noEmit` clean.
   DC7-mirrored slugs in test-devcon-8 can surface the seeded URLs if deep-linked
   during their November windows - root cause unchanged, deliberately not fixed here.
 
+## 12d. Changelog: social cards moved to devcon.org with a Supabase render cache, 2026-08-05
+
+Decision context: §11.6 recommended keeping on-demand rendering; the requirement added
+was a strong cache that survives rebuilds. Implementation generalizes the ENS ticket
+route's proven pattern (render → jpeg → public Supabase bucket, 12h Last-Modified
+staleness, serve-stale-on-failure).
+
+- **New shared service** `devcon/src/services/og-cache.ts`: `serveCachedImage()`
+  encodes the contract - bucket-first read, render+upsert on miss/stale, serve the
+  stale copy when the render or devcon-api fails, `x-og-cache: hit|render|stale`
+  header, CDN `s-maxage=43200, stale-while-revalidate=86400`. Buckets auto-create
+  (fixed en route: Supabase signals a missing bucket as HTTP 400 with "Bucket not
+  found" in the body, not an outer 404). The existing `api/ticket/[...slug].tsx` now
+  imports from this service, behavior unchanged.
+- **Three new routes** (Pages API, node runtime, satori templates lifted verbatim from
+  social-ticket): `devcon.org/api/social/schedule/[id]` (1200×630),
+  `/api/social/av/[id]` (1920×1080 q85, the YouTube thumbnail source),
+  `/api/social/schedule-u/[id]` (personal schedule). Fonts and art preloaded from
+  `devcon/public/{fonts,social}/` as data URLs - no runtime asset fetches. Speaker
+  avatars prefetch with a blockie fallback so a dead avatar host cannot fail a card.
+- **Consumers flipped**: devcon-app session + personal-schedule share URLs (keeping
+  `?v=` as the crawler cache-buster), devcon.org `Hero.tsx` schedule card, and
+  `yt.ts` thumbnails. The `/[name]` attendee card and the archive's OG remain on the
+  old `devcon-social.netlify.app` app for now.
+- **The cache of record is the `social-cards` Supabase bucket** - external to Netlify,
+  so deploys/rebuilds never evict it. Verified live: render→hit with byte-identical
+  serves; cards publicly reachable at the bucket URL; **with devcon-api fully dead, a
+  previously-rendered card still serves 200** (uncached ones fail contained with 503).
+- Data-helper fix caught during the port: `GET /account/:id/schedule` wraps its
+  payload as `{user}`, not `{data}`.
+- No new env vars: `SUPABASE_*` already on Netlify; `DEVCON_API_URL` optional
+  (defaults to `https://api.devcon.org` - the old app's `localhost:4000` default
+  footgun is gone).
+- Remaining for #6: the actual DC8 rebrand - swap `devcon/public/social/dc8/` PNGs
+  (drop-in, same filenames) and update the hardcoded DC7 location/date copy and
+  `Asia/Bangkok` times in the schedule/av templates.
+
 ### Still open after these changelogs
 
 Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube channels),
-#6/#9/#10/#11 (social-ticket rebrand, YouTube OAuth, token rotation, Meerkat
+#6 second half (DC8 asset swap + DC7 location/date/timezone copy in the card
+templates - infra done, §12d), #9/#10/#11 (YouTube OAuth, token rotation, Meerkat
 endpoint), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
 spread-order fragility), and the §11.7 CDN-caching insurance.
 

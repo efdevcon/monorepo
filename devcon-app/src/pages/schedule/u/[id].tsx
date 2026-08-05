@@ -53,7 +53,7 @@ export default (props: any) => {
         <SEO
           title={`${props.user.username}'s Agenda`}
           description={`Check out my personalized schedule for Devcon SEA`}
-          imageUrl={`https://devcon-social.netlify.app/schedule/u/${props.paramsId}/opengraph-image`}
+          imageUrl={`https://devcon.org/api/social/schedule-u/${props.paramsId}`}
         />
 
         <SessionLayout sessions={props.schedule} event={props.event} />

@@ -83,7 +83,7 @@ async function syncThumbnails() {
     console.log('-', session.sourceId, `https://studio.youtube.com/video/${session.sources_youtubeId}/edit`)
 
     try {
-      const imageUrl = `https://devcon-social.netlify.app/av/${session.sourceId}/opengraph-image`
+      const imageUrl = `https://devcon.org/api/social/av/${session.sourceId}`
       const response = await fetch(imageUrl)
       const imageBuffer = Buffer.from(await response.arrayBuffer())
 

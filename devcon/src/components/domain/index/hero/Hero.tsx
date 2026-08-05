@@ -166,7 +166,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
   const ticketType = searchParams.get('type') ?? ''
   let imageUrl = props.imageUrl ?? `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
   if (props.speakerMode) {
-    imageUrl = `https://devcon-social.netlify.app/schedule/${props.talk?.id}/opengraph-image`
+    imageUrl = `https://devcon.org/api/social/schedule/${props.talk?.id}`
   }
 
   let twitterShare = `I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`

@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { fetchEnsAvatarBytes, isEnsName } from 'services/ens-avatar'
+import { OG_STALE_AFTER_MS, pngToJpeg, readOgCache, writeOgCache } from 'services/og-cache'
 
 const BG = '#000000'
 
@@ -35,17 +36,6 @@ try {
   throw new Error(`[og] Missing local Poppins font files in public/fonts: ${(error as Error).message}`)
 }
 
-async function pngToJpeg(pngBuffer: ArrayBuffer): Promise<Buffer> {
-  return sharp(Buffer.from(pngBuffer))
-    .jpeg({
-      quality: 80,
-      progressive: true,
-      optimiseCoding: true,
-      mozjpeg: true,
-    })
-    .toBuffer()
-}
-
 const BUCKET = 'og-tickets'
 
 function sanitize(s: string): string {
@@ -54,43 +44,6 @@ function sanitize(s: string): string {
 
 function cacheKey(name: string): string {
   return `${sanitize(name)}.jpg`
-}
-
-function publicUrl(key: string): string {
-  return `${process.env.SUPABASE_URL}/storage/v1/object/public/${BUCKET}/${key}`
-}
-
-function objectUrl(key: string): string {
-  return `${process.env.SUPABASE_URL}/storage/v1/object/${BUCKET}/${key}`
-}
-
-async function readFromCache(key: string): Promise<{ bytes: Buffer; ageMs: number } | null> {
-  try {
-    const r = await fetch(publicUrl(key), { signal: AbortSignal.timeout(2000) })
-    if (!r.ok) return null
-    const lastModified = r.headers.get('last-modified')
-    const lastModifiedMs = lastModified ? new Date(lastModified).getTime() : 0
-    const ageMs = lastModifiedMs > 0 ? Date.now() - lastModifiedMs : Infinity
-    return { bytes: Buffer.from(await r.arrayBuffer()), ageMs }
-  } catch {
-    return null
-  }
-}
-
-async function writeToCache(key: string, bytes: Buffer): Promise<void> {
-  try {
-    await fetch(objectUrl(key), {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
-        'Content-Type': 'image/jpeg',
-        'x-upsert': 'true',
-      },
-      body: new Uint8Array(bytes),
-    })
-  } catch {
-    // Cache write failure shouldn't break the response
-  }
 }
 
 async function regenerateAndCache(displayName: string, key: string, siteUrl: string): Promise<Buffer> {
@@ -108,12 +61,10 @@ async function regenerateAndCache(displayName: string, key: string, siteUrl: str
   // Skip cache write on transient avatar failure so the next request retries
   // instead of serving a no-avatar PNG for 12h.
   if (!avatarTransientFailure) {
-    await writeToCache(key, jpegBuffer)
+    await writeOgCache(BUCKET, key, jpegBuffer)
   }
   return jpegBuffer
 }
-
-const STALE_AFTER_MS = 12 * 60 * 60 * 1000
 
 async function bytesToDataUrl(bytes: Buffer): Promise<string | null> {
   try {
@@ -261,9 +212,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const key = cacheKey(displayName)
 
   if (canCache) {
-    const cached = await readFromCache(key)
+    const cached = await readOgCache(BUCKET, key)
     if (cached) {
-      const isStale = cached.ageMs > STALE_AFTER_MS
+      const isStale = cached.ageMs > OG_STALE_AFTER_MS
       res.setHeader('Content-Type', 'image/jpeg')
       res.setHeader('Cache-Control', 'public, s-maxage=43200, stale-while-revalidate=86400')
       res.setHeader('X-Cache', isStale ? 'STALE' : 'HIT')

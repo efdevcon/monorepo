@@ -110,7 +110,7 @@ const SessionPage = (props: any) => {
         title={props.session.title}
         description={props.session.description}
         separator="@"
-        imageUrl={`https://devcon-social.netlify.app/schedule/${props.session.sourceId}/opengraph-image?v=${version}`}
+        imageUrl={`https://devcon.org/api/social/schedule/${props.session.sourceId}?v=${version}`}
       />
       <AppLayout
         pageTitle="Session"
