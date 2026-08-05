@@ -88,6 +88,12 @@ export async function GET(request: NextRequest) {
     short_name: APP_CONFIG.APP_NAME,
     description: APP_CONFIG.APP_DESCRIPTION,
     start_url: `${origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`,
+    // Without an explicit scope, browsers infer it from start_url's
+    // directory — here that would be /api/auth/, meaning literally
+    // everywhere else in the app (/ticket, /, ...) would be considered
+    // outside the installed app's scope, and iOS treats navigating there
+    // as leaving to an external page instead of staying in standalone mode.
+    scope: "/",
     display: "standalone",
     orientation: "portrait",
     background_color: "#ffffff",
