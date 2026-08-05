@@ -1,36 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
-import APP_CONFIG from "@/CONFIG";
+import { createClient } from "@supabase/supabase-js";
+import { getRequestOrigin } from "../../_lib/origin";
+import { verifyBridgeToken } from "../../_lib/bridgeToken";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 /**
- * Same-origin redirector used as the `start_url` of the personalized
- * manifest minted by /api/manifest-bridge. A manifest's start_url must be
- * in-scope (same-origin) to keep the app installable — this route is that
- * in-scope anchor, and its only job is to forward on to the real (external,
- * cross-origin) Supabase magic-link verification URL.
- *
- * Only forwards to the configured Supabase project's own /auth/v1/verify
- * endpoint — never an arbitrary URL — so this can't be used as an open
- * redirect.
+ * The start_url of the personalized manifest minted by /api/manifest-bridge
+ * — i.e. what actually runs when the installed home-screen icon is first
+ * opened. Verifies the bridge token, then generates a REAL Supabase magic
+ * link right now (not earlier, at "Add to Home Screen" time) and redirects
+ * to it — so however long the gap between installing and first opening the
+ * icon, the Supabase-side link is always freshly minted, not stale.
  */
 export async function GET(request: NextRequest) {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const redirectParam = request.nextUrl.searchParams.get("redirect");
+  const origin = getRequestOrigin(request);
+  const bridgeToken = request.nextUrl.searchParams.get("bridge") || "";
+  const verified = verifyBridgeToken(bridgeToken);
 
-  if (!supabaseUrl || !redirectParam) {
-    return NextResponse.redirect(APP_CONFIG.APP_ORIGIN);
+  if (!verified || !supabaseUrl || !supabaseServiceRoleKey) {
+    return NextResponse.redirect(origin);
   }
 
-  let target: URL;
-  try {
-    target = new URL(redirectParam);
-  } catch {
-    return NextResponse.redirect(APP_CONFIG.APP_ORIGIN);
+  const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
+  const { data, error } = await supabaseAdmin.auth.admin.generateLink({
+    type: "magiclink",
+    email: verified.email,
+    options: { redirectTo: `${origin}/ticket` },
+  });
+  if (error || !data?.properties?.action_link) {
+    return NextResponse.redirect(origin);
   }
 
-  const allowedHost = new URL(supabaseUrl).host;
-  if (target.host !== allowedHost || target.pathname !== "/auth/v1/verify") {
-    return NextResponse.redirect(APP_CONFIG.APP_ORIGIN);
-  }
-
-  return NextResponse.redirect(target);
+  return NextResponse.redirect(data.properties.action_link);
 }

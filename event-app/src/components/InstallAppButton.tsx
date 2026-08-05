@@ -36,10 +36,24 @@ function isIOS(): boolean {
   return /iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
+/**
+ * Brave deliberately makes its User-Agent look like Safari's (a documented
+ * privacy choice — it avoids fingerprinting/discrimination against non-
+ * Safari browsers on iOS), so no amount of UA parsing can tell it apart
+ * from Safari. Brave exposes `navigator.brave` specifically so sites can
+ * detect it without UA sniffing — this is that check.
+ */
+function isBrave(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return !!(navigator as unknown as { brave?: unknown }).brave;
+}
+
 function isSafari(): boolean {
   if (typeof navigator === "undefined") return false;
   const ua = navigator.userAgent;
-  return /Safari/i.test(ua) && !/CriOS|FxiOS|OPiOS|EdgiOS/i.test(ua);
+  return (
+    /Safari/i.test(ua) && !/CriOS|FxiOS|OPiOS|EdgiOS/i.test(ua) && !isBrave()
+  );
 }
 
 /**
@@ -85,8 +99,9 @@ export function useCopySignInLink(): () => Promise<void> {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (!res.ok) throw new Error("Failed to create sign-in link");
-      const manifest = await res.json();
-      const link: string = manifest.start_url;
+      const { bridgeToken } = await res.json();
+      if (!bridgeToken) throw new Error("Failed to create sign-in link");
+      const link = `${window.location.origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`;
 
       await navigator.clipboard.writeText(link).catch(() => {});
 

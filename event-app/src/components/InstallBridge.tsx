@@ -12,7 +12,12 @@ import { isStandalone } from "./InstallAppButton";
  * storage from the Safari tab it was installed from, so without this, a
  * session established by clicking an email link is lost the moment someone
  * taps the newly-installed icon. See /api/manifest-bridge + /api/auth/bridge
- * for the mechanism. Mount once at the app root. Renders nothing.
+ * for the mechanism.
+ *
+ * Points at a real, independently-fetchable URL (/api/manifest-bridge?bridge=…)
+ * rather than a blob: URL — a blob: URL only resolves within this page's own
+ * JS realm, and iOS's own manifest-fetching for "Add to Home Screen" may not
+ * be able to use it at all. Mount once at the app root. Renders nothing.
  */
 export function InstallBridge() {
   const { user, hasInitialized } = useUser();
@@ -25,7 +30,6 @@ export function InstallBridge() {
     const link = document.querySelector<HTMLLinkElement>('link[rel="manifest"]');
     if (!link) return;
 
-    let objectUrl: string | null = null;
     let cancelled = false;
 
     (async () => {
@@ -40,10 +44,10 @@ export function InstallBridge() {
         });
         if (!res.ok || cancelled) return;
 
-        const manifestJson = await res.text();
-        const blob = new Blob([manifestJson], { type: "application/manifest+json" });
-        objectUrl = URL.createObjectURL(blob);
-        link.href = objectUrl;
+        const { bridgeToken } = await res.json();
+        if (!bridgeToken || cancelled) return;
+
+        link.href = `/api/manifest-bridge?bridge=${encodeURIComponent(bridgeToken)}`;
         mintedForRef.current = user.email!;
       } catch {
         // Fail silently — the default manifest stays in place, so installing
@@ -53,7 +57,6 @@ export function InstallBridge() {
 
     return () => {
       cancelled = true;
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
   }, [hasInitialized, user?.email]);
 

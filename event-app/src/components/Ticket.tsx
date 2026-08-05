@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useUser } from "@/data/auth/useUser";
 import { InstallAppButton } from "./InstallAppButton";
-import { SafariBridgeBanner } from "./SafariBridgeBanner";
+import { InstallPrompt } from "./InstallPrompt";
 import { TicketSignIn } from "./TicketSignIn";
 import { Tickets } from "./Tickets";
 
@@ -52,7 +52,7 @@ export function Ticket() {
               </span>
             </h1>
 
-            <SafariBridgeBanner />
+            <InstallPrompt />
 
             <div className="mb-8">
               <Tickets />
