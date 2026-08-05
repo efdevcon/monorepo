@@ -145,6 +145,12 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        // This legacy Devcon 7 SEA snapshot still outranks the current page in search
+        source: '/en/speaker-applications',
+        destination: 'https://devcon.org/en/speaker-applications/',
+        permanent: true,
+      },
+      {
         source: '/grants',
         destination: 'https://esp.ethereum.foundation/devcon-grants',
         permanent: true,
