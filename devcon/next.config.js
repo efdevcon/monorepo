@@ -145,9 +145,12 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        // This legacy Devcon 7 SEA snapshot still outranks the current page in search
+        // This legacy Devcon 7 SEA snapshot still outranks the current page in search.
+        // locale: false is required here — otherwise Next's i18n config auto-prefixes
+        // this source with a locale segment, and it never matches the literal /en/ path.
         source: '/en/speaker-applications',
         destination: 'https://devcon.org/en/speaker-applications/',
+        locale: false,
         permanent: true,
       },
       {
