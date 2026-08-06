@@ -28,7 +28,6 @@ const nextConfig = {
       'www.gravatar.com',
       'assets.tina.io',
       'cfp.ticketh.xyz',
-      'storage.googleapis.com',
     ],
   },
   i18n: {

@@ -19,10 +19,8 @@ import WalletConnectedAnimation from '@/images/Wallet-Connected.json';
 
 // Image assets
 const imgPara = '/images/paraLogo.png';
-const imgUSDC =
-  'https://storage.googleapis.com/zapper-fi-assets/tokens/base/0x833589fcd6edb6e08f4c7c32d4f71b54bda02913.png';
-const imgBase =
-  'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png';
+const imgUSDC = 'https://devcon.org/assets/images/tokens/usdc.png';
+const imgBase = 'https://devcon.org/assets/images/networks/base-icon.png';
 
 type SendStep = 'form' | 'status';
 

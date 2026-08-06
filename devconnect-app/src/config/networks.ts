@@ -3,15 +3,15 @@ import { mainnet, base, arbitrum, optimism, celo, polygon, worldchain } from '@r
 // export const chains = [mainnet, arbitrum, base, celo, optimism, polygon, worldchain];
 export const chains = [mainnet, arbitrum, base, celo, optimism, polygon];
 
-// Zapper network logos (high quality)
-const zapperLogos: Record<number, string> = {
-  1: 'https://storage.googleapis.com/zapper-fi-assets/networks/ethereum-icon.png',
+// Network logos, hosted on devcon.org (previously Zapper's CDN, now shut down)
+const networkLogos: Record<number, string> = {
+  1: 'https://devcon.org/assets/images/networks/ethereum-icon.png',
   8453: 'https://www.base.org/document/apple-touch-icon.png',
-  10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
-  42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
-  42220: 'https://storage.googleapis.com/zapper-fi-assets/networks/celo-icon.png',
-  137: 'https://storage.googleapis.com/zapper-fi-assets/networks/polygon-icon.png',
-  480: 'https://storage.googleapis.com/zapper-fi-assets/networks/worldchain-icon.png',
+  10: 'https://devcon.org/assets/images/networks/optimism-icon.png',
+  42161: 'https://devcon.org/assets/images/networks/arbitrum-icon.png',
+  42220: 'https://devcon.org/assets/images/networks/celo-icon.png',
+  137: 'https://devcon.org/assets/images/networks/polygon-icon.png',
+  480: 'https://devcon.org/assets/images/networks/worldchain-icon.png',
 };
 
 // Map chain IDs to Alchemy network names
@@ -73,7 +73,7 @@ export const networkConfig = chains.reduce((config, chain) => {
   config[chain.id] = {
     id: chain.id,
     name: chain.name,
-    logoUrl: zapperLogos[chain.id],
+    logoUrl: networkLogos[chain.id],
     nativeCurrency: chain.nativeCurrency,
     blockExplorers: chain.blockExplorers,
   };
@@ -106,7 +106,7 @@ export const getNetworkConfig = (chainId: number) => {
 };
 
 export const getNetworkLogo = (chainId: number) => {
-  return zapperLogos[chainId];
+  return networkLogos[chainId];
 };
 
 // Get readable network name from various input formats

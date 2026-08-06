@@ -1,5 +1,3 @@
-import { chains } from './networks';
-
 // Token addresses by network
 const tokenAddresses: Record<string, Record<number, string>> = {
   ETH: {
@@ -37,26 +35,14 @@ const tokenAddresses: Record<string, Record<number, string>> = {
   // },
 };
 
-// Dynamic network names for logo URLs derived from chains
-const networkNames: Record<number, string> = chains.reduce((acc, chain) => {
-  acc[chain.id] = chain.name.toLowerCase().replace(/\s+/g, '')?.replace('arbitrumone', 'arbitrum')?.replace('opmainnet', 'optimism');
-  return acc;
-}, {} as Record<number, string>);
-
-// Helper function to get token logo URL
-const getTokenLogoUrl = (tokenSymbol: string, chainId: number): string => {
+// Token logo URL, hosted on devcon.org (previously Zapper's CDN, now shut down).
+// Token artwork is identical across networks, so one icon per symbol is enough.
+const getTokenLogoUrl = (tokenSymbol: string): string => {
   if (tokenSymbol === 'wARS') {
     return `/images/wARS.png`;
   }
 
-  const networkName = networkNames[chainId];
-  const tokenAddress = tokenAddresses[tokenSymbol][chainId];
-
-  if (!networkName || !tokenAddress) {
-    return `https://storage.googleapis.com/zapper-fi-assets/tokens/${tokenSymbol.toLowerCase()}.png`;
-  }
-  
-  return `https://storage.googleapis.com/zapper-fi-assets/tokens/${networkName}/${tokenAddress}.png`;
+  return `https://devcon.org/assets/images/tokens/${tokenSymbol.toLowerCase()}.png`;
 };
 
 // Token metadata
@@ -103,8 +89,8 @@ export const getTokenAddress = (tokenSymbol: string, chainId: number): string | 
   return token.addresses[chainId] || null;
 };
 
-export const getTokenLogo = (tokenSymbol: string, chainId: number): string => {
-  return getTokenLogoUrl(tokenSymbol, chainId);
+export const getTokenLogo = (tokenSymbol: string): string => {
+  return getTokenLogoUrl(tokenSymbol);
 };
 
 export const getTokenInfo = (tokenSymbol: string, chainId: number) => {
@@ -114,7 +100,7 @@ export const getTokenInfo = (tokenSymbol: string, chainId: number) => {
   return {
     ...token,
     address: getTokenAddress(tokenSymbol, chainId),
-    logoUrl: getTokenLogo(tokenSymbol, chainId),
+    logoUrl: getTokenLogo(tokenSymbol),
   };
 };
 

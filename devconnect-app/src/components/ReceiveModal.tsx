@@ -185,7 +185,7 @@ export default function ReceiveModal({
                   <div className="flex flex-wrap gap-3">
                     <div className="flex items-center gap-1">
                       <img
-                        src={getTokenLogo('USDC', 8453)}
+                        src={getTokenLogo('USDC')}
                         alt="USDC"
                         className="w-4 h-4"
                       />

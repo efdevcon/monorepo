@@ -53,9 +53,9 @@ const queryClient = new QueryClient()
 // ── Token & network icons ──
 
 const TOKEN_ICONS: Record<string, string> = {
-  USDC: 'https://storage.googleapis.com/zapper-fi-assets/tokens/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png',
-  ETH: 'https://storage.googleapis.com/zapper-fi-assets/tokens/ethereum/0x0000000000000000000000000000000000000000.png',
-  USDT0: 'https://storage.googleapis.com/zapper-fi-assets/tokens/optimism/0x01bff41798a0bcf287b996046ca68b395dbc1071.png',
+  USDC: 'https://devcon.org/assets/images/tokens/usdc.png',
+  ETH: 'https://devcon.org/assets/images/tokens/eth.png',
+  USDT0: 'https://devcon.org/assets/images/tokens/usdt0.png',
 }
 
 /** Map API symbol to display name (e.g. USDT0 → USD₮0) */
@@ -72,12 +72,12 @@ const formatEth = (raw: number | string, decimals: number) => {
 }
 
 const NETWORK_LOGOS: Record<number, string> = {
-  1: 'https://storage.googleapis.com/zapper-fi-assets/networks/ethereum-icon.png',
-  10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
-  42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
-  8453: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
-  137: 'https://storage.googleapis.com/zapper-fi-assets/networks/polygon-icon.png',
-  84532: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
+  1: 'https://devcon.org/assets/images/networks/ethereum-icon.png',
+  10: 'https://devcon.org/assets/images/networks/optimism-icon.png',
+  42161: 'https://devcon.org/assets/images/networks/arbitrum-icon.png',
+  8453: 'https://devcon.org/assets/images/networks/base-icon.png',
+  137: 'https://devcon.org/assets/images/networks/polygon-icon.png',
+  84532: 'https://devcon.org/assets/images/networks/base-icon.png',
 }
 
 // ── Cart types (must match store page) ──
