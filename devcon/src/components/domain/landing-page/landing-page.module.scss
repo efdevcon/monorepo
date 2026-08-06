@@ -8,6 +8,21 @@
   z-index: 5;
 }
 
+/* ─── Page gutters ──────────────────────────── */
+/* Figma home frames: 20px gutters on mobile, 32px from 768 (the 1024 frame),
+   64px only from 1280. Page-scoped like travel-guide's .tg-gutters so other
+   pages keep the global .section gutters; two class selectors outrank the
+   global .section rules. */
+.home-gutters :global(.section) {
+  @media (min-width: $breakpoints-md) and (max-width: ($breakpoints-xl - 1)) {
+    grid-template-columns: minmax(32px, 1fr) minmax(auto, 1312px) minmax(32px, 1fr);
+  }
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    grid-template-columns: minmax(20px, 1fr) minmax(auto, 1312px) minmax(20px, 1fr);
+  }
+}
+
 /* ─── Devcon Intro + Venue ──────────────────── */
 .intro {
   display: flex;
@@ -248,9 +263,11 @@
 .keywords-text {
   font-family: var(--font-poppins), 'Poppins', sans-serif;
   font-weight: 300;
-  font-size: 32px;
+  // Scales with the viewport between md and ~1185px so the fixed-copy lines
+  // never wrap mid-line (Figma: 28px at the 1024 frame, 32px at 1440).
+  font-size: clamp(20px, 2.7vw, 32px);
   line-height: 1.5;
-  letter-spacing: 2px;
+  letter-spacing: 0.0625em; // 2px at 32px, scales with the clamp
   text-transform: uppercase;
   color: #1a0d33;
   position: relative;
@@ -258,9 +275,11 @@
   pointer-events: none;
 
   @media (max-width: $breakpoints-md) {
-    font-size: 17px;
+    // Scales with the viewport like the desktop lines do (Figma 430 frame: ~21px;
+    // 17px floor below ~350px, 28px cap at the md boundary).
+    font-size: clamp(17px, 4.9vw, 28px);
     line-height: 1.3;
-    letter-spacing: 4px;
+    letter-spacing: 0.235em; // 4px at 17px, scales with the clamp
   }
 }
 

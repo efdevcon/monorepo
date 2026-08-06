@@ -1,8 +1,12 @@
 import React, { useRef, useState, useCallback } from 'react'
 import { TextHoverEffect } from './TextHoverEffect'
+import { useTranslations } from 'next-intl'
 import css from './landing-page.module.scss'
 
 export function KeywordsSection() {
+  const t = useTranslations('home')
+  const desktopLines = t.raw('keywords_desktop') as string[]
+  const mobileLines = t.raw('keywords_mobile') as string[]
   const containerRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
@@ -47,26 +51,20 @@ export function KeywordsSection() {
         className={`${css['keywords-text']} ${css['keywords-desktop']}`}
         style={maskStyle}
       >
-        TALKS &bull; WORKSHOPS &bull; NETWORKING &bull; COWORK &bull; AI
-        <br />
-        CENSORSHIP RESISTANCE &bull; OPEN SOURCE &bull; PRIVACY &bull; SECURITY
-        <br />
-        DeFI &bull; Social &bull; CYPHERPUNK &bull; Art &bull; REAL WORLD ETHEREUM
+        {desktopLines.map((line, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <br />}
+            {line}
+          </React.Fragment>
+        ))}
       </div>
       <div className={`${css['keywords-text']} ${css['keywords-mobile']}`}>
-        TALKS &bull; WORKSHOPS
-        <br />
-        NETWORKING &bull; COWORK &bull; AI
-        <br />
-        CENSORSHIP RESISTANCE
-        <br />
-        OPEN SOURCE &bull; PRIVACY
-        <br />
-        SECURITY &bull; DeFI &bull; Social
-        <br />
-        CYPHERPUNK &bull; Art
-        <br />
-        REAL WORLD ETHEREUM
+        {mobileLines.map((line, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <br />}
+            {line}
+          </React.Fragment>
+        ))}
       </div>
     </div>
   )

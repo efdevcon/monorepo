@@ -3,6 +3,7 @@ import { Link } from 'components/common/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
 import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
+import { ctaPrimary, ctaSecondary } from 'components/domain/landing-page/cta'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 
 type IconKind = 'check' | 'asterisk'
@@ -39,14 +40,17 @@ interface Column {
 }
 
 const IncludedIcon = ({ kind }: { kind: IconKind }) => {
-  if (kind === 'check') return <CircleCheckBig className="w-4 h-4 text-[#7235ed] shrink-0" strokeWidth={2} />
-  return <Asterisk className="w-4 h-4 text-[#594d73] shrink-0" strokeWidth={2} />
+  if (kind === 'check') return <CircleCheckBig className="w-[16px] h-[16px] text-[#7235ed] shrink-0" strokeWidth={2} />
+  return <Asterisk className="w-[16px] h-[16px] text-[#594d73] shrink-0" strokeWidth={2} />
 }
 
+// px literals throughout this file: the mobile layout only ever renders <1024
+// where the root font-size is 14px (index.scss), so rem utilities would land
+// 12.5% under the Figma values.
 const StatusTag = ({ status, openLabel, comingLabel }: { status: 'open' | 'coming'; openLabel: string; comingLabel: string }) => (
   <span
-    className={`inline-flex items-center self-start px-2.5 py-1.5 rounded text-xs font-bold tracking-[0.5px] uppercase whitespace-nowrap ${
-      status === 'open' ? 'bg-[#80df98] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
+    className={`inline-flex items-center self-start px-[10px] py-[8px] rounded-[4px] text-[12px] font-bold tracking-[0.5px] uppercase whitespace-nowrap leading-none ${
+      status === 'open' ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
     }`}
   >
     {status === 'open' ? openLabel : comingLabel}
@@ -102,14 +106,7 @@ const GeneralAdmissionStatusTag = () => {
 }
 
 const CtaButton = ({ label, href, variant }: { label: string; href: string; variant: 'primary' | 'secondary' }) => (
-  <Link
-    to={href}
-    className={`inline-flex items-center justify-center gap-2 min-h-9 px-8 py-4 rounded-full text-base font-bold leading-none transition-colors ${
-      variant === 'primary'
-        ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
-        : 'bg-white/80 hover:bg-white border border-solid border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
-    }`}
-  >
+  <Link to={href} className={variant === 'primary' ? ctaPrimary : ctaSecondary}>
     {label}
     <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
   </Link>
@@ -119,7 +116,7 @@ const CtaButton = ({ label, href, variant }: { label: string; href: string; vari
 // One card visible at a time; the parent TicketComparison renders tab pills
 // above this card and "Swipe to compare tickets" hint below.
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-xs font-semibold text-[#594d73] tracking-[0.5px] uppercase leading-4">{children}</p>
+  <p className="text-[12px] font-semibold text-[#594d73] tracking-[0.5px] uppercase leading-[16px]">{children}</p>
 )
 
 const MobileCard = ({
@@ -137,8 +134,8 @@ const MobileCard = ({
     tag_coming: string
   }
 }) => (
-  <div className="flex flex-col gap-4 bg-white rounded-2xl px-5 py-6 w-full max-w-[520px] shadow-[0_1px_1px_rgba(22,11,43,0.1),0_2px_2px_rgba(22,11,43,0.08),0_4px_8px_rgba(22,11,43,0.12)]">
-    <div className="flex flex-col gap-4">
+  <div className="flex flex-col gap-[16px] bg-white rounded-[16px] px-[20px] py-[24px] w-full max-w-[520px] shadow-[0_1px_1px_rgba(22,11,43,0.1),0_2px_2px_rgba(22,11,43,0.08),0_4px_8px_rgba(22,11,43,0.12)]">
+    <div className="flex flex-col gap-[16px]">
       <div className="flex items-center justify-between">
         {column.id === 'general_admission' ? (
           <GeneralAdmissionStatusTag />
@@ -149,41 +146,41 @@ const MobileCard = ({
             comingLabel={column.coming_label ?? labels.tag_coming}
           />
         )}
-        <p className="text-xs text-[#594d73] leading-none">{labels.price_note}</p>
+        <p className="text-[12px] text-[#594d73] leading-none">{labels.price_note}</p>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <h3 className="text-2xl font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">{column.title}</h3>
-        <p className="text-xs font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{column.subtitle}</p>
+      <div className="flex flex-col gap-[8px]">
+        <h3 className="text-[24px] font-extrabold tracking-[-0.5px] leading-[28.8px] text-[#160b2b]">{column.title}</h3>
+        <p className="text-[12px] font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{column.subtitle}</p>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <div className="flex gap-2 items-center">
-          <p className="text-xl font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{column.price}</p>
+      <div className="flex flex-col gap-[8px]">
+        <div className="flex gap-[8px] items-center">
+          <p className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{column.price}</p>
           {column.price_original && (
-            <p className="text-sm font-bold text-[#594d73] line-through leading-5">{column.price_original}</p>
+            <p className="text-[14px] font-bold text-[#594d73] line-through leading-[20px]">{column.price_original}</p>
           )}
         </div>
-        <p className="text-xs text-[#594d73] leading-none">{column.price_note}</p>
+        <p className="text-[12px] text-[#594d73] leading-none">{column.price_note}</p>
         {column.price_description && (
-          <p className="text-xs text-[#594d73] leading-4">{column.price_description}</p>
+          <p className="text-[12px] text-[#594d73] leading-[16px]">{column.price_description}</p>
         )}
       </div>
     </div>
 
     <hr className="border-t border-solid border-[rgba(34,17,68,0.1)]" />
 
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-[8px]">
       <SectionLabel>{labels.best_for}</SectionLabel>
-      <p className="text-sm text-[#160b2b] leading-5">{column.best_for}</p>
+      <p className="text-[14px] text-[#160b2b] leading-[20px]">{column.best_for}</p>
     </div>
 
     <hr className="border-t border-solid border-[rgba(34,17,68,0.1)]" />
 
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-[8px]">
       <SectionLabel>{labels.included}</SectionLabel>
       {column.included.map((i, idx) => (
-        <div key={idx} className="flex gap-2 items-center text-sm text-[#160b2b] leading-5">
+        <div key={idx} className="flex gap-[8px] items-center text-[14px] text-[#160b2b] leading-[20px]">
           <IncludedIcon kind={i.icon} />
           {i.text}
         </div>
@@ -192,11 +189,11 @@ const MobileCard = ({
 
     <hr className="border-t border-solid border-[rgba(34,17,68,0.1)]" />
 
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-[8px]">
       <SectionLabel>{labels.how_it_works}</SectionLabel>
-      <ul className="flex flex-col gap-2 list-disc pl-5">
+      <ul className="flex flex-col gap-[8px] list-disc pl-[21px]">
         {column.how_it_works.map((step, idx) => (
-          <li key={idx} className="text-sm text-[#160b2b] leading-5">
+          <li key={idx} className="text-[14px] text-[#160b2b] leading-[20px]">
             {step}
           </li>
         ))}
@@ -206,7 +203,7 @@ const MobileCard = ({
     {!column.hide_cta && (
       <Link
         to={column.cta_href}
-        className={`inline-flex items-center justify-center gap-2 min-h-9 px-8 py-4 rounded-full text-base font-bold leading-none transition-colors w-full ${
+        className={`inline-flex items-center justify-center gap-[8px] min-h-[36px] px-[32px] py-[16px] rounded-full text-[16px] font-bold leading-none transition-colors w-full ${
           column.cta_variant === 'primary'
             ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
             : 'bg-white hover:bg-white/90 border border-solid border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
@@ -229,7 +226,7 @@ const RowLabel = ({
   withTopBorder?: boolean
 }) => (
   <div
-    className={`w-[149px] shrink-0 px-6 py-4 bg-gradient-to-l from-[#221144] to-[#160b2b] text-[#dddae2] text-xs font-semibold tracking-[0.5px] flex ${
+    className={`w-[149px] shrink-0 px-6 py-4 bg-gradient-to-l from-[#221144] to-[#160b2b] text-[#dddae2] text-[12px] font-semibold tracking-[0.5px] flex ${
       withTopBorder ? 'border-t border-solid border-white/10' : ''
     } ${alignTop ? 'items-start pt-5' : 'items-center'}`}
   >
@@ -237,7 +234,7 @@ const RowLabel = ({
   </div>
 )
 
-export function TicketComparison() {
+export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
   const t = useTranslations('tickets.comparison')
   const labels = t.raw('labels') as {
     price: string
@@ -336,20 +333,20 @@ export function TicketComparison() {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section id="comparison" className="flex flex-col gap-8 items-center">
-      <div className="flex flex-col gap-4 items-center text-center w-full">
-        <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
-          {t('eyebrow')}
+    <section id="comparison" className="flex flex-col gap-[24px] sm:gap-[32px] items-center">
+      <div className="flex flex-col gap-[16px] items-center text-center w-full">
+        <p className="text-[14px] font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+          {eyebrow ?? t('eyebrow')}
         </p>
-        <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+        <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
           {t('heading')}
         </h2>
-        <p className="text-sm sm:text-base text-[#221144] leading-6">{t('subheading')}</p>
+        <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#221144]">{t('subheading')}</p>
       </div>
 
-      {/* Mobile/tablet: tab-switcher + single card */}
-      <div className="flex flex-col gap-4 items-center w-full lg:hidden">
-        <div className="bg-[#f2f1f4] p-1 rounded-xl flex items-center">
+      {/* Mobile/tablet: tab-switcher + single card (Figma 4920:99499 / 4920:99501) */}
+      <div className="flex flex-col gap-[24px] items-center w-full lg:hidden">
+        <div className="bg-[#f2f1f4] p-[4px] rounded-[12px] flex items-center shadow-[inset_0_1px_1px_rgba(34,17,68,0.15),inset_0_2px_4px_rgba(34,17,68,0.06)]">
           {columns.map((col, idx) => {
             const isActive = idx === activeTab
             return (
@@ -357,10 +354,10 @@ export function TicketComparison() {
                 key={col.id}
                 type="button"
                 onClick={() => setActiveTab(idx)}
-                className={`min-h-8 px-3 py-3 rounded-[10px] text-sm font-medium leading-5 whitespace-nowrap transition-colors ${
+                className={`min-h-[32px] p-[12px] rounded-[8px] text-[14px] leading-[20px] whitespace-nowrap transition-colors ${
                   isActive
                     ? 'bg-white text-[#7235ed] font-bold shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)]'
-                    : 'text-[#594d73]'
+                    : 'text-[#594d73] font-medium'
                 }`}
               >
                 {col.tab_label || col.title}
@@ -392,8 +389,8 @@ export function TicketComparison() {
                 />
               )}
               <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">{col.title}</h3>
-                <p className="text-xs font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{col.subtitle}</p>
+                <h3 className="text-[24px] font-extrabold tracking-[-0.5px] leading-[28.8px] text-[#160b2b]">{col.title}</h3>
+                <p className="text-[12px] font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{col.subtitle}</p>
               </div>
             </div>
           ))}
@@ -413,14 +410,14 @@ export function TicketComparison() {
               className={`flex-1 min-w-0 flex flex-col gap-2 px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
             >
               <div className="flex gap-2 items-end">
-                <p className="text-xl font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{col.price}</p>
+                <p className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{col.price}</p>
                 {col.price_original && (
-                  <p className="text-sm font-bold text-[#594d73] line-through leading-5">{col.price_original}</p>
+                  <p className="text-[14px] font-bold text-[#594d73] line-through leading-[20px]">{col.price_original}</p>
                 )}
               </div>
-              <p className="text-xs text-[#594d73] leading-none">{col.price_note}</p>
+              <p className="text-[12px] text-[#594d73] leading-none">{col.price_note}</p>
               {col.price_description && (
-                <p className="text-xs text-[#594d73] leading-4">{col.price_description}</p>
+                <p className="text-[12px] text-[#594d73] leading-[16px]">{col.price_description}</p>
               )}
             </div>
           ))}
@@ -428,13 +425,13 @@ export function TicketComparison() {
 
         {/* BEST FOR row */}
         <div className="flex items-stretch">
-          <RowLabel withTopBorder>{labels.best_for}</RowLabel>
+          <RowLabel alignTop withTopBorder>{labels.best_for}</RowLabel>
           {columns.map(col => (
             <div
               key={col.id}
-              className={`flex-1 min-w-0 flex items-center px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
+              className={`flex-1 min-w-0 flex items-start px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
             >
-              <p className="text-sm text-[#160b2b] leading-5">{col.best_for}</p>
+              <p className="text-[14px] text-[#160b2b] leading-[20px]">{col.best_for}</p>
             </div>
           ))}
         </div>
@@ -450,7 +447,7 @@ export function TicketComparison() {
               {col.included.map((item, idx) => (
                 <div key={idx} className="flex gap-2 items-center">
                   <IncludedIcon kind={item.icon} />
-                  <p className="text-sm text-[#160b2b] leading-none">{item.text}</p>
+                  <p className="text-[14px] text-[#160b2b] leading-none">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -465,9 +462,9 @@ export function TicketComparison() {
               key={col.id}
               className={`flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
             >
-              <ul className="flex flex-col gap-3 list-disc pl-5">
+              <ul className="flex flex-col gap-3 list-disc pl-[21px]">
                 {col.how_it_works.map((step, idx) => (
-                  <li key={idx} className="text-sm text-[#160b2b] leading-none">
+                  <li key={idx} className="text-[14px] text-[#160b2b] leading-[1.3]">
                     {step}
                   </li>
                 ))}
@@ -490,7 +487,7 @@ export function TicketComparison() {
         </div>
       </div>
 
-      <p className="text-sm text-[#594d73] leading-none w-full text-right mt-2">{t('footer_note')}</p>
+      <p className="text-[14px] text-[#594d73] leading-none w-full text-center lg:text-right mt-2">{t('footer_note')}</p>
     </section>
   )
 }

@@ -5,6 +5,7 @@ import { Header } from 'components/common/layouts/header'
 import { Footer } from 'components/common/layouts/footer'
 import { Hero } from 'components/common/dc-8/hero/hero'
 import { LandingPage } from 'components/domain/landing-page'
+import lpCss from 'components/domain/landing-page/landing-page.module.scss'
 import css from './index.module.scss'
 import themes from './themes.module.scss'
 import { getMessages } from 'utils/intl'
@@ -16,7 +17,11 @@ export default function Index(props: any) {
   return (
     <div className={`${css['layout-default']} ${themes['index']}`}>
       <Header withHero />
-      <Hero />
+      {/* home-gutters: hero content follows the same 20/32/64 gutter ramp as the
+          rest of the home page (its .section otherwise jumps 16 → 64px at 768) */}
+      <div className={`w-full ${lpCss['home-gutters']}`}>
+        <Hero />
+      </div>
 
       <div className="z-[11] text-[rgba(255,255,255,0.8)] w-full relative">
         <LandingPage faqItems={props.faqItems} />

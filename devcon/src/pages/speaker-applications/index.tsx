@@ -19,15 +19,7 @@ import LightningTalkImg from './images/formats/lightning-talk.jpg'
 import TalkImg from './images/formats/talk.jpg'
 import MixedFormatImg from './images/formats/mixed-format.jpg'
 import WorkshopImg from './images/formats/workshop.jpg'
-import TrackCoreProtocol from './images/tracks/track-core-protocol.png'
-import TrackPrivacyConsent from './images/tracks/track-privacy-consent.png'
-import TrackSecurity from './images/tracks/track-security.png'
-import TrackFuturesWorthBuilding from './images/tracks/track-futures-worth-building.png'
-import TrackRightsFreedomsGovernance from './images/tracks/track-rights-freedoms-governance.png'
-import TrackPermissionlessNetworks from './images/tracks/track-permissionless-networks.png'
-import TrackUsersBuildersAgents from './images/tracks/track-users-builders-agents.png'
-import TrackAppliedCryptography from './images/tracks/track-applied-cryptography.png'
-import TrackOpenVerifiableStack from './images/tracks/track-open-verifiable-stack.png'
+import { APPLY_URL, TRACK_IMAGES } from 'components/common/tracks/track-images'
 import Process1 from './images/process/speaker-process-01.jpg'
 import Process2 from './images/process/speaker-process-02.jpg'
 import Process3 from './images/process/speaker-process-03.jpg'
@@ -40,7 +32,6 @@ import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
 import type { GetStaticPropsContext } from 'next'
 
-const APPLY_URL = 'https://cfp.devcon.org/devcon8/cfp'
 const WISHLIST_URL = 'https://notes.ethereum.org/@devcon/devcon8-talks-wishlist'
 const GUIDELINES_URL = '/application-guidelines'
 // Anchor id comes from application-guidelines.tsx's SECTION_KEYS (underscores → hyphens)
@@ -49,19 +40,6 @@ const REVIEW_CRITERIA_URL = '/application-guidelines#review-criteria'
 const WHY_SPEAK_ICONS = [Users, LockKeyholeOpen, CircleCheckBig]
 
 const FORMAT_IMAGES = [LightningTalkImg, TalkImg, MixedFormatImg, WorkshopImg]
-
-// Visual order matches the Figma grid, row by row
-const TRACK_IMAGES = [
-  TrackCoreProtocol,
-  TrackPrivacyConsent,
-  TrackSecurity,
-  TrackFuturesWorthBuilding,
-  TrackRightsFreedomsGovernance,
-  TrackPermissionlessNetworks,
-  TrackUsersBuildersAgents,
-  TrackAppliedCryptography,
-  TrackOpenVerifiableStack,
-]
 
 // Back-face tints from Figma, same order as TRACK_IMAGES
 const TRACK_BACK_COLORS = [
