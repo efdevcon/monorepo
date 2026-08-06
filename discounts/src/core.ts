@@ -3,6 +3,7 @@ import fs from 'fs'
 const INPUT_FILES = [
     'inputs/the-merge-contributors.json',
     'inputs/protocol-guild-2026.json',
+  'inputs/protocol-guild-2026-manual.json',
 ]
 const OUTPUT_FILE = 'outputs/core-devs.json'
 const ENS_RESOLVER = 'https://api.ensideas.com/ens/resolve/'

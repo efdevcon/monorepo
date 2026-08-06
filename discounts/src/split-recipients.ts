@@ -17,7 +17,7 @@ import path from 'path'
  *   bun run src/split-recipients.ts <splitAddress> <outputFile>
  *
  * Reference:
- *   https://app.splits.org/accounts/0xd982477216dadd4c258094b071b49d17b6271d66/?chainId=1
+ *   https://explorer.splits.org/accounts/0xd982477216daDD4C258094B071b49D17b6271d66/?chainId=1
  */
 
 const SPLIT_ADDRESS = process.argv[2] ?? '0xd982477216dadd4c258094b071b49d17b6271d66'
