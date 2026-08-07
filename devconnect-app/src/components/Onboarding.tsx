@@ -215,6 +215,78 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     console.log('🔍 [ONBOARDING] Connection state:', { isConnected });
   }, [isConnected]);
 
+  // ============================================
+  // Stale Para session detection.
+  // A returning PWA can come back long after the Para session expired while
+  // localStorage (@CAPSULE/*, userIsConnected, devconnect_para_primary) still
+  // says a Para wallet is connected. The SDK then reports isConnected from
+  // cached state and the redirect below gets stuck on the "Connecting your
+  // wallet..." screen forever. Validate the session once on boot and clear
+  // the stale connection state so the login screen shows instead.
+  // ============================================
+  const [paraSessionChecked, setParaSessionChecked] = useState(false);
+  const [paraSessionInvalid, setParaSessionInvalid] = useState(false);
+  const staleSessionClearedRef = useRef(false);
+  useEffect(() => {
+    if (!paraClient) return;
+    let cancelled = false;
+
+    const validateSession = async () => {
+      try {
+        const active = await paraClient.isSessionActive();
+        if (cancelled) return;
+
+        const primaryType = localStorage.getItem(
+          'devconnect_primary_wallet_type'
+        );
+        const paraLooksConnected =
+          isConnected ||
+          primaryType === 'para' ||
+          localStorage.getItem('devconnect_para_primary') === 'true';
+
+        if (!active && paraLooksConnected) {
+          setParaSessionInvalid(true);
+
+          if (!staleSessionClearedRef.current) {
+            staleSessionClearedRef.current = true;
+            console.warn(
+              '⚠️ [ONBOARDING] Para session expired - clearing stale connection state'
+            );
+            try {
+              logout();
+            } catch (logoutError) {
+              console.error(
+                '❌ [ONBOARDING] Para logout during stale-session cleanup failed:',
+                logoutError
+              );
+            }
+            setUserIsConnected(false);
+            if (primaryType === 'para') {
+              localStorage.removeItem('devconnect_primary_wallet_type');
+            }
+            localStorage.removeItem('devconnect_para_primary');
+            localStorage.removeItem('paraJwt');
+            localStorage.removeItem('paraJwtExpiry');
+          }
+        } else if (active) {
+          setParaSessionInvalid(false);
+        }
+      } catch (error) {
+        // Fail open: an unreachable session check should not block login
+        console.error('❌ [ONBOARDING] Para session check failed:', error);
+      } finally {
+        if (!cancelled) setParaSessionChecked(true);
+      }
+    };
+
+    validateSession();
+    return () => {
+      cancelled = true;
+    };
+    // Re-validate if the SDK flips to connected after restoring cached state
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paraClient, isConnected]);
+
   // Reset polling when authState changes to login/signup stage
   // This prevents stuck "waiting" states from previous polling attempts
   useEffect(() => {
@@ -233,7 +305,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Handle delayed redirects (1.5 seconds)
   useEffect(() => {
-    if (isConnected) {
+    // Only redirect once the Para session has been validated - a stale cached
+    // "connected" state with an expired session used to hang here forever.
+    if (isConnected && paraSessionChecked && !paraSessionInvalid) {
       setUserIsConnected(true);
       // Set redirecting state immediately when connected
       setIsRedirecting(true);
@@ -257,7 +331,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         setIsRedirecting(false);
       };
     }
-  }, [isConnected, isInitialLoading, router]);
+  }, [isConnected, paraSessionChecked, paraSessionInvalid, isInitialLoading, router]);
 
   const isIframeLoading = iFrameState === 'loading';
   const isIframeClosed = iFrameState === 'closed';
