@@ -31,7 +31,6 @@ export const WhyDevconContainer = () => (
       <MoonSymbol className="w-full h-full" />
     </div>
 
-
     <div className="relative">
       <DevconIntro />
       <VideoPreview />

@@ -27,9 +27,9 @@ const Stat = ({ value, suffix, label }: { value: number; suffix?: string; label:
 export const DevconSEAStats = () => {
   const t = useTranslations('home.stats')
   return (
-    <div className={`bg-[#7235ed] relative ${sectionX} pt-16 pb-[48px] sm:py-16 xl:py-20 flex flex-col items-center justify-center gap-4 overflow-hidden`}>
+    <div className={`bg-[#7235ed] relative ${sectionX} pt-16 pb-[48px] sm:py-16 xl:py-[80px] flex flex-col items-center justify-center gap-4 overflow-hidden`}>
       {/* Section label — pinned top-center at every breakpoint (Figma 4917:15194) */}
-      <p className={`absolute top-5 sm:top-6 xl:top-8 left-1/2 -translate-x-1/2 ${sectionLabel} text-[#f9f8fa] whitespace-nowrap`}>
+      <p className={`absolute top-5 sm:top-6 xl:top-[32px] left-1/2 -translate-x-1/2 ${sectionLabel} text-[#f9f8fa] whitespace-nowrap`}>
         {t('label')}
       </p>
 
@@ -40,7 +40,7 @@ export const DevconSEAStats = () => {
         <SEA aria-hidden className="absolute right-0 top-[27%] w-[39%] h-auto" />
       </div>
 
-      <div className={`relative ${sectionInner} w-full flex flex-col sm:flex-row flex-wrap gap-[24px] sm:gap-10 xl:gap-20 items-center justify-center text-[#f9f8fa] text-center`}>
+      <div className={`relative ${sectionInner} w-full flex flex-col sm:flex-row flex-wrap gap-[24px] sm:gap-10 xl:gap-[80px] items-center justify-center text-[#f9f8fa] text-center`}>
         <Stat value={700} label={t('speakers_label')} />
         <Stat value={600} label={t('sessions_label')} />
         <Stat value={12} suffix="K" label={t('attendees_label')} />

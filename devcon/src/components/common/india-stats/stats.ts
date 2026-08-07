@@ -28,7 +28,14 @@ export const STAT_META: StatMeta[] = [
     source: 'Linux Foundation',
     url: 'https://www.prnewswire.com/news-releases/linux-foundation-research-finds-open-source-is-key-to-driving-indias-ai-market-302688143.html',
   },
-  { number: 1, prefix: '# ', suffix: '', decimals: 0, source: 'Electric Capital', url: 'https://www.electriccapital.com/' },
+  {
+    number: 1,
+    prefix: '# ',
+    suffix: '',
+    decimals: 0,
+    source: 'Electric Capital',
+    url: 'https://www.electriccapital.com/',
+  },
   {
     number: 2021,
     prefix: '',

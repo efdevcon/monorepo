@@ -25,7 +25,10 @@ const DEVCON_EVENT: CalendarEventSpec = {
 
 // "2026-07-14T16:00:00.000Z" → "20260714T160000Z" (ICS / Google UTC instant)
 function toCalendarInstant(d: Date): string {
-  return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z')
+  return d
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}Z$/, 'Z')
 }
 
 function formatDates(event: CalendarEventSpec): { start: string; end: string; allDay: boolean } {

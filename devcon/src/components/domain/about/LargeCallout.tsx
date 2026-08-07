@@ -11,10 +11,7 @@ export function LargeCallout() {
       <div className="section">
         <WritingText
           className={css['callout-text']}
-          segments={[
-            { text: t('line_1') },
-            { text: t('line_2'), className: css['callout-bold'] },
-          ]}
+          segments={[{ text: t('line_1') }, { text: t('line_2'), className: css['callout-bold'] }]}
           triggerOnScroll
           stagger={0.05}
           stiffness={150}

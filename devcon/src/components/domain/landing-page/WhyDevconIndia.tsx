@@ -5,7 +5,15 @@ import { useTranslations } from 'next-intl'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
 import { STAT_META } from 'components/common/india-stats/stats'
 import { ctaSecondary } from 'components/common/cta'
-import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy, leadCopy, glassCard } from 'components/common/styles'
+import {
+  sectionX,
+  sectionInner,
+  sectionHeading,
+  eyebrow,
+  bodyCopy,
+  leadCopy,
+  glassCard,
+} from 'components/common/styles'
 
 /**
  * "Why Devcon India" block — Figma node 4917:617. Shares the stat figures and
@@ -32,12 +40,19 @@ export const WhyDevconIndia = () => {
         </div>
 
         {/* Stats callout — glass card, 4-up desktop / stacked mobile */}
-        <div className={`${glassCard} p-[20px] sm:px-[40px] sm:py-[32px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1),inset_0_-2px_16px_rgba(255,255,255,0.66)]`}>
+        <div
+          className={`${glassCard} p-[20px] sm:px-[40px] sm:py-[32px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1),inset_0_-2px_16px_rgba(255,255,255,0.66)]`}
+        >
           {STAT_META.map((meta, i) => (
             <div key={i} className="flex flex-col items-start gap-[12px]">
               <div className="flex flex-col gap-[8px]">
                 <p className="font-extrabold text-[24px] leading-[28.8px] tracking-[-0.5px] text-[#160b2b]">
-                  <CountingNumber number={meta.number} prefix={meta.prefix} suffix={meta.suffix} decimalPlaces={meta.decimals} />
+                  <CountingNumber
+                    number={meta.number}
+                    prefix={meta.prefix}
+                    suffix={meta.suffix}
+                    decimalPlaces={meta.decimals}
+                  />
                 </p>
                 <p className="text-[16px] leading-[24px] text-[#1a0d33]">{stats[i]?.desc}</p>
               </div>

@@ -20,7 +20,8 @@ export const eyebrow = 'text-[14px] font-semibold text-[#7235ed] tracking-[2px] 
 export const bodyCopy = 'text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px]'
 
 /** Larger intro paragraph used beside section headings. */
-export const leadCopy = 'text-[18px] leading-[26px] sm:text-[20px] sm:leading-[28.8px] tracking-[-0.25px] text-[#1a0d33]'
+export const leadCopy =
+  'text-[18px] leading-[26px] sm:text-[20px] sm:leading-[28.8px] tracking-[-0.25px] text-[#1a0d33]'
 
 /** Card h3. */
 export const cardTitle = 'text-[20px] font-extrabold text-[#160b2b] leading-[26px]'
@@ -35,4 +36,5 @@ export const sectionLabel = 'text-[14px] font-semibold tracking-[0.5px] uppercas
  * as a separate overlay div instead. (GetInvolved's interactive cards use a darker
  * outline + hover states and stay bespoke.)
  */
-export const glassCard = 'bg-white/50 backdrop-blur-[6px] outline outline-1 outline-[rgba(255,255,255,0.66)] rounded-2xl'
+export const glassCard =
+  'bg-white/50 backdrop-blur-[6px] outline outline-1 outline-[rgba(255,255,255,0.66)] rounded-2xl'

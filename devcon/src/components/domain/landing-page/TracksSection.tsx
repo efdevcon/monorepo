@@ -49,7 +49,9 @@ export const TracksSection = () => {
           delay={DISPLAY_ORDER.length * 60}
           className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col sm:flex-row lg:flex-col items-center sm:justify-center lg:justify-center gap-[16px] p-[16px] sm:px-6 lg:p-[16px] rounded-2xl bg-[#ece3fd] outline outline-1 outline-[rgba(255,255,255,0.33)]"
         >
-          <p className="text-[16px] leading-[24px] text-[#1a0d33] text-center sm:text-left lg:text-center">{t('apply_prompt')}</p>
+          <p className="text-[16px] leading-[24px] text-[#1a0d33] text-center sm:text-left lg:text-center">
+            {t('apply_prompt')}
+          </p>
           <a
             href={APPLY_URL}
             target="_blank"

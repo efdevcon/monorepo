@@ -5,7 +5,15 @@ import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useFeaturedWave, useTicketsCtaLabel } from 'hooks/useWaveStates'
 import { ctaPrimary } from 'components/common/cta'
-import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy, cardTitle, glassCard } from 'components/common/styles'
+import {
+  sectionX,
+  sectionInner,
+  sectionHeading,
+  eyebrow,
+  bodyCopy,
+  cardTitle,
+  glassCard,
+} from 'components/common/styles'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 import CrescentMoons from './images/new/crescent-moons.svg'
 import JoinLearn from './images/new/join-learn.jpg'
@@ -30,8 +38,8 @@ export const JoinTheEvent = () => {
     featured?.status === 'live'
       ? t('tickets_launch_eyebrow_live')
       : featured
-        ? `${featured.wave.name} tickets`
-        : t('tickets_launch_eyebrow')
+      ? `${featured.wave.name} tickets`
+      : t('tickets_launch_eyebrow')
 
   return (
     <div
@@ -69,29 +77,29 @@ export const JoinTheEvent = () => {
         <RevealGroup className="grid grid-cols-1 xl:grid-cols-2 gap-[24px]">
           {cards.map((c, i) => (
             <Reveal key={i} delay={i * 120}>
-            <div
-              className={`relative flex flex-col md:flex-row md:items-center md:h-[206px] md:gap-6 overflow-hidden ${glassCard} shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1)]`}
-            >
-              <div className="order-1 md:order-2 relative w-full h-[206px] md:w-[224px] md:h-full shrink-0">
-                <Image
-                  src={CARD_IMAGES[i]}
-                  alt={c.image_alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 224px"
-                  className="object-cover"
+              <div
+                className={`relative flex flex-col md:flex-row md:items-center md:h-[206px] md:gap-6 overflow-hidden ${glassCard} shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1)]`}
+              >
+                <div className="order-1 md:order-2 relative w-full h-[206px] md:w-[224px] md:h-full shrink-0">
+                  <Image
+                    src={CARD_IMAGES[i]}
+                    alt={c.image_alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 224px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="order-2 md:order-1 flex-1 min-w-0 flex flex-col gap-[8px] justify-center p-[20px] md:pl-6 md:py-6 md:pr-0">
+                  <h3 className={cardTitle}>{c.title}</h3>
+                  <p className={`${bodyCopy} text-[#221144]`}>{c.body}</p>
+                </div>
+                {/* Inset sheen as an overlay: the card is overflow-hidden with a full-bleed
+                  photo that would paint over an inset box-shadow on the card itself */}
+                <div
+                  aria-hidden
+                  className="absolute -inset-px pointer-events-none rounded-[inherit] shadow-[inset_0_-2px_16px_rgba(255,255,255,0.66)]"
                 />
               </div>
-              <div className="order-2 md:order-1 flex-1 min-w-0 flex flex-col gap-[8px] justify-center p-[20px] md:pl-6 md:py-6 md:pr-0">
-                <h3 className={cardTitle}>{c.title}</h3>
-                <p className={`${bodyCopy} text-[#221144]`}>{c.body}</p>
-              </div>
-              {/* Inset sheen as an overlay: the card is overflow-hidden with a full-bleed
-                  photo that would paint over an inset box-shadow on the card itself */}
-              <div
-                aria-hidden
-                className="absolute -inset-px pointer-events-none rounded-[inherit] shadow-[inset_0_-2px_16px_rgba(255,255,255,0.66)]"
-              />
-            </div>
             </Reveal>
           ))}
         </RevealGroup>
