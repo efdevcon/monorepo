@@ -10,7 +10,8 @@ import { FileLike } from 'openai/uploads'
 import { devconnectWebsiteAssistant, devconWebsiteAssistant, devconAppAssistant } from './assistant-versions'
 import { createClient } from '@supabase/supabase-js'
 import sharp from 'sharp'
-import { fetchFromSalesforce } from '@/services/salesforce'
+// Salesforce retired (see services/salesforce/index.ts)
+// import { fetchFromSalesforce } from '@/services/salesforce'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -698,22 +699,26 @@ DO NOT include Event name or event location in the generated image.`
         throw error
       }
     },
-    generateDestinoEvents: async () => {
-      const events = await fetchFromSalesforce()
-
-      let generated = 0
-      const results = await Promise.all(
-        events.map(async (event: any) => {
-          const content = await _interface.generateDestinoEvent(event)
-          if (content && typeof content === 'object' && 'updated' in content) generated++
-          return { event, content }
-        })
-      )
-
-      console.log(`[generateDestinoEvents] Processed ${results.length} events (${generated} generated, ${results.length - generated} cached)`)
-
-      return results
-    },
+    // Salesforce retired: the Destino sync is gone (it was already disabled in
+    // controllers/destino.ts). The destino_events Supabase table is the final
+    // dataset, also snapshotted at data/destino/destino-events.json. The
+    // /regenerate/:eventId route keeps working (OpenAI + Supabase only).
+    // generateDestinoEvents: async () => {
+    //   const events = await fetchFromSalesforce()
+    //
+    //   let generated = 0
+    //   const results = await Promise.all(
+    //     events.map(async (event: any) => {
+    //       const content = await _interface.generateDestinoEvent(event)
+    //       if (content && typeof content === 'object' && 'updated' in content) generated++
+    //       return { event, content }
+    //     })
+    //   )
+    //
+    //   console.log(`[generateDestinoEvents] Processed ${results.length} events (${generated} generated, ${results.length - generated} cached)`)
+    //
+    //   return results
+    // },
   }
 
   return _interface

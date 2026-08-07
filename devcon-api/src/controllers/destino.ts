@@ -4,13 +4,16 @@ import { apikeyHandler } from '@/middleware/apikey'
 
 export const destinoRouter = Router()
 
-const generateDestinoEvents = async () => {
-  try {
-    await destinoApi.generateDestinoEvents()
-  } catch (error) {
-    console.error('Error generating destino events:', error)
-  }
-}
+// Salesforce retired: the Destino sync (Salesforce -> OpenAI -> Supabase) is
+// gone. The destino_events Supabase table is the final dataset, also
+// snapshotted at data/destino/destino-events.json.
+// const generateDestinoEvents = async () => {
+//   try {
+//     await destinoApi.generateDestinoEvents()
+//   } catch (error) {
+//     console.error('Error generating destino events:', error)
+//   }
+// }
 
 destinoRouter.get('/destino', async (req: Request, res: Response) => {
   // #swagger.ignore = true
