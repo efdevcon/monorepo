@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useFeaturedWave, useTicketsCtaLabel } from 'hooks/useWaveStates'
 import { ctaPrimary } from 'components/common/cta'
+import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy, cardTitle, glassCard } from 'components/common/styles'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 import CrescentMoons from './images/new/crescent-moons.svg'
 import JoinLearn from './images/new/join-learn.jpg'
@@ -34,7 +35,7 @@ export const JoinTheEvent = () => {
 
   return (
     <div
-      className="relative px-[20px] md:px-[32px] xl:px-[64px] py-[48px] sm:py-[64px] overflow-hidden"
+      className={`relative ${sectionX} py-[48px] sm:py-[64px] overflow-hidden`}
       style={{
         // Peach washes only — the section is transparent over the page-level
         // #fbfafc→#eaeefe gradient (Figma group 4935:2865).
@@ -57,13 +58,11 @@ export const JoinTheEvent = () => {
         <CrescentMoons className="absolute right-0 top-0 w-[625px] h-[525px] max-w-none -scale-x-100" />
       </div>
 
-      <div className="relative flex flex-col gap-[32px] sm:gap-[48px] max-w-[1312px] mx-auto">
+      <div className={`relative flex flex-col gap-[32px] sm:gap-[48px] ${sectionInner}`}>
         <Reveal className="flex flex-col gap-[16px]">
-          <p className="text-[14px] font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">{t('eyebrow')}</p>
-          <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
-            {t('heading')}
-          </h2>
-          <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#1a0d33]">{t('subheading')}</p>
+          <p className={eyebrow}>{t('eyebrow')}</p>
+          <h2 className={sectionHeading}>{t('heading')}</h2>
+          <p className={`${bodyCopy} text-[#1a0d33]`}>{t('subheading')}</p>
         </Reveal>
 
         {/* Glass photo cards: stacked mobile (image on top), 2x2 desktop (image right) */}
@@ -71,7 +70,7 @@ export const JoinTheEvent = () => {
           {cards.map((c, i) => (
             <Reveal key={i} delay={i * 120}>
             <div
-              className="relative flex flex-col md:flex-row md:items-center md:h-[206px] md:gap-6 rounded-2xl overflow-hidden bg-white/50 backdrop-blur-[6px] outline outline-1 outline-[rgba(255,255,255,0.66)] shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1)]"
+              className={`relative flex flex-col md:flex-row md:items-center md:h-[206px] md:gap-6 overflow-hidden ${glassCard} shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1)]`}
             >
               <div className="order-1 md:order-2 relative w-full h-[206px] md:w-[224px] md:h-full shrink-0">
                 <Image
@@ -83,9 +82,11 @@ export const JoinTheEvent = () => {
                 />
               </div>
               <div className="order-2 md:order-1 flex-1 min-w-0 flex flex-col gap-[8px] justify-center p-[20px] md:pl-6 md:py-6 md:pr-0">
-                <h3 className="text-[20px] font-extrabold text-[#1a0d33] leading-[26px]">{c.title}</h3>
-                <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#221144]">{c.body}</p>
+                <h3 className={cardTitle}>{c.title}</h3>
+                <p className={`${bodyCopy} text-[#221144]`}>{c.body}</p>
               </div>
+              {/* Inset sheen as an overlay: the card is overflow-hidden with a full-bleed
+                  photo that would paint over an inset box-shadow on the card itself */}
               <div
                 aria-hidden
                 className="absolute -inset-px pointer-events-none rounded-[inherit] shadow-[inset_0_-2px_16px_rgba(255,255,255,0.66)]"
@@ -97,9 +98,7 @@ export const JoinTheEvent = () => {
 
         {/* Ticket sale CTA — wave-driven eyebrow + label */}
         <Reveal className="flex flex-col items-center gap-[16px]">
-          <p className="text-[14px] font-semibold text-[#7235ed] text-center tracking-[2px] uppercase">
-            {ctaEyebrow}
-          </p>
+          <p className={`${eyebrow} text-center`}>{ctaEyebrow}</p>
           <NextLink href="/tickets" className={`w-full md:w-auto ${ctaPrimary}`}>
             {ctaLabel}
             <ArrowRight className="w-4 h-4" strokeWidth={2.5} />

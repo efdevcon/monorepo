@@ -6,6 +6,7 @@ import { GetInvolved } from './GetInvolved'
 import JaaliBorder from './images/new/jaali-purple-border.svg'
 import MoonElement from './images/new/dc8-moon-element.svg'
 import { Reveal } from 'components/common/reveal/Reveal'
+import { sectionX, sectionInner } from 'components/common/styles'
 
 /**
  * "Attend Devcon" composite — Figma node 4917:814. Marigold→lavender gradient
@@ -41,8 +42,8 @@ export const AttendDevcon = () => {
         </div>
       </div>
 
-      <div className="relative px-[20px] md:px-[32px] xl:px-[64px] pt-[32px] sm:pt-24 pb-10 sm:pb-[104px]">
-        <div className="max-w-[1312px] mx-auto">
+      <div className={`relative ${sectionX} pt-[32px] sm:pt-24 pb-10 sm:pb-[104px]`}>
+        <div className={sectionInner}>
           <Reveal>
             <TicketComparison eyebrow={t('eyebrow')} />
           </Reveal>

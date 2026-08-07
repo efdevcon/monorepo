@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useSpecialOffer } from 'hooks/useWaveStates'
 import { ctaPrimary } from 'components/common/cta'
+import { sectionX, sectionInner, sectionHeading } from 'components/common/styles'
 
 export const EarlyBirdBanner = () => {
   const t = useTranslations('home.early_bird')
@@ -30,18 +31,14 @@ export const EarlyBirdBanner = () => {
       : t('heading_fallback')
 
   return (
-    <div className="bg-[#ffa366] py-[40px] px-[20px] md:px-[32px] xl:px-[64px] flex flex-col items-center justify-center gap-[24px]">
-      <h2
-        className={`text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] text-center ${
-          mounted ? '' : 'invisible'
-        }`}
-      >
-        {heading}
-      </h2>
-      <NextLink href="/tickets" className={`w-full md:w-auto ${ctaPrimary}`}>
-        {ctaLabel}
-        <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-      </NextLink>
+    <div className={`bg-[#ffa366] py-[40px] ${sectionX}`}>
+      <div className={`${sectionInner} flex flex-col items-center justify-center gap-[24px]`}>
+        <h2 className={`${sectionHeading} text-center ${mounted ? '' : 'invisible'}`}>{heading}</h2>
+        <NextLink href="/tickets" className={`w-full md:w-auto ${ctaPrimary}`}>
+          {ctaLabel}
+          <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+        </NextLink>
+      </div>
     </div>
   )
 }

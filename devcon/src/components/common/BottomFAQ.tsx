@@ -6,6 +6,7 @@ import { Faq, FaqItem } from 'components/common/faq'
 import { BloomingEthFlower } from 'components/common/BloomingEthFlower'
 import { Link } from 'components/common/link'
 import { ctaSecondary } from 'components/common/cta'
+import { sectionX, sectionHeading } from 'components/common/styles'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -31,15 +32,13 @@ export const BottomFAQ = ({ heading, items, viewAllLabel, viewAllHref, banner, b
         </div>
       )}
 
-      <div className="relative bg-[#fff0e6] pt-12 sm:pt-20 pb-10 sm:pb-16 px-5 sm:px-8 md:px-16 flex flex-col items-center gap-6 sm:gap-8 overflow-hidden">
+      <div className={`relative bg-[#fff0e6] pt-12 sm:pt-20 pb-10 sm:pb-16 ${sectionX} flex flex-col items-center gap-6 sm:gap-8 overflow-hidden`}>
       <FaqBg
         aria-hidden
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[35%] w-[1770px] max-w-none h-[810px] pointer-events-none select-none opacity-60"
       />
 
-      <h2 className="relative text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] text-center">
-        {heading}
-      </h2>
+      <h2 className={`relative ${sectionHeading} text-center`}>{heading}</h2>
 
       <div className="relative w-full max-w-[760px]">
         <Faq items={items} />

@@ -5,6 +5,7 @@ import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { ctaPrimary } from 'components/common/cta'
+import { sectionHeading, bodyCopy } from 'components/common/styles'
 
 export const DevconIntro = () => {
   const t = useTranslations('home.devcon_intro')
@@ -16,12 +17,8 @@ export const DevconIntro = () => {
         <div className="flex flex-col items-center gap-[16px] max-w-[620px]">
           {/* The heading's \n break is desktop-only — on narrow screens it would
               strand "for" on its own line, so let the text wrap naturally there */}
-          <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] sm:whitespace-pre-line">
-            {t('heading')}
-          </h2>
-          <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#1a0d33]">
-            {t('subheading')}
-          </p>
+          <h2 className={`${sectionHeading} sm:whitespace-pre-line`}>{t('heading')}</h2>
+          <p className={`${bodyCopy} text-[#1a0d33]`}>{t('subheading')}</p>
         </div>
 
         {/* Intrinsic width at every size per the mobile frame (Button 173px centered) */}

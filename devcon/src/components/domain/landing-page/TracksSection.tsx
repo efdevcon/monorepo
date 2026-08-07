@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { APPLY_URL, TRACK_IMAGES } from 'components/common/tracks/track-images'
 import { ctaSecondary } from 'components/common/cta'
+import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy } from 'components/common/styles'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 
 // Home grid order (Figma 4928:1283) differs from the speaker_applications.tracks.items
@@ -21,16 +22,14 @@ export const TracksSection = () => {
   const trackItems = (tSpeaker.raw('tracks.items') as Array<{ title: string }>).slice(0, TRACK_IMAGES.length)
 
   return (
-    <div className="px-[20px] md:px-[32px] xl:px-[64px] py-[48px] sm:py-[64px] flex flex-col gap-[32px] sm:gap-[48px]">
-      <Reveal className="flex flex-col gap-[16px] max-w-[1312px] mx-auto w-full">
-        <p className="text-[14px] font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">{t('eyebrow')}</p>
-        <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
-          {t('heading')}
-        </h2>
-        <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#1a0d33]">{t('body')}</p>
+    <div className={`${sectionX} py-[48px] sm:py-[64px] flex flex-col gap-[32px] sm:gap-[48px]`}>
+      <Reveal className={`flex flex-col gap-[16px] ${sectionInner} w-full`}>
+        <p className={eyebrow}>{t('eyebrow')}</p>
+        <h2 className={sectionHeading}>{t('heading')}</h2>
+        <p className={`${bodyCopy} text-[#1a0d33]`}>{t('body')}</p>
       </Reveal>
 
-      <RevealGroup className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-[1312px] mx-auto w-full">
+      <RevealGroup className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 ${sectionInner} w-full`}>
         {DISPLAY_ORDER.map((idx, i) => (
           <Reveal key={idx} delay={i * 60} className="flex flex-col items-center gap-4 p-[12px] md:p-4 rounded-2xl">
             <Image

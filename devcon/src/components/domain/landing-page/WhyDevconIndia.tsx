@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
 import { STAT_META } from 'components/common/india-stats/stats'
 import { ctaSecondary } from 'components/common/cta'
+import { sectionHeading, eyebrow, bodyCopy, leadCopy, glassCard } from 'components/common/styles'
 
 /**
  * "Why Devcon India" block — Figma node 4917:617. Shares the stat figures and
@@ -20,22 +21,18 @@ export const WhyDevconIndia = () => {
       <div className="flex flex-col gap-[32px] sm:gap-[48px]">
         <div className="flex flex-col gap-[24px] sm:gap-[32px]">
           <div className="flex flex-col gap-[16px]">
-            <p className="text-[14px] font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">{t('eyebrow')}</p>
-            <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
-              {t('heading')}
-            </h2>
+            <p className={eyebrow}>{t('eyebrow')}</p>
+            <h2 className={sectionHeading}>{t('heading')}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[12px] md:gap-16">
-            <p className="text-[18px] leading-[26px] sm:text-[20px] sm:leading-[28.8px] tracking-[-0.25px] text-[#1a0d33]">
-              {t('lead')}
-            </p>
-            <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#221144]">{t('body')}</p>
+            <p className={leadCopy}>{t('lead')}</p>
+            <p className={`${bodyCopy} text-[#221144]`}>{t('body')}</p>
           </div>
         </div>
 
         {/* Stats callout — glass card, 4-up desktop / stacked mobile */}
-        <div className="bg-white/50 backdrop-blur-[6px] outline outline-1 outline-[rgba(255,255,255,0.66)] rounded-2xl p-[20px] sm:px-[40px] sm:py-[32px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1),inset_0_-2px_16px_rgba(255,255,255,0.66)]">
+        <div className={`${glassCard} p-[20px] sm:px-[40px] sm:py-[32px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] sm:gap-[32px] shadow-[0_2px_8px_rgba(34,17,68,0.06),0_1px_2px_rgba(34,17,68,0.1),inset_0_-2px_16px_rgba(255,255,255,0.66)]`}>
           {STAT_META.map((meta, i) => (
             <div key={i} className="flex flex-col items-start gap-[12px]">
               <div className="flex flex-col gap-[8px]">

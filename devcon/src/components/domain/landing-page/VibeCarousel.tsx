@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { MoveRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
+import { sectionX, sectionInner, sectionLabel } from 'components/common/styles'
 import VibeOpening from './images/new/vibe-opening.jpg'
 import VibeJd from './images/new/vibe-jd.jpg'
 import VibeCrowd from './images/new/vibe-crowd.jpg'
@@ -39,9 +40,11 @@ export const VibeCarousel = () => {
 
   return (
     <div className="pt-[32px] pb-[48px] flex flex-col gap-[20px]">
-      <div className="px-[20px] md:px-[32px] xl:px-[64px] flex items-center justify-end gap-2 text-[#594d73]">
-        <p className="text-[14px] font-semibold uppercase tracking-[0.5px] leading-6">{t('label')}</p>
-        <MoveRight className="w-4 h-4" strokeWidth={2} />
+      <div className={sectionX}>
+        <div className={`${sectionInner} flex items-center justify-end gap-2 text-[#594d73]`}>
+          <p className={`${sectionLabel} leading-6`}>{t('label')}</p>
+          <MoveRight className="w-4 h-4" strokeWidth={2} />
+        </div>
       </div>
       <InfiniteScroll nDuplications={2} speed="80s" pauseOnHover marqueeClassName="!h-[160px] md:!h-[200px]">
         <div className="flex gap-4 pr-4 h-full">

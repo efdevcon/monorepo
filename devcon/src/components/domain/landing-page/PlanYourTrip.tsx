@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import PlanTripMumbai from './images/new/plan-trip-mumbai.jpg'
 import { ctaSecondary } from 'components/common/cta'
+import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy, leadCopy } from 'components/common/styles'
 
 /**
  * "Plan your trip" — Figma node 4917:955. Copy + travel-guide CTA on the left,
@@ -14,20 +15,16 @@ export const PlanYourTrip = () => {
   const t = useTranslations('home.plan_trip')
 
   return (
-    <div className="px-[20px] md:px-[32px] xl:px-[64px] py-[48px] lg:py-[64px]">
-      <div className="max-w-[1312px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[32px] lg:gap-16 items-center">
+    <div className={`${sectionX} py-[48px] lg:py-[64px]`}>
+      <div className={`${sectionInner} grid grid-cols-1 lg:grid-cols-2 gap-[32px] lg:gap-16 items-center`}>
         <div className="flex flex-col items-start gap-[16px]">
           <div className="flex flex-col gap-[16px]">
-            <p className="text-[14px] font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">{t('eyebrow')}</p>
-            <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
-              {t('heading')}
-            </h2>
+            <p className={eyebrow}>{t('eyebrow')}</p>
+            <h2 className={sectionHeading}>{t('heading')}</h2>
           </div>
           <div className="flex flex-col gap-[12px]">
-            <p className="text-[18px] leading-[26px] sm:text-[20px] sm:leading-[28.8px] tracking-[-0.25px] text-[#1a0d33]">
-              {t('lead')}
-            </p>
-            <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#221144]">{t('body')}</p>
+            <p className={leadCopy}>{t('lead')}</p>
+            <p className={`${bodyCopy} text-[#221144]`}>{t('body')}</p>
           </div>
           <Link to="/travel-guide" className={`w-full md:w-auto mt-[8px] ${ctaSecondary}`}>
             {t('cta')}

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
 import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
 import { ctaPrimary, ctaSecondary } from 'components/common/cta'
+import { sectionHeading, bodyCopy, eyebrow as eyebrowStyle } from 'components/common/styles'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 
 type IconKind = 'check' | 'asterisk'
@@ -335,13 +336,9 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
   return (
     <section id="comparison" className="flex flex-col gap-[24px] sm:gap-[32px] items-center">
       <div className="flex flex-col gap-[16px] items-center text-center w-full">
-        <p className="text-[14px] font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
-          {eyebrow ?? t('eyebrow')}
-        </p>
-        <h2 className="text-[24px] sm:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
-          {t('heading')}
-        </h2>
-        <p className="text-[14px] leading-[20px] sm:text-[16px] sm:leading-[24px] text-[#221144]">{t('subheading')}</p>
+        <p className={eyebrowStyle}>{eyebrow ?? t('eyebrow')}</p>
+        <h2 className={sectionHeading}>{t('heading')}</h2>
+        <p className={`${bodyCopy} text-[#1a0d33]`}>{t('subheading')}</p>
       </div>
 
       {/* Mobile/tablet: tab-switcher + single card (Figma 4920:99499 / 4920:99501) */}
