@@ -106,12 +106,27 @@ const GeneralAdmissionStatusTag = () => {
   return <StatusTag status="coming" openLabel="" comingLabel={label} />
 }
 
-const CtaButton = ({ label, href, variant }: { label: string; href: string; variant: 'primary' | 'secondary' }) => (
-  <Link to={href} className={variant === 'primary' ? ctaPrimary : ctaSecondary}>
+const CtaButton = ({
+  label,
+  href,
+  variant,
+  className = '',
+}: {
+  label: string
+  href: string
+  variant: 'primary' | 'secondary'
+  className?: string
+}) => (
+  <Link to={href} className={`${variant === 'primary' ? ctaPrimary : ctaSecondary} ${className}`}>
     {label}
     <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
   </Link>
 )
+
+// Shared cell/typography recipes for the desktop grid + mobile card
+const cellBorder = 'border-t border-l border-solid border-[rgba(34,17,68,0.1)]'
+const columnTitle = 'text-[24px] font-extrabold tracking-[-0.5px] leading-[28.8px] text-[#160b2b]'
+const columnSubtitle = 'text-[12px] font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none'
 
 // Mobile (<lg): single card matching Figma's tab-based comparison layout.
 // One card visible at a time; the parent TicketComparison renders tab pills
@@ -151,8 +166,8 @@ const MobileCard = ({
       </div>
 
       <div className="flex flex-col gap-[8px]">
-        <h3 className="text-[24px] font-extrabold tracking-[-0.5px] leading-[28.8px] text-[#160b2b]">{column.title}</h3>
-        <p className="text-[12px] font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{column.subtitle}</p>
+        <h3 className={columnTitle}>{column.title}</h3>
+        <p className={columnSubtitle}>{column.subtitle}</p>
       </div>
 
       <div className="flex flex-col gap-[8px]">
@@ -202,17 +217,7 @@ const MobileCard = ({
     </div>
 
     {!column.hide_cta && (
-      <Link
-        to={column.cta_href}
-        className={`inline-flex items-center justify-center gap-[8px] min-h-[36px] px-[32px] py-[16px] rounded-full text-[16px] font-bold leading-none transition-colors w-full ${
-          column.cta_variant === 'primary'
-            ? 'bg-[#7235ed] hover:bg-[#6028cc] text-[#f9f8fa]'
-            : 'bg-white hover:bg-white/90 border border-solid border-[rgba(34,17,68,0.1)] text-[#1a0d33]'
-        }`}
-      >
-        {column.cta_label}
-        <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-      </Link>
+      <CtaButton label={column.cta_label} href={column.cta_href} variant={column.cta_variant} className="w-full" />
     )}
   </div>
 )
@@ -386,8 +391,8 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
                 />
               )}
               <div className="flex flex-col gap-2">
-                <h3 className="text-[24px] font-extrabold tracking-[-0.5px] leading-[28.8px] text-[#160b2b]">{col.title}</h3>
-                <p className="text-[12px] font-semibold text-[#7235ed] tracking-[1px] uppercase leading-none">{col.subtitle}</p>
+                <h3 className={columnTitle}>{col.title}</h3>
+                <p className={columnSubtitle}>{col.subtitle}</p>
               </div>
             </div>
           ))}
@@ -404,7 +409,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
           {columns.map(col => (
             <div
               key={col.id}
-              className={`flex-1 min-w-0 flex flex-col gap-2 px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
+              className={`flex-1 min-w-0 flex flex-col gap-2 px-4 py-4 ${cellBorder}`}
             >
               <div className="flex gap-2 items-end">
                 <p className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{col.price}</p>
@@ -426,7 +431,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
           {columns.map(col => (
             <div
               key={col.id}
-              className={`flex-1 min-w-0 flex items-start px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
+              className={`flex-1 min-w-0 flex items-start px-4 py-4 ${cellBorder}`}
             >
               <p className="text-[14px] text-[#160b2b] leading-[20px]">{col.best_for}</p>
             </div>
@@ -439,7 +444,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
           {columns.map(col => (
             <div
               key={col.id}
-              className={`flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
+              className={`flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 ${cellBorder}`}
             >
               {col.included.map((item, idx) => (
                 <div key={idx} className="flex gap-2 items-center">
@@ -457,7 +462,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
           {columns.map(col => (
             <div
               key={col.id}
-              className={`flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
+              className={`flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 ${cellBorder}`}
             >
               <ul className="flex flex-col gap-3 list-disc pl-[21px]">
                 {col.how_it_works.map((step, idx) => (
@@ -476,7 +481,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
           {columns.map(col => (
             <div
               key={col.id}
-              className={`flex-1 min-w-0 flex items-center px-4 py-4 border-t border-l border-solid border-[rgba(34,17,68,0.1)]`}
+              className={`flex-1 min-w-0 flex items-center px-4 py-4 ${cellBorder}`}
             >
               {!col.hide_cta && <CtaButton label={col.cta_label} href={col.cta_href} variant={col.cta_variant} />}
             </div>

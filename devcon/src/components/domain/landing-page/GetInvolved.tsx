@@ -24,11 +24,11 @@ export const GetInvolved = () => {
     <div
       className={`${sectionX} pt-[48px] xl:pt-[64px] pb-[104px] flex flex-col items-center gap-[32px] sm:gap-[48px]`}
     >
-      <div className="text-center max-w-[720px] flex flex-col gap-[16px]">
+      <Reveal className="text-center max-w-[720px] flex flex-col gap-[16px]">
         <p className={eyebrow}>{t('eyebrow')}</p>
         <h2 className={sectionHeading}>{t('heading')}</h2>
         <p className={`${bodyCopy} text-[#1a0d33]`}>{t('subheading')}</p>
-      </div>
+      </Reveal>
 
       <RevealGroup className={`w-full ${sectionInner} grid grid-cols-1 lg:grid-cols-3 gap-[16px]`}>
         {cards.map((c, i) => {

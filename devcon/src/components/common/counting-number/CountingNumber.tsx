@@ -25,6 +25,10 @@ export function CountingNumber({
 }: CountingNumberProps) {
   const ref = React.useRef<HTMLSpanElement>(null)
   const completedRef = React.useRef(false)
+  // Held in a ref so an inline `onComplete` arrow doesn't resubscribe the
+  // spring listener every render
+  const onCompleteRef = React.useRef(onComplete)
+  onCompleteRef.current = onComplete
   const motionVal = useMotionValue(fromNumber)
   const springVal = useSpring(motionVal, { stiffness: 60, damping: 30 })
   const isInView = useInView(ref, { once: true, margin: '0px' })
@@ -48,11 +52,11 @@ export function CountingNumber({
       }
       if (settled && !completedRef.current) {
         completedRef.current = true
-        onComplete?.()
+        onCompleteRef.current?.()
       }
     })
     return () => unsubscribe()
-  }, [springVal, decimalPlaces, prefix, suffix, number, onComplete])
+  }, [springVal, decimalPlaces, prefix, suffix, number])
 
   return (
     <span ref={ref} className={className} style={style}>

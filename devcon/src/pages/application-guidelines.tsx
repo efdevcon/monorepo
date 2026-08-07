@@ -12,9 +12,7 @@ import MoonBackground from 'assets/images/pages/faq-moon-bg.svg'
 import css from './application-guidelines.module.scss'
 import cn from 'classnames'
 import { getMessages } from 'utils/intl'
-
-// Where the "Apply to speak" CTA points (Devcon 8 India Call for Proposals).
-const APPLY_URL = 'https://cfp.devcon.org/devcon8/cfp'
+import { APPLY_URL } from 'components/common/tracks/track-images'
 
 // Fixed, ordered section keys. Each maps to `sections.<key>` in the
 // `application_guidelines` intl namespace and to an anchor id (underscores → hyphens).
