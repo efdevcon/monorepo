@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Narrative/handover notes (layout system, translations pipeline history, blog ingestion, FAQ webhook): `docs/notes.md`. Monorepo-wide rules live in the root `CLAUDE.md`.
+
 ## Development Standards
 
 This is a TypeScript-first codebase. Ensure all new code has proper types — no implicit 'any'. Run type-checks (`tsc --noEmit` or equivalent) before considering a task complete.

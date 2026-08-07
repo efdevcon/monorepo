@@ -18,7 +18,7 @@ The sync script is `devcon-api/src/scripts/sync-pretalx.ts` (currently configure
 
 Note that speakers are not keyed by speaker email (hashed with a salt) so we don't leak speaker emails
 
-More context in /documentation-by-folder/\_actions
+More context in ../github-actions.md
 
 # Testing the data flow
 

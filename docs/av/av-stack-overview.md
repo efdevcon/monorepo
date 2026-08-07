@@ -180,7 +180,7 @@ by hand. "Manual" means someone runs a pnpm script locally.
 ✅ DECIDED 2026-08-05: **event-app carries DC8's AV surface** (see §12c for what was
 built). The handover doc positions `event-app` as the new PWA going forward
 (offline-first: Dexie + SWR, Serwist service worker, optional native iOS/Android via
-Capacitor - see `documentation-by-folder/event-app/event-app.md`). devcon-app stays
+Capacitor - see `event-app/docs/architecture.md`). devcon-app stays
 DC7-only; its blocker #3 is moot.
 
 - **event-app's AV surface now exists** (it originally had none - the zod models
@@ -230,7 +230,7 @@ Ranked by severity. Each is a separate fix.
 | 8 | ✅ FIXED 2026-08 (§12) - `stats-video.ts` was hardcoded to devcon-7 + Nov dates | `devcon-api/src/scripts/stats-video.ts:6,19-25` | The only AV coverage report can't be run for DC8. |
 | 9 | `yt.ts` uses `@google-cloud/local-auth` (interactive browser OAuth) | `devcon-api/src/clients/google.ts:42` | Cannot run in CI; YouTube push is manual-only. Nuance: a service-account path exists (`AuthenticateServiceAccount`, used by `import-yt.ts`) but service accounts can only *read* YouTube - writes (thumbnails/titles) need the channel owner's OAuth, so CI would require a stored refresh token. |
 | 10 | Workflow dispatch + git commits authenticated with a former maintainer's **personal access token** | `devcon-api/src/services/github.ts:96` (`TriggerWorkflow`) and `CommitSession`, via `GITHUB_TOKEN` in the API's Render env (the workflow files themselves use the repo-scoped `secrets.GITHUB_TOKEN`, which is fine) | Webhook→workflow triggering and AV session commits die when the account is deprovisioned. `PRETALX_API_KEY(_MUMBAI)` repo secrets need an owner too. |
-| 11 | Meerkat schedule sync ping gated to devcon-7 **and** hardcoded to `meerkat.events/api/v1/sync/devcon/devcon-7` | `devcon-api/src/scripts/sync-pretalx.ts:17-18,38` | DC8 schedule publishes never notify Meerkat (session Q&A), so its session list goes stale. Needs an event-parameterised endpoint agreed with the Meerkat team (see `documentation-by-folder/__current-tasks/meerkat/meerkat.md`). |
+| 11 | Meerkat schedule sync ping gated to devcon-7 **and** hardcoded to `meerkat.events/api/v1/sync/devcon/devcon-7` | `devcon-api/src/scripts/sync-pretalx.ts:17-18,38` | DC8 schedule publishes never notify Meerkat (session Q&A), so its session list goes stale. Needs an event-parameterised endpoint agreed with the Meerkat team (see `docs/meerkat.md`). |
 | 12 | ✅ FIXED 2026-08 (§12) - `devcon8` event metadata was empty - the file holds only `rooms` + `version`, where devcon-7 has `title`, `edition`, `description`, `startDate`/`endDate`, `location`, `venue_*` | `devcon-api/data/events/devcon8.json` | The API serves a nameless, dateless DC8 event. Nothing fills it: `syncEventData()` only bumps `version` (`sync-pretalx.ts`) - event metadata is **hand-authored**, so someone must write it. Apps that key off event dates (day indexing, "day 1..4" labels) have nothing to derive from. |
 
 ## 4. The non-obvious dependency: `social-ticket` is the YouTube thumbnail generator

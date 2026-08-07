@@ -42,11 +42,11 @@ if you want to do AI chatbot anyway, you can also use openai - you can trivially
 
 # AV
 
-see ./av/pretalx-pipeline
+see ./av/pretalx-pipeline.md
 
 # PWA
 
-see /documentation-by-folder/event-app docs
+see ../event-app/docs/architecture.md
 
 # perks
 
@@ -54,4 +54,4 @@ Scott has the context here on the submission side - the backend is messy from al
 
 some perks i handled manually - roamless notably - if you want to do this again, Rose also has the connect (I'll be losing my email)
 
-a little more context in the by /documentation-by-folder/devconnect docs
+a little more context in ../devconnect/docs/notes.md
