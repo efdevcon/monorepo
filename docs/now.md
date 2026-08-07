@@ -1,3 +1,5 @@
+> Handover snapshot from the former maintainer (mid-2026). Treat as historical context, not a live task list - some items are done or superseded (e.g. ticketing waves are live, AV pipeline status now lives in [av/av-stack-overview.md](./av/av-stack-overview.md)).
+
 # road to devcon
 
 Basically ready to go, just add a link to the page in the main menu (and any other place on the website as needed)

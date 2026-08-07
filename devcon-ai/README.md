@@ -335,8 +335,8 @@ Search operations (fuzzy + vector) are free PostgreSQL queries.
 
 1. Connect repo
 2. Set root directory: `devcon-ai`
-3. Build command: `npm run build`
-4. Start command: `npm start`
+3. Build command: `pnpm build`
+4. Start command: `pnpm start`
 5. Add environment variables
 
 ### Other Platforms
