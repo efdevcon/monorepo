@@ -90,7 +90,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214439",
     "supporterId": "25d638cdc4158040af1dc672ed5a7588",
-    "poapImageLink": "https://assets.poap.xyz/f1e8368b-1e95-40a7-82b4-528b3f8067a8.png?size=large",
+    "poapImageLink": "/images/poaps/214439.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -104,7 +104,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214006",
     "supporterId": "254638cdc41580cf8c7ed2b6327a89ad",
-    "poapImageLink": "https://assets.poap.xyz/3ff188b8-391d-42d8-a58b-6b24319537b8.gif?size=large",
+    "poapImageLink": "/images/poaps/214006.gif",
     "groupId": 4,
     "districtId": "3"
   },
@@ -118,7 +118,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "191854",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/devconnect-buenos-aires-2025-logo-1761218362393.png?size=large",
+    "poapImageLink": "/images/poaps/191854.png",
     "groupId": 1
   },
   {
@@ -145,7 +145,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214365",
     "supporterId": "24e638cdc41580c1b782c738fb082f8d",
-    "poapImageLink": "https://assets.poap.xyz/ee03bcdd-c13f-4d21-aff8-8003b35af2ff.png?size=large",
+    "poapImageLink": "/images/poaps/214365.png",
     "groupId": 4,
     "districtId": "6"
   },
@@ -159,7 +159,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211543",
     "supporterId": "254638cdc4158098bc20c52a9ec59c9a",
-    "poapImageLink": "https://assets.poap.xyz/youve-met-eliza-labs-team-at-devconnect-2025-logo-1761949465469.gif?size=large",
+    "poapImageLink": "/images/poaps/211543.gif",
     "groupId": 4,
     "districtId": "1"
   },
@@ -173,7 +173,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213370",
     "supporterId": "241638cdc41580858795dfc9f5630277",
-    "poapImageLink": "https://assets.poap.xyz/fb2077b9-bb7d-41fd-aedd-00c918919b9a.png?size=large",
+    "poapImageLink": "/images/poaps/213370.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -187,7 +187,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211622",
     "supporterId": "254638cdc415802c97d8f585214603ad",
-    "poapImageLink": "https://assets.poap.xyz/farcaster-at-the-ethereum-worlde28099s-fair2c-devconnect2c-argentina-2025-logo-1761582594148.png?size=large",
+    "poapImageLink": "/images/poaps/211622.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -201,7 +201,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211520",
     "supporterId": "254638cdc415806799b2c11b3fbfe78a",
-    "poapImageLink": "https://assets.poap.xyz/e05ea15c-486a-4b5f-ad75-d73e00eebb85.gif?size=large",
+    "poapImageLink": "/images/poaps/211520.gif",
     "groupId": 4,
     "districtId": "2"
   },
@@ -215,7 +215,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213333",
     "supporterId": "25d638cdc415806097ded8fddaae1f33",
-    "poapImageLink": "https://assets.poap.xyz/4a63415f-0cb7-4656-89c1-fcc44764cfcc.png?size=large",
+    "poapImageLink": "/images/poaps/213333.png",
     "groupId": 4,
     "districtId": "4"
   },
@@ -256,7 +256,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211477",
     "supporterId": "254638cdc41580be910bd11367d15f83",
-    "poapImageLink": "https://assets.poap.xyz/e7e4bae8-5723-4a15-a6a1-7648fe519f3c.png?size=large",
+    "poapImageLink": "/images/poaps/211477.png",
     "groupId": 4,
     "districtId": "5"
   },
@@ -270,7 +270,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214460",
     "supporterId": "241638cdc415806ba33fe5f130141655",
-    "poapImageLink": "https://assets.poap.xyz/24bc503b-c61c-4095-a82f-49d9fc681fd1.png?size=large",
+    "poapImageLink": "/images/poaps/214460.png",
     "groupId": 4,
     "districtId": "6"
   },
@@ -284,7 +284,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211552",
     "supporterId": "25d638cdc415804c8099e0415b0c4169",
-    "poapImageLink": "https://assets.poap.xyz/06602c80-eddb-4b7e-ab36-7a0ce97941c2.gif?size=large",
+    "poapImageLink": "/images/poaps/211552.gif",
     "groupId": 4,
     "districtId": "3"
   },
@@ -298,7 +298,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212301",
     "supporterId": "25d638cdc41580cca6f1f46af6e30c95",
-    "poapImageLink": "https://assets.poap.xyz/0762bf6c-0698-4107-8f6e-77007291ed8e.png?size=large",
+    "poapImageLink": "/images/poaps/212301.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -326,7 +326,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214359",
     "supporterId": "280638cdc41580c9869fc31f2895acfe",
-    "poapImageLink": "https://assets.poap.xyz/4cf0f7de-2928-4af8-a04e-dba925e72ebd.png?size=large",
+    "poapImageLink": "/images/poaps/214359.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -340,7 +340,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212591",
     "supporterId": "25d638cdc415800ea54ddbc8fa7ac1f5",
-    "poapImageLink": "https://assets.poap.xyz/37b1ce5a-0a9b-411a-87fc-97bcbe538954.png?size=large",
+    "poapImageLink": "/images/poaps/212591.png",
     "groupId": 4,
     "districtId": "5"
   },
@@ -354,7 +354,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "209863",
     "supporterId": "25d638cdc415801e9439fd63fd5c6ea7",
-    "poapImageLink": "https://assets.poap.xyz/6ecc8f90-e61b-4426-b873-c791c96a31f6.png?size=large",
+    "poapImageLink": "/images/poaps/209863.png",
     "groupId": 4,
     "districtId": "1"
   },
@@ -368,7 +368,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212687",
     "supporterId": "254638cdc41580aa8942da33c92a78de",
-    "poapImageLink": "https://assets.poap.xyz/b7107dc3-ef45-41ac-aa7e-3d758738e7b9.png?size=large",
+    "poapImageLink": "/images/poaps/212687.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -382,7 +382,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211478",
     "supporterId": "25d638cdc41580efafe9c31c7ab8c7ff",
-    "poapImageLink": "https://assets.poap.xyz/7fbe6bfc-8f1c-4364-a74f-bf516d415c00.png?size=large",
+    "poapImageLink": "/images/poaps/211478.png",
     "groupId": 4,
     "districtId": "5"
   },
@@ -396,7 +396,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211528",
     "supporterId": "25d638cdc41580bd9e2ce3ec369ee233",
-    "poapImageLink": "https://assets.poap.xyz/ccd94307-6ddf-4c5e-92ca-70436d41cd41.gif?size=large",
+    "poapImageLink": "/images/poaps/211528.gif",
     "groupId": 4,
     "districtId": "3"
   },
@@ -410,7 +410,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211461",
     "supporterId": "25d638cdc415804a9c62c16ba4f111e9",
-    "poapImageLink": "https://assets.poap.xyz/c6971c00-8401-496c-b72a-80422c951ad1.png?size=large",
+    "poapImageLink": "/images/poaps/211461.png",
     "groupId": 4,
     "districtId": "4"
   },
@@ -424,7 +424,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211482",
     "supporterId": "25d638cdc415807883a8eb0f08d1c9c4",
-    "poapImageLink": "https://assets.poap.xyz/234de9ec-8acf-478b-be32-404f0b244365.png?size=large",
+    "poapImageLink": "/images/poaps/211482.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -438,7 +438,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212590",
     "supporterId": "272638cdc41580f9a607f340a8c64a30",
-    "poapImageLink": "https://assets.poap.xyz/5990c164-b8d0-436b-acdf-fa40a4f885be.gif?size=large",
+    "poapImageLink": "/images/poaps/212590.gif",
     "groupId": 4,
     "districtId": "3"
   },
@@ -452,7 +452,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214156",
     "supporterId": "268638cdc41580a1b02dc7a52c626d67",
-    "poapImageLink": "https://assets.poap.xyz/56b67601-9318-43ed-a24c-7f417d0e3f03.png?size=large",
+    "poapImageLink": "/images/poaps/214156.png",
     "groupId": 4,
     "districtId": "6"
   },
@@ -466,7 +466,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "210366",
     "supporterId": "25d638cdc41580a798dddcbb06526414",
-    "poapImageLink": "https://assets.poap.xyz/384b33cc-3f5f-4e6b-a951-d7a32e3730c9.png?size=large",
+    "poapImageLink": "/images/poaps/210366.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -480,7 +480,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212700",
     "supporterId": "254638cdc41580458186d64625f2c8ea",
-    "poapImageLink": "https://assets.poap.xyz/ca64ba56-b2e2-481e-b8ab-53015922bee5.png?size=large",
+    "poapImageLink": "/images/poaps/212700.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -494,7 +494,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211504",
     "supporterId": "254638cdc415800680e4ccda38fe7b85",
-    "poapImageLink": "https://assets.poap.xyz/f83258db-5854-46b7-9b6a-4b71dd365f0c.png?size=large",
+    "poapImageLink": "/images/poaps/211504.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -508,7 +508,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212603",
     "supporterId": "25d638cdc4158070972cfd5538ea6247",
-    "poapImageLink": "https://assets.poap.xyz/9892e106-39ee-4695-a607-ec882092b7ac.png?size=large",
+    "poapImageLink": "/images/poaps/212603.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -522,7 +522,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211354",
     "supporterId": "254638cdc41580cf8b99ccba5531dcf3",
-    "poapImageLink": "https://assets.poap.xyz/7fcdac62-12d4-4bbe-b648-b6cb912f8214.png?size=large",
+    "poapImageLink": "/images/poaps/211354.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -550,7 +550,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211440",
     "supporterId": "25d638cdc415806eb73bf318bb8c34b0",
-    "poapImageLink": "https://assets.poap.xyz/96782eb5-d471-42a4-add8-5bd4dd18cb5b.png?size=large",
+    "poapImageLink": "/images/poaps/211440.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -578,7 +578,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211533",
     "supporterId": "276638cdc41580e2bf57c9906e575621",
-    "poapImageLink": "https://assets.poap.xyz/228922d1-5666-4f87-a332-755e66e63dd5.png?size=large",
+    "poapImageLink": "/images/poaps/211533.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -592,7 +592,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214345",
     "supporterId": "25d638cdc415809c97ffec49ceeb7573",
-    "poapImageLink": "https://assets.poap.xyz/babf1f1b-50ec-4814-8624-a3a03cf4d986.png?size=large",
+    "poapImageLink": "/images/poaps/214345.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -606,7 +606,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "210208",
     "supporterId": "25d638cdc4158001aa64dc7af6b20f22",
-    "poapImageLink": "https://assets.poap.xyz/ff8563fb-0169-4455-95f1-87c8ff2b5428.png?size=large",
+    "poapImageLink": "/images/poaps/210208.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -620,7 +620,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211441",
     "supporterId": "25d638cdc41580958aebf62fc2047ece",
-    "poapImageLink": "https://assets.poap.xyz/de6af856-6c95-48b9-b706-606fb98af031.png?size=large",
+    "poapImageLink": "/images/poaps/211441.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -634,7 +634,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212608",
     "supporterId": "254638cdc41580e8b906c4188f51042e",
-    "poapImageLink": "https://assets.poap.xyz/e991145b-7f25-4973-8c5d-272bdf02c350.png?size=large",
+    "poapImageLink": "/images/poaps/212608.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -648,7 +648,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211541",
     "supporterId": "254638cdc415808faaebea619bb6a1b7",
-    "poapImageLink": "https://assets.poap.xyz/a9092b6d-ce60-4d09-a82b-96b31e38caca.png?size=large",
+    "poapImageLink": "/images/poaps/211541.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -662,7 +662,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "210571",
     "supporterId": "256638cdc4158065920eceb5c35f4116",
-    "poapImageLink": "https://assets.poap.xyz/f21176f1-8af6-4cbf-a3f9-23869fa819dd.png?size=large",
+    "poapImageLink": "/images/poaps/210571.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -676,7 +676,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211527",
     "supporterId": "25d638cdc415803cba59c384174881d9",
-    "poapImageLink": "https://assets.poap.xyz/nethermind-at-the-ethereum-worlds-fair2c-devconnect2c-argentina-2025-logo-1762344929182.gif?size=large",
+    "poapImageLink": "/images/poaps/211527.gif",
     "groupId": 4,
     "districtId": "1"
   },
@@ -690,7 +690,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213471",
     "supporterId": "25d638cdc415801d84b8ebe461e4ac20",
-    "poapImageLink": "https://assets.poap.xyz/b6e42346-a3ec-40df-9180-f9ad9361cf69.png?size=large",
+    "poapImageLink": "/images/poaps/213471.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -704,7 +704,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213463",
     "supporterId": "25d638cdc41580e98301c364ae531a10",
-    "poapImageLink": "https://assets.poap.xyz/a63a7c11-bd84-4ce0-8c27-57039405b08f.png?size=large",
+    "poapImageLink": "/images/poaps/213463.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -718,7 +718,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211437",
     "supporterId": "254638cdc41580fc88aff47f153f0674",
-    "poapImageLink": "https://assets.poap.xyz/095f6213-78c2-45d0-ae23-1ad4e9644758.png?size=large",
+    "poapImageLink": "/images/poaps/211437.png",
     "groupId": 4,
     "districtId": "6"
   },
@@ -732,7 +732,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211512",
     "supporterId": "254638cdc41580bbb285dfd0c726271a",
-    "poapImageLink": "https://assets.poap.xyz/9c501936-59dd-4bbe-96c3-263fbe1445c5.gif?size=large",
+    "poapImageLink": "/images/poaps/211512.gif",
     "groupId": 4,
     "districtId": "3"
   },
@@ -746,7 +746,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211191",
     "supporterId": "254638cdc415800fb6ece44a8f14ecba",
-    "poapImageLink": "https://assets.poap.xyz/7de19101-eddc-4e5e-abe3-c49d8ffa1896.png?size=large",
+    "poapImageLink": "/images/poaps/211191.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -760,7 +760,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211511",
     "supporterId": "27f638cdc41580fe8426c3c803901027",
-    "poapImageLink": "https://assets.poap.xyz/83362e5b-ecc5-4dd5-b080-e8f9ef569269.png?size=large",
+    "poapImageLink": "/images/poaps/211511.png",
     "groupId": 4,
     "districtId": "5"
   },
@@ -774,7 +774,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211485",
     "supporterId": "254638cdc4158061b35df76bff79f9d0",
-    "poapImageLink": "https://assets.poap.xyz/d5efaf8b-a7da-476a-8be6-2da524df3149.png?size=large",
+    "poapImageLink": "/images/poaps/211485.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -788,7 +788,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213273",
     "supporterId": "271638cdc41580499f92f0eb9a5bc8b1",
-    "poapImageLink": "https://assets.poap.xyz/04e4862b-329f-46a1-b079-f3a4d201a5a7.png?size=large",
+    "poapImageLink": "/images/poaps/213273.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -802,7 +802,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213239",
     "supporterId": "25d638cdc4158082b3eae60aefe1a6f2",
-    "poapImageLink": "https://assets.poap.xyz/15e27514-a1d6-41f1-8374-3a7dcb56d391.png?size=large",
+    "poapImageLink": "/images/poaps/213239.png",
     "groupId": 4,
     "districtId": "1"
   },
@@ -816,7 +816,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212604",
     "supporterId": "25d638cdc41580329e97e5d7b49497d8",
-    "poapImageLink": "https://assets.poap.xyz/81560b07-19b7-4e6f-939b-8d1ad01653fd.gif?size=large",
+    "poapImageLink": "/images/poaps/212604.gif",
     "groupId": 4,
     "districtId": "8"
   },
@@ -830,7 +830,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211316",
     "supporterId": "256638cdc4158003aadde80270c59050",
-    "poapImageLink": "https://assets.poap.xyz/8b083386-b0d6-4875-bd01-8b5e641348e1.png?size=large",
+    "poapImageLink": "/images/poaps/211316.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -858,7 +858,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "214344",
     "supporterId": "25d638cdc41580ed81c5c223efaf83b7",
-    "poapImageLink": "https://assets.poap.xyz/674e8911-2a22-4a05-ad9e-8c525076a435.png?size=large",
+    "poapImageLink": "/images/poaps/214344.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -872,7 +872,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212563",
     "supporterId": "25d638cdc41580bdb769f95a7058adfa",
-    "poapImageLink": "https://assets.poap.xyz/7533816a-1f97-4ded-9f48-399ba4c9453b.png?size=large",
+    "poapImageLink": "/images/poaps/212563.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -886,7 +886,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213407",
     "supporterId": "25d638cdc41580c79339dfd968171fbc",
-    "poapImageLink": "https://assets.poap.xyz/bc0886e0-827a-4472-b404-da314b8b9004.png?size=large",
+    "poapImageLink": "/images/poaps/213407.png",
     "groupId": 4,
     "districtId": "1"
   },
@@ -900,7 +900,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211534",
     "supporterId": "271638cdc415805abaf2df8f5e558212",
-    "poapImageLink": "https://assets.poap.xyz/120f24f2-d8a6-4204-8773-33c7ecb9bd6e.gif?size=large",
+    "poapImageLink": "/images/poaps/211534.gif",
     "groupId": 4,
     "districtId": "3"
   },
@@ -914,7 +914,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211551",
     "supporterId": "284638cdc4158082b4f5eb3ce920eb59",
-    "poapImageLink": "https://assets.poap.xyz/54bd581b-ab1d-4c17-8b6d-475890c192a7.png?size=large",
+    "poapImageLink": "/images/poaps/211551.png",
     "groupId": 4,
     "districtId": "6"
   },
@@ -928,7 +928,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213955",
     "supporterId": "256638cdc41580709456cb1417e645eb",
-    "poapImageLink": "https://assets.poap.xyz/a8554fe7-d65b-45eb-b2fa-a64c9a799582.png?size=large",
+    "poapImageLink": "/images/poaps/213955.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -942,7 +942,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212684",
     "supporterId": "25d638cdc41580488b40d8633f8c324d",
-    "poapImageLink": "https://assets.poap.xyz/e0c74392-52ce-457c-bd22-9c4252e1cb53.png?size=large",
+    "poapImageLink": "/images/poaps/212684.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -956,7 +956,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211519",
     "supporterId": "25d638cdc4158068af74cda68f195c2f",
-    "poapImageLink": "https://assets.poap.xyz/74941b81-5c3f-457a-ad16-72ffd1d4b3d6.png?size=large",
+    "poapImageLink": "/images/poaps/211519.png",
     "groupId": 4,
     "districtId": "1"
   },
@@ -970,7 +970,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212242",
     "supporterId": "254638cdc4158045a5f4e7bc71ded71c",
-    "poapImageLink": "https://assets.poap.xyz/8159bace-abda-49a6-b05e-07caa9fd58cf.png?size=large",
+    "poapImageLink": "/images/poaps/212242.png",
     "groupId": 4,
     "districtId": "6"
   },
@@ -984,7 +984,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212186",
     "supporterId": "241638cdc41580428e05c81e9c9337b7",
-    "poapImageLink": "https://assets.poap.xyz/76a21eb5-50c6-43bf-b4d2-999921fd3509.png?size=large",
+    "poapImageLink": "/images/poaps/212186.png",
     "groupId": 4,
     "districtId": "5"
   },
@@ -1068,7 +1068,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211549",
     "supporterId": "277638cdc41580c3b573d427ba91668e",
-    "poapImageLink": "https://assets.poap.xyz/658f1b26-5903-476c-97bb-ff28b73b6178.png?size=large",
+    "poapImageLink": "/images/poaps/211549.png",
     "groupId": 4,
     "districtId": "8"
   },
@@ -1082,7 +1082,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "210081",
     "supporterId": "25d638cdc415803cbc84cffd81127c5d",
-    "poapImageLink": "https://assets.poap.xyz/daba8cba-418a-493a-854c-2c7b43c4e87e.png?size=large",
+    "poapImageLink": "/images/poaps/210081.png",
     "groupId": 4,
     "districtId": "3"
   },
@@ -1096,7 +1096,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211546",
     "supporterId": "25d638cdc41580ada463d35d72185d2a",
-    "poapImageLink": "https://assets.poap.xyz/874aa580-4743-442a-bbd8-e5bae605227b.png?size=large",
+    "poapImageLink": "/images/poaps/211546.png",
     "groupId": 4,
     "districtId": "7"
   },
@@ -1124,7 +1124,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211184",
     "supporterId": "25d638cdc41580b0bd59e6e5713b80f0",
-    "poapImageLink": "https://assets.poap.xyz/06926345-e314-44bb-bb5c-39c45280cd64.png?size=large",
+    "poapImageLink": "/images/poaps/211184.png",
     "groupId": 4,
     "districtId": "1"
   },
@@ -1166,7 +1166,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213890",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-hamburgueserc3ada-1-2025-logo-1762804993462.png?size=large",
+    "poapImageLink": "/images/poaps/213890.png",
     "groupId": 2
   },
   {
@@ -1179,7 +1179,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213891",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-beer-house-2025-logo-1762804993922.png?size=large",
+    "poapImageLink": "/images/poaps/213891.png",
     "groupId": 2
   },
   {
@@ -1192,7 +1192,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213892",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-le-ble-2025-logo-1762804996076.png?size=large",
+    "poapImageLink": "/images/poaps/213892.png",
     "groupId": 2
   },
   {
@@ -1205,7 +1205,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213894",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-koi-2025-logo-1762805003400.png?size=large",
+    "poapImageLink": "/images/poaps/213894.png",
     "groupId": 2
   },
   {
@@ -1218,7 +1218,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213895",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-los-petersen-2025-logo-1762805005897.png?size=large",
+    "poapImageLink": "/images/poaps/213895.png",
     "groupId": 2
   },
   {
@@ -1231,7 +1231,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213896",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-persicco-2025-logo-1762805008824.png?size=large",
+    "poapImageLink": "/images/poaps/213896.png",
     "groupId": 2
   },
   {
@@ -1244,7 +1244,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213897",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-hamburgueserc3ada-2-2025-logo-1762805012250.png?size=large",
+    "poapImageLink": "/images/poaps/213897.png",
     "groupId": 2
   },
   {
@@ -1257,7 +1257,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213898",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-guapaletas-2025-logo-1762805014492.png?size=large",
+    "poapImageLink": "/images/poaps/213898.png",
     "groupId": 2
   },
   {
@@ -1270,7 +1270,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "213899",
     "supporterId": "",
-    "poapImageLink": "https://assets.poap.xyz/i-paid-with-crypto-at-chicken-tenders-2025-logo-1762805016772.png?size=large",
+    "poapImageLink": "/images/poaps/213899.png",
     "groupId": 2
   },
   {

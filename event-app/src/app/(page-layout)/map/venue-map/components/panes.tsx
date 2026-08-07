@@ -12,11 +12,8 @@ import { poisData } from '@/data/pois';
 import { districtsData } from '@/data/districts';
 import { poiGroupsData } from '@/data/poiGroups';
 import { supportersData } from '@/data/supporters';
-import { questsData } from '@/data/quests';
-import { questGroupsData } from '@/data/questGroups';
 import { locationsData } from '@/data/locations';
 import { District } from '@/types/api-data';
-import { Quest } from '@/types/quest';
 import { useRouter } from 'next/navigation';
 import Icon from '@mdi/react';
 import {
@@ -120,10 +117,7 @@ const Pane = ({
   logo,
   districtBadge,
   districtData,
-  questAvailable,
   backgroundColor,
-  showAsModal = false,
-  supporterQuest,
   stageColor,
   isStage = false,
   tealBoxIcon,
@@ -141,10 +135,7 @@ const Pane = ({
   logo?: string;
   districtBadge?: string;
   districtData?: District | null;
-  questAvailable?: boolean;
   backgroundColor?: string;
-  showAsModal?: boolean;
-  supporterQuest?: Quest | null;
   stageColor?: string | null;
   isStage?: boolean;
   linkText?: string;
@@ -219,9 +210,7 @@ const Pane = ({
       style={{
         ...backgroundStyle,
         // maxHeight: '66.67vh',
-        paddingBottom: showAsModal
-          ? '16px'
-          : 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
+        paddingBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
         contain: 'layout style paint',
         transform: 'translateZ(0)',
       }}
@@ -293,26 +282,7 @@ const Pane = ({
                 </div>
               )} */}
             </div>
-            {questAvailable ? (
-              <div className="flex gap-1 items-center">
-                <svg
-                  className="w-4 h-4"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 1L10.163 5.382L15 6.135L11.5 9.545L12.326 14.365L8 12.082L3.674 14.365L4.5 9.545L1 6.135L5.837 5.382L8 1Z"
-                    stroke="#353548"
-                    strokeWidth="1"
-                    fill="none"
-                  />
-                </svg>
-                <p className="text-xs font-medium text-[#353548] font-mono">
-                  Quest available
-                </p>
-              </div>
-            ) : subtitle === 'TBD' || !subtitle ? null : (
+            {subtitle === 'TBD' || !subtitle ? null : (
               <div className="text-xs leading-tight">{subtitle}</div>
             )}
           </div>
@@ -368,41 +338,9 @@ const Pane = ({
           </p>
         </div>
       )}
-      {supporterQuest?.instructions && (
-        <div className="flex flex-col gap-1 leading-[1.5] mt-4">
-          <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
-            Quest
-          </p>
-          <p className="text-sm text-[#353548] font-normal">
-            {supporterQuest.instructions}
-          </p>
-        </div>
-      )}
       {LinkItems}
     </div>
   );
-
-  if (showAsModal) {
-    return paneOpen ? (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/50"
-          onClick={() => setSelection(null)}
-        />
-
-        {/* Modal Content */}
-        <div
-          className={cn(
-            'relative w-full max-w-md rounded-lg shadow-lg overflow-hidden',
-            className
-          )}
-        >
-          {paneContent}
-        </div>
-      </div>
-    ) : null;
-  }
 
   return (
     <FlexibleDrawer
@@ -419,23 +357,8 @@ const Pane = ({
 const MapPane = (props: {
   selection: string | null;
   setSelection: Dispatch<SetStateAction<string | null>>;
-  fromQuests?: boolean;
 }) => {
-  const { selection, setSelection, fromQuests = false } = props;
-
-  // Hooks must be called before any conditional returns
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const checkDesktop = () => {
-      setIsDesktop(window.innerWidth >= 768); // md breakpoint
-    };
-
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-
-    return () => window.removeEventListener('resize', checkDesktop);
-  }, []);
+  const { selection, setSelection } = props;
 
   // Handle Escape key to close the pane
   useEffect(() => {
@@ -448,15 +371,6 @@ const MapPane = (props: {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [selection, setSelection]);
-
-  //   const handleClose = () => {
-  //     setCurrentFilters(initialFilters);
-  //     window.location.href = '/map';
-  //   };
-
-  //   const handleBack = () => {
-  //     window.location.href = '/quests#14';
-  //   };
 
   /*
     A selection 
@@ -577,7 +491,6 @@ const MapPane = (props: {
             logo={selectionData.logo}
             backgroundColor={selectionData.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
-            showAsModal={isDesktop && fromQuests}
           >
             {districtSupporters.length > 0 && (
               <div className="bg-[rgba(255,255,255,0.4)] shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4 max-h-[35vh] overflow-hidden">
@@ -594,15 +507,6 @@ const MapPane = (props: {
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                     {districtSupporters.map((supporter, index) => {
-                      // Find quest for this supporter
-                      const supporterQuest = questsData.find(
-                        (quest) =>
-                          quest.supporterId ===
-                          Object.keys(supportersData).find(
-                            (key) => supportersData[key] === supporter
-                          )
-                      );
-
                       const content = (
                         <>
                           {supporter.logo ? (
@@ -633,15 +537,7 @@ const MapPane = (props: {
                         </>
                       );
 
-                      return supporterQuest ? (
-                        <Link
-                          href={`/quests#${supporterQuest.id}`}
-                          key={index}
-                          className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
-                        >
-                          {content}
-                        </Link>
-                      ) : (
+                      return (
                         <div
                           className="flex gap-2 items-center py-0.5 w-full"
                           key={index}
@@ -661,14 +557,6 @@ const MapPane = (props: {
         // Get district name if supporter has a district
         const supporterDistrict = selectionData.districtId
           ? districtsData[selectionData.districtId]
-          : null;
-
-        // Find the quest for this supporter
-        const supporterId = Object.keys(supportersData).find(
-          (key) => supportersData[key].layerName === selection
-        );
-        const supporterQuest = supporterId
-          ? questsData.find((quest) => quest.supporterId === supporterId)
           : null;
 
         // Check if this POI is a stage and get its color
@@ -714,40 +602,14 @@ const MapPane = (props: {
             logo={selectionData.logo}
             districtBadge={supporterDistrict?.name}
             districtData={supporterDistrict}
-            questAvailable={!!supporterQuest}
             backgroundColor={supporterDistrict?.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
-            showAsModal={isDesktop && fromQuests}
-            supporterQuest={supporterQuest}
             stageColor={stageColor}
             isStage={isStage}
             linkText={linkText}
             tealBoxIcon={tealBoxIcon}
-          >
-            {/* View Quest/Map Button for supporters with quests */}
-            {supporterQuest && (
-              <Link
-                href={
-                  fromQuests
-                    ? `/map?filter=${supporterQuest.id === 30 ? 'base' : supporterDistrict?.layerName}`
-                    : `/quests#${supporterQuest.id}`
-                }
-              >
-                <button
-                  className="w-full bg-[#0073DE] text-white font-bold text-base py-3 px-6 rounded-[1px] mt-4 cursor-pointer"
-                  style={{
-                    boxShadow: '0px 4px 0px 0px #005493',
-                  }}
-                >
-                  {supporterQuest.id === 30
-                    ? 'View Base'
-                    : fromQuests
-                      ? `View ${supporterDistrict?.name} District`
-                      : 'View Quest'}
-                </button>
-              </Link>
-            )}
-          </Pane>
+          />
+
         );
 
       default:
@@ -761,13 +623,12 @@ const MapPane = (props: {
             subtitle={selectionData.paneType}
             links={selectionData.links}
             logo={selectionData.logo}
-            showAsModal={isDesktop && fromQuests}
           >
             {/* <div>{selection}</div> */}
           </Pane>
         );
     }
-  }, [selection, paneOpen, setSelection, isDesktop, fromQuests]);
+  }, [selection, paneOpen, setSelection]);
 
   return ActivePane;
 };
