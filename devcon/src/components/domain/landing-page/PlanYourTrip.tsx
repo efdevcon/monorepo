@@ -37,7 +37,7 @@ export const PlanYourTrip = () => {
             src={PlanTripMumbai}
             alt={t('image_alt')}
             fill
-            sizes="(max-width: 1024px) 100vw, 624px"
+            sizes="(max-width: 1023px) 100vw, 624px"
             className="object-cover"
           />
         </div>

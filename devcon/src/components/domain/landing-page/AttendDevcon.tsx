@@ -3,8 +3,6 @@ import { useTranslations } from 'next-intl'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
 import { PlanYourTrip } from './PlanYourTrip'
 import { GetInvolved } from './GetInvolved'
-import JaaliBorder from './images/new/jaali-purple-border.svg'
-import MoonElement from './images/new/dc8-moon-element.svg'
 import { Reveal } from 'components/common/reveal/Reveal'
 import { sectionX, sectionInner } from 'components/common/styles'
 
@@ -31,15 +29,14 @@ export const AttendDevcon = () => {
         }}
       />
 
-      {/* Jaali border strip across the top — pre-tiled 1438px-wide export, repeated for ultra-wide screens.
-          Flipped so the pattern hangs downward; the tiles are nudged up 4px (relative, NOT a negative
-          margin — overflow:clip does not create a BFC, so -mt collapses through and shifts the whole
-          section instead) so the pattern's flat base tucks under the purple band above. */}
+      {/* Jaali border strip across the top — a CSS-repeated background (the SVG lives in
+          /public/dc8 so it isn't inlined into every home HTML response, and repeat-x tiles
+          it at any viewport width). Flipped so the pattern hangs downward; nudged up 4px
+          (-top on the abs child, NOT a negative margin — overflow:clip does not create a
+          BFC, so -mt collapses through and shifts the whole section instead) so the
+          pattern's flat base tucks under the purple band above. */}
       <div aria-hidden className="relative h-16 lg:h-[84px] overflow-x-clip pointer-events-none select-none">
-        <div className="absolute left-1/2 -translate-x-1/2 -top-1 flex h-full -scale-y-100">
-          <JaaliBorder className="w-[1095px] lg:w-[1438px] h-full shrink-0" />
-          <JaaliBorder className="w-[1095px] lg:w-[1438px] h-full shrink-0" />
-        </div>
+        <div className="absolute inset-x-0 -top-1 h-full -scale-y-100 bg-repeat-x bg-[position:center_top] bg-[length:1095px_100%] lg:bg-[length:1438px_100%] bg-[url('/dc8/jaali-purple-border.svg')]" />
       </div>
 
       <div className={`relative ${sectionX} pt-[32px] sm:pt-24 pb-10 sm:pb-[104px]`}>
@@ -55,17 +52,14 @@ export const AttendDevcon = () => {
         <GetInvolved />
       </div>
 
-      {/* Moon glyph row, flush with the section bottom (Figma 4917:966 bottom deco).
-          -z-10 keeps it above the root background but under the content, which
-          otherwise sits below it in paint order at small widths. */}
+      {/* Moon glyph row, flush with the section bottom (Figma 4917:966 bottom deco) —
+          CSS-repeated background instead of 16 inline SVGs. -z-10 keeps it above the
+          root background but under the content, which otherwise sits below it in
+          paint order at small widths. */}
       <div
         aria-hidden
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 -z-10 flex opacity-30 pointer-events-none select-none"
-      >
-        {Array.from({ length: 16 }, (_, i) => (
-          <MoonElement key={i} className="w-[100px] h-[100px] md:w-[131px] md:h-[131px] shrink-0" />
-        ))}
-      </div>
+        className="absolute bottom-0 inset-x-0 -z-10 h-[100px] md:h-[131px] opacity-30 pointer-events-none select-none bg-repeat-x bg-[position:center_bottom] bg-[length:100px_100%] md:bg-[length:131px_100%] bg-[url('/dc8/dc8-moon-element.svg')]"
+      />
     </div>
   )
 }

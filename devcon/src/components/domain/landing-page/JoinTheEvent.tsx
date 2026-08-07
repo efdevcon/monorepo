@@ -85,7 +85,7 @@ export const JoinTheEvent = () => {
                     src={CARD_IMAGES[i]}
                     alt={c.image_alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, 224px"
+                    sizes="(max-width: 767px) 100vw, 224px"
                     className="object-cover"
                   />
                 </div>

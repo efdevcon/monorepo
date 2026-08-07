@@ -36,7 +36,7 @@ export const TracksSection = () => {
               src={TRACK_IMAGES[idx]}
               alt=""
               className="w-[120px] lg:w-[160px] h-auto"
-              sizes="(max-width: 1024px) 120px, 160px"
+              sizes="(max-width: 1023px) 120px, 160px"
             />
             <p className="text-[18px] leading-[22px] md:text-[20px] md:leading-[24px] font-bold tracking-[-0.5px] text-center text-[#160b2b]">
               {trackItems[idx]?.title}
