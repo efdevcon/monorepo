@@ -118,8 +118,10 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
             </div>
           </div>
 
-          {/* Action Button */}
-          {quest.conditionValues && (
+          {/* Action Button. Hidden for POAP quests: verification against the
+              live POAP API ended with the event, completion is now preloaded
+              from the mints snapshot instead (see quests/page.tsx). */}
+          {quest.conditionValues && quest.conditionType !== 'verifyPoap' && (
             <div
               className="w-full p-4 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center"
               style={{
@@ -133,13 +135,11 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                   data-state="default"
                   data-type="Secondary"
                   className={`w-full rounded-[1px] px-3 py-3 text-sm font-bold tracking-[-0.1px] transition-colors disabled:cursor-not-allowed ${
+                    // verifyPoap never reaches this button anymore (see the
+                    // guard above), so only the non-POAP styles remain.
                     !address
-                      ? quest.conditionType === 'verifyPoap'
-                        ? 'bg-[#0073de] text-white opacity-40 cursor-not-allowed'
-                        : 'bg-[#eaf3fa] text-[#353548] opacity-40 cursor-not-allowed'
-                      : quest.conditionType === 'verifyPoap'
-                        ? 'bg-[#0073de] text-white hover:bg-[#005ba8] shadow-[0px_4px_0px_0px_#005493] cursor-pointer'
-                        : 'bg-[#eaf3fa] text-[#36364c] hover:bg-[#d4e7f5] shadow-[0px_4px_0px_0px_#595978] cursor-pointer'
+                      ? 'bg-[#eaf3fa] text-[#353548] opacity-40 cursor-not-allowed'
+                      : 'bg-[#eaf3fa] text-[#36364c] hover:bg-[#d4e7f5] shadow-[0px_4px_0px_0px_#595978] cursor-pointer'
                   }`}
                   onClick={() => onQuestAction(quest)}
                   disabled={!address}
@@ -297,7 +297,10 @@ const QuestCard = forwardRef<HTMLDivElement, QuestCardProps>(
                     <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                   </div>
                 )}
+                {/* Verify button hidden for POAP quests: completion is
+                    preloaded from the mints snapshot (see quests/page.tsx) */}
                 {quest.conditionValues &&
+                  quest.conditionType !== 'verifyPoap' &&
                   (!isCompleted ||
                     verifyingQuestId === quest.id.toString()) && (
                     <div

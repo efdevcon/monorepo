@@ -11,6 +11,7 @@ import { NAV_ITEMS } from '@/config/nav-items';
 import Image from 'next/image';
 import { useQuestCompletions } from '@/app/store.hooks';
 import { useUserData } from '@/hooks/useServerData';
+import { usePoapQuestPreload } from '@/hooks/usePoapQuestPreload';
 import { questsData } from '@/data/quests';
 import { calculateProgress } from './utils/quest-helpers';
 
@@ -68,6 +69,10 @@ export default function QuestsPage() {
 
     return states;
   }, [questCompletions]);
+
+  // Preload POAP quest completions from the mints snapshot (no more Verify
+  // buttons for POAP quests) - shared with the wallet stampbook.
+  usePoapQuestPreload();
 
   // Function to update quest status with optimistic updates
   const updateQuestStatus = async (

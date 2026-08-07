@@ -8,6 +8,7 @@ import Icon from '@mdi/react';
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import PoapModal from '@/components/PoapModal';
 import { useQuestCompletions } from '@/app/store.hooks';
+import { usePoapQuestPreload } from '@/hooks/usePoapQuestPreload';
 
 // Fallback image for empty POAP links
 const FALLBACK_IMAGE =
@@ -39,6 +40,10 @@ export default function StampbookTab() {
 
   // Get quest completions from database (via SWR)
   const { questCompletions } = useQuestCompletions();
+
+  // Pre-fill stamps from the POAP mints snapshot (no more Verify buttons) -
+  // marks held POAPs completed in the DB, which flows back in via SWR above.
+  usePoapQuestPreload();
 
   // Helper function to check if a quest is completed
   const isQuestCompleted = (questId: number): boolean => {

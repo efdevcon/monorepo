@@ -4,7 +4,9 @@ import poapMints from '@/data/poap-mints.json';
 /**
  * API endpoint to verify POAP ownership
  * POST /api/poap
- * Body: { addresses: string[], dropId: string }
+ * Body: { addresses: string[], dropId: string }  -> { hasPoap, mintedOn? }
+ * Body: { addresses: string[] }                  -> { drops: { [dropId]: mintedOn } }
+ *                                                   (every snapshot drop held by the addresses)
  *
  * Ownership used to be checked live against the POAP Compass GraphQL API
  * (public.compass.poap.tech), which died with the POAP project shutdown.
@@ -24,9 +26,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!dropId || typeof dropId !== 'string') {
+    // Bulk mode: no dropId -> return all drops the addresses hold, so quest
+    // completion can be preloaded in a single call.
+    if (dropId === undefined || dropId === null) {
+      return NextResponse.json({ drops: getAllOwnedDrops(addresses) });
+    }
+
+    if (typeof dropId !== 'string') {
       return NextResponse.json(
-        { error: 'Invalid or missing dropId' },
+        { error: 'Invalid dropId' },
         { status: 400 }
       );
     }
@@ -41,6 +49,27 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+/**
+ * Find every snapshot drop held by any of the addresses.
+ * @returns map of dropId -> earliest mint date (Unix timestamp) across the addresses
+ */
+function getAllOwnedDrops(addresses: string[]): Record<string, number> {
+  const lowercased = addresses.map(address => address.toLowerCase());
+  const owned: Record<string, number> = {};
+
+  for (const [dropId, holders] of Object.entries(poapMints as Record<string, Record<string, number>>)) {
+    const mintDates = lowercased
+      .map(address => holders[address])
+      .filter((mintedOn): mintedOn is number => mintedOn !== undefined);
+    if (mintDates.length > 0) {
+      owned[dropId] = Math.min(...mintDates);
+    }
+  }
+
+  console.log(`POAP bulk check: ${Object.keys(owned).length} drops held by`, addresses);
+  return owned;
 }
 
 /**
