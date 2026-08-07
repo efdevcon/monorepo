@@ -46,14 +46,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 6,
     "address": "0x4ccc2acdd43811ce928cef7371fc95daf7418631",
     "ensName": "guide42.eth",
-    "avatar": "https://profiles.poap.tech/avatar/guide42.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/guide42.eth",
     "score": 63
   },
   {
     "position": 7,
     "address": "0x914a7f893c3f7a7c0067fad1312c1bd630009159",
     "ensName": "🦇batman🦇.eth",
-    "avatar": "https://profiles.poap.tech/avatar/🦇batman🦇.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/🦇batman🦇.eth",
     "score": 62
   },
   {
@@ -67,7 +67,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 9,
     "address": "0x66e4476bac0cb348f893924d457cfa3ee64335eb",
     "ensName": "leobunster.eth",
-    "avatar": "https://profiles.poap.tech/avatar/leobunster.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/leobunster.eth",
     "score": 59
   },
   {
@@ -88,7 +88,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 12,
     "address": "0xe26d7b5426fa852fb13520967add8eded88f09bb",
     "ensName": "lysander.eth",
-    "avatar": "https://profiles.poap.tech/avatar/lysander.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/lysander.eth",
     "score": 55
   },
   {
@@ -102,7 +102,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 14,
     "address": "0x9b29b5fc995b7f724f6fe0b0f78b78767d32dca4",
     "ensName": "ferostabio.eth",
-    "avatar": "https://profiles.poap.tech/avatar/ferostabio.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/ferostabio.eth",
     "score": 54
   },
   {
@@ -116,7 +116,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 16,
     "address": "0x4812a4226cf3850b966e5a0265f4ab68ad45cc95",
     "ensName": "gabo.eth",
-    "avatar": "https://profiles.poap.tech/avatar/gabo.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/gabo.eth",
     "score": 53
   },
   {
@@ -130,14 +130,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 18,
     "address": "0x9f0f49d42db395ca15cf8cadc56410b0137989b4",
     "ensName": "abena.eth",
-    "avatar": "https://profiles.poap.tech/avatar/abena.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/abena.eth",
     "score": 52
   },
   {
     "position": 19,
     "address": "0x4744a238ec25a716a703229b82418b99c4d60fb2",
     "ensName": "oiliw3.eth",
-    "avatar": "https://profiles.poap.tech/avatar/oiliw3.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/oiliw3.eth",
     "score": 52
   },
   {
@@ -151,7 +151,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 21,
     "address": "0x57047b296d3036f0161b970e530d5dea7ac85d35",
     "ensName": "mayk112.eth",
-    "avatar": "https://profiles.poap.tech/avatar/mayk112.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/mayk112.eth",
     "score": 51
   },
   {
@@ -179,7 +179,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 25,
     "address": "0x4490ff9c8b022aa5dec2df6d8503cba330e96cd5",
     "ensName": "robertpo4p.eth",
-    "avatar": "https://profiles.poap.tech/avatar/robertpo4p.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/robertpo4p.eth",
     "score": 49
   },
   {
@@ -207,14 +207,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 29,
     "address": "0x6c6afa2a66586f534c635ae50f14a75855e19d50",
     "ensName": "jorkleo.eth",
-    "avatar": "https://profiles.poap.tech/avatar/jorkleo.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/jorkleo.eth",
     "score": 48
   },
   {
     "position": 30,
     "address": "0x7859821024e633c5dc8a4fcf86fc52e7720ce525",
     "ensName": "hadriencroubois.eth",
-    "avatar": "https://profiles.poap.tech/avatar/hadriencroubois.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/hadriencroubois.eth",
     "score": 47
   },
   {
@@ -228,14 +228,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 32,
     "address": "0x14fc0be8e90ab768226cccf952506ce00bde5029",
     "ensName": "gourm.eth",
-    "avatar": "https://profiles.poap.tech/avatar/gourm.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/gourm.eth",
     "score": 46
   },
   {
     "position": 33,
     "address": "0xda77aea13304bfc9db5288adf4ffa68c2c16c0ad",
     "ensName": "kennakitty.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kennakitty.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kennakitty.eth",
     "score": 46
   },
   {
@@ -256,14 +256,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 36,
     "address": "0x8f359cd49f38cb79281a97f70946979d5a9ff03f",
     "ensName": "eugenetica.eth",
-    "avatar": "https://profiles.poap.tech/avatar/eugenetica.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/eugenetica.eth",
     "score": 45
   },
   {
     "position": 37,
     "address": "0x9b559d0808690df5541cf30afd357c0c5c420a92",
     "ensName": "pe4en.eth",
-    "avatar": "https://profiles.poap.tech/avatar/pe4en.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/pe4en.eth",
     "score": 45
   },
   {
@@ -340,7 +340,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 48,
     "address": "0x1fe5844315ba92e86eb64c8317cdb2f11c8fe544",
     "ensName": "santiagogr78.eth",
-    "avatar": "https://profiles.poap.tech/avatar/santiagogr78.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/santiagogr78.eth",
     "score": 42
   },
   {
@@ -361,7 +361,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 51,
     "address": "0x62151949668f97bd99778a985940cb9d1e7190bf",
     "ensName": "karlita.eth",
-    "avatar": "https://profiles.poap.tech/avatar/karlita.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/karlita.eth",
     "score": 41
   },
   {
@@ -375,7 +375,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 53,
     "address": "0x461cde402c6b945036df1b49f2703fca22b23d7b",
     "ensName": "oops.eth",
-    "avatar": "https://profiles.poap.tech/avatar/oops.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/oops.eth",
     "score": 40
   },
   {
@@ -389,21 +389,21 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 55,
     "address": "0x6d0db4e32b664b66a56fa52bfdf3150af9bd7a46",
     "ensName": "kubs.uni.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kubs.uni.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kubs.uni.eth",
     "score": 40
   },
   {
     "position": 56,
     "address": "0x4654a70c7c13ac3004819b881dc450e8a1a2dc2e",
     "ensName": "sharfy.eth",
-    "avatar": "https://profiles.poap.tech/avatar/sharfy.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/sharfy.eth",
     "score": 40
   },
   {
     "position": 57,
     "address": "0x04bef5bf293bb01d4946dbcfaaec9a5140316217",
     "ensName": "criptounam.eth",
-    "avatar": "https://profiles.poap.tech/avatar/criptounam.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/criptounam.eth",
     "score": 40
   },
   {
@@ -431,7 +431,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 61,
     "address": "0x6048e280905a57c1a9de35261f8774280191832b",
     "ensName": "glpecile.eth",
-    "avatar": "https://profiles.poap.tech/avatar/glpecile.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/glpecile.eth",
     "score": 39
   },
   {
@@ -466,14 +466,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 66,
     "address": "0x8c775808fffbb99208452698bc619cf9d07d8b2e",
     "ensName": "arlequin.eth",
-    "avatar": "https://profiles.poap.tech/avatar/arlequin.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/arlequin.eth",
     "score": 38
   },
   {
     "position": 67,
     "address": "0xd3f7e0316971578d3b805c295253f6d2f965a8be",
     "ensName": "chechu.eth",
-    "avatar": "https://profiles.poap.tech/avatar/chechu.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/chechu.eth",
     "score": 38
   },
   {
@@ -501,14 +501,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 71,
     "address": "0x2681a08d156be6db2acbbc20b1374c114dabd7af",
     "ensName": "arqostro.eth",
-    "avatar": "https://profiles.poap.tech/avatar/arqostro.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/arqostro.eth",
     "score": 37
   },
   {
     "position": 72,
     "address": "0xcb7f8a0164632ca4db8f12a7d42b073346e5ee99",
     "ensName": "kudibos.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kudibos.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kudibos.eth",
     "score": 36
   },
   {
@@ -536,14 +536,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 76,
     "address": "0xc0ffeef55acb4309540f0f08a8c58f497dcbf1d5",
     "ensName": "ryndon.eth",
-    "avatar": "https://profiles.poap.tech/avatar/ryndon.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/ryndon.eth",
     "score": 36
   },
   {
     "position": 77,
     "address": "0x17a91203a9e9c3519c2f76210497ef7f4be2352f",
     "ensName": "nicobilinkis.eth",
-    "avatar": "https://profiles.poap.tech/avatar/nicobilinkis.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/nicobilinkis.eth",
     "score": 36
   },
   {
@@ -592,7 +592,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 84,
     "address": "0xd61daebc28274d1feaaf51f11179cd264e4105fb",
     "ensName": "davidzhou.eth",
-    "avatar": "https://profiles.poap.tech/avatar/davidzhou.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/davidzhou.eth",
     "score": 35
   },
   {
@@ -627,21 +627,21 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 89,
     "address": "0xdb5dd352527539b7c3382bd4b5693e116d09fb9b",
     "ensName": "cardno.eth",
-    "avatar": "https://profiles.poap.tech/avatar/cardno.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/cardno.eth",
     "score": 33
   },
   {
     "position": 90,
     "address": "0x505aa104869783f1ed411339862a54041eb57162",
     "ensName": "chibita.eth",
-    "avatar": "https://profiles.poap.tech/avatar/chibita.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/chibita.eth",
     "score": 33
   },
   {
     "position": 91,
     "address": "0x63c3774531ef83631111fe2cf01520fb3f5a68f7",
     "ensName": "jistro.eth",
-    "avatar": "https://profiles.poap.tech/avatar/jistro.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/jistro.eth",
     "score": 33
   },
   {
@@ -662,14 +662,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 94,
     "address": "0xb4db4bd641ff425235f75f46bdbf813855c1fc96",
     "ensName": "silkarg.eth",
-    "avatar": "https://profiles.poap.tech/avatar/silkarg.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/silkarg.eth",
     "score": 32
   },
   {
     "position": 95,
     "address": "0x092cff73c77a9de794d25b0088ded0e430733dbb",
     "ensName": "rallsen.eth",
-    "avatar": "https://profiles.poap.tech/avatar/rallsen.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/rallsen.eth",
     "score": 32
   },
   {
@@ -697,14 +697,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 99,
     "address": "0x4ac6ebd8df05b2eeda4e4c44ae695dfa37ce330a",
     "ensName": "michaellawal.eth",
-    "avatar": "https://profiles.poap.tech/avatar/michaellawal.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/michaellawal.eth",
     "score": 31
   },
   {
     "position": 100,
     "address": "0x4f25ca0d0564a68932b681ab885cf375d8d93c46",
     "ensName": "contilean.eth",
-    "avatar": "https://profiles.poap.tech/avatar/contilean.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/contilean.eth",
     "score": 31
   },
   {
@@ -718,7 +718,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 102,
     "address": "0x4ceaa0a16d0831d7d46cb72006f959a87f618a47",
     "ensName": "byeddy.eth",
-    "avatar": "https://profiles.poap.tech/avatar/byeddy.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/byeddy.eth",
     "score": 30
   },
   {
@@ -732,7 +732,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 104,
     "address": "0xdde75eff61dde0c02195c7a0a83a378bad442fa7",
     "ensName": "surybonfil.eth",
-    "avatar": "https://profiles.poap.tech/avatar/surybonfil.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/surybonfil.eth",
     "score": 30
   },
   {
@@ -746,7 +746,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 106,
     "address": "0x103b0d7000e491891c03da4f508c18d1c917ed19",
     "ensName": "kyrana.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kyrana.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kyrana.eth",
     "score": 30
   },
   {
@@ -760,7 +760,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 108,
     "address": "0x158cb8db071f8565794c1ac689ad8f13b9b7e744",
     "ensName": "pablopa.eth",
-    "avatar": "https://profiles.poap.tech/avatar/pablopa.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/pablopa.eth",
     "score": 30
   },
   {
@@ -802,7 +802,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 114,
     "address": "0x9ec255f1af4d3e4a813aadab8ff0497398037d56",
     "ensName": "5h4m4n.eth",
-    "avatar": "https://profiles.poap.tech/avatar/5h4m4n.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/5h4m4n.eth",
     "score": 29
   },
   {
@@ -823,7 +823,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 117,
     "address": "0xc6ed8696c4885dcafdc73c5ef28511e02568b472",
     "ensName": "cryptonautas.eth",
-    "avatar": "https://profiles.poap.tech/avatar/cryptonautas.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/cryptonautas.eth",
     "score": 28
   },
   {
@@ -837,7 +837,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 119,
     "address": "0xe72185a9f4ce3500d6dc7ccdcfc64cf66d823be8",
     "ensName": "cruzdanilo.eth",
-    "avatar": "https://profiles.poap.tech/avatar/cruzdanilo.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/cruzdanilo.eth",
     "score": 28
   },
   {
@@ -949,7 +949,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 135,
     "address": "0xb6667b72354ed7fa96f2180edac23431a511d18e",
     "ensName": "sg495.eth",
-    "avatar": "https://profiles.poap.tech/avatar/sg495.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/sg495.eth",
     "score": 25
   },
   {
@@ -977,7 +977,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 139,
     "address": "0x6a1efbe1ceed8aef212f8a8ac325ec1a88a1b1b8",
     "ensName": "z9k.uni.eth",
-    "avatar": "https://profiles.poap.tech/avatar/z9k.uni.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/z9k.uni.eth",
     "score": 25
   },
   {
@@ -1005,28 +1005,28 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 143,
     "address": "0x1fd5e71a081da9a1693d8ea75752d59f6947ec86",
     "ensName": "soysebastian.eth",
-    "avatar": "https://profiles.poap.tech/avatar/soysebastian.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/soysebastian.eth",
     "score": 24
   },
   {
     "position": 144,
     "address": "0xacf4c2950107ef9b1c37faa1f9a866c8f0da88b9",
     "ensName": "jamescarnley.eth",
-    "avatar": "https://profiles.poap.tech/avatar/jamescarnley.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/jamescarnley.eth",
     "score": 24
   },
   {
     "position": 145,
     "address": "0x1df428833f2c9fb1ef098754e5d710432450d706",
     "ensName": "0xjoshua.eth",
-    "avatar": "https://profiles.poap.tech/avatar/0xjoshua.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/0xjoshua.eth",
     "score": 24
   },
   {
     "position": 146,
     "address": "0x3f22f740d41518f5017b76eed3a63eb14d2e1b07",
     "ensName": "shutterblock.eth",
-    "avatar": "https://profiles.poap.tech/avatar/shutterblock.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/shutterblock.eth",
     "score": 24
   },
   {
@@ -1047,7 +1047,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 149,
     "address": "0xda85bc2bac8e2a2e082febc72fd6c7bc8d0962cd",
     "ensName": "dazly.eth",
-    "avatar": "https://profiles.poap.tech/avatar/dazly.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/dazly.eth",
     "score": 24
   },
   {
@@ -1096,7 +1096,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 156,
     "address": "0x6f40da63d4e8b49f45a7a15fa8ebaab97fb08e9c",
     "ensName": "mpavan.eth",
-    "avatar": "https://profiles.poap.tech/avatar/mpavan.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/mpavan.eth",
     "score": 22
   },
   {
@@ -1138,7 +1138,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 162,
     "address": "0x9cab0bd57e308daff28011d6c6d9b45867afe33e",
     "ensName": "0xahmet.eth",
-    "avatar": "https://profiles.poap.tech/avatar/0xahmet.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/0xahmet.eth",
     "score": 22
   },
   {
@@ -1166,14 +1166,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 166,
     "address": "0xbdb8d7e479c7434e5db8cd95f12391a338e97d26",
     "ensName": "meistersinger.eth",
-    "avatar": "https://profiles.poap.tech/avatar/meistersinger.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/meistersinger.eth",
     "score": 21
   },
   {
     "position": 167,
     "address": "0x2117bf88b4cb0186eaa87500a045fc998290e42a",
     "ensName": "gramajo.eth",
-    "avatar": "https://profiles.poap.tech/avatar/gramajo.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/gramajo.eth",
     "score": 21
   },
   {
@@ -1201,14 +1201,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 171,
     "address": "0xc5869ddf544620b377cf2c79458f51070683ca37",
     "ensName": "matut.eth",
-    "avatar": "https://profiles.poap.tech/avatar/matut.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/matut.eth",
     "score": 21
   },
   {
     "position": 172,
     "address": "0x74199ddac9607a3a694011793f674fa1e0d0fe2d",
     "ensName": "jaybuidl.eth",
-    "avatar": "https://profiles.poap.tech/avatar/jaybuidl.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/jaybuidl.eth",
     "score": 21
   },
   {
@@ -1236,14 +1236,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 176,
     "address": "0x4263df45b2958650542edc7abdf89ef7994d317a",
     "ensName": "danimonclou.eth",
-    "avatar": "https://profiles.poap.tech/avatar/danimonclou.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/danimonclou.eth",
     "score": 21
   },
   {
     "position": 177,
     "address": "0x290b63942726ad79fe823adde3415d866fd5b11f",
     "ensName": "andreafelipet.eth",
-    "avatar": "https://profiles.poap.tech/avatar/andreafelipet.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/andreafelipet.eth",
     "score": 21
   },
   {
@@ -1278,14 +1278,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 182,
     "address": "0xbd19a3f0a9cace18513a1e2863d648d13975cb30",
     "ensName": "didierkrux.eth",
-    "avatar": "https://profiles.poap.tech/avatar/didierkrux.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/didierkrux.eth",
     "score": 20
   },
   {
     "position": 183,
     "address": "0xd80548ca1058eea322dcdc740a0f322846aa25ec",
     "ensName": "kevinw.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kevinw.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kevinw.eth",
     "score": 20
   },
   {
@@ -1299,7 +1299,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 185,
     "address": "0x9458fd6ff01f215b921b5933502a533b5e6dd763",
     "ensName": "ni500.eth",
-    "avatar": "https://profiles.poap.tech/avatar/ni500.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/ni500.eth",
     "score": 20
   },
   {
@@ -1313,7 +1313,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 187,
     "address": "0xd6f543cbd27c80bed114213c5f34df9f147ab22e",
     "ensName": "selvagrowth.eth",
-    "avatar": "https://profiles.poap.tech/avatar/selvagrowth.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/selvagrowth.eth",
     "score": 20
   },
   {
@@ -1355,7 +1355,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 193,
     "address": "0x37483a852a0b8c2cd840b946fbf4fc8e3d6d6fb3",
     "ensName": "fertello.eth",
-    "avatar": "https://profiles.poap.tech/avatar/fertello.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/fertello.eth",
     "score": 20
   },
   {
@@ -1390,7 +1390,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 198,
     "address": "0xf1f2363de9588e5e9701209b5410195122551414",
     "ensName": "lokapal.eth",
-    "avatar": "https://profiles.poap.tech/avatar/lokapal.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/lokapal.eth",
     "score": 19
   },
   {
@@ -1460,7 +1460,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 208,
     "address": "0xfa731c3f64bf97f528292b137faf0abb14da3b42",
     "ensName": "greywizard.eth",
-    "avatar": "https://profiles.poap.tech/avatar/greywizard.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/greywizard.eth",
     "score": 18
   },
   {
@@ -1474,7 +1474,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 210,
     "address": "0x21e5fc1efc822f25e1dff11f81214c9c65032d79",
     "ensName": "kathonejo.uni.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kathonejo.uni.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kathonejo.uni.eth",
     "score": 18
   },
   {
@@ -1488,7 +1488,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 212,
     "address": "0x54319e41affd0211fe22c34c2c7fe3905f87cf75",
     "ensName": "argonstark.eth",
-    "avatar": "https://profiles.poap.tech/avatar/argonstark.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/argonstark.eth",
     "score": 18
   },
   {
@@ -1509,7 +1509,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 215,
     "address": "0x61060d8ba5883f047c7b0a3bf7c5e4e1a314bfc2",
     "ensName": "lanechain.eth",
-    "avatar": "https://profiles.poap.tech/avatar/lanechain.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/lanechain.eth",
     "score": 18
   },
   {
@@ -1635,7 +1635,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 233,
     "address": "0x0a25c91209a158d0a4922837cdd590ace0d13f0d",
     "ensName": "camilosaka.eth",
-    "avatar": "https://profiles.poap.tech/avatar/camilosaka.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/camilosaka.eth",
     "score": 17
   },
   {
@@ -1649,7 +1649,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 235,
     "address": "0x3baf04a1daccb03f4806694cf1a266e1c4df1310",
     "ensName": "marcvlad.eth",
-    "avatar": "https://profiles.poap.tech/avatar/marcvlad.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/marcvlad.eth",
     "score": 17
   },
   {
@@ -1677,7 +1677,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 239,
     "address": "0x64defa36cd321a44adddad64414a9060d1d98599",
     "ensName": "luksgrin.eth",
-    "avatar": "https://profiles.poap.tech/avatar/luksgrin.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/luksgrin.eth",
     "score": 16
   },
   {
@@ -1698,7 +1698,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 242,
     "address": "0x4ce6388e1711d0cb67b7bb92bb75516494cd0c24",
     "ensName": "jessfo.eth",
-    "avatar": "https://profiles.poap.tech/avatar/jessfo.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/jessfo.eth",
     "score": 16
   },
   {
@@ -1719,7 +1719,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 245,
     "address": "0x97eb37a680ad57bc584bce942eb3990cb11bfdc1",
     "ensName": "fernandezdiego.eth",
-    "avatar": "https://profiles.poap.tech/avatar/fernandezdiego.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/fernandezdiego.eth",
     "score": 16
   },
   {
@@ -1754,7 +1754,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 250,
     "address": "0xba9d7cbbd34777a6eb787894778e75603cf56eb3",
     "ensName": "stkux.eth",
-    "avatar": "https://profiles.poap.tech/avatar/stkux.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/stkux.eth",
     "score": 16
   },
   {
@@ -1782,7 +1782,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 254,
     "address": "0x546457bbddf5e09929399768ab5a9d588cb0334d",
     "ensName": "ses.eth",
-    "avatar": "https://profiles.poap.tech/avatar/ses.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/ses.eth",
     "score": 16
   },
   {
@@ -1859,14 +1859,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 265,
     "address": "0x0374f0273e01841f594a4c0becdf7bfbd9b13a42",
     "ensName": "pumbi.eth",
-    "avatar": "https://profiles.poap.tech/avatar/pumbi.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/pumbi.eth",
     "score": 15
   },
   {
     "position": 266,
     "address": "0xa775c775feb740d15da78d572a1caccbccc7a0f6",
     "ensName": "solyacuariana.eth",
-    "avatar": "https://profiles.poap.tech/avatar/solyacuariana.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/solyacuariana.eth",
     "score": 15
   },
   {
@@ -1915,14 +1915,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 273,
     "address": "0xeca9ae8c2083ddb42b0bc55ae103b078af947de3",
     "ensName": "krlosmata.eth",
-    "avatar": "https://profiles.poap.tech/avatar/krlosmata.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/krlosmata.eth",
     "score": 15
   },
   {
     "position": 274,
     "address": "0x24e765fcd00106d7175837848ec9073f9feb9d8e",
     "ensName": "superfranky.eth",
-    "avatar": "https://profiles.poap.tech/avatar/superfranky.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/superfranky.eth",
     "score": 15
   },
   {
@@ -1978,14 +1978,14 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 282,
     "address": "0xb73b9d43c0b96b9dec7dfd2f1487eb508bf8cda1",
     "ensName": "nejoout.eth",
-    "avatar": "https://profiles.poap.tech/avatar/nejoout.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/nejoout.eth",
     "score": 15
   },
   {
     "position": 283,
     "address": "0xdea3c06eee614bf84e74d505173822236c8ad135",
     "ensName": "kernelkennethg.eth",
-    "avatar": "https://profiles.poap.tech/avatar/kernelkennethg.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/kernelkennethg.eth",
     "score": 15
   },
   {
@@ -2020,7 +2020,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 288,
     "address": "0x9b18e9e9aa3dd35100b385b7035c0b1e44afca14",
     "ensName": "heeckhau.eth",
-    "avatar": "https://profiles.poap.tech/avatar/heeckhau.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/heeckhau.eth",
     "score": 14
   },
   {
@@ -2034,7 +2034,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 290,
     "address": "0x8ae6422631292c31aeeb2efe154d6326f703f46b",
     "ensName": "mysticryuujin.eth",
-    "avatar": "https://profiles.poap.tech/avatar/mysticryuujin.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/mysticryuujin.eth",
     "score": 14
   },
   {
@@ -2097,7 +2097,7 @@ export const leaderboardData: LeaderboardEntry[] = [
     "position": 299,
     "address": "0xb0145ae156d201d6e371d07265fe3c045071c967",
     "ensName": "maraoz.eth",
-    "avatar": "https://profiles.poap.tech/avatar/maraoz.eth",
+    "avatar": "https://metadata.ens.domains/mainnet/avatar/maraoz.eth",
     "score": 14
   },
   {

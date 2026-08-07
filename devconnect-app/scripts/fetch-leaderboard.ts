@@ -198,8 +198,9 @@ async function fetchProfiles(addresses: string[]): Promise<Map<string, { ensName
       data.profiles.forEach(profile => {
         const address = profile.address.toLowerCase();
         const ensName = profile.ens || '';
-        // Use ensdata.net for avatars if ENS name exists
-        const avatar = ensName && profile.records?.avatar ? `https://profiles.poap.tech/avatar/${ensName}` : '';
+        // ENS metadata service resolves avatars by name only (use
+        // https://api.ensdata.net/media/avatar/<address> if only an address is available)
+        const avatar = ensName && profile.records?.avatar ? `https://metadata.ens.domains/mainnet/avatar/${ensName}` : '';
         profileMap.set(address, {
           ensName,
           avatar
