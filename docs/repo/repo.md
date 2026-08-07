@@ -1,3 +1,5 @@
+> Handover snapshot from the former maintainer (mid-2026). The durable rules from this doc are distilled in the root [CLAUDE.md](../../CLAUDE.md); this file keeps the reasoning and screenshots.
+
 # repo notes
 
 monorepo is powered by pnpm - I wouldn't deviate from this, we tried many, many things before landing on this, and its pretty clean at this point

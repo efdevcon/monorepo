@@ -5,6 +5,7 @@
 - pnpm workspaces, always use `pnpm` (never npm or yarn). This setup is deliberate, do not deviate.
 - When adding a new project, register it in `pnpm-workspace.yaml` at the repo root.
 - Shared code lives in `lib/`, installable from any project by adding `"lib": "workspace:*"` to its package.json.
+- Never commit non-pnpm lockfiles (package-lock.json, yarn.lock, bun.lockb), it bricks Netlify. Exception: `discounts/` is intentionally bun-based and outside the workspace.
 
 ## Builds & deploys (Netlify)
 

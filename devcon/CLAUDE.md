@@ -13,7 +13,7 @@ This is a TypeScript-first codebase. Ensure all new code has proper types — no
 ```bash
 pnpm dev                    # Dev server (TinaCMS + Next.js on localhost:3000)
 pnpm build                  # Production build (tinacms build && next build --webpack)
-pnpm lint                   # ESLint (next lint)
+npx eslint <paths>          # pnpm lint (next lint) is broken under Next.js 16; use eslint directly
 pnpm pretix:test-all        # Test Pretix API connection
 pnpm x402:test-flow         # Test full x402 payment flow (requires dev server running)
 ```

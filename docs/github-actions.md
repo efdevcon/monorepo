@@ -1,3 +1,5 @@
+> Handover snapshot from the former maintainer (mid-2026). The source of truth is `.github/workflows/` - some details here are stale (e.g. the pretalx syncs now run against production cfp.devcon.org, and the AV pipeline is documented in [av/av-stack-overview.md](./av/av-stack-overview.md)).
+
 # ai-content-prep.yml
 
     Old webhook to ingest content for the Devcon SEA chatbot - I'd just delete this.
