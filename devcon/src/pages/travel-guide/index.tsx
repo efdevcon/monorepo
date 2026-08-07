@@ -104,15 +104,15 @@ const AREA_MAP_URLS = [
 
 // Zipped positionally with the translated `safety.advisories` array
 const ADVISORY_URLS = [
-  'https://travel.state.gov/en/international-travel/travel-advisories/india.html',
-  'https://www.gov.uk/foreign-travel-advice/india',
-  'https://travel.gc.ca/destinations/india',
   'https://www.smartraveller.gov.au/destinations/asia/india',
-  'https://www.safetravel.govt.nz/Destinations/India',
-  'https://www.mfa.gov.sg/travelling-overseas/travel-advisories-notices-and-visa-information/india/',
+  'https://travel.gc.ca/destinations/india',
   'https://www.diplomatie.gouv.fr/fr/information-par-pays/inde/conseils-aux-voyageurs-securite',
   'https://www.auswaertiges-amt.de/de/service/laender/indien-node/indiensicherheit/205998',
   'https://www.nederlandwereldwijd.nl/reisadvies/india',
+  'https://www.safetravel.govt.nz/Destinations/India',
+  'https://www.mfa.gov.sg/travelling-overseas/travel-advisories-notices-and-visa-information/india/',
+  'https://www.gov.uk/foreign-travel-advice/india',
+  'https://travel.state.gov/en/international-travel/travel-advisories/india.html',
 ]
 
 const snapshotValue = (value: string) => <span style={{ fontWeight: 400, color: '#221144' }}>{value}</span>
