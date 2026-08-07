@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { MoveRight } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import { sectionX, sectionInner, sectionLabel } from 'components/common/styles'
@@ -43,7 +43,7 @@ export const VibeCarousel = () => {
       <div className={sectionX}>
         <div className={`${sectionInner} flex items-center justify-end gap-2 text-[#594d73]`}>
           <p className={`${sectionLabel} leading-6`}>{t('label')}</p>
-          <MoveRight className="w-4 h-4" strokeWidth={2} />
+          <ArrowDown className="w-4 h-4" strokeWidth={2} />
         </div>
       </div>
       <InfiniteScroll nDuplications={2} speed="80s" pauseOnHover marqueeClassName="!h-[160px] md:!h-[200px]">
