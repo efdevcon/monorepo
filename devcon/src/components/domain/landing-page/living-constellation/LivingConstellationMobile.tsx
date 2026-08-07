@@ -238,7 +238,7 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
               ) : (
                 <motion.div
                   layoutId={`speaker-v2-mobile-${speaker.id}`}
-                  onClick={e => {
+                  onClick={(e: React.MouseEvent) => {
                     e.stopPropagation()
                     if (!dismissing.current && !wasDragged.current) handleSelect(speaker)
                   }}
