@@ -619,7 +619,7 @@ function WalletPanel({
         <span className={css['wallet-title']}>{title}</span>
         <a
           className={`${css.mono} ${css['wallet-addr']}`}
-          href={`https://zapper.xyz/account/${wallet.address}`}
+          href={`https://app.zerion.io/${wallet.address}/overview`}
           target="_blank"
           rel="noopener noreferrer"
         >

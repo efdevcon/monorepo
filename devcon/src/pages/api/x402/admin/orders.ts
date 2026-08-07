@@ -9,7 +9,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { pluginFetch } from 'services/pretixPluginProxy'
 import { TICKETING, TICKETING_ENV } from 'config/ticketing'
 import { fetchEthPriceUsd } from 'services/ethPrice'
-import { fetchWalletInfoFromZapper, type WalletInfo } from 'services/zapperWallet'
+import { fetchWalletInfo, type WalletInfo } from 'services/zapperWallet'
 import { checkAdminAuth } from 'utils/adminAuth'
 
 // Polygon (137) temporarily excluded from the admin wallet panels —
@@ -67,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ;(body as Record<string, unknown>).pretixEventSlug = eventSlug
 
       // Enrich with two separate wallet panels — fetched here (not from the
-      // Pretix plugin) because they need ZAPPER_API_KEY which lives in the
+      // Pretix plugin) because they need ALCHEMY_APIKEY which lives in the
       // Vercel env. Best-effort: any failure returns null and the UI hides
       // the relevant panel.
       //
@@ -86,16 +86,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         fetchPolPriceUsd(),
       ])
       const ethPrice = ethPriceResult?.price ?? null
-      // Gas relayer balance fetch temporarily disabled to halve Zapper
+      // Gas relayer balance fetch temporarily disabled to halve balance-API
       // request volume — currently the destination wallet is the only
       // one the admin actively monitors. Re-enable by un-commenting the
       // relayer line above + the second entry in the Promise.all below.
       const [destinationFull, gasRelayerFull] = await Promise.all([
         recipient
-          ? fetchWalletInfoFromZapper({ address: recipient, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
+          ? fetchWalletInfo({ address: recipient, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
           : Promise.resolve(null),
         // relayer
-        //   ? fetchWalletInfoFromZapper({ address: relayer, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
+        //   ? fetchWalletInfo({ address: relayer, chainIds: SUPPORTED_CHAIN_IDS, ethPrice, polPrice })
         //   : Promise.resolve(null),
         // Cast widens the placeholder's type so the `if (gasRelayerFull)`
         // branch below still type-checks while the relayer fetch is off.
@@ -109,7 +109,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // was silently dropping it. Native (ETH/POL) is preserved separately
         // via `ethBalance`.
         // address (lowercase) -> normalized symbol used by the rest of the
-        // app (TOKEN_ICONS, displays, exports). Zapper's on-chain `symbol()`
+        // app (TOKEN_ICONS, displays, exports). The on-chain `symbol()`
         // for USD₮0 returns the unicode tether glyph; mapping by address lets
         // us both filter to supported tokens AND normalize the symbol so
         // icon lookups (TOKEN_ICONS['USDT0']) keep working.
