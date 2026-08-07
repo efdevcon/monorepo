@@ -156,19 +156,25 @@ export default function ScanPage() {
       }
     }
 
+    // POAP mint QR codes: the POAP project shut down, minting is gone
+    if (value?.toLowerCase()?.includes('poap.xyz')) {
+      console.log('QR Scanner detected POAP URL:', value);
+      toast.error('POAP minting has ended', {
+        description:
+          'The POAP project has shut down, so this QR code can no longer be used to mint.',
+        duration: 8000,
+      });
+      return;
+    }
+
     // external urls
     if (
       value?.toLowerCase()?.startsWith('https://ef-events.notion.site/') ||
-      value?.toLowerCase()?.startsWith('https://devconnect.org/faq') ||
-      value?.toLowerCase()?.includes('poap.xyz')
+      value?.toLowerCase()?.startsWith('https://devconnect.org/faq')
     ) {
       console.log('QR Scanner detected external URL:', value);
       // Show modal instead of directly opening
-      setExternalUrl(
-        value?.includes('poap.xyz') && address
-          ? `${value?.replace('poap.xyz/mint/', 'collectors.poap.xyz/mint-v2/')}?collector=${address}`
-          : value
-      );
+      setExternalUrl(value);
       setIsExternalUrlModalOpen(true);
       return;
     }
@@ -259,43 +265,7 @@ export default function ScanPage() {
                     >
                       {externalUrl}
                     </a>
-                    {/* {externalUrl.toLowerCase().includes('poap.xyz') && address && (
-                      <div className="flex flex-col gap-1 mt-1">
-                        <span className="text-[#20202b] text-xs font-medium">
-                          Copy your wallet address before minting:
-                        </span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[#0073de] text-xs font-medium">
-                            <WalletDisplay address={address} />
-                          </span>
-                          <button
-                            onClick={() => {
-                              if (address) {
-                                navigator.clipboard.writeText(address);
-                                
-                                // Create copy icon using MDI
-                                const copyIcon = React.createElement(Icon, {
-                                  path: mdiContentCopy,
-                                  size: 0.67,
-                                  color: 'white',
-                                });
-
-                                toast.success('Address copied to clipboard', {
-                                  description: address,
-                                  icon: copyIcon,
-                                });
-                              }
-                            }}
-                            className="cursor-pointer hover:opacity-70 transition-opacity shrink-0"
-                          >
-                            <Icon path={mdiContentCopy} size={0.55} color="#0073de" />
-                          </button>
-                        </div>
-                      </div>
-                    )} */}
-                    {!externalUrl.toLowerCase().includes('poap.xyz') && (
-                      <span className="mt-2">Would you like to open it?</span>
-                    )}
+                    <span className="mt-2">Would you like to open it?</span>
                   </div>
                 </div>
 
@@ -312,17 +282,15 @@ export default function ScanPage() {
                     className="w-full bg-[#0073de] hover:bg-[#0060c0] px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] flex items-center justify-center gap-2 transition-colors"
                   >
                     <span className="text-white text-base font-bold">
-                      {externalUrl.toLowerCase().includes('poap.xyz')
-                        ? 'Mint POAP'
+                      {externalUrl
+                        .toLowerCase()
+                        .startsWith('https://devconnect.org/faq')
+                        ? 'Support FAQ'
                         : externalUrl
                               .toLowerCase()
-                              .startsWith('https://devconnect.org/faq')
-                          ? 'Support FAQ'
-                          : externalUrl
-                                .toLowerCase()
-                                .startsWith('https://ef-events.notion.site/')
-                            ? 'Open Notion Documentation'
-                            : 'Open External Link'}
+                              .startsWith('https://ef-events.notion.site/')
+                          ? 'Open Notion Documentation'
+                          : 'Open External Link'}
                     </span>
                     <Icon
                       path={mdiArrowRight}

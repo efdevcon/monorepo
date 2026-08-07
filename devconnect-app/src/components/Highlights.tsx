@@ -109,7 +109,7 @@ export const Highlights = () => {
     },
     {
       title: t('leaderboardPost'),
-      to: 'https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors',
+      to: 'https://poap.in/collections/25009',
       description: t('leaderboardPostDescription'),
       image: Leaderboard,
     },

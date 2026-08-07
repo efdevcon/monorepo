@@ -151,7 +151,7 @@ export default function LeaderboardPage() {
                 Jump to My Position
               </button>
               <a
-                href="https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors"
+                href="https://poap.in/collections/25009"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors flex items-center justify-center gap-2"
@@ -162,7 +162,7 @@ export default function LeaderboardPage() {
             </>
           ) : (
             <a
-              href="https://collections.poap.xyz/collections/devconnect-arg/25009?tab=collectors"
+              href="https://poap.in/collections/25009"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 w-full px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors flex items-center justify-center gap-2"
