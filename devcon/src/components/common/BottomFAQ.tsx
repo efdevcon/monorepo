@@ -1,10 +1,12 @@
 import React from 'react'
 import Image, { type StaticImageData } from 'next/image'
 import ReactMarkdown from 'react-markdown'
-import FaqBg from 'components/domain/landing-page/images/new/faq-bg.svg'
+import FaqBg from 'components/common/images/faq-bg.svg'
 import { Faq, FaqItem } from 'components/common/faq'
-import { BloomingEthFlower } from 'components/domain/landing-page/BloomingEthFlower'
+import { BloomingEthFlower } from 'components/common/BloomingEthFlower'
 import { Link } from 'components/common/link'
+import { ctaSecondary } from 'components/common/cta'
+import { sectionX, sectionHeading } from 'components/common/styles'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -25,20 +27,18 @@ export const BottomFAQ = ({ heading, items, viewAllLabel, viewAllHref, banner, b
     <>
       {banner && (
         <div className="relative w-full aspect-[430/180] sm:aspect-[1440/320] overflow-hidden">
-          <Image src={banner} alt={bannerAlt} fill className="object-cover object-bottom" />
+          <Image src={banner} alt={bannerAlt} fill sizes="100vw" className="object-cover object-bottom" />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(34,17,68,0.57)] to-transparent mix-blend-overlay pointer-events-none" />
         </div>
       )}
 
-      <div className="relative bg-[#fff0e6] pt-12 sm:pt-20 pb-10 sm:pb-16 px-5 sm:px-8 md:px-16 flex flex-col items-center gap-6 sm:gap-8 overflow-hidden">
+      <div className={`relative bg-[#fff0e6] pt-12 sm:pt-20 pb-10 sm:pb-16 ${sectionX} flex flex-col items-center gap-6 sm:gap-8 overflow-hidden`}>
       <FaqBg
         aria-hidden
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[35%] w-[1770px] max-w-none h-[810px] pointer-events-none select-none opacity-60"
       />
 
-      <h2 className="relative text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b] text-center">
-        {heading}
-      </h2>
+      <h2 className={`relative ${sectionHeading} text-center`}>{heading}</h2>
 
       <div className="relative w-full max-w-[760px]">
         <Faq items={items} />
@@ -46,7 +46,7 @@ export const BottomFAQ = ({ heading, items, viewAllLabel, viewAllHref, banner, b
 
       <Link
         to={viewAllHref}
-        className="relative inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold leading-none text-[#1a0d33] bg-white/80 border border-[#dddae2] rounded-full hover:bg-white transition-colors min-h-[36px] whitespace-nowrap"
+        className={`relative ${ctaSecondary}`}
       >
         {viewAllLabel}
         <ArrowRight className="w-4 h-4 shrink-0" strokeWidth={2.5} />

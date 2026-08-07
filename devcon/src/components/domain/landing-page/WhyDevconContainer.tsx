@@ -1,53 +1,40 @@
 import React from 'react'
-import MandalaBg from './images/new/mandala-bg.svg'
+import MoonSymbol from './images/new/moon-symbol-cropped.svg'
 import { DevconIntro } from './DevconIntro'
 import { VideoPreview } from './VideoPreview'
+import { WhyDevconIndia } from './WhyDevconIndia'
 import { KeywordsSection } from './KeywordsSection'
 
 /**
  * Wrapper for the Devcon intro + video preview that share a unified background:
- * mandala pattern centered + radial purple gradients fading in from the sides.
- * Matches Figma node 3585:3253 (why-devcon-india-container).
+ * the cropped moon symbol anchored top-center + radial purple washes fading in
+ * from the sides beside the video. Matches Figma node 4917:522
+ * (why-devcon-india-container).
  */
 export const WhyDevconContainer = () => (
   <div
     className="relative overflow-hidden"
     style={{
+      // Side washes sit beside the video (~33% down the container), Figma 4917:522.
+      // No base fill — the section is transparent over the page-level
+      // #fbfafc→#eaeefe gradient (Figma group 4935:2865).
       background:
-        'radial-gradient(ellipse 65% 40% at 0% 50%, rgba(211,191,249,1) 0%, rgba(222,207,251,1) 24%, rgba(222,207,251,0) 100%), ' +
-        'radial-gradient(ellipse 65% 40% at 100% 50%, rgba(211,191,249,1) 0%, rgba(222,207,251,1) 24%, rgba(222,207,251,0) 100%), ' +
-        '#e4d9fc',
+        'radial-gradient(ellipse 50% 53% at 0% 33%, rgba(211,191,249,1) 0%, rgba(222,207,251,1) 24%, rgba(222,207,251,0) 100%), ' +
+        'radial-gradient(ellipse 50% 53% at 100% 33%, rgba(211,191,249,1) 0%, rgba(222,207,251,1) 24%, rgba(222,207,251,0) 100%)',
     }}
   >
-    {/* White radial glow — behind mandala, on top of background */}
+    {/* Cropped moon symbol behind the intro — fixed design size, centered (Figma 4917:523) */}
     <div
-      className="absolute inset-0 pointer-events-none"
-      style={{
-        background: 'radial-gradient(ellipse 50% 35% at 50% 15%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%)',
-      }}
-    />
-
-    {/* Mandala pattern: large, positioned toward the top, fading out at the bottom */}
-    <div
-      className="absolute left-1/2 top-0 w-[2000px] max-w-none pointer-events-none select-none"
-      style={
-        {
-          '--fill-0': 'rgba(255, 255, 255, 0.95)',
-          maskImage: 'linear-gradient(to bottom, black 0%, black 20%, transparent 52%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 20%, transparent 52%)',
-          transform: 'translateX(-50%) scale(85%) translateY(-30%)',
-        } as React.CSSProperties
-      }
+      aria-hidden
+      className="absolute left-1/2 -translate-x-1/2 top-0 w-[1438px] h-[1010px] max-w-none pointer-events-none select-none"
     >
-      <MandalaBg aria-hidden className="w-full h-auto" />
+      <MoonSymbol className="w-full h-full" />
     </div>
-
-    {/* Bottom fade to white */}
-    <div className="absolute bottom-0 left-0 right-0 h-[300px] bg-gradient-to-b from-transparent to-[#eae6f2] pointer-events-none" />
 
     <div className="relative">
       <DevconIntro />
       <VideoPreview />
+      <WhyDevconIndia />
       <KeywordsSection />
     </div>
   </div>

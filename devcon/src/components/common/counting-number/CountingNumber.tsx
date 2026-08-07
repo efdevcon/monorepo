@@ -9,6 +9,8 @@ type CountingNumberProps = {
   decimalPlaces?: number
   className?: string
   style?: React.CSSProperties
+  /** Fires once, when the displayed value first reaches the target */
+  onComplete?: () => void
 }
 
 export function CountingNumber({
@@ -19,8 +21,14 @@ export function CountingNumber({
   decimalPlaces = 0,
   className,
   style,
+  onComplete,
 }: CountingNumberProps) {
   const ref = React.useRef<HTMLSpanElement>(null)
+  const completedRef = React.useRef(false)
+  // Held in a ref so an inline `onComplete` arrow doesn't resubscribe the
+  // spring listener every render
+  const onCompleteRef = React.useRef(onComplete)
+  onCompleteRef.current = onComplete
   const motionVal = useMotionValue(fromNumber)
   const springVal = useSpring(motionVal, { stiffness: 60, damping: 30 })
   const isInView = useInView(ref, { once: true, margin: '0px' })
@@ -33,13 +41,22 @@ export function CountingNumber({
 
   React.useEffect(() => {
     const unsubscribe = springVal.on('change', latest => {
+      // The spring rests asymptotically and its last change event can land just
+      // shy of the target (e.g. 699.4 → "699" forever) — snap once within half
+      // a displayed unit.
+      const settled = Math.abs(latest - number) < 0.5 / Math.pow(10, decimalPlaces)
+      const value = settled ? number : latest
       if (ref.current) {
-        const formatted = decimalPlaces > 0 ? latest.toFixed(decimalPlaces) : Math.round(latest).toString()
+        const formatted = decimalPlaces > 0 ? value.toFixed(decimalPlaces) : Math.round(value).toString()
         ref.current.textContent = `${prefix}${formatted}${suffix}`
+      }
+      if (settled && !completedRef.current) {
+        completedRef.current = true
+        onCompleteRef.current?.()
       }
     })
     return () => unsubscribe()
-  }, [springVal, decimalPlaces, prefix, suffix])
+  }, [springVal, decimalPlaces, prefix, suffix, number])
 
   return (
     <span ref={ref} className={className} style={style}>

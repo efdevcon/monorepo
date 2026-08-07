@@ -12,11 +12,12 @@ import About3 from 'assets/images/carousel/about/about-3.jpg'
 import About4 from 'assets/images/carousel/about/about-4.jpg'
 import HeroBackground from './past-events-hero.png'
 import { Link } from 'components/common/link'
-import { LargeCallout } from 'components/domain/landing-page/LargeCallout'
+import { LargeCallout } from 'components/domain/about/LargeCallout'
 import { VideoCard } from 'components/common/card/VideoCard'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native/SwipeToScroll'
 import { Clock4, History, Users, Flag, Globe, CirclePlay, ExternalLink, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
+import { STAT_META } from 'components/common/india-stats/stats'
 import { useTranslations } from 'next-intl'
 
 const videos = [
@@ -85,34 +86,6 @@ const videos = [
     tags: ['Society and Systems'],
     speakers: ['Phoomparin Mano'],
     edition: 7,
-  },
-]
-
-const STAT_META = [
-  {
-    number: 1,
-    prefix: '#',
-    suffix: '',
-    decimals: 0,
-    source: 'GitHub',
-    url: 'https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/',
-  },
-  {
-    number: 76,
-    prefix: '',
-    suffix: '%',
-    decimals: 0,
-    source: 'Linux Foundation',
-    url: 'https://www.prnewswire.com/news-releases/linux-foundation-research-finds-open-source-is-key-to-driving-indias-ai-market-302688143.html',
-  },
-  { number: 1, prefix: '# ', suffix: '', decimals: 0, source: 'Electric Capital', url: 'https://www.electriccapital.com/' },
-  {
-    number: 2021,
-    prefix: '',
-    suffix: '',
-    decimals: 0,
-    source: 'TechCrunch',
-    url: 'https://techcrunch.com/2024/12/11/linux-foundation-sets-up-india-entity-to-boost-open-source-collaboration/',
   },
 ]
 

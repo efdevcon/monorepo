@@ -2,7 +2,7 @@ import React from 'react'
 import { ChevronDown } from 'lucide-react'
 import cn from 'classnames'
 import css from './accordion-group.module.scss'
-import { Reveal, RevealGroup } from './Reveal'
+import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 
 export interface AccordionGroupItem {
   id: string

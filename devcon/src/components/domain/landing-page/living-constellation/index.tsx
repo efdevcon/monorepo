@@ -5,6 +5,7 @@ import { LivingConstellationDesktop } from './LivingConstellationDesktop'
 import { LivingConstellationMobile } from './LivingConstellationMobile'
 import { AnimatedGradientBackground } from './AnimatedGradientBackground'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
+import { ctaPrimary } from 'components/common/cta'
 
 // Warm pastel palette — peach, pink, lavender, blue. Each circle is its own
 // drifting blob so the section never looks like a flat fill.
@@ -34,7 +35,7 @@ export function LivingConstellation() {
         href="https://archive.devcon.org"
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-10 inline-flex items-center gap-2 rounded-full bg-[#7235ED] hover:bg-[#6020d0] text-white text-sm font-bold px-6 py-3 transition-colors mt-10 min-[1300px]:mt-0 min-[1300px]:mb-12"
+        className={`relative z-10 ${ctaPrimary} mt-10 min-[1300px]:mt-0 min-[1300px]:mb-12`}
         style={{ fontFamily: 'Poppins, sans-serif' }}
       >
         Devcon archive
