@@ -1,6 +1,6 @@
 import React from 'react'
-import { WritingText } from './WritingText'
-import css from './landing-page.module.scss'
+import { WritingText } from 'components/common/WritingText'
+import css from './large-callout.module.scss'
 import { useTranslations } from 'next-intl'
 
 export function LargeCallout() {

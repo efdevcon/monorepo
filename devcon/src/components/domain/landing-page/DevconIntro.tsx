@@ -4,7 +4,7 @@ import DC8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { ctaPrimary } from './cta'
+import { ctaPrimary } from 'components/common/cta'
 
 export const DevconIntro = () => {
   const t = useTranslations('home.devcon_intro')

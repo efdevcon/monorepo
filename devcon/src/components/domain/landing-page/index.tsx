@@ -1,5 +1,5 @@
 import React from 'react'
-import { VenueDetails } from './VenueDetails'
+import { VenueDetails } from 'components/common/VenueDetails'
 import { WhyDevconContainer } from './WhyDevconContainer'
 import { JoinTheEvent } from './JoinTheEvent'
 import { VibeCarousel } from './VibeCarousel'

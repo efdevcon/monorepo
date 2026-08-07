@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
 import { STAT_META } from 'components/common/india-stats/stats'
-import { ctaSecondary } from './cta'
+import { ctaSecondary } from 'components/common/cta'
 
 /**
  * "Why Devcon India" block — Figma node 4917:617. Shares the stat figures and

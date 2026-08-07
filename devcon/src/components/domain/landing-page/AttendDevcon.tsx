@@ -5,7 +5,7 @@ import { PlanYourTrip } from './PlanYourTrip'
 import { GetInvolved } from './GetInvolved'
 import JaaliBorder from './images/new/jaali-purple-border.svg'
 import MoonElement from './images/new/dc8-moon-element.svg'
-import { Reveal } from 'components/domain/travel-guide/Reveal'
+import { Reveal } from 'components/common/reveal/Reveal'
 
 /**
  * "Attend Devcon" composite — Figma node 4917:814. Marigold→lavender gradient

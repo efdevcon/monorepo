@@ -24,7 +24,7 @@ import { Button } from 'lib/components/button'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { AddToCalendarButton } from 'components/domain/landing-page/AddToCalendarButton'
+import { AddToCalendarButton } from 'components/common/AddToCalendarButton'
 
 type SocialMediaProps = {
   onShare?: () => void

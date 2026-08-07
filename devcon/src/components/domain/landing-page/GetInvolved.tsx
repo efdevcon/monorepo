@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'components/common/link'
 import { MicVocal, Users, HandHeart, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { Reveal, RevealGroup } from 'components/domain/travel-guide/Reveal'
+import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 
 // Translatable text comes from intl; these are the per-card layout meta (icon + link)
 const cardMeta = [

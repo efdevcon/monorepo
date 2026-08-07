@@ -3,7 +3,7 @@ import { Link } from 'components/common/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
 import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
-import { ctaPrimary, ctaSecondary } from 'components/domain/landing-page/cta'
+import { ctaPrimary, ctaSecondary } from 'components/common/cta'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 
 type IconKind = 'check' | 'asterisk'

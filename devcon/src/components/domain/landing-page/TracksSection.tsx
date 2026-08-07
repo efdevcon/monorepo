@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { APPLY_URL, TRACK_IMAGES } from 'components/common/tracks/track-images'
-import { ctaSecondary } from './cta'
-import { Reveal, RevealGroup } from 'components/domain/travel-guide/Reveal'
+import { ctaSecondary } from 'components/common/cta'
+import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 
 // Home grid order (Figma 4928:1283) differs from the speaker_applications.tracks.items
 // array order — indices into that array, row by row.

@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useSpecialOffer } from 'hooks/useWaveStates'
-import { ctaPrimary } from './cta'
+import { ctaPrimary } from 'components/common/cta'
 
 export const EarlyBirdBanner = () => {
   const t = useTranslations('home.early_bird')

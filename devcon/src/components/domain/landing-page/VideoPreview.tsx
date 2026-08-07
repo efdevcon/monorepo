@@ -3,7 +3,7 @@ import Image from 'next/image'
 import VideoPoster from './images/new/video-thumbnail.jpg'
 import { Play } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { Reveal } from 'components/domain/travel-guide/Reveal'
+import { Reveal } from 'components/common/reveal/Reveal'
 
 export const VideoPreview = () => {
   const t = useTranslations('home.video')

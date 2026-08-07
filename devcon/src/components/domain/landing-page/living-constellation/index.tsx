@@ -5,7 +5,7 @@ import { LivingConstellationDesktop } from './LivingConstellationDesktop'
 import { LivingConstellationMobile } from './LivingConstellationMobile'
 import { AnimatedGradientBackground } from './AnimatedGradientBackground'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
-import { ctaPrimary } from '../cta'
+import { ctaPrimary } from 'components/common/cta'
 
 // Warm pastel palette — peach, pink, lavender, blue. Each circle is its own
 // drifting blob so the section never looks like a flat fill.

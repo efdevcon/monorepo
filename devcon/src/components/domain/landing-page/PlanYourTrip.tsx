@@ -4,7 +4,7 @@ import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import PlanTripMumbai from './images/new/plan-trip-mumbai.jpg'
-import { ctaSecondary } from './cta'
+import { ctaSecondary } from 'components/common/cta'
 
 /**
  * "Plan your trip" — Figma node 4917:955. Copy + travel-guide CTA on the left,
