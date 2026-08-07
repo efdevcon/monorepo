@@ -3,7 +3,8 @@ import { usePathname } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import { NAV_ITEMS } from '@/config/nav-items';
 import { useEffect } from 'react';
-import TicketPreloader from '@/components/TicketPreloader';
+// Ticket preloading disabled: Pretix ticketing was retired after the event
+// import TicketPreloader from '@/components/TicketPreloader';
 
 export default function HomePageLayout({
   children,
@@ -31,8 +32,8 @@ export default function HomePageLayout({
         component: () => null,
       }))}
     >
-      {/* Preload tickets in the background when user is authenticated */}
-      <TicketPreloader />
+      {/* Ticket preloading disabled: Pretix ticketing was retired after the event */}
+      {/* <TicketPreloader /> */}
       {children}
     </PageLayout>
   );

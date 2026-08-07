@@ -653,11 +653,25 @@ const TicketTab = RequiresAuthHOC(() => {
     >
       <div className="w-full">
         <div className="w-full">
+          {/* Post-event notice: ticketing has been retired */}
+          <div className="bg-[#eaf4fb] flex flex-col gap-2 p-4 rounded mb-4">
+            <p className="font-bold text-[#20202b] text-base leading-none tracking-[-0.1px]">
+              Devconnect ARG has ended
+            </p>
+            <p className="text-[#353548] text-sm leading-[1.3]">
+              Ticketing for the event has been retired, so tickets can no
+              longer be loaded or refreshed. Tickets you added during the
+              event are still shown below as a keepsake, but their QR codes
+              are no longer active.
+            </p>
+          </div>
+
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <div className="flex flex-col gap-1 order-2 sm:order-1">
               <div className="text-lg font-semibold flex items-center gap-2 justify-between lg:justify-start">
                 {t('yourDevconnectTicket')}
-                <button
+                {/* Refresh disabled: the Pretix ticketing server was retired after the event */}
+                {/* <button
                   className="text-sm basic-button white-button small-button !gap-1.5 text-gray-600 hover:text-gray-900 flex items-center !p-1 !px-1.5 !h-auto"
                   onClick={async () => {
                     if (loadingInternal || loading) {
@@ -675,7 +689,7 @@ const TicketTab = RequiresAuthHOC(() => {
                   <RefreshCw
                     className={`w-3.5 h-3.5 ${loadingInternal || loading ? 'animate-spin' : ''}`}
                   />
-                </button>
+                </button> */}
               </div>
 
               {hasTickets && (
@@ -684,14 +698,15 @@ const TicketTab = RequiresAuthHOC(() => {
                 </div>
               )}
 
-              {!hasTickets && (
+              {/* Email linking removed: tickets can no longer be loaded now that the event has ended */}
+              {/* {!hasTickets && (
                 <div className="text-sm">
                   {t('loadTicketsDescription')}
                 </div>
-              )}
+              )} */}
             </div>
 
-            <ConnectedEmails />
+            {/* <ConnectedEmails /> */}
           </div>
 
           {isLoading && (

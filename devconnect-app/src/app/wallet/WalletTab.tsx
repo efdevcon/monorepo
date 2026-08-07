@@ -38,8 +38,17 @@ import {
   mdiInformationOutline,
   mdiClose,
   mdiArrowRight,
+  mdiArrowTopRight,
   mdiInformation,
 } from '@mdi/js';
+
+// The event has ended: the in-app balance, assets and activity views are
+// retired (the wallet info card links to Zerion instead), and the My Perks
+// section is hidden since perk claiming ended with the event. Flip to true to
+// restore them. Typed as boolean (not literal false) so TypeScript keeps
+// type-checking the disabled JSX with normal narrowing.
+const SHOW_ONCHAIN_SECTIONS: boolean = false;
+const SHOW_PERKS_SECTION: boolean = false;
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -929,7 +938,7 @@ export default function WalletTab() {
           <div className="flex flex-col items-center justify-center py-4 text-[#0073de]">
             <Icon path={mdiCached} size={1.2} className="mb-2" />
             <span className="text-sm font-medium">
-              Pull to refresh portfolio
+              Pull to refresh
             </span>
           </div>
         }
@@ -937,7 +946,7 @@ export default function WalletTab() {
           <div className="flex flex-col items-center justify-center py-4 text-[#0073de]">
             <Icon path={mdiCached} size={1.2} className="mb-2 animate-spin" />
             <span className="text-sm font-medium">
-              Refreshing portfolio balances and perks status...
+              Refreshing wallet and perks status...
             </span>
           </div>
         }
@@ -949,19 +958,43 @@ export default function WalletTab() {
         <div className="flex-1 w-full">
           {/* Main Content */}
           <div className="px-6 pt-6 space-y-6">
-            {/* Export Private Key Info */}
+            {/* Post-event wallet info: balance lookup + private key export */}
             <div className="bg-[#eaf4fb] flex flex-col gap-2 p-4 rounded">
               <div className="flex flex-col gap-2">
                 <p className="font-bold text-[#20202b] text-base leading-none tracking-[-0.1px]">
-                  Exporting your Private Key
+                  Your wallet after Devconnect
                 </p>
                 <p className="text-[#353548] text-sm leading-[1.3]">
-                  Devconnect ARG has concluded. If you still hold funds within{' '}
+                  Devconnect ARG has concluded, and the in-app Assets and
+                  Activity views are no longer available. You can check your
+                  wallet balance and transaction history anytime on Zerion.
+                </p>
+                <p className="text-[#353548] text-sm leading-[1.3]">
+                  If you still hold funds within{' '}
                   <span className="font-bold">your Para wallet</span>, you can
                   export your private key via Settings if you want to manage
-                  your funds via a different wallet.
+                  your funds via a different self custodial wallet.
                 </p>
               </div>
+              <a
+                href={
+                  address
+                    ? `https://app.zerion.io/${address}/overview`
+                    : 'https://app.zerion.io'
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <span className="font-bold text-[#0073de] text-sm leading-none">
+                  View wallet balance on Zerion
+                </span>
+                <Icon
+                  path={mdiArrowTopRight}
+                  size={0.65}
+                  className="text-[#0073de]"
+                />
+              </a>
               <button
                 onClick={() => router.push('/wallet/settings')}
                 className="flex items-center gap-2 cursor-pointer"
@@ -1123,6 +1156,9 @@ export default function WalletTab() {
               </div>
             )} */}
 
+                {/* Total balance + refresh - hidden with the other balance views
+                    now that the event has ended (see the Zerion link above) */}
+                {SHOW_ONCHAIN_SECTIONS && (
                 <div className="flex items-center justify-center">
                   <div className="relative inline-flex items-center">
                     <span className="text-[#20202b] text-[36px] font-bold tracking-[-0.1px] leading-[1.2]">
@@ -1150,6 +1186,7 @@ export default function WalletTab() {
                     </button>
                   </div>
                 </div>
+                )}
 
                 {/* BlockExplorer Link - shown after multiple refreshes */}
                 {shouldShowBlockExplorer && address && (
@@ -1208,7 +1245,7 @@ export default function WalletTab() {
                       className="text-[#0073de]"
                     />
                   </button>
-                  <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
+                  <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px] mb-2">
                     Receive
                   </span>
                 </div>
@@ -1229,7 +1266,7 @@ export default function WalletTab() {
                         className="text-[#0073de]"
                       />
                     </button>
-                    <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px]">
+                    <span className="text-[#353548] text-xs md:text-sm font-medium tracking-[-0.1px] mb-2">
                       Send
                     </span>
                   </div>
@@ -1277,14 +1314,18 @@ export default function WalletTab() {
               </div>
             </div>
 
-            {/* My Perks Section */}
+            {/* My Perks Section - hidden: perk claiming ended with the event.
+                Wrapped in a flag instead of a JSX comment because the block
+                contains nested comments. */}
+            {SHOW_PERKS_SECTION && (
             <div className="flex flex-col gap-4">
               <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
                 My Perks
               </p>
 
-              {/* No Ticket State */}
-              {!hasTicket && (
+              {/* No Ticket State - disabled: ticket linking ended with the event
+                  (Pretix ticketing retired), so the "Add my ticket" CTA is gone */}
+              {false && !hasTicket && (
                 <div className="bg-white border border-[#ededf0] rounded-[2px] p-4 flex flex-col gap-4">
                   {/* Top Row: Text + Icon (mobile and desktop) */}
                   <div className="flex gap-6 items-start">
@@ -1577,8 +1618,13 @@ export default function WalletTab() {
                 </div>
               )}
             </div>
+            )}
 
-            {/* Assets Section */}
+            {/* Assets Section - disabled now that the event has ended (balance,
+                assets and activity moved to the Zerion link in the info card
+                above). Wrapped in a flag instead of a JSX comment because the
+                block contains nested comments. */}
+            {SHOW_ONCHAIN_SECTIONS && (
             <div className="space-y-1 mb-0 pb-5">
               {/* Tabs */}
               <div className="bg-[#e5f1fb] p-1 rounded-[2px] flex gap-2">
@@ -2120,6 +2166,7 @@ export default function WalletTab() {
                 )}
               </div>
             </div>
+            )}
 
             {/* Exchange Section */}
             {/* {!isBetaMode && (

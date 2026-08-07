@@ -126,7 +126,8 @@ export function useInitParaJwt({
                 
                 // Trigger SWR cache refresh for user data now that authentication is ready
                 mutate('/api/auth/user-data');
-                mutate('/api/auth/tickets');
+                // Ticket fetching disabled: Pretix ticketing was retired after the event
+                // mutate('/api/auth/tickets');
               } catch (error) {
         console.error('❌ [PARA_JWT_INIT] Failed to initialize:', error);
         // Remove from cache so it can be retried

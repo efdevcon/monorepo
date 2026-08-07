@@ -201,8 +201,12 @@ export function useTickets(
   const { email } = useUserData(); // Wait for email before fetching tickets
 
   const { data, error, isLoading, isValidating, mutate: swrMutate } = useSWR<TicketsResponse>(
-    // Only fetch if email exists (dependency on user being logged in)
-    email ? '/api/auth/tickets' : null,
+    // Devconnect ARG has concluded and the Pretix ticketing server was retired,
+    // so tickets are never fetched anymore (key is always null). Tickets a user
+    // loaded during the event remain available through the persisted Zustand
+    // fallback passed in below. Restore the line below to re-enable fetching.
+    // email ? '/api/auth/tickets' : null,
+    null,
     fetchAuth,
     {
       fallbackData: fallbackData
@@ -223,12 +227,15 @@ export function useTickets(
     }
   );
 
-  // Custom refresh function that bypasses server cache
+  // Custom refresh function that bypasses server cache.
+  // Disabled along with the fetch above (Pretix server retired after the event).
   const refresh = async () => {
-    return swrMutate(async () => {
-      console.log('🔄 Refreshing tickets with cache bypass...');
-      return fetchAuth('/api/auth/tickets?refresh=true');
-    });
+    console.log('🔄 Ticket refresh skipped: Pretix ticketing was retired after the event');
+    return swrMutate();
+    // return swrMutate(async () => {
+    //   console.log('🔄 Refreshing tickets with cache bypass...');
+    //   return fetchAuth('/api/auth/tickets?refresh=true');
+    // });
   };
 
   // Generate QR codes from ticket data (use persisted codes as initial state)

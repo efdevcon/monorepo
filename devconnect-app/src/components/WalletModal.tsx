@@ -636,8 +636,9 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                         </>
                       )}
                     </div>
-                    {/* Balance Display */}
-                    <div className="text-xs font-semibold text-[#242436] mt-1">
+                    {/* Balance Display - hidden with the other balance views
+                        now that the event has ended */}
+                    {/* <div className="text-xs font-semibold text-[#242436] mt-1">
                       {(() => {
                         const balance = getPortfolioBalance(wallet.address);
                         if (balance !== null && balance !== undefined) {
@@ -645,7 +646,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                         }
                         return portfolioLoading ? 'Loading...' : '$0.00';
                       })()}
-                    </div>
+                    </div> */}
                     {/* <div className="text-xs text-[#4b4b66]">
                       {wallet.isCurrent ? 'Current' : 'Switch'}
                     </div> */}

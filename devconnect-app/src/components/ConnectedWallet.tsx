@@ -18,8 +18,10 @@ import { appKit } from '@/config/appkit';
 import { useConnectorClient } from 'wagmi';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
-import LinkTicket from './LinkTicket';
-import PortfolioModal from './PortfolioModal';
+// Ticket linking ended with the event (Pretix ticketing retired)
+// import LinkTicket from './LinkTicket';
+// Portfolio view disabled now that the event has ended
+// import PortfolioModal from './PortfolioModal';
 import NetworkSwitcher from './NetworkSwitcher';
 import { useWallet } from '@/context/WalletContext';
 import { ZupassProvider } from '@/context/ZupassProvider';
@@ -605,7 +607,8 @@ export default function ConnectedWallet() {
       </div>
 
       <div className="flex flex-col gap-2 border-t pt-4">
-        {address && <PortfolioModal address={address} email={email} />}
+        {/* Portfolio view disabled now that the event has ended */}
+        {/* {address && <PortfolioModal address={address} email={email} />} */}
 
         {/* SIWE Verification Button - disabled for now */}
         {/* {siweEnabled && (

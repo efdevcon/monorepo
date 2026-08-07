@@ -1,4 +1,207 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createServerClient } from '../auth/supabaseServerClient';
+import peanut from '@squirrel-labs/peanut-sdk';
+
+// This route used to aggregate the full wallet portfolio (token balances +
+// activity feed) from the Zapper GraphQL API, which is gone (the balance and
+// activity views were retired from the app when the event ended). What remains
+// is the data the app still needs:
+//   - worldfairDomain: .worldfair.eth subname NFT detection, now done via the
+//     Alchemy NFT API instead of Zapper
+//   - peanutClaimingState: the user's $2 USDC perk claim status (Supabase +
+//     Peanut protocol)
+// The response keeps the original shape; tokenBalances/recentActivity are
+// always empty now.
+
+const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_APIKEY;
+
+// worldfair.eth subname NFTs on Base
+const SPECIFIC_NFT_CONTRACT = '0xD6A7dCDEe200Fa37F149323C0aD6b3698Aa0E829';
+
+/**
+ * Find the .worldfair.eth subname NFT owned by an address, if any.
+ * Queries the Alchemy NFT API on Base, filtered to the subname contract.
+ */
+async function getWorldfairDomain(address: string): Promise<string | null> {
+  if (!ALCHEMY_API_KEY) {
+    console.error('Alchemy API key not configured, skipping worldfair.eth lookup');
+    return null;
+  }
+
+  try {
+    const url =
+      `https://base-mainnet.g.alchemy.com/nft/v3/${ALCHEMY_API_KEY}/getNFTsForOwner` +
+      `?owner=${address}&contractAddresses[]=${SPECIFIC_NFT_CONTRACT}&withMetadata=true&pageSize=100`;
+
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error('Alchemy NFT API error:', response.status, response.statusText);
+      return null;
+    }
+
+    const data = await response.json();
+    const ownedNfts: Array<{ name?: string; tokenId?: string }> = data.ownedNfts || [];
+
+    for (const nft of ownedNfts) {
+      const name = nft.name || '';
+      if (name.endsWith('.worldfair.eth')) {
+        console.log(`✅ [Portfolio] Found worldfair.eth domain from NFT:`, {
+          domain: name,
+          tokenId: nft.tokenId,
+        });
+        return name;
+      }
+    }
+
+    if (ownedNfts.length > 0) {
+      console.log(
+        `ℹ️ [Portfolio] Address ${address} has ${ownedNfts.length} NFT(s) from worldfair contract but none have .worldfair.eth name`
+      );
+    }
+    return null;
+  } catch (error) {
+    console.error('Error checking worldfair.eth NFT ownership:', error);
+    return null;
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const { address, email } = await request.json();
+
+    console.log('Portfolio API called for address:', address, email ? `by user: ${email}` : '(unauthenticated)');
+
+    if (!address) {
+      return NextResponse.json(
+        { error: 'Address is required' },
+        { status: 400 }
+      );
+    }
+
+    // Extract worldfair.eth domain name from NFT ownership
+    const worldfairDomain = await getWorldfairDomain(address);
+
+    // ============================================
+    // Check for peanut claiming link associated with this user (optional, requires auth)
+    // This allows the frontend to show claiming status in the wallet UI
+    // Email is provided by frontend if user is authenticated
+    // ============================================
+    let peanutClaimingState = null;
+
+    if (email) {
+      try {
+        const supabase = createServerClient();
+
+        console.log('Portfolio request from authenticated user:', email);
+
+        // Query for claiming link by user email directly
+        const { data: claimingLink, error: claimError } = await supabase
+          .from('devconnect_app_claiming_links')
+          .select('*')
+          .eq('claimed_by_user_email', email)
+          .maybeSingle();
+
+        if (claimError) {
+          console.error('Error checking peanut claiming link:', claimError);
+        } else if (claimingLink) {
+          console.log('Found claiming link for user:', email);
+
+          // Check the actual claim status on Peanut protocol
+          try {
+            const linkDetails = await peanut.getLinkDetails({
+              link: claimingLink.link,
+            });
+
+            // Try to get transaction hash from Peanut API if claimed
+            let txHash = null;
+            if (linkDetails.claimed && linkDetails.rawOnchainDepositInfo) {
+              try {
+                const pubKey20 = (linkDetails.rawOnchainDepositInfo as any).pubKey20;
+                if (pubKey20) {
+                  const apiUrl = `https://api.peanut.me/send-links/${pubKey20}?c=${linkDetails.chainId}&v=${linkDetails.contractVersion}&i=${linkDetails.depositIndex}`;
+                  const apiResponse = await fetch(apiUrl);
+                  if (apiResponse.ok) {
+                    const apiData = await apiResponse.json();
+                    txHash = apiData.claim?.txHash || null;
+                  }
+                }
+              } catch (apiError) {
+                console.error('Error fetching transaction hash from Peanut API:', apiError);
+              }
+            }
+
+            peanutClaimingState = {
+              amount: claimingLink.amount,
+              claimed_date: claimingLink.claimed_date,
+              ticket_secret_proof: claimingLink.ticket_secret_proof,
+              // Peanut protocol claim status (actual blockchain state)
+              peanut_claimed: linkDetails.claimed,
+              // Transaction hash from Peanut API
+              tx_hash: txHash,
+              // Database claim status
+              db_claimed_by_address: claimingLink.claimed_by_address,
+              db_claimed_by_user_email: claimingLink.claimed_by_user_email,
+            };
+
+            console.log('Peanut claiming state:', {
+              userEmail: email,
+              peanut_claimed: linkDetails.claimed,
+              tx_hash: txHash,
+              db_claimed: !!claimingLink.claimed_by_user_email,
+            });
+          } catch (peanutError) {
+            console.error('Error fetching peanut link details:', peanutError);
+            // Still return database info even if peanut check fails
+            peanutClaimingState = {
+              amount: claimingLink.amount,
+              claimed_date: claimingLink.claimed_date,
+              ticket_secret_proof: claimingLink.ticket_secret_proof,
+              peanut_claimed: null, // Unknown state
+              tx_hash: null,
+              db_claimed_by_address: claimingLink.claimed_by_address,
+              db_claimed_by_user_email: claimingLink.claimed_by_user_email,
+              error: 'Failed to check Peanut protocol status',
+            };
+          }
+        } else {
+          console.log('No claiming link found for user:', email);
+        }
+      } catch (supabaseError) {
+        console.error('Error accessing Supabase for peanut check:', supabaseError);
+      }
+    }
+
+    return NextResponse.json({
+      // Balance and activity data retired with the event; kept for response
+      // shape compatibility with cached portfolio consumers.
+      totalValue: 0,
+      tokenBalances: [],
+      recentActivity: [],
+      peanutClaimingState,
+      worldfairDomain,
+    });
+
+  } catch (error) {
+    console.error('Portfolio API error:', error);
+    return NextResponse.json(
+      {
+        error: 'Internal server error',
+        errorType: 'INTERNAL_ERROR',
+      },
+      { status: 500 }
+    );
+  }
+}
+
+/* ============================================================================
+ * RETIRED: original Zapper-based implementation, kept for reference.
+ * The Zapper GraphQL API (public.zapper.xyz/graphql) was shut down after the
+ * event ended, taking the token balance + activity feed aggregation with it.
+ * The peanut claiming section further below in the old code was carried over
+ * unchanged into the live handler above.
+ * ============================================================================
+
+import { NextRequest, NextResponse } from 'next/server';
 import { chains, convertNetworkToChainId } from '@/config/networks';
 import { ENTRYPOINT_ADDRESS } from '@/config/config';
 import { createServerClient } from '../auth/supabaseServerClient';
@@ -423,113 +626,5 @@ export async function POST(request: NextRequest) {
     // Process activity data
     const recentActivity = activityResult.data?.transactionHistoryV2?.edges?.map((edge: any) => edge.node) || [];
 
-    // ============================================
-    // Check for peanut claiming link associated with this user (optional, requires auth)
-    // This allows the frontend to show claiming status in the wallet UI
-    // Email is provided by frontend if user is authenticated
-    // ============================================
-    let peanutClaimingState = null;
-    
-    if (email) {
-      try {
-        const supabase = createServerClient();
 
-        console.log('Portfolio request from authenticated user:', email);
-
-        // Query for claiming link by user email directly
-        const { data: claimingLink, error: claimError } = await supabase
-          .from('devconnect_app_claiming_links')
-          .select('*')
-          .eq('claimed_by_user_email', email)
-          .maybeSingle();
-
-        if (claimError) {
-          console.error('Error checking peanut claiming link:', claimError);
-        } else if (claimingLink) {
-          console.log('Found claiming link for user:', email);
-
-          // Check the actual claim status on Peanut protocol
-          try {
-            const linkDetails = await peanut.getLinkDetails({
-              link: claimingLink.link,
-            });
-
-            // Try to get transaction hash from Peanut API if claimed
-            let txHash = null;
-            if (linkDetails.claimed && linkDetails.rawOnchainDepositInfo) {
-              try {
-                const pubKey20 = (linkDetails.rawOnchainDepositInfo as any).pubKey20;
-                if (pubKey20) {
-                  const apiUrl = `https://api.peanut.me/send-links/${pubKey20}?c=${linkDetails.chainId}&v=${linkDetails.contractVersion}&i=${linkDetails.depositIndex}`;
-                  const apiResponse = await fetch(apiUrl);
-                  if (apiResponse.ok) {
-                    const apiData = await apiResponse.json();
-                    txHash = apiData.claim?.txHash || null;
-                  }
-                }
-              } catch (apiError) {
-                console.error('Error fetching transaction hash from Peanut API:', apiError);
-              }
-            }
-
-            peanutClaimingState = {
-              amount: claimingLink.amount,
-              claimed_date: claimingLink.claimed_date,
-              ticket_secret_proof: claimingLink.ticket_secret_proof,
-              // Peanut protocol claim status (actual blockchain state)
-              peanut_claimed: linkDetails.claimed,
-              // Transaction hash from Peanut API
-              tx_hash: txHash,
-              // Database claim status
-              db_claimed_by_address: claimingLink.claimed_by_address,
-              db_claimed_by_user_email: claimingLink.claimed_by_user_email,
-            };
-
-            console.log('Peanut claiming state:', {
-              userEmail: email,
-              peanut_claimed: linkDetails.claimed,
-              tx_hash: txHash,
-              db_claimed: !!claimingLink.claimed_by_user_email,
-            });
-          } catch (peanutError) {
-            console.error('Error fetching peanut link details:', peanutError);
-            // Still return database info even if peanut check fails
-            peanutClaimingState = {
-              amount: claimingLink.amount,
-              claimed_date: claimingLink.claimed_date,
-              ticket_secret_proof: claimingLink.ticket_secret_proof,
-              peanut_claimed: null, // Unknown state
-              tx_hash: null,
-              db_claimed_by_address: claimingLink.claimed_by_address,
-              db_claimed_by_user_email: claimingLink.claimed_by_user_email,
-              error: 'Failed to check Peanut protocol status',
-            };
-          }
-        } else {
-          console.log('No claiming link found for user:', email);
-        }
-      } catch (supabaseError) {
-        console.error('Error accessing Supabase for peanut check:', supabaseError);
-      }
-    }
-
-    return NextResponse.json({
-      totalValue,
-      tokenBalances: filteredTokenBalances,
-      recentActivity,
-      peanutClaimingState,
-      worldfairDomain,
-    });
-
-  } catch (error) {
-    console.error('Portfolio API error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Internal server error',
-        errorType: 'INTERNAL_ERROR',
-      },
-      { status: 500 }
-    );
-  }
-} 
-
+============================================================================ */
