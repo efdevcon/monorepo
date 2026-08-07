@@ -135,15 +135,8 @@ $hairline: rgba(34, 17, 68, 0.1);
    both tiers, page-scoped so other pages keep the global 64/16 .section
    gutters. Two class selectors so this outranks the global .section rules. */
 
-.tg-gutters :global(.section) {
-  @media (min-width: $breakpoints-md) and (max-width: ($breakpoints-xl - 1)) {
-    grid-template-columns: minmax(32px, 1fr) minmax(auto, 1312px) minmax(32px, 1fr);
-  }
-
-  /* Mobile (Figma "lg Mobile 430"): 20px gutters, content 390 @430 */
-  @media (max-width: ($breakpoints-md - 1)) {
-    grid-template-columns: minmax(20px, 1fr) minmax(auto, 1312px) minmax(20px, 1fr);
-  }
+.tg-gutters {
+  @include layout-section-gutters;
 }
 
 /* Section vertical padding: uniform 48px at both new tiers, the shipped

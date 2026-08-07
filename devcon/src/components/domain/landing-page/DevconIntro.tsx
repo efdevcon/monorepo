@@ -5,13 +5,13 @@ import { Link } from 'components/common/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { ctaPrimary } from 'components/common/cta'
-import { sectionHeading, bodyCopy } from 'components/common/styles'
+import { sectionX, sectionInner, sectionHeading, bodyCopy } from 'components/common/styles'
 
 export const DevconIntro = () => {
   const t = useTranslations('home.devcon_intro')
   return (
-    <div className="relative section pt-8 sm:pt-10 pb-[48px] lg:pb-16">
-      <div className="flex flex-col items-center gap-[16px] text-center">
+    <div className={`relative ${sectionX} pt-8 sm:pt-10 pb-[48px] lg:pb-16`}>
+      <div className={`${sectionInner} flex flex-col items-center gap-[16px] text-center`}>
         <Image src={DC8Logo} alt="Devcon 8 India" className="w-[182px] h-auto" priority />
 
         <div className="flex flex-col items-center gap-[16px] max-w-[620px]">

@@ -4,6 +4,7 @@ import VideoPoster from './images/new/video-thumbnail.jpg'
 import { Play } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Reveal } from 'components/common/reveal/Reveal'
+import { sectionX, sectionInner } from 'components/common/styles'
 
 export const VideoPreview = () => {
   const t = useTranslations('home.video')
@@ -11,7 +12,8 @@ export const VideoPreview = () => {
 
   return (
     <div className="relative pb-10">
-      <div className="section">
+      <div className={sectionX}>
+        <div className={sectionInner}>
         {/* 88px reserved at lg+ so the vertical side labels stay fully visible
             even when the video would otherwise fill the content column */}
         <div className="w-full lg:w-[calc(100%-88px)] mx-auto lg:max-w-[1200px]">
@@ -65,6 +67,7 @@ export const VideoPreview = () => {
             )}
           </div>
           </Reveal>
+        </div>
         </div>
       </div>
     </div>

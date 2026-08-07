@@ -1,4 +1,5 @@
 @use './gaps';
+@use './breakpoints';
 
 $content-width: 1680px;
 $side-gap: gaps.$gap-16;
@@ -25,4 +26,20 @@ $max-content-width: $content-width + ($side-gap * 2);
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   column-gap: gaps.$gap-4;
+}
+
+// Figma page gutter ramp shared by the home and travel-guide pages: 20px
+// gutters on mobile, 32px from 768, and the global .section 64px from 1280.
+// Include from a page-scoped CSS-module class (two class selectors outrank
+// the global .section rules) so other pages keep the default gutters.
+@mixin section-gutters {
+  :global(.section) {
+    @media (min-width: breakpoints.$md) and (max-width: (breakpoints.$xl - 1)) {
+      grid-template-columns: minmax(32px, 1fr) minmax(auto, 1312px) minmax(32px, 1fr);
+    }
+
+    @media (max-width: (breakpoints.$md - 1)) {
+      grid-template-columns: minmax(20px, 1fr) minmax(auto, 1312px) minmax(20px, 1fr);
+    }
+  }
 }

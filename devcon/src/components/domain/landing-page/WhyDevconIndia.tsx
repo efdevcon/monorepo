@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { CountingNumber } from 'components/common/counting-number/CountingNumber'
 import { STAT_META } from 'components/common/india-stats/stats'
 import { ctaSecondary } from 'components/common/cta'
-import { sectionHeading, eyebrow, bodyCopy, leadCopy, glassCard } from 'components/common/styles'
+import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy, leadCopy, glassCard } from 'components/common/styles'
 
 /**
  * "Why Devcon India" block — Figma node 4917:617. Shares the stat figures and
@@ -17,8 +17,8 @@ export const WhyDevconIndia = () => {
   const stats = t.raw('stats') as Array<{ desc: string }>
 
   return (
-    <div className="relative section py-[48px]">
-      <div className="flex flex-col gap-[32px] sm:gap-[48px]">
+    <div className={`relative ${sectionX} py-[48px]`}>
+      <div className={`${sectionInner} flex flex-col gap-[32px] sm:gap-[48px]`}>
         <div className="flex flex-col gap-[24px] sm:gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <p className={eyebrow}>{t('eyebrow')}</p>

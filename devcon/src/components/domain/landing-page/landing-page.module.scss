@@ -1,18 +1,11 @@
 @use 'assets/css/partials/index' as *;
 
 /* ─── Page gutters ──────────────────────────── */
-/* Figma home frames: 20px gutters on mobile, 32px from 768 (the 1024 frame),
-   64px only from 1280. Page-scoped like travel-guide's .tg-gutters so other
-   pages keep the global .section gutters; two class selectors outrank the
-   global .section rules. */
-.home-gutters :global(.section) {
-  @media (min-width: $breakpoints-md) and (max-width: ($breakpoints-xl - 1)) {
-    grid-template-columns: minmax(32px, 1fr) minmax(auto, 1312px) minmax(32px, 1fr);
-  }
-
-  @media (max-width: ($breakpoints-md - 1)) {
-    grid-template-columns: minmax(20px, 1fr) minmax(auto, 1312px) minmax(20px, 1fr);
-  }
+/* Applied to the Hero wrapper in pages/index.tsx so its .section follows the
+   home ramp (it would otherwise jump 16 → 64px at 768). The landing-page
+   sections themselves use the sectionX/sectionInner Tailwind constants. */
+.home-gutters {
+  @include layout-section-gutters;
 }
 
 /* ─── Keywords ──────────────────────────────── */

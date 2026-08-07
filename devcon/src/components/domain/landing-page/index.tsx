@@ -9,7 +9,6 @@ import { LivingConstellation } from './living-constellation'
 import { AttendDevcon } from './AttendDevcon'
 import { FaqSection } from './FaqSection'
 import { EarlyBirdBanner } from './EarlyBirdBanner'
-import css from './landing-page.module.scss'
 
 interface LandingPageProps {
   faqItems?: Array<{ question: string; answer: string }>
@@ -17,7 +16,7 @@ interface LandingPageProps {
 
 export const LandingPage = ({ faqItems }: LandingPageProps) => {
   return (
-    <div className={css['home-gutters']}>
+    <div>
       <VenueDetails />
       {/* Shared backdrop for intro → tracks: one vertical wash the sections sit
           on transparently (Figma group 4935:2865) — their own gradients (purple
