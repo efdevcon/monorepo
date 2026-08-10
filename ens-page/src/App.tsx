@@ -17,8 +17,10 @@ export default function App() {
     fetchEnsProfile(ENS_NAME)
       .then(data => {
         setProfile({ status: 'ready', data })
-        // Swap the bundled fallback favicon for the live ENS avatar, so the
-        // tab icon follows record edits without a redeploy (like the page).
+        // Tab title and favicon follow the ENS records (Nickname + avatar),
+        // like the rest of the page: record edits, no redeploy. Same
+        // "Nickname (name.eth)" format as the build-time baked title.
+        document.title = data.displayName !== ENS_NAME ? `${data.displayName} (${ENS_NAME})` : ENS_NAME
         const icon = document.querySelector<HTMLLinkElement>('link[rel="icon"]')
         if (icon && data.avatar) icon.href = data.avatar
       })
@@ -26,6 +28,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    document.title = ENS_NAME // until the Nickname record loads
     loadProfile()
     // Links API failure hides the section gracefully (spec): stays 'error'.
     fetchLinks()

@@ -65,32 +65,35 @@ async function upload(supabase: SupabaseClient, key: string, body: Buffer, conte
 }
 
 /**
- * Mirror a Notion 'file' attachment into the public bucket and return its
- * stable public URL (thumbnail webp, original as fallback). External URLs
- * pass through untouched. Returns null when mirroring fails so a broken
- * image never breaks the links payload.
+ * Mirror a Notion image (uploaded attachment or external URL) into the public
+ * bucket and return its stable public URL (thumbnail webp, original as
+ * fallback). Everything is mirrored so the page never depends on third-party
+ * image hosts (hotlink blocks, slow hosts, link rot) or on Notion's expiring
+ * attachment URLs. On mirror failure, external URLs degrade to being served
+ * directly; attachments return null (their URL would expire anyway).
  */
 async function resolveImage(pageId: string, cell: NotionFileCell | null): Promise<string | null> {
   if (!cell) return null
-  if (cell.type === 'external') return cell.external?.url ?? null
-  const signedUrl = cell.file?.url
-  if (!signedUrl) return null
+  const sourceUrl = (cell.type === 'external' ? cell.external?.url : cell.file?.url) ?? null
+  if (!sourceUrl) return null
 
   try {
     const supabase = getSupabase()
     const publicUrl = (key: string) => supabase.storage.from(BUCKET).getPublicUrl(key).data.publicUrl
-    // Pathname (never the query string, which holds the expiring signature)
-    // identifies the uploaded file: Notion re-uploads get a new S3 path.
-    const pathname = new URL(signedUrl).pathname
-    const id = createHash('sha1').update(pathname).digest('hex').slice(0, 16)
+    // Identity for the immutable bucket key: for Notion attachments the S3
+    // pathname (the query string holds the expiring signature; re-uploads get
+    // a new path); for external images the whole URL, so pasting a different
+    // URL mirrors the new image.
+    const identity = cell.type === 'external' ? sourceUrl : new URL(sourceUrl).pathname
+    const id = createHash('sha1').update(identity).digest('hex').slice(0, 16)
     const base = `${FOLDER}/${pageId}-${id}`
     const keys = { original: `${base}-orig`, thumb: `${base}.webp` }
 
     const { data: thumbExists } = await supabase.storage.from(BUCKET).exists(keys.thumb)
     if (thumbExists) return publicUrl(keys.thumb)
 
-    const res = await fetch(signedUrl)
-    if (!res.ok) throw new Error(`Notion file download failed (${res.status})`)
+    const res = await fetch(sourceUrl)
+    if (!res.ok) throw new Error(`image download failed (${res.status})`)
     const original = Buffer.from(await res.arrayBuffer())
 
     const { data: originalExists } = await supabase.storage.from(BUCKET).exists(keys.original)
@@ -111,7 +114,8 @@ async function resolveImage(pageId: string, cell: NotionFileCell | null): Promis
     }
   } catch (e) {
     console.error(`[notion-links] image mirror failed for page ${pageId}:`, (e as Error).message)
-    return null
+    // A live external URL beats no image; expired attachment URLs do not.
+    return cell.type === 'external' ? sourceUrl : null
   }
 }
 

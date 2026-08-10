@@ -19,6 +19,16 @@ const ICONS: Record<string, ComponentType<{ className?: string }>> = {
   email: Mail,
 }
 
+// "https://devcon.org/en/" -> "devcon.org": the pill shows a readable name,
+// the full URL stays in the href.
+function hostname(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '')
+  } catch {
+    return url
+  }
+}
+
 export function ProfileSkeleton() {
   return (
     <div className="animate-pulse">
@@ -57,18 +67,19 @@ export function Profile({ profile }: { profile: EnsProfile }) {
         <h1 className="mt-3 font-display text-2xl font-bold">{profile.displayName}</h1>
         {profile.description && <p className="mt-1 text-neutral-600">{profile.description}</p>}
 
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-          {profile.url && (
-            <a
-              href={profile.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Website"
-              className="rounded-full p-2.5 text-neutral-700 transition hover:bg-neutral-100 hover:text-black"
-            >
-              <Globe className="h-5 w-5" />
-            </a>
-          )}
+        {profile.url && (
+          <a
+            href={profile.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-black"
+          >
+            <Globe className="h-4 w-4" />
+            {hostname(profile.url)}
+          </a>
+        )}
+
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
           {profile.socials.map(({ key, value }) => {
             const Icon = ICONS[key]
             const href = socialUrl(key, value)

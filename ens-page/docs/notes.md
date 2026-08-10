@@ -19,9 +19,11 @@ Spec: ../../docs/superpowers/specs/2026-08-10-ens-page-design.md
     channel links can either be a full URL in the record or a Notion link.
 - Campaign links: Notion database (Title, URL, Image, Order, Visible),
   managed by comms. Rows with Visible unchecked or missing Title/URL are
-  skipped. Images dragged into Notion are mirrored by the API into the public
-  Supabase bucket `ens-page-links` (stable URLs; edits take up to ~1h to
-  appear due to the CDN cache, or instantly via ?refresh=1).
+  skipped. All images (dragged-in attachments and pasted external URLs) are
+  mirrored by the API into the public Supabase bucket `ens-page-links`
+  (stable thumbnail URLs; edits take up to ~1h to appear due to the CDN
+  cache, or instantly via ?refresh=1). If mirroring an external URL fails it
+  is served directly as a fallback.
 
 ## Env vars
 
@@ -30,6 +32,12 @@ Spec: ../../docs/superpowers/specs/2026-08-10-ens-page-design.md
 | build | `VITE_ENS_NAME` | ENS name to render (d.krux.eth test, devcon.eth prod) |
 | build | `VITE_LINKS_API` | links endpoint override (default https://devcon.org/api/links/) |
 | build | `VITE_ALCHEMY_KEY` | optional Alchemy mainnet key, used as first RPC; create it with a domain allowlist (devcon.eth.limo, d.krux.eth.limo, localhost:5173); public RPCs remain as fallback for other origins |
+
+Share previews (OG/Twitter tags) are hardcoded in index.html, mirroring
+devcon.org's own tags, image included (hosted on devcon.org, so previews work
+regardless of gateway or contenthash state). Crawlers don't run JS, so this
+is the one content that needs editing index.html + a re-pin to change; keep
+it in sync with devcon.org's OG copy when that changes.
 | deploy script | `PINATA_JWT` | Pinata API key (scope pinFileToIPFS) |
 | setup script | `NOTION_SECRET` | Notion integration token |
 | devcon.org (Netlify) | `NOTION_SECRET` | used by /api/links/ (must be added to the Netlify site env) |
