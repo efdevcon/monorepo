@@ -44,7 +44,7 @@ const nextConfig = {
     localeDetection: false,
   },
   trailingSlash: true,
-  serverExternalPackages: ['@selfxyz/qrcode'],
+  serverExternalPackages: ['@selfxyz/qrcode', 'sharp'],
   experimental: {
     optimizePackageImports: [
       'viem',

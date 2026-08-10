@@ -100,19 +100,3 @@ export async function GetBlogs(maxItems: number = defaultMaxItems): Promise<Arra
     return []
   }
 }
-
-// Ordered list of editions for display
-export const EDITION_ORDER = [
-  'Devcon 8 India',
-  'Devconnect ARG',
-  'Devcon SEA',
-  'Devconnect IST',
-  'Devcon VI',
-  'Devconnect AMS',
-  'Devcon V',
-  'Devcon iv',
-  'devcon three',
-  'devcon two',
-  'DEVCON 1',
-  'DEV CON 0',
-]
