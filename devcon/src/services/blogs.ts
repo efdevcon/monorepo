@@ -1,6 +1,7 @@
 import Parser from 'rss-parser'
 import slugify from 'slugify'
 import { BlogPost } from 'types/BlogPost'
+import { ensurePublicBlogImage } from 'services/blog-images'
 
 const defaultMaxItems = 1000000
 
@@ -78,7 +79,22 @@ export async function GetBlogs(maxItems: number = defaultMaxItems): Promise<Arra
         } as BlogPost
       })
 
-    return blogs.slice(0, maxItems)
+    const sliced = blogs.slice(0, maxItems)
+
+    // Mirror card images into our Supabase bucket (stable, right-sized URLs
+    // instead of multi-MB originals on ethereum.org's GCS bucket). Bounded
+    // concurrency keeps first-build sharp work reasonable; already-mirrored
+    // images short-circuit on an existence check.
+    const CONCURRENCY = 8
+    for (let i = 0; i < sliced.length; i += CONCURRENCY) {
+      await Promise.all(
+        sliced.slice(i, i + CONCURRENCY).map(async blog => {
+          if (blog.imageUrl) blog.imageUrl = await ensurePublicBlogImage(blog.imageUrl)
+        })
+      )
+    }
+
+    return sliced
   } catch (error) {
     console.error('[GetBlogs] Failed to fetch blog RSS feed:', error)
     return []

@@ -29,6 +29,14 @@ const nextConfig = {
       'assets.tina.io',
       'cfp.ticketh.xyz',
     ],
+    remotePatterns: [
+      // Blog RSS enclosures live on ethereum.org's GCS bucket (fallback when
+      // the Supabase mirror in services/blog-images.ts is unavailable).
+      // Scoped to the bucket path so we don't optimize arbitrary GCS objects.
+      { protocol: 'https', hostname: 'storage.googleapis.com', pathname: '/ethereum-hackmd/**' },
+      // Our own mirrored images (blog-images, rtd-event-images buckets).
+      { protocol: 'https', hostname: '*.supabase.co', pathname: '/storage/v1/object/public/**' },
+    ],
   },
   i18n: {
     locales: ['default', 'en', 'hi', 'mr'],
