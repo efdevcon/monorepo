@@ -20,13 +20,16 @@ import { useNow } from './useNow'
  * false before hydration (useNow → null) and after `endsAt`, so surfaces
  * automatically revert to the regular wave rendering when the offer expires.
  * `url` is the Pretix redeem deep-link with the voucher pre-applied.
+ * Display "Ends {date}" copy from `endsAtDisplay`, not `endsAt`: the deadline
+ * is midnight-Pacific, so the `endsAt` instant falls on the next UTC day.
  */
-export function useSpecialOffer(): { active: boolean; url: string; endsAt: Date } {
+export function useSpecialOffer(): { active: boolean; url: string; endsAt: Date; endsAtDisplay: Date } {
   const now = useNow()
   return {
     active: SPECIAL_OFFER.active && !!now && now.getTime() < SPECIAL_OFFER.endsAt.getTime(),
     url: pretixEventUrl(`/redeem?voucher=${encodeURIComponent(SPECIAL_OFFER.voucherCode)}`),
     endsAt: SPECIAL_OFFER.endsAt,
+    endsAtDisplay: SPECIAL_OFFER.endsAtDisplay,
   }
 }
 

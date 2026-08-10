@@ -69,7 +69,7 @@ export const Hero = () => {
     : undefined
   const parts = showCountdown && featured?.upcoming && now ? splitCountdown(featured.upcoming, now) : null
   // Special voucher promo: takes over the widget until it expires (config/waves.ts).
-  const { active: showOffer, endsAt: offerEndsAt } = useSpecialOffer()
+  const { active: showOffer, endsAtDisplay: offerEndsAt } = useSpecialOffer()
 
   return (
     <div className="relative w-full h-[90vh] md:h-screen overflow-hidden">

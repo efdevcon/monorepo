@@ -24,7 +24,7 @@ export const Strip = () => {
   // Special voucher promo (config/waves.ts): strip advertises the offer until
   // it expires. The CTA still routes to /tickets (not straight to Pretix), so
   // buyers see every ticket type they may be eligible for first.
-  const { active: showOffer, endsAt: offerEndsAt } = useSpecialOffer()
+  const { active: showOffer, endsAtDisplay: offerEndsAt } = useSpecialOffer()
 
   if (isTickets) return null
 

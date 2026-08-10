@@ -231,7 +231,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
         row.actionHref = storeUrl
         row.actionNote = (
           <p className="text-xs font-semibold leading-4 text-[#7235ed] whitespace-nowrap">
-            11% off until {DAY_MONTH_FORMATTER.format(offer.endsAt)}
+            11% off until {DAY_MONTH_FORMATTER.format(offer.endsAtDisplay)}
           </p>
         )
       } else if (paused) {

@@ -88,7 +88,7 @@ export function LaunchBanner() {
               {t('special_heading')}
             </p>
             <p className="text-sm leading-none text-[#f2f1f4]">
-              {t('special_subheading', { date: DAY_MONTH_FORMATTER.format(offer.endsAt) })}
+              {t('special_subheading', { date: DAY_MONTH_FORMATTER.format(offer.endsAtDisplay) })}
             </p>
           </div>
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
