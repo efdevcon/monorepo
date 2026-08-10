@@ -38,7 +38,9 @@
     "send-install-reminder": "tsx src/scripts/send-install-reminder.ts",
     "students:bulk-validate": "ts-node src/scripts/students/bulk-validate-whitelisted.ts",
     "forms:decrypt": "tsx scripts/decrypt.ts",
-    "sync:discount-data": "tsx src/scripts/sync-discount-data.ts"
+    "sync:discount-data": "tsx src/scripts/sync-discount-data.ts",
+    "test:notion-links": "tsx src/scripts/test-notion-links.ts",
+    "test:links-api": "tsx src/scripts/test-links-api.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
