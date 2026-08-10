@@ -1,10 +1,11 @@
 import { GetAudioData } from '@/clients/filesystem'
 import { Request, Response, Router } from 'express'
 import { API_DEFAULTS, API_INFO, DEVCON_INFO } from '@/utils/config'
+import { publicCache } from '@/middleware/cache'
 import * as store from '@/data/store'
 
 export const rssRouter = Router()
-rssRouter.get(`/rss/podcast`, GetPodcasts)
+rssRouter.get(`/rss/podcast`, publicCache(3600), GetPodcasts)
 
 async function GetPodcasts(req: Request, res: Response) {
   // #swagger.tags = ['RSS']

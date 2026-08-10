@@ -8,12 +8,13 @@ import { GetEventDay, GetTrackId, GetTrackImage } from '@/utils/templates'
 import { API_DEFAULTS } from '@/utils/config'
 import { CommitSession } from '@/services/github'
 import { apikeyHandler } from '@/middleware/apikey'
+import { publicCache } from '@/middleware/cache'
 import * as store from '@/data/store'
 
 export const sessionsRouter = Router()
-sessionsRouter.get(`/sessions`, GetSessions)
-sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
-sessionsRouter.get(`/sessions/:id`, GetSession)
+sessionsRouter.get(`/sessions`, publicCache(60), GetSessions)
+sessionsRouter.get(`/sessions/:id/related`, publicCache(60), GetSessionRelated)
+sessionsRouter.get(`/sessions/:id`, publicCache(60), GetSession)
 sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
 sessionsRouter.put(`/sessions/sources/:id`, apikeyHandler, UpdateSessionSources)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)

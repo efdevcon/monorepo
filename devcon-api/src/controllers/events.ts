@@ -1,15 +1,16 @@
 import { Request, Response, Router } from 'express'
 import { GetSessions } from './sessions'
 import { GetSpeakers } from './speakers'
+import { publicCache } from '@/middleware/cache'
 import * as store from '@/data/store'
 
 export const eventsRouter = Router()
-eventsRouter.get(`/events`, GetEvents)
-eventsRouter.get(`/events/:id`, GetEvent)
-eventsRouter.get(`/events/:id/version`, GetEventVersion)
-eventsRouter.get(`/events/:id/sessions`, GetEventSessions)
-eventsRouter.get(`/events/:id/speakers`, GetEventSpeakers)
-eventsRouter.get(`/events/:id/rooms`, GetRooms)
+eventsRouter.get(`/events`, publicCache(60), GetEvents)
+eventsRouter.get(`/events/:id`, publicCache(60), GetEvent)
+eventsRouter.get(`/events/:id/version`, publicCache(60), GetEventVersion)
+eventsRouter.get(`/events/:id/sessions`, publicCache(60), GetEventSessions)
+eventsRouter.get(`/events/:id/speakers`, publicCache(60), GetEventSpeakers)
+eventsRouter.get(`/events/:id/rooms`, publicCache(60), GetRooms)
 
 export async function GetEventVersion(req: Request, res: Response) {
   // #swagger.tags = ['Events']

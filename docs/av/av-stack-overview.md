@@ -19,7 +19,8 @@ _Assessment date: 2026-08-04. Coverage counts, live-API observations and line
 references are as of this date. Items marked ✅ FIXED were implemented the same day -
 §12 is the changelog; line references in the original findings describe the
 pre-fix code. On 2026-08-05 the §2c app decision landed (event-app) and its AV
-surface was built - §12c is that changelog._
+surface was built - §12c is that changelog. On 2026-08-10 compression + CDN cache
+headers landed on devcon-api (the §11.7 insurance) - §12e is that changelog._
 
 ---
 
@@ -513,7 +514,8 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    stale-serving, deploy-proof storage, and no localhost default.
 7. **Cheap availability insurance:** Render is the only real single point of failure -
    consider CDN caching on the hot `GET` endpoints for event days so even an API
-   restart mid-keynote is invisible.
+   restart mid-keynote is invisible. ✅ IMPLEMENTED 2026-08-10 (§12e) on the origin
+   side; a Cloudflare dashboard Cache Rule is still needed to activate edge caching.
 
 ## 12. Changelog: fixes implemented 2026-08-04
 
@@ -682,13 +684,44 @@ staleness, serve-stale-on-failure).
   (drop-in, same filenames) and update the hardcoded DC7 location/date copy and
   `Asia/Bangkok` times in the schedule/av templates.
 
+## 12e. Changelog: compression + CDN cache headers on devcon-api, 2026-08-10
+
+The API served everything uncompressed (the full devcon-7 session list was 23.4 MB
+per request, 1.6 MB gzipped) and, despite being proxied by Cloudflare, nothing was
+edge-cached (`cf-cache-status: DYNAMIC` - no JSON endpoint sent `Cache-Control`).
+This implements the §11.7 insurance: cached GETs keep serving through an API restart.
+All in `devcon-api/`, `tsc --noEmit` clean, headers verified against a local boot:
+
+- **`compression` middleware** in `src/app.ts` (23.46 MB → 1.63 MB on the session list).
+- **New `src/middleware/cache.ts`** - `publicCache(maxAge)` sets `Cache-Control:
+  public, max-age=N, s-maxage=N, stale-while-revalidate=2N` at header-write time,
+  GETs with <400 status only (webhooks, PUTs, ai and error responses stay
+  uncacheable); handlers that set their own `Cache-Control` win. Cached routes get
+  `Access-Control-Allow-Origin: *` because Cloudflare ignores `Vary: Origin`; safe,
+  all catalog consumers fetch non-credentialed.
+- **TTLs**: 60s on the hot catalog routes (sessions/speakers/events/rooms/version),
+  3600s on `/dips*` + `/rss/podcast`, `/static` 1 day, `/data` 1 hour. 60s keeps
+  day-of updates (schedule publish, AV enrichment PUT) propagating within ~a minute;
+  edge + browser staleness don't stack (`Date`/`Age`).
+- **Accepted nuance**: devcon-app's version-poll refetch can re-read a ≤60s-stale
+  payload (refetch URL isn't cache-busted; the OG-card `?v=` URLs are). Moot for
+  DC8: event-app SWR-revalidates instead.
+- **Pending - Cloudflare dashboard** (devcon.org zone admin; this config lives in no
+  repo): Caching → Cache Rules → match `Hostname equals api.devcon.org`, action
+  **Eligible for cache**, Edge TTL **"Use cache-control header if present, bypass
+  cache if not"**. Verify: two `curl -sI` calls within a minute go `MISS` → `HIT`.
+- **Optional if 60s is ever too slow**: fire-and-forget Cloudflare purge in the two
+  real-time write paths (Pretalx webhook, `PUT /sessions/sources/:id`); needs a
+  cache-purge zone token in Render's env, deliberately not built yet.
+
 ### Still open after these changelogs
 
 Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube channels),
 #6 second half (DC8 asset swap + DC7 location/date/timezone copy in the card
 templates - infra done, §12d), #9/#10/#11 (YouTube OAuth, token rotation, Meerkat
 endpoint), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
-spread-order fragility), and the §11.7 CDN-caching insurance.
+spread-order fragility), and the Cloudflare Cache Rule that activates §12e's edge
+caching (origin side done; dashboard access needed).
 
 ## Verification
 

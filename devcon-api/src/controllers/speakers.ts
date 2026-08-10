@@ -1,11 +1,12 @@
 import { Request, Response, Router } from 'express'
 import { API_DEFAULTS } from '@/utils/config'
+import { publicCache } from '@/middleware/cache'
 import * as store from '@/data/store'
 
 export const speakersRouter = Router()
-speakersRouter.get(`/speakers`, GetSpeakers)
-speakersRouter.get(`/speakers/:id`, GetSpeaker)
-speakersRouter.get(`/speakers/:id/sessions`, GetSpeakerSessions)
+speakersRouter.get(`/speakers`, publicCache(60), GetSpeakers)
+speakersRouter.get(`/speakers/:id`, publicCache(60), GetSpeaker)
+speakersRouter.get(`/speakers/:id/sessions`, publicCache(60), GetSpeakerSessions)
 
 export async function GetSpeakers(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']

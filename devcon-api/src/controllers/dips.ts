@@ -1,9 +1,10 @@
 import { GetContributors, GetDIPs } from '@/clients/dips'
 import { Request, Response, Router } from 'express'
+import { publicCache } from '@/middleware/cache'
 
 export const dipsRouter = Router()
-dipsRouter.get(`/dips`, GetDips)
-dipsRouter.get(`/dips/contributors`, GetDipContributors)
+dipsRouter.get(`/dips`, publicCache(3600), GetDips)
+dipsRouter.get(`/dips/contributors`, publicCache(3600), GetDipContributors)
 
 async function GetDips(req: Request, res: Response) {
   // #swagger.tags = ['DIPs']

@@ -1,5 +1,6 @@
 import express, { json, urlencoded, Response, NextFunction, Request, Router } from 'express'
 import path from 'path'
+import compression from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
 import swaggerUi from 'swagger-ui-express'
@@ -15,6 +16,7 @@ const app = express()
 
 // configure express app
 app.use(helmet())
+app.use(compression())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
@@ -56,9 +58,9 @@ app.use(
   })
 )
 
-// static endpoints
-app.use('/static', express.static(path.join(__dirname, '..', 'public')))
-app.use('/data', express.static(path.join(__dirname, '..', 'data')))
+// static endpoints (files only change on deploy/data sync, so let the CDN hold them)
+app.use('/static', express.static(path.join(__dirname, '..', 'public'), { maxAge: '1d' }))
+app.use('/data', express.static(path.join(__dirname, '..', 'data'), { maxAge: '1h' }))
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // add routes before error handlers
