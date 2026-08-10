@@ -5,6 +5,11 @@ import { ensurePublicBlogImage } from 'services/blog-images'
 
 const defaultMaxItems = 1000000
 
+// Fallback card image for feed items without an enclosure (mostly 2015-2019
+// posts): the same default blog.ethereum.org itself uses. Mirrored into
+// Supabase like every other blog image, so all fallback posts share one webp.
+const FALLBACK_IMAGE = 'https://blog.ethereum.org/images/eth-org.jpeg'
+
 // Edition classification rules — order matters, first match wins
 const EDITION_RULES: { keywords: string[]; edition: string; after?: string; before?: string }[] = [
   { keywords: ['devcon 8', 'devcon india', 'mumbai'], edition: 'Devcon 8 India' },
@@ -74,7 +79,7 @@ export async function GetBlogs(maxItems: number = defaultMaxItems): Promise<Arra
           body: i['content:encoded'] || i.description,
           slug: slugify(i.title ?? ''),
           permaLink: i.link,
-          imageUrl: isManual ? '/assets/images/manual.webp' : i.enclosure ? i['enclosure'].url : '',
+          imageUrl: isManual ? '/assets/images/manual.webp' : i.enclosure ? i['enclosure'].url : FALLBACK_IMAGE,
           edition: classifyEdition(i.title ?? '', date),
         } as BlogPost
       })

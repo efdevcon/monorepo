@@ -97,6 +97,12 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
       )
     }
 
+    // Images we mirrored into Supabase Storage (e.g. blog cards, see
+    // services/blog-images.ts) are already right-sized WebPs on a stable CDN;
+    // running them through /_next/image would only add per-request Netlify
+    // image transformations whose cache is purged on every deploy.
+    const isMirrored = props.imageUrl.includes('/storage/v1/object/public/')
+
     return (
       <div className="aspect">
         <div className={css['img-wrapper']}>
@@ -106,6 +112,7 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
             src={props.imageUrl}
             objectFit="cover"
             layout="fill"
+            unoptimized={isMirrored}
           />
         </div>
       </div>
