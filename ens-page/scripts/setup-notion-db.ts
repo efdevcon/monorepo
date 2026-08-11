@@ -62,7 +62,7 @@ await notion(`databases/${dbId}`, 'PATCH', {
     { text: { content: 'Edits go live automatically within ~1 hour. To skip the wait:\n' } },
     { text: { content: '👀 Preview live changes', link: { url: 'https://d.krux.eth.limo/?preview' } } },
     { text: { content: '   ·   ' } },
-    { text: { content: '⚡ Push changes live', link: { url: 'https://devcon.org/api/links/?refresh=1' } } },
+    { text: { content: '⚡ Push changes live', link: { url: 'https://devcon.org/api/links/refresh/' } } },
   ],
 })
 console.log('description set (push-live + preview links)')

@@ -27,9 +27,14 @@ async function main() {
     if (link.image) assert.ok(!link.image.includes('prod-files-secure'), 'expiring Notion URL leaked through')
   }
 
-  const fresh = await fetch(`${base}/api/links/?refresh=1`)
+  const fresh = await fetch(`${base}/api/links/refresh/`)
   assert.equal(fresh.status, 200)
   assert.ok(fresh.headers.get('cache-control')?.includes('no-store'), 'refresh must bypass caching')
+  const freshData = await fresh.json()
+  assert.equal(freshData.success, true)
+
+  const freshHtml = await fetch(`${base}/api/links/refresh/`, { headers: { accept: 'text/html' } })
+  assert.ok((await freshHtml.text()).includes('Links refreshed'), 'browser requests get the HTML confirmation')
 
   console.log(`test-links-api: all assertions passed against ${base} (${data.links.length} links)`)
 }
