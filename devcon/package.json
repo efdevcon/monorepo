@@ -40,7 +40,8 @@
     "forms:decrypt": "tsx scripts/decrypt.ts",
     "sync:discount-data": "tsx src/scripts/sync-discount-data.ts",
     "test:notion-links": "tsx src/scripts/test-notion-links.ts",
-    "test:links-api": "tsx src/scripts/test-links-api.ts"
+    "test:links-api": "tsx src/scripts/test-links-api.ts",
+    "nocodb:export-deleted": "tsx src/scripts/nocodb/export-deleted-records.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
