@@ -14,6 +14,11 @@
 - Some deploys use filtered installs (`pnpm install --filter <project>`) to avoid installing the whole workspace.
 - Details and screenshots: `docs/repo/repo.md`.
 
+## Shared Supabase database
+
+- One Supabase project (`mealmslwugsqqyoesrxd`) serves multiple packages: devcon ticketing/x402/coupons, event-app auth + announcements. Keys live in each project's `.env` (never committed).
+- Schema migrations for it live in `devcon-api/src/supabase/migrations/`, regardless of which package uses the table. Apply with `pnpm db:migrate <file>` from devcon-api — **never `supabase db push`** (migration history diverged from the remote in Feb 2026). Details: `devcon-api/CLAUDE.md`.
+
 ## GitHub Actions
 
 - `devcon-translate.yml`: machine-translates any change under `devcon/content/en/` on push to main. Never hand-edit `hi`/`mr` content.

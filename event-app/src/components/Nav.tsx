@@ -2,10 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import cn from "classnames";
-import { CalendarDays, Home, Map, Sparkles, Ticket, Tv, Users } from "lucide-react";
+import { Bell, CalendarDays, Home, Map, Sparkles, Ticket, Tv, Users } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
+import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 
 type NavItem = {
   href: string;
@@ -17,6 +18,8 @@ type NavItem = {
   enabled: boolean;
   /** Hide this item in the mobile bottom bar. */
   hideOnMobile?: boolean;
+  /** Show the announcements unread-count badge on this item. */
+  unreadBadge?: boolean;
 };
 
 const NAV_ITEMS: NavItem[] = [
@@ -51,6 +54,17 @@ const NAV_ITEMS: NavItem[] = [
     hideOnMobile: true,
   },
   { href: "/ticket", label: "Tickets", short: "Tickets", icon: Ticket, enabled: true },
+  {
+    // Mobile reaches announcements via the home-screen section; the bottom
+    // pill is already at capacity.
+    href: "/announcements",
+    label: "Announcements",
+    short: "News",
+    icon: Bell,
+    enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED,
+    hideOnMobile: true,
+    unreadBadge: true,
+  },
 ];
 
 function isActive(pathname: string, href: string): boolean {
@@ -66,6 +80,7 @@ function isActive(pathname: string, href: string): boolean {
 export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
   const { user } = useUser();
+  const { unreadCount } = useAnnouncements();
   const items = NAV_ITEMS.filter((i) => i.enabled);
 
   // No nav on the full-screen room-screen kiosk.
@@ -97,6 +112,11 @@ export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
               >
                 <Icon className="h-4 w-4" />
                 {item.label}
+                {item.unreadBadge && unreadCount > 0 && (
+                  <span className="rounded-full bg-[#7D52F4] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">
+                    {unreadCount}
+                  </span>
+                )}
               </Link>
             );
           })}

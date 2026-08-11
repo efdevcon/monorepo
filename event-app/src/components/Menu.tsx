@@ -2,6 +2,8 @@
 
 import APP_CONFIG from "@/CONFIG";
 import { useUser } from "@/data/auth/useUser";
+import { AnnouncementsSection } from "./announcements/AnnouncementsSection";
+import { HighlightsCarousel } from "./announcements/HighlightsCarousel";
 import { InstallAppButton } from "./InstallAppButton";
 import { Tickets } from "./Tickets";
 
@@ -33,6 +35,13 @@ export function Menu() {
           />
         </div>
       </section>
+
+      {APP_CONFIG.ANNOUNCEMENTS_ENABLED && (
+        <>
+          <AnnouncementsSection />
+          <HighlightsCarousel />
+        </>
+      )}
 
       {/* Tickets — also shown logged-out to prompt getting a ticket. */}
       <Tickets />

@@ -68,10 +68,22 @@ export interface Conversation {
   messages: ConversationMessage[];
 }
 
+/**
+ * An announcement the user has seen (inbox opened while it was visible).
+ * Browser-local, like all read state here — never synced (cross-device "seen"
+ * was never missed at previous events).
+ */
+export interface SeenAnnouncement {
+  /** Announcement id (Notion page id). */
+  id: string;
+  seenAt: number;
+}
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
   conversations!: Table<Conversation, string>;
+  seenAnnouncements!: Table<SeenAnnouncement, string>;
 
   constructor() {
     super("SWRCacheDB");
@@ -86,6 +98,10 @@ class CacheDB extends Dexie {
     // v3: Deva chatbot conversation history (resume / revisit past chats).
     this.version(3).stores({
       conversations: "&id, updatedAt",
+    });
+    // v4: announcement read state (unread badge survives offline/restarts).
+    this.version(4).stores({
+      seenAnnouncements: "&id",
     });
   }
 }

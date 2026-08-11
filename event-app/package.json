@@ -13,7 +13,8 @@
     "cap:android": "pnpm build:static && cap sync android && cap open android",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "announcements:setup-notion": "tsx scripts/setup-notion-announcements.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",
@@ -23,6 +24,7 @@
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@meerkat-events/react": "^0.1.0",
+    "@netlify/functions": "^5.3.0",
     "@serwist/next": "^9.5.11",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.106.2",
@@ -38,6 +40,7 @@
     "react-dom": "19.2.3",
     "react-markdown": "^10.1.0",
     "sass": "^1.44.0",
+    "sharp": "^0.33.5",
     "sonner": "^1.7.0",
     "swr": "^2.3.6",
     "zod": "^3.23.8"
@@ -50,10 +53,12 @@
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "serwist": "^9.5.11",
     "tailwindcss": "^4",
+    "tsx": "^4.23.12",
     "typescript": "^5"
   }
 }
