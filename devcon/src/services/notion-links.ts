@@ -24,6 +24,8 @@ const THUMB_WIDTH = 192 // rendered at 40px, 192 covers retina + hover scale
 const THUMB_QUALITY = 80
 
 export interface CampaignLink {
+  /** Notion page id; the ens-page click beacon reports it to /api/links/click/. */
+  id: string
   title: string
   url: string
   image: string | null
@@ -119,6 +121,35 @@ async function resolveImage(pageId: string, cell: NotionFileCell | null): Promis
   }
 }
 
+/**
+ * Increment the Clicks counter on one link's Notion page (best-effort stats
+ * shown to comms directly in the table). Returns false for ids that are not
+ * pages of our links DB. Read-then-write, so a concurrent click can rarely
+ * lose an increment: acceptable for rough marketing stats.
+ */
+export async function recordLinkClick(pageId: string): Promise<boolean> {
+  const secret = process.env.NOTION_SECRET
+  if (!secret) throw new Error('NOTION_SECRET is required')
+  if (!/^[0-9a-f]{32}$|^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(pageId)) return false
+
+  const headers = { Authorization: `Bearer ${secret}`, 'Notion-Version': NOTION_VERSION, 'Content-Type': 'application/json' }
+  const pageRes = await fetch(`https://api.notion.com/v1/pages/${pageId}`, { headers })
+  if (!pageRes.ok) return false
+  const page = await pageRes.json()
+
+  // Only count pages that actually belong to the links DB.
+  const parent = String(page?.parent?.database_id ?? '').replace(/-/g, '')
+  if (parent !== NOTION_LINKS_DB_ID.replace(/-/g, '')) return false
+
+  const clicks = (page?.properties?.Clicks?.number as number | null) ?? 0
+  const patch = await fetch(`https://api.notion.com/v1/pages/${pageId}`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({ properties: { Clicks: { number: clicks + 1 } } }),
+  })
+  return patch.ok
+}
+
 export async function fetchNotionLinks(): Promise<CampaignLink[]> {
   const secret = process.env.NOTION_SECRET
   const dbId = NOTION_LINKS_DB_ID
@@ -146,6 +177,7 @@ export async function fetchNotionLinks(): Promise<CampaignLink[]> {
     const url: string | null = p.URL?.url ?? null
     if (!title || !url) continue // incomplete rows are simply skipped
     links.push({
+      id: page.id,
       title,
       url,
       image: await resolveImage(page.id, (p.Image?.files?.[0] as NotionFileCell | undefined) ?? null),

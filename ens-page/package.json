@@ -11,7 +11,8 @@
     "test:socials": "tsx scripts/test-socials.ts",
     "test:ens": "tsx scripts/test-ens.ts",
     "setup:notion": "tsx scripts/setup-notion-db.ts",
-    "deploy:pin": "pnpm build && tsx scripts/deploy-pin.ts"
+    "deploy:pin": "pnpm build && tsx scripts/deploy-pin.ts",
+    "test:tracking": "tsx scripts/test-tracking.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.0",

@@ -2,9 +2,24 @@
 
 Linktree replacement for devcon.eth.limo. Static Vite SPA on IPFS; identity +
 socials read live from ENS records in the browser; campaign links come from
-Notion via https://devcon.org/api/links/ (cached ~1h at the Netlify CDN, add
-?refresh=1 to see edits instantly; the page passes `?refresh` on its own URL
-through to the API, e.g. https://d.krux.eth.limo/?refresh).
+Notion via https://devcon.org/api/links/ (cached ~1h at the Netlify CDN).
+
+Cache endpoints (separate PATHS, not query params: Netlify's CDN drops
+unknown query params from its cache key, so ?refresh=1 collided with the
+cached route):
+
+- `/api/links/preview/`: uncached read, no side effects; backs the page's
+  `?preview` mode (https://d.krux.eth.limo/?preview).
+- `/api/links/refresh/`: uncached read + purges the CDN tag, pushing edits
+  live for everyone; the "⚡ Push changes live" link in the Notion DB
+  description (browsers get an HTML confirmation).
+- `/api/links/click/?id=<notion page id>` (POST): increments the row's
+  Clicks column; called via sendBeacon from the page. Best-effort raw
+  counts (no dedup/auth).
+
+Link stats: Clicks column in Notion (above) + Matomo campaign params
+(mtm_campaign=ens-page, mtm_kwd=<title>) auto-appended to devcon.org-family
+destinations (src/lib/tracking.ts).
 
 Spec: ../../docs/superpowers/specs/2026-08-10-ens-page-design.md
 

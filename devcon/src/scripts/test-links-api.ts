@@ -33,6 +33,20 @@ async function main() {
   const freshData = await fresh.json()
   assert.equal(freshData.success, true)
 
+  const preview = await fetch(`${base}/api/links/preview/`)
+  assert.equal(preview.status, 200)
+  assert.ok(preview.headers.get('cache-control')?.includes('no-store'), 'preview must bypass caching')
+  const previewData = await preview.json()
+  assert.equal(previewData.success, true)
+  for (const link of previewData.links) assert.ok(link.id, 'links must carry their Notion page id')
+
+  // Click counter: bad ids are rejected without touching data. (A real
+  // increment is verified manually to avoid polluting the counters.)
+  const badClick = await fetch(`${base}/api/links/click/?id=00000000000000000000000000000000`, { method: 'POST' })
+  assert.equal(badClick.status, 404)
+  const noId = await fetch(`${base}/api/links/click/`, { method: 'POST' })
+  assert.equal(noId.status, 400)
+
   const freshHtml = await fetch(`${base}/api/links/refresh/`, { headers: { accept: 'text/html' } })
   assert.ok((await freshHtml.text()).includes('Links refreshed'), 'browser requests get the HTML confirmation')
 

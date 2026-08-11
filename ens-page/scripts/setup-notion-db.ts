@@ -40,6 +40,9 @@ if (!existing.URL) properties.URL = { url: {} }
 if (!existing.Image) properties.Image = { files: {} }
 if (!existing.Order) properties.Order = { number: { format: 'number' } }
 if (!existing.Visible) properties.Visible = { checkbox: {} }
+// Incremented by /api/links/click/ (beacon from the page) so comms sees
+// per-button click counts right in the table.
+if (!existing.Clicks) properties.Clicks = { number: { format: 'number' } }
 
 if (Object.keys(properties).length > 0) {
   await notion(`databases/${dbId}`, 'PATCH', { properties })
@@ -49,7 +52,7 @@ if (Object.keys(properties).length > 0) {
 }
 
 const updated = await notion(`databases/${dbId}`, 'GET')
-for (const required of ['Title', 'URL', 'Image', 'Order', 'Visible']) {
+for (const required of ['Title', 'URL', 'Image', 'Order', 'Visible', 'Clicks']) {
   if (!updated.properties[required]) throw new Error(`property ${required} missing after update`)
 }
 console.log('schema OK:', Object.keys(updated.properties).join(', '))
