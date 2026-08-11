@@ -64,7 +64,7 @@ export function Profile({ profile }: { profile: EnsProfile }) {
             className="-mt-10 h-20 w-20 rounded-full object-cover ring-4 ring-white bg-white"
           />
         )}
-        <h1 className="mt-3 font-display text-2xl font-bold">{profile.displayName}</h1>
+        <h1 className="mt-4 font-display text-2xl font-bold">{profile.displayName}</h1>
         {profile.description && <p className="mt-1 text-neutral-600">{profile.description}</p>}
 
         {profile.url && (
@@ -72,7 +72,7 @@ export function Profile({ profile }: { profile: EnsProfile }) {
             href={profile.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 hover:text-black"
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-accent transition duration-150 ease-out hover:border-accent"
           >
             <Globe className="h-4 w-4" />
             {hostname(profile.url)}
@@ -92,7 +92,7 @@ export function Profile({ profile }: { profile: EnsProfile }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="rounded-full p-2.5 text-neutral-700 transition hover:bg-neutral-100 hover:text-black"
+                className="rounded-full p-2.5 text-accent transition duration-150 ease-out hover:bg-neutral-100"
               >
                 <Icon className="h-5 w-5" />
               </a>
