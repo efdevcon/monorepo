@@ -1,22 +1,44 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { fetchNotionLinks, type CampaignLink } from 'services/notion-links'
+import { fetchNotionLinks, recordLinkClick, type CampaignLink } from 'services/notion-links'
 
 /**
  * Campaign links for the ens-page at devcon.eth.limo.
  *
- * Source of truth is a Notion database managed by comms; the Netlify CDN
- * caches this response for an hour (s-maxage + Netlify-Cache-Tag), so Notion
- * edits go live within ~1h with no clicks. /api/links/refresh/ purges that
- * tag for an instant push (see refresh.ts for why it's a separate path).
+ * GET: the link list. Source of truth is a Notion database managed by comms;
+ * the Netlify CDN caches this response for an hour (s-maxage +
+ * Netlify-Cache-Tag), so Notion edits go live within ~1h with no clicks.
+ * /api/links/refresh/ purges that tag for an instant push (see refresh.ts
+ * for why it's a separate path).
+ *
+ * POST ?id=<notion page id>: click counter, increments the row's Clicks
+ * number. Deliberately on this same path with a plain fetch(keepalive)
+ * rather than a /click/ URL with sendBeacon: ad blockers match "click"-ish
+ * URLs and the beacon request type, but they can't block the path the page's
+ * own data comes from.
  */
 export const CACHE_TAG = 'ens-links'
 
-type ResponseBody = { success: true; links: CampaignLink[] } | { success: false; error: string; details?: string }
+type ResponseBody = { success: true; links?: CampaignLink[] } | { success: false; error: string; details?: string }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseBody>) {
   // Callers live on eth.limo / IPFS gateway origins; the data is public.
   res.setHeader('Access-Control-Allow-Origin', '*')
   if (req.method === 'OPTIONS') return res.status(204).end()
+
+  if (req.method === 'POST') {
+    res.setHeader('Cache-Control', 'no-store')
+    const id = typeof req.query.id === 'string' ? req.query.id : ''
+    if (!id) return res.status(400).json({ success: false, error: 'id is required' })
+    try {
+      const counted = await recordLinkClick(id)
+      if (!counted) return res.status(404).json({ success: false, error: 'unknown link' })
+      return res.status(200).json({ success: true })
+    } catch (e) {
+      console.error('[api/links] click:', (e as Error).message)
+      return res.status(502).json({ success: false, error: 'failed to record click' })
+    }
+  }
+
   if (req.method !== 'GET') return res.status(405).json({ success: false, error: 'method not allowed' })
 
   try {

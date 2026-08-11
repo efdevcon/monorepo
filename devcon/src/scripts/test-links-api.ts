@@ -40,12 +40,15 @@ async function main() {
   assert.equal(previewData.success, true)
   for (const link of previewData.links) assert.ok(link.id, 'links must carry their Notion page id')
 
-  // Click counter: bad ids are rejected without touching data. (A real
-  // increment is verified manually to avoid polluting the counters.)
-  const badClick = await fetch(`${base}/api/links/click/?id=00000000000000000000000000000000`, { method: 'POST' })
+  // Click counter (POST on the main path; /click/ kept as legacy alias for
+  // already-pinned bundles): bad ids are rejected without touching data.
+  // (A real increment is verified manually to avoid polluting the counters.)
+  const badClick = await fetch(`${base}/api/links/?id=00000000000000000000000000000000`, { method: 'POST' })
   assert.equal(badClick.status, 404)
-  const noId = await fetch(`${base}/api/links/click/`, { method: 'POST' })
+  const noId = await fetch(`${base}/api/links/`, { method: 'POST' })
   assert.equal(noId.status, 400)
+  const legacyClick = await fetch(`${base}/api/links/click/?id=00000000000000000000000000000000`, { method: 'POST' })
+  assert.equal(legacyClick.status, 404)
 
   const freshHtml = await fetch(`${base}/api/links/refresh/`, { headers: { accept: 'text/html' } })
   assert.ok((await freshHtml.text()).includes('Links refreshed'), 'browser requests get the HTML confirmation')

@@ -12,11 +12,13 @@ export interface CampaignLink {
 
 // Best-effort click counter: bumps the link's Clicks number in Notion (via
 // devcon.org) so comms sees per-button stats in the table they edit.
-// sendBeacon doesn't delay the navigation and failures are silently ignored.
+// POST to the same path the data comes from + a plain fetch with keepalive
+// (survives the navigation), NOT sendBeacon to a /click/ URL: ad blockers
+// match tracking-ish URLs and the beacon request type.
 export function reportClick(link: CampaignLink): void {
   if (!link.id) return
   try {
-    navigator.sendBeacon(`${LINKS_API.replace(/\/$/, '')}/click/?id=${encodeURIComponent(link.id)}`)
+    fetch(`${LINKS_API}?id=${encodeURIComponent(link.id)}`, { method: 'POST', keepalive: true }).catch(() => {})
   } catch {
     // stats must never break a click
   }
