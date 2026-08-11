@@ -61,3 +61,38 @@ console.log(`Preview:    https://ipfs.io/ipfs/${IpfsHash}/`)
 console.log(`\nTo go live: open https://app.ens.domains/${ensName} -> Records -> Edit Records ->`)
 console.log(`set Content Hash to ipfs://${IpfsHash} and confirm with the name owner's wallet.`)
 console.log(`Then verify at https://${ensName}.limo/`)
+
+// Prune superseded pins so the free plan's file quota doesn't fill up:
+// keep the newest KEEP versions, and never touch the just-pinned CID or
+// whatever CID the ENS name is currently serving (deleting the live pin
+// takes the site down slowly via gateway-cache decay). Requires the JWT to
+// also have pinList + unpin scopes; skipped gracefully otherwise.
+const KEEP = 3
+try {
+  const liveCid = await fetch(`https://${ensName}.limo/`, { method: 'HEAD', signal: AbortSignal.timeout(15000) })
+    .then(r => r.headers.get('x-ipfs-roots'))
+    .catch(() => null)
+
+  const listRes = await fetch(
+    'https://api.pinata.cloud/data/pinList?status=pinned&pageLimit=100&metadata[name]=ens-page',
+    { headers: { Authorization: `Bearer ${jwt}` } }
+  )
+  if (!listRes.ok) throw new Error(`pinList failed (${listRes.status}): ${await listRes.text()}`)
+  const rows = (((await listRes.json()) as { rows?: { ipfs_pin_hash: string; date_pinned: string }[] }).rows ?? [])
+    .sort((a, b) => b.date_pinned.localeCompare(a.date_pinned))
+
+  const stale = rows.slice(KEEP).filter(r => r.ipfs_pin_hash !== IpfsHash && r.ipfs_pin_hash !== liveCid)
+  if (stale.length === 0) {
+    console.log(`\npin pruning: nothing to prune (${rows.length} version(s) pinned, keeping ${KEEP})`)
+  }
+  for (const r of stale) {
+    const del = await fetch(`https://api.pinata.cloud/pinning/unpin/${r.ipfs_pin_hash}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${jwt}` },
+    })
+    console.log(del.ok ? `pruned old pin ${r.ipfs_pin_hash}` : `failed to prune ${r.ipfs_pin_hash} (${del.status})`)
+  }
+} catch (e) {
+  console.warn(`\npin pruning skipped: ${(e as Error).message}`)
+  console.warn('(the PINATA_JWT needs the pinList and unpin scopes for automatic pruning)')
+}
