@@ -54,6 +54,19 @@ for (const required of ['Title', 'URL', 'Image', 'Order', 'Visible']) {
 }
 console.log('schema OK:', Object.keys(updated.properties).join(', '))
 
+// Editor-facing instructions shown under the database title, including the
+// one-click "push live" link (purges the API's CDN cache for everyone).
+await notion(`databases/${dbId}`, 'PATCH', {
+  description: [
+    { text: { content: 'Each row is one button on the Devcon ENS page.\n' } },
+    { text: { content: 'Edits go live automatically within ~1 hour. To skip the wait:\n' } },
+    { text: { content: '👀 Preview live changes', link: { url: 'https://d.krux.eth.limo/?preview' } } },
+    { text: { content: '   ·   ' } },
+    { text: { content: '⚡ Push changes live', link: { url: 'https://devcon.org/api/links/?refresh=1' } } },
+  ],
+})
+console.log('description set (push-live + preview links)')
+
 if (process.argv.includes('--seed')) {
   await notion('pages', 'POST', {
     parent: { database_id: dbId },
