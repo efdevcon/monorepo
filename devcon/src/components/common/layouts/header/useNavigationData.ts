@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import LogoAbout from 'assets/images/pages/about.svg'
-import { HeartHandshake, MicVocal, Users, CirclePlay, History } from 'lucide-react'
+import { HandHeart, HeartHandshake, MicVocal, Users, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
 import Dc8Glyph from 'assets/icons/dc8-glyph-small.svg'
 
@@ -73,10 +73,22 @@ const useNavigationData = () => {
             url: '#',
             type: 'header',
             icon: MicVocal,
+            pairWithNext: true,
           },
           {
             title: t('speak_at_devcon'),
             url: '/speaker-applications',
+            type: 'page',
+          },
+          {
+            title: t('support'),
+            url: '#',
+            type: 'header',
+            icon: HandHeart,
+          },
+          {
+            title: t('supporters_program'),
+            url: '/supporters',
             type: 'page',
           },
           {

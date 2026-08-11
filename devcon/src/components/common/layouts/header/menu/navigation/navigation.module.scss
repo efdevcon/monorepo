@@ -198,6 +198,23 @@
   gap: 1px;
 }
 
+// Two sections side-by-side (desktop), e.g. Participate's SPEAKERS | SUPPORT
+.foldout-section-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; // matches .foldout-sections stacked gap on mobile
+
+  @media (min-width: 1251px) {
+    flex-direction: row;
+    gap: 12px;
+
+    > * {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
 // Section laid out in two columns (row-major), e.g. Participate's CONTRIBUTE
 .foldout-items-two-col {
   @media (min-width: 1251px) {

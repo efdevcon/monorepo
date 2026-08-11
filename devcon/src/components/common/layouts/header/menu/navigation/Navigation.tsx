@@ -87,6 +87,7 @@ type Section = {
   header: string
   headerIcon?: React.ComponentType<{ size?: number; className?: string }>
   columns?: number
+  pairWithNext?: boolean
   items: LinkType[]
 }
 
@@ -96,7 +97,7 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
 
   for (const c of links) {
     if (c.type === 'header') {
-      current = { header: c.title, headerIcon: c.icon, columns: c.columns, items: [] }
+      current = { header: c.title, headerIcon: c.icon, columns: c.columns, pairWithNext: c.pairWithNext, items: [] }
       sections.push(current)
     } else if (current) {
       current.items.push(c)
@@ -109,40 +110,68 @@ function groupLinksIntoSections(links: LinkType[]): Section[] {
   return sections
 }
 
-const FoldoutContent = ({ sections, currentPath, onLinkClick }: { sections: Section[]; currentPath?: string; onLinkClick?: () => void }) => (
-  <div className={css['foldout-sections']}>
-    {sections.map((section, sIdx) => (
-      <div key={sIdx} className={css['foldout-section']}>
-        {section.header && (
-          <div className={css['foldout-header']}>
-            {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
-            {section.header}
-          </div>
-        )}
-        <div className={`${css['foldout-items']} ${section.columns === 2 ? css['foldout-items-two-col'] : ''}`}>
-          {section.items.map((c, cIdx) => {
-            const isExternal = c.url?.startsWith('http')
-            const isActive = currentPath && c.url && !isExternal &&
-              currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
-            return (
-              <Link
-                key={cIdx}
-                className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
-                to={c.url}
-                onClick={onLinkClick}
-              >
-                <span className="inline-flex items-center gap-1">
-                  {c.title}
-                  {isExternal && <ArrowUpRight size={16} strokeWidth={2} />}
-                </span>
-              </Link>
-            )
-          })}
+// Sections whose header sets pairWithNext share a row with the following section
+function groupSectionsIntoRows(sections: Section[]): Section[][] {
+  const rows: Section[][] = []
+
+  for (const section of sections) {
+    const row = rows[rows.length - 1]
+    if (row && row[row.length - 1].pairWithNext) {
+      row.push(section)
+    } else {
+      rows.push([section])
+    }
+  }
+
+  return rows
+}
+
+const FoldoutContent = ({ sections, currentPath, onLinkClick }: { sections: Section[]; currentPath?: string; onLinkClick?: () => void }) => {
+  const renderSection = (section: Section, sIdx: number) => (
+    <div key={sIdx} className={css['foldout-section']}>
+      {section.header && (
+        <div className={css['foldout-header']}>
+          {section.headerIcon && <section.headerIcon size={20} className={css['foldout-header-icon']} />}
+          {section.header}
         </div>
+      )}
+      <div className={`${css['foldout-items']} ${section.columns === 2 ? css['foldout-items-two-col'] : ''}`}>
+        {section.items.map((c, cIdx) => {
+          const isExternal = c.url?.startsWith('http')
+          const isActive = currentPath && c.url && !isExternal &&
+            currentPath.replace(/\/$/, '') === c.url.replace(/\/$/, '')
+          return (
+            <Link
+              key={cIdx}
+              className={`${css['foldout-link-item']} ${isActive ? css['foldout-link-active'] : ''} plain`}
+              to={c.url}
+              onClick={onLinkClick}
+            >
+              <span className="inline-flex items-center gap-1">
+                {c.title}
+                {isExternal && <ArrowUpRight size={16} strokeWidth={2} />}
+              </span>
+            </Link>
+          )
+        })}
       </div>
-    ))}
-  </div>
-)
+    </div>
+  )
+
+  return (
+    <div className={css['foldout-sections']}>
+      {groupSectionsIntoRows(sections).map((row, rIdx) =>
+        row.length > 1 ? (
+          <div key={`row-${rIdx}`} className={css['foldout-section-row']}>
+            {row.map(renderSection)}
+          </div>
+        ) : (
+          renderSection(row[0], rIdx)
+        )
+      )}
+    </div>
+  )
+}
 
 const DEFAULT_FOLDOUT_WIDTH = 320
 // Card chrome around the content on each axis: 12px padding + 1px border, both sides (border-box)
