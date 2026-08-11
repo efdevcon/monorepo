@@ -27,15 +27,31 @@ if ! [[ "$VERSION" =~ ^[0-9]{14}$ ]]; then
   exit 1
 fi
 
-TOKEN=$(security find-generic-password -s 'Supabase CLI' -w 2>/dev/null) || {
-  echo "error: no Supabase access token in the keychain. Run: npx supabase login" >&2
-  exit 1
-}
+# Token: env var (CI / non-macOS) first, then the macOS keychain entry
+# created by `npx supabase login`.
+TOKEN="${SUPABASE_ACCESS_TOKEN:-}"
+if [ -z "$TOKEN" ]; then
+  TOKEN=$(security find-generic-password -s 'Supabase CLI' -w 2>/dev/null) || {
+    echo "error: no Supabase access token. Run: npx supabase login (or set SUPABASE_ACCESS_TOKEN)" >&2
+    exit 1
+  }
+fi
 
 # Refuse to re-apply a version that's already in the remote history (the
 # Remote column of `migration list` is the 2nd pipe-separated field).
-if npx supabase migration list --workdir src 2>/dev/null \
-  | awk -F'|' -v v="$VERSION" '$2 ~ v { found = 1 } END { exit !found }'; then
+# The guard must fail CLOSED: if we can't read the remote history at all,
+# abort rather than risk re-applying SQL to production.
+LIST=$(npx supabase migration list --workdir src 2>&1) || {
+  echo "error: could not read remote migration history; aborting." >&2
+  echo "$LIST" >&2
+  exit 1
+}
+if ! echo "$LIST" | grep -q "Remote"; then
+  echo "error: unexpected 'migration list' output (no Remote column); aborting." >&2
+  echo "$LIST" >&2
+  exit 1
+fi
+if echo "$LIST" | awk -F'|' -v v="$VERSION" '$2 ~ v { found = 1 } END { exit !found }'; then
   echo "error: version $VERSION is already applied on the remote (see: npx supabase migration list --workdir src)" >&2
   exit 1
 fi

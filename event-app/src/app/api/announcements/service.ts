@@ -17,6 +17,11 @@
  */
 import { createHash } from "node:crypto";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import type { Announcement } from "@/data/announcements/types";
+
+// Single source of truth for the payload shape lives with the client types
+// (same pattern as tickets: api/tickets/pretix.ts imports from data/tickets).
+export type { Announcement };
 
 const NOTION_VERSION = "2022-06-28";
 // Not a secret: a DB id grants no access without the integration token, and
@@ -32,24 +37,6 @@ const IMAGE_BUCKET = "event-app-announcements";
 // Cards render ~295px wide; 640 covers retina with headroom.
 const IMAGE_WIDTH = 640;
 const IMAGE_QUALITY = 80;
-
-/** Client-facing shape served by the feed and cached in the app. */
-export interface Announcement {
-  /** Notion page id. */
-  id: string;
-  /** "announcement" = inbox item, "highlight" = home-screen image card. */
-  type: "announcement" | "highlight";
-  title: string;
-  message: string;
-  /** Optional deep link (also the push click target in Phase 2). */
-  url: string | null;
-  /** Mirrored image URL (highlights); null for plain announcements. */
-  image: string | null;
-  /** ISO timestamp; announcements are hidden from the feed until this time. */
-  sendAt: string;
-  /** Manual ordering for highlights (ascending). */
-  sortOrder: number;
-}
 
 interface NotionFileCell {
   type: "file" | "external";
@@ -270,32 +257,40 @@ export async function syncAnnouncements(): Promise<number> {
 
   const { data: existing, error: readError } = await db
     .from("devcon8_announcements")
-    .select("id, status");
+    .select("id, status, image");
   if (readError) throw new Error(`announcement read failed: ${readError.message}`);
-  const statusById = new Map((existing ?? []).map((r) => [r.id, r.status]));
+  const existingById = new Map((existing ?? []).map((r) => [r.id, r]));
 
   const now = new Date().toISOString();
-  const upserts = [];
-  for (const row of rows) {
-    const current = statusById.get(row.id) ?? "draft";
-    const locked = current === "sending" || current === "sent";
-    // Highlights are never pushed, regardless of the Push checkbox.
-    const armed = row.type === "announcement" && row.push && row.visible;
-    upserts.push({
-      id: row.id,
-      type: row.type,
-      title: row.title,
-      message: row.message,
-      url: row.url,
-      image: await resolveImage(row.id, row.imageCell),
-      send_at: row.sendAt,
-      sort_order: row.sortOrder,
-      push: row.push,
-      visible: row.visible,
-      status: locked ? current : armed ? "scheduled" : "draft",
-      updated_at: now,
-    });
-  }
+  const upserts = await Promise.all(
+    rows.map(async (row) => {
+      const current = existingById.get(row.id);
+      const status = current?.status ?? "draft";
+      const locked = status === "sending" || status === "sent";
+      // Highlights are never pushed, regardless of the Push checkbox.
+      const armed = row.type === "announcement" && row.push && row.visible;
+      // No image cell in Notion = image removed on purpose. A cell that fails
+      // to mirror (transient storage/network error) must NOT clobber a
+      // previously mirrored URL, so fall back to the stored one.
+      const image = row.imageCell
+        ? ((await resolveImage(row.id, row.imageCell)) ?? current?.image ?? null)
+        : null;
+      return {
+        id: row.id,
+        type: row.type,
+        title: row.title,
+        message: row.message,
+        url: row.url,
+        image,
+        send_at: row.sendAt,
+        sort_order: row.sortOrder,
+        push: row.push,
+        visible: row.visible,
+        status: locked ? status : armed ? "scheduled" : "draft",
+        updated_at: now,
+      };
+    })
+  );
 
   if (upserts.length > 0) {
     const { error } = await db

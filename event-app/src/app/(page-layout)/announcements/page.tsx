@@ -13,24 +13,29 @@ const dayKey = (ms: number) => new Date(ms).toDateString();
  * Viewing it marks everything as seen, clearing the unread badges.
  */
 export default function AnnouncementsPage() {
-  const { announcements, isLoading, error, markAllSeen } = useAnnouncements();
+  const { announcements, isLoading, error, markAllSeen, readStateReady } =
+    useAnnouncements();
   const nowMs = useNowMs(60_000);
 
-  // Seen = it was on screen in the inbox. Re-runs as new data arrives while
-  // the page is open (markAllSeen is memoized on the fetched list).
-  useEffect(() => {
-    if (!isLoading) markAllSeen();
-  }, [isLoading, markAllSeen]);
-
   // Unread dots reflect the read state as it was when the page was entered:
-  // markAllSeen above clears the nav badge immediately, but the dots stay for
-  // the whole visit so "what's new" remains visible while reading.
+  // markAllSeen below clears the nav badge immediately, but the dots stay for
+  // the whole visit so "what's new" remains visible while reading. The
+  // snapshot must wait for BOTH the feed and the async Dexie read-state
+  // hydration — before hydration every item reports seen=true and the dots
+  // would be lost.
   const seenAtEntry = useRef<Set<string> | null>(null);
-  if (seenAtEntry.current === null && !isLoading) {
+  if (seenAtEntry.current === null && !isLoading && readStateReady) {
     seenAtEntry.current = new Set(
       announcements.filter((a) => a.seen).map((a) => a.id)
     );
   }
+
+  // Seen = it was on screen in the inbox, after the entry snapshot is taken.
+  // Re-runs as new data arrives while the page is open (markAllSeen is
+  // memoized on the fetched list).
+  useEffect(() => {
+    if (!isLoading && readStateReady) markAllSeen();
+  }, [isLoading, readStateReady, markAllSeen]);
 
   const groups = useMemo(() => {
     const today = dayKey(nowMs);

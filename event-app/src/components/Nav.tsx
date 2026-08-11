@@ -80,7 +80,12 @@ function isActive(pathname: string, href: string): boolean {
 export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
   const { user } = useUser();
-  const { unreadCount } = useAnnouncements();
+  // Fully off (no fetch, no Dexie read) when the feature is disabled or on
+  // the room-screen kiosk, where the nav never renders anyway.
+  const { unreadCount } = useAnnouncements({
+    enabled:
+      APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/"),
+  });
   const items = NAV_ITEMS.filter((i) => i.enabled);
 
   // No nav on the full-screen room-screen kiosk.

@@ -26,6 +26,7 @@ const withSerwist = withSerwistInit({
     { url: "/schedule", revision },
     { url: "/speakers", revision },
     { url: "/map", revision },
+    { url: "/announcements", revision },
     { url: "/profile", revision },
     { url: "/login", revision },
     // Offline fallback served by the SW when a document navigation can't be
