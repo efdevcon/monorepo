@@ -38,7 +38,7 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-neutral-100 px-4 py-4 font-sans text-neutral-900 sm:py-6">
-      <div className="mx-auto w-full max-w-2xl rounded-2xl bg-white p-8 shadow-sm">
+      <div className="mx-auto w-full max-w-2xl rounded-2xl bg-white p-5 shadow-sm sm:p-8">
         {profile.status === 'loading' && <ProfileSkeleton />}
         {profile.status === 'error' && (
           <div className="py-12 text-center">
