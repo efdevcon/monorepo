@@ -38,9 +38,19 @@ function ensTitle(): Plugin {
   }
 }
 
+// Stamp each build with its time so every pin has a unique CID: identical
+// rebuilds otherwise produce the identical CID, which makes "which pin is
+// this" ambiguous on Pinata and prevents forcing a fresh contenthash.
+function buildStamp(): Plugin {
+  return {
+    name: 'build-stamp',
+    transformIndexHtml: html => html.replace('</head>', `  <meta name="build" content="${new Date().toISOString()}" />\n  </head>`),
+  }
+}
+
 // base './' makes all asset paths relative so the bundle works from any IPFS
 // gateway path (/ipfs/<cid>/) as well as the eth.limo root.
 export default defineConfig({
   base: './',
-  plugins: [react(), svgr(), ensTitle()],
+  plugins: [react(), svgr(), ensTitle(), buildStamp()],
 })

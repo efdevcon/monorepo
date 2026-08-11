@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import { Mail, Globe } from 'lucide-react'
 import type { EnsProfile } from '../lib/ens'
 import { socialUrl, socialLabel } from '../lib/socials'
+import { trackedUrl } from '../lib/tracking'
 import TwitterIcon from '../icons/twitter.svg?react'
 import InstagramIcon from '../icons/instagram.svg?react'
 import GithubIcon from '../icons/github.svg?react'
@@ -69,7 +70,7 @@ export function Profile({ profile }: { profile: EnsProfile }) {
 
         {profile.url && (
           <a
-            href={profile.url}
+            href={trackedUrl(profile.url, 'website')}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-accent transition duration-150 ease-out hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"

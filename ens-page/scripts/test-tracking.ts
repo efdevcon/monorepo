@@ -15,6 +15,10 @@ assert.ok(
   trackedUrl('https://forum.devcon.org/c/dip-discussion/6?foo=1', 'Ideas').includes('foo=1'),
   'existing query params survive'
 )
+assert.ok(
+  trackedUrl('https://blog.ethereum.org/2025/12/04/devconnect-arg-wrap', 'Recap').includes('mtm_campaign=ens-page'),
+  'ethereum.org subdomains get params'
+)
 assert.equal(
   trackedUrl('https://jobs.ashbyhq.com/ethereum-foundation', "We're hiring!"),
   'https://jobs.ashbyhq.com/ethereum-foundation',
