@@ -35,9 +35,9 @@ export const VideoPreview = () => {
               </p>
 
               {/* Video container — standard YouTube 16:9 aspect */}
-              <div className="relative aspect-video rounded-2xl overflow-hidden border border-[rgba(34,17,68,0.1)] shadow-[0_2px_2px_0_rgba(22,11,43,0.1),0_20px_25px_0_rgba(22,11,43,0.1),0_8px_10px_0_rgba(22,11,43,0.1)]">
+              <div className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-[rgba(34,17,68,0.1)] shadow-[0_2px_2px_0_rgba(22,11,43,0.1),0_20px_25px_0_rgba(22,11,43,0.1),0_8px_10px_0_rgba(22,11,43,0.1)]">
                 {!playing && (
-                  <>
+                  <button type="button" onClick={() => setPlaying(true)} aria-label={t('play_aria')} className="absolute inset-0 w-full h-full cursor-pointer group">
                     <Image
                       src={VideoPoster}
                       alt="Mumbai video preview"
@@ -46,15 +46,10 @@ export const VideoPreview = () => {
                       className="object-cover"
                       priority={false}
                     />
-                    <button
-                      type="button"
-                      onClick={() => setPlaying(true)}
-                      aria-label={t('play_aria')}
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-[rgba(32,16,63,0.3)] border border-white/20 backdrop-blur-[6px] flex items-center justify-center hover:bg-[rgba(32,16,63,0.5)] transition-[background-color,transform] duration-150 ease-out motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] z-10 cursor-pointer"
-                    >
+                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full bg-[rgba(32,16,63,0.3)] border border-white/20 backdrop-blur-[6px] flex items-center justify-center group-hover:bg-[rgba(32,16,63,0.5)] transition-[background-color,transform] duration-150 ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] z-10">
                       <Play className="w-8 h-8 text-white fill-white ml-1" />
-                    </button>
-                  </>
+                    </span>
+                  </button>
                 )}
                 {playing && (
                   <iframe

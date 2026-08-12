@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import type { StaticImageData } from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { SEO } from 'components/domain/seo'
@@ -13,6 +14,7 @@ import { VideoPlayer } from 'components/domain/travel-guide/VideoPlayer'
 import JaaliBottom from './images/decor/jaali-bottom-border.svg'
 import JaaliSide from './images/decor/jaali-side-border.svg'
 import { Markdown } from 'components/domain/travel-guide/Markdown'
+import { PromoTag } from 'components/domain/travel-guide/PromoTag'
 import { Link } from 'components/common/link'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import {
@@ -87,10 +89,28 @@ const CAROUSEL_IMAGES = [
   CityMarineDrive,
 ]
 
+type HotelMeta = {
+  url: string
+  Logo: React.FC<React.SVGProps<SVGSVGElement>> | null
+  logoImg: StaticImageData | null
+  logoAlt: string
+  /** Renders a PromoTag in the card's top-right corner. `messageKey` points at a
+   *  `stay.promos.*` string taking a `code` param, so the code itself is never
+   *  machine-translated. Keep that copy short — a long string wraps to a second
+   *  line and starts encroaching on the logo. */
+  promo?: { messageKey: string; code: string }
+}
+
 // Zipped positionally with the translated `stay.hotels` array
-const HOTEL_META = [
+const HOTEL_META: HotelMeta[] = [
   { url: 'https://app.tripsha.com/event/69b89b4703d64d0002894a82', Logo: null, logoImg: TripshaLogo, logoAlt: 'Tripsha' },
-  { url: 'https://flyfi.io/promo/devcon2026/', Logo: FlyfiLogo, logoImg: null, logoAlt: 'FLYFI.IO' },
+  {
+    url: 'https://flyfi.io/promo/devcon2026/',
+    Logo: FlyfiLogo,
+    logoImg: null,
+    logoAlt: 'FLYFI.IO',
+    promo: { messageKey: 'stay.promos.flyfi', code: 'DEVCON50' },
+  },
   { url: 'https://www.nirantahotels.com/', Logo: null, logoImg: NirantaLogo, logoAlt: 'Niranta Hotels' },
 ]
 
@@ -182,6 +202,8 @@ const AdvisoryLinks = ({ label, names }: { label: string; names: string[] }) => 
 
 export default function TravelGuidePage() {
   const t = useTranslations('travel_guide')
+
+  const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>
 
   const navLinks = [
     { title: t('nav.mumbai'), to: '#mumbai' },
@@ -538,7 +560,10 @@ export default function TravelGuidePage() {
         <div className="section gap-y-[48px]">
           <div className="flex flex-col gap-[16px] md:gap-6">
             <h2 className={css['heading-2']}>{t('stay.heading')}</h2>
-            <div className="flex flex-col gap-[12px] md:gap-[48px] lg:flex-row lg:gap-[64px]">
+            {/* No md gap step: while stacked these two columns read as one run of
+                paragraphs, so they keep the 12px paragraph rhythm right up to
+                lg, where the 64px becomes a horizontal column gap */}
+            <div className="flex flex-col gap-[12px] lg:flex-row lg:gap-[64px]">
               <div className="left flex flex-col gap-3 lg:flex-1 lg:min-w-0">
                 <p className={css['lead']}>{t('stay.lead')}</p>
                 <Markdown className={css['prose']}>{t('stay.body')}</Markdown>
@@ -553,18 +578,21 @@ export default function TravelGuidePage() {
               dropdown ladder together */}
           <RevealGroup className="flex flex-col gap-6">
             <h3 className={css['heading-3']}>{t('stay.options_heading')}</h3>
-            <div className="flex flex-col md:flex-row gap-[12px] items-stretch">
+            {/* 3-up only from 1280, where a column is finally wide enough that a
+                promo tag clears the card logo (measured: it still overlaps by
+                ~7px in a 3-up column at 1024) */}
+            <div className="flex flex-col xl:flex-row gap-[12px] items-stretch">
               {(t.raw('stay.hotels') as Array<{ name: string; body: string; cta: string }>)
                 .slice(0, HOTEL_META.length)
                 .map((hotel, i) => {
                   const meta = HOTEL_META[i]
                   return (
-                    <Reveal key={hotel.name} delay={i * 120} className="md:flex-1">
+                    <Reveal key={hotel.name} delay={i * 120} className="xl:flex-1">
                     <a
                       href={meta.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group h-full flex flex-col justify-between gap-6 rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-[20px] md:p-6 transition-[background-color,box-shadow,transform] duration-150 [transition-timing-function:ease-out] hover:bg-white hover:shadow-md hover:scale-[1.03] active:scale-[0.97]"
+                      className="group relative h-full flex flex-col justify-between gap-6 rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-[20px] md:p-6 transition-[background-color,box-shadow,transform] duration-150 [transition-timing-function:ease-out] hover:bg-white hover:shadow-md hover:scale-[1.03] active:scale-[0.97]"
                     >
                       <div className="flex flex-col gap-6">
                         <div className="h-[32px] flex items-start">
@@ -583,6 +611,9 @@ export default function TravelGuidePage() {
                         {hotel.cta}
                         <ArrowUpRight size={16} />
                       </span>
+                      {meta.promo && (
+                        <PromoTag>{t.rich(meta.promo.messageKey, { strong, code: meta.promo.code })}</PromoTag>
+                      )}
                     </a>
                     </Reveal>
                   )
