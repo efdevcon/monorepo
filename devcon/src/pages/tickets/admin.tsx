@@ -2121,7 +2121,22 @@ function AdminContent() {
   useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current)
     if (authed && secret && autoRefresh && !readOnly) {
-      timerRef.current = setInterval(() => fetchOrders(secret), POLL_INTERVAL)
+      // Skip ticks while the tab is hidden — admin tabs get left open all
+      // day, and each tick is a full plugin-feed pull (heavier as the sale
+      // grows). Refresh immediately on return so the view is never stale
+      // when actually looked at.
+      timerRef.current = setInterval(() => {
+        if (document.visibilityState === 'hidden') return
+        fetchOrders(secret)
+      }, POLL_INTERVAL)
+      const onVisible = () => {
+        if (document.visibilityState === 'visible') fetchOrders(secret)
+      }
+      document.addEventListener('visibilitychange', onVisible)
+      return () => {
+        if (timerRef.current) clearInterval(timerRef.current)
+        document.removeEventListener('visibilitychange', onVisible)
+      }
     }
     return () => {
       if (timerRef.current) clearInterval(timerRef.current)
@@ -2279,6 +2294,15 @@ function AdminContent() {
   const cancelledOrders = useMemo(() => activeCompleted.filter(o => o.pretixStatus === 'c'), [activeCompleted])
   // What the main Completed table shows: paid, live, not refunded.
   const liveCompleted = useMemo(() => activeCompleted.filter(o => o.pretixStatus !== 'c'), [activeCompleted])
+  // Render cap: the paid table approaches 1000+ rows as the sale grows and a
+  // full-DOM render makes the page sluggish. Search/sort/stats/export always
+  // operate on the FULL list — only the visible rows are capped.
+  const COMPLETED_RENDER_CAP = 300
+  const [showAllCompleted, setShowAllCompleted] = useState(false)
+  const visibleLiveCompleted = useMemo(
+    () => (showAllCompleted ? liveCompleted : liveCompleted.slice(0, COMPLETED_RENDER_CAP)),
+    [liveCompleted, showAllCompleted]
+  )
   const cancelledCount = cancelledOrders.length
   const netOrders = liveCompleted.length
 
@@ -3411,7 +3435,18 @@ function AdminContent() {
                     {paidHasActions && <th>Actions</th>}
                   </tr>
                 </thead>
-                <tbody>{liveCompleted.map(o => renderCompletedRow(o, paidHasActions))}</tbody>
+                <tbody>
+                  {visibleLiveCompleted.map(o => renderCompletedRow(o, paidHasActions))}
+                  {!showAllCompleted && liveCompleted.length > COMPLETED_RENDER_CAP && (
+                    <tr>
+                      <td colSpan={99} style={{ textAlign: 'center', padding: '12px' }}>
+                        <button type="button" onClick={() => setShowAllCompleted(true)}>
+                          Show all {liveCompleted.length} rows ({liveCompleted.length - COMPLETED_RENDER_CAP} more)
+                        </button>
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
               </table>
             )}
           </div>

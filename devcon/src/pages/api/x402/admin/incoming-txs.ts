@@ -136,20 +136,32 @@ async function fetchChainTransfers(
     }],
   }
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(20_000),
-    })
-    if (!res.ok) {
-      return { chainId, transfers: [], error: `HTTP ${res.status}` }
+    // Paginate: Alchemy caps each response at maxCount (1000). Without the
+    // pageKey loop, once the sale exceeds 1000 incoming transfers the oldest
+    // (launch-day) rows silently vanish from the panel — and with them any
+    // real orphan from the launch window. Hard page cap as a runaway guard.
+    const transfers: AlchemyTransfer[] = []
+    let pageKey: string | undefined
+    for (let page = 0; page < 20; page++) {
+      const params = { ...payload.params[0], ...(pageKey ? { pageKey } : {}) }
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, params: [params] }),
+        signal: AbortSignal.timeout(20_000),
+      })
+      if (!res.ok) {
+        return { chainId, transfers: [], error: `HTTP ${res.status}` }
+      }
+      const json = await res.json()
+      if (json.error) {
+        return { chainId, transfers: [], error: json.error.message || 'alchemy error' }
+      }
+      transfers.push(...(json.result?.transfers ?? []))
+      pageKey = json.result?.pageKey
+      if (!pageKey) break
     }
-    const json = await res.json()
-    if (json.error) {
-      return { chainId, transfers: [], error: json.error.message || 'alchemy error' }
-    }
-    return { chainId, transfers: json.result?.transfers ?? [] }
+    return { chainId, transfers }
   } catch (e) {
     return { chainId, transfers: [], error: (e as Error).message || 'fetch failed' }
   }
@@ -211,6 +223,13 @@ function normalizeTransfer(
   }
 }
 
+// Short-lived response cache keyed by date range. The panel re-fires this
+// endpoint on every date-preset click and on each admin's auth, and each
+// call costs paginated Alchemy queries — 60s of staleness is invisible for
+// an on-chain audit view but absorbs preset-flipping and concurrent admins.
+const RESPONSE_CACHE_MS = 60_000
+const responseCache = new Map<string, { at: number; payload: unknown }>()
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
@@ -229,6 +248,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const dateTo = typeof req.query.dateTo === 'string' ? req.query.dateTo : ''
   const fromMs = dateFrom ? (isoToUnixSec(dateFrom, false) ?? 0) * 1000 : 0
   const toMs = dateTo ? (isoToUnixSec(dateTo, true) ?? Date.now() / 1000) * 1000 : Date.now()
+
+  const cacheKey = `${dateFrom}|${dateTo}`
+  const cached = responseCache.get(cacheKey)
+  if (cached && Date.now() - cached.at < RESPONSE_CACHE_MS) {
+    return res.status(200).json(cached.payload)
+  }
 
   const chainIds = Object.keys(ALCHEMY_URLS).map(Number)
   // Block bounds per chain. When `dateFrom` is empty, default to the
@@ -304,7 +329,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   incoming.sort((a, b) => b.timestamp - a.timestamp)
   outgoingRefunds.sort((a, b) => b.timestamp - a.timestamp)
 
-  return res.status(200).json({
+  const payload = {
     success: true,
     receiveAddress,
     refundAddress: REFUND_WALLET,
@@ -312,5 +337,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     incoming,
     outgoingRefunds,
     errors,
-  })
+  }
+  // Only cache clean responses — an Alchemy hiccup shouldn't be pinned for
+  // a minute when a retry would succeed.
+  if (Object.keys(errors).length === 0) {
+    responseCache.set(cacheKey, { at: Date.now(), payload })
+  }
+  return res.status(200).json(payload)
 }
