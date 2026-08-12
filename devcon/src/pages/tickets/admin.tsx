@@ -53,7 +53,7 @@ async function resolveRole(key: string): Promise<AdminRole | null> {
  *  (gasless flow + onchain refund button). `'wc_attempt'` is the legacy
  *  pre-x402 WalletConnect direct-send flow, shown read-only. */
 interface CompletedOrder {
-  source: 'x402' | 'wc_attempt'
+  source: 'x402' | 'wc_attempt' | 'wc_payment'
   paymentReference: string | null
   pretixOrderCode: string | null
   txHash: string | null
@@ -412,6 +412,9 @@ function sourceLabel(source: CompletedOrder['source']): string {
   switch (source) {
     case 'x402': return 'x402'
     case 'wc_attempt': return 'WalletConnect'
+    // Ledger-less rows swept from confirmed Pretix payments (manual /
+    // recovery confirms that never wrote a WCPaymentAttempt row).
+    case 'wc_payment': return 'WC (manual)'
   }
 }
 
@@ -894,15 +897,30 @@ function RefundModal({
       return
     }
 
+    // Refunds are sent on-chain to `order.payer` — a swept/legacy row can
+    // carry a null or malformed payer, and sending to a null `to` is a
+    // contract-creation tx that burns the funds. Hard-stop before anything.
+    if (!order.payer || !/^0x[0-9a-fA-F]{40}$/.test(order.payer)) {
+      setError(`Refund recipient is missing or malformed on this order (payer=${String(order.payer)}). Recover the buyer address from the original payment tx before refunding.`)
+      setStep('error')
+      return
+    }
+
+    // Set when the admin explicitly confirms a scam-list warning; forwarded
+    // to the plugin's initiate gate as force=true so the server-side check
+    // (which would otherwise 409 on the same list) honors the override.
+    let scamOverride = false
+
     try {
       // 0. Compliance screen on the refund recipient BEFORE anything is
       // signed. OFAC hit = hard stop: refunding a sanctioned address is
       // itself a violation — freeze the order and escalate instead. A
       // scam-list hit means the payer wallet may be compromised (the refund
       // could land with an attacker), so it requires an explicit admin
-      // confirmation. Screening infrastructure being down fails open with a
-      // console warning — the wallet-side Blockaid warning still applies.
+      // confirmation. If screening itself is unavailable, proceeding
+      // requires an explicit confirm too — never silently unscreened.
       setStep('signing')
+      let screenedClean = false
       try {
         const sr = await fetch(`/api/x402/admin/screen-address/?address=${order.payer}`, {
           headers: { 'x-admin-key': secret },
@@ -923,12 +941,20 @@ function RefundModal({
             setStep('confirm')
             return
           }
+          scamOverride = true
         }
-        if (screen.success && (!screen.ofacAvailable || !screen.scamAvailable)) {
-          console.warn('address screening lists partially unavailable — proceeding unscreened', screen)
-        }
+        screenedClean = screen.success && screen.ofacAvailable && screen.scamAvailable
       } catch (screenErr) {
-        console.warn('address screening unavailable — proceeding', screenErr)
+        console.warn('address screening errored', screenErr)
+      }
+      if (!screenedClean && !scamOverride) {
+        const proceed = window.confirm(
+          'Address screening is unavailable or incomplete for this recipient. Rely on your wallet\'s own warning screen before signing.\n\nProceed without screening?'
+        )
+        if (!proceed) {
+          setStep('confirm')
+          return
+        }
       }
 
       // 1. Initiate — only for x402, where we have a CAS guard
@@ -938,6 +964,9 @@ function RefundModal({
           chainId: refundChainId,
           amount: refundUsd,
           adminAddress: address,
+          // Mirrors the confirmed scam-list override so the server-side
+          // gate doesn't 409 on the same list the admin just acknowledged.
+          force: scamOverride,
         })
       }
 
