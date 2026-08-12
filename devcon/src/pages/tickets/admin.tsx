@@ -895,6 +895,42 @@ function RefundModal({
     }
 
     try {
+      // 0. Compliance screen on the refund recipient BEFORE anything is
+      // signed. OFAC hit = hard stop: refunding a sanctioned address is
+      // itself a violation — freeze the order and escalate instead. A
+      // scam-list hit means the payer wallet may be compromised (the refund
+      // could land with an attacker), so it requires an explicit admin
+      // confirmation. Screening infrastructure being down fails open with a
+      // console warning — the wallet-side Blockaid warning still applies.
+      setStep('signing')
+      try {
+        const sr = await fetch(`/api/x402/admin/screen-address/?address=${order.payer}`, {
+          headers: { 'x-admin-key': secret },
+        })
+        const screen = await sr.json()
+        if (screen.success && screen.ofac) {
+          setError(
+            'BLOCKED: the refund recipient is on the OFAC sanctions list. Do not refund — freeze the order and escalate (sending funds to a sanctioned address is itself a violation).'
+          )
+          setStep('error')
+          return
+        }
+        if (screen.success && screen.scam) {
+          const proceed = window.confirm(
+            "Warning: the refund recipient is on the ScamSniffer scam-address list. The buyer's wallet may be compromised and this refund could land with an attacker. Consider confirming with the buyer by email first.\n\nSend the refund anyway?"
+          )
+          if (!proceed) {
+            setStep('confirm')
+            return
+          }
+        }
+        if (screen.success && (!screen.ofacAvailable || !screen.scamAvailable)) {
+          console.warn('address screening lists partially unavailable — proceeding unscreened', screen)
+        }
+      } catch (screenErr) {
+        console.warn('address screening unavailable — proceeding', screenErr)
+      }
+
       // 1. Initiate — only for x402, where we have a CAS guard
       if (isX402) {
         setStep('signing')

@@ -1,5 +1,10 @@
 /**
  * Thin proxy: forwards to Pretix plugin /plugin/x402/purchase.
+ * DISABLED in production (2026-08-12): the plugin side has these x402 buyer
+ * routes commented out of `_x402_routes()`, so this proxy returns the plugin's
+ * 404. Before re-enabling, add OFAC screening of the payer — see the
+ * compliance note in pretix-eth-payment-plugin/pretix_eth/urls.py.
+ *
  * All business logic (pending order creation, rate limiting, totals) lives
  * in the plugin now. This file exists to keep the public URL stable.
  */
