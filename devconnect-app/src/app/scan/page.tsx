@@ -15,6 +15,10 @@ import { POI } from '@/types/api-data';
 import Button from 'lib/components/voxel-button/button';
 import { WalletDisplay } from '@/components/WalletDisplay';
 
+// In-app payments/sends retired with the event (relayer API returns 410).
+// Typed as boolean so the retired code below keeps normal type-checking.
+const PAYMENTS_RETIRED: boolean = true;
+
 export default function ScanPage() {
   const router = useRouter();
   const { isPara, address } = useWallet();
@@ -100,6 +104,14 @@ export default function ScanPage() {
         /^https:\/\/pay\.simplefi\.tech\/([^\/]+)$/
       );
       if (match) {
+        // Event over: in-app payments (gas-sponsored) are retired.
+        if (PAYMENTS_RETIRED) {
+          toast.error('Payments have ended with the event', {
+            description: 'In-app payments were only available during Devconnect ARG.',
+            duration: 8000,
+          });
+          return;
+        }
         const merchantSlug = match[1];
         console.log('Extracted merchant slug:', merchantSlug);
 
@@ -141,8 +153,11 @@ export default function ScanPage() {
     if (value?.toLowerCase()?.startsWith('0x') && value.length === 42) {
       console.log('QR Scanner detected Ethereum address:', value);
       if (isPara) {
-        // Redirect to send page with prefilled address
-        router.push(`/wallet/send?to=${value}`);
+        // Event over: gas-sponsored sends are retired.
+        toast.error('Send has been retired', {
+          description: 'In-app sends were only available during Devconnect ARG.',
+          duration: 8000,
+        });
         return;
       } else {
         // no send for external wallets

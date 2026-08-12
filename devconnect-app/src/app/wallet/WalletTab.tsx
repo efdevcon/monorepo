@@ -49,6 +49,8 @@ import {
 // type-checking the disabled JSX with normal narrowing.
 const SHOW_ONCHAIN_SECTIONS: boolean = false;
 const SHOW_PERKS_SECTION: boolean = false;
+// Gas-sponsored sends retired with the event (relayer API returns 410).
+const SHOW_SEND_BUTTON: boolean = false;
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -1251,7 +1253,7 @@ export default function WalletTab() {
                 </div>
 
                 {/* Send Button - Only when Para wallet */}
-                {isPara && (
+                {SHOW_SEND_BUTTON && isPara && (
                   <div
                     className="flex flex-col items-center gap-2 flex-1 md:flex-none md:w-[100px]"
                     style={{ maxWidth: 'min(21vw, 100%)' }}

@@ -41,6 +41,10 @@ interface PaymentRequest {
   expiration_time?: string;
 }
 
+// In-app payments/payments retired with the event (relayer API returns 410).
+// Typed as boolean so the retired code below keeps normal type-checking.
+const PAYMENTS_RETIRED: boolean = true;
+
 export default function ScanPage() {
   const router = useRouter();
   const { isPara } = useWallet();
@@ -62,6 +66,14 @@ export default function ScanPage() {
 
   // Function to handle manual payment request ID submission
   const handleManualPaymentRequest = async () => {
+    // Event over: in-app payments (gas-sponsored) are retired.
+    if (PAYMENTS_RETIRED) {
+      toast.error('Payments have ended with the event', {
+        description: 'In-app payments were only available during Devconnect ARG.',
+        duration: 8000,
+      });
+      return;
+    }
     if (!manualPaymentRequestId.trim()) {
       setManualPaymentError('Please enter a payment request ID');
       return;
@@ -75,6 +87,14 @@ export default function ScanPage() {
 
   // Function to handle merchant payment request
   const handleMerchantPaymentRequest = async () => {
+    // Event over: in-app payments (gas-sponsored) are retired.
+    if (PAYMENTS_RETIRED) {
+      toast.error('Payments have ended with the event', {
+        description: 'In-app payments were only available during Devconnect ARG.',
+        duration: 8000,
+      });
+      return;
+    }
     if (!selectedMerchant) {
       setMerchantPaymentError('Please select a merchant');
       return;

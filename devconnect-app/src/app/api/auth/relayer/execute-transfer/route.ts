@@ -25,7 +25,21 @@ import {
  * 4. Uses relayer wallet to call transferWithAuthorization
  * 5. Returns transaction hash and confirmation
  */
+// Devconnect ARG has ended — gas sponsoring is retired (2026-08-12).
+// Do NOT re-enable without OFAC screening of the authorization `from`
+// (see devcon/src/scripts/ofac-scan.ts for the list source and
+// pretix-eth-payment-plugin/pretix_eth/urls.py compliance note).
+// Typed as boolean (not literal true) so TypeScript keeps type-checking
+// the retired code below with normal narrowing.
+const SPONSORING_RETIRED: boolean = true;
+
 export async function POST(request: NextRequest) {
+  if (SPONSORING_RETIRED) {
+    return NextResponse.json(
+      { error: 'Gas sponsoring has been retired — the event has ended' },
+      { status: 410 }
+    );
+  }
   try {
     const requestBody = await request.json();
     let { signature, authorization, transactionType, simulation } = requestBody;
