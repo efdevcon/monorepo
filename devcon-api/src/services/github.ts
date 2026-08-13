@@ -5,38 +5,51 @@ export async function CommitSession(session: any, commitMessage: string = '') {
   try {
     const content = Buffer.from(SessionToJson(session)).toString('base64')
     const filePath = `devcon-api/data/sessions/${session.eventId}/${session.id}.json`
-
-    const fileRes = await fetch(`https://api.github.com/repos/efdevcon/monorepo/contents/${filePath}`, {
-      headers: {
-        Authorization: `token ${SERVER_CONFIG.GITHUB_TOKEN}`,
-      },
-    })
-
-    let sha = ''
-    if (fileRes.ok) {
-      const fileData = await fileRes.json()
-      sha = fileData.sha
-    }
-
     const message = commitMessage || `Update session ${session.id}`
-    const response = await fetch(`https://api.github.com/repos/efdevcon/monorepo/contents/${filePath}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `token ${process.env.GITHUB_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: message,
-        content: content,
-        sha: sha,
-        author: {
-          name: 'github-actions[bot]',
-          email: '41898282+github-actions[bot]@users.noreply.github.com',
-        },
-      }),
-    })
 
-    if (!response.ok) {
+    // Two successive writes to the same session within seconds (operator
+    // fixes a typo, the smoke test's set→revert) can race the contents API:
+    // the sha read below may return the pre-previous-commit value and the
+    // PUT then 409s. Re-read the sha and retry once before giving up.
+    for (let attempt = 0; ; attempt++) {
+      const fileRes = await fetch(`https://api.github.com/repos/efdevcon/monorepo/contents/${filePath}`, {
+        headers: {
+          Authorization: `token ${SERVER_CONFIG.GITHUB_TOKEN}`,
+          // The contents GET is cached aggressively; ask for a fresh read so
+          // the sha reflects the commit we may have made moments ago.
+          'Cache-Control': 'no-cache',
+        },
+      })
+
+      let sha = ''
+      if (fileRes.ok) {
+        const fileData = await fileRes.json()
+        sha = fileData.sha
+      }
+
+      const response = await fetch(`https://api.github.com/repos/efdevcon/monorepo/contents/${filePath}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `token ${process.env.GITHUB_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: message,
+          content: content,
+          sha: sha,
+          author: {
+            name: 'github-actions[bot]',
+            email: '41898282+github-actions[bot]@users.noreply.github.com',
+          },
+        }),
+      })
+
+      if (response.ok) return
+      if (response.status === 409 && attempt < 2) {
+        console.warn(`CommitSession sha conflict for ${filePath} (attempt ${attempt + 1}), retrying`)
+        await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)))
+        continue
+      }
       throw new Error(`GitHub API responded with status ${response.status}`)
     }
   } catch (error) {
