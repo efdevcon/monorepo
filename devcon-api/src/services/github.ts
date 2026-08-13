@@ -108,20 +108,28 @@ export async function TriggerWorkflow(workflowId: string, ref: string = 'main') 
   return response.ok
 }
 
-function SessionToJson(session: any) {
+/** `keywords`/`tags` come in two shapes: comma-separated strings (legacy
+ *  DB-era rows, Pretalx sync intermediates) and plain arrays (the file-backed
+ *  store — which is what enrichment writes pass since the DB removal; calling
+ *  .split on those 500'd every PUT /sessions/sources/:id before the commit). */
+function toStringList(value: any): string[] {
+  if (Array.isArray(value)) return value.map((i: any) => String(i).trim()).filter(Boolean)
+  if (typeof value === 'string')
+    return value
+      .split(',')
+      .map((i: string) => i.trim())
+      .filter(Boolean)
+  return []
+}
+
+export function SessionToJson(session: any) {
   const filesystemSession = {
     ...session,
-    keywords:
-      session.keywords
-        ?.split(',')
-        .map((i: string) => i.trim())
-        .filter(Boolean) || [],
-    tags:
-      session.tags
-        ?.split(',')
-        .map((i: string) => i.trim())
-        .filter(Boolean) || [],
-    speakers: session.speakers?.map((i: any) => i.id) || [],
+    keywords: toStringList(session.keywords),
+    tags: toStringList(session.tags),
+    // Files store speaker IDs; the in-memory store may hold resolved speaker
+    // objects. Serialize both back to IDs.
+    speakers: session.speakers?.map((i: any) => (typeof i === 'string' ? i : i?.id)).filter(Boolean) || [],
     slot_start: session.slot_start ? dayjs(session.slot_start).valueOf() : null,
     slot_end: session.slot_end ? dayjs(session.slot_end).valueOf() : null,
   }
