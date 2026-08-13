@@ -319,7 +319,17 @@ export function getSpeakersByIds(ids: string[]) {
 // --- Write operations ---
 
 export function updateSession(id: string, data: any) {
-  const index = sessions.findIndex((s) => s.id === id)
+  // Resolve through the same map `getSession` uses. Session ids are NOT
+  // unique across events (test events are cloned from real ones), and this
+  // function previously did a findIndex-by-id over the flat array — first
+  // event wins — while reads resolve via `sessionMap` — last event wins.
+  // The split let an AV write update (and commit!) a DIFFERENT event's
+  // session than the one every read returned, which wiped a devcon-7
+  // archive session's AV fields on 2026-08-13. Whatever ambiguity policy
+  // the map has, reads and writes must share it.
+  const target = sessionMap.get(id)
+  if (!target) return null
+  const index = sessions.indexOf(target)
   if (index === -1) return null
 
   const existing = sessions[index]

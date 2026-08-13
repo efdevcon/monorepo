@@ -123,8 +123,13 @@ function toStringList(value: any): string[] {
 }
 
 export function SessionToJson(session: any) {
+  // Strip fields the store hydrates at load time — they must never be
+  // serialized back into the data files (`slot_room` is derived from
+  // `slot_roomId` + the rooms data; embedding the whole room object bloated
+  // committed session files and duplicated room data per session).
+  const { slot_room, ...persistable } = session
   const filesystemSession = {
-    ...session,
+    ...persistable,
     keywords: toStringList(session.keywords),
     tags: toStringList(session.tags),
     // Files store speaker IDs; the in-memory store may hold resolved speaker
