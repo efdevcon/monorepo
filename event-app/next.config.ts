@@ -27,8 +27,10 @@ const withSerwist = withSerwistInit({
     { url: "/speakers", revision },
     { url: "/map", revision },
     { url: "/announcements", revision },
-    { url: "/profile", revision },
-    { url: "/login", revision },
+    // NOTE: only list routes that actually exist. A single 404 here fails the
+    // SW install event on every device (the worker never activates, offline
+    // breaks, and pushManager waits forever) — this bit us when /profile and
+    // /login were precached after their pages were removed.
     // Offline fallback served by the SW when a document navigation can't be
     // fulfilled offline (see `fallbacks` in src/sw.ts).
     { url: "/offline", revision },
