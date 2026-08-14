@@ -4,7 +4,7 @@ import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
 import { SEO } from 'components/domain/seo'
-import { ArrowRight, ArrowUpRight, CircleCheckBig, LockKeyholeOpen, MoveUp, Users } from 'lucide-react'
+import { ArrowRight, CircleCheckBig, LockKeyholeOpen, MoveUp, Users } from 'lucide-react'
 import StackingCards, { StackingCardItem } from 'components/common/stacking-cards'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import themes from '../themes.module.scss'
@@ -19,7 +19,7 @@ import LightningTalkImg from './images/formats/lightning-talk.jpg'
 import TalkImg from './images/formats/talk.jpg'
 import MixedFormatImg from './images/formats/mixed-format.jpg'
 import WorkshopImg from './images/formats/workshop.jpg'
-import { APPLY_URL, TRACK_IMAGES } from 'components/common/tracks/track-images'
+import { TRACK_IMAGES } from 'components/common/tracks/track-images'
 import Process1 from './images/process/speaker-process-01.jpg'
 import Process2 from './images/process/speaker-process-02.jpg'
 import Process3 from './images/process/speaker-process-03.jpg'
@@ -32,8 +32,6 @@ import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
 import type { GetStaticPropsContext } from 'next'
 
-const WISHLIST_URL = 'https://notes.ethereum.org/@devcon/devcon8-talks-wishlist'
-const GUIDELINES_URL = '/application-guidelines'
 // Anchor id comes from application-guidelines.tsx's SECTION_KEYS (underscores → hyphens)
 const REVIEW_CRITERIA_URL = '/application-guidelines#review-criteria'
 
@@ -55,6 +53,34 @@ const TRACK_BACK_COLORS = [
 ]
 
 const PROCESS_IMAGES = [Process1, Process2, Process3, Process4, Process5, Process6]
+
+// Closed-state card, ported from ecosystem-program's ApplicationsClosedCard
+function ApplicationsClosedCard() {
+  const t = useTranslations('speaker_applications.applications_closed')
+
+  return (
+    <div className={css['applications-closed-card']}>
+      <div className={css['applications-closed-inner']}>
+        <div className={css['applications-closed-text']}>
+          <p className={css['applications-closed-heading']}>{t('heading')}</p>
+          <div className={css['applications-closed-body']}>
+            <p>{t('thank_you')}</p>
+            <p>
+              {t('deadline_prefix')}
+              <strong>{t('deadline_date')}</strong>
+            </p>
+            <p>
+              {t('contact_prefix')}
+              <a href={`mailto:${t('contact_email')}`} className={css['text-link']}>
+                {t('contact_email')}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // Mobile stacking-card backgrounds from Figma, same order as PROCESS_IMAGES
 const PROCESS_STACK_COLORS = [
@@ -91,7 +117,6 @@ export default function SpeakerApplicationsPage() {
     { title: t('nav.sessions'), to: '#sessions' },
     { title: t('nav.tracks'), to: '#tracks' },
     { title: t('nav.process'), to: '#process' },
-    { title: t('nav.apply'), to: '#apply' },
   ]
 
   const datesBarItems = t.raw('dates_bar.items') as Array<{ label: string; value: string }>
@@ -125,15 +150,6 @@ export default function SpeakerApplicationsPage() {
     PROCESS_IMAGES.length
   )
 
-  const renderContactLine = (visibilityClass: string) => (
-    <p className={cn(css['body'], visibilityClass)}>
-      {t('final_cta.contact_prefix')}
-      <a href={`mailto:${t('final_cta.contact_email')}`} className={css['text-link']}>
-        {t('final_cta.contact_email')}
-      </a>
-    </p>
-  )
-
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
       <SEO title={t('title')} />
@@ -162,19 +178,10 @@ export default function SpeakerApplicationsPage() {
           <div className={css['hero-text-block']}>
             <h2 className={css['heading-2']}>{t('hero.heading')}</h2>
             <p className={css['body']}>{t('hero.body')}</p>
-            <p className={css['body']}>
-              <strong>{t('hero.body_strong')}</strong>
-            </p>
           </div>
 
           <div className={css['hero-cta-block']}>
-            <Link to={APPLY_URL} className={css['btn-primary']}>
-              {t('hero.apply_button')}
-              <ArrowRight size={16} strokeWidth={2} />
-            </Link>
-            <Link to={GUIDELINES_URL} className={css['text-link']}>
-              {t('hero.guidelines_link')}
-            </Link>
+            <ApplicationsClosedCard />
           </div>
         </section>
 
@@ -257,27 +264,13 @@ export default function SpeakerApplicationsPage() {
                   </div>
                 ))}
               </div>
-
-              <p className={css['muted-note']}>{t('formats.free_ticket_note')}</p>
-
-              <div className={css['cta-stack']}>
-                <p className={css['body']}>{t('formats.inspired_label')}</p>
-                <Link to={APPLY_URL} className={css['btn-primary']}>
-                  {t('formats.apply_button')}
-                  <ArrowRight size={16} strokeWidth={2} />
-                </Link>
-              </div>
             </section>
 
             {/* ── Tracks Section ───────────────────────────────── */}
             <section id="tracks" className={cn(css['tracks-section'], css['scroll-anchor'])}>
               <div className={css['tracks-header']}>
                 <h2 className={css['heading-2']}>{t('tracks.heading')}</h2>
-                <p className={css['body']}>
-                  {t('tracks.intro_line_1')}
-                  <br />
-                  {t('tracks.intro_line_2')}
-                </p>
+                <p className={css['body']}>{t('tracks.intro_line_1')}</p>
               </div>
 
               <div className={css['tracks-grid']}>
@@ -313,14 +306,6 @@ export default function SpeakerApplicationsPage() {
                     </div>
                   </button>
                 ))}
-              </div>
-
-              <div className={cn(css['cta-stack'], css['tracks-cta'])}>
-                <p className={css['body']}>{t('tracks.wishlist_label')}</p>
-                <Link to={WISHLIST_URL} className={css['btn-secondary']}>
-                  {t('tracks.wishlist_button')}
-                  <ArrowUpRight size={16} strokeWidth={2} />
-                </Link>
               </div>
             </section>
 
@@ -395,38 +380,6 @@ export default function SpeakerApplicationsPage() {
               </div>
             </section>
 
-            {/* ── Final CTA Section ────────────────────────────── */}
-            <section id="apply" className={cn(css['final-cta-section'], css['scroll-anchor'])}>
-              <div className={css['final-cta-content']}>
-                <h2 className={css['heading-2']}>{t('final_cta.heading')}</h2>
-                <div className={css['final-cta-body']}>
-                  <p className={css['body']}>
-                    {t('final_cta.body_prefix')}
-                    <strong>{t('final_cta.body_strong')}</strong>
-                    {t('final_cta.body_suffix')}
-                  </p>
-                  <p className={css['body']}>
-                    <Link to={GUIDELINES_URL} className={css['text-link']}>
-                      {t('final_cta.guidelines_link')}
-                    </Link>
-                  </p>
-                  {renderContactLine(css['contact-desktop'])}
-                </div>
-              </div>
-
-              <div className={css['final-cta-pill']}>
-                <div className={css['final-cta-pill-text']}>
-                  <p className={css['final-cta-pill-label']}>{t('final_cta.closes_label')}</p>
-                  <p className={css['final-cta-pill-date']}>{t('final_cta.closes_date')}</p>
-                </div>
-                <Link to={APPLY_URL} className={css['btn-primary']}>
-                  {t('final_cta.apply_button')}
-                  <ArrowRight size={16} strokeWidth={2} />
-                </Link>
-              </div>
-
-              {renderContactLine(css['contact-mobile'])}
-            </section>
           </div>
         </div>
       </div>

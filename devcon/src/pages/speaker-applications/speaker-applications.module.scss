@@ -232,13 +232,67 @@ $hairline: rgba(34, 17, 68, 0.1);
   align-items: center;
   position: relative;
 
-  /* Re-center within this centered stack; %btn-pill's width: 100% still takes over at mobile */
-  .btn-primary {
-    align-self: center;
-  }
-
   @media (max-width: $breakpoints-md) {
     width: 100%;
+  }
+}
+
+/* ─── Applications Closed Card (ported from ecosystem-program) ── */
+
+.applications-closed-card {
+  background: #ffffff;
+  border: 1px solid $accent-purple;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.applications-closed-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.applications-closed-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.applications-closed-heading {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.44;
+  letter-spacing: -0.5px;
+  color: $ink-heading;
+}
+
+.applications-closed-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.43;
+  color: $ink-muted;
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 700;
   }
 }
 
@@ -1079,107 +1133,6 @@ $track-flip-transition: 400ms cubic-bezier(0.345, 0.045, 0.355, 1);
   text-align: center;
   margin: 0;
   z-index: 1;
-}
-
-/* ─── Final CTA Section ───────────────────────────────────── */
-
-.final-cta-section {
-  @extend %section-gutters;
-  display: flex;
-  gap: 64px;
-  align-items: center;
-  padding-top: 64px;
-  padding-bottom: 80px;
-  position: relative;
-
-  @media (max-width: $breakpoints-lg) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 32px;
-  }
-}
-
-.final-cta-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-width: 0;
-}
-
-.final-cta-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* "Got a question?" line renders inside the copy on desktop,
-   but below the pill at 1024px and under */
-.contact-desktop {
-  @media (max-width: $breakpoints-lg) {
-    display: none;
-  }
-}
-
-.contact-mobile {
-  display: none;
-
-  @media (max-width: $breakpoints-lg) {
-    display: block;
-    margin-top: -8px;
-  }
-}
-
-.final-cta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 12px 12px 24px;
-  background: #ffffff;
-  border: 1px solid $hairline;
-  border-radius: 360px;
-  box-shadow: 10px 2px 41.7px 0px rgba(89, 20, 226, 0.45), 0px 4px 16px 0px rgba(89, 20, 226, 0.2),
-    0px 1px 2px 0px rgba(89, 20, 226, 0.1);
-  flex-shrink: 0;
-
-  @media (max-width: $breakpoints-lg) {
-    align-self: center;
-  }
-
-  @media (max-width: $breakpoints-md) {
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px 24px;
-    border-radius: 24px;
-    width: 100%;
-  }
-}
-
-.final-cta-pill-text {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  white-space: nowrap;
-  color: $ink-body;
-
-  @media (max-width: $breakpoints-md) {
-    flex-direction: column;
-    gap: 4px;
-  }
-}
-
-.final-cta-pill-label {
-  font-size: 14px;
-  line-height: 1.43;
-  margin: 0;
-}
-
-.final-cta-pill-date {
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1.3;
-  margin: 0;
 }
 
 /* ─── Scroll offsets ──────────────────────────────────────── */
