@@ -41,9 +41,14 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.text();
+  // Forward the (already validated) Supabase token: the devcon-ai service
+  // gates /api/chat with the same requireAuth check and 401s without it.
   const upstream = await fetch(`${DEVABOT_URL}/api/chat`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body,
   });
 
