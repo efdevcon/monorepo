@@ -78,8 +78,15 @@ export function usePushSubscription() {
         return;
       }
       try {
-        const registration = await navigator.serviceWorker.ready;
-        const sub = await registration.pushManager.getSubscription();
+        // Don't wait for `serviceWorker.ready` just to DISPLAY the toggle: on
+        // a first visit the worker spends a while precaching before it
+        // activates, and ready doesn't resolve until then — the card would
+        // stay hidden the whole time. No active registration simply means
+        // "not subscribed yet"; subscribe() awaits readiness itself.
+        const registration = await navigator.serviceWorker.getRegistration();
+        const sub = registration?.active
+          ? await registration.pushManager.getSubscription()
+          : null;
         if (!cancelled) setState(sub ? "on" : "off");
       } catch {
         if (!cancelled) setState("unsupported");
@@ -99,12 +106,40 @@ export function usePushSubscription() {
     setBusy(true);
     setError(null);
     try {
-      const permission = await Notification.requestPermission();
+      // Chrome's quiet-UI can swallow the prompt into an address-bar bell
+      // icon, leaving this promise pending — don't spin forever on it.
+      const permission = await Promise.race([
+        Notification.requestPermission(),
+        new Promise<"timeout">((resolve) =>
+          setTimeout(() => resolve("timeout"), 30_000)
+        ),
+      ]);
+      if (permission === "timeout") {
+        throw new Error(
+          "No answer from the notification prompt — look for a bell icon in the address bar and allow notifications there."
+        );
+      }
       if (permission !== "granted") {
         setState(permission === "denied" ? "denied" : "off");
         return;
       }
-      const registration = await navigator.serviceWorker.ready;
+      // First visit: the worker may still be precaching; ready resolves on
+      // activation. Bound the wait so a stalled install surfaces as a retry
+      // hint instead of an infinite spinner.
+      const registration = await Promise.race([
+        navigator.serviceWorker.ready,
+        new Promise<never>((_, reject) =>
+          setTimeout(
+            () =>
+              reject(
+                new Error(
+                  "The app is still setting up offline support — try again in a few seconds."
+                )
+              ),
+            20_000
+          )
+        ),
+      ]);
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(vapidKey) as BufferSource,
