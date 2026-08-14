@@ -181,3 +181,93 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
+
+// ---------------------------------------------------------------------------
+// Web push (announcements Phase 2). The server sends Apple's Declarative Web
+// Push JSON shape ({ web_push: 8030, notification: { title, body, navigate }})
+// — Safari 18.4+ displays it without running this worker; everywhere else the
+// classic handler below parses the same payload. All display work is wrapped
+// in event.waitUntil so the worker isn't killed mid-notification.
+// ---------------------------------------------------------------------------
+
+interface PushPayload {
+  notification?: { title?: string; body?: string; navigate?: string };
+}
+
+self.addEventListener("push", (event) => {
+  let payload: PushPayload = {};
+  try {
+    payload = (event.data?.json() as PushPayload) ?? {};
+  } catch {
+    // Non-JSON payload: show something rather than nothing.
+  }
+  const n = payload.notification ?? {};
+  event.waitUntil(
+    self.registration.showNotification(n.title || "Devcon", {
+      body: n.body,
+      icon: "/android-chrome-192x192.png",
+      badge: "/android-chrome-192x192.png",
+      data: { url: n.navigate || "/announcements" },
+    })
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const url: string = event.notification.data?.url || "/announcements";
+  event.waitUntil(
+    (async () => {
+      const clientList = await self.clients.matchAll({
+        type: "window",
+        includeUncontrolled: true,
+      });
+      // Focus an existing app window (navigating it) before opening a new one.
+      const client = clientList.find((c) => "focus" in c);
+      if (client) {
+        await client.focus();
+        try {
+          await client.navigate(url);
+        } catch {
+          // Cross-origin destination can't be navigated in place.
+          await self.clients.openWindow(url);
+        }
+        return;
+      }
+      await self.clients.openWindow(url);
+    })()
+  );
+});
+
+interface PushSubscriptionChangeEvent extends ExtendableEvent {
+  readonly oldSubscription: PushSubscription | null;
+  readonly newSubscription: PushSubscription | null;
+}
+
+// The browser rotated the subscription (endpoint/keys changed). Re-subscribe
+// with the same VAPID key and tell the server, keyed by the OLD endpoint —
+// otherwise this device silently stops receiving pushes forever (a known
+// unfixed gap in the Devcon SEA implementation).
+self.addEventListener("pushsubscriptionchange", (event) => {
+  const e = event as unknown as PushSubscriptionChangeEvent;
+  const applicationServerKey =
+    e.oldSubscription?.options.applicationServerKey ?? undefined;
+  const oldEndpoint = e.oldSubscription?.endpoint;
+  if (!oldEndpoint) return;
+  e.waitUntil(
+    (async () => {
+      try {
+        const subscription = await self.registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey,
+        });
+        await fetch("/api/push/subscriptions/rotate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ oldEndpoint, subscription }),
+        });
+      } catch (err) {
+        console.error("[sw] push subscription rotation failed:", err);
+      }
+    })()
+  );
+});

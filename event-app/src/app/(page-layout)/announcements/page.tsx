@@ -5,6 +5,7 @@ import { Megaphone } from "lucide-react";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useNowMs } from "@/hooks/useNow";
 import { AnnouncementCard } from "@/components/announcements/AnnouncementCard";
+import { PushOptIn } from "@/components/announcements/PushOptIn";
 
 const dayKey = (ms: number) => new Date(ms).toDateString();
 
@@ -63,6 +64,8 @@ export default function AnnouncementsPage() {
   return (
     <main className="py-6">
       <h1 className="mb-4 text-2xl font-bold text-gray-900">Announcements</h1>
+
+      <PushOptIn />
 
       {isLoading && (
         <p className="text-sm text-gray-500">Loading announcements…</p>
