@@ -36,6 +36,12 @@ const nowMs = useNowMs();    // number (ms); falls back to real time pre-mount
   timestamp (e.g. `getStatus(session, nowMs)`).
 - Pass a coarser interval where 1s is wasteful (e.g. schedule uses
   `useNowMs(60_000)`).
+- `useRealWorldNowMs(intervalMs?)` → for content dated against the real world
+  rather than event time (announcements). Same as `useNowMs` but opts out of the
+  per-deployment event-start auto-mock (`NEXT_PUBLIC_MOCK_NOW_TO_EVENT_START`),
+  so the selected dataset can't decide whether real-dated content is visible
+  (devcon-7 selected → clock in Nov 2024 → today's announcements all look
+  "scheduled"). An explicit `?mockNow` still applies, so reveal testing works.
 
 Source: `event-app/src/hooks/useNow.ts`. Reference usages:
 `src/components/schedule/useScheduleState.ts`,

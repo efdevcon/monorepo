@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import { cacheDB } from "@/data/cache/cache-db";
-import { useNowMs } from "@/hooks/useNow";
+import { useRealWorldNowMs } from "@/hooks/useNow";
 import type { Announcement, AnnouncementsResponse } from "./types";
 
 /** Unread badge only counts unseen announcements from the last 3 days. */
@@ -76,7 +76,7 @@ function useIsPreview(): boolean {
 export function useAnnouncements(options: { enabled?: boolean } = {}) {
   const enabled = options.enabled ?? true;
   const preview = useIsPreview();
-  const nowMs = useNowMs(60_000);
+  const nowMs = useRealWorldNowMs(60_000);
 
   const { data, error, isValidating, mutate } = useSWR(
     enabled ? ["announcements", preview ? "preview" : "published"] : null,

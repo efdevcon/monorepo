@@ -3,7 +3,7 @@
 import cn from "classnames";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/routing";
-import { useNowMs } from "@/hooks/useNow";
+import { useRealWorldNowMs } from "@/hooks/useNow";
 import type { Announcement } from "@/data/announcements/types";
 
 /**
@@ -38,7 +38,7 @@ export function AnnouncementCard({
   announcement: Announcement;
   seen: boolean;
 }) {
-  const nowMs = useNowMs(60_000);
+  const nowMs = useRealWorldNowMs(60_000);
   const { title, message, url, sendAt } = announcement;
 
   const body = (

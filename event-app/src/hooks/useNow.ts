@@ -81,7 +81,15 @@ function readParam(name: string): string | null {
   return new URLSearchParams(window.location.search).get(name);
 }
 
-export function useNow(intervalMs: number = 1000): Date | null {
+export function useNow(
+  intervalMs: number = 1000,
+  options: { autoMockEventStart?: boolean } = {}
+): Date | null {
+  // Opt out of the per-deployment event-start auto-mock (see
+  // AUTO_MOCK_EVENT_START above). Explicit `?mockNow` still applies either
+  // way — this only controls whether an unmocked clock silently jumps to the
+  // selected dataset's conference start.
+  const autoMockEventStart = options.autoMockEventStart ?? true;
   const mockNowParam = readParam("mockNow");
   const mockSpeedParam = readParam("mockSpeed");
 
@@ -99,7 +107,7 @@ export function useNow(intervalMs: number = 1000): Date | null {
     // Explicit `?mockNow` always wins; otherwise fall back to the active
     // dataset's conference start when preview auto-mock is enabled.
     let mockStart = mockNowParam ? parseMockNow(mockNowParam) : null;
-    if (mockStart == null && AUTO_MOCK_EVENT_START) {
+    if (mockStart == null && AUTO_MOCK_EVENT_START && autoMockEventStart) {
       const t = Date.parse(getActiveDataset().startDate);
       mockStart = Number.isNaN(t) ? null : t;
     }
@@ -120,13 +128,27 @@ export function useNow(intervalMs: number = 1000): Date | null {
     setNow(compute());
     const id = setInterval(() => setNow(compute()), intervalMs);
     return () => clearInterval(id);
-  }, [intervalMs, mockNowParam, mockSpeedParam]);
+  }, [intervalMs, mockNowParam, mockSpeedParam, autoMockEventStart]);
 
   return now;
 }
 
 /** Convenience: current time in ms, falling back to real time before mount. */
-export function useNowMs(intervalMs?: number): number {
-  const now = useNow(intervalMs);
+export function useNowMs(
+  intervalMs?: number,
+  options?: { autoMockEventStart?: boolean }
+): number {
+  const now = useNow(intervalMs, options);
   return now ? now.getTime() : Date.now();
+}
+
+/**
+ * Clock for content dated against the real world rather than event time —
+ * announcements are published at actual timestamps, so which dataset is
+ * selected must not decide whether they're visible yet (a devcon-7 dataset
+ * would otherwise put the clock in Nov 2024 and hide everything as "future").
+ * Still honors an explicit `?mockNow` so scheduled reveals remain testable.
+ */
+export function useRealWorldNowMs(intervalMs?: number): number {
+  return useNowMs(intervalMs, { autoMockEventStart: false });
 }

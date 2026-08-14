@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { Megaphone } from "lucide-react";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
-import { useNowMs } from "@/hooks/useNow";
+import { useRealWorldNowMs } from "@/hooks/useNow";
 import { AnnouncementCard } from "@/components/announcements/AnnouncementCard";
 import { PushOptIn } from "@/components/announcements/PushOptIn";
 
@@ -16,7 +16,7 @@ const dayKey = (ms: number) => new Date(ms).toDateString();
 export default function AnnouncementsPage() {
   const { announcements, isLoading, error, markAllSeen, readStateReady } =
     useAnnouncements();
-  const nowMs = useNowMs(60_000);
+  const nowMs = useRealWorldNowMs(60_000);
 
   // Unread dots reflect the read state as it was when the page was entered:
   // markAllSeen below clears the nav badge immediately, but the dots stay for
