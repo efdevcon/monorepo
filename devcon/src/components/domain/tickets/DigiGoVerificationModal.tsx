@@ -169,7 +169,7 @@ function DigiGoFlow({ onVoucher }: DigiGoFlowProps) {
               </>
             )}
 
-            <div className={css['digigo-card-footer']}>Grievances: grievance@digigo.club</div>
+            <div className={css['digigo-card-footer']}>Grievances: contact@digigo.club</div>
           </div>
         </aside>
       </div>
