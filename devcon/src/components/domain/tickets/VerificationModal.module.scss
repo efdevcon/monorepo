@@ -857,3 +857,235 @@
     transform: rotate(360deg);
   }
 }
+
+/* ─── DigiGo verification modal ─────────────────────────────────────────────
+ * Two-column placement ported from the DigiGo reference app: numbered steps on
+ * the left, the live QR card on the right. Stacks on narrow screens with the
+ * QR first, so the thing you actually scan isn't buried under the steps.
+ */
+
+.digigo-modal {
+  max-width: 780px;
+}
+
+.digigo-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2rem;
+  align-items: start;
+
+  /* Flex, not a one-column grid: the QR card's aspect-ratio box confuses grid
+     row sizing, which lets the two columns overlap once they stack. */
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.digigo-kicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #594d73;
+  margin: 0 0 1rem;
+}
+
+.digigo-steps-col {
+  min-width: 0;
+
+  @media (max-width: 700px) {
+    order: 2;
+  }
+}
+
+/* Numbered marker + connector line between steps (DigiGo reference app). */
+.digigo-step {
+  position: relative;
+  padding: 0 0 1.25rem 2.75rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &::before {
+    content: attr(data-n);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #fff;
+    background: #160b2b;
+    border-radius: 50%;
+  }
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 12.5px;
+    top: 32px;
+    bottom: 4px;
+    width: 1px;
+    background: #dddae2;
+  }
+}
+
+.digigo-step-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #160b2b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.digigo-step-body {
+  font-size: 0.875rem;
+  color: #1a0d33;
+  line-height: 1.43;
+  margin: 0.25rem 0 0;
+
+  a {
+    color: #7235ed;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.digigo-qr-col {
+  min-width: 0;
+
+  @media (max-width: 700px) {
+    order: 1;
+  }
+}
+
+.digigo-card {
+  padding: 1.25rem 1rem 1rem;
+  background: #fff;
+  border: 1px solid #dddae2;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0px 2px 4px 0px rgba(22, 11, 43, 0.1), 0px 12px 28px -18px rgba(22, 11, 43, 0.45);
+}
+
+.digigo-card-brand {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #160b2b;
+}
+
+.digigo-qr-box {
+  width: 100%;
+  max-width: 232px;
+  aspect-ratio: 1;
+  margin: 1rem auto 0.75rem;
+  padding: 0.875rem;
+  background: #f6f5f9;
+  border: 1px solid #dddae2;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.digigo-qr-img {
+  width: 100%;
+  height: 100%;
+}
+
+.digigo-qr-ok {
+  font-size: 3.5rem;
+  line-height: 1;
+  color: #1f7a45;
+}
+
+.digigo-qr-dead {
+  font-size: 0.8125rem;
+  color: #9b1c1c;
+}
+
+/* Warm skeleton with a band of light sweeping across it while the QR mints. */
+.digigo-qr-shimmer {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(105deg, #ededf7 38%, #ffffff 50%, #ededf7 62%);
+  background-size: 200% 100%;
+  animation: digigo-qr-shimmer 1.35s ease-in-out infinite;
+}
+
+@keyframes digigo-qr-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digigo-qr-shimmer {
+    animation: none;
+  }
+}
+
+.digigo-card-scan {
+  font-size: 0.875rem;
+  color: #1a0d33;
+  line-height: 1.43;
+  margin: 0 0 0.25rem;
+}
+
+.digigo-card-status {
+  font-size: 0.75rem;
+  color: #594d73;
+  margin: 0;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.digigo-card-status--ok {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1f7a45;
+  margin: 0;
+  min-height: 24px;
+}
+
+.digigo-regen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font: inherit;
+  font-size: 0.75rem;
+  color: #1a0d33;
+  background: none;
+  border: 1px solid #dddae2;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #ededf7;
+  }
+}
+
+.digigo-card-footer {
+  margin-top: 0.875rem;
+  padding-top: 0.625rem;
+  border-top: 1px solid #dddae2;
+  font-size: 0.6875rem;
+  color: #594d73;
+}

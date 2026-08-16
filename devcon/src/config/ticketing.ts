@@ -51,6 +51,16 @@ const ENV_CONFIG = {
       staging: true,
       requireEarlyAccess: false,
     },
+    digigo: {
+      // Second India-resident verification path, alongside Self. DigiGo runs the
+      // Aadhaar face-auth flow and hands back a JWS credential; we verify it
+      // server-side against DigiGo's public JWKS (redeem-digigo.ts) and issue a
+      // voucher from the same pool the Self flow uses.
+      //
+      // There is nothing else to configure: `DIGIGO_API_KEY` (server env only)
+      // selects the event on its own, and @digigo/verify owns the API host.
+      enabled: true,
+    },
     discount: {
       collection: 'test-india-resident',
       // Prefix for community-discount voucher collections (Core Devs, OSS,
@@ -150,6 +160,9 @@ const ENV_CONFIG = {
       // TODO: change to false before tickets go live
       staging: false,
       requireEarlyAccess: false,
+    },
+    digigo: {      
+      enabled: true,
     },
     discount: {
       collection: 'india-resident',

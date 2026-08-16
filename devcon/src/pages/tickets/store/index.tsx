@@ -7,6 +7,7 @@ import themes from '../../themes.module.scss'
 // import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 // import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
+import { DigiGoVerificationModal } from 'components/domain/tickets/DigiGoVerificationModal'
 import { RedeemVoucherModal } from 'components/domain/tickets/RedeemVoucherModal'
 import { Input } from '@/components/ui/input'
 import {
@@ -21,6 +22,7 @@ import {
   Ribbon,
   TicketPercent,
   Loader2,
+  ScanFace,
 } from 'lucide-react'
 import css from './store.module.scss'
 
@@ -228,6 +230,8 @@ function useCountdown() {
 type StoreContentProps = {
   selfVerificationOpen: boolean
   setSelfVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
+  digigoVerificationOpen: boolean
+  setDigigoVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
   useSelfStaging: boolean
   setUseSelfStaging: (value: boolean) => void
   initialTickets: TicketInfo[]
@@ -236,6 +240,8 @@ type StoreContentProps = {
 function StoreContent({
   selfVerificationOpen,
   setSelfVerificationOpen,
+  digigoVerificationOpen,
+  setDigigoVerificationOpen,
   useSelfStaging,
   setUseSelfStaging,
   initialTickets,
@@ -659,21 +665,36 @@ function StoreContent({
                       prove Indian residency.
                     </p>
                   </div>
-                  <div className={css['application-card-footer']}>
+                  <div className={`${css['application-card-footer']} ${css['application-card-footer--wrap']}`}>
                     <CardPrice combined="$149" />
                     {!launched ? (
                       <span className={css['opens-label']}>Opens July</span>
                     ) : discountSoldOut('india-resident') ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
-                      <button
-                        type="button"
-                        className={css['verify-self-btn']}
-                        onClick={() => setSelfVerificationOpen(true)}
-                      >
-                        <SelfLogo className={css['self-logo']} aria-hidden="true" />
-                        Verify via Self
-                      </button>
+                      // Two independent proofs of Indian residency, same voucher
+                      // pool: Self (Aadhaar ZK proof) and DigiGo (Aadhaar app
+                      // face-auth). Either one unlocks the ticket.
+                      <div className={css['verify-btn-group']}>
+                        {TICKETING.digigo.enabled && (
+                          <button
+                            type="button"
+                            className={css['verify-self-btn']}
+                            onClick={() => setDigigoVerificationOpen(true)}
+                          >
+                            <ScanFace size={16} strokeWidth={2} aria-hidden="true" />
+                            Verify via DigiGo
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          className={css['verify-self-btn']}
+                          onClick={() => setSelfVerificationOpen(true)}
+                        >
+                          <SelfLogo className={css['self-logo']} aria-hidden="true" />
+                          Verify via Self
+                        </button>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -778,6 +799,8 @@ function StoreContent({
         email={earlyAccessEmail ?? undefined}
       />
 
+      <DigiGoVerificationModal isOpen={digigoVerificationOpen} onClose={() => setDigigoVerificationOpen(false)} />
+
       <RedeemVoucherModal isOpen={redeemOpen} onClose={() => setRedeemOpen(false)} />
 
       <VerifyDiscountModal isOpen={verifyDiscountOpen} onClose={() => setVerifyDiscountOpen(false)} />
@@ -787,6 +810,7 @@ function StoreContent({
 
 export default function TicketsStorePage({ initialTickets = [] }: { initialTickets?: TicketInfo[] }) {
   const [selfVerificationOpen, setSelfVerificationOpen] = useState(false)
+  const [digigoVerificationOpen, setDigigoVerificationOpen] = useState(false)
   const [useSelfStaging, setUseSelfStaging] = useState(TICKETING.self.staging)
 
   return (
@@ -796,6 +820,8 @@ export default function TicketsStorePage({ initialTickets = [] }: { initialTicke
           <StoreContent
             selfVerificationOpen={selfVerificationOpen}
             setSelfVerificationOpen={setSelfVerificationOpen}
+            digigoVerificationOpen={digigoVerificationOpen}
+            setDigigoVerificationOpen={setDigigoVerificationOpen}
             useSelfStaging={useSelfStaging}
             setUseSelfStaging={setUseSelfStaging}
             initialTickets={initialTickets}
