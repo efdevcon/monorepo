@@ -870,7 +870,9 @@
 
 .digigo-layout {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  /* Even split — the QR is the thing people came to scan, so it gets as much
+     room as the instructions. */
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
 
@@ -986,10 +988,10 @@
 
 .digigo-qr-box {
   width: 100%;
-  max-width: 232px;
+  max-width: 300px;
   aspect-ratio: 1;
   margin: 1rem auto 0.75rem;
-  padding: 0.875rem;
+  padding: 0.75rem;
   background: #f6f5f9;
   border: 1px solid #dddae2;
   border-radius: 12px;

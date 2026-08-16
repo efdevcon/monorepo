@@ -169,7 +169,7 @@ function DigiGoFlow({ onVoucher }: DigiGoFlowProps) {
               </>
             )}
 
-            <div className={css['digigo-card-footer']}>Grievances: contact@digigo.club</div>
+            <div className={css['digigo-card-footer']}>No personal data is shared!</div>
           </div>
         </aside>
       </div>
@@ -262,7 +262,6 @@ export function DigiGoVerificationModal({ isOpen, onClose }: DigiGoVerificationM
 
             <DigiGoFlow onVoucher={setVoucher} />
 
-            <p className={css['self-privacy']}>No personal data is shared!</p>
           </div>
         )}
       </div>
