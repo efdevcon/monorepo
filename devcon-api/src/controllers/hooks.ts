@@ -71,11 +71,17 @@ function pretalxToStoreData(item: any, eventId: string) {
 // makes every consumer re-download the full dataset for nothing.
 const lastSyncSnapshot = new Map<string, string>()
 
-// Release-race guard tuning. Exported for tests.
-export const SCHEDULE_VISIBILITY_RETRIES = 5
-export const SCHEDULE_VISIBILITY_DELAY_MS = 6000
+// Release-race guard tuning. Exported for tests. Observed live 2026-08-17:
+// a release took ~35s to become visible in the public widget — the original
+// 5x6s budget lost by seven seconds. 2 minutes gives comfortable margin.
+export const SCHEDULE_VISIBILITY_RETRIES = 15
+export const SCHEDULE_VISIBILITY_DELAY_MS = 8000
+// If visibility STILL hasn't caught up when the budget runs out, one deferred
+// re-sync fires after this delay — covering pathological propagation without
+// risking an infinite chain (the retry never schedules another retry).
+export const SCHEDULE_VISIBILITY_DEFERRED_RETRY_MS = 3 * 60_000
 
-async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersion?: string) {
+async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersion?: string, isDeferredRetry = false) {
   const { eventId } = config
   console.log(`Full re-sync of Pretalx sessions for ${eventId}...`)
 
@@ -94,7 +100,15 @@ async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersio
       }
       console.log(`Published schedule is '${published}', webhook says '${expectedScheduleVersion}' — waiting for release to become visible (${attempt + 1}/${SCHEDULE_VISIBILITY_RETRIES})`)
       if (attempt === SCHEDULE_VISIBILITY_RETRIES - 1) {
-        console.warn('Release never became visible in time — syncing anyway (workflow/deploy will correct)')
+        console.warn('Release never became visible in time — syncing anyway now')
+        if (!isDeferredRetry) {
+          console.warn(`Scheduling ONE deferred re-sync in ${SCHEDULE_VISIBILITY_DEFERRED_RETRY_MS / 1000}s to self-heal`)
+          setTimeout(() => {
+            SyncPretalx(config, expectedScheduleVersion, true).catch((e) =>
+              console.error('Deferred re-sync failed:', e),
+            )
+          }, SCHEDULE_VISIBILITY_DEFERRED_RETRY_MS)
+        }
       } else {
         await new Promise((r) => setTimeout(r, SCHEDULE_VISIBILITY_DELAY_MS))
       }
