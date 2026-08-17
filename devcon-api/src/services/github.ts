@@ -45,9 +45,14 @@ export async function CommitSession(session: any, commitMessage: string = '') {
       })
 
       if (response.ok) return
-      if (response.status === 409 && attempt < 2) {
-        console.warn(`CommitSession sha conflict for ${filePath} (attempt ${attempt + 1}), retrying`)
-        await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)))
+      // Retry transient failures: 409 = stale-sha race between two quick
+      // writes to the same session; 5xx/429 = GitHub having a moment (a 503
+      // during the 2026-08-17 GitHub incident lost an AV write's persistence
+      // while memory updated — the worst kind of drift to have mid-event).
+      const transient = response.status === 409 || response.status === 429 || response.status >= 500
+      if (transient && attempt < 3) {
+        console.warn(`CommitSession got ${response.status} for ${filePath} (attempt ${attempt + 1}), retrying`)
+        await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)))
         continue
       }
       throw new Error(`GitHub API responded with status ${response.status}`)
