@@ -19,7 +19,8 @@ const inter = Inter({
 });
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  // 800 = ExtraBold, used by the desktop "Schedule" page title.
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -188,7 +189,17 @@ export default function RootLayout({
         <CustomScrollbar />
         <DebugPanel />
         <ServiceWorkerUpdater />
-        <Toaster position="bottom-center" richColors />
+        {/* mobileOffset lifts bottom toasts clear of the fixed nav pill
+            (24px nav padding + ~50px pill + breathing room, safe-area aware) */}
+        <Toaster
+          position="bottom-center"
+          richColors
+          // Inline style beats sonner's own font-family on the container.
+          style={{ fontFamily: "var(--font-heading)" }}
+          mobileOffset={{
+            bottom: "calc(max(24px, env(safe-area-inset-bottom)) + 64px)",
+          }}
+        />
       </body>
     </html>
   );

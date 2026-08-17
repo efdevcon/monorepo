@@ -38,9 +38,10 @@ export function SessionMedia({ session }: { session: Session }) {
   if (!src && !translationUrl) return null;
 
   return (
-    <div className="mb-4">
+    // No own margins — the details layout's gaps own the spacing around media.
+    <div>
       {streamSrc && (
-        <p className="mb-1 text-sm font-semibold text-red-600">Livestream</p>
+        <p className="mb-1 text-sm font-semibold text-dc-red">Livestream</p>
       )}
       {src && (
         <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
@@ -59,7 +60,7 @@ export function SessionMedia({ session }: { session: Session }) {
           href={translationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-block text-sm font-semibold text-[#7D52F4] underline"
+          className="mt-2 inline-block text-sm font-semibold text-dc-purple underline"
         >
           Live translation available
         </a>

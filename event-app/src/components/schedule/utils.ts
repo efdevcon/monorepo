@@ -14,13 +14,24 @@ const dayLabelFmt = new Intl.DateTimeFormat(undefined, {
   month: "short",
   day: "numeric",
 });
-const timeFmt = new Intl.DateTimeFormat(undefined, {
-  hour: "numeric",
+// 24-hour, zero-padded ("09:30") per the Figma design.
+const timeFmt = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit",
   minute: "2-digit",
+  hour12: false,
 });
 
 export const formatDayLabel = (session: Session) =>
   dayLabelFmt.format(new Date(ms(session.start)));
+
+// "Wed, November 13" — the desktop list's day heading (Figma "Tues, November 3").
+const dayHeadingFmt = new Intl.DateTimeFormat("en-US", {
+  weekday: "short",
+  month: "long",
+  day: "numeric",
+});
+export const formatDayHeading = (startOfDayMs: number) =>
+  dayHeadingFmt.format(new Date(startOfDayMs));
 
 export const formatTime = (unixSeconds: number) =>
   timeFmt.format(new Date(ms(unixSeconds)));
@@ -42,31 +53,6 @@ export function getStatus(session: Session, nowMs: number): SessionStatus {
 
 export function minutesUntil(session: Session, nowMs: number): number {
   return Math.max(0, Math.round((ms(session.start) - nowMs) / 60000));
-}
-
-// Deterministic track → color so any event's track names get a stable accent
-// without hardcoding a track list (event-app is meant to be reusable).
-const TRACK_COLORS = [
-  { bg: "#EFEBFF", fg: "#7D52F4" },
-  { bg: "#E7F5FF", fg: "#1B6FAE" },
-  { bg: "#E9F9EE", fg: "#1F9254" },
-  { bg: "#FFF1E6", fg: "#C2410C" },
-  { bg: "#FCE8F3", fg: "#BE185D" },
-  { bg: "#FEF6E0", fg: "#A16207" },
-  { bg: "#E6FAF8", fg: "#0E7490" },
-  { bg: "#F0EEF6", fg: "#4B4B6B" },
-];
-
-export function trackColor(track: string | undefined): {
-  bg: string;
-  fg: string;
-} {
-  if (!track) return { bg: "#F3F4F6", fg: "#6B7280" };
-  let hash = 0;
-  for (let i = 0; i < track.length; i++) {
-    hash = (hash * 31 + track.charCodeAt(i)) >>> 0;
-  }
-  return TRACK_COLORS[hash % TRACK_COLORS.length];
 }
 
 /** A day in the day selector. */
@@ -114,7 +100,7 @@ export function groupByTime(sessions: Session[]): TimeGroup[] {
 
 /** One time column in the timeline = this many minutes, rendered this wide. */
 export const SLOT_MINUTES = 10;
-export const SLOT_WIDTH = 100; // px per slot
+export const SLOT_WIDTH = 180; // px per slot (Figma: 10 min = 180px)
 
 const SLOT_MS = SLOT_MINUTES * 60_000;
 
