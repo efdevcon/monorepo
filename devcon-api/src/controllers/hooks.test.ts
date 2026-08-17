@@ -1,7 +1,7 @@
 import request from 'supertest'
 import app from '../app'
 import * as store from '../data/store'
-import { GetSessions } from '../clients/pretalx'
+import { GetSessions, clearPretalxCache } from '../clients/pretalx'
 
 // WEBHOOK_SECRET=test-secret is set on the jest command line.
 
@@ -16,6 +16,7 @@ jest.mock('../services/github', () => ({
 jest.mock('../clients/pretalx', () => ({
   GetSessions: jest.fn().mockResolvedValue([]),
   GetSpeaker: jest.fn().mockResolvedValue(null),
+  clearPretalxCache: jest.fn(),
 }))
 
 beforeAll(() => {
@@ -44,5 +45,41 @@ describe('POST /hooks/pretalx/schedule', () => {
     expect(res.statusCode).toBe(400)
     // The old fallback would have resynced devcon-7 here.
     expect(GetSessions).not.toHaveBeenCalled()
+  })
+})
+
+
+describe('SyncPretalx staleness guards', () => {
+  const syncPayload = {
+    event: 'test-devcon-8',
+    user: 'tester',
+    schedule: 'v2',
+    changes: { new_talks: [], canceled_talks: [], moved_talks: [] },
+  }
+
+  test('invalidates the Pretalx response cache before fetching', async () => {
+    // Without this, a long-lived process re-serves the pre-publish cached
+    // response and every re-publish is a silent no-op (2026-08-15 bug).
+    const res = await request(app)
+      .post('/hooks/pretalx/schedule')
+      .set('X-Webhook-Secret', 'test-secret')
+      .send(syncPayload)
+    expect(res.statusCode).toBe(204)
+    expect(clearPretalxCache).toHaveBeenCalledWith('test-devcon-8')
+    expect(GetSessions).toHaveBeenCalled()
+    // Ordering: cache cleared before the fetch that would repopulate it.
+    const clearOrder = (clearPretalxCache as jest.Mock).mock.invocationCallOrder[0]
+    const fetchOrder = (GetSessions as jest.Mock).mock.invocationCallOrder[0]
+    expect(clearOrder).toBeLessThan(fetchOrder)
+  })
+
+  test('does not bump the event version when synced data is unchanged', async () => {
+    // First sync in the process snapshots the data and bumps.
+    await request(app).post('/hooks/pretalx/schedule').set('X-Webhook-Secret', 'test-secret').send(syncPayload)
+    const versionAfterFirst = store.getEvent('test-devcon-8')?.version
+    // Identical data on re-publish: version must NOT move (a bump without a
+    // diff masks sync failures — it is what hid the stale-cache bug).
+    await request(app).post('/hooks/pretalx/schedule').set('X-Webhook-Secret', 'test-secret').send(syncPayload)
+    expect(store.getEvent('test-devcon-8')?.version).toBe(versionAfterFirst)
   })
 })

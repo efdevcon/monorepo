@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG, getPretalxConfig, getEventIdByPretalxSlug, PretalxInstanceConfig } from '@/utils/config'
 import { TriggerWorkflow, CommitContentFile } from '@/services/github'
-import { GetSessions, GetSpeaker } from '@/clients/pretalx'
+import { GetSessions, GetSpeaker , clearPretalxCache } from '@/clients/pretalx'
 import { FetchNocoDbTable } from '@/clients/nocodb'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
@@ -65,9 +65,21 @@ function pretalxToStoreData(item: any, eventId: string) {
   }
 }
 
+// Last successfully synced dataset per event (normalized), so the version
+// only bumps when the data actually changed. A bump without a diff actively
+// masks sync failures (it's what hid the stale-cache bug for months) and
+// makes every consumer re-download the full dataset for nothing.
+const lastSyncSnapshot = new Map<string, string>()
+
 async function SyncPretalx(config: PretalxInstanceConfig) {
   const { eventId } = config
   console.log(`Full re-sync of Pretalx sessions for ${eventId}...`)
+
+  // The Pretalx client caches responses per event with no TTL — correct for
+  // one-shot scripts, fatal here: in the long-lived server a re-publish would
+  // "re-fetch" the pre-publish cached response and no-op. Always start a sync
+  // from a clean slate for this event.
+  clearPretalxCache(eventId)
 
   // 1) Slow async work against the live source — store keeps serving old data.
   const sessions = await GetSessions({}, config)
@@ -84,9 +96,17 @@ async function SyncPretalx(config: PretalxInstanceConfig) {
   const count = store.replaceEventSessions(eventId, storeData)
   console.log(`Swapped in ${count} sessions for ${eventId} (zero-downtime)`)
 
-  const version = Date.now().toString()
-  console.log('Updating event version...', version)
-  store.updateEventVersion(eventId, version)
+  // Bump the event version ONLY when the synced data differs from the last
+  // sync in this process. First sync after boot always bumps (no snapshot).
+  const snapshot = JSON.stringify([...storeData].sort((a: any, b: any) => String(a.id).localeCompare(String(b.id))))
+  if (lastSyncSnapshot.get(eventId) === snapshot) {
+    console.log('Synced data identical to previous sync — version not bumped')
+  } else {
+    lastSyncSnapshot.set(eventId, snapshot)
+    const version = Date.now().toString()
+    console.log('Updating event version...', version)
+    store.updateEventVersion(eventId, version)
+  }
 
   const workflows = WORKFLOW_MAP[eventId]
   if (workflows) {

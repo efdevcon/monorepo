@@ -137,6 +137,21 @@ async function exhaustResource(slug: string, config: PretalxInstanceConfig, limi
   })
 }
 
+/** Drop every cached Pretalx response for one event.
+ *
+ * The response cache below is module-level with no TTL. That's fine for
+ * scripts (one process = one run), but in the long-lived API server it made
+ * every schedule re-publish a silent no-op: the webhook's "re-fetch" served
+ * the pre-publish cached response, the store swapped in identical old data,
+ * and the version stamp still bumped — fresh-looking version over stale
+ * sessions (bug report 2026-08-15, reproduced live 2026-08-17). The sync
+ * path MUST call this before fetching. */
+export function clearPretalxCache(eventId: string) {
+  for (const key of cache.keys()) {
+    if (typeof key === 'string' && key.startsWith(`${eventId}:`)) cache.delete(key)
+  }
+}
+
 async function get(slug: string, config: PretalxInstanceConfig) {
   const cacheKey = `${config.eventId}:${slug}`
   if (cache.has(cacheKey)) {
