@@ -571,6 +571,18 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    consider CDN caching on the hot `GET` endpoints for event days so even an API
    restart mid-keynote is invisible. ✅ IMPLEMENTED 2026-08-10 (§12e) on the origin
    side; a Cloudflare dashboard Cache Rule is still needed to activate edge caching.
+8. **Repo weight is a deploy-time tax on everything (found 2026-08-17):** a SHALLOW
+   clone of the monorepo is ~1.2 GB - `devcon-api/data/` alone is ~650 MB (Devcon 6
+   ceremony MP3s under `data/audio/`, ~200 MB of DC7 transcript CSVs under
+   `data/transcripts/`) and `devcon/public/` ~540 MB (incl. a 17 MB presskit PDF).
+   Every Render build and every Netlify build across all projects re-downloads this
+   on every commit. When Render's clone/cache throughput degraded on 2026-08-14
+   (their side - phase went 1m43s → 10-27 min with identical repo content; support
+   ticket territory), deploys jumped from ~5 min to 13-28 min, and the repo size is
+   the amplifier. Recommendation: move `data/audio/` + `data/transcripts/` to object
+   storage (they're read-rarely blobs, not schedule data) and prune `devcon/public/`
+   - halves every clone in the org. Not urgent for DC8, but do it before the repo
+   grows another gig of DC8 media.
 
 ## 12. Changelog: fixes implemented 2026-08-04
 
