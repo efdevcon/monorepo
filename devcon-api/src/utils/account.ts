@@ -1,4 +1,4 @@
-import makeBlockie from 'ethereum-blockies-base64'
+import makeBlockie from './blockies-svg'
 import { normalize } from 'viem/ens'
 import { publicClient } from './web3'
 import { Config, animals, adjectives, colors, uniqueNamesGenerator } from 'unique-names-generator'
