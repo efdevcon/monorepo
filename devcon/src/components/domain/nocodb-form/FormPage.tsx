@@ -724,13 +724,16 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
               {formSlug === STUDENT_APPLICATION_SLUG && (
                 <>
                   <div className="text-sm text-[#1a0d33] leading-5 text-center bg-[#f9f8fa] rounded-lg px-4 py-4 w-full">
-                    <p className="font-bold mb-2">We review applications in two rounds:</p>
+                    <p className="font-bold mb-2">We review applications in three rounds:</p>
                     <ul className="list-disc list-outside pl-5 space-y-1 inline-block text-left">
                       <li>
                         <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
                       </li>
                       <li>
                         <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
+                      </li>
+                      <li>
+                        <span className="font-bold">Round 3</span> — Apply by September 30, responses sent by October 7
                       </li>
                     </ul>
                   </div>

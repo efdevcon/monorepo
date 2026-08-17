@@ -66,16 +66,20 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
                 <p className="font-bold mb-3.5">Applicants should meet the following criteria:</p>
                 <ul className="list-disc list-outside pl-5 space-y-1">
                   <li>
-                    Currently enrolled in an <span className="font-bold">accredited university degree program</span> (Bachelor, Master, or PhD)
+                    Currently enrolled in an <span className="font-bold">accredited university degree program</span>{' '}
+                    (Bachelor, Master, or PhD)
                   </li>
                   <li>
-                    Studying fields such as computer science, engineering, mathematics, economics, law, governance, public policy, or other relevant disciplines
+                    Studying fields such as computer science, engineering, mathematics, economics, law, governance,
+                    public policy, or other relevant disciplines
                   </li>
                   <li>
-                    Students contributing to research, open-source projects, or academic work related to blockchain, cryptography, governance, or digital public infrastructure
+                    Students contributing to research, open-source projects, or academic work related to blockchain,
+                    cryptography, governance, or digital public infrastructure
                   </li>
                   <li>
-                    Students involved in university research groups, blockchain clubs, policy initiatives, or developer communities
+                    Students involved in university research groups, blockchain clubs, policy initiatives, or developer
+                    communities
                   </li>
                   <li>Students with a demonstrated interest in Ethereum and open technologies</li>
                 </ul>
@@ -83,7 +87,8 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
             </div>
             <div className="text-base text-[#1a0d33] leading-6 w-full space-y-3.5">
               <p>
-                <span className="font-bold">Please note:</span> Short-term courses, bootcamps, and online-only programs are not eligible.
+                <span className="font-bold">Please note:</span> Short-term courses, bootcamps, and online-only programs
+                are not eligible.
               </p>
               <p className="font-bold">Limited number of discounted tickets available.</p>
             </div>
@@ -91,13 +96,16 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
             <div className="flex flex-col gap-2 items-start w-full shrink-0">
               <h3 className="text-base font-bold text-[#160b2b] leading-6">Application timeline</h3>
               <div className="text-base text-[#1a0d33] leading-6 w-full">
-                <p className="mb-2">Applications are reviewed in two rounds:</p>
+                <p className="mb-2">Applications are reviewed in three rounds:</p>
                 <ul className="list-disc list-outside pl-5 space-y-1">
                   <li>
                     <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
                   </li>
                   <li>
                     <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
+                  </li>
+                  <li>
+                    <span className="font-bold">Round 3</span> — Apply by September 30, responses sent by October 7
                   </li>
                 </ul>
               </div>
