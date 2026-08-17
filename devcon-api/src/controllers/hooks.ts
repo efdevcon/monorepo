@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG, getPretalxConfig, getEventIdByPretalxSlug, PretalxInstanceConfig } from '@/utils/config'
 import { TriggerWorkflow, CommitContentFile } from '@/services/github'
-import { GetSessions, GetSpeaker , clearPretalxCache } from '@/clients/pretalx'
+import { GetSessions, GetSpeaker , clearPretalxCache, getPublishedScheduleVersion } from '@/clients/pretalx'
 import { FetchNocoDbTable } from '@/clients/nocodb'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
@@ -43,7 +43,7 @@ export async function UpdateSchedule(req: Request, res: Response) {
     // update silently misses content edits. We full-resync instead.
     console.log('Changes', data.changes)
 
-    await SyncPretalx(config)
+    await SyncPretalx(config, data.schedule)
 
     res.status(204).send()
   } catch (error) {
@@ -71,9 +71,35 @@ function pretalxToStoreData(item: any, eventId: string) {
 // makes every consumer re-download the full dataset for nothing.
 const lastSyncSnapshot = new Map<string, string>()
 
-async function SyncPretalx(config: PretalxInstanceConfig) {
+// Release-race guard tuning. Exported for tests.
+export const SCHEDULE_VISIBILITY_RETRIES = 5
+export const SCHEDULE_VISIBILITY_DELAY_MS = 6000
+
+async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersion?: string) {
   const { eventId } = config
   console.log(`Full re-sync of Pretalx sessions for ${eventId}...`)
+
+  // Release-moment race: Pretalx fires the webhook BEFORE its API reflects
+  // the newly released schedule, so an immediate fetch returns pre-release
+  // data (observed live 2026-08-17). When the webhook tells us which version
+  // was just released, wait until the published version matches before
+  // fetching. On timeout we proceed anyway — a possibly-pre-release sync is
+  // still better than none, and the workflow/deploy corrects it later.
+  if (expectedScheduleVersion) {
+    for (let attempt = 0; attempt < SCHEDULE_VISIBILITY_RETRIES; attempt++) {
+      const published = await getPublishedScheduleVersion(config)
+      if (published === null || published === String(expectedScheduleVersion)) {
+        if (published === null) console.warn('Could not read published schedule version — proceeding')
+        break
+      }
+      console.log(`Published schedule is '${published}', webhook says '${expectedScheduleVersion}' — waiting for release to become visible (${attempt + 1}/${SCHEDULE_VISIBILITY_RETRIES})`)
+      if (attempt === SCHEDULE_VISIBILITY_RETRIES - 1) {
+        console.warn('Release never became visible in time — syncing anyway (workflow/deploy will correct)')
+      } else {
+        await new Promise((r) => setTimeout(r, SCHEDULE_VISIBILITY_DELAY_MS))
+      }
+    }
+  }
 
   // The Pretalx client caches responses per event with no TTL — correct for
   // one-shot scripts, fatal here: in the long-lived server a re-publish would

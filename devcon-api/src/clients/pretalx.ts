@@ -152,6 +152,25 @@ export function clearPretalxCache(eventId: string) {
   }
 }
 
+/** The currently PUBLISHED schedule version name, read from the public
+ *  schedule widget (uncached, unauthenticated). Used by the webhook sync to
+ *  detect the release-moment race: Pretalx fires the webhook before its API
+ *  reflects the newly released schedule, so a fetch at that instant returns
+ *  pre-release data (observed live 2026-08-17: release 12:53:51Z, fetch got
+ *  the previous version). Returns null on any failure — callers must treat
+ *  that as "unknown", not as a mismatch. */
+export async function getPublishedScheduleVersion(config: PretalxInstanceConfig): Promise<string | null> {
+  try {
+    const root = config.PRETALX_BASE_URI.replace(/\/api\/?$/, '')
+    const res = await fetch(`${root}/${config.PRETALX_EVENT_NAME}/schedule/widgets/schedule.json`)
+    if (!res.ok) return null
+    const data = await res.json()
+    return data?.version != null ? String(data.version) : null
+  } catch {
+    return null
+  }
+}
+
 async function get(slug: string, config: PretalxInstanceConfig) {
   const cacheKey = `${config.eventId}:${slug}`
   if (cache.has(cacheKey)) {
