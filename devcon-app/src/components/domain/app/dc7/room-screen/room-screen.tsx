@@ -20,7 +20,7 @@ import {
   getTrackColor,
   // getTrackLogo,
 } from 'components/domain/app/dc7/sessions'
-import makeBlockie from 'ethereum-blockies-base64'
+import makeBlockie from 'lib/helpers/blockies-svg'
 // import { Room } from '../venue'
 import FloorBasement from 'assets/images/dc-7/venue/venue-map.png'
 import Floor1 from 'assets/images/dc-7/venue/venue-map.png'

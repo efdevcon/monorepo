@@ -1,4 +1,4 @@
-import makeBlockie from 'ethereum-blockies-base64'
+import makeBlockie from 'lib/helpers/blockies-svg'
 import { useEffect } from 'react'
 import { useActiveAddress } from './useActiveAddress'
 import { isEmail } from 'utils/validators'
