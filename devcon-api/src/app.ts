@@ -36,6 +36,14 @@ const ALLOWED_ORIGINS = [
   'https://devcon-event-app.netlify.app',
 ]
 
+// Netlify deploy previews get per-PR subdomains
+// (deploy-preview-<n>--<site>.netlify.app). Allow them for our own sites so
+// PR previews can talk to the API without editing this file per PR. Anchored
+// to the exact deploy-preview format (not a bare suffix match) because this
+// API serves with credentials — a bare suffix could be shadowed by a
+// third-party Netlify site name ending in `--devcon-event-app`.
+const PREVIEW_ORIGIN_RE = /^https:\/\/deploy-preview-\d+--(devcon-event-app|devcon-app|devcon-archive)\.netlify\.app$/
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -44,12 +52,19 @@ app.use(
         return callback(null, true)
       }
 
-      if (ALLOWED_ORIGINS.includes(origin) || SERVER_CONFIG.NODE_ENV !== 'production') {
+      const allowed =
+        ALLOWED_ORIGINS.includes(origin) || PREVIEW_ORIGIN_RE.test(origin) || SERVER_CONFIG.NODE_ENV !== 'production'
+      if (allowed) {
         callback(null, true)
       } else {
         console.warn('BLOCKED by CORS:', origin)
-        // callback(null, true) // allow for now. Need to define proper list of origins
-        callback(new Error(`Origin ${origin} not allowed by CORS`))
+        // Deny WITHOUT throwing: an Error here bubbles into the express error
+        // handler and turns a CORS denial into a 500 on the endpoint itself.
+        // Passing `false` sends the response without CORS headers — the
+        // browser blocks it client-side, and non-browser clients are
+        // unaffected. (A blocked preview origin surfaced as a mystery 500 on
+        // /sessions on 2026-08-17.)
+        callback(null, false)
       }
     },
     credentials: true,
