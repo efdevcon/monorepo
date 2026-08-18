@@ -106,9 +106,9 @@ export function FilterPanelContent({
     [options.track]
   );
 
+  // Mobile renders as a bottom-anchored sheet — square bottom corners there;
+  // the desktop side panel floats, so it keeps all four.
   return (
-    {/* Mobile renders as a bottom-anchored sheet — square bottom corners
-        there; the desktop side panel floats, so it keeps all four. */}
     <div className="flex h-full min-h-0 flex-col overflow-clip rounded-t-xl border border-dc-hairline bg-dc-panel lg:rounded-xl">
       {/* Header */}
       <div className="flex shrink-0 items-center justify-between gap-4 border-b border-dc-hairline bg-white p-4">
