@@ -92,8 +92,7 @@ export const Spinner: React.FC<SpinnerProps> = ({ className }) => {
               /* eslint-disable-next-line */
               rotation={[-Math.PI, 0, 0]}
               ref={cone2Ref}
-              /* eslint-disable-next-line */
-              onAfterRender={() => setMounted(true)}
+              {...({ onAfterRender: () => setMounted(true) } as any)}
             >
               {/* eslint-disable-next-line */}
               <coneGeometry args={[1, 1.41, 4]}></coneGeometry>

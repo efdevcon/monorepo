@@ -6,7 +6,7 @@ export const CustomMaterial = forwardRef<any, MeshMatcapMaterialProps>((props, r
   const matcap = 'spinner-texture.jpeg'
   const texture = useTexture(matcap)
   // eslint-disable-next-line
-  return <meshMatcapMaterial {...props} ref={ref as any} matcap={texture as any} />
+  return <meshMatcapMaterial {...(props as any)} ref={ref as any} matcap={texture as any} />
 })
 
 CustomMaterial.displayName = 'CustomMaterial'
