@@ -58,6 +58,18 @@ function useIsMobile() {
   return isMobile
 }
 
+const SELF_USER_ID_STORAGE_KEY = 'devcon-self-user-id'
+
+function newPersistedUserId(): string {
+  const id = crypto.randomUUID()
+  try {
+    localStorage.setItem(SELF_USER_ID_STORAGE_KEY, id)
+  } catch {
+    // ignore (private browsing / storage disabled) — id still works for this session
+  }
+  return id
+}
+
 export function SelfVerificationModal({
   isOpen,
   onClose,
@@ -66,7 +78,19 @@ export function SelfVerificationModal({
   earlyAccess,
   email,
 }: SelfVerificationModalProps) {
-  const [userId, setUserId] = useState(() => crypto.randomUUID())
+  // Persisted across reopen/reload so a voucher issued in a prior session (e.g. one
+  // whose popup got closed before the frontend observed the result) can be recovered
+  // below by re-polling self-voucher, instead of forcing a brand new Self-app round trip.
+  const [userId, setUserId] = useState(() => {
+    try {
+      const stored = localStorage.getItem(SELF_USER_ID_STORAGE_KEY)
+      if (stored) return stored
+    } catch {
+      // ignore
+    }
+    return newPersistedUserId()
+  })
+  const [checkingExisting, setCheckingExisting] = useState(true)
   const [voucher, setVoucher] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [errorCode, setErrorCode] = useState<ErrorCode>(null)
@@ -110,32 +134,68 @@ export function SelfVerificationModal({
   useEffect(() => {
     if (!isOpen || !emailConfirmed) return
 
-    try {
-      let endpoint = SELF_ENDPOINT
-      const params: string[] = []
-      if (effectiveStaging) params.push('staging=true')
-      if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
-      if (effectiveEmail) params.push(`email=${encodeURIComponent(effectiveEmail)}`)
-      if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
+    let cancelled = false
+    setCheckingExisting(true)
 
-      const app = new SelfAppBuilder({
-        appName: 'Devcon India Tickets',
-        scope: SELF_SCOPE,
-        endpoint,
-        endpointType: effectiveStaging ? 'staging_https' : 'https',
-        userId,
-        userIdType: 'uuid',
-        disclosures: {
-          nationality: true,
-          minimumAge: 18,
-        },
-      } as Partial<SelfApp>).build()
+    const init = async () => {
+      // Recover a voucher (or a stored failure reason) from a prior session for this
+      // persisted userId before starting a fresh Self-app round trip — covers the case
+      // where redeem-self already succeeded server-side but the popup was closed before
+      // the frontend observed it.
+      try {
+        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`, {
+          cache: 'no-store',
+        })
+        const data = await res.json()
+        if (cancelled) return
+        if (res.ok && data.voucherCode) {
+          setVoucher(data.voucherCode)
+          setCheckingExisting(false)
+          return
+        }
+        if (res.ok && data.error && data.reason) {
+          setErrorFromReason(data.reason)
+          setCheckingExisting(false)
+          return
+        }
+      } catch {
+        // ignore — fall through to a fresh session
+      }
+      if (cancelled) return
+      setCheckingExisting(false)
 
-      setSelfApp(app)
-      setUniversalLink(getUniversalLink(app))
-    } catch (e) {
-      console.error('Failed to initialize Self app:', e)
-      setError('Failed to initialize verification. Please try again.')
+      try {
+        let endpoint = SELF_ENDPOINT
+        const params: string[] = []
+        if (effectiveStaging) params.push('staging=true')
+        if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
+        if (effectiveEmail) params.push(`email=${encodeURIComponent(effectiveEmail)}`)
+        if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
+
+        const app = new SelfAppBuilder({
+          appName: 'Devcon India Tickets',
+          scope: SELF_SCOPE,
+          endpoint,
+          endpointType: effectiveStaging ? 'staging_https' : 'https',
+          userId,
+          userIdType: 'uuid',
+          disclosures: {
+            nationality: true,
+            minimumAge: 18,
+          },
+        } as Partial<SelfApp>).build()
+
+        setSelfApp(app)
+        setUniversalLink(getUniversalLink(app))
+      } catch (e) {
+        console.error('Failed to initialize Self app:', e)
+        setError('Failed to initialize verification. Please try again.')
+      }
+    }
+
+    init()
+    return () => {
+      cancelled = true
     }
   }, [isOpen, userId, effectiveStaging, earlyAccess, effectiveEmail, emailConfirmed])
 
@@ -233,7 +293,7 @@ export function SelfVerificationModal({
     clearError()
     setSelfApp(null)
     setUniversalLink('')
-    setUserId(crypto.randomUUID())
+    setUserId(newPersistedUserId())
   }
 
   // Direct link into the Pretix store's voucher redeem flow, which unlocks and
@@ -270,6 +330,9 @@ export function SelfVerificationModal({
               Claim your India Resident ticket
               <ArrowRight size={20} aria-hidden />
             </a>
+            <button type="button" className={css['reset-btn']} onClick={handleReset}>
+              Verify with a different card
+            </button>
             <p className={css['privacy']}>No personal data is shared.</p>
           </div>
         ) : (
@@ -513,7 +576,14 @@ export function SelfVerificationModal({
                 </div>
 
                 <div className={css['self-col-side']}>
-                  {!error &&
+                  {checkingExisting ? (
+                    <div className={css['self-qr-wrap']}>
+                      <div className={css['self-qr-placeholder']}>
+                        <p>Checking verification status...</p>
+                      </div>
+                    </div>
+                  ) : (
+                    !error &&
                     !errorCode &&
                     (isMobile ? (
                       <div className={css['continue-wrap']}>
@@ -541,20 +611,6 @@ export function SelfVerificationModal({
                             Checking verification status...
                           </p>
                         )}
-                        {!pollingForVoucher && !voucher && (
-                          <button
-                            type="button"
-                            className={css['reset-btn']}
-                            style={{ marginTop: '0.75rem' }}
-                            onClick={() => {
-                              setPollingForVoucher(true)
-                              clearError()
-                              handleSuccess().finally(() => setPollingForVoucher(false))
-                            }}
-                          >
-                            I&apos;ve verified — check status
-                          </button>
-                        )}
                       </div>
                     ) : (
                       <div className={css['self-qr-wrap']}>
@@ -572,7 +628,8 @@ export function SelfVerificationModal({
                           </div>
                         )}
                       </div>
-                    ))}
+                    ))
+                  )}
 
                   <p className={css['self-privacy']}>No personal data is shared.</p>
                 </div>
