@@ -28,7 +28,7 @@ export function FilterStatusBar({
   if (parts.length === 0) return null;
 
   return (
-    <div className="flex h-9 min-w-0 items-center gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
+    <div className="flex h-9 min-w-0 items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
       <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
         <span className="font-bold">Filter:</span>{" "}
         <span className="font-medium">{parts.join(", ")}</span>
