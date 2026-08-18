@@ -12,10 +12,13 @@ const stripCls = (v: string) => v.replace(CLS_PREFIX, "").trim();
 
 function AccordionSection({
   title,
+  count = 0,
   defaultOpen,
   children,
 }: {
   title: string;
+  /** Selected filters in this section — shown as "(X)" while collapsed. */
+  count?: number;
   defaultOpen: boolean;
   children: React.ReactNode;
 }) {
@@ -31,6 +34,9 @@ function AccordionSection({
       >
         <span className="text-[16px] font-bold leading-6 text-dc-fg2">
           {title}
+          {!open && count > 0 && (
+            <span className="font-normal"> ({count})</span>
+          )}
         </span>
         <ChevronDown
           className={cn(
@@ -129,7 +135,12 @@ export function FilterPanelContent({
       {/* Scrollable facet sections */}
       <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto p-4">
         {tracks.length > 0 && (
-          <AccordionSection title="Tracks" defaultOpen={defaultOpen}>
+          <AccordionSection
+            title="Tracks"
+            // CLS picks share filters.track — count only this section's own.
+            count={filters.track.filter((t) => tracks.includes(t)).length}
+            defaultOpen={defaultOpen}
+          >
             <div className="flex flex-wrap gap-2">
               {tracks.map((track) => {
                 const active = filters.track.includes(track);
@@ -166,7 +177,11 @@ export function FilterPanelContent({
         )}
 
         {options.room.length > 0 && (
-          <AccordionSection title="Locations" defaultOpen={defaultOpen}>
+          <AccordionSection
+            title="Locations"
+            count={filters.room.length}
+            defaultOpen={defaultOpen}
+          >
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {options.room.map((room) => (
                 <CheckboxRow
@@ -183,6 +198,7 @@ export function FilterPanelContent({
         {clsTracks.length > 0 && (
           <AccordionSection
             title="Community-led Sessions (CLS)"
+            count={filters.track.filter((t) => clsTracks.includes(t)).length}
             defaultOpen={defaultOpen}
           >
             <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -199,7 +215,11 @@ export function FilterPanelContent({
         )}
 
         {options.type.length > 0 && (
-          <AccordionSection title="Session formats" defaultOpen={defaultOpen}>
+          <AccordionSection
+            title="Session formats"
+            count={filters.type.length}
+            defaultOpen={defaultOpen}
+          >
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {options.type.map((type) => (
                 <CheckboxRow
@@ -214,7 +234,11 @@ export function FilterPanelContent({
         )}
 
         {options.expertise.length > 0 && (
-          <AccordionSection title="Expertise" defaultOpen={defaultOpen}>
+          <AccordionSection
+            title="Expertise"
+            count={filters.expertise.length}
+            defaultOpen={defaultOpen}
+          >
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {options.expertise.map((level) => (
                 <CheckboxRow
