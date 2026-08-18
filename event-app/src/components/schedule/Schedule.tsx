@@ -458,10 +458,10 @@ export function Schedule() {
         className={cn(
           "flex items-center justify-between gap-3",
           !opts.inPanel && "sticky top-[103px] z-10 lg:top-[65px]",
-          // No fill on mobile (headers sit directly on the gradient/band);
-          // desktop keeps a wash so sticky headers stay legible on #f9f8fa.
-          !opts.inPanel &&
-            (group.isLive ? "lg:bg-dc-live-bg" : "lg:bg-dc-panel/95")
+          // Sticky on every breakpoint, so the fill must be too — otherwise
+          // session cards scrolling up from below show through the header
+          // once it pins to the top (only reproduces while scrolling).
+          !opts.inPanel && (group.isLive ? "bg-dc-live-bg" : "bg-dc-panel/95")
         )}
       >
         <span className="flex min-w-0 items-center gap-1 text-[14px] leading-6 text-dc-fg lg:text-[16px] lg:text-dc-fg2">
