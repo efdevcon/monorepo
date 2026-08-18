@@ -180,7 +180,7 @@
 }
 
 .continue-wrap {
-  margin: 1rem 0;
+  margin: 0;
 }
 
 .redeem-wrap {
@@ -434,6 +434,10 @@
   box-shadow: 0px 2px 4px 0px rgba(22, 11, 43, 0.15), 0px 4px 8px 0px rgba(22, 11, 43, 0.15);
   font-family: 'Poppins', sans-serif;
 
+  @media (min-width: 768px) {
+    max-width: 940px;
+  }
+
   @media (max-width: 600px) {
     max-width: 100%;
     height: 100dvh;
@@ -509,6 +513,22 @@
   margin: 0;
 }
 
+.self-intro-link {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  margin: 0;
+
+  a {
+    color: #7235ed;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 .self-divider {
   border: none;
   border-top: 1px solid #dddae2;
@@ -519,6 +539,42 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.self-howto-copy {
+  font-size: 0.875rem;
+  color: #1a0d33;
+  line-height: 1.43;
+  margin: 0;
+}
+
+/* Stacked on mobile; 2-col grid (content left, QR right) from 768px up */
+.self-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    display: grid;
+    /* 288px = QR outer footprint at size 270 (6px status border + 3px padding each side) */
+    grid-template-columns: minmax(0, 1fr) 288px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+.self-col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+/* Children stretch: continue-wrap/redeem-btn stay full-width, qr-wrap centers itself */
+.self-col-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .self-heading {
@@ -571,7 +627,7 @@
 .self-steps {
   margin: 0;
   padding-left: 1.5rem;
-  list-style-type: decimal;
+  list-style-type: disc;
   font-size: 0.875rem;
   color: #1a0d33;
   line-height: 1.43;
@@ -601,44 +657,19 @@
   text-decoration: underline;
 }
 
-.self-guide-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.375rem;
-  width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: #7235ed;
-  background: #ededf7;
-  border: none;
-  border-radius: 9999px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.15s;
-
-  &:hover {
-    background: #e3e0f0;
-  }
-}
-
-.self-guide-link-icon {
-  flex-shrink: 0;
-}
-
+/* No radius/overflow clipping here — the SDK draws its own rounded status border,
+   and clipping it crops the frame corners unevenly */
 .self-qr-wrap {
   display: flex;
   justify-content: center;
-  border-radius: 12px;
-  overflow: hidden;
 }
 
+/* Matches the QR's rendered footprint at size 270 (incl. border, padding, status banner) */
 .self-qr-placeholder {
-  width: 255px;
-  height: 300px;
+  width: 288px;
+  height: 344px;
   background: #f0f0f0;
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
