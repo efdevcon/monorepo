@@ -63,7 +63,10 @@ export default function AnnouncementsPage() {
 
   return (
     <main className="py-6">
-      <h1 className="mb-4 text-2xl font-bold text-gray-900">Announcements</h1>
+      {/* Mobile title comes from AppHeader (routeChrome); page h1 is desktop-only. */}
+      <h1 className="mb-4 hidden text-2xl font-bold text-gray-900 lg:block">
+        Announcements
+      </h1>
 
       <PushOptIn />
 

@@ -6,12 +6,17 @@
  */
 export function EmptyState({
   query,
+  filtersActive,
   onReset,
 }: {
   query: string;
+  /** Whether any filter/search/interested toggle is set — without one, the
+   *  filter-blaming copy and the clear-filters button would be a no-op lie. */
+  filtersActive: boolean;
   onReset: () => void;
 }) {
   const hasQuery = query.trim().length > 0;
+  const resettable = hasQuery || filtersActive;
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-6 px-4 py-8 text-center">
@@ -30,13 +35,17 @@ export function EmptyState({
         <p className="text-[16px] leading-6">
           {hasQuery
             ? "It looks like we don’t have any sessions related to that. "
-            : "Nothing matches the current filters. "}
-          <button
-            onClick={onReset}
-            className="cursor-pointer font-bold text-dc-purple"
-          >
-            Try again?
-          </button>
+            : filtersActive
+              ? "Nothing matches the current filters. "
+              : "There are no sessions to show for this day."}
+          {resettable && (
+            <button
+              onClick={onReset}
+              className="cursor-pointer font-bold text-dc-purple"
+            >
+              Try again?
+            </button>
+          )}
         </p>
       </div>
     </div>

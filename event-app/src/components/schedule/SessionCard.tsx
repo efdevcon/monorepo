@@ -5,6 +5,7 @@ import cn from "classnames";
 import type { Session } from "@/data/models";
 import { Link } from "@/routing";
 import { useInterested } from "@/data/interested/useInterested";
+import { isDesktopNow } from "@/hooks/useIsDesktop";
 import { formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
@@ -48,7 +49,7 @@ export function SessionCard({
     <Link
       href={`/schedule/${session.id}`}
       onClick={(e) => {
-        if (onOpen && window.matchMedia("(min-width: 1024px)").matches) {
+        if (onOpen && isDesktopNow()) {
           e.preventDefault();
           onOpen(session.id);
         }

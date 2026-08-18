@@ -35,20 +35,9 @@ import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { formatDayHeading } from "./utils";
+import { useIsDesktop, isDesktopNow } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
-
-function useIsDesktop() {
-  const [desktop, setDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const update = () => setDesktop(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  return desktop;
-}
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
@@ -375,6 +364,10 @@ export function Schedule() {
     window.history.replaceState(null, "", url.toString());
   }, []);
   useEffect(() => {
+    // Desktop-only: selection renders in the side panel there. On mobile the
+    // highlight has no clear affordance (details live on /schedule/[id]), so
+    // restoring it would pin one card purple forever.
+    if (!isDesktopNow()) return;
     const id = new URLSearchParams(window.location.search).get("session");
     if (id) setSelectedSessionId(id);
   }, []);
@@ -664,8 +657,15 @@ export function Schedule() {
                 <p className="py-12 text-center text-dc-red">
                   {error?.message ?? "Failed to load the schedule."}
                 </p>
-              ) : resultCount === 0 ? (
-                <EmptyState query={search} onReset={clearFilters} />
+              ) : selectedDay === null ? null : resultCount === 0 ? (
+                // selectedDay is null only pre-data — rendering the empty
+                // state then flashes "Nothing matches the current filters"
+                // before any filter could exist.
+                <EmptyState
+                  query={search}
+                  filtersActive={activeFilterCount > 0}
+                  onReset={clearFilters}
+                />
               ) : view === "timeline" ? (
                 <ScheduleTimeline
                   sessions={daySessions}

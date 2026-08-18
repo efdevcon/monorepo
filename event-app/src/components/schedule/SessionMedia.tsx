@@ -15,10 +15,15 @@ import { getStatus, streamUrlForDay } from "@/components/schedule/utils";
  * - otherwise render nothing (no dead placeholder boxes when neither embed nor
  *   translation link is available)
  */
-export function SessionMedia({ session }: { session: Session }) {
-  const nowMs = useNowMs(30_000);
-  const { event } = useEvent();
 
+// Single source of truth for "will SessionMedia render anything?" — the
+// details layout swaps in the track banner when this comes back empty, so
+// the decision must live in one place or the two drift (empty top slot).
+export function getSessionMediaSources(
+  session: Session,
+  nowMs: number,
+  eventStartDate?: string
+) {
   const recordingSrc = session.sources_youtubeId
     ? `https://www.youtube.com/embed/${session.sources_youtubeId}`
     : session.sources_streamethId
@@ -31,10 +36,30 @@ export function SessionMedia({ session }: { session: Session }) {
 
   let streamSrc: string | null = null;
   if (!recordingSrc && session.room && isLiveish) {
-    streamSrc = streamUrlForDay(session.room, session.start * 1000, event?.startDate);
+    streamSrc = streamUrlForDay(session.room, session.start * 1000, eventStartDate);
   }
 
-  const src = recordingSrc ?? streamSrc;
+  return { src: recordingSrc ?? streamSrc, streamSrc, translationUrl };
+}
+
+export function sessionHasMedia(
+  session: Session,
+  nowMs: number,
+  eventStartDate?: string
+) {
+  const { src, translationUrl } = getSessionMediaSources(session, nowMs, eventStartDate);
+  return !!(src || translationUrl);
+}
+
+export function SessionMedia({ session }: { session: Session }) {
+  const nowMs = useNowMs(30_000);
+  const { event } = useEvent();
+
+  const { src, streamSrc, translationUrl } = getSessionMediaSources(
+    session,
+    nowMs,
+    event?.startDate
+  );
   if (!src && !translationUrl) return null;
 
   return (

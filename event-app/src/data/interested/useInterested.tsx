@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import useSWR from "swr";
 import { toast } from "sonner";
 import { cacheDB } from "../cache/cache-db";
@@ -29,7 +29,9 @@ export function useInterested() {
     { revalidateOnFocus: false }
   );
 
-  const ids = new Set(data ?? []);
+  // Stable identity matters: `ids` feeds useScheduleState's `groups` memo,
+  // so a fresh Set each render would re-group the whole schedule every tick.
+  const ids = useMemo(() => new Set(data ?? []), [data]);
 
   const toggle = useCallback(
     // Pass `title` to confirm additions with a toast — the hook decides

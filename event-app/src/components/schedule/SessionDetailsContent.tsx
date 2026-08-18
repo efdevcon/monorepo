@@ -1,14 +1,15 @@
 "use client";
 
 import cn from "classnames";
-import { CalendarPlus, Clock3, MapPin, Star } from "lucide-react";
+import { Calendar, CalendarPlus, Clock3, MapPin, Star } from "lucide-react";
 import type { Session } from "@/data/models";
 import { Link } from "@/routing";
+import { useEvent } from "@/data/hooks";
 import { useNowMs } from "@/hooks/useNow";
 import { useInterested } from "@/data/interested/useInterested";
-import { SessionMedia } from "./SessionMedia";
+import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
-import { formatTimeRange, getStatus } from "./utils";
+import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
@@ -18,13 +19,16 @@ export function downloadSessionIcs(session: Session) {
       .toISOString()
       .replace(/[-:]/g, "")
       .replace(/\.\d{3}/, "");
-  const escape = (s: string) => s.replace(/([,;\\])/g, "\\$1");
+  const escape = (s: string) =>
+    s.replace(/([,;\\])/g, "\\$1").replace(/\r?\n/g, "\\n");
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//Devcon//Event App//EN",
     "BEGIN:VEVENT",
     `UID:${session.id}@devcon.org`,
+    // DTSTAMP is required by RFC 5545; some calendar apps reject files without it.
+    `DTSTAMP:${dt(Math.floor(Date.now() / 1000))}`,
     `DTSTART:${dt(session.start)}`,
     `DTEND:${dt(session.end)}`,
     `SUMMARY:${escape(session.title)}`,
@@ -60,17 +64,16 @@ export function SessionDetailsContent({
   children?: React.ReactNode;
 }) {
   const nowMs = useNowMs(60_000);
+  const { event } = useEvent();
   const theme = getTrackTheme(session.track);
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
 
   // The track banner yields to media: recordings always take the top slot,
-  // and live/soon sessions may render the room livestream there instead
-  // (SessionMedia owns that logic — untouched).
-  const status = getStatus(session, nowMs);
-  const hasRecording = !!(session.sources_youtubeId || session.sources_streamethId);
-  const mediaLikely =
-    hasRecording || status === "live" || status === "soon";
+  // and live/soon sessions may render the room livestream there instead.
+  // Asks SessionMedia's own predicate — a live session whose room has no
+  // stream configured must fall back to the banner, not an empty slot.
+  const hasMedia = sessionHasMedia(session, nowMs, event?.startDate);
 
   const location = [session.type, session.room?.name]
     .filter(Boolean)
@@ -81,7 +84,7 @@ export function SessionDetailsContent({
     <div className="flex flex-col bg-dc-panel">
       {/* Section 1 */}
       <div className="flex flex-col gap-6 border-b border-dc-hairline p-4">
-        {mediaLikely ? (
+        {hasMedia ? (
           <SessionMedia session={session} />
         ) : (
           <div
@@ -116,6 +119,10 @@ export function SessionDetailsContent({
               </p>
             )}
             <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                <Calendar className="size-3.5 shrink-0" />
+                {formatDayLabel(session)}
+              </span>
               <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
                 <Clock3 className="size-3.5 shrink-0" />
                 {formatTimeRange(session)}

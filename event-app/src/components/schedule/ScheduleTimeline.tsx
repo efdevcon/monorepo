@@ -6,6 +6,7 @@ import { Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
 import { Link } from "@/routing";
 import { useInterested } from "@/data/interested/useInterested";
+import { isDesktopNow } from "@/hooks/useIsDesktop";
 import {
   buildTimeline,
   formatTime,
@@ -47,7 +48,7 @@ function TimelineSession({
       href={`/schedule/${session.id}`}
       title={`${session.title} — ${session.room?.name ?? ""}`}
       onClick={(e) => {
-        if (onOpen && window.matchMedia("(min-width: 1024px)").matches) {
+        if (onOpen && isDesktopNow()) {
           e.preventDefault();
           onOpen(session.id);
         }
@@ -158,6 +159,10 @@ export function ScheduleTimeline({
     [sessions]
   );
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  // The signal counter lives in Schedule and survives this component's
+  // unmount (view toggle, filtered-to-empty), so a remount would replay the
+  // last jump. Baseline whatever value we mounted with; only act on growth.
+  const handledSignalRef = useRef(jumpToNowSignal ?? 0);
 
   const gridWidth = slots.length * SLOT_WIDTH;
   const lastSlotEnd = slots.length ? slots[slots.length - 1] : 0;
@@ -168,7 +173,8 @@ export function ScheduleTimeline({
 
   // "Jump to now": center the now line in the visible grid area.
   useEffect(() => {
-    if (jumpToNowSignal === 0) return;
+    if ((jumpToNowSignal ?? 0) <= handledSignalRef.current) return;
+    handledSignalRef.current = jumpToNowSignal ?? 0;
     const el = scrollRef.current;
     if (!el || !nowVisible) return;
     el.scrollTo({

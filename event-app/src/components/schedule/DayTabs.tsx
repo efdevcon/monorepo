@@ -28,7 +28,9 @@ export function DayTabs({
 
   return (
     <div className="sticky top-14 z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender px-4 lg:static lg:items-center lg:py-2">
-      <div className="flex min-w-0 flex-1 items-stretch justify-between lg:flex-initial lg:items-center lg:justify-start lg:gap-3">
+      {/* overflow-x-auto + shrink-0 tabs: with many days or a narrow phone the
+          bar must scroll — a bare justify-between row clips later days. */}
+      <div className="flex min-w-0 flex-1 items-stretch justify-between overflow-x-auto lg:flex-initial lg:items-center lg:justify-start lg:gap-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {days.map((day) => {
           const active = day.key === selectedDay;
           return (
@@ -36,7 +38,7 @@ export function DayTabs({
               key={day.key}
               onClick={() => onSelect(day.key)}
               className={cn(
-                "flex cursor-pointer items-center border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
+                "flex shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
                 active
                   ? "border-dc-purple font-bold text-dc-purple"
                   : "border-transparent font-medium text-dc-fg2 hover:text-dc-purple"
