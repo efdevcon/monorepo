@@ -998,6 +998,32 @@
   gap: 0.5rem;
 }
 
+/* For footers carrying more than one action (India Resident: Self + DigiGo) —
+   the buttons drop below the price instead of squeezing it. */
+.application-card-footer--wrap {
+  flex-wrap: wrap;
+  row-gap: 0.75rem;
+}
+
+.verify-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-left: auto;
+
+  /* The lone-button case pushes itself right with margin-left:auto; inside the
+     group the group does that, so reset it or the buttons split apart. On a
+     card too narrow for both, `flex: 1` makes them stack as equal full-width
+     rows instead of two ragged right-aligned pills. */
+  .verify-self-btn {
+    margin-left: 0;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
 .application-price {
   font-size: 1.25rem;
   font-weight: 700;
