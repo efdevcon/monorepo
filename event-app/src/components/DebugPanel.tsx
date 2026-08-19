@@ -84,13 +84,15 @@ export function DebugPanel() {
       <button
         onClick={() => setOpen((o) => !o)}
         title="Debug panel"
-        className="fixed top-4 right-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105"
+        // Below the 56px app header so it never covers the header's own
+        // action buttons (filter / jump-to-now).
+        className="fixed top-[68px] right-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105"
       >
         <Bug className="h-5 w-5" />
       </button>
 
       {open && (
-        <div className="fixed top-20 right-4 z-[100] w-72 rounded-2xl border border-[#E1E4EA] bg-white p-4 text-sm shadow-2xl">
+        <div className="fixed top-[124px] right-4 z-[100] w-72 rounded-2xl border border-[#E1E4EA] bg-white p-4 text-sm shadow-2xl">
           <p className="mb-3 font-bold">Debug</p>
 
           <label className="mb-1 block text-xs font-medium text-gray-500">

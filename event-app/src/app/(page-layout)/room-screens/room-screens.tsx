@@ -2,7 +2,7 @@
 
 import { useRooms } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
-import { Link, BackButton } from "@/routing";
+import { Link } from "@/routing";
 
 export default function RoomScreens() {
   const { rooms, isLoading, isError, error } = useRooms();
@@ -21,9 +21,8 @@ export default function RoomScreens() {
 
   return (
     <div className="py-6">
-      <BackButton className="text-blue-500 hover:underline mb-4 block cursor-pointer" />
-
-      <h1 className="text-2xl font-bold mb-4">Room Screens</h1>
+      {/* Mobile title comes from AppHeader (routeChrome); page h1 is desktop-only. */}
+      <h1 className="hidden text-2xl font-bold mb-4 lg:block">Room Screens</h1>
       <p className="text-gray-600 mb-4">Select a room to view its schedule display</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

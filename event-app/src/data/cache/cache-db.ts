@@ -79,11 +79,23 @@ export interface SeenAnnouncement {
   seenAt: number;
 }
 
+/**
+ * A session the user starred as "Interested". Browser-local user state (like
+ * announcement read state) — never synced. Keyed per event so Devcon 7 test
+ * stars don't bleed into Devcon 8.
+ */
+export interface InterestedSession {
+  eventId: string;
+  sessionId: string;
+  addedAt: number;
+}
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
   conversations!: Table<Conversation, string>;
   seenAnnouncements!: Table<SeenAnnouncement, string>;
+  interested!: Table<InterestedSession, [string, string]>;
 
   constructor() {
     super("SWRCacheDB");
@@ -102,6 +114,10 @@ class CacheDB extends Dexie {
     // v4: announcement read state (unread badge survives offline/restarts).
     this.version(4).stores({
       seenAnnouncements: "&id",
+    });
+    // v5: "Interested" session stars (schedule), keyed per event.
+    this.version(5).stores({
+      interested: "&[eventId+sessionId], eventId",
     });
   }
 }

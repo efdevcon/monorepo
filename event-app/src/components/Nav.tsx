@@ -6,13 +6,12 @@ import { Bell, CalendarDays, Home, Map, Sparkles, Ticket, Tv, Users } from "luci
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
-import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 
-type NavItem = {
+export type NavItem = {
   href: string;
-  /** Full label (desktop). */
+  /** Full label (desktop header). */
   label: string;
-  /** Short label (mobile). */
+  /** Short label (mobile bottom bar). */
   short: string;
   icon: typeof Home;
   enabled: boolean;
@@ -22,7 +21,8 @@ type NavItem = {
   unreadBadge?: boolean;
 };
 
-const NAV_ITEMS: NavItem[] = [
+/** Shared route list for AppHeader (desktop) and the mobile bottom bar. */
+export const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home", short: "Home", icon: Home, enabled: true },
   {
     href: "/schedule",
@@ -67,113 +67,63 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-function isActive(pathname: string, href: string): boolean {
+export function isNavActive(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 /**
- * App navigation. Mobile: a floating glass pill at the bottom (icons + short
- * labels). Desktop: a sticky, centered header with full labels.
- * Devcon-inspired purple active state.
+ * Mobile bottom tab bar (Figma "Dev Handoff" / PWA Schedule): a floating
+ * glass pill 24px off the bottom; the active tab is a purple square-ish chip
+ * with a soft purple glow. Desktop navigation lives in AppHeader.
  */
 export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
   const { user } = useUser();
-  // Fully off (no fetch, no Dexie read) when the feature is disabled or on
-  // the room-screen kiosk, where the nav never renders anyway.
-  const { unreadCount } = useAnnouncements({
-    enabled:
-      APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/"),
-  });
-  const items = NAV_ITEMS.filter((i) => i.enabled);
 
   // No nav on the full-screen room-screen kiosk.
   if (pathname.startsWith("/room-screens/")) {
     return null;
   }
 
-  return (
-    <>
-      {/* Desktop: sticky centered header */}
-      <header className="hidden lg:flex sticky top-0 z-30 justify-center px-4 py-3">
-        <nav className="flex items-center gap-1 rounded-full border border-[#E1E4EA] bg-white/80 px-2 py-1.5 shadow-sm backdrop-blur">
-          {items.map((item) => {
-            const active = isActive(pathname, item.href);
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                // Full prefetch (RSC included) so the SW caches each route's
-                // payload — enables smooth offline navigation between nav routes.
-                prefetch
-                className={cn(
-                  "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "text-[#7D52F4]"
-                    : "text-gray-600 hover:text-gray-900"
-                )}
-              >
-                <Icon className="h-4 w-4" />
-                {item.label}
-                {item.unreadBadge && unreadCount > 0 && (
-                  <span className="rounded-full bg-[#7D52F4] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">
-                    {unreadCount}
-                  </span>
-                )}
-              </Link>
-            );
-          })}
-          {onOpenAI && user && (
-            <button
-              onClick={onOpenAI}
-              className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-[#7D52F4] transition-colors hover:bg-[#f3eeff]"
-            >
-              <Sparkles className="h-4 w-4" />
-              AI
-            </button>
-          )}
-        </nav>
-      </header>
+  const items = NAV_ITEMS.filter((i) => i.enabled && !i.hideOnMobile);
 
-      {/* Mobile: floating bottom pill */}
-      <nav
-        className="lg:hidden fixed inset-x-0 bottom-0 z-30 flex justify-center pointer-events-none"
-        style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
-      >
-        <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-[#E1E4EA] bg-white/80 px-2 py-2 shadow-lg backdrop-blur">
-          {items
-            .filter((item) => !item.hideOnMobile)
-            .map((item) => {
-              const active = isActive(pathname, item.href);
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  prefetch
-                  className={cn(
-                    "flex flex-col items-center justify-center gap-0.5 rounded-full px-3 py-1.5 text-[10px] font-medium transition-colors",
-                    active ? "text-[#7D52F4]" : "text-gray-500 hover:text-gray-900"
-                  )}
-                >
-                  <Icon className="h-5 w-5" />
-                  <span>{item.short}</span>
-                </Link>
-              );
-            })}
-          {onOpenAI && user && (
-            <button
-              onClick={onOpenAI}
-              className="flex flex-col items-center justify-center gap-0.5 rounded-full px-3 py-1.5 text-[10px] font-medium text-[#7D52F4] transition-colors hover:bg-[#f3eeff]"
+  return (
+    <nav
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 font-heading lg:hidden"
+      style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}
+    >
+      <div className="pointer-events-auto flex w-full max-w-[420px] items-center justify-between overflow-clip rounded-full border border-dc-hairline bg-white/75 px-4 py-1 backdrop-blur-[5px]">
+        {items.map((item) => {
+          const active = isNavActive(pathname, item.href);
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              prefetch
+              className={cn(
+                "flex h-10 flex-col items-center justify-center gap-1 px-2 py-1 text-[11px] leading-none transition-colors",
+                active
+                  ? "rounded-[4px] bg-dc-purple font-bold text-white shadow-[0px_2px_2px_rgba(114,53,237,0.3),0px_1px_1px_rgba(114,53,237,0.3)]"
+                  : "rounded-full font-medium text-dc-fg"
+              )}
             >
-              <Sparkles className="h-5 w-5" />
-              <span>AI</span>
-            </button>
-          )}
-        </div>
-      </nav>
-    </>
+              <Icon className="size-4" />
+              <span>{item.short}</span>
+            </Link>
+          );
+        })}
+        {onOpenAI && user && (
+          <button
+            onClick={onOpenAI}
+            className="flex h-10 cursor-pointer flex-col items-center justify-center gap-1 rounded-full px-2 py-1 text-[11px] font-medium leading-none text-dc-purple"
+          >
+            <Sparkles className="size-4" />
+            <span>AI</span>
+          </button>
+        )}
+      </div>
+    </nav>
   );
 }

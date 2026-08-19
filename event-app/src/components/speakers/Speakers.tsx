@@ -17,7 +17,8 @@ export function Speakers() {
 
   return (
     <main className="py-6">
-      <h1 className="mb-4 text-2xl font-bold">Speakers</h1>
+      {/* Mobile title comes from AppHeader (routeChrome); page h1 is desktop-only. */}
+      <h1 className="mb-4 hidden text-2xl font-bold lg:block">Speakers</h1>
 
       {/* Search */}
       <div className="relative mb-3">

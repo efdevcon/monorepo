@@ -3,21 +3,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { isStandalone } from "./InstallAppButton";
+import { MOBILE_MEDIA_QUERY, useMediaQuery } from "@/hooks/useIsDesktop";
 
 const STORAGE_KEY = "event_app_intro_seen";
-
-/** True below the `lg` breakpoint (where the hero image is hidden). */
-function useIsMobile(): boolean {
-  const [mobile, setMobile] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const update = () => setMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  return mobile;
-}
 
 const DURATION = 2.4; // seconds
 // grow from right (0 → 0.4) · hold (0.4 → 0.6) · reveal from right (0.6 → 1)
@@ -39,7 +27,8 @@ const MASK =
  */
 export function IntroSplash({ children }: { children: React.ReactNode }) {
   const [playing, setPlaying] = useState(false);
-  const isMobile = useIsMobile();
+  // Below `lg` (where the hero image is hidden).
+  const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   useEffect(() => {
     if (!isStandalone()) return;

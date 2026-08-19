@@ -3,7 +3,7 @@
 import { useSpeaker, useSessionsBySpeaker } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
 import { use } from "react";
-import { Link, BackButton } from "@/routing";
+import { Link } from "@/routing";
 
 interface SpeakerClientProps {
   params?: Promise<{ id: string }>;
@@ -34,13 +34,7 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
 
   return (
     <div className="p-4">
-      <BackButton
-        fallbackHref="/speakers"
-        className="text-blue-500 hover:underline mb-4 block cursor-pointer"
-      >
-        ← Back to Speakers
-      </BackButton>
-
+      {/* Back navigation comes from AppHeader (routeChrome) — no page-level BackButton. */}
       <h1 className="text-2xl font-bold mb-2">{speaker.name}</h1>
 
       <div className="space-y-1 text-gray-600 mb-4">

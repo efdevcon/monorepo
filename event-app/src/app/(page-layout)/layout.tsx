@@ -4,6 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
 import { Nav } from "@/components/Nav";
+import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
 
 export default function PageLayout({
@@ -19,10 +20,13 @@ export default function PageLayout({
 
   return (
     <IntroSplash>
-      <Nav onOpenAI={() => setDevaBotOpen(true)} />
+      {/* Fixed gradient underlay behind all pages (Figma page background). */}
+      <div className="app-bg" aria-hidden />
+      <AppHeader onOpenAI={() => setDevaBotOpen(true)} />
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the floating nav bar. */}
       <div className="section pb-28 lg:pb-0">{children}</div>
+      <Nav onOpenAI={() => setDevaBotOpen(true)} />
       {!isKiosk && (
         <DevaBot
           toggled={devaBotOpen}

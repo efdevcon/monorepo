@@ -6,6 +6,22 @@
   --color-background: #ffffff;
   --color-foreground: #000000;
 
+  /* Devcon 8 app palette (Figma "Dev Handoff" tokens). Track pastels are
+     per-session dynamic values and live in trackTheme.ts instead. */
+  --color-dc-fg: #160b2b; /* general/foreground */
+  --color-dc-fg2: #1a0d33; /* general/secondary-foreground */
+  --color-dc-muted: #594d73; /* general/muted-foreground */
+  --color-dc-hairline: rgba(34, 17, 68, 0.1); /* general/border-10 */
+  --color-dc-purple: #7235ed; /* purple-500 / primary */
+  --color-dc-purple-soft: #e8defc; /* star hover fill (Figma StarIcon/Hover) */
+  --color-dc-purple-wash: #efe7fd; /* text-button hover pill (Figma Button-Small/Hover) */
+  --color-dc-purple-fg: #f9f8fa; /* primary-foreground */
+  --color-dc-red: #d7282b; /* red-500 / live */
+  --color-dc-lavender: #f5f1fe; /* day-tab bar + segmented track */
+  --color-dc-panel: #f9f8fa; /* brand-neutrals/50 panel surface */
+  --color-dc-keynote: #ffa366; /* marigold-300 */
+  --color-dc-live-bg: #fff0f0; /* live band fill */
+
   /* Match the /devcon project: Inter for body, Poppins for headings.
      The CSS variables are provided by next/font in src/app/layout.tsx. */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -27,6 +43,11 @@ body {
   color: var(--color-foreground);
   background: var(--color-background);
   font-family: var(--font-sans);
+  /* Greyscale antialiasing to match Figma's rendering and the devcon site
+     (devcon/src/assets/css/index.scss) — default subpixel smoothing makes
+     Poppins Bold/SemiBold look heavier than the design on macOS/iOS. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -78,6 +99,18 @@ h6 {
 }
 .section > .expand-right {
   grid-column: 2 / 4;
+}
+
+/* Full-viewport page background for the redesigned app chrome: the Figma
+   gradient runs #fbfafc (top) → #e5ebff (bottom ~20%). A fixed underlay div
+   (rather than a body background) keeps it stable under long scrolling
+   content and avoids iOS background-attachment quirks. */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background: linear-gradient(to top, #e5ebff, #fbfafc 80%);
 }
 
 /* Venue-map control buttons (filters, Find, home, zoom).

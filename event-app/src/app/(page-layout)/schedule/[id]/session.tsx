@@ -1,10 +1,17 @@
 "use client";
 
 import { useSession } from "@/data/hooks";
-import { SessionMedia } from "@/components/schedule/SessionMedia";
 import APP_CONFIG from "@/CONFIG";
-import { use, useState } from "react";
-import { Link, BackButton } from "@/routing";
+import { use, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { CalendarPlus } from "lucide-react";
+import { Link } from "@/routing";
+import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
+import {
+  SessionDetailsContent,
+  downloadSessionIcs,
+} from "@/components/schedule/SessionDetailsContent";
+import type { Session as SessionModel } from "@/data/models";
 import { supabase } from "@/data/auth/supabase";
 import { useUser } from "@/data/auth/useUser";
 import {
@@ -24,74 +31,60 @@ export default function Session({ params, id: directId }: SessionClientProps) {
   const { session, isLoading, isError, error } = useSession(id);
 
   if (!APP_CONFIG.SCHEDULE_ENABLED) {
-    return <div className="p-4 text-gray-500">Schedule is not enabled</div>;
+    return <div className="p-4 text-dc-muted">Schedule is not enabled</div>;
   }
 
   if (isLoading) {
-    return <div className="p-4">Loading session...</div>;
+    return <div className="p-4 py-12 text-center font-heading text-dc-muted">Loading session…</div>;
   }
 
   if (isError || !session) {
     return (
-      <div className="p-4 text-red-500">
+      <div className="p-4 py-12 text-center font-heading text-dc-red">
         {error?.message || "Session not found"}
       </div>
     );
   }
 
   return (
-    <div className="p-4">
-      <BackButton
-        fallbackHref="/schedule"
-        className="text-blue-500 hover:underline mb-4 block cursor-pointer"
-      >
-        ← Back to Schedule
-      </BackButton>
-
-      <h1 className="text-2xl font-bold mb-2">{session.title}</h1>
-
-      <SessionMedia session={session} />
-
-      <div className="space-y-2 text-gray-600 mb-4">
-        <p>
-          {session.day} • {session.date}
-        </p>
-        {session.room && <p>Room: {session.room.name}</p>}
-        {session.track && <p>Track: {session.track}</p>}
-        {session.type && <p>Type: {session.type}</p>}
+    <main className="expand font-heading text-dc-fg">
+      <CalendarHeaderAction session={session} />
+      <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
+        <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
+          <SessionDetailsContent session={session}>
+            <MeerkatProvider>
+              <SessionQA sessionId={id} />
+            </MeerkatProvider>
+          </SessionDetailsContent>
+        </div>
       </div>
+    </main>
+  );
+}
 
-      {session.description && (
-        <div className="mb-4">
-          <h2 className="font-semibold mb-1">Description</h2>
-          <p className="text-gray-700">{session.description}</p>
-        </div>
+/**
+ * Portals the "Add to Calendar" circle button into the app header (Figma
+ * fullscreen session details keeps it top-right in the 56px bar).
+ */
+function CalendarHeaderAction({ session }: { session: SessionModel }) {
+  const [target, setTarget] = useState<Element | null>(null);
+  useEffect(() => {
+    setTarget(document.getElementById(HEADER_ACTIONS_ID));
+  }, []);
+  if (!target) return null;
+  return (
+    <>
+      {createPortal(
+    <button
+      onClick={() => downloadSessionIcs(session)}
+      aria-label="Add to calendar"
+      className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white"
+    >
+      <CalendarPlus className="size-4 text-dc-fg" />
+    </button>,
+        target
       )}
-
-      {session.speakers.length > 0 && (
-        <div>
-          <h2 className="font-semibold mb-2">Speakers</h2>
-          <div className="space-y-2">
-            {session.speakers.map((speaker) => (
-              <Link
-                key={speaker.id}
-                href={`/speakers/${speaker.id}`}
-                className="block p-2 border rounded hover:bg-gray-50 cursor-pointer"
-              >
-                {speaker.name}
-                {speaker.company && (
-                  <span className="text-gray-500"> • {speaker.company}</span>
-                )}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <MeerkatProvider>
-        <SessionQA sessionId={id} />
-      </MeerkatProvider>
-    </div>
+    </>
   );
 }
 
@@ -155,20 +148,22 @@ function SessionQA({ sessionId }: { sessionId: string }) {
   }
 
   return (
-    <div className="mt-6">
+    <div>
       <div className="flex items-center justify-between mb-3">
-        <h2 className="font-semibold">Questions</h2>
+        <h2 className="text-[14px] leading-5 text-dc-fg2">
+          <span className="font-bold">Live Q&amp;A</span> – Powered by Meerkat
+        </h2>
         <div className="flex items-center gap-3 text-sm">
           {user ? (
             <button
               onClick={handleAskQuestion}
               disabled={isGenerating}
-              className="text-blue-500 hover:underline disabled:opacity-50 cursor-pointer"
+              className="font-bold text-dc-purple hover:underline disabled:opacity-50 cursor-pointer"
             >
               {isGenerating ? "Loading..." : "Ask a question"}
             </button>
           ) : (
-            <Link href="/ticket" className="text-blue-500 hover:underline">
+            <Link href="/ticket" className="font-bold text-dc-purple hover:underline">
               Sign in to ask a question
             </Link>
           )}
@@ -178,7 +173,7 @@ function SessionQA({ sessionId }: { sessionId: string }) {
       {needsSignIn && (
         <p className="mb-3 text-sm text-gray-500">
           Your session expired.{" "}
-          <Link href="/ticket" className="text-blue-500 font-medium hover:underline">
+          <Link href="/ticket" className="text-dc-purple font-medium hover:underline">
             Sign in
           </Link>{" "}
           to ask a question.
@@ -235,8 +230,8 @@ function SessionQA({ sessionId }: { sessionId: string }) {
       ) : (
         <ul className="space-y-2">
           {questions.map((q) => (
-            <li key={q.id} className="flex gap-3 p-3 border rounded">
-              <span className="text-sm font-medium text-blue-600 shrink-0 min-w-[2rem] text-center">
+            <li key={q.id} className="flex gap-3 rounded-lg border border-dc-hairline bg-white p-3">
+              <span className="text-sm font-medium text-dc-purple shrink-0 min-w-[2rem] text-center">
                 {q.votes}
               </span>
               <span className="text-sm text-gray-700">{q.question}</span>

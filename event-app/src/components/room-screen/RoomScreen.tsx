@@ -8,7 +8,15 @@ import APP_CONFIG from "@/CONFIG";
 import { useEvent, useRoom, useSessions } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
-import { getStatus, minutesUntil, streamUrlForDay, trackColor } from "@/components/schedule/utils";
+import { getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
+import { getTrackTheme } from "@/components/schedule/trackTheme";
+
+// Adapter for the retired trackColor(): the DC8 theme drives the pastel bg;
+// text stays the fixed dark foreground the new track system uses everywhere.
+const trackColor = (track: string | undefined) => {
+  const theme = getTrackTheme(track);
+  return { bg: theme.neutral ? "#f5f1fe" : theme.color, fg: "#1a0d33" };
+};
 
 const GRADIENT = "linear-gradient(to right, #7a3aff, #633cff, #bc52f1)";
 const GLASS = "bg-white/80 backdrop-blur-[10px]";
