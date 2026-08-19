@@ -573,7 +573,8 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
 7. **Cheap availability insurance:** Render is the only real single point of failure -
    consider CDN caching on the hot `GET` endpoints for event days so even an API
    restart mid-keynote is invisible. ✅ IMPLEMENTED 2026-08-10 (§12e) on the origin
-   side; a Cloudflare dashboard Cache Rule is still needed to activate edge caching.
+   side; ✅ ACTIVATED 2026-08-19 via Render Edge Caching (see §12e update) — hot
+   GET routes now serve `cf-cache-status: HIT` from the edge.
 8. **Repo weight is a deploy-time tax on everything (found 2026-08-17):** a SHALLOW
    clone of the monorepo is ~1.2 GB - `devcon-api/data/` alone is ~650 MB (Devcon 6
    ceremony MP3s under `data/audio/`, ~200 MB of DC7 transcript CSVs under
@@ -794,10 +795,21 @@ All in `devcon-api/`, `tsc --noEmit` clean, headers verified against a local boo
 - **Accepted nuance**: devcon-app's version-poll refetch can re-read a ≤60s-stale
   payload (refetch URL isn't cache-busted; the OG-card `?v=` URLs are). Moot for
   DC8: event-app SWR-revalidates instead.
-- **Pending - Cloudflare dashboard** (devcon.org zone admin; this config lives in no
-  repo): Caching → Cache Rules → match `Hostname equals api.devcon.org`, action
-  **Eligible for cache**, Edge TTL **"Use cache-control header if present, bypass
-  cache if not"**. Verify: two `curl -sI` calls within a minute go `MISS` → `HIT`.
+- ✅ **Edge caching ACTIVATED 2026-08-19 — via Render, not a Cloudflare rule**
+  (issue #2649): devcon.org's DNS isn't on Cloudflare, so no Cache Rule was
+  possible; but Render's CDN *is* Cloudflare (`api-devcon.onrender.com.cdn.cloudflare.net`),
+  and its **Edge Caching → "All files (advanced)"** setting (on the **api-devcon**
+  service — not devcon-podbox) gives the same semantics: it honors Cache-Control
+  and caches nothing that says `no-store`. To make that fail-closed, a
+  `defaultNoStore` middleware (mounted app-wide in `app.ts`) now stamps
+  `Cache-Control: no-store` on every response that didn't set an explicit policy —
+  otherwise header-less routes (`/regenerate`, at-slurper GETs, devabot threads)
+  would have inherited Render's ~120min default TTL (frozen side-effect GETs,
+  publicly cached per-user data). Also fixed: `publicCache` now covers HEAD, so
+  `curl -sI` probes show real headers. Verified live: `/sessions` `MISS` → `HIT`
+  (`age` header present), 404s `BYPASS`. The edge cache auto-purges on every
+  deploy, so data-sync commits still propagate normally. Note: cache HITs never
+  reach the origin — Render request logs/metrics undercount real traffic now.
 - **Optional if 60s is ever too slow**: fire-and-forget Cloudflare purge in the two
   real-time write paths (Pretalx webhook, `PUT /sessions/sources/:id`); needs a
   cache-purge zone token in Render's env, deliberately not built yet.
@@ -837,8 +849,8 @@ Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube chann
 #6 second half (DC8 asset swap + DC7 location/date/timezone copy in the card
 templates - infra done, §12d), #9/#11 (YouTube OAuth, Meerkat endpoint - #10 is
 now closed: AV write path + token migration verified 2026-08-13), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
-spread-order fragility), and the Cloudflare Cache Rule that activates §12e's edge
-caching (origin side done; dashboard access needed).
+spread-order fragility). §12e's edge caching is now fully active (Render Edge
+Caching "All files", 2026-08-19).
 
 ## Verification
 

@@ -34,7 +34,11 @@ if (!apiKey) {
 }
 
 async function getSession(id: string) {
-  const res = await fetch(`${BASE}/sessions/${id}`)
+  // Unique query param per read: /sessions/:id is edge-cached for 60s
+  // (Render Edge Caching, 2026-08-19), and this GET verifies a write made
+  // moments ago — a cached response would read the pre-write payload and
+  // fail the smoke test. A fresh cache key forces an origin fetch.
+  const res = await fetch(`${BASE}/sessions/${id}?_=${Date.now()}`)
   if (!res.ok) throw new Error(`GET /sessions/${id} -> ${res.status}`)
   return (await res.json()).data
 }
