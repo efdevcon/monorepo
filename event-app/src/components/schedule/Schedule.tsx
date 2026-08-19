@@ -12,19 +12,19 @@ import { createPortal } from "react-dom";
 import {
   CalendarRange,
   Check,
-  CircleX,
   ClockArrowDown,
   List,
   ListFilter,
   MoveDown,
   MoveUp,
-  Search,
   Star,
 } from "lucide-react";
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
+import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
 import { ScheduleTimeline } from "./ScheduleTimeline";
@@ -86,10 +86,7 @@ function HeaderActions({
         )}
       >
         <Star
-          className={cn(
-            "size-4",
-            interestedOnly ? "text-dc-purple" : "text-dc-fg"
-          )}
+          className="size-4 text-dc-purple"
           fill={interestedOnly ? "currentColor" : "none"}
         />
       </button>
@@ -101,14 +98,14 @@ function HeaderActions({
           !revealed && "pointer-events-none opacity-0"
         )}
       >
-        <ClockArrowDown className="size-4 text-dc-fg" />
+        <ClockArrowDown className="size-4 text-dc-purple" />
       </button>
       <button
         onClick={onOpenFilters}
         aria-label="Open filters"
         className={cn(headerCircle, "relative")}
       >
-        <ListFilter className="size-4 text-dc-fg" />
+        <ListFilter className="size-4 text-dc-purple" />
         {filterCount > 0 && (
           <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
             {filterCount}
@@ -119,44 +116,6 @@ function HeaderActions({
         target
       )}
     </>
-  );
-}
-
-/** Search input per Figma: 40px white field, purple search glyph, clear "x". */
-function SearchInput({
-  value,
-  onChange,
-  className,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "flex h-10 items-center gap-2 rounded-lg border border-dc-hairline bg-white px-3 transition-colors hover:border-dc-muted focus-within:border-dc-muted",
-        className
-      )}
-    >
-      <Search className="size-4 shrink-0 text-dc-purple" />
-      <input
-        type="search"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search by session, speaker or topic"
-        className="min-w-0 flex-1 bg-transparent text-[14px] leading-5 text-dc-fg outline-none placeholder:text-dc-muted [&::-webkit-search-cancel-button]:hidden"
-      />
-      {value && (
-        <button
-          onClick={() => onChange("")}
-          aria-label="Clear search"
-          className="shrink-0 cursor-pointer"
-        >
-          <CircleX className="size-4 text-dc-purple" />
-        </button>
-      )}
-    </div>
   );
 }
 
@@ -606,31 +565,20 @@ export function Schedule() {
               ref={searchBlockRef}
               className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 lg:hidden"
             >
-              <SearchInput value={search} onChange={setSearch} />
+              <SearchInput
+                value={search}
+                onChange={setSearch}
+                placeholder="Search by session, speaker or topic"
+              />
               <div className="flex items-center justify-between">
-                <button
-                  onClick={jumpToNow}
-                  className="flex h-8 cursor-pointer items-center gap-1.5 rounded-full p-1 text-[12px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
-                >
+                <button onClick={jumpToNow} className={ghostPill}>
                   <ClockArrowDown className="size-4" />
                   Jump to now
                 </button>
-                <button
-                  onClick={() => setInterestedOnly((v) => !v)}
-                  aria-pressed={interestedOnly}
-                  className={cn(
-                    "flex min-h-8 cursor-pointer items-center gap-2 rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg",
-                    interestedOnly
-                      ? "border-dc-purple bg-dc-lavender"
-                      : "border-dc-hairline bg-white"
-                  )}
-                >
-                  <Star
-                    className="size-3 text-dc-purple"
-                    fill="currentColor"
-                  />
-                  Interested
-                </button>
+                <InterestedPill
+                  active={interestedOnly}
+                  onToggle={() => setInterestedOnly((v) => !v)}
+                />
               </div>
             </div>
 
@@ -639,6 +587,7 @@ export function Schedule() {
               <SearchInput
                 value={search}
                 onChange={setSearch}
+                placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
               />
               <ViewToggle view={view} onChange={setView} />
@@ -650,23 +599,11 @@ export function Schedule() {
               selectedDay={selectedDay}
               onSelect={setSelectedDay}
             >
-              <button
-                onClick={() => setInterestedOnly((v) => !v)}
-                aria-pressed={interestedOnly}
-                className={cn(
-                  "flex min-h-9 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[14px] leading-none text-dc-fg2",
-                  interestedOnly
-                    ? "border-dc-purple bg-white"
-                    : "border-dc-hairline bg-white"
-                )}
-              >
-                <Star className="size-4 text-dc-purple" fill="currentColor" />
-                Interested
-              </button>
-              <button
-                onClick={jumpToNow}
-                className="flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[14px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
-              >
+              <InterestedPill
+                active={interestedOnly}
+                onToggle={() => setInterestedOnly((v) => !v)}
+              />
+              <button onClick={jumpToNow} className={ghostPill}>
                 <ClockArrowDown className="size-4" />
                 Jump to now
               </button>
@@ -676,8 +613,9 @@ export function Schedule() {
                   else openFilters();
                 }}
                 className={cn(
-                  "relative flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[14px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash",
-                  activeFilterCount > 0 && "border border-dc-purple"
+                  ghostPill,
+                  "relative",
+                  activeFilterCount > 0 && "border border-dc-purple bg-dc-lavender"
                 )}
               >
                 <ListFilter className="size-4" />

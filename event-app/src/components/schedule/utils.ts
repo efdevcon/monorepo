@@ -39,6 +39,20 @@ export const formatTime = (unixSeconds: number) =>
 export const formatTimeRange = (session: Session) =>
   `${formatTime(session.start)} – ${formatTime(session.end)}`;
 
+/**
+ * No dataset marks keynotes via `type` — the Pretalx mapper collapses keynote
+ * submission types into "Talk" for every edition. The reliable marker (used by
+ * the shipped DC7 app, and matching all 17 devcon-7 keynotes) is the title
+ * prefix; the keynote room ids are the future-proof DC8 signal. The type check
+ * stays as belt-and-braces should the mapping ever change.
+ */
+export function isKeynoteSession(session: Session): boolean {
+  if (session.type?.toLowerCase() === "keynote") return true;
+  if (/^keynote[:\s]/i.test(session.title)) return true;
+  const roomId = session.room?.id?.toLowerCase();
+  return roomId === "keynote" || roomId === "keynote-stage";
+}
+
 export type SessionStatus = "live" | "soon" | "past" | "upcoming";
 
 /** Status relative to `nowMs`. "soon" = starts within the next hour. */

@@ -80,7 +80,7 @@ function CalendarHeaderAction({ session }: { session: SessionModel }) {
       aria-label="Add to calendar"
       className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white"
     >
-      <CalendarPlus className="size-4 text-dc-fg" />
+      <CalendarPlus className="size-4 text-dc-purple" />
     </button>,
         target
       )}

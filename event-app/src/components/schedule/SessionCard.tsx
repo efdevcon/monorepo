@@ -6,11 +6,8 @@ import type { Session } from "@/data/models";
 import { Link } from "@/routing";
 import { useInterested } from "@/data/interested/useInterested";
 import { isDesktopNow } from "@/hooks/useIsDesktop";
-import { formatTimeRange } from "./utils";
+import { formatTimeRange, isKeynoteSession } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
-
-const isKeynote = (session: Session) =>
-  session.type?.toLowerCase() === "keynote";
 
 /** Location meta reads "Type - Room" in the design (e.g. "Talk - Main Stage"). */
 const locationLabel = (session: Session) =>
@@ -41,7 +38,7 @@ export function SessionCard({
 }) {
   const theme = getTrackTheme(session.track);
   const badge = trackBadgeLabel(session.track);
-  const keynote = isKeynote(session);
+  const keynote = isKeynoteSession(session);
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
 
