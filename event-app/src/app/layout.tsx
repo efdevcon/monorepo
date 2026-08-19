@@ -194,8 +194,11 @@ export default function RootLayout({
         <Toaster
           position="bottom-center"
           richColors
-          // Inline style beats sonner's own font-family on the container.
+          // Inline style beats sonner's own font-family on the container;
+          // color must go inline on each toast (toastOptions) since sonner
+          // styles toast text itself. dc-fg2 = general/secondary-foreground.
           style={{ fontFamily: "var(--font-heading)" }}
+          toastOptions={{ style: { color: "var(--color-dc-fg2)" } }}
           mobileOffset={{
             bottom: "calc(max(24px, env(safe-area-inset-bottom)) + 64px)",
           }}
