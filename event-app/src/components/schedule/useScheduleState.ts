@@ -27,14 +27,22 @@ function sessionValue(session: Session, facet: FilterFacet): string | undefined 
 /** A time group decorated with live/past status for the redesigned list. */
 export interface DecoratedGroup extends TimeGroup {
   /**
+   * Unique render/ref key. Usually the timeLabel, but a slot whose sessions
+   * are part-finished, part-still-running splits into a completed group and
+   * an ongoing group sharing one timeLabel.
+   */
+  key: string;
+  /**
    * This group is the current live slot: the latest-starting group with a
    * live session. At most one group is live at a time, so the red band
    * anchors the present moment instead of trailing long-running sessions.
    */
   isLive: boolean;
   /**
-   * A session in this group is still running, but a later slot has since
-   * become the live one (e.g. a 90-min workshop outlasting lightning talks).
+   * Every session in this group is still running past its slot — a later
+   * slot has since become the live one (e.g. a 90-min workshop outlasting
+   * lightning talks). Finished siblings are split out into their own
+   * completed group so "ongoing" is never diluted with checked-off sessions.
    */
   isOngoing: boolean;
   /** Every session in the group has ended. */
@@ -171,12 +179,46 @@ export function useScheduleState(
       g.sessions.some((s) => getStatus(s, now) === "live")
     );
     const currentSlot = hasLive.lastIndexOf(true);
-    return groups.map((g, i) => ({
-      ...g,
-      isLive: i === currentSlot,
-      isOngoing: hasLive[i] && i !== currentSlot,
-      isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
-    }));
+    const out: DecoratedGroup[] = [];
+    groups.forEach((g, i) => {
+      if (hasLive[i] && i !== currentSlot) {
+        // Carry-over slot: its sessions all started together, so each is
+        // either still running or already over. Completed ones split into
+        // their own checked-off group (first, so a leading run can collapse);
+        // only the still-running ones carry the Ongoing tag.
+        const done = g.sessions.filter((s) => getStatus(s, now) === "past");
+        const running = g.sessions.filter(
+          (s) => getStatus(s, now) === "live"
+        );
+        if (done.length > 0) {
+          out.push({
+            ...g,
+            sessions: done,
+            key: g.timeLabel,
+            isLive: false,
+            isOngoing: false,
+            isPast: true,
+          });
+        }
+        out.push({
+          ...g,
+          sessions: running,
+          key: `${g.timeLabel}-ongoing`,
+          isLive: false,
+          isOngoing: true,
+          isPast: false,
+        });
+      } else {
+        out.push({
+          ...g,
+          key: g.timeLabel,
+          isLive: i === currentSlot,
+          isOngoing: false,
+          isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
+        });
+      }
+    });
+    return out;
   }, [groups, now]);
 
   // Leading fully-completed groups collapse behind a summary bar (Figma 3a/3b).

@@ -298,6 +298,81 @@ function CompletedPanel({
 }
 
 /**
+ * Sticky time-group header. Pins under the day tabs: 103px on mobile (56px
+ * app bar + 47px tab strip), 118px on desktop (65px nav + 53px day bar).
+ * Non-live headers only paint their wash once pinned on mobile — unpinned
+ * they sit directly on the gradient/band (Figma) — while a pinned header
+ * needs the fill so cards scrolling beneath don't show through. Desktop
+ * keeps the wash full-time (invisible on the flat panel surface until
+ * something slides under). Live headers keep their tint at all times: they
+ * sit inside the red band, which shares the fill.
+ */
+function GroupHeader({
+  group,
+  inPanel,
+}: {
+  group: DecoratedGroup;
+  inPanel: boolean;
+}) {
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const [stuck, setStuck] = useState(false);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (inPanel || !el) return;
+    // The sentinel marks the header's natural position: once it crosses
+    // above the mobile pin line the header is stuck. (Desktop pins 14px
+    // lower, but `stuck` only ever adds the same fill desktop already has.)
+    const observer = new IntersectionObserver(
+      ([entry]) =>
+        setStuck(!entry.isIntersecting && entry.boundingClientRect.top < 104),
+      { rootMargin: "-104px 0px 0px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [inPanel]);
+
+  return (
+    <>
+      <div ref={sentinelRef} aria-hidden />
+      <header
+        className={cn(
+          "flex items-center justify-between gap-3",
+          !inPanel && "sticky top-[103px] z-10 lg:top-[118px]",
+          !inPanel &&
+            (group.isLive
+              ? "bg-dc-live-bg"
+              : cn("lg:bg-dc-panel/95", stuck && "bg-dc-panel/95"))
+        )}
+      >
+        <span className="flex min-w-0 items-center gap-1 text-[14px] leading-6 text-dc-fg lg:text-[16px] lg:text-dc-fg2">
+          <span className="truncate">
+            <span className="font-semibold">{group.timeLabel} </span>
+            <span className="font-normal">
+              – {group.sessions.length} session
+              {group.sessions.length > 1 ? "s" : ""}
+            </span>
+          </span>
+          {group.isPast && !inPanel && (
+            <Check className="size-4 shrink-0 text-dc-muted" />
+          )}
+        </span>
+        {group.isLive && (
+          <span className="shrink-0 rounded-[2px] bg-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-white lg:rounded-[4px] lg:text-[14px]">
+            Live now
+          </span>
+        )}
+        {group.isOngoing && (
+          <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-red lg:rounded-[4px] lg:text-[12px]">
+            Ongoing
+          </span>
+        )}
+      </header>
+    </>
+  );
+}
+
+/**
  * Redesigned schedule view (Figma "PWA / Schedule"). Mobile: full-bleed list
  * under the glass app header with sticky day tabs and time-group headers, a
  * full-bleed live band, collapsed completed sessions, a filter bottom sheet.
@@ -400,7 +475,7 @@ export function Schedule() {
       visibleGroups[0];
     if (!target) return;
     groupRefs.current
-      .get(target.timeLabel)
+      .get(target.key)
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -450,45 +525,13 @@ export function Schedule() {
     opts: { inPanel?: boolean } = {}
   ) => (
     <section
-      key={group.timeLabel}
+      key={group.key}
       ref={(el) => {
-        if (!opts.inPanel) groupRefs.current.set(group.timeLabel, el);
+        if (!opts.inPanel) groupRefs.current.set(group.key, el);
       }}
-      className={cn(!opts.inPanel && "scroll-mt-[112px] lg:scroll-mt-[80px]")}
+      className={cn(!opts.inPanel && "scroll-mt-[112px] lg:scroll-mt-[127px]")}
     >
-      <header
-        className={cn(
-          "flex items-center justify-between gap-3",
-          !opts.inPanel && "sticky top-[103px] z-10 lg:top-[65px]",
-          // Sticky on every breakpoint, so the fill must be too — otherwise
-          // session cards scrolling up from below show through the header
-          // once it pins to the top (only reproduces while scrolling).
-          !opts.inPanel && (group.isLive ? "bg-dc-live-bg" : "bg-dc-panel/95")
-        )}
-      >
-        <span className="flex min-w-0 items-center gap-1 text-[14px] leading-6 text-dc-fg lg:text-[16px] lg:text-dc-fg2">
-          <span className="truncate">
-            <span className="font-semibold">{group.timeLabel} </span>
-            <span className="font-normal">
-              – {group.sessions.length} session
-              {group.sessions.length > 1 ? "s" : ""}
-            </span>
-          </span>
-          {group.isPast && !opts.inPanel && (
-            <Check className="size-4 shrink-0 text-dc-muted" />
-          )}
-        </span>
-        {group.isLive && (
-          <span className="shrink-0 rounded-[2px] bg-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-white lg:rounded-[4px] lg:text-[14px]">
-            Live now
-          </span>
-        )}
-        {group.isOngoing && (
-          <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-red lg:rounded-[4px] lg:text-[12px]">
-            Ongoing
-          </span>
-        )}
-      </header>
+      <GroupHeader group={group} inPanel={!!opts.inPanel} />
       {/* 2+ sessions in a timeslot: 2-col on desktop (collapses while the
           side panel narrows the main column). */}
       <div
