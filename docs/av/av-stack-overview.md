@@ -113,6 +113,9 @@ Details that matter:
   event from the Pretalx slug in the payload. ✅ FIXED 2026-08 (§12): it used to
   **fall back to `devcon-7`** for an unknown slug, silently resyncing the wrong
   event; unknown slugs now get a 400 + warning log.
+- The webhook **acks 204 immediately and syncs detached** (✅ 2026-08-19, §12f):
+  the plugin sends the POST from inside Pretalx's release request, so holding the
+  response for the sync stalled — and rolled back — orga-UI releases.
 - Both sync workflows also have a **monthly cron fallback** (`0 23 30 * *`), so data
   refreshes even if no schedule is published.
 - The devcon-7 sync additionally runs `createPresentations()` (Google Slides) and a
@@ -798,6 +801,35 @@ All in `devcon-api/`, `tsc --noEmit` clean, headers verified against a local boo
 - **Optional if 60s is ever too slow**: fire-and-forget Cloudflare purge in the two
   real-time write paths (Pretalx webhook, `PUT /sessions/sources/:id`); needs a
   cache-purge zone token in Render's env, deliberately not built yet.
+
+## 12f. Changelog: Pretalx "release new version" timeouts root-caused, 2026-08-19
+
+Releasing a schedule from the Pretalx orga UI kept timing out (and the release
+rolled back — no version minted), while the API release endpoint worked. Root
+cause is a chain across both sides of the webhook:
+
+- The [pretalx-webhook-plugin](https://github.com/efdevcon/pretalx-webhook-plugin)
+  fires its POST **synchronously inside the release request** (Django signals) with
+  **no timeout**, and **before the release transaction commits**.
+- Since the release-race guard (§2), devcon-api's webhook handler held the response
+  open for the *entire* sync — 10s when visibility resolves fast, up to 2+ minutes
+  when it doesn't. Release request = freeze + that wait → nginx 60s / gunicorn 30s
+  timeouts kill the worker → transaction rollback → "timed out, nothing released".
+  Pre-commit firing also means a rolled-back release can still trigger a ghost sync.
+
+Fixes:
+
+- **devcon-api (`hooks.ts`)**: webhook now acks 204 immediately and runs
+  `SyncPretalx` detached (`waitForPendingSync()` exposes it to tests). Deployed via
+  normal push; this alone makes the *deployed* plugin harmless, since its blocking
+  POST returns in <1s. Must stay 204 — plugin ≤0.1.5 only accepts 200/201/204.
+- **Plugin 0.2.0 (committed, deploy pending)**: POST moved to a daemon thread
+  scheduled via `transaction.on_commit` + `(5, 180)s` timeout — releases never block
+  on the receiver and webhooks can no longer announce rolled-back releases. Deploy =
+  bump the git pin in `cluster/devcon/pretalx/ansible/inventories/mumbai/group_vars/instances.yaml`
+  (currently `21a8d2e`) + ansible run.
+- Fallback while any of this is undeployed: `pnpm pretalx:release` (devcon-api)
+  releases via the API with auto-incremented version numbers.
 
 ### Still open after these changelogs
 

@@ -19,6 +19,12 @@ hooksRouter.post(`/hooks/pretalx/:eventId/schedule`, UpdateSchedule)
 hooksRouter.post(`/hooks/nocodb`, UpdateNocoDb)
 hooksRouter.post(`/hooks/nocodb/:tableId`, UpdateNocoDb)
 
+// The most recently started detached sync (see the ack-then-sync note in
+// UpdateSchedule). Exported via waitForPendingSync so tests can await the
+// sync's effects after the (now immediate) 204.
+let pendingSync: Promise<void> = Promise.resolve()
+export const waitForPendingSync = () => pendingSync
+
 export async function UpdateSchedule(req: Request, res: Response) {
   // #swagger.ignore = true
 
@@ -43,8 +49,17 @@ export async function UpdateSchedule(req: Request, res: Response) {
     // update silently misses content edits. We full-resync instead.
     console.log('Changes', data.changes)
 
-    await SyncPretalx(config, data.schedule)
-
+    // Ack immediately and sync detached. The pretalx webhook plugin fires
+    // this request synchronously from inside the release request (Django
+    // signals are synchronous, and the deployed plugin has no timeout), so
+    // every second we hold the response is a second the orga "release new
+    // version" action hangs. Holding it for the full sync — the visibility
+    // guard alone can poll for 2 minutes — pushed releases past the proxy/
+    // worker timeouts, which killed and rolled back the release itself.
+    // Must stay 204: the deployed plugin only treats 200/201/204 as success.
+    pendingSync = SyncPretalx(config, data.schedule).catch(error => {
+      console.error('Detached Pretalx sync failed:', error)
+    })
     res.status(204).send()
   } catch (error) {
     console.error('Error parsing Pretalx Webhook plugin', error)

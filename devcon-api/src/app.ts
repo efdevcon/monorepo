@@ -8,6 +8,7 @@ import swaggerDocument from '@/swagger/definition.json'
 import { errorHandler } from '@/middleware/error'
 import { notFoundHandler } from '@/middleware/notfound'
 import { logHandler } from '@/middleware/log'
+import { defaultNoStore } from '@/middleware/cache'
 import { router } from './routes'
 import { SERVER_CONFIG } from '@/utils/config'
 import { existsSync } from 'fs'
@@ -20,6 +21,10 @@ app.use(compression())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
+// Every response gets Cache-Control (no-store unless a route opts into
+// publicCache / sets its own) so Render's "All files" edge caching can never
+// cache a route that didn't explicitly ask for it. See middleware/cache.ts.
+app.use(defaultNoStore)
 
 const ALLOWED_ORIGINS = [
   'http://localhost:3000',
