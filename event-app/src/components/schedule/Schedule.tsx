@@ -342,16 +342,25 @@ function GroupHeader({
       <header
         className={cn(
           "flex items-center justify-between gap-3",
-          !inPanel && "sticky top-[103px] z-10 lg:top-[118px]",
+          !inPanel && "sticky z-10",
           // Pinned non-live headers get the wash + the app-header glass blur
-          // so cards scrolling beneath don't ghost through the 95% fill; live
-          // headers stay fully opaque on the band tint and need no blur.
+          // so cards scrolling beneath don't ghost through the 95% fill, plus
+          // 4px 0 padding for breathing room. The padding is offset with
+          // negative margins (flow height stays put — no 8px content jump at
+          // the pin) and the sticky top drops 4px to keep the fill's top edge
+          // at the pin line (`top` constrains the margin box, which the
+          // negative margin pulls 4px up). Live headers stay as-is: fully
+          // opaque on the band tint, no blur.
+          !inPanel &&
+            (stuck && !group.isLive
+              ? "top-[107px] lg:top-[122px]"
+              : "top-[103px] lg:top-[118px]"),
           !inPanel &&
             (group.isLive
               ? "bg-dc-live-bg"
               : cn(
                   "lg:bg-dc-panel/95",
-                  stuck && "bg-dc-panel/95 backdrop-blur-[4px]"
+                  stuck && "-my-1 bg-dc-panel/95 py-1 backdrop-blur-[4px]"
                 ))
         )}
       >
