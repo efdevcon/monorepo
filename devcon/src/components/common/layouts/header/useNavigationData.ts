@@ -69,29 +69,6 @@ const useNavigationData = () => {
         foldoutWidth: 464,
         links: [
           {
-            title: t('speakers'),
-            url: '#',
-            type: 'header',
-            icon: MicVocal,
-            pairWithNext: true,
-          },
-          {
-            title: t('speak_at_devcon'),
-            url: '/speaker-applications',
-            type: 'page',
-          },
-          {
-            title: t('support'),
-            url: '#',
-            type: 'header',
-            icon: HandHeart,
-          },
-          {
-            title: t('supporters_program'),
-            url: '/supporters',
-            type: 'page',
-          },
-          {
             title: t('contribute'),
             url: '#',
             type: 'header',
@@ -119,6 +96,29 @@ const useNavigationData = () => {
             title: t('submit_dip'),
             url: 'https://forum.devcon.org/t/start-here-how-to-submit-your-proposal/7090',
             type: 'link',
+          },
+          {
+            title: t('speakers'),
+            url: '#',
+            type: 'header',
+            icon: MicVocal,
+            pairWithNext: true,
+          },
+          {
+            title: t('speak_at_devcon'),
+            url: '/speaker-applications',
+            type: 'page',
+          },
+          {
+            title: t('support'),
+            url: '#',
+            type: 'header',
+            icon: HandHeart,
+          },
+          {
+            title: t('supporters_program'),
+            url: '/supporters',
+            type: 'page',
           },
         ],
       },

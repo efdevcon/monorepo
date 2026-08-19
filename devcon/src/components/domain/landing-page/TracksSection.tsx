@@ -2,7 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { APPLY_URL, TRACK_IMAGES } from 'components/common/tracks/track-images'
+import { Link } from 'components/common/link'
+import { TRACK_IMAGES } from 'components/common/tracks/track-images'
 import { ctaSecondary } from 'components/common/cta'
 import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy } from 'components/common/styles'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
@@ -13,8 +14,8 @@ const DISPLAY_ORDER = [0, 1, 2, 3, 6, 4, 7, 5, 8]
 
 /**
  * "This year's tracks" — Figma node 4928:1277. Static track badges (no flip
- * interaction, unlike the Speak at Devcon page) + Apply to Speak card. Track
- * titles come from the shared speaker_applications intl namespace.
+ * interaction, unlike the Speak at Devcon page) + programming Learn more card.
+ * Track titles come from the shared speaker_applications intl namespace.
  */
 export const TracksSection = () => {
   const t = useTranslations('home.tracks')
@@ -44,23 +45,18 @@ export const TracksSection = () => {
           </Reveal>
         ))}
 
-        {/* Apply to Speak card */}
+        {/* Programming "Learn more" card */}
         <Reveal
           delay={DISPLAY_ORDER.length * 60}
           className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col sm:flex-row lg:flex-col items-center sm:justify-center lg:justify-center gap-[16px] p-[16px] sm:px-6 lg:p-[16px] rounded-2xl bg-[#ece3fd] outline outline-1 outline-[rgba(255,255,255,0.33)]"
         >
-          <p className="text-[16px] leading-[24px] text-[#1a0d33] text-center sm:text-left lg:text-center">
+          <p className="text-[16px] leading-[24px] text-[#1a0d33] text-center sm:text-left lg:text-center text-balance">
             {t('apply_prompt')}
           </p>
-          <a
-            href={APPLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`w-full sm:w-auto lg:w-full shrink-0 ${ctaSecondary}`}
-          >
+          <Link to="/speaker-applications" className={`w-full sm:w-auto lg:w-full shrink-0 ${ctaSecondary}`}>
             {t('apply_cta')}
             <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-          </a>
+          </Link>
         </Reveal>
       </RevealGroup>
     </div>
