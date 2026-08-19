@@ -26,8 +26,17 @@ function sessionValue(session: Session, facet: FilterFacet): string | undefined 
 
 /** A time group decorated with live/past status for the redesigned list. */
 export interface DecoratedGroup extends TimeGroup {
-  /** Any session in the group is live right now. */
+  /**
+   * This group is the current live slot: the latest-starting group with a
+   * live session. At most one group is live at a time, so the red band
+   * anchors the present moment instead of trailing long-running sessions.
+   */
   isLive: boolean;
+  /**
+   * A session in this group is still running, but a later slot has since
+   * become the live one (e.g. a 90-min workshop outlasting lightning talks).
+   */
+  isOngoing: boolean;
   /** Every session in the group has ended. */
   isPast: boolean;
 }
@@ -157,15 +166,18 @@ export function useScheduleState(
   }, [sessions, selectedDay, filters, search, interestedOnly, interestedIds]);
 
   // Live/past decoration per group, for the live band and completed collapse.
-  const decoratedGroups: DecoratedGroup[] = useMemo(
-    () =>
-      groups.map((g) => ({
-        ...g,
-        isLive: g.sessions.some((s) => getStatus(s, now) === "live"),
-        isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
-      })),
-    [groups, now]
-  );
+  const decoratedGroups: DecoratedGroup[] = useMemo(() => {
+    const hasLive = groups.map((g) =>
+      g.sessions.some((s) => getStatus(s, now) === "live")
+    );
+    const currentSlot = hasLive.lastIndexOf(true);
+    return groups.map((g, i) => ({
+      ...g,
+      isLive: i === currentSlot,
+      isOngoing: hasLive[i] && i !== currentSlot,
+      isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
+    }));
+  }, [groups, now]);
 
   // Leading fully-completed groups collapse behind a summary bar (Figma 3a/3b).
   const { completedGroups, visibleGroups } = useMemo(() => {

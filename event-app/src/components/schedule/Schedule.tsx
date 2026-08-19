@@ -391,9 +391,11 @@ export function Schedule() {
       setTimelineJumpSignal((n) => n + 1);
       return;
     }
-    // List view: land on the "Live now" section, else the next upcoming one.
+    // List view: land on the "Live now" section, else a still-running one,
+    // else the next upcoming one.
     const target =
       visibleGroups.find((g) => g.isLive) ??
+      visibleGroups.find((g) => g.isOngoing) ??
       visibleGroups.find((g) => !g.isPast) ??
       visibleGroups[0];
     if (!target) return;
@@ -479,6 +481,11 @@ export function Schedule() {
         {group.isLive && (
           <span className="shrink-0 rounded-[2px] bg-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-white lg:rounded-[4px] lg:text-[14px]">
             Live now
+          </span>
+        )}
+        {group.isOngoing && (
+          <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-red lg:rounded-[4px] lg:text-[12px]">
+            Ongoing
           </span>
         )}
       </header>
