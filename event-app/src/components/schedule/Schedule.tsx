@@ -35,7 +35,12 @@ import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { formatDayHeading } from "./utils";
-import { useIsDesktop, isDesktopNow } from "@/hooks/useIsDesktop";
+import {
+  useIsDesktop,
+  isDesktopNow,
+  HEADER_OFFSET_DESKTOP,
+  HEADER_OFFSET_MOBILE,
+} from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
 
@@ -281,9 +286,12 @@ function GroupHeader({
     const el = sentinelRef.current;
     if (inPanel || !el) return;
     // The sentinel marks the header's natural position: once it crosses
-    // above the pin line (1px past the breakpoint's sticky top offset),
+    // above the pin line (1px past the breakpoint's sticky top offset =
+    // app header + day-tab strip, see the sticky top-[103px]/[118px]),
     // the header is stuck.
-    const pinLine = isDesktop ? 119 : 104;
+    const pinLine = isDesktop
+      ? HEADER_OFFSET_DESKTOP + 54
+      : HEADER_OFFSET_MOBILE + 48;
     const observer = new IntersectionObserver(
       ([entry]) =>
         setStuck(
@@ -401,7 +409,7 @@ export function Schedule() {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => setScrolled(!entry.isIntersecting),
-      { rootMargin: "-56px 0px 0px 0px" }
+      { rootMargin: `-${HEADER_OFFSET_MOBILE}px 0px 0px 0px` }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -733,6 +741,9 @@ export function Schedule() {
               in from the right with a fade — one 300ms ease-out pair. */}
           <aside
             aria-hidden={!sidePanelOpen}
+            // Closed panel stays mounted for the exit transition — inert
+            // keeps its invisible controls out of the tab order.
+            inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
               "sticky top-20 hidden shrink-0 overflow-hidden lg:block",

@@ -39,25 +39,34 @@ export function useInterested() {
     async (sessionId: string, title?: string) => {
       if (!cacheDB) return;
       const key: [string, string] = [eventId, sessionId];
-      const existing = await cacheDB.interested.get(key);
-      if (existing) {
-        await cacheDB.interested.delete(key);
-      } else {
-        await cacheDB.interested.put({
-          eventId,
-          sessionId,
-          addedAt: Date.now(),
-        });
-        if (title)
-          toast(
-            // Single wrapping span: sonner's title slot is a flex row, so
-            // multiple top-level children render as columns, not inline text.
-            <span>
-              &lsquo;<span className="font-semibold">{title}</span>&rsquo; was
-              added to your Interests.
-            </span>
-          );
-      }
+      // Transaction: a bare get-then-put lets two rapid taps both read
+      // "missing" and both add — the star ends on when the user meant off.
+      const added = await cacheDB.transaction(
+        "rw",
+        cacheDB.interested,
+        async () => {
+          const existing = await cacheDB.interested.get(key);
+          if (existing) {
+            await cacheDB.interested.delete(key);
+            return false;
+          }
+          await cacheDB.interested.put({
+            eventId,
+            sessionId,
+            addedAt: Date.now(),
+          });
+          return true;
+        }
+      );
+      if (added && title)
+        toast(
+          // Single wrapping span: sonner's title slot is a flex row, so
+          // multiple top-level children render as columns, not inline text.
+          <span>
+            &lsquo;<span className="font-semibold">{title}</span>&rsquo; was
+            added to your Interests.
+          </span>
+        );
       await mutate();
     },
     [eventId, mutate]

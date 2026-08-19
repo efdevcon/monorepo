@@ -38,25 +38,34 @@ export function useInterestedSpeakers() {
     async (speakerId: string, name?: string) => {
       if (!cacheDB) return;
       const key: [string, string] = [eventId, speakerId];
-      const existing = await cacheDB.interestedSpeakers.get(key);
-      if (existing) {
-        await cacheDB.interestedSpeakers.delete(key);
-      } else {
-        await cacheDB.interestedSpeakers.put({
-          eventId,
-          speakerId,
-          addedAt: Date.now(),
-        });
-        if (name)
-          toast(
-            // Single wrapping span: sonner's title slot is a flex row, so
-            // multiple top-level children render as columns, not inline text.
-            <span>
-              <span className="font-semibold">{name}</span> was added to your
-              Interests.
-            </span>
-          );
-      }
+      // Transaction: a bare get-then-put lets two rapid taps both read
+      // "missing" and both add — the star ends on when the user meant off.
+      const added = await cacheDB.transaction(
+        "rw",
+        cacheDB.interestedSpeakers,
+        async () => {
+          const existing = await cacheDB.interestedSpeakers.get(key);
+          if (existing) {
+            await cacheDB.interestedSpeakers.delete(key);
+            return false;
+          }
+          await cacheDB.interestedSpeakers.put({
+            eventId,
+            speakerId,
+            addedAt: Date.now(),
+          });
+          return true;
+        }
+      );
+      if (added && name)
+        toast(
+          // Single wrapping span: sonner's title slot is a flex row, so
+          // multiple top-level children render as columns, not inline text.
+          <span>
+            <span className="font-semibold">{name}</span> was added to your
+            Interests.
+          </span>
+        );
       await mutate();
     },
     [eventId, mutate]

@@ -32,3 +32,17 @@ export function useIsDesktop(): boolean {
 export function isDesktopNow(): boolean {
   return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
 }
+
+/**
+ * App-header heights (px) — the sticky offsets every pinned row and scroll
+ * measurement hangs off. Tailwind classes can't consume these, so the
+ * matching `top-14` / `lg:top-[65px]` (and derived scroll-mt) classes across
+ * schedule/speakers must move in lockstep if these ever change.
+ */
+export const HEADER_OFFSET_MOBILE = 56;
+export const HEADER_OFFSET_DESKTOP = 65;
+
+/** The current breakpoint's header offset, for scroll-position math. */
+export function headerOffsetNow(): number {
+  return isDesktopNow() ? HEADER_OFFSET_DESKTOP : HEADER_OFFSET_MOBILE;
+}

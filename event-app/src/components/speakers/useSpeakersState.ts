@@ -65,17 +65,21 @@ export function useSpeakersState(
     setInterestedOnly(false);
   }, []);
 
+  // Gate the star-set dependency on the toggle: while interested-only is off,
+  // star churn must not re-filter (and re-group) the whole list.
+  const interestedFilter = interestedOnly ? interestedIds : null;
   const filtered = useMemo(() => {
     const q = normalize(search.trim());
     return all.filter((d) => {
-      if (interestedOnly && !interestedIds.has(d.speaker.id)) return false;
+      if (interestedFilter && !interestedFilter.has(d.speaker.id))
+        return false;
       if (type && !d.types.includes(type)) return false;
       if (topics.length > 0 && !topics.some((t) => d.tags.includes(t)))
         return false;
       if (q && !normalize(d.speaker.name).includes(q)) return false;
       return true;
     });
-  }, [all, search, topics, type, interestedOnly, interestedIds]);
+  }, [all, search, topics, type, interestedFilter]);
 
   const keynoteSpeakers = useMemo(
     () => filtered.filter((d) => d.isKeynote),

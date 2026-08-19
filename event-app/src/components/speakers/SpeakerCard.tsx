@@ -1,10 +1,10 @@
 "use client";
 
+import { memo } from "react";
 import { Speech, Star } from "lucide-react";
 import cn from "classnames";
 import { Link } from "@/routing";
 import { Avatar } from "@/components/Avatar";
-import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import { isDesktopNow } from "@/hooks/useIsDesktop";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 
@@ -14,24 +14,30 @@ import type { DecoratedSpeaker } from "./useSpeakersData";
  * star. Desktop shows 3 tags inline in the meta row; mobile wraps 2 tags onto
  * their own row (compact variant). The star toggles the local "Interested"
  * speaker state without navigating.
+ *
+ * Memoized, with the interested state passed down from the page's single
+ * subscription: hundreds of cards each running their own SWR hook made every
+ * star toggle / scroll-spy tick / selection change reconcile the whole list.
  */
-export function SpeakerCard({
+export const SpeakerCard = memo(function SpeakerCard({
   decorated,
   selected = false,
+  interested,
   onOpen,
+  onToggleInterested,
 }: {
   decorated: DecoratedSpeaker;
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
+  interested: boolean;
   /**
    * Desktop: open the speaker details side panel instead of navigating.
    * Mobile keeps the normal link navigation to /speakers/[id].
    */
   onOpen?: (id: string) => void;
+  onToggleInterested: (id: string, name: string) => void;
 }) {
   const { speaker, sessionCount, tags, isKeynote } = decorated;
-  const { isInterested, toggle } = useInterestedSpeakers();
-  const interested = isInterested(speaker.id);
 
   const tagChip = (tag: string) => (
     <span
@@ -110,7 +116,7 @@ export function SpeakerCard({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          void toggle(speaker.id, speaker.name);
+          onToggleInterested(speaker.id, speaker.name);
         }}
         className="group/star -m-2 flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
       >
@@ -132,4 +138,4 @@ export function SpeakerCard({
       )}
     </Link>
   );
-}
+});

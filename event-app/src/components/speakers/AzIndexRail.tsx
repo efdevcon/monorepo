@@ -37,6 +37,13 @@ export function AzIndexRail({
   // the rail's height animates, via ResizeObserver) so it hugs the live cell
   // — cells flex-shrink below 24px on short viewports.
   const [pill, setPill] = useState<{ y: number; h: number } | null>(null);
+  // Whether the pill had a position in the previous commit: the transition
+  // only applies between two real positions, otherwise the first placement
+  // would visibly sweep down from translateY(0) every time the rail appears.
+  const hadPillRef = useRef(false);
+  useLayoutEffect(() => {
+    hadPillRef.current = pill !== null;
+  }, [pill]);
 
   useLayoutEffect(() => {
     const measure = () => {
@@ -66,7 +73,11 @@ export function AzIndexRail({
             ? { visibility: "hidden" }
             : { transform: `translateY(${pill.y}px)`, height: pill.h }
         }
-        className="absolute inset-x-0 top-0 bg-dc-purple transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+        className={cn(
+          "absolute inset-x-0 top-0 bg-dc-purple",
+          hadPillRef.current &&
+            "transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+        )}
       />
       {rail.map((letter) => {
         const enabled = available.has(letter);

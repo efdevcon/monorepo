@@ -67,11 +67,16 @@ export function useSpeakersData() {
     const typeSet = new Set<string>();
 
     for (const session of sessions) {
-      for (const sp of session.speakers ?? []) {
+      const speakerRefs = session.speakers ?? [];
+      for (const sp of speakerRefs) {
         const list = bySpeakerId.get(sp.id);
         if (list) list.push(session);
         else bySpeakerId.set(sp.id, [session]);
       }
+      // Filter vocabularies come from speakered sessions only — a tag/type
+      // that exists solely on speakerless sessions (breaks, ceremonies)
+      // would render a pill that can never match any speaker.
+      if (speakerRefs.length === 0) continue;
       for (const raw of session.tags ?? []) {
         const tag = raw.trim();
         if (!tag) continue;
@@ -121,12 +126,19 @@ export function useSpeakersData() {
     return { decorated, byId, topicOptions, allTopicOptions, typeOptions };
   }, [speakers, sessions]);
 
-  // Offline-first: the underlying hooks already suppress errors while cached
-  // data exists, so passing them through keeps the same contract.
-  const error = speakersError ?? sessionsError;
+  // The join needs BOTH halves: loading until each list has data (otherwise
+  // a speakers-first resolve renders every card as "0 sessions" with empty
+  // filter vocabularies), and offline-first on errors — a failed half only
+  // surfaces when it has no cached data to join (never hide data we have).
+  const error =
+    (speakers.length === 0 && speakersError) ||
+    (sessions.length === 0 && sessionsError) ||
+    undefined;
   return {
     ...derived,
-    isLoading: (speakersLoading || sessionsLoading) && speakers.length === 0,
+    isLoading:
+      (speakersLoading && speakers.length === 0) ||
+      (sessionsLoading && sessions.length === 0),
     isError: error,
     error,
   };

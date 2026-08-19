@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
-import { isDesktopNow } from "@/hooks/useIsDesktop";
+import { headerOffsetNow } from "@/hooks/useIsDesktop";
 import type { ScheduleDay } from "./utils";
 
 /** "Tue, Nov 3" → "Nov 3" for the compact mobile tabs. */
@@ -10,8 +10,9 @@ const shortLabel = (label: string) => label.split(", ")[1] ?? label;
 
 /**
  * Day selector bar (Figma): underline tabs — full labels on desktop plus a
- * right-hand controls slot (Interested / Jump to now / Filter), short labels
- * spread edge-to-edge on mobile. Sticks under the app header on both
+ * right-hand controls slot (Interested / Jump to now / Filter); mobile shows
+ * short labels in a left-packed scrollable row behind a right-edge fade
+ * (full-bleed, like the topic pills). Sticks under the app header on both
  * breakpoints (56px mobile bar, 65px desktop nav) so the day switcher and
  * controls stay reachable mid-list; time-group headers pin beneath it.
  * Lavender strip at rest on both breakpoints; mobile keeps it while pinned
@@ -42,8 +43,7 @@ export function DayTabs({
       raf = 0;
       const el = ref.current;
       if (!el) return;
-      const offset = isDesktopNow() ? 65 : 56;
-      setStuck(el.getBoundingClientRect().top <= offset + 1);
+      setStuck(el.getBoundingClientRect().top <= headerOffsetNow() + 1);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(measure);
