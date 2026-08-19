@@ -6,7 +6,12 @@ import { ArrowRight } from 'lucide-react'
 import css from './VerificationModal.module.scss'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
 
-const SelfQRcodeWrapper = dynamic(() => import('@selfxyz/qrcode').then((mod) => mod.SelfQRcodeWrapper), {
+// Compact variant of ctaSecondary (components/common/cta.ts) — same colors/motion, but
+// 14px label, 40px tall, hugs its content. Keep in sync with the shared recipe.
+const guideCta =
+  'self-start inline-flex items-center justify-center gap-[8px] h-[40px] rounded-full pl-[24px] pr-[20px] text-[14px] font-bold leading-none whitespace-nowrap transition-[transform,opacity,background-color] duration-150 ease-out motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] bg-white/80 text-[#1a0d33] outline outline-1 outline-[rgba(34,17,68,0.1)] hover:bg-white'
+
+const SelfQRcodeWrapper = dynamic(() => import('@selfxyz/qrcode').then(mod => mod.SelfQRcodeWrapper), {
   ssr: false,
 })
 
@@ -25,10 +30,8 @@ function parseError(reason?: string): { message: string; code: ErrorCode } {
     reason.includes('not configured')
   )
     return { message: reason, code: 'NO_VOUCHERS' }
-  if (reason.includes('[InvalidId]') || reason.includes('Aadhaar'))
-    return { message: reason, code: 'INVALID_ID' }
-  if (reason.includes('[InvalidRoot]'))
-    return { message: reason, code: null }
+  if (reason.includes('[InvalidId]') || reason.includes('Aadhaar')) return { message: reason, code: 'INVALID_ID' }
+  if (reason.includes('[InvalidRoot]')) return { message: reason, code: null }
   if (reason.includes('Indian residents') || reason.includes('Nationality'))
     return { message: reason, code: 'NOT_INDIAN' }
   if (reason.includes('18') || reason.includes('age') || reason.includes('older'))
@@ -55,8 +58,39 @@ function useIsMobile() {
   return isMobile
 }
 
-export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStaging, earlyAccess, email }: SelfVerificationModalProps) {
-  const [userId, setUserId] = useState(() => crypto.randomUUID())
+const SELF_USER_ID_STORAGE_KEY = 'devcon-self-user-id'
+
+function newPersistedUserId(): string {
+  const id = crypto.randomUUID()
+  try {
+    localStorage.setItem(SELF_USER_ID_STORAGE_KEY, id)
+  } catch {
+    // ignore (private browsing / storage disabled) — id still works for this session
+  }
+  return id
+}
+
+export function SelfVerificationModal({
+  isOpen,
+  onClose,
+  useStaging,
+  setUseStaging,
+  earlyAccess,
+  email,
+}: SelfVerificationModalProps) {
+  // Persisted across reopen/reload so a voucher issued in a prior session (e.g. one
+  // whose popup got closed before the frontend observed the result) can be recovered
+  // below by re-polling self-voucher, instead of forcing a brand new Self-app round trip.
+  const [userId, setUserId] = useState(() => {
+    try {
+      const stored = localStorage.getItem(SELF_USER_ID_STORAGE_KEY)
+      if (stored) return stored
+    } catch {
+      // ignore
+    }
+    return newPersistedUserId()
+  })
+  const [checkingExisting, setCheckingExisting] = useState(true)
   const [voucher, setVoucher] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [errorCode, setErrorCode] = useState<ErrorCode>(null)
@@ -100,32 +134,68 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
   useEffect(() => {
     if (!isOpen || !emailConfirmed) return
 
-    try {
-      let endpoint = SELF_ENDPOINT
-      const params: string[] = []
-      if (effectiveStaging) params.push('staging=true')
-      if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
-      if (effectiveEmail) params.push(`email=${encodeURIComponent(effectiveEmail)}`)
-      if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
+    let cancelled = false
+    setCheckingExisting(true)
 
-      const app = new SelfAppBuilder({
-        appName: 'Devcon India Tickets',
-        scope: SELF_SCOPE,
-        endpoint,
-        endpointType: effectiveStaging ? 'staging_https' : 'https',
-        userId,
-        userIdType: 'uuid',
-        disclosures: {
-          nationality: true,
-          minimumAge: 18,
-        },
-      } as Partial<SelfApp>).build()
+    const init = async () => {
+      // Recover a voucher (or a stored failure reason) from a prior session for this
+      // persisted userId before starting a fresh Self-app round trip — covers the case
+      // where redeem-self already succeeded server-side but the popup was closed before
+      // the frontend observed it.
+      try {
+        const res = await fetch(`/api/tickets/self-voucher/?userId=${encodeURIComponent(userId)}`, {
+          cache: 'no-store',
+        })
+        const data = await res.json()
+        if (cancelled) return
+        if (res.ok && data.voucherCode) {
+          setVoucher(data.voucherCode)
+          setCheckingExisting(false)
+          return
+        }
+        if (res.ok && data.error && data.reason) {
+          setErrorFromReason(data.reason)
+          setCheckingExisting(false)
+          return
+        }
+      } catch {
+        // ignore — fall through to a fresh session
+      }
+      if (cancelled) return
+      setCheckingExisting(false)
 
-      setSelfApp(app)
-      setUniversalLink(getUniversalLink(app))
-    } catch (e) {
-      console.error('Failed to initialize Self app:', e)
-      setError('Failed to initialize verification. Please try again.')
+      try {
+        let endpoint = SELF_ENDPOINT
+        const params: string[] = []
+        if (effectiveStaging) params.push('staging=true')
+        if (earlyAccess) params.push(`earlyAccess=${encodeURIComponent(earlyAccess)}`)
+        if (effectiveEmail) params.push(`email=${encodeURIComponent(effectiveEmail)}`)
+        if (params.length > 0) endpoint = `${endpoint}?${params.join('&')}`
+
+        const app = new SelfAppBuilder({
+          appName: 'Devcon India Tickets',
+          scope: SELF_SCOPE,
+          endpoint,
+          endpointType: effectiveStaging ? 'staging_https' : 'https',
+          userId,
+          userIdType: 'uuid',
+          disclosures: {
+            nationality: true,
+            minimumAge: 18,
+          },
+        } as Partial<SelfApp>).build()
+
+        setSelfApp(app)
+        setUniversalLink(getUniversalLink(app))
+      } catch (e) {
+        console.error('Failed to initialize Self app:', e)
+        setError('Failed to initialize verification. Please try again.')
+      }
+    }
+
+    init()
+    return () => {
+      cancelled = true
     }
   }, [isOpen, userId, effectiveStaging, earlyAccess, effectiveEmail, emailConfirmed])
 
@@ -223,7 +293,7 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
     clearError()
     setSelfApp(null)
     setUniversalLink('')
-    setUserId(crypto.randomUUID())
+    setUserId(newPersistedUserId())
   }
 
   // Direct link into the Pretix store's voucher redeem flow, which unlocks and
@@ -260,7 +330,10 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
               Claim your India Resident ticket
               <ArrowRight size={20} aria-hidden />
             </a>
-            <p className={css['privacy']}>No personal data is shared!</p>
+            <button type="button" className={css['reset-btn']} onClick={handleReset}>
+              Verify with a different card
+            </button>
+            <p className={css['privacy']}>No personal data is shared.</p>
           </div>
         ) : (
           <div className={css['self-content']}>
@@ -269,69 +342,92 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
             </h2>
 
             <p className={css['self-intro']}>
-              Self allows you to prove your identity using your Aadhaar card without revealing personal data. The
-              verification uses zero-knowledge proofs — your information never leaves your device.
+              Self allows you to prove your identity using your Aadhaar card without revealing any personal data by
+              using zero-knowledge (ZK) proofs.
+            </p>
+
+            <p className={css['self-intro-link']}>
+              <a
+                href="https://docs.self.xyz/docs/self-pass/document-specification/aadhaar/#registering-with-aadhaar-on-self"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn more about zero-knowledge proofs using Self and Aadhaar
+              </a>
             </p>
 
             <hr className={css['self-divider']} aria-hidden="true" />
 
             {emailConfirmed && (
-              <>
-                <div className={css['self-howto']}>
-                  <h3 className={css['self-heading']}>How to use</h3>
-                  <ol className={css['self-steps']}>
-                    <li>
-                      Download the Self app on{' '}
-                      <a
-                        href="https://apps.apple.com/in/app/self-zk-proofs/id6478563710"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        iOS
-                      </a>{' '}
-                      or{' '}
-                      <a
-                        href="https://play.google.com/store/apps/details?id=com.proofofpassportapp&pli=1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Android
-                      </a>
-                    </li>
-                    <li>
-                      Download the Aadhaar app on{' '}
-                      <a
-                        href="https://apps.apple.com/in/app/aadhaar/id6744029871"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        iOS
-                      </a>{' '}
-                      or{' '}
-                      <a
-                        href="https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Android
-                      </a>{' '}
-                      and generate a QR code
-                    </li>
-                    <li>In the Self app, add a new Indian ID of type &apos;Aadhaar&apos;</li>
-                    <li>Follow the instructions to complete registration</li>
-                    {isMobile ? (
-                      <li>Tap the button below to open the Self app and share your proof</li>
-                    ) : (
+              <div className={css['self-columns']}>
+                <div className={css['self-col-main']}>
+                  <div className={css['self-howto']}>
+                    <h3 className={css['self-heading']}>Download the official apps</h3>
+                    <p className={css['self-howto-copy']}>
+                      To verify, you&apos;ll need two official apps: the Aadhaar app to generate a secure copy of your
+                      ID, and the Self app to turn it into a ZK-proof.
+                    </p>
+                    <ul className={css['self-steps']}>
                       <li>
-                        <strong>Scan the QR code below</strong> with the Self app to share your proof
+                        Download the latest Self app on{' '}
+                        <a
+                          href="https://apps.apple.com/in/app/self-zk-proofs/id6478563710"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          iOS
+                        </a>{' '}
+                        or{' '}
+                        <a
+                          href="https://play.google.com/store/apps/details?id=com.proofofpassportapp&pli=1"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Android
+                        </a>
                       </li>
-                    )}
-                  </ol>
+                      <li>
+                        Download the new Aadhaar app on{' '}
+                        <a
+                          href="https://apps.apple.com/in/app/aadhaar/id6744029871"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          iOS
+                        </a>{' '}
+                        or{' '}
+                        <a
+                          href="https://play.google.com/store/apps/details?id=in.gov.uidai.pehchaan"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Android
+                        </a>{' '}
+                        and generate an Unmasked Aadhaar QR code
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className={css['self-howto']}>
+                    <h3 className={css['self-heading']}>How to verify</h3>
+                    <ul className={css['self-steps']}>
+                      <li>In the Self app, add a new Indian ID of type &apos;Aadhaar&apos;</li>
+                      <li>Follow the instructions to complete registration</li>
+                      {isMobile ? (
+                        <li>Tap the button below to open the Self app and share your proof</li>
+                      ) : (
+                        <li>
+                          <strong>Scan the QR code with the Self app</strong> to share your proof
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+
                   <a
                     href="https://ef-events.notion.site/Self-Aadhaar-Setup-Guide-31e638cdc415809f9d54c0042a8f6292"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={css['self-guide-link']}
+                    className={guideCta}
                   >
                     Video setup guide and resources
                     <svg
@@ -344,196 +440,200 @@ export function SelfVerificationModal({ isOpen, onClose, useStaging, setUseStagi
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       aria-hidden="true"
+                      className="shrink-0"
                     >
                       <line x1="7" y1="17" x2="17" y2="7" />
                       <polyline points="7 7 17 7 17 17" />
                     </svg>
                   </a>
+
+                  {ALLOW_STAGING && (
+                    <div
+                      className={`${css['test-mode']} ${
+                        effectiveStaging ? css['test-mode--test'] : css['test-mode--real']
+                      }`}
+                    >
+                      <div className={css['test-mode-inner']}>
+                        <span className={css['test-mode-label']}>Self mode</span>
+                        <span className={css['test-mode-badge']} aria-live="polite">
+                          {effectiveStaging ? 'Test' : 'Production'}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        className={css['test-mode-btn']}
+                        onClick={() => {
+                          setUseStaging(!useStaging)
+                          handleReset()
+                        }}
+                      >
+                        Switch to {effectiveStaging ? 'production' : 'test'}
+                      </button>
+                    </div>
+                  )}
+
+                  {error && errorCode === null && <p className={css['error']}>{error}</p>}
+                  {errorCode === 'INVALID_ID' && (
+                    <p className={css['self-aadhaar-notice']}>
+                      <strong>Aadhaar cards only.</strong> Passport and other document types are not supported.
+                    </p>
+                  )}
+                  {errorCode === 'NOT_INDIAN' && <p className={css['self-aadhaar-notice']}>{error}</p>}
+                  {errorCode === 'UNDER_18' && (
+                    <div className={css['self-aadhaar-notice']}>
+                      <p>
+                        <strong>Sorry, we can&apos;t issue you a code.</strong>
+                      </p>
+                      <p>
+                        Your Self proof was successfully submitted however, the zero-knowledge proof provided shows that
+                        you&apos;re not over 18 years old.
+                      </p>
+                      <p>
+                        Devcon India will have unique, lower cost tickets for Youths aged 5-17 later this year. We
+                        recommend waiting until then to purchase a ticket.
+                      </p>
+                      <p>We apologize for any inconvenience.</p>
+                    </div>
+                  )}
+                  {errorCode === 'NO_VOUCHERS' && (
+                    <div className={css['self-aadhaar-notice']}>
+                      <p>
+                        <strong className={css['error-title']}>
+                          Sorry, the India Resident discount is currently unavailable
+                        </strong>
+                      </p>
+                      <p>
+                        Your Self proof was verified, but we couldn&apos;t issue your India Resident ticket right now.
+                        Please try again shortly.
+                      </p>
+                      <p>
+                        <strong>Follow us on socials for updates</strong> so you&apos;re ready to secure yours.
+                      </p>
+                      <p>We apologize for any inconvenience.</p>
+                      <div className={css['social-links']}>
+                        <a
+                          href="https://x.com/efdevcon"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="X (Twitter)"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                          </svg>
+                        </a>
+                        <a
+                          href="https://instagram.com/efdevcon"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram"
+                        >
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                          </svg>
+                        </a>
+                        <a
+                          href="https://farcaster.xyz/devcon"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Farcaster"
+                        >
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M4.775 2h14.19v20.177h-2.083v-9.242h-.02a5.012 5.012 0 0 0-9.984 0h-.02v9.242H4.775V2Z"
+                              fill="currentColor"
+                            />
+                            <path
+                              d="m1 4.864.846 2.864h.716v11.586a.65.65 0 0 0-.65.65v.782h-.13a.65.65 0 0 0-.652.65v.781h7.29v-.78a.65.65 0 0 0-.65-.651h-.13v-.781a.65.65 0 0 0-.652-.651h-.78V4.864H1ZM17.012 19.314a.65.65 0 0 0-.651.65v.782h-.13a.65.65 0 0 0-.651.65v.781h7.29v-.78a.65.65 0 0 0-.651-.651h-.13v-.781a.65.65 0 0 0-.651-.651V7.728h.716L23 4.864h-5.207v14.45h-.781Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  {(error || errorCode) && errorCode !== 'NO_VOUCHERS' && (
+                    <button type="button" className={css['reset-btn']} onClick={handleReset}>
+                      Try again
+                    </button>
+                  )}
                 </div>
 
-                {ALLOW_STAGING && (
-                  <div
-                    className={`${css['test-mode']} ${
-                      effectiveStaging ? css['test-mode--test'] : css['test-mode--real']
-                    }`}
-                  >
-                    <div className={css['test-mode-inner']}>
-                      <span className={css['test-mode-label']}>Self mode</span>
-                      <span className={css['test-mode-badge']} aria-live="polite">
-                        {effectiveStaging ? 'Test' : 'Production'}
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      className={css['test-mode-btn']}
-                      onClick={() => {
-                        setUseStaging(!useStaging)
-                        handleReset()
-                      }}
-                    >
-                      Switch to {effectiveStaging ? 'production' : 'test'}
-                    </button>
-                  </div>
-                )}
-
-                {error && errorCode === null && <p className={css['error']}>{error}</p>}
-                {errorCode === 'INVALID_ID' && (
-                  <p className={css['self-aadhaar-notice']}>
-                    <strong>Aadhaar cards only.</strong> Passport and other document types are not supported.
-                  </p>
-                )}
-                {errorCode === 'NOT_INDIAN' && <p className={css['self-aadhaar-notice']}>{error}</p>}
-                {errorCode === 'UNDER_18' && (
-                  <div className={css['self-aadhaar-notice']}>
-                    <p>
-                      <strong>Sorry, we can&apos;t issue you a code.</strong>
-                    </p>
-                    <p>
-                      Your Self proof was successfully submitted however, the zero-knowledge proof provided shows that
-                      you&apos;re not over 18 years old.
-                    </p>
-                    <p>
-                      Devcon India will have unique, lower cost tickets for Youths aged 5-17 later this year. We
-                      recommend waiting until then to purchase a ticket.
-                    </p>
-                    <p>We apologize for any inconvenience.</p>
-                  </div>
-                )}
-                {errorCode === 'NO_VOUCHERS' && (
-                  <div className={css['self-aadhaar-notice']}>
-                    <p>
-                      <strong className={css['error-title']}>
-                        Sorry, the India Resident discount is currently unavailable
-                      </strong>
-                    </p>
-                    <p>
-                      Your Self proof was verified, but we couldn&apos;t issue your India Resident ticket right now.
-                      Please try again shortly.
-                    </p>
-                    <p>
-                      <strong>Follow us on socials for updates</strong> so you&apos;re ready to secure yours.
-                    </p>
-                    <p>We apologize for any inconvenience.</p>
-                    <div className={css['social-links']}>
-                      <a
-                        href="https://x.com/efdevcon"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="X (Twitter)"
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                      </a>
-                      <a
-                        href="https://instagram.com/efdevcon"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Instagram"
-                      >
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                        </svg>
-                      </a>
-                      <a
-                        href="https://farcaster.xyz/devcon"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Farcaster"
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M4.775 2h14.19v20.177h-2.083v-9.242h-.02a5.012 5.012 0 0 0-9.984 0h-.02v9.242H4.775V2Z"
-                            fill="currentColor"
-                          />
-                          <path
-                            d="m1 4.864.846 2.864h.716v11.586a.65.65 0 0 0-.65.65v.782h-.13a.65.65 0 0 0-.652.65v.781h7.29v-.78a.65.65 0 0 0-.65-.651h-.13v-.781a.65.65 0 0 0-.652-.651h-.78V4.864H1ZM17.012 19.314a.65.65 0 0 0-.651.65v.782h-.13a.65.65 0 0 0-.651.65v.781h7.29v-.78a.65.65 0 0 0-.651-.651h-.13v-.781a.65.65 0 0 0-.651-.651V7.728h.716L23 4.864h-5.207v14.45h-.781Z"
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                )}
-                {(error || errorCode) && errorCode !== 'NO_VOUCHERS' && (
-                  <button type="button" className={css['reset-btn']} onClick={handleReset}>
-                    Try again
-                  </button>
-                )}
-
-                {!error &&
-                  !errorCode &&
-                  (isMobile ? (
-                    <div className={css['continue-wrap']}>
-                      <a
-                        href={universalLink || '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={css['redeem-btn']}
-                        style={{
-                          display: 'block',
-                          textAlign: 'center',
-                          textDecoration: 'none',
-                          pointerEvents: universalLink ? 'auto' : 'none',
-                          opacity: universalLink ? 1 : 0.6,
-                        }}
-                        onClick={() => {
-                          hasOpenedSelfApp.current = true
-                          clearError()
-                        }}
-                      >
-                        Open Self App
-                      </a>
-                      {pollingForVoucher && (
-                        <p style={{ textAlign: 'center', margin: '1rem 0 0', fontSize: '0.9rem', color: '#666' }}>
-                          Checking verification status...
-                        </p>
-                      )}
-                      {!pollingForVoucher && !voucher && (
-                        <button
-                          type="button"
-                          className={css['reset-btn']}
-                          style={{ marginTop: '0.75rem' }}
-                          onClick={() => {
-                            setPollingForVoucher(true)
-                            clearError()
-                            handleSuccess().finally(() => setPollingForVoucher(false))
-                          }}
-                        >
-                          I&apos;ve verified — check status
-                        </button>
-                      )}
+                <div className={css['self-col-side']}>
+                  {checkingExisting ? (
+                    <div className={css['self-qr-wrap']}>
+                      <div className={css['self-qr-placeholder']}>
+                        <p>Checking verification status...</p>
+                      </div>
                     </div>
                   ) : (
-                    <div className={css['self-qr-wrap']}>
-                      {selfApp ? (
-                        <SelfQRcodeWrapper
-                          selfApp={selfApp}
-                          onSuccess={handleSuccess}
-                          onError={data => setErrorFromReason(data.reason)}
-                          darkMode={false}
-                        />
-                      ) : (
-                        <div className={css['self-qr-placeholder']}>
-                          <p>Loading QR Code...</p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                    !error &&
+                    !errorCode &&
+                    (isMobile ? (
+                      <div className={css['continue-wrap']}>
+                        <a
+                          href={universalLink || '#'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={css['redeem-btn']}
+                          style={{
+                            display: 'block',
+                            textAlign: 'center',
+                            textDecoration: 'none',
+                            pointerEvents: universalLink ? 'auto' : 'none',
+                            opacity: universalLink ? 1 : 0.6,
+                          }}
+                          onClick={() => {
+                            hasOpenedSelfApp.current = true
+                            clearError()
+                          }}
+                        >
+                          Open Self App
+                        </a>
+                        {pollingForVoucher && (
+                          <p style={{ textAlign: 'center', margin: '1rem 0 0', fontSize: '0.9rem', color: '#666' }}>
+                            Checking verification status...
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <div className={css['self-qr-wrap']}>
+                        {selfApp ? (
+                          <SelfQRcodeWrapper
+                            selfApp={selfApp}
+                            onSuccess={handleSuccess}
+                            onError={data => setErrorFromReason(data.reason)}
+                            darkMode={false}
+                            size={270}
+                          />
+                        ) : (
+                          <div className={css['self-qr-placeholder']}>
+                            <p>Loading QR Code...</p>
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  )}
 
-                <p className={css['self-privacy']}>No personal data is shared!</p>
-              </>
+                  <p className={css['self-privacy']}>No personal data is shared.</p>
+                </div>
+              </div>
             )}
           </div>
         )}

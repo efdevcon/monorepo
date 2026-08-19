@@ -9,6 +9,16 @@ console.log(`[ticketing] Environment: ${ticketingEnv}`)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Dev-only (this key has no effect outside `next dev`): lets the dev server's assets
+  // + HMR websocket respond when accessed through a personal tunnel/reverse proxy whose
+  // Host header isn't localhost — e.g. testing the Self verification flow, which needs a
+  // public HTTPS origin. Without this, Next silently rejects those requests and the HMR
+  // socket never connects, surfacing as an unexpected full page reload. Set your own
+  // tunnel hostname(s) in .env.local (gitignored, comma-separated) — unset by default so
+  // this doesn't affect anyone else's setup.
+  allowedDevOrigins: process.env.DEV_TUNNEL_HOSTS
+    ? process.env.DEV_TUNNEL_HOSTS.split(',').map(host => host.trim())
+    : undefined,
   transpilePackages: ['lib'],
   // pnpm workspace root (one level up). Without this, Next's output file
   // tracing misses the hoisted `.pnpm` deps (react, viem, ...), so the Netlify
