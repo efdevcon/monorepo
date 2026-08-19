@@ -7,12 +7,13 @@ import type { ScheduleDay } from "./utils";
 const shortLabel = (label: string) => label.split(", ")[1] ?? label;
 
 /**
- * Day selector bar (Figma): lavender strip with underline tabs — full labels
- * on desktop plus a right-hand controls slot (Interested / Jump to now /
- * Filter), short labels spread edge-to-edge on mobile. Sticks under the app
- * header on both breakpoints (56px mobile bar, 65px desktop nav) so the day
- * switcher and controls stay reachable mid-list; time-group headers pin
- * beneath it.
+ * Day selector bar (Figma): underline tabs — full labels on desktop plus a
+ * right-hand controls slot (Interested / Jump to now / Filter), short labels
+ * spread edge-to-edge on mobile. Sticks under the app header on both
+ * breakpoints (56px mobile bar, 65px desktop nav) so the day switcher and
+ * controls stay reachable mid-list; time-group headers pin beneath it.
+ * Lavender strip on mobile; on desktop it shares the app header's glass
+ * recipe (white/75 + 4px backdrop blur) so cards scroll past behind it.
  */
 export function DayTabs({
   days,
@@ -29,7 +30,7 @@ export function DayTabs({
   if (days.length === 0) return null;
 
   return (
-    <div className="sticky top-14 z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender px-4 lg:top-[65px] lg:items-center lg:py-2">
+    <div className="sticky top-14 z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender px-4 lg:top-[65px] lg:items-center lg:bg-white/75 lg:py-2 lg:backdrop-blur-[4px]">
       {/* overflow-x-auto + shrink-0 tabs: with many days or a narrow phone the
           bar must scroll — a bare justify-between row clips later days. */}
       <div className="flex min-w-0 flex-1 items-stretch justify-between overflow-x-auto lg:flex-initial lg:items-center lg:justify-start lg:gap-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

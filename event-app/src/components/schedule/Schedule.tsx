@@ -316,21 +316,25 @@ function GroupHeader({
 }) {
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     const el = sentinelRef.current;
     if (inPanel || !el) return;
     // The sentinel marks the header's natural position: once it crosses
-    // above the mobile pin line the header is stuck. (Desktop pins 14px
-    // lower, but `stuck` only ever adds the same fill desktop already has.)
+    // above the pin line (1px past the breakpoint's sticky top offset),
+    // the header is stuck.
+    const pinLine = isDesktop ? 119 : 104;
     const observer = new IntersectionObserver(
       ([entry]) =>
-        setStuck(!entry.isIntersecting && entry.boundingClientRect.top < 104),
-      { rootMargin: "-104px 0px 0px 0px" }
+        setStuck(
+          !entry.isIntersecting && entry.boundingClientRect.top < pinLine
+        ),
+      { rootMargin: `-${pinLine}px 0px 0px 0px` }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [inPanel]);
+  }, [inPanel, isDesktop]);
 
   return (
     <>
@@ -339,10 +343,16 @@ function GroupHeader({
         className={cn(
           "flex items-center justify-between gap-3",
           !inPanel && "sticky top-[103px] z-10 lg:top-[118px]",
+          // Pinned non-live headers get the wash + the app-header glass blur
+          // so cards scrolling beneath don't ghost through the 95% fill; live
+          // headers stay fully opaque on the band tint and need no blur.
           !inPanel &&
             (group.isLive
               ? "bg-dc-live-bg"
-              : cn("lg:bg-dc-panel/95", stuck && "bg-dc-panel/95"))
+              : cn(
+                  "lg:bg-dc-panel/95",
+                  stuck && "bg-dc-panel/95 backdrop-blur-[4px]"
+                ))
         )}
       >
         <span className="flex min-w-0 items-center gap-1 text-[14px] leading-6 text-dc-fg lg:text-[16px] lg:text-dc-fg2">
@@ -363,7 +373,7 @@ function GroupHeader({
           </span>
         )}
         {group.isOngoing && (
-          <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-red lg:rounded-[4px] lg:text-[12px]">
+          <span className="shrink-0 rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red lg:rounded-[4px] lg:text-[14px]">
             Ongoing
           </span>
         )}
