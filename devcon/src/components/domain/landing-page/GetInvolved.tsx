@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'components/common/link'
-import { MicVocal, Users, HandHeart, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { Users, HandHeart, Handshake, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy, cardTitle } from 'components/common/styles'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 
 // Translatable text comes from intl; these are the per-card layout meta (icon + link)
 const cardMeta = [
-  { icon: MicVocal, href: '/speaker-applications', external: false },
   { icon: Users, href: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657', external: true },
   { icon: HandHeart, href: '/form/volunteer', external: false },
+  { icon: Handshake, href: '/supporters', external: false },
 ]
 
 /**
  * "Help make Devcon happen" — Figma node 4917:966. Three contributor cards
- * (Speak / Community Hub / Volunteer), successor to ContributeAndSupport.
+ * (Community Hub / Volunteer / Supporters), successor to ContributeAndSupport.
  */
 export const GetInvolved = () => {
   const t = useTranslations('home.contribute')
