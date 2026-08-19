@@ -342,25 +342,25 @@ function GroupHeader({
       <header
         className={cn(
           "flex items-center justify-between gap-3",
-          !inPanel && "sticky z-10",
-          // Pinned non-live headers get the wash + the app-header glass blur
-          // so cards scrolling beneath don't ghost through the 95% fill, plus
-          // 4px 0 padding for breathing room. The padding is offset with
-          // negative margins (flow height stays put — no 8px content jump at
-          // the pin) and the sticky top drops 4px to keep the fill's top edge
-          // at the pin line (`top` constrains the margin box, which the
-          // negative margin pulls 4px up). Live headers stay as-is: fully
-          // opaque on the band tint, no blur.
-          !inPanel &&
-            (stuck && !group.isLive
-              ? "top-[107px] lg:top-[122px]"
-              : "top-[103px] lg:top-[118px]"),
+          !inPanel && "sticky top-[103px] z-10 lg:top-[118px]",
+          // Every pinned header gets 4px 0 padding for breathing room,
+          // offset by negative margins so flow height stays put (no 8px
+          // content jump at the pin; the section is flex-col so the
+          // negative margins can't collapse away). Browsers pin the border
+          // box at `top`, so the margins don't move the pinned fill edge.
+          !inPanel && stuck && "-my-1 py-1",
+          // Pinned non-live headers also get the wash + the app-header glass
+          // blur so cards scrolling beneath don't ghost through the 95%
+          // fill, going full-bleed on mobile so card edges can't peek past
+          // the fill in the gutters. Live headers keep the fully opaque band
+          // tint (already full-bleed via the band), no blur.
           !inPanel &&
             (group.isLive
               ? "bg-dc-live-bg"
               : cn(
                   "lg:bg-dc-panel/95",
-                  stuck && "-my-1 bg-dc-panel/95 py-1 backdrop-blur-[4px]"
+                  stuck &&
+                    "-mx-4 bg-dc-panel/95 px-4 backdrop-blur-[4px] lg:mx-0 lg:px-0"
                 ))
         )}
       >
@@ -548,7 +548,12 @@ export function Schedule() {
       ref={(el) => {
         if (!opts.inPanel) groupRefs.current.set(group.key, el);
       }}
-      className={cn(!opts.inPanel && "scroll-mt-[112px] lg:scroll-mt-[127px]")}
+      // flex-col so GroupHeader's stuck-state negative margins stay exact
+      // instead of collapsing with the card list's top margin.
+      className={cn(
+        "flex flex-col",
+        !opts.inPanel && "scroll-mt-[112px] lg:scroll-mt-[127px]"
+      )}
     >
       <GroupHeader group={group} inPanel={!!opts.inPanel} />
       {/* 2+ sessions in a timeslot: 2-col on desktop (collapses while the
