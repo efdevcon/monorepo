@@ -258,17 +258,16 @@ export function FilterPanelContent({
         )}
       </div>
 
-      {/* Sticky footer */}
+      {/* Sticky footer. Close is the primary CTA (filters apply live, so
+          "done" is the natural forward action, not the destructive reset). */}
       <div className="flex shrink-0 gap-3 border-t border-dc-hairline bg-white p-4">
-        <SecondaryButton onClick={onClose}>
+        <SecondaryButton onClick={onClear}>Reset filters</SecondaryButton>
+        <PrimaryButton onClick={onClose} className="flex-1">
           {/* Icon points where the panel exits: down for the mobile bottom
               sheet, right for the desktop side panel. */}
           <ArrowDownToLine className="size-4 lg:hidden" />
           <ArrowRightToLine className="hidden size-4 lg:block" />
           Close
-        </SecondaryButton>
-        <PrimaryButton onClick={onClear} className="flex-1">
-          Reset filters
         </PrimaryButton>
       </div>
     </div>
