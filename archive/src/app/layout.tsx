@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 import { Roboto, Space_Mono } from "next/font/google";
 import {
   SITE_NAME,
@@ -9,6 +9,7 @@ import {
 } from "@/utils/site";
 import { Layout } from "@/components/layout";
 import { Providers } from "@/providers";
+import { MatomoAnalytics } from "@/app/matomo";
 import "@/assets/globals.css";
 import "@/assets/css/index.scss";
 
@@ -101,6 +102,9 @@ export default function RootLayout(props: PropsWithChildren) {
         <Providers>
           <Layout>{props.children}</Layout>
         </Providers>
+        <Suspense fallback={null}>
+          <MatomoAnalytics />
+        </Suspense>
       </body>
     </html>
   );
