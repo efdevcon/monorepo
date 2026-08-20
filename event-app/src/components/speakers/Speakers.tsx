@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CircleX, ListFilter, Star, UserRoundSearch, X } from "lucide-react";
+import { CircleX, ListFilter, Star } from "lucide-react";
 import cn from "classnames";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
-import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import { InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import {
@@ -21,35 +21,43 @@ import { TypeTabs, typeLabel } from "./TypeTabs";
 import { TopicSheet } from "./TopicSheet";
 import { SpeakersFilterStatusBar } from "./SpeakersFilterStatusBar";
 import { SpeakersEmptyState } from "./SpeakersEmptyState";
-import { AzIndexRail } from "./AzIndexRail";
+import { AzIndexRail, KEYNOTE_SECTION } from "./AzIndexRail";
 import { SpeakerDetailsPanel } from "./SpeakerDetailsPanel";
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
 
-/** Circular 32px glass icon button used in the app header (Figma). */
+/** Pinned side-panel edge gap: the aside pins at top-[81px], 16px below the
+ *  65px desktop header; the bottom keeps the same 16px to the viewport edge
+ *  so both ends of the panel match. Keep the aside's sticky top equal to
+ *  65 + this, or the two ends drift apart. */
+const PANEL_EDGE_GAP = 16;
+
+/** Circular 32px glass icon button used in the app header (Figma). Border
+ *  and fill are applied per-usage (resting vs active) — Tailwind resolves
+ *  same-property conflicts by stylesheet order, not class order, so an
+ *  appended active bg-* could not reliably override one baked in here. */
 const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-opacity";
+  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
+const headerCircleResting = "border-dc-hairline bg-white";
+const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target (mobile):
- * scroll-revealed interested + A–Z circles, and the topic-filter button with
- * its active count bubble (hidden in A–Z mode, where topic filters reset).
+ * the scroll-revealed interested circle and the topic-filter button with its
+ * active count bubble. The star stays filled (matching InterestedPill); the
+ * lavender circle fill carries the active state.
  */
 function HeaderActions({
   revealed,
   interestedOnly,
   onToggleInterested,
-  azMode,
-  onToggleAz,
   filterCount,
   onOpenFilters,
 }: {
   revealed: boolean;
   interestedOnly: boolean;
   onToggleInterested: () => void;
-  azMode: boolean;
-  onToggleAz: () => void;
   filterCount: number;
   onOpenFilters: () => void;
 }) {
@@ -69,40 +77,24 @@ function HeaderActions({
             aria-pressed={interestedOnly}
             className={cn(
               headerCircle,
+              interestedOnly ? headerCircleActive : headerCircleResting,
               !revealed && "pointer-events-none opacity-0"
             )}
           >
-            <Star
-              className="size-4 text-dc-purple"
-              fill={interestedOnly ? "currentColor" : "none"}
-            />
+            <Star className="size-4 text-dc-purple" fill="currentColor" />
           </button>
           <button
-            onClick={onToggleAz}
-            aria-label="Toggle A–Z index"
-            aria-pressed={azMode}
-            className={cn(
-              headerCircle,
-              azMode && "bg-dc-lavender",
-              !revealed && "pointer-events-none opacity-0"
-            )}
+            onClick={onOpenFilters}
+            aria-label="Filter by topic"
+            className={cn(headerCircle, headerCircleResting, "relative")}
           >
-            <UserRoundSearch className="size-4 text-dc-purple" />
+            <ListFilter className="size-4 text-dc-purple" />
+            {filterCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
+                {filterCount}
+              </span>
+            )}
           </button>
-          {!azMode && (
-            <button
-              onClick={onOpenFilters}
-              aria-label="Filter by topic"
-              className={cn(headerCircle, "relative")}
-            >
-              <ListFilter className="size-4 text-dc-purple" />
-              {filterCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
-                  {filterCount}
-                </span>
-              )}
-            </button>
-          )}
         </>,
         target
       )}
@@ -110,43 +102,13 @@ function HeaderActions({
   );
 }
 
-/** "A–Z index" toggle (Figma): ghost purple button ↔ lavender close pill. */
-function AzToggle({
-  open,
-  onToggle,
-  className,
-}: {
-  open: boolean;
-  onToggle: () => void;
-  className?: string;
-}) {
-  return (
-    <button
-      onClick={onToggle}
-      aria-pressed={open}
-      className={cn(ghostPill, open && "bg-dc-lavender", className)}
-    >
-      {open ? (
-        <>
-          <X className="size-4" />
-          Close A–Z index
-        </>
-      ) : (
-        <>
-          <UserRoundSearch className="size-4" />
-          A–Z index
-        </>
-      )}
-    </button>
-  );
-}
-
 /**
- * Redesigned speakers view (Figma "PWA / Speakers"). Desktop: white panel
- * (search + A–Z toggle toolbar, topic pills, format tabs) over a dc-panel
- * list — "Keynote speakers" on top, "All speakers" alphabetical below, a flat
- * grid once any filter applies, and an A–Z index mode with a letter rail.
- * Speaker details open in a 360px right column; mobile navigates to
+ * Redesigned speakers view (Figma "PWA / Speakers"). One combined view:
+ * white panel (search toolbar, topic pills, format tabs) over a dc-panel
+ * list sectioned Keynote → # → A–Z, with the letter rail always present on
+ * the right (keynote mic cell on top). Filters/search keep the sections and
+ * rail, just built from the filtered set (absent letters disable in the
+ * rail). Speaker details open in a 360px right column; mobile navigates to
  * /speakers/[id] instead. All data derives from the cached speakers ×
  * sessions join (offline-safe).
  */
@@ -175,11 +137,8 @@ export function Speakers() {
     setType,
     interestedOnly,
     setInterestedOnly,
-    azMode,
-    setAzMode,
     clearAll,
     activeFilterCount,
-    filtered,
     resultCount,
     keynoteSpeakers,
     letterGroups,
@@ -199,9 +158,9 @@ export function Speakers() {
   const railStickyRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const [rowsStuck, setRowsStuck] = useState(false);
-  const [activeLetter, setActiveLetter] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  // Reveal the header's star/A–Z circles once the search block scrolls away.
+  // Reveal the header's star circle once the search block scrolls away.
   useEffect(() => {
     const el = searchBlockRef.current;
     if (!el) return;
@@ -278,6 +237,14 @@ export function Speakers() {
   if (livePanelContent) lastPanelContentRef.current = livePanelContent;
   const panelContent = livePanelContent ?? lastPanelContentRef.current;
 
+  // Rail/spy section order: the keynote section leads when present, then the
+  // letter groups (# first, then A–Z) — all derived from the filtered set.
+  const sections = useMemo(
+    () =>
+      keynoteSpeakers.length > 0 ? [KEYNOTE_SECTION, ...letters] : letters,
+    [keynoteSpeakers.length, letters]
+  );
+
   // While a click-jump's smooth scroll is in flight, the scroll-spy would
   // walk the pill letter-by-letter through everything it passes. Instead the
   // pill goes straight to the clicked letter and the spy stays muted until it
@@ -286,16 +253,25 @@ export function Speakers() {
   const spyTargetRef = useRef<string | null>(null);
   const spyTimeoutRef = useRef(0);
 
-  const jumpToLetter = useCallback((letter: string) => {
-    spyTargetRef.current = letter;
-    setActiveLetter(letter);
+  const jumpToSection = useCallback((section: string) => {
+    const el = letterRefs.current.get(section);
+    if (!el) return;
+    spyTargetRef.current = section;
+    setActiveSection(section);
     window.clearTimeout(spyTimeoutRef.current);
     spyTimeoutRef.current = window.setTimeout(() => {
       spyTargetRef.current = null;
     }, 1500);
-    letterRefs.current
-      .get(letter)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Measured landing offset: the pinned filter rows vary by breakpoint
+    // (TypeTabs alone on mobile; TopicPills + TypeTabs on desktop), so a
+    // static scroll-mt can't clear them. Land 16px below the rows — above
+    // the spy line (rows + 100), so the spy-resume handshake still fires.
+    const rowsH = stickyRowsRef.current?.getBoundingClientRect().height ?? 0;
+    const top =
+      el.getBoundingClientRect().top +
+      window.scrollY -
+      (headerOffsetNow() + rowsH + 16);
+    window.scrollTo({ top, behavior: "smooth" });
   }, []);
 
   // Scroll-linked chrome, measured on one rAF-throttled listener:
@@ -314,22 +290,26 @@ export function Speakers() {
 
       // --- Read phase: all layout reads before any write, so the writes
       // below can't force a reflow between measurements. ---
-      const rowsTop = stickyRowsRef.current?.getBoundingClientRect().top;
+      // The pinned header rows sit above the rail and the section headings,
+      // so every "top of viewport" line below starts under them.
+      const rowsRect = stickyRowsRef.current?.getBoundingClientRect();
+      const rowsH = rowsRect?.height ?? 0;
+      const pinnedOffset = headerOffset + rowsH;
 
       const rail = railStickyRef.current;
       const railTop = rail?.getBoundingClientRect().top ?? 0;
       const colBottom =
         rail?.parentElement?.getBoundingClientRect().bottom ?? Infinity;
 
-      // Scroll-spy read: the letter of the topmost section in view. Sections
-      // render in group order, so take the last one above the spy line.
-      let spyLetter: string | null = null;
+      // Scroll-spy read: the key of the topmost section in view. Sections
+      // render in `sections` order, so take the last one above the spy line.
+      let spySection: string | null = null;
       if (rail) {
-        for (const group of letterGroups) {
-          const el = letterRefs.current.get(group.letter);
+        for (const section of sections) {
+          const el = letterRefs.current.get(section);
           if (!el) continue;
-          if (el.getBoundingClientRect().top <= headerOffset + 100)
-            spyLetter = group.letter;
+          if (el.getBoundingClientRect().top <= pinnedOffset + 100)
+            spySection = section;
           else break;
         }
       }
@@ -343,12 +323,16 @@ export function Speakers() {
           : Infinity;
 
       // --- Write phase. ---
-      setRowsStuck(rowsTop !== undefined && rowsTop <= headerOffset + 1);
+      setRowsStuck(rowsRect !== undefined && rowsRect.top <= headerOffset + 1);
 
       if (rail) {
-        // Compact = the natural letter stack (24px cells + 8px paddings).
-        const compact = (letters.includes("#") ? 27 : 26) * 24 + 16;
-        const stuck = railTop <= headerOffset + 1;
+        // The rail pins just below the filter rows, whose height varies by
+        // breakpoint — position it directly rather than via static classes.
+        rail.style.top = `${pinnedOffset}px`;
+        // Compact = the natural cell stack (24px cells + 8px paddings):
+        // 26 letters + the keynote cell + the optional "#" cell.
+        const compact = (sections.includes("#") ? 28 : 27) * 24 + 16;
+        const stuck = railTop <= pinnedOffset + 1;
         // visualViewport catches browser-chrome overlays innerHeight misses.
         // Space is measured from the rail's live top, so the compact stack
         // also caps to what actually fits below its resting position — on
@@ -363,7 +347,7 @@ export function Speakers() {
           stuck ? avail : Math.min(compact, avail)
         )}px`;
 
-        const resolved = spyLetter ?? letterGroups[0]?.letter ?? null;
+        const resolved = spySection ?? sections[0] ?? null;
         if (spyTargetRef.current) {
           // Jump in flight: resume the spy once the scroll has arrived.
           if (resolved === spyTargetRef.current) {
@@ -371,15 +355,15 @@ export function Speakers() {
             window.clearTimeout(spyTimeoutRef.current);
           }
         } else {
-          setActiveLetter(resolved);
+          setActiveSection(resolved);
         }
       }
 
       if (aside && asideTop !== null) {
-        // Resting size: 141px natural offset (nav + page title) + 32px gap.
-        const defaultRest = viewportH - 173;
-        // Sticky growth target: keep a 32px gap to the viewport bottom…
-        const gapTarget = viewportH - asideTop - 32;
+        // Resting size: 141px natural offset (nav + page title) + edge gap.
+        const defaultRest = viewportH - 141 - PANEL_EDGE_GAP;
+        // Sticky growth target: keep the edge gap to the viewport bottom…
+        const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
         // …but never grow past the content column's bottom edge. Without this
         // cap, a list shorter than the panel gives the sticky aside no room
         // to pin, so scrolling raises `top`, which grew the max-height, which
@@ -405,13 +389,10 @@ export function Speakers() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [azMode, sidePanelOpen, letters, letterGroups]);
+  }, [sidePanelOpen, sections]);
 
   const filtersActive =
     activeFilterCount > 0 || interestedOnly || search.trim().length > 0;
-  // The Keynote/All split is the browse view; any filter collapses it into
-  // one flat result grid (Figma "Filters applied").
-  const showSections = !filtersActive;
 
   const renderGrid = (speakers: DecoratedSpeaker[]) => (
     <div
@@ -439,8 +420,6 @@ export function Speakers() {
         revealed={scrolled}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
-        azMode={azMode}
-        onToggleAz={() => setAzMode(!azMode)}
         filterCount={topics.length}
         onOpenFilters={() => setTopicSheetOpen(true)}
       />
@@ -468,8 +447,7 @@ export function Speakers() {
                 onChange={setSearch}
                 placeholder="Find a speaker"
               />
-              <div className="flex items-center justify-between">
-                <AzToggle open={azMode} onToggle={() => setAzMode(!azMode)} />
+              <div className="flex items-center justify-end">
                 <InterestedPill
                   active={interestedOnly}
                   onToggle={() => setInterestedOnly((v) => !v)}
@@ -477,125 +455,62 @@ export function Speakers() {
               </div>
             </div>
 
-            {/* Desktop: search + A–Z toggle toolbar */}
-            <div className="hidden items-center justify-between gap-3 border-b border-dc-hairline bg-white px-4 py-3 lg:flex lg:rounded-t-xl">
-              <SearchInput
-                value={search}
-                onChange={setSearch}
-                placeholder="Find a speaker"
-                className="w-[348px]"
-              />
-              <div className="flex items-center gap-3">
-                {azMode && (
-                  <InterestedPill
-                    active={interestedOnly}
-                    onToggle={() => setInterestedOnly((v) => !v)}
-                  />
+            {/* Header rows, sticky under the app header: the desktop search +
+                topic toolbar (Figma "Top Bar") and the format tabs. Mobile
+                filters topics via the header button + bottom sheet instead. */}
+            <div
+              ref={stickyRowsRef}
+              className="sticky top-14 z-20 border-b border-dc-hairline lg:top-[65px]"
+            >
+              {/* Left padding only — the pill strip scrolls to the card's
+                  right edge behind TopicPills' white fade. Pinned, the bar
+                  swaps to the app header's glass and squares its corners so
+                  cards scroll past behind it instead of through the notches. */}
+              <div
+                className={cn(
+                  "hidden items-center gap-6 border-b border-dc-hairline py-3 pl-4 lg:flex",
+                  rowsStuck
+                    ? "bg-white/75 backdrop-blur-[4px]"
+                    : "bg-white lg:rounded-t-xl"
                 )}
-                <AzToggle open={azMode} onToggle={() => setAzMode(!azMode)} />
+              >
+                <SearchInput
+                  value={search}
+                  onChange={setSearch}
+                  placeholder="Find a speaker"
+                  className="w-[348px] shrink-0"
+                />
+                <TopicPills
+                  options={topicOptions}
+                  selected={topics}
+                  onToggle={toggleTopic}
+                  onClear={clearTopics}
+                  stuck={rowsStuck}
+                />
               </div>
+              <TypeTabs
+                options={typeOptions}
+                selected={type}
+                onSelect={setType}
+                stuck={rowsStuck}
+              >
+                <InterestedPill
+                  active={interestedOnly}
+                  onToggle={() => setInterestedOnly((v) => !v)}
+                  className="hidden lg:flex"
+                />
+              </TypeTabs>
             </div>
 
-            {/* Filter rows (hidden in A–Z mode), sticky under the app header */}
-            {!azMode && (
-              <div
-                ref={stickyRowsRef}
-                className="sticky top-14 z-20 border-b border-dc-hairline lg:top-[65px]"
-              >
-                {/* Desktop only — mobile filters topics via the header
-                    button + bottom sheet instead (Figma) */}
-                <div className="hidden lg:block">
-                  <TopicPills
-                    options={topicOptions}
-                    selected={topics}
-                    onToggle={toggleTopic}
-                    onClear={clearTopics}
-                  />
-                </div>
-                <TypeTabs
-                  options={typeOptions}
-                  selected={type}
-                  onSelect={setType}
-                  stuck={rowsStuck}
-                >
-                  <InterestedPill
-                    active={interestedOnly}
-                    onToggle={() => setInterestedOnly((v) => !v)}
-                    className="hidden lg:flex"
-                  />
-                </TypeTabs>
-              </div>
-            )}
-
             {/* Content area: brand-neutrals/50 surface on desktop (Figma).
-                In A–Z mode the list carries its own padding so the lavender
-                rail column can sit flush against the card's right edge. */}
+                The list column carries its own padding so the lavender rail
+                column can sit flush against the card's right edge. */}
             <div
               className={cn(
                 "lg:rounded-b-xl lg:bg-dc-panel",
-                !(azMode && !isLoading && !isError && resultCount > 0) &&
-                  "px-4 py-6"
+                (isLoading || isError) && "px-4 py-6"
               )}
             >
-              {!azMode && (
-                <>
-                  {/* Desktop: removable chips row */}
-                  <div className="mb-4 hidden empty:hidden lg:block">
-                    <SpeakersFilterStatusBar
-                      topics={topics}
-                      // Chip label matches the tab that set it ("Talks").
-                      type={type ? typeLabel(type) : null}
-                      onRemoveTopic={toggleTopic}
-                      onClearType={() => setType(null)}
-                      onClearAll={clearAll}
-                      resultCount={resultCount}
-                    />
-                  </div>
-
-                  {/* Mobile: applied-filter bar, schedule FilterStatusBar
-                      style — "Filter: Topic (2), Talks" (Figma) */}
-                  {(topics.length > 0 || type !== null) && (
-                    <div className="mb-4 lg:hidden">
-                      <div className="flex h-9 min-w-0 items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
-                        <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
-                          <span className="font-bold">Filter:</span>{" "}
-                          <span className="font-medium">
-                            {[
-                              topics.length > 0 && `Topic (${topics.length})`,
-                              type && typeLabel(type),
-                            ]
-                              .filter(Boolean)
-                              .join(", ")}
-                          </span>
-                        </p>
-                        <button
-                          onClick={() => {
-                            clearTopics();
-                            setType(null);
-                          }}
-                          aria-label="Clear filters"
-                          className="shrink-0 cursor-pointer"
-                        >
-                          <CircleX className="size-4 text-dc-purple" />
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Mobile: flat-results heading + count (Figma) */}
-                  {!showSections && resultCount > 0 && (
-                    <div className="mb-3 flex items-center justify-between gap-3 lg:hidden">
-                      <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-                        Speakers
-                      </h2>
-                      <span className="text-[14px] font-medium leading-5 text-dc-muted">
-                        {resultCount} result{resultCount === 1 ? "" : "s"}
-                      </span>
-                    </div>
-                  )}
-                </>
-              )}
-
               {isLoading ? (
                 <p className="py-12 text-center text-dc-muted">
                   Loading speakers…
@@ -605,75 +520,132 @@ export function Speakers() {
                   {(error as Error | undefined)?.message ??
                     "Failed to load speakers."}
                 </p>
-              ) : resultCount === 0 ? (
-                <SpeakersEmptyState
-                  query={search}
-                  filtersActive={activeFilterCount > 0 || interestedOnly}
-                  onReset={clearAll}
-                />
-              ) : azMode ? (
+              ) : (
                 <div className="flex items-stretch">
                   <div className="flex min-w-0 flex-1 flex-col gap-6 px-4 py-6">
-                    <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-                      Speakers
-                    </h2>
-                    {letterGroups.map((group) => (
-                      <section
-                        key={group.letter}
-                        ref={(el) => {
-                          letterRefs.current.set(group.letter, el);
-                        }}
-                        className="flex scroll-mt-16 flex-col gap-3 lg:scroll-mt-[81px]"
-                      >
-                        <h3 className="text-[16px] font-bold leading-6 text-dc-fg2">
-                          {group.letter}
-                        </h3>
-                        {renderGrid(group.speakers)}
-                      </section>
-                    ))}
-                  </div>
-                  {/* Lavender A–Z scrollbar column (Figma): spans the whole
-                      list; the letter stack pins under the header and
-                      stretches to fill the viewport while scrolled. */}
-                  <div className="w-8 shrink-0 border-l border-dc-hairline bg-dc-lavender lg:rounded-br-xl">
-                    <div
-                      ref={railStickyRef}
-                      className="sticky top-14 transition-[height] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none lg:top-[65px]"
-                    >
-                      <AzIndexRail
-                        letters={letters}
-                        activeLetter={activeLetter}
-                        onJump={jumpToLetter}
+                    {/* Desktop: removable chips row */}
+                    <div className="hidden empty:hidden lg:block">
+                      <SpeakersFilterStatusBar
+                        topics={topics}
+                        // Chip label matches the tab that set it ("Talks").
+                        type={type ? typeLabel(type) : null}
+                        onRemoveTopic={toggleTopic}
+                        onClearType={() => setType(null)}
+                        onClearAll={clearAll}
+                        resultCount={resultCount}
                       />
                     </div>
-                  </div>
-                </div>
-              ) : showSections ? (
-                <div className="flex flex-col gap-6">
-                  {keynoteSpeakers.length > 0 && (
-                    <section className="flex flex-col gap-4">
-                      <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-                        Keynote speakers
-                      </h2>
-                      {renderGrid(keynoteSpeakers)}
-                    </section>
-                  )}
-                  <section
-                    className={cn(
-                      "flex flex-col gap-4",
-                      // Hairline divider between the two sections (Figma)
-                      keynoteSpeakers.length > 0 &&
-                        "border-t border-dc-hairline pt-6"
+
+                    {/* Mobile: applied-filter bar, schedule FilterStatusBar
+                        style. Topics join with "or" — the topic filter
+                        matches any selected topic, not all of them. */}
+                    {(topics.length > 0 || type !== null) && (
+                      <div className="lg:hidden">
+                        <div className="flex h-9 min-w-0 items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
+                          <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
+                            <span className="font-bold">Filter:</span>{" "}
+                            <span className="font-medium">
+                              {[
+                                topics.length > 0 && topics.join(" or "),
+                                type && typeLabel(type),
+                              ]
+                                .filter(Boolean)
+                                .join(" · ")}
+                            </span>
+                          </p>
+                          <button
+                            onClick={() => {
+                              clearTopics();
+                              setType(null);
+                            }}
+                            aria-label="Clear filters"
+                            className="shrink-0 cursor-pointer"
+                          >
+                            <CircleX className="size-4 text-dc-purple" />
+                          </button>
+                        </div>
+                      </div>
                     )}
-                  >
-                    <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-                      All speakers
-                    </h2>
-                    {renderGrid(filtered)}
-                  </section>
+
+                    {/* Mobile: filtered-results heading + count (Figma) */}
+                    {filtersActive && resultCount > 0 && (
+                      <div className="flex items-center justify-between gap-3 lg:hidden">
+                        <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+                          Speakers
+                        </h2>
+                        <span className="text-[14px] font-medium leading-5 text-dc-muted">
+                          {resultCount} result{resultCount === 1 ? "" : "s"}
+                        </span>
+                      </div>
+                    )}
+
+                    {resultCount === 0 ? (
+                      <SpeakersEmptyState
+                        query={search}
+                        filtersActive={activeFilterCount > 0 || interestedOnly}
+                        onReset={clearAll}
+                      />
+                    ) : (
+                      <>
+                        {keynoteSpeakers.length > 0 && (
+                          <section
+                            ref={(el) => {
+                              letterRefs.current.set(KEYNOTE_SECTION, el);
+                            }}
+                            className="flex flex-col gap-4"
+                          >
+                            <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+                              Keynote speakers
+                            </h2>
+                            {renderGrid(keynoteSpeakers)}
+                          </section>
+                        )}
+                        <div
+                          className={cn(
+                            "flex flex-col gap-6",
+                            // Hairline divider under the keynote block (Figma)
+                            keynoteSpeakers.length > 0 &&
+                              "border-t border-dc-hairline pt-6"
+                          )}
+                        >
+                          {letterGroups.map((group) => (
+                            <section
+                              key={group.letter}
+                              ref={(el) => {
+                                letterRefs.current.set(group.letter, el);
+                              }}
+                              className="flex flex-col gap-3"
+                            >
+                              <h3 className="text-[16px] font-bold leading-6 text-dc-fg2">
+                                {group.letter}
+                              </h3>
+                              {renderGrid(group.speakers)}
+                            </section>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  {/* Lavender A–Z scrollbar column (Figma): spans the whole
+                      list; the cell stack pins under the pinned filter rows
+                      (top set by the measure effect) and stretches to fill
+                      the viewport while scrolled. Hidden alongside the empty
+                      state — every cell would be disabled. */}
+                  {resultCount > 0 && (
+                    <div className="w-8 shrink-0 border-l border-dc-hairline bg-dc-lavender lg:rounded-br-xl">
+                      <div
+                        ref={railStickyRef}
+                        className="sticky transition-[height] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+                      >
+                        <AzIndexRail
+                          sections={sections}
+                          activeSection={activeSection}
+                          onJump={jumpToSection}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                renderGrid(filtered)
               )}
             </div>
           </div>
@@ -690,7 +662,7 @@ export function Speakers() {
             inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
-              "sticky top-20 hidden shrink-0 overflow-hidden lg:block",
+              "sticky top-[81px] hidden shrink-0 overflow-hidden lg:block",
               "transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
             )}
           >

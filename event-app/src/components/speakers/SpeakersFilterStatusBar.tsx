@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { X } from "lucide-react";
 
 /** One removable applied-filter chip (Figma "TopicClear"): lavender pill,
@@ -20,8 +21,9 @@ function FilterChip({ label, onRemove }: { label: string; onRemove: () => void }
 /**
  * Applied-filters row (Figma "Speakers: [chip ×] … Clear all — N results"):
  * one removable chip per selected topic plus the format tab, a "Clear all"
- * text button, and the result count right-aligned. Hidden when nothing is
- * applied.
+ * text button, and the result count right-aligned. Topic chips join with
+ * "or" — the topic filter matches any selected topic, not all of them.
+ * Hidden when nothing is applied.
  */
 export function SpeakersFilterStatusBar({
   topics,
@@ -47,12 +49,18 @@ export function SpeakersFilterStatusBar({
           Speakers:
         </span>
         <span className="flex min-w-0 flex-wrap items-center gap-2">
-          {topics.map((topic) => (
-            <FilterChip
-              key={topic}
-              label={topic}
-              onRemove={() => onRemoveTopic(topic)}
-            />
+          {topics.map((topic, i) => (
+            <Fragment key={topic}>
+              {i > 0 && (
+                <span className="text-[14px] font-medium leading-none text-dc-muted">
+                  or
+                </span>
+              )}
+              <FilterChip
+                label={topic}
+                onRemove={() => onRemoveTopic(topic)}
+              />
+            </Fragment>
           ))}
           {type && <FilterChip label={type} onRemove={onClearType} />}
         </span>

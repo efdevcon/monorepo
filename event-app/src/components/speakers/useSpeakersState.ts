@@ -17,17 +17,17 @@ function normalize(value: string): string {
     .toLowerCase();
 }
 
-/** A letter section in A–Z mode. */
+/** A letter section of the speaker list. */
 export interface LetterGroup {
   letter: string;
   speakers: DecoratedSpeaker[];
 }
 
 /**
- * Speakers list view state: search, topic multi-select, format tab,
- * interested-only toggle and the A–Z index mode, plus the derived filtered
- * list, keynote subset and letter groups. Input `all` is name-sorted (from
- * useSpeakersData), so every derived list stays sorted for free.
+ * Speakers list view state: search, topic multi-select, format tab and
+ * interested-only toggle, plus the derived filtered list, keynote subset and
+ * letter groups. Input `all` is name-sorted (from useSpeakersData), so every
+ * derived list stays sorted for free.
  */
 export function useSpeakersState(
   all: DecoratedSpeaker[],
@@ -37,7 +37,6 @@ export function useSpeakersState(
   const [topics, setTopics] = useState<string[]>([]);
   const [type, setType] = useState<string | null>(null);
   const [interestedOnly, setInterestedOnly] = useState(false);
-  const [azMode, setAzModeState] = useState(false);
 
   const toggleTopic = useCallback((topic: string) => {
     setTopics((prev) =>
@@ -45,17 +44,6 @@ export function useSpeakersState(
         ? prev.filter((t) => t !== topic)
         : [...prev, topic]
     );
-  }, []);
-
-  // Entering A–Z mode hides the topic/format rows, so their filters must
-  // reset — an invisible active filter would silently shrink the index.
-  // Search and interested-only stay: both remain visible in the A–Z top bar.
-  const setAzMode = useCallback((v: boolean) => {
-    setAzModeState(v);
-    if (v) {
-      setTopics([]);
-      setType(null);
-    }
   }, []);
 
   const clearAll = useCallback(() => {
@@ -120,8 +108,6 @@ export function useSpeakersState(
     setType,
     interestedOnly,
     setInterestedOnly: setInterestedOnly as Dispatch<SetStateAction<boolean>>,
-    azMode,
-    setAzMode,
     clearAll,
     activeFilterCount,
     filtered,

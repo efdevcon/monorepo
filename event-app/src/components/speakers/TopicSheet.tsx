@@ -39,22 +39,29 @@ export function TopicSheet({
     >
       <div className="flex h-full min-h-0 flex-col overflow-clip rounded-t-xl border border-dc-hairline bg-white">
         {/* Header */}
-        <div className="flex shrink-0 items-center justify-between gap-4 border-b border-dc-hairline bg-white p-4">
-          <span className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-            Filter by Topic
-          </span>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={onClear}
-              className="cursor-pointer text-[14px] font-bold leading-none text-dc-purple hover:underline"
-            >
-              Clear all
-            </button>
-            <CloseButton
-              onClick={() => onOpenChange(false)}
-              aria-label="Close topic filter"
-            />
+        <div className="flex shrink-0 flex-col gap-1 border-b border-dc-hairline bg-white p-4">
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+              Filter by Topic
+            </span>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={onClear}
+                className="cursor-pointer text-[14px] font-bold leading-none text-dc-purple hover:underline"
+              >
+                Clear all
+              </button>
+              <CloseButton
+                onClick={() => onOpenChange(false)}
+                aria-label="Close topic filter"
+              />
+            </div>
           </div>
+          {/* The topic filter is an OR — spell it out, people read multi-
+              select as "must match all" (PR #112 feedback). */}
+          <p className="text-[14px] font-medium leading-5 text-dc-muted">
+            Shows speakers matching any selected topic.
+          </p>
         </div>
 
         {/* Scrollable wrapping pill grid */}

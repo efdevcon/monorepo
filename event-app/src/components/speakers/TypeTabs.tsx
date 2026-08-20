@@ -7,8 +7,8 @@ export const typeLabel = (type: string) =>
   /s$/i.test(type) || type === "Music" ? type : `${type}s`;
 
 /**
- * Session-format tabs (Figma "Format Buttons"): underline tabs on the panel
- * surface — "All" plus the dataset's distinct session types — with a
+ * Session-format tabs (Figma "Format Buttons"): underline tabs on a lavender
+ * strip — "All" plus the dataset's distinct session types — with a
  * right-hand slot for the Interested pill. Single-select; "All" = null.
  */
 export function TypeTabs({
@@ -21,7 +21,7 @@ export function TypeTabs({
   options: string[];
   selected: string | null;
   onSelect: (type: string | null) => void;
-  /** Pinned under the app header: swap the panel fill for its glass recipe. */
+  /** Pinned under the app header: swap the lavender for its glass recipe. */
   stuck?: boolean;
   /** Right-hand controls (Interested pill). */
   children?: React.ReactNode;
@@ -40,13 +40,11 @@ export function TypeTabs({
     <div
       className={cn(
         "relative flex items-stretch justify-between gap-3 lg:items-center lg:px-4 lg:py-2",
-        // Mobile: lavender full-time (unified with the schedule day tabs,
-        // kept while pinned). Desktop: panel surface, swapping to the app
-        // header's glass once pinned so cards scroll past behind it.
+        // Lavender strip (Figma "Format Buttons"). Mobile keeps it while
+        // pinned; desktop swaps to the app header's glass once stuck so
+        // cards scroll past behind it (same recipe as DayTabs).
         "bg-dc-lavender",
-        stuck
-          ? "lg:bg-white/75 lg:backdrop-blur-[4px]"
-          : "lg:bg-dc-panel"
+        stuck && "lg:bg-white/75 lg:backdrop-blur-[4px]"
       )}
     >
       {/* Mobile: full-bleed scroll behind a right-edge fade (like TopicPills) */}

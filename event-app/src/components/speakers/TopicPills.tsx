@@ -1,24 +1,32 @@
 "use client";
 
+import { useState } from "react";
 import cn from "classnames";
 
 /**
- * Topic filter pill row (Figma "Navigation Buttons"): lavender strip with an
- * "All" pill followed by the dataset's top topic tags, horizontally scrollable
- * behind a right-edge fade. Multi-select: pills toggle independently, "All"
- * clears the facet.
+ * Topic filter pill strip (Figma "Top Bar" / "Category Buttons"): a "Filter:"
+ * label, an "All" pill and the dataset's top topic tags, inline next to the
+ * desktop search input — horizontally scrollable behind edge fades. The right
+ * fade is always on (there's always overflow to hint at); the left one only
+ * appears once the strip is scrolled, so pills don't cut off abruptly under
+ * the label. Multi-select: pills toggle independently, "All" clears the facet.
  */
 export function TopicPills({
   options,
   selected,
   onToggle,
   onClear,
+  stuck = false,
 }: {
   options: string[];
   selected: string[];
   onToggle: (topic: string) => void;
   onClear: () => void;
+  /** Toolbar pinned as glass: match the fades to the translucent fill. */
+  stuck?: boolean;
 }) {
+  const [scrolled, setScrolled] = useState(false);
+
   if (options.length === 0) return null;
 
   const pill = (active: boolean) =>
@@ -30,28 +38,51 @@ export function TopicPills({
     );
 
   return (
-    <div className="relative border-b border-dc-hairline bg-dc-lavender">
-      <div className="flex items-center gap-2 overflow-x-auto px-4 py-2 pr-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <button
-          onClick={onClear}
-          aria-pressed={selected.length === 0}
-          className={pill(selected.length === 0)}
+    <div className="flex min-w-0 flex-1 items-center gap-3">
+      <span className="shrink-0 text-[14px] font-bold leading-5 text-dc-fg2">
+        Filter:
+      </span>
+      {/* Fade anchor: the fades pin to the scroll viewport's edges, not to
+          the scrolling content. */}
+      <div className="relative min-w-0 flex-1">
+        <div
+          onScroll={(e) => setScrolled(e.currentTarget.scrollLeft > 0)}
+          className="flex items-center gap-2 overflow-x-auto pr-14 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          All
-        </button>
-        {options.map((topic) => (
           <button
-            key={topic}
-            onClick={() => onToggle(topic)}
-            aria-pressed={selected.includes(topic)}
-            className={pill(selected.includes(topic))}
+            onClick={onClear}
+            aria-pressed={selected.length === 0}
+            className={pill(selected.length === 0)}
           >
-            {topic}
+            All
           </button>
-        ))}
+          {options.map((topic) => (
+            <button
+              key={topic}
+              onClick={() => onToggle(topic)}
+              aria-pressed={selected.includes(topic)}
+              className={pill(selected.includes(topic))}
+            >
+              {topic}
+            </button>
+          ))}
+        </div>
+        {/* Left-edge fade, revealed once the strip is scrolled */}
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-y-0 left-0 w-[52px] bg-gradient-to-r to-transparent transition-opacity duration-150 ease-out",
+            stuck ? "from-white/75" : "from-white",
+            !scrolled && "opacity-0"
+          )}
+        />
+        {/* Right-edge fade over the scrolling pills (Figma) */}
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-y-0 right-0 w-[52px] bg-gradient-to-l to-transparent",
+            stuck ? "from-white/75" : "from-white"
+          )}
+        />
       </div>
-      {/* Right-edge fade over the scrolling pills (Figma) */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-[52px] bg-gradient-to-l from-dc-lavender to-transparent" />
     </div>
   );
 }

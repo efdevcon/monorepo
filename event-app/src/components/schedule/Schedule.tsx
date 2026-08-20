@@ -47,14 +47,21 @@ type ViewMode = "list" | "timeline";
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
 
-/** Circular 32px glass icon button used in the app header (Figma). */
+/** Circular 32px glass icon button used in the app header (Figma). Border
+ *  and fill are applied per-usage (resting vs active) — Tailwind resolves
+ *  same-property conflicts by stylesheet order, not class order, so an
+ *  appended active bg-* could not reliably override one baked in here. */
 const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-opacity";
+  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
+const headerCircleResting = "border-dc-hairline bg-white";
+const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target:
- * scroll-revealed interested + jump-to-now circles, and the filter button
- * with its active count bubble.
+ * scroll-revealed jump-to-now + interested circles, and the filter button
+ * with its active count bubble — same left-to-right order as the top-of-page
+ * action row. The star stays filled (matching InterestedPill); the lavender
+ * circle fill carries the active state.
  */
 function HeaderActions({
   revealed,
@@ -82,33 +89,32 @@ function HeaderActions({
       {createPortal(
     <>
       <button
-        onClick={onToggleInterested}
-        aria-label="Show interested sessions"
-        aria-pressed={interestedOnly}
-        className={cn(
-          headerCircle,
-          !revealed && "pointer-events-none opacity-0"
-        )}
-      >
-        <Star
-          className="size-4 text-dc-purple"
-          fill={interestedOnly ? "currentColor" : "none"}
-        />
-      </button>
-      <button
         onClick={onJumpToNow}
         aria-label="Jump to now"
         className={cn(
           headerCircle,
+          headerCircleResting,
           !revealed && "pointer-events-none opacity-0"
         )}
       >
         <ClockArrowDown className="size-4 text-dc-purple" />
       </button>
       <button
+        onClick={onToggleInterested}
+        aria-label="Show interested sessions"
+        aria-pressed={interestedOnly}
+        className={cn(
+          headerCircle,
+          interestedOnly ? headerCircleActive : headerCircleResting,
+          !revealed && "pointer-events-none opacity-0"
+        )}
+      >
+        <Star className="size-4 text-dc-purple" fill="currentColor" />
+      </button>
+      <button
         onClick={onOpenFilters}
         aria-label="Open filters"
-        className={cn(headerCircle, "relative")}
+        className={cn(headerCircle, headerCircleResting, "relative")}
       >
         <ListFilter className="size-4 text-dc-purple" />
         {filterCount > 0 && (

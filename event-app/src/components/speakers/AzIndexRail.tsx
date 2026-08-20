@@ -1,35 +1,45 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { Mic } from "lucide-react";
 import cn from "classnames";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+/** Section key for the "Keynote speakers" section (rendered as a mic cell
+ *  above the letters — can't collide with the single-char letter keys). */
+export const KEYNOTE_SECTION = "keynote";
 
 /**
  * A–Z jump rail (Figma "A–Z Scrollbar"): the letter stack inside the lavender
  * right-edge column — 24px cells, 12px semibold, `justify-between` so the
  * letters spread over whatever height the sticky wrapper gives the stack.
+ * A keynote (mic) cell always tops the rail, above the optional "#" cell.
  *
- * The active letter (topmost letter section in view) sits on a purple pill in
+ * The active section (topmost section in view) sits on a purple pill in
  * bold white. The pill is one absolutely-positioned element translated to the
  * active cell, so scroll-spy changes and click-jumps slide it along the rail
  * on the app's 300ms house curve — a transition (not keyframes) so rapid
  * scroll-spy retargets stay smooth. Letter color shares the same clock so the
- * swap lands with the pill. Letters with no speakers are faded and inert.
+ * swap lands with the pill. Sections with no speakers are faded and inert.
  */
 export function AzIndexRail({
-  letters,
-  activeLetter,
+  sections,
+  activeSection,
   onJump,
 }: {
-  /** Letters that exist in the data (may include "#"). */
-  letters: string[];
-  /** Letter of the topmost visible section (scroll-spy). */
-  activeLetter: string | null;
-  onJump: (letter: string) => void;
+  /** Section keys that exist in the data (KEYNOTE_SECTION, "#", letters). */
+  sections: string[];
+  /** Key of the topmost visible section (scroll-spy). */
+  activeSection: string | null;
+  onJump: (section: string) => void;
 }) {
-  const available = new Set(letters);
-  const rail = letters.includes("#") ? ["#", ...ALPHABET] : ALPHABET;
+  const available = new Set(sections);
+  const rail = [
+    KEYNOTE_SECTION,
+    ...(sections.includes("#") ? ["#"] : []),
+    ...ALPHABET,
+  ];
 
   const navRef = useRef<HTMLElement | null>(null);
   const cellRefs = useRef(new Map<string, HTMLButtonElement | null>());
@@ -47,7 +57,7 @@ export function AzIndexRail({
 
   useLayoutEffect(() => {
     const measure = () => {
-      const el = activeLetter ? cellRefs.current.get(activeLetter) : null;
+      const el = activeSection ? cellRefs.current.get(activeSection) : null;
       setPill(el ? { y: el.offsetTop, h: el.offsetHeight } : null);
     };
     measure();
@@ -58,12 +68,12 @@ export function AzIndexRail({
     const observer = new ResizeObserver(measure);
     observer.observe(nav);
     return () => observer.disconnect();
-  }, [activeLetter, letters]);
+  }, [activeSection, sections]);
 
   return (
     <nav
       ref={navRef}
-      aria-label="Jump to letter"
+      aria-label="Jump to section"
       className="relative flex h-full flex-col items-center justify-between py-2"
     >
       <span
@@ -79,19 +89,22 @@ export function AzIndexRail({
             "transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
         )}
       />
-      {rail.map((letter) => {
-        const enabled = available.has(letter);
-        const active = letter === activeLetter;
+      {rail.map((section) => {
+        const enabled = available.has(section);
+        const active = section === activeSection;
         return (
           <button
-            key={letter}
+            key={section}
             ref={(el) => {
-              cellRefs.current.set(letter, el);
+              cellRefs.current.set(section, el);
             }}
-            onClick={() => enabled && onJump(letter)}
+            onClick={() => enabled && onJump(section)}
             disabled={!enabled}
             tabIndex={enabled ? 0 : -1}
             aria-current={active ? "true" : undefined}
+            aria-label={
+              section === KEYNOTE_SECTION ? "Keynote speakers" : undefined
+            }
             className={cn(
               "relative z-10 flex h-6 w-full items-center justify-center text-[12px] font-semibold leading-none",
               // Color shares the pill's 300ms clock so the swap lands as the
@@ -104,7 +117,12 @@ export function AzIndexRail({
                   : "cursor-pointer text-dc-muted hover:text-dc-purple")
             )}
           >
-            {letter}
+            {section === KEYNOTE_SECTION ? (
+              // 2.5 stroke so the icon reads as heavy as the semibold letters
+              <Mic className="size-3.5" strokeWidth={2.5} />
+            ) : (
+              section
+            )}
           </button>
         );
       })}
