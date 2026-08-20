@@ -98,6 +98,19 @@ export function useScheduleState(
     if (target !== selectedDay) setSelectedDayState(target);
   }, [days, selectedDay, nowDate, userPickedDay]);
 
+  // "Jump to now" crosses days: land on the day containing `now` — clamped to
+  // the dataset's range (before day 1 → day 1, after the event → last day) —
+  // and resume auto-following today, since the user just re-synced with the
+  // clock. Days are sorted ascending, so the first key >= today is the clamp.
+  const jumpToToday = () => {
+    setUserPickedDay(false);
+    if (days.length === 0) return;
+    const todayKey = eventDayKey(now);
+    const target =
+      days.find((d) => d.key >= todayKey)?.key ?? days[days.length - 1].key;
+    setSelectedDayState(target);
+  };
+
   const filterOptions = useMemo(() => {
     const opts: Record<FilterFacet, string[]> = {
       track: [],
@@ -265,6 +278,7 @@ export function useScheduleState(
     days,
     selectedDay,
     setSelectedDay,
+    jumpToToday,
     search,
     setSearch,
     filters,
