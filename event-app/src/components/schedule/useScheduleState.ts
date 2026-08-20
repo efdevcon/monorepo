@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
+import { eventDayKey } from "@/data/eventTime";
 import { dayKey, getDays, getStatus, groupByTime, type TimeGroup } from "./utils";
 
 /** Facets a session can be filtered by (each multi-select). */
@@ -68,21 +69,47 @@ export function useScheduleState(
   const now = nowDate ? nowDate.getTime() : Date.now();
   const days = useMemo(() => getDays(sessions), [sessions]);
 
-  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const [selectedDay, setSelectedDayState] = useState<string | null>(null);
+  // Sticky once the user taps a tab: auto-following "today" stops so the
+  // clock (real or mocked) never fights an explicit choice.
+  const [userPickedDay, setUserPickedDay] = useState(false);
+  const setSelectedDay = useCallback((key: string) => {
+    setUserPickedDay(true);
+    setSelectedDayState(key);
+  }, []);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Filters>(EMPTY);
   const [interestedOnly, setInterestedOnly] = useState(false);
 
-  // Default to today if the event is running, otherwise the first day.
-  // "Today" derives from the mockable `now`, so `?mockNow=` selects the
-  // matching day (a raw `new Date()` here used to break that).
+  // Follow "today" (venue time) until the user picks a day: the initial load
+  // lands on today if the event is running (else day 1), and the tab advances
+  // when the clock crosses venue midnight. "Today" derives from the mockable
+  // `now`, so `?mockNow=` selects — and `mockSpeed` advances — the matching day.
   useEffect(() => {
-    if (!nowDate) return;
-    if (selectedDay && days.some((d) => d.key === selectedDay)) return;
+    if (!nowDate || days.length === 0) return;
+    const selectionValid =
+      selectedDay != null && days.some((d) => d.key === selectedDay);
+    if (userPickedDay && selectionValid) return;
+    const todayKey = eventDayKey(nowDate.getTime());
+    const today = days.find((day) => day.key === todayKey)?.key ?? null;
+    // Outside the event (before day 1 / after the last day) keep whatever
+    // valid day is showing; only the initial null falls back to day 1.
+    const target = today ?? (selectionValid ? selectedDay : days[0].key);
+    if (target !== selectedDay) setSelectedDayState(target);
+  }, [days, selectedDay, nowDate, userPickedDay]);
+
+  // "Jump to now" crosses days: land on the day containing `now` — clamped to
+  // the dataset's range (before day 1 → day 1, after the event → last day) —
+  // and resume auto-following today, since the user just re-synced with the
+  // clock. Days are sorted ascending, so the first key >= today is the clamp.
+  const jumpToToday = () => {
+    setUserPickedDay(false);
     if (days.length === 0) return;
-    const todayKey = `${nowDate.getFullYear()}-${nowDate.getMonth() + 1}-${nowDate.getDate()}`;
-    setSelectedDay(days.find((day) => day.key === todayKey)?.key ?? days[0].key);
-  }, [days, selectedDay, nowDate]);
+    const todayKey = eventDayKey(now);
+    const target =
+      days.find((d) => d.key >= todayKey)?.key ?? days[days.length - 1].key;
+    setSelectedDayState(target);
+  };
 
   const filterOptions = useMemo(() => {
     const opts: Record<FilterFacet, string[]> = {
@@ -251,6 +278,7 @@ export function useScheduleState(
     days,
     selectedDay,
     setSelectedDay,
+    jumpToToday,
     search,
     setSearch,
     filters,

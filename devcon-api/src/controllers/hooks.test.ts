@@ -1,6 +1,7 @@
 import request from 'supertest'
 import app from '../app'
 import * as store from '../data/store'
+import { waitForPendingSync } from './hooks'
 import { GetSessions, clearPretalxCache, getPublishedScheduleVersion } from '../clients/pretalx'
 
 // WEBHOOK_SECRET=test-secret is set on the jest command line.
@@ -68,6 +69,8 @@ describe('SyncPretalx staleness guards', () => {
       .set('X-Webhook-Secret', 'test-secret')
       .send(syncPayload)
     expect(res.statusCode).toBe(204)
+    // The 204 is an immediate ack; the sync runs detached.
+    await waitForPendingSync()
     expect(clearPretalxCache).toHaveBeenCalledWith('test-devcon-8')
     expect(GetSessions).toHaveBeenCalled()
     // Ordering: cache cleared before the fetch that would repopulate it.
@@ -79,10 +82,12 @@ describe('SyncPretalx staleness guards', () => {
   test('does not bump the event version when synced data is unchanged', async () => {
     // First sync in the process snapshots the data and bumps.
     await request(app).post('/hooks/pretalx/schedule').set('X-Webhook-Secret', 'test-secret').send(syncPayload)
+    await waitForPendingSync()
     const versionAfterFirst = store.getEvent('test-devcon-8')?.version
     // Identical data on re-publish: version must NOT move (a bump without a
     // diff masks sync failures — it is what hid the stale-cache bug).
     await request(app).post('/hooks/pretalx/schedule').set('X-Webhook-Secret', 'test-secret').send(syncPayload)
+    await waitForPendingSync()
     expect(store.getEvent('test-devcon-8')?.version).toBe(versionAfterFirst)
   })
 })
@@ -97,6 +102,7 @@ describe('release-race guard', () => {
       .set('X-Webhook-Secret', 'test-secret')
       .send({ event: 'test-devcon-8', user: 'tester', schedule: 'v2', changes: { new_talks: [], canceled_talks: [], moved_talks: [] } })
     expect(res.statusCode).toBe(204)
+    await waitForPendingSync()
     expect(getPublishedScheduleVersion).toHaveBeenCalled()
     // Guard must run BEFORE the session fetch.
     const guardOrder = (getPublishedScheduleVersion as jest.Mock).mock.invocationCallOrder[0]
@@ -112,6 +118,7 @@ describe('release-race guard', () => {
       .set('X-Webhook-Secret', 'test-secret')
       .send({ event: 'test-devcon-8', user: 'tester', schedule: 'v3', changes: { new_talks: [], canceled_talks: [], moved_talks: [] } })
     expect(res.statusCode).toBe(204)
+    await waitForPendingSync()
     expect(GetSessions).toHaveBeenCalled()
   })
 })

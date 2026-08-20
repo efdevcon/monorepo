@@ -1,40 +1,41 @@
 import type { Room, Session } from "@/data/models";
+import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
 
 /** Session timing is stored as unix seconds. */
 const ms = (unixSeconds: number) => unixSeconds * 1000;
 
-/** Stable key for the calendar day a session starts on (local time). */
+/**
+ * Stable key ("YYYY-MM-DD") for the calendar day a session starts on, in the
+ * event's venue timezone — so day grouping is identical for every viewer.
+ */
 export function dayKey(session: Session): string {
-  const d = new Date(ms(session.start));
-  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  return eventDayKey(ms(session.start));
 }
 
-const dayLabelFmt = new Intl.DateTimeFormat(undefined, {
-  weekday: "short",
-  month: "short",
-  day: "numeric",
-});
-// 24-hour, zero-padded ("09:30") per the Figma design.
-const timeFmt = new Intl.DateTimeFormat("en-GB", {
-  hour: "2-digit",
-  minute: "2-digit",
-  hour12: false,
-});
+// All formatters are pinned to the event timezone (via eventFmt) and to a
+// fixed locale — DayTabs/ScheduleTimeline parse the labels with split(", ").
 
+// "Tue, Nov 12" — day-tab label.
 export const formatDayLabel = (session: Session) =>
-  dayLabelFmt.format(new Date(ms(session.start)));
+  eventFmt("en-US", { weekday: "short", month: "short", day: "numeric" })
+    .format(new Date(ms(session.start)));
 
 // "Wed, November 13" — the desktop list's day heading (Figma "Tues, November 3").
+// Takes a "YYYY-MM-DD" day key; formats its synthetic UTC midnight in UTC
+// (static — not eventFmt — because the key already encodes the venue day).
 const dayHeadingFmt = new Intl.DateTimeFormat("en-US", {
   weekday: "short",
   month: "long",
   day: "numeric",
+  timeZone: "UTC",
 });
-export const formatDayHeading = (startOfDayMs: number) =>
-  dayHeadingFmt.format(new Date(startOfDayMs));
+export const formatDayHeading = (key: string) =>
+  dayHeadingFmt.format(new Date(dayKeyToUtcMidnightMs(key)));
 
+// 24-hour, zero-padded ("09:30") per the Figma design.
 export const formatTime = (unixSeconds: number) =>
-  timeFmt.format(new Date(ms(unixSeconds)));
+  eventFmt("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false })
+    .format(new Date(ms(unixSeconds)));
 
 export const formatTimeRange = (session: Session) =>
   `${formatTime(session.start)} – ${formatTime(session.end)}`;
@@ -73,7 +74,7 @@ export function minutesUntil(session: Session, nowMs: number): number {
 export interface ScheduleDay {
   key: string;
   label: string;
-  /** Start-of-day timestamp, for sorting and "is today". */
+  /** Synthetic UTC midnight (ms) of the venue day — for sorting only. */
   sortKey: number;
 }
 
@@ -83,9 +84,11 @@ export function getDays(sessions: Session[]): ScheduleDay[] {
   for (const s of sessions) {
     const key = dayKey(s);
     if (!map.has(key)) {
-      const d = new Date(ms(s.start));
-      d.setHours(0, 0, 0, 0);
-      map.set(key, { key, label: formatDayLabel(s), sortKey: d.getTime() });
+      map.set(key, {
+        key,
+        label: formatDayLabel(s),
+        sortKey: dayKeyToUtcMidnightMs(key),
+      });
     }
   }
   return [...map.values()].sort((a, b) => a.sortKey - b.sortKey);
@@ -206,8 +209,9 @@ export const STREAM_FIELDS = [
 
 /**
  * 1-based conference day for a timestamp, anchored on the event's startDate
- * (UTC calendar days). Null when event dates are unknown or the timestamp
- * falls outside the covered range.
+ * (venue-timezone calendar days, matching the schedule's day grouping). Null
+ * when event dates are unknown or the timestamp falls outside the covered
+ * range.
  */
 export function eventDayIndex(
   tMs: number,
@@ -217,7 +221,10 @@ export function eventDayIndex(
   const eventStartMs = Date.parse(eventStartIso);
   if (Number.isNaN(eventStartMs)) return null;
   const index =
-    Math.floor(tMs / DAY_MS) - Math.floor(eventStartMs / DAY_MS) + 1;
+    (dayKeyToUtcMidnightMs(eventDayKey(tMs)) -
+      dayKeyToUtcMidnightMs(eventDayKey(eventStartMs))) /
+      DAY_MS +
+    1;
   return index >= 1 && index <= STREAM_FIELDS.length ? index : null;
 }
 

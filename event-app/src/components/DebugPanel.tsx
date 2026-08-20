@@ -9,21 +9,45 @@ import {
   getActiveDatasetKey,
   type DatasetKey,
 } from "@/data/dataset";
-
-/** local Date → "YYYY-MM-DDTHH:mm" for a datetime-local input. */
-function toInputValue(d: Date): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
-    d.getHours()
-  )}:${pad(d.getMinutes())}`;
-}
+import { utcMsToWallClock, wallClockToUtcMs } from "@/data/eventTime";
+import { useNowMs } from "@/hooks/useNow";
 
 /**
  * Dev-only debug panel: mock the current time (`mockNow`/`mockSpeed`) and swap
  * the event dataset (test-devcon-8 / devcon8 / Devcon 7). Applying writes the URL query params
  * and reloads, so the time hook and data provider pick them up. Visible in
  * development, when `?debug` is present, or when NEXT_PUBLIC_ENABLE_DEBUG=true.
+ *
+ * The Mock-now field is venue wall-clock time (the selected dataset's
+ * timezone), matching what the schedule displays; the `?mockNow=` URL param it
+ * writes remains a plain UTC instant.
  */
+/**
+ * Live readout of the effective "now" (venue wall-clock). Reads the same
+ * shared clock as the schedule (useNow), so it shows exactly what the
+ * live/upcoming logic sees — including `?mockNow=` / `?mockSpeed=`. A child
+ * component so the ticking hook only runs where it's rendered.
+ */
+function DebugClock({ tz, speed }: { tz: string; speed: number }) {
+  const nowMs = useNowMs(1000);
+  const wall = utcMsToWallClock(tz, nowMs, true);
+  const [date, time] = wall.split("T");
+  // DD/MM/YYYY, matching how the Mock-now datetime-local field displays.
+  const [y, m, d] = date.split("-");
+  return (
+    <span className="tabular-nums">
+      {d}/{m}/{y} {time}
+      {speed !== 1 && <span className="ml-1 font-semibold">×{speed}</span>}
+    </span>
+  );
+}
+
+// Effective mock speed with useNow's clamp rule (NaN / <=0 → 1).
+function parseSpeed(raw: string | null): number {
+  const n = raw ? parseFloat(raw) : NaN;
+  return isNaN(n) || n <= 0 ? 1 : n;
+}
+
 export function DebugPanel() {
   const params =
     typeof window !== "undefined"
@@ -42,8 +66,9 @@ export function DebugPanel() {
   const [mockNow, setMockNow] = useState(() => {
     const raw = params.get("mockNow");
     if (!raw) return "";
-    const d = new Date(raw);
-    return isNaN(d.getTime()) ? "" : toInputValue(d);
+    const t = new Date(raw).getTime();
+    if (isNaN(t)) return "";
+    return utcMsToWallClock(DATASETS[getActiveDatasetKey()].timezone, t);
   });
   const [mockSpeed, setMockSpeed] = useState(() => params.get("mockSpeed") ?? "");
   const [dataset, setDataset] = useState<DatasetKey>(() =>
@@ -56,14 +81,28 @@ export function DebugPanel() {
   const handleDatasetChange = (key: DatasetKey) => {
     setDataset(key);
     const start = DATASETS[key]?.startDate;
-    if (start) setMockNow(toInputValue(new Date(start)));
+    if (start) {
+      setMockNow(utcMsToWallClock(DATASETS[key].timezone, Date.parse(start)));
+    }
   };
 
   if (!enabled) return null;
 
+  // Clock timezone comes from the URL-active dataset (what the schedule
+  // renders), not the panel's unsaved selection.
+  const activeTz = DATASETS[getActiveDatasetKey()].timezone;
+  const effectiveSpeed = parseSpeed(params.get("mockSpeed"));
+
   const apply = () => {
     const p = new URLSearchParams(window.location.search);
-    if (mockNow) p.set("mockNow", new Date(mockNow).toISOString());
+    if (mockNow) {
+      p.set(
+        "mockNow",
+        new Date(
+          wallClockToUtcMs(DATASETS[dataset].timezone, mockNow)
+        ).toISOString()
+      );
+    }
     else p.delete("mockNow");
     if (mockSpeed) p.set("mockSpeed", mockSpeed);
     else p.delete("mockSpeed");
@@ -95,8 +134,15 @@ export function DebugPanel() {
         <div className="fixed top-[124px] right-4 z-[100] w-72 rounded-2xl border border-[#E1E4EA] bg-white p-4 text-sm shadow-2xl">
           <p className="mb-3 font-bold">Debug</p>
 
+          <div className="mb-3 text-xs text-gray-500">
+            <p>Now ({activeTz}):</p>
+            <p>
+              <DebugClock tz={activeTz} speed={effectiveSpeed} />
+            </p>
+          </div>
+
           <label className="mb-1 block text-xs font-medium text-gray-500">
-            Mock now
+            Mock now (venue time · {DATASETS[dataset].timezone})
           </label>
           <input
             type="datetime-local"

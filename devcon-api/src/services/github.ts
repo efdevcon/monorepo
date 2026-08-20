@@ -119,8 +119,13 @@ export async function TriggerWorkflow(workflowId: string, ref: string = 'main') 
     }),
   })
 
+  // Log both outcomes: "Triggering X..." followed by silence used to be the
+  // only success signal, which made "did the dispatch reach GitHub?" a guess
+  // when reading Render logs.
   if (!response.ok) {
-    console.error('Error triggering workflow:', response.status, response.statusText)
+    console.error('Error triggering workflow:', workflowId, response.status, response.statusText)
+  } else {
+    console.log(`Triggered Github action ${workflowId} (${response.status})`)
   }
 
   return response.ok
