@@ -10,6 +10,7 @@ import {
   type DatasetKey,
 } from "@/data/dataset";
 import { utcMsToWallClock, wallClockToUtcMs } from "@/data/eventTime";
+import { useNowMs } from "@/hooks/useNow";
 
 /**
  * Dev-only debug panel: mock the current time (`mockNow`/`mockSpeed`) and swap
@@ -21,6 +22,32 @@ import { utcMsToWallClock, wallClockToUtcMs } from "@/data/eventTime";
  * timezone), matching what the schedule displays; the `?mockNow=` URL param it
  * writes remains a plain UTC instant.
  */
+/**
+ * Live readout of the effective "now" (venue wall-clock). Reads the same
+ * shared clock as the schedule (useNow), so it shows exactly what the
+ * live/upcoming logic sees — including `?mockNow=` / `?mockSpeed=`. A child
+ * component so the ticking hook only runs where it's rendered.
+ */
+function DebugClock({ tz, speed }: { tz: string; speed: number }) {
+  const nowMs = useNowMs(1000);
+  const wall = utcMsToWallClock(tz, nowMs, true);
+  const [date, time] = wall.split("T");
+  // DD/MM/YYYY, matching how the Mock-now datetime-local field displays.
+  const [y, m, d] = date.split("-");
+  return (
+    <span className="tabular-nums">
+      {d}/{m}/{y} {time}
+      {speed !== 1 && <span className="ml-1 font-semibold">×{speed}</span>}
+    </span>
+  );
+}
+
+// Effective mock speed with useNow's clamp rule (NaN / <=0 → 1).
+function parseSpeed(raw: string | null): number {
+  const n = raw ? parseFloat(raw) : NaN;
+  return isNaN(n) || n <= 0 ? 1 : n;
+}
+
 export function DebugPanel() {
   const params =
     typeof window !== "undefined"
@@ -60,6 +87,11 @@ export function DebugPanel() {
   };
 
   if (!enabled) return null;
+
+  // Clock timezone comes from the URL-active dataset (what the schedule
+  // renders), not the panel's unsaved selection.
+  const activeTz = DATASETS[getActiveDatasetKey()].timezone;
+  const effectiveSpeed = parseSpeed(params.get("mockSpeed"));
 
   const apply = () => {
     const p = new URLSearchParams(window.location.search);
@@ -101,6 +133,13 @@ export function DebugPanel() {
       {open && (
         <div className="fixed top-[124px] right-4 z-[100] w-72 rounded-2xl border border-[#E1E4EA] bg-white p-4 text-sm shadow-2xl">
           <p className="mb-3 font-bold">Debug</p>
+
+          <div className="mb-3 text-xs text-gray-500">
+            <p>Now ({activeTz}):</p>
+            <p>
+              <DebugClock tz={activeTz} speed={effectiveSpeed} />
+            </p>
+          </div>
 
           <label className="mb-1 block text-xs font-medium text-gray-500">
             Mock now (venue time · {DATASETS[dataset].timezone})

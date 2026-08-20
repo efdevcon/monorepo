@@ -99,11 +99,20 @@ export function wallClockToUtcMs(tz: string, wallClock: string): number {
   return t;
 }
 
-/** "YYYY-MM-DDTHH:mm" wall clock in `tz` for a UTC instant (datetime-local format). */
-export function utcMsToWallClock(tz: string, tMs: number): string {
+/**
+ * "YYYY-MM-DDTHH:mm" wall clock in `tz` for a UTC instant (datetime-local
+ * format). `withSeconds` appends ":ss" (debug clock; not valid for
+ * datetime-local inputs).
+ */
+export function utcMsToWallClock(
+  tz: string,
+  tMs: number,
+  withSeconds = false
+): string {
   const parts = wallClockFmt(tz).formatToParts(new Date(tMs));
   const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
-  return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
+  const base = `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
+  return withSeconds ? `${base}:${get("second")}` : base;
 }
 
 /** Short human label for the venue zone, e.g. "Bangkok time (GMT+7)". */
