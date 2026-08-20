@@ -15,6 +15,7 @@ pnpm lint
 - **Offline-first data**: all persisted state goes through the Dexie/IndexedDB-backed SWR layer, never ad-hoc fetch + useState for API data. `/api/*` stays `NetworkOnly` in the service worker; API caching is owned by the SWR/Dexie layer, not the SW.
 - **Service worker**: precache stays limited to the app-shell routes. Never enable `skipWaiting`; updates are opt-in via the update toast (`ServiceWorkerUpdater.tsx`).
 - **Current time**: never call `Date.now()` / `new Date()` directly in components. Use the shared `useNow`/`useNowMs` hooks (`src/hooks/useNow.ts`) so time can be mocked with `?mockNow=` / `?mockSpeed=` query params. For content dated against the real world rather than event time (announcements), use `useRealWorldNowMs` — it opts out of the per-deployment event-start auto-mock, which would otherwise let the selected dataset (e.g. devcon-7 → Nov 2024) decide whether today's announcements are visible.
+- **Event timezone**: the API serves session times as plain UTC instants with no timezone; all wall-clock rendering and day grouping must go through the venue-timezone helpers in `src/data/eventTime.ts` (`eventFmt`, `eventDayKey`, …). Never format session times with a bare `Intl.DateTimeFormat` or local `Date` getters — that shifts the schedule with the viewer's system timezone. Announcements are the exception (real-world-dated, intentionally viewer-local).
 - **Code style**: double quotes, semicolons (unlike the devcon package).
 
 ## Announcements & highlights

@@ -36,8 +36,17 @@ const AUTO_MOCK_EVENT_START =
  *
  *   ?mockNow=nov17&mockSpeed=10
  *
+ * When a mock is active, the tick interval is divided by the speed (floored at
+ * 250ms) so consumers refresh per *mocked* minute, not per real minute — a 60s
+ * caller at ×60 re-renders every real second. All hook instances share one
+ * clock anchor per (mockNow, mockSpeed), so navigating between pages never
+ * rewinds the mock clock and concurrent components agree; a full page reload
+ * restarts the clock at `mockNow` (matches the debug panel's "Apply & reload").
+ *
  * Returns `null` during SSR / first paint to avoid hydration mismatch — callers
- * should treat that as "loading" (e.g. fall back to `Date.now()`).
+ * should treat that as "loading" (e.g. fall back to `Date.now()`). Note the
+ * `useNowMs` fallback is the *real* clock, so a mocked page's very first frame
+ * can render against real time before the effect corrects it.
  */
 
 // Force any input without an explicit timezone marker into UTC.
@@ -81,6 +90,20 @@ function readParam(name: string): string | null {
   return new URLSearchParams(window.location.search).get(name);
 }
 
+// One clock anchor per (mockStart, speed): every hook instance and remount
+// shares it, so client-side navigation doesn't rewind the mock clock and
+// concurrently-mounted components agree on the time. Module state — survives
+// remounts; reset by a full reload (intended: "Apply & reload" restarts the
+// clock at `mockNow`) and by editing this file under Fast Refresh.
+let sharedAnchor: { key: string; realStart: number } | null = null;
+function getSharedRealStart(mockStart: number, speed: number): number {
+  const key = `${mockStart}|${speed}`;
+  if (!sharedAnchor || sharedAnchor.key !== key) {
+    sharedAnchor = { key, realStart: Date.now() };
+  }
+  return sharedAnchor.realStart;
+}
+
 export function useNow(
   intervalMs: number = 1000,
   options: { autoMockEventStart?: boolean } = {}
@@ -103,7 +126,6 @@ export function useNow(
   }>({ mockStart: null, realStart: 0, speed: 1 });
 
   useEffect(() => {
-    const realStart = Date.now();
     // Explicit `?mockNow` always wins; otherwise fall back to the active
     // dataset's conference start when preview auto-mock is enabled.
     let mockStart = mockNowParam ? parseMockNow(mockNowParam) : null;
@@ -113,6 +135,8 @@ export function useNow(
     }
     const parsedSpeed = mockSpeedParam ? parseFloat(mockSpeedParam) : NaN;
     const speed = isNaN(parsedSpeed) || parsedSpeed <= 0 ? 1 : parsedSpeed;
+    const realStart =
+      mockStart != null ? getSharedRealStart(mockStart, speed) : Date.now();
 
     baseRef.current = { mockStart, realStart, speed };
 
@@ -125,8 +149,16 @@ export function useNow(
       return new Date();
     }
 
+    // Tick per *mocked* interval when accelerated, so a 60s caller still sees
+    // every mocked minute at ×60. Floored at 250ms to bound CPU at extreme
+    // speeds; speeds < 1 never tick slower than the caller asked for.
+    const effectiveInterval =
+      mockStart != null && speed > 1
+        ? Math.max(250, Math.min(intervalMs, intervalMs / speed))
+        : intervalMs;
+
     setNow(compute());
-    const id = setInterval(() => setNow(compute()), intervalMs);
+    const id = setInterval(() => setNow(compute()), effectiveInterval);
     return () => clearInterval(id);
   }, [intervalMs, mockNowParam, mockSpeedParam, autoMockEventStart]);
 

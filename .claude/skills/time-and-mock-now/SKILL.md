@@ -62,7 +62,17 @@ Append to any URL — **all values are interpreted as UTC**:
 ```
 
 `mockSpeed` accelerates the clock (1 = real-time). From `mockNow`, time advances
-at real speed × `mockSpeed`.
+at real speed × `mockSpeed`. When a mock is active, the hook's tick interval is
+divided by the speed (floored at 250ms), so consumers refresh per *mocked*
+interval — a `useNow(60_000)` caller at ×60 re-renders every real second. All
+hook instances share one clock anchor per (mockNow, mockSpeed), so client-side
+navigation never rewinds the mock clock; a full page reload restarts it at
+`mockNow` (matching the debug panel's "Apply & reload").
+
+Note: the debug panel's Mock-now field is different — it takes **venue
+wall-clock time** (the selected dataset's timezone, matching what the schedule
+displays) and converts to a UTC instant when writing `?mockNow=`. Only raw URL
+values follow the interpreted-as-UTC rules above.
 
 ## Gotchas
 

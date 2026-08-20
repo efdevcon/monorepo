@@ -35,6 +35,7 @@ import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { formatDayHeading } from "./utils";
+import { getEventTimeZoneLabel } from "@/data/eventTime";
 import { useIsDesktop, isDesktopNow } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
@@ -406,6 +407,7 @@ export function Schedule() {
     days,
     selectedDay,
     setSelectedDay,
+    jumpToToday,
     search,
     setSearch,
     filters,
@@ -433,6 +435,7 @@ export function Schedule() {
   );
   const [scrolled, setScrolled] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
+  const [listJumpSignal, setListJumpSignal] = useState(0);
   const searchBlockRef = useRef<HTMLDivElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
@@ -480,13 +483,24 @@ export function Schedule() {
   };
 
   const jumpToNow = () => {
+    // Cross days first: land on the day containing "now" (both view modes only
+    // render the selected day). The scroll itself is signal-driven so it runs
+    // after the (possibly day-switching) re-render, when the target groups /
+    // now line actually exist.
+    jumpToToday();
     if (view === "timeline") {
       // The timeline scrolls itself (horizontally to the now line) on signal.
       setTimelineJumpSignal((n) => n + 1);
       return;
     }
-    // List view: land on the "Live now" section, else a still-running one,
-    // else the next upcoming one.
+    setListJumpSignal((n) => n + 1);
+  };
+
+  // List view "jump to now": land on the "Live now" section, else a
+  // still-running one, else the next upcoming one. Runs as an effect so the
+  // closure sees the just-jumped-to day's groups and their mounted refs.
+  useEffect(() => {
+    if (listJumpSignal === 0) return;
     const target =
       visibleGroups.find((g) => g.isLive) ??
       visibleGroups.find((g) => g.isOngoing) ??
@@ -496,7 +510,8 @@ export function Schedule() {
     groupRefs.current
       .get(target.key)
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listJumpSignal]);
 
   // Contiguous live groups render inside one full-bleed band (Figma frame 4).
   const segments = useMemo(() => {
@@ -536,7 +551,7 @@ export function Schedule() {
   const panelContent = livePanelContent ?? lastPanelContentRef.current;
   const dayHeading = useMemo(() => {
     const day = days.find((d) => d.key === selectedDay);
-    return day ? formatDayHeading(day.sortKey) : null;
+    return day ? formatDayHeading(day.key) : null;
   }, [days, selectedDay]);
 
   const renderGroup = (
@@ -709,10 +724,16 @@ export function Schedule() {
                     {dayHeading}
                   </h2>
                 )}
-                <FilterStatusBar
-                  counts={facetFilterCounts}
-                  onClear={clearFilters}
-                />
+                <div className="flex items-center gap-3">
+                  <span className="text-[14px] tracking-[0] text-dc-muted">
+                    {getEventTimeZoneLabel()}
+                  </span>
+                  {/* Outermost so the chip sits under the toolbar's Filter button. */}
+                  <FilterStatusBar
+                    counts={facetFilterCounts}
+                    onClear={clearFilters}
+                  />
+                </div>
               </div>
 
               {/* Mobile applied-filter chip */}

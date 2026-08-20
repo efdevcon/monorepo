@@ -1,5 +1,6 @@
 import type { ConferenceEvent, Room, Session, Speaker } from "../models";
 import { datasetForEventId, getActiveDataset } from "../dataset";
+import { dayKeyToUtcMidnightMs, eventDayKey } from "../eventTime";
 import { BaseProvider, type SessionFilters } from "./provider-interface";
 
 export class DevconApiProvider extends BaseProvider {
@@ -28,7 +29,10 @@ export class DevconApiProvider extends BaseProvider {
     const end = Math.floor(endMs / 1000);
     const duration = end - start;
 
-    const startDate = startMs ? new Date(startMs) : null;
+    // Day fields are derived in the venue timezone (like the schedule UI),
+    // via the day key's synthetic UTC midnight.
+    const date = startMs ? eventDayKey(startMs) : undefined;
+    const utcMid = date ? new Date(dayKeyToUtcMidnightMs(date)) : null;
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     return {
@@ -42,9 +46,9 @@ export class DevconApiProvider extends BaseProvider {
       duration,
       start,
       end,
-      day: startDate ? String(startDate.getDay()) : undefined,
-      date: startDate ? startDate.toISOString().split("T")[0] : undefined,
-      dayOfWeek: startDate ? days[startDate.getDay()] : undefined,
+      day: utcMid ? String(utcMid.getUTCDay()) : undefined,
+      date,
+      dayOfWeek: utcMid ? days[utcMid.getUTCDay()] : undefined,
       room: raw.slot_room
         ? this.mapRoom(raw.slot_room)
         : undefined,
