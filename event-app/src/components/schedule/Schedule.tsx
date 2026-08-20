@@ -711,13 +711,14 @@ export function Schedule() {
                   </h2>
                 )}
                 <div className="flex items-center gap-3">
+                  <span className="text-[14px] tracking-[0] text-dc-muted">
+                    {getEventTimeZoneLabel()}
+                  </span>
+                  {/* Outermost so the chip sits under the toolbar's Filter button. */}
                   <FilterStatusBar
                     counts={facetFilterCounts}
                     onClear={clearFilters}
                   />
-                  <span className="text-[14px] tracking-[0] text-dc-muted">
-                    {getEventTimeZoneLabel()}
-                  </span>
                 </div>
               </div>
 
