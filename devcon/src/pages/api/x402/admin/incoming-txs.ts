@@ -128,7 +128,14 @@ async function fetchChainTransfers(
       ...(filter.fromAddress && { fromAddress: filter.fromAddress }),
       ...(filter.fromBlock && { fromBlock: filter.fromBlock }),
       ...(filter.toBlock && { toBlock: filter.toBlock }),
-      category: ['external', 'erc20'],
+      // 'internal' matters: ETH sent from a smart-contract wallet (Gnosis
+      // Safe execTransaction, AA wallets) moves as an internal transfer —
+      // the top-level tx has value 0 — so without it those payments never
+      // appear and can't be flagged as orphans (found via a real Safe
+      // payment of 0.83 ETH, tx 0xb58fb443…). No double-count: an EOA send
+      // is only 'external', a contract send only 'internal'. NOTE if other
+      // chains are re-enabled: Alchemy's 'internal' support is per-chain.
+      category: ['external', 'internal', 'erc20'],
       withMetadata: true,
       excludeZeroValue: true,
       maxCount: '0x3e8',
@@ -185,7 +192,9 @@ function normalizeTransfer(
   let symbol: string | null = null
   let decimals: number | null = null
 
-  if (t.category === 'external') {
+  // 'internal' = native ETH arriving via a contract call (Safe/AA wallets);
+  // same asset semantics as 'external', just a different sender mechanism.
+  if (t.category === 'external' || t.category === 'internal') {
     if (!NATIVE_ETH_CHAINS.has(chainId)) return null
     symbol = 'ETH'
     decimals = 18
