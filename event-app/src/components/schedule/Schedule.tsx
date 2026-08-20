@@ -708,15 +708,17 @@ export function Schedule() {
                 {dayHeading && (
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
                     {dayHeading}
-                    <span className="ml-2 text-[12px] font-normal text-dc-muted">
-                      · {getEventTimeZoneLabel()}
-                    </span>
                   </h2>
                 )}
-                <FilterStatusBar
-                  counts={facetFilterCounts}
-                  onClear={clearFilters}
-                />
+                <div className="flex items-center gap-3">
+                  <FilterStatusBar
+                    counts={facetFilterCounts}
+                    onClear={clearFilters}
+                  />
+                  <span className="text-[14px] tracking-[0] text-dc-muted">
+                    {getEventTimeZoneLabel()}
+                  </span>
+                </div>
               </div>
 
               {/* Mobile applied-filter chip */}

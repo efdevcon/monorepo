@@ -9,20 +9,17 @@ import {
   getActiveDatasetKey,
   type DatasetKey,
 } from "@/data/dataset";
-
-/** local Date → "YYYY-MM-DDTHH:mm" for a datetime-local input. */
-function toInputValue(d: Date): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(
-    d.getHours()
-  )}:${pad(d.getMinutes())}`;
-}
+import { utcMsToWallClock, wallClockToUtcMs } from "@/data/eventTime";
 
 /**
  * Dev-only debug panel: mock the current time (`mockNow`/`mockSpeed`) and swap
  * the event dataset (test-devcon-8 / devcon8 / Devcon 7). Applying writes the URL query params
  * and reloads, so the time hook and data provider pick them up. Visible in
  * development, when `?debug` is present, or when NEXT_PUBLIC_ENABLE_DEBUG=true.
+ *
+ * The Mock-now field is venue wall-clock time (the selected dataset's
+ * timezone), matching what the schedule displays; the `?mockNow=` URL param it
+ * writes remains a plain UTC instant.
  */
 export function DebugPanel() {
   const params =
@@ -42,8 +39,9 @@ export function DebugPanel() {
   const [mockNow, setMockNow] = useState(() => {
     const raw = params.get("mockNow");
     if (!raw) return "";
-    const d = new Date(raw);
-    return isNaN(d.getTime()) ? "" : toInputValue(d);
+    const t = new Date(raw).getTime();
+    if (isNaN(t)) return "";
+    return utcMsToWallClock(DATASETS[getActiveDatasetKey()].timezone, t);
   });
   const [mockSpeed, setMockSpeed] = useState(() => params.get("mockSpeed") ?? "");
   const [dataset, setDataset] = useState<DatasetKey>(() =>
@@ -56,14 +54,23 @@ export function DebugPanel() {
   const handleDatasetChange = (key: DatasetKey) => {
     setDataset(key);
     const start = DATASETS[key]?.startDate;
-    if (start) setMockNow(toInputValue(new Date(start)));
+    if (start) {
+      setMockNow(utcMsToWallClock(DATASETS[key].timezone, Date.parse(start)));
+    }
   };
 
   if (!enabled) return null;
 
   const apply = () => {
     const p = new URLSearchParams(window.location.search);
-    if (mockNow) p.set("mockNow", new Date(mockNow).toISOString());
+    if (mockNow) {
+      p.set(
+        "mockNow",
+        new Date(
+          wallClockToUtcMs(DATASETS[dataset].timezone, mockNow)
+        ).toISOString()
+      );
+    }
     else p.delete("mockNow");
     if (mockSpeed) p.set("mockSpeed", mockSpeed);
     else p.delete("mockSpeed");
@@ -96,7 +103,7 @@ export function DebugPanel() {
           <p className="mb-3 font-bold">Debug</p>
 
           <label className="mb-1 block text-xs font-medium text-gray-500">
-            Mock now
+            Mock now (venue time · {DATASETS[dataset].timezone})
           </label>
           <input
             type="datetime-local"

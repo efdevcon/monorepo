@@ -64,6 +64,11 @@ Append to any URL — **all values are interpreted as UTC**:
 `mockSpeed` accelerates the clock (1 = real-time). From `mockNow`, time advances
 at real speed × `mockSpeed`.
 
+Note: the debug panel's Mock-now field is different — it takes **venue
+wall-clock time** (the selected dataset's timezone, matching what the schedule
+displays) and converts to a UTC instant when writing `?mockNow=`. Only raw URL
+values follow the interpreted-as-UTC rules above.
+
 ## Gotchas
 
 - `useNow()` returns `null` during SSR / first paint (avoids hydration

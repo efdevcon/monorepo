@@ -55,6 +55,57 @@ export function dayKeyToUtcMidnightMs(key: string): number {
   return Date.UTC(y, m - 1, d);
 }
 
+// --- Explicit-timezone wall-clock converters ---------------------------------
+// Used by the debug panel, which must convert against its *selected* dataset's
+// timezone, not the URL-active one the helpers above read.
+
+const wallClockFmt = (tz: string) =>
+  new Intl.DateTimeFormat("en-US", {
+    timeZone: tz,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23", // not hour12:false, which can yield "24:00"
+  });
+
+/** Offset (ms) of `tz` from UTC at instant tMs (positive east of UTC). */
+function tzOffsetMs(tz: string, tMs: number): number {
+  const parts = wallClockFmt(tz).formatToParts(new Date(tMs));
+  const get = (type: string) =>
+    Number(parts.find((p) => p.type === type)?.value ?? 0);
+  const asUtc = Date.UTC(
+    get("year"),
+    get("month") - 1,
+    get("day"),
+    get("hour"),
+    get("minute"),
+    get("second")
+  );
+  return asUtc - (tMs - (tMs % 1000));
+}
+
+/** UTC instant (ms) for a "YYYY-MM-DDTHH:mm" wall-clock time in `tz`. */
+export function wallClockToUtcMs(tz: string, wallClock: string): number {
+  const [date, time] = wallClock.split("T");
+  const [y, m, d] = date.split("-").map(Number);
+  const [h, min] = time.split(":").map(Number);
+  const naive = Date.UTC(y, m - 1, d, h, min);
+  // Two passes: exact in one for fixed-offset zones, second guards DST zones.
+  let t = naive - tzOffsetMs(tz, naive);
+  t = naive - tzOffsetMs(tz, t);
+  return t;
+}
+
+/** "YYYY-MM-DDTHH:mm" wall clock in `tz` for a UTC instant (datetime-local format). */
+export function utcMsToWallClock(tz: string, tMs: number): string {
+  const parts = wallClockFmt(tz).formatToParts(new Date(tMs));
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
+  return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
+}
+
 /** Short human label for the venue zone, e.g. "Bangkok time (GMT+7)". */
 export function getEventTimeZoneLabel(): string {
   const tz = getEventTimeZone();
