@@ -35,6 +35,7 @@ import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { formatDayHeading } from "./utils";
+import { getEventTimeZoneLabel } from "@/data/eventTime";
 import { useIsDesktop, isDesktopNow } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
@@ -536,7 +537,7 @@ export function Schedule() {
   const panelContent = livePanelContent ?? lastPanelContentRef.current;
   const dayHeading = useMemo(() => {
     const day = days.find((d) => d.key === selectedDay);
-    return day ? formatDayHeading(day.sortKey) : null;
+    return day ? formatDayHeading(day.key) : null;
   }, [days, selectedDay]);
 
   const renderGroup = (
@@ -707,6 +708,9 @@ export function Schedule() {
                 {dayHeading && (
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
                     {dayHeading}
+                    <span className="ml-2 text-[12px] font-normal text-dc-muted">
+                      · {getEventTimeZoneLabel()}
+                    </span>
                   </h2>
                 )}
                 <FilterStatusBar

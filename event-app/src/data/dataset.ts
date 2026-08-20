@@ -18,6 +18,12 @@ export interface Dataset {
    * the selected conference so schedule/live/today logic lands on day 1.
    */
   startDate: string;
+  /**
+   * IANA timezone of the venue. All session times render in this zone (the
+   * API serves plain UTC instants and no timezone), so the schedule reads the
+   * same everywhere in the world — see src/data/eventTime.ts.
+   */
+  timezone: string;
 }
 
 const ENV_API =
@@ -32,6 +38,7 @@ export const DATASETS: Record<DatasetKey, Dataset> = {
     eventId: "test-devcon-8",
     // 2026-11-03 09:00 Asia/Kolkata (UTC+5:30)
     startDate: "2026-11-03T03:30:00Z",
+    timezone: "Asia/Kolkata",
   },
   devcon8: {
     key: "devcon8",
@@ -40,6 +47,7 @@ export const DATASETS: Record<DatasetKey, Dataset> = {
     eventId: "devcon8",
     // 2026-11-03 09:00 Asia/Kolkata (UTC+5:30)
     startDate: "2026-11-03T03:30:00Z",
+    timezone: "Asia/Kolkata",
   },
   "devcon-7": {
     key: "devcon-7",
@@ -49,6 +57,7 @@ export const DATASETS: Record<DatasetKey, Dataset> = {
     // Day 2 peak: 2024-11-13 15:30 Asia/Bangkok (UTC+7) — ~17 rooms live, so the
     // room screens and schedule look full on load.
     startDate: "2024-11-13T08:30:00Z",
+    timezone: "Asia/Bangkok",
   },
 };
 

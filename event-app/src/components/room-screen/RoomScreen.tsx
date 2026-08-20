@@ -8,7 +8,8 @@ import APP_CONFIG from "@/CONFIG";
 import { useEvent, useRoom, useSessions } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
-import { getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
+import { formatTime, getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
+import { eventFmt } from "@/data/eventTime";
 import { getTrackTheme } from "@/components/schedule/trackTheme";
 
 // Adapter for the retired trackColor(): the DC8 theme drives the pastel bg;
@@ -20,16 +21,6 @@ const trackColor = (track: string | undefined) => {
 
 const GRADIENT = "linear-gradient(to right, #7a3aff, #633cff, #bc52f1)";
 const GLASS = "bg-white/80 backdrop-blur-[10px]";
-
-const dateFmt = new Intl.DateTimeFormat(undefined, {
-  weekday: "long",
-  month: "short",
-  day: "numeric",
-});
-const timeFmt = new Intl.DateTimeFormat(undefined, {
-  hour: "numeric",
-  minute: "2-digit",
-});
 
 /** "45 min" / "2 hours" / "1 day" — coarse human duration. */
 function humanize(mins: number): string {
@@ -94,7 +85,7 @@ function UpcomingCard({ session }: { session: Session }) {
   return (
     <div className="mb-[0.5em] flex gap-[0.75em] rounded-xl border border-solid border-[#dfd8fc] p-[0.75em]">
       <div className="shrink-0 text-[1.25vw] font-bold tabular-nums">
-        {timeFmt.format(new Date(session.start * 1000))}
+        {formatTime(session.start)}
       </div>
       <div className="min-w-0">
         <p className="line-clamp-3 text-[1vw] font-semibold leading-snug">
@@ -218,11 +209,11 @@ export function RoomScreen({ roomId }: { roomId: string }) {
 
           <div className="m-[0.3em] flex justify-between p-[1em]">
             <p className="ml-[0.2em] text-[1.5vw] text-black">
-              {dateFmt.format(new Date(nowMs))}
+              {eventFmt("en-US", { weekday: "long", month: "short", day: "numeric" }).format(new Date(nowMs))}
             </p>
             <p className="mr-[0.5em] flex items-center gap-[0.75em] text-[1.25vw] font-bold text-black">
               <Clock className="h-[1.5em] w-[1.5em]" style={{ color: "#7D52F4" }} />
-              {timeFmt.format(new Date(nowMs))}
+              {formatTime(nowMs / 1000)}
             </p>
           </div>
 

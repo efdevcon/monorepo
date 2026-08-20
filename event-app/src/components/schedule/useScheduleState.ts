@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
+import { eventDayKey } from "@/data/eventTime";
 import { dayKey, getDays, getStatus, groupByTime, type TimeGroup } from "./utils";
 
 /** Facets a session can be filtered by (each multi-select). */
@@ -80,7 +81,7 @@ export function useScheduleState(
     if (!nowDate) return;
     if (selectedDay && days.some((d) => d.key === selectedDay)) return;
     if (days.length === 0) return;
-    const todayKey = `${nowDate.getFullYear()}-${nowDate.getMonth() + 1}-${nowDate.getDate()}`;
+    const todayKey = eventDayKey(nowDate.getTime());
     setSelectedDay(days.find((day) => day.key === todayKey)?.key ?? days[0].key);
   }, [days, selectedDay, nowDate]);
 
