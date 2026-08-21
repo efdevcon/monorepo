@@ -1,4 +1,5 @@
 import type { ConferenceEvent, Room, Session, Speaker } from "../models";
+import { realAvatarOnly } from "../models";
 import { datasetForEventId, getActiveDataset } from "../dataset";
 import { dayKeyToUtcMidnightMs, eventDayKey } from "../eventTime";
 import { BaseProvider, type SessionFilters } from "./provider-interface";
@@ -75,7 +76,7 @@ export class DevconApiProvider extends BaseProvider {
         id: raw.id,
         name: raw.name ?? "",
         description: raw.description ?? "",
-        avatar: raw.avatar ?? "",
+        avatar: realAvatarOnly(raw.avatar) ?? "",
         twitter: raw.twitter,
         github: raw.github,
         role: raw.role,

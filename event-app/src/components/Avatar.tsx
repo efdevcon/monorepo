@@ -35,7 +35,12 @@ export function Avatar({
   size?: number;
   className?: string;
 }) {
-  if (src) {
+  // Second line of defence for the iOS crash fixed in `realAvatarOnly`:
+  // never render an inline data-URI image here. Hundreds of these in one list
+  // (each its own SVG document in WebKit, undeferrable by lazy loading) is
+  // what exhausted the mobile content process. Providers already strip them;
+  // this keeps any future data source from reintroducing the problem.
+  if (src && !src.startsWith("data:")) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
