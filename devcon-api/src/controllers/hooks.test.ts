@@ -16,7 +16,7 @@ jest.mock('../services/github', () => ({
 // mocked client records the call instead of hitting cfp.devcon.org.
 jest.mock('../clients/pretalx', () => ({
   GetSessions: jest.fn().mockResolvedValue([]),
-  GetSpeaker: jest.fn().mockResolvedValue(null),
+  GetSpeakers: jest.fn().mockResolvedValue([]),
   clearPretalxCache: jest.fn(),
   // Matches the webhook payloads used below so the release-race guard
   // proceeds without retry sleeps in tests.
