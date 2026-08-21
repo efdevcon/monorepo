@@ -28,18 +28,16 @@ export function FilterStatusBar({
   if (parts.length === 0) return null;
 
   return (
-    <div className="flex h-9 min-w-0 items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
+    <button
+      onClick={onClear}
+      aria-label="Clear filters"
+      className="flex h-9 min-w-0 cursor-pointer items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1 transition-colors hover:bg-dc-purple-wash"
+    >
       <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
         <span className="font-bold">Filter:</span>{" "}
         <span className="font-medium">{parts.join(", ")}</span>
       </p>
-      <button
-        onClick={onClear}
-        aria-label="Clear filters"
-        className="shrink-0 cursor-pointer"
-      >
-        <CircleX className="size-4 text-dc-purple" />
-      </button>
-    </div>
+      <CircleX className="size-4 shrink-0 text-dc-purple" />
+    </button>
   );
 }
