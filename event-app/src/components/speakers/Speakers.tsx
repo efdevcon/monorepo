@@ -356,20 +356,32 @@ export function Speakers() {
         // Compact = the natural cell stack (24px cells + 8px paddings):
         // 26 letters + the keynote cell + the optional "#" cell.
         const compact = (sections.includes("#") ? 28 : 27) * 24 + 16;
-        const stuck = railTop <= pinnedOffset + 1;
         // visualViewport catches browser-chrome overlays innerHeight misses.
-        // Space is measured from the rail's live top, so the compact stack
-        // also caps to what actually fits below its resting position — on
-        // viewports too short for it, the cells flex-shrink evenly instead
-        // of letting the tail letters clip. Mobile reserves room for the
-        // floating bottom nav pill (24px offset + ~52px pill + safe-area
-        // headroom); desktop just keeps an 8px edge inset.
-        const bottomInset = isDesktopNow() ? 8 : 96;
-        const avail = Math.min(viewportH, colBottom) - railTop - bottomInset;
-        rail.style.height = `${Math.max(
-          200,
-          stuck ? avail : Math.min(compact, avail)
-        )}px`;
+        if (!isDesktopNow()) {
+          // Mobile: the rail is `fixed` (see the wrapper's max-lg: classes),
+          // so its geometry is derived from the viewport alone — never from
+          // scroll position or the column's height. `pinnedOffset` is the
+          // rows' *height*, not their position, so it doesn't move as you
+          // scroll: the rail looks identical at the top of the list, deep
+          // into it, and when a filter leaves only a couple of results.
+          // Room is reserved for the floating bottom nav pill (24px offset +
+          // ~52px pill + safe-area headroom); on viewports too short for the
+          // full stack the cells flex-shrink evenly rather than clipping.
+          rail.style.height = `${Math.max(
+            200,
+            Math.min(compact, viewportH - pinnedOffset - 96)
+          )}px`;
+        } else {
+          // Desktop: sticky in the lavender column, compact at rest and
+          // stretching to fill the viewport once pinned. Space is measured
+          // from the rail's live top and capped by the column bottom.
+          const stuck = railTop <= pinnedOffset + 1;
+          const avail = Math.min(viewportH, colBottom) - railTop - 8;
+          rail.style.height = `${Math.max(
+            200,
+            stuck ? avail : Math.min(compact, avail)
+          )}px`;
+        }
 
         const resolved = spySection ?? sections[0] ?? null;
         if (spyTargetRef.current) {
@@ -467,7 +479,10 @@ export function Speakers() {
             {/* Mobile: search + actions block (scrolls away) */}
             <div
               ref={searchBlockRef}
-              className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 lg:hidden"
+              // pr-12 = the fixed rail's 32px gutter + a 16px gap, so the
+              // right-aligned Interested pill is never clipped (or partly
+              // untappable) under the rail at the top of the page.
+              className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 pr-12 lg:hidden"
             >
               <SearchInput
                 value={search}
@@ -660,10 +675,16 @@ export function Speakers() {
                       the viewport while scrolled. Hidden alongside the empty
                       state — every cell would be disabled. */}
                   {resultCount > 0 && (
-                    <div className="w-8 shrink-0 border-l border-dc-hairline bg-dc-lavender lg:rounded-br-xl">
+                    <div className="w-8 shrink-0 border-l border-dc-hairline lg:bg-dc-lavender lg:rounded-br-xl">
                       <div
                         ref={railStickyRef}
-                        className="sticky transition-[height] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+                        className={cn(
+                          "sticky transition-[height] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
+                          // Mobile: pinned to the right edge with its own
+                          // lavender strip, so scroll position and result
+                          // count can't change how the rail looks.
+                          "max-lg:fixed max-lg:right-0 max-lg:z-20 max-lg:w-8 max-lg:bg-dc-lavender max-lg:transition-none"
+                        )}
                       >
                         <AzIndexRail
                           sections={sections}
