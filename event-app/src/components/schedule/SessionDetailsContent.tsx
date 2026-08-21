@@ -9,7 +9,7 @@ import { useNowMs } from "@/hooks/useNow";
 import { useInterested } from "@/data/interested/useInterested";
 import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
-import { formatDayLabel, formatTimeRange } from "./utils";
+import { formatDayLabel, formatTimeRange, isKeynoteSession } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
@@ -78,7 +78,7 @@ export function SessionDetailsContent({
   const location = [session.type, session.room?.name]
     .filter(Boolean)
     .join(" - ");
-  const keynote = session.type?.toLowerCase() === "keynote";
+  const keynote = isKeynoteSession(session);
 
   return (
     <div className="flex flex-col bg-dc-panel">

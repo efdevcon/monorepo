@@ -12,7 +12,6 @@ import { createPortal } from "react-dom";
 import {
   CalendarRange,
   Check,
-  CircleX,
   ClockArrowDown,
   List,
   ListFilter,
@@ -25,6 +24,11 @@ import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
+import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import {
+  SearchInput,
+  scrollToTopAndFocusSearch,
+} from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
 import { ScheduleTimeline } from "./ScheduleTimeline";
@@ -36,24 +40,42 @@ import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { formatDayHeading } from "./utils";
 import { getEventTimeZoneLabel } from "@/data/eventTime";
-import { useIsDesktop, isDesktopNow } from "@/hooks/useIsDesktop";
+import {
+  useIsDesktop,
+  isDesktopNow,
+  HEADER_OFFSET_DESKTOP,
+  HEADER_OFFSET_MOBILE,
+} from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
 
-/** Circular 32px glass icon button used in the app header (Figma). */
+/** Pinned side-panel edge gap: the aside pins at top-[81px], 16px below the
+ *  65px desktop header; the bottom keeps the same 16px to the viewport edge
+ *  so both ends of the panel match (same recipe as Speakers.tsx). */
+const PANEL_EDGE_GAP = 16;
+
+/** Circular 32px glass icon button used in the app header (Figma). Border
+ *  and fill are applied per-usage (resting vs active) — Tailwind resolves
+ *  same-property conflicts by stylesheet order, not class order, so an
+ *  appended active bg-* could not reliably override one baked in here. */
 const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-opacity";
+  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
+const headerCircleResting = "border-dc-hairline bg-white";
+const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target:
- * scroll-revealed interested + jump-to-now circles, and the filter button
- * with its active count bubble.
+ * scroll-revealed search + jump-to-now + interested circles, and the filter
+ * button with its active count bubble — same left-to-right order as the
+ * top-of-page action row. The star stays filled (matching InterestedPill);
+ * the lavender circle fill carries the active state.
  */
 function HeaderActions({
   revealed,
+  onSearch,
   interestedOnly,
   onToggleInterested,
   onJumpToNow,
@@ -61,6 +83,7 @@ function HeaderActions({
   onOpenFilters,
 }: {
   revealed: boolean;
+  onSearch: () => void;
   interestedOnly: boolean;
   onToggleInterested: () => void;
   onJumpToNow: () => void;
@@ -78,38 +101,45 @@ function HeaderActions({
       {createPortal(
     <>
       <button
-        onClick={onToggleInterested}
-        aria-label="Show interested sessions"
-        aria-pressed={interestedOnly}
+        onClick={onSearch}
+        aria-label="Search sessions"
         className={cn(
           headerCircle,
+          headerCircleResting,
           !revealed && "pointer-events-none opacity-0"
         )}
       >
-        <Star
-          className={cn(
-            "size-4",
-            interestedOnly ? "text-dc-purple" : "text-dc-fg"
-          )}
-          fill={interestedOnly ? "currentColor" : "none"}
-        />
+        <Search className="size-4 text-dc-purple" />
       </button>
       <button
         onClick={onJumpToNow}
         aria-label="Jump to now"
         className={cn(
           headerCircle,
+          headerCircleResting,
           !revealed && "pointer-events-none opacity-0"
         )}
       >
-        <ClockArrowDown className="size-4 text-dc-fg" />
+        <ClockArrowDown className="size-4 text-dc-purple" />
+      </button>
+      <button
+        onClick={onToggleInterested}
+        aria-label="Show interested sessions"
+        aria-pressed={interestedOnly}
+        className={cn(
+          headerCircle,
+          interestedOnly ? headerCircleActive : headerCircleResting,
+          !revealed && "pointer-events-none opacity-0"
+        )}
+      >
+        <Star className="size-4 text-dc-purple" fill="currentColor" />
       </button>
       <button
         onClick={onOpenFilters}
         aria-label="Open filters"
-        className={cn(headerCircle, "relative")}
+        className={cn(headerCircle, headerCircleResting, "relative")}
       >
-        <ListFilter className="size-4 text-dc-fg" />
+        <ListFilter className="size-4 text-dc-purple" />
         {filterCount > 0 && (
           <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
             {filterCount}
@@ -120,44 +150,6 @@ function HeaderActions({
         target
       )}
     </>
-  );
-}
-
-/** Search input per Figma: 40px white field, purple search glyph, clear "x". */
-function SearchInput({
-  value,
-  onChange,
-  className,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "flex h-10 items-center gap-2 rounded-lg border border-dc-hairline bg-white px-3 transition-colors hover:border-dc-muted focus-within:border-dc-muted",
-        className
-      )}
-    >
-      <Search className="size-4 shrink-0 text-dc-purple" />
-      <input
-        type="search"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search by session, speaker or topic"
-        className="min-w-0 flex-1 bg-transparent text-[14px] leading-5 text-dc-fg outline-none placeholder:text-dc-muted [&::-webkit-search-cancel-button]:hidden"
-      />
-      {value && (
-        <button
-          onClick={() => onChange("")}
-          aria-label="Clear search"
-          className="shrink-0 cursor-pointer"
-        >
-          <CircleX className="size-4 text-dc-purple" />
-        </button>
-      )}
-    </div>
   );
 }
 
@@ -323,9 +315,12 @@ function GroupHeader({
     const el = sentinelRef.current;
     if (inPanel || !el) return;
     // The sentinel marks the header's natural position: once it crosses
-    // above the pin line (1px past the breakpoint's sticky top offset),
+    // above the pin line (1px past the breakpoint's sticky top offset =
+    // app header + day-tab strip, see the sticky top-[103px]/[118px]),
     // the header is stuck.
-    const pinLine = isDesktop ? 119 : 104;
+    const pinLine = isDesktop
+      ? HEADER_OFFSET_DESKTOP + 54
+      : HEADER_OFFSET_MOBILE + 48;
     const observer = new IntersectionObserver(
       ([entry]) =>
         setStuck(
@@ -437,6 +432,9 @@ export function Schedule() {
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
   const searchBlockRef = useRef<HTMLDivElement | null>(null);
+  const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const mainCardRef = useRef<HTMLDivElement | null>(null);
+  const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
   // Reveal the header's star/jump buttons once the search block scrolls away.
@@ -445,7 +443,7 @@ export function Schedule() {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => setScrolled(!entry.isIntersecting),
-      { rootMargin: "-56px 0px 0px 0px" }
+      { rootMargin: `-${HEADER_OFFSET_MOBILE}px 0px 0px 0px` }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -526,6 +524,48 @@ export function Schedule() {
 
   const sidePanelOpen = isDesktop && (filtersOpen || !!selectedSession);
 
+  // Sticky side-panel growth (unified with Speakers.tsx's measure loop —
+  // keep the math in sync): as the pinned aside's top approaches the header,
+  // grow the panel's max-height so it keeps PANEL_EDGE_GAP to the viewport
+  // bottom — capped at the content column's bottom edge. Without that cap, a
+  // list shorter than the panel gives the sticky aside no room to pin, so
+  // scrolling raises `top`, which grew the max-height, which lengthened the
+  // page — a feedback loop that expands the panel to its entire content.
+  // The var mutates the DOM directly so per-frame scrolling doesn't
+  // re-render the (large) session list.
+  useEffect(() => {
+    if (!sidePanelOpen) return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const aside = asideRef.current;
+      if (!aside) return;
+      const viewportH = window.visualViewport?.height ?? window.innerHeight;
+      const asideTop = aside.getBoundingClientRect().top;
+      const cardBottom =
+        mainCardRef.current?.getBoundingClientRect().bottom ?? Infinity;
+      // Resting size: 141px natural offset (nav + page title) + edge gap.
+      const defaultRest = viewportH - 141 - PANEL_EDGE_GAP;
+      const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
+      const contentLimit = cardBottom - asideTop;
+      aside.style.setProperty(
+        "--schedule-panel-max-h",
+        `${Math.max(240, defaultRest, Math.min(gapTarget, contentLimit))}px`
+      );
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [sidePanelOpen]);
+
   // Side-panel content, kept mounted through the 300ms exit transition so the
   // closing panel doesn't collapse into an empty box.
   const livePanelContent = selectedSession ? (
@@ -534,8 +574,10 @@ export function Schedule() {
       onClose={() => selectSession(null)}
     />
   ) : filtersOpen ? (
-    // 141px natural offset (nav + page title) + 32px bottom clearance
-    <div className="h-[calc(100dvh-173px)]">
+    // Same growth var as the details panels: the filter column keeps
+    // PANEL_EDGE_GAP to the viewport bottom while pinned. The fallback
+    // matches the resting 141px natural offset + that 16px clearance.
+    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px))] min-h-0 flex-col">
       <FilterPanelContent
         options={filterOptions}
         filters={filters}
@@ -599,6 +641,9 @@ export function Schedule() {
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
         revealed={scrolled}
+        onSearch={() =>
+          scrollToTopAndFocusSearch(mobileSearchInputRef.current)
+        }
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         onJumpToNow={jumpToNow}
@@ -615,37 +660,30 @@ export function Schedule() {
         {/* No gap here — the animated aside carries the 16px gutter (pl-4). */}
         <div className="lg:flex lg:items-start">
           {/* Main panel */}
-          <div className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]">
+          <div
+            ref={mainCardRef}
+            className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
+          >
             {/* Mobile: search + actions block (scrolls away) */}
             <div
               ref={searchBlockRef}
               className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 lg:hidden"
             >
-              <SearchInput value={search} onChange={setSearch} />
+              <SearchInput
+                value={search}
+                onChange={setSearch}
+                placeholder="Search by session, speaker or topic"
+                inputRef={mobileSearchInputRef}
+              />
               <div className="flex items-center justify-between">
-                <button
-                  onClick={jumpToNow}
-                  className="flex h-8 cursor-pointer items-center gap-1.5 rounded-full p-1 text-[12px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
-                >
+                <button onClick={jumpToNow} className={ghostPill}>
                   <ClockArrowDown className="size-4" />
                   Jump to now
                 </button>
-                <button
-                  onClick={() => setInterestedOnly((v) => !v)}
-                  aria-pressed={interestedOnly}
-                  className={cn(
-                    "flex min-h-8 cursor-pointer items-center gap-2 rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg",
-                    interestedOnly
-                      ? "border-dc-purple bg-dc-lavender"
-                      : "border-dc-hairline bg-white"
-                  )}
-                >
-                  <Star
-                    className="size-3 text-dc-purple"
-                    fill="currentColor"
-                  />
-                  Interested
-                </button>
+                <InterestedPill
+                  active={interestedOnly}
+                  onToggle={() => setInterestedOnly((v) => !v)}
+                />
               </div>
             </div>
 
@@ -654,6 +692,7 @@ export function Schedule() {
               <SearchInput
                 value={search}
                 onChange={setSearch}
+                placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
               />
               <ViewToggle view={view} onChange={setView} />
@@ -665,23 +704,11 @@ export function Schedule() {
               selectedDay={selectedDay}
               onSelect={setSelectedDay}
             >
-              <button
-                onClick={() => setInterestedOnly((v) => !v)}
-                aria-pressed={interestedOnly}
-                className={cn(
-                  "flex min-h-9 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[14px] leading-none text-dc-fg2",
-                  interestedOnly
-                    ? "border-dc-purple bg-white"
-                    : "border-dc-hairline bg-white"
-                )}
-              >
-                <Star className="size-4 text-dc-purple" fill="currentColor" />
-                Interested
-              </button>
-              <button
-                onClick={jumpToNow}
-                className="flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[14px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
-              >
+              <InterestedPill
+                active={interestedOnly}
+                onToggle={() => setInterestedOnly((v) => !v)}
+              />
+              <button onClick={jumpToNow} className={ghostPill}>
                 <ClockArrowDown className="size-4" />
                 Jump to now
               </button>
@@ -691,8 +718,9 @@ export function Schedule() {
                   else openFilters();
                 }}
                 className={cn(
-                  "relative flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[14px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash",
-                  activeFilterCount > 0 && "border border-dc-purple"
+                  ghostPill,
+                  "relative",
+                  activeFilterCount > 0 && "border border-dc-purple bg-dc-lavender"
                 )}
               >
                 <ListFilter className="size-4" />
@@ -815,10 +843,14 @@ export function Schedule() {
               column shrinks on the same clock, while the panel itself slides
               in from the right with a fade — one 300ms ease-out pair. */}
           <aside
+            ref={asideRef}
             aria-hidden={!sidePanelOpen}
+            // Closed panel stays mounted for the exit transition — inert
+            // keeps its invisible controls out of the tab order.
+            inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
-              "sticky top-20 hidden shrink-0 overflow-hidden lg:block",
+              "sticky top-[81px] hidden shrink-0 overflow-hidden lg:block",
               "transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
             )}
           >
