@@ -36,8 +36,10 @@ export function TopicSheet({
       open={open}
       onOpenChange={onOpenChange}
       ariaLabel="Filter by topic"
+      // The top-15 pill grid is short — hug it instead of pinning fullscreen.
+      fit
     >
-      <div className="flex h-full min-h-0 flex-col overflow-clip rounded-t-xl border border-dc-hairline bg-white">
+      <div className="flex min-h-0 flex-col overflow-clip rounded-t-xl border border-dc-hairline bg-white">
         {/* Header */}
         <div className="flex shrink-0 flex-col gap-1 border-b border-dc-hairline bg-white p-4">
           <div className="flex items-center justify-between gap-4">

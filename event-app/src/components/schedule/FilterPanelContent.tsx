@@ -66,13 +66,16 @@ function CheckboxRow({
   onToggle: () => void;
 }) {
   return (
+    // items-start + a line-height-tall (h-5) box container: long labels wrap
+    // left-aligned (buttons center text by default) under a checkbox that
+    // stays centered on the first line instead of the whole block.
     <button
       role="checkbox"
       aria-checked={checked}
       onClick={onToggle}
-      className="group flex h-6 cursor-pointer items-center gap-2"
+      className="group flex min-h-6 cursor-pointer items-start gap-2 text-left"
     >
-      <span className="flex size-4 items-center justify-center">
+      <span className="flex h-5 w-4 shrink-0 items-center justify-center">
         {checked ? (
           <span className="flex size-4 items-center justify-center rounded-[4px] bg-dc-purple">
             <Check className="size-3 text-white" strokeWidth={3} />

@@ -52,6 +52,11 @@ type ViewMode = "list" | "timeline";
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
 
+/** Pinned side-panel edge gap: the aside pins at top-[81px], 16px below the
+ *  65px desktop header; the bottom keeps the same 16px to the viewport edge
+ *  so both ends of the panel match (same recipe as Speakers.tsx). */
+const PANEL_EDGE_GAP = 16;
+
 /** Circular 32px glass icon button used in the app header (Figma). Border
  *  and fill are applied per-usage (resting vs active) — Tailwind resolves
  *  same-property conflicts by stylesheet order, not class order, so an
@@ -428,6 +433,8 @@ export function Schedule() {
   const [listJumpSignal, setListJumpSignal] = useState(0);
   const searchBlockRef = useRef<HTMLDivElement | null>(null);
   const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const mainCardRef = useRef<HTMLDivElement | null>(null);
+  const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
   // Reveal the header's star/jump buttons once the search block scrolls away.
@@ -517,6 +524,48 @@ export function Schedule() {
 
   const sidePanelOpen = isDesktop && (filtersOpen || !!selectedSession);
 
+  // Sticky side-panel growth (unified with Speakers.tsx's measure loop —
+  // keep the math in sync): as the pinned aside's top approaches the header,
+  // grow the panel's max-height so it keeps PANEL_EDGE_GAP to the viewport
+  // bottom — capped at the content column's bottom edge. Without that cap, a
+  // list shorter than the panel gives the sticky aside no room to pin, so
+  // scrolling raises `top`, which grew the max-height, which lengthened the
+  // page — a feedback loop that expands the panel to its entire content.
+  // The var mutates the DOM directly so per-frame scrolling doesn't
+  // re-render the (large) session list.
+  useEffect(() => {
+    if (!sidePanelOpen) return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const aside = asideRef.current;
+      if (!aside) return;
+      const viewportH = window.visualViewport?.height ?? window.innerHeight;
+      const asideTop = aside.getBoundingClientRect().top;
+      const cardBottom =
+        mainCardRef.current?.getBoundingClientRect().bottom ?? Infinity;
+      // Resting size: 141px natural offset (nav + page title) + edge gap.
+      const defaultRest = viewportH - 141 - PANEL_EDGE_GAP;
+      const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
+      const contentLimit = cardBottom - asideTop;
+      aside.style.setProperty(
+        "--schedule-panel-max-h",
+        `${Math.max(240, defaultRest, Math.min(gapTarget, contentLimit))}px`
+      );
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [sidePanelOpen]);
+
   // Side-panel content, kept mounted through the 300ms exit transition so the
   // closing panel doesn't collapse into an empty box.
   const livePanelContent = selectedSession ? (
@@ -525,8 +574,10 @@ export function Schedule() {
       onClose={() => selectSession(null)}
     />
   ) : filtersOpen ? (
-    // 141px natural offset (nav + page title) + 32px bottom clearance
-    <div className="h-[calc(100dvh-173px)]">
+    // Same growth var as the details panels: the filter column keeps
+    // PANEL_EDGE_GAP to the viewport bottom while pinned. The fallback
+    // matches the resting 141px natural offset + that 16px clearance.
+    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px))] min-h-0 flex-col">
       <FilterPanelContent
         options={filterOptions}
         filters={filters}
@@ -609,7 +660,10 @@ export function Schedule() {
         {/* No gap here — the animated aside carries the 16px gutter (pl-4). */}
         <div className="lg:flex lg:items-start">
           {/* Main panel */}
-          <div className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]">
+          <div
+            ref={mainCardRef}
+            className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
+          >
             {/* Mobile: search + actions block (scrolls away) */}
             <div
               ref={searchBlockRef}
@@ -789,13 +843,14 @@ export function Schedule() {
               column shrinks on the same clock, while the panel itself slides
               in from the right with a fade — one 300ms ease-out pair. */}
           <aside
+            ref={asideRef}
             aria-hidden={!sidePanelOpen}
             // Closed panel stays mounted for the exit transition — inert
             // keeps its invisible controls out of the tab order.
             inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
-              "sticky top-20 hidden shrink-0 overflow-hidden lg:block",
+              "sticky top-[81px] hidden shrink-0 overflow-hidden lg:block",
               "transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
             )}
           >

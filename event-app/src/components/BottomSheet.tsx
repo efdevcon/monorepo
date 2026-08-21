@@ -20,11 +20,19 @@ export function BottomSheet({
   open,
   onOpenChange,
   ariaLabel,
+  fit = false,
   children,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   ariaLabel: string;
+  /**
+   * Content-hugging variant: the sheet rises only as far as its content
+   * needs (capped at the usual 81px top inset) instead of pinning
+   * near-fullscreen — for short content like the topic pills, where a
+   * pinned sheet is mostly empty space.
+   */
+  fit?: boolean;
   children: React.ReactNode;
 }) {
   const [mounted, setMounted] = useState(false);
@@ -81,7 +89,11 @@ export function BottomSheet({
             aria-modal="true"
             aria-label={ariaLabel}
             className={cn(
-              "absolute inset-x-0 bottom-0 top-[81px] transition-transform motion-reduce:transition-none",
+              "absolute inset-x-0 bottom-0 transition-transform motion-reduce:transition-none",
+              // Fit mode: height comes from the content (children must drop
+              // h-full); the flex column lets their inner scroll areas cap
+              // at the same 81px top inset the pinned variant uses.
+              fit ? "flex max-h-[calc(100%-81px)] flex-col" : "top-[81px]",
               // Exit is faster and eases in — leaving shouldn't feel as
               // weighty as arriving.
               entered
