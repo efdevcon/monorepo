@@ -107,7 +107,16 @@ export async function getFeaturedSessions(
 }
 
 export async function getSessionBySlug(slug: string, eventId?: string) {
-  const response = await fetch(`${CONFIG.API_BASE_URL}/sessions/${slug}`);
+  // Session ids (slugified titles) are not unique across events, and the
+  // API's bare-id lookup is last-event-wins — a test-event clone of a
+  // devcon-7 talk once shadowed the original and 404'd its archive page.
+  // Passing ?event= makes the API resolve within the right event; the
+  // eventId re-check below stays as belt-and-braces for older API deploys
+  // that ignore the param.
+  const query = eventId ? `?event=${encodeURIComponent(eventId)}` : "";
+  const response = await fetch(
+    `${CONFIG.API_BASE_URL}/sessions/${slug}${query}`
+  );
   const session = await response.json();
 
   if (!eventId) return session.data;

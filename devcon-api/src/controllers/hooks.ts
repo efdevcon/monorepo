@@ -148,6 +148,17 @@ async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersio
 
   // 2) Build the new set, then 3) hand it to the store for an atomic swap.
   const storeData = sessions.map((s: any) => pretalxToStoreData(s, eventId))
+
+  // Loud collision check: ids are slugified titles, so a talk in this event
+  // named like another event's talk produces the SAME id and shadows it in
+  // every bare-id lookup (test clones of devcon-7 talks 404'd the archive,
+  // 2026-08-21). The sync proceeds — consumers can disambiguate with
+  // ?event= — but this must never happen silently again.
+  const collisions = store.getCrossEventCollisions(eventId, storeData.map((s: any) => s.id))
+  for (const c of collisions) {
+    console.warn(`[collision] session id '${c.id}' in ${eventId} also exists in ${c.otherEventId} — rename one (bare-id lookups will shadow)`)
+  }
+
   const count = store.replaceEventSessions(eventId, storeData)
   console.log(`Swapped in ${count} sessions for ${eventId} (zero-downtime)`)
 
