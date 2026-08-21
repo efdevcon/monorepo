@@ -329,9 +329,17 @@ export function Speakers() {
       const pinnedOffset = headerOffset + rowsH;
 
       const rail = railStickyRef.current;
-      const railTop = rail?.getBoundingClientRect().top ?? 0;
-      const colBottom =
-        rail?.parentElement?.getBoundingClientRect().bottom ?? Infinity;
+      // Measure the rail's CONTAINER, never the rail itself. The sticky offset
+      // is written further down in this same function, so on the first run
+      // after mount `top` is still unset and a sticky element with no offset
+      // reports its *static* position — ~30,000px above the viewport when the
+      // page loads already scrolled (reload deep in the list). That fed a
+      // 30,631px height into the cell stack, spreading the 28 letters so far
+      // apart that only one stayed on screen. The container's box is always
+      // truthful, and a sticky child sits at max(pinnedOffset, containerTop).
+      const colRect = rail?.parentElement?.getBoundingClientRect();
+      const colTop = colRect?.top ?? 0;
+      const colBottom = colRect?.bottom ?? Infinity;
 
       // Scroll-spy read: the key of the topmost section in view. Sections
       // render in `sections` order, so take the last one above the spy line.
@@ -391,8 +399,9 @@ export function Speakers() {
           // stretching to fill the viewport once pinned. Space is measured
           // from the rail's live top and capped by the column bottom.
           rail.style.removeProperty("--az-rail-stack-h");
-          const stuck = railTop <= pinnedOffset + 1;
-          const avail = Math.min(viewportH, colBottom) - railTop - 8;
+          const stuck = colTop <= pinnedOffset;
+          const stackTop = Math.max(pinnedOffset, colTop);
+          const avail = Math.min(viewportH, colBottom) - stackTop - 8;
           rail.style.height = `${Math.max(
             200,
             stuck ? avail : Math.min(compact, avail)
