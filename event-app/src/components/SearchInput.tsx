@@ -18,22 +18,19 @@ type InputRef =
  * a timeout fallback for browsers without the event or interrupted scrolls.
  */
 export function scrollToTopAndFocusSearch(input: HTMLInputElement | null) {
-  const focus = () => input?.focus({ preventScroll: true });
-  if (window.scrollY <= 0) {
-    focus();
-    return;
-  }
-  let done = false;
-  const finish = () => {
-    if (done) return;
-    done = true;
-    window.removeEventListener("scrollend", finish);
-    window.clearTimeout(timeout);
-    focus();
-  };
-  const timeout = window.setTimeout(finish, 1000);
-  window.addEventListener("scrollend", finish);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  // Focus FIRST, synchronously inside the click gesture: iOS Safari only
+  // raises the on-screen keyboard for a focus() call made during a user
+  // gesture. Waiting for the scroll to finish (scrollend / a timeout) put the
+  // focus outside the gesture, so the field got a caret but no keyboard —
+  // and since the header search button only appears once scrolled, that was
+  // the path every tap took. `preventScroll` stops the focus itself from
+  // yanking the viewport before we scroll deliberately below.
+  input?.focus({ preventScroll: true });
+  // Instant, not smooth: this runs from wherever the user had scrolled to,
+  // and on a list ~98 viewports tall (/speakers) animating the whole way
+  // makes WebKit rasterize everything in between — the cost that was
+  // crashing iOS on rapid A–Z jumps.
+  window.scrollTo({ top: 0, behavior: "auto" });
 }
 
 /** Search input per Figma: 40px white field, purple search glyph, clear "x". */
