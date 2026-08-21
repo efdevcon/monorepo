@@ -64,11 +64,16 @@ export function DebugPanel() {
 
   const [open, setOpen] = useState(false);
   const [mockNow, setMockNow] = useState(() => {
+    // Seed from ?mockNow when present, else default to the active dataset's
+    // event start (same seed as switching datasets) so the field is never a
+    // blank dd/mm/yyyy, --:-- picker.
+    const active = DATASETS[getActiveDatasetKey()];
     const raw = params.get("mockNow");
-    if (!raw) return "";
-    const t = new Date(raw).getTime();
-    if (isNaN(t)) return "";
-    return utcMsToWallClock(DATASETS[getActiveDatasetKey()].timezone, t);
+    const t = raw ? new Date(raw).getTime() : NaN;
+    return utcMsToWallClock(
+      active.timezone,
+      isNaN(t) ? Date.parse(active.startDate) : t
+    );
   });
   const [mockSpeed, setMockSpeed] = useState(() => params.get("mockSpeed") ?? "");
   const [dataset, setDataset] = useState<DatasetKey>(() =>

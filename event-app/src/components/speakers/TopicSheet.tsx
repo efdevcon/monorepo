@@ -12,8 +12,8 @@ import {
 /**
  * Mobile "Filter by Topic" bottom sheet (Figma): the speakers counterpart of
  * the schedule's FilterSheet — the shared BottomSheet shell around a wrapping
- * pill grid of every topic in the dataset. Filters apply live, so Close is
- * the primary CTA.
+ * pill grid of the topic vocabulary. Filters apply live, so Close is the
+ * primary CTA.
  */
 export function TopicSheet({
   open,
@@ -25,7 +25,7 @@ export function TopicSheet({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  /** Every topic tag in the dataset, most frequent first. */
+  /** Topic vocabulary, most frequent first — same top slice as desktop. */
   options: string[];
   selected: string[];
   onToggle: (topic: string) => void;

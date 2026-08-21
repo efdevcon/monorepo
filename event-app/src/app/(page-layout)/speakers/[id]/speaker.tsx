@@ -1,7 +1,11 @@
 "use client";
 
 import { use } from "react";
+import { ArrowLeft } from "lucide-react";
+import cn from "classnames";
 import APP_CONFIG from "@/CONFIG";
+import { BackButton } from "@/routing";
+import { ghostPill } from "@/components/ActionPills";
 import { useSpeakersData } from "@/components/speakers/useSpeakersData";
 import { SpeakerDetailsContent } from "@/components/speakers/SpeakerDetailsContent";
 
@@ -14,8 +18,9 @@ interface SpeakerClientProps {
  * Fullscreen speaker details (mobile flow + the desktop panel's "Expand
  * details" target). Resolves from the cached speakers × sessions join, so a
  * speaker never opened while online still renders offline once the lists have
- * loaded. Back navigation comes from AppHeader (routeChrome) — no page-level
- * BackButton.
+ * loaded. Mobile back navigation comes from AppHeader (routeChrome); the
+ * desktop header has no back slot, so a page-level ghost-pill BackButton
+ * sits above the card there (PR #112 feedback).
  */
 export default function Speaker({ params, id: directId }: SpeakerClientProps) {
   const id = directId ?? use(params!).id;
@@ -52,6 +57,18 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
           which otherwise shows the gradient below short AND long profiles. */}
       <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
       <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
+        {/* Desktop-only back control (ghostPill carries its own `flex`, so
+            the breakpoint gate lives on a wrapper) — pulled left (-ml-3) so
+            the label's optical edge aligns with the card below. */}
+        <div className="hidden lg:block">
+          <BackButton
+            fallbackHref="/speakers"
+            className={cn(ghostPill, "-ml-3 mb-2")}
+          >
+            <ArrowLeft className="size-4" />
+            Back
+          </BackButton>
+        </div>
         <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
           <SpeakerDetailsContent decorated={decorated} />
         </div>

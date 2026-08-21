@@ -47,6 +47,8 @@ function TimelineSession({
   return (
     <Link
       href={`/schedule/${session.id}`}
+      // No viewport prefetch (see SpeakerCard) — client page on cached data.
+      prefetch={false}
       title={`${session.title} — ${session.room?.name ?? ""}`}
       onClick={(e) => {
         if (onOpen && isDesktopNow()) {

@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import type { DecoratedSpeaker } from "./useSpeakersData";
+import { SpeakerTagChip } from "./SpeakerCard";
 import { SpeakerSessionMiniCard } from "./SpeakerSessionMiniCard";
 
 /** GitHub glyph — lucide dropped its brand icons, so inline SVG. */
@@ -53,7 +54,7 @@ export function SpeakerDetailsContent({
   /** Extra root classes — the mobile page stretches the panel surface. */
   className?: string;
 }) {
-  const { speaker, sessions, isKeynote } = decorated;
+  const { speaker, sessions, tags, isKeynote } = decorated;
   const { isInterested, toggle } = useInterestedSpeakers();
   const interested = isInterested(speaker.id);
 
@@ -151,14 +152,28 @@ export function SpeakerDetailsContent({
 
       {/* Profile + actions */}
       <div className="flex flex-col gap-6 border-b border-dc-hairline p-4">
-        {speaker.description && (
+        {(speaker.description || tags.length > 0) && (
           <div className="flex flex-col gap-2">
-            <h2 className="text-[14px] font-bold leading-5 text-dc-fg2">
-              Profile
-            </h2>
-            <p className="text-[14px] leading-5 text-dc-fg2">
-              {speaker.description}
-            </p>
+            {speaker.description && (
+              <>
+                <h2 className="text-[14px] font-bold leading-5 text-dc-fg2">
+                  Profile
+                </h2>
+                <p className="text-[14px] leading-5 text-dc-fg2">
+                  {speaker.description}
+                </p>
+              </>
+            )}
+            {/* Topic-tag recap — the list clips these, so the details view
+                spells them out (PR #112 feedback). Same 3-tag cap as the
+                desktop card row. */}
+            {tags.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1 pt-1">
+                {tags.slice(0, 3).map((tag) => (
+                  <SpeakerTagChip key={tag} tag={tag} />
+                ))}
+              </div>
+            )}
           </div>
         )}
         <div className="grid grid-cols-2 gap-3">

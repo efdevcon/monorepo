@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useSessions, useSpeakers } from "@/data/hooks";
 import type { Session, Speaker } from "@/data/models";
+import { deriveTopicOptions } from "@/data/topics";
 import { isKeynoteSession } from "@/components/schedule/utils";
 
 /**
@@ -25,9 +26,6 @@ export interface DecoratedSpeaker {
   /** Grouping letter: uppercased first character, "#" for non A–Z. */
   letter: string;
 }
-
-/** How many topic pills the filter row offers (top tags by frequency). */
-const TOPIC_PILL_COUNT = 15;
 
 const letterFor = (name: string): string => {
   // Strip diacritics first so "Étienne" groups under E (and stays contiguous
@@ -63,7 +61,6 @@ export function useSpeakersData() {
   // page each render (project Set/Map-identity gotcha).
   const derived = useMemo(() => {
     const bySpeakerId = new Map<string, Session[]>();
-    const tagCounts = new Map<string, number>();
     const typeSet = new Set<string>();
 
     for (const session of sessions) {
@@ -73,15 +70,10 @@ export function useSpeakersData() {
         if (list) list.push(session);
         else bySpeakerId.set(sp.id, [session]);
       }
-      // Filter vocabularies come from speakered sessions only — a tag/type
+      // The format-tab vocabulary comes from speakered sessions only — a type
       // that exists solely on speakerless sessions (breaks, ceremonies)
-      // would render a pill that can never match any speaker.
+      // would render a tab that can never match any speaker.
       if (speakerRefs.length === 0) continue;
-      for (const raw of session.tags ?? []) {
-        const tag = raw.trim();
-        if (!tag) continue;
-        tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
-      }
       if (session.type) typeSet.add(session.type);
     }
 
@@ -114,16 +106,14 @@ export function useSpeakersData() {
 
     const byId = new Map(decorated.map((d) => [d.speaker.id, d]));
 
-    // All topics by frequency (most useful first) — the mobile "Filter by
-    // Topic" sheet lists everything; the desktop pill row shows the top slice.
-    const allTopicOptions = [...tagCounts.entries()]
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .map(([tag]) => tag);
-    const topicOptions = allTopicOptions.slice(0, TOPIC_PILL_COUNT);
+    // Shared topic vocabulary (top tags by frequency) — the desktop pill row
+    // and the mobile "Filter by Topic" sheet show the same slice, and the
+    // schedule Filters panel reuses the same derivation.
+    const topicOptions = deriveTopicOptions(sessions);
 
     const typeOptions = [...typeSet].sort((a, b) => a.localeCompare(b));
 
-    return { decorated, byId, topicOptions, allTopicOptions, typeOptions };
+    return { decorated, byId, topicOptions, typeOptions };
   }, [speakers, sessions]);
 
   // The join needs BOTH halves: loading until each list has data (otherwise

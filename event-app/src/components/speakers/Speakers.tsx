@@ -2,11 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CircleX, ListFilter, Star } from "lucide-react";
+import { CircleX, ListFilter, Search, Star } from "lucide-react";
 import cn from "classnames";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { InterestedPill } from "@/components/ActionPills";
-import { SearchInput } from "@/components/SearchInput";
+import {
+  SearchInput,
+  scrollToTopAndFocusSearch,
+} from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import {
   useIsDesktop,
@@ -44,18 +47,20 @@ const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target (mobile):
- * the scroll-revealed interested circle and the topic-filter button with its
- * active count bubble. The star stays filled (matching InterestedPill); the
- * lavender circle fill carries the active state.
+ * the scroll-revealed search and interested circles and the topic-filter
+ * button with its active count bubble. The star stays filled (matching
+ * InterestedPill); the lavender circle fill carries the active state.
  */
 function HeaderActions({
   revealed,
+  onSearch,
   interestedOnly,
   onToggleInterested,
   filterCount,
   onOpenFilters,
 }: {
   revealed: boolean;
+  onSearch: () => void;
   interestedOnly: boolean;
   onToggleInterested: () => void;
   filterCount: number;
@@ -71,6 +76,17 @@ function HeaderActions({
     <>
       {createPortal(
         <>
+          <button
+            onClick={onSearch}
+            aria-label="Search speakers"
+            className={cn(
+              headerCircle,
+              headerCircleResting,
+              !revealed && "pointer-events-none opacity-0"
+            )}
+          >
+            <Search className="size-4 text-dc-purple" />
+          </button>
           <button
             onClick={onToggleInterested}
             aria-label="Show interested speakers"
@@ -117,7 +133,6 @@ export function Speakers() {
     decorated,
     byId,
     topicOptions,
-    allTopicOptions,
     typeOptions,
     isLoading,
     isError,
@@ -152,6 +167,7 @@ export function Speakers() {
   const [topicSheetOpen, setTopicSheetOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const searchBlockRef = useRef<HTMLDivElement | null>(null);
+  const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
   const letterRefs = useRef(new Map<string, HTMLElement | null>());
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const stickyRowsRef = useRef<HTMLDivElement | null>(null);
@@ -418,6 +434,9 @@ export function Speakers() {
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
         revealed={scrolled}
+        onSearch={() =>
+          scrollToTopAndFocusSearch(mobileSearchInputRef.current)
+        }
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         filterCount={topics.length}
@@ -446,6 +465,7 @@ export function Speakers() {
                 value={search}
                 onChange={setSearch}
                 placeholder="Find a speaker"
+                inputRef={mobileSearchInputRef}
               />
               <div className="flex items-center justify-end">
                 <InterestedPill
@@ -543,7 +563,7 @@ export function Speakers() {
                       <div className="lg:hidden">
                         <div className="flex h-9 min-w-0 items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
                           <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
-                            <span className="font-bold">Filter:</span>{" "}
+                            <span className="font-bold">Filters:</span>{" "}
                             <span className="font-medium">
                               {[
                                 topics.length > 0 && topics.join(" or "),
@@ -686,7 +706,7 @@ export function Speakers() {
         <TopicSheet
           open={topicSheetOpen}
           onOpenChange={setTopicSheetOpen}
-          options={allTopicOptions}
+          options={topicOptions}
           selected={topics}
           onToggle={toggleTopic}
           onClear={clearTopics}

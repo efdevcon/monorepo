@@ -31,6 +31,8 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
   return (
     <Link
       href={`/schedule/${session.id}`}
+      // No viewport prefetch (see SpeakerCard) — client page on cached data.
+      prefetch={false}
       className="group relative flex gap-4 overflow-clip rounded-lg border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:border-dc-purple/40"
     >
       {/* 8px track-colored accent rail */}

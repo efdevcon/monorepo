@@ -88,6 +88,7 @@ function CheckboxRow({
 
 /**
  * Filter panel body (Figma "Full filter panel"): Tracks as gem pill-chips,
+ * Topics as plain pill-chips (the shared Speakers-page vocabulary),
  * Locations / CLS / Session formats / Expertise as checkbox rows, wrapped in
  * accordions, with the white header (Clear all, close) and the sticky footer
  * (Close, Reset filters). Shells position it: bottom sheet on mobile, right
@@ -174,6 +175,39 @@ export function FilterPanelContent({
                       />
                     )}
                     {track}
+                  </button>
+                );
+              })}
+            </div>
+          </AccordionSection>
+        )}
+
+        {options.topic.length > 0 && (
+          <AccordionSection
+            title="Topics"
+            count={filters.topic.length}
+            defaultOpen={defaultOpen}
+          >
+            {/* Same chip grammar as Tracks; topics have no track theme, so
+                the active state is the app's purple treatment instead of a
+                per-track pastel. The list is the shared Speakers-page topic
+                vocabulary (top session tags by frequency). */}
+            <div className="flex flex-wrap gap-2">
+              {options.topic.map((topic) => {
+                const active = filters.topic.includes(topic);
+                return (
+                  <button
+                    key={topic}
+                    onClick={() => onToggle("topic", topic)}
+                    aria-pressed={active}
+                    className={cn(
+                      "flex min-h-8 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
+                      active
+                        ? "border-dc-purple bg-dc-lavender font-semibold"
+                        : "border-dc-hairline bg-white font-normal"
+                    )}
+                  >
+                    {topic}
                   </button>
                 );
               })}

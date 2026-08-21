@@ -17,6 +17,7 @@ import {
   ListFilter,
   MoveDown,
   MoveUp,
+  Search,
   Star,
 } from "lucide-react";
 import cn from "classnames";
@@ -24,7 +25,10 @@ import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
-import { SearchInput } from "@/components/SearchInput";
+import {
+  SearchInput,
+  scrollToTopAndFocusSearch,
+} from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
 import { ScheduleTimeline } from "./ScheduleTimeline";
@@ -59,13 +63,14 @@ const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target:
- * scroll-revealed jump-to-now + interested circles, and the filter button
- * with its active count bubble — same left-to-right order as the top-of-page
- * action row. The star stays filled (matching InterestedPill); the lavender
- * circle fill carries the active state.
+ * scroll-revealed search + jump-to-now + interested circles, and the filter
+ * button with its active count bubble — same left-to-right order as the
+ * top-of-page action row. The star stays filled (matching InterestedPill);
+ * the lavender circle fill carries the active state.
  */
 function HeaderActions({
   revealed,
+  onSearch,
   interestedOnly,
   onToggleInterested,
   onJumpToNow,
@@ -73,6 +78,7 @@ function HeaderActions({
   onOpenFilters,
 }: {
   revealed: boolean;
+  onSearch: () => void;
   interestedOnly: boolean;
   onToggleInterested: () => void;
   onJumpToNow: () => void;
@@ -89,6 +95,17 @@ function HeaderActions({
     <>
       {createPortal(
     <>
+      <button
+        onClick={onSearch}
+        aria-label="Search sessions"
+        className={cn(
+          headerCircle,
+          headerCircleResting,
+          !revealed && "pointer-events-none opacity-0"
+        )}
+      >
+        <Search className="size-4 text-dc-purple" />
+      </button>
       <button
         onClick={onJumpToNow}
         aria-label="Jump to now"
@@ -410,6 +427,7 @@ export function Schedule() {
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
   const searchBlockRef = useRef<HTMLDivElement | null>(null);
+  const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
   // Reveal the header's star/jump buttons once the search block scrolls away.
@@ -572,6 +590,9 @@ export function Schedule() {
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
         revealed={scrolled}
+        onSearch={() =>
+          scrollToTopAndFocusSearch(mobileSearchInputRef.current)
+        }
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         onJumpToNow={jumpToNow}
@@ -598,6 +619,7 @@ export function Schedule() {
                 value={search}
                 onChange={setSearch}
                 placeholder="Search by session, speaker or topic"
+                inputRef={mobileSearchInputRef}
               />
               <div className="flex items-center justify-between">
                 <button onClick={jumpToNow} className={ghostPill}>

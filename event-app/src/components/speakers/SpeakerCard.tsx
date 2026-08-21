@@ -8,6 +8,15 @@ import { Avatar } from "@/components/Avatar";
 import { isDesktopNow } from "@/hooks/useIsDesktop";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 
+/** Outlined uppercase topic-tag chip, shared by the card and details views. */
+export function SpeakerTagChip({ tag }: { tag: string }) {
+  return (
+    <span className="whitespace-nowrap rounded-[2px] border border-dc-muted px-1.5 py-[3px] text-[9px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-muted">
+      {tag}
+    </span>
+  );
+}
+
 /**
  * Speaker card (Figma "Speaker-Card"): 48px avatar, bold name + optional
  * KEYNOTE chip, session count + outlined uppercase topic tags, interested
@@ -39,18 +48,16 @@ export const SpeakerCard = memo(function SpeakerCard({
 }) {
   const { speaker, sessionCount, tags, isKeynote } = decorated;
 
-  const tagChip = (tag: string) => (
-    <span
-      key={tag}
-      className="whitespace-nowrap rounded-[2px] border border-dc-muted px-1.5 py-[3px] text-[9px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-muted"
-    >
-      {tag}
-    </span>
-  );
+  const tagChip = (tag: string) => <SpeakerTagChip key={tag} tag={tag} />;
 
   return (
     <Link
       href={`/speakers/${speaker.id}`}
+      // No viewport prefetch: hundreds of cards sweeping past the shared link
+      // observer during an A–Z jump fire an /speakers/[id]?_rsc= request storm
+      // that thrashes the SW prefetch cache and crashes iOS Safari — and the
+      // target is a client page reading the same Dexie/SWR join anyway.
+      prefetch={false}
       onClick={(e) => {
         if (onOpen && isDesktopNow()) {
           e.preventDefault();

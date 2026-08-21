@@ -45,6 +45,8 @@ export function SessionCard({
   return (
     <Link
       href={`/schedule/${session.id}`}
+      // No viewport prefetch (see SpeakerCard) — client page on cached data.
+      prefetch={false}
       onClick={(e) => {
         if (onOpen && isDesktopNow()) {
           e.preventDefault();

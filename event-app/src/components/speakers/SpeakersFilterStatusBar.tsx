@@ -19,11 +19,12 @@ function FilterChip({ label, onRemove }: { label: string; onRemove: () => void }
 }
 
 /**
- * Applied-filters row (Figma "Speakers: [chip ×] … Clear all — N results"):
- * one removable chip per selected topic plus the format tab, a "Clear all"
+ * Applied-filters row ("Filters: [chip ×] … Clear all — N results"): one
+ * removable chip per selected topic plus the format tab, a "Clear all"
  * text button, and the result count right-aligned. Topic chips join with
  * "or" — the topic filter matches any selected topic, not all of them.
- * Hidden when nothing is applied.
+ * Hidden when nothing is applied. Titled "Filters:" (not "Speakers:") —
+ * the page heading and nav already say where you are (PR #112 feedback).
  */
 export function SpeakersFilterStatusBar({
   topics,
@@ -46,7 +47,7 @@ export function SpeakersFilterStatusBar({
     <div className="flex min-w-0 items-center justify-between gap-3">
       <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2">
         <span className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-          Speakers:
+          Filters:
         </span>
         <span className="flex min-w-0 flex-wrap items-center gap-2">
           {topics.map((topic, i) => (
