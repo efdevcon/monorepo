@@ -10,6 +10,15 @@ const ENS_NAME = process.env.VITE_ENS_NAME ?? 'd.krux.eth'
 // Bake the correct "Nickname (name.eth)" title into the static HTML so the
 // tab and crawlers see it before any JS runs; the app re-resolves records at
 // runtime and keeps the title fresh (App.tsx uses the same format).
+// VITE_ENS_NICKNAME is the fallback when the name record isn't set on-chain
+// yet (bootstrap: the pin must exist before the records get created); the
+// on-chain record wins whenever present.
+const FALLBACK_NICKNAME = process.env.VITE_ENS_NICKNAME?.trim()
+
+function formatTitle(nickname: string | undefined): string {
+  return nickname && nickname !== ENS_NAME ? `${nickname} (${ENS_NAME})` : ENS_NAME
+}
+
 let cachedTitle: Promise<string> | null = null
 function buildTitle(): Promise<string> {
   cachedTitle ??= (async () => {
@@ -23,9 +32,9 @@ function buildTitle(): Promise<string> {
         ]),
       })
       const nickname = (await client.getEnsText({ name: normalize(ENS_NAME), key: 'name' }))?.trim()
-      return nickname && nickname !== ENS_NAME ? `${nickname} (${ENS_NAME})` : ENS_NAME
+      return formatTitle(nickname || FALLBACK_NICKNAME)
     } catch {
-      return ENS_NAME
+      return formatTitle(FALLBACK_NICKNAME)
     }
   })()
   return cachedTitle

@@ -46,6 +46,7 @@ Spec: ../../docs/superpowers/specs/2026-08-10-ens-page-design.md
 | Where | Var | Purpose |
 | --- | --- | --- |
 | build | `VITE_ENS_NAME` | ENS name to render (d.krux.eth test, devcon.eth prod) |
+| build | `VITE_ENS_NICKNAME` | fallback for the baked tab title when the name record isn't on-chain yet (on-chain wins) |
 | build | `VITE_LINKS_API` | links endpoint override (default https://devcon.org/api/links/) |
 | build | `VITE_ALCHEMY_KEY` | optional Alchemy mainnet key, used as first RPC; create it with a domain allowlist (devcon.eth.limo, d.krux.eth.limo, localhost:5173); public RPCs remain as fallback for other origins |
 
