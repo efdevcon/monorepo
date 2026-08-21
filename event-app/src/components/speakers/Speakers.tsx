@@ -287,7 +287,15 @@ export function Speakers() {
       el.getBoundingClientRect().top +
       window.scrollY -
       (headerOffsetNow() + rowsH + 16);
-    window.scrollTo({ top, behavior: "smooth" });
+    // Instant, not smooth: a smooth jump animates the viewport through every
+    // screen between here and the target, and this list is ~98 viewports tall
+    // (82,000px for DC7's 746 speakers). WebKit tile-rasterizes everything it
+    // passes over — with 2,200+ inline SVGs and the sticky backdrop-filter
+    // rows recomposited the whole way — so tapping several letters quickly
+    // stacked up sweeps until iOS killed the content process (PR #112: "the
+    // app crashes if you click multiple letters quickly"). Teleporting paints
+    // only the destination, and matches how native iOS A–Z index bars behave.
+    window.scrollTo({ top, behavior: "auto" });
   }, []);
 
   // Scroll-linked chrome, measured on one rAF-throttled listener:
