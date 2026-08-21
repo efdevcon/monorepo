@@ -1,7 +1,6 @@
 import { BaseProvider, type SessionFilters } from "./provider-interface";
 import { datasetForEventId, getActiveDataset } from "../dataset";
 import type { Room, Session, Speaker } from "../models";
-import { realAvatarOnly } from "../models";
 
 // Pretalx API types
 interface PretalxSpeaker {
@@ -139,7 +138,7 @@ export class DevconProvider extends BaseProvider {
       id: s.code,
       name: s.name,
       description: s.biography || undefined,
-      avatar: realAvatarOnly(s.avatar),
+      avatar: s.avatar || undefined,
     }));
 
     const speakerMap = new Map(speakers.map((s) => [s.id, s]));
@@ -156,7 +155,7 @@ export class DevconProvider extends BaseProvider {
                 id: sp.code,
                 name: sp.name,
                 description: sp.biography || undefined,
-                avatar: realAvatarOnly(sp.avatar),
+                avatar: sp.avatar || undefined,
               };
             })
             .filter((s): s is Speaker => !!s)

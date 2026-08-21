@@ -46,25 +46,3 @@ export type Speaker = {
   eventLabel?: string;
   sessions?: import("./sessions").Session[];
 };
-
-/**
- * Drop generated placeholder avatars so only real uploaded photos reach the UI.
- *
- * devcon-api serves an inline `data:image/svg+xml` pixel identicon for every
- * speaker without an uploaded photo (all 729 of DC7's, ~560 bytes each). Each
- * one becomes an `<img>` whose source WebKit must instantiate as its own SVG
- * document plus raster buffer, and `loading="lazy"` can't defer a data URI
- * because there's no network fetch to postpone. With the speakers list mounting
- * ~750 cards at once, an A–Z jump smooth-scrolls the viewport across all of
- * them and forces that many rasterizations in a second or two; repeated rapid
- * jumps compounded it until iOS killed the content process (PR #112, "the app
- * crashes if you click multiple letters quickly in Jump to").
- *
- * Returning undefined hands these speakers to `Avatar`'s initials-on-pastel
- * fallback — zero images, and the treatment the component was written for.
- */
-export function realAvatarOnly(avatar?: string | null): string | undefined {
-  if (!avatar) return undefined;
-  // Uploaded photos are always media URLs; a data URI is a generated stand-in.
-  return avatar.startsWith("data:") ? undefined : avatar;
-}

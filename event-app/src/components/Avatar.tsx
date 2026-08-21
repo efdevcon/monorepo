@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import cn from "classnames";
 import { DC8_TRACKS } from "@/components/schedule/trackTheme";
 
@@ -21,8 +22,53 @@ function pastelFor(name: string): string {
 }
 
 /**
- * Round avatar with a spoofed placeholder when no image exists (most speakers
- * have no avatar in the current data): initials on a stable DC8 pastel.
+ * devcon-api serves a pixel-identicon as an inline `data:image/svg+xml` URI
+ * for every speaker without an uploaded photo (all 729 of DC7's). Rendering
+ * those as `<img src="data:…">` crashed iOS: each SVG *image resource* becomes
+ * its own SVG document plus raster buffer in WebKit, `loading="lazy"` can't
+ * defer a data URI (no fetch to postpone), and the speakers list mounts ~750
+ * cards at once — so an A–Z jump smooth-scrolling across the list forced
+ * hundreds of rasterizations at once and the content process was killed
+ * (PR #112: "crashes if you click multiple letters quickly in Jump to").
+ *
+ * Inlining the same markup avoids that entirely: inline SVG lives in the host
+ * document's render tree, with no per-element document or raster buffer. The
+ * identicons are tiny (an 8×8 grid: one background rect plus a few paths).
+ *
+ * Parsed into React elements rather than injected as HTML — an API-supplied
+ * SVG string in `dangerouslySetInnerHTML` would be an XSS vector (SVG can
+ * carry <script>), whereas `fill`/`d` attribute values cannot execute.
+ */
+const IDENTICON_MAX_BYTES = 4096;
+
+type Identicon = { bg: string | null; paths: { fill: string; d: string }[] };
+
+function parseIdenticon(src: string): Identicon | null {
+  if (!src.startsWith("data:image/svg+xml") || src.length > IDENTICON_MAX_BYTES) {
+    return null;
+  }
+  let markup: string;
+  try {
+    markup = decodeURIComponent(src.slice(src.indexOf(",") + 1));
+  } catch {
+    return null;
+  }
+  // Only the generated identicon shape is understood; anything else (a real
+  // illustration, a <script>, a <foreignObject>) falls back to initials.
+  if (/<(?!svg|rect|path)[a-z]/i.test(markup)) return null;
+
+  const bg = markup.match(/<rect[^>]*fill=['"]([^'"]+)['"]/i)?.[1] ?? null;
+  const paths = [...markup.matchAll(/<path[^>]*>/gi)].flatMap((tag) => {
+    const fill = tag[0].match(/fill=['"]([^'"]+)['"]/i)?.[1];
+    const d = tag[0].match(/\sd=['"]([^'"]+)['"]/i)?.[1];
+    return fill && d ? [{ fill, d }] : [];
+  });
+  return paths.length > 0 || bg ? { bg, paths } : null;
+}
+
+/**
+ * Round avatar: the speaker's uploaded photo, the API's identicon rendered
+ * inline (see above), or initials on a stable DC8 pastel.
  */
 export function Avatar({
   name,
@@ -35,23 +81,48 @@ export function Avatar({
   size?: number;
   className?: string;
 }) {
-  // Second line of defence for the iOS crash fixed in `realAvatarOnly`:
-  // never render an inline data-URI image here. Hundreds of these in one list
-  // (each its own SVG document in WebKit, undeferrable by lazy loading) is
-  // what exhausted the mobile content process. Providers already strip them;
-  // this keeps any future data source from reintroducing the problem.
+  const identicon = useMemo(
+    () => (src?.startsWith("data:") ? parseIdenticon(src) : null),
+    [src]
+  );
+
+  if (identicon) {
+    return (
+      <svg
+        viewBox="0 0 8 8"
+        shapeRendering="crispEdges"
+        width={size}
+        height={size}
+        style={{ width: size, height: size }}
+        className={cn("shrink-0 rounded-full", className)}
+        aria-hidden
+      >
+        {identicon.bg && <rect width="8" height="8" fill={identicon.bg} />}
+        {identicon.paths.map((p, i) => (
+          <path key={i} fill={p.fill} d={p.d} />
+        ))}
+      </svg>
+    );
+  }
+
+  // A non-identicon data URI is never rendered as an <img> (that's the crash
+  // path); it degrades to initials below.
   if (src && !src.startsWith("data:")) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
         alt={name}
+        width={size}
+        height={size}
         style={{ width: size, height: size }}
         className={cn("shrink-0 rounded-full object-cover", className)}
         loading="lazy"
+        decoding="async"
       />
     );
   }
+
   return (
     <span
       style={{
