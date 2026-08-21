@@ -375,14 +375,22 @@ export function Speakers() {
           // Room is reserved for the floating bottom nav pill (24px offset +
           // ~52px pill + safe-area headroom); on viewports too short for the
           // full stack the cells flex-shrink evenly rather than clipping.
-          rail.style.height = `${Math.max(
-            200,
-            Math.min(compact, viewportH - pinnedOffset - 96)
-          )}px`;
+          // The lavender strip runs to the bottom of the viewport (bottom-0
+          // on the wrapper, so no inline height here — an explicit height
+          // would win over `bottom` and cut the strip short). The letter
+          // stack keeps its own shorter height through --az-rail-stack-h, so
+          // Z still stops clear of the floating nav pill while the strip
+          // continues behind it.
+          rail.style.height = "";
+          rail.style.setProperty(
+            "--az-rail-stack-h",
+            `${Math.max(200, Math.min(compact, viewportH - pinnedOffset - 96))}px`
+          );
         } else {
           // Desktop: sticky in the lavender column, compact at rest and
           // stretching to fill the viewport once pinned. Space is measured
           // from the rail's live top and capped by the column bottom.
+          rail.style.removeProperty("--az-rail-stack-h");
           const stuck = railTop <= pinnedOffset + 1;
           const avail = Math.min(viewportH, colBottom) - railTop - 8;
           rail.style.height = `${Math.max(
@@ -692,7 +700,7 @@ export function Speakers() {
                           // Mobile: pinned to the right edge with its own
                           // lavender strip, so scroll position and result
                           // count can't change how the rail looks.
-                          "max-lg:fixed max-lg:right-0 max-lg:z-20 max-lg:w-8 max-lg:bg-dc-lavender max-lg:transition-none"
+                          "max-lg:fixed max-lg:right-0 max-lg:bottom-0 max-lg:z-20 max-lg:w-8 max-lg:bg-dc-lavender max-lg:transition-none"
                         )}
                       >
                         <AzIndexRail

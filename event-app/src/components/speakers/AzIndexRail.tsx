@@ -74,7 +74,10 @@ export function AzIndexRail({
     <nav
       ref={navRef}
       aria-label="Jump to section"
-      className="relative flex h-full flex-col items-center justify-between py-2"
+      // h-full on desktop; on mobile the wrapper stretches to the viewport
+      // bottom for the background, so the cells take the shorter stack height
+      // the measure effect publishes (keeps Z above the floating nav pill).
+      className="relative flex h-full flex-col items-center justify-between py-2 max-lg:h-[var(--az-rail-stack-h,100%)]"
     >
       <span
         aria-hidden
