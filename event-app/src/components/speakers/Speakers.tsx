@@ -94,7 +94,15 @@ function HeaderActions({
             className={cn(
               headerCircle,
               interestedOnly ? headerCircleActive : headerCircleResting,
-              !revealed && "pointer-events-none opacity-0"
+              // Hidden only while it would duplicate the on-screen pill. Once
+              // the filter is ON it stays put even unrevealed, because it is
+              // then the active-state indicator *and* the way to clear it:
+              // filtering to interested-only empties the list for anyone with
+              // no stars yet, which collapses the page back to the top and
+              // would otherwise fade out the very control just pressed (it
+              // read as "the star does nothing"). Same rule as the topic
+              // filter button, which is never gated for carrying state.
+              !revealed && !interestedOnly && "pointer-events-none opacity-0"
             )}
           >
             <Star className="size-4 text-dc-purple" fill="currentColor" />
@@ -625,7 +633,8 @@ export function Speakers() {
                     {resultCount === 0 ? (
                       <SpeakersEmptyState
                         query={search}
-                        filtersActive={activeFilterCount > 0 || interestedOnly}
+                        topicFiltersActive={activeFilterCount > 0}
+                        interestedOnly={interestedOnly}
                         onReset={clearAll}
                       />
                     ) : (
