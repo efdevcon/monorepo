@@ -65,7 +65,13 @@ export const authOptions: AuthOptions = {
     providers: [
         GithubProvider({
             clientId: githubClientId,
-            clientSecret: githubClientSecret
+            clientSecret: githubClientSecret,
+            // GitHub added an RFC 9207 `iss` parameter to OAuth callbacks
+            // (staged rollout since 2026-04); openid-client then refuses the
+            // callback unless the provider declares its issuer — every GitHub
+            // sign-in died with OAUTH_CALLBACK_ERROR "issuer must be
+            // configured on the issuer" (github.com/orgs/community/discussions/192143).
+            issuer: 'https://github.com/login/oauth'
         }),
         CredentialsProvider({
             name: 'Ethereum',
