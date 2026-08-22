@@ -379,10 +379,14 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message, signature, discountType: selected, nonceToken: nonceBody.nonceToken }),
         })
-        const body = await res.json()
+        // A gateway timeout / crash page isn't JSON — parse safely and keep
+        // the HTTP status in the fallback copy, so a screenshot of the error
+        // tells us WHICH failure it was (504 timeout vs 502 vs clean API
+        // error, which always carries its own `error` message).
+        const body = await res.json().catch(() => null)
         if (!res.ok || !body?.success || !body?.data?.voucher) {
           // Surface the backend reason (e.g. "This discount is currently sold out.")
-          setError(body?.error || 'We couldn’t claim your discount. Please try again.')
+          setError(body?.error || `We couldn’t claim your discount. Please try again. (${res.status})`)
           setClaiming(false)
           return
         }
@@ -390,9 +394,9 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
       } else if (via === 'github') {
         if (!githubId) throw new Error('Not signed in to GitHub')
         const res = await fetch(`/api/discounts/claim/${encodeURIComponent(githubId)}/`)
-        const body = await res.json()
+        const body = await res.json().catch(() => null)
         if (!res.ok || !body?.data?.voucher) {
-          setError(body?.error || 'We couldn’t claim your discount. Please try again.')
+          setError(body?.error || `We couldn’t claim your discount. Please try again. (${res.status})`)
           setClaiming(false)
           return
         }
