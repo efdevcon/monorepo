@@ -346,6 +346,22 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
     }
   }
 
+  // Shared GitHub claim call: the github route uses it, and the wallet route
+  // falls back to it when the wallet can't produce a signature (Safe and
+  // other smart-contract wallets can't personal_sign; some mobile
+  // WalletConnect sessions fail too). Protocol Guild members are exactly the
+  // crowd holding multisigs, so without the fallback the flow dead-ends for
+  // them even when their connected GitHub identity could claim instantly.
+  const claimViaGithub = async (): Promise<{ voucher?: string; error?: string }> => {
+    if (!githubId) return { error: 'Not signed in to GitHub' }
+    const res = await fetch(`/api/discounts/claim/${encodeURIComponent(githubId)}/`)
+    const body = await res.json().catch(() => null)
+    if (!res.ok || !body?.data?.voucher) {
+      return { error: body?.error || `We couldn’t claim your discount. Please try again. (${res.status})` }
+    }
+    return { voucher: body.data.voucher }
+  }
+
   const handleClaim = async () => {
     if (!selected || claiming) return
     const via = viaFor(selected)
@@ -373,43 +389,68 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
           nonce: nonceBody.nonce,
           expirationTime: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
         }).prepareMessage()
-        const signature = await signMessageAsync({ message })
-        const res = await fetch('/api/discounts/claim-wallet/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message, signature, discountType: selected, nonceToken: nonceBody.nonceToken }),
-        })
-        // A gateway timeout / crash page isn't JSON — parse safely and keep
-        // the HTTP status in the fallback copy, so a screenshot of the error
-        // tells us WHICH failure it was (504 timeout vs 502 vs clean API
-        // error, which always carries its own `error` message).
-        const body = await res.json().catch(() => null)
-        if (!res.ok || !body?.success || !body?.data?.voucher) {
-          // Surface the backend reason (e.g. "This discount is currently sold out.")
-          setError(body?.error || `We couldn’t claim your discount. Please try again. (${res.status})`)
-          setClaiming(false)
-          return
+        let signature: string | null = null
+        try {
+          signature = await signMessageAsync({ message })
+        } catch (signErr) {
+          // Signature unavailable (smart-contract wallet, WC session quirk,
+          // or user rejection). If this same discount is what the GitHub
+          // claim would issue anyway, complete it via GitHub instead of
+          // dead-ending; otherwise surface the signing failure.
+          if (githubId && selected === githubLockType) {
+            console.warn('Wallet signature failed; falling back to GitHub claim:', signErr)
+            const fallback = await claimViaGithub()
+            if (!fallback.voucher) throw signErr
+            voucher = fallback.voucher
+          } else {
+            throw signErr
+          }
         }
-        voucher = body.data.voucher
+        if (!voucher) {
+          const res = await fetch('/api/discounts/claim-wallet/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message, signature, discountType: selected, nonceToken: nonceBody.nonceToken }),
+          })
+          // A gateway timeout / crash page isn't JSON — parse safely and keep
+          // the HTTP status in the fallback copy, so a screenshot of the error
+          // tells us WHICH failure it was (504 timeout vs 502 vs clean API
+          // error, which always carries its own `error` message).
+          const body = await res.json().catch(() => null)
+          if (!res.ok || !body?.success || !body?.data?.voucher) {
+            // Surface the backend reason (e.g. "This discount is currently sold out.")
+            setError(body?.error || `We couldn’t claim your discount. Please try again. (${res.status})`)
+            setClaiming(false)
+            return
+          }
+          voucher = body.data.voucher
+        }
       } else if (via === 'github') {
-        if (!githubId) throw new Error('Not signed in to GitHub')
-        const res = await fetch(`/api/discounts/claim/${encodeURIComponent(githubId)}/`)
-        const body = await res.json().catch(() => null)
-        if (!res.ok || !body?.data?.voucher) {
-          setError(body?.error || `We couldn’t claim your discount. Please try again. (${res.status})`)
+        const r = await claimViaGithub()
+        if (!r.voucher) {
+          setError(r.error || 'We couldn’t claim your discount. Please try again.')
           setClaiming(false)
           return
         }
-        voucher = body.data.voucher
+        voucher = r.voucher
       } else {
         throw new Error('No verification for this discount')
       }
 
       // Hand off to the Pretix redeem flow, which applies the voucher discount.
       window.location.href = pretixEventUrl(`/redeem?voucher=${encodeURIComponent(voucher as string)}`)
-    } catch {
-      // Wallet signing rejected, network error, etc.
-      setError('We couldn’t claim your discount. Please try again.')
+    } catch (err) {
+      // Wallet signing rejected/failed, or a network error before any server
+      // response. Log the real cause for the browser console, and mark the
+      // copy so a screenshot distinguishes this path from an HTTP failure
+      // (which shows a status code instead).
+      console.error('discount claim failed before a server response:', err)
+      const msg = err instanceof Error ? err.message : ''
+      setError(
+        /user (rejected|denied|cancel)|rejected|denied|closed/i.test(msg)
+          ? 'The signature request was declined in your wallet. Please try again.'
+          : 'We couldn’t claim your discount. Your wallet didn’t complete the signature, or the connection dropped. Please try again. (no server response)'
+      )
       setClaiming(false)
     }
   }
