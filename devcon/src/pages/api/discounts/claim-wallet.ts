@@ -1,9 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
+import { createPublicClient, http } from 'viem'
+import { mainnet } from 'viem/chains'
 import { GetDiscount } from './validate/[id]'
 import { issueVoucher, DiscountSoldOutError } from 'services/discountStore'
 import { discountCollection, discountItem } from 'config/ticketing'
 import { verifyProof } from 'services/builder/proof'
+
+// Mainnet client for signature verification. Needed on-chain: ERC-1271
+// signatures resolve via the wallet contract's `isValidSignature`, so
+// smart-contract wallets (Safe & co) can claim too.
+const viemClient = createPublicClient({
+  chain: mainnet,
+  transport: http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_APIKEY}`),
+})
 
 // The SIWE signature is a pure wallet-ownership proof (no on-chain tx), so we
 // pin it to a single chain id. This closes the M26 cross-chain replay: a
@@ -85,17 +95,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       exit('401 wrong chain')
     return res.status(401).json({ success: false, error: 'Unexpected signature chain' })
     }
-    const result = await siwe.verify({
-      signature,
-      nonce: expectedNonce, // kills replay of signatures made for another context
-      domain: expectedDomain, // kills cross-site replay
-      time: new Date().toISOString(), // enforces the message's expirationTime
-    })
-    if (!result.success || !result.data?.address) {
-      exit('401 invalid signature')
-    return res.status(401).json({ success: false, error: 'Invalid signature' })
+    // Field bindings previously enforced inside siwe.verify() — kept explicit:
+    if (siwe.nonce !== expectedNonce) {
+      // kills replay of signatures made for another context
+      exit('401 nonce mismatch')
+      return res.status(401).json({ success: false, error: 'Invalid signature' })
     }
-    address = result.data.address
+    if (expectedDomain && siwe.domain !== expectedDomain) {
+      // kills cross-site replay
+      exit('401 domain mismatch')
+      return res.status(401).json({ success: false, error: 'Invalid signature' })
+    }
+    if (new Date(siwe.expirationTime).getTime() < Date.now()) {
+      exit('401 message expired')
+      return res.status(401).json({ success: false, error: 'Invalid signature' })
+    }
+    // Signature check via viem's universal verifier: EOA ecrecover first,
+    // then on-chain ERC-1271 `isValidSignature` for smart-contract wallets
+    // (and ERC-6492 for undeployed ones). The `siwe` library's verify() was
+    // EOA-only and rejected Safe multisig signatures — Protocol Guild's
+    // wallet of choice (found live 2026-08-22: a 2-of-N Safe returned a
+    // 130-byte concatenated signature that verifies fine via ERC-1271).
+    const valid = await viemClient.verifyMessage({
+      address: siwe.address as `0x${string}`,
+      message,
+      signature: signature as `0x${string}`,
+    })
+    if (!valid) {
+      exit('401 invalid signature')
+      return res.status(401).json({ success: false, error: 'Invalid signature' })
+    }
+    address = siwe.address
   } catch {
     exit('401 invalid signature')
     return res.status(401).json({ success: false, error: 'Invalid signature' })
