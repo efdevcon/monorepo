@@ -393,11 +393,26 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
         try {
           signature = await signMessageAsync({ message })
         } catch (signErr) {
-          // Signature unavailable (smart-contract wallet, WC session quirk,
-          // or user rejection). If this same discount is what the GitHub
-          // claim would issue anyway, complete it via GitHub instead of
-          // dead-ending; otherwise surface the signing failure.
-          if (githubId && selected === githubLockType) {
+          // A deliberate rejection is the user saying no — stop, no backend
+          // calls, surface the declined copy via the outer catch. Only a
+          // TECHNICAL signature failure (Safe and other smart-contract
+          // wallets can't personal_sign, flaky WC sessions) falls back.
+          // Detect rejection by the typed error (EIP-1193 code 4001 /
+          // viem's UserRejectedRequestError), not by message text — some
+          // technical failures also contain the word "rejected".
+          const errAny = signErr as { code?: number; name?: string; cause?: { code?: number } }
+          const userRejected =
+            errAny?.code === 4001 ||
+            errAny?.cause?.code === 4001 ||
+            errAny?.name === 'UserRejectedRequestError' ||
+            /user rejected|user denied|user cancel/i.test(signErr instanceof Error ? signErr.message : '')
+          // The github claim endpoint issues the identity's highest-priority
+          // discount, so only fall back when that is exactly the selected
+          // one. Computed from github eligibility alone — githubLockType is
+          // wrong here, since it applies the wallet-first routing preference
+          // and skips any type the wallet is also eligible for.
+          const githubTopType = DISCOUNTS.find(d => githubElig?.has(d.type))?.type ?? null
+          if (!userRejected && githubId && selected === githubTopType) {
             console.warn('Wallet signature failed; falling back to GitHub claim:', signErr)
             const fallback = await claimViaGithub()
             if (!fallback.voucher) throw signErr
