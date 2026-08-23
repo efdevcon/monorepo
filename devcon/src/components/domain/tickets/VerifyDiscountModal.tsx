@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, BadgeCheck, CircleX, Eye, Github, Loader2 } from 'lucide-react'
-import { useAccount, useDisconnect, useSignMessage } from 'wagmi'
+import { useAccount, useChainId, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi'
 import { getSession, signIn, signOut } from 'next-auth/react'
 import { SiweMessage } from 'siwe'
 import { appKit } from 'context/appkit-config'
@@ -83,6 +83,8 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
   const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
+  const chainId = useChainId()
+  const { switchChainAsync } = useSwitchChain()
 
   const [step, setStep] = useState<Step>('prompt')
   // Eligible discount types per verified identity. null = that identity hasn't
@@ -389,6 +391,19 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
           nonce: nonceBody.nonce,
           expirationTime: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
         }).prepareMessage()
+        // Steer the session to mainnet BEFORE signing. WalletConnect scopes
+        // requests to the ACTIVE chain, and if that's one the wallet's
+        // session doesn't support (our AppKit list led with baseSepolia,
+        // issue #114: TrustWallet), personal_sign is rejected instantly with
+        // no prompt. Switching among session-approved chains is silent;
+        // failure is non-fatal — we still attempt the signature.
+        if (chainId !== 1) {
+          try {
+            await switchChainAsync({ chainId: 1 })
+          } catch (switchErr) {
+            console.warn('could not switch to mainnet before signing — attempting anyway:', switchErr)
+          }
+        }
         let signature: string | null = null
         try {
           signature = await signMessageAsync({ message })

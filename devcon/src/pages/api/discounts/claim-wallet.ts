@@ -1,19 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
-import { createPublicClient, http } from 'viem'
-import { mainnet } from 'viem/chains'
 import { GetDiscount } from './validate/[id]'
+import { verifySiweSignature } from 'services/siweVerify'
 import { issueVoucher, DiscountSoldOutError } from 'services/discountStore'
 import { discountCollection, discountItem } from 'config/ticketing'
 import { verifyProof } from 'services/builder/proof'
 
-// Mainnet client for signature verification. Needed on-chain: ERC-1271
-// signatures resolve via the wallet contract's `isValidSignature`, so
-// smart-contract wallets (Safe & co) can claim too.
-const viemClient = createPublicClient({
-  chain: mainnet,
-  transport: http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_APIKEY}`),
-})
 
 // The SIWE signature is a pure wallet-ownership proof (no on-chain tx), so we
 // pin it to a single chain id. This closes the M26 cross-chain replay: a
@@ -116,11 +108,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // EOA-only and rejected Safe multisig signatures — Protocol Guild's
     // wallet of choice (found live 2026-08-22: a 2-of-N Safe returned a
     // 130-byte concatenated signature that verifies fine via ERC-1271).
-    const valid = await viemClient.verifyMessage({
-      address: siwe.address as `0x${string}`,
-      message,
-      signature: signature as `0x${string}`,
-    })
+    const valid = await verifySiweSignature(siwe.address, message, signature)
     if (!valid) {
       exit('401 invalid signature')
       return res.status(401).json({ success: false, error: 'Invalid signature' })

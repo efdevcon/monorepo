@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider, type Config, useAccount, useDisconnect, useSignMessage } from 'wagmi'
+import { WagmiProvider, type Config, useAccount, useChainId, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi'
 import { useAppKit } from '@reown/appkit/react'
 import { SiweMessage } from 'siwe'
 import { Wallet } from 'lucide-react'
@@ -37,6 +37,8 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
+  const chainId = useChainId()
+  const { switchChainAsync } = useSwitchChain()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   // Set when the user clicks Connect here, so we can auto-prompt the signature
@@ -118,6 +120,17 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
         chainId: 1,
         nonce,
       }).prepareMessage()
+      // Steer the session to mainnet BEFORE signing: WalletConnect scopes
+      // requests to the ACTIVE chain, and wallets reject personal_sign
+      // instantly (no prompt) when it's a chain their session doesn't
+      // support (issue #114: TrustWallet vs our baseSepolia default).
+      if (chainId !== 1) {
+        try {
+          await switchChainAsync({ chainId: 1 })
+        } catch (switchErr) {
+          console.warn('could not switch to mainnet before signing - attempting anyway:', switchErr)
+        }
+      }
       const signature = await signMessageAsync({ message })
       const verifyRes = await fetch('/api/builder/wallet/verify/', {
         method: 'POST',
