@@ -103,6 +103,20 @@ function App({ Component, pageProps }: any) {
   // or future server-side composition); otherwise fall back to the statically-imported bundle.
   const messages = pageProps?.messages ?? MESSAGES[normalizedLocale] ?? MESSAGES.en
 
+  // Reload pages restored from the back/forward cache. The WalletConnect
+  // relay websocket dies when a page enters bfcache ("WebSocket connection
+  // failed: Page entered Back-Forward Cache") and is NOT revived on restore,
+  // so any wallet flow on the restored page hangs with no transport — seen
+  // live on /tickets/store: claim -> redeem page -> Back -> next claim spins
+  // on "Confirm in wallet..." forever. A reload re-establishes the relay.
+  React.useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) window.location.reload()
+    }
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [])
+
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
       init({
