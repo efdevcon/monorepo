@@ -4,6 +4,7 @@ import { Button } from 'lib/components/button'
 import { useDebounceValue } from 'usehooks-ts'
 import { Link } from 'components/common/link'
 import { useAccount, useChainId, useSignMessage, useSwitchChain } from 'wagmi'
+import { getAddress } from 'viem'
 import { SiweMessage } from 'siwe'
 import css from './discounts.module.scss'
 
@@ -46,7 +47,9 @@ export function Verifier(props: Props) {
     try {
       const message = new SiweMessage({
         domain: window.location.host,
-        address: address,
+        // EIP-55 checksum: siwe throws on lowercase (WC wallets return
+        // lowercase; see VerifyDiscountModal / issue #114).
+        address: getAddress(address as string),
         statement: 'Sign in with Ethereum to the app.',
         uri: window.location.origin,
         version: '1',

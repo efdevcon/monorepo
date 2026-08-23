@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, type Config, useAccount, useChainId, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi'
+import { getAddress } from 'viem'
 import { useAppKit } from '@reown/appkit/react'
 import { SiweMessage } from 'siwe'
 import { Wallet } from 'lucide-react'
@@ -113,7 +114,9 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
       const { nonceToken, nonce } = await nonceRes.json()
       const message = new SiweMessage({
         domain: window.location.host,
-        address,
+        // EIP-55 checksum: siwe throws on lowercase (WC wallets return
+        // lowercase; see VerifyDiscountModal / issue #114).
+        address: getAddress(address as string),
         statement: 'Connect your wallet to your Devcon builder application.',
         uri: window.location.origin,
         version: '1',

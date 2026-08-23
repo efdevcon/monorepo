@@ -3,6 +3,7 @@ import { ArrowUpRight, BadgeCheck, CircleX, Eye, Github, Loader2 } from 'lucide-
 import { useAccount, useChainId, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi'
 import { getSession, signIn, signOut } from 'next-auth/react'
 import { SiweMessage } from 'siwe'
+import { getAddress } from 'viem'
 import { appKit } from 'context/appkit-config'
 import { pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import { EthGlyphTile } from 'components/domain/tickets/TicketTable'
@@ -383,7 +384,12 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
         }
         const message = new SiweMessage({
           domain: window.location.host,
-          address,
+          // EIP-55 checksum required: the siwe lib THROWS "Invalid address"
+          // on lowercase input, and WalletConnect wallets (TrustWallet,
+          // issue #114) return lowercase addresses — the claim then died
+          // instantly, before any prompt. Extensions return checksummed,
+          // which is why only WC users hit it.
+          address: getAddress(address),
           statement: 'Verify wallet ownership to claim your Devcon ticket discount.',
           uri: window.location.origin,
           version: '1',
@@ -475,7 +481,15 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
       // copy so a screenshot distinguishes this path from an HTTP failure
       // (which shows a status code instead).
       console.error('discount claim failed before a server response:', err)
-      const msg = err instanceof Error ? err.message : ''
+      // Non-Error throws happen here too (siwe throws plain SiweError
+      // objects with type/expected/received) — stringify so the console
+      // and the classification below see something useful.
+      const msg =
+        err instanceof Error
+          ? err.message
+          : typeof err === 'object' && err !== null
+            ? JSON.stringify(err)
+            : String(err ?? '')
       setError(
         /user (rejected|denied|cancel)|rejected|denied|closed/i.test(msg)
           ? 'The signature request was declined in your wallet. Please try again.'
