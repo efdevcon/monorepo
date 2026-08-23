@@ -35,7 +35,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   const { setValue, watch } = useFormContext()
   const { walletProof, setWalletProof, reportDiscount } = useBuilderConnect()
   const { open } = useAppKit()
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, connector } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
   const chainId = useChainId()
@@ -134,7 +134,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
           console.warn('could not switch to mainnet before signing - attempting anyway:', switchErr)
         }
       }
-      const signature = await signMessageAsync({ message })
+      const signature = await signMessageAsync({ message, account: getAddress(address as string), connector })
       const verifyRes = await fetch('/api/builder/wallet/verify/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

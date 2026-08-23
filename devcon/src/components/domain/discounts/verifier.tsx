@@ -20,7 +20,7 @@ interface DiscountsBody {
 }
 
 export function Verifier(props: Props) {
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, connector } = useAccount()
   const { signMessageAsync } = useSignMessage()
   const chainId = useChainId()
   const { switchChainAsync } = useSwitchChain()
@@ -70,6 +70,8 @@ export function Verifier(props: Props) {
       }
       const signature = await signMessageAsync({
         message: message.prepareMessage(),
+        account: getAddress(address as string),
+        connector,
       })
 
       if (session && session.type === 'github') await signOut({ redirect: false })

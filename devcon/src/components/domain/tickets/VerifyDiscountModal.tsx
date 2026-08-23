@@ -81,7 +81,7 @@ function avatarGradient(address: string): string {
 }
 
 export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProps) {
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, connector } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
   const chainId = useChainId()
@@ -412,7 +412,19 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
         }
         let signature: string | null = null
         try {
-          signature = await signMessageAsync({ message })
+          // Pin the request to the connector that owns the DISPLAYED
+          // address: with an extension + a WalletConnect session both
+          // attached, wagmi otherwise routes to whichever connector is
+          // "active" — which can be a locked extension while the UI shows
+          // the WC wallet, hanging forever with no visible prompt. And cap
+          // the wait: a wallet that never responds should produce an
+          // actionable error, not an infinite spinner.
+          signature = await Promise.race([
+            signMessageAsync({ message, account: getAddress(address), connector }),
+            new Promise<never>((_, reject) =>
+              setTimeout(() => reject(new Error('wallet signature timed out')), 45_000)
+            ),
+          ])
         } catch (signErr) {
           // A deliberate rejection is the user saying no — stop, no backend
           // calls, surface the declined copy via the outer catch. Only a
@@ -493,7 +505,9 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
       setError(
         /user (rejected|denied|cancel)|rejected|denied|closed/i.test(msg)
           ? 'The signature request was declined in your wallet. Please try again.'
-          : 'We couldn’t claim your discount. Your wallet didn’t complete the signature, or the connection dropped. Please try again. (no server response)'
+          : /timed out/i.test(msg)
+            ? 'No response from your wallet. Open your wallet app or extension and check for a pending request — or disconnect and reconnect here, then try again.'
+            : 'We couldn’t claim your discount. Your wallet didn’t complete the signature, or the connection dropped. Please try again. (no server response)'
       )
       setClaiming(false)
     }
