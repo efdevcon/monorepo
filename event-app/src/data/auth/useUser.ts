@@ -72,7 +72,7 @@ export function useUser(): UseUserResult {
       });
       if (error) throw error;
 
-      toast.success("Code sent! Check your email.");
+      toast.success("Code sent! Please check your email.");
       return true;
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
@@ -99,12 +99,14 @@ export function useUser(): UseUserResult {
       });
       if (error) throw error;
 
-      toast.success("Signed in!");
+      toast.success("Signed in. Welcome to Devcon India!");
       return true;
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       setError(message);
-      toast.error(`Failed to verify code: ${message}`);
+      // Fixed copy (Figma "Verify code view"): Supabase's own message is kept
+      // in `error` for debugging but not shown.
+      toast.error("Verification failed: the code is invalid or has expired.");
       return false;
     } finally {
       setLoading(false);

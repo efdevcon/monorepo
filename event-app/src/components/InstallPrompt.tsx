@@ -1,6 +1,7 @@
 "use client";
 
 import { Copy, Share } from "lucide-react";
+import { PrimaryButton } from "./Buttons";
 import { useShouldShowSafariBridge, useCopySignInLink } from "./InstallAppButton";
 
 /**
@@ -24,11 +25,11 @@ export function InstallPrompt() {
   if (!shouldShow) return null;
 
   return (
-    <div className="mb-6 rounded-2xl border border-[#7D52F4]/20 bg-[#f3eeff] p-4 text-center">
-      <p className="mb-3 text-sm font-medium text-[#1B1B1B]">
+    <div className="mb-6 rounded-xl border border-dc-hairline bg-dc-lavender p-4 text-center font-heading">
+      <p className="mb-3 text-sm font-medium text-dc-fg2">
         Install the app to keep your ticket handy offline.
       </p>
-      <ol className="mb-4 space-y-2 text-left text-sm text-gray-600">
+      <ol className="mb-4 space-y-2 text-left text-sm text-dc-muted">
         <Step n={1}>
           Not already in Safari? Tap below to copy a sign-in link and open it
           there.
@@ -41,13 +42,10 @@ export function InstallPrompt() {
           Choose <b>&ldquo;Add to Home Screen&rdquo;</b>.
         </Step>
       </ol>
-      <button
-        onClick={copySignInLink}
-        className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#7D52F4] py-2.5 font-medium text-white transition-colors hover:bg-[#6A3FD1] active:scale-[0.98]"
-      >
-        <Copy className="h-4 w-4" />
+      <PrimaryButton onClick={copySignInLink} className="w-full">
+        <Copy className="size-4" />
         Copy sign-in link for Safari
-      </button>
+      </PrimaryButton>
     </div>
   );
 }
@@ -55,7 +53,7 @@ export function InstallPrompt() {
 function Step({ n, children }: { n: number; children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-2">
-      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#7D52F4]/10 text-xs font-bold text-[#7D52F4]">
+      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-dc-purple-soft text-xs font-bold text-dc-purple">
         {n}
       </span>
       <span>{children}</span>

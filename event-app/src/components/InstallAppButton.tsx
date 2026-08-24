@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Copy, Download, Share, MoreVertical } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
+import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
 import { supabase } from "@/data/auth/supabase";
 
@@ -245,10 +246,12 @@ function InstallInstructionsModal({
           />
         </div>
 
-        <div className="px-6 pb-6 text-center">
-          <h3 className="text-lg font-bold">Install {APP_CONFIG.APP_NAME}</h3>
-          <p className="mb-5 mt-1 text-sm text-gray-500">{intro}</p>
-          <ol className="mb-6 space-y-3 text-left text-sm text-gray-600">
+        <div className="px-6 pb-6 text-center font-heading">
+          <h3 className="text-lg font-bold text-dc-fg2">
+            Install {APP_CONFIG.APP_NAME}
+          </h3>
+          <p className="mb-5 mt-1 text-sm text-dc-muted">{intro}</p>
+          <ol className="mb-6 space-y-3 text-left text-sm text-dc-muted">
             {steps.map((content, i) => (
               <li key={i} className="flex items-start gap-3">
                 <Step n={i + 1} /> <span className="pt-0.5">{content}</span>
@@ -256,20 +259,14 @@ function InstallInstructionsModal({
             ))}
           </ol>
           {onCopySignInLink && (
-            <button
-              onClick={onCopySignInLink}
-              className="mb-3 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-[#E1E4EA] py-2.5 font-medium text-gray-700 transition-colors hover:bg-gray-50 active:scale-[0.98]"
-            >
-              <Copy className="h-4 w-4" />
+            <SecondaryButton onClick={onCopySignInLink} className="mb-3 w-full">
+              <Copy className="size-4" />
               Copy sign-in link for Safari
-            </button>
+            </SecondaryButton>
           )}
-          <button
-            onClick={onClose}
-            className="w-full cursor-pointer rounded-full bg-[#7D52F4] py-2.5 font-medium text-white transition-colors hover:bg-[#6A3FD1] active:scale-[0.98]"
-          >
+          <PrimaryButton onClick={onClose} className="w-full">
             Got it
-          </button>
+          </PrimaryButton>
         </div>
       </motion.div>
     </motion.div>,
@@ -279,7 +276,7 @@ function InstallInstructionsModal({
 
 function Step({ n }: { n: number }) {
   return (
-    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f3eeff] text-xs font-bold text-[#7D52F4]">
+    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-dc-purple-soft text-xs font-bold text-dc-purple">
       {n}
     </span>
   );
@@ -331,10 +328,12 @@ export function InstallAppButton({
         onClick={handleClick}
         className={
           className ??
-          "inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#E1E4EA] px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+          // Same treatment as the schedule "Interested" pill: purple icon,
+          // hairline border, muted label.
+          "inline-flex min-h-8 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1 text-[12px] leading-none text-dc-muted transition-colors duration-150 ease-out hover:bg-dc-lavender"
         }
       >
-        <Download className="h-4 w-4" />
+        <Download className="size-4 text-dc-purple" />
         {label}
       </button>
 
