@@ -1,5 +1,6 @@
 import { GetData } from '@/clients/filesystem'
 import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { resolveSpeakerAvatar } from '@/services/avatar-mirror'
 import { CreatePresentationFromTemplate, RunPermissions } from '@/clients/slides'
 import { getPretalxConfig, PretalxInstanceConfig } from '@/utils/config'
 
@@ -190,14 +191,12 @@ async function syncSessions() {
   console.log('Sync Speakers')
   for (const speaker of acceptedSpeakers) {
     const speakerPath = `./data/speakers/${speaker.id}.json`
-    // Some returning speakers have no photo on their current Pretalx account,
-    // so the mapping falls back to a blockie — but the data may hold a real
-    // avatar restored from an older account/event (2026-08-24 recovery).
-    // Never clobber a real URL with a blockie.
-    if (speaker.avatar?.startsWith('data:') && fs.existsSync(speakerPath)) {
-      const prior = JSON.parse(fs.readFileSync(speakerPath, 'utf8'))
-      if (prior.avatar && !prior.avatar.startsWith('data:')) speaker.avatar = prior.avatar
-    }
+    // Blockie/mirroring rules live in resolveSpeakerAvatar: never clobber a
+    // real avatar with a blockie, and mirror pretalx-hosted uploads into the
+    // speaker-avatars bucket (an unchanged source is a string compare, no
+    // network, so this loop stays fast on re-syncs).
+    const prior = fs.existsSync(speakerPath) ? JSON.parse(fs.readFileSync(speakerPath, 'utf8')) : null
+    speaker.avatar = await resolveSpeakerAvatar(speaker.avatar, prior?.avatar)
     fs.writeFileSync(speakerPath, JSON.stringify(speaker, null, 2))
   }
 

@@ -3,6 +3,7 @@ import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG, getPretalxConfig, getEventIdByPretalxSlug, PretalxInstanceConfig } from '@/utils/config'
 import { TriggerWorkflow, CommitContentFile } from '@/services/github'
 import { GetSessions, GetSpeakers, clearPretalxCache, getPublishedScheduleVersion } from '@/clients/pretalx'
+import { resolveSpeakerAvatar } from '@/services/avatar-mirror'
 import { FetchNocoDbTable } from '@/clients/nocodb'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
@@ -275,6 +276,10 @@ async function SyncSpeakers(speakers: any[], config: PretalxInstanceConfig) {
         continue
       }
       console.log('Creating speaker', speakerData.id)
+      // Mirror the pretalx-hosted upload into the speaker-avatars bucket so
+      // clients never fetch image bytes from the live Pretalx box; fails open
+      // to the source URL (see services/avatar-mirror).
+      speakerData.avatar = await resolveSpeakerAvatar(speakerData.avatar)
       store.createSpeaker(speakerData)
     } catch (error) {
       console.error(`Speaker sync failed for ${id} — continuing:`, error)
