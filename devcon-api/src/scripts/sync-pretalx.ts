@@ -189,7 +189,16 @@ async function syncSessions() {
   console.log('Speakers Pretalx', speakers.length, 'Accepted Speakers', acceptedSpeakers.length)
   console.log('Sync Speakers')
   for (const speaker of acceptedSpeakers) {
-    fs.writeFileSync(`./data/speakers/${speaker.id}.json`, JSON.stringify(speaker, null, 2))
+    const speakerPath = `./data/speakers/${speaker.id}.json`
+    // Some returning speakers have no photo on their current Pretalx account,
+    // so the mapping falls back to a blockie — but the data may hold a real
+    // avatar restored from an older account/event (2026-08-24 recovery).
+    // Never clobber a real URL with a blockie.
+    if (speaker.avatar?.startsWith('data:') && fs.existsSync(speakerPath)) {
+      const prior = JSON.parse(fs.readFileSync(speakerPath, 'utf8'))
+      if (prior.avatar && !prior.avatar.startsWith('data:')) speaker.avatar = prior.avatar
+    }
+    fs.writeFileSync(speakerPath, JSON.stringify(speaker, null, 2))
   }
 
   console.log('Synced Pretalx Schedule')
