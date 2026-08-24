@@ -4,6 +4,7 @@ import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { CacheWarmer } from "@/components/CacheWarmer";
 import { Toaster } from "sonner";
+import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { DebugPanel } from "@/components/DebugPanel";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
@@ -198,7 +199,17 @@ export default function RootLayout({
           // color must go inline on each toast (toastOptions) since sonner
           // styles toast text itself. dc-fg2 = general/secondary-foreground.
           style={{ fontFamily: "var(--font-heading)" }}
-          toastOptions={{ style: { color: "var(--color-dc-fg2)" } }}
+          toastOptions={{
+            style: { color: "var(--color-dc-fg2)", borderRadius: "10px" },
+          }}
+          // Figma "Sonner": lucide badge-check / circle-alert at 24px, tinted
+          // to the toast's border color (richColors' fills come from
+          // globals.css). Icons here are server-rendered nodes — fine to pass
+          // into the client Toaster.
+          icons={{
+            success: <BadgeCheck className="size-6 text-dc-green" />,
+            error: <CircleAlert className="size-6 text-dc-red" />,
+          }}
           mobileOffset={{
             bottom: "calc(max(24px, env(safe-area-inset-bottom)) + 64px)",
           }}

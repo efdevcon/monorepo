@@ -31,7 +31,7 @@ function routeChrome(pathname: string): RouteChrome {
     return { title: "Speaker details", back: true, backFallback: "/speakers" };
   if (pathname.startsWith("/speakers")) return { title: "Speakers" };
   if (pathname.startsWith("/map")) return { title: "Map" };
-  if (pathname.startsWith("/ticket")) return { title: "Tickets" };
+  if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
   if (pathname.startsWith("/announcements")) return { title: "Announcements" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
   if (pathname === "/") return { title: "Home" };

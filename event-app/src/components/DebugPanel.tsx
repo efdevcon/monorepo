@@ -130,13 +130,18 @@ export function DebugPanel() {
         title="Debug panel"
         // Below the 56px app header so it never covers the header's own
         // action buttons (filter / jump-to-now).
-        className="fixed top-[68px] right-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105"
+        // Bottom-LEFT, not under the header: top-right sat on top of page
+        // content (the /ticket card, the speakers filter rows) and crowded the
+        // A-Z rail. Mobile lifts it clear of the floating nav pill; desktop has
+        // no bottom bar, so it drops to the corner.
+        className="fixed bottom-24 left-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105 lg:bottom-4"
       >
         <Bug className="h-5 w-5" />
       </button>
 
       {open && (
-        <div className="fixed top-[124px] right-4 z-[100] w-72 rounded-2xl border border-[#E1E4EA] bg-white p-4 text-sm shadow-2xl">
+        <div // Anchored above the button so it opens upward from the same corner.
+          className="fixed bottom-[152px] left-4 z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl lg:bottom-[72px]">
           <p className="mb-3 font-bold">Debug</p>
 
           <div className="mb-3 text-xs text-gray-500">

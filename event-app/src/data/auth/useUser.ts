@@ -72,7 +72,7 @@ export function useUser(): UseUserResult {
       });
       if (error) throw error;
 
-      toast.success("Code sent! Check your email.");
+      toast.success("Code sent! Please check your email.");
       return true;
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
@@ -99,12 +99,26 @@ export function useUser(): UseUserResult {
       });
       if (error) throw error;
 
-      toast.success("Signed in!");
+      toast.success("Signed in. Welcome to Devcon India!");
       return true;
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       setError(message);
-      toast.error(`Failed to verify code: ${message}`);
+      // Only claim "wrong code" when it actually was one. Reporting every
+      // failure that way sent offline users into a retry loop — request a new
+      // code, fail again on the same dead connection, hit Supabase's rate
+      // limit, and still be told the code was invalid.
+      const offline =
+        typeof navigator !== "undefined" && navigator.onLine === false;
+      const looksNetwork = /fetch|network|timeout|connection/i.test(message);
+      const looksRateLimit = /rate limit|too many|429/i.test(message);
+      toast.error(
+        offline || looksNetwork
+          ? "Can't reach the server — check your connection and try again."
+          : looksRateLimit
+            ? "Too many attempts. Wait a minute, then try again."
+            : "Verification failed: the code is invalid or has expired."
+      );
       return false;
     } finally {
       setLoading(false);

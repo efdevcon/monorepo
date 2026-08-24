@@ -5,10 +5,14 @@ import { X } from "lucide-react";
  * Shared DC8 button primitives (filters panel footer, panel close buttons).
  * Stacked hover effects (scale + color) run on one 150ms ease-out clock —
  * keep any new animated property inside the same transition list. Note
- * Tailwind v4 scale-* sets the standalone `scale` property, not `transform`.
+ * Tailwind v4 scale-* sets the standalone `scale` property, not `transform`,
+ * so a motion-reduce override can't cancel it: `enabled:hover:` carries two
+ * pseudo-class specificity points while motion-reduce is only a media query,
+ * so hover always won. The scale is gated with motion-safe instead, which
+ * removes the conflict rather than fighting it.
  */
 const ctaBase =
-  "flex cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[16px] font-bold leading-none transition-[scale,background-color] duration-150 ease-out hover:scale-[1.03] active:scale-[0.97] motion-reduce:transform-none motion-reduce:transition-none";
+  "flex cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[16px] font-bold leading-none transition-[scale,background-color] duration-150 ease-out motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] disabled:cursor-default disabled:opacity-40 motion-reduce:transition-none";
 
 /** Solid purple CTA (e.g. "Reset filters"). Darkens ~10% on hover. */
 export function PrimaryButton({
@@ -20,7 +24,7 @@ export function PrimaryButton({
       {...props}
       className={cn(
         ctaBase,
-        "bg-dc-purple text-dc-purple-fg hover:bg-[#6730d5]",
+        "bg-dc-purple text-dc-purple-fg enabled:hover:bg-[#6730d5]",
         className
       )}
     />
@@ -37,7 +41,7 @@ export function SecondaryButton({
       {...props}
       className={cn(
         ctaBase,
-        "border border-dc-hairline bg-white/80 text-dc-fg2 hover:bg-dc-lavender",
+        "border border-dc-hairline bg-white/80 text-dc-fg2 enabled:hover:bg-dc-lavender",
         className
       )}
     />

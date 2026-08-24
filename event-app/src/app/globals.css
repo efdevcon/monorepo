@@ -21,7 +21,12 @@
   --color-dc-lavender: #f5f1fe; /* day-tab bar + segmented track */
   --color-dc-panel: #f9f8fa; /* brand-neutrals/50 panel surface */
   --color-dc-keynote: #ffa366; /* marigold-300 */
-  --color-dc-live-bg: #fff0f0; /* live band fill */
+  --color-dc-live-bg: #fff0f0; /* red-50: live band fill + error toast fill */
+  --color-dc-border: #dddae2; /* general/border-100 (input borders) */
+  --color-dc-error: #b42124; /* red-600: form error text, sign-out ring */
+  --color-dc-error-border: #ef4444; /* unofficial/destructive-border (invalid input) */
+  --color-dc-green: #009b27; /* harit-700: success toast border */
+  --color-dc-green-soft: #d5f4dd; /* harit-100: success toast fill */
 
   /* Match the /devcon project: Inter for body, Poppins for headings.
      The CSS variables are provided by next/font in src/app/layout.tsx. */
@@ -165,4 +170,41 @@ h6 {
   to {
     transform: translateX(-50%);
   }
+}
+
+/* Sonner toasts (Figma "Sonner" component): richColors' own green/red swapped
+   for the DC8 palette. richColors reads these vars per toast type. The icon
+   margins widen sonner's stock icon gap to Figma's 12px next to a 24px icon. */
+html [data-sonner-toaster] {
+  --toast-icon-margin-start: 0px;
+  --toast-icon-margin-end: 12px;
+}
+/* On the toast element itself — sonner's rich-colors stylesheet defines these
+   vars there too, and element-level vars beat inherited ones. */
+html [data-sonner-toast][data-rich-colors="true"] {
+  --success-bg: var(--color-dc-green-soft);
+  --success-border: var(--color-dc-green);
+  --success-text: var(--color-dc-fg2);
+  --error-bg: var(--color-dc-live-bg);
+  --error-border: var(--color-dc-red);
+  --error-text: var(--color-dc-fg2);
+}
+/* Scoped to sonner's own styled toasts: toast.custom() renders a transparent
+   wrapper (data-styled="false") around its own card — ServiceWorkerUpdater's
+   update prompt — and an unscoped rule painted a square shadow behind those
+   rounded corners. Sonner scopes its own card styling the same way. */
+html [data-sonner-toast][data-styled="true"] {
+  /* Figma shadow-sm */
+  box-shadow:
+    0 1px 3px rgba(22, 11, 43, 0.1),
+    0 1px 2px rgba(22, 11, 43, 0.1);
+}
+html [data-sonner-toast] [data-icon] {
+  width: 24px;
+  height: 24px;
+}
+html [data-sonner-toast] [data-title] {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
 }
