@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG, getPretalxConfig, getEventIdByPretalxSlug, PretalxInstanceConfig } from '@/utils/config'
 import { TriggerWorkflow, CommitContentFile } from '@/services/github'
-import { GetSessions, GetSpeaker , clearPretalxCache, getPublishedScheduleVersion } from '@/clients/pretalx'
+import { GetSessions, GetSpeakers, clearPretalxCache, getPublishedScheduleVersion } from '@/clients/pretalx'
 import { FetchNocoDbTable } from '@/clients/nocodb'
 import * as store from '@/data/store'
 import dayjs from 'dayjs'
@@ -148,6 +148,17 @@ async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersio
 
   // 2) Build the new set, then 3) hand it to the store for an atomic swap.
   const storeData = sessions.map((s: any) => pretalxToStoreData(s, eventId))
+
+  // Loud collision check: ids are slugified titles, so a talk in this event
+  // named like another event's talk produces the SAME id and shadows it in
+  // every bare-id lookup (test clones of devcon-7 talks 404'd the archive,
+  // 2026-08-21). The sync proceeds — consumers can disambiguate with
+  // ?event= — but this must never happen silently again.
+  const collisions = store.getCrossEventCollisions(eventId, storeData.map((s: any) => s.id))
+  for (const c of collisions) {
+    console.warn(`[collision] session id '${c.id}' in ${eventId} also exists in ${c.otherEventId} — rename one (bare-id lookups will shadow)`)
+  }
+
   const count = store.replaceEventSessions(eventId, storeData)
   console.log(`Swapped in ${count} sessions for ${eventId} (zero-downtime)`)
 
@@ -238,23 +249,35 @@ export async function SyncNocoDbTable(tableId: string, tableName: string) {
 
 async function SyncSpeakers(speakers: any[], config: PretalxInstanceConfig) {
   console.log('Syncing speakers', speakers.length)
+  // Session payloads carry SLUGIFIED speaker ids (mapSession without
+  // inclContacts), but Pretalx's /speakers/:id endpoint only resolves speaker
+  // CODES — so fetching an unknown speaker by slug 404s. That 404 used to
+  // throw out of the whole sync: one new speaker on one talk and the release
+  // never reached memory OR dispatched the git workflow (bit test-devcon-8
+  // on 2026-08-21 via a new "James" speaker; would hit devcon8 identically).
+  // Resolve store-misses against the bulk speaker list instead (one cached
+  // fetch per sync — the sync already cleared the client cache), and never
+  // let a single unresolvable speaker kill the sync.
+  let bulkBySlug: Map<string, any> | null = null
   for (const speaker of speakers) {
-    console.log('Speaker', speaker?.sourceId ?? speaker)
-    let id = speaker?.sourceId ?? speaker
-    let speakerData = store.findSpeaker(id)
+    const id = speaker?.sourceId ?? speaker
+    try {
+      if (store.findSpeaker(id)) continue
 
-    if (speakerData) {
-      console.log('Speaker already exists', speakerData.id)
-      continue
+      if (!bulkBySlug) {
+        const all = await GetSpeakers({}, config)
+        bulkBySlug = new Map(all.map((s: any) => [s.id, s]))
+        console.log(`Fetched ${all.length} speakers from Pretalx for slug resolution`)
+      }
+      const speakerData = bulkBySlug.get(id)
+      if (!speakerData) {
+        console.warn(`Speaker ${id} not found in Pretalx speaker list — skipping`)
+        continue
+      }
+      console.log('Creating speaker', speakerData.id)
+      store.createSpeaker(speakerData)
+    } catch (error) {
+      console.error(`Speaker sync failed for ${id} — continuing:`, error)
     }
-
-    speakerData = await GetSpeaker(id, {}, config)
-    if (!speakerData) {
-      console.error(`Speaker ${id} not found`)
-      continue
-    }
-
-    console.log('Creating speaker', speakerData.id)
-    store.createSpeaker(speakerData)
   }
 }

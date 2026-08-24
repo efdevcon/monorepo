@@ -3,7 +3,8 @@ import { getCsrfToken, signIn, signOut, useSession } from 'next-auth/react'
 import { Button } from 'lib/components/button'
 import { useDebounceValue } from 'usehooks-ts'
 import { Link } from 'components/common/link'
-import { useAccount, useSignMessage } from 'wagmi'
+import { useAccount, useChainId, useSignMessage, useSwitchChain } from 'wagmi'
+import { getAddress } from 'viem'
 import { SiweMessage } from 'siwe'
 import css from './discounts.module.scss'
 
@@ -19,8 +20,10 @@ interface DiscountsBody {
 }
 
 export function Verifier(props: Props) {
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, connector } = useAccount()
   const { signMessageAsync } = useSignMessage()
+  const chainId = useChainId()
+  const { switchChainAsync } = useSwitchChain()
   const [inputValue, setInputValue] = useState('')
   const [debouncedValue, setValue] = useDebounceValue('', 500)
   const [discount, setDiscount] = useState<DiscountsBody | undefined>()
@@ -44,7 +47,9 @@ export function Verifier(props: Props) {
     try {
       const message = new SiweMessage({
         domain: window.location.host,
-        address: address,
+        // EIP-55 checksum: siwe throws on lowercase (WC wallets return
+        // lowercase; see VerifyDiscountModal / issue #114).
+        address: getAddress(address as string),
         statement: 'Sign in with Ethereum to the app.',
         uri: window.location.origin,
         version: '1',
@@ -52,8 +57,21 @@ export function Verifier(props: Props) {
         nonce: await getCsrfToken(),
       })
 
+      // Steer the session to mainnet BEFORE signing: WalletConnect scopes
+      // requests to the ACTIVE chain, and wallets reject personal_sign
+      // instantly (no prompt) when it's a chain their session doesn't
+      // support (issue #114: TrustWallet vs our baseSepolia default).
+      if (chainId !== 1) {
+        try {
+          await switchChainAsync({ chainId: 1 })
+        } catch (switchErr) {
+          console.warn('could not switch to mainnet before signing - attempting anyway:', switchErr)
+        }
+      }
       const signature = await signMessageAsync({
         message: message.prepareMessage(),
+        account: getAddress(address as string),
+        connector,
       })
 
       if (session && session.type === 'github') await signOut({ redirect: false })

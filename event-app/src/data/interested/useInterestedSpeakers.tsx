@@ -7,64 +7,63 @@ import { cacheDB } from "../cache/cache-db";
 import { getActiveDataset } from "../dataset";
 
 /**
- * "Interested" session stars. Browser-local user state persisted in the
- * Dexie-backed store (offline-first rule: no parallel localStorage state),
- * keyed by the active dataset's eventId so Devcon 7 test stars don't bleed
- * into Devcon 8. All subscribers (cards, filter pill, header shortcut,
- * session details) share one SWR key and stay in sync via `mutate`.
+ * "Interested" speaker stars (speakers page). Mirrors useInterested (session
+ * stars): browser-local user state persisted in the Dexie-backed store, keyed
+ * by the active dataset's eventId. Kept in its own table so speaker ids never
+ * mix into the schedule's session-star counts and filters.
  */
-export function useInterested() {
+export function useInterestedSpeakers() {
   const eventId = getActiveDataset().eventId;
 
   const { data, mutate } = useSWR(
-    ["interested", eventId],
+    ["interested-speakers", eventId],
     async () => {
       if (!cacheDB) return [] as string[];
-      const rows = await cacheDB.interested
+      const rows = await cacheDB.interestedSpeakers
         .where("eventId")
         .equals(eventId)
         .toArray();
-      return rows.map((r) => r.sessionId);
+      return rows.map((r) => r.speakerId);
     },
     { revalidateOnFocus: false }
   );
 
-  // Stable identity matters: `ids` feeds useScheduleState's `groups` memo,
-  // so a fresh Set each render would re-group the whole schedule every tick.
+  // Stable identity matters: `ids` feeds the speakers list's filter memos,
+  // so a fresh Set each render would re-filter the whole list every tick.
   const ids = useMemo(() => new Set(data ?? []), [data]);
 
   const toggle = useCallback(
-    // Pass `title` to confirm additions with a toast — the hook decides
+    // Pass `name` to confirm additions with a toast — the hook decides
     // add-vs-remove from the store, so call sites don't duplicate that check.
-    async (sessionId: string, title?: string) => {
+    async (speakerId: string, name?: string) => {
       if (!cacheDB) return;
-      const key: [string, string] = [eventId, sessionId];
+      const key: [string, string] = [eventId, speakerId];
       // Transaction: a bare get-then-put lets two rapid taps both read
       // "missing" and both add — the star ends on when the user meant off.
       const added = await cacheDB.transaction(
         "rw",
-        cacheDB.interested,
+        cacheDB.interestedSpeakers,
         async () => {
-          const existing = await cacheDB.interested.get(key);
+          const existing = await cacheDB.interestedSpeakers.get(key);
           if (existing) {
-            await cacheDB.interested.delete(key);
+            await cacheDB.interestedSpeakers.delete(key);
             return false;
           }
-          await cacheDB.interested.put({
+          await cacheDB.interestedSpeakers.put({
             eventId,
-            sessionId,
+            speakerId,
             addedAt: Date.now(),
           });
           return true;
         }
       );
-      if (added && title)
+      if (added && name)
         toast(
           // Single wrapping span: sonner's title slot is a flex row, so
           // multiple top-level children render as columns, not inline text.
           <span>
-            &lsquo;<span className="font-semibold">{title}</span>&rsquo; was
-            added to your Interests.
+            <span className="font-semibold">{name}</span> was added to your
+            Interests.
           </span>
         );
       await mutate();
@@ -74,7 +73,7 @@ export function useInterested() {
 
   return {
     ids,
-    isInterested: (sessionId: string) => ids.has(sessionId),
+    isInterested: (speakerId: string) => ids.has(speakerId),
     toggle,
     count: ids.size,
   };

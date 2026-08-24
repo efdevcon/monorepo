@@ -1,6 +1,8 @@
 import { createAppKit } from '@reown/appkit/react'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { mainnet, base, baseSepolia, optimism, arbitrum, polygon } from '@reown/appkit/networks'
+import { mainnet } from '@reown/appkit/networks'
+// Re-enable alongside the networks list below when needed:
+// import { base, baseSepolia, optimism, arbitrum, polygon } from '@reown/appkit/networks'
 import { http, fallback } from 'wagmi'
 
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID || ''
@@ -16,25 +18,32 @@ function chainTransport(alchemySlug: string, infuraSlug?: string) {
   return fallback(transports)
 }
 
-const networks = [baseSepolia, base, mainnet, optimism, arbitrum, polygon] as const
+// Order matters: the FIRST network is every WalletConnect session's initial
+// active chain. baseSepolia used to lead (an x402-dev leftover), which made
+// wallets without testnet support reject signature requests instantly
+// (issue #114: TrustWallet). Mainnet-only for now — every live flow (SIWE
+// discounts, ETH checkout) signs and settles on mainnet. Re-enable others
+// here (and their transports below) when a flow actually needs them.
+const networks = [mainnet] as const
 
 export const wagmiAdapter = new WagmiAdapter({
   ssr: true,
   networks: [...networks],
   projectId,
   transports: {
-    [baseSepolia.id]: chainTransport('base-sepolia', 'base-sepolia'),
-    [base.id]: chainTransport('base-mainnet'),
     [mainnet.id]: chainTransport('eth-mainnet', 'mainnet'),
-    [optimism.id]: chainTransport('opt-mainnet', 'optimism-mainnet'),
-    [arbitrum.id]: chainTransport('arb-mainnet', 'arbitrum-mainnet'),
-    [polygon.id]: chainTransport('polygon-mainnet', 'polygon-mainnet'),
+    // [baseSepolia.id]: chainTransport('base-sepolia', 'base-sepolia'),
+    // [base.id]: chainTransport('base-mainnet'),
+    // [optimism.id]: chainTransport('opt-mainnet', 'optimism-mainnet'),
+    // [arbitrum.id]: chainTransport('arb-mainnet', 'arbitrum-mainnet'),
+    // [polygon.id]: chainTransport('polygon-mainnet', 'polygon-mainnet'),
   },
 })
 
 export const appKit = createAppKit({
   adapters: [wagmiAdapter],
   networks: [...networks],
+  defaultNetwork: networks[0],
   projectId,
   metadata: {
     name: 'Devcon Tickets',

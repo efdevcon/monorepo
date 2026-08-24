@@ -1,106 +1,77 @@
 "use client";
 
-import { useSpeaker, useSessionsBySpeaker } from "@/data/hooks";
-import APP_CONFIG from "@/CONFIG";
 import { use } from "react";
-import { Link } from "@/routing";
+import { ArrowLeft } from "lucide-react";
+import APP_CONFIG from "@/CONFIG";
+import { BackButton } from "@/routing";
+import { useSpeakersData } from "@/components/speakers/useSpeakersData";
+import { SpeakerDetailsContent } from "@/components/speakers/SpeakerDetailsContent";
 
 interface SpeakerClientProps {
   params?: Promise<{ id: string }>;
   id?: string;
 }
 
+/**
+ * Fullscreen speaker details (mobile flow + the desktop panel's "Expand
+ * details" target). Resolves from the cached speakers × sessions join, so a
+ * speaker never opened while online still renders offline once the lists have
+ * loaded. Mobile back navigation comes from AppHeader (routeChrome); the
+ * desktop header has no back slot, so a page-level text BackButton sits
+ * above the card there (PR #112 feedback).
+ */
 export default function Speaker({ params, id: directId }: SpeakerClientProps) {
   const id = directId ?? use(params!).id;
 
-  const { speaker, isLoading, isError, error } = useSpeaker(id);
-  const { sessions } = useSessionsBySpeaker(id);
+  const { byId, isLoading, isError, error } = useSpeakersData();
+  const decorated = byId.get(id) ?? null;
 
   if (!APP_CONFIG.SPEAKERS_ENABLED) {
-    return <div className="p-4 text-gray-500">Speakers are not enabled</div>;
+    return <div className="p-4 text-dc-muted">Speakers are not enabled</div>;
   }
 
-  if (isLoading) {
-    return <div className="p-4">Loading speaker...</div>;
-  }
-
-  if (isError || !speaker) {
+  if (isLoading && !decorated) {
     return (
-      <div className="p-4 text-red-500">
-        {error?.message || "Speaker not found"}
+      <div className="p-4 py-12 text-center font-heading text-dc-muted">
+        Loading speaker…
+      </div>
+    );
+  }
+
+  if (!decorated) {
+    return (
+      <div className="p-4 py-12 text-center font-heading text-dc-red">
+        {(isError && (error as Error | undefined)?.message) ||
+          "Speaker not found"}
       </div>
     );
   }
 
   return (
-    <div className="p-4">
-      {/* Back navigation comes from AppHeader (routeChrome) — no page-level BackButton. */}
-      <h1 className="text-2xl font-bold mb-2">{speaker.name}</h1>
-
-      <div className="space-y-1 text-gray-600 mb-4">
-        {speaker.role && <p>{speaker.role}</p>}
-        {speaker.company && <p>{speaker.company}</p>}
-      </div>
-
-      {speaker.description && (
-        <div className="mb-4">
-          <h2 className="font-semibold mb-1">About</h2>
-          <p className="text-gray-700">{speaker.description}</p>
+    <main className="expand font-heading text-dc-fg">
+      {/* Mobile: panel-grey underlay over the app gradient (between .app-bg
+          at z -10 and the content) so the surface fills the whole viewport —
+          content box tricks can't reach the layout's 112px bottom-nav padding,
+          which otherwise shows the gradient below short AND long profiles. */}
+      <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
+      <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
+        {/* Desktop-only back control: underline-on-hover text button — the
+            ghost-pill fill reads oddly floating over the page gradient. The
+            breakpoint gate lives on a wrapper because the button styles set
+            their own display. */}
+        <div className="hidden lg:block">
+          <BackButton
+            fallbackHref="/speakers"
+            className="mb-3 flex cursor-pointer items-center gap-1.5 text-[14px] font-bold leading-none text-dc-purple hover:underline"
+          >
+            <ArrowLeft className="size-4" />
+            Back
+          </BackButton>
         </div>
-      )}
-
-      <div className="flex gap-4 mb-4">
-        {speaker.twitter && (
-          <a
-            href={`https://twitter.com/${speaker.twitter}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
-          >
-            Twitter
-          </a>
-        )}
-        {speaker.github && (
-          <a
-            href={`https://github.com/${speaker.github}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
-          >
-            GitHub
-          </a>
-        )}
-        {speaker.website && (
-          <a
-            href={speaker.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
-          >
-            Website
-          </a>
-        )}
-      </div>
-
-      {sessions.length > 0 && (
-        <div>
-          <h2 className="font-semibold mb-2">Sessions</h2>
-          <div className="space-y-2">
-            {sessions.map((session) => (
-              <Link
-                key={session.id}
-                href={`/schedule/${session.id}`}
-                className="block p-2 border rounded hover:bg-gray-50 cursor-pointer"
-              >
-                <p className="font-medium">{session.title}</p>
-                <p className="text-sm text-gray-500">
-                  {session.day} • {session.room?.name}
-                </p>
-              </Link>
-            ))}
-          </div>
+        <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
+          <SpeakerDetailsContent decorated={decorated} />
         </div>
-      )}
-    </div>
+      </div>
+    </main>
   );
 }

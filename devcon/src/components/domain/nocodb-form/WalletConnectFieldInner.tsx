@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider, type Config, useAccount, useDisconnect, useSignMessage } from 'wagmi'
+import { WagmiProvider, type Config, useAccount, useChainId, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi'
+import { getAddress } from 'viem'
 import { useAppKit } from '@reown/appkit/react'
 import { SiweMessage } from 'siwe'
 import { Wallet } from 'lucide-react'
@@ -34,9 +35,11 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   const { setValue, watch } = useFormContext()
   const { walletProof, setWalletProof, reportDiscount } = useBuilderConnect()
   const { open } = useAppKit()
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, connector } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
+  const chainId = useChainId()
+  const { switchChainAsync } = useSwitchChain()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
   // Set when the user clicks Connect here, so we can auto-prompt the signature
@@ -111,14 +114,27 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
       const { nonceToken, nonce } = await nonceRes.json()
       const message = new SiweMessage({
         domain: window.location.host,
-        address,
+        // EIP-55 checksum: siwe throws on lowercase (WC wallets return
+        // lowercase; see VerifyDiscountModal / issue #114).
+        address: getAddress(address as string),
         statement: 'Connect your wallet to your Devcon builder application.',
         uri: window.location.origin,
         version: '1',
         chainId: 1,
         nonce,
       }).prepareMessage()
-      const signature = await signMessageAsync({ message })
+      // Steer the session to mainnet BEFORE signing: WalletConnect scopes
+      // requests to the ACTIVE chain, and wallets reject personal_sign
+      // instantly (no prompt) when it's a chain their session doesn't
+      // support (issue #114: TrustWallet vs our baseSepolia default).
+      if (chainId !== 1) {
+        try {
+          await switchChainAsync({ chainId: 1 })
+        } catch (switchErr) {
+          console.warn('could not switch to mainnet before signing - attempting anyway:', switchErr)
+        }
+      }
+      const signature = await signMessageAsync({ message, account: getAddress(address as string), connector })
       const verifyRes = await fetch('/api/builder/wallet/verify/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

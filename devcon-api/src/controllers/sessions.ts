@@ -52,7 +52,13 @@ export async function GetSessions(req: Request, res: Response) {
 
 export async function GetSession(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
-  const data = store.getSession(req.params.id)
+  // ?event= disambiguates colliding ids: session ids are slugified titles and
+  // exist in more than one event (test-devcon-8 clones of devcon-7 talks);
+  // the bare-id lookup is last-loaded-event-wins, which made a test copy
+  // shadow the archive original. Consumers that know the event (the archive
+  // does) should always pass it.
+  const event = typeof req.query.event === 'string' ? req.query.event : undefined
+  const data = event ? store.getSessionInEvent(event, req.params.id) : store.getSession(req.params.id)
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 

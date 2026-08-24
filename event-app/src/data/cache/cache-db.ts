@@ -90,12 +90,24 @@ export interface InterestedSession {
   addedAt: number;
 }
 
+/**
+ * A speaker the user starred as "Interested" (speakers page). Kept separate
+ * from `interested` (session stars) — mixing namespaced ids into one table
+ * would corrupt the schedule's counts and filters.
+ */
+export interface InterestedSpeaker {
+  eventId: string;
+  speakerId: string;
+  addedAt: number;
+}
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
   conversations!: Table<Conversation, string>;
   seenAnnouncements!: Table<SeenAnnouncement, string>;
   interested!: Table<InterestedSession, [string, string]>;
+  interestedSpeakers!: Table<InterestedSpeaker, [string, string]>;
 
   constructor() {
     super("SWRCacheDB");
@@ -118,6 +130,10 @@ class CacheDB extends Dexie {
     // v5: "Interested" session stars (schedule), keyed per event.
     this.version(5).stores({
       interested: "&[eventId+sessionId], eventId",
+    });
+    // v6: "Interested" speaker stars (speakers page), keyed per event.
+    this.version(6).stores({
+      interestedSpeakers: "&[eventId+speakerId], eventId",
     });
   }
 }

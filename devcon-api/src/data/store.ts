@@ -214,6 +214,27 @@ export function getSession(id: string) {
   return sessionMap.get(id) || null
 }
 
+/** Event-scoped session lookup. Session ids are slugified titles and are NOT
+ *  unique across events (test-devcon-8 cloned devcon-7 titles; the bare-id
+ *  map is last-loaded-event-wins, which let test copies shadow archive
+ *  sessions — archive.devcon.org 404s, 2026-08-21). Callers that know the
+ *  event should resolve through this instead of getSession. */
+export function getSessionInEvent(eventId: string, id: string) {
+  return sessions.find((s) => s.eventId === eventId && (s.id === id || s.sourceId === id)) || null
+}
+
+/** Ids in `ids` (about to be synced for `eventId`) that also exist on another
+ *  event's sessions — i.e. bare-id lookups will shadow one of the two copies.
+ *  Used by the sync paths to make collisions loud instead of silent. */
+export function getCrossEventCollisions(eventId: string, ids: string[]) {
+  const idSet = new Set(ids)
+  const out: { id: string; otherEventId: string }[] = []
+  for (const s of sessions) {
+    if (s.eventId !== eventId && idSet.has(s.id)) out.push({ id: s.id, otherEventId: s.eventId })
+  }
+  return out
+}
+
 export function getAllSessions() {
   return sessions
 }
@@ -429,8 +450,11 @@ export function replaceEventSessions(eventId: string, rawSessions: any[]): numbe
 
     // Pretalx payloads never carry the AV enrichment fields, so a resync must
     // not drop them from the serving copy (the git files keep them; this keeps
-    // memory consistent until the next boot).
-    const previous = sessionMap.get(data.id)
+    // memory consistent until the next boot). Only inherit from THIS event's
+    // previous copy: the bare-id map can hand back another event's session
+    // when ids collide, silently bleeding its AV fields into this event.
+    const prior = sessionMap.get(data.id)
+    const previous = prior && prior.eventId === eventId ? prior : undefined
     const enriched: Record<string, any> = {}
     if (previous) {
       for (const field of ENRICHED_SESSION_FIELDS) {

@@ -151,7 +151,23 @@ async function syncSessions() {
     }
   }
 
+  // Cross-event collision check: ids are slugified titles, so a talk named
+  // like another event's talk writes the SAME id and shadows it in every
+  // bare-id lookup (test-devcon-8 clones of devcon-7 talks 404'd the archive,
+  // 2026-08-21). Warn loudly in the workflow log; the fix is renaming a talk.
+  const otherEventIds = new Map<string, string>()
+  for (const dir of fs.readdirSync('./data/sessions')) {
+    if (dir === eventId || !fs.statSync(`./data/sessions/${dir}`).isDirectory()) continue
+    for (const f of fs.readdirSync(`./data/sessions/${dir}`)) {
+      if (f.endsWith('.json')) otherEventIds.set(f.replace(/\.json$/, ''), dir)
+    }
+  }
+
   for (const session of sessions) {
+    const collidesWith = otherEventIds.get(session.id)
+    if (collidesWith) {
+      console.warn(`[collision] session id '${session.id}' in ${eventId} also exists in ${collidesWith} — rename one (bare-id lookups will shadow)`)
+    }
     const fsSession = sessionsFs.find((s: any) => s.id === session.id)
     if (session.speakers.length > 0) {
       acceptedSpeakers.push(...speakers.filter((s: any) => session.speakers.includes(s.id)))

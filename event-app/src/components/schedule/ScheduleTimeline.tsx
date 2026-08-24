@@ -11,6 +11,7 @@ import {
   buildTimeline,
   formatTime,
   formatTimeRange,
+  isKeynoteSession,
   offsetPx,
   sessionBox,
   SLOT_WIDTH,
@@ -40,12 +41,14 @@ function TimelineSession({
   const { left, width } = sessionBox(session, startMs);
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
-  const keynote = session.type?.toLowerCase() === "keynote";
+  const keynote = isKeynoteSession(session);
   const wide = width >= SLOT_WIDTH * 1.5;
 
   return (
     <Link
       href={`/schedule/${session.id}`}
+      // No viewport prefetch (see SpeakerCard) — client page on cached data.
+      prefetch={false}
       title={`${session.title} — ${session.room?.name ?? ""}`}
       onClick={(e) => {
         if (onOpen && isDesktopNow()) {

@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, BadgeCheck, CircleX, Eye, Github, Loader2 } from 'lucide-react'
-import { useAccount, useDisconnect, useSignMessage } from 'wagmi'
+import { useAccount, useChainId, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi'
 import { getSession, signIn, signOut } from 'next-auth/react'
 import { SiweMessage } from 'siwe'
+import { getAddress } from 'viem'
 import { appKit } from 'context/appkit-config'
 import { pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import { EthGlyphTile } from 'components/domain/tickets/TicketTable'
@@ -80,9 +81,11 @@ function avatarGradient(address: string): string {
 }
 
 export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProps) {
-  const { address, isConnected } = useAccount()
+  const { address, isConnected, connector } = useAccount()
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
+  const chainId = useChainId()
+  const { switchChainAsync } = useSwitchChain()
 
   const [step, setStep] = useState<Step>('prompt')
   // Eligible discount types per verified identity. null = that identity hasn't
@@ -346,6 +349,22 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
     }
   }
 
+  // Shared GitHub claim call: the github route uses it, and the wallet route
+  // falls back to it when the wallet can't produce a signature (Safe and
+  // other smart-contract wallets can't personal_sign; some mobile
+  // WalletConnect sessions fail too). Protocol Guild members are exactly the
+  // crowd holding multisigs, so without the fallback the flow dead-ends for
+  // them even when their connected GitHub identity could claim instantly.
+  const claimViaGithub = async (): Promise<{ voucher?: string; error?: string }> => {
+    if (!githubId) return { error: 'Not signed in to GitHub' }
+    const res = await fetch(`/api/discounts/claim/${encodeURIComponent(githubId)}/`)
+    const body = await res.json().catch(() => null)
+    if (!res.ok || !body?.data?.voucher) {
+      return { error: body?.error || `We couldn’t claim your discount. Please try again. (${res.status})` }
+    }
+    return { voucher: body.data.voucher }
+  }
+
   const handleClaim = async () => {
     if (!selected || claiming) return
     const via = viaFor(selected)
@@ -365,7 +384,12 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
         }
         const message = new SiweMessage({
           domain: window.location.host,
-          address,
+          // EIP-55 checksum required: the siwe lib THROWS "Invalid address"
+          // on lowercase input, and WalletConnect wallets (TrustWallet,
+          // issue #114) return lowercase addresses — the claim then died
+          // instantly, before any prompt. Extensions return checksummed,
+          // which is why only WC users hit it.
+          address: getAddress(address),
           statement: 'Verify wallet ownership to claim your Devcon ticket discount.',
           uri: window.location.origin,
           version: '1',
@@ -373,39 +397,118 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
           nonce: nonceBody.nonce,
           expirationTime: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
         }).prepareMessage()
-        const signature = await signMessageAsync({ message })
-        const res = await fetch('/api/discounts/claim-wallet/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message, signature, discountType: selected, nonceToken: nonceBody.nonceToken }),
-        })
-        const body = await res.json()
-        if (!res.ok || !body?.success || !body?.data?.voucher) {
-          // Surface the backend reason (e.g. "This discount is currently sold out.")
-          setError(body?.error || 'We couldn’t claim your discount. Please try again.')
-          setClaiming(false)
-          return
+        // Steer the session to mainnet BEFORE signing. WalletConnect scopes
+        // requests to the ACTIVE chain, and if that's one the wallet's
+        // session doesn't support (our AppKit list led with baseSepolia,
+        // issue #114: TrustWallet), personal_sign is rejected instantly with
+        // no prompt. Switching among session-approved chains is silent;
+        // failure is non-fatal — we still attempt the signature.
+        if (chainId !== 1) {
+          try {
+            await switchChainAsync({ chainId: 1 })
+          } catch (switchErr) {
+            console.warn('could not switch to mainnet before signing — attempting anyway:', switchErr)
+          }
         }
-        voucher = body.data.voucher
+        let signature: string | null = null
+        try {
+          // Pin the request to the connector that owns the DISPLAYED
+          // address: with an extension + a WalletConnect session both
+          // attached, wagmi otherwise routes to whichever connector is
+          // "active" — which can be a locked extension while the UI shows
+          // the WC wallet, hanging forever with no visible prompt. And cap
+          // the wait: a wallet that never responds should produce an
+          // actionable error, not an infinite spinner.
+          signature = await Promise.race([
+            signMessageAsync({ message, account: getAddress(address), connector }),
+            new Promise<never>((_, reject) =>
+              setTimeout(() => reject(new Error('wallet signature timed out')), 45_000)
+            ),
+          ])
+        } catch (signErr) {
+          // A deliberate rejection is the user saying no — stop, no backend
+          // calls, surface the declined copy via the outer catch. Only a
+          // TECHNICAL signature failure (Safe and other smart-contract
+          // wallets can't personal_sign, flaky WC sessions) falls back.
+          // Detect rejection by the typed error (EIP-1193 code 4001 /
+          // viem's UserRejectedRequestError), not by message text — some
+          // technical failures also contain the word "rejected".
+          const errAny = signErr as { code?: number; name?: string; cause?: { code?: number } }
+          const userRejected =
+            errAny?.code === 4001 ||
+            errAny?.cause?.code === 4001 ||
+            errAny?.name === 'UserRejectedRequestError' ||
+            /user rejected|user denied|user cancel/i.test(signErr instanceof Error ? signErr.message : '')
+          // The github claim endpoint issues the identity's highest-priority
+          // discount, so only fall back when that is exactly the selected
+          // one. Computed from github eligibility alone — githubLockType is
+          // wrong here, since it applies the wallet-first routing preference
+          // and skips any type the wallet is also eligible for.
+          const githubTopType = DISCOUNTS.find(d => githubElig?.has(d.type))?.type ?? null
+          if (!userRejected && githubId && selected === githubTopType) {
+            console.warn('Wallet signature failed; falling back to GitHub claim:', signErr)
+            const fallback = await claimViaGithub()
+            if (!fallback.voucher) throw signErr
+            voucher = fallback.voucher
+          } else {
+            throw signErr
+          }
+        }
+        if (!voucher) {
+          const res = await fetch('/api/discounts/claim-wallet/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message, signature, discountType: selected, nonceToken: nonceBody.nonceToken }),
+          })
+          // A gateway timeout / crash page isn't JSON — parse safely and keep
+          // the HTTP status in the fallback copy, so a screenshot of the error
+          // tells us WHICH failure it was (504 timeout vs 502 vs clean API
+          // error, which always carries its own `error` message).
+          const body = await res.json().catch(() => null)
+          if (!res.ok || !body?.success || !body?.data?.voucher) {
+            // Surface the backend reason (e.g. "This discount is currently sold out.")
+            setError(body?.error || `We couldn’t claim your discount. Please try again. (${res.status})`)
+            setClaiming(false)
+            return
+          }
+          voucher = body.data.voucher
+        }
       } else if (via === 'github') {
-        if (!githubId) throw new Error('Not signed in to GitHub')
-        const res = await fetch(`/api/discounts/claim/${encodeURIComponent(githubId)}/`)
-        const body = await res.json()
-        if (!res.ok || !body?.data?.voucher) {
-          setError(body?.error || 'We couldn’t claim your discount. Please try again.')
+        const r = await claimViaGithub()
+        if (!r.voucher) {
+          setError(r.error || 'We couldn’t claim your discount. Please try again.')
           setClaiming(false)
           return
         }
-        voucher = body.data.voucher
+        voucher = r.voucher
       } else {
         throw new Error('No verification for this discount')
       }
 
       // Hand off to the Pretix redeem flow, which applies the voucher discount.
       window.location.href = pretixEventUrl(`/redeem?voucher=${encodeURIComponent(voucher as string)}`)
-    } catch {
-      // Wallet signing rejected, network error, etc.
-      setError('We couldn’t claim your discount. Please try again.')
+    } catch (err) {
+      // Wallet signing rejected/failed, or a network error before any server
+      // response. Log the real cause for the browser console, and mark the
+      // copy so a screenshot distinguishes this path from an HTTP failure
+      // (which shows a status code instead).
+      console.error('discount claim failed before a server response:', err)
+      // Non-Error throws happen here too (siwe throws plain SiweError
+      // objects with type/expected/received) — stringify so the console
+      // and the classification below see something useful.
+      const msg =
+        err instanceof Error
+          ? err.message
+          : typeof err === 'object' && err !== null
+            ? JSON.stringify(err)
+            : String(err ?? '')
+      setError(
+        /user (rejected|denied|cancel)|rejected|denied|closed/i.test(msg)
+          ? 'The signature request was declined in your wallet. Please try again.'
+          : /timed out/i.test(msg)
+            ? 'No response from your wallet. Open your wallet app or extension and check for a pending request — or disconnect and reconnect here, then try again.'
+            : 'We couldn’t claim your discount. Your wallet didn’t complete the signature, or the connection dropped. Please try again. (no server response)'
+      )
       setClaiming(false)
     }
   }

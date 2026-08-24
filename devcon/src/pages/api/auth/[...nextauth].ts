@@ -2,6 +2,7 @@ import NextAuth, { AuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { SiweMessage } from "siwe"
+import { verifySiweSignature } from "services/siweVerify"
 
 /**
  * M13: read NextAuth's CSRF token from the inbound request's cookie. The
@@ -65,7 +66,13 @@ export const authOptions: AuthOptions = {
     providers: [
         GithubProvider({
             clientId: githubClientId,
-            clientSecret: githubClientSecret
+            clientSecret: githubClientSecret,
+            // GitHub added an RFC 9207 `iss` parameter to OAuth callbacks
+            // (staged rollout since 2026-04); openid-client then refuses the
+            // callback unless the provider declares its issuer — every GitHub
+            // sign-in died with OAUTH_CALLBACK_ERROR "issuer must be
+            // configured on the issuer" (github.com/orgs/community/discussions/192143).
+            issuer: 'https://github.com/login/oauth'
         }),
         CredentialsProvider({
             name: 'Ethereum',
@@ -116,13 +123,20 @@ export const authOptions: AuthOptions = {
                         return null
                     }
 
-                    const result = await siwe.verify({
-                        signature: credentials?.signature || "",
-                        domain: nextAuthUrl.host,
-                        nonce: expectedNonce,
-                    })
-
-                    if (result.success) {
+                    // Domain binding previously enforced inside siwe.verify():
+                    if (siwe.domain !== nextAuthUrl.host) {
+                        console.error('SIWE: domain mismatch', siwe.domain)
+                        return null
+                    }
+                    // Universal signature check (EOA + on-chain ERC-1271): the
+                    // siwe library's verify() is EOA-only and rejected Safe and
+                    // other smart-contract wallet sign-ins (issue #114 family).
+                    const valid = await verifySiweSignature(
+                        siwe.address,
+                        siwe.prepareMessage(),
+                        credentials?.signature || ''
+                    )
+                    if (valid) {
                         return {
                             id: siwe.address,
                             type: 'ethereum'

@@ -66,13 +66,16 @@ function CheckboxRow({
   onToggle: () => void;
 }) {
   return (
+    // items-start + a line-height-tall (h-5) box container: long labels wrap
+    // left-aligned (buttons center text by default) under a checkbox that
+    // stays centered on the first line instead of the whole block.
     <button
       role="checkbox"
       aria-checked={checked}
       onClick={onToggle}
-      className="group flex h-6 cursor-pointer items-center gap-2"
+      className="group flex min-h-6 cursor-pointer items-start gap-2 text-left"
     >
-      <span className="flex size-4 items-center justify-center">
+      <span className="flex h-5 w-4 shrink-0 items-center justify-center">
         {checked ? (
           <span className="flex size-4 items-center justify-center rounded-[4px] bg-dc-purple">
             <Check className="size-3 text-white" strokeWidth={3} />
@@ -88,6 +91,7 @@ function CheckboxRow({
 
 /**
  * Filter panel body (Figma "Full filter panel"): Tracks as gem pill-chips,
+ * Topics as plain pill-chips (the shared Speakers-page vocabulary),
  * Locations / CLS / Session formats / Expertise as checkbox rows, wrapped in
  * accordions, with the white header (Clear all, close) and the sticky footer
  * (Close, Reset filters). Shells position it: bottom sheet on mobile, right
@@ -174,6 +178,39 @@ export function FilterPanelContent({
                       />
                     )}
                     {track}
+                  </button>
+                );
+              })}
+            </div>
+          </AccordionSection>
+        )}
+
+        {options.topic.length > 0 && (
+          <AccordionSection
+            title="Topics"
+            count={filters.topic.length}
+            defaultOpen={defaultOpen}
+          >
+            {/* Same chip grammar as Tracks; topics have no track theme, so
+                the active state is the app's purple treatment instead of a
+                per-track pastel. The list is the shared Speakers-page topic
+                vocabulary (top session tags by frequency). */}
+            <div className="flex flex-wrap gap-2">
+              {options.topic.map((topic) => {
+                const active = filters.topic.includes(topic);
+                return (
+                  <button
+                    key={topic}
+                    onClick={() => onToggle("topic", topic)}
+                    aria-pressed={active}
+                    className={cn(
+                      "flex min-h-8 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
+                      active
+                        ? "border-dc-purple bg-dc-lavender font-semibold"
+                        : "border-dc-hairline bg-white font-normal"
+                    )}
+                  >
+                    {topic}
                   </button>
                 );
               })}

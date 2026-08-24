@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
 import { getAddress } from 'viem'
 import { signProof, verifyProof } from 'services/builder/proof'
+import { verifySiweSignature } from 'services/siweVerify'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -32,8 +33,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!expectedDomain && typeof req.headers.host === 'string') expectedDomain = req.headers.host
 
     const siwe = new SiweMessage(message)
-    const result = await siwe.verify({ signature, nonce: expectedNonce, domain: expectedDomain })
-    if (!result.success) {
+    // Field bindings previously enforced inside siwe.verify() — kept explicit:
+    if (siwe.nonce !== expectedNonce || (expectedDomain && siwe.domain !== expectedDomain)) {
+      res.status(401).json({ success: false, error: 'Signature verification failed' })
+      return
+    }
+    // Universal signature check (EOA + on-chain ERC-1271): the siwe library's
+    // verify() is EOA-only and rejected Safe / smart-contract wallets.
+    const valid = await verifySiweSignature(siwe.address, message, signature)
+    if (!valid) {
       res.status(401).json({ success: false, error: 'Signature verification failed' })
       return
     }
