@@ -15,7 +15,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "announcements:setup-notion": "tsx scripts/setup-notion-announcements.ts",
-    "push:test": "tsx scripts/send-test-push.ts"
+    "push:test": "tsx scripts/send-test-push.ts",
+    "otp:test": "tsx scripts/test-otp-input.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",

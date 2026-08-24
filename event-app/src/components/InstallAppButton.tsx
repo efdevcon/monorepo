@@ -2,9 +2,10 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import cn from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { Copy, Download, Share, MoreVertical } from "lucide-react";
+import { Download, ExternalLink, Share, MoreVertical } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
@@ -58,27 +59,6 @@ function isSafari(): boolean {
 }
 
 /**
- * True when installing may need a hop through Safari first: signed in, on
- * iOS, not already installed. Drives both the proactive banner on /ticket
- * and the fallback option in the install modal.
- *
- * Deliberately NOT gated on "not Safari" — several iOS browsers (Brave
- * included) don't add a distinguishing token to their User-Agent, so they
- * can be indistinguishable from real Safari, which made this silently hide
- * exactly when it was needed. Showing it unconditionally on iOS is harmless
- * even when already in Safari (worst case, a redundant option) and far more
- * reliable than trying to detect the negative case.
- */
-export function useShouldShowSafariBridge(): boolean {
-  const { user } = useUser();
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    setShow(!!user && isIOS() && !isStandalone());
-  }, [user]);
-  return show;
-}
-
-/**
  * Gets a fresh sign-in link (via /api/manifest-bridge) and, on iOS, tries to
  * hand it straight to Safari via the `x-safari-https://` scheme — unlike
  * the same trick failing from inside Gmail's in-app browser, this is a real
@@ -108,8 +88,10 @@ export function useCopySignInLink(): () => Promise<void> {
 
       if (isIOS()) {
         // Harmless even if we're already in Safari — it just re-opens the
-        // same link there. See useShouldShowSafariBridge on why this isn't
-        // gated on "not Safari".
+        // same link there — deliberately not gated on "not Safari", since
+        // several iOS browsers (Brave included) are indistinguishable from
+        // Safari by User-Agent, which made that gate hide the option exactly
+        // when it was needed.
         window.location.href = link.replace(/^https:\/\//, "x-safari-https://");
         toast.success("Opening in Safari… link copied too, in case it doesn't switch automatically");
       } else {
@@ -118,6 +100,26 @@ export function useCopySignInLink(): () => Promise<void> {
     } catch {
       toast.error("Couldn't create a sign-in link. Try again in a moment.");
     }
+  };
+}
+
+/**
+ * Open the current page in Safari, for visitors who aren't signed in. Same
+ * `x-safari-https://` handoff as useCopySignInLink, minus the sign-in link —
+ * there's no session to carry, so no API round-trip is needed and the button
+ * works signed out (previously the only Safari action required being signed
+ * in, so a signed-out visitor was just told to switch browsers manually).
+ * The URL is copied too: the handoff isn't guaranteed, and on success this
+ * tab is backgrounded so the toast is never seen anyway.
+ */
+export function useOpenInSafari(): () => Promise<void> {
+  return async () => {
+    const link = window.location.href;
+    await navigator.clipboard.writeText(link).catch(() => {});
+    window.location.href = link.replace(/^https:\/\//, "x-safari-https://");
+    toast.success(
+      "Opening in Safari… link copied too, in case it doesn't switch automatically"
+    );
   };
 }
 
@@ -200,16 +202,20 @@ function manualInstructions(): { intro: string; steps: ReactNode[] } {
 /** Instructions card shown when no native install prompt is available. */
 function InstallInstructionsModal({
   onClose,
-  onCopySignInLink,
+  onOpenInSafari,
 }: {
   onClose: () => void;
-  /** Present only when signed in on iOS in a non-Safari browser — copies a
-   *  fresh sign-in link to the clipboard to paste into Safari, so the
-   *  session carries over (Safari is required to install, but the app was
-   *  opened in e.g. Brave/Chrome, which have separate storage). */
-  onCopySignInLink?: () => void;
+  /** Present on iOS: hands the visitor over to Safari, which is the only
+   *  browser that can install. Signed in it carries a fresh sign-in link so
+   *  the session survives the hop (other iOS browsers have separate
+   *  storage); signed out it just re-opens the page. */
+  onOpenInSafari?: () => void;
 }) {
   const { intro, steps } = manualInstructions();
+  // isSafari() is UA sniffing and unreliable in both directions on iOS
+  // (Brave mimics Safari's UA), so it only decides whether the hop is worth
+  // offering — the steps below stand on their own either way.
+  const safariIsNextStep = !!onOpenInSafari && !isSafari();
 
   return createPortal(
     <motion.div
@@ -251,6 +257,15 @@ function InstallInstructionsModal({
             Install {APP_CONFIG.APP_NAME}
           </h3>
           <p className="mb-5 mt-1 text-sm text-dc-muted">{intro}</p>
+          {/* When we're (probably) not in Safari, switching IS the next step,
+              so it leads the card as a real button rather than only appearing
+              as written instruction step 1. */}
+          {safariIsNextStep && (
+            <PrimaryButton onClick={onOpenInSafari} className="mb-5 w-full">
+              <ExternalLink className="size-4" />
+              Open in Safari
+            </PrimaryButton>
+          )}
           <ol className="mb-6 space-y-3 text-left text-sm text-dc-muted">
             {steps.map((content, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -258,15 +273,17 @@ function InstallInstructionsModal({
               </li>
             ))}
           </ol>
-          {onCopySignInLink && (
-            <SecondaryButton onClick={onCopySignInLink} className="mb-3 w-full">
-              <Copy className="size-4" />
-              Copy sign-in link for Safari
+          {/* No Safari CTA when we're already in Safari — the Share ->
+              Add to Home Screen steps above are the whole job there. */}
+          {safariIsNextStep ? (
+            <SecondaryButton onClick={onClose} className="w-full">
+              Got it
             </SecondaryButton>
+          ) : (
+            <PrimaryButton onClick={onClose} className="w-full">
+              Got it
+            </PrimaryButton>
           )}
-          <PrimaryButton onClick={onClose} className="w-full">
-            Got it
-          </PrimaryButton>
         </div>
       </motion.div>
     </motion.div>,
@@ -299,6 +316,7 @@ export function InstallAppButton({
   const [showInstructions, setShowInstructions] = useState(false);
   const { user } = useUser();
   const copySignInLink = useCopySignInLink();
+  const openInSafari = useOpenInSafari();
 
   if (!shouldShow) return null;
 
@@ -333,7 +351,11 @@ export function InstallAppButton({
           "inline-flex min-h-8 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1 text-[12px] leading-none text-dc-muted transition-colors duration-150 ease-out hover:bg-dc-lavender"
         }
       >
-        <Download className="size-4 text-dc-purple" />
+        {/* Purple belongs to the default pill treatment (purple icon, muted
+            label). When a caller styles the button itself — e.g. the white
+            glass button on the home hero — the icon inherits that colour
+            instead, so it can't clash with the surface it sits on. */}
+        <Download className={cn("size-4", !className && "text-dc-purple")} />
         {label}
       </button>
 
@@ -342,7 +364,12 @@ export function InstallAppButton({
           <InstallInstructionsModal
             key="install-instructions"
             onClose={() => setShowInstructions(false)}
-            onCopySignInLink={user && isIOS() ? copySignInLink : undefined}
+            // iOS only (Safari is the only installer there). Signed in, the
+            // hop carries a sign-in link so the session survives; signed out
+            // there's nothing to carry, so a plain hop is enough.
+            onOpenInSafari={
+              isIOS() ? (user ? copySignInLink : openInSafari) : undefined
+            }
           />
         )}
       </AnimatePresence>

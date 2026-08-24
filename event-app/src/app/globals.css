@@ -189,7 +189,11 @@ html [data-sonner-toast][data-rich-colors="true"] {
   --error-border: var(--color-dc-red);
   --error-text: var(--color-dc-fg2);
 }
-html [data-sonner-toast] {
+/* Scoped to sonner's own styled toasts: toast.custom() renders a transparent
+   wrapper (data-styled="false") around its own card — ServiceWorkerUpdater's
+   update prompt — and an unscoped rule painted a square shadow behind those
+   rounded corners. Sonner scopes its own card styling the same way. */
+html [data-sonner-toast][data-styled="true"] {
   /* Figma shadow-sm */
   box-shadow:
     0 1px 3px rgba(22, 11, 43, 0.1),

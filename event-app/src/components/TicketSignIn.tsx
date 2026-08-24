@@ -32,7 +32,12 @@ export function TicketSignIn() {
   const isDesktop = useIsDesktop();
 
   const busy = loading !== false;
-  const emailValid = EMAIL_FORMAT.test(email);
+  // Trimmed: addresses copied out of a confirmation email (or via an iOS
+  // long-press) routinely carry a trailing space or newline, which
+  // EMAIL_FORMAT rejects — the CTA then stayed disabled forever on a field
+  // that looked perfectly correct.
+  const cleanEmail = email.trim();
+  const emailValid = EMAIL_FORMAT.test(cleanEmail);
   // Only complain once the user has left the field — not mid-typing.
   const showEmailError = emailTouched && email.length > 0 && !emailValid;
 
@@ -43,8 +48,15 @@ export function TicketSignIn() {
   }, [cooldown]);
 
   const sendCode = async () => {
-    if (busy || !emailValid) return;
-    const sent = await sendOtp(email);
+    if (busy) return;
+    // Surface the problem instead of doing nothing: pressing Enter on an
+    // invalid address used to return here silently, with no error, no border
+    // and no toast (and the disabled CTA can't even blur the field).
+    if (!emailValid) {
+      setEmailTouched(true);
+      return;
+    }
+    const sent = await sendOtp(cleanEmail);
     if (!sent) return;
     setCodeSent(true);
     setCode("");
@@ -56,7 +68,7 @@ export function TicketSignIn() {
   // same render as the final onChange — `code` state would still be stale.
   const verify = async (value = code) => {
     if (busy || value.length < 6) return;
-    const ok = await verifyOtp(email, value);
+    const ok = await verifyOtp(cleanEmail, value);
     if (!ok) setCodeError(true);
   };
 
@@ -103,9 +115,19 @@ export function TicketSignIn() {
               <input
                 id="signin-email"
                 type="email"
+                aria-invalid={showEmailError}
+                aria-describedby="signin-email-error"
                 autoFocus
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  // Editing clears the complaint until the user leaves the
+                  // field again — otherwise `emailTouched` stays true from the
+                  // first blur and the error nags on every keystroke while
+                  // they're busy correcting it (worst right after clearing the
+                  // field to retype).
+                  setEmailTouched(false);
+                }}
                 onBlur={() => setEmailTouched(true)}
                 onKeyDown={(e) => e.key === "Enter" && sendCode()}
                 placeholder="youremail@example.com"
@@ -117,11 +139,17 @@ export function TicketSignIn() {
                     : "border-dc-border focus:border-dc-purple"
                 )}
               />
-              {showEmailError && (
-                <p className="text-[14px] leading-5 text-dc-error">
-                  Please enter a valid email format.
-                </p>
-              )}
+              {/* Always mounted, so appearing/disappearing can't change the
+                  card's height (the message is one 20px line inside a gap-3
+                  column, which used to add 32px). aria-live announces it when
+                  it fills in. */}
+              <p
+                id="signin-email-error"
+                className="min-h-5 text-[14px] leading-5 text-dc-error"
+                aria-live="polite"
+              >
+                {showEmailError ? "Please enter a valid email format." : ""}
+              </p>
             </div>
 
             <PrimaryButton
@@ -144,7 +172,7 @@ export function TicketSignIn() {
               </h1>
               <p className="text-[16px] leading-6 text-dc-muted">
                 We sent a six-digit code to:{" "}
-                <span className="font-bold">{email}</span>
+                <span className="font-bold">{cleanEmail}</span>
               </p>
             </div>
 

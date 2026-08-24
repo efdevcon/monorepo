@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { InstallAppButton } from "./InstallAppButton";
-import { InstallPrompt } from "./InstallPrompt";
 import { MyTickets } from "./MyTickets";
 import { TicketSignIn } from "./TicketSignIn";
 
@@ -67,7 +66,11 @@ export function Ticket() {
                   onClick={signOut}
                   disabled={busy}
                   aria-label="Sign out"
-                  className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white transition-colors duration-150 ease-out hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 lg:hidden"
+                  // The visible circle stays 28px, but before:-inset-2 extends the
+                  // touch target to 44px — this is the only sign-out control on
+                  // mobile and it sits right beside a break-all email that can
+                  // wrap to its edge, so a mis-tap costs a full OTP round-trip.
+                  className="relative flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white transition-colors duration-150 ease-out before:absolute before:-inset-2 before:content-[''] hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 lg:hidden"
                 >
                   <LogOut className="size-4 text-dc-error" />
                 </button>
@@ -84,12 +87,6 @@ export function Ticket() {
               <div className="bg-white px-4 py-6">
                 <MyTickets />
               </div>
-            </div>
-
-            {/* empty:hidden keeps the margins from ghosting when the install
-                components render null (already installed / desktop). */}
-            <div className="mt-6 empty:hidden">
-              <InstallPrompt />
             </div>
 
             <div className="mt-6 flex justify-center empty:hidden">

@@ -22,7 +22,7 @@ export function TicketCard({
   const addons = ticket.addons ?? [];
 
   return (
-    <div className="divide-y divide-[#E1E4EA] overflow-hidden rounded-2xl border border-[#E1E4EA] shadow-sm">
+    <div className="divide-y divide-dc-hairline overflow-hidden rounded-2xl border border-dc-hairline shadow-sm">
       {/* Main ticket row (gradient) */}
       <TicketRow
         eyebrow={eventName}
@@ -33,7 +33,7 @@ export function TicketCard({
         className="bg-gradient-to-br from-[#ece4ff] via-white to-[#fbf0ff]"
       >
         {ticket.attendeeName && (
-          <p className="text-sm text-gray-600 truncate">{ticket.attendeeName}</p>
+          <p className="text-sm text-dc-muted truncate">{ticket.attendeeName}</p>
         )}
         {ticket.hasCheckedIn && (
           <span className="mt-1 inline-block rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
@@ -83,13 +83,13 @@ function TicketRow({
     >
       <div className="min-w-0">
         {eyebrow && (
-          <p className="text-[11px] uppercase tracking-wide text-[#7D52F4]/70">
+          <p className="text-[11px] uppercase tracking-wide text-dc-purple/70">
             {eyebrow}
           </p>
         )}
         <p className="text-lg font-bold leading-tight truncate">{title}</p>
         {email && (
-          <p className="mt-0.5 truncate text-xs text-gray-500">{email}</p>
+          <p className="mt-0.5 truncate text-xs text-dc-muted">{email}</p>
         )}
         {children}
       </div>
@@ -137,7 +137,7 @@ export function QrLightbox({
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-3 top-3 cursor-pointer rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+              className="absolute right-3 top-3 cursor-pointer rounded-full p-1 text-dc-muted hover:bg-dc-lavender hover:text-dc-fg2"
             >
               <X className="h-5 w-5" />
             </button>
