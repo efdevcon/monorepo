@@ -4,15 +4,27 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
+import { deriveTopicOptions } from "@/data/topics";
 import { dayKey, getDays, getStatus, groupByTime, type TimeGroup } from "./utils";
 
 /** Facets a session can be filtered by (each multi-select). */
-export type FilterFacet = "track" | "type" | "room" | "expertise";
+export type FilterFacet = "track" | "type" | "room" | "expertise" | "topic";
 export type Filters = Record<FilterFacet, string[]>;
 
-const EMPTY: Filters = { track: [], type: [], room: [], expertise: [] };
+/** The single-valued facets — "topic" matches against the session's tags
+ *  array instead, so it can't go through `sessionValue`. */
+const VALUE_FACETS = ["track", "type", "room", "expertise"] as const;
+type ValueFacet = (typeof VALUE_FACETS)[number];
 
-function sessionValue(session: Session, facet: FilterFacet): string | undefined {
+const EMPTY: Filters = {
+  track: [],
+  type: [],
+  room: [],
+  expertise: [],
+  topic: [],
+};
+
+function sessionValue(session: Session, facet: ValueFacet): string | undefined {
   switch (facet) {
     case "track":
       return session.track;
@@ -117,15 +129,16 @@ export function useScheduleState(
       type: [],
       room: [],
       expertise: [],
+      topic: [],
     };
-    const seen: Record<FilterFacet, Set<string>> = {
+    const seen: Record<ValueFacet, Set<string>> = {
       track: new Set(),
       type: new Set(),
       room: new Set(),
       expertise: new Set(),
     };
     for (const s of sessions) {
-      (["track", "type", "room", "expertise"] as FilterFacet[]).forEach((f) => {
+      VALUE_FACETS.forEach((f) => {
         const v = sessionValue(s, f);
         if (v && !seen[f].has(v)) {
           seen[f].add(v);
@@ -133,7 +146,10 @@ export function useScheduleState(
         }
       });
     }
-    (Object.keys(opts) as FilterFacet[]).forEach((f) => opts[f].sort());
+    VALUE_FACETS.forEach((f) => opts[f].sort());
+    // Topics stay in frequency order (not alphabetical) — the same shared
+    // vocabulary and ordering as the Speakers page's topic filter.
+    opts.topic = deriveTopicOptions(sessions);
     return opts;
   }, [sessions]);
 
@@ -175,11 +191,20 @@ export function useScheduleState(
     const matches = sessions.filter((s) => {
       if (dayKey(s) !== selectedDay) return false;
       if (interestedOnly && !(interestedIds?.has(s.id) ?? false)) return false;
-      for (const facet of ["track", "type", "room", "expertise"] as FilterFacet[]) {
+      for (const facet of VALUE_FACETS) {
         const sel = filters[facet];
         if (sel.length && !sel.includes(sessionValue(s, facet) ?? "")) {
           return false;
         }
+      }
+      // Topics are OR within the facet (any selected tag), AND with the rest —
+      // matching the Speakers page's topic filter. Trimmed like the option
+      // vocabulary, so a padded source tag still matches its option.
+      if (
+        filters.topic.length &&
+        !(s.tags ?? []).some((raw) => filters.topic.includes(raw.trim()))
+      ) {
+        return false;
       }
       if (q) {
         const haystack = [

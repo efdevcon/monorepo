@@ -1,7 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import type { Speaker } from "@/data/models";
+import {
+  useCallback,
+  useMemo,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+import type { DecoratedSpeaker } from "./useSpeakersData";
 
 /** Lowercase + strip diacritics for accent-insensitive search. */
 function normalize(value: string): string {
@@ -11,43 +17,103 @@ function normalize(value: string): string {
     .toLowerCase();
 }
 
-const firstLetter = (name: string) => name.trim()[0]?.toUpperCase() ?? "";
+/** A letter section of the speaker list. */
+export interface LetterGroup {
+  letter: string;
+  speakers: DecoratedSpeaker[];
+}
 
 /**
- * Speakers list state: a search query and an A–Z letter filter, plus the
- * derived (sorted, filtered) speaker list and the set of available letters.
+ * Speakers list view state: search, topic multi-select, format tab and
+ * interested-only toggle, plus the derived filtered list, keynote subset and
+ * letter groups. Input `all` is name-sorted (from useSpeakersData), so every
+ * derived list stays sorted for free.
  */
-export function useSpeakersState(speakers: Speaker[]) {
+export function useSpeakersState(
+  all: DecoratedSpeaker[],
+  interestedIds: Set<string>
+) {
   const [search, setSearch] = useState("");
-  const [letter, setLetter] = useState("");
+  const [topics, setTopics] = useState<string[]>([]);
+  const [type, setType] = useState<string | null>(null);
+  const [interestedOnly, setInterestedOnly] = useState(false);
 
-  const sorted = useMemo(
-    () => [...speakers].sort((a, b) => a.name.localeCompare(b.name)),
-    [speakers]
-  );
+  const toggleTopic = useCallback((topic: string) => {
+    setTopics((prev) =>
+      prev.includes(topic)
+        ? prev.filter((t) => t !== topic)
+        : [...prev, topic]
+    );
+  }, []);
 
-  const letters = useMemo(() => {
-    const set = new Set<string>();
-    for (const s of sorted) {
-      const c = firstLetter(s.name);
-      if (c) set.add(c);
-    }
-    return [...set].sort();
-  }, [sorted]);
+  const clearAll = useCallback(() => {
+    setSearch("");
+    setTopics([]);
+    setType(null);
+    setInterestedOnly(false);
+  }, []);
 
+  // Gate the star-set dependency on the toggle: while interested-only is off,
+  // star churn must not re-filter (and re-group) the whole list.
+  const interestedFilter = interestedOnly ? interestedIds : null;
   const filtered = useMemo(() => {
     const q = normalize(search.trim());
-    return sorted.filter((s) => {
-      if (letter && firstLetter(s.name) !== letter) return false;
-      if (q) {
-        const haystack = normalize(
-          [s.name, s.role, s.company].filter(Boolean).join(" ")
-        );
-        if (!haystack.includes(q)) return false;
-      }
+    return all.filter((d) => {
+      if (interestedFilter && !interestedFilter.has(d.speaker.id))
+        return false;
+      if (type && !d.types.includes(type)) return false;
+      if (topics.length > 0 && !topics.some((t) => d.tags.includes(t)))
+        return false;
+      if (q && !normalize(d.speaker.name).includes(q)) return false;
       return true;
     });
-  }, [sorted, search, letter]);
+  }, [all, search, topics, type, interestedFilter]);
 
-  return { search, setSearch, letter, setLetter, letters, filtered };
+  const keynoteSpeakers = useMemo(
+    () => filtered.filter((d) => d.isKeynote),
+    [filtered]
+  );
+
+  // Group via a Map rather than a consecutive scan: the locale-aware name
+  // sort doesn't always keep letters contiguous (symbols and some collation
+  // quirks interleave), and a scan would then emit duplicate letter keys.
+  const letterGroups = useMemo(() => {
+    const byLetter = new Map<string, DecoratedSpeaker[]>();
+    for (const d of filtered) {
+      const group = byLetter.get(d.letter);
+      if (group) group.push(d);
+      else byLetter.set(d.letter, [d]);
+    }
+    // "#" (non A–Z names) leads, then A–Z; within a group the name sort holds.
+    return [...byLetter.entries()]
+      .sort(([a], [b]) =>
+        a === b ? 0 : a === "#" ? -1 : b === "#" ? 1 : a.localeCompare(b)
+      )
+      .map(([letter, speakers]) => ({ letter, speakers }));
+  }, [filtered]);
+
+  const letters = useMemo(
+    () => letterGroups.map((g) => g.letter),
+    [letterGroups]
+  );
+
+  const activeFilterCount = topics.length + (type ? 1 : 0);
+
+  return {
+    search,
+    setSearch,
+    topics,
+    toggleTopic,
+    type,
+    setType,
+    interestedOnly,
+    setInterestedOnly: setInterestedOnly as Dispatch<SetStateAction<boolean>>,
+    clearAll,
+    activeFilterCount,
+    filtered,
+    resultCount: filtered.length,
+    keynoteSpeakers,
+    letterGroups,
+    letters,
+  };
 }

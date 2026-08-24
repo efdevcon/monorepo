@@ -21,6 +21,8 @@ export function SessionSpeakerCard({ speaker }: { speaker: Speaker }) {
   return (
     <Link
       href={`/speakers/${speaker.id}`}
+      // No viewport prefetch (see SpeakerCard) — client page on cached data.
+      prefetch={false}
       className="flex items-center gap-4 rounded-lg border border-dc-hairline bg-white p-3 transition-colors hover:border-dc-purple/40"
     >
       <Avatar name={speaker.name} src={speaker.avatar || undefined} size={48} />
