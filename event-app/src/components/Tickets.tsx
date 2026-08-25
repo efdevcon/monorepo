@@ -53,7 +53,7 @@ export function Tickets() {
             // Mobile: horizontal crop keeps the moon toward the top-left
             // (Figma crop ~72% of the art's width). Desktop: vertical band
             // through gateway + bridge with a little sky above.
-            className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-[center_68%]"
+            className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-[center_87%]"
           />
           {/* Mobile-only legibility gradient under the text (Figma 5017:5545) */}
           <div className="absolute inset-x-0 bottom-0 h-[134px] bg-gradient-to-t from-[rgba(22,11,43,0.9)] to-transparent lg:hidden" />
