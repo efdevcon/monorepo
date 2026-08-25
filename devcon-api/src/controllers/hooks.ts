@@ -175,6 +175,15 @@ async function SyncPretalx(config: PretalxInstanceConfig, expectedScheduleVersio
     store.updateEventVersion(eventId, version)
   }
 
+  // Expose which Pretalx release the served data corresponds to (e.g. "0.31")
+  // on GET /events/:id. Updated even when the data is identical — a no-op
+  // re-release must still be verifiable against the API.
+  const publishedVersion = await getPublishedScheduleVersion(config)
+  if (publishedVersion) {
+    store.updateEventScheduleVersion(eventId, publishedVersion)
+    console.log('Serving Pretalx schedule version:', publishedVersion)
+  }
+
   const workflows = WORKFLOW_MAP[eventId]
   if (workflows) {
     for (const workflowId of workflows) {
