@@ -30,7 +30,7 @@ Follow the owning project's conventions:
 
 ## 4. Verify
 
-1. `pnpm exec tsc --noEmit` in the project (event-app: `pnpm typecheck`; it has pre-existing baseline failures — diff against them, don't gate on exit code).
+1. `pnpm exec tsc --noEmit` in the project (event-app: `pnpm typecheck`). Both are clean at HEAD, so gate on a zero exit code. In a fresh clone/worktree, `TS2307` errors on `.png`/`.svg` imports just mean `next-env.d.ts` hasn't been generated yet — run `pnpm dev` once.
 2. Screenshot affected routes with the checked-in harness (see the project's `verify` skill):
    `node scripts/shot.mjs <route> --port <port>` at 390 + 1440 (add 768 when the design has a tablet frame). Confirm which app owns the port first.
 3. **Diff every spec-table row against the screenshots** and report the checklist with a pass/fail per row. Zoom (`--selector`) on anything uncertain. Do not report done with unchecked rows.

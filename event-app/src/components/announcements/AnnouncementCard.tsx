@@ -97,7 +97,7 @@ export function AnnouncementCard({
       <div
         className={cn(
           "flex h-full flex-col justify-between gap-3 rounded-lg border border-dc-hairline bg-white p-4",
-          url && interactive
+          link && interactive
         )}
       >
         <div>
@@ -117,14 +117,14 @@ export function AnnouncementCard({
               {time}
             </span>
           </span>
-          {url && <Cta external={external} mini />}
+          {link && <Cta external={external} mini />}
         </div>
       </div>
     ) : (
       <div
         className={cn(
           "rounded-lg border border-dc-hairline bg-white p-4",
-          url && interactive
+          link && interactive
         )}
       >
         <div className="flex items-center justify-between gap-3">
@@ -143,7 +143,7 @@ export function AnnouncementCard({
             {message}
           </p>
         )}
-        {url && (
+        {link && (
           <div className="mt-4">
             <Cta external={external} />
           </div>
