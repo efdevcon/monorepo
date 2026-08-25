@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { isStandalone } from "./InstallAppButton";
+import { isStandalone } from "@/utils/platform";
 import { MOBILE_MEDIA_QUERY, useMediaQuery } from "@/hooks/useIsDesktop";
 
 const STORAGE_KEY = "event_app_intro_seen";

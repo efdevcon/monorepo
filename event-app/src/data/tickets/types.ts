@@ -19,6 +19,13 @@ export interface Ticket {
   itemId?: number;
   itemName: string;
   itemDescription?: string;
+  /**
+   * Pretix's `admission` flag: true for real entry tickets, false for
+   * merchandise. Load-bearing for partner proofs — some swag is sold as a
+   * standalone position rather than an add-on, so "not an add-on" is not the
+   * same question as "is a ticket".
+   */
+  admission?: boolean;
   addons: TicketAddon[];
   hasCheckedIn?: boolean;
 }

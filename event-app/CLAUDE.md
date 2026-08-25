@@ -29,3 +29,30 @@ Announcements with the Notion `Push` checkbox go out as web push at their Send A
 ## Why these rules exist
 
 Background and history (Serwist setup, precache sizing lessons from Bogota/SEA, Dexie rationale, Capacitor notes, update flow): `docs/architecture.md`.
+
+## Partner ticket proofs
+
+Lets a partner (ENS) verify "holds a Devcon ticket, of tier india|standard"
+without learning who the attendee is. We sign, they verify with a pinned public
+address; there's no callback. Issuer: `src/app/api/ticket-proof/` (`proof.ts`
+holds the crypto and the tier mapping). Client: `src/data/tickets/useTicketProof.ts`
+plus `TicketProofButton`, attached to event-ticket rows only (never swag). A
+working partner-side reference lives at `/demo/ens-perks` (`src/app/demo/`), which
+is POC-only and should be dropped before production. Full spec, invariants and
+the PWA hand-off reasoning: `docs/ticket-proofs.md`. Tests: `pnpm proof:test`;
+demo links: `pnpm proof:demo-link`.
+
+Tier detection is structural, not a checked-in product list: Pretix's
+`admission` flag decides whether a position is provable at all (merchandise can
+be sold as a standalone position, so "not an add-on" is a different question),
+then the India flag emoji in the product name decides `india` vs `standard`.
+Don't switch that to matching the word "India" — Devcon 8 is *in* India, so the
+country name appears in swag ("Devcon India Scarf") and could appear in a renamed
+main product, which would hand sponsored registrations to everyone. Unrecognised
+products default to `standard` by design.
+
+Three things not to undo: the signer address is never carried in the proof link
+(pinning it out of band is what makes verification non-circular), the identifier
+is a *salted* HMAC of the ticket secret (the secret is the QR payload, so a bare
+hash would deanonymise claims), and the signing key is dedicated and funds-free
+(never the payment relayer key).

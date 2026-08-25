@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import cn from "classnames";
 import { X } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
+import { TicketProofButton } from "./TicketProofButton";
 
 export type QrTarget = { qr: string; title: string };
 
@@ -40,6 +41,9 @@ export function TicketCard({
             Checked in
           </span>
         )}
+        {/* Event tickets only — the perk is one per event ticket, so the swag
+            rows below deliberately don't get a proof link. */}
+        <TicketProofButton ticketSecret={ticket.secret} />
       </TicketRow>
 
       {/* Swag / add-ons — same row styling, no gradient. Same ticket email. */}

@@ -36,6 +36,12 @@ jobs:
           GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
           WEBHOOK_MEERKAT_SECRET: ${{ secrets.WEBHOOK_MEERKAT_SECRET }}
+          # Optional: lets the sync mirror speaker avatars into Supabase
+          # Storage (services/avatar-mirror); skipped gracefully when unset.
+          # (the SUPABASE_URL/SUPABASE_SERVICE_KEY secrets belong to
+          # devcon-ai's RAG project — do not reuse them here)
+          SUPABASE_URL: ${{ secrets.DEVCON_API_SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.DEVCON_API_SUPABASE_KEY }}
       - uses: EndBug/add-and-commit@v9
         with:
           add: "devcon-api/data"

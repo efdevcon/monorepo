@@ -91,6 +91,10 @@ export function initStore() {
       ...event,
       rooms: eventRooms,
       nrOfSessions,
+      // Explicitly false at boot: this event serves exactly the git-baked
+      // data. Flipped to true (with liveUpdatedAt) by markEventLiveUpdate
+      // when a webhook re-sync or session write mutates memory.
+      hasLiveUpdates: false,
     }
   })
 
@@ -373,6 +377,7 @@ export function updateSession(id: string, data: any) {
   sessions[index] = updated
   sessionMap.set(updated.id, updated)
   if (updated.sourceId) sessionMap.set(updated.sourceId, updated)
+  markEventLiveUpdate(updated.eventId)
 
   return updated
 }
@@ -381,6 +386,29 @@ export function updateEventVersion(eventId: string, version: string) {
   const event = events.find((e) => e.id === eventId)
   if (event) {
     event.version = version
+  }
+}
+
+/** The Pretalx release name this event's data was synced from (e.g. "0.31"). */
+export function updateEventScheduleVersion(eventId: string, scheduleVersion: string) {
+  const event = events.find((e) => e.id === eventId)
+  if (event) {
+    event.scheduleVersion = scheduleVersion
+  }
+}
+
+/**
+ * Stamped whenever this event's in-memory session data diverges from the
+ * git-baked data loaded at boot (webhook re-sync or an authorized session
+ * write), so GET /events/:id shows whether live updates are being served.
+ * Absent on an event = pure boot data.
+ */
+function markEventLiveUpdate(eventId: string | undefined) {
+  if (!eventId) return
+  const event = events.find((e) => e.id === eventId)
+  if (event) {
+    event.hasLiveUpdates = true
+    event.liveUpdatedAt = new Date().toISOString()
   }
 }
 
@@ -409,6 +437,7 @@ export function createSession(data: any) {
   if (event) {
     event.nrOfSessions = sessions.filter((s) => s.eventId === event.id).length
   }
+  markEventLiveUpdate(session.eventId)
 
   return session
 }
@@ -427,6 +456,7 @@ export function deleteSession(id: string) {
   if (event) {
     event.nrOfSessions = sessions.filter((s) => s.eventId === event.id).length
   }
+  markEventLiveUpdate(session.eventId)
 
   return true
 }
@@ -481,6 +511,7 @@ export function replaceEventSessions(eventId: string, rawSessions: any[]): numbe
   const event = events.find((e) => e.id === eventId)
   if (event) event.nrOfSessions = resolved.length
   // -------------------------------------------
+  markEventLiveUpdate(eventId)
 
   return resolved.length
 }

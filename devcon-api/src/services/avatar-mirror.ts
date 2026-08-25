@@ -31,6 +31,13 @@ export function isMirroredAvatar(url: string): boolean {
   return url.includes(`/storage/v1/object/public/${BUCKET}/`)
 }
 
+let warnedMissingEnv = false
+function warnOnceAboutMissingEnv() {
+  if (warnedMissingEnv) return
+  warnedMissingEnv = true
+  console.warn('[avatar-mirror] SUPABASE_URL/SUPABASE_KEY not set — skipping avatar mirroring, keeping source URLs')
+}
+
 /** Deterministic public URL for a source — a pure string derivation, no network. */
 export function mirroredAvatarUrl(sourceUrl: string): string {
   const hash = crypto.createHash('sha256').update(sourceUrl).digest('hex').slice(0, 16)
@@ -107,6 +114,15 @@ export async function resolveSpeakerAvatar(mappedAvatar: string | undefined, pri
 
   if (!mapped.startsWith('http')) return priorIsReal ? prior : mappedAvatar
   if (isMirroredAvatar(mapped)) return mapped
+
+  // No Supabase credentials in this environment (e.g. a sync workflow without
+  // the secrets): mirroring is an optimization, never a reason to fail a sync.
+  // Keep whatever real avatar we have (broke the test-devcon-8 sync workflow,
+  // 2026-08-25).
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
+    warnOnceAboutMissingEnv()
+    return priorIsReal ? prior : mappedAvatar
+  }
 
   const expected = mirroredAvatarUrl(mapped)
   if (prior === expected) return prior

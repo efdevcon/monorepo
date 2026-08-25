@@ -11,6 +11,7 @@ import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
 import { supabase } from "@/data/auth/supabase";
+import { isIOS, isSafari, isStandalone } from "@/utils/platform";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
 interface BeforeInstallPromptEvent extends Event {
@@ -23,39 +24,6 @@ declare global {
   interface Window {
     __deferredInstallPrompt: BeforeInstallPromptEvent | null;
   }
-}
-
-export function isStandalone(): boolean {
-  if (typeof window === "undefined") return false;
-  return (
-    window.matchMedia("(display-mode: standalone)").matches ||
-    (window.navigator as unknown as { standalone?: boolean }).standalone === true
-  );
-}
-
-function isIOS(): boolean {
-  if (typeof navigator === "undefined") return false;
-  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
-/**
- * Brave deliberately makes its User-Agent look like Safari's (a documented
- * privacy choice — it avoids fingerprinting/discrimination against non-
- * Safari browsers on iOS), so no amount of UA parsing can tell it apart
- * from Safari. Brave exposes `navigator.brave` specifically so sites can
- * detect it without UA sniffing — this is that check.
- */
-function isBrave(): boolean {
-  if (typeof navigator === "undefined") return false;
-  return !!(navigator as unknown as { brave?: unknown }).brave;
-}
-
-function isSafari(): boolean {
-  if (typeof navigator === "undefined") return false;
-  const ua = navigator.userAgent;
-  return (
-    /Safari/i.test(ua) && !/CriOS|FxiOS|OPiOS|EdgiOS/i.test(ua) && !isBrave()
-  );
 }
 
 /**

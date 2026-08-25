@@ -1,5 +1,5 @@
 [build] 
-    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect ../lib ; fi"
+    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect ../lib ':(exclude)../devconnect/.claude/**' ; fi"
 
 [[edge_functions]]
   path = "/argentina/ticket/*"

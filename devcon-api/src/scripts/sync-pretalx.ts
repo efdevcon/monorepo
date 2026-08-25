@@ -1,5 +1,5 @@
 import { GetData } from '@/clients/filesystem'
-import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers, getPublishedScheduleVersion } from '@/clients/pretalx'
 import { resolveSpeakerAvatar } from '@/services/avatar-mirror'
 import { CreatePresentationFromTemplate, RunPermissions } from '@/clients/slides'
 import { getPretalxConfig, PretalxInstanceConfig } from '@/utils/config'
@@ -123,9 +123,22 @@ async function syncRooms() {
   if (event) {
     delete event.id
     const eventVersion = await GetLastcheduleUpdate(config)
+    // The Pretalx release name this data was synced from (e.g. "0.31"),
+    // served on GET /events/:id. Unreadable (no published schedule / fetch
+    // failure) keeps the prior value via the event spread.
+    const scheduleVersion = await getPublishedScheduleVersion(config)
     fs.writeFileSync(
       `./data/events/${eventId}.json`,
-      JSON.stringify({ ...event, rooms: rooms.map((r: any) => r.id), version: eventVersion.toString() }, null, 2)
+      JSON.stringify(
+        {
+          ...event,
+          ...(scheduleVersion ? { scheduleVersion } : {}),
+          rooms: rooms.map((r: any) => r.id),
+          version: eventVersion.toString(),
+        },
+        null,
+        2
+      )
     )
   }
 

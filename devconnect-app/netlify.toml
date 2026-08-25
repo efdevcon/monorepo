@@ -3,7 +3,7 @@
   node_bundler = "esbuild"
 
 [build]
-    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect-app ../lib ; fi"
+    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect-app ../lib ':(exclude)../devconnect-app/.claude/**' ; fi"
     command = "chmod +x ./build.sh && ./build.sh && pnpm run build"
     publish = ".next"
 

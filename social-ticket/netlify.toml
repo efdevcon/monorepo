@@ -1,5 +1,5 @@
 [build]
-    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../social-ticket ../lib ; fi"
+    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../social-ticket ../lib ':(exclude)../social-ticket/.claude/**' ; fi"
     command = "pnpm run build"
     publish = ".next"
 

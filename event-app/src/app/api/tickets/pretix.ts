@@ -15,6 +15,8 @@ interface PretixItem {
   description?: string | { en: string; [key: string]: string };
   category?: string;
   active?: boolean;
+  /** True for entry tickets, false for merchandise. */
+  admission?: boolean;
   has_variations?: boolean;
   variations?: Array<{
     id: number;
@@ -153,6 +155,7 @@ export async function getPaidTicketsByEmail(
           itemName:
             localized(mainItem?.name) || position.item_name || "Ticket",
           itemDescription: localized(mainItem?.description),
+          admission: mainItem?.admission === true,
           addons,
           hasCheckedIn: checkins.length > 0,
         };

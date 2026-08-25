@@ -65,7 +65,13 @@ export const appKit = createAppKit({
   enableInjected: true,
   enableWalletConnect: true,
   enableCoinbase: true,
-  allowUnsupportedChain: false,
+  // Must stay true while the networks list is mainnet-only: with false,
+  // AppKit force-opens its "Switch Network" modal on EVERY page whenever the
+  // connected wallet sits on any other chain (Base, Arbitrum, ...) — most
+  // returning WalletConnect sessions do. Flows that actually need mainnet
+  // (SIWE discounts, builder form) already switch the chain themselves right
+  // before signing, so the global nag adds nothing.
+  allowUnsupportedChain: true,
   allWallets: 'SHOW',
   featuredWalletIds: [
     'ecc4036f814562b41a5268adc86270fba1365471402006302e70169465b7ac18', // Zerion
