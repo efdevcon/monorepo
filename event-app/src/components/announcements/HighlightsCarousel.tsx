@@ -22,7 +22,7 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
       className={cn(
         "w-[295px] shrink-0 overflow-hidden rounded-xl border border-dc-hairline bg-white",
         url &&
-          "transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
+          "transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       )}
     >
       {image ? (
