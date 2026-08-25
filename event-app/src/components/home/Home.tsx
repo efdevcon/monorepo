@@ -7,7 +7,6 @@ import { InstallAppButton } from "../InstallAppButton";
 import { Tickets } from "../Tickets";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
-import { HomeFooterArt } from "./HomeFooterArt";
 
 /**
  * The home page (Figma home redesign): rotating greeting, featured
@@ -28,11 +27,12 @@ export function Home() {
               <HighlightsCarousel />
             </>
           )}
-          <div className="border-b border-dc-hairline pb-8 lg:pb-12">
+          {/* HomeFooterArt ("Devcon 8 India") is parked for a design revisit —
+              the component is kept, just not rendered. */}
+          <div>
             <Tickets />
             <InstallAppButton className="mt-4 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white/80 px-4 py-2 font-heading text-sm font-bold text-dc-fg2 transition-colors hover:bg-white" />
           </div>
-          <HomeFooterArt />
         </div>
       </div>
     </main>

@@ -79,11 +79,14 @@ export function AnnouncementCard({
   const external = !!url && !url.startsWith("/");
   const time = relativeTime(sendAt, nowMs);
 
-  // Linked cards scale on hover/press like the other interactive cards
-  // (`group` lets the CTA underline on card hover); cards without a url
-  // stay fully inert.
-  const interactive =
-    "group transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]";
+  // Linked cards get a purple border + CTA underline (`group`) on hover;
+  // cards without a url stay fully inert. Only the home-preview variant also
+  // scales/shadows like the other home cards — the inbox stays still.
+  const interactive = cn(
+    "group transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40",
+    variant === "home" &&
+      "hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
+  );
 
   const body =
     variant === "home" ? (
