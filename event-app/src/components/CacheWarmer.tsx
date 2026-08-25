@@ -5,6 +5,7 @@ import { useSessions, useSpeakers, useRooms } from "@/data/hooks";
 import { useWarmImages } from "@/data/hooks/use-warm-images";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { supportersData } from "@/data/supporters";
+import { APP_IMAGES } from "@/data/appImages";
 
 /** Supporter logos ship as a static file, so they're known without a fetch. */
 const SUPPORTER_LOGOS = Object.values(supportersData).flatMap((supporter) => [
@@ -42,12 +43,14 @@ export function CacheWarmer() {
     enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED,
   });
 
+  // Priority order, most important first. Avatars are last on purpose: 645 of
+  // them dwarf everything else, and any single one matters least.
   useWarmImages([
-    ...speakers.map((speaker) => speaker.avatar),
-    ...sessions.map((session) => session.image),
-    ...highlights.map((highlight) => highlight.image),
-    featured?.image,
-    ...SUPPORTER_LOGOS,
+    [featured?.image, ...highlights.map((highlight) => highlight.image)],
+    APP_IMAGES,
+    SUPPORTER_LOGOS,
+    sessions.map((session) => session.image),
+    speakers.map((speaker) => speaker.avatar),
   ]);
 
   return null;

@@ -8,6 +8,7 @@ import { Link, BackButton } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { NAV_ITEMS, isNavActive } from "@/components/Nav";
+import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
 /**
  * Pages render their own header buttons (filter, jump-to-now, …) into this
@@ -47,6 +48,10 @@ function routeChrome(pathname: string): RouteChrome {
  * nav (Tickets, Room Screens, Announcements and the AI entry included).
  */
 export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
+  // Shared by the mobile logomark and the desktop logo — one reconnect retries
+  // whichever of them failed.
+  const { attempt: markAttempt, markFailed: markLogoFailed } =
+    useRetryOnReconnect();
   const pathname = usePathname();
   const { user } = useUser();
   const { unreadCount } = useAnnouncements({
@@ -78,7 +83,9 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
             <span className="flex size-7 shrink-0 items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
+                key={markAttempt}
                 src="/schedule/devcon8-logomark.svg"
+                onError={markLogoFailed}
                 alt="Devcon 8 India"
                 className="h-7 w-auto"
               />
@@ -100,7 +107,9 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
         <Link href="/" prefetch className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            key={markAttempt}
             src="/schedule/devcon8-logo.svg"
+            onError={markLogoFailed}
             alt="Devcon 8 India"
             className="h-10 w-auto"
           />

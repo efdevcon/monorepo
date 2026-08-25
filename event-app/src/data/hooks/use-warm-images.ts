@@ -46,7 +46,15 @@ const CHUNK_SIZE = 60;
  * late arrivals instead of restarting, and nothing is marked handled until it
  * has actually been fetched.
  */
-const queue: string[] = [];
+/**
+ * One queue per priority tier, drained lowest tier first.
+ *
+ * A single FIFO was wrong in practice: the ~645 avatars are the biggest group
+ * and the least individually important, and because the speakers dataset often
+ * resolves first they were being fetched ahead of the home screen's own images.
+ * Tiers mean a late-arriving highlight still jumps the avatar backlog.
+ */
+const queues: string[][] = [];
 const queued = new Set<string>();
 let running = false;
 /**
@@ -148,15 +156,19 @@ async function run(): Promise<void> {
   running = true;
   startedAt = startedAt || Date.now();
 
-  while (queue.length > 0) {
+  while (pendingCount() > 0) {
+    // Always drain the most important non-empty tier, so anything queued later
+    // at a higher priority is picked up on the next chunk.
+    const tier = queues.find((t) => t && t.length > 0);
+    if (!tier) break;
     // Re-check the cache per chunk rather than once up front, so images cached
     // by the page itself while we work aren't fetched again.
-    const batch = queue.splice(0, CHUNK_SIZE);
+    const batch = tier.splice(0, CHUNK_SIZE);
     const missing = await missingFromCache(batch);
     totalSkipped += batch.length - missing.length;
     if (missing.length > 0) await fetchChunk(missing);
 
-    const remaining = queue.length;
+    const remaining = pendingCount();
     if (remaining > 0) {
       console.info(
         `[warm-images] ${totalQueued - remaining}/${totalQueued}`
@@ -193,20 +205,27 @@ function armOnlineResume(): void {
     if (deferred.length === 0) return;
     const resumed = deferred.splice(0);
     console.info(`[warm-images] back online, resuming ${resumed.length} image(s)`);
-    queue.push(...resumed);
+    // Resumed work goes to the front: it was already deemed worth fetching.
+    (queues[0] ??= []).unshift(...resumed);
     totalQueued += resumed.length;
     if (!running) void run();
   });
 }
 
-function enqueue(urls: string[]): void {
+function pendingCount(): number {
+  return queues.reduce((n, tier) => n + (tier?.length ?? 0), 0);
+}
+
+function enqueue(tiers: string[][]): void {
   let added = 0;
-  for (const url of urls) {
-    if (queued.has(url)) continue;
-    queued.add(url);
-    queue.push(url);
-    added++;
-  }
+  tiers.forEach((urls, priority) => {
+    for (const url of urls) {
+      if (queued.has(url)) continue;
+      queued.add(url);
+      (queues[priority] ??= []).push(url);
+      added++;
+    }
+  });
   if (added === 0) return;
   totalQueued += added;
   armOnlineResume();
@@ -214,7 +233,7 @@ function enqueue(urls: string[]): void {
   // Offline right now: don't burn a pass failing every fetch, just wait for the
   // `online` event.
   if (!navigator.onLine) {
-    deferred.push(...queue.splice(0));
+    for (const tier of queues) if (tier) deferred.push(...tier.splice(0));
     console.info(
       `[warm-images] offline, ${deferred.length} image(s) queued until connection returns`
     );
@@ -231,13 +250,29 @@ function enqueue(urls: string[]): void {
 }
 
 /**
- * Warm a set of image URLs in the background. Safe to call with an empty or
- * changing list; only http(s) URLs are fetched (data: URIs are already inline).
+ * Warm images in the background, in priority order.
+ *
+ * Pass an array of groups, most important first — the runner drains group 0
+ * before group 1, and a group that fills in later still takes precedence over
+ * anything queued below it. Safe to call with empty or changing groups.
  */
-export function useWarmImages(urls: (string | null | undefined)[]): void {
-  const candidates = urls.filter(
-    (url): url is string => !!url && /^https?:\/\//i.test(url)
-  );
+export function useWarmImages(tiers: (string | null | undefined)[][]): void {
+  // Absolute http(s) URLs (API data) and root-relative paths (static assets in
+  // public/) are both warmable; data: URIs are already inline. Relative paths
+  // are resolved against the origin so the cache keys match what the <img>
+  // requests produce.
+  const normalize = (url: string | null | undefined): string[] => {
+    if (!url) return [];
+    if (/^https?:\/\//i.test(url)) return [url];
+    if (url.startsWith("/") && !url.startsWith("//")) {
+      return typeof window === "undefined"
+        ? []
+        : [`${window.location.origin}${url}`];
+    }
+    return [];
+  };
+  const groups = tiers.map((group) => group.flatMap(normalize));
+  const candidates = groups.flat();
   // A stable key so this only reacts when the *set* changes, not every render.
   const key = `${candidates.length}|${candidates[0] ?? ""}|${candidates[candidates.length - 1] ?? ""}`;
 
@@ -249,7 +284,7 @@ export function useWarmImages(urls: (string | null | undefined)[]): void {
     if (!connectionAllowsWarming()) return;
     // No cleanup/abort on purpose: the queue is app-wide and idle-chunked, and
     // aborting on every dataset arrival is exactly what broke the cold warm.
-    enqueue(candidates);
+    enqueue(groups);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 }

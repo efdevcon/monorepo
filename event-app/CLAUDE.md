@@ -44,13 +44,22 @@ requirements. All remote images are served from our own Supabase Storage
    same URL: `Cache.match` keys on URL alone, so an opaque entry cached by a
    `no-cors` request will be found and then refused by a later CORS-mode request.
    That's also why `use-warm-images.ts` fetches with `mode: "cors"`.
-3. **Warm it if it can render unfetched.** The SW caches images with CacheFirst,
+3. **Static assets in `public/` need listing too.** They're same-origin, so they
+   never show up in the warm list built from API data — that's exactly why they
+   were the one category that stayed broken after reconnecting. Small chrome
+   (logos, empty-state art, the manifest) goes in `additionalPrecacheEntries`
+   (next.config.ts) so it survives the first offline paint; anything large goes in
+   `APP_IMAGES` (`src/data/appImages.ts`) and is warmed at runtime instead.
+   **Never precache large art** — `login/backdrop.jpg` alone is 1.4MB and the SW
+   install is paid by every device. And every precache entry MUST exist: one 404
+   fails the install everywhere, which has bitten this repo before.
+4. **Warm it if it can render unfetched.** The SW caches images with CacheFirst,
    so it only ever holds what the browser actually requested. Anything behind
    `loading="lazy"`, a carousel, or a route the user may not visit is *not*
    cached just because its data is. Add its URLs to `useWarmImages`
    (`src/data/hooks/use-warm-images.ts`, wired up in `CacheWarmer`).
 
-4. **Never render a broken image.** Wire `onError` to `useRetryOnReconnect`
+5. **Never render a broken image.** Wire `onError` to `useRetryOnReconnect`
    (`src/hooks/useRetryOnReconnect.ts`) and fall back to a placeholder — initials
    for avatars, the lavender/Sparkle panel for cards. An `<img>` that fails while
    offline stays broken for the life of the page otherwise, so the hook also

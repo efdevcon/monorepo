@@ -7,10 +7,15 @@ import { useTickets } from "@/data/tickets/useTickets";
 import { useUser } from "@/data/auth/useUser";
 import { Link } from "@/routing";
 import { QrLightbox, TicketCard, type QrTarget } from "./TicketCards";
+import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
 /** Renders the user's tickets as cards with QR codes. Signed out, it becomes
  *  the key-art sign-in banner from the Figma home redesign. */
 export function Tickets() {
+  const {
+    attempt: bannerAttempt,
+    markFailed: markBannerFailed,
+  } = useRetryOnReconnect();
   const { user } = useUser();
   const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
@@ -57,7 +62,11 @@ export function Tickets() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              // Retries itself when the connection returns; a static asset that
+              // failed while offline otherwise stays blank for the page's life.
+              key={bannerAttempt}
               src="/home/tickets-banner.webp"
+              onError={markBannerFailed}
               alt=""
               // Mobile: horizontal crop keeps the moon toward the top-left
               // (Figma crop ~72% of the art's width). Desktop: lower band

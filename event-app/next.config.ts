@@ -34,6 +34,20 @@ const withSerwist = withSerwistInit({
     // Offline fallback served by the SW when a document navigation can't be
     // fulfilled offline (see `fallbacks` in src/sw.ts).
     { url: "/offline", revision },
+    // App-shell images + the PWA manifest. Small on purpose (~37KB total): these
+    // are the assets visible on the very first offline paint, before any runtime
+    // caching has happened. The manifest was previously handled by no SW rule at
+    // all (its request destination is "manifest", not "image"), so it failed on
+    // every offline load. Large art (login/backdrop.jpg at 1.4MB, tickets-hero,
+    // tickets-banner) is deliberately excluded and warmed at runtime instead —
+    // see APP_IMAGES in src/data/appImages.ts.
+    // Every file here MUST exist, per the note above.
+    { url: "/manifest.webmanifest", revision },
+    { url: "/schedule/devcon8-logomark.svg", revision },
+    { url: "/schedule/devcon8-logo.svg", revision },
+    { url: "/login/devcon-8-logo.svg", revision },
+    { url: "/schedule/empty-search.webp", revision },
+    { url: "/partners/ens.png", revision },
   ],
   reloadOnOnline: false,
   exclude: [
