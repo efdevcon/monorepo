@@ -110,12 +110,39 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
 
   // Highlights: evergreen home-screen cards. Curated order, no read state,
   // no time gate (Visible in Notion is their on/off switch).
-  const highlights = useMemo(
+  const allHighlights = useMemo(
     () =>
       (data ?? [])
         .filter((a) => a.type === "highlight")
         .sort((a, b) => a.sortOrder - b.sortOrder),
     [data]
+  );
+
+  /**
+   * The home-screen hero: the highlight with Featured ticked in Notion, or
+   * null. Purely opt-in — no highlight ticked means no Featured section at all.
+   *
+   * Deliberately not falling back to a positional pick (e.g. the last
+   * highlight). A fallback would mean unticking the box silently promotes some
+   * other card rather than hiding the section, and reordering the carousel
+   * could change the hero as a side effect. Opting in is the predictable
+   * version: what an editor ticks is what shows.
+   *
+   * If two rows are ticked the first by Order wins — arbitrary but stable, since
+   * a per-row checkbox can't express "only one".
+   */
+  const featured = useMemo(
+    () => allHighlights.find((h) => h.featured) ?? null,
+    [allHighlights]
+  );
+
+  /**
+   * The carousel, minus whatever is already the hero — otherwise the featured
+   * card renders twice on the same screen.
+   */
+  const highlights = useMemo(
+    () => allHighlights.filter((h) => h.id !== featured?.id),
+    [allHighlights, featured]
   );
 
   const unreadCount = useMemo(
@@ -155,6 +182,7 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
   return {
     announcements,
     highlights,
+    featured,
     unreadCount,
     isLoading: enabled && data === undefined && error === undefined,
     /** True once the Dexie read state has hydrated (unread info is real). */

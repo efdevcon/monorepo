@@ -14,6 +14,11 @@ export interface Announcement {
   sendAt: string;
   /** Manual ordering for highlights (ascending). */
   sortOrder: number;
+  /**
+   * Marks the one highlight rendered as the home-screen hero. Always false for
+   * announcements (the sync forces it), so only a highlight can win.
+   */
+  featured: boolean;
 }
 
 export interface AnnouncementsResponse {

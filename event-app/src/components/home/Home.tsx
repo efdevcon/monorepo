@@ -9,9 +9,12 @@ import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 
 /**
- * The home page (Figma home redesign): rotating greeting, featured
- * travel-guide card, announcements preview, highlights, tickets, and the
- * "Devcon 8 India" sign-off art. Escapes the 680px `.section` column to the
+ * The home page (Figma home redesign): rotating greeting, the featured
+ * highlight hero, announcements preview, highlights carousel, tickets, and the
+ * "Devcon 8 India" sign-off art.
+ *
+ * FeaturedCard sits outside the ANNOUNCEMENTS_ENABLED gate on purpose: it owns
+ * that check itself and renders nothing when there's no highlight to show. Escapes the 680px `.section` column to the
  * 1312px desktop content box (same pattern as Ticket.tsx / Schedule).
  */
 export function Home() {
