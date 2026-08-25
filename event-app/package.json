@@ -16,7 +16,9 @@
     "typecheck": "tsc --noEmit",
     "announcements:setup-notion": "tsx scripts/setup-notion-announcements.ts",
     "push:test": "tsx scripts/send-test-push.ts",
-    "otp:test": "tsx scripts/test-otp-input.ts"
+    "otp:test": "tsx scripts/test-otp-input.ts",
+    "proof:test": "tsx scripts/test-ticket-proof.ts",
+    "proof:demo-link": "tsx scripts/make-demo-proof.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",
@@ -45,6 +47,7 @@
     "sharp": "^0.33.5",
     "sonner": "^1.7.0",
     "swr": "^2.3.6",
+    "viem": "^2.55.19",
     "web-push": "^3.6.7",
     "zod": "^3.23.8"
   },
