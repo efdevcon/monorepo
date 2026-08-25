@@ -1,15 +1,15 @@
 "use client";
 
 import cn from "classnames";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@/routing";
 import { useRealWorldNowMs } from "@/hooks/useNow";
 import type { Announcement } from "@/data/announcements/types";
 
 /**
- * Compact relative timestamp ("Just now", "5m ago", "3h ago", then a date).
- * Future times ("In 10m") appear only in ?preview mode, where editors check
- * scheduled announcements.
+ * Relative timestamp in the redesign's long-form units ("3 mins ago",
+ * "2 hrs ago", then a date). Future times ("In 10 mins") appear only in
+ * ?preview mode, where editors check scheduled announcements.
  */
 function relativeTime(sendAt: string, nowMs: number): string {
   const diffMs = nowMs - new Date(sendAt).getTime();
@@ -18,12 +18,12 @@ function relativeTime(sendAt: string, nowMs: number): string {
   const hours = Math.round(abs / 3_600_000);
 
   if (diffMs < 0) {
-    if (minutes < 60) return `In ${Math.max(minutes, 1)}m`;
-    if (hours < 24) return `In ${hours}h`;
+    if (minutes < 60) return `In ${Math.max(minutes, 1)} min${minutes === 1 ? "" : "s"}`;
+    if (hours < 24) return `In ${hours} hr${hours === 1 ? "" : "s"}`;
   } else {
     if (minutes < 1) return "Just now";
-    if (minutes < 60) return `${minutes}m ago`;
-    if (hours < 24) return `${hours}h ago`;
+    if (minutes < 60) return `${minutes} min${minutes === 1 ? "" : "s"} ago`;
+    if (hours < 24) return `${hours} hr${hours === 1 ? "" : "s"} ago`;
   }
   return new Date(sendAt).toLocaleDateString(undefined, {
     month: "short",
@@ -31,58 +31,128 @@ function relativeTime(sendAt: string, nowMs: number): string {
   });
 }
 
+/** Generic CTA per the redesign: internal links → "Open →", external → "Open ↗".
+ *  (Custom labels would need a CTA column in the Notion pipeline — not yet.) */
+function Cta({ external, mini }: { external: boolean; mini?: boolean }) {
+  const Icon = external ? ArrowUpRight : ArrowRight;
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1 font-heading font-bold text-dc-purple",
+        mini ? "text-xs" : "text-sm"
+      )}
+    >
+      Open <Icon className={mini ? "size-3.5" : "size-4"} />
+    </span>
+  );
+}
+
+function UnreadDot() {
+  return (
+    <span
+      className="size-2 shrink-0 rounded-full bg-dc-purple"
+      aria-label="Unread"
+    />
+  );
+}
+
+/**
+ * One announcement, in either of the redesign's two shapes:
+ * - "inbox" (default, /announcements): date/unread dot top-right in the title
+ *   row, CTA bottom-left.
+ * - "home" (home preview grid): meta row at the card's bottom — dot + time on
+ *   the left, CTA on the right; equal-height across the 3-up grid.
+ */
 export function AnnouncementCard({
   announcement,
   seen,
+  variant = "inbox",
 }: {
   announcement: Announcement;
   seen: boolean;
+  variant?: "inbox" | "home";
 }) {
   const nowMs = useRealWorldNowMs(60_000);
   const { title, message, url, sendAt } = announcement;
+  const external = !!url && !url.startsWith("/");
+  const time = relativeTime(sendAt, nowMs);
 
-  const body = (
-    <div
-      className={cn(
-        "rounded-2xl border border-[#E1E4EA] bg-white p-4 transition-colors",
-        url && "hover:border-[#7D52F4]/40"
-      )}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <p className="flex items-center gap-2 text-sm font-semibold text-gray-900">
-          {!seen && (
-            <span
-              className="h-2 w-2 shrink-0 rounded-full bg-[#7D52F4]"
-              aria-label="Unread"
-            />
+  const body =
+    variant === "home" ? (
+      <div
+        className={cn(
+          "flex h-full flex-col justify-between gap-3 rounded-lg border border-dc-hairline bg-white p-4 transition-colors",
+          url && "hover:border-dc-purple/40"
+        )}
+      >
+        <div>
+          <p className="font-heading text-sm font-bold leading-5 text-dc-fg2">
+            {title}
+          </p>
+          {message && (
+            <p className="mt-2 whitespace-pre-line font-heading text-sm leading-5 text-dc-fg2">
+              {message}
+            </p>
           )}
-          {title}
-        </p>
-        <span className="shrink-0 text-xs text-gray-400">
-          {relativeTime(sendAt, nowMs)}
-        </span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-2">
+            {!seen && <UnreadDot />}
+            <span className="font-heading text-xs leading-4 text-dc-muted">
+              {time}
+            </span>
+          </span>
+          {url && <Cta external={external} mini />}
+        </div>
       </div>
-      {message && (
-        <p className="mt-1 whitespace-pre-line text-sm text-gray-600">
-          {message}
-        </p>
-      )}
-      {url && (
-        <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-[#7D52F4]">
-          Open <ArrowUpRight className="h-3.5 w-3.5" />
-        </span>
-      )}
-    </div>
-  );
+    ) : (
+      <div
+        className={cn(
+          "rounded-lg border border-dc-hairline bg-white p-4 transition-colors",
+          url && "hover:border-dc-purple/40"
+        )}
+      >
+        <div className="flex items-center justify-between gap-3">
+          <p className="min-w-0 font-heading text-base font-bold leading-6 text-dc-fg2">
+            {title}
+          </p>
+          <span className="flex shrink-0 items-center gap-2">
+            {!seen && <UnreadDot />}
+            <span className="font-heading text-xs leading-4 text-dc-muted">
+              {time}
+            </span>
+          </span>
+        </div>
+        {message && (
+          <p className="mt-2 whitespace-pre-line font-heading text-sm leading-5 text-dc-fg2">
+            {message}
+          </p>
+        )}
+        {url && (
+          <div className="mt-4">
+            <Cta external={external} />
+          </div>
+        )}
+      </div>
+    );
 
   if (!url) return body;
 
   // Internal paths navigate in-app; anything absolute opens a new tab.
-  if (url.startsWith("/")) {
-    return <Link href={url}>{body}</Link>;
+  if (!external) {
+    return (
+      <Link href={url} className={variant === "home" ? "h-full" : undefined}>
+        {body}
+      </Link>
+    );
   }
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={variant === "home" ? "h-full" : undefined}
+    >
       {body}
     </a>
   );

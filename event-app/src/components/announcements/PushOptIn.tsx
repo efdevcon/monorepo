@@ -18,18 +18,18 @@ export function PushOptIn() {
   if (state === "loading" || state === "unsupported" || !signedIn) return null;
 
   return (
-    <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#E1E4EA] bg-[#f9f7ff] px-4 py-3">
+    <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dc-hairline bg-dc-lavender px-4 py-3">
       {state === "requires-install" && (
-        <p className="flex items-center gap-2 text-sm text-gray-600">
-          <Share className="h-4 w-4 shrink-0 text-[#7D52F4]" />
+        <p className="flex items-center gap-2 text-sm text-dc-muted">
+          <Share className="h-4 w-4 shrink-0 text-dc-purple" />
           To get notified about announcements on iOS, add the app to your Home
           Screen first (Share → Add to Home Screen).
         </p>
       )}
 
       {state === "denied" && (
-        <p className="flex items-center gap-2 text-sm text-gray-600">
-          <BellOff className="h-4 w-4 shrink-0 text-gray-400" />
+        <p className="flex items-center gap-2 text-sm text-dc-muted">
+          <BellOff className="h-4 w-4 shrink-0 text-dc-muted" />
           Notifications are blocked for this site — allow them in your browser
           settings to get announcement alerts.
         </p>
@@ -37,16 +37,16 @@ export function PushOptIn() {
 
       {state === "off" && (
         <>
-          <p className="flex items-center gap-2 text-sm text-gray-700">
-            <Bell className="h-4 w-4 shrink-0 text-[#7D52F4]" />
+          <p className="flex items-center gap-2 text-sm text-dc-fg2">
+            <Bell className="h-4 w-4 shrink-0 text-dc-purple" />
             Get notified when the team posts an announcement.
           </p>
           <button
             onClick={subscribe}
             disabled={busy}
             className={cn(
-              "rounded-full bg-[#7D52F4] px-4 py-1.5 text-sm font-medium text-white transition-colors",
-              busy ? "opacity-60" : "hover:bg-[#6a41e0]"
+              "rounded-full bg-dc-purple px-4 py-1.5 font-heading text-sm font-bold text-dc-purple-fg transition-colors",
+              busy ? "opacity-60" : "hover:bg-dc-purple-600"
             )}
           >
             {busy ? "Enabling…" : "Enable notifications"}
@@ -56,21 +56,21 @@ export function PushOptIn() {
 
       {state === "on" && (
         <>
-          <p className="flex items-center gap-2 text-sm text-gray-700">
-            <BellRing className="h-4 w-4 shrink-0 text-[#7D52F4]" />
+          <p className="flex items-center gap-2 text-sm text-dc-fg2">
+            <BellRing className="h-4 w-4 shrink-0 text-dc-purple" />
             Notifications are on for this device.
           </p>
           <button
             onClick={unsubscribe}
             disabled={busy}
-            className="text-sm font-medium text-gray-500 underline-offset-2 hover:underline"
+            className="text-sm font-medium text-dc-muted underline-offset-2 hover:underline"
           >
             {busy ? "Turning off…" : "Turn off"}
           </button>
         </>
       )}
 
-      {error && <p className="w-full text-xs text-red-500">{error}</p>}
+      {error && <p className="w-full text-xs text-dc-error">{error}</p>}
     </div>
   );
 }

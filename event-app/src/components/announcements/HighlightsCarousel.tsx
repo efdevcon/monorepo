@@ -17,7 +17,7 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
   const { title, message, url, image } = highlight;
 
   const card = (
-    <div className="group w-[295px] shrink-0 overflow-hidden rounded-2xl border border-[#E1E4EA] bg-white">
+    <div className="group w-[295px] shrink-0 overflow-hidden rounded-xl border border-dc-hairline bg-white">
       {image ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -26,14 +26,18 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
           className="aspect-[2/1] w-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
         />
       ) : (
-        <div className="flex aspect-[2/1] w-full items-center justify-center bg-[#f3eeff]">
-          <Sparkle className="h-6 w-6 text-[#7D52F4]/40" />
+        <div className="flex aspect-[2/1] w-full items-center justify-center bg-dc-lavender">
+          <Sparkle className="h-6 w-6 text-dc-purple/40" />
         </div>
       )}
       <div className="relative z-10 bg-white p-4">
-        <p className="text-sm font-semibold text-gray-900">{title}</p>
+        <p className="font-heading text-sm font-bold leading-5 text-dc-fg2">
+          {title}
+        </p>
         {message && (
-          <p className="mt-1 line-clamp-2 text-sm text-gray-600">{message}</p>
+          <p className="mt-1 line-clamp-2 font-heading text-sm leading-5 text-dc-muted">
+            {message}
+          </p>
         )}
       </div>
     </div>
@@ -56,13 +60,12 @@ export function HighlightsCarousel() {
   if (highlights.length === 0) return null;
 
   return (
-    <section className="mb-6">
-      <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900">
-        <Sparkle className="h-5 w-5 text-[#7D52F4]" />
+    <section>
+      <h2 className="mb-4 font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
         Highlights
       </h2>
       <SwipeToScroll>
-        <div className="flex gap-3 pr-4">
+        <div className="flex gap-4 pr-4">
           {highlights.map((h) => (
             <HighlightCard key={h.id} highlight={h} />
           ))}

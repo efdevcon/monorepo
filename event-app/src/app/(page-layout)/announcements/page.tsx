@@ -62,51 +62,55 @@ export default function AnnouncementsPage() {
   }, [announcements, nowMs]);
 
   return (
-    <main className="py-6">
-      {/* Mobile title comes from AppHeader (routeChrome); page h1 is desktop-only. */}
-      <h1 className="mb-4 hidden text-2xl font-bold text-gray-900 lg:block">
-        Announcements
-      </h1>
+    // Escape the 680px `.section` column to the 1312px desktop content box
+    // (same pattern as Ticket.tsx / Schedule).
+    <main className="expand py-6">
+      <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
+        {/* Mobile title comes from AppHeader (routeChrome); page h1 is desktop-only. */}
+        <h1 className="mb-4 hidden font-heading text-2xl font-extrabold tracking-[-0.5px] text-dc-fg2 lg:block">
+          Announcements
+        </h1>
 
-      <PushOptIn />
+        <PushOptIn />
 
-      {isLoading && (
-        <p className="text-sm text-gray-500">Loading announcements…</p>
-      )}
+        {isLoading && (
+          <p className="text-sm text-dc-muted">Loading announcements…</p>
+        )}
 
-      {!isLoading && error && announcements.length === 0 && (
-        <p className="text-sm text-gray-500">
-          Couldn&apos;t load announcements. Check your connection and try
-          again.
-        </p>
-      )}
-
-      {!isLoading && !error && announcements.length === 0 && (
-        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-[#E1E4EA] py-12 text-center">
-          <Megaphone className="h-6 w-6 text-gray-300" />
-          <p className="text-sm text-gray-500">
-            Nothing yet — announcements from the team will show up here.
+        {!isLoading && error && announcements.length === 0 && (
+          <p className="text-sm text-dc-muted">
+            Couldn&apos;t load announcements. Check your connection and try
+            again.
           </p>
-        </div>
-      )}
+        )}
 
-      <div className="flex flex-col gap-6">
-        {groups.map(([label, items]) => (
-          <section key={label}>
-            <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
-              {label}
-            </h2>
-            <div className="flex flex-col gap-3">
-              {items.map((a) => (
-                <AnnouncementCard
-                  key={a.id}
-                  announcement={a}
-                  seen={seenAtEntry.current?.has(a.id) ?? true}
-                />
-              ))}
-            </div>
-          </section>
-        ))}
+        {!isLoading && !error && announcements.length === 0 && (
+          <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border py-12 text-center">
+            <Megaphone className="h-6 w-6 text-dc-muted/50" />
+            <p className="text-sm text-dc-muted">
+              Nothing yet — announcements from the team will show up here.
+            </p>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-8">
+          {groups.map(([label, items]) => (
+            <section key={label}>
+              <h2 className="mb-3 font-heading text-xs font-bold uppercase leading-[18px] tracking-[0.5px] text-dc-muted">
+                {label}
+              </h2>
+              <div className="flex flex-col gap-3">
+                {items.map((a) => (
+                  <AnnouncementCard
+                    key={a.id}
+                    announcement={a}
+                    seen={seenAtEntry.current?.has(a.id) ?? true}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       </div>
     </main>
   );
