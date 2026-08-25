@@ -1,6 +1,6 @@
 ---
 name: verify
-description: How to launch and drive the devcon website to verify UI changes at runtime (dev server + headless Chromium via playwright-core).
+description: How to launch and drive the devcon website to verify UI changes at runtime (dev server + headless screenshots via scripts/shot.mjs).
 ---
 
 # Verifying devcon website changes
@@ -10,26 +10,26 @@ description: How to launch and drive the devcon website to verify UI changes at 
 `pnpm dev` from `monorepo/devcon` starts TinaCMS + Next.js on `http://localhost:3000`.
 
 - If it fails with "Datalayer server is busy on port 9000", a dev server is **already running** (often the user's own) — just use `http://localhost:3000` directly.
-- Routes redirect (308) through the i18n middleware; follow redirects or use the trailing-slash URL (e.g. `/speaker-applications/`).
+- **Confirm which app owns the port** before screenshotting — event-app also defaults to 3000 (second server started lands on 3001): `curl -s http://localhost:3000/ | grep -o "<title>[^<]*</title>"` (event-app → "Devcon App v2").
+- Routes redirect (308) through the i18n middleware; the harness follows redirects, but prefer trailing-slash URLs (e.g. `/speaker-applications/`).
 
-## Drive (headless browser)
+## Screenshots
 
-No Playwright/Puppeteer in the repo, but Playwright browsers are cached on this machine. Recipe:
+Use the checked-in harness — do NOT write ad-hoc Playwright scripts:
 
-1. In a scratch dir: `npm i playwright-core`
-2. Launch with the cached headless shell (adjust revision to whatever is in the cache dir):
-   ```js
-   const { chromium } = require('playwright-core')
-   const exe = `${os.homedir()}/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell`
-   const browser = await chromium.launch({ executablePath: exe })
-   ```
-3. CSS module class names in dev render as `<file>-module-scss-module__<hash>__<local-name>` — the local name is a **suffix**, so select with `[class$="__track-card"]` / `[class*="track-card-inner"]`, not `[class*="track-card__"]`.
+```bash
+node ../scripts/shot.mjs / --port 3000                       # 390/768/1440 into .screenshots/
+node ../scripts/shot.mjs /speaker-applications/ --port 3000 --full-page
+node ../scripts/shot.mjs / --port 3000 --selector 'section#supporters'
+```
 
-## Emulation notes
+`--port` is required by design. Widths < 768 get mobile emulation (isMobile + hasTouch), so `matchMedia('(hover: none)')`/`(pointer: coarse)` match — which is what `src/hooks/useIsTouchDevice.ts` keys off.
 
-- Touch/tap mode: `newContext({ isMobile: true, hasTouch: true, viewport: {width: 390, height: 844} })` correctly makes `matchMedia('(hover: none)')` and `(pointer: coarse)` match, which is what `src/hooks/useIsTouchDevice.ts` keys off.
-- Reduced motion: `page.emulateMedia({ reducedMotion: 'reduce' })`.
-- Screenshot a section with `page.locator('section#id').screenshot(...)` after `scrollIntoViewIfNeeded()`.
+For anything the harness can't do (clicking through flows, reduced-motion emulation via `page.emulateMedia({ reducedMotion: 'reduce' })`), write a one-off script importing `playwright-core` from the repo root and reuse the executable-lookup pattern from `scripts/shot.mjs`.
+
+## Selector notes
+
+CSS module class names in dev render as `<file>-module-scss-module__<hash>__<local-name>` — the local name is a **suffix**, so select with `[class$="__track-card"]` / `[class*="track-card-inner"]`, not `[class*="track-card__"]`.
 
 ## Gotchas
 
