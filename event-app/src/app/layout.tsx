@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { CacheWarmer } from "@/components/CacheWarmer";
@@ -15,21 +14,19 @@ import APP_CONFIG from "@/CONFIG";
 // Poppins everywhere (the home/announcements redesign dropped Inter — the
 // app is Poppins-only). next/font self-hosts at build time for offline.
 const poppins = Poppins({
-  // devanagari: the home-screen greeting (नमस्कार …) is set in Poppins per the
-  // Figma home redesign — without the subset it would fall back to a system face.
-  subsets: ["latin", "devanagari"],
+  subsets: ["latin"],
   // 800 = ExtraBold, used by the desktop "Schedule" page title.
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
   display: "swap",
 });
-// Chloe: single-weight display face for the "Devcon 8 India" home footer art,
-// copied from the devcon site (devcon/public/fonts). Conventions there: always
-// weight 400, mixed case, negative tracking — never bold it.
-const chloe = localFont({
-  src: "../fonts/Chloe-Regular.otf",
-  weight: "400",
-  variable: "--font-chloe",
+// Devanagari for the home-screen greeting (नमस्कार …) only — a single weight
+// so the SW precache carries one ~39KB file instead of the subset across all
+// five weights. The greeting span stacks it after the latin Poppins.
+const poppinsDevanagari = Poppins({
+  subsets: ["devanagari"],
+  weight: "800",
+  variable: "--font-poppins-dev",
   display: "swap",
 });
 
@@ -68,7 +65,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${chloe.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${poppinsDevanagari.variable}`}
+    >
       <head>
         <PersonalizedManifestLink />
         {/* iOS native launch-screen images, shown while the installed PWA

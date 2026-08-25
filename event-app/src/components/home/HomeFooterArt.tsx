@@ -1,4 +1,10 @@
 /**
+ * PARKED — not rendered anywhere (removed from Home pending a design revisit;
+ * neither width-fill approach — stretched glyphs or stretched spacing — passed
+ * review). To restore: re-add the Chloe localFont loader in layout.tsx, and
+ * restore src/fonts/Chloe-Regular.otf + public/home/footer-art-fill.webp from
+ * git history (removed from the build to stop shipping dead weight).
+ *
  * Home-page sign-off: "Devcon 8 India" set in Chloe, filled with the India art
  * image and finished with the Figma inner shadow (inset 0 1px 4px + 0 2px 8px
  * rgba(22,11,43,.15)). Built as real SVG <text> — not a pre-rendered image —
