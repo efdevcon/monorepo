@@ -29,8 +29,14 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
       )}
     >
       {image ? (
+        // crossOrigin: see Avatar.tsx — avoids opaque-response quota padding.
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={image} alt="" className="aspect-[2/1] w-full object-cover" />
+        <img
+          src={image}
+          crossOrigin="anonymous"
+          alt=""
+          className="aspect-[2/1] w-full object-cover"
+        />
       ) : (
         <div className="flex aspect-[2/1] w-full items-center justify-center bg-dc-lavender">
           <Sparkle className="h-6 w-6 text-dc-purple/40" />

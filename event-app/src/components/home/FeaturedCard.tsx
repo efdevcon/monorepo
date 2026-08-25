@@ -39,6 +39,9 @@ export function FeaturedCard() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image}
+            // See Avatar.tsx: CORS keeps these out of the opaque-response
+            // quota padding that can wipe the whole image cache.
+            crossOrigin="anonymous"
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />

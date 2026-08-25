@@ -109,9 +109,16 @@ export function Avatar({
   // path); it degrades to initials below.
   if (src && !src.startsWith("data:")) {
     return (
+      // crossOrigin: request with CORS so the response is a real 200 rather
+      // than an opaque one. Opaque cache entries are quota-padded far beyond
+      // their real size, which can trip the service worker's
+      // purgeOnQuotaError and wipe every cached image. Safe because all our
+      // avatars are mirrored to our own Supabase Storage, which sends
+      // Access-Control-Allow-Origin: *.
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
+        crossOrigin="anonymous"
         alt={name}
         width={size}
         height={size}
