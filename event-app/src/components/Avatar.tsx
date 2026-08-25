@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import cn from "classnames";
+import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { DC8_TRACKS } from "@/components/schedule/trackTheme";
 
 const initials = (name: string) =>
@@ -85,6 +86,10 @@ export function Avatar({
     () => (src?.startsWith("data:") ? parseIdenticon(src) : null),
     [src]
   );
+  // A photo that fails to load (offline, and not yet cached) degrades to the
+  // initials placeholder below rather than a broken image, and retries itself
+  // when the connection returns.
+  const { failed, attempt, markFailed } = useRetryOnReconnect();
 
   if (identicon) {
     return (
@@ -107,7 +112,7 @@ export function Avatar({
 
   // A non-identicon data URI is never rendered as an <img> (that's the crash
   // path); it degrades to initials below.
-  if (src && !src.startsWith("data:")) {
+  if (src && !src.startsWith("data:") && !failed) {
     return (
       // crossOrigin: request with CORS so the response is a real 200 rather
       // than an opaque one. Opaque cache entries are quota-padded far beyond
@@ -117,7 +122,12 @@ export function Avatar({
       // Access-Control-Allow-Origin: *.
       // eslint-disable-next-line @next/next/no-img-element
       <img
+        // `key` on the attempt counter: a reconnect remounts the element so the
+        // browser re-requests the same URL. Failing avatars otherwise stay
+        // broken for the life of the page.
+        key={attempt}
         src={src}
+        onError={markFailed}
         crossOrigin="anonymous"
         alt={name}
         width={size}

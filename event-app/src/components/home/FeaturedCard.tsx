@@ -5,6 +5,7 @@ import cn from "classnames";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
+import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { resolveAnnouncementLink } from "@/data/announcements/linkUtils";
 
 /**
@@ -23,10 +24,15 @@ export function FeaturedCard() {
   const { featured } = useAnnouncements({
     enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED,
   });
+  const { failed, attempt, markFailed } = useRetryOnReconnect();
 
   if (!featured) return null;
 
-  const { title, message, url, image } = featured;
+  const { title, message, url } = featured;
+  // Treating a failed load as "no image" reuses the placeholder and the
+  // light-on-photo / dark-on-panel text switch below, instead of showing a
+  // broken image over unreadable text. Retries on reconnect.
+  const image = failed ? null : featured.image;
   const link = url ? resolveAnnouncementLink(url) : null;
   // Near-white on the glass circle over a photo (as the design has it); purple
   // on the solid white circle, where near-white would be invisible.
@@ -38,7 +44,9 @@ export function FeaturedCard() {
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            key={attempt}
             src={image}
+            onError={markFailed}
             // See Avatar.tsx: CORS keeps these out of the opaque-response
             // quota padding that can wipe the whole image cache.
             crossOrigin="anonymous"

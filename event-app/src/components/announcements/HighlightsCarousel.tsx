@@ -7,6 +7,7 @@ import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll-native"
 import { Link } from "@/routing";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { resolveAnnouncementLink } from "@/data/announcements/linkUtils";
+import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import type { Announcement } from "@/data/announcements/types";
 
 /**
@@ -17,7 +18,11 @@ import type { Announcement } from "@/data/announcements/types";
  * Notion-managed instead of hardcoded.
  */
 function HighlightCard({ highlight }: { highlight: Announcement }) {
-  const { title, message, url, image } = highlight;
+  const { title, message, url } = highlight;
+  const { failed, attempt, markFailed } = useRetryOnReconnect();
+  // A failed load falls back to the Sparkle placeholder below rather than a
+  // broken image, and retries when the connection returns.
+  const image = failed ? null : highlight.image;
   const link = url ? resolveAnnouncementLink(url) : null;
 
   const card = (
@@ -32,7 +37,9 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
         // crossOrigin: see Avatar.tsx — avoids opaque-response quota padding.
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          key={attempt}
           src={image}
+          onError={markFailed}
           crossOrigin="anonymous"
           alt=""
           className="aspect-[2/1] w-full object-cover"

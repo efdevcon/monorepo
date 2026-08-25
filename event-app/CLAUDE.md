@@ -50,6 +50,14 @@ requirements. All remote images are served from our own Supabase Storage
    cached just because its data is. Add its URLs to `useWarmImages`
    (`src/data/hooks/use-warm-images.ts`, wired up in `CacheWarmer`).
 
+4. **Never render a broken image.** Wire `onError` to `useRetryOnReconnect`
+   (`src/hooks/useRetryOnReconnect.ts`) and fall back to a placeholder — initials
+   for avatars, the lavender/Sparkle panel for cards. An `<img>` that fails while
+   offline stays broken for the life of the page otherwise, so the hook also
+   remounts it (via `key={attempt}`) when `online` fires. Retry by remounting the
+   *same* URL, never a cache-busting query param: that would miss the SW's cached
+   copy and pile up duplicate cache entries.
+
 Do **not** drop `loading="lazy"` to force caching. It works, but rasterizing
 hundreds of images down a tall page is the mechanism behind the iOS
 content-process crash the speakers page already hit once. Warm via `fetch`, which
