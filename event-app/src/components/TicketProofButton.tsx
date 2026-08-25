@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, Copy, ExternalLink, Share2, ShieldCheck, X } from "lucide-react";
+import { Check, Copy, ExternalLink, Share2, X } from "lucide-react";
 import {
   canShare,
   copyLink,
@@ -34,7 +34,11 @@ export function TicketProofButton({ ticketSecret }: { ticketSecret: string }) {
         disabled={pending}
         className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1 text-[12px] leading-none text-dc-muted transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-60"
       >
-        <ShieldCheck className="size-4 text-dc-purple" />
+        {/* The partner's own mark, not a generic icon: this button leaves our
+            app for theirs, and Lucide has no brand icons. Asset reused from
+            devconnect-app rather than adding a second copy of the logo.
+            eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/partners/ens.png" alt="" className="size-4 shrink-0" />
         {pending ? "Preparing…" : "Claim ENS perks"}
       </button>
 

@@ -42,6 +42,15 @@ is POC-only and should be dropped before production. Full spec, invariants and
 the PWA hand-off reasoning: `docs/ticket-proofs.md`. Tests: `pnpm proof:test`;
 demo links: `pnpm proof:demo-link`.
 
+Tier detection is structural, not a checked-in product list: Pretix's
+`admission` flag decides whether a position is provable at all (merchandise can
+be sold as a standalone position, so "not an add-on" is a different question),
+then the India flag emoji in the product name decides `india` vs `standard`.
+Don't switch that to matching the word "India" — Devcon 8 is *in* India, so the
+country name appears in swag ("Devcon India Scarf") and could appear in a renamed
+main product, which would hand sponsored registrations to everyone. Unrecognised
+products default to `standard` by design.
+
 Three things not to undo: the signer address is never carried in the proof link
 (pinning it out of band is what makes verification non-circular), the identifier
 is a *salted* HMAC of the ticket secret (the secret is the QR payload, so a bare

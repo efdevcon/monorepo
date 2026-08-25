@@ -5,6 +5,7 @@ import { getRequestOrigin } from "../_lib/origin";
 import {
   classifyTier,
   getPartner,
+  isProvableTicket,
   proofToSearchParams,
   signTicketProof,
 } from "./proof";
@@ -119,6 +120,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Merchandise is not provable, and checking Pretix's `admission` flag is
+    // not the same as the add-on filter above: swag can be sold as its own
+    // position, so a "Devcon India Scarf" would otherwise arrive here looking
+    // exactly like a ticket.
+    if (!isProvableTicket(match)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Only event tickets can be proved, not merchandise",
+        },
+        { status: 400 }
+      );
+    }
+
+    // TODO: gate on check-in. A proof arguably should only be issuable once the
+    // attendee is physically at the event (`match.hasCheckedIn`, already
+    // populated from Pretix `position.checkins`), which would stop a ticket that
+    // is resold or never used from collecting a perk. Deliberately not enforced
+    // yet so the flow can be tested before the event.
+    //
+    // Two consequences to settle before turning it on: perks become
+    // onsite-only, so nobody can claim in advance; and the partner may want
+    // check-in reflected *in* the proof rather than only at mint time, since a
+    // 30-minute-old proof outlives the check the moment it is signed. Adding a
+    // `checkedIn` field to the payload would be a signature-format change, so
+    // it needs the version bump in PROOF_DOMAIN.
     const tier = classifyTier(match);
     const proof = await signTicketProof({
       ticketSecret: match.secret,

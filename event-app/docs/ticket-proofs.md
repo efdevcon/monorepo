@@ -57,13 +57,38 @@ handover token), a much shorter window costs nothing.
 
 ## Tier mapping
 
-`india` covers India Early Bird, India Resident and Indian Students. Set
-`TICKET_PROOF_INDIA_ITEM_IDS` to pin exact Pretix item ids; with it unset we
-match `India`/`Indian` in the product name, which separates those three from
-`Student Discount` and `Youth Ticket` correctly.
+Detected from the product, in two structural steps. The catalogue is not
+duplicated here, so new products need no code change.
 
-Everything else is `standard`. The enum is signed over, so changing it
-invalidates every proof already issued.
+1. **Is it a ticket?** Only positions carrying Pretix's `admission` flag are
+   provable. This is a different question from "is it an add-on": merchandise can
+   be sold as its own position, so an add-on filter alone would let a scarf
+   through as a provable ticket.
+2. **Is it India?** The 🇮🇳 flag in the product name, which the ticketing team
+   puts on the India-priced products. Everything else is `standard`.
+
+The flag rather than the word "India", because Devcon 8 *is in* India: a name
+like "Devcon India ..." records where the event is, not that the holder got a
+discount. A word match would hand a sponsored registration to every attendee the
+moment someone renamed the main product, and it also reads the "Devcon India
+Scarf" merchandise as India tickets. The flag is a deliberate marker; the country
+name is ambient.
+
+Anything not positively identified as India is `standard`, new products
+included. That is the direction to fail: `standard` given wrongly means a
+smaller gift and is trivially fixed, while `india` given wrongly has already
+cost a sponsored registration.
+
+A product that mentions India but carries no flag is logged as a warning and
+treated as `standard`, so an unflagged India ticket surfaces instead of silently
+mis-tiering. Names like "Daily India Pass" land here: whether a daily pass counts
+is a judgement call, not something a rule should settle quietly.
+
+`TICKET_PROOF_INDIA_ITEM_IDS` is the escape hatch for a product that cannot
+follow the convention. When set it is exclusive: only those ids are india.
+
+The tier enum is signed over, so changing it invalidates every proof already
+issued.
 
 ## Endpoints
 
@@ -72,7 +97,8 @@ invalidates every proof already issued.
 | `POST /api/ticket-proof` | Mint a proof. Needs a Supabase bearer token. Body: `{ ticketSecret, partner }`. |
 | `GET /api/ticket-proof/signer` | Public signer address, domain and version. For pinning at setup. |
 
-Swag and add-ons cannot be proved: only event-ticket secrets are matched.
+Swag and add-ons cannot be proved: a position must both be a non-add-on and
+carry Pretix's `admission` flag.
 
 ## Config
 
@@ -109,6 +135,16 @@ pnpm proof:test                    # signing, tampering, expiry, tier rules
 pnpm proof:demo-link india         # print a ready-made claim link
 pnpm proof:demo-link standard --expired
 ```
+
+## Not implemented yet
+
+**Check-in gating.** A proof is currently issuable whether or not the attendee
+has arrived, so a resold or unused ticket can still collect a perk.
+`hasCheckedIn` is already on the ticket, so the gate itself is a one-line change
+in `src/app/api/ticket-proof/route.ts` (see the TODO there). Two decisions come
+with it: perks become onsite-only, and the partner may want check-in bound *into*
+the proof rather than merely checked at mint time, which is a payload change and
+so needs a `PROOF_DOMAIN` version bump.
 
 ## Leaving the PWA
 

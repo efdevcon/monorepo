@@ -254,44 +254,97 @@ export async function verifyTicketProof(
 }
 
 /**
- * Which Pretix products count as India tickets: India Early Bird, India
- * Resident and Indian Students, per the partner's ask.
+ * India detection, in two structural steps rather than a checked-in catalogue.
  *
- * Item ids from env win when set, because they are exact and survive product
- * renames. Absent that we match the product name, which happens to be reliable
- * for this particular set: all three carry "India"/"Indian", while the tickets
- * we must NOT include ("Student Discount", "Youth Ticket") do not. That keeps
- * the POC working against dev and prod Pretix without hand-maintained ids, and
- * a new "Indian ..." product is picked up automatically.
+ * Step one is the `admission` flag (see `isProvableTicket`), which removes
+ * merchandise from consideration entirely. That matters more than it looks:
+ * name matching on the raw product list was wrong in both directions, and its
+ * worst case was the three "Devcon India Scarf" items, which a name rule reads
+ * as India tickets. Once swag is gone, the only India-named products left are
+ * real tickets.
  *
- * Worth confirming before this goes live: the catalogue we have on file lists a
- * generic "Student Discount", not an India-scoped student product, so the exact
- * item id for "Indian Students" should be pinned via env once it exists.
+ * Step two is the \u{1F1EE}\u{1F1F3} flag in the product name, which the
+ * ticketing team puts on the India-priced products specifically. Preferred over
+ * matching the word "India" because Devcon 8 is *in* India: a name like "Devcon
+ * India ..." says where the event is, not that the holder gets a discount, and
+ * a word match would hand a sponsored registration to every attendee the moment
+ * someone renamed the main product. The flag is a deliberate marker; the country
+ * name is ambient.
+ *
+ * New products need no code change: a flagged one is picked up as india, an
+ * unflagged one is standard.
  */
-const INDIA_NAME_PATTERN = /\bindian?\b/i;
+const INDIA_FLAG = /\u{1F1EE}\u{1F1F3}/u;
 
-function configuredIndiaItemIds(): Set<number> {
+/**
+ * Only used to flag an ambiguous product for a human, never to classify one.
+ * Catches an India ticket created without the flag emoji, and names like
+ * "Daily India Pass" where whether a discount applies is a judgement call.
+ */
+const INDIA_MENTION = /\bindian?\b/i;
+
+/**
+ * Escape hatch for a product that doesn't follow the naming convention.
+ * When set it is exclusive: only these ids are india, nothing else.
+ */
+function indiaItemIdOverride(): Set<number> | null {
   const raw = process.env.TICKET_PROOF_INDIA_ITEM_IDS;
-  if (!raw) return new Set();
-  return new Set(
-    raw
-      .split(",")
-      .map((part) => Number(part.trim()))
-      .filter((id) => Number.isInteger(id))
-  );
+  if (!raw) return null;
+  const ids = raw
+    .split(",")
+    .map((part) => Number(part.trim()))
+    .filter((id) => Number.isInteger(id));
+  // An unparseable override would silently downgrade every India ticket, so
+  // treat it as absent rather than as an empty allowlist.
+  return ids.length > 0 ? new Set(ids) : null;
 }
 
+/**
+ * Is this something we will issue a proof for at all?
+ *
+ * Gated on Pretix's own `admission` flag rather than "is it an add-on". Those
+ * are different questions: merchandise can be sold as a standalone position, so
+ * an add-on check alone would let a "Devcon India Scarf" through as a provable
+ * ticket.
+ *
+ * Fails closed on a missing flag: an unknown shape should not be provable.
+ */
+export function isProvableTicket(ticket: { admission?: boolean }): boolean {
+  return ticket.admission === true;
+}
+
+/**
+ * Map an admission ticket to its tier. Assumes `isProvableTicket` already
+ * passed; swag has no tier.
+ *
+ * Anything not positively identified as India is `standard`, which is the
+ * direction we want to fail: a ticket wrongly marked `standard` gets a smaller
+ * gift and is trivially fixed, while one wrongly marked `india` has already cost
+ * a sponsored registration and cannot be taken back.
+ */
 export function classifyTier(ticket: {
   itemId?: number;
-  itemName: string;
+  itemName?: string;
 }): TicketTier {
-  const ids = configuredIndiaItemIds();
-  if (ids.size > 0) {
-    return ticket.itemId !== undefined && ids.has(ticket.itemId)
+  const override = indiaItemIdOverride();
+  if (override) {
+    return ticket.itemId !== undefined && override.has(ticket.itemId)
       ? "india"
       : "standard";
   }
-  return INDIA_NAME_PATTERN.test(ticket.itemName) ? "india" : "standard";
+
+  const name = ticket.itemName ?? "";
+  if (INDIA_FLAG.test(name)) return "india";
+
+  if (INDIA_MENTION.test(name)) {
+    console.warn(
+      `[ticket-proof] item ${ticket.itemId ?? "?"} ("${name}") mentions India ` +
+        "but carries no \u{1F1EE}\u{1F1F3} flag — treating it as standard. Add the " +
+        "flag to the product name, or list its id in " +
+        "TICKET_PROOF_INDIA_ITEM_IDS, if it should be an India ticket."
+    );
+  }
+  return "standard";
 }
 
 /**

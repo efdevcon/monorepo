@@ -15,6 +15,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import {
   classifyTier,
   deriveIdentifier,
+  isProvableTicket,
   getSignerAddress,
   proofFromSearchParams,
   proofToSearchParams,
@@ -140,31 +141,93 @@ async function main() {
   );
 
   // ---- Tier classification --------------------------------------------
-  const tiers: Array<[string, string]> = [
-    ["India Early Bird (Limited Availability) 🇮🇳", "india"],
-    ["India Resident 🇮🇳", "india"],
-    ["Indian Students", "india"],
-    ["Student Discount 🎓", "standard"],
-    ["Youth Ticket (3-17) 🌱", "standard"],
-    ["General Admission 🎟️", "standard"],
-    ["Early Bird GA 🐤", "standard"],
-    ["Builder Discount 🦄", "standard"],
-    ["Grant Recipients", "standard"],
-  ];
-  for (const [itemName, want] of tiers) {
-    const got = classifyTier({ itemName });
-    check(`tier "${itemName}" -> ${want}`, got === want, got === want ? "" : `got ${got}`);
-  }
+  // Rules, not a copy of the catalogue: the live product list is not checked in
+  // here, so these cases stand for the shapes the rules have to handle.
+  const realWarn = console.warn;
+  const quiet = () => {
+    console.warn = () => {};
+  };
+  const loud = () => {
+    console.warn = realWarn;
+  };
 
-  // Explicit item ids win over name matching when configured.
-  process.env.TICKET_PROOF_INDIA_ITEM_IDS = "2, 3";
+  const IN = "\u{1F1EE}\u{1F1F3}";
+
+  // The flag marks an India-priced product.
   check(
-    "configured item id is india",
-    classifyTier({ itemId: 2, itemName: "Renamed Product" }) === "india"
+    "flagged product is india",
+    classifyTier({ itemId: 2, itemName: `India Early Bird ${IN}` }) === "india"
   );
   check(
-    "unconfigured item id is standard even if the name says India",
-    classifyTier({ itemId: 99, itemName: "India Resident 🇮🇳" }) === "standard"
+    "flag anywhere in the name counts",
+    classifyTier({ itemId: 40, itemName: `${IN} Indian Students` }) === "india"
+  );
+
+  // Ordinary tickets, and anything new, are standard.
+  for (const itemName of [
+    "General Admission",
+    "ETH Early Bird",
+    "International Students",
+    "Youth Ticket (3-17)",
+    "Speakers",
+    "Some Ticket Type Invented Next Year",
+  ]) {
+    check(`"${itemName}" is standard`, classifyTier({ itemName }) === "standard");
+  }
+
+  // The reason the flag beats matching the word: Devcon 8 is in India, so the
+  // country name in a product title says nothing about pricing.
+  quiet();
+  check(
+    "a country name without the flag does NOT grant india",
+    classifyTier({ itemId: 1, itemName: "Devcon India General Admission" }) ===
+      "standard"
+  );
+  check(
+    "an ambiguous pass without the flag is standard",
+    classifyTier({ itemId: 53, itemName: "Daily India Pass" }) === "standard"
+  );
+  loud();
+
+  // ...but it is surfaced rather than swallowed.
+  let warned = "";
+  console.warn = (msg: string) => {
+    warned = String(msg);
+  };
+  classifyTier({ itemId: 53, itemName: "Daily India Pass" });
+  loud();
+  check(
+    "an unflagged India mention logs a warning",
+    warned.includes("53") && warned.includes("India")
+  );
+
+  // Merchandise never reaches a tier, and this is the case name matching alone
+  // got wrong: a scarf reads as an India ticket.
+  check(
+    "swag is not provable however it is named",
+    isProvableTicket({ admission: false }) === false
+  );
+  check(
+    "an admission ticket is provable",
+    isProvableTicket({ admission: true }) === true
+  );
+  check("missing admission flag is not provable", isProvableTicket({}) === false);
+
+  // ---- Env override ----------------------------------------------------
+  process.env.TICKET_PROOF_INDIA_ITEM_IDS = "2, 3";
+  check(
+    "override makes listed ids india",
+    classifyTier({ itemId: 2, itemName: "Renamed With No Flag" }) === "india"
+  );
+  check(
+    "override is exclusive: a flagged id not listed becomes standard",
+    classifyTier({ itemId: 40, itemName: `Indian Students ${IN}` }) === "standard"
+  );
+
+  process.env.TICKET_PROOF_INDIA_ITEM_IDS = "not,a,number";
+  check(
+    "an unparseable override is ignored, falling back to flag detection",
+    classifyTier({ itemId: 2, itemName: `India Early Bird ${IN}` }) === "india"
   );
   delete process.env.TICKET_PROOF_INDIA_ITEM_IDS;
 
