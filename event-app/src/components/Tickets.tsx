@@ -23,7 +23,7 @@ export function Tickets() {
   return (
     <section className="w-full text-left">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
+        <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
           Your tickets
         </h2>
         {/* Text CTA, unified with the "View all" link style */}

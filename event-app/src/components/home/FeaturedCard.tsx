@@ -9,7 +9,7 @@ const TRAVEL_GUIDE_URL = "https://devcon.org/travel-guide";
 export function FeaturedCard() {
   return (
     <section>
-      <h2 className="mb-4 font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
+      <h2 className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
         Featured
       </h2>
       <a

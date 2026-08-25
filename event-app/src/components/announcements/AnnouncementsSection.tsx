@@ -20,7 +20,7 @@ export function AnnouncementsSection() {
   return (
     <section>
       <div className="mb-4 flex items-center justify-between gap-8">
-        <h2 className="font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
+        <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
           Announcements
         </h2>
         <Link
