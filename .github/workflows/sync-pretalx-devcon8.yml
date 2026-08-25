@@ -28,6 +28,11 @@ jobs:
           PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
+          # Optional: lets the sync mirror speaker avatars into Supabase
+          # Storage (services/avatar-mirror); skipped gracefully when unset.
+          # Uses devcon-api's own project credentials, not devcon-ai's RAG ones.
+          SUPABASE_URL: ${{ secrets.DEVCON_API_SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.DEVCON_API_SUPABASE_KEY }}
       - uses: EndBug/add-and-commit@v9
         with:
           add: "devcon-api/data"
