@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
@@ -12,13 +12,8 @@ import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import APP_CONFIG from "@/CONFIG";
 
-// Match the /devcon project: Inter (body) + Poppins (headings).
-// next/font self-hosts these at build time, so they work offline.
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+// Poppins everywhere (the home/announcements redesign dropped Inter — the
+// app is Poppins-only). next/font self-hosts at build time for offline.
 const poppins = Poppins({
   // devanagari: the home-screen greeting (नमस्कार …) is set in Poppins per the
   // Figma home redesign — without the subset it would fall back to a system face.
@@ -73,10 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${poppins.variable} ${chloe.variable}`}
-    >
+    <html lang="en" className={`${poppins.variable} ${chloe.variable}`}>
       <head>
         <PersonalizedManifestLink />
         {/* iOS native launch-screen images, shown while the installed PWA

@@ -16,7 +16,7 @@ import { Greeting } from "./Greeting";
  */
 export function Home() {
   return (
-    <main className="expand py-6">
+    <main className="expand py-6 lg:pb-16">
       <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
         <Greeting />
         <div className="mt-8 flex flex-col gap-8 lg:gap-12">
@@ -31,7 +31,8 @@ export function Home() {
               the component is kept, just not rendered. */}
           <div>
             <Tickets />
-            <InstallAppButton className="mt-4 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white/80 px-4 py-2 font-heading text-sm font-bold text-dc-fg2 transition-colors hover:bg-white" />
+            {/* Styled to match SecondaryButton (Buttons.tsx), centered */}
+            <InstallAppButton className="mx-auto mt-6 flex w-fit cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-hairline bg-white/80 px-8 py-3.5 text-[16px] font-bold leading-none text-dc-fg2 transition-[scale,background-color] duration-150 ease-out hover:bg-dc-lavender motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none" />
           </div>
         </div>
       </div>

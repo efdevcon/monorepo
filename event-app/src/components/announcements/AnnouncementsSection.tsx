@@ -25,7 +25,7 @@ export function AnnouncementsSection() {
         </h2>
         <Link
           href="/announcements"
-          className="flex shrink-0 items-center gap-1.5 font-heading text-base font-bold text-dc-purple"
+          className="flex shrink-0 items-center gap-1.5 font-heading text-base font-bold text-dc-purple underline-offset-2 hover:underline"
         >
           View all <ArrowRight className="size-4" />
         </Link>

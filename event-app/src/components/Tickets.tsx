@@ -26,14 +26,15 @@ export function Tickets() {
         <h2 className="font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
           Your tickets
         </h2>
+        {/* Text CTA, unified with the "View all" link style */}
         {user && (
           <button
             onClick={refresh}
             disabled={isLoading || isRefreshing}
-            className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1.5 text-sm font-medium text-dc-purple shadow-sm transition-colors hover:bg-dc-purple-wash disabled:cursor-default disabled:opacity-50"
+            className="flex cursor-pointer items-center gap-1.5 font-heading text-base font-bold text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-50"
           >
             <RefreshCw
-              className={cn("h-3.5 w-3.5", isRefreshing && "animate-spin")}
+              className={cn("size-4", isRefreshing && "animate-spin")}
             />
             {isRefreshing ? "Refreshing…" : "Refresh"}
           </button>

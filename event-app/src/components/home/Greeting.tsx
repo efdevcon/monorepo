@@ -15,7 +15,7 @@ const GREETINGS = [
   { text: "नमस्ते", pron: "(na-ma-stay)" },
   { text: "Hello", pron: "(heh-low)" },
 ];
-const ROTATE_MS = 6_000;
+const ROTATE_MS = 5_000;
 
 type AuthProps = {
   user: ReturnType<typeof useUser>["user"];
@@ -109,7 +109,7 @@ export function Greeting() {
                 // before the incoming one lands.
                 transition: reducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.35, ease: [0.32, 0.72, 0, 1], delay: 0.03 },
+                  : { duration: 0.3, ease: [0.32, 0.72, 0, 1], delay: 0.08 },
               }}
               exit={
                 reducedMotion
@@ -117,7 +117,7 @@ export function Greeting() {
                   : {
                       opacity: 0,
                       y: -28,
-                      transition: { duration: 0.25, ease: "easeIn" },
+                      transition: { duration: 0.2, ease: "easeIn" },
                     }
               }
             >
