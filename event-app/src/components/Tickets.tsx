@@ -44,16 +44,17 @@ export function Tickets() {
         /* Signed out: full-width key-art banner prompting sign-in. */
         <Link
           href="/ticket"
-          className="group relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl p-5 transition-[scale,box-shadow] duration-150 ease-out hover:shadow-lg motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] lg:h-[243px] lg:p-6"
+          className="group relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl p-5 transition-shadow duration-150 ease-out hover:shadow-lg lg:h-[243px] lg:p-6"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/home/tickets-banner.webp"
             alt=""
             // Mobile: horizontal crop keeps the moon toward the top-left
-            // (Figma crop ~72% of the art's width). Desktop: vertical band
-            // through gateway + bridge with a little sky above.
-            className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-[center_87%]"
+            // (Figma crop ~72% of the art's width). Desktop: lower band
+            // through gateway + bridge. Hover pans the art in gently (the
+            // card itself doesn't scale).
+            className="absolute inset-0 h-full w-full object-cover object-[72%_center] transition-transform duration-500 ease-out will-change-transform motion-safe:group-hover:scale-105 lg:object-[center_88%]"
           />
           {/* Mobile-only legibility gradient under the text (Figma 5017:5545) */}
           <div className="absolute inset-x-0 bottom-0 h-[134px] bg-gradient-to-t from-[rgba(22,11,43,0.9)] to-transparent lg:hidden" />
