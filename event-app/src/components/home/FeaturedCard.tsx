@@ -25,7 +25,7 @@ export function FeaturedCard() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-t from-black from-[14%] to-transparent" />
-        <div className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full bg-white/20 shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-colors duration-150 ease-out group-hover:bg-white/45">
+        <div className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full bg-white/20 shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-colors duration-150 ease-out group-hover:bg-white/30">
           <ArrowUpRight className="size-4 text-dc-purple-fg" />
         </div>
         <div className="relative">
