@@ -39,6 +39,8 @@ function Cta({ external, mini }: { external: boolean; mini?: boolean }) {
     <span
       className={cn(
         "inline-flex items-center gap-1 font-heading font-bold text-dc-purple",
+        // Underline while the (linked) card is hovered, reinforcing the CTA.
+        "underline-offset-2 group-hover:underline",
         mini ? "text-xs" : "text-sm"
       )}
     >
@@ -77,10 +79,11 @@ export function AnnouncementCard({
   const external = !!url && !url.startsWith("/");
   const time = relativeTime(sendAt, nowMs);
 
-  // Linked cards scale on hover/press like the other interactive cards;
-  // cards without a url stay fully inert.
+  // Linked cards scale on hover/press like the other interactive cards
+  // (`group` lets the CTA underline on card hover); cards without a url
+  // stay fully inert.
   const interactive =
-    "transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]";
+    "group transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]";
 
   const body =
     variant === "home" ? (

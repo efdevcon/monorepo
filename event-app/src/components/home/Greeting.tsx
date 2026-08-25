@@ -105,9 +105,11 @@ export function Greeting() {
               animate={{
                 opacity: 1,
                 y: 0,
+                // Slight delay so the outgoing text has cleared further
+                // before the incoming one lands.
                 transition: reducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.35, ease: [0.32, 0.72, 0, 1] },
+                  : { duration: 0.35, ease: [0.32, 0.72, 0, 1], delay: 0.03 },
               }}
               exit={
                 reducedMotion

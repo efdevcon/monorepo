@@ -69,15 +69,20 @@ export function HighlightsCarousel() {
       </h2>
       {/* Edge fades (right at rest, left once scrolled) come from
           SwipeToScroll's built-in mask indicators — same treatment as the
-          speakers-page topic filters. p-1 -m-1 gives the hover scale/shadow
-          room to render inside the masked container. */}
-      <SwipeToScroll scrollIndicatorDirections={{ left: true, right: true }}>
-        <div className="-m-1 flex gap-4 p-1 pr-5">
-          {highlights.map((h) => (
-            <HighlightCard key={h.id} highlight={h} />
-          ))}
-        </div>
-      </SwipeToScroll>
+          speakers-page topic filters. The p-2 INSIDE the scroll container
+          gives the hover scale/shadow room to render without being clipped
+          by the scroller; the outer -m-2 re-aligns the cards with the
+          section edge (padding inside + margin outside — a negative margin
+          inside a scroll container can't extend its clip box). */}
+      <div className="-m-2">
+        <SwipeToScroll scrollIndicatorDirections={{ left: true, right: true }}>
+          <div className="flex gap-4 p-2 pr-6">
+            {highlights.map((h) => (
+              <HighlightCard key={h.id} highlight={h} />
+            ))}
+          </div>
+        </SwipeToScroll>
+      </div>
     </section>
   );
 }
