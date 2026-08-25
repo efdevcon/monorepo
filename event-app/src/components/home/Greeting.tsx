@@ -9,9 +9,10 @@ import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
 
 // Greeting variants from the Figma spec strip (5017:5368), rotated in order.
+// The strip's नमस्त entry was a truncated duplicate of नमस्ते (same
+// pronunciation, missing matra) — dropped after review.
 const GREETINGS = [
   { text: "नमस्कार", pron: "(na-muh-skaa)" },
-  { text: "नमस्त", pron: "(na-ma-stay)" },
   { text: "नमस्ते", pron: "(na-ma-stay)" },
   { text: "Hello", pron: "(heh-low)" },
 ];
@@ -40,17 +41,18 @@ function HeaderAuthActions({ user, signOut }: AuthProps) {
       {createPortal(
         user ? (
           <>
+            {/* after:-inset-1.5 pads the 32px circles to a 44px hit area */}
             <Link
               href="/ticket"
               aria-label="Account"
-              className="flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white"
+              className="relative flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white after:absolute after:-inset-1.5 after:content-['']"
             >
               <UserCog className="size-4 text-dc-purple" />
             </Link>
             <button
               onClick={signOut}
               aria-label="Sign out"
-              className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80"
+              className="relative flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 after:absolute after:-inset-1.5 after:content-['']"
             >
               <LogOut className="size-4 text-dc-error" />
             </button>
@@ -59,7 +61,7 @@ function HeaderAuthActions({ user, signOut }: AuthProps) {
           <Link
             href="/ticket"
             aria-label="Sign in"
-            className="flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white"
+            className="relative flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white after:absolute after:-inset-1.5 after:content-['']"
           >
             <LogIn className="size-4 text-dc-purple" />
           </Link>
@@ -81,13 +83,16 @@ export function Greeting() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    // Reduced motion: no auto-rotation at all (WCAG 2.2.2 — auto-updating
+    // content), not just instant swaps.
+    if (reducedMotion) return;
     const id = setInterval(() => {
       // Skip ticks in a hidden tab so the greeting doesn't churn unseen.
       if (document.hidden) return;
       setIndex((i) => (i + 1) % GREETINGS.length);
     }, ROTATE_MS);
     return () => clearInterval(id);
-  }, []);
+  }, [reducedMotion]);
 
   const greeting = GREETINGS[index];
 
@@ -121,7 +126,16 @@ export function Greeting() {
                     }
               }
             >
-              <span className="font-heading text-[32px] font-extrabold leading-[1.5] tracking-[-1px] text-dc-purple">
+              <span
+                className="text-[32px] font-extrabold leading-[1.5] tracking-[-1px] text-dc-purple"
+                // Latin glyphs come from the main Poppins; Devanagari falls
+                // through to the slim 800-weight devanagari loader
+                // (unicode-range picks per glyph). See layout.tsx.
+                style={{
+                  fontFamily:
+                    "var(--font-poppins), var(--font-poppins-dev), ui-sans-serif, sans-serif",
+                }}
+              >
                 {greeting.text}
               </span>
               <span className="font-heading text-base italic tracking-[-0.25px] text-dc-muted">
@@ -147,17 +161,18 @@ export function Greeting() {
             <span className="font-heading text-base tracking-[-0.25px] text-dc-muted">
               {user.email}
             </span>
+            {/* after:-inset-0.5 pads the 40px circles to a 44px hit area */}
             <Link
               href="/ticket"
               aria-label="Account"
-              className="flex size-10 items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors hover:bg-dc-purple-wash"
+              className="relative flex size-10 items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors after:absolute after:-inset-0.5 after:content-[''] hover:bg-dc-purple-wash"
             >
               <UserCog className="size-4 text-dc-purple" />
             </Link>
             <button
               onClick={signOut}
               aria-label="Sign out"
-              className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 transition-colors hover:bg-dc-live-bg"
+              className="relative flex size-10 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 transition-colors after:absolute after:-inset-0.5 after:content-[''] hover:bg-dc-live-bg"
             >
               <LogOut className="size-4 text-dc-error" />
             </button>

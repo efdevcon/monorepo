@@ -16,7 +16,7 @@ export function FeaturedCard() {
         href={TRAVEL_GUIDE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex h-[208px] w-full flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] lg:h-60 lg:max-w-[400px]"
+        className="group relative flex h-[208px] w-full flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] lg:h-60 lg:max-w-[400px]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

@@ -62,10 +62,23 @@ export function Link({ href, children, className, ...nextLinkProps }: LinkProps 
   const finalHref = mounted ? withCarriedParams(href) : href;
 
   if (nativeNav) {
+    // Spread the rest props so accessibility attributes (aria-label on
+    // icon-only links, etc.) survive the native branch; role=button also
+    // activates on Space, not just Enter. NextLink-only props that aren't
+    // valid DOM attributes are pulled out first.
+    const { prefetch, replace, scroll, shallow, ...rest } =
+      nextLinkProps as Record<string, unknown>;
+    void prefetch, replace, scroll, shallow;
     return (
       <div
+        {...rest}
         onClick={() => nativeNav.navigate(withCarriedParams(href))}
-        onKeyDown={(e) => e.key === "Enter" && nativeNav.navigate(withCarriedParams(href))}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            nativeNav.navigate(withCarriedParams(href));
+          }
+        }}
         role="button"
         tabIndex={0}
         className={className}

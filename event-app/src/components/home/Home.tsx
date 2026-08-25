@@ -18,6 +18,8 @@ export function Home() {
   return (
     <main className="expand py-6 lg:pb-16">
       <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
+        {/* Visual title lives in AppHeader; keep a semantic h1 for AT */}
+        <h1 className="sr-only">Home</h1>
         <Greeting />
         <div className="mt-8 flex flex-col gap-8 lg:gap-12">
           <FeaturedCard />
