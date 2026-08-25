@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { LogIn, LogOut, UserCog } from "lucide-react";
+import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
 
@@ -15,10 +17,63 @@ const GREETINGS = [
 ];
 const ROTATE_MS = 6_000;
 
+type AuthProps = {
+  user: ReturnType<typeof useUser>["user"];
+  signOut: () => Promise<void>;
+};
+
+/**
+ * Mobile auth controls, portaled into the AppHeader's #header-actions target
+ * (same pattern as the speakers page): a sign-in circle when signed out, the
+ * account + sign-out circles when signed in. Desktop renders its own inline
+ * controls next to the greeting instead.
+ */
+function HeaderAuthActions({ user, signOut }: AuthProps) {
+  const [target, setTarget] = useState<Element | null>(null);
+  useEffect(() => {
+    setTarget(document.getElementById(HEADER_ACTIONS_ID));
+  }, []);
+  if (!target) return null;
+
+  return (
+    <>
+      {createPortal(
+        user ? (
+          <>
+            <Link
+              href="/ticket"
+              aria-label="Account"
+              className="flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white"
+            >
+              <UserCog className="size-4 text-dc-purple" />
+            </Link>
+            <button
+              onClick={signOut}
+              aria-label="Sign out"
+              className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80"
+            >
+              <LogOut className="size-4 text-dc-error" />
+            </button>
+          </>
+        ) : (
+          <Link
+            href="/ticket"
+            aria-label="Sign in"
+            className="flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white"
+          >
+            <LogIn className="size-4 text-dc-purple" />
+          </Link>
+        ),
+        target
+      )}
+    </>
+  );
+}
+
 /**
  * Home-page greeting row: rotating Devanagari/English greeting with
- * pronunciation, and the auth controls on the right (Sign in pill when signed
- * out; email + account/sign-out round buttons when signed in).
+ * pronunciation. Auth controls sit inline on desktop (Sign in pill, or email +
+ * account/sign-out round buttons); on mobile they live in the app header.
  */
 export function Greeting() {
   const { user, signOut } = useUser();
@@ -46,21 +101,21 @@ export function Greeting() {
             <motion.div
               key={index}
               className="absolute inset-y-0 left-0 flex items-center gap-2 whitespace-nowrap"
-              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
+              initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
               animate={{
                 opacity: 1,
                 y: 0,
                 transition: reducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.3, ease: [0.32, 0.72, 0, 1] },
+                  : { duration: 0.35, ease: [0.32, 0.72, 0, 1] },
               }}
               exit={
                 reducedMotion
                   ? { opacity: 0, transition: { duration: 0 } }
                   : {
                       opacity: 0,
-                      y: -12,
-                      transition: { duration: 0.2, ease: "easeIn" },
+                      y: -28,
+                      transition: { duration: 0.25, ease: "easeIn" },
                     }
               }
             >
@@ -81,10 +136,13 @@ export function Greeting() {
         )}
       </div>
 
-      <div className="mt-1 flex shrink-0 items-center gap-3">
+      <HeaderAuthActions user={user} signOut={signOut} />
+
+      {/* Desktop-only inline controls */}
+      <div className="mt-1 hidden shrink-0 items-center gap-3 lg:flex">
         {user ? (
           <>
-            <span className="hidden font-heading text-base tracking-[-0.25px] text-dc-muted lg:block">
+            <span className="font-heading text-base tracking-[-0.25px] text-dc-muted">
               {user.email}
             </span>
             <Link
@@ -92,7 +150,7 @@ export function Greeting() {
               aria-label="Account"
               className="flex size-10 items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors hover:bg-dc-purple-wash"
             >
-              <UserCog className="size-4 text-dc-fg2" />
+              <UserCog className="size-4 text-dc-purple" />
             </Link>
             <button
               onClick={signOut}

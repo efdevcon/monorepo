@@ -44,16 +44,19 @@ export function Tickets() {
         /* Signed out: full-width key-art banner prompting sign-in. */
         <Link
           href="/ticket"
-          className="relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl p-6 lg:h-[243px]"
+          className="relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl p-5 transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] lg:h-[243px] lg:p-6"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/home/tickets-banner.webp"
             alt=""
-            // object-position biases toward the lower band of the art
-            // (gateway + characters), matching the Figma crop.
-            className="absolute inset-0 h-full w-full object-cover object-[center_75%]"
+            // Mobile: horizontal crop keeps the moon toward the top-left
+            // (Figma crop ~72% of the art's width). Desktop: vertical band
+            // through gateway + bridge with a little sky above.
+            className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-[center_60%]"
           />
+          {/* Mobile-only legibility gradient under the text (Figma 5017:5545) */}
+          <div className="absolute inset-x-0 bottom-0 h-[134px] bg-gradient-to-t from-[rgba(22,11,43,0.9)] to-transparent lg:hidden" />
           <div className="absolute right-6 top-6 flex h-10 items-center rounded-full bg-white/20 px-6 font-heading text-sm font-bold text-dc-purple-fg shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px]">
             Sign in
           </div>

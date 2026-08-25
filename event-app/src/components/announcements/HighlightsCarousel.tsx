@@ -1,5 +1,6 @@
 "use client";
 
+import cn from "classnames";
 import { Sparkle } from "lucide-react";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll-native";
 import { Link } from "@/routing";
@@ -17,14 +18,16 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
   const { title, message, url, image } = highlight;
 
   const card = (
-    <div className="group w-[295px] shrink-0 overflow-hidden rounded-xl border border-dc-hairline bg-white">
+    <div
+      className={cn(
+        "w-[295px] shrink-0 overflow-hidden rounded-xl border border-dc-hairline bg-white",
+        url &&
+          "transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
+      )}
+    >
       {image ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image}
-          alt=""
-          className="aspect-[2/1] w-full object-cover transition-transform duration-500 will-change-transform group-hover:scale-105"
-        />
+        <img src={image} alt="" className="aspect-[2/1] w-full object-cover" />
       ) : (
         <div className="flex aspect-[2/1] w-full items-center justify-center bg-dc-lavender">
           <Sparkle className="h-6 w-6 text-dc-purple/40" />
@@ -64,8 +67,12 @@ export function HighlightsCarousel() {
       <h2 className="mb-4 font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
         Highlights
       </h2>
-      <SwipeToScroll>
-        <div className="flex gap-4 pr-4">
+      {/* Edge fades (right at rest, left once scrolled) come from
+          SwipeToScroll's built-in mask indicators — same treatment as the
+          speakers-page topic filters. p-1 -m-1 gives the hover scale/shadow
+          room to render inside the masked container. */}
+      <SwipeToScroll scrollIndicatorDirections={{ left: true, right: true }}>
+        <div className="-m-1 flex gap-4 p-1 pr-5">
           {highlights.map((h) => (
             <HighlightCard key={h.id} highlight={h} />
           ))}

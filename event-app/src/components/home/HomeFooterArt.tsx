@@ -8,7 +8,9 @@
  * unreliable in Safari; precedent: SideArt in TicketSignIn.tsx.
  *
  * textLength pins the lockup to the full container width (like the Figma
- * full-bleed text) without depending on exact Chloe advance metrics.
+ * full-bleed text) without depending on exact Chloe advance metrics. The
+ * default lengthAdjust="spacing" stretches only the gaps BETWEEN glyphs —
+ * never the glyph outlines ("spacingAndGlyphs" distorted the letterforms).
  */
 
 const FILL_SRC = "/home/footer-art-fill.webp";
@@ -55,7 +57,7 @@ export function HomeFooterArt() {
 
       {/* Desktop: one full-width line */}
       <svg
-        viewBox="0 0 1324 140"
+        viewBox="0 0 1324 152"
         role="img"
         aria-label="Devcon 8 India"
         className="mt-6 hidden w-full lg:block"
@@ -65,10 +67,9 @@ export function HomeFooterArt() {
           <clipPath id="footer-art-clip-lg">
             <text
               x="0"
-              y="112"
-              fontSize="126"
+              y="140"
+              fontSize="150"
               textLength="1324"
-              lengthAdjust="spacingAndGlyphs"
               style={chloeTextStyle}
             >
               Devcon 8 India
@@ -81,7 +82,7 @@ export function HomeFooterArt() {
             <image
               href={FILL_SRC}
               x="0"
-              y="-194"
+              y="-190"
               width="1324"
               height="744"
               preserveAspectRatio="xMidYMid slice"
@@ -92,7 +93,7 @@ export function HomeFooterArt() {
 
       {/* Mobile: two centered lines ("Devcon 8" sets the width) */}
       <svg
-        viewBox="0 0 361 150"
+        viewBox="0 0 361 172"
         role="img"
         aria-label="Devcon 8 India"
         className="mt-4 w-full lg:hidden"
@@ -102,18 +103,17 @@ export function HomeFooterArt() {
           <clipPath id="footer-art-clip-sm">
             <text
               x="0"
-              y="62"
-              fontSize="70"
+              y="80"
+              fontSize="85"
               textLength="361"
-              lengthAdjust="spacingAndGlyphs"
               style={chloeTextStyle}
             >
               Devcon 8
             </text>
             <text
               x="180.5"
-              y="132"
-              fontSize="70"
+              y="166"
+              fontSize="85"
               textAnchor="middle"
               style={chloeTextStyle}
             >
@@ -126,9 +126,9 @@ export function HomeFooterArt() {
             <image
               href={FILL_SRC}
               x="0"
-              y="-19"
+              y="-20"
               width="361"
-              height="203"
+              height="230"
               preserveAspectRatio="xMidYMid slice"
             />
           </g>

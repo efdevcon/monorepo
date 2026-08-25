@@ -77,12 +77,17 @@ export function AnnouncementCard({
   const external = !!url && !url.startsWith("/");
   const time = relativeTime(sendAt, nowMs);
 
+  // Linked cards scale on hover/press like the other interactive cards;
+  // cards without a url stay fully inert.
+  const interactive =
+    "transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]";
+
   const body =
     variant === "home" ? (
       <div
         className={cn(
-          "flex h-full flex-col justify-between gap-3 rounded-lg border border-dc-hairline bg-white p-4 transition-colors",
-          url && "hover:border-dc-purple/40"
+          "flex h-full flex-col justify-between gap-3 rounded-lg border border-dc-hairline bg-white p-4",
+          url && interactive
         )}
       >
         <div>
@@ -108,8 +113,8 @@ export function AnnouncementCard({
     ) : (
       <div
         className={cn(
-          "rounded-lg border border-dc-hairline bg-white p-4 transition-colors",
-          url && "hover:border-dc-purple/40"
+          "rounded-lg border border-dc-hairline bg-white p-4",
+          url && interactive
         )}
       >
         <div className="flex items-center justify-between gap-3">
