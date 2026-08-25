@@ -4,6 +4,7 @@ import cn from "classnames";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@/routing";
 import { useRealWorldNowMs } from "@/hooks/useNow";
+import { resolveAnnouncementLink } from "@/data/announcements/linkUtils";
 import type { Announcement } from "@/data/announcements/types";
 
 /**
@@ -14,16 +15,18 @@ import type { Announcement } from "@/data/announcements/types";
 function relativeTime(sendAt: string, nowMs: number): string {
   const diffMs = nowMs - new Date(sendAt).getTime();
   const abs = Math.abs(diffMs);
-  const minutes = Math.round(abs / 60_000);
-  const hours = Math.round(abs / 3_600_000);
+  const minutes = Math.floor(abs / 60_000);
+  const hours = Math.floor(abs / 3_600_000);
+  // Pluralize from the value actually displayed.
+  const unit = (n: number, u: string) => `${n} ${u}${n === 1 ? "" : "s"}`;
 
   if (diffMs < 0) {
-    if (minutes < 60) return `In ${Math.max(minutes, 1)} min${minutes === 1 ? "" : "s"}`;
-    if (hours < 24) return `In ${hours} hr${hours === 1 ? "" : "s"}`;
+    if (minutes < 60) return `In ${unit(Math.max(minutes, 1), "min")}`;
+    if (hours < 24) return `In ${unit(hours, "hr")}`;
   } else {
     if (minutes < 1) return "Just now";
-    if (minutes < 60) return `${minutes} min${minutes === 1 ? "" : "s"} ago`;
-    if (hours < 24) return `${hours} hr${hours === 1 ? "" : "s"} ago`;
+    if (minutes < 60) return `${unit(minutes, "min")} ago`;
+    if (hours < 24) return `${unit(hours, "hr")} ago`;
   }
   return new Date(sendAt).toLocaleDateString(undefined, {
     month: "short",
@@ -76,7 +79,8 @@ export function AnnouncementCard({
 }) {
   const nowMs = useRealWorldNowMs(60_000);
   const { title, message, url, sendAt } = announcement;
-  const external = !!url && !url.startsWith("/");
+  const link = url ? resolveAnnouncementLink(url) : null;
+  const external = !!link?.external;
   const time = relativeTime(sendAt, nowMs);
 
   // Linked cards get a purple border + CTA underline (`group`) on hover;
@@ -147,22 +151,27 @@ export function AnnouncementCard({
       </div>
     );
 
-  if (!url) return body;
+  if (!link) return body;
 
-  // Internal paths navigate in-app; anything absolute opens a new tab.
-  if (!external) {
+  const linkClass = cn(
+    "block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple",
+    variant === "home" && "h-full"
+  );
+
+  // Internal paths navigate in-app; anything else opens a new tab.
+  if (!link.external) {
     return (
-      <Link href={url} className={variant === "home" ? "h-full" : undefined}>
+      <Link href={link.href} className={linkClass}>
         {body}
       </Link>
     );
   }
   return (
     <a
-      href={url}
+      href={link.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={variant === "home" ? "h-full" : undefined}
+      className={linkClass}
     >
       {body}
     </a>

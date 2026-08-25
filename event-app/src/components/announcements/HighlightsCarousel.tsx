@@ -1,10 +1,12 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { Sparkle } from "lucide-react";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll-native";
 import { Link } from "@/routing";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
+import { resolveAnnouncementLink } from "@/data/announcements/linkUtils";
 import type { Announcement } from "@/data/announcements/types";
 
 /**
@@ -16,12 +18,13 @@ import type { Announcement } from "@/data/announcements/types";
  */
 function HighlightCard({ highlight }: { highlight: Announcement }) {
   const { title, message, url, image } = highlight;
+  const link = url ? resolveAnnouncementLink(url) : null;
 
   const card = (
     <div
       className={cn(
         "w-[295px] shrink-0 overflow-hidden rounded-xl border border-dc-hairline bg-white",
-        url &&
+        link &&
           "transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       )}
     >
@@ -46,12 +49,25 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
     </div>
   );
 
-  if (!url) return card;
-  if (url.startsWith("/")) {
-    return <Link href={url}>{card}</Link>;
+  if (!link) return card;
+
+  const linkClass =
+    "block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple";
+
+  if (!link.external) {
+    return (
+      <Link href={link.href} className={linkClass}>
+        {card}
+      </Link>
+    );
   }
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer">
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={linkClass}
+    >
       {card}
     </a>
   );
@@ -59,6 +75,46 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
 
 export function HighlightsCarousel() {
   const { highlights } = useAnnouncements();
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [fades, setFades] = useState({ left: false, right: false });
+
+  const sync = useCallback((el: HTMLElement) => {
+    setFades({
+      left: el.scrollLeft > 5,
+      right: el.scrollLeft < el.scrollWidth - el.clientWidth - 5,
+    });
+  }, []);
+
+  // Edge-fade state. SwipeToScroll's own scroll indicators only sync on
+  // mount/resize (never on scroll), so we track the inner scroller ourselves:
+  // scroll events don't bubble, but they DO fire on ancestors in the capture
+  // phase, and the desktop drag path sets scrollLeft (which also fires them).
+  useEffect(() => {
+    const root = wrapRef.current;
+    if (!root) return;
+    const findScroller = (): HTMLElement | null => {
+      for (const n of root.querySelectorAll<HTMLElement>("div")) {
+        if (n.scrollWidth > n.clientWidth + 1) return n;
+      }
+      return null;
+    };
+    const measure = () => {
+      const el = findScroller();
+      if (el) sync(el);
+      else setFades({ left: false, right: false });
+    };
+    const onScroll = (e: Event) => {
+      const t = e.target;
+      if (t instanceof HTMLElement) sync(t);
+    };
+    measure();
+    root.addEventListener("scroll", onScroll, true);
+    window.addEventListener("resize", measure);
+    return () => {
+      root.removeEventListener("scroll", onScroll, true);
+      window.removeEventListener("resize", measure);
+    };
+  }, [highlights.length, sync]);
 
   if (highlights.length === 0) return null;
 
@@ -67,15 +123,28 @@ export function HighlightsCarousel() {
       <h2 className="mb-4 font-heading text-xl font-extrabold leading-[26px] text-dc-fg2">
         Highlights
       </h2>
-      {/* Edge fades (right at rest, left once scrolled) come from
-          SwipeToScroll's built-in mask indicators — same treatment as the
-          speakers-page topic filters. The p-2 INSIDE the scroll container
-          gives the hover scale/shadow room to render without being clipped
-          by the scroller; the outer -m-2 re-aligns the cards with the
-          section edge (padding inside + margin outside — a negative margin
-          inside a scroll container can't extend its clip box). */}
-      <div className="-m-2">
-        <SwipeToScroll scrollIndicatorDirections={{ left: true, right: true }}>
+      {/* Edge fades (right while more content, left once scrolled), applied as
+          a mask so they work over the page's gradient background — same
+          treatment as the speakers-page topic filters. The p-2 INSIDE the
+          scroll container gives the hover scale/shadow room to render without
+          being clipped by the scroller; the outer -m-2 re-aligns the cards
+          with the section edge. */}
+      <div
+        ref={wrapRef}
+        className={cn(
+          "-m-2",
+          fades.left &&
+            fades.right &&
+            "[mask-image:linear-gradient(90deg,transparent,black_40px,black_calc(100%-40px),transparent)]",
+          fades.left &&
+            !fades.right &&
+            "[mask-image:linear-gradient(90deg,transparent,black_40px)]",
+          !fades.left &&
+            fades.right &&
+            "[mask-image:linear-gradient(90deg,black,black_calc(100%-40px),transparent)]"
+        )}
+      >
+        <SwipeToScroll>
           <div className="flex gap-4 p-2 pr-6">
             {highlights.map((h) => (
               <HighlightCard key={h.id} highlight={h} />
