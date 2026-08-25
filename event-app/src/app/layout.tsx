@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { CacheWarmer } from "@/components/CacheWarmer";
@@ -19,10 +20,21 @@ const inter = Inter({
   display: "swap",
 });
 const poppins = Poppins({
-  subsets: ["latin"],
+  // devanagari: the home-screen greeting (नमस्कार …) is set in Poppins per the
+  // Figma home redesign — without the subset it would fall back to a system face.
+  subsets: ["latin", "devanagari"],
   // 800 = ExtraBold, used by the desktop "Schedule" page title.
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
+  display: "swap",
+});
+// Chloe: single-weight display face for the "Devcon 8 India" home footer art,
+// copied from the devcon site (devcon/public/fonts). Conventions there: always
+// weight 400, mixed case, negative tracking — never bold it.
+const chloe = localFont({
+  src: "../fonts/Chloe-Regular.otf",
+  weight: "400",
+  variable: "--font-chloe",
   display: "swap",
 });
 
@@ -61,7 +73,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${poppins.variable} ${chloe.variable}`}
+    >
       <head>
         <PersonalizedManifestLink />
         {/* iOS native launch-screen images, shown while the installed PWA
