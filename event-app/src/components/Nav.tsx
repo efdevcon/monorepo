@@ -116,7 +116,7 @@ export function Nav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-3 font-heading shadow-[0px_-1px_4px_0px_rgba(0,0,0,0.06)] outline outline-1 outline-[rgba(255,255,255,0.67)] backdrop-blur-[6px] lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0px_-1px_4px_0px_rgba(0,0,0,0.06)] outline outline-1 outline-[rgba(255,255,255,0.67)] backdrop-blur-[6px] lg:hidden"
       style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom))" }}
     >
       {items.map((item) => {
