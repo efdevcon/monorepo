@@ -504,7 +504,10 @@ export function Speakers() {
                 filters topics via the header button + bottom sheet instead. */}
             <div
               ref={stickyRowsRef}
-              className="sticky top-14 z-20 border-b border-dc-hairline lg:top-[65px]"
+              // z-[21]: one above the fixed A–Z rail (z-20), which is later in
+              // DOM order and would otherwise paint its lavender strip over
+              // the tab bar's right fade whenever the two touch.
+              className="sticky top-14 z-[21] border-b border-dc-hairline lg:top-[65px]"
             >
               {/* Left padding only — the pill strip scrolls to the card's
                   right edge behind TopicPills' white fade. Pinned, the bar
