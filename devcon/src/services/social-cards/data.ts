@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import sharp from 'sharp'
 import { socialAssetDataUrl } from './assets'
+import { getDc8TrackImagePath } from './track-images'
 
 export function devconApiUrl(): string {
   return process.env.DEVCON_API_URL || 'https://api.devcon.org'
@@ -107,36 +108,11 @@ export function getExpertiseColor(expertise?: string) {
   return 'bg-[#d0cbec]'
 }
 
-// Devcon 8 track badges (same art as the Speak at Devcon page). Keyed by
-// normalized name because Pretalx and the website spell connectives
-// differently ("Users, Builders, and Agents" vs "Users, Builders & Agents").
-const DC8_TRACK_IMAGES: Record<string, string> = {
-  'core protocol': 'dc8/tracks/track-core-protocol.png',
-  'privacy and consent': 'dc8/tracks/track-privacy-consent.png',
-  security: 'dc8/tracks/track-security.png',
-  'futures worth building': 'dc8/tracks/track-futures-worth-building.png',
-  'rights freedoms and governance': 'dc8/tracks/track-rights-freedoms-governance.png',
-  'permissionless networks': 'dc8/tracks/track-permissionless-networks.png',
-  'users builders and agents': 'dc8/tracks/track-users-builders-agents.png',
-  'applied cryptography': 'dc8/tracks/track-applied-cryptography.png',
-  'open and verifiable stack': 'dc8/tracks/track-open-verifiable-stack.png',
-}
-
-function normalizeTrackName(track: string): string {
-  return track
-    .toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/,/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
+// DC8 track-name → badge mapping lives in ./track-images (client-safe module,
+// also used by the session share page).
 export function getTrackImage(track?: string, eventId?: string) {
   if (eventId === 'devcon8') {
-    const badge = track ? DC8_TRACK_IMAGES[normalizeTrackName(track)] : undefined
-    // Unmapped devcon8 tracks (Art&Culture, Invited speaker, Community Hubs)
-    // get a neutral badge rather than DC7 art.
-    return socialAssetDataUrl(badge ?? 'dc8/tracks/track-futures-worth-building.png')
+    return socialAssetDataUrl(getDc8TrackImagePath(track))
   }
   if (track === 'Core Protocol') return socialAssetDataUrl('dc7/tracks/CoreProtocol.png')
   if (track === 'Cypherpunk & Privacy') return socialAssetDataUrl('dc7/tracks/Cypherpunk.png')
