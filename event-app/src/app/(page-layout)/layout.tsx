@@ -26,7 +26,7 @@ export default function PageLayout({
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the floating nav bar. */}
       <div className="section pb-28 lg:pb-0">{children}</div>
-      <Nav onOpenAI={() => setDevaBotOpen(true)} />
+      <Nav />
       {!isKiosk && (
         <DevaBot
           toggled={devaBotOpen}
