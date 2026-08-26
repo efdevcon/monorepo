@@ -114,7 +114,13 @@ export async function serveCachedImage(opts: {
 }): Promise<void> {
   const { res, bucket, key, render } = opts
   const staleAfter = opts.staleAfterMs ?? OG_STALE_AFTER_MS
-  const cached = await readOgCache(bucket, key)
+  // TEMPORARY (2026-08-26): cache reads disabled along with writes below —
+  // deleting bucket objects isn't enough because Supabase's CDN keeps serving
+  // them, so every request renders fresh while iterating on the DC8 card.
+  // RE-ENABLE both before the design is final (this also disables the
+  // serve-stale-on-failure safety net: renders that fail now return 503).
+  // const cached = await readOgCache(bucket, key)
+  const cached = null as Awaited<ReturnType<typeof readOgCache>>
 
   const send = (bytes: Buffer, cacheState: 'hit' | 'render' | 'stale') => {
     res.setHeader('Content-Type', 'image/jpeg')
@@ -127,7 +133,11 @@ export async function serveCachedImage(opts: {
 
   try {
     const fresh = await render()
-    await writeOgCache(bucket, key, fresh)
+    // TEMPORARY (2026-08-26): cache writes disabled while iterating on the
+    // DC8 card design, so every request re-renders and changes show up
+    // immediately. RE-ENABLE before the design is final — without this line
+    // every scrape costs a render and nothing survives API outages.
+    // await writeOgCache(bucket, key, fresh)
     return send(fresh, 'render')
   } catch (error) {
     console.error(`[og-cache] render failed for ${bucket}/${key}:`, (error as Error).message)

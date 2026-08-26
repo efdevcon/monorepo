@@ -227,8 +227,11 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl, paidWithEth }: 
           (() => {
             const baseShareUrl = pageUrl?.replace(/\?share$/, '').replace(/\?share&/, '?').replace(/&share\b/, '').replace(/\/$/, '') || ''
             const shareUrl = `${baseShareUrl}/`
+            // Matomo campaign tagging per channel, so shared-link traffic is
+            // attributable in analytics (same convention as voucher links).
+            const shareUrlFor = (source: string) => `${shareUrl}?mtm_campaign=ticket-share&mtm_source=${source}&mtm_medium=social`
             const shareText = `I just got my @EFDevcon ticket${paidWithEth ? ' — paid for with ETH!' : '!'}\n\nNext stop: Mumbai 🇮🇳 Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
-            const xText = `${shareText}\n\n${shareUrl}`
+            const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
             return (
               <div className={css.shareSection}>
                 <span className={css.shareLabel}>Share</span>
@@ -247,7 +250,7 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl, paidWithEth }: 
                     href="#"
                     onClick={e => {
                       e.preventDefault()
-                      window.open(`https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrl)}`, '_blank')
+                      window.open(`https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(shareUrlFor('farcaster'))}`, '_blank')
                     }}
                     className={css.shareIcon}
                   >
@@ -256,7 +259,7 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl, paidWithEth }: 
                   <button
                     className={css.shareIcon}
                     onClick={() => {
-                      navigator.clipboard.writeText(shareUrl)
+                      navigator.clipboard.writeText(shareUrlFor('copy'))
                       setCopied(true)
                       setTimeout(() => setCopied(false), 2000)
                     }}

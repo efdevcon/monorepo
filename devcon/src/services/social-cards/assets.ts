@@ -23,7 +23,9 @@ export function interFonts() {
 const MIME: Record<string, string> = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' }
 const dataUrlCache = new Map<string, string>()
 export function socialAssetDataUrl(relPath: string): string {
-  const cached = dataUrlCache.get(relPath)
+  // In dev, always re-read from disk so swapping an asset file shows up on
+  // the next render without restarting the server. Prod keeps the cache.
+  const cached = process.env.NODE_ENV === 'production' ? dataUrlCache.get(relPath) : undefined
   if (cached) return cached
   const ext = relPath.split('.').pop() || 'png'
   const bytes = readFileSync(join(process.cwd(), 'public', 'social', relPath))
