@@ -121,26 +121,42 @@ const serwist = new Serwist({
       }),
     },
     {
-      // Match by request destination, not URL extension: speaker avatars and
-      // other images come from cross-origin CDNs and often have no file
-      // extension (or carry query strings, or go through /_next/image), so an
-      // extension-only matcher missed them and they never cached for offline.
-      // `destination === "image"` covers every <img> / next/image request
-      // regardless of URL shape or origin. The extension test is a fallback for
-      // images referenced where the destination isn't reported (e.g. some CSS
-      // background-image fetches).
+      // Match by request destination, not URL extension: speaker avatars,
+      // highlight and featured images come from Supabase Storage and often have
+      // no file extension (or carry query strings, or go through /_next/image),
+      // so an extension-only matcher missed them and they never cached for
+      // offline. `destination === "image"` covers every <img> / next/image
+      // request regardless of URL shape or origin. The extension test is a
+      // fallback for images referenced where the destination isn't reported
+      // (e.g. some CSS background-image fetches).
       matcher: ({ request, url }) =>
         request.destination === "image" ||
         /\.(?:png|jpg|jpeg|svg|gif|webp|avif|ico)$/i.test(url.pathname),
       handler: new CacheFirst({
+        // Name is also referenced by src/data/hooks/use-warm-images.ts,
+        // which reads this cache to warm only what's missing. Rename both.
         cacheName: "static-images",
         plugins: [
+          // REQUIRED for cross-origin images, and the reason they silently
+          // never cached before. Serwist only skips its status-200-only filter
+          // when some plugin implements `cacheWillUpdate`; ExpirationPlugin
+          // doesn't (it hooks cachedResponseWillBeUsed / cacheDidUpdate), so
+          // the default applied and every opaque response (status 0) was
+          // dropped. A no-cors <img> to another origin is always opaque, so
+          // that was every avatar and every highlight image. Allowing status 0
+          // keeps them cacheable even when a request isn't made with CORS.
+          new CacheableResponsePlugin({ statuses: [0, 200] }),
           new ExpirationPlugin({
-            maxEntries: 400,
+            // Enough for the full speaker roster (~750 avatars) plus
+            // highlights, venue art and local assets. Avatars are small webp
+            // thumbnails, so this is tens of MB, not hundreds.
+            maxEntries: 1200,
             maxAgeSeconds: 30 * 24 * 60 * 60,
-            // Cross-origin images are opaque responses, which count heavily
-            // toward the storage quota — drop the cache rather than error out
-            // if we ever hit the limit.
+            // Opaque responses are quota-padded well beyond their real size, so
+            // a cache full of them can hit the limit unexpectedly. Our images
+            // request with CORS (see `crossOrigin` on the <img> tags) to avoid
+            // that; this stays as the last resort if some other origin's
+            // images ever fill it.
             purgeOnQuotaError: true,
           }),
         ],

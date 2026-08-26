@@ -55,6 +55,7 @@ interface NotionRow {
   sortOrder: number;
   push: boolean;
   visible: boolean;
+  featured: boolean;
 }
 
 let supabase: SupabaseClient | null = null;
@@ -237,6 +238,7 @@ async function fetchNotionRows(): Promise<NotionRow[]> {
         sortOrder: p.Order?.number ?? 0,
         push: p.Push?.checkbox ?? false,
         visible: p.Visible?.checkbox ?? false,
+        featured: p.Featured?.checkbox ?? false,
       });
     }
     cursor = data.has_more ? data.next_cursor : undefined;
@@ -269,6 +271,11 @@ export async function syncAnnouncements(): Promise<number> {
       const locked = status === "sending" || status === "sent";
       // Highlights are never pushed, regardless of the Push checkbox.
       const armed = row.type === "announcement" && row.push && row.visible;
+      // ...and only a highlight can be the home-screen hero, regardless of the
+      // Featured checkbox. Mirrors the push rule above: the two flags are
+      // meaningful for exactly one type each, and forcing them here means a
+      // stray tick on the wrong row can never change what renders.
+      const featured = row.type === "highlight" && row.featured;
       // No image cell in Notion = image removed on purpose. A cell that fails
       // to mirror (transient storage/network error) must NOT clobber a
       // previously mirrored URL, so fall back to the stored one.
@@ -286,6 +293,7 @@ export async function syncAnnouncements(): Promise<number> {
         sort_order: row.sortOrder,
         push: row.push,
         visible: row.visible,
+        featured,
         status: locked ? status : armed ? "scheduled" : "draft",
         updated_at: now,
       };
@@ -326,7 +334,7 @@ export async function getAnnouncements(
 ): Promise<Announcement[]> {
   let query = getSupabase()
     .from("devcon8_announcements")
-    .select("id, type, title, message, url, image, send_at, sort_order")
+    .select("id, type, title, message, url, image, send_at, sort_order, featured")
     .eq("visible", true)
     .order("send_at", { ascending: false })
     .limit(200);
@@ -346,5 +354,6 @@ export async function getAnnouncements(
     image: r.image,
     sendAt: r.send_at,
     sortOrder: r.sort_order,
+    featured: r.featured ?? false,
   }));
 }

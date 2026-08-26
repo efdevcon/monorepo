@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { CacheWarmer } from "@/components/CacheWarmer";
@@ -11,18 +11,22 @@ import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import APP_CONFIG from "@/CONFIG";
 
-// Match the /devcon project: Inter (body) + Poppins (headings).
-// next/font self-hosts these at build time, so they work offline.
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
+// Poppins everywhere (the home/announcements redesign dropped Inter — the
+// app is Poppins-only). next/font self-hosts at build time for offline.
 const poppins = Poppins({
   subsets: ["latin"],
   // 800 = ExtraBold, used by the desktop "Schedule" page title.
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
+  display: "swap",
+});
+// Devanagari for the home-screen greeting (नमस्कार …) only — a single weight
+// so the SW precache carries one ~39KB file instead of the subset across all
+// five weights. The greeting span stacks it after the latin Poppins.
+const poppinsDevanagari = Poppins({
+  subsets: ["devanagari"],
+  weight: "800",
+  variable: "--font-poppins-dev",
   display: "swap",
 });
 
@@ -61,7 +65,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${poppinsDevanagari.variable}`}
+    >
       <head>
         <PersonalizedManifestLink />
         {/* iOS native launch-screen images, shown while the installed PWA

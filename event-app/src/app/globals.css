@@ -28,9 +28,10 @@
   --color-dc-green: #009b27; /* harit-700: success toast border */
   --color-dc-green-soft: #d5f4dd; /* harit-100: success toast fill */
 
-  /* Match the /devcon project: Inter for body, Poppins for headings.
-     The CSS variables are provided by next/font in src/app/layout.tsx. */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Poppins-only app (no Inter anywhere, per the home redesign). font-sans
+     and font-heading resolve to the same face; font-heading remains for
+     places that set it explicitly. Variable via next/font in layout.tsx. */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
 

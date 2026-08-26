@@ -3,7 +3,7 @@
 import { NativeRouter } from "@/native/NativeRouter";
 
 // Import all client components
-import { Menu } from "@/components/Menu";
+import { Home } from "@/components/home/Home";
 import Speakers from "@/app/(page-layout)/speakers/speakers";
 import Speaker from "@/app/(page-layout)/speakers/[id]/speaker";
 import Schedule from "@/app/(page-layout)/schedule/schedule";
@@ -14,7 +14,7 @@ import RoomScreen from "@/app/(page-layout)/room-screens/[id]/room-screen";
 function renderRoute(href: string) {
   // Home
   if (href === "/") {
-    return <Menu />;
+    return <Home />;
   }
 
   // Speakers
@@ -45,7 +45,7 @@ function renderRoute(href: string) {
   }
 
   // Fallback
-  return <Menu />;
+  return <Home />;
 }
 
 export default function NativeApp() {
