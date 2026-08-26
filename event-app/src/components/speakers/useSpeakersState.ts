@@ -69,8 +69,8 @@ export function useSpeakersState(
     });
   }, [all, search, topics, type, interestedFilter]);
 
-  const keynoteSpeakers = useMemo(
-    () => filtered.filter((d) => d.isKeynote),
+  const featuredSpeakers = useMemo(
+    () => filtered.filter((d) => d.isFeatured),
     [filtered]
   );
 
@@ -112,7 +112,7 @@ export function useSpeakersState(
     activeFilterCount,
     filtered,
     resultCount: filtered.length,
-    keynoteSpeakers,
+    featuredSpeakers,
     letterGroups,
     letters,
   };

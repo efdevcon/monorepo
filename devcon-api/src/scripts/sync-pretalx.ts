@@ -201,6 +201,22 @@ async function syncSessions() {
   }
 
   console.log('Speakers Pretalx', speakers.length, 'Accepted Speakers', acceptedSpeakers.length)
+
+  // Featured speakers (organizer-curated pretalx question) live on the EVENT
+  // record: speaker files are shared across events, so a per-event flag there
+  // would leak and get clobbered by other events' syncs. Only overwrite when
+  // the question yields answers — the deployed pretalx revision cannot create
+  // speaker answers via API (upstream bug), so seeded lists must survive
+  // syncs that see no answers.
+  const featuredSpeakerIds = [...new Set(acceptedSpeakers.filter((s: any) => s.featured === true).map((s: any) => s.id))]
+  for (const speaker of acceptedSpeakers) delete speaker.featured
+  if (featuredSpeakerIds.length > 0) {
+    const eventPath = `./data/events/${eventId}.json`
+    const eventData = JSON.parse(fs.readFileSync(eventPath, 'utf8'))
+    fs.writeFileSync(eventPath, JSON.stringify({ ...eventData, featuredSpeakers: featuredSpeakerIds }, null, 2))
+    console.log('Featured speakers:', featuredSpeakerIds.length)
+  }
+
   console.log('Sync Speakers')
   for (const speaker of acceptedSpeakers) {
     const speakerPath = `./data/speakers/${speaker.id}.json`

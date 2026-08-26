@@ -10,6 +10,9 @@ export const EventSchema = z.object({
   title: z.string().optional(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
+  // Organizer-curated featured speaker ids (from the Pretalx "Featured
+  // speaker" question, collected per event by the devcon-api sync).
+  featuredSpeakers: z.array(z.string()).optional(),
 });
 
 export type ConferenceEvent = z.infer<typeof EventSchema>;

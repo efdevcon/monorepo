@@ -24,7 +24,7 @@ import { TypeTabs, typeLabel } from "./TypeTabs";
 import { TopicSheet } from "./TopicSheet";
 import { SpeakersFilterStatusBar } from "./SpeakersFilterStatusBar";
 import { SpeakersEmptyState } from "./SpeakersEmptyState";
-import { AzIndexRail, KEYNOTE_SECTION } from "./AzIndexRail";
+import { AzIndexRail, FEATURED_SECTION } from "./AzIndexRail";
 import { SpeakerDetailsPanel } from "./SpeakerDetailsPanel";
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
@@ -129,7 +129,7 @@ function HeaderActions({
 /**
  * Redesigned speakers view (Figma "PWA / Speakers"). One combined view:
  * white panel (search toolbar, topic pills, format tabs) over a dc-panel
- * list sectioned Keynote → # → A–Z, with the letter rail always present on
+ * list sectioned Featured → # → A–Z, with the letter rail always present on
  * the right (keynote mic cell on top). Filters/search keep the sections and
  * rail, just built from the filtered set (absent letters disable in the
  * rail). Speaker details open in a 360px right column; mobile navigates to
@@ -163,7 +163,7 @@ export function Speakers() {
     clearAll,
     activeFilterCount,
     resultCount,
-    keynoteSpeakers,
+    featuredSpeakers,
     letterGroups,
     letters,
   } = useSpeakersState(decorated, interestedIds);
@@ -265,8 +265,8 @@ export function Speakers() {
   // letter groups (# first, then A–Z) — all derived from the filtered set.
   const sections = useMemo(
     () =>
-      keynoteSpeakers.length > 0 ? [KEYNOTE_SECTION, ...letters] : letters,
-    [keynoteSpeakers.length, letters]
+      featuredSpeakers.length > 0 ? [FEATURED_SECTION, ...letters] : letters,
+    [featuredSpeakers.length, letters]
   );
 
   // While a click-jump's smooth scroll is in flight, the scroll-spy would
@@ -656,24 +656,24 @@ export function Speakers() {
                       />
                     ) : (
                       <>
-                        {keynoteSpeakers.length > 0 && (
+                        {featuredSpeakers.length > 0 && (
                           <section
                             ref={(el) => {
-                              letterRefs.current.set(KEYNOTE_SECTION, el);
+                              letterRefs.current.set(FEATURED_SECTION, el);
                             }}
                             className="flex flex-col gap-4"
                           >
                             <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-                              Keynote speakers
+                              Featured speakers
                             </h2>
-                            {renderGrid(keynoteSpeakers)}
+                            {renderGrid(featuredSpeakers)}
                           </section>
                         )}
                         <div
                           className={cn(
                             "flex flex-col gap-6",
                             // Hairline divider under the keynote block (Figma)
-                            keynoteSpeakers.length > 0 &&
+                            featuredSpeakers.length > 0 &&
                               "border-t border-dc-hairline pt-6"
                           )}
                         >

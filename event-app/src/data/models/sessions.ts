@@ -23,6 +23,9 @@ export const SessionSchema = z.object({
   image: z.string().optional(),
   resources: z.array(z.string()).optional(),
   tags: z.array(z.string()).optional(),
+  // Pretalx's native per-talk is_featured flag (organizer-curated), mapped by
+  // devcon-api as `featured`. Drives the Featured speakers rail.
+  featured: z.boolean().optional(),
   // AV enrichment, written to devcon-api during/after the event via
   // PUT /sessions/sources/:id. Optional: sessions without a recording (and
   // stale cached sessions) simply lack them.

@@ -46,7 +46,7 @@ export const SpeakerCard = memo(function SpeakerCard({
   onOpen?: (id: string) => void;
   onToggleInterested: (id: string, name: string) => void;
 }) {
-  const { speaker, sessionCount, tags, isKeynote } = decorated;
+  const { speaker, sessionCount, tags, isFeatured } = decorated;
 
   const tagChip = (tag: string) => <SpeakerTagChip key={tag} tag={tag} />;
 
@@ -78,16 +78,16 @@ export const SpeakerCard = memo(function SpeakerCard({
           className={cn(
             "flex min-w-0 items-center gap-2",
             // Mobile keeps long names clear of the absolute corner badge.
-            isKeynote && "pr-10 lg:pr-0"
+            isFeatured && "pr-10 lg:pr-0"
           )}
         >
           <span className="truncate text-[14px] font-bold leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
             {speaker.name}
           </span>
           {/* Desktop: inline badge next to the name */}
-          {isKeynote && (
+          {isFeatured && (
             <span className="hidden shrink-0 rounded-[4px] bg-dc-keynote px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
-              Keynote
+              Featured
             </span>
           )}
         </div>
@@ -138,9 +138,9 @@ export const SpeakerCard = memo(function SpeakerCard({
       </button>
 
       {/* Mobile: absolute corner badge (mobile SessionCard grammar) */}
-      {isKeynote && (
+      {isFeatured && (
         <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-keynote px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg lg:hidden">
-          Keynote
+          Featured
         </span>
       )}
     </Link>
