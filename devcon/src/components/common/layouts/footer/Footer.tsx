@@ -332,6 +332,7 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
                 {t('legal_code_of_conduct')}
               </Link>
+              {/* Hidden until we have this year's document
               <Link
                 className="bold font-xs text-uppercase hover-underline"
                 to={
@@ -341,7 +342,7 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
                 }
               >
                 {t('legal_attendee_solicitation')}
-              </Link>
+              </Link> */}
               <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/terms-of-use/">
                 {t('legal_terms_of_use')}
               </Link>
