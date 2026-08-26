@@ -329,24 +329,31 @@ function GroupHeader({
           "flex items-center justify-between gap-3",
           !inPanel &&
             "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(118px+var(--safe-top))]",
-          // Every pinned header gets 4px 0 padding for breathing room,
-          // offset by negative margins so flow height stays put (no 8px
-          // content jump at the pin; the section is flex-col so the
-          // negative margins can't collapse away). Browsers pin the border
-          // box at `top`, so the margins don't move the pinned fill edge.
-          !inPanel && stuck && "-my-1 py-1",
+          // Pinned headers get 4px 0 padding for breathing room, offset by
+          // negative margins so flow height stays put (the section is
+          // flex-col so the negative margins can't collapse away). Browsers
+          // pin the border box at `top`, so the margins don't move the
+          // pinned fill edge. On mobile this geometry is applied full-time —
+          // swapping it in at the pin moment made the title visibly snap —
+          // and since -my-1 cancels py-1 in flow, section spacing is
+          // unchanged at rest. Desktop keeps it pin-only (the panel surface
+          // hides the swap there).
+          !inPanel && "max-lg:-my-1 max-lg:py-1",
+          !inPanel && stuck && "lg:-my-1 lg:py-1",
           // Pinned non-live headers also get the wash + the app-header glass
           // blur so cards scrolling beneath don't ghost through the 95%
           // fill, going full-bleed on mobile so card edges can't peek past
-          // the fill in the gutters. Live headers keep the fully opaque band
-          // tint (already full-bleed via the band), no blur.
+          // the fill in the gutters. The mobile bleed geometry is full-time
+          // (same no-snap rule; px-4 keeps the text on the content column),
+          // while the wash fades in on pin instead of popping. Live headers
+          // keep the fully opaque band tint (already full-bleed via the
+          // band), no blur.
           !inPanel &&
             (group.isLive
               ? "bg-dc-live-bg"
               : cn(
-                  "lg:bg-dc-panel/95",
-                  stuck &&
-                    "-mx-4 bg-dc-panel/95 px-4 backdrop-blur-[4px] lg:mx-0 lg:px-0"
+                  "max-lg:-mx-4 max-lg:px-4 max-lg:transition-[background-color] max-lg:duration-150 lg:bg-dc-panel/95 motion-reduce:transition-none",
+                  stuck && "bg-dc-panel/95 backdrop-blur-[4px]"
                 ))
         )}
       >
