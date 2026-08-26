@@ -48,7 +48,7 @@ const SpeakerCard = (props: any) => {
     )
   }
 
-  // Devcon 8: the DC8 ticket-share design (cosmic scene + tilting card).
+  // Devcon 8: the DC8 KV scene with the tilting session card.
   // The og:image intentionally stays the SEA-clone social card until the
   // DC8 brand pass on /api/social/schedule lands.
   const title = `${props.talk.title} — Devcon 8`
@@ -61,7 +61,7 @@ const SpeakerCard = (props: any) => {
       <Head>
         <title>{title}</title>
         {/* Same no-flash trick as /ticket: paint the scene color before hydration. */}
-        <style>{`html, body { background-color: #1a0a3e; }`}</style>
+        <style>{`html, body { background-color: #221144; }`}</style>
         {/* Warm the OG cache from the speaker's browser so the crawler's
             scrape (seconds after they post) is a fast cache hit. */}
         <link rel="preload" as="image" href={imageUrl} />
@@ -78,7 +78,7 @@ const SpeakerCard = (props: any) => {
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         <meta name="twitter:image" key="twitter:image" content={imageUrl} />
-        <meta name="theme-color" key="theme-color" content="#1a0a3e" />
+        <meta name="theme-color" key="theme-color" content="#221144" />
       </Head>
       <SessionSharing talk={props.talk} pageUrl={pageUrl} />
     </>

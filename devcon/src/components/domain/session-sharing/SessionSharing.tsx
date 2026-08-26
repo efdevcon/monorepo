@@ -3,22 +3,26 @@ import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
 import { useTilt } from '../ticket-sharing/useTilt'
-import heroBackdrop from '../ticket-sharing/occluded.png'
-import devconLogo from '../ticket-sharing/updated-dc8-logo.png'
-import cardArt from '../ticket-sharing/ticket-backside.png'
-import IconArrowRight from 'assets/icons/arrow_right.svg'
+import kvBackdrop from 'components/common/dc-8/hero/images/devcon-8-india-bg.png'
+// Glow baked into the PNG — live drop-shadow filters tanked the frame rate.
+import heroLogo from './images/dc8-india-logo-glow.png'
+import cardLogo from '../ticket-sharing/updated-dc8-logo.png'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
-import { Copy } from 'lucide-react'
-import css from '../ticket-sharing/ticket-sharing.module.scss'
-import { ShootingStars } from '../ticket-sharing/ShootingStars'
+import { ArrowRight, Copy } from 'lucide-react'
+import { getDc8TrackImagePath } from 'services/social-cards/track-images'
+import css from './session-sharing.module.scss'
 import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 
 /**
- * Devcon 8 styled session-share page body — the speaker-card counterpart of
- * TicketSharing (same cosmic scene, same card treatment, same share actions),
- * used by /schedule/devcon8/{code}. Assets and styles are reused from
- * ticket-sharing so the two pages stay visually in lockstep.
+ * Devcon 8 session-share page body, used by /schedule/devcon8/{code}.
+ * Figma: Dev Handoff 5058:2837 (scene) + 5058:3193 / 3624 / 4774 / 5060:6865
+ * (card variants). The KV scene keeps the tilt/parallax interaction from the
+ * ticket share page (useTilt is shared); the card itself is CSS-built at a
+ * 1200×675 basis — see session-sharing.module.scss.
+ *
+ * One deliberate deviation from the frames: the third share button is
+ * copy-link (the design shows Instagram, which has no web share intent).
  */
 
 export interface SessionShareTalk {
@@ -38,6 +42,9 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const [showGyroPrompt, setShowGyroPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
+  // Avatars that 404/error collapse out of the stack (the no-PFP card variant
+  // is just "every avatar collapsed").
+  const [failedAvatars, setFailedAvatars] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     // Same treatment as TicketSharing: no elastic overscroll, notch colored
@@ -45,9 +52,9 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
     const prevBodyBg = document.body.style.backgroundColor
     const prevHtmlBg = document.documentElement.style.backgroundColor
     document.body.style.overscrollBehavior = 'none'
-    document.body.style.backgroundColor = '#1a0a3e'
+    document.body.style.backgroundColor = '#221144'
     document.documentElement.style.overscrollBehavior = 'none'
-    document.documentElement.style.backgroundColor = '#1a0a3e'
+    document.documentElement.style.backgroundColor = '#221144'
 
     const DOE = DeviceOrientationEvent as any
     if (typeof DOE?.requestPermission === 'function') {
@@ -81,19 +88,21 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
     if (granted) localStorage.setItem('gyro-accepted', 'true')
   }, [requestGyroPermission])
 
-  const meta = [talk.type, talk.track].filter(Boolean).join(' · ')
   // Matomo campaign tagging per channel (same convention as TicketSharing).
   const shareUrlFor = (source: string) => `${pageUrl}?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
   const shareText = `I'm speaking at @EFDevcon 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
   const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
 
+  const speakersWithAvatar = talk.speakers.filter(s => s.avatar && !failedAvatars.has(s.name))
+  const speakerNames = talk.speakers.map(s => s.name).join(', ')
+  // The card spec is authored for ~3-line titles — downscale longer ones.
+  const titleClass = talk.title.length > 150 ? css.cardTitleLong : talk.title.length > 90 ? css.cardTitleMedium : undefined
+
   return (
     <div ref={containerRef} className={css.container}>
-      <div className={`${css.bgLayer} ${css.bgSlow}`}>
-        <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority placeholder="blur" />
+      <div className={css.bgLayer}>
+        <Image src={kvBackdrop} alt="" fill className={css.bgImage} priority placeholder="blur" />
       </div>
-
-      <ShootingStars minDelay={6000} maxDelay={12000} minSpeed={1} maxSpeed={2} />
 
       <div className={css.particles}>
         <Fireflies
@@ -108,44 +117,64 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
       </div>
 
       <div className={css.aboveCard}>
-        <Image src={devconLogo} alt="Devcon 8" className={css.heroLogo} />
+        <Image src={heroLogo} alt="Devcon 8 India" className={css.heroLogo} priority />
       </div>
 
-      {/* Single tilting card, styled like the ticket's text card */}
-      <div className={cn(css.cardStack, css.frontShowing)}>
-        <div className={cn(css.card, css.cardFront, css.backsideShadowWrap)}>
-          <div className={css.backsideInner}>
-            <Image src={cardArt} alt="" className={css.ticketImage} placeholder="blur" />
-            <div className={css.backsideContent}>
-              {meta && <p className="mb-3 text-xs font-semibold uppercase tracking-widest opacity-70">{meta}</p>}
-              <h2 className={css.backsideTitle}>{talk.title}</h2>
-              {talk.speakers.length > 0 && (
-                <div className="mt-4 flex flex-col gap-2">
-                  {talk.speakers.map(s => (
-                    <div key={s.name} className="flex items-center gap-2.5">
-                      {s.avatar && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={s.avatar}
-                          alt=""
-                          width={32}
-                          height={32}
-                          className="h-8 w-8 shrink-0 rounded-full object-cover"
-                        />
-                      )}
-                      <span className="text-sm font-medium text-white">{s.name}</span>
-                    </div>
-                  ))}
-                </div>
+      {/* Tilting session card (1200×675 spec, all sizes in cqi) */}
+      <div className={css.cardStack}>
+        <div className={css.card}>
+          <div className={css.cardInner}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/social/${getDc8TrackImagePath(talk.track)}`} alt="" className={css.cardBadge} />
+            <Image src={cardLogo} alt="Devcon 8 India" className={css.cardLogo} />
+            <div className={css.cardMumbai}>
+              <span>MUMBAI, INDIA</span>
+              <span>
+                <em>3—6</em> Nov, 2026
+              </span>
+            </div>
+            <h1 className={cn(css.cardTitle, titleClass)}>{talk.title}</h1>
+            <div
+              className={cn(
+                css.cardFooter,
+                talk.speakers.length > 1 && css.multiSpeakers,
+                talk.speakers.length > 4 && css.manySpeakers
               )}
-              <p className={cn(css.backsideDescription, 'mt-4')}>Devcon 8 · Mumbai, India · November 3 - 6, 2026</p>
+            >
+              <div className={css.cardSpeakers}>
+                {speakersWithAvatar.length > 0 && (
+                  <div className={css.avatarStack}>
+                    {speakersWithAvatar.map(s => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        key={s.name}
+                        src={s.avatar}
+                        alt=""
+                        className={css.avatar}
+                        onError={() => setFailedAvatars(prev => new Set(prev).add(s.name))}
+                      />
+                    ))}
+                  </div>
+                )}
+                {speakerNames && <p className={css.speakerNames}>{speakerNames}</p>}
+              </div>
+              <div className={css.trackPill}>
+                {talk.type && <span className={css.typeChip}>{talk.type}</span>}
+                {talk.track && <span className={css.trackName}>{talk.track}</span>}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Share actions + tickets CTA */}
+      <div className={css.bottomFade} />
+
+      {/* Get tickets CTA + share actions, aligned to the card's width */}
       <div className={css.actions}>
+        <Link href="/tickets" className={cn(css.ctaButton, 'select-none')}>
+          Get tickets
+          <ArrowRight />
+        </Link>
         <div className={css.shareSection}>
           <span className={css.shareLabel}>Share</span>
           <div className={css.shareIcons}>
@@ -187,19 +216,6 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
           </div>
           {copied && <span className={css.copiedToast}>Copied!</span>}
         </div>
-        <Link
-          href="/tickets"
-          // The shared .actions column has no internal gap (the ticket page
-          // shows share OR cta, never both) — separate them here.
-          className={cn(css.ctaButton, 'select-none', 'mt-10')}
-          // Cast via any: the repo currently resolves two csstype versions, and
-          // custom properties trip the mismatch (same class of error as the
-          // pre-existing WritingText/SpeakerDetailOverlay ones).
-          style={{ '--color-icon': '#f9f8fa' } as any}
-        >
-          Get tickets
-          <IconArrowRight />
-        </Link>
       </div>
 
       {showGyroPrompt && (
@@ -207,8 +223,6 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
           Enable motion effects
         </button>
       )}
-
-      <div className={css.vignette} />
     </div>
   )
 }

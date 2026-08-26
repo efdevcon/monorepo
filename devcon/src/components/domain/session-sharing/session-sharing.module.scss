@@ -1,0 +1,571 @@
+/*
+ * DC8 session share page (Figma: Dev Handoff 5058:2837 ff).
+ * Scene: Devcon 8 KV backdrop + glowing logo, a tilting CSS-built card, and a
+ * "Get tickets" / share actions row aligned to the card's width.
+ *
+ * The card spec is authored at 1200×675; every card measurement is expressed
+ * in cqi so one ruleset serves all widths (1px @1200 = 1/12 cqi), with px
+ * floors where mobile sizes would drop below legibility.
+ */
+
+.container {
+  --tilt-x: 0;
+  --tilt-y: 0;
+
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #221144;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ─── Backdrop (KV art + darkening overlay) ───── */
+.bgLayer {
+  position: absolute;
+  inset: -20px;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+  z-index: 0;
+  pointer-events: none;
+  // Design places the art at 136.5% zoom, bottom-aligned (plants/characters
+  // anchored to the frame bottom). object-fit cover at 1440×960 gives 1.185 —
+  // the extra 1.15 comes from this scale, anchored at the bottom so the
+  // composition stays put.
+  transform: scale(1.15) translate(calc(var(--tilt-x) * -16px), calc(var(--tilt-y) * -16px));
+  transform-origin: center bottom;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 11, 43, 0.1);
+  }
+
+  @media (max-width: 600px) {
+    will-change: auto;
+  }
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+/* ─── Fireflies (bottom of scene, among the plants) ─ */
+.particles {
+  position: absolute;
+  top: 80%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%);
+}
+
+/* ─── Glowing logo above the card ─────────────── */
+.aboveCard {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: end;
+  // 40px design gap minus the ~25px of transparent glow padding baked into
+  // the logo PNG's bottom edge.
+  padding-bottom: 15px;
+}
+
+.heroLogo {
+  // Glow baked into the PNG — live drop-shadow filters tanked the frame rate
+  // (perf probe 2026-08-26: 22fps with filters, 120fps without). The PNG has
+  // ~68px glow padding around the 655px-wide lockup: 244px logo = 295px image.
+  width: min(66vw, 295px);
+  height: auto;
+  flex-shrink: 0;
+
+  @media (max-width: 600px) {
+    width: min(62vw, 266px);
+  }
+}
+
+/* ─── Card ────────────────────────────────────── */
+.cardStack {
+  position: relative;
+  z-index: 2;
+  // 728px @1440 desktop, 640px @768 tablet — one ratio covers both frames.
+  width: min(83.333%, 728px);
+  aspect-ratio: 16 / 9;
+  perspective: 1200px;
+  container-type: inline-size;
+
+  @media (max-width: 600px) {
+    // Mobile frame: 398px card on a 430px frame = 16px side margins.
+    width: calc(100% - 32px);
+  }
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  backface-visibility: hidden;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: rotateY(calc(var(--tilt-x) * 8deg)) rotateX(calc(var(--tilt-y) * -8deg))
+    translate(calc(var(--tilt-x) * 6px), calc(var(--tilt-y) * 6px));
+
+  img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+.cardInner {
+  position: absolute;
+  inset: 0;
+  border-radius: 5.333cqi;
+  overflow: hidden;
+  background: linear-gradient(to top, #e5ebff 19.98%, #fbfafc 100%);
+  box-shadow: 0 2px 4px rgba(22, 11, 43, 0.2), 0 4px 8px rgba(22, 11, 43, 0.1), 0 8px 24px rgba(22, 11, 43, 0.2);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Track badge art, bleeding off the bottom-right corner */
+.cardBadge {
+  position: absolute;
+  top: 9.5cqi;
+  right: -20.583cqi;
+  width: 50.5cqi;
+  aspect-ratio: 158 / 160;
+  object-fit: contain;
+}
+
+.cardLogo {
+  position: absolute;
+  top: 4cqi;
+  left: 4cqi;
+  width: 16.75cqi;
+  height: auto;
+}
+
+.cardMumbai {
+  position: absolute;
+  top: 4cqi;
+  right: 4cqi;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.333cqi;
+  text-align: right;
+  letter-spacing: -0.018em;
+
+  span:first-child {
+    font-size: max(10px, 2.25cqi);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #7235ed;
+  }
+
+  span:last-child {
+    font-size: max(10px, 2.333cqi);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #594d73;
+
+    em {
+      font-style: normal;
+      color: #7235ed;
+    }
+  }
+}
+
+.cardTitle {
+  position: absolute;
+  top: 16.667cqi;
+  left: 4cqi;
+  width: 66cqi;
+  font-size: max(14px, 4cqi);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.0104em;
+  color: #1a0d33;
+  // Room above the footer row fits ~4 lines at spec size.
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Length-based downscaling (spec is authored for ~3-line titles) */
+.cardTitleMedium {
+  font-size: max(13px, 3.333cqi);
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+.cardTitleLong {
+  font-size: max(12px, 2.833cqi);
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+}
+
+/* Footer row: speakers left, format+track pill right. Anchored to a fixed
+ * 80px-tall (6.667cqi) zone so the no-avatar variant centers on the same
+ * axis as the avatar variant (Figma tops 547 vs 569 share a center). */
+.cardFooter {
+  position: absolute;
+  left: 4cqi;
+  right: 4cqi;
+  bottom: 4cqi;
+  min-height: 6.667cqi;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.667cqi;
+}
+
+.cardSpeakers {
+  display: flex;
+  align-items: center;
+  gap: 1.333cqi;
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+.avatarStack {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: max(32px, 6.667cqi);
+  aspect-ratio: 1;
+  border-radius: 360px;
+  border: 1px solid #fff;
+  object-fit: cover;
+  background: #e5ebff;
+
+  &:not(:last-child) {
+    margin-right: -1.333cqi;
+  }
+
+  // The single-speaker frame shows a plain circle, no ring.
+  &:only-child {
+    border: none;
+  }
+}
+
+/* 5+ speakers: shrink the stack so names keep room (same move as the OG card) */
+.manySpeakers .avatar {
+  width: max(24px, 5cqi);
+
+  &:not(:last-child) {
+    margin-right: -1cqi;
+  }
+}
+
+.manySpeakers .speakerNames {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Narrow cards (mobile) can't fit a multi-speaker group beside the nowrap
+ * pill — wrap the footer into two rows (speakers full-width but clear of the
+ * badge art, pill right-aligned below) and tighten the title clamps. */
+@container (max-width: 480px) {
+  .multiSpeakers {
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .cardSpeakers {
+      flex-basis: 100%;
+      padding-right: 20cqi;
+    }
+
+    .trackPill {
+      margin-left: auto;
+    }
+
+    .speakerNames {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .cardTitleMedium,
+  .cardTitleLong {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+}
+
+.speakerNames {
+  font-size: max(11px, 2.333cqi);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.009em;
+  color: #594d73;
+}
+
+.trackPill {
+  display: flex;
+  align-items: center;
+  gap: 1cqi;
+  flex-shrink: 0;
+  padding: 0.667cqi 1cqi 0.667cqi 0.667cqi;
+  border-radius: 1cqi;
+  background: #e6ebff;
+  border: 1px solid rgba(34, 17, 68, 0.1);
+  box-shadow: 0 1px 1.5px rgba(22, 11, 43, 0.1), 0 1px 1px rgba(22, 11, 43, 0.1);
+}
+
+.typeChip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.667cqi;
+  border-radius: 0.333cqi;
+  background: #7235ed;
+  color: #fff;
+  font-size: max(9px, 1.667cqi);
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.trackName {
+  font-size: max(9px, 1.667cqi);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.0125em;
+  color: #160b2b;
+  white-space: nowrap;
+}
+
+/* ─── Bottom fade (mobile only, behind the stacked actions) ─ */
+.bottomFade {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 200px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(22, 11, 43, 0) 15.87%, #160b2b 100%);
+
+  @media (max-width: 600px) {
+    display: block;
+  }
+}
+
+/* ─── Actions row (card-width aligned) ────────── */
+.actions {
+  position: relative;
+  z-index: 3;
+  align-self: start;
+  margin-top: 64px;
+  width: min(83.333%, 728px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 32px;
+  border-radius: 360px;
+  background: #7235ed;
+  box-shadow: 0 4px 3px rgba(22, 11, 43, 0.1), 0 2px 2px rgba(22, 11, 43, 0.1);
+  color: #f9f8fa;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.15s ease-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  svg {
+    // The 20px Figma icon frame carries ~2px inner padding; our arrow glyph
+    // fills its viewBox, so render at 16px to match the 18px text optically.
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+.shareSection {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.shareLabel {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: white;
+  text-shadow: 0 1px 4px rgba(34, 17, 68, 0.6);
+}
+
+.shareIcons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.shareIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 360px;
+  background: rgba(249, 248, 250, 0.5);
+  border: 1px solid rgba(249, 248, 250, 0.15);
+  backdrop-filter: blur(6px);
+  color: #160b2b;
+  transition: background 100ms ease-out;
+  text-decoration: none;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #160b2b;
+  }
+
+  // Lucide icons use stroke, not fill
+  :global(.lucide) {
+    fill: none;
+    stroke: #160b2b;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(249, 248, 250, 0.9);
+    }
+  }
+}
+
+.copiedToast {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: 360px;
+  white-space: nowrap;
+  animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ─── Gyroscope permission button ─────────────── */
+.gyroButton {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 360px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+}
+
+/* ─── Mobile (Figma 430px frames) ─────────────── */
+@media (max-width: 600px) {
+  // Logo floats centered in the space above the card (frame: y86 of the
+  // 244px-tall top zone).
+  .aboveCard {
+    align-self: center;
+    padding-bottom: 0;
+  }
+
+  // Actions stack near the bottom over the fade: full-width CTA above the
+  // share row, both sized by the share row's natural width (Figma: 239px
+  // column, gap 24, y748).
+  .actions {
+    width: auto;
+    align-self: end;
+    margin: 0 0 calc(28px + env(safe-area-inset-bottom));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .shareSection {
+    justify-content: center;
+  }
+
+  .copiedToast {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // The bottom is occupied by the stacked actions — show the gyro prompt at
+  // the top instead.
+  .gyroButton {
+    bottom: auto;
+    top: calc(12px + env(safe-area-inset-top));
+    padding-bottom: 8px;
+  }
+}
