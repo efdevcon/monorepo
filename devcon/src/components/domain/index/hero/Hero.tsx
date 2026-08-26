@@ -192,6 +192,10 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
         <SEO
           title="Join me"
           separator="@"
+          // These share pages are SEA-era (ticket + speaker cards); without
+          // this the title suffix follows the current site branding and reads
+          // "Join me @ Devcon 8 India" on Devcon 7 talks.
+          siteTitle="Devcon SEA"
           description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
           imageUrl={imageUrl}
         />
