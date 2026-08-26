@@ -22,7 +22,7 @@ function renderUserScheduleCard(
       <div
         tw="flex flex-col text-white w-full h-full overflow-hidden"
         style={{
-          backgroundImage: `url(${socialAssetDataUrl('dc8/personalized.png')})`,
+          backgroundImage: `url(${socialAssetDataUrl('dc7/personalized.png')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

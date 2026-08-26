@@ -54,7 +54,7 @@ export function SpeakerDetailsContent({
   /** Extra root classes — the mobile page stretches the panel surface. */
   className?: string;
 }) {
-  const { speaker, sessions, tags, isKeynote } = decorated;
+  const { speaker, sessions, tags, isFeatured } = decorated;
   const { isInterested, toggle } = useInterestedSpeakers();
   const interested = isInterested(speaker.id);
 
@@ -101,9 +101,9 @@ export function SpeakerDetailsContent({
         {/* Legibility gradient behind the name row (Figma: 56px band) */}
         <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-dc-fg2" />
         <div className="relative flex flex-col items-start gap-2 p-4">
-          {isKeynote && (
-            <span className="rounded-[2px] bg-dc-keynote px-1.5 py-[3px] text-[11px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-              Keynote
+          {isFeatured && (
+            <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[11px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
+              Featured
             </span>
           )}
           <div className="flex w-full items-center justify-between gap-3">

@@ -289,6 +289,9 @@ async function SyncSpeakers(speakers: any[], config: PretalxInstanceConfig) {
       // clients never fetch image bytes from the live Pretalx box; fails open
       // to the source URL (see services/avatar-mirror).
       speakerData.avatar = await resolveSpeakerAvatar(speakerData.avatar)
+      // Per-event flag — lives on the event record, never on the shared
+      // speaker file (see sync-pretalx.ts).
+      delete speakerData.featured
       store.createSpeaker(speakerData)
     } catch (error) {
       console.error(`Speaker sync failed for ${id} — continuing:`, error)

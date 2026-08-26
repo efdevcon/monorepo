@@ -6,9 +6,9 @@ import cn from "classnames";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-/** Section key for the "Keynote speakers" section (rendered as a mic cell
+/** Section key for the "Featured speakers" section (rendered as a mic cell
  *  above the letters — can't collide with the single-char letter keys). */
-export const KEYNOTE_SECTION = "keynote";
+export const FEATURED_SECTION = "featured";
 
 /**
  * A–Z jump rail (Figma "A–Z Scrollbar"): the letter stack inside the lavender
@@ -28,7 +28,7 @@ export function AzIndexRail({
   activeSection,
   onJump,
 }: {
-  /** Section keys that exist in the data (KEYNOTE_SECTION, "#", letters). */
+  /** Section keys that exist in the data (FEATURED_SECTION, "#", letters). */
   sections: string[];
   /** Key of the topmost visible section (scroll-spy). */
   activeSection: string | null;
@@ -36,7 +36,7 @@ export function AzIndexRail({
 }) {
   const available = new Set(sections);
   const rail = [
-    KEYNOTE_SECTION,
+    FEATURED_SECTION,
     ...(sections.includes("#") ? ["#"] : []),
     ...ALPHABET,
   ];
@@ -106,7 +106,7 @@ export function AzIndexRail({
             tabIndex={enabled ? 0 : -1}
             aria-current={active ? "true" : undefined}
             aria-label={
-              section === KEYNOTE_SECTION ? "Keynote speakers" : undefined
+              section === FEATURED_SECTION ? "Featured speakers" : undefined
             }
             className={cn(
               "relative z-10 flex h-6 w-full items-center justify-center text-[12px] font-semibold leading-none",
@@ -120,7 +120,7 @@ export function AzIndexRail({
                   : "cursor-pointer text-dc-muted hover:text-dc-purple")
             )}
           >
-            {section === KEYNOTE_SECTION ? (
+            {section === FEATURED_SECTION ? (
               // 2.5 stroke so the icon reads as heavy as the semibold letters
               <Mic className="size-3.5" strokeWidth={2.5} />
             ) : (

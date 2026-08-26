@@ -23,3 +23,30 @@ if you have other sources (e.g. make a cms in the future or whatever), you can p
 the Devcon blog is pulled from the ethereum blog via RSS
 
 you can fetch all our blogposts via the "Event" category, then you can further filter by the "Subcategory" which can be either Devcon or Devconnect - if this isn't working, its likely because the blog doesn't have the proper tags upstream in the blog repo - whoever handles the post submissions to the blog repo (historically Rose/Joe) would need to fix that / be aware of these categories - you can also create PRs there yourself, should be trivial to figure out how it works by inspecting the blog repo
+
+# social cards (og images) — DC8 asset layout
+
+The session/AV cards (`/api/social/schedule/[id]`, `/api/social/av/[id]`) pick
+assets per event (`session.eventId === 'devcon8'` vs everything else):
+
+- `public/social/dc7/` and `public/social/dc8/` — one directory per event,
+  each with `logo.png`, `prism.png` (background art) and `tracks/*.png`.
+  dc7 also holds the schedule-u background (`personalized.png`) and legacy
+  extras (characters/, clock, pin — unreferenced by the card code).
+- DC8 track badges (same art as the Speak at Devcon page) are mapped by
+  normalized Pretalx track name in `services/social-cards/data.ts`
+  (`DC8_TRACK_IMAGES`); unmapped tracks (Art&Culture, Invited speaker,
+  Community Hubs) fall back to a neutral badge.
+- devcon8 sessions missing from devcon-api are fetched live from Pretalx as a
+  fallback (`getSessionFromPretalx`) — requires the organizer-level
+  PRETALX_API_KEY on Netlify.
+
+Open items before the DC8 card is final:
+- Re-enable the og-cache read + write lines in `services/og-cache.ts`
+  (both commented TEMPORARY while iterating — every scrape currently
+  re-renders and the serve-stale safety net is off).
+- Restore the confirmed-only gate for devcon8 in
+  `src/pages/schedule/[event]/[code].tsx` (TEMPORARY exemption).
+- Dedicated DC8 background art for `dc8/prism.png`; DC8 per-track card
+  colors (single periwinkle for all tracks today, `getTrackColor`);
+  `getDay` labels still map DC7 dates.

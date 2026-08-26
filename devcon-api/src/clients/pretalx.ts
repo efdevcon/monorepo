@@ -274,6 +274,10 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   const lens = findAnswer(config.PRETALX_QUESTIONS_LENS)
   const ens = findAnswer(config.PRETALX_QUESTIONS_ENS)
   const telegram = findAnswer(config.PRETALX_QUESTIONS_TELEGRAM)
+  // Boolean pretalx answers arrive as the string 'True'. Collected per event
+  // into the event record's featuredSpeakers by the sync (the speaker FILES
+  // are shared across events, so the flag must not live there).
+  const featuredAnswer = findAnswer(config.PRETALX_QUESTIONS_FEATURED)
 
   // Prefer a real avatar URL. Newer pretalx (cfp.devcon.org) exposes it as
   // `avatar_url`; older data used `avatar`. Pretalx still renders devcon-6/7
@@ -291,6 +295,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
     description: i.biography ?? '',
   }
 
+  if (featuredAnswer === 'True') speaker.featured = true
   if (notEmptyOrInvalid(twitter)) speaker.twitter = sanitizeProfileField(twitter)
   if (notEmptyOrInvalid(github)) speaker.github = sanitizeProfileField(github)
   if (notEmptyOrInvalid(farcaster)) speaker.farcaster = sanitizeProfileField(farcaster)
@@ -317,14 +322,19 @@ function mapSubmissionType(type: number) {
   if (type === 41) return 'Panel'
   if (type === 38) return 'Music'
   // devcon8 (Mumbai) - ids from cfp.devcon.org/api/events/devcon8/submission-types/
-  if (type === 85 || type === 86) return 'Talk' // Talk, Keynote
+  // Keynote kept distinct (unlike devcon-7 where it was collapsed into Talk):
+  // the event-app badges keynotes from session.type, replacing the fragile
+  // title-prefix heuristic. DC7 stays collapsed so archive data is unchanged.
+  if (type === 85) return 'Talk'
+  if (type === 86) return 'Keynote'
   if (type === 83) return 'Lightning Talk'
   if (type === 90 || type === 91 || type === 93) return 'Workshop' // 1h30, 2h, 1h
   if (type === 87) return 'Panel' // Mixed Formats (AMA / Roundtable / Fireside)
   // 89 "Experience" is intentionally unmapped: a genuinely new format, so it
   // falls through to the raw Pretalx name rather than a wrong canonical label.
   // test-devcon-8 (mirror of devcon8)
-  if (type === 97 || type === 98) return 'Talk' // Talk, Keynote
+  if (type === 97) return 'Talk'
+  if (type === 98) return 'Keynote'
   if (type === 95) return 'Lightning Talk'
   if (type === 99 || type === 101 || type === 102) return 'Workshop' // 1h, 1h30, 2h
   if (type === 96) return 'Panel' // Mixed Formats

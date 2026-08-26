@@ -36,7 +36,12 @@ function renderAvCard(
         style={{ fontFamily: 'Inter' }}
       >
         <div tw="flex absolute left-1/2 top-0 bottom-0 right-0">
-          <img src={socialAssetDataUrl('dc8/prism.png')} tw="h-full opacity-80" />
+          {/* DC8's collage art needs watermark opacity; DC7 renders keep the
+              original prism (same split as the schedule card). */}
+          <img
+            src={socialAssetDataUrl(session.eventId === 'devcon8' ? 'dc8/prism.png' : 'dc7/prism.png')}
+            tw={`h-full ${session.eventId === 'devcon8' ? 'opacity-20' : 'opacity-80'}`}
+          />
         </div>
 
         <div tw="flex flex-col absolute bottom-20 left-20 w-full">
@@ -63,7 +68,7 @@ function renderAvCard(
 
         {!session.track?.startsWith('[CLS]') && (
           <div tw="flex absolute bottom-0 right-0">
-            <img src={getTrackImage(session.track)} tw="h-[38rem]" />
+            <img src={getTrackImage(session.track, session.eventId)} tw="h-[38rem]" />
           </div>
         )}
 
@@ -95,7 +100,7 @@ function renderAvCard(
             session.track?.startsWith('[CLS]') ? 'w-full' : 'w-[1320px]'
           }`}
         >
-          <img src={socialAssetDataUrl('dc8/logo.png')} tw="w-96 mb-12" />
+          <img src={socialAssetDataUrl(session.eventId === 'devcon8' ? 'dc8/logo.png' : 'dc7/logo.png')} tw="w-96 mb-12" />
 
           <div tw="flex flex-col justify-center h-80 mb-4 overflow-hidden">
             <span

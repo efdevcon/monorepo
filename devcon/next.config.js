@@ -31,6 +31,10 @@ const nextConfig = {
   images: {
     domains: [
       'speak.devcon.org',
+      // Speaker avatars moved to our Supabase bucket (2026-08-25 mirror);
+      // cfp.devcon.org covers the mirror's fail-open to the pretalx original.
+      'mealmslwugsqqyoesrxd.supabase.co',
+      'cfp.devcon.org',
       'avatars.githubusercontent.com',
       'camo.githubusercontent.com',
       'blog.ethereum.org',

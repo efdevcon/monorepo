@@ -21,6 +21,10 @@ interface SEOProps {
   // When true, emit `<meta name="robots" content="noindex, nofollow">` so the
   // page is excluded from search engines. Use for in-progress / gated routes.
   noIndex?: boolean
+  // Override the site-title suffix appended to composed titles. Past-event
+  // pages (the restored SEA speaker/ticket cards) pass their own edition so
+  // they don't inherit the current site's branding.
+  siteTitle?: string
 }
 
 export function SEO(props: SEOProps) {
@@ -29,7 +33,7 @@ export function SEO(props: SEOProps) {
   const separator = props.separator ?? '—'
 
   // let title = `Devcon ${new Date().getFullYear()}` // Bogotá, Oct 11 → 14'
-  let title = `Devcon 8 India`
+  let title = props.siteTitle ?? `Devcon 8 India`
   if (pageContext?.current?.title && pageContext?.current?.title !== title) {
     title = `${pageContext?.current.title} ${separator} ${title}`
   } else if (props.title) {

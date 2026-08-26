@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import sharp from 'sharp'
 import { socialAssetDataUrl } from './assets'
 
 export function devconApiUrl(): string {
@@ -10,6 +11,57 @@ export async function getSession(id: string): Promise<any | null> {
   if (!res.ok) return null
   const { data } = await res.json()
   return data ?? null
+}
+
+const PRETALX_BASE = process.env.PRETALX_BASE_URL || 'https://cfp.devcon.org/api'
+// Events worth asking Pretalx about when the API misses (newest first).
+const PRETALX_FALLBACK_EVENTS = ['devcon8']
+
+/**
+ * Fallback for sessions devcon-api doesn't know yet: devcon8 CFP talks only
+ * reach the API after confirmation plus a sync run, but acceptance-email share
+ * pages (and their og:image scrapes) happen before that. Reads the submission
+ * straight from Pretalx and maps it into the card's session shape — slots are
+ * null until a schedule exists, which the card template renders as the
+ * no-slot variant.
+ */
+export async function getSessionFromPretalx(id: string): Promise<any | null> {
+  const key = process.env.PRETALX_API_KEY
+  if (!key || !/^[a-zA-Z0-9]{1,20}$/.test(id)) return null
+  const name = (v: any) => (typeof v === 'string' ? v : v?.en) ?? ''
+
+  for (const event of PRETALX_FALLBACK_EVENTS) {
+    try {
+      const res = await fetch(
+        `${PRETALX_BASE}/events/${event}/submissions/${id}/?expand=track,submission_type,speakers,slots,slots.room`,
+        { headers: { Authorization: `Token ${key}` }, signal: AbortSignal.timeout(8000) }
+      )
+      if (!res.ok) continue
+      const data = await res.json()
+      const slot = Array.isArray(data.slots) && data.slots.length > 0 ? data.slots[0] : null
+      return {
+        id,
+        sourceId: data.code ?? id,
+        eventId: event,
+        title: data.title ?? '',
+        type: name(data.submission_type?.name ?? data.submission_type).replace(/\s*\(.*\)\s*$/, ''),
+        track: name(data.track?.name ?? data.track),
+        speakers: (data.speakers || []).map((s: any) => ({
+          id: s.code,
+          name: s.name ?? '',
+          // Old uploads still render on the retired hostname; the files were
+          // restored onto the live host (2026-08-24).
+          avatar: (s.avatar_url ?? s.avatar ?? '').replace(/^https?:\/\/speak\.devcon\.org\//, 'https://cfp.devcon.org/'),
+        })),
+        slot_start: slot?.start ?? null,
+        slot_end: slot?.end ?? null,
+        slot_room: slot?.room ? { name: name(slot.room?.name ?? slot.room) } : null,
+      }
+    } catch {
+      /* try the next event */
+    }
+  }
+  return null
 }
 
 export async function getAccountSchedule(id: string): Promise<any | null> {
@@ -27,13 +79,18 @@ export async function speakerImageDataUrls(session: any): Promise<Map<string, st
   const speakers: any[] = session?.speakers ?? []
   await Promise.all(
     speakers.map(async s => {
-      if (!s?.avatar) return
+      // data: avatars are generated blockies — skip them and let the card
+      // template's own makeBlockie fallback draw the identicon.
+      if (!s?.avatar || s.avatar.startsWith('data:')) return
       try {
         const r = await fetch(s.avatar, { signal: AbortSignal.timeout(4000) })
         if (!r.ok) return
-        const buf = Buffer.from(await r.arrayBuffer())
-        const mime = r.headers.get('content-type') || 'image/jpeg'
-        out.set(s.id, `data:${mime};base64,${buf.toString('base64')}`)
+        // Normalize to PNG: satori cannot decode webp, and the mirrored
+        // speaker avatars are webp since 2026-08-25 — embedding them raw made
+        // every render throw, so cards silently served stale pre-mirror
+        // copies forever (found via the 8GH8TR card, 2026-08-26).
+        const png = await sharp(Buffer.from(await r.arrayBuffer())).png().toBuffer()
+        out.set(s.id, `data:image/png;base64,${png.toString('base64')}`)
       } catch {
         /* omit avatar */
       }
@@ -50,20 +107,50 @@ export function getExpertiseColor(expertise?: string) {
   return 'bg-[#d0cbec]'
 }
 
-export function getTrackImage(track?: string) {
-  if (track === 'Core Protocol') return socialAssetDataUrl('programming/CoreProtocol.png')
-  if (track === 'Cypherpunk & Privacy') return socialAssetDataUrl('programming/Cypherpunk.png')
-  if (track === 'Usability') return socialAssetDataUrl('programming/Usability.png')
-  if (track === 'Real World Ethereum') return socialAssetDataUrl('programming/RealWorldEthereum.png')
-  if (track === 'Applied Cryptography') return socialAssetDataUrl('programming/AppliedCryptography.png')
-  if (track === 'Cryptoeconomics') return socialAssetDataUrl('programming/CryptoEconomics.png')
-  if (track === 'Coordination') return socialAssetDataUrl('programming/Coordination.png')
-  if (track === 'Developer Experience') return socialAssetDataUrl('programming/DeveloperExperience.png')
-  if (track === 'Security') return socialAssetDataUrl('programming/Security.png')
-  if (track === 'Layer 2') return socialAssetDataUrl('programming/Layer2.png')
-  if (track === 'Entertainment') return socialAssetDataUrl('programming/Entertainment.png')
+// Devcon 8 track badges (same art as the Speak at Devcon page). Keyed by
+// normalized name because Pretalx and the website spell connectives
+// differently ("Users, Builders, and Agents" vs "Users, Builders & Agents").
+const DC8_TRACK_IMAGES: Record<string, string> = {
+  'core protocol': 'dc8/tracks/track-core-protocol.png',
+  'privacy and consent': 'dc8/tracks/track-privacy-consent.png',
+  security: 'dc8/tracks/track-security.png',
+  'futures worth building': 'dc8/tracks/track-futures-worth-building.png',
+  'rights freedoms and governance': 'dc8/tracks/track-rights-freedoms-governance.png',
+  'permissionless networks': 'dc8/tracks/track-permissionless-networks.png',
+  'users builders and agents': 'dc8/tracks/track-users-builders-agents.png',
+  'applied cryptography': 'dc8/tracks/track-applied-cryptography.png',
+  'open and verifiable stack': 'dc8/tracks/track-open-verifiable-stack.png',
+}
 
-  return socialAssetDataUrl('programming/RealWorldEthereum.png')
+function normalizeTrackName(track: string): string {
+  return track
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/,/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+export function getTrackImage(track?: string, eventId?: string) {
+  if (eventId === 'devcon8') {
+    const badge = track ? DC8_TRACK_IMAGES[normalizeTrackName(track)] : undefined
+    // Unmapped devcon8 tracks (Art&Culture, Invited speaker, Community Hubs)
+    // get a neutral badge rather than DC7 art.
+    return socialAssetDataUrl(badge ?? 'dc8/tracks/track-futures-worth-building.png')
+  }
+  if (track === 'Core Protocol') return socialAssetDataUrl('dc7/tracks/CoreProtocol.png')
+  if (track === 'Cypherpunk & Privacy') return socialAssetDataUrl('dc7/tracks/Cypherpunk.png')
+  if (track === 'Usability') return socialAssetDataUrl('dc7/tracks/Usability.png')
+  if (track === 'Real World Ethereum') return socialAssetDataUrl('dc7/tracks/RealWorldEthereum.png')
+  if (track === 'Applied Cryptography') return socialAssetDataUrl('dc7/tracks/AppliedCryptography.png')
+  if (track === 'Cryptoeconomics') return socialAssetDataUrl('dc7/tracks/CryptoEconomics.png')
+  if (track === 'Coordination') return socialAssetDataUrl('dc7/tracks/Coordination.png')
+  if (track === 'Developer Experience') return socialAssetDataUrl('dc7/tracks/DeveloperExperience.png')
+  if (track === 'Security') return socialAssetDataUrl('dc7/tracks/Security.png')
+  if (track === 'Layer 2') return socialAssetDataUrl('dc7/tracks/Layer2.png')
+  if (track === 'Entertainment') return socialAssetDataUrl('dc7/tracks/Entertainment.png')
+
+  return socialAssetDataUrl('dc7/tracks/RealWorldEthereum.png')
 }
 
 export function getTrackColor(track?: string) {

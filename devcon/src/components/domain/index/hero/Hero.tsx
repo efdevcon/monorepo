@@ -165,8 +165,10 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   let imageUrl = props.imageUrl ?? `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
-  if (props.speakerMode) {
-    imageUrl = `https://devcon.org/api/social/schedule/${props.talk?.id}`
+  if (props.speakerMode && !props.imageUrl) {
+    // Trailing slash matters: devcon.org 308s bare paths, and social crawlers
+    // don't always follow redirects on og:image.
+    imageUrl = `https://devcon.org/api/social/schedule/${props.talk?.id}/`
   }
 
   let twitterShare = `I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`
@@ -190,6 +192,10 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
         <SEO
           title="Join me"
           separator="@"
+          // These share pages are SEA-era (ticket + speaker cards); without
+          // this the title suffix follows the current site branding and reads
+          // "Join me @ Devcon 8 India" on Devcon 7 talks.
+          siteTitle="Devcon SEA"
           description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
           imageUrl={imageUrl}
         />

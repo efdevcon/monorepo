@@ -57,6 +57,7 @@ export class DevconApiProvider extends BaseProvider {
           ? this.stampEvent({ id: s, name: s }, this.dataset.eventId)
           : this.mapSpeaker(s, this.dataset.eventId)
       ),
+      featured: raw.featured === true ? true : undefined,
       tags: typeof raw.tags === "string"
         ? raw.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
         : raw.tags ?? [],
@@ -189,6 +190,7 @@ export class DevconApiProvider extends BaseProvider {
       title: data.title || undefined,
       startDate: data.startDate || undefined,
       endDate: data.endDate || undefined,
+      featuredSpeakers: Array.isArray(data.featuredSpeakers) ? data.featuredSpeakers : undefined,
     });
   }
 }

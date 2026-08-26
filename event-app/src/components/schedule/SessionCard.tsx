@@ -39,6 +39,7 @@ export function SessionCard({
   const theme = getTrackTheme(session.track);
   const badge = trackBadgeLabel(session.track);
   const keynote = isKeynoteSession(session);
+  const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
 
@@ -97,6 +98,11 @@ export function SessionCard({
             {keynote && !compact && (
               <span className="hidden shrink-0 rounded-[4px] bg-dc-keynote px-1.5 py-0.5 text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
                 Keynote
+              </span>
+            )}
+            {featured && !compact && (
+              <span className="hidden shrink-0 rounded-[4px] bg-dc-featured px-1.5 py-0.5 text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
+                Featured
               </span>
             )}
           </div>
@@ -158,9 +164,18 @@ export function SessionCard({
       </div>
 
       {/* Mobile: absolute corner badges */}
-      {keynote && (
-        <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-keynote px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg lg:hidden">
-          Keynote
+      {(featured || keynote) && (
+        <span
+          className={cn(
+            featured ? "bg-dc-featured" : "bg-dc-keynote",
+            "absolute right-0 top-0 rounded-bl-[2px] px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
+            // Compact 2-up desktop cells drop the inline chips (Figma 4325),
+            // so the corner badge steps in there — Featured must always be
+            // visible. Keynote keeps the Figma behavior (mobile corner only).
+            featured && compact ? "" : "lg:hidden"
+          )}
+        >
+          {featured ? "Featured" : "Keynote"}
         </span>
       )}
       <span

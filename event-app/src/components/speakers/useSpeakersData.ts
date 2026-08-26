@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useSessions, useSpeakers } from "@/data/hooks";
+import { useEvent, useSessions, useSpeakers } from "@/data/hooks";
 import type { Session, Speaker } from "@/data/models";
 import { deriveTopicOptions } from "@/data/topics";
 import { isKeynoteSession } from "@/components/schedule/utils";
@@ -21,8 +21,9 @@ export interface DecoratedSpeaker {
   tags: string[];
   /** Distinct session types (drives the format tabs). */
   types: string[];
-  /** Has at least one keynote session. */
-  isKeynote: boolean;
+  /** Featured speaker: has a session with Pretalx's is_featured flag, or (as
+   * fallback while nothing is flagged, e.g. the DC7 dataset) a keynote. */
+  isFeatured: boolean;
   /** Grouping letter: uppercased first character, "#" for non A–Z. */
   letter: string;
 }
@@ -55,6 +56,9 @@ export function useSpeakersData() {
     isLoading: sessionsLoading,
     error: sessionsError,
   } = useSessions();
+  // Event record carries the organizer-curated featured speaker ids; the
+  // event fetch is cached like everything else, so no extra loading state.
+  const { event } = useEvent();
 
   // One memo for every derived collection: list consumers feed these straight
   // into their own memos, so identity churn here would re-filter the whole
@@ -77,6 +81,12 @@ export function useSpeakersData() {
       if (session.type) typeSet.add(session.type);
     }
 
+    // Event-level curation (Pretalx "Featured speaker" question) wins when
+    // present; otherwise fall back to speakers with featured/keynote sessions.
+    const featuredIds = event?.featuredSpeakers?.length
+      ? new Set(event.featuredSpeakers)
+      : null;
+
     const decorated: DecoratedSpeaker[] = speakers
       .map((speaker) => {
         const own = (bySpeakerId.get(speaker.id) ?? []).sort(
@@ -98,7 +108,9 @@ export function useSpeakersData() {
           sessionCount: own.length,
           tags,
           types,
-          isKeynote: own.some(isKeynoteSession),
+          isFeatured: featuredIds
+            ? featuredIds.has(speaker.id)
+            : own.some((s) => s.featured === true || isKeynoteSession(s)),
           letter: letterFor(speaker.name),
         };
       })
@@ -114,7 +126,7 @@ export function useSpeakersData() {
     const typeOptions = [...typeSet].sort((a, b) => a.localeCompare(b));
 
     return { decorated, byId, topicOptions, typeOptions };
-  }, [speakers, sessions]);
+  }, [speakers, sessions, event]);
 
   // The join needs BOTH halves: loading until each list has data (otherwise
   // a speakers-first resolve renders every card as "0 sessions" with empty
