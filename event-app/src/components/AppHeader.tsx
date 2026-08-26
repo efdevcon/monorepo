@@ -86,8 +86,9 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
 
   return (
     <header className="sticky top-0 z-30 font-heading">
-      {/* Mobile: 56px glass bar with page title */}
-      <div className="flex min-h-14 items-center justify-between border-b border-dc-hairline bg-white/75 px-4 py-3 backdrop-blur-[4px] lg:hidden">
+      {/* Mobile: 56px glass bar with page title. pt/min-h grow by --safe-top
+          so the glass itself covers the iOS status-bar strip. */}
+      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:hidden">
         <div className="flex min-w-0 items-center gap-2">
           {back ? (
             <BackButton
@@ -122,8 +123,9 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           the bar rather than growing the header. */}
       <div id={HEADER_DRAWER_ID} className="absolute inset-x-0 top-full lg:hidden" />
 
-      {/* Desktop: full-bleed glass bar, content centered at ~1440px */}
-      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 py-3 backdrop-blur-[4px] lg:block xl:px-16">
+      {/* Desktop: full-bleed glass bar, content centered at ~1440px.
+          --safe-top matters here too (iPad PWA). */}
+      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:block xl:px-16">
         <div className="mx-auto flex w-full max-w-[1440px] items-center gap-10">
         <Link href="/" prefetch className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}

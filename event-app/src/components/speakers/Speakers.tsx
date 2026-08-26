@@ -507,7 +507,7 @@ export function Speakers() {
               // z-[21]: one above the fixed A–Z rail (z-20), which is later in
               // DOM order and would otherwise paint its lavender strip over
               // the tab bar's right fade whenever the two touch.
-              className="sticky top-14 z-[21] border-b border-dc-hairline lg:top-[65px]"
+              className="sticky top-[calc(3.5rem+var(--safe-top))] z-[21] border-b border-dc-hairline lg:top-[calc(65px+var(--safe-top))]"
             >
               {/* Left padding only — the pill strip scrolls to the card's
                   right edge behind TopicPills' white fade. Pinned, the bar
@@ -716,7 +716,7 @@ export function Speakers() {
             inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
-              "sticky top-[81px] hidden shrink-0 overflow-hidden lg:block",
+              "sticky top-[calc(81px+var(--safe-top))] hidden shrink-0 overflow-hidden lg:block",
               "transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
             )}
           >

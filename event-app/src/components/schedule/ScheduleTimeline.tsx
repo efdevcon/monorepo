@@ -193,7 +193,7 @@ export function ScheduleTimeline({
   return (
     <div
       ref={scrollRef}
-      className="scroll-mt-[112px] overflow-x-auto rounded-xl border border-dc-hairline bg-white [scrollbar-width:thin] lg:scroll-mt-[80px]"
+      className="scroll-mt-[calc(112px+var(--safe-top))] overflow-x-auto rounded-xl border border-dc-hairline bg-white [scrollbar-width:thin] lg:scroll-mt-[calc(80px+var(--safe-top))]"
     >
       <div style={{ width: ROOM_COL + gridWidth }} className="relative">
         {/* Time-axis header */}

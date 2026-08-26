@@ -46,8 +46,7 @@ import { getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   useIsDesktop,
   isDesktopNow,
-  HEADER_OFFSET_DESKTOP,
-  HEADER_OFFSET_MOBILE,
+  headerOffsetNow,
 } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
@@ -308,10 +307,9 @@ function GroupHeader({
     // The sentinel marks the header's natural position: once it crosses
     // above the pin line (1px past the breakpoint's sticky top offset =
     // app header + day-tab strip, see the sticky top-[103px]/[118px]),
-    // the header is stuck.
-    const pinLine = isDesktop
-      ? HEADER_OFFSET_DESKTOP + 54
-      : HEADER_OFFSET_MOBILE + 48;
+    // the header is stuck. headerOffsetNow() carries the iOS status-bar
+    // inset, matching the +var(--safe-top) in those sticky classes.
+    const pinLine = headerOffsetNow() + (isDesktop ? 54 : 48);
     const observer = new IntersectionObserver(
       ([entry]) =>
         setStuck(
@@ -329,7 +327,8 @@ function GroupHeader({
       <header
         className={cn(
           "flex items-center justify-between gap-3",
-          !inPanel && "sticky top-[103px] z-10 lg:top-[118px]",
+          !inPanel &&
+            "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(118px+var(--safe-top))]",
           // Every pinned header gets 4px 0 padding for breathing room,
           // offset by negative margins so flow height stays put (no 8px
           // content jump at the pin; the section is flex-col so the
@@ -600,7 +599,8 @@ export function Schedule() {
       // instead of collapsing with the card list's top margin.
       className={cn(
         "flex flex-col",
-        !opts.inPanel && "scroll-mt-[112px] lg:scroll-mt-[127px]"
+        !opts.inPanel &&
+          "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]"
       )}
     >
       <GroupHeader group={group} inPanel={!!opts.inPanel} />
@@ -828,7 +828,7 @@ export function Schedule() {
             inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
-              "sticky top-[81px] hidden shrink-0 overflow-hidden lg:block",
+              "sticky top-[calc(81px+var(--safe-top))] hidden shrink-0 overflow-hidden lg:block",
               "transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
             )}
           >

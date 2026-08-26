@@ -36,13 +36,30 @@ export function isDesktopNow(): boolean {
 /**
  * App-header heights (px) — the sticky offsets every pinned row and scroll
  * measurement hangs off. Tailwind classes can't consume these, so the
- * matching `top-14` / `lg:top-[65px]` (and derived scroll-mt) classes across
- * schedule/speakers must move in lockstep if these ever change.
+ * matching `top-[calc(3.5rem+var(--safe-top))]` / lg 65px (and derived
+ * scroll-mt) classes across schedule/speakers must move in lockstep if these
+ * ever change. They exclude the iOS status-bar inset — use headerOffsetNow()
+ * (which adds safeTopNow()) for anything measured against the viewport.
  */
 export const HEADER_OFFSET_MOBILE = 56;
 export const HEADER_OFFSET_DESKTOP = 65;
 
+/**
+ * JS mirror of the --safe-top CSS variable (globals.css): the iOS status-bar
+ * inset the header grows by in the installed PWA, 0 everywhere else.
+ */
+export function safeTopNow(): number {
+  return (
+    parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue("--safe-top")
+    ) || 0
+  );
+}
+
 /** The current breakpoint's header offset, for scroll-position math. */
 export function headerOffsetNow(): number {
-  return isDesktopNow() ? HEADER_OFFSET_DESKTOP : HEADER_OFFSET_MOBILE;
+  return (
+    (isDesktopNow() ? HEADER_OFFSET_DESKTOP : HEADER_OFFSET_MOBILE) +
+    safeTopNow()
+  );
 }

@@ -35,6 +35,15 @@
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
 
+:root {
+  /* iOS status-bar inset (non-zero only in the installed PWA, where
+     black-translucent + viewport-fit=cover make the page full-bleed). Every
+     header-relative offset — the header's own padding, sticky tops, scroll
+     margins, and the JS mirror safeTopNow() (useIsDesktop.ts) — adds this so
+     the chrome stays calibrated whether or not the strip exists. */
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
 html {
   /* Hide the native scrollbar (we render our own overlay scrollbar). This takes
      no layout space, so the width never changes when scrollable content

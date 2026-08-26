@@ -45,7 +45,12 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    // black-translucent is the only mode where iOS lets the page draw under
+    // the status bar (and the only one where env(safe-area-inset-top) is
+    // non-zero) — with "default" the OS paints that strip opaque white above
+    // the web view, clashing with the header's glass. The header pads itself
+    // by --safe-top (globals.css) so its blur fills the strip instead.
+    statusBarStyle: "black-translucent",
     title: APP_CONFIG.APP_NAME,
   },
 };
