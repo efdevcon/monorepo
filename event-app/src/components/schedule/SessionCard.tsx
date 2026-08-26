@@ -166,10 +166,14 @@ export function SessionCard({
       {/* Mobile: absolute corner badges */}
       {(featured || keynote) && (
         <span
-          className={
-            (featured ? "bg-dc-featured" : "bg-dc-keynote") +
-            " absolute right-0 top-0 rounded-bl-[2px] px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg lg:hidden"
-          }
+          className={cn(
+            featured ? "bg-dc-featured" : "bg-dc-keynote",
+            "absolute right-0 top-0 rounded-bl-[2px] px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
+            // Compact 2-up desktop cells drop the inline chips (Figma 4325),
+            // so the corner badge steps in there — Featured must always be
+            // visible. Keynote keeps the Figma behavior (mobile corner only).
+            featured && compact ? "" : "lg:hidden"
+          )}
         >
           {featured ? "Featured" : "Keynote"}
         </span>

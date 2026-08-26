@@ -86,7 +86,7 @@ export const SpeakerCard = memo(function SpeakerCard({
           </span>
           {/* Desktop: inline badge next to the name */}
           {isFeatured && (
-            <span className="hidden shrink-0 rounded-[4px] bg-dc-keynote px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
+            <span className="hidden shrink-0 rounded-[4px] bg-dc-featured px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
               Featured
             </span>
           )}
@@ -139,7 +139,7 @@ export const SpeakerCard = memo(function SpeakerCard({
 
       {/* Mobile: absolute corner badge (mobile SessionCard grammar) */}
       {isFeatured && (
-        <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-keynote px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg lg:hidden">
+        <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-featured px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg lg:hidden">
           Featured
         </span>
       )}
