@@ -8,15 +8,21 @@ import { SearchInput } from "@/components/SearchInput";
 
 /** Structural ref type — see SearchInput.tsx for why this isn't React.Ref. */
 type InputRef = { current: HTMLInputElement | null };
+type DrawerRef = { current: HTMLDivElement | null };
+
+/** aria-controls target for the header search buttons. */
+export const HEADER_SEARCH_PANEL_ID = "header-search-panel";
 
 /**
  * Mobile search drawer, portaled into the header's fold-out slot
  * (#header-drawer). The content stays mounted while collapsed (grid-rows,
  * not unmount): iOS Safari only raises the on-screen keyboard for a focus()
- * call made synchronously inside a user gesture, so the page's toggle
- * handler must be able to focus the input the moment it flips `open` —
- * a 0-height overflow-hidden input is still focusable, an unmounted one
- * is not.
+ * call made synchronously inside a user gesture, so the toggle handler
+ * (useHeaderSearch) must be able to focus the input the moment it flips
+ * `open` — a 0-height overflow-hidden input is still focusable, an unmounted
+ * one is not. While collapsed the wrapper is `inert`, keeping the invisible
+ * input (and its clear ×) out of the tab order and the a11y tree; the hook
+ * lifts the attribute synchronously before focusing.
  */
 export function HeaderSearchDrawer({
   open,
@@ -25,6 +31,7 @@ export function HeaderSearchDrawer({
   onChange,
   placeholder,
   inputRef,
+  drawerRef,
 }: {
   open: boolean;
   onClose: () => void;
@@ -32,6 +39,8 @@ export function HeaderSearchDrawer({
   onChange: (v: string) => void;
   placeholder?: string;
   inputRef: InputRef;
+  /** From useHeaderSearch — the wrapper whose `inert` the hook lifts. */
+  drawerRef: DrawerRef;
 }) {
   const [target, setTarget] = useState<Element | null>(null);
   useEffect(() => {
@@ -43,6 +52,9 @@ export function HeaderSearchDrawer({
     <>
       {createPortal(
         <div
+          id={HEADER_SEARCH_PANEL_ID}
+          ref={drawerRef}
+          inert={!open || undefined}
           className={cn(
             // 200ms in / 150ms out (exits run faster): the house 300ms sheet
             // timing read as sluggish on a fold-out this small.

@@ -11,6 +11,7 @@ import {
   headerCircleActive,
 } from "@/components/AppHeader";
 import { HeaderSearchDrawer } from "@/components/HeaderSearchDrawer";
+import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
@@ -161,8 +162,7 @@ export function Speakers() {
     null
   );
   const [topicSheetOpen, setTopicSheetOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const headerSearch = useHeaderSearch();
   const letterRefs = useRef(new Map<string, HTMLElement | null>());
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const stickyRowsRef = useRef<HTMLDivElement | null>(null);
@@ -170,19 +170,6 @@ export function Speakers() {
   const asideRef = useRef<HTMLElement | null>(null);
   const [rowsStuck, setRowsStuck] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-
-  const toggleSearch = () => {
-    const next = !searchOpen;
-    setSearchOpen(next);
-    // Focus synchronously inside the tap gesture: iOS Safari only raises the
-    // on-screen keyboard for a focus() call made during a user gesture — a
-    // focus deferred to an effect gets a caret but no keyboard. The input is
-    // mounted-but-collapsed, so it's focusable before the drawer animates
-    // open; preventScroll stops the browser yanking the overflow-hidden
-    // wrapper's scrollTop to reveal it.
-    if (next) mobileSearchInputRef.current?.focus({ preventScroll: true });
-    else mobileSearchInputRef.current?.blur();
-  };
 
   const clearTopics = useCallback(() => {
     // toggleTopic uses functional updates, so successive calls compose.
@@ -466,24 +453,22 @@ export function Speakers() {
   return (
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
-        searchOpen={searchOpen}
-        searchActive={searchOpen || search.trim().length > 0}
-        onToggleSearch={toggleSearch}
+        searchOpen={headerSearch.searchOpen}
+        searchActive={headerSearch.searchOpen || search.trim().length > 0}
+        onToggleSearch={headerSearch.toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         filterCount={topics.length}
         onOpenFilters={() => setTopicSheetOpen(true)}
       />
       <HeaderSearchDrawer
-        open={searchOpen}
-        onClose={() => {
-          setSearchOpen(false);
-          mobileSearchInputRef.current?.blur();
-        }}
+        open={headerSearch.searchOpen}
+        onClose={headerSearch.closeSearch}
         value={search}
         onChange={setSearch}
         placeholder="Find a speaker"
-        inputRef={mobileSearchInputRef}
+        inputRef={headerSearch.inputRef}
+        drawerRef={headerSearch.drawerRef}
       />
 
       <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">

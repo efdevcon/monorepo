@@ -30,6 +30,7 @@ import {
   headerCircleActive,
 } from "@/components/AppHeader";
 import { HeaderSearchDrawer } from "@/components/HeaderSearchDrawer";
+import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
@@ -425,26 +426,12 @@ export function Schedule() {
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
     null
   );
-  const [searchOpen, setSearchOpen] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
-  const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const headerSearch = useHeaderSearch();
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
-
-  const toggleSearch = () => {
-    const next = !searchOpen;
-    setSearchOpen(next);
-    // Focus synchronously inside the tap gesture: iOS Safari only raises the
-    // on-screen keyboard for a focus() call made during a user gesture — a
-    // focus deferred to an effect gets a caret but no keyboard. The input is
-    // mounted-but-collapsed, so it's focusable before the drawer animates
-    // open; preventScroll stops the browser yanking the overflow-hidden
-    // wrapper's scrollTop to reveal it.
-    if (next) mobileSearchInputRef.current?.focus({ preventScroll: true });
-    else mobileSearchInputRef.current?.blur();
-  };
 
   // Desktop side panel selection, mirrored to ?session= for shareability.
   const selectSession = useCallback((id: string | null) => {
@@ -638,9 +625,9 @@ export function Schedule() {
   return (
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
-        searchOpen={searchOpen}
-        searchActive={searchOpen || search.trim().length > 0}
-        onToggleSearch={toggleSearch}
+        searchOpen={headerSearch.searchOpen}
+        searchActive={headerSearch.searchOpen || search.trim().length > 0}
+        onToggleSearch={headerSearch.toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         onJumpToNow={jumpToNow}
@@ -648,15 +635,13 @@ export function Schedule() {
         onOpenFilters={openFilters}
       />
       <HeaderSearchDrawer
-        open={searchOpen}
-        onClose={() => {
-          setSearchOpen(false);
-          mobileSearchInputRef.current?.blur();
-        }}
+        open={headerSearch.searchOpen}
+        onClose={headerSearch.closeSearch}
         value={search}
         onChange={setSearch}
         placeholder="Search by session, speaker or topic"
-        inputRef={mobileSearchInputRef}
+        inputRef={headerSearch.inputRef}
+        drawerRef={headerSearch.drawerRef}
       />
 
       <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
