@@ -88,6 +88,17 @@ export function isNavActive(pathname: string, href: string): boolean {
 }
 
 /**
+ * Mobile detail views (session / speaker details) hide the bottom bar so
+ * they read as focused, single-purpose screens — the header back arrow is
+ * the way out. The layout also trims its nav clearance on these routes.
+ */
+export function isDetailView(pathname: string): boolean {
+  return (
+    pathname.startsWith("/schedule/") || pathname.startsWith("/speakers/")
+  );
+}
+
+/**
  * Mobile bottom tab bar (Figma "Dev Handoff" / "tab bar idea 2"): a
  * full-width translucent glass bar docked to the bottom edge, top corners
  * rounded, shadow cast upward; the active tab is a purple pill chip.
@@ -96,8 +107,8 @@ export function isNavActive(pathname: string, href: string): boolean {
 export function Nav() {
   const pathname = usePathname();
 
-  // No nav on the full-screen room-screen kiosk.
-  if (pathname.startsWith("/room-screens/")) {
+  // No nav on the full-screen room-screen kiosk or on mobile detail views.
+  if (pathname.startsWith("/room-screens/") || isDetailView(pathname)) {
     return null;
   }
 

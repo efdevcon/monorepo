@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
-import { Nav } from "@/components/Nav";
+import cn from "classnames";
+import { Nav, isDetailView } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
 
@@ -24,8 +25,17 @@ export default function PageLayout({
       <div className="app-bg" aria-hidden />
       <AppHeader onOpenAI={() => setDevaBotOpen(true)} />
       {/* `section` restrains content width (centered column + gutters);
-          bottom padding on mobile clears the floating nav bar. */}
-      <div className="section pb-28 lg:pb-0">{children}</div>
+          bottom padding on mobile clears the bottom nav bar — except on
+          detail views, where the bar is hidden and a slimmer breathing
+          space is enough. */}
+      <div
+        className={cn(
+          "section lg:pb-0",
+          isDetailView(pathname) ? "pb-8" : "pb-28"
+        )}
+      >
+        {children}
+      </div>
       <Nav />
       {!isKiosk && (
         <DevaBot
