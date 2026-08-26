@@ -29,6 +29,12 @@ const nextConfig = {
   images: {
     domains: [
       'speak.devcon.org',
+      // Speaker avatars moved to our Supabase bucket (2026-08-25 mirror);
+      // without this the optimizer 400s every avatar on the live app.
+      'mealmslwugsqqyoesrxd.supabase.co',
+      // The mirror fails open to the pretalx-hosted original if the bucket
+      // upload ever fails, so allow the live pretalx host as well.
+      'cfp.devcon.org',
       'avatars.githubusercontent.com',
       'camo.githubusercontent.com',
       'blog.ethereum.org',
