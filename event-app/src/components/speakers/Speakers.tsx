@@ -4,12 +4,15 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CircleX, ListFilter, Search, Star } from "lucide-react";
 import cn from "classnames";
-import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
-import { InterestedPill } from "@/components/ActionPills";
 import {
-  SearchInput,
-  scrollToTopAndFocusSearch,
-} from "@/components/SearchInput";
+  HEADER_ACTIONS_ID,
+  headerCircle,
+  headerCircleResting,
+  headerCircleActive,
+} from "@/components/AppHeader";
+import { HeaderSearchDrawer } from "@/components/HeaderSearchDrawer";
+import { InterestedPill } from "@/components/ActionPills";
+import { SearchInput } from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import {
   useIsDesktop,
@@ -36,31 +39,25 @@ const PANEL_SLOT_W = 376;
  *  65 + this, or the two ends drift apart. */
 const PANEL_EDGE_GAP = 16;
 
-/** Circular 32px glass icon button used in the app header (Figma). Border
- *  and fill are applied per-usage (resting vs active) — Tailwind resolves
- *  same-property conflicts by stylesheet order, not class order, so an
- *  appended active bg-* could not reliably override one baked in here. */
-const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
-const headerCircleResting = "border-dc-hairline bg-white";
-const headerCircleActive = "border-dc-purple bg-dc-lavender";
-
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target (mobile):
- * the scroll-revealed search and interested circles and the topic-filter
- * button with its active count bubble. The star stays filled (matching
- * InterestedPill); the lavender circle fill carries the active state.
+ * the search and interested circles and the topic-filter button with its
+ * active count bubble. The star stays filled (matching InterestedPill); the
+ * lavender circle fill carries the active state — on the search button it
+ * signals both "drawer open" and "query applied with the drawer closed".
  */
 function HeaderActions({
-  revealed,
-  onSearch,
+  searchOpen,
+  searchActive,
+  onToggleSearch,
   interestedOnly,
   onToggleInterested,
   filterCount,
   onOpenFilters,
 }: {
-  revealed: boolean;
-  onSearch: () => void;
+  searchOpen: boolean;
+  searchActive: boolean;
+  onToggleSearch: () => void;
   interestedOnly: boolean;
   onToggleInterested: () => void;
   filterCount: number;
@@ -77,12 +74,12 @@ function HeaderActions({
       {createPortal(
         <>
           <button
-            onClick={onSearch}
+            onClick={onToggleSearch}
             aria-label="Search speakers"
+            aria-expanded={searchOpen}
             className={cn(
               headerCircle,
-              headerCircleResting,
-              !revealed && "pointer-events-none opacity-0"
+              searchActive ? headerCircleActive : headerCircleResting
             )}
           >
             <Search className="size-4 text-dc-purple" />
@@ -93,16 +90,7 @@ function HeaderActions({
             aria-pressed={interestedOnly}
             className={cn(
               headerCircle,
-              interestedOnly ? headerCircleActive : headerCircleResting,
-              // Hidden only while it would duplicate the on-screen pill. Once
-              // the filter is ON it stays put even unrevealed, because it is
-              // then the active-state indicator *and* the way to clear it:
-              // filtering to interested-only empties the list for anyone with
-              // no stars yet, which collapses the page back to the top and
-              // would otherwise fade out the very control just pressed (it
-              // read as "the star does nothing"). Same rule as the topic
-              // filter button, which is never gated for carrying state.
-              !revealed && !interestedOnly && "pointer-events-none opacity-0"
+              interestedOnly ? headerCircleActive : headerCircleResting
             )}
           >
             <Star className="size-4 text-dc-purple" fill="currentColor" />
@@ -173,8 +161,7 @@ export function Speakers() {
     null
   );
   const [topicSheetOpen, setTopicSheetOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const searchBlockRef = useRef<HTMLDivElement | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
   const letterRefs = useRef(new Map<string, HTMLElement | null>());
   const mainCardRef = useRef<HTMLDivElement | null>(null);
@@ -184,17 +171,18 @@ export function Speakers() {
   const [rowsStuck, setRowsStuck] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  // Reveal the header's star circle once the search block scrolls away.
-  useEffect(() => {
-    const el = searchBlockRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { rootMargin: "-56px 0px 0px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const toggleSearch = () => {
+    const next = !searchOpen;
+    setSearchOpen(next);
+    // Focus synchronously inside the tap gesture: iOS Safari only raises the
+    // on-screen keyboard for a focus() call made during a user gesture — a
+    // focus deferred to an effect gets a caret but no keyboard. The input is
+    // mounted-but-collapsed, so it's focusable before the drawer animates
+    // open; preventScroll stops the browser yanking the overflow-hidden
+    // wrapper's scrollTop to reveal it.
+    if (next) mobileSearchInputRef.current?.focus({ preventScroll: true });
+    else mobileSearchInputRef.current?.blur();
+  };
 
   const clearTopics = useCallback(() => {
     // toggleTopic uses functional updates, so successive calls compose.
@@ -478,14 +466,24 @@ export function Speakers() {
   return (
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
-        revealed={scrolled}
-        onSearch={() =>
-          scrollToTopAndFocusSearch(mobileSearchInputRef.current)
-        }
+        searchOpen={searchOpen}
+        searchActive={searchOpen || search.trim().length > 0}
+        onToggleSearch={toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         filterCount={topics.length}
         onOpenFilters={() => setTopicSheetOpen(true)}
+      />
+      <HeaderSearchDrawer
+        open={searchOpen}
+        onClose={() => {
+          setSearchOpen(false);
+          mobileSearchInputRef.current?.blur();
+        }}
+        value={search}
+        onChange={setSearch}
+        placeholder="Find a speaker"
+        inputRef={mobileSearchInputRef}
       />
 
       <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
@@ -501,28 +499,6 @@ export function Speakers() {
             ref={mainCardRef}
             className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
           >
-            {/* Mobile: search + actions block (scrolls away) */}
-            <div
-              ref={searchBlockRef}
-              // pr-12 = the fixed rail's 32px gutter + a 16px gap, so the
-              // right-aligned Interested pill is never clipped (or partly
-              // untappable) under the rail at the top of the page.
-              className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 pr-12 lg:hidden"
-            >
-              <SearchInput
-                value={search}
-                onChange={setSearch}
-                placeholder="Find a speaker"
-                inputRef={mobileSearchInputRef}
-              />
-              <div className="flex items-center justify-end">
-                <InterestedPill
-                  active={interestedOnly}
-                  onToggle={() => setInterestedOnly((v) => !v)}
-                />
-              </div>
-            </div>
-
             {/* Header rows, sticky under the app header: the desktop search +
                 topic toolbar (Figma "Top Bar") and the format tabs. Mobile
                 filters topics via the header button + bottom sheet instead. */}

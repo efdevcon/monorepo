@@ -23,12 +23,15 @@ import {
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
-import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
-import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import {
-  SearchInput,
-  scrollToTopAndFocusSearch,
-} from "@/components/SearchInput";
+  HEADER_ACTIONS_ID,
+  headerCircle,
+  headerCircleResting,
+  headerCircleActive,
+} from "@/components/AppHeader";
+import { HeaderSearchDrawer } from "@/components/HeaderSearchDrawer";
+import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
 import { ScheduleTimeline } from "./ScheduleTimeline";
@@ -57,33 +60,26 @@ const PANEL_SLOT_W = 376;
  *  so both ends of the panel match (same recipe as Speakers.tsx). */
 const PANEL_EDGE_GAP = 16;
 
-/** Circular 32px glass icon button used in the app header (Figma). Border
- *  and fill are applied per-usage (resting vs active) — Tailwind resolves
- *  same-property conflicts by stylesheet order, not class order, so an
- *  appended active bg-* could not reliably override one baked in here. */
-const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
-const headerCircleResting = "border-dc-hairline bg-white";
-const headerCircleActive = "border-dc-purple bg-dc-lavender";
-
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target:
- * scroll-revealed search + jump-to-now + interested circles, and the filter
- * button with its active count bubble — same left-to-right order as the
- * top-of-page action row. The star stays filled (matching InterestedPill);
- * the lavender circle fill carries the active state.
+ * search + jump-to-now + interested circles, and the filter button with its
+ * active count bubble. The star stays filled (matching InterestedPill); the
+ * lavender circle fill carries the active state — on the search button it
+ * signals both "drawer open" and "query applied with the drawer closed".
  */
 function HeaderActions({
-  revealed,
-  onSearch,
+  searchOpen,
+  searchActive,
+  onToggleSearch,
   interestedOnly,
   onToggleInterested,
   onJumpToNow,
   filterCount,
   onOpenFilters,
 }: {
-  revealed: boolean;
-  onSearch: () => void;
+  searchOpen: boolean;
+  searchActive: boolean;
+  onToggleSearch: () => void;
   interestedOnly: boolean;
   onToggleInterested: () => void;
   onJumpToNow: () => void;
@@ -101,12 +97,12 @@ function HeaderActions({
       {createPortal(
     <>
       <button
-        onClick={onSearch}
+        onClick={onToggleSearch}
         aria-label="Search sessions"
+        aria-expanded={searchOpen}
         className={cn(
           headerCircle,
-          headerCircleResting,
-          !revealed && "pointer-events-none opacity-0"
+          searchActive ? headerCircleActive : headerCircleResting
         )}
       >
         <Search className="size-4 text-dc-purple" />
@@ -114,11 +110,7 @@ function HeaderActions({
       <button
         onClick={onJumpToNow}
         aria-label="Jump to now"
-        className={cn(
-          headerCircle,
-          headerCircleResting,
-          !revealed && "pointer-events-none opacity-0"
-        )}
+        className={cn(headerCircle, headerCircleResting)}
       >
         <ClockArrowDown className="size-4 text-dc-purple" />
       </button>
@@ -128,8 +120,7 @@ function HeaderActions({
         aria-pressed={interestedOnly}
         className={cn(
           headerCircle,
-          interestedOnly ? headerCircleActive : headerCircleResting,
-          !revealed && "pointer-events-none opacity-0"
+          interestedOnly ? headerCircleActive : headerCircleResting
         )}
       >
         <Star className="size-4 text-dc-purple" fill="currentColor" />
@@ -428,26 +419,26 @@ export function Schedule() {
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
     null
   );
-  const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
-  const searchBlockRef = useRef<HTMLDivElement | null>(null);
   const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
-  // Reveal the header's star/jump buttons once the search block scrolls away.
-  useEffect(() => {
-    const el = searchBlockRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { rootMargin: `-${HEADER_OFFSET_MOBILE}px 0px 0px 0px` }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const toggleSearch = () => {
+    const next = !searchOpen;
+    setSearchOpen(next);
+    // Focus synchronously inside the tap gesture: iOS Safari only raises the
+    // on-screen keyboard for a focus() call made during a user gesture — a
+    // focus deferred to an effect gets a caret but no keyboard. The input is
+    // mounted-but-collapsed, so it's focusable before the drawer animates
+    // open; preventScroll stops the browser yanking the overflow-hidden
+    // wrapper's scrollTop to reveal it.
+    if (next) mobileSearchInputRef.current?.focus({ preventScroll: true });
+    else mobileSearchInputRef.current?.blur();
+  };
 
   // Desktop side panel selection, mirrored to ?session= for shareability.
   const selectSession = useCallback((id: string | null) => {
@@ -640,15 +631,25 @@ export function Schedule() {
   return (
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
-        revealed={scrolled}
-        onSearch={() =>
-          scrollToTopAndFocusSearch(mobileSearchInputRef.current)
-        }
+        searchOpen={searchOpen}
+        searchActive={searchOpen || search.trim().length > 0}
+        onToggleSearch={toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         onJumpToNow={jumpToNow}
         filterCount={activeFilterCount}
         onOpenFilters={openFilters}
+      />
+      <HeaderSearchDrawer
+        open={searchOpen}
+        onClose={() => {
+          setSearchOpen(false);
+          mobileSearchInputRef.current?.blur();
+        }}
+        value={search}
+        onChange={setSearch}
+        placeholder="Search by session, speaker or topic"
+        inputRef={mobileSearchInputRef}
       />
 
       <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
@@ -664,29 +665,6 @@ export function Schedule() {
             ref={mainCardRef}
             className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
           >
-            {/* Mobile: search + actions block (scrolls away) */}
-            <div
-              ref={searchBlockRef}
-              className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 lg:hidden"
-            >
-              <SearchInput
-                value={search}
-                onChange={setSearch}
-                placeholder="Search by session, speaker or topic"
-                inputRef={mobileSearchInputRef}
-              />
-              <div className="flex items-center justify-between">
-                <button onClick={jumpToNow} className={ghostPill}>
-                  <ClockArrowDown className="size-4" />
-                  Jump to now
-                </button>
-                <InterestedPill
-                  active={interestedOnly}
-                  onToggle={() => setInterestedOnly((v) => !v)}
-                />
-              </div>
-            </div>
-
             {/* Desktop: search + view toggle toolbar */}
             <div className="hidden items-center justify-between gap-3 border-b border-dc-hairline bg-white px-4 py-3 lg:flex lg:rounded-t-xl">
               <SearchInput

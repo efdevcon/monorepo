@@ -10,29 +10,6 @@ type InputRef =
   | { current: HTMLInputElement | null }
   | ((el: HTMLInputElement | null) => void);
 
-/**
- * Header search-icon action: smooth-scroll to the top (where the search bar
- * lives) and focus the input once the scroll settles. Focusing mid-flight
- * would make the browser fight the smooth scroll (it scrolls the focused
- * field into view and iOS opens the keyboard), so wait for "scrollend" with
- * a timeout fallback for browsers without the event or interrupted scrolls.
- */
-export function scrollToTopAndFocusSearch(input: HTMLInputElement | null) {
-  // Focus FIRST, synchronously inside the click gesture: iOS Safari only
-  // raises the on-screen keyboard for a focus() call made during a user
-  // gesture. Waiting for the scroll to finish (scrollend / a timeout) put the
-  // focus outside the gesture, so the field got a caret but no keyboard —
-  // and since the header search button only appears once scrolled, that was
-  // the path every tap took. `preventScroll` stops the focus itself from
-  // yanking the viewport before we scroll deliberately below.
-  input?.focus({ preventScroll: true });
-  // Instant, not smooth: this runs from wherever the user had scrolled to,
-  // and on a list ~98 viewports tall (/speakers) animating the whole way
-  // makes WebKit rasterize everything in between — the cost that was
-  // crashing iOS on rapid A–Z jumps.
-  window.scrollTo({ top: 0, behavior: "auto" });
-}
-
 /** Search input per Figma: 40px white field, purple search glyph, clear "x". */
 export function SearchInput({
   value,
