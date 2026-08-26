@@ -47,13 +47,34 @@ export const HEADER_OFFSET_DESKTOP = 65;
 /**
  * JS mirror of the --safe-top CSS variable (globals.css): the iOS status-bar
  * inset the header grows by in the installed PWA, 0 everywhere else.
+ *
+ * Cached: headerOffsetNow() is called from per-scroll-frame rAF measure
+ * loops (DayTabs' stuck check, the speakers rail/scrollspy), where a
+ * getComputedStyle(document.documentElement) per frame forces a style
+ * recalc across the whole page — on the ~82k-px speakers list that is the
+ * exact workload that used to kill the iOS content process. The inset only
+ * changes with viewport geometry, so the cache invalidates on resize /
+ * orientationchange and re-reads lazily.
  */
+let safeTopCache: number | null = null;
+if (typeof window !== "undefined") {
+  const invalidate = () => {
+    safeTopCache = null;
+  };
+  window.addEventListener("resize", invalidate);
+  window.addEventListener("orientationchange", invalidate);
+}
+
 export function safeTopNow(): number {
-  return (
-    parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue("--safe-top")
-    ) || 0
-  );
+  if (safeTopCache === null) {
+    safeTopCache =
+      parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--safe-top"
+        )
+      ) || 0;
+  }
+  return safeTopCache;
 }
 
 /** The current breakpoint's header offset, for scroll-position math. */
