@@ -116,7 +116,10 @@ export function Nav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0px_-1px_4px_0px_rgba(0,0,0,0.06)] outline outline-1 outline-[rgba(255,255,255,0.67)] backdrop-blur-[6px] lg:hidden"
+      // The 1px hairline is a ring shadow, not a border (no layout space)
+      // and not an outline (outline only follows border-radius from Safari
+      // 16.4 — earlier iOS drew it square around the rounded top corners).
+      className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0_0_0_1px_rgba(255,255,255,0.67),0px_-1px_4px_0px_rgba(0,0,0,0.06)] backdrop-blur-[6px] lg:hidden"
       style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom))" }}
     >
       {items.map((item) => {

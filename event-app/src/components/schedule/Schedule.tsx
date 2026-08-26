@@ -29,7 +29,10 @@ import {
   headerCircleResting,
   headerCircleActive,
 } from "@/components/AppHeader";
-import { HeaderSearchDrawer } from "@/components/HeaderSearchDrawer";
+import {
+  HeaderSearchDrawer,
+  HEADER_SEARCH_PANEL_ID,
+} from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
@@ -56,9 +59,10 @@ type ViewMode = "list" | "timeline";
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
 
-/** Pinned side-panel edge gap: the aside pins at top-[81px], 16px below the
- *  65px desktop header; the bottom keeps the same 16px to the viewport edge
- *  so both ends of the panel match (same recipe as Speakers.tsx). */
+/** Pinned side-panel edge gap: the aside pins at 81px + --safe-top, 16px
+ *  below the 65px desktop header; the bottom keeps the same 16px to the
+ *  viewport edge so both ends of the panel match (same recipe as
+ *  Speakers.tsx). */
 const PANEL_EDGE_GAP = 16;
 
 /**
@@ -101,6 +105,7 @@ function HeaderActions({
         onClick={onToggleSearch}
         aria-label="Search sessions"
         aria-expanded={searchOpen}
+        aria-controls={HEADER_SEARCH_PANEL_ID}
         className={cn(
           headerCircle,
           searchActive ? headerCircleActive : headerCircleResting

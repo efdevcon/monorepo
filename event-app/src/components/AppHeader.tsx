@@ -27,9 +27,11 @@ export const HEADER_DRAWER_ID = "header-drawer";
 /** Circular 32px glass icon button used in the app header (Figma). Border
  *  and fill are applied per-usage (resting vs active) — Tailwind resolves
  *  same-property conflicts by stylesheet order, not class order, so an
- *  appended active bg-* could not reliably override one baked in here. */
+ *  appended active bg-* could not reliably override one baked in here.
+ *  before:-inset-1.5 extends the 32px circle to the 44px touch floor; the
+ *  ±6px extensions exactly meet across the header's 12px gaps. */
 export const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
+  "relative flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity before:absolute before:-inset-1.5 before:content-['']";
 export const headerCircleResting = "border-dc-hairline bg-white";
 export const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
