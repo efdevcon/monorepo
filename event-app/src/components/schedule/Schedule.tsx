@@ -48,6 +48,7 @@ import {
   useIsDesktop,
   isDesktopNow,
   headerOffsetNow,
+  safeTopNow,
 } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
@@ -528,8 +529,9 @@ export function Schedule() {
       const asideTop = aside.getBoundingClientRect().top;
       const cardBottom =
         mainCardRef.current?.getBoundingClientRect().bottom ?? Infinity;
-      // Resting size: 141px natural offset (nav + page title) + edge gap.
-      const defaultRest = viewportH - 141 - PANEL_EDGE_GAP;
+      // Resting size: 141px natural offset (nav + page title) + edge gap,
+      // plus the status-bar inset the sticky top gained (iPad PWA).
+      const defaultRest = viewportH - 141 - safeTopNow() - PANEL_EDGE_GAP;
       const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
       const contentLimit = cardBottom - asideTop;
       aside.style.setProperty(
@@ -561,7 +563,7 @@ export function Schedule() {
     // Same growth var as the details panels: the filter column keeps
     // PANEL_EDGE_GAP to the viewport bottom while pinned. The fallback
     // matches the resting 141px natural offset + that 16px clearance.
-    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px))] min-h-0 flex-col">
+    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px-var(--safe-top)))] min-h-0 flex-col">
       <FilterPanelContent
         options={filterOptions}
         filters={filters}

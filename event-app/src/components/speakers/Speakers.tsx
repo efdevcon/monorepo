@@ -19,6 +19,7 @@ import {
   useIsDesktop,
   isDesktopNow,
   headerOffsetNow,
+  safeTopNow,
 } from "@/hooks/useIsDesktop";
 import { useSpeakersData, type DecoratedSpeaker } from "./useSpeakersData";
 import { useSpeakersState } from "./useSpeakersState";
@@ -396,8 +397,9 @@ export function Speakers() {
       }
 
       if (aside && asideTop !== null) {
-        // Resting size: 141px natural offset (nav + page title) + edge gap.
-        const defaultRest = viewportH - 141 - PANEL_EDGE_GAP;
+        // Resting size: 141px natural offset (nav + page title) + edge gap,
+        // plus the status-bar inset the sticky top gained (iPad PWA).
+        const defaultRest = viewportH - 141 - safeTopNow() - PANEL_EDGE_GAP;
         // Sticky growth target: keep the edge gap to the viewport bottom…
         const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
         // …but never grow past the content column's bottom edge. Without this

@@ -31,7 +31,11 @@ export default function PageLayout({
       <div
         className={cn(
           "section lg:pb-0",
-          isDetailView(pathname) ? "pb-8" : "pb-28"
+          // Detail views hide the nav — the element that otherwise absorbs
+          // the home-indicator inset — so their slimmer padding carries it.
+          isDetailView(pathname)
+            ? "pb-[calc(2rem+env(safe-area-inset-bottom))]"
+            : "pb-28"
         )}
       >
         {children}
