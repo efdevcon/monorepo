@@ -44,8 +44,10 @@ export function HeaderSearchDrawer({
       {createPortal(
         <div
           className={cn(
-            "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
-            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+            // 200ms in / 150ms out (exits run faster): the house 300ms sheet
+            // timing read as sluggish on a fold-out this small.
+            "grid transition-[grid-template-rows] ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
+            open ? "grid-rows-[1fr] duration-200" : "grid-rows-[0fr] duration-150"
           )}
           onKeyDown={(e) => {
             if (e.key === "Escape") onClose();
