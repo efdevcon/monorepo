@@ -20,6 +20,21 @@ export function interFonts() {
   return fonts
 }
 
+// DC8 cards are set in Poppins (Figma: Dev Handoff 5060:6142) — Regular 400 +
+// Bold 700, distinct from the Poppins-500/800 files the site uses elsewhere.
+let poppins: { regular: ArrayBuffer; bold: ArrayBuffer }
+try {
+  poppins = {
+    regular: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Regular.ttf'))),
+    bold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Bold.ttf'))),
+  }
+} catch (error) {
+  throw new Error(`[social-cards] missing Poppins fonts in public/fonts: ${(error as Error).message}`)
+}
+export function poppinsFonts() {
+  return poppins
+}
+
 const MIME: Record<string, string> = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' }
 const dataUrlCache = new Map<string, string>()
 export function socialAssetDataUrl(relPath: string): string {
