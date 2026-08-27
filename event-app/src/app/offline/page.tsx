@@ -53,6 +53,10 @@ export default function OfflinePage() {
         >
           Try again
         </button>
+        {/* Deliberately a hard <a> navigation, not <Link>: this page is the
+            service worker's offline fallback, so client routing is exactly
+            what just failed — a full load retries the network/SW instead. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a
           href="/"
           className="w-full rounded-full border border-[#E1E4EA] py-2.5 font-medium text-gray-600 transition-colors hover:bg-gray-50"

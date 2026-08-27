@@ -61,8 +61,8 @@ function SessionBar({ session }: { session: Session }) {
 
 function SpeakerAvatar({ name, avatar }: { name: string; avatar?: string }) {
   if (avatar) {
-    // eslint-disable-next-line @next/next/no-img-element
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img src={avatar} alt={name} className="h-full w-full rounded-full object-cover" />
     );
   }
