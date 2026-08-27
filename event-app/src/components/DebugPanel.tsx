@@ -128,20 +128,25 @@ export function DebugPanel() {
       <button
         onClick={() => setOpen((o) => !o)}
         title="Debug panel"
-        // Below the 56px app header so it never covers the header's own
-        // action buttons (filter / jump-to-now).
         // Bottom-LEFT, not under the header: top-right sat on top of page
         // content (the /ticket card, the speakers filter rows) and crowded the
-        // A-Z rail. Mobile lifts it clear of the floating nav pill; desktop has
-        // no bottom bar, so it drops to the corner.
-        className="fixed bottom-24 left-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105 lg:bottom-4"
+        // A-Z rail. Mobile lifts it clear of the docked tab bar by the bar's
+        // measured height (--nav-clearance, from Nav.tsx — it varies with the
+        // safe-area inset between browser tab and installed PWA, which is why
+        // a hardcoded offset sat differently in each); where there is no bar
+        // (desktop, detail views) the clearance is 0 and it drops to the
+        // corner. +48 (not +12): the venue map parks its Find button in this
+        // same corner at clearance+12 — the debug tool yields and floats
+        // above it.
+        className="fixed bottom-[calc(var(--nav-clearance)+48px)] left-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105 lg:bottom-4"
       >
         <Bug className="h-5 w-5" />
       </button>
 
       {open && (
         <div // Anchored above the button so it opens upward from the same corner.
-          className="fixed bottom-[152px] left-4 z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl lg:bottom-[72px]">
+          // 48px FAB offset + 44px button + 12px gap.
+          className="fixed bottom-[calc(var(--nav-clearance)+104px)] left-4 z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl lg:bottom-[72px]">
           <p className="mb-3 font-bold">Debug</p>
 
           <div className="mb-3 text-xs text-gray-500">

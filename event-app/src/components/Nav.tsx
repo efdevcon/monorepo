@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
 import {
@@ -106,9 +107,37 @@ export function isDetailView(pathname: string): boolean {
  */
 export function Nav() {
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement | null>(null);
 
   // No nav on the full-screen room-screen kiosk or on mobile detail views.
-  if (pathname.startsWith("/room-screens/") || isDetailView(pathname)) {
+  const hidden =
+    pathname.startsWith("/room-screens/") || isDetailView(pathname);
+
+  // Publish the bar's rendered height as --nav-clearance so bottom-anchored
+  // overlays outside the layout flow (map controls, debug FAB) can sit above
+  // it. Measured, not hardcoded: the height varies between browser tab and
+  // installed PWA with env(safe-area-inset-bottom). 0 wherever the bar isn't
+  // rendered (desktop's lg:hidden, detail views, kiosk), so those overlays
+  // fall back to the screen edge.
+  useEffect(() => {
+    const root = document.documentElement;
+    const el = navRef.current;
+    if (!el) {
+      root.style.setProperty("--nav-clearance", "0px");
+      return;
+    }
+    const publish = () =>
+      root.style.setProperty("--nav-clearance", `${el.offsetHeight}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.setProperty("--nav-clearance", "0px");
+    };
+  }, [hidden]);
+
+  if (hidden) {
     return null;
   }
 
@@ -116,11 +145,16 @@ export function Nav() {
 
   return (
     <nav
+      ref={navRef}
       // The 1px hairline is a ring shadow, not a border (no layout space)
       // and not an outline (outline only follows border-radius from Safari
       // 16.4 — earlier iOS drew it square around the rounded top corners).
       className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0_0_0_1px_rgba(255,255,255,0.67),0px_-1px_4px_0px_rgba(0,0,0,0.06)] backdrop-blur-[6px] lg:hidden"
-      style={{ paddingBottom: "calc(12px + env(safe-area-inset-bottom))" }}
+      // max(), not 12px + inset: the label row already carries 12px of its
+      // own breathing room, so stacking the full home-indicator inset on top
+      // read as dead space in the installed PWA (the inset alone clears the
+      // indicator).
+      style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
     >
       {items.map((item) => {
         const active = isNavActive(pathname, item.href);

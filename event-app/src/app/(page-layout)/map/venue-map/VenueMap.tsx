@@ -600,9 +600,12 @@ export const VenueMap = () => {
         ))} */}
       {/* </div> */}
 
-      {/* Zoom controls */}
+      {/* Zoom controls. bottom clears the docked tab bar (--nav-clearance:
+          its measured height incl. safe-area, from Nav.tsx) + the old 12px
+          gap — the full-width bar covers the screen-bottom strip the old
+          floating pill left open. */}
       <div
-        className="absolute bottom-3 lg:bottom-16 right-3 shadow-xs flex flex-col gap-2 z-10"
+        className="absolute bottom-[calc(var(--nav-clearance)+12px)] lg:bottom-16 right-3 shadow-xs flex flex-col gap-2 z-10"
         onTouchStartCapture={(e) => e.stopPropagation()}
         onPointerDownCapture={(e) => e.stopPropagation()}
       >
@@ -692,7 +695,7 @@ export const VenueMap = () => {
 
       <div
         className={cn(
-          'absolute bottom-2 lg:bottom-[68px] flex justify-center text-white items-center text-center left-0 opacity-80 w-full z-[10] text-[11px] font-bold transition-opacity duration-300',
+          'absolute bottom-[calc(var(--nav-clearance)+8px)] lg:bottom-[68px] flex justify-center text-white items-center text-center left-0 opacity-80 w-full z-[10] text-[11px] font-bold transition-opacity duration-300',
           zoomLevel === 'zoomed-in' && '!opacity-0 pointer-events-none'
         )}
       >

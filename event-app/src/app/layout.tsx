@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { CacheWarmer } from "@/components/CacheWarmer";
+import { IOSViewportHealer } from "@/components/IOSViewportHealer";
 import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
@@ -200,10 +201,11 @@ export default function RootLayout({
           {children}
         </SWRConfigProvider>
         <CustomScrollbar />
+        <IOSViewportHealer />
         <DebugPanel />
         <ServiceWorkerUpdater />
-        {/* mobileOffset lifts bottom toasts clear of the fixed nav pill
-            (24px nav padding + ~50px pill + breathing room, safe-area aware) */}
+        {/* mobileOffset lifts bottom toasts clear of the docked tab bar
+            (--nav-clearance: its measured height, 0 where it isn't shown) */}
         <Toaster
           position="bottom-center"
           richColors
@@ -223,7 +225,7 @@ export default function RootLayout({
             error: <CircleAlert className="size-6 text-dc-red" />,
           }}
           mobileOffset={{
-            bottom: "calc(max(24px, env(safe-area-inset-bottom)) + 64px)",
+            bottom: "calc(var(--nav-clearance, 0px) + 16px)",
           }}
         />
       </body>

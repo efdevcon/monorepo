@@ -43,6 +43,12 @@
      margins, and the JS mirror safeTopNow() (useIsDesktop.ts) — adds this so
      the chrome stays calibrated whether or not the strip exists. */
   --safe-top: env(safe-area-inset-top, 0px);
+  /* Rendered height of the mobile bottom tab bar, published (measured) by
+     Nav.tsx — it varies with env(safe-area-inset-bottom) between browser tab
+     and installed PWA. 0 wherever the bar isn't rendered (desktop, detail
+     views, kiosk). Bottom-anchored overlays outside the layout flow (venue
+     map controls, debug FAB) offset themselves by it. */
+  --nav-clearance: 0px;
 }
 
 html {
@@ -60,6 +66,11 @@ body {
   color: var(--color-foreground);
   background: var(--color-background);
   font-family: var(--font-sans);
+  /* Short pages must still fill the screen: a document shorter than the
+     viewport leaves iOS standalone with nothing to scroll, and WebKit only
+     recomputes stale fixed-element geometry (see IOSViewportHealer) on
+     scroll — an unscrollable page could stay stuck with floating chrome. */
+  min-height: 100dvh;
   /* Greyscale antialiasing to match Figma's rendering and the devcon site
      (devcon/src/assets/css/index.scss) — default subpixel smoothing makes
      Poppins Bold/SemiBold look heavier than the design on macOS/iOS. */
