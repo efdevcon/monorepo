@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Hero } from 'components/domain/index/hero'
 import { SessionSharing } from 'components/domain/session-sharing'
 import { cleanDc8SessionType } from 'services/social-cards/track-images'
-import { APP_CONFIG } from 'utils/config'
+import { isPublicSubmissionState } from 'services/social-cards/submission-state'
 
 /**
  * Shareable speaker-card page, linked from CFP acceptance emails so speakers
@@ -147,12 +147,11 @@ export async function getServerSideProps(context: any) {
   // rather than re-hitting Pretalx on every request.
   context.res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=3600')
 
-  // Acceptance emails link these pages, but only talks the speaker has
-  // CONFIRMED are public. Dev/preview shows any state for testing.
-  // TEMPORARY: devcon8 is exempt while acceptances roll out (2026-08-26) —
-  // re-add it once the CFP confirmation flow is underway by deleting the
-  // `event.pretalxSlug !== 'devcon8'` condition.
-  if (APP_CONFIG.NODE_ENV === 'production' && event.pretalxSlug !== 'devcon8' && data.state !== 'confirmed') {
+  // Only talks we have actually accepted are public — an unannounced,
+  // rejected or withdrawn proposal must not be reachable by its code. Policy
+  // (and the reason 'accepted' counts too) lives in submission-state.ts,
+  // shared with the card renderers.
+  if (!isPublicSubmissionState(data.state)) {
     return { notFound: true }
   }
 

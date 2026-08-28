@@ -2,6 +2,7 @@ import dayjs from 'dayjs'
 import sharp from 'sharp'
 import { socialAssetDataUrl } from './assets'
 import { cleanDc8SessionType, getDc8TrackBadgePath } from './track-images'
+import { isPublicSubmissionState } from './submission-state'
 
 export function devconApiUrl(): string {
   return process.env.DEVCON_API_URL || 'https://api.devcon.org'
@@ -39,6 +40,9 @@ export async function getSessionFromPretalx(id: string): Promise<any | null> {
       )
       if (!res.ok) continue
       const data = await res.json()
+      // Same visibility rule as the share page: no card (and so no title,
+      // speakers or track) for a proposal whose page would 404.
+      if (!isPublicSubmissionState(data.state)) return null
       const slot = Array.isArray(data.slots) && data.slots.length > 0 ? data.slots[0] : null
       return {
         id,
