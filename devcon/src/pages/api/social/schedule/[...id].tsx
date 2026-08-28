@@ -194,11 +194,18 @@ function renderScheduleCard(
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const id = String(req.query.id || '')
-  if (!id || !/^[a-zA-Z0-9_-]{1,120}$/.test(id)) {
+  // Catch-all, same shape as /api/ticket:
+  //   /api/social/schedule/{code}/            — slug = [code]
+  //   /api/social/schedule/{code}/{buster}/   — slug = [code, buster]
+  // The buster exists only to hand social scrapers a URL they have never
+  // fetched (see the share page); the image is keyed by `code` alone, so a
+  // busted URL still hits the same Supabase cache entry.
+  const slug = req.query.id
+  const segments = Array.isArray(slug) ? slug : slug ? [slug] : []
+  const id = String(segments[0] || '')
+  if (segments.length > 2 || !id || !/^[a-zA-Z0-9_-]{1,120}$/.test(id)) {
     return res.status(400).send({ success: false, error: 'invalid session id' })
   }
-  // ?v= (event version) is a crawler-side cache buster only - ignored here.
   await serveCachedImage({
     res,
     bucket: BUCKET,
@@ -218,3 +225,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     },
   })
 }
+

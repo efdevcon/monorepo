@@ -4,7 +4,6 @@ import { Hero } from 'components/domain/index/hero'
 import { SessionSharing } from 'components/domain/session-sharing'
 import { cleanDc8SessionType } from 'services/social-cards/track-images'
 import { APP_CONFIG } from 'utils/config'
-import { SITE_URL } from 'utils/constants'
 
 /**
  * Shareable speaker-card page, linked from CFP acceptance emails so speakers
@@ -16,12 +15,13 @@ import { SITE_URL } from 'utils/constants'
  *   /schedule/devcon8/{proposal_code}/{version}/  (same page, fresh card)
  *   /schedule/sea/{proposal_code}/                (Devcon SEA, 2024 design)
  *
- * The optional trailing segment is a cache-buster, mirroring /ticket's: X and
- * Farcaster cache a card per exact URL for about a week, so a card redesign
- * never reaches links people already posted. Sharing the URL with a new
- * trailing segment (any short token — "v2", a date) makes it a new URL to the
- * scrapers, and it rides through to the og:image too. It changes nothing about
- * what the page renders.
+ * The optional trailing segment is a cache-buster, mirroring /ticket's. X and
+ * Farcaster cache a preview per exact URL for about a week — including a
+ * failed or half-rendered one — so re-posting the same link keeps serving the
+ * dead preview. The page's share buttons therefore mint a fresh token per
+ * click (see SessionSharing), and it rides through to the og:image path too.
+ * It changes nothing about what the page renders, and the card route keys its
+ * cache by session code, so a busted URL is not an extra render.
  *
  * Data comes LIVE from Pretalx (not api.devcon.org): acceptance emails go out
  * before the schedule is published/synced, so the API doesn't know these
@@ -88,35 +88,34 @@ const SpeakerCard = (props: any) => {
         <meta name="twitter:image" key="twitter:image" content={imageUrl} />
         <meta name="theme-color" key="theme-color" content="#221144" />
       </Head>
-      <SessionSharing talk={props.talk} pageUrl={pageUrl} cardImageUrl={props.cardPath} />
+      <SessionSharing
+        talk={props.talk}
+        shareBaseUrl={`${props.origin}${props.sharePageBase}`}
+        cardImageUrl={props.cardPath}
+      />
     </>
   )
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  }
-}
-
 /**
- * Origin the emitted absolute URLs point at. Netlify sets DEPLOY_PRIME_URL /
- * URL for builds and functions alike, so deploy previews advertise their OWN
- * card render (a hardcoded devcon.org made preview link-debugger checks show
- * the live production card instead of the change under review, and made the
- * preview fetch the card twice). Production resolves to devcon.org either way.
+ * Server-rendered (not SSG) for the same reason /ticket is: the absolute URLs
+ * in og:image / og:url have to name the host the visitor actually reached, and
+ * only a request carries that. Netlify's DEPLOY_PRIME_URL / URL are build-only
+ * (verified 2026-08-28: a preview still emitted devcon.org), so deploy previews
+ * advertised the LIVE production card instead of the change under review, and
+ * fetched the card twice. The HTML is cheap; the expensive part (the card
+ * render) has its own cache, and the s-maxage below lets the CDN serve repeat
+ * scrapes without re-hitting Pretalx.
  */
-function cardOrigin(): string {
-  const origin = process.env.DEPLOY_PRIME_URL || process.env.URL || SITE_URL
-  return origin.replace(/\/+$/, '')
-}
-
-export async function getStaticProps(context: any) {
+export async function getServerSideProps(context: any) {
   const event = EVENTS[context.params.event]
   if (!event) {
     return { notFound: true }
   }
+
+  const proto = context.req.headers['x-forwarded-proto'] || 'https'
+  const host = context.req.headers.host || 'devcon.org'
+  const origin = `${proto}://${host}`
 
   // Catch-all route: [code] or [code, cacheBuster]. The buster is a URL-only
   // device for social scrapers — it never reaches Pretalx or the card render.
@@ -140,9 +139,13 @@ export async function getStaticProps(context: any) {
   )
   if (!res.ok) {
     // A code that 404s today may be accepted later — retry on the ISR cadence.
-    return { notFound: true, revalidate: 300 }
+    return { notFound: true }
   }
   const data = await res.json()
+
+  // ISR's replacement: repeat scrapes and refreshes are served by the CDN
+  // rather than re-hitting Pretalx on every request.
+  context.res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=3600')
 
   // Acceptance emails link these pages, but only talks the speaker has
   // CONFIRMED are public. Dev/preview shows any state for testing.
@@ -150,23 +153,28 @@ export async function getStaticProps(context: any) {
   // re-add it once the CFP confirmation flow is underway by deleting the
   // `event.pretalxSlug !== 'devcon8'` condition.
   if (APP_CONFIG.NODE_ENV === 'production' && event.pretalxSlug !== 'devcon8' && data.state !== 'confirmed') {
-    return { notFound: true, revalidate: 300 }
+    return { notFound: true }
   }
 
   // Multilingual pretalx fields come as { en: ... } when expanded.
   const name = (v: any) => (typeof v === 'string' ? v : v?.en) ?? ''
 
+  // The buster rides on the image as a PATH segment too (not a query param —
+  // same call as /api/ticket/{name}/{buster}.jpg): scrapers and CDNs treat a
+  // distinct path as a distinct resource far more reliably than a query
+  // string, so the re-scrape refetches the bytes, not just the page. The card
+  // route parses it off and keys its cache by code alone, so this costs no
+  // extra render once the OG cache is on.
   const busterSegment = cacheBuster ? `${encodeURIComponent(cacheBuster)}/` : ''
-  // The buster rides on the image as a query param (the card route ignores
-  // unknown params) so a re-scrape refetches the bytes, not just the page.
-  const busterQuery = cacheBuster ? `?v=${encodeURIComponent(cacheBuster)}` : ''
 
   return {
     props: {
       params: context.params,
-      origin: cardOrigin(),
+      origin,
       pagePath: `/schedule/${context.params.event}/${code}/${busterSegment}`,
-      cardPath: `/api/social/schedule/${code}/${busterQuery}`,
+      cardPath: `/api/social/schedule/${code}/${busterSegment}`,
+      // Buster-free base the share buttons mint fresh links from.
+      sharePageBase: `/schedule/${context.params.event}/${code}/`,
       talk: {
         id: code,
         title: data.title ?? '',
@@ -185,7 +193,6 @@ export async function getStaticProps(context: any) {
         })),
       },
     },
-    revalidate: 600,
   }
 }
 

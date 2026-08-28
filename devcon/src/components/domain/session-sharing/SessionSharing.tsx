@@ -30,12 +30,13 @@ export interface SessionShareTalk {
 
 interface SessionSharingProps {
   talk: SessionShareTalk
-  pageUrl: string
+  /** Absolute page URL WITHOUT a cache-buster — share links mint their own. */
+  shareBaseUrl: string
   /** Same-origin path of the rendered card (matches the <Head> preload). */
   cardImageUrl: string
 }
 
-export function SessionSharing({ talk, pageUrl, cardImageUrl }: SessionSharingProps) {
+export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const [showGyroPrompt, setShowGyroPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -99,10 +100,16 @@ export function SessionSharing({ talk, pageUrl, cardImageUrl }: SessionSharingPr
     if (granted) localStorage.setItem('gyro-accepted', 'true')
   }, [requestGyroPermission])
 
+  // Every share mints a FRESH URL (cache-buster segment, minted at click time
+  // exactly like the ticket page's "Generate sharing link"). X and Farcaster
+  // cache a preview per exact URL for about a week, INCLUDING a failed or
+  // half-rendered one — re-posting the same link would keep serving that dead
+  // preview, so a new path each time forces a re-scrape. The card route keys
+  // its cache by session code, so the extra segment costs no extra render.
   // Matomo campaign tagging per channel (same convention as TicketSharing).
-  const shareUrlFor = (source: string) => `${pageUrl}?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
+  const shareUrlFor = (source: string) =>
+    `${shareBaseUrl}${Date.now().toString(36)}/?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
   const shareText = `I'm speaking at @EFDevcon 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
-  const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
 
   return (
     <div ref={containerRef} className={css.container}>
@@ -170,6 +177,7 @@ export function SessionSharing({ talk, pageUrl, cardImageUrl }: SessionSharingPr
               href="#"
               onClick={e => {
                 e.preventDefault()
+                const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
                 window.open(`https://x.com/intent/post?text=${encodeURIComponent(xText)}`, '_blank')
               }}
               className={css.shareIcon}
