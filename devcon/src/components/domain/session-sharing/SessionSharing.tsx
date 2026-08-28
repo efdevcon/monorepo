@@ -122,17 +122,21 @@ export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionShar
   // Matomo campaign tagging per channel (same convention as TicketSharing).
   const shareUrlFor = (source: string) =>
     `${shareBaseUrl}${shareNonce ? `${shareNonce}/` : ''}?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
-  const shareText = `I'm speaking at @EFDevcon 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
+  // Handles differ per network: @EFDevcon on X, @devcon on Farcaster (fid
+  // 388458, "Ethereum Devcon" — @efdevcon there is an unused placeholder with
+  // no bio, so tagging it reached nobody).
+  const shareTextFor = (mention: string) =>
+    `I'm speaking at ${mention} 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
   // Real hrefs, not window.open: iOS only hands a URL to the installed app
   // for a genuine link tap, so the old preventDefault + window.open always
   // landed people in the mobile WEB composer inside an in-app browser
   // (reported 2026-08-28). `url` rides as its own intent param — X appends it
   // and reads it for the card.
-  const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(
-    shareUrlFor('twitter')
-  )}`
+  const xHref = `https://x.com/intent/post?text=${encodeURIComponent(
+    shareTextFor('@EFDevcon')
+  )}&url=${encodeURIComponent(shareUrlFor('twitter'))}`
   const farcasterHref = `https://farcaster.xyz/~/compose?text=${encodeURIComponent(
-    shareText
+    shareTextFor('@devcon')
   )}&embeds[]=${encodeURIComponent(shareUrlFor('farcaster'))}`
 
   return (

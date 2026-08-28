@@ -235,17 +235,21 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl, paidWithEth }: 
             // Matomo campaign tagging per channel, so shared-link traffic is
             // attributable in analytics (same convention as voucher links).
             const shareUrlFor = (source: string) => `${shareUrl}?mtm_campaign=ticket-share&mtm_source=${source}&mtm_medium=social`
-            const shareText = `I just got my @EFDevcon ticket${paidWithEth ? ' — paid for with ETH!' : '!'}\n\nNext stop: Mumbai 🇮🇳 Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
+            // Handles differ per network: @EFDevcon on X, @devcon on
+            // Farcaster (fid 388458, "Ethereum Devcon" — @efdevcon there is an
+            // unused placeholder with no bio, so tagging it reached nobody).
+            const shareTextFor = (mention: string) =>
+              `I just got my ${mention} ticket${paidWithEth ? ' — paid for with ETH!' : '!'}\n\nNext stop: Mumbai 🇮🇳 Join me at Devcon 8 from November 3–6, 2026 for four days of big ideas, technical depth, community, and the people building the future of open source technology.`
             // Real hrefs, not window.open: iOS only hands a URL to the
             // installed app for a genuine link tap, so preventDefault +
             // window.open always landed people in the mobile WEB composer
             // inside an in-app browser (reported 2026-08-28). `url` rides as
             // its own intent param — X appends it and reads it for the card.
-            const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(
-              shareUrlFor('twitter')
-            )}`
+            const xHref = `https://x.com/intent/post?text=${encodeURIComponent(
+              shareTextFor('@EFDevcon')
+            )}&url=${encodeURIComponent(shareUrlFor('twitter'))}`
             const farcasterHref = `https://farcaster.xyz/~/compose?text=${encodeURIComponent(
-              shareText
+              shareTextFor('@devcon')
             )}&embeds[]=${encodeURIComponent(shareUrlFor('farcaster'))}`
             return (
               <div className={css.shareSection}>
