@@ -50,8 +50,13 @@ export function TicketSharing({ name, avatarUrl, share, pageUrl, paidWithEth }: 
 
     // On iOS Safari (HTTPS), DeviceOrientationEvent.requestPermission exists
     // and must be called from a user gesture. Show a prompt button for that.
+    // Desktop Safari exposes requestPermission too but has no gyroscope, so
+    // the prompt was a dead button there — require a touch device (reported
+    // 2026-08-28). matchMedia covers iPadOS, which reports a coarse pointer.
+    const hasGyro =
+      navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches
     const DOE = DeviceOrientationEvent as any
-    const hasPermissionAPI = typeof DOE?.requestPermission === 'function'
+    const hasPermissionAPI = hasGyro && typeof DOE?.requestPermission === 'function'
 
     if (hasPermissionAPI) {
       const accepted = localStorage.getItem('gyro-accepted')

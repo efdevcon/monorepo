@@ -68,8 +68,13 @@ export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionShar
     document.documentElement.style.overscrollBehavior = 'none'
     document.documentElement.style.backgroundColor = '#221144'
 
+    // Desktop Safari exposes requestPermission too but has no gyroscope, so
+    // the prompt was a dead button there — require a touch device (reported
+    // 2026-08-28). matchMedia covers iPadOS, which reports a coarse pointer.
+    const hasGyro =
+      navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches
     const DOE = DeviceOrientationEvent as any
-    if (typeof DOE?.requestPermission === 'function') {
+    if (hasGyro && typeof DOE?.requestPermission === 'function') {
       const accepted = localStorage.getItem('gyro-accepted')
       if (accepted === 'true') {
         DOE.requestPermission()
