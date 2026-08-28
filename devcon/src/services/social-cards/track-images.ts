@@ -16,6 +16,22 @@ export const DC8_TRACK_IMAGES: Record<string, string> = {
   'open and verifiable stack': 'dc8/tracks/track-open-verifiable-stack.png',
 }
 
+// Round-2 card redesign (Figma 5058:3624 ff): standardized 570×570 octagon
+// badges, currently used by the session share page only. The OG card route
+// still renders the DC8_TRACK_IMAGES art above — consolidate when the OG
+// redesign lands.
+export const DC8_TRACK_BADGES: Record<string, string> = {
+  'core protocol': 'dc8/tracks/core-protocol-track.png',
+  'privacy and consent': 'dc8/tracks/privacy-consent-track.png',
+  security: 'dc8/tracks/security-track.png',
+  'futures worth building': 'dc8/tracks/futures-worth-track.png',
+  'rights freedoms and governance': 'dc8/tracks/rights-freedoms-track.png',
+  'permissionless networks': 'dc8/tracks/permissionless-networks-track.png',
+  'users builders and agents': 'dc8/tracks/users-builders-track.png',
+  'applied cryptography': 'dc8/tracks/advanced-crypto-track.png',
+  'open and verifiable stack': 'dc8/tracks/open-verifiable-track.png',
+}
+
 export function normalizeTrackName(track: string): string {
   return track
     .toLowerCase()
@@ -30,3 +46,11 @@ export function normalizeTrackName(track: string): string {
 export function getDc8TrackImagePath(track?: string): string {
   return (track && DC8_TRACK_IMAGES[normalizeTrackName(track)]) || 'dc8/tracks/track-futures-worth-building.png'
 }
+
+export function getDc8TrackBadgePath(track?: string): string {
+  return (track && DC8_TRACK_BADGES[normalizeTrackName(track)]) || 'dc8/tracks/futures-worth-track.png'
+}
+
+// Community-Led Sessions get the Devcon 8 India logomark instead of track art
+// (Figma 5071:5730).
+export const DC8_CLS_BADGE = 'dc8/tracks/cls-logomark.svg'
