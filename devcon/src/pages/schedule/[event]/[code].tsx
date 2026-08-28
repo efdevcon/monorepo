@@ -130,9 +130,11 @@ export async function getStaticProps(context: any) {
       talk: {
         id: context.params.code,
         title: data.title ?? '',
-        // Pretalx type names carry scheduling details ("Talk (20\"Talk+5\"Q&A)")
-        // — keep just the label for display.
-        type: name(data.submission_type?.name ?? data.submission_type).replace(/\s*\(.*\)\s*$/, ''),
+        // Pretalx type names carry scheduling details ("Talk (20\"Talk+5\"Q&A)",
+        // "Workshop 1h") — keep just the label for display.
+        type: name(data.submission_type?.name ?? data.submission_type)
+          .replace(/\s*\(.*\)\s*$/, '')
+          .replace(/\s+\d+\s*(?:h|hrs?|hours?|m|mins?|minutes?)$/i, ''),
         track: name(data.track?.name ?? data.track),
         speakers: (data.speakers || []).map((s: any) => ({
           name: s.name ?? '',
