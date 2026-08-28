@@ -90,7 +90,13 @@ export async function speakerImageDataUrls(session: any): Promise<Map<string, st
         // speaker avatars are webp since 2026-08-25 — embedding them raw made
         // every render throw, so cards silently served stale pre-mirror
         // copies forever (found via the 8GH8TR card, 2026-08-26).
-        const png = await sharp(Buffer.from(await r.arrayBuffer())).png().toBuffer()
+        // Resize to card scale while at it: full-resolution PNGs ballooned the
+        // satori SVG past libxml2's 10MB cap on multi-speaker cards (avatars
+        // render at ≤176px, so 384px covers every card at 2x).
+        const png = await sharp(Buffer.from(await r.arrayBuffer()))
+          .resize(384, 384, { fit: 'cover' })
+          .png()
+          .toBuffer()
         out.set(s.id, `data:image/png;base64,${png.toString('base64')}`)
       } catch {
         /* omit avatar */
