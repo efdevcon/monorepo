@@ -142,6 +142,35 @@
   box-shadow: 0 2px 4px rgba(22, 11, 43, 0.2), 0 4px 8px rgba(22, 11, 43, 0.1), 0 8px 24px rgba(22, 11, 43, 0.2);
 }
 
+// Skeleton shimmer while the social image renders: a light band sweeping the
+// placeholder every 2s (1.2s sweep + a rest beat).
+.cardInner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 32%, rgba(255, 255, 255, 0.85) 50%, transparent 68%);
+  animation: cardShimmer 2s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.cardLoaded::after {
+  content: none;
+}
+
+@keyframes cardShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .cardImage {
   position: absolute;
   inset: 0;
