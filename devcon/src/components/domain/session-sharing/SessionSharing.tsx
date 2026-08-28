@@ -10,14 +10,15 @@ import cardLogo from '../ticket-sharing/updated-dc8-logo.png'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import { ArrowRight, Copy } from 'lucide-react'
-import { getDc8TrackImagePath } from 'services/social-cards/track-images'
+import { getDc8TrackBadgePath, DC8_CLS_BADGE } from 'services/social-cards/track-images'
 import css from './session-sharing.module.scss'
 import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 
 /**
  * Devcon 8 session-share page body, used by /schedule/devcon8/{code}.
- * Figma: Dev Handoff 5058:2837 (scene) + 5058:3193 / 3624 / 4774 / 5060:6865
- * (card variants). The KV scene keeps the tilt/parallax interaction from the
+ * Figma: Dev Handoff 5058:2837 / 3511 / 4860 / 5060:6752 (scenes) +
+ * 5058:3193 / 3624 / 4774 / 5068:4650 (card variants, round 2 2026-08-28).
+ * The KV scene keeps the tilt/parallax interaction from the
  * ticket share page (useTilt is shared); the card itself is CSS-built at a
  * 1200×675 basis — see session-sharing.module.scss.
  *
@@ -37,6 +38,10 @@ interface SessionSharingProps {
   talk: SessionShareTalk
   pageUrl: string
 }
+
+// Format labels seen across DC7/DC8 Pretalx data, longest first so
+// "Lightning Talk" wins over "Talk" in the ends-with match below.
+const CLS_FORMATS = ['Lightning Talk', 'Mixed Formats', 'Workshop', 'Panel', 'Music', 'Talk']
 
 export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
@@ -95,6 +100,15 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
 
   const speakersWithAvatar = talk.speakers.filter(s => s.avatar && !failedAvatars.has(s.name))
   const speakerNames = talk.speakers.map(s => s.name).join(', ')
+
+  // Community-Led Sessions: Pretalx marks the track "[CLS] - <name>" (DC7 used
+  // "[CLS] <name>") and the type "CLS - <name> <format>". Same detection as the
+  // OG route. Render "CLS – <format>" (en dash, per Figma 5071:5814) + the CLS
+  // name, and the Devcon logomark in place of track art.
+  const isCls = !!talk.track?.startsWith('[CLS]')
+  const clsFormat = CLS_FORMATS.find(f => talk.type.endsWith(f)) ?? talk.type.split(' ').pop()
+  const displayType = isCls && clsFormat ? `CLS – ${clsFormat}` : talk.type
+  const displayTrack = isCls ? talk.track.replace(/^\[CLS\]\s*-?\s*/, '') : talk.track
   // The card spec is authored for ~3-line titles — downscale longer ones.
   const titleClass = talk.title.length > 150 ? css.cardTitleLong : talk.title.length > 90 ? css.cardTitleMedium : undefined
 
@@ -108,8 +122,8 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
         <Fireflies
           id="session-fireflies"
           settings={{
-            count: typeof window !== 'undefined' && window.innerWidth <= 600 ? 75 : 120,
-            color: 'rgba(139, 255, 255, 0.5)',
+            count: typeof window !== 'undefined' && window.innerWidth <= 600 ? 90 : 150,
+            color: 'rgba(139, 255, 255, 0.65)',
             speed: 0.15,
             radius: 2,
           }}
@@ -124,8 +138,20 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
       <div className={css.cardStack}>
         <div className={css.card}>
           <div className={css.cardInner}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/social/${getDc8TrackImagePath(talk.track)}`} alt="" className={css.cardBadge} />
+            {/* Octagon badge cropped to its 440px Figma window (zoom trims the
+                PNG's transparent padding); the card corner clips the rest.
+                CLS swaps it for the Devcon logomark (Figma 5071:5855). */}
+            {isCls ? (
+              <div className={css.cardClsMark}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/social/${DC8_CLS_BADGE}`} alt="" />
+              </div>
+            ) : (
+              <div className={css.cardBadge}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/social/${getDc8TrackBadgePath(talk.track)}`} alt="" />
+              </div>
+            )}
             <Image src={cardLogo} alt="Devcon 8 India" className={css.cardLogo} />
             <div className={css.cardMumbai}>
               <span>MUMBAI, INDIA</span>
@@ -133,34 +159,28 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
                 <em>3—6</em> Nov, 2026
               </span>
             </div>
-            <h1 className={cn(css.cardTitle, titleClass)}>{talk.title}</h1>
-            <div
-              className={cn(
-                css.cardFooter,
-                talk.speakers.length > 1 && css.multiSpeakers,
-                talk.speakers.length > 4 && css.manySpeakers
+            <div className={css.cardHeading}>
+              <h1 className={cn(css.cardTitle, titleClass)}>{talk.title}</h1>
+              {speakerNames && <p className={css.speakerNames}>{speakerNames}</p>}
+            </div>
+            <div className={cn(css.cardFooter, talk.speakers.length > 4 && css.manySpeakers)}>
+              {speakersWithAvatar.length > 0 && (
+                <div className={css.avatarStack}>
+                  {speakersWithAvatar.map(s => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={s.name}
+                      src={s.avatar}
+                      alt=""
+                      className={css.avatar}
+                      onError={() => setFailedAvatars(prev => new Set(prev).add(s.name))}
+                    />
+                  ))}
+                </div>
               )}
-            >
-              <div className={css.cardSpeakers}>
-                {speakersWithAvatar.length > 0 && (
-                  <div className={css.avatarStack}>
-                    {speakersWithAvatar.map(s => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        key={s.name}
-                        src={s.avatar}
-                        alt=""
-                        className={css.avatar}
-                        onError={() => setFailedAvatars(prev => new Set(prev).add(s.name))}
-                      />
-                    ))}
-                  </div>
-                )}
-                {speakerNames && <p className={css.speakerNames}>{speakerNames}</p>}
-              </div>
               <div className={css.trackPill}>
-                {talk.type && <span className={css.typeChip}>{talk.type}</span>}
-                {talk.track && <span className={css.trackName}>{talk.track}</span>}
+                {displayType && <span className={css.typeChip}>{displayType}</span>}
+                {displayTrack && <span className={css.trackName}>{displayTrack}</span>}
               </div>
             </div>
           </div>
