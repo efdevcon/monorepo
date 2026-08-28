@@ -100,16 +100,35 @@ export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionShar
     if (granted) localStorage.setItem('gyro-accepted', 'true')
   }, [requestGyroPermission])
 
-  // Every share mints a FRESH URL (cache-buster segment, minted at click time
-  // exactly like the ticket page's "Generate sharing link"). X and Farcaster
-  // cache a preview per exact URL for about a week, INCLUDING a failed or
+  // Every share carries a FRESH cache-buster segment. X and Farcaster cache a
+  // preview per exact URL for about a week, INCLUDING a failed or
   // half-rendered one — re-posting the same link would keep serving that dead
-  // preview, so a new path each time forces a re-scrape. The card route keys
-  // its cache by session code, so the extra segment costs no extra render.
+  // preview. The card route keys its cache by session code, so the extra
+  // segment costs no extra render.
+  //
+  // Minted in an effect (not during render) so server and client HTML agree;
+  // each share then rolls the nonce for the NEXT one. React state settles
+  // after the current event, so the tap that rolls it still travels with the
+  // href it was rendered with.
+  const [shareNonce, setShareNonce] = useState('')
+  useEffect(() => setShareNonce(Date.now().toString(36)), [])
+  const rollShareNonce = () => setShareNonce(Date.now().toString(36))
+
   // Matomo campaign tagging per channel (same convention as TicketSharing).
   const shareUrlFor = (source: string) =>
-    `${shareBaseUrl}${Date.now().toString(36)}/?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
+    `${shareBaseUrl}${shareNonce ? `${shareNonce}/` : ''}?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
   const shareText = `I'm speaking at @EFDevcon 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
+  // Real hrefs, not window.open: iOS only hands a URL to the installed app
+  // for a genuine link tap, so the old preventDefault + window.open always
+  // landed people in the mobile WEB composer inside an in-app browser
+  // (reported 2026-08-28). `url` rides as its own intent param — X appends it
+  // and reads it for the card.
+  const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(
+    shareUrlFor('twitter')
+  )}`
+  const farcasterHref = `https://farcaster.xyz/~/compose?text=${encodeURIComponent(
+    shareText
+  )}&embeds[]=${encodeURIComponent(shareUrlFor('farcaster'))}`
 
   return (
     <div ref={containerRef} className={css.container}>
@@ -174,27 +193,19 @@ export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionShar
           <span className={css.shareLabel}>Share</span>
           <div className={css.shareIcons}>
             <a
-              href="#"
-              onClick={e => {
-                e.preventDefault()
-                const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
-                window.open(`https://x.com/intent/post?text=${encodeURIComponent(xText)}`, '_blank')
-              }}
+              href={xHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={rollShareNonce}
               className={css.shareIcon}
             >
               <IconTwitter />
             </a>
             <a
-              href="#"
-              onClick={e => {
-                e.preventDefault()
-                window.open(
-                  `https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(
-                    shareUrlFor('farcaster')
-                  )}`,
-                  '_blank'
-                )
-              }}
+              href={farcasterHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={rollShareNonce}
               className={css.shareIcon}
             >
               <IconWarpcast />
@@ -203,6 +214,7 @@ export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionShar
               className={css.shareIcon}
               onClick={() => {
                 navigator.clipboard.writeText(shareUrlFor('copy'))
+                rollShareNonce()
                 setCopied(true)
                 setTimeout(() => setCopied(false), 2000)
               }}
