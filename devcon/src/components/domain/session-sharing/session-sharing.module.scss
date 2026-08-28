@@ -1,11 +1,9 @@
 /*
- * DC8 session share page (Figma: Dev Handoff 5058:2837 ff).
- * Scene: Devcon 8 KV backdrop + glowing logo, a tilting CSS-built card, and a
- * "Get tickets" / share actions row aligned to the card's width.
- *
- * The card spec is authored at 1200×675; every card measurement is expressed
- * in cqi so one ruleset serves all widths (1px @1200 = 1/12 cqi), with px
- * floors where mobile sizes would drop below legibility.
+ * DC8 session share page (Figma: Dev Handoff 5071:6944).
+ * Scene: Devcon 8 KV backdrop + glowing logo, a tilting card that displays
+ * the rendered social image (/api/social/schedule), and a "Get tickets" /
+ * share actions row. Card measurements are in cqi against the image's
+ * 1200×630 basis (1px @1200 = 1/12 cqi).
  */
 
 .container {
@@ -98,13 +96,13 @@
   }
 }
 
-/* ─── Card ────────────────────────────────────── */
+/* ─── Card (the rendered social image) ────────── */
 .cardStack {
   position: relative;
   z-index: 2;
-  // 728px @1440 desktop, 640px @768 tablet — one ratio covers both frames.
-  width: min(83.333%, 728px);
-  aspect-ratio: 16 / 9;
+  // 781px @1440 (Figma 5071:6949), the social card's own 1200×630 ratio.
+  width: min(83.333%, 781px);
+  aspect-ratio: 1200 / 630;
   perspective: 1200px;
   container-type: inline-size;
 
@@ -132,233 +130,30 @@
   }
 }
 
+/* Gradient placeholder that doubles as the loading state — the JPEG is
+ * square-cornered, so the radius (40.33px on the 1200 basis, measured from
+ * the Figma mock's alpha) and shadow live here. */
 .cardInner {
   position: absolute;
   inset: 0;
-  border-radius: 5.333cqi;
+  border-radius: 3.361cqi;
   overflow: hidden;
   background: linear-gradient(to top, #e5ebff 19.98%, #fbfafc 100%);
   box-shadow: 0 2px 4px rgba(22, 11, 43, 0.2), 0 4px 8px rgba(22, 11, 43, 0.1), 0 8px 24px rgba(22, 11, 43, 0.2);
-  font-family: 'Poppins', sans-serif;
 }
 
-/* Octagon track badge, bleeding off the bottom-right corner; the card's own
- * radius clips the outside edges. Figma zooms its source 131.58% to trim
- * transparent padding (72% content) — our 570px exports are already tight
- * (95% content), so they render 1:1 in the 440px window, no zoom. */
-.cardBadge {
+.cardImage {
   position: absolute;
-  right: -3.333cqi;
-  bottom: -3.333cqi;
-  width: 36.667cqi;
-  aspect-ratio: 1;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-}
-
-/* CLS variant: Devcon 8 India logomark instead of track art (Figma 5071:5855,
- * 362×616 @ right −40 / bottom −120 on the 1200 basis). */
-.cardClsMark {
-  position: absolute;
-  right: -3.333cqi;
-  bottom: -10cqi;
-  width: 30.167cqi;
-  height: 51.333cqi;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.cardLogo {
-  position: absolute;
-  top: 4cqi;
-  left: 4cqi;
-  width: 16.75cqi;
-  height: auto;
-}
-
-.cardMumbai {
-  position: absolute;
-  top: 4cqi;
-  right: 4cqi;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.333cqi;
-  text-align: right;
-  letter-spacing: -0.018em;
-
-  span:first-child {
-    font-size: max(10px, 2.25cqi);
-    font-weight: 700;
-    line-height: 1.15;
-    color: #7235ed;
-  }
-
-  span:last-child {
-    font-size: max(10px, 2.333cqi);
-    font-weight: 400;
-    line-height: 1.15;
-    color: #594d73;
-
-    em {
-      font-style: normal;
-      color: #7235ed;
-    }
-  }
-}
-
-/* Title + speaker names column (Figma: x48 y184, w752, gap 24) */
-.cardHeading {
-  position: absolute;
-  top: 15.333cqi;
-  left: 4cqi;
-  width: 62.667cqi;
-  display: flex;
-  flex-direction: column;
-  gap: 2cqi;
-}
-
-.cardTitle {
-  font-size: max(14px, 4cqi);
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.0104em;
-  color: #1a0d33;
-  // Room above the footer row fits ~4 lines at spec size.
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Length-based downscaling (spec is authored for ~3-line titles) */
-.cardTitleMedium {
-  font-size: max(13px, 3.333cqi);
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-}
-
-.cardTitleLong {
-  font-size: max(12px, 2.833cqi);
-  -webkit-line-clamp: 6;
-  line-clamp: 6;
-}
-
-/* Footer row: avatar stack left, format+track pill right, bottoms aligned
- * (Figma: avatar top 547 and pill top 569 share the y627 bottom edge, 48px
- * from the card bottom). Speaker names moved to .cardHeading in round 2. */
-.cardFooter {
-  position: absolute;
-  left: 4cqi;
-  right: 4cqi;
-  bottom: 4cqi;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2.667cqi;
-}
-
-.avatarStack {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.avatar {
-  width: max(32px, 6.667cqi);
-  aspect-ratio: 1;
-  border-radius: 360px;
-  border: 1px solid #fff;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  background: #e5ebff;
-
-  &:not(:last-child) {
-    margin-right: -1.333cqi;
-  }
+  opacity: 0;
+  transition: opacity 300ms ease-out;
 }
 
-/* 5+ speakers: shrink the stack so it stays clear of the nowrap pill */
-.manySpeakers .avatar {
-  width: max(24px, 5cqi);
-
-  &:not(:last-child) {
-    margin-right: -1cqi;
-  }
-}
-
-/* Narrow cards (mobile): a multi-avatar stack + the nowrap pill can overflow
- * one row — let the footer wrap (pill keeps right via its margin-left: auto)
- * and tighten the long-title clamps. */
-@container (max-width: 480px) {
-  .cardFooter {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .cardTitleMedium,
-  .cardTitleLong {
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-  }
-}
-
-.speakerNames {
-  font-size: max(11px, 2.333cqi);
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.009em;
-  color: #594d73;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.trackPill {
-  display: flex;
-  align-items: center;
-  gap: 1cqi;
-  flex-shrink: 0;
-  // Keeps the pill on the right when there's no avatar stack (no-PFP variant).
-  margin-left: auto;
-  padding: 0.667cqi 1cqi 0.667cqi 0.667cqi;
-  border-radius: 1cqi;
-  background: #e6ebff;
-  border: 1px solid rgba(34, 17, 68, 0.1);
-  box-shadow: 0 1px 1.5px rgba(22, 11, 43, 0.1), 0 1px 1px rgba(22, 11, 43, 0.1);
-}
-
-.typeChip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.667cqi;
-  border-radius: 0.333cqi;
-  background: #7235ed;
-  color: #fff;
-  font-size: max(9px, 1.667cqi);
-  font-weight: 700;
-  line-height: 1.3;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.trackName {
-  font-size: max(9px, 1.667cqi);
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.0125em;
-  color: #160b2b;
-  white-space: nowrap;
+.cardLoaded .cardImage {
+  opacity: 1;
 }
 
 /* ─── Bottom fade (mobile only, behind the stacked actions) ─ */

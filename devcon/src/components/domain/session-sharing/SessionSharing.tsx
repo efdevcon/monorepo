@@ -6,27 +6,18 @@ import { useTilt } from '../ticket-sharing/useTilt'
 import kvBackdrop from 'components/common/dc-8/hero/images/devcon-8-india-bg.png'
 // Glow baked into the PNG — live drop-shadow filters tanked the frame rate.
 import heroLogo from './images/dc8-india-logo-glow.png'
-import cardLogo from '../ticket-sharing/updated-dc8-logo.png'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import { ArrowRight, Copy } from 'lucide-react'
-import {
-  getDc8TrackBadgePath,
-  DC8_CLS_BADGE,
-  isDc8ClsTrack,
-  dc8ClsName,
-  dc8ClsChipLabel,
-} from 'services/social-cards/track-images'
 import css from './session-sharing.module.scss'
 import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 
 /**
  * Devcon 8 session-share page body, used by /schedule/devcon8/{code}.
- * Figma: Dev Handoff 5058:2837 / 3511 / 4860 / 5060:6752 (scenes) +
- * 5058:3193 / 3624 / 4774 / 5068:4650 (card variants, round 2 2026-08-28).
- * The KV scene keeps the tilt/parallax interaction from the
- * ticket share page (useTilt is shared); the card itself is CSS-built at a
- * 1200×675 basis — see session-sharing.module.scss.
+ * Figma: Dev Handoff 5071:6944 (scene). The card IS the rendered social
+ * image (/api/social/schedule) so the sharing page, link embeds, and the
+ * YouTube archive all show one consistent card; the scene keeps the
+ * tilt/parallax interaction from the ticket share page (useTilt is shared).
  *
  * One deliberate deviation from the frames: the third share button is
  * copy-link (the design shows Instagram, which has no web share intent).
@@ -35,9 +26,6 @@ import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 export interface SessionShareTalk {
   id: string
   title: string
-  type: string
-  track: string
-  speakers: { name: string; avatar: string }[]
 }
 
 interface SessionSharingProps {
@@ -49,9 +37,9 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const [showGyroPrompt, setShowGyroPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
-  // Avatars that 404/error collapse out of the stack (the no-PFP card variant
-  // is just "every avatar collapsed").
-  const [failedAvatars, setFailedAvatars] = useState<Set<string>>(new Set())
+  // The social-card render can take seconds on a cold hit — the card shows
+  // the familiar gradient placeholder until the image fades in.
+  const [cardLoaded, setCardLoaded] = useState(false)
 
   useEffect(() => {
     // Same treatment as TicketSharing: no elastic overscroll, notch colored
@@ -100,17 +88,6 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
   const shareText = `I'm speaking at @EFDevcon 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
   const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
 
-  const speakersWithAvatar = talk.speakers.filter(s => s.avatar && !failedAvatars.has(s.name))
-  const speakerNames = talk.speakers.map(s => s.name).join(', ')
-
-  // Community-Led Sessions render "CLS – <format>" + the CLS name, and the
-  // Devcon logomark in place of track art (helpers shared with the OG cards).
-  const isCls = isDc8ClsTrack(talk.track)
-  const displayType = isCls ? dc8ClsChipLabel(talk.type) : talk.type
-  const displayTrack = isCls ? dc8ClsName(talk.track) : talk.track
-  // The card spec is authored for ~3-line titles — downscale longer ones.
-  const titleClass = talk.title.length > 150 ? css.cardTitleLong : talk.title.length > 90 ? css.cardTitleMedium : undefined
-
   return (
     <div ref={containerRef} className={css.container}>
       <div className={css.bgLayer}>
@@ -133,55 +110,20 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
         <Image src={heroLogo} alt="Devcon 8 India" className={css.heroLogo} priority />
       </div>
 
-      {/* Tilting session card (1200×675 spec, all sizes in cqi) */}
+      {/* Tilting session card: the rendered social image (1200×630), same
+          asset link embeds and the YouTube archive use. Relative URL so dev
+          and previews hit their own render; in production it's the same URL
+          the <Head> preload already warmed. */}
       <div className={css.cardStack}>
         <div className={css.card}>
-          <div className={css.cardInner}>
-            {/* Octagon badge cropped to its 440px Figma window (zoom trims the
-                PNG's transparent padding); the card corner clips the rest.
-                CLS swaps it for the Devcon logomark (Figma 5071:5855). */}
-            {isCls ? (
-              <div className={css.cardClsMark}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/social/${DC8_CLS_BADGE}`} alt="" />
-              </div>
-            ) : (
-              <div className={css.cardBadge}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/social/${getDc8TrackBadgePath(talk.track)}`} alt="" />
-              </div>
-            )}
-            <Image src={cardLogo} alt="Devcon 8 India" className={css.cardLogo} />
-            <div className={css.cardMumbai}>
-              <span>MUMBAI, INDIA</span>
-              <span>
-                <em>3—6</em> Nov, 2026
-              </span>
-            </div>
-            <div className={css.cardHeading}>
-              <h1 className={cn(css.cardTitle, titleClass)}>{talk.title}</h1>
-              {speakerNames && <p className={css.speakerNames}>{speakerNames}</p>}
-            </div>
-            <div className={cn(css.cardFooter, talk.speakers.length > 4 && css.manySpeakers)}>
-              {speakersWithAvatar.length > 0 && (
-                <div className={css.avatarStack}>
-                  {speakersWithAvatar.map(s => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={s.name}
-                      src={s.avatar}
-                      alt=""
-                      className={css.avatar}
-                      onError={() => setFailedAvatars(prev => new Set(prev).add(s.name))}
-                    />
-                  ))}
-                </div>
-              )}
-              <div className={css.trackPill}>
-                {displayType && <span className={css.typeChip}>{displayType}</span>}
-                {displayTrack && <span className={css.trackName}>{displayTrack}</span>}
-              </div>
-            </div>
+          <div className={cn(css.cardInner, cardLoaded && css.cardLoaded)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/api/social/schedule/${talk.id}/`}
+              alt={talk.title}
+              className={css.cardImage}
+              onLoad={() => setCardLoaded(true)}
+            />
           </div>
         </div>
       </div>
