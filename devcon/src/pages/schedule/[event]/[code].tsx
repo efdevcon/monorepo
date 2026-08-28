@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { Hero } from 'components/domain/index/hero'
 import { SessionSharing } from 'components/domain/session-sharing'
+import { cleanDc8SessionType } from 'services/social-cards/track-images'
 import { APP_CONFIG } from 'utils/config'
 
 /**
@@ -130,11 +131,9 @@ export async function getStaticProps(context: any) {
       talk: {
         id: context.params.code,
         title: data.title ?? '',
-        // Pretalx type names carry scheduling details ("Talk (20\"Talk+5\"Q&A)",
-        // "Workshop 1h") — keep just the label for display.
-        type: name(data.submission_type?.name ?? data.submission_type)
-          .replace(/\s*\(.*\)\s*$/, '')
-          .replace(/\s+\d+\s*(?:h|hrs?|hours?|m|mins?|minutes?)$/i, ''),
+        // Strip scheduling details ("Talk (20\"Talk+5\"Q&A)", "Workshop 1h")
+        // from the Pretalx type name for display.
+        type: cleanDc8SessionType(name(data.submission_type?.name ?? data.submission_type)),
         track: name(data.track?.name ?? data.track),
         speakers: (data.speakers || []).map((s: any) => ({
           name: s.name ?? '',

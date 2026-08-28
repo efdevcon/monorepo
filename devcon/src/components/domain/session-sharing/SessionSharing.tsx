@@ -10,7 +10,13 @@ import cardLogo from '../ticket-sharing/updated-dc8-logo.png'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import { ArrowRight, Copy } from 'lucide-react'
-import { getDc8TrackBadgePath, DC8_CLS_BADGE } from 'services/social-cards/track-images'
+import {
+  getDc8TrackBadgePath,
+  DC8_CLS_BADGE,
+  isDc8ClsTrack,
+  dc8ClsName,
+  dc8ClsChipLabel,
+} from 'services/social-cards/track-images'
 import css from './session-sharing.module.scss'
 import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 
@@ -38,10 +44,6 @@ interface SessionSharingProps {
   talk: SessionShareTalk
   pageUrl: string
 }
-
-// Format labels seen across DC7/DC8 Pretalx data, longest first so
-// "Lightning Talk" wins over "Talk" in the ends-with match below.
-const CLS_FORMATS = ['Lightning Talk', 'Mixed Formats', 'Workshop', 'Panel', 'Music', 'Talk']
 
 export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
@@ -101,14 +103,11 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
   const speakersWithAvatar = talk.speakers.filter(s => s.avatar && !failedAvatars.has(s.name))
   const speakerNames = talk.speakers.map(s => s.name).join(', ')
 
-  // Community-Led Sessions: Pretalx marks the track "[CLS] - <name>" (DC7 used
-  // "[CLS] <name>") and the type "CLS - <name> <format>". Same detection as the
-  // OG route. Render "CLS – <format>" (en dash, per Figma 5071:5814) + the CLS
-  // name, and the Devcon logomark in place of track art.
-  const isCls = !!talk.track?.startsWith('[CLS]')
-  const clsFormat = CLS_FORMATS.find(f => talk.type.endsWith(f)) ?? talk.type.split(' ').pop()
-  const displayType = isCls && clsFormat ? `CLS – ${clsFormat}` : talk.type
-  const displayTrack = isCls ? talk.track.replace(/^\[CLS\]\s*-?\s*/, '') : talk.track
+  // Community-Led Sessions render "CLS – <format>" + the CLS name, and the
+  // Devcon logomark in place of track art (helpers shared with the OG cards).
+  const isCls = isDc8ClsTrack(talk.track)
+  const displayType = isCls ? dc8ClsChipLabel(talk.type) : talk.type
+  const displayTrack = isCls ? dc8ClsName(talk.track) : talk.track
   // The card spec is authored for ~3-line titles — downscale longer ones.
   const titleClass = talk.title.length > 150 ? css.cardTitleLong : talk.title.length > 90 ? css.cardTitleMedium : undefined
 

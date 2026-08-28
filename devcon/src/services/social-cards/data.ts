@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import sharp from 'sharp'
 import { socialAssetDataUrl } from './assets'
-import { getDc8TrackImagePath } from './track-images'
+import { cleanDc8SessionType, getDc8TrackBadgePath } from './track-images'
 
 export function devconApiUrl(): string {
   return process.env.DEVCON_API_URL || 'https://api.devcon.org'
@@ -45,7 +45,7 @@ export async function getSessionFromPretalx(id: string): Promise<any | null> {
         sourceId: data.code ?? id,
         eventId: event,
         title: data.title ?? '',
-        type: name(data.submission_type?.name ?? data.submission_type).replace(/\s*\(.*\)\s*$/, ''),
+        type: cleanDc8SessionType(name(data.submission_type?.name ?? data.submission_type)),
         track: name(data.track?.name ?? data.track),
         speakers: (data.speakers || []).map((s: any) => ({
           id: s.code,
@@ -112,7 +112,7 @@ export function getExpertiseColor(expertise?: string) {
 // also used by the session share page).
 export function getTrackImage(track?: string, eventId?: string) {
   if (eventId === 'devcon8') {
-    return socialAssetDataUrl(getDc8TrackImagePath(track))
+    return socialAssetDataUrl(getDc8TrackBadgePath(track))
   }
   if (track === 'Core Protocol') return socialAssetDataUrl('dc7/tracks/CoreProtocol.png')
   if (track === 'Cypherpunk & Privacy') return socialAssetDataUrl('dc7/tracks/Cypherpunk.png')
