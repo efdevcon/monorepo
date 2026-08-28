@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
@@ -31,15 +31,31 @@ export interface SessionShareTalk {
 interface SessionSharingProps {
   talk: SessionShareTalk
   pageUrl: string
+  /** Same-origin path of the rendered card (matches the <Head> preload). */
+  cardImageUrl: string
 }
 
-export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
+export function SessionSharing({ talk, pageUrl, cardImageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const [showGyroPrompt, setShowGyroPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
-  // The social-card render can take seconds on a cold hit — the card shows
-  // the familiar gradient placeholder until the image fades in.
-  const [cardLoaded, setCardLoaded] = useState(false)
+  // The social-card render can take seconds on a cold hit, so the card shows
+  // the familiar gradient placeholder first: 'loading' shimmers, 'loaded'
+  // fades the image in, 'failed' settles on the bare gradient (no endless
+  // shimmer, no broken-image glyph).
+  const [cardState, setCardState] = useState<'loading' | 'loaded' | 'failed'>('loading')
+  const cardImageRef = useRef<HTMLImageElement | null>(null)
+
+  // The <img> is server-rendered and the <Head> preload warms the very same
+  // URL, so its `load` event usually fires BEFORE React hydrates and attaches
+  // onLoad — the handler then never runs and the card stays invisible for
+  // good (the faster the image, the more certain the blank card). Re-check
+  // `complete` on mount; onLoad still covers the genuinely-slow renders.
+  useEffect(() => {
+    const img = cardImageRef.current
+    if (!img?.complete) return
+    setCardState(img.naturalWidth > 0 ? 'loaded' : 'failed')
+  }, [])
 
   useEffect(() => {
     // Same treatment as TicketSharing: no elastic overscroll, notch colored
@@ -116,13 +132,24 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
           the <Head> preload already warmed. */}
       <div className={css.cardStack}>
         <div className={css.card}>
-          <div className={cn(css.cardInner, cardLoaded && css.cardLoaded)}>
+          <div
+            className={cn(
+              css.cardInner,
+              cardState !== 'loading' && css.cardSettled,
+              cardState === 'loaded' && css.cardLoaded
+            )}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`/api/social/schedule/${talk.id}/`}
+              ref={cardImageRef}
+              src={cardImageUrl}
               alt={talk.title}
               className={css.cardImage}
-              onLoad={() => setCardLoaded(true)}
+              onLoad={() => setCardState('loaded')}
+              // A failed render (cold-start timeout, unsynced session) must
+              // not leave the shimmer running forever — settle on the plain
+              // gradient placeholder instead.
+              onError={() => setCardState('failed')}
             />
           </div>
         </div>
@@ -132,7 +159,7 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
 
       {/* Get tickets CTA + share actions, aligned to the card's width */}
       <div className={css.actions}>
-        <Link href="/tickets" className={cn(css.ctaButton, 'select-none')}>
+        <Link href="/tickets" passHref className={cn(css.ctaButton, 'select-none')}>
           Get tickets
           <ArrowRight />
         </Link>

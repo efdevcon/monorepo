@@ -157,7 +157,9 @@
   }
 }
 
-.cardLoaded::after {
+/* Settled = loaded OR failed: either way the shimmer stops (a failed render
+ * leaves the bare gradient rather than shimmering forever). */
+.cardSettled::after {
   content: none;
 }
 
@@ -208,7 +210,9 @@
   z-index: 3;
   align-self: start;
   margin-top: 64px;
-  width: min(83.333%, 728px);
+  // Matches .cardStack exactly so the CTA and the share row sit flush with
+  // the card's edges (they were 728px against the card's 781px).
+  width: min(83.333%, 781px);
   display: flex;
   align-items: center;
   justify-content: space-between;

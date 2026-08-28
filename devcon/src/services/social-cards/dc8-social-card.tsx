@@ -249,6 +249,11 @@ export function renderDc8SocialCard(
                   letterSpacing: s(-0.25),
                   color: '#1a0d33',
                   whiteSpace: 'nowrap',
+                  // Track names come from Pretalx free text (CLS names run
+                  // long); cap the pill so it can never outgrow the canvas.
+                  maxWidth: s(520),
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
                 }}
               >
                 {trackLabel}

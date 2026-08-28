@@ -8,6 +8,7 @@ import { renderDc8SocialCard } from 'services/social-cards/dc8-social-card'
 import {
   getExpertiseColor,
   getSession,
+  getSessionFromPretalx,
   getSpeakerClass,
   getTrackColor,
   getTrackImage,
@@ -165,7 +166,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     bucket: BUCKET,
     key: `av/${id}.jpg`,
     render: async () => {
-      const session = await getSession(id)
+      // Same fallback as the OG card route: devcon8 sessions only reach
+      // devcon-api after confirmation plus a sync run, so without this every
+      // devcon8 thumbnail 503s (verified 2026-08-28) — including the ones the
+      // share page and the archive will ask for first.
+      const session = (await getSession(id)) ?? (await getSessionFromPretalx(id))
       if (!session) throw new Error('session not found')
       const speakerImages = await speakerImageDataUrls(session)
       // Quality 85: this render is the source for YouTube thumbnails.
