@@ -20,12 +20,13 @@ export function interFonts() {
   return fonts
 }
 
-// DC8 cards are set in Poppins (Figma: Dev Handoff 5060:6142) — Regular 400 +
-// Bold 700, distinct from the Poppins-500/800 files the site uses elsewhere.
-let poppins: { regular: ArrayBuffer; bold: ArrayBuffer }
+// DC8 cards are set in Poppins — Regular 400 + Medium 500 (titles on the
+// YT/OG cards, Figma 5068:1684) + Bold 700.
+let poppins: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer }
 try {
   poppins = {
     regular: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Regular.ttf'))),
+    medium: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-500.ttf'))),
     bold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Bold.ttf'))),
   }
 } catch (error) {
@@ -35,7 +36,13 @@ export function poppinsFonts() {
   return poppins
 }
 
-const MIME: Record<string, string> = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' }
+const MIME: Record<string, string> = {
+  png: 'image/png',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  webp: 'image/webp',
+  svg: 'image/svg+xml',
+}
 const dataUrlCache = new Map<string, string>()
 export function socialAssetDataUrl(relPath: string): string {
   // In dev, always re-read from disk so swapping an asset file shows up on

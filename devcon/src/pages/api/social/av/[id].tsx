@@ -3,7 +3,8 @@
 import { ImageResponse } from '@vercel/og'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import makeBlockie from 'ethereum-blockies-base64'
-import { interFonts, socialAssetDataUrl } from 'services/social-cards/assets'
+import { interFonts, poppinsFonts, socialAssetDataUrl } from 'services/social-cards/assets'
+import { renderDc8SocialCard } from 'services/social-cards/dc8-social-card'
 import {
   getExpertiseColor,
   getSession,
@@ -16,11 +17,10 @@ import { pngToJpeg, serveCachedImage } from 'services/og-cache'
 
 const BUCKET = 'social-cards'
 
-// Ported from social-ticket/src/app/av/[id]/opengraph-image.tsx (1920x1080,
-// the YouTube-thumbnail renderer). Layout, colors, and the inline title/speaker
-// sizing math are a lift, not a redesign - only asset sourcing changed. The
-// bottom-right location/date block is DC7 copy kept verbatim until the DC8
-// brand pass replaces it together with the placeholder art.
+// DC7 renderer, ported from social-ticket/src/app/av/[id]/opengraph-image.tsx
+// (1920x1080, the YouTube-thumbnail renderer). Layout, colors, and the inline
+// title/speaker sizing math are a lift, not a redesign - only asset sourcing
+// changed. devcon8 sessions render the DC8 card (dc8-social-card.tsx) instead.
 function renderAvCard(
   session: any,
   speakerImages: Map<string, string>,
@@ -36,12 +36,7 @@ function renderAvCard(
         style={{ fontFamily: 'Inter' }}
       >
         <div tw="flex absolute left-1/2 top-0 bottom-0 right-0">
-          {/* DC8's collage art needs watermark opacity; DC7 renders keep the
-              original prism (same split as the schedule card). */}
-          <img
-            src={socialAssetDataUrl(session.eventId === 'devcon8' ? 'dc8/prism.png' : 'dc7/prism.png')}
-            tw={`h-full ${session.eventId === 'devcon8' ? 'opacity-20' : 'opacity-80'}`}
-          />
+          <img src={socialAssetDataUrl('dc7/prism.png')} tw="h-full opacity-80" />
         </div>
 
         <div tw="flex flex-col absolute bottom-20 left-20 w-full">
@@ -100,7 +95,7 @@ function renderAvCard(
             session.track?.startsWith('[CLS]') ? 'w-full' : 'w-[1320px]'
           }`}
         >
-          <img src={socialAssetDataUrl(session.eventId === 'devcon8' ? 'dc8/logo.png' : 'dc7/logo.png')} tw="w-96 mb-12" />
+          <img src={socialAssetDataUrl('dc7/logo.png')} tw="w-96 mb-12" />
 
           <div tw="flex flex-col justify-center h-80 mb-4 overflow-hidden">
             <span
@@ -174,7 +169,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!session) throw new Error('session not found')
       const speakerImages = await speakerImageDataUrls(session)
       // Quality 85: this render is the source for YouTube thumbnails.
-      const png = await renderAvCard(session, speakerImages, interFonts()).arrayBuffer()
+      const card =
+        session.eventId === 'devcon8'
+          ? renderDc8SocialCard(session, speakerImages, poppinsFonts(), { width: 1920, height: 1080 })
+          : renderAvCard(session, speakerImages, interFonts())
+      const png = await card.arrayBuffer()
       return pngToJpeg(png, 85)
     },
   })

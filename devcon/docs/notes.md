@@ -37,15 +37,18 @@ assets per event (`session.eventId === 'devcon8'` vs everything else):
   only used by the AV thumbnail route. dc7 also holds the schedule-u background
   (`personalized.png`) and legacy extras (characters/, clock, pin —
   unreferenced by the card code).
-- The DC8 schedule card (`renderDc8Card` in `api/social/schedule/[id].tsx`,
-  Figma Dev Handoff 5060:6142) is set in Poppins Regular/Bold
-  (`public/fonts/Poppins-{Regular,Bold}.ttf`, loaded via `poppinsFonts()`);
-  DC7/SEA keeps the original Inter design untouched.
-- DC8 track badges (same art as the Speak at Devcon page) are mapped by
+- The DC8 Social/YouTube card (`renderDc8SocialCard` in
+  `services/social-cards/dc8-social-card.tsx`, Figma Dev Handoff 5068:1593 ff)
+  serves both `api/social/schedule/[id]` (1200×630) and `api/social/av/[id]`
+  (1920×1080) for devcon8 sessions; it is set in Poppins Regular/Medium/Bold
+  (`public/fonts/Poppins-{Regular,500,Bold}.ttf` via `poppinsFonts()`).
+  DC7/SEA keeps the original Inter designs untouched.
+- DC8 track badges (570px octagons) and per-track card colors are mapped by
   normalized Pretalx track name in `services/social-cards/track-images.ts`
-  (`DC8_TRACK_IMAGES`, client-safe module shared with the session share page);
+  (`DC8_TRACK_BADGES` / `DC8_TRACK_COLORS`, client-safe module shared with the
+  session share page, which also hosts the type/CLS label formatting helpers);
   unmapped tracks (Art&Culture, Invited speaker, Community Hubs) fall back to
-  a neutral badge.
+  a neutral badge on the default gradient.
 - devcon8 sessions missing from devcon-api are fetched live from Pretalx as a
   fallback (`getSessionFromPretalx`) — requires the organizer-level
   PRETALX_API_KEY on Netlify.
