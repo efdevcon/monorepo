@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import makeBlockie from 'ethereum-blockies-base64'
-import { interFonts, socialAssetDataUrl } from 'services/social-cards/assets'
+import { interFonts, poppinsFonts, socialAssetDataUrl } from 'services/social-cards/assets'
 import {
   getDay,
   getExpertiseColor,
@@ -17,6 +17,7 @@ import {
   getTrackImage,
   speakerImageDataUrls,
 } from 'services/social-cards/data'
+import { renderDc8SocialCard } from 'services/social-cards/dc8-social-card'
 import { pngToJpeg, serveCachedImage } from 'services/og-cache'
 
 dayjs.extend(utc)
@@ -24,6 +25,7 @@ dayjs.extend(timezone)
 
 const BUCKET = 'social-cards'
 
+// ─── Devcon 7 / SEA card (unchanged) ─────────────────────────────────────────
 // Ported from social-ticket/src/app/schedule/[id]/opengraph-image.tsx - layout,
 // colors, and text logic are a lift, not a redesign. Only asset sourcing
 // changed: fonts/images come in as pre-fetched buffers/data URLs instead of
@@ -192,11 +194,18 @@ function renderScheduleCard(
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const id = String(req.query.id || '')
-  if (!id || !/^[a-zA-Z0-9_-]{1,120}$/.test(id)) {
+  // Catch-all, same shape as /api/ticket:
+  //   /api/social/schedule/{code}/            — slug = [code]
+  //   /api/social/schedule/{code}/{buster}/   — slug = [code, buster]
+  // The buster exists only to hand social scrapers a URL they have never
+  // fetched (see the share page); the image is keyed by `code` alone, so a
+  // busted URL still hits the same Supabase cache entry.
+  const slug = req.query.id
+  const segments = Array.isArray(slug) ? slug : slug ? [slug] : []
+  const id = String(segments[0] || '')
+  if (segments.length > 2 || !id || !/^[a-zA-Z0-9_-]{1,120}$/.test(id)) {
     return res.status(400).send({ success: false, error: 'invalid session id' })
   }
-  // ?v= (event version) is a crawler-side cache buster only - ignored here.
   await serveCachedImage({
     res,
     bucket: BUCKET,
@@ -207,8 +216,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const session = (await getSession(id)) ?? (await getSessionFromPretalx(id))
       if (!session) throw new Error('session not found')
       const speakerImages = await speakerImageDataUrls(session)
-      const png = await renderScheduleCard(session, speakerImages, interFonts()).arrayBuffer()
+      const card =
+        session.eventId === 'devcon8'
+          ? renderDc8SocialCard(session, speakerImages, poppinsFonts(), { width: 1200, height: 630 })
+          : renderScheduleCard(session, speakerImages, interFonts())
+      const png = await card.arrayBuffer()
       return pngToJpeg(png)
     },
   })
 }
+

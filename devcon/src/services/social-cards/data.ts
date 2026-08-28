@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import sharp from 'sharp'
 import { socialAssetDataUrl } from './assets'
+import { cleanDc8SessionType, getDc8TrackBadgePath } from './track-images'
 
 export function devconApiUrl(): string {
   return process.env.DEVCON_API_URL || 'https://api.devcon.org'
@@ -44,7 +45,7 @@ export async function getSessionFromPretalx(id: string): Promise<any | null> {
         sourceId: data.code ?? id,
         eventId: event,
         title: data.title ?? '',
-        type: name(data.submission_type?.name ?? data.submission_type).replace(/\s*\(.*\)\s*$/, ''),
+        type: cleanDc8SessionType(name(data.submission_type?.name ?? data.submission_type)),
         track: name(data.track?.name ?? data.track),
         speakers: (data.speakers || []).map((s: any) => ({
           id: s.code,
@@ -89,7 +90,13 @@ export async function speakerImageDataUrls(session: any): Promise<Map<string, st
         // speaker avatars are webp since 2026-08-25 — embedding them raw made
         // every render throw, so cards silently served stale pre-mirror
         // copies forever (found via the 8GH8TR card, 2026-08-26).
-        const png = await sharp(Buffer.from(await r.arrayBuffer())).png().toBuffer()
+        // Resize to card scale while at it: full-resolution PNGs ballooned the
+        // satori SVG past libxml2's 10MB cap on multi-speaker cards (avatars
+        // render at ≤176px, so 384px covers every card at 2x).
+        const png = await sharp(Buffer.from(await r.arrayBuffer()))
+          .resize(384, 384, { fit: 'cover' })
+          .png()
+          .toBuffer()
         out.set(s.id, `data:image/png;base64,${png.toString('base64')}`)
       } catch {
         /* omit avatar */
@@ -107,36 +114,11 @@ export function getExpertiseColor(expertise?: string) {
   return 'bg-[#d0cbec]'
 }
 
-// Devcon 8 track badges (same art as the Speak at Devcon page). Keyed by
-// normalized name because Pretalx and the website spell connectives
-// differently ("Users, Builders, and Agents" vs "Users, Builders & Agents").
-const DC8_TRACK_IMAGES: Record<string, string> = {
-  'core protocol': 'dc8/tracks/track-core-protocol.png',
-  'privacy and consent': 'dc8/tracks/track-privacy-consent.png',
-  security: 'dc8/tracks/track-security.png',
-  'futures worth building': 'dc8/tracks/track-futures-worth-building.png',
-  'rights freedoms and governance': 'dc8/tracks/track-rights-freedoms-governance.png',
-  'permissionless networks': 'dc8/tracks/track-permissionless-networks.png',
-  'users builders and agents': 'dc8/tracks/track-users-builders-agents.png',
-  'applied cryptography': 'dc8/tracks/track-applied-cryptography.png',
-  'open and verifiable stack': 'dc8/tracks/track-open-verifiable-stack.png',
-}
-
-function normalizeTrackName(track: string): string {
-  return track
-    .toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/,/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
+// DC8 track-name → badge mapping lives in ./track-images (client-safe module,
+// also used by the session share page).
 export function getTrackImage(track?: string, eventId?: string) {
   if (eventId === 'devcon8') {
-    const badge = track ? DC8_TRACK_IMAGES[normalizeTrackName(track)] : undefined
-    // Unmapped devcon8 tracks (Art&Culture, Invited speaker, Community Hubs)
-    // get a neutral badge rather than DC7 art.
-    return socialAssetDataUrl(badge ?? 'dc8/tracks/track-futures-worth-building.png')
+    return socialAssetDataUrl(getDc8TrackBadgePath(track))
   }
   if (track === 'Core Protocol') return socialAssetDataUrl('dc7/tracks/CoreProtocol.png')
   if (track === 'Cypherpunk & Privacy') return socialAssetDataUrl('dc7/tracks/Cypherpunk.png')

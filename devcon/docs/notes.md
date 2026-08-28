@@ -31,12 +31,24 @@ assets per event (`session.eventId === 'devcon8'` vs everything else):
 
 - `public/social/dc7/` and `public/social/dc8/` — one directory per event,
   each with `logo.png`, `prism.png` (background art) and `tracks/*.png`.
-  dc7 also holds the schedule-u background (`personalized.png`) and legacy
-  extras (characters/, clock, pin — unreferenced by the card code).
-- DC8 track badges (same art as the Speak at Devcon page) are mapped by
-  normalized Pretalx track name in `services/social-cards/data.ts`
-  (`DC8_TRACK_IMAGES`); unmapped tracks (Art&Culture, Invited speaker,
-  Community Hubs) fall back to a neutral badge.
+  dc8 also holds `kv-bg.jpg` (the Mumbai key visual at 1966×1106, resized from
+  `src/components/common/dc-8/hero/images/devcon-8-india-bg.png`) — the
+  schedule card's backdrop since the 2026-08 brand pass; `dc8/prism.png` is now
+  only used by the AV thumbnail route. dc7 also holds the schedule-u background
+  (`personalized.png`) and legacy extras (characters/, clock, pin —
+  unreferenced by the card code).
+- The DC8 Social/YouTube card (`renderDc8SocialCard` in
+  `services/social-cards/dc8-social-card.tsx`, Figma Dev Handoff 5068:1593 ff)
+  serves both `api/social/schedule/[id]` (1200×630) and `api/social/av/[id]`
+  (1920×1080) for devcon8 sessions; it is set in Poppins Regular/Medium/Bold
+  (`public/fonts/Poppins-{Regular,500,Bold}.ttf` via `poppinsFonts()`).
+  DC7/SEA keeps the original Inter designs untouched.
+- DC8 track badges (570px octagons) and per-track card colors are mapped by
+  normalized Pretalx track name in `services/social-cards/track-images.ts`
+  (`DC8_TRACK_BADGES` / `DC8_TRACK_COLORS`, client-safe module shared with the
+  session share page, which also hosts the type/CLS label formatting helpers);
+  unmapped tracks (Art&Culture, Invited speaker, Community Hubs) fall back to
+  a neutral badge on the default gradient.
 - devcon8 sessions missing from devcon-api are fetched live from Pretalx as a
   fallback (`getSessionFromPretalx`) — requires the organizer-level
   PRETALX_API_KEY on Netlify.
@@ -47,6 +59,8 @@ Open items before the DC8 card is final:
   re-renders and the serve-stale safety net is off).
 - Restore the confirmed-only gate for devcon8 in
   `src/pages/schedule/[event]/[code].tsx` (TEMPORARY exemption).
-- Dedicated DC8 background art for `dc8/prism.png`; DC8 per-track card
-  colors (single periwinkle for all tracks today, `getTrackColor`);
-  `getDay` labels still map DC7 dates.
+- The AV thumbnail route (`api/social/av/[id]`) still renders the old
+  prism/periwinkle design with DC7 copy — needs its own DC8 pass.
+- The DC8 schedule card always shows the Mumbai date block (per the Figma
+  frames); once a schedule is published, decide whether scheduled sessions
+  should surface room/time again (`getDay` still maps DC7 dates).

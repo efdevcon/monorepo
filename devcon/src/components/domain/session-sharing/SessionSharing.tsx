@@ -1,43 +1,62 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
 import { useTilt } from '../ticket-sharing/useTilt'
-import heroBackdrop from '../ticket-sharing/occluded.png'
-import devconLogo from '../ticket-sharing/updated-dc8-logo.png'
-import cardArt from '../ticket-sharing/ticket-backside.png'
-import IconArrowRight from 'assets/icons/arrow_right.svg'
+import kvBackdrop from 'components/common/dc-8/hero/images/devcon-8-india-bg.png'
+// Glow baked into the PNG — live drop-shadow filters tanked the frame rate.
+import heroLogo from './images/dc8-india-logo-glow.png'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
-import { Copy } from 'lucide-react'
-import css from '../ticket-sharing/ticket-sharing.module.scss'
-import { ShootingStars } from '../ticket-sharing/ShootingStars'
+import { ArrowRight, Copy } from 'lucide-react'
+import css from './session-sharing.module.scss'
 import { Fireflies } from 'components/common/dc-8/hero/fireflies'
 
 /**
- * Devcon 8 styled session-share page body — the speaker-card counterpart of
- * TicketSharing (same cosmic scene, same card treatment, same share actions),
- * used by /schedule/devcon8/{code}. Assets and styles are reused from
- * ticket-sharing so the two pages stay visually in lockstep.
+ * Devcon 8 session-share page body, used by /schedule/devcon8/{code}.
+ * Figma: Dev Handoff 5071:6944 (scene). The card IS the rendered social
+ * image (/api/social/schedule) so the sharing page, link embeds, and the
+ * YouTube archive all show one consistent card; the scene keeps the
+ * tilt/parallax interaction from the ticket share page (useTilt is shared).
+ *
+ * One deliberate deviation from the frames: the third share button is
+ * copy-link (the design shows Instagram, which has no web share intent).
  */
 
 export interface SessionShareTalk {
   id: string
   title: string
-  type: string
-  track: string
-  speakers: { name: string; avatar: string }[]
 }
 
 interface SessionSharingProps {
   talk: SessionShareTalk
-  pageUrl: string
+  /** Absolute page URL WITHOUT a cache-buster — share links mint their own. */
+  shareBaseUrl: string
+  /** Same-origin path of the rendered card (matches the <Head> preload). */
+  cardImageUrl: string
 }
 
-export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
+export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const [showGyroPrompt, setShowGyroPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
+  // The social-card render can take seconds on a cold hit, so the card shows
+  // the familiar gradient placeholder first: 'loading' shimmers, 'loaded'
+  // fades the image in, 'failed' settles on the bare gradient (no endless
+  // shimmer, no broken-image glyph).
+  const [cardState, setCardState] = useState<'loading' | 'loaded' | 'failed'>('loading')
+  const cardImageRef = useRef<HTMLImageElement | null>(null)
+
+  // The <img> is server-rendered and the <Head> preload warms the very same
+  // URL, so its `load` event usually fires BEFORE React hydrates and attaches
+  // onLoad — the handler then never runs and the card stays invisible for
+  // good (the faster the image, the more certain the blank card). Re-check
+  // `complete` on mount; onLoad still covers the genuinely-slow renders.
+  useEffect(() => {
+    const img = cardImageRef.current
+    if (!img?.complete) return
+    setCardState(img.naturalWidth > 0 ? 'loaded' : 'failed')
+  }, [])
 
   useEffect(() => {
     // Same treatment as TicketSharing: no elastic overscroll, notch colored
@@ -45,9 +64,9 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
     const prevBodyBg = document.body.style.backgroundColor
     const prevHtmlBg = document.documentElement.style.backgroundColor
     document.body.style.overscrollBehavior = 'none'
-    document.body.style.backgroundColor = '#1a0a3e'
+    document.body.style.backgroundColor = '#221144'
     document.documentElement.style.overscrollBehavior = 'none'
-    document.documentElement.style.backgroundColor = '#1a0a3e'
+    document.documentElement.style.backgroundColor = '#221144'
 
     const DOE = DeviceOrientationEvent as any
     if (typeof DOE?.requestPermission === 'function') {
@@ -81,26 +100,48 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
     if (granted) localStorage.setItem('gyro-accepted', 'true')
   }, [requestGyroPermission])
 
-  const meta = [talk.type, talk.track].filter(Boolean).join(' · ')
+  // Every share carries a FRESH cache-buster segment. X and Farcaster cache a
+  // preview per exact URL for about a week, INCLUDING a failed or
+  // half-rendered one — re-posting the same link would keep serving that dead
+  // preview. The card route keys its cache by session code, so the extra
+  // segment costs no extra render.
+  //
+  // Minted in an effect (not during render) so server and client HTML agree;
+  // each share then rolls the nonce for the NEXT one. React state settles
+  // after the current event, so the tap that rolls it still travels with the
+  // href it was rendered with.
+  const [shareNonce, setShareNonce] = useState('')
+  useEffect(() => setShareNonce(Date.now().toString(36)), [])
+  const rollShareNonce = () => setShareNonce(Date.now().toString(36))
+
   // Matomo campaign tagging per channel (same convention as TicketSharing).
-  const shareUrlFor = (source: string) => `${pageUrl}?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
+  const shareUrlFor = (source: string) =>
+    `${shareBaseUrl}${shareNonce ? `${shareNonce}/` : ''}?mtm_campaign=speaker-share&mtm_source=${source}&mtm_medium=social`
   const shareText = `I'm speaking at @EFDevcon 8!\n\n"${talk.title}"\n\nJoin me in Mumbai 🇮🇳 November 3-6, 2026.`
-  const xText = `${shareText}\n\n${shareUrlFor('twitter')}`
+  // Real hrefs, not window.open: iOS only hands a URL to the installed app
+  // for a genuine link tap, so the old preventDefault + window.open always
+  // landed people in the mobile WEB composer inside an in-app browser
+  // (reported 2026-08-28). `url` rides as its own intent param — X appends it
+  // and reads it for the card.
+  const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(
+    shareUrlFor('twitter')
+  )}`
+  const farcasterHref = `https://farcaster.xyz/~/compose?text=${encodeURIComponent(
+    shareText
+  )}&embeds[]=${encodeURIComponent(shareUrlFor('farcaster'))}`
 
   return (
     <div ref={containerRef} className={css.container}>
-      <div className={`${css.bgLayer} ${css.bgSlow}`}>
-        <Image src={heroBackdrop} alt="" fill className={cn(css.bgImage)} priority placeholder="blur" />
+      <div className={css.bgLayer}>
+        <Image src={kvBackdrop} alt="" fill className={css.bgImage} priority placeholder="blur" />
       </div>
-
-      <ShootingStars minDelay={6000} maxDelay={12000} minSpeed={1} maxSpeed={2} />
 
       <div className={css.particles}>
         <Fireflies
           id="session-fireflies"
           settings={{
-            count: typeof window !== 'undefined' && window.innerWidth <= 600 ? 75 : 120,
-            color: 'rgba(139, 255, 255, 0.5)',
+            count: typeof window !== 'undefined' && window.innerWidth <= 600 ? 90 : 150,
+            color: 'rgba(139, 255, 255, 0.65)',
             speed: 0.15,
             radius: 2,
           }}
@@ -108,68 +149,63 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
       </div>
 
       <div className={css.aboveCard}>
-        <Image src={devconLogo} alt="Devcon 8" className={css.heroLogo} />
+        <Image src={heroLogo} alt="Devcon 8 India" className={css.heroLogo} priority />
       </div>
 
-      {/* Single tilting card, styled like the ticket's text card */}
-      <div className={cn(css.cardStack, css.frontShowing)}>
-        <div className={cn(css.card, css.cardFront, css.backsideShadowWrap)}>
-          <div className={css.backsideInner}>
-            <Image src={cardArt} alt="" className={css.ticketImage} placeholder="blur" />
-            <div className={css.backsideContent}>
-              {meta && <p className="mb-3 text-xs font-semibold uppercase tracking-widest opacity-70">{meta}</p>}
-              <h2 className={css.backsideTitle}>{talk.title}</h2>
-              {talk.speakers.length > 0 && (
-                <div className="mt-4 flex flex-col gap-2">
-                  {talk.speakers.map(s => (
-                    <div key={s.name} className="flex items-center gap-2.5">
-                      {s.avatar && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={s.avatar}
-                          alt=""
-                          width={32}
-                          height={32}
-                          className="h-8 w-8 shrink-0 rounded-full object-cover"
-                        />
-                      )}
-                      <span className="text-sm font-medium text-white">{s.name}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <p className={cn(css.backsideDescription, 'mt-4')}>Devcon 8 · Mumbai, India · November 3 - 6, 2026</p>
-            </div>
+      {/* Tilting session card: the rendered social image (1200×630), same
+          asset link embeds and the YouTube archive use. Relative URL so dev
+          and previews hit their own render; in production it's the same URL
+          the <Head> preload already warmed. */}
+      <div className={css.cardStack}>
+        <div className={css.card}>
+          <div
+            className={cn(
+              css.cardInner,
+              cardState !== 'loading' && css.cardSettled,
+              cardState === 'loaded' && css.cardLoaded
+            )}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              ref={cardImageRef}
+              src={cardImageUrl}
+              alt={talk.title}
+              className={css.cardImage}
+              onLoad={() => setCardState('loaded')}
+              // A failed render (cold-start timeout, unsynced session) must
+              // not leave the shimmer running forever — settle on the plain
+              // gradient placeholder instead.
+              onError={() => setCardState('failed')}
+            />
           </div>
         </div>
       </div>
 
-      {/* Share actions + tickets CTA */}
+      <div className={css.bottomFade} />
+
+      {/* Get tickets CTA + share actions, aligned to the card's width */}
       <div className={css.actions}>
+        <Link href="/tickets" passHref className={cn(css.ctaButton, 'select-none')}>
+          Get tickets
+          <ArrowRight />
+        </Link>
         <div className={css.shareSection}>
           <span className={css.shareLabel}>Share</span>
           <div className={css.shareIcons}>
             <a
-              href="#"
-              onClick={e => {
-                e.preventDefault()
-                window.open(`https://x.com/intent/post?text=${encodeURIComponent(xText)}`, '_blank')
-              }}
+              href={xHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={rollShareNonce}
               className={css.shareIcon}
             >
               <IconTwitter />
             </a>
             <a
-              href="#"
-              onClick={e => {
-                e.preventDefault()
-                window.open(
-                  `https://farcaster.xyz/~/compose?text=${encodeURIComponent(shareText)}&embeds[]=${encodeURIComponent(
-                    shareUrlFor('farcaster')
-                  )}`,
-                  '_blank'
-                )
-              }}
+              href={farcasterHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={rollShareNonce}
               className={css.shareIcon}
             >
               <IconWarpcast />
@@ -178,6 +214,7 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
               className={css.shareIcon}
               onClick={() => {
                 navigator.clipboard.writeText(shareUrlFor('copy'))
+                rollShareNonce()
                 setCopied(true)
                 setTimeout(() => setCopied(false), 2000)
               }}
@@ -187,19 +224,6 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
           </div>
           {copied && <span className={css.copiedToast}>Copied!</span>}
         </div>
-        <Link
-          href="/tickets"
-          // The shared .actions column has no internal gap (the ticket page
-          // shows share OR cta, never both) — separate them here.
-          className={cn(css.ctaButton, 'select-none', 'mt-10')}
-          // Cast via any: the repo currently resolves two csstype versions, and
-          // custom properties trip the mismatch (same class of error as the
-          // pre-existing WritingText/SpeakerDetailOverlay ones).
-          style={{ '--color-icon': '#f9f8fa' } as any}
-        >
-          Get tickets
-          <IconArrowRight />
-        </Link>
       </div>
 
       {showGyroPrompt && (
@@ -207,8 +231,6 @@ export function SessionSharing({ talk, pageUrl }: SessionSharingProps) {
           Enable motion effects
         </button>
       )}
-
-      <div className={css.vignette} />
     </div>
   )
 }
