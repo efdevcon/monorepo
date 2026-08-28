@@ -160,7 +160,10 @@ export const SurfaceFilters = ({
     <div
       ref={dropdownRef}
       className={cn(
-        'flex items-center absolute top-0 left-0 right-0 px-2 pr-4 z-[1000000000] touch-only:!px-0',
+        // Mobile: sit just below the sticky header glass (3.5rem bar +
+        // status-bar inset) — at top-0 the bar was buried under the header,
+        // invisible and untappable.
+        'flex items-center absolute top-[calc(3.5rem+var(--safe-top)+8px)] left-0 right-0 px-2 pr-4 z-[1000000000] touch-only:!px-0',
         // Desktop: pin to the bottom, centered, with a max width (chips scroll
         // within it if they overflow) — mirrors the centered nav pill.
         'lg:top-auto lg:bottom-3 lg:left-1/2 lg:right-auto lg:w-full lg:max-w-6xl lg:-translate-x-1/2',
@@ -278,7 +281,7 @@ export const ListFilters = ({
   return (
     <>
       <button
-        className="absolute bottom-3 lg:bottom-16 left-3 flex shadow-xs items-center !text-[rgba(0,115,222,1)] !gap-1.5 !px-2.5 !h-[auto] py-1 cursor-pointer z-10 basic-button white-button small-button"
+        className="absolute bottom-[calc(var(--nav-clearance)+12px)] lg:bottom-16 left-3 flex shadow-xs items-center !text-[rgba(0,115,222,1)] !gap-1.5 !px-2.5 !h-[auto] py-1 cursor-pointer z-10 basic-button white-button small-button"
         onClick={(e) => {
           e.stopPropagation();
           setOpen(!open);

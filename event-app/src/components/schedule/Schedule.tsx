@@ -23,12 +23,19 @@ import {
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
-import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
-import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import {
-  SearchInput,
-  scrollToTopAndFocusSearch,
-} from "@/components/SearchInput";
+  HEADER_ACTIONS_ID,
+  headerCircle,
+  headerCircleResting,
+  headerCircleActive,
+} from "@/components/AppHeader";
+import {
+  HeaderSearchDrawer,
+  HEADER_SEARCH_PANEL_ID,
+} from "@/components/HeaderSearchDrawer";
+import { useHeaderSearch } from "@/hooks/useHeaderSearch";
+import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
 import { ScheduleTimeline } from "./ScheduleTimeline";
@@ -43,8 +50,8 @@ import { getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   useIsDesktop,
   isDesktopNow,
-  HEADER_OFFSET_DESKTOP,
-  HEADER_OFFSET_MOBILE,
+  headerOffsetNow,
+  safeTopNow,
 } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
@@ -52,38 +59,32 @@ type ViewMode = "list" | "timeline";
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
 
-/** Pinned side-panel edge gap: the aside pins at top-[81px], 16px below the
- *  65px desktop header; the bottom keeps the same 16px to the viewport edge
- *  so both ends of the panel match (same recipe as Speakers.tsx). */
+/** Pinned side-panel edge gap: the aside pins at 81px + --safe-top, 16px
+ *  below the 65px desktop header; the bottom keeps the same 16px to the
+ *  viewport edge so both ends of the panel match (same recipe as
+ *  Speakers.tsx). */
 const PANEL_EDGE_GAP = 16;
-
-/** Circular 32px glass icon button used in the app header (Figma). Border
- *  and fill are applied per-usage (resting vs active) — Tailwind resolves
- *  same-property conflicts by stylesheet order, not class order, so an
- *  appended active bg-* could not reliably override one baked in here. */
-const headerCircle =
-  "flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity";
-const headerCircleResting = "border-dc-hairline bg-white";
-const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Page-specific app-header buttons, portaled into AppHeader's target:
- * scroll-revealed search + jump-to-now + interested circles, and the filter
- * button with its active count bubble — same left-to-right order as the
- * top-of-page action row. The star stays filled (matching InterestedPill);
- * the lavender circle fill carries the active state.
+ * search + jump-to-now + interested circles, and the filter button with its
+ * active count bubble. The star stays filled (matching InterestedPill); the
+ * lavender circle fill carries the active state — on the search button it
+ * signals both "drawer open" and "query applied with the drawer closed".
  */
 function HeaderActions({
-  revealed,
-  onSearch,
+  searchOpen,
+  searchActive,
+  onToggleSearch,
   interestedOnly,
   onToggleInterested,
   onJumpToNow,
   filterCount,
   onOpenFilters,
 }: {
-  revealed: boolean;
-  onSearch: () => void;
+  searchOpen: boolean;
+  searchActive: boolean;
+  onToggleSearch: () => void;
   interestedOnly: boolean;
   onToggleInterested: () => void;
   onJumpToNow: () => void;
@@ -101,12 +102,13 @@ function HeaderActions({
       {createPortal(
     <>
       <button
-        onClick={onSearch}
+        onClick={onToggleSearch}
         aria-label="Search sessions"
+        aria-expanded={searchOpen}
+        aria-controls={HEADER_SEARCH_PANEL_ID}
         className={cn(
           headerCircle,
-          headerCircleResting,
-          !revealed && "pointer-events-none opacity-0"
+          searchActive ? headerCircleActive : headerCircleResting
         )}
       >
         <Search className="size-4 text-dc-purple" />
@@ -114,11 +116,7 @@ function HeaderActions({
       <button
         onClick={onJumpToNow}
         aria-label="Jump to now"
-        className={cn(
-          headerCircle,
-          headerCircleResting,
-          !revealed && "pointer-events-none opacity-0"
-        )}
+        className={cn(headerCircle, headerCircleResting)}
       >
         <ClockArrowDown className="size-4 text-dc-purple" />
       </button>
@@ -128,8 +126,7 @@ function HeaderActions({
         aria-pressed={interestedOnly}
         className={cn(
           headerCircle,
-          interestedOnly ? headerCircleActive : headerCircleResting,
-          !revealed && "pointer-events-none opacity-0"
+          interestedOnly ? headerCircleActive : headerCircleResting
         )}
       >
         <Star className="size-4 text-dc-purple" fill="currentColor" />
@@ -317,10 +314,9 @@ function GroupHeader({
     // The sentinel marks the header's natural position: once it crosses
     // above the pin line (1px past the breakpoint's sticky top offset =
     // app header + day-tab strip, see the sticky top-[103px]/[118px]),
-    // the header is stuck.
-    const pinLine = isDesktop
-      ? HEADER_OFFSET_DESKTOP + 54
-      : HEADER_OFFSET_MOBILE + 48;
+    // the header is stuck. headerOffsetNow() carries the iOS status-bar
+    // inset, matching the +var(--safe-top) in those sticky classes.
+    const pinLine = headerOffsetNow() + (isDesktop ? 54 : 48);
     const observer = new IntersectionObserver(
       ([entry]) =>
         setStuck(
@@ -338,25 +334,33 @@ function GroupHeader({
       <header
         className={cn(
           "flex items-center justify-between gap-3",
-          !inPanel && "sticky top-[103px] z-10 lg:top-[118px]",
-          // Every pinned header gets 4px 0 padding for breathing room,
-          // offset by negative margins so flow height stays put (no 8px
-          // content jump at the pin; the section is flex-col so the
-          // negative margins can't collapse away). Browsers pin the border
-          // box at `top`, so the margins don't move the pinned fill edge.
-          !inPanel && stuck && "-my-1 py-1",
+          !inPanel &&
+            "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(118px+var(--safe-top))]",
+          // Pinned headers get 4px 0 padding for breathing room, offset by
+          // negative margins so flow height stays put (the section is
+          // flex-col so the negative margins can't collapse away). Browsers
+          // pin the border box at `top`, so the margins don't move the
+          // pinned fill edge. On mobile this geometry is applied full-time —
+          // swapping it in at the pin moment made the title visibly snap —
+          // and since -my-1 cancels py-1 in flow, section spacing is
+          // unchanged at rest. Desktop keeps it pin-only (the panel surface
+          // hides the swap there).
+          !inPanel && "max-lg:-my-1 max-lg:py-1",
+          !inPanel && stuck && "lg:-my-1 lg:py-1",
           // Pinned non-live headers also get the wash + the app-header glass
           // blur so cards scrolling beneath don't ghost through the 95%
           // fill, going full-bleed on mobile so card edges can't peek past
-          // the fill in the gutters. Live headers keep the fully opaque band
-          // tint (already full-bleed via the band), no blur.
+          // the fill in the gutters. The mobile bleed geometry is full-time
+          // (same no-snap rule; px-4 keeps the text on the content column),
+          // while the wash fades in on pin instead of popping. Live headers
+          // keep the fully opaque band tint (already full-bleed via the
+          // band), no blur.
           !inPanel &&
             (group.isLive
               ? "bg-dc-live-bg"
               : cn(
-                  "lg:bg-dc-panel/95",
-                  stuck &&
-                    "-mx-4 bg-dc-panel/95 px-4 backdrop-blur-[4px] lg:mx-0 lg:px-0"
+                  "max-lg:-mx-4 max-lg:px-4 max-lg:transition-[background-color] max-lg:duration-150 lg:bg-dc-panel/95 motion-reduce:transition-none",
+                  stuck && "bg-dc-panel/95 backdrop-blur-[4px]"
                 ))
         )}
       >
@@ -428,26 +432,12 @@ export function Schedule() {
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
     null
   );
-  const [scrolled, setScrolled] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
-  const searchBlockRef = useRef<HTMLDivElement | null>(null);
-  const mobileSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const headerSearch = useHeaderSearch();
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
-
-  // Reveal the header's star/jump buttons once the search block scrolls away.
-  useEffect(() => {
-    const el = searchBlockRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { rootMargin: `-${HEADER_OFFSET_MOBILE}px 0px 0px 0px` }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   // Desktop side panel selection, mirrored to ?session= for shareability.
   const selectSession = useCallback((id: string | null) => {
@@ -544,8 +534,9 @@ export function Schedule() {
       const asideTop = aside.getBoundingClientRect().top;
       const cardBottom =
         mainCardRef.current?.getBoundingClientRect().bottom ?? Infinity;
-      // Resting size: 141px natural offset (nav + page title) + edge gap.
-      const defaultRest = viewportH - 141 - PANEL_EDGE_GAP;
+      // Resting size: 141px natural offset (nav + page title) + edge gap,
+      // plus the status-bar inset the sticky top gained (iPad PWA).
+      const defaultRest = viewportH - 141 - safeTopNow() - PANEL_EDGE_GAP;
       const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
       const contentLimit = cardBottom - asideTop;
       aside.style.setProperty(
@@ -577,7 +568,7 @@ export function Schedule() {
     // Same growth var as the details panels: the filter column keeps
     // PANEL_EDGE_GAP to the viewport bottom while pinned. The fallback
     // matches the resting 141px natural offset + that 16px clearance.
-    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px))] min-h-0 flex-col">
+    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px-var(--safe-top)))] min-h-0 flex-col">
       <FilterPanelContent
         options={filterOptions}
         filters={filters}
@@ -609,7 +600,8 @@ export function Schedule() {
       // instead of collapsing with the card list's top margin.
       className={cn(
         "flex flex-col",
-        !opts.inPanel && "scroll-mt-[112px] lg:scroll-mt-[127px]"
+        !opts.inPanel &&
+          "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]"
       )}
     >
       <GroupHeader group={group} inPanel={!!opts.inPanel} />
@@ -640,15 +632,23 @@ export function Schedule() {
   return (
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
-        revealed={scrolled}
-        onSearch={() =>
-          scrollToTopAndFocusSearch(mobileSearchInputRef.current)
-        }
+        searchOpen={headerSearch.searchOpen}
+        searchActive={headerSearch.searchOpen || search.trim().length > 0}
+        onToggleSearch={headerSearch.toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
         onJumpToNow={jumpToNow}
         filterCount={activeFilterCount}
         onOpenFilters={openFilters}
+      />
+      <HeaderSearchDrawer
+        open={headerSearch.searchOpen}
+        onClose={headerSearch.closeSearch}
+        value={search}
+        onChange={setSearch}
+        placeholder="Search by session, speaker or topic"
+        inputRef={headerSearch.inputRef}
+        drawerRef={headerSearch.drawerRef}
       />
 
       <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
@@ -664,29 +664,6 @@ export function Schedule() {
             ref={mainCardRef}
             className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
           >
-            {/* Mobile: search + actions block (scrolls away) */}
-            <div
-              ref={searchBlockRef}
-              className="flex flex-col gap-3 border-b border-dc-hairline px-4 py-3 lg:hidden"
-            >
-              <SearchInput
-                value={search}
-                onChange={setSearch}
-                placeholder="Search by session, speaker or topic"
-                inputRef={mobileSearchInputRef}
-              />
-              <div className="flex items-center justify-between">
-                <button onClick={jumpToNow} className={ghostPill}>
-                  <ClockArrowDown className="size-4" />
-                  Jump to now
-                </button>
-                <InterestedPill
-                  active={interestedOnly}
-                  onToggle={() => setInterestedOnly((v) => !v)}
-                />
-              </div>
-            </div>
-
             {/* Desktop: search + view toggle toolbar */}
             <div className="hidden items-center justify-between gap-3 border-b border-dc-hairline bg-white px-4 py-3 lg:flex lg:rounded-t-xl">
               <SearchInput
@@ -850,7 +827,7 @@ export function Schedule() {
             inert={!sidePanelOpen || undefined}
             style={{ width: sidePanelOpen ? PANEL_SLOT_W : 0 }}
             className={cn(
-              "sticky top-[81px] hidden shrink-0 overflow-hidden lg:block",
+              "sticky top-[calc(81px+var(--safe-top))] hidden shrink-0 overflow-hidden lg:block",
               "transition-[width] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
             )}
           >

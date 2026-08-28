@@ -15,16 +15,22 @@ export async function PersonalizedManifestLink() {
   const email = (await supabase?.auth.getUser())?.data.user?.email;
 
   if (email && process.env.INSTALL_BRIDGE_SECRET) {
+    // Token built inside try/catch, JSX outside it: React renders JSX
+    // lazily, so a throw from inside a JSX expression would escape the
+    // catch anyway (react-hooks/error-boundaries).
+    let bridgeToken: string | null = null;
     try {
-      const bridgeToken = signBridgeToken(email);
+      bridgeToken = signBridgeToken(email);
+    } catch {
+      // Fall through to the default manifest below.
+    }
+    if (bridgeToken) {
       return (
         <link
           rel="manifest"
           href={`/api/manifest-bridge?bridge=${encodeURIComponent(bridgeToken)}`}
         />
       );
-    } catch {
-      // Fall through to the default manifest below.
     }
   }
 

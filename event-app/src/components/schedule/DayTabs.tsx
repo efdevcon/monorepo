@@ -64,7 +64,7 @@ export function DayTabs({
     <div
       ref={ref}
       className={cn(
-        "sticky top-14 z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:top-[65px] lg:items-center lg:px-4 lg:py-2",
+        "sticky top-[calc(3.5rem+var(--safe-top))] z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:top-[calc(65px+var(--safe-top))] lg:items-center lg:px-4 lg:py-2",
         // Desktop: soft lavender at rest → header glass once pinned.
         stuck && "lg:bg-white/75 lg:backdrop-blur-[4px]"
       )}

@@ -93,7 +93,9 @@ export function BottomSheet({
               // Fit mode: height comes from the content (children must drop
               // h-full); the flex column lets their inner scroll areas cap
               // at the same 81px top inset the pinned variant uses.
-              fit ? "flex max-h-[calc(100%-81px)] flex-col" : "top-[81px]",
+              fit
+                ? "flex max-h-[calc(100%-81px-var(--safe-top))] flex-col"
+                : "top-[calc(81px+var(--safe-top))]",
               // Exit is faster and eases in — leaving shouldn't feel as
               // weighty as arriving.
               entered

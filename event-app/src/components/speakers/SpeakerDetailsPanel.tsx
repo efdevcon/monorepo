@@ -27,7 +27,7 @@ export function SpeakerDetailsPanel({
     // gets from the header (sticky top-[81px] under the 65px header), so
     // both ends of the panel match. The fallback matches the resting 141px
     // natural offset (nav + page title) + that 16px clearance.
-    <div className="flex max-h-[var(--speaker-panel-max-h,calc(100dvh-157px))] min-h-0 flex-col overflow-clip rounded-xl border border-dc-hairline bg-dc-panel">
+    <div className="flex max-h-[var(--speaker-panel-max-h,calc(100dvh-157px-var(--safe-top)))] min-h-0 flex-col overflow-clip rounded-xl border border-dc-hairline bg-dc-panel">
       <div className="flex shrink-0 items-center justify-between gap-4 border-b border-dc-hairline bg-white p-4">
         <span className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
           Speaker

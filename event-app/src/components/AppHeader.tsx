@@ -16,6 +16,25 @@ import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
  */
 export const HEADER_ACTIONS_ID = "header-actions";
 
+/**
+ * Mobile fold-out slot directly under the header bar (search drawer). An
+ * absolutely-positioned overlay inside the sticky header, so opening it never
+ * changes the header's height — every hardcoded sticky offset below
+ * (top-14, top-[103px], scroll margins, the speakers rail math) stays valid.
+ */
+export const HEADER_DRAWER_ID = "header-drawer";
+
+/** Circular 32px glass icon button used in the app header (Figma). Border
+ *  and fill are applied per-usage (resting vs active) — Tailwind resolves
+ *  same-property conflicts by stylesheet order, not class order, so an
+ *  appended active bg-* could not reliably override one baked in here.
+ *  before:-inset-1.5 extends the 32px circle to the 44px touch floor; the
+ *  ±6px extensions exactly meet across the header's 12px gaps. */
+export const headerCircle =
+  "relative flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity before:absolute before:-inset-1.5 before:content-['']";
+export const headerCircleResting = "border-dc-hairline bg-white";
+export const headerCircleActive = "border-dc-purple bg-dc-lavender";
+
 interface RouteChrome {
   title: string;
   /** Detail pages show a back arrow instead of the logomark. */
@@ -69,8 +88,9 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
 
   return (
     <header className="sticky top-0 z-30 font-heading">
-      {/* Mobile: 56px glass bar with page title */}
-      <div className="flex min-h-14 items-center justify-between border-b border-dc-hairline bg-white/75 px-4 py-3 backdrop-blur-[4px] lg:hidden">
+      {/* Mobile: 56px glass bar with page title. pt/min-h grow by --safe-top
+          so the glass itself covers the iOS status-bar strip. */}
+      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:hidden">
         <div className="flex min-w-0 items-center gap-2">
           {back ? (
             <BackButton
@@ -101,8 +121,13 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
         />
       </div>
 
-      {/* Desktop: full-bleed glass bar, content centered at ~1440px */}
-      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 py-3 backdrop-blur-[4px] lg:block xl:px-16">
+      {/* Mobile fold-out drawer slot (search) — overlays the content below
+          the bar rather than growing the header. */}
+      <div id={HEADER_DRAWER_ID} className="absolute inset-x-0 top-full lg:hidden" />
+
+      {/* Desktop: full-bleed glass bar, content centered at ~1440px.
+          --safe-top matters here too (iPad PWA). */}
+      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:block xl:px-16">
         <div className="mx-auto flex w-full max-w-[1440px] items-center gap-10">
         <Link href="/" prefetch className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}

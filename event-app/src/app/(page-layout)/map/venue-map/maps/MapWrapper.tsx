@@ -24,4 +24,6 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
   }
 );
 
+MapTest.displayName = "MapTest";
+
 export default MapTest;

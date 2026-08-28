@@ -36,13 +36,51 @@ export function isDesktopNow(): boolean {
 /**
  * App-header heights (px) — the sticky offsets every pinned row and scroll
  * measurement hangs off. Tailwind classes can't consume these, so the
- * matching `top-14` / `lg:top-[65px]` (and derived scroll-mt) classes across
- * schedule/speakers must move in lockstep if these ever change.
+ * matching `top-[calc(3.5rem+var(--safe-top))]` / lg 65px (and derived
+ * scroll-mt) classes across schedule/speakers must move in lockstep if these
+ * ever change. They exclude the iOS status-bar inset — use headerOffsetNow()
+ * (which adds safeTopNow()) for anything measured against the viewport.
  */
 export const HEADER_OFFSET_MOBILE = 56;
 export const HEADER_OFFSET_DESKTOP = 65;
 
+/**
+ * JS mirror of the --safe-top CSS variable (globals.css): the iOS status-bar
+ * inset the header grows by in the installed PWA, 0 everywhere else.
+ *
+ * Cached: headerOffsetNow() is called from per-scroll-frame rAF measure
+ * loops (DayTabs' stuck check, the speakers rail/scrollspy), where a
+ * getComputedStyle(document.documentElement) per frame forces a style
+ * recalc across the whole page — on the ~82k-px speakers list that is the
+ * exact workload that used to kill the iOS content process. The inset only
+ * changes with viewport geometry, so the cache invalidates on resize /
+ * orientationchange and re-reads lazily.
+ */
+let safeTopCache: number | null = null;
+if (typeof window !== "undefined") {
+  const invalidate = () => {
+    safeTopCache = null;
+  };
+  window.addEventListener("resize", invalidate);
+  window.addEventListener("orientationchange", invalidate);
+}
+
+export function safeTopNow(): number {
+  if (safeTopCache === null) {
+    safeTopCache =
+      parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--safe-top"
+        )
+      ) || 0;
+  }
+  return safeTopCache;
+}
+
 /** The current breakpoint's header offset, for scroll-position math. */
 export function headerOffsetNow(): number {
-  return isDesktopNow() ? HEADER_OFFSET_DESKTOP : HEADER_OFFSET_MOBILE;
+  return (
+    (isDesktopNow() ? HEADER_OFFSET_DESKTOP : HEADER_OFFSET_MOBILE) +
+    safeTopNow()
+  );
 }

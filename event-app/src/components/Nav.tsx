@@ -1,11 +1,19 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import cn from "classnames";
-import { Bell, CalendarDays, Home, Map, Sparkles, Ticket, Tv, Users } from "lucide-react";
+import {
+  Bell,
+  CalendarDays,
+  CircleUserRound,
+  Home,
+  Map,
+  Tv,
+  Users,
+} from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
-import { useUser } from "@/data/auth/useUser";
 
 export type NavItem = {
   href: string;
@@ -53,7 +61,15 @@ export const NAV_ITEMS: NavItem[] = [
     enabled: APP_CONFIG.ROOMS_ENABLED,
     hideOnMobile: true,
   },
-  { href: "/ticket", label: "Tickets", short: "Tickets", icon: Ticket, enabled: true },
+  {
+    // Mobile tab reads "Me" (Figma tab-bar redesign); desktop keeps the
+    // fuller "Tickets" wording in the header.
+    href: "/ticket",
+    label: "Tickets",
+    short: "Me",
+    icon: CircleUserRound,
+    enabled: true,
+  },
   {
     // Mobile reaches announcements via the home-screen section; the bottom
     // pill is already at capacity.
@@ -73,16 +89,55 @@ export function isNavActive(pathname: string, href: string): boolean {
 }
 
 /**
- * Mobile bottom tab bar (Figma "Dev Handoff" / PWA Schedule): a floating
- * glass pill 24px off the bottom; the active tab is a purple square-ish chip
- * with a soft purple glow. Desktop navigation lives in AppHeader.
+ * Mobile detail views (session / speaker details) hide the bottom bar so
+ * they read as focused, single-purpose screens — the header back arrow is
+ * the way out. The layout also trims its nav clearance on these routes.
  */
-export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
-  const pathname = usePathname();
-  const { user } = useUser();
+export function isDetailView(pathname: string): boolean {
+  return (
+    pathname.startsWith("/schedule/") || pathname.startsWith("/speakers/")
+  );
+}
 
-  // No nav on the full-screen room-screen kiosk.
-  if (pathname.startsWith("/room-screens/")) {
+/**
+ * Mobile bottom tab bar (Figma "Dev Handoff" / "tab bar idea 2"): a
+ * full-width translucent glass bar docked to the bottom edge, top corners
+ * rounded, shadow cast upward; the active tab is a purple pill chip.
+ * Desktop navigation lives in AppHeader.
+ */
+export function Nav() {
+  const pathname = usePathname();
+  const navRef = useRef<HTMLElement | null>(null);
+
+  // No nav on the full-screen room-screen kiosk or on mobile detail views.
+  const hidden =
+    pathname.startsWith("/room-screens/") || isDetailView(pathname);
+
+  // Publish the bar's rendered height as --nav-clearance so bottom-anchored
+  // overlays outside the layout flow (map controls, debug FAB) can sit above
+  // it. Measured, not hardcoded: the height varies between browser tab and
+  // installed PWA with env(safe-area-inset-bottom). 0 wherever the bar isn't
+  // rendered (desktop's lg:hidden, detail views, kiosk), so those overlays
+  // fall back to the screen edge.
+  useEffect(() => {
+    const root = document.documentElement;
+    const el = navRef.current;
+    if (!el) {
+      root.style.setProperty("--nav-clearance", "0px");
+      return;
+    }
+    const publish = () =>
+      root.style.setProperty("--nav-clearance", `${el.offsetHeight}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.setProperty("--nav-clearance", "0px");
+    };
+  }, [hidden]);
+
+  if (hidden) {
     return null;
   }
 
@@ -90,40 +145,48 @@ export function Nav({ onOpenAI }: { onOpenAI?: () => void } = {}) {
 
   return (
     <nav
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 font-heading lg:hidden"
-      style={{ paddingBottom: "max(24px, env(safe-area-inset-bottom))" }}
+      ref={navRef}
+      // The 1px hairline is a ring shadow, not a border (no layout space)
+      // and not an outline (outline only follows border-radius from Safari
+      // 16.4 — earlier iOS drew it square around the rounded top corners).
+      className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0_0_0_1px_rgba(255,255,255,0.67),0px_-1px_4px_0px_rgba(0,0,0,0.06)] backdrop-blur-[6px] lg:hidden"
+      // max(), not 12px + inset: the label row already carries 12px of its
+      // own breathing room, so stacking the full home-indicator inset on top
+      // read as dead space in the installed PWA (the inset alone clears the
+      // indicator).
+      style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
     >
-      <div className="pointer-events-auto flex w-full max-w-[420px] items-center justify-between overflow-clip rounded-full border border-dc-hairline bg-white/75 px-4 py-1 backdrop-blur-[5px]">
-        {items.map((item) => {
-          const active = isNavActive(pathname, item.href);
-          const Icon = item.icon;
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              prefetch
-              className={cn(
-                "flex h-10 flex-col items-center justify-center gap-1 px-2 py-1 text-[11px] leading-none transition-colors",
-                active
-                  ? "rounded-[4px] bg-dc-purple font-bold text-white shadow-[0px_2px_2px_rgba(114,53,237,0.3),0px_1px_1px_rgba(114,53,237,0.3)]"
-                  : "rounded-full font-medium text-dc-fg"
-              )}
-            >
-              <Icon className="size-4" />
-              <span>{item.short}</span>
-            </Link>
-          );
-        })}
-        {onOpenAI && user && (
-          <button
-            onClick={onOpenAI}
-            className="flex h-10 cursor-pointer flex-col items-center justify-center gap-1 rounded-full px-2 py-1 text-[11px] font-medium leading-none text-dc-purple"
+      {items.map((item) => {
+        const active = isNavActive(pathname, item.href);
+        const Icon = item.icon;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            prefetch
+            className={cn(
+              // Uniform px on both states — the Figma's 12px-active/8px-idle
+              // split made labels shift on every tab change. flex-auto (not
+              // flex-1): the basis is each label's natural width, so longer
+              // labels (Schedule, Speakers) get proportionally more room and
+              // only the leftover space is shared equally.
+              "flex flex-auto flex-col items-center justify-center gap-1.5 rounded-xl px-2 py-1 text-[11px] leading-none transition-colors",
+              active ? "bg-dc-purple font-bold text-white" : "font-medium text-dc-fg2"
+            )}
           >
-            <Sparkles className="size-4" />
-            <span>AI</span>
-          </button>
-        )}
-      </div>
+            <Icon className="size-5" />
+            {/* Stacked twin: the invisible bold copy reserves the label's
+                active-state width, so flex-auto bases (and every tab's
+                position) hold still when the weight flips on tab change. */}
+            <span className="grid text-center">
+              <span className="col-start-1 row-start-1">{item.short}</span>
+              <span aria-hidden className="invisible col-start-1 row-start-1 font-bold">
+                {item.short}
+              </span>
+            </span>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

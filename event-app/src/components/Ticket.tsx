@@ -70,14 +70,14 @@ export function Ticket() {
                   // touch target to 44px — this is the only sign-out control on
                   // mobile and it sits right beside a break-all email that can
                   // wrap to its edge, so a mis-tap costs a full OTP round-trip.
-                  className="relative flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white transition-colors duration-150 ease-out before:absolute before:-inset-2 before:content-[''] hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 lg:hidden"
+                  className="relative flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white transition-[scale,background-color] duration-150 ease-out before:absolute before:-inset-2 before:content-[''] hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none lg:hidden"
                 >
                   <LogOut className="size-4 text-dc-error" />
                 </button>
                 <button
                   onClick={signOut}
                   disabled={busy}
-                  className="hidden h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-error bg-white/80 px-6 text-[14px] font-bold leading-none text-dc-error transition-colors duration-150 ease-out hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 lg:flex"
+                  className="hidden h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-error bg-white/80 px-6 text-[14px] font-bold leading-none text-dc-error transition-[scale,background-color] duration-150 ease-out hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none lg:flex"
                 >
                   Sign out
                   <LogOut className="size-4" />

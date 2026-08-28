@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
 import { CacheWarmer } from "@/components/CacheWarmer";
+import { IOSViewportHealer } from "@/components/IOSViewportHealer";
 import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
@@ -45,7 +46,12 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    // black-translucent is the only mode where iOS lets the page draw under
+    // the status bar (and the only one where env(safe-area-inset-top) is
+    // non-zero) — with "default" the OS paints that strip opaque white above
+    // the web view, clashing with the header's glass. The header pads itself
+    // by --safe-top (globals.css) so its blur fills the strip instead.
+    statusBarStyle: "black-translucent",
     title: APP_CONFIG.APP_NAME,
   },
 };
@@ -195,10 +201,11 @@ export default function RootLayout({
           {children}
         </SWRConfigProvider>
         <CustomScrollbar />
+        <IOSViewportHealer />
         <DebugPanel />
         <ServiceWorkerUpdater />
-        {/* mobileOffset lifts bottom toasts clear of the fixed nav pill
-            (24px nav padding + ~50px pill + breathing room, safe-area aware) */}
+        {/* mobileOffset lifts bottom toasts clear of the docked tab bar
+            (--nav-clearance: its measured height, 0 where it isn't shown) */}
         <Toaster
           position="bottom-center"
           richColors
@@ -218,7 +225,7 @@ export default function RootLayout({
             error: <CircleAlert className="size-6 text-dc-red" />,
           }}
           mobileOffset={{
-            bottom: "calc(max(24px, env(safe-area-inset-bottom)) + 64px)",
+            bottom: "calc(var(--nav-clearance, 0px) + 16px)",
           }}
         />
       </body>

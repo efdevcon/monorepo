@@ -106,7 +106,6 @@ export function IntroSplash({ children }: { children: React.ReactNode }) {
             {/* Devcon 8 logo, centered on the image — fades in to fully visible
                 by the midpoint of the overall animation (white for contrast). */}
             <div className="absolute inset-0 flex items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <motion.img
                 src="/login/devcon-8-logo.svg"
                 alt="Devcon 8 India"
