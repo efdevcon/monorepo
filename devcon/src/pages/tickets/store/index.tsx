@@ -247,11 +247,14 @@ function StoreContent({
   // as the /tickets landing page. Student applications stay open; the
   // Sanctuary Tech Builders application opens at launch. Preview the
   // launched view with ?mockNow=launch.
-  const { launched } = useIsLaunched()
+  // `mounted` gates the GA badge/CTA: both the launch gate and the sale state
+  // resolve client-side (useNow is null until mount), so any pre-mount pick
+  // would flash a stale label for a frame on every load.
+  const { launched, mounted } = useIsLaunched()
   // General Admission sale state (config/waves GA_SALE_STATE, overridable via
   // ?mockNow=coming-soon|closed). GA is only purchasable when 'open'; the
   // paused states close the buy controls: 'coming-soon' → "Opens July",
-  // 'closed' → GA_CLOSED_LABEL ("Reopens Aug").
+  // 'closed' → GA_CLOSED_LABEL.
   const gaSaleState = useGaSaleState()
   const gaClosed = gaSaleState === 'closed'
   const gaOpen = gaSaleState === 'open'
@@ -517,7 +520,7 @@ function StoreContent({
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Sale Waves</h3>
-                  {gaClosed && offer.active ? (
+                  {!mounted ? null : gaClosed && offer.active ? (
                     <span className={css['open-badge']}>11% OFF</span>
                   ) : gaClosed ? (
                     <span className={css['opens-badge']}>{GA_CLOSED_LABEL}</span>
@@ -556,10 +559,13 @@ function StoreContent({
                       </a>
                     ) : gaClosed ? (
                       <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
+                    ) : !mounted || gaLoading ? (
+                      // Loader (not a label) pre-mount too: the launch gate
+                      // resolves client-side, so a label picked before mount
+                      // flashes stale text on every load.
+                      <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
                     ) : !gaOpen || !launched ? (
                       <span className={css['opens-label']}>Opens July</span>
-                    ) : gaLoading ? (
-                      <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
                     ) : gaSoldOut || !gaTicket ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (

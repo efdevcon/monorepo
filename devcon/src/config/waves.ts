@@ -81,7 +81,7 @@ export const CURRENT_WAVE_ID = 'wave-ga'
 // The overview / comparison tags flip to match. Nothing else needs editing.
 // Preview: `?mockNow=coming-soon` or `?mockNow=closed`.
 export type GaSaleState = 'open' | 'coming-soon' | 'closed'
-export const GA_SALE_STATE: GaSaleState = 'closed'
+export const GA_SALE_STATE: GaSaleState = 'open'
 
 // Midnight US Pacific at the END of 11 Aug 2026 (= 12 Aug 2026 07:00 UTC;
 // Pacific is PDT/UTC-7 in August) — the single moment the paused GA sale
@@ -93,8 +93,9 @@ const GA_REOPEN_TIME = new Date(Date.UTC(2026, 7, 12, 7, 0, 0))
 // overriding GA_SALE_STATE — no deploy needed on reopen day. The site-side
 // flip only; the Pretix shop must be reopened separately for purchases to
 // actually go through. Set to null to disable and fall back to the manual
-// switch. Preview: `?mockNow=aug13` (past) vs `?mockNow=aug10` (before).
-export const GA_REOPENS_AT: Date | null = GA_REOPEN_TIME
+// switch — and null it once a reopen has happened: a past date here forces
+// 'open' forever and would silently defeat the next pause.
+export const GA_REOPENS_AT: Date | null = null
 
 // Time the 'coming-soon' state counts down to. Defaults to the global launch
 // (14 Jul 2026, 16:00 UTC) so the surfaces read "Available on Jul 14, 16:00
@@ -107,10 +108,9 @@ export const GA_COMING_SOON_OPENS_AT: Date | null = GLOBAL_LAUNCH_TIME
 // Status labels. Coming-soon normally shows a countdown, so its label is only a
 // no-date fallback; closed always shows its label.
 export const GA_COMING_SOON_LABEL = 'Coming soon'
-// The flip is midnight Pacific at the end of Aug 11 = start of Aug 12 PT,
-// which is already Aug 12 in every timezone east of PT — so "Aug 12" is the
-// honest date for the global audience (offer copy still says "through Aug 11").
-export const GA_CLOSED_LABEL = 'Reopens August 12'
+// Empty while the sale is open (nothing renders it). Set a real label BEFORE
+// flipping GA_SALE_STATE back to 'closed', or the paused badges render blank.
+export const GA_CLOSED_LABEL = ''
 
 // ── Special offer ────────────────────────────────────────────────────────
 // Site-wide voucher promo (11% off the General Admission ticket). Takes over
@@ -123,7 +123,7 @@ export const GA_CLOSED_LABEL = 'Reopens August 12'
 // early, set `active: false`. Preview: `?mockNow=aug10` (offer) vs
 // `?mockNow=aug13` (expired + sale open).
 export const SPECIAL_OFFER = {
-  active: true,
+  active: false,
   voucherCode: 'ETHEREUM_TURNS_11',
   endsAt: GA_REOPEN_TIME,
   // Anchor for "Ends {date}" copy. The offer runs through the end of Aug 11
