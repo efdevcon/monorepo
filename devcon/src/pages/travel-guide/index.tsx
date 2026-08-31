@@ -67,6 +67,15 @@ import FoodSnacks from './images/food/mumbaifood-sandip-roy.jpg'
 import TripshaLogo from './images/stay/tripsha-logo.png'
 import FlyfiLogo from './images/stay/flyfi-logo.svg'
 import NirantaLogo from './images/stay/niranta-logo.png'
+import KokioLogo from './images/connectivity/kokio-logo.svg'
+import AiraloLogo from './images/connectivity/airalo-logo.webp'
+import AppBlinkit from './images/connectivity/app-blinkit.webp'
+import AppZepto from './images/connectivity/app-zepto.webp'
+import AppSwiggy from './images/connectivity/app-swiggy.webp'
+import AppZomato from './images/connectivity/app-zomato.webp'
+import AppUber from './images/connectivity/app-uber.webp'
+import AppOla from './images/connectivity/app-ola.webp'
+import AppRapido from './images/connectivity/app-rapido.webp'
 import css from './travel-guide.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
@@ -112,6 +121,47 @@ const HOTEL_META: HotelMeta[] = [
     promo: { messageKey: 'stay.promos.flyfi', code: 'DEVCON50' },
   },
   { url: 'https://www.nirantahotels.com/', Logo: null, logoImg: NirantaLogo, logoAlt: 'Niranta Hotels' },
+]
+
+type EsimMeta = {
+  url: string
+  Logo: React.FC<React.SVGProps<SVGSVGElement>> | null
+  logoImg: StaticImageData | null
+  logoAlt: string
+  /** Target for the card's `setup_label` link, rendered after the body copy
+   *  (URLs live here so they're never machine-translated) */
+  setupUrl?: string
+  /** Same contract as HotelMeta.promo — see the note there */
+  promo?: { messageKey: string; code: string }
+}
+
+// Zipped positionally with the translated `connectivity.esims` array
+const ESIM_META: EsimMeta[] = [
+  {
+    url: 'https://kokio.app/',
+    Logo: KokioLogo,
+    logoImg: null,
+    logoAlt: 'Kokio',
+    setupUrl: 'https://dungexn.notion.site/3ba0fed242918083b9fafdc7ad8de742',
+  },
+  {
+    url: 'https://www.airalo.com/india-esim',
+    Logo: null,
+    logoImg: AiraloLogo,
+    logoAlt: 'airalo',
+    promo: { messageKey: 'connectivity.promos.airalo', code: 'DEVCON' },
+  },
+]
+
+// Matches the Figma icon order; Ola's icon is transparent and needs a white tile
+const APP_ICONS = [
+  { src: AppBlinkit, alt: 'Blinkit', whiteBg: false },
+  { src: AppZepto, alt: 'Zepto', whiteBg: false },
+  { src: AppSwiggy, alt: 'Swiggy', whiteBg: false },
+  { src: AppZomato, alt: 'Zomato', whiteBg: false },
+  { src: AppUber, alt: 'Uber', whiteBg: false },
+  { src: AppOla, alt: 'Ola', whiteBg: true },
+  { src: AppRapido, alt: 'Rapido', whiteBg: false },
 ]
 
 // Zipped positionally with the translated `stay.areas` array
@@ -212,6 +262,7 @@ export default function TravelGuidePage() {
     { title: t('nav.safety'), to: '#safety' },
     { title: t('nav.culture'), to: '#culture' },
     { title: t('nav.payments'), to: '#payments' },
+    { title: t('nav.connectivity'), to: '#connectivity' },
     { title: t('nav.events'), to: '#events' },
   ]
 
@@ -984,6 +1035,146 @@ export default function TravelGuidePage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Section: Connectivity */}
+      <div
+        id="connectivity"
+        className={cn(css['scroll-anchor'], css['section-pad'])}
+        style={{ background: 'linear-gradient(to top, #fbfafc 19.982%, #e5ebff 100%)' }}
+      >
+        <div className="section gap-y-[48px] xl:gap-y-[64px]">
+          {/* Intro + eSIM cards */}
+          <div className="flex flex-col gap-[24px] md:gap-[32px] lg:flex-row lg:gap-[64px]">
+            <div className="left flex flex-col gap-[24px] lg:flex-1 lg:min-w-0">
+              <h2 className={css['heading-2']}>{t('connectivity.heading')}</h2>
+              <div className="flex flex-col gap-[12px]">
+                {/* The 430px frame drops this lead to the 16px body size */}
+                <p className={cn(css['lead'], 'max-md:!text-[16px] max-md:!leading-[24px] max-md:!tracking-normal')}>
+                  {t('connectivity.lead')}
+                </p>
+                <p className={css['body']}>{t('connectivity.body')}</p>
+              </div>
+            </div>
+            <div className="right lg:flex-1 lg:min-w-0">
+              {/* Same 0/120/240ms entrance ladder as the hotel cards */}
+              <RevealGroup className="flex flex-col gap-[12px]">
+                {(t.raw('connectivity.esims') as Array<{
+                  name: string
+                  service: string
+                  body: string
+                  setup_label?: string
+                  setup_suffix?: string
+                  cta: string
+                }>)
+                  .slice(0, ESIM_META.length)
+                  .map((esim, i) => {
+                    const meta = ESIM_META[i]
+                    return (
+                      <Reveal key={esim.name} delay={i * 120}>
+                        {/* Interactive like the hotel cards, but a div with a
+                            stretched CTA link — the Kokio card holds a second,
+                            inner link, and anchors can't nest */}
+                        <div className="group relative flex flex-col gap-[24px] rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-[20px] md:p-[24px] transition-[background-color,box-shadow,transform] duration-150 [transition-timing-function:ease-out] hover:bg-white hover:shadow-md hover:scale-[1.03] active:scale-[0.97]">
+                          <div className="h-[24px] md:h-[32px] flex items-start">
+                            {meta.Logo ? (
+                              <meta.Logo className="h-full w-auto" aria-label={meta.logoAlt} />
+                            ) : (
+                              meta.logoImg && <Image src={meta.logoImg} alt={meta.logoAlt} className="h-full w-auto" />
+                            )}
+                          </div>
+                          <div className="flex flex-col gap-[12px]">
+                            <p className="text-[20px] font-extrabold leading-[26px] text-[#1a0d33]">{esim.name}</p>
+                            <p className="text-[16px] leading-[24px] text-[#1a0d33]">
+                              <strong className="font-bold">{t('connectivity.service_label')}</strong> {esim.service}
+                            </p>
+                            <p className="text-[16px] leading-[24px] text-[#221144]">
+                              {esim.body}
+                              {esim.setup_label && meta.setupUrl && (
+                                <>
+                                  {' '}
+                                  <a
+                                    href={meta.setupUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative z-[1] font-bold text-[#7235ed] hover:underline"
+                                  >
+                                    {esim.setup_label}
+                                  </a>
+                                  {esim.setup_suffix}
+                                </>
+                              )}
+                            </p>
+                          </div>
+                          <a
+                            href={meta.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-[16px] leading-none font-bold text-[#7235ed] group-hover:underline after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none focus-visible:after:[outline:1px_auto_-webkit-focus-ring-color]"
+                          >
+                            {esim.cta}
+                            <ArrowUpRight size={16} />
+                          </a>
+                          {meta.promo && (
+                            <PromoTag className="pointer-events-none">
+                              {t.rich(meta.promo.messageKey, { strong, code: meta.promo.code })}
+                            </PromoTag>
+                          )}
+                        </div>
+                      </Reveal>
+                    )
+                  })}
+                <Reveal delay={240} scale={false}>
+                  <p className="text-[14px] leading-[20px] text-[#594d73] px-[20px] md:px-[24px]">
+                    {t('connectivity.esim_note')}
+                  </p>
+                </Reveal>
+              </RevealGroup>
+            </div>
+          </div>
+
+          {/* eSIM troubleshooting table */}
+          <RevealGroup className="flex flex-col gap-[24px] max-md:gap-[12px]">
+            <h3 className={cn(css['heading-3'], 'max-md:!text-[20px] max-md:!leading-[26px]')}>
+              {t('connectivity.troubleshooting_heading')}
+            </h3>
+            <Reveal scale={false}>
+              <InfoTable
+                stackOnMobile
+                alignValuesRight
+                tightMobileGutters
+                columns={t.raw('connectivity.troubleshooting_table.columns') as [string, string]}
+                rows={t.raw('connectivity.troubleshooting_table.rows') as Array<[string, string]>}
+              />
+            </Reveal>
+          </RevealGroup>
+
+          {/* Common apps */}
+          <RevealGroup className="flex flex-col items-center gap-[24px] text-center xl:flex-row xl:gap-[64px] xl:text-left">
+            <div className="flex flex-col items-center gap-[12px] xl:items-start xl:flex-1 xl:min-w-0">
+              <h3 className={cn(css['heading-3'], 'max-md:!text-[20px] max-md:!leading-[26px]')}>
+                {t('connectivity.apps_heading')}
+              </h3>
+              {/* Deliberately not css['body']: the Figma frames keep this
+                  paragraph 16px on mobile, where .body steps down to 14px */}
+              <p className="text-[16px] leading-[24px] text-[#221144]">{t('connectivity.apps_body')}</p>
+              <p className="hidden xl:block text-[14px] leading-[20px] text-[#594d73]">{t('connectivity.apps_note')}</p>
+            </div>
+            <Reveal scale={false} className="w-full xl:w-auto xl:flex-1 xl:min-w-0">
+              <div className="flex flex-wrap justify-center gap-[32px] xl:flex-nowrap xl:justify-between xl:gap-0">
+                {APP_ICONS.map(icon => (
+                  <Image
+                    key={icon.alt}
+                    src={icon.src}
+                    alt={icon.alt}
+                    className={cn('size-[64px] rounded-[4px]', icon.whiteBg && 'bg-white')}
+                  />
+                ))}
+              </div>
+            </Reveal>
+            <p className="text-[14px] leading-[20px] text-[#594d73] xl:hidden">{t('connectivity.apps_note')}</p>
+          </RevealGroup>
         </div>
       </div>
 
