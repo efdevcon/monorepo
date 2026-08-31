@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { proofFromSearchParams } from "@/app/api/ticket-proof/proof";
 import {
   checkProof,
+  eligiblePerks,
   markClaimed,
   perkFor,
   resetClaims,
+  type PerkKind,
 } from "@/app/demo/ens-perks/partner";
 
 /**
@@ -20,8 +22,23 @@ export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => null);
     const proofParams =
       body && typeof body.proofParams === "string" ? body.proofParams : "";
-    const yearsHeld =
-      body && typeof body.yearsHeld === "number" ? body.yearsHeld : null;
+    const perkKind: PerkKind | null =
+      body && (body.perk === "subsidy" || body.perk === "frens")
+        ? body.perk
+        : null;
+    const ensName =
+      body && typeof body.ensName === "string" ? body.ensName : null;
+    const yearsRemaining =
+      body && typeof body.yearsRemaining === "number"
+        ? body.yearsRemaining
+        : null;
+
+    if (!perkKind) {
+      return NextResponse.json(
+        { success: false, error: "Unknown perk" },
+        { status: 400 }
+      );
+    }
 
     const proof = proofFromSearchParams(new URLSearchParams(proofParams));
     const check = await checkProof(proof);
@@ -32,7 +49,8 @@ export async function POST(request: NextRequest) {
         unconfigured: "Verifier not configured",
         rejected: "Proof rejected",
         expired: "Proof expired — generate a fresh link",
-        "already-claimed": "This ticket has already claimed its perk",
+        "already-claimed":
+          "This ticket has already claimed everything it is eligible for",
       };
       return NextResponse.json(
         {
@@ -46,13 +64,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const perk = perkFor(check.tier, check.tier === "india" ? null : yearsHeld);
+    // Eligibility is the tier's, not the caller's, to assert: the subsidy is
+    // for verified local attendee tickets only.
+    if (!eligiblePerks(check.tier).includes(perkKind)) {
+      return NextResponse.json(
+        { success: false, error: "This ticket isn't eligible for that perk" },
+        { status: 403 }
+      );
+    }
+
+    const perk = perkFor(perkKind, { ensName, yearsRemaining });
+
+    // A refusal (name too short, not enough years remaining) grants nothing,
+    // so it must not spend the ticket — the attendee can fix the input and
+    // try again with the same proof.
+    if ("refused" in perk) {
+      return NextResponse.json(
+        { success: false, error: perk.refused },
+        { status: 400 }
+      );
+    }
 
     // Spend the identifier last, and only on a perk we are actually granting.
     // `markClaimed` returning false means another request won the race.
-    if (!markClaimed(check.identifier, check.tier)) {
+    if (!markClaimed(check.identifier, perkKind, check.tier)) {
       return NextResponse.json(
-        { success: false, error: "This ticket has already claimed its perk" },
+        { success: false, error: "This ticket has already claimed that perk" },
         { status: 409 }
       );
     }

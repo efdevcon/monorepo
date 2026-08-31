@@ -6,6 +6,12 @@ import { X } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
 import { TicketProofButton } from "./TicketProofButton";
 
+// Display hint only, mirroring the server-side tier heuristic (the ticketing
+// team flags India-priced products with the emoji): India tickets' perk
+// button leads with the free .eth name. The real tier decision stays in
+// api/ticket-proof at mint time.
+const INDIA_FLAG = /\u{1F1EE}\u{1F1F3}/u;
+
 export type QrTarget = { qr: string; title: string };
 
 /** One order's ticket + swag add-ons as a bordered card with QR thumbnails. */
@@ -43,7 +49,10 @@ export function TicketCard({
         )}
         {/* Event tickets only — the perk is one per event ticket, so the swag
             rows below deliberately don't get a proof link. */}
-        <TicketProofButton ticketSecret={ticket.secret} />
+        <TicketProofButton
+          ticketSecret={ticket.secret}
+          freeName={INDIA_FLAG.test(ticket.itemName)}
+        />
       </TicketRow>
 
       {/* Swag / add-ons — same row styling, no gradient. Same ticket email. */}

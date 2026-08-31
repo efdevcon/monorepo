@@ -41,7 +41,10 @@ export default async function PartnerPerksDemo({
       <header>
         <h1 className="text-2xl font-bold">Attendee perks</h1>
         <p className="mt-1 text-sm text-neutral-600">
-          Verifying a Devcon ticket proof.
+          Verifying a Devcon ticket proof. Verified local attendees claim a
+          subsidized .eth name (first year on us); long-term ENS users claim
+          the frENS reward — local attendees who already own a name can claim
+          both.
         </p>
       </header>
 
@@ -51,6 +54,7 @@ export default async function PartnerPerksDemo({
         <ClaimPanel
           tier={check.tier}
           identifier={check.identifier}
+          claimedPerks={check.claimedPerks}
           proofParams={new URLSearchParams(
             Object.entries(params).flatMap(([k, v]) =>
               typeof v === "string" ? [[k, v] as [string, string]] : []
@@ -135,8 +139,9 @@ function Verdict({
           <div>
             <p className="font-semibold">Already claimed</p>
             <p className="text-neutral-700">
-              This ticket claimed its perk on{" "}
-              {new Date(check.at).toLocaleString()}. One perk per event ticket.
+              This ticket has claimed everything it is eligible for (last claim{" "}
+              {new Date(check.at).toLocaleString()}). One claim per perk per
+              event ticket.
             </p>
           </div>
         </div>
@@ -150,8 +155,8 @@ function Verdict({
             <p className="text-neutral-700">
               Signature checked against the pinned Devcon signer.{" "}
               {check.tier === "india"
-                ? "This is an India ticket."
-                : "This is a standard ticket."}
+                ? "This is a verified local attendee ticket (Self.xyz-verified through the Devcon ticket system) — eligible for the subsidized .eth name, plus the frENS reward if you already own a name."
+                : "This is a standard ticket — eligible for the frENS long-term-user reward."}
             </p>
           </div>
         </div>

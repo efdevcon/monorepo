@@ -22,7 +22,15 @@ const PARTNER = "ens";
  * Event tickets only — swag and add-ons deliberately don't get one, since the
  * perk is one per event ticket.
  */
-export function TicketProofButton({ ticketSecret }: { ticketSecret: string }) {
+export function TicketProofButton({
+  ticketSecret,
+  freeName = false,
+}: {
+  ticketSecret: string;
+  /** Display hint only (the proof route decides the real tier): lead with
+      the free .eth name where the ticket qualifies for one. */
+  freeName?: boolean;
+}) {
   const { proof, pending, error, sheetOpen, request, closeSheet } =
     useTicketProof(ticketSecret, PARTNER);
 
@@ -39,7 +47,11 @@ export function TicketProofButton({ ticketSecret }: { ticketSecret: string }) {
             devconnect-app rather than adding a second copy of the logo.
             eslint-disable-next-line @next/next/no-img-element */}
         <img src="/partners/ens.png" alt="" className="size-4 shrink-0" />
-        {pending ? "Preparing…" : "Claim ENS perks"}
+        {pending
+          ? "Preparing…"
+          : freeName
+            ? "Claim your free .eth name & ENS perks"
+            : "Claim ENS perks"}
       </button>
 
       <AnimatePresence>
@@ -133,6 +145,13 @@ function HandoffSheet({
             >
               Your {proof.partnerLabel} proof is ready
             </h2>
+            {/* Name the actual perk so the hop is worth taking. Tier comes
+                from the minted proof, so this needs no extra lookup. */}
+            <p className="mt-2 text-sm text-dc-muted">
+              {proof.tier === "india"
+                ? "As a verified local attendee you can claim a .eth name (5+ characters) with the first year's registration covered — plus the frENS reward if you already own a name with 10+ years remaining."
+                : "Hold an ENS name with 10+ years remaining? Claim the limited-edition frENS reward."}
+            </p>
             <p className="mt-2 text-sm text-dc-muted">
               {mode === "escape"
                 ? `Open this in your browser to claim on ${proof.partnerLabel}. You'll need to connect a wallet there, which works best outside the app.`

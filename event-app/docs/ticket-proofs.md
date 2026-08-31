@@ -45,8 +45,10 @@ contract.
 
 ## The partner owns replay protection
 
-Store `identifier` on first claim and refuse it afterwards, one perk per ticket,
-first claim wins. This is the real defence. The 30 minute expiry only stops a
+Store `identifier` on first claim and refuse it afterwards, one claim per perk
+per ticket, first claim wins (a partner granting several independent perks keys
+the spent-set by identifier + perk, so claiming one does not spend the others).
+This is the real defence. The 30 minute expiry only stops a
 link being hoarded and reshared later, it does nothing about the same link being
 used twice inside the window.
 
@@ -69,7 +71,7 @@ duplicated here, so new products need no code change.
 
 The flag rather than the word "India", because Devcon 8 *is in* India: a name
 like "Devcon India ..." records where the event is, not that the holder got a
-discount. A word match would hand a sponsored registration to every attendee the
+discount. A word match would hand a subsidized registration to every attendee the
 moment someone renamed the main product, and it also reads the "Devcon India
 Scarf" merchandise as India tickets. The flag is a deliberate marker; the country
 name is ambient.
@@ -77,7 +79,7 @@ name is ambient.
 Anything not positively identified as India is `standard`, new products
 included. That is the direction to fail: `standard` given wrongly means a
 smaller gift and is trivially fixed, while `india` given wrongly has already
-cost a sponsored registration.
+cost a subsidized registration.
 
 A product that mentions India but carries no flag is logged as a warning and
 treated as `standard`, so an unflagged India ticket surfaces instead of silently
@@ -119,13 +121,33 @@ tickets could claim again.
 
 `/demo/ens-perks` is a working partner side, built by us as an integration
 example. Not ENS, not affiliated with ENS, no ENS branding. It verifies against
-the pinned address, honours the expiry, keeps a spent-set, and stubs the wallet
-connection (how long an address has held an ENS name is the partner's own
-onchain lookup and needs nothing from us).
+the pinned address, honours the expiry, and keeps a spent-set.
 
-Its spent-set is an in-memory map, so it resets on restart and would not hold
-across serverless instances. Production needs a unique constraint in a database.
-The page has a **Reset demo claims** control for repeat demos.
+Its example rules grant two independent perks, and the claim route
+(`POST /api/demo/ens-claim`) requires the caller to name one
+(`perk: "subsidy" | "frens"`), checking eligibility against the tier
+server-side:
+
+- **subsidy** (`india` tier only): a subsidized first-year .eth registration.
+  The picked name is validated (5+ character label); the registration itself is
+  stubbed.
+- **frens** (every tier): a long-term-user reward graded on how many years
+  remain on an ENS name the attendee's wallet controls. The panel connects an
+  injected wallet, reverse-resolves its primary name, and reads the real expiry
+  from the .eth base registrar on mainnet — falling back to a manual input when
+  there is no browser wallet, no primary name, or the name is not a direct
+  .eth 2LD. The resulting number still travels client→server inside the demo;
+  a real partner would re-derive it onchain server-side rather than trust the
+  client.
+
+A refused claim (name too short, not enough years remaining) grants nothing and
+does not spend the ticket, so the attendee can fix the input and retry with the
+same proof.
+
+The spent-set is keyed by identifier + perk, so claiming one perk does not
+spend the other. It is an in-memory map, so it resets on restart and would not
+hold across serverless instances; production needs a unique constraint in a
+database. The page has a **Reset demo claims** control for repeat demos.
 
 `/demo/**` and `/api/demo/**` are POC-only and should be dropped or blocked
 before this ships.

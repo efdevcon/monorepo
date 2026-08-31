@@ -52,81 +52,104 @@ export async function resolvePinnedSigner(): Promise<string | null> {
 export type PerkOffer = {
   headline: string;
   detail: string;
-  /** True when the tier alone decides it, with no onchain lookup needed. */
-  immediate: boolean;
 };
 
 /**
- * The partner's own business rules — nothing here is our concern, it just shows
- * the two branches the tier is there to support.
- *
- * India tickets get a sponsored registration outright. Everyone else is graded
- * on how long they have held an ENS name, which the partner reads onchain from
- * the wallet the attendee connects. We are not involved in that half at all,
- * and deliberately so: it needs no ticket data.
+ * The partner's own example business rules — nothing here is our concern, it
+ * just shows the two branches the tier is there to support: verified local
+ * attendees get a subsidized first-year .eth registration, everyone else is
+ * graded on how many years remain on an ENS name the connected wallet
+ * controls. The onchain half (name registration, expiry lookup) is the
+ * partner's alone and deliberately needs no ticket data, so it is stubbed.
  */
-export function perkFor(tier: TicketTier, yearsHeld: number | null): PerkOffer {
-  if (tier === "india") {
+export const MIN_SUBSIDIZED_NAME_LENGTH = 5;
+export const FRENS_MIN_YEARS_REMAINING = 10;
+
+/** Normalize a picked name to its bare label ("Noor.eth " -> "noor"). */
+export function toNameLabel(name: string): string {
+  return name.trim().toLowerCase().replace(/\.eth$/, "");
+}
+
+/** null = qualifies; otherwise the reason it doesn't. */
+export function subsidizedNameProblem(name: string): string | null {
+  const label = toNameLabel(name);
+  if (!label) return "Pick a name first";
+  if (label.length < MIN_SUBSIDIZED_NAME_LENGTH) {
+    return `Subsidized names are ${MIN_SUBSIDIZED_NAME_LENGTH}+ characters — shorter names are premium-priced, beyond the $8/year the subsidy covers`;
+  }
+  if (!/^[a-z0-9-]+$/.test(label)) {
+    return "Names can only contain letters, digits and hyphens";
+  }
+  return null;
+}
+
+export type PerkKind = "subsidy" | "frens";
+
+/**
+ * Which perks a tier can claim. The two are independent, not exclusive:
+ * verified local attendees can claim the subsidized name AND, if a wallet
+ * they connect already controls a long-registered name, the frENS reward.
+ */
+export function eligiblePerks(tier: TicketTier): PerkKind[] {
+  return tier === "india" ? ["subsidy", "frens"] : ["frens"];
+}
+
+/**
+ * A refusal grants nothing and therefore must not spend the claim — the
+ * attendee can fix the input (or extend their registration) and try again
+ * with the same proof.
+ */
+export function perkFor(
+  perk: PerkKind,
+  input: { ensName?: string | null; yearsRemaining?: number | null }
+): PerkOffer | { refused: string } {
+  if (perk === "subsidy") {
+    const problem = subsidizedNameProblem(input.ensName ?? "");
+    if (problem) return { refused: problem };
     return {
-      headline: "Sponsored .eth registration",
+      headline: `${toNameLabel(input.ensName ?? "")}.eth is yours`,
       detail:
-        "India ticket holders get their first name registered on us, no wallet history required.",
-      immediate: true,
+        "First year's registration ($8/year) is on us — one per verified local attendee. It registers to the wallet connected in the Devcon app, and renewals after year one are yours.",
     };
   }
 
-  if (yearsHeld === null) {
+  const yearsRemaining = input.yearsRemaining;
+  if (yearsRemaining === null || yearsRemaining === undefined) {
     return {
-      headline: "Connect a wallet to see your gift",
-      detail:
-        "Gifts are graded on how long you have held an ENS name. Connect a wallet to check.",
-      immediate: false,
+      refused:
+        "Connect the wallet that controls your .eth name so its remaining registration can be checked",
     };
   }
-
-  if (yearsHeld >= 5) {
+  if (yearsRemaining >= FRENS_MIN_YEARS_REMAINING) {
     return {
-      headline: "Founding-era gift bundle",
-      detail: `${yearsHeld} years of ENS ownership — the top tier: limited-edition hardware and onsite pickup.`,
-      immediate: false,
-    };
-  }
-  if (yearsHeld >= 3) {
-    return {
-      headline: "Long-holder gift bundle",
-      detail: `${yearsHeld} years of ENS ownership — apparel plus the sticker set.`,
-      immediate: false,
-    };
-  }
-  if (yearsHeld >= 1) {
-    return {
-      headline: "Holder sticker set",
-      detail: `${yearsHeld} year${yearsHeld === 1 ? "" : "s"} of ENS ownership — collect the sticker set at the booth.`,
-      immediate: false,
+      headline: "frENS reward unlocked",
+      detail: `${yearsRemaining} years remaining on your name — that's a long-term user. Collect your ENS frens plushie (or premium swag, while it lasts) at badge pickup. One reward per verified attendee.`,
     };
   }
   return {
-    headline: "No gift tier matched",
-    detail:
-      "We couldn't find an ENS name held by this wallet. Register one at the booth to qualify next time.",
-    immediate: false,
+    refused: `The frENS reward is for names with ${FRENS_MIN_YEARS_REMAINING}+ years remaining (this one has ${yearsRemaining}). Multi-year discounts for ENS names will be available — extend and come back.`,
   };
 }
 
 /**
- * One perk per ticket, first claim wins.
+ * One claim per perk per ticket, first claim wins.
  *
  * This is the actual anti-replay defense, and it has to live on the partner
  * side because they own the giveaway. The proof's expiry only stops a link
  * being hoarded and reshared days later; it does nothing about the same link
  * being redeemed twice inside the window. The identifier is stable per ticket
- * precisely so this check works.
+ * precisely so this check works. Keyed by (identifier, perk) rather than the
+ * identifier alone, because the perks are independent: claiming the subsidy
+ * must not spend the frENS reward.
  *
  * In-memory for the POC, which means it resets on restart and is per-instance —
  * so on serverless it would not actually hold. Production needs a real unique
- * constraint on the identifier in a database, not a Map.
+ * constraint on (identifier, perk) in a database, not a Map.
  */
-type ClaimRow = { at: number; tier: TicketTier };
+type ClaimRow = { at: number; tier: TicketTier; perk: PerkKind };
+
+const claimKey = (identifier: string, perk: PerkKind) =>
+  `${identifier}:${perk}`;
 
 /**
  * Hung off `globalThis` rather than being a plain module-level Map, because the
@@ -141,12 +164,8 @@ const claimed: Map<string, ClaimRow> = ((
   }
 ).__demoPartnerClaims ??= new Map());
 
-export function isClaimed(identifier: string): boolean {
-  return claimed.has(identifier);
-}
-
-export function claimRecord(identifier: string) {
-  return claimed.get(identifier) ?? null;
+export function claimRecord(identifier: string, perk: PerkKind) {
+  return claimed.get(claimKey(identifier, perk)) ?? null;
 }
 
 /**
@@ -161,10 +180,15 @@ export function resetClaims(): number {
   return n;
 }
 
-/** Returns false if this identifier was already spent. */
-export function markClaimed(identifier: string, tier: TicketTier): boolean {
-  if (claimed.has(identifier)) return false;
-  claimed.set(identifier, { at: Date.now(), tier });
+/** Returns false if this perk was already claimed by this ticket. */
+export function markClaimed(
+  identifier: string,
+  perk: PerkKind,
+  tier: TicketTier
+): boolean {
+  const key = claimKey(identifier, perk);
+  if (claimed.has(key)) return false;
+  claimed.set(key, { at: Date.now(), tier, perk });
   return true;
 }
 
@@ -174,7 +198,14 @@ export type PartnerCheck =
   | { state: "rejected"; reason: string }
   | { state: "expired" }
   | { state: "already-claimed"; tier: TicketTier; at: number }
-  | { state: "ok"; tier: TicketTier; identifier: string; event: string };
+  | {
+      state: "ok";
+      tier: TicketTier;
+      identifier: string;
+      event: string;
+      /** Perks this ticket has already spent (its other perks remain open). */
+      claimedPerks: PerkKind[];
+    };
 
 /** Full partner-side gate for an incoming proof. */
 export async function checkProof(
@@ -189,12 +220,15 @@ export async function checkProof(
   if (!verdict.valid) return { state: "rejected", reason: verdict.reason };
   if (verdict.expired) return { state: "expired" };
 
-  const existing = claimRecord(proof.identifier);
-  if (existing) {
+  const perks = eligiblePerks(proof.tier);
+  const rows = perks
+    .map((perk) => ({ perk, row: claimRecord(proof.identifier, perk) }))
+    .filter((r) => r.row !== null);
+  if (rows.length === perks.length) {
     return {
       state: "already-claimed",
-      tier: existing.tier,
-      at: existing.at,
+      tier: proof.tier,
+      at: Math.max(...rows.map((r) => r.row!.at)),
     };
   }
 
@@ -203,5 +237,6 @@ export async function checkProof(
     tier: proof.tier,
     identifier: proof.identifier,
     event: proof.event,
+    claimedPerks: rows.map((r) => r.perk),
   };
 }
