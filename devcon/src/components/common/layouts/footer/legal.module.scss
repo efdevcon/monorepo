@@ -9,6 +9,13 @@
 .legal {
   overflow: auto;
 
+  // Brand primary purple for in-document links (overrides the global blue
+  // a.generic) — legal pages only.
+  a:global(.generic) {
+    color: #7235ed;
+    --color-icon: #7235ed;
+  }
+
   > :not(:global(.font-lg)) {
     margin-bottom: 1em;
     margin-top: 0.5em;
