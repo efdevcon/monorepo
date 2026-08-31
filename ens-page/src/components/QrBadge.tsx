@@ -13,10 +13,18 @@ export function QrBadge() {
     return qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true })
   }, [])
 
+  // Show only when the right gutter actually fits the badge: the card is
+  // max-w-2xl (672px) centered, the badge ~190px incl. its right offset, so
+  // the viewport needs 672 + 2×~220 ≈ 1120px before it stops crowding the
+  // card (Tailwind's lg=1024 was too early).
   return (
-    <div className="fixed bottom-4 right-4 hidden flex-col items-center gap-2 rounded-2xl bg-white p-4 shadow-md lg:flex">
-      <div className="h-24 w-24 [&_svg]:h-full [&_svg]:w-full" dangerouslySetInnerHTML={{ __html: svg }} />
-      <span className="text-xs text-neutral-500">Scan to open on mobile</span>
+    <div className="fixed bottom-4 right-4 hidden flex-col items-center gap-2 rounded-2xl bg-white/80 p-4 shadow-md ring-1 ring-white/60 backdrop-blur-xl dark:bg-neutral-900/80 dark:ring-white/10 min-[1120px]:flex">
+      {/* The QR sits on a solid white tile so it stays scannable in dark mode. */}
+      <div
+        className="h-24 w-24 rounded-lg bg-white p-1 [&_svg]:h-full [&_svg]:w-full"
+        dangerouslySetInnerHTML={{ __html: svg }}
+      />
+      <span className="text-xs text-neutral-500 dark:text-neutral-400">Scan to open on mobile</span>
     </div>
   )
 }

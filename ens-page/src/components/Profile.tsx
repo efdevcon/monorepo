@@ -37,10 +37,10 @@ const FULL_BLEED = '-mx-5 -mt-5 w-[calc(100%+2.5rem)] max-w-none sm:-mx-8 sm:-mt
 export function ProfileSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className={`${FULL_BLEED} h-40 rounded-t-2xl bg-neutral-200`} />
-      <div className="-mt-8 mx-auto h-16 w-16 rounded-full bg-neutral-300 ring-4 ring-white sm:-mt-10 sm:h-20 sm:w-20" />
-      <div className="mx-auto mt-4 h-6 w-40 rounded bg-neutral-200" />
-      <div className="mx-auto mt-2 h-4 w-64 rounded bg-neutral-200" />
+      <div className={`${FULL_BLEED} h-40 rounded-t-2xl bg-neutral-200 dark:bg-neutral-800`} />
+      <div className="-mt-8 mx-auto h-16 w-16 rounded-full bg-neutral-300 ring-4 ring-white dark:bg-neutral-700 dark:ring-neutral-900 sm:-mt-10 sm:h-20 sm:w-20" />
+      <div className="mx-auto mt-4 h-6 w-40 rounded bg-neutral-200 dark:bg-neutral-800" />
+      <div className="mx-auto mt-2 h-4 w-64 rounded bg-neutral-200 dark:bg-neutral-800" />
     </div>
   )
 }
@@ -54,7 +54,7 @@ export function Profile({ profile }: { profile: EnsProfile }) {
       {profile.header ? (
         <img src={profile.header} alt="" className={`${FULL_BLEED} rounded-t-2xl object-cover aspect-[3/1]`} />
       ) : (
-        <div className={`${FULL_BLEED} h-24 rounded-t-2xl bg-neutral-200`} />
+        <div className={`${FULL_BLEED} h-24 rounded-t-2xl bg-neutral-200 dark:bg-neutral-800`} />
       )}
 
       <div className="flex flex-col items-center text-center">
@@ -62,18 +62,18 @@ export function Profile({ profile }: { profile: EnsProfile }) {
           <img
             src={profile.avatar}
             alt={profile.displayName}
-            className="-mt-8 h-16 w-16 rounded-full object-cover ring-4 ring-white bg-white sm:-mt-10 sm:h-20 sm:w-20"
+            className="-mt-8 h-16 w-16 rounded-full bg-white object-cover ring-4 ring-white dark:bg-neutral-900 dark:ring-neutral-900 sm:-mt-10 sm:h-20 sm:w-20"
           />
         )}
         <h1 className="mt-4 font-display text-2xl font-bold">{profile.displayName}</h1>
-        {profile.description && <p className="mt-1 text-neutral-600">{profile.description}</p>}
+        {profile.description && <p className="mt-1 text-neutral-600 dark:text-neutral-300">{profile.description}</p>}
 
         {profile.url && (
           <a
             href={trackedUrl(profile.url, 'website')}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-sm font-medium text-accent transition duration-150 ease-out hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-neutral-200/70 bg-white/60 px-4 py-2 text-sm font-medium text-accent transition duration-150 ease-out hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:border-white/10 dark:bg-white/5"
           >
             <Globe className="h-4 w-4" />
             {hostname(profile.url)}
@@ -93,7 +93,7 @@ export function Profile({ profile }: { profile: EnsProfile }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="rounded-full p-2 text-accent transition duration-150 ease-out hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:p-2.5"
+                className="rounded-full p-2 text-accent transition duration-150 ease-out hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:hover:bg-white/10 sm:p-2.5"
               >
                 <Icon className="h-5 w-5" />
               </a>

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Page ground; the ambient backdrop layers on top of it. Dark mode is
+   automatic via prefers-color-scheme — no toggle, no JS. */
+body {
+  @apply bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100;
+}

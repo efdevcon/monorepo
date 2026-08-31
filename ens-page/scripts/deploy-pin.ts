@@ -22,15 +22,16 @@ async function* walk(dir: string): AsyncGenerator<string> {
 }
 
 const form = new FormData()
-let count = 0
+const rels: string[] = []
 for await (const file of walk(DIST)) {
   const rel = relative(DIST, file).split(sep).join('/')
   // A shared top-level folder in the filenames makes Pinata pin the upload
   // as a single directory whose CID serves index.html at its root.
   const bytes = new Uint8Array(await readFile(file))
   form.append('file', new File([bytes], `ens-page/${rel}`))
-  count++
+  rels.push(rel)
 }
+const count = rels.length
 if (count === 0) {
   console.error('dist/ is empty, run pnpm build first')
   process.exit(1)
@@ -61,6 +62,34 @@ console.log(`Preview:    https://ipfs.io/ipfs/${IpfsHash}/`)
 console.log(`\nTo go live: open https://app.ens.domains/${ensName} -> Records -> Edit Records ->`)
 console.log(`set Content Hash to ipfs://${IpfsHash} and confirm with the name owner's wallet.`)
 console.log(`Then verify at https://${ensName}.limo/`)
+
+// Warm the big public gateways: they only fetch a new CID when first asked,
+// and DHT discovery takes 30-90s. Requesting every file now means the first
+// real visitor (and eth.limo) gets warm content instead of doing that wait,
+// which is what broke assets on first load after earlier contenthash flips.
+// Unchanged assets keep their hashed filenames, so most are warm from
+// previous deploys. Fast pass, ~60s worst case: wait briefly for the index
+// to become discoverable, then fire one request per file per gateway.
+const GATEWAYS = ['https://ipfs.io/ipfs', 'https://dweb.link/ipfs']
+async function warmGateway(base: string): Promise<number> {
+  const deadline = Date.now() + 45_000
+  while (Date.now() < deadline) {
+    try {
+      const r = await fetch(`${base}/${IpfsHash}/`, { signal: AbortSignal.timeout(15_000) })
+      if (r.ok) break
+    } catch {
+      /* not discoverable yet */
+    }
+    await new Promise(resolve => setTimeout(resolve, 2000))
+  }
+  const assets = await Promise.allSettled(
+    rels.map(rel => fetch(`${base}/${IpfsHash}/${rel}`, { signal: AbortSignal.timeout(15_000) }))
+  )
+  return assets.filter(a => a.status === 'fulfilled' && a.value.ok).length
+}
+console.log('\nwarming gateways (ipfs.io, dweb.link)…')
+const warmed = await Promise.all(GATEWAYS.map(warmGateway))
+GATEWAYS.forEach((g, i) => console.log(`${warmed[i]}/${count} warm  ${g}/${IpfsHash}/`))
 
 // Prune superseded pins so the free plan's file quota doesn't fill up:
 // keep the newest KEEP versions, and never touch the just-pinned CID or

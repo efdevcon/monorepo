@@ -1,9 +1,15 @@
+import { readFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 import { createPublicClient, fallback, http } from 'viem'
 import { mainnet } from 'viem/chains'
 import { normalize } from 'viem/ens'
+
+const ROOT = dirname(fileURLToPath(import.meta.url))
+const { version } = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8')) as { version: string }
 
 const ENS_NAME = process.env.VITE_ENS_NAME ?? 'd.krux.eth'
 
@@ -61,5 +67,6 @@ function buildStamp(): Plugin {
 // gateway path (/ipfs/<cid>/) as well as the eth.limo root.
 export default defineConfig({
   base: './',
+  define: { __APP_VERSION__: JSON.stringify(version) },
   plugins: [react(), svgr(), ensTitle(), buildStamp()],
 })
