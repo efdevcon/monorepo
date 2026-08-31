@@ -5,11 +5,13 @@
   "description": "Liquidity providers in an AMM expect that they can always withdraw their tokens, even in case of a bank run.  Taking the concrete implementation of Uniswap v4, we formally proved that the funds owned by the contract always cover the provided liquidity.  This talk describes the methodology for proving this critical property, which can be applied to other protocols holding the liquidity for their users.",
   "track": "Security",
   "type": "Lightning Talk",
-  "expertise": "",
-  "audience": "",
+  "expertise": "Intermediate",
+  "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [],
+  "keywords": [
+    "Invariants"
+  ],
   "tags": [
     "Formal Verification",
     "Reentrancy",

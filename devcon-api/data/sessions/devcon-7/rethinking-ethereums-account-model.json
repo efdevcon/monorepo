@@ -5,8 +5,8 @@
   "description": "Account centric models are inherently faster.\r\n\r\nEthereum operates on a global account based model. This means a global lock occurs any time someone needs to touch a piece of global state, such as an ERC20.\r\n\r\nAn account centric model, instead, creates a new deterministic address or state for each account. This means calls into transfers on ERC20s and dexes can be made in parallel, accelerating speed drastically. It also is more secure.\r\n\r\nIt’s a forgotten mechanism to scale ETH.",
   "track": "Core Protocol",
   "type": "Lightning Talk",
-  "expertise": "",
-  "audience": "",
+  "expertise": "Expert",
+  "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
   "tags": [
@@ -16,7 +16,10 @@
     "model",
     "account"
   ],
-  "keywords": [],
+  "keywords": [
+    "Account",
+    "Models"
+  ],
   "duration": 537,
   "language": "en",
   "sources_swarmHash": "de96bb25225be90b669409315ef858bc5a173e1424895908951a4f1344789bca",

@@ -5,8 +5,8 @@
   "description": "Efficient SNARK recursion requires switching between pairing friendly elliptic curves. In most optimal approaches these curves would construct a cycle, but there are no such known cycles. Instead, we use non-native arithmetic to brute force the pairing computation at the cycle cut-off.\r\nWe describe an approach for combining direct field extension with polynomial-based non-native arithmetic. This reduces pairing computation to bivariate polynomial identity testing using Schwartz-Zippel lemma.",
   "track": "Applied Cryptography",
   "type": "Talk",
-  "expertise": "",
-  "audience": "",
+  "expertise": "Intermediate",
+  "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
   "tags": [
@@ -17,7 +17,11 @@
     "based",
     "pairing"
   ],
-  "keywords": [],
+  "keywords": [
+    "Pairing",
+    "based",
+    "ZK"
+  ],
   "duration": 1510,
   "language": "en",
   "sources_swarmHash": "a458b8ba83746ad8de60ca9f7be70aed5513ad7a20085623774277b867f33c48",
