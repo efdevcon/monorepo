@@ -332,6 +332,36 @@ export const Footer = ({ dark }: { dark?: boolean }) => {
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
                 {t('legal_code_of_conduct')}
               </Link>
+              <Link
+                className="bold font-xs text-uppercase hover-underline"
+                to={
+                  process.env.NODE_ENV === 'development'
+                    ? 'http://localhost:3000/Devcon8-Speaker-Guidelines-2026.pdf'
+                    : 'https://devcon.org/Devcon8-Speaker-Guidelines-2026.pdf'
+                }
+              >
+                {t('legal_speaker_guidelines')}
+              </Link>
+              <Link
+                className="bold font-xs text-uppercase hover-underline"
+                to={
+                  process.env.NODE_ENV === 'development'
+                    ? 'http://localhost:3000/Devcon8-Attendee-Guidelines-2026.pdf'
+                    : 'https://devcon.org/Devcon8-Attendee-Guidelines-2026.pdf'
+                }
+              >
+                {t('legal_attendee_guidelines')}
+              </Link>
+              <Link
+                className="bold font-xs text-uppercase hover-underline"
+                to={
+                  process.env.NODE_ENV === 'development'
+                    ? 'http://localhost:3000/Devcon8-Booth-Guidelines-2026.pdf'
+                    : 'https://devcon.org/Devcon8-Booth-Guidelines-2026.pdf'
+                }
+              >
+                {t('legal_booth_guidelines')}
+              </Link>
               {/* Hidden until we have this year's document
               <Link
                 className="bold font-xs text-uppercase hover-underline"

@@ -94,7 +94,11 @@ export const CodeOfConduct = () => {
         You must comply with all venue and facility rules and regulations during your participation in Devcon, including
         all safety instructions and requirements. It is also very important to note that <b>ALL</b> attendees are
         expected to conform to <b>ALL</b> local laws, including Covid-19 restrictions and policies imposed by the venue,
-        facility, and/or local authorities.
+        facility, and/or local authorities. Please review the{' '}
+        <a className="generic hover-underline" href="https://devcon.org/Devcon8-Attendee-Guidelines-2026.pdf">
+          Attendee Guidelines
+        </a>{' '}
+        and ensure that you understand and comply with them.
       </p>
       <p className="font-lg text-underline bold">How to Report</p>
       <p>
@@ -155,7 +159,7 @@ export const TermsOfService = () => {
           <a className="generic hover-underline" href="https://ethereum.org/cookie-policy/">The Cookie Policy</a>;
         </li>
         <li>
-          <a className="generic hover-underline" href="https://devcon.org/code-of-conduct/">The Attendee Code of Conduct</a>; and
+          <a className="generic hover-underline" href="https://devcon.org/code-of-conduct/">The Attendee Code of Conduct</a>;
         </li>
         <li>
           <a className="generic hover-underline" href="https://docs.google.com/document/d/18zUyAaCU3ECt7tNEfuaQIyy7-nItP-3GosroivC2AME/edit?tab=t.0">
@@ -165,7 +169,16 @@ export const TermsOfService = () => {
           <a className="generic hover-underline" href="https://docs.google.com/document/d/1HEgags68dJOa-mJjzZ93bKBJ9Z19OIsHXxqdqanbzCA/edit?tab=t.0">
             Media Code of Conduct
           </a>
-          .
+          ;
+        </li>
+        <li>
+          <a className="generic hover-underline" href="https://devcon.org/Devcon8-Speaker-Guidelines-2026.pdf">The Speaker Guidelines</a>;
+        </li>
+        <li>
+          <a className="generic hover-underline" href="https://devcon.org/Devcon8-Attendee-Guidelines-2026.pdf">The Attendee Guidelines</a>; and
+        </li>
+        <li>
+          <a className="generic hover-underline" href="https://devcon.org/Devcon8-Booth-Guidelines-2026.pdf">The Booth Guidelines</a>.
         </li>
       </ul>
 
