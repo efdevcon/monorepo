@@ -76,12 +76,13 @@ const useNavigationData = () => {
             columns: 2,
           },
           // Row-major order for the 2-column desktop grid:
-          // Volunteer | Road to Devcon / Community Hubs | Submit a DIP
-          {
-            title: t('volunteer_program'),
-            url: '/form/volunteer',
-            type: 'page',
-          },
+          // Road to Devcon | Community Hubs / Submit a DIP
+          // Volunteer applications closed — link hidden until next cycle
+          // {
+          //   title: t('volunteer_program'),
+          //   url: '/form/volunteer',
+          //   type: 'page',
+          // },
           {
             title: t('road_to_devcon'),
             url: '/road-to-devcon',
@@ -242,11 +243,12 @@ const useNavigationData = () => {
           url: '/supporters',
           type: 'page',
         },
-        {
-          title: t('volunteers'),
-          url: '/form/volunteer',
-          type: 'page',
-        },
+        // Volunteer applications closed — link hidden until next cycle
+        // {
+        //   title: t('volunteers'),
+        //   url: '/form/volunteer',
+        //   type: 'page',
+        // },
         {
           title: t('community_hubs'),
           url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
