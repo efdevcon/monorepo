@@ -6,6 +6,7 @@ import { RefreshCw } from "lucide-react";
 import { useTickets } from "@/data/tickets/useTickets";
 import type { Ticket } from "@/data/tickets/types";
 import { EventTicketCard } from "./ticket/EventTicketCard";
+import { EnsPerkCard } from "./ticket/EnsPerkCard";
 import { SwagCard } from "./ticket/SwagCard";
 import { QrModal, type QrModalTarget } from "./ticket/QrModals";
 
@@ -82,8 +83,9 @@ export function MyTickets() {
           </div>
         </div>
       ) : (
-        // Default stretch alignment keeps the two columns — and via h-full on
-        // the shelf cards, the cards themselves — the same height.
+        <div className="flex flex-col gap-6">
+        {/* Default stretch alignment keeps the two columns — and via h-full on
+            the shelf cards, the cards themselves — the same height. */}
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
           <section className="flex w-full flex-col gap-4 lg:w-[400px] lg:shrink-0">
             {/* h-7 = the refresh circle's height, mirrored on the swag header
@@ -154,6 +156,27 @@ export function MyTickets() {
               </div>
             </section>
           )}
+        </div>
+
+        {/* One ENS perk per event ticket (see TicketProofButton). */}
+        {admissionTickets.length > 0 && (
+          <section className="flex w-full flex-col gap-4">
+            <div className="flex h-7 items-center">
+              <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
+                My Perks
+              </h2>
+            </div>
+            <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
+              {admissionTickets.map((ticket) => (
+                <EnsPerkCard
+                  key={ticket.secret}
+                  ticket={ticket}
+                  showTicketLabel={admissionTickets.length > 1}
+                />
+              ))}
+            </div>
+          </section>
+        )}
         </div>
       )}
 

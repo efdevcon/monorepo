@@ -38,10 +38,14 @@ export function EventTicketCard({
   const modalTitle = `Devcon 8 India - ${typeName}`;
 
   return (
-    <div className="[filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))]">
-      {/* Top half — holder identity + glyph art, dashed tear line below */}
+    // Strokes are before:-pseudo overlays rather than borders so they behave
+    // like Figma's inside strokes: no layout impact (padding measures from the
+    // card edge) and the notch masks cut through them. `outline` can't express
+    // the mixed solid-sides + dashed-tear-line combination per half.
+    <div>
+      {/* Top half — product + holder + glyph art, dashed tear line below */}
       <div
-        className="ticket-notch-top relative flex flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
+        className="ticket-notch-top relative flex flex-col gap-10 overflow-clip rounded-t-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-t-[12px] before:border before:border-dc-hairline before:content-[''] before:[border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
         style={{ background: ticketTopBackground(theme) }}
       >
         <div className="flex flex-col gap-5">
@@ -78,7 +82,7 @@ export function EventTicketCard({
 
       {/* Bottom half — QR + venue block */}
       <div
-        className="ticket-notch-bottom rounded-b-[12px] border border-t-0 border-dc-hairline p-4"
+        className="ticket-notch-bottom relative rounded-b-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-b-[12px] before:border before:border-t-0 before:border-dc-hairline before:content-['']"
         style={{ background: ticketBottomBackground(theme) }}
       >
         <div className="flex items-start gap-6">
