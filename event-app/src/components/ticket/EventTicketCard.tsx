@@ -38,25 +38,32 @@ export function EventTicketCard({
   const modalTitle = `Devcon 8 India - ${typeName}`;
 
   return (
-    // Strokes are before:-pseudo overlays rather than borders so they behave
-    // like Figma's inside strokes: no layout impact (padding measures from the
-    // card edge) and the notch masks cut through them. `outline` can't express
-    // the mixed solid-sides + dashed-tear-line combination per half.
+    // Each half wears a real border pulled outside the layout box with
+    // negative margins, so the stroke sits OUTSIDE the 361px card (padding
+    // still measures 16px from the card edge) and the notch masks cut it.
     // The whole ticket is one button opening the QR modal; the shadow is a
-    // drop-shadow (not box-shadow) so it follows the notch cutouts.
+    // drop-shadow (not box-shadow) so it follows the notch cutouts, and it
+    // deepens to a lightened shadow-md on hover.
     <button
       onClick={
         qr
-          ? () => onQrClick({ kind: "ticket", qr, title: modalTitle, style })
+          ? () =>
+              onQrClick({
+                kind: "ticket",
+                qr,
+                title: modalTitle,
+                style,
+                checkedIn: ticket.hasCheckedIn,
+              })
           : undefined
       }
       disabled={!qr}
       aria-label={`Enlarge ${typeName} QR code`}
-      className="flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
+      className="flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale,filter] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default enabled:hover:[filter:drop-shadow(0_4px_6px_rgba(22,11,43,0.07))_drop-shadow(0_2px_4px_rgba(22,11,43,0.05))] motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
     >
       {/* Top half — product + holder + glyph art, dashed tear line below */}
       <div
-        className="ticket-notch-top relative flex w-full flex-col gap-10 overflow-clip rounded-t-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-t-[12px] before:border before:border-dc-hairline before:content-[''] before:[border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
+        className="ticket-notch-top relative -mx-px -mt-px flex w-full flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
         style={{ background: ticketTopBackground(theme) }}
       >
         <div className="flex flex-col gap-5">
@@ -93,7 +100,7 @@ export function EventTicketCard({
 
       {/* Bottom half — QR + venue block */}
       <div
-        className="ticket-notch-bottom relative w-full rounded-b-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-b-[12px] before:border before:border-t-0 before:border-dc-hairline before:content-['']"
+        className="ticket-notch-bottom relative -mx-px -mb-px w-full rounded-b-[12px] border border-t-0 border-dc-hairline p-4"
         style={{ background: ticketBottomBackground(theme) }}
       >
         <div className="flex items-start gap-6">

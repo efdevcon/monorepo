@@ -43,10 +43,11 @@ export function SwagCard({
       disabled={!qr}
       aria-label={`Enlarge ${name} QR code`}
       className={cn(
-        // outline (not border) so the stroke sits on top like Figma's inside
-        // stroke, without shifting the image/strip by 1px. focus-visible
-        // upgrades it so keyboard focus stays legible.
-        "flex cursor-pointer flex-col overflow-clip rounded-[12px] text-left outline -outline-offset-1 outline-dc-hairline transition-[scale] duration-150 ease-out focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
+        // outline (not border) so the stroke sits just OUTSIDE the card
+        // without shifting the image/strip by 1px. Hover tints it the same
+        // purple the home-page cards use; focus-visible upgrades it so
+        // keyboard focus stays legible.
+        "flex cursor-pointer flex-col overflow-clip rounded-[12px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
         shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0"
       )}
     >

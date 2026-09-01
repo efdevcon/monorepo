@@ -33,8 +33,10 @@ export function Ticket() {
     // `expand` breaks out of the .section column; the inner wrapper restores
     // mobile gutters and caps desktop at the design's 1312px (same pattern as
     // Schedule.tsx).
-    <main className="expand py-4">
-      <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
+    <main className="expand">
+      {/* Same page frame as Schedule/Speakers: lg:pb-16 container, h1 with
+          pt-8/pb-4. Mobile keeps its own py-4 under the AppHeader. */}
+      <div className="px-4 py-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 lg:pt-0 xl:px-0">
       <AnimatePresence mode="wait">
         {!user ? (
           <motion.div
@@ -43,6 +45,9 @@ export function Ticket() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
+            // The h1 provides desktop top spacing when signed in; the sign-in
+            // panel needs its own.
+            className="lg:pt-8"
           >
             <TicketSignIn />
           </motion.div>
@@ -56,7 +61,7 @@ export function Ticket() {
             className="font-heading"
           >
             {/* Mobile title comes from AppHeader; page h1 is desktop-only. */}
-            <h1 className="mb-6 hidden text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
+            <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
               My Devcon
             </h1>
 

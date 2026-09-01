@@ -1,19 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import cn from "classnames";
-import { RefreshCw } from "lucide-react";
 import { useTickets } from "@/data/tickets/useTickets";
-import type { Ticket } from "@/data/tickets/types";
 import { useUser } from "@/data/auth/useUser";
 import { Link } from "@/routing";
-import { EventTicketCard } from "./ticket/EventTicketCard";
-import { SwagCard } from "./ticket/SwagCard";
-import { QrModal, type QrModalTarget } from "./ticket/QrModals";
+import { TicketSections } from "./ticket/TicketSections";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
-/** Renders the user's tickets as cards with QR codes. Signed out, it becomes
- *  the key-art sign-in banner from the Figma home redesign. */
+/** Home-page tickets section: signed in it renders the shared My Devcon
+ *  layout (TicketSections); signed out it becomes the key-art sign-in banner
+ *  from the Figma home redesign. */
 export function Tickets() {
   const {
     attempt: bannerAttempt,
@@ -22,55 +17,18 @@ export function Tickets() {
   const { user } = useUser();
   const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
-  const [modal, setModal] = useState<QrModalTarget | null>(null);
 
-  // Same split as MyTickets: admission tickets become event ticket cards;
-  // add-ons and standalone non-admission positions become swag cards.
-  const admissionTickets: Ticket[] = [];
-  const swagItems: Array<{ secret: string; title: string; imageUrl?: string }> =
-    [];
-  for (const order of tickets) {
-    for (const ticket of order.tickets) {
-      if (ticket.admission === false) {
-        swagItems.push({
-          secret: ticket.secret,
-          title: ticket.itemName,
-          imageUrl: ticket.imageUrl,
-        });
-      } else {
-        admissionTickets.push(ticket);
-      }
-      for (const addon of ticket.addons ?? []) {
-        swagItems.push({
-          secret: addon.secret,
-          title: addon.itemName,
-          imageUrl: addon.imageUrl,
-        });
-      }
-    }
-  }
-  const allEmpty = admissionTickets.length === 0 && swagItems.length === 0;
+  const hasTickets = tickets.length > 0;
 
   return (
     <section className="w-full text-left">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+      {/* TicketSections carries its own headings; the "Your tickets" header
+          only fronts the states that render without them. */}
+      {(isLoading || !user || !hasTickets) && (
+        <h2 className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
           Your tickets
         </h2>
-        {/* Text CTA, unified with the "View all" link style */}
-        {user && (
-          <button
-            onClick={refresh}
-            disabled={isLoading || isRefreshing}
-            className="flex cursor-pointer items-center gap-1.5 font-heading text-base font-bold text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-50"
-          >
-            <RefreshCw
-              className={cn("size-4", isRefreshing && "animate-spin")}
-            />
-            {isRefreshing ? "Refreshing…" : "Refresh"}
-          </button>
-        )}
-      </div>
+      )}
 
       {/* Order matters: isLoading folds in !hasInitialized (useTickets), so a
           signed-in cold load — or an OFFLINE user whose auth can't resolve
@@ -130,11 +88,11 @@ export function Tickets() {
             </a>
           </p>
         </>
-      ) : error && allEmpty ? (
+      ) : error && !hasTickets ? (
         <p className="text-sm text-dc-error">
           Couldn&apos;t load tickets: {error.message}
         </p>
-      ) : allEmpty ? (
+      ) : !hasTickets ? (
         <div className="relative overflow-hidden rounded-xl p-6 text-white">
           {/* Real banner art from devcon.org/tickets + gradient for legibility */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -162,35 +120,21 @@ export function Tickets() {
       ) : (
         <>
           {/* A failed revalidation must never hide cached tickets/QR codes —
-              keep the grid and add a quiet notice instead. */}
+              keep the sections and add a quiet notice instead. */}
           {error && (
             <p className="mb-2 text-xs text-dc-muted">
               Couldn&apos;t refresh tickets — showing your saved ones.
             </p>
           )}
-          <div className="grid gap-3 lg:grid-cols-2">
-            {admissionTickets.map((ticket) => (
-              <EventTicketCard
-                key={ticket.secret}
-                ticket={ticket}
-                qr={qrCodes[ticket.secret]}
-                onQrClick={setModal}
-              />
-            ))}
-            {swagItems.map((item) => (
-              <SwagCard
-                key={item.secret}
-                title={item.title}
-                imageUrl={item.imageUrl}
-                qr={qrCodes[item.secret]}
-                onQrClick={setModal}
-              />
-            ))}
-          </div>
+          <TicketSections
+            tickets={tickets}
+            qrCodes={qrCodes}
+            onRefresh={refresh}
+            isRefreshing={isRefreshing}
+            refreshDisabled={isLoading || isRefreshing}
+          />
         </>
       )}
-
-      <QrModal target={modal} onClose={() => setModal(null)} />
     </section>
   );
 }

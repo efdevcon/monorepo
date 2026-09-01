@@ -23,7 +23,7 @@ export function EnsPerkCard({
   const holder = ticket.attendeeName || ticket.attendeeEmail;
 
   return (
-    <div className="flex items-start gap-4 rounded-[12px] bg-white p-4 outline -outline-offset-1 outline-dc-hairline lg:w-[400px]">
+    <div className="flex items-start gap-4 rounded-[12px] bg-white p-4 outline outline-dc-hairline lg:w-[400px]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/partners/ens.png" alt="ENS" className="size-10 shrink-0" />
       <div className="min-w-0">
@@ -34,9 +34,8 @@ export function EnsPerkCard({
           </p>
         )}
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
-          {freeName
-            ? "Claim a .eth name with the first year's registration covered — plus the frENS reward if you already hold a name with 10+ years remaining."
-            : "Hold an ENS name with 10+ years remaining? Claim the limited-edition frENS reward."}
+          Devcon attendees get exclusive perks from ENS. Claiming creates a private, single-use
+          proof of your ticket for ENS to verify.
         </p>
         <TicketProofButton ticketSecret={ticket.secret} freeName={freeName} />
       </div>

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import type { TicketStyle } from "@/data/tickets/types";
 import { CloseButton } from "@/components/Buttons";
 import { TICKET_THEMES } from "./ticketTheme";
@@ -10,7 +10,14 @@ import { TICKET_THEMES } from "./ticketTheme";
 /** What the QR modal shows: an event ticket (themed frame + entrance copy) or
  *  a swag item (purple frame + swag-station copy). */
 export type QrModalTarget =
-  | { kind: "ticket"; qr: string; title: string; style: TicketStyle }
+  | {
+      kind: "ticket";
+      qr: string;
+      title: string;
+      style: TicketStyle;
+      /** Pretix has seen this ticket scanned at venue check-in. */
+      checkedIn?: boolean;
+    }
   | { kind: "swag"; qr: string; title: string };
 
 const MODAL_BG = "linear-gradient(to top, #fbfafc 19.982%, #fff5fa 100%)";
@@ -97,6 +104,13 @@ export function QrModal({
                     <p className="text-[14px] leading-5 text-dc-fg2">
                       Present this QR at the entrance to register
                     </p>
+                    {target.checkedIn && (
+                      // Sonner success-toast palette (globals.css).
+                      <span className="mt-1 inline-flex items-center gap-1 self-center rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-green">
+                        <Check className="size-3.5" />
+                        Checked in
+                      </span>
+                    )}
                   </>
                 ) : (
                   <p className="text-[14px] leading-5 text-dc-fg2">
