@@ -1158,7 +1158,9 @@ export default function TravelGuidePage() {
               </h3>
               {/* Deliberately not css['body']: the Figma frames keep this
                   paragraph 16px on mobile, where .body steps down to 14px */}
-              <p className="text-[16px] leading-[24px] text-[#221144]">{t('connectivity.apps_body')}</p>
+              <Markdown className="text-[16px] leading-[24px] text-[#221144] [&_a]:font-bold [&_a]:text-[#7235ed] [&_a:hover]:underline">
+                {t('connectivity.apps_body')}
+              </Markdown>
               <p className="hidden xl:block text-[14px] leading-[20px] text-[#594d73]">{t('connectivity.apps_note')}</p>
             </div>
             <Reveal scale={false} className="w-full xl:w-auto xl:flex-1 xl:min-w-0">
