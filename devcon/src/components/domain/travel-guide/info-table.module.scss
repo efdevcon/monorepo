@@ -49,6 +49,31 @@ $hairline: rgba(34, 17, 68, 0.1);
   font-weight: 700;
 }
 
+/* Second column right-aligned (eSIM troubleshooting table). Only from md —
+   the stacked mobile layout keeps everything left-aligned. With stackOnMobile
+   the header holds a hidden third cell (the combined mobile label), so the
+   desktop FIX cell is matched by :not(:first-child), never :last-child. */
+.align-values-right {
+  @media (min-width: 768px) {
+    .header > *:not(:first-child),
+    .row > *:last-child {
+      text-align: right;
+    }
+  }
+}
+
+/* 20px side gutters below md (eSIM troubleshooting table, per its 430 frame —
+   the zone/route tables keep the default 24px) */
+.tight-mobile-gutters {
+  @media (max-width: 767px) {
+    .header,
+    .row {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
 /* Mobile variant (zone/route tables): the two cells stack inside a taller
    row — name on top, description under it — per the 430px Figma frame.
    Header row and the emergency table keep the side-by-side layout. */

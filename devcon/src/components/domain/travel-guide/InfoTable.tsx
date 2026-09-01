@@ -8,13 +8,32 @@ interface InfoTableProps {
   className?: string
   /** Below 768px, stack each row's cells vertically (name over description) */
   stackOnMobile?: boolean
+  /** From 768px, right-align the second column (header + values) */
+  alignValuesRight?: boolean
+  /** Below 768px, use 20px side gutters instead of the default 24px */
+  tightMobileGutters?: boolean
 }
 
 // Two-column fact table with the dark-purple header band (zone/feel,
 // emergency numbers, metro routes on the Travel Guide)
-export const InfoTable = ({ columns, rows, className, stackOnMobile }: InfoTableProps) => {
+export const InfoTable = ({
+  columns,
+  rows,
+  className,
+  stackOnMobile,
+  alignValuesRight,
+  tightMobileGutters,
+}: InfoTableProps) => {
   return (
-    <div className={cn(css['table'], stackOnMobile && css['stack-mobile'], className)}>
+    <div
+      className={cn(
+        css['table'],
+        stackOnMobile && css['stack-mobile'],
+        alignValuesRight && css['align-values-right'],
+        tightMobileGutters && css['tight-mobile-gutters'],
+        className
+      )}
+    >
       <div className={css['header']}>
         {stackOnMobile ? (
           <>
