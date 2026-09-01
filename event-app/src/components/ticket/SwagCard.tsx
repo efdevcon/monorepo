@@ -53,8 +53,14 @@ export function SwagCard({
     >
       <div
         className={cn(
-          "h-[203px] w-full",
-          shelfOnDesktop && "lg:h-auto lg:min-h-0 lg:flex-1"
+          // 16:9 on mobile (the Figma 361×203 ratio, kept proportional at any
+          // width); the desktop shelf stretches the image to fill instead.
+          // The image is absolutely positioned because aspect-ratio is only a
+          // PREFERRED size — an in-flow portrait photo would still stretch
+          // the box to its min-content height. (`aspect-video` also doesn't
+          // compile here; spell the ratio out.)
+          "relative aspect-[16/9] w-full",
+          shelfOnDesktop && "lg:aspect-auto lg:min-h-0 lg:flex-1"
         )}
       >
         {showImage ? (
@@ -64,10 +70,10 @@ export function SwagCard({
             src={imageUrl}
             onError={markFailed}
             alt={name}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-dc-panel">
+          <div className="absolute inset-0 flex items-center justify-center bg-dc-panel">
             <Gift className="size-10 text-dc-purple-soft" aria-hidden="true" />
           </div>
         )}

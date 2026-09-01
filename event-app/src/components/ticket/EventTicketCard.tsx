@@ -63,7 +63,10 @@ export function EventTicketCard({
     >
       {/* Top half — product + holder + glyph art, dashed tear line below */}
       <div
-        className="ticket-notch-top relative -mx-px -mt-px flex w-full flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
+        // `grow` + mt-auto on DEVCON.ORG: when carousel cards stretch to the
+        // tallest sibling, the top half absorbs the extra height and keeps
+        // DEVCON.ORG pinned above the tear line (no-op for a lone card).
+        className="ticket-notch-top relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
         style={{ background: ticketTopBackground(theme) }}
       >
         <div className="flex flex-col gap-5">
@@ -89,7 +92,7 @@ export function EventTicketCard({
             </p>
           </div>
         </div>
-        <p className="text-[10px] font-bold leading-none text-dc-muted">
+        <p className="mt-auto text-[10px] font-bold leading-none text-dc-muted">
           DEVCON.ORG
         </p>
         <DC8Glyph

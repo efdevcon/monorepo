@@ -43,7 +43,9 @@ export function TicketProofButton({
         type="button"
         onClick={request}
         disabled={pending}
-        className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-1 text-[14px] font-bold leading-5 text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-60"
+        // text-left: buttons center wrapped text by default, which reads
+        // wrong when the label breaks onto two lines.
+        className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-1 text-left text-[14px] font-bold leading-5 text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-60"
       >
         {pending
           ? "Preparing…"

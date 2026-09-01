@@ -106,7 +106,7 @@ export function QrModal({
                     </p>
                     {target.checkedIn && (
                       // Sonner success-toast palette (globals.css).
-                      <span className="mt-1 inline-flex items-center gap-1 self-center rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-green">
+                      <span className="mt-1 inline-flex items-center gap-1 self-center rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2">
                         <Check className="size-3.5" />
                         Checked in
                       </span>

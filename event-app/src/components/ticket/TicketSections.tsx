@@ -60,81 +60,129 @@ export function TicketSections({
     }
   }
 
-  return (
-    <div className="flex flex-col gap-6 text-left">
-      {/* Default stretch alignment keeps the two columns — and via h-full on
-          the shelf cards, the cards themselves — the same height. */}
-      <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
-        <section className="flex w-full flex-col gap-4 lg:w-[400px] lg:shrink-0">
-          {/* h-8 fits the 28.8px title line and the refresh circle, mirrored
-              on the swag header so both columns' cards start at the same y. */}
-          <div className="flex h-8 items-center justify-between">
-            <h2 className={SECTION_TITLE}>
-              {admissionTickets.length > 1
-                ? "My Event Tickets"
-                : "My Event Ticket"}
-            </h2>
-            {/* Not in the design; kept deliberately (see git history). */}
-            {onRefresh && (
-              <button
-                onClick={onRefresh}
-                disabled={refreshDisabled}
-                aria-label="Refresh tickets"
-                className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-50"
-              >
-                <RefreshCw
-                  className={cn(
-                    "size-4 text-dc-fg2",
-                    isRefreshing && "animate-spin"
-                  )}
-                />
-              </button>
-            )}
-          </div>
-          {admissionTickets.map((ticket) => (
-            <EventTicketCard
-              key={ticket.secret}
-              ticket={ticket}
-              qr={qrCodes[ticket.secret]}
+  // With several tickets, both tickets and swag become full-width horizontal
+  // carousels stacked vertically; with one, the ticket sits beside the swag
+  // shelf in the Figma two-column layout.
+  const multiTicket = admissionTickets.length > 1;
+
+  const ticketHeader = (
+    <div className="flex h-8 items-center justify-between">
+      <h2 className={SECTION_TITLE}>
+        {multiTicket ? "My Event Tickets" : "My Event Ticket"}
+      </h2>
+      {/* Not in the design; kept deliberately (see git history). */}
+      {onRefresh && (
+        <button
+          onClick={onRefresh}
+          disabled={refreshDisabled}
+          aria-label="Refresh tickets"
+          className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-50"
+        >
+          <RefreshCw
+            className={cn("size-4 text-dc-fg2", isRefreshing && "animate-spin")}
+          />
+        </button>
+      )}
+    </div>
+  );
+
+  // Shared desktop-carousel treatment: matching negative margin/inset +
+  // padding gives hovered cards scale headroom before the overflow clip
+  // without moving the resting layout (each shelf sets its own amount), and
+  // the right edge fade (Figma 5088-1181, 36px) is a mask on the scroller —
+  // not a white overlay — so it works on the home page's tinted background
+  // as well as the ticket page's white panel (DayTabs pattern).
+  const scrollerBase =
+    "flex flex-col gap-4 lg:flex-row lg:overflow-x-auto lg:[mask-image:linear-gradient(to_right,#000_calc(100%-36px),transparent)] lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden";
+  const endSpacer = (
+    // Spacer so the last card can scroll clear of the 36px fade.
+    <div aria-hidden className="hidden w-9 shrink-0 lg:block" />
+  );
+
+  const swagSection = swagItems.length > 0 && (
+    <section
+      className={cn(
+        "flex w-full flex-col gap-4",
+        !multiTicket && "lg:min-w-0 lg:flex-1"
+      )}
+    >
+      <div className="flex h-8 items-center">
+        <h2 className={SECTION_TITLE}>My Swag</h2>
+      </div>
+      {/* The shelf absolutely fills the wrapper so the swag images can never
+          inflate the row: beside a single ticket the ticket column sets the
+          height, in the stacked multi-ticket layout the wrapper is fixed at
+          the design's 319px. */}
+      <div
+        className={cn(
+          "relative",
+          multiTicket ? "lg:h-[319px]" : "lg:min-h-0 lg:flex-1"
+        )}
+      >
+        <div className={cn(scrollerBase, "lg:absolute lg:-inset-3 lg:p-3")}>
+          {swagItems.map((item) => (
+            <SwagCard
+              key={item.secret}
+              title={item.title}
+              imageUrl={item.imageUrl}
+              qr={qrCodes[item.secret]}
               onQrClick={setModal}
+              shelfOnDesktop
             />
           ))}
-        </section>
+          {endSpacer}
+        </div>
+      </div>
+    </section>
+  );
 
-        {swagItems.length > 0 && (
-          <section className="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1">
-            <div className="flex h-8 items-center">
-              <h2 className={SECTION_TITLE}>My Swag</h2>
-            </div>
-            {/* The shelf absolutely fills the flex-1 wrapper so the swag
-                images can never inflate the row — the ticket column alone
-                sets the height, and the cards stretch to match it. */}
-            <div className="relative lg:min-h-0 lg:flex-1">
-              {/* -inset-3 + p-3 keeps the resting layout identical while
-                  giving hovered cards 12px of scale headroom before the
-                  scroller's overflow clip. */}
-              <div className="flex flex-col gap-4 lg:absolute lg:-inset-3 lg:flex-row lg:overflow-x-auto lg:p-3 lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
-                {swagItems.map((item) => (
-                  <SwagCard
-                    key={item.secret}
-                    title={item.title}
-                    imageUrl={item.imageUrl}
-                    qr={qrCodes[item.secret]}
+  return (
+    <div className="flex flex-col gap-6 text-left">
+      {multiTicket ? (
+        <>
+          <section className="flex w-full flex-col gap-4">
+            {ticketHeader}
+            {/* Ticket carousel: heights are content-driven, so -m/p cancel
+                out instead of the absolute-fill trick. 20px headroom (vs the
+                swag shelf's 12px) because these cards also cast a hover
+                shadow beyond the 1.03 scale. Each wrapper is a flex box so
+                the stretched cards equalize to the tallest. */}
+            <div className={cn(scrollerBase, "lg:-m-5 lg:p-5")}>
+              {admissionTickets.map((ticket) => (
+                <div
+                  key={ticket.secret}
+                  className="w-full lg:flex lg:w-[400px] lg:shrink-0"
+                >
+                  <EventTicketCard
+                    ticket={ticket}
+                    qr={qrCodes[ticket.secret]}
                     onQrClick={setModal}
-                    shelfOnDesktop
                   />
-                ))}
-                {/* Spacer so the last card can scroll clear of the 36px fade. */}
-                <div aria-hidden className="hidden w-9 shrink-0 lg:block" />
-              </div>
-              {/* Desktop shelf fade (Figma 5088-1181, 36px white ramp).
-                  -right-3 tracks the scroller's -inset-3 overhang so no
-                  unfaded strip peeks out past it. */}
-              <div className="pointer-events-none absolute inset-y-0 -right-3 hidden w-9 bg-gradient-to-r from-white/0 to-white lg:block" />
+                </div>
+              ))}
+              {endSpacer}
             </div>
           </section>
-        )}
-      </div>
+          {swagSection}
+        </>
+      ) : (
+        /* Default stretch alignment keeps the two columns — and via h-full on
+           the shelf cards, the cards themselves — the same height. */
+        <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
+          <section className="flex w-full flex-col gap-4 lg:w-[400px] lg:shrink-0">
+            {ticketHeader}
+            {admissionTickets.map((ticket) => (
+              <EventTicketCard
+                key={ticket.secret}
+                ticket={ticket}
+                qr={qrCodes[ticket.secret]}
+                onQrClick={setModal}
+              />
+            ))}
+          </section>
+          {swagSection}
+        </div>
+      )}
 
       {/* One ENS perk per event ticket (see TicketProofButton). */}
       {admissionTickets.length > 0 && (
