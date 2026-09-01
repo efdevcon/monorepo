@@ -53,15 +53,17 @@ export function EventTicketCard({
             alt=""
             className="h-8 w-auto self-start"
           />
+          {/* Product type leads; the holder (name, else email) sits below in
+              the theme color (Figma revision 2026-09-01). */}
           <div className="flex flex-col gap-2">
             <p className="max-w-[234px] text-[24px] font-medium leading-[1.1] tracking-[-0.25px] text-dc-fg2 [word-break:break-word]">
-              {holder}
+              {typeName}
             </p>
             <p
-              className="text-[12px] font-medium leading-none"
+              className="max-w-[234px] text-[12px] font-medium leading-none [word-break:break-word]"
               style={{ color: theme.label }}
             >
-              {typeName}
+              {holder}
             </p>
           </div>
         </div>
