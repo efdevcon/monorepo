@@ -42,10 +42,21 @@ export function EventTicketCard({
     // like Figma's inside strokes: no layout impact (padding measures from the
     // card edge) and the notch masks cut through them. `outline` can't express
     // the mixed solid-sides + dashed-tear-line combination per half.
-    <div>
+    // The whole ticket is one button opening the QR modal; the shadow is a
+    // drop-shadow (not box-shadow) so it follows the notch cutouts.
+    <button
+      onClick={
+        qr
+          ? () => onQrClick({ kind: "ticket", qr, title: modalTitle, style })
+          : undefined
+      }
+      disabled={!qr}
+      aria-label={`Enlarge ${typeName} QR code`}
+      className="flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
+    >
       {/* Top half — product + holder + glyph art, dashed tear line below */}
       <div
-        className="ticket-notch-top relative flex flex-col gap-10 overflow-clip rounded-t-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-t-[12px] before:border before:border-dc-hairline before:content-[''] before:[border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
+        className="ticket-notch-top relative flex w-full flex-col gap-10 overflow-clip rounded-t-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-t-[12px] before:border before:border-dc-hairline before:content-[''] before:[border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
         style={{ background: ticketTopBackground(theme) }}
       >
         <div className="flex flex-col gap-5">
@@ -82,15 +93,12 @@ export function EventTicketCard({
 
       {/* Bottom half — QR + venue block */}
       <div
-        className="ticket-notch-bottom relative rounded-b-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-b-[12px] before:border before:border-t-0 before:border-dc-hairline before:content-['']"
+        className="ticket-notch-bottom relative w-full rounded-b-[12px] p-4 before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-b-[12px] before:border before:border-t-0 before:border-dc-hairline before:content-['']"
         style={{ background: ticketBottomBackground(theme) }}
       >
         <div className="flex items-start gap-6">
-          <button
-            onClick={qr ? () => onQrClick({ kind: "ticket", qr, title: modalTitle, style }) : undefined}
-            disabled={!qr}
-            aria-label={`Enlarge ${typeName} QR code`}
-            className="shrink-0 cursor-pointer rounded-[8px] p-[2px] transition-[scale] duration-150 ease-out disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
+          <span
+            className="shrink-0 rounded-[8px] p-[2px]"
             style={{ background: theme.accent }}
           >
             <span className="block rounded-[6px] bg-white p-[2px]">
@@ -105,7 +113,7 @@ export function EventTicketCard({
                 <span className="block size-[98px] rounded-[4px]" />
               )}
             </span>
-          </button>
+          </span>
           <div className="flex min-w-0 flex-1 flex-col items-end justify-between gap-3 self-stretch py-1 text-right text-dc-muted">
             <div className="flex flex-col items-end gap-0.5">
               <p className="text-[12px] font-bold leading-[1.15]">
@@ -126,6 +134,6 @@ export function EventTicketCard({
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
