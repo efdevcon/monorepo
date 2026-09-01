@@ -1,7 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SelfBackendVerifier, DefaultConfigStore, ATTESTATION_ID, ConfigMismatchError } from '@selfxyz/core'
-import { lookupDiscountCode, validateDiscountCode, issueVoucher, DiscountSoldOutError, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher } from '../../../services/discountStore'
+import { lookupDiscountCode, validateDiscountCode, issueVoucher, DiscountSoldOutError, claimDiscountCode, linkVoucherToDiscountCode, getAssignedVoucher, setSelfDelivery } from '../../../services/discountStore'
 import { TICKETING, discountItemForCollection, discountTypeForCollection } from 'config/ticketing'
+import { SERVER_INSTANCE_ID } from 'utils/serverInstance'
+
+// One line per meaningful step, tagged with the instance id so a delivery that
+// crosses lambda instances (callback on one, poll on another) is visible in
+// the logs instead of inferred.
+const log = (msg: string) => console.log(`[redeem-self][${SERVER_INSTANCE_ID}] ${msg}`)
 
 const SELF_SCOPE = TICKETING.self.scope
 const SELF_ENDPOINT = process.env.NEXT_PUBLIC_SELF_ENDPOINT || '/api/tickets/redeem-self'
@@ -19,8 +25,13 @@ export const voucherStore = g.__selfVoucherStore
 export const errorStore = g.__selfErrorStore
 
 function storeError(userId: string, reason: string) {
+  log(`error stored userId=${userId}: ${reason}`)
   errorStore.set(userId, reason)
   setTimeout(() => errorStore.delete(userId), 30 * 60 * 1000)
+  // Also persist: the browser polls a DIFFERENT serverless invocation, which
+  // may not share this process's memory (see setSelfDelivery). Fire-and-forget
+  // so an outage here never changes the response we send Self.
+  void setSelfDelivery(userId, { errorReason: reason })
 }
 
 // Extract userId from userContextData using the same logic as SelfBackendVerifier.
@@ -63,6 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Extract userId from userContextData before calling verify so we can
     // store errors for mobile polling even when verify() throws.
     const userId = extractUserId(userContextData)
+    log(`POST received attestation=${attestationId} userId=${userId ?? '∅'} staging=${isStaging}`)
 
     if (attestationId !== ATTESTATION_ID.AADHAAR) {
       const reason = 'Aadhaar cards only. Passport and other document types are not supported.'
@@ -91,10 +103,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // verify() throws ConfigMismatchError for validation failures (age, root,
     // scope, timestamp, etc.) and returns { isValid: false } only when the ZK
     // proof itself is invalid at the contract level.
+    // Deliberately NOT dumping the raw verify() result: it prints every field
+    // the proof disclosed. The structured line carries what debugging needs.
     const result = await verifier.verify(attestationId, proof, publicSignals, userContextData)
-    console.log('result', JSON.stringify(result, null, 2))
 
     const verifiedUserId = result.userData?.userIdentifier ?? userId
+    log(
+      `verify done valid=${result.isValidDetails.isValid} minAge=${result.isValidDetails.isMinimumAgeValid} ` +
+        `nationality=${result.discloseOutput?.nationality} userId=${verifiedUserId ?? '∅'} ` +
+        `nullifier=${result.discloseOutput?.nullifier ?? '∅'}`
+    )
 
     if (!result.isValidDetails.isValid) {
       const reason = 'Verification failed'
@@ -151,7 +169,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Dynamic voucher assignment from Supabase pool
     const earlyAccessCode = (req.query.earlyAccess ?? req.body.earlyAccess ?? req.query.discountCode ?? req.body.discountCode) as string | undefined
     const emailParam = (req.query.email ?? req.body.email) as string | undefined
-    console.log('[redeem-self] emailParam:', emailParam, '| earlyAccess:', earlyAccessCode, '| userId:', verifiedUserId)
+    // Email logged as presence only (PII); the codes/ids stay verbatim for
+    // debuggability.
+    log(`params email=${emailParam ? 'present' : '∅'} earlyAccess=${earlyAccessCode ?? '∅'} userId=${verifiedUserId}`)
 
     // Use the nullifier as stable identity for Supabase dedup — it's derived from the
     // Aadhaar card and is always the same for the same card, unlike verifiedUserId which
@@ -182,9 +202,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Check if this identity already has a voucher (one-voucher-per-identity)
     const existingVoucher = await getAssignedVoucher(nullifier)
     if (existingVoucher) {
+      log(`existing voucher returned code=${existingVoucher.code} userId=${verifiedUserId}`)
       voucherStore.set(verifiedUserId, existingVoucher.code)
       errorStore.delete(verifiedUserId)
       setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+      // Durable handoff for the returning-identity path too — without it a
+      // returning buyer's poll on a different instance times out exactly like
+      // the fresh-issue path used to.
+      await setSelfDelivery(verifiedUserId, { voucherCode: existingVoucher.code })
       return res.status(200).json({
         status: 'success',
         result: true,
@@ -212,9 +237,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (codeRecord.claimedBy === nullifier) {
         if (codeRecord.voucherCode) {
           // Voucher was already linked — return it
+          log(`early-access voucher returned code=${codeRecord.voucherCode} userId=${verifiedUserId}`)
           voucherStore.set(verifiedUserId, codeRecord.voucherCode)
           errorStore.delete(verifiedUserId)
           setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+          await setSelfDelivery(verifiedUserId, { voucherCode: codeRecord.voucherCode })
           return res.status(200).json({
             status: 'success',
             result: true,
@@ -242,9 +269,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const recheck = await lookupDiscountCode(earlyAccessCode)
           if (recheck?.claimedBy === nullifier) {
             if (recheck.voucherCode) {
+              log(`early-access recheck voucher returned code=${recheck.voucherCode} userId=${verifiedUserId}`)
               voucherStore.set(verifiedUserId, recheck.voucherCode)
               errorStore.delete(verifiedUserId)
               setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+              await setSelfDelivery(verifiedUserId, { voucherCode: recheck.voucherCode })
               return res.status(200).json({
                 status: 'success',
                 result: true,
@@ -317,10 +346,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await linkVoucherToDiscountCode(earlyAccessCode, voucher.code)
     }
 
-    // Cache in memory for the polling flow (uses session userId for frontend polling)
+    // Hand the code to the polling browser. Two layers on purpose:
+    // in-memory is the fast path when the poll happens to hit this same warm
+    // instance, and the DB row is what makes delivery survive a different (or
+    // cold) instance. Without the second one a verified buyer sees
+    // "Verification timed out" while their voucher is already assigned
+    // (production, 2026-08-28). Awaited so the row exists before we tell Self
+    // we succeeded, and the browser's very next poll can find it.
     voucherStore.set(verifiedUserId, voucher.code)
     errorStore.delete(verifiedUserId) // Clear any race-condition error from parallel request
     setTimeout(() => voucherStore.delete(verifiedUserId), 30 * 60 * 1000)
+    await setSelfDelivery(verifiedUserId, { voucherCode: voucher.code })
+    log(
+      `voucher issued code=${voucher.code} collection=${voucherCollection} item=${itemId} ` +
+        `userId=${verifiedUserId} — delivery persisted (mem+db)`
+    )
 
     return res.status(200).json({
       status: 'success',

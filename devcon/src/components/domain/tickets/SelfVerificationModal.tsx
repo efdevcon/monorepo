@@ -93,6 +93,10 @@ export function SelfVerificationModal({
   const [checkingExisting, setCheckingExisting] = useState(true)
   const [voucher, setVoucher] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  // A timeout is not a verdict: the proof may still be landing, so the
+  // background poll keeps running underneath the message (see below). Hard
+  // errors from the backend (age, wrong document type…) stop it as before.
+  const [errorIsSoft, setErrorIsSoft] = useState(false)
   const [errorCode, setErrorCode] = useState<ErrorCode>(null)
   const [userEmail, setUserEmail] = useState(() => {
     if (email) return email
@@ -117,11 +121,13 @@ export function SelfVerificationModal({
     const { message, code } = parseError(reason)
     setError(message)
     setErrorCode(code)
+    setErrorIsSoft(false)
   }
 
   const clearError = () => {
     setError(null)
     setErrorCode(null)
+    setErrorIsSoft(false)
   }
   const [selfApp, setSelfApp] = useState<SelfApp | null>(null)
   const [universalLink, setUniversalLink] = useState('')
@@ -149,11 +155,13 @@ export function SelfVerificationModal({
         const data = await res.json()
         if (cancelled) return
         if (res.ok && data.voucherCode) {
+          console.info('[self] recovered voucher from a prior session')
           setVoucher(data.voucherCode)
           setCheckingExisting(false)
           return
         }
         if (res.ok && data.error && data.reason) {
+          console.info('[self] recovered stored error from a prior session:', data.reason)
           setErrorFromReason(data.reason)
           setCheckingExisting(false)
           return
@@ -214,6 +222,7 @@ export function SelfVerificationModal({
         })
         const data = await res.json()
         if (res.ok && data.voucherCode) {
+          console.info(`[self] voucher received (post-verify poll, attempt ${attempt + 1})`)
           clearError()
           setVoucher(data.voucherCode)
           return
@@ -231,7 +240,9 @@ export function SelfVerificationModal({
     if (lastError) {
       setErrorFromReason(lastError)
     } else {
-      setError('Verification timed out. Please try again.')
+      console.info('[self] post-verify poll window exhausted — soft timeout, background poll continues')
+      setErrorIsSoft(true)
+      setError('Still waiting for your verification. Keep this window open, it will appear here as soon as it arrives.')
     }
   }
 
@@ -260,7 +271,11 @@ export function SelfVerificationModal({
   // double the request rate against the self-voucher rate limit.
   const bgErrorCount = React.useRef(0)
   useEffect(() => {
-    if (!isOpen || voucher || error || pollingForVoucher) return
+    // `errorIsSoft` (the timeout) deliberately does NOT stop the loop: the
+    // voucher may be assigned seconds later, and the buyer should see it
+    // appear instead of having to start over — a restart re-verifies against
+    // the same nullifier and returns the same code anyway.
+    if (!isOpen || voucher || (error && !errorIsSoft) || pollingForVoucher) return
 
     const poll = async () => {
       try {
@@ -269,7 +284,9 @@ export function SelfVerificationModal({
         })
         const data = await res.json()
         if (res.ok && data.voucherCode) {
+          console.info('[self] voucher received (background poll)')
           bgErrorCount.current = 0
+          clearError()
           setVoucher(data.voucherCode)
         } else if (res.ok && data.error && data.reason) {
           bgErrorCount.current++
@@ -286,7 +303,7 @@ export function SelfVerificationModal({
 
     const id = setInterval(poll, 3000)
     return () => clearInterval(id)
-  }, [isOpen, userId, voucher, error, pollingForVoucher])
+  }, [isOpen, userId, voucher, error, errorIsSoft, pollingForVoucher])
 
   const handleReset = () => {
     setVoucher(null)

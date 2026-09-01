@@ -70,11 +70,12 @@ export function getClientIp(req: NextApiRequest): string {
     }
   }
 
-  // DIAGNOSTIC — log every IP-resolution decision with all candidate headers,
-  // so when something forwards the wrong IP (e.g. Lambda's internal peer
-  // instead of the buyer's real IP) we can see exactly what was on offer.
-  // Revert to a quieter level once the deployment topology is understood.
-  if (process.env.GET_CLIENT_IP_DEBUG !== 'off') {
+  // DIAGNOSTIC, opt-in — one line per IP-resolution decision with all
+  // candidate headers, for when something forwards the wrong IP (e.g.
+  // Lambda's internal peer instead of the buyer's real IP). Off by default:
+  // it fires on every polled request (dominating the Self-claim flow logs)
+  // and prints client IPs. Set GET_CLIENT_IP_DEBUG=on to re-enable.
+  if (process.env.GET_CLIENT_IP_DEBUG === 'on') {
     // eslint-disable-next-line no-console
     console.info(
       '[getClientIp]',

@@ -590,3 +590,76 @@ export async function checkVoucherEmailRateLimit(
   ])
   return { allowed: true }
 }
+
+// ─── Self verification handoff ───────────────────────────────────────────────
+// The Self flow verifies on one request (Self's backend POSTs the proof to
+// redeem-self) and delivers on another (the browser polls self-voucher). Those
+// are separate serverless invocations, so an in-memory handoff only works when
+// both happen to land on the same warm instance — otherwise the buyer sees
+// "Verification timed out" while their voucher sits assigned in the DB
+// (observed in production 2026-08-28). These helpers persist the handoff.
+//
+// Keyed by the frontend's per-session UUID v4, never by nullifier/email: those
+// are knowable by third parties and keying on them is what made the previous
+// Supabase fallback an unauthenticated voucher oracle (M15).
+
+const SELF_DELIVERY_TTL_MS = 30 * 60 * 1000
+
+/** Record the outcome of a Self verification for the polling browser session. */
+export async function setSelfDelivery(
+  userId: string,
+  outcome: { voucherCode?: string; errorReason?: string }
+): Promise<void> {
+  const supabase = getSupabase()
+  const now = Date.now()
+  const { error } = await supabase.from('devcon8_self_voucher_delivery').upsert(
+    {
+      user_id: userId,
+      voucher_code: outcome.voucherCode ?? null,
+      error_reason: outcome.errorReason ?? null,
+      created_at: new Date(now).toISOString(),
+      expires_at: new Date(now + SELF_DELIVERY_TTL_MS).toISOString(),
+    },
+    { onConflict: 'user_id' }
+  )
+  // Never fail the verification because the handoff row could not be written:
+  // the in-memory path may still deliver, and the voucher itself is already
+  // safely assigned. Log loudly — a silent failure here means timeouts.
+  if (error) console.error('[discountStore] setSelfDelivery failed:', error.message)
+  else console.log(`[discountStore] setSelfDelivery ok userId=${userId} (${outcome.voucherCode ? 'voucher' : 'error'})`)
+}
+
+/** Read a Self verification outcome by the browser session's userId. */
+export async function getSelfDelivery(
+  userId: string
+): Promise<{ voucherCode?: string; errorReason?: string } | null> {
+  const supabase = getSupabase()
+  const { data, error } = await supabase
+    .from('devcon8_self_voucher_delivery')
+    .select('voucher_code,error_reason')
+    .eq('user_id', userId)
+    .gt('expires_at', new Date().toISOString())
+    .maybeSingle()
+  if (error) {
+    console.error('[discountStore] getSelfDelivery failed:', error.message)
+    return null
+  }
+  if (!data) return null
+  return {
+    voucherCode: data.voucher_code ?? undefined,
+    errorReason: data.error_reason ?? undefined,
+  }
+}
+
+/**
+ * Best-effort removal of expired handoff rows. Called opportunistically from
+ * the poll endpoint so the table stays small without a scheduled job.
+ */
+export async function pruneSelfDeliveries(): Promise<void> {
+  try {
+    const supabase = getSupabase()
+    await supabase.from('devcon8_self_voucher_delivery').delete().lt('expires_at', new Date().toISOString())
+  } catch {
+    // housekeeping only
+  }
+}

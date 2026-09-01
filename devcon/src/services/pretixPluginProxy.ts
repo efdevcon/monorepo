@@ -109,6 +109,8 @@ const SETTINGS_CACHE_TTL_MS = 10_000
  * call errors out, or the response is malformed, returns both flags as
  * `false`. Better to over-block than to over-permit during launch.
  */
+const _warnedSettingsStatuses = new Set<number>()
+
 export async function getPluginSettings(): Promise<PluginSettings> {
   const now = Date.now()
   if (_settingsCache.value && now < _settingsCache.expiresAt) {
@@ -120,7 +122,12 @@ export async function getPluginSettings(): Promise<PluginSettings> {
       { method: 'GET' },
     )
     if (status !== 200 || typeof body !== 'object' || body === null) {
-      console.warn(`[x402 settings] non-200 from plugin (status=${status}); failing closed`)
+      // Once per process per status: the store without the plugin (dev) would
+      // otherwise repeat this on every page load.
+      if (!_warnedSettingsStatuses.has(status)) {
+        _warnedSettingsStatuses.add(status)
+        console.warn(`[x402 settings] non-200 from plugin (status=${status}); failing closed (warned once)`)
+      }
       const failClosed: PluginSettings = { x402_enabled: false, fiat_purchase_enabled: false }
       _settingsCache.value = failClosed
       _settingsCache.expiresAt = now + SETTINGS_CACHE_TTL_MS
