@@ -4,9 +4,12 @@ import { useState } from "react";
 import cn from "classnames";
 import { RefreshCw } from "lucide-react";
 import { useTickets } from "@/data/tickets/useTickets";
+import type { Ticket } from "@/data/tickets/types";
 import { useUser } from "@/data/auth/useUser";
 import { Link } from "@/routing";
-import { QrLightbox, TicketCard, type QrTarget } from "./TicketCards";
+import { EventTicketCard } from "./ticket/EventTicketCard";
+import { SwagCard } from "./ticket/SwagCard";
+import { QrModal, type QrModalTarget } from "./ticket/QrModals";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
 /** Renders the user's tickets as cards with QR codes. Signed out, it becomes
@@ -19,11 +22,34 @@ export function Tickets() {
   const { user } = useUser();
   const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
-  const [lightbox, setLightbox] = useState<QrTarget | null>(null);
+  const [modal, setModal] = useState<QrModalTarget | null>(null);
 
-  const allTickets = tickets.flatMap((order) =>
-    order.tickets.map((ticket) => ({ ticket, eventName: order.eventName }))
-  );
+  // Same split as MyTickets: admission tickets become event ticket cards;
+  // add-ons and standalone non-admission positions become swag cards.
+  const admissionTickets: Ticket[] = [];
+  const swagItems: Array<{ secret: string; title: string; imageUrl?: string }> =
+    [];
+  for (const order of tickets) {
+    for (const ticket of order.tickets) {
+      if (ticket.admission === false) {
+        swagItems.push({
+          secret: ticket.secret,
+          title: ticket.itemName,
+          imageUrl: ticket.imageUrl,
+        });
+      } else {
+        admissionTickets.push(ticket);
+      }
+      for (const addon of ticket.addons ?? []) {
+        swagItems.push({
+          secret: addon.secret,
+          title: addon.itemName,
+          imageUrl: addon.imageUrl,
+        });
+      }
+    }
+  }
+  const allEmpty = admissionTickets.length === 0 && swagItems.length === 0;
 
   return (
     <section className="w-full text-left">
@@ -104,11 +130,11 @@ export function Tickets() {
             </a>
           </p>
         </>
-      ) : error && allTickets.length === 0 ? (
+      ) : error && allEmpty ? (
         <p className="text-sm text-dc-error">
           Couldn&apos;t load tickets: {error.message}
         </p>
-      ) : allTickets.length === 0 ? (
+      ) : allEmpty ? (
         <div className="relative overflow-hidden rounded-xl p-6 text-white">
           {/* Real banner art from devcon.org/tickets + gradient for legibility */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -143,20 +169,28 @@ export function Tickets() {
             </p>
           )}
           <div className="grid gap-3 lg:grid-cols-2">
-            {allTickets.map(({ ticket, eventName }) => (
-              <TicketCard
+            {admissionTickets.map((ticket) => (
+              <EventTicketCard
                 key={ticket.secret}
                 ticket={ticket}
-                eventName={eventName}
-                qrCodes={qrCodes}
-                onQrClick={setLightbox}
+                qr={qrCodes[ticket.secret]}
+                onQrClick={setModal}
+              />
+            ))}
+            {swagItems.map((item) => (
+              <SwagCard
+                key={item.secret}
+                title={item.title}
+                imageUrl={item.imageUrl}
+                qr={qrCodes[item.secret]}
+                onQrClick={setModal}
               />
             ))}
           </div>
         </>
       )}
 
-      <QrLightbox target={lightbox} onClose={() => setLightbox(null)} />
+      <QrModal target={modal} onClose={() => setModal(null)} />
     </section>
   );
 }

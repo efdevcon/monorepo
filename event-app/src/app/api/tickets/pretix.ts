@@ -1,4 +1,4 @@
-import type { Order } from "@/data/tickets/types";
+import type { Order, TicketStyle } from "@/data/tickets/types";
 
 export interface PretixStore {
   url: string;
@@ -17,6 +17,8 @@ interface PretixItem {
   active?: boolean;
   /** True for entry tickets, false for merchandise. */
   admission?: boolean;
+  /** Product photo URL (shown on swag cards). */
+  picture?: string | null;
   has_variations?: boolean;
   variations?: Array<{
     id: number;
@@ -45,6 +47,30 @@ export function getStoreFromEnv(): PretixStore | null {
 const localized = (
   value: string | { en: string; [key: string]: string } | undefined
 ): string | undefined => (typeof value === "object" ? value?.en : value);
+
+/** Comma-separated item-id list from env; null when unset/unparseable. */
+function parseItemIdList(raw: string | undefined): Set<number> | null {
+  if (!raw) return null;
+  const ids = raw
+    .split(",")
+    .map((part) => Number.parseInt(part.trim(), 10))
+    .filter((id) => Number.isInteger(id));
+  return ids.length > 0 ? new Set(ids) : null;
+}
+
+/**
+ * Optional per-item card-style pins (TICKET_STYLE_INDIA_ITEM_IDS /
+ * TICKET_STYLE_GOLDEN_ITEM_IDS). Unlike the ticket-proof override these lists
+ * only ADD certainty: unlisted items return undefined and the client falls
+ * back to item-name keywords (components/ticket/ticketTheme.ts).
+ */
+function styleForItem(itemId: number): TicketStyle | undefined {
+  const indiaIds = parseItemIdList(process.env.TICKET_STYLE_INDIA_ITEM_IDS);
+  if (indiaIds?.has(itemId)) return "india";
+  const goldenIds = parseItemIdList(process.env.TICKET_STYLE_GOLDEN_ITEM_IDS);
+  if (goldenIds?.has(itemId)) return "golden";
+  return undefined;
+}
 
 /**
  * Extract the short variation value from an addon (e.g. "Large (L)" -> "L").
@@ -139,6 +165,7 @@ export async function getPaidTicketsByEmail(
               attendeeName: addon.attendee_name,
               category: itemDetails?.category,
               active: itemDetails?.active,
+              imageUrl: itemDetails?.picture || undefined,
             };
           });
 
@@ -148,7 +175,11 @@ export async function getPaidTicketsByEmail(
 
         return {
           secret: position.secret,
-          attendeeName: position.attendee_name,
+          // Devcon's Pretix checkout doesn't collect per-attendee names, so
+          // `attendee_name` is usually null — fall back to the order's
+          // invoice/billing name before the UI's last-resort email fallback.
+          attendeeName:
+            position.attendee_name || order.invoice_address?.name || null,
           attendeeEmail: position.attendee_email || order.email,
           price: position.price,
           itemId: position.item,
@@ -158,6 +189,8 @@ export async function getPaidTicketsByEmail(
           admission: mainItem?.admission === true,
           addons,
           hasCheckedIn: checkins.length > 0,
+          imageUrl: mainItem?.picture || undefined,
+          style: styleForItem(position.item),
         };
       });
 
