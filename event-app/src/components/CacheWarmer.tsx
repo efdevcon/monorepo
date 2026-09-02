@@ -4,8 +4,9 @@ import APP_CONFIG from "@/CONFIG";
 import { useSessions, useSpeakers, useRooms } from "@/data/hooks";
 import { useWarmImages } from "@/data/hooks/use-warm-images";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
+import { useTickets } from "@/data/tickets/useTickets";
 import { supportersData } from "@/data/supporters";
-import { APP_IMAGES } from "@/data/appImages";
+import { APP_IMAGES, MAP_IMAGES, TRACK_GEM_IMAGES } from "@/data/appImages";
 
 /** Supporter logos ship as a static file, so they're known without a fetch. */
 const SUPPORTER_LOGOS = Object.values(supportersData).flatMap((supporter) => [
@@ -43,10 +44,27 @@ export function CacheWarmer() {
     enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED,
   });
 
+  // Swag photos render as soon as tickets load on the home page, but warm them
+  // too so they're cached even if the user only opened another page online.
+  // Null key while signed out, so this costs nothing for visitors.
+  const { tickets } = useTickets();
+  const swagImages = tickets.flatMap((order) =>
+    order.tickets.flatMap((ticket) => [
+      ticket.imageUrl,
+      ...(ticket.addons ?? []).map((addon) => addon.imageUrl),
+    ])
+  );
+
   // Priority order, most important first. Avatars are last on purpose: 645 of
   // them dwarf everything else, and any single one matters least.
   useWarmImages([
+    // Gems first: nine small files that every schedule view renders, and the
+    // schedule is where offline use concentrates.
+    TRACK_GEM_IMAGES,
+    // Then the venue map background: the map is the other core offline view.
+    MAP_IMAGES,
     [featured?.image, ...highlights.map((highlight) => highlight.image)],
+    swagImages,
     APP_IMAGES,
     SUPPORTER_LOGOS,
     sessions.map((session) => session.image),

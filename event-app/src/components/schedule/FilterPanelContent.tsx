@@ -174,7 +174,6 @@ export function FilterPanelContent({
                         src={theme.gem}
                         alt=""
                         className="size-3.5 object-contain"
-                        loading="lazy"
                       />
                     )}
                     {track}

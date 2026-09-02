@@ -34,29 +34,50 @@ export async function createRow(viewId: string, data: Record<string, any>) {
   return api.dbTableRow.create('noco', baseId, tableId, data)
 }
 
+interface PageOpts {
+  pageSize?: number
+  maxRows?: number
+}
+interface PageResult<T> {
+  list?: T[]
+  pageInfo?: { isLastPage?: boolean }
+}
+
+/**
+ * Walk a paginated NocoDB list endpoint until the server says it's the last
+ * page, a short/empty page comes back, or the row cap is reached. The offset
+ * advances by rows actually received: NocoDB clamps `limit` to its own
+ * maximum (100 by default), so trusting the requested page size would skip rows.
+ */
+async function paginate<T>(
+  fetchPage: (limit: number, offset: number) => Promise<PageResult<T>>,
+  opts: PageOpts = {}
+): Promise<T[]> {
+  const pageSize = opts.pageSize ?? 100
+  const maxRows = opts.maxRows ?? 500
+  const rows: T[] = []
+  let offset = 0
+  while (rows.length < maxRows) {
+    const result = await fetchPage(pageSize, offset)
+    const page = result?.list ?? []
+    rows.push(...page)
+    if (page.length === 0 || page.length < pageSize || result?.pageInfo?.isLastPage) break
+    offset += page.length
+  }
+  return rows
+}
+
 /**
  * List rows of the table backing a form view. Paginates through all records
  * (capped) so callers get the full set. Read-only; safe for public listings.
  */
-export async function listViewRows(
-  viewId: string,
-  opts: { pageSize?: number; maxRows?: number } = {}
-): Promise<any[]> {
+export async function listViewRows(viewId: string, opts: PageOpts = {}): Promise<any[]> {
   const { baseId, tableId } = await resolveViewTable(viewId)
   const api = getApi()
-  const pageSize = opts.pageSize ?? 100
-  const maxRows = opts.maxRows ?? 500
-  const rows: any[] = []
-  let offset = 0
-  while (rows.length < maxRows) {
-    const result = await api.dbTableRow.list('noco', baseId, tableId, { limit: pageSize, offset })
-    const page = (result as any)?.list ?? []
-    rows.push(...page)
-    const isLast = (result as any)?.pageInfo?.isLastPage ?? page.length < pageSize
-    if (isLast) break
-    offset += pageSize
-  }
-  return rows
+  return paginate<any>(
+    (limit, offset) => api.dbTableRow.list('noco', baseId, tableId, { limit, offset }) as Promise<PageResult<any>>,
+    opts
+  )
 }
 
 export async function findRowByEmail(viewId: string, emailColumn: string, email: string): Promise<any | null> {
@@ -107,4 +128,21 @@ export async function listRows(viewId: string, opts: { sort?: string } = {}): Pr
     offset += pageSize
   }
   return out
+}
+
+/**
+ * List every row of a table by its table id via the v2 records API — no view
+ * or meta lookups needed (unlike `listViewRows`). Paginates to a cap.
+ * Read-only; safe for public listings.
+ */
+export async function listTableRows(tableId: string, opts: PageOpts = {}): Promise<Record<string, any>[]> {
+  if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) {
+    throw new Error('NocoDB env vars not configured (NOCODB_BASE_URL, NOCODB_API_TOKEN)')
+  }
+  return paginate<Record<string, any>>(async (limit, offset) => {
+    const url = `${NOCODB_BASE_URL}/api/v2/tables/${tableId}/records?limit=${limit}&offset=${offset}`
+    const res = await fetch(url, { headers: { 'xc-token': NOCODB_API_TOKEN } })
+    if (!res.ok) throw new Error(`NocoDB list records for ${tableId} failed: HTTP ${res.status}`)
+    return res.json() as Promise<PageResult<Record<string, any>>>
+  }, opts)
 }

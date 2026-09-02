@@ -48,6 +48,22 @@ const withSerwist = withSerwistInit({
     { url: "/login/devcon-8-logo.svg", revision },
     { url: "/schedule/empty-search.webp", revision },
     { url: "/partners/ens.png", revision },
+    // Track gem artwork (~113KB for all nine): every schedule view renders
+    // them and the schedule is where offline use concentrates, so they must be
+    // there on the first offline paint regardless of connection quality (the
+    // runtime warmer skips data-saver / 2G). Also in TRACK_GEM_IMAGES
+    // (src/data/appImages.ts) so a cache miss self-heals. Paths mirror
+    // DC8_TRACKS in src/components/schedule/trackTheme.ts: renaming a file
+    // without updating this list breaks the SW install everywhere (see above).
+    { url: "/schedule/gems/applied-cryptography.webp", revision },
+    { url: "/schedule/gems/core-protocol.webp", revision },
+    { url: "/schedule/gems/futures-worth-building.webp", revision },
+    { url: "/schedule/gems/open-verifiable-stack.webp", revision },
+    { url: "/schedule/gems/permissionless-networks.webp", revision },
+    { url: "/schedule/gems/privacy-consent.webp", revision },
+    { url: "/schedule/gems/rights-freedoms-governance.webp", revision },
+    { url: "/schedule/gems/security.webp", revision },
+    { url: "/schedule/gems/users-builders-agents.webp", revision },
   ],
   reloadOnOnline: false,
   exclude: [

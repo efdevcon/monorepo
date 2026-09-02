@@ -1,9 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import useSWR from "swr";
 import type { User } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { supabase } from "./supabase";
+
+/**
+ * Last user auth-js handed us, persisted through the Dexie-backed SWR cache so
+ * it survives reloads offline (no fetcher: the key is only written via mutate).
+ * It is a fallback for one situation: auth-js can't produce a session but
+ * hasn't signed us out either, i.e. the access token expired and the refresh
+ * failed on a dead connection. auth-js keeps the stored session in that case
+ * and retries once the network is back; a definitive sign-out (explicit, or a
+ * refresh the server rejected) fires SIGNED_OUT, which clears this record. The
+ * server still verifies the real token on every API call, so the fallback only
+ * ever unlocks locally cached data.
+ */
+const LAST_USER_KEY = ["auth", "last-user"];
 
 export type UseUserResult = {
   user: User | null;
@@ -28,6 +42,23 @@ export function useUser(): UseUserResult {
   const [error, setError] = useState<string | null>(null);
   const [hasInitialized, setHasInitialized] = useState(false);
 
+  const { data: lastUser, mutate: setLastUser } = useSWR<User | null>(
+    LAST_USER_KEY,
+    null,
+    {
+      revalidateOnMount: false,
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  // Ref so the one-shot auth effect below reads the latest value. Declared
+  // before it so the mount-time sync runs first.
+  const lastUserRef = useRef(lastUser);
+  useEffect(() => {
+    lastUserRef.current = lastUser;
+  }, [lastUser]);
+
   useEffect(() => {
     if (!supabase) {
       setLoading(false);
@@ -35,23 +66,52 @@ export function useUser(): UseUserResult {
       return;
     }
 
+    const settle = (next: User | null) => {
+      if (next) void setLastUser(next, { revalidate: false });
+      // No session but not signed out: keep the remembered user (see
+      // LAST_USER_KEY) so cached tickets stay reachable offline.
+      setUser(next ?? lastUserRef.current ?? null);
+      setLoading(false);
+      setHasInitialized(true);
+    };
+
+    // Offline with a remembered user: don't wait for auth-js. On an expired
+    // token its refresh attempt backs off for up to ~30s on a dead connection
+    // before resolving (with null).
+    if (
+      typeof navigator !== "undefined" &&
+      navigator.onLine === false &&
+      lastUserRef.current
+    ) {
+      setUser(lastUserRef.current);
+      setLoading(false);
+      setHasInitialized(true);
+    }
+
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-        setLoading(false);
-        setHasInitialized(true);
+      (event, session) => {
+        if (event === "SIGNED_OUT") {
+          void setLastUser(null, { revalidate: false });
+          setUser(null);
+          setLoading(false);
+          setHasInitialized(true);
+          return;
+        }
+        settle(session?.user ?? null);
       }
     );
 
-    // Restore any existing session on mount.
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user ?? null);
-      setLoading(false);
-      setHasInitialized(true);
+    // Restore any existing session on mount from local storage. getSession()
+    // makes no network request; getUser() would round-trip to Supabase and
+    // return null on a dead connection, sending offline users to the sign-in
+    // screen over their cached tickets. The server verifies the token on every
+    // API call anyway.
+    supabase.auth.getSession().then(({ data }) => {
+      settle(data.session?.user ?? null);
     });
 
     return () => authListener.subscription.unsubscribe();
-  }, []);
+  }, [setLastUser]);
 
   const sendOtp = async (email: string): Promise<boolean> => {
     try {

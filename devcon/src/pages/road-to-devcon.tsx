@@ -10,7 +10,9 @@ import { University, Sprout, ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
 import { getRoadToDevconEvents } from 'services/rtd-events'
+import { getRoadToDevconCommunities } from 'services/rtd-communities'
 import { ROAD_TO_DEVCON_EVENTS, type RoadEvent } from 'components/domain/road-to-devcon/events'
+import { ROAD_TO_DEVCON_COMMUNITIES, type RoadCommunity } from 'components/domain/road-to-devcon/communities'
 import themes from './themes.module.scss'
 import css from './road-to-devcon.module.scss'
 
@@ -82,7 +84,13 @@ function AboutSection() {
   )
 }
 
-export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
+export default function RoadToDevconPage({
+  events,
+  communities,
+}: {
+  events: RoadEvent[]
+  communities: RoadCommunity[]
+}) {
   return (
     <div className={`${css['layout']} ${themes['index']}`}>
       <Header withHero />
@@ -94,7 +102,7 @@ export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
 
         <RoadToDevconEvents events={events} />
 
-        <RoadToDevconCommunities />
+        <RoadToDevconCommunities communities={communities} />
 
         <RoadToDevconPrograms />
 
@@ -108,18 +116,22 @@ export async function getStaticProps(context: any) {
   const locale: string = context.locale ?? 'en'
   const messages = await getMessages(locale)
 
-  // Build the events into the page (ISR, 30 min) so they're always present —
-  // no client fetch / loading state. Falls back to the bundled seed if NocoDB
-  // is unreachable at build/revalidate time so the section is never empty.
-  let events: RoadEvent[]
-  try {
-    events = await getRoadToDevconEvents()
-  } catch (e) {
-    console.error('[road-to-devcon] event fetch failed, using seed:', e)
-    events = ROAD_TO_DEVCON_EVENTS
+  // Build the NocoDB-backed sections into the page (ISR, 30 min) so they're
+  // always present — no client fetch / loading state. Each falls back to its
+  // bundled seed if NocoDB is unreachable at build/revalidate time, so a
+  // section is never empty. getStaticProps can't serialize `undefined`, so the
+  // result is round-tripped through JSON to drop any undefined-valued fields.
+  const loadWithSeed = async <T,>(label: string, load: () => Promise<T>, seed: T): Promise<T> => {
+    try {
+      return JSON.parse(JSON.stringify(await load()))
+    } catch (e) {
+      console.error(`[road-to-devcon] ${label} fetch failed, using seed:`, e)
+      return seed
+    }
   }
-  // getStaticProps can't serialize `undefined`; round-trip through JSON to drop
-  // any undefined-valued optional fields so a missing value never crashes the page.
-  const safeEvents: RoadEvent[] = JSON.parse(JSON.stringify(events))
-  return { props: { events: safeEvents, messages }, revalidate: 1800 }
+  const [events, communities] = await Promise.all([
+    loadWithSeed<RoadEvent[]>('event', getRoadToDevconEvents, ROAD_TO_DEVCON_EVENTS),
+    loadWithSeed<RoadCommunity[]>('communities', getRoadToDevconCommunities, ROAD_TO_DEVCON_COMMUNITIES),
+  ])
+  return { props: { events, communities, messages }, revalidate: 1800 }
 }
