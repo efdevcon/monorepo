@@ -1,27 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import cn from 'classnames'
 import { Link } from 'components/common/link'
+import { ctaSecondary } from 'components/common/cta'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-
-// Community logos live in public/road-to-devcon/communities/ — same convention
-// the rest of the Road to Devcon feature uses (Hero/Programs load from here).
-const ASSET_BASE = '/road-to-devcon/communities'
+import { shuffle } from 'utils/shuffle'
+import type { RoadCommunity } from './communities'
 
 // "Want to help create Devcon with us?" → email the ecosystem team.
 const CONTACT_URL = 'mailto:ecosystem@devcon.org'
 
-// The 4 Road to Devcon community co-creators (order per the design). Logos are
-// wordmark PNGs sized to a uniform height (ETH Mumbai bakes its own white pill
-// into the asset).
-const COMMUNITIES = [
-  { name: 'Devfolio', src: `${ASSET_BASE}/devfolio.png`, href: 'https://devfolio.co/discover' },
-  { name: 'ETH Mumbai', src: `${ASSET_BASE}/eth-mumbai.png`, href: 'https://www.ethmumbai.in/' },
-  { name: 'Aya', src: `${ASSET_BASE}/aya.png`, href: 'https://theayacommunity.com/' },
-  { name: 'ETH Pune', src: `${ASSET_BASE}/eth-pune.png`, href: 'https://www.ethpune.com/' },
-]
+// How many logos show before "Load more" reveals the rest.
+const INITIAL_COUNT = 10
 
-export function RoadToDevconCommunities() {
+function CommunityLogo({ community }: { community: RoadCommunity }) {
+  const className = 'flex h-10 shrink-0 items-center justify-center transition-transform hover:scale-105 sm:h-14'
+  // Logos are pre-sized WebPs (or SVGs) served from Supabase's CDN; a plain
+  // <img> avoids /_next/image re-transforming them for no gain.
+  const img = (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={community.logo}
+      alt={community.name}
+      loading="lazy"
+      decoding="async"
+      className="h-full w-auto object-contain"
+    />
+  )
+  if (!community.url) return <span className={className}>{img}</span>
+  return (
+    <Link to={community.url} className={className}>
+      {img}
+    </Link>
+  )
+}
+
+export function RoadToDevconCommunities({ communities }: { communities: RoadCommunity[] }) {
   const t = useTranslations('road_to_devcon')
+  const [showAll, setShowAll] = useState(false)
+  // The random pick happens on the client only: SSR renders the server order
+  // (invisible), then the grid fades in once shuffled — no hydration mismatch
+  // and no visible reorder. null = not shuffled yet.
+  const [shuffled, setShuffled] = useState<RoadCommunity[] | null>(null)
+  useEffect(() => {
+    setShuffled(shuffle(communities))
+  }, [communities])
+
+  const mounted = shuffled !== null
+  const list = shuffled ?? communities
+  const visible = showAll ? list : list.slice(0, INITIAL_COUNT)
+  const hasMore = visible.length < list.length
+
   return (
     <section className="section relative z-10 bg-[#ffe6f1] py-16 text-[#160b2b]">
       {/* Stacked & centered on mobile → tablet → sm-desktop; on xl the heading +
@@ -51,18 +80,23 @@ export function RoadToDevconCommunities() {
           </div>
         </div>
 
-        {/* Logos — wrap 2×2 on mobile/tablet, single row on lg+ */}
-        <div className="order-2 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 xl:order-none">
-          {COMMUNITIES.map(community => (
-            <Link
-              key={community.name}
-              to={community.href}
-              className="flex h-10 shrink-0 items-center justify-center transition-transform hover:scale-105 sm:h-14"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={community.src} alt={community.name} className="h-full w-auto object-contain" />
-            </Link>
-          ))}
+        {/* Logos (+ Load more) — wrap on mobile/tablet, single row on lg+ */}
+        <div className="order-2 flex w-full flex-col items-center gap-8 xl:order-none">
+          <div
+            className={cn(
+              'flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 transition-opacity duration-150 ease-out',
+              mounted ? 'opacity-100' : 'opacity-0'
+            )}
+          >
+            {visible.map(community => (
+              <CommunityLogo key={community.id} community={community} />
+            ))}
+          </div>
+          {hasMore && (
+            <button type="button" className={ctaSecondary} onClick={() => setShowAll(true)}>
+              {t('communities.load_more')}
+            </button>
+          )}
         </div>
       </div>
     </section>
