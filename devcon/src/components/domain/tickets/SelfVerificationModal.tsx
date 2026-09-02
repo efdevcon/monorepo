@@ -425,6 +425,11 @@ export function SelfVerificationModal({
                     </ul>
                   </div>
 
+                  <div className={css['self-expiry-note']}>
+                    <strong>Your Aadhaar QR code expires after 2 hours</strong>. Download your Aadhaar right before
+                    adding it to Self — older codes fail without a clear error.
+                  </div>
+
                   <div className={css['self-howto']}>
                     <h3 className={css['self-heading']}>How to verify</h3>
                     <ul className={css['self-steps']}>
