@@ -79,7 +79,6 @@ function TimelineSession({
                 src={theme.gem}
                 alt=""
                 className="size-3.5 object-contain"
-                loading="lazy"
               />
             )}
             <span className="text-[12px] font-semibold uppercase tracking-[0.5px] text-dc-fg2">

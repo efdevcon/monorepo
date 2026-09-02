@@ -1,51 +1,64 @@
 "use client";
 
-import { useState } from "react";
-import cn from "classnames";
-import { RefreshCw } from "lucide-react";
 import { useTickets } from "@/data/tickets/useTickets";
-import { QrLightbox, TicketCard, type QrTarget } from "./TicketCards";
+import {
+  RefreshTicketsButton,
+  TicketSectionHeader,
+  TicketSections,
+} from "./ticket/TicketSections";
 
 /**
- * "My tickets" section of the signed-in ticket page (Figma "My Devcon").
- * Forked from the home-page `Tickets` list: same cards and QR lightbox, but
- * with the design's section header (the refresh control — not in the design,
- * kept deliberately — shrinks to an icon button).
+ * Signed-in body of the ticket page (Figma "My Devcon"): loading/error/empty
+ * states around the shared TicketSections layout (also used on the home page).
  */
 export function MyTickets() {
   const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
-  const [lightbox, setLightbox] = useState<QrTarget | null>(null);
 
-  const allTickets = tickets.flatMap((order) =>
-    order.tickets.map((ticket) => ({ ticket, eventName: order.eventName }))
-  );
-
-  return (
-    <section className="flex w-full flex-col gap-4 text-left lg:max-w-[709px]">
-      <div className="flex items-center justify-between">
-        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
-          My tickets
-        </h2>
-        <button
-          onClick={refresh}
-          disabled={isLoading || isRefreshing}
-          aria-label="Refresh tickets"
-          className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-50"
-        >
-          <RefreshCw
-            className={cn("size-4 text-dc-fg2", isRefreshing && "animate-spin")}
-          />
-        </button>
+  if (!isLoading && tickets.length > 0) {
+    return (
+      <div className="w-full text-left">
+        {/* A failed revalidation must never hide cached tickets/QR codes:
+            keep the sections and add a quiet notice instead (same rule as the
+            home page's Tickets.tsx). */}
+        {error && (
+          <p className="mb-2 text-xs text-dc-muted">
+            Couldn&apos;t refresh tickets. Showing your saved ones.
+          </p>
+        )}
+        <TicketSections
+          tickets={tickets}
+          qrCodes={qrCodes}
+          onRefresh={refresh}
+          isRefreshing={isRefreshing}
+          refreshDisabled={isLoading || isRefreshing}
+        />
       </div>
+    );
+  }
 
+  // TicketSections renders its own headers (refresh control included). The
+  // other states get the same header so refresh stays reachable: without it,
+  // an order that just flipped to paid only shows up after a reload.
+  return (
+    <div className="flex w-full flex-col gap-4 text-left">
+      <TicketSectionHeader
+        title="My Event Ticket"
+        action={
+          <RefreshTicketsButton
+            onRefresh={refresh}
+            isRefreshing={isRefreshing}
+            disabled={isLoading || isRefreshing}
+          />
+        }
+      />
       {isLoading ? (
         <p className="text-sm text-dc-muted">Loading tickets…</p>
       ) : error ? (
         <p className="text-sm text-dc-error">
           Couldn&apos;t load tickets: {error.message}
         </p>
-      ) : allTickets.length === 0 ? (
+      ) : (
         <div className="relative overflow-hidden rounded-2xl p-6 text-white">
           {/* Real banner art from devcon.org/tickets + gradient for legibility */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -70,21 +83,7 @@ export function MyTickets() {
             </a>
           </div>
         </div>
-      ) : (
-        <div className="space-y-3">
-          {allTickets.map(({ ticket, eventName }) => (
-            <TicketCard
-              key={ticket.secret}
-              ticket={ticket}
-              eventName={eventName}
-              qrCodes={qrCodes}
-              onQrClick={setLightbox}
-            />
-          ))}
-        </div>
       )}
-
-      <QrLightbox target={lightbox} onClose={() => setLightbox(null)} />
-    </section>
+    </div>
   );
 }

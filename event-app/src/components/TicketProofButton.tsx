@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, Copy, ExternalLink, Share2, X } from "lucide-react";
+import { ArrowUpRight, Check, Copy, ExternalLink, Share2, X } from "lucide-react";
 import {
   canShare,
   copyLink,
@@ -36,22 +36,23 @@ export function TicketProofButton({
 
   return (
     <>
+      {/* Purple text-link CTA ("View all" style) — the flow leaves our app
+          for the partner's, hence the outward arrow. The ENS mark now lives
+          on the surrounding EnsPerkCard. */}
       <button
         type="button"
         onClick={request}
         disabled={pending}
-        className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1 text-[12px] leading-none text-dc-muted transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-60"
+        // text-left: buttons center wrapped text by default, which reads
+        // wrong when the label breaks onto two lines.
+        className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-1 text-left text-[14px] font-bold leading-5 text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-60"
       >
-        {/* The partner's own mark, not a generic icon: this button leaves our
-            app for theirs, and Lucide has no brand icons. Asset reused from
-            devconnect-app rather than adding a second copy of the logo.
-            eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/partners/ens.png" alt="" className="size-4 shrink-0" />
         {pending
           ? "Preparing…"
           : freeName
             ? "Claim your free .eth name & ENS perks"
             : "Claim ENS perks"}
+        <ArrowUpRight className="size-4 shrink-0" />
       </button>
 
       <AnimatePresence>

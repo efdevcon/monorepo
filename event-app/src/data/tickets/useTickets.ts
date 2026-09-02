@@ -74,8 +74,9 @@ export function useTickets() {
       }
       for (const secret of secrets) {
         try {
+          // 512px covers the modal's 180px frame crisply on 2–3x displays.
           codes[secret] = await QRCode.toDataURL(secret, {
-            width: 200,
+            width: 512,
             margin: 1,
             color: { dark: "#000000", light: "#FFFFFF" },
           });

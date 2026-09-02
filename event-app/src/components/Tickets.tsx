@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import cn from "classnames";
-import { RefreshCw } from "lucide-react";
 import { useTickets } from "@/data/tickets/useTickets";
 import { useUser } from "@/data/auth/useUser";
 import { Link } from "@/routing";
-import { QrLightbox, TicketCard, type QrTarget } from "./TicketCards";
+import {
+  RefreshTicketsButton,
+  TicketSectionHeader,
+  TicketSections,
+} from "./ticket/TicketSections";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
-/** Renders the user's tickets as cards with QR codes. Signed out, it becomes
- *  the key-art sign-in banner from the Figma home redesign. */
+/** Home-page tickets section: signed in it renders the shared My Devcon
+ *  layout (TicketSections); signed out it becomes the key-art sign-in banner
+ *  from the Figma home redesign. */
 export function Tickets() {
   const {
     attempt: bannerAttempt,
@@ -19,32 +21,31 @@ export function Tickets() {
   const { user } = useUser();
   const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
-  const [lightbox, setLightbox] = useState<QrTarget | null>(null);
 
-  const allTickets = tickets.flatMap((order) =>
-    order.tickets.map((ticket) => ({ ticket, eventName: order.eventName }))
-  );
+  const hasTickets = tickets.length > 0;
 
   return (
     <section className="w-full text-left">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-          Your tickets
-        </h2>
-        {/* Text CTA, unified with the "View all" link style */}
-        {user && (
-          <button
-            onClick={refresh}
-            disabled={isLoading || isRefreshing}
-            className="flex cursor-pointer items-center gap-1.5 font-heading text-base font-bold text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-50"
-          >
-            <RefreshCw
-              className={cn("size-4", isRefreshing && "animate-spin")}
-            />
-            {isRefreshing ? "Refreshing…" : "Refresh"}
-          </button>
-        )}
-      </div>
+      {/* TicketSections carries its own headings (refresh control included);
+          the "Your tickets" header only fronts the states that render without
+          them, and keeps refresh reachable for signed-in users so a just-paid
+          order can be refetched without a reload. */}
+      {(isLoading || !user || !hasTickets) && (
+        <div className="mb-4">
+          <TicketSectionHeader
+            title="Your tickets"
+            action={
+              user && (
+                <RefreshTicketsButton
+                  onRefresh={refresh}
+                  isRefreshing={isRefreshing}
+                  disabled={isLoading || isRefreshing}
+                />
+              )
+            }
+          />
+        </div>
+      )}
 
       {/* Order matters: isLoading folds in !hasInitialized (useTickets), so a
           signed-in cold load — or an OFFLINE user whose auth can't resolve
@@ -104,11 +105,11 @@ export function Tickets() {
             </a>
           </p>
         </>
-      ) : error && allTickets.length === 0 ? (
+      ) : error && !hasTickets ? (
         <p className="text-sm text-dc-error">
           Couldn&apos;t load tickets: {error.message}
         </p>
-      ) : allTickets.length === 0 ? (
+      ) : !hasTickets ? (
         <div className="relative overflow-hidden rounded-xl p-6 text-white">
           {/* Real banner art from devcon.org/tickets + gradient for legibility */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,27 +137,21 @@ export function Tickets() {
       ) : (
         <>
           {/* A failed revalidation must never hide cached tickets/QR codes —
-              keep the grid and add a quiet notice instead. */}
+              keep the sections and add a quiet notice instead. */}
           {error && (
             <p className="mb-2 text-xs text-dc-muted">
-              Couldn&apos;t refresh tickets — showing your saved ones.
+              Couldn&apos;t refresh tickets. Showing your saved ones.
             </p>
           )}
-          <div className="grid gap-3 lg:grid-cols-2">
-            {allTickets.map(({ ticket, eventName }) => (
-              <TicketCard
-                key={ticket.secret}
-                ticket={ticket}
-                eventName={eventName}
-                qrCodes={qrCodes}
-                onQrClick={setLightbox}
-              />
-            ))}
-          </div>
+          <TicketSections
+            tickets={tickets}
+            qrCodes={qrCodes}
+            onRefresh={refresh}
+            isRefreshing={isRefreshing}
+            refreshDisabled={isLoading || isRefreshing}
+          />
         </>
       )}
-
-      <QrLightbox target={lightbox} onClose={() => setLightbox(null)} />
     </section>
   );
 }

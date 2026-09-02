@@ -230,3 +230,23 @@ html [data-sonner-toast] [data-title] {
   line-height: 20px;
   font-weight: 500;
 }
+
+/* EventTicketCard tear-line notches (Figma 5088-2908 "Hole punch effect"):
+   r=12px circles punched out of the card edges where the halves meet, so the
+   page background shows through. Each half masks its own two corners (the
+   tear edge is a fixed edge of each half, so wrapped names can't misplace the
+   holes). The card's shadow is a drop-shadow() on the wrapper — a box-shadow
+   would paint a rectangle straight across the cutouts. */
+.ticket-notch-top {
+  mask-image:
+    radial-gradient(circle 12px at 0% 100%, transparent 11.5px, #000 12px),
+    radial-gradient(circle 12px at 100% 100%, transparent 11.5px, #000 12px);
+  /* Lightning CSS emits the -webkit- fallback (source-in) from this. */
+  mask-composite: intersect;
+}
+.ticket-notch-bottom {
+  mask-image:
+    radial-gradient(circle 12px at 0% 0%, transparent 11.5px, #000 12px),
+    radial-gradient(circle 12px at 100% 0%, transparent 11.5px, #000 12px);
+  mask-composite: intersect;
+}

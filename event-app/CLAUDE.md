@@ -30,7 +30,7 @@ Announcements with the Notion `Push` checkbox go out as web push at their Send A
 
 Every image in the app must survive going offline, so adding one has three
 requirements. All remote images are served from our own Supabase Storage
-(`speaker-avatars`, `event-app-announcements`), which sends
+(`speaker-avatars`, `event-app-announcements`, `event-app-swag`), which sends
 `Access-Control-Allow-Origin: *`.
 
 1. **Put remote images on our Supabase Storage**, mirrored like avatars and
