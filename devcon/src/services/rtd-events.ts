@@ -44,6 +44,24 @@ export function pick(row: Record<string, any>, keys: readonly string[]): any {
   return undefined
 }
 
+/**
+ * Keep only http(s) links. A NocoDB URL cell written via the API (not the UI)
+ * can hold any string, and a `javascript:` value would otherwise end up in an
+ * href on the public page.
+ */
+export function safeHttpUrl(value: unknown): string | null {
+  if (!value) return null
+  let s = String(value).trim()
+  // Editors often paste a bare domain ("ethmumbai.in"); treat it as https.
+  if (/^[\w.-]+\.[a-z]{2,}(\/|$)/i.test(s)) s = `https://${s}`
+  try {
+    const u = new URL(s)
+    return u.protocol === 'http:' || u.protocol === 'https:' ? u.toString() : null
+  } catch {
+    return null
+  }
+}
+
 /** Parse a NocoDB attachment cell and return its first image attachment, if any. */
 export function firstImageAttachment(value: any): NocoAttachment | undefined {
   let arr = value
@@ -150,7 +168,7 @@ export async function getRoadToDevconEvents(): Promise<RoadEvent[]> {
       date,
       types,
       // null, not undefined — getStaticProps serializes null but throws on undefined.
-      url: rawUrl ? String(rawUrl) : null,
+      url: safeHttpUrl(rawUrl),
       image: null,
       gradient: gradientFor(id),
     }

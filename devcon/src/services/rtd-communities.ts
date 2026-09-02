@@ -7,7 +7,7 @@
  */
 import { listTableRows } from './nocodb'
 import { ensurePublicCommunityLogo, type NocoAttachment } from './rtd-event-images'
-import { firstImageAttachment, isChecked, pick, proxyImageUrl } from './rtd-events'
+import { firstImageAttachment, isChecked, pick, proxyImageUrl, safeHttpUrl } from './rtd-events'
 import type { RoadCommunity } from 'components/domain/road-to-devcon/communities'
 
 const RTD_COMMUNITIES_LOGOS_TABLE_ID = 'mmxfm3qbk5sqb8u'
@@ -21,11 +21,30 @@ const FIELDS = {
   featured: ['Featured', 'Published', 'Visible'],
 } as const
 
+/** A Featured row with the fields we need, before its logo has been mirrored. */
+interface Candidate extends Omit<RoadCommunity, 'logo'> {
+  rowId: string | number
+  att: NocoAttachment
+}
+
+/**
+ * Mirror the logo into Supabase Storage (no-op after the first time) so it
+ * gets a stable public URL. A failed mirror falls back to the uncacheable
+ * proxy URL rather than dropping the logo; null means nothing servable.
+ */
+async function resolveLogoUrl({ rowId, att }: Candidate): Promise<string | null> {
+  try {
+    return (await ensurePublicCommunityLogo(rowId, att)) ?? proxyImageUrl(att) ?? null
+  } catch (e) {
+    console.warn(`[rtd-communities] logo mirror failed for row ${rowId}, using proxy:`, (e as Error).message)
+    return proxyImageUrl(att) ?? null
+  }
+}
+
 export async function getRoadToDevconCommunities(): Promise<RoadCommunity[]> {
   const rows = await listTableRows(RTD_COMMUNITIES_LOGOS_TABLE_ID)
 
-  const communities: RoadCommunity[] = []
-  const logos: Array<{ community: RoadCommunity; rowId: string | number; att: NocoAttachment }> = []
+  const candidates: Candidate[] = []
   for (const row of rows) {
     // Fail-closed: only rows explicitly flagged Featured make it onto the page.
     if (!isChecked(pick(row, FIELDS.featured))) continue
@@ -36,32 +55,21 @@ export async function getRoadToDevconCommunities(): Promise<RoadCommunity[]> {
     if (!name || !att) continue
 
     const rowId = row.Id ?? row.id ?? String(name)
-    const rawUrl = pick(row, FIELDS.url)
-    const community: RoadCommunity = {
+    candidates.push({
       id: `nocodb-${rowId}`,
       name: String(name),
-      logo: '',
       // null, not undefined — getStaticProps serializes null but throws on undefined.
-      url: rawUrl ? String(rawUrl) : null,
-    }
-    communities.push(community)
-    logos.push({ community, rowId, att })
+      url: safeHttpUrl(pick(row, FIELDS.url)),
+      rowId,
+      att,
+    })
   }
 
-  // Mirror attachments into Supabase Storage (no-op after the first time) so
-  // logos get stable public URLs. A failed mirror falls back to the uncacheable
-  // proxy URL rather than dropping the logo.
-  await Promise.all(
-    logos.map(async ({ community, rowId, att }) => {
-      try {
-        community.logo = (await ensurePublicCommunityLogo(rowId, att)) ?? proxyImageUrl(att) ?? ''
-      } catch (e) {
-        console.warn(`[rtd-communities] logo mirror failed for row ${rowId}, using proxy:`, (e as Error).message)
-        community.logo = proxyImageUrl(att) ?? ''
-      }
+  const resolved = await Promise.all(
+    candidates.map(async (c): Promise<RoadCommunity | null> => {
+      const logo = await resolveLogoUrl(c)
+      return logo ? { id: c.id, name: c.name, logo, url: c.url } : null
     })
   )
-
-  // Drop anything that ended up with no servable logo URL at all.
-  return communities.filter(c => c.logo)
+  return resolved.filter((c): c is RoadCommunity => c !== null)
 }
