@@ -38,12 +38,15 @@ function XIcon({ className }: { className?: string }) {
 }
 
 const socialLink =
-  "flex size-6 items-center justify-center text-white transition-opacity hover:opacity-80";
+  "flex size-6 items-center justify-center text-dc-purple transition-opacity hover:opacity-80";
 
 /**
- * Speaker details body (Figma "Speaker details" / side menu): hero image with
- * FEATURED badge, name and social links, then Profile + action pills, then the
- * speaker's sessions. Used by both the desktop side panel and the mobile
+ * Speaker details body (Figma "Speaker details" 5102:774 / 1000 / 887 / 2919):
+ * a header band — name (wraps up to three lines) with X / GitHub / website
+ * links, and a 96px ringed avatar — then Profile + action pills, then the
+ * speaker's sessions. Featured speakers get a marigold ring, a FEATURED tag
+ * under the avatar and a peach band; everyone else a purple ring and a
+ * lavender band. Used by both the desktop side panel and the mobile
  * /speakers/[id] page (SessionDetailsContent pattern).
  */
 export function SpeakerDetailsContent({
@@ -57,12 +60,6 @@ export function SpeakerDetailsContent({
   const { speaker, sessions, tags, isFeatured } = decorated;
   const { isInterested, toggle } = useInterestedSpeakers();
   const interested = isInterested(speaker.id);
-
-  // Blockie avatars are data-URI placeholders — as a 16:9 cover they'd blow
-  // up into abstract noise, so those (and missing avatars) get the pastel
-  // treatment with a large round Avatar instead.
-  const photo =
-    speaker.avatar && !speaker.avatar.startsWith("data") ? speaker.avatar : "";
 
   const copyName = async () => {
     try {
@@ -80,46 +77,31 @@ export function SpeakerDetailsContent({
 
   return (
     <div className={cn("flex flex-col bg-dc-panel", className)}>
-      {/* Hero */}
-      <div className="relative flex aspect-[160/90] w-full flex-col justify-end overflow-clip">
-        {photo ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={photo}
-            alt=""
-            className="absolute inset-0 size-full object-cover"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-dc-lavender">
-            <Avatar
-              name={speaker.name}
-              src={speaker.avatar || undefined}
-              size={96}
-            />
-          </div>
+      {/* Header band: name + links left, ringed avatar right. The tint fades
+          into the panel grey over the top 80% (Figma gradient stop at 20%). */}
+      <div
+        className={cn(
+          "flex items-center gap-4 bg-gradient-to-t from-[rgba(249,248,250,0)] from-20% px-4 pb-2 pt-4",
+          // Featured: peach (marigold tint); otherwise lavender (purple tint).
+          isFeatured ? "to-[#ffe3d1]" : "to-[#e2d5fb]"
         )}
-        {/* Legibility gradient behind the name row (Figma: 56px band) */}
-        <div className="absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-dc-fg2" />
-        <div className="relative flex flex-col items-start gap-2 p-4">
-          {isFeatured && (
-            <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[11px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-              Featured
-            </span>
-          )}
-          <div className="flex w-full items-center justify-between gap-3">
-            <h1 className="min-w-0 truncate text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-white">
-              {speaker.name}
-            </h1>
-            <div className="flex shrink-0 items-center gap-3">
-              {speaker.website && (
+      >
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          <h1 className="text-[20px] font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2 [overflow-wrap:anywhere]">
+            {speaker.name}
+          </h1>
+          {(speaker.twitter || speaker.github || speaker.website) && (
+            // 20px glyphs in 24px boxes, 12px apart (Figma order: X, GitHub, web)
+            <div className="flex items-center gap-3">
+              {speaker.twitter && (
                 <a
-                  href={speaker.website}
+                  href={`https://x.com/${speaker.twitter}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${speaker.name}’s website`}
+                  aria-label={`${speaker.name} on X`}
                   className={socialLink}
                 >
-                  <Globe className="size-5" />
+                  <XIcon className="size-5" />
                 </a>
               )}
               {speaker.github && (
@@ -133,36 +115,51 @@ export function SpeakerDetailsContent({
                   <GithubIcon className="size-5" />
                 </a>
               )}
-              {speaker.twitter && (
+              {speaker.website && (
                 <a
-                  href={`https://x.com/${speaker.twitter}`}
+                  href={speaker.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${speaker.name} on X`}
+                  aria-label={`${speaker.name}’s website`}
                   className={socialLink}
                 >
-                  {/* All hero icons: 20px glyph in the 24px container */}
-                  <XIcon className="size-5" />
+                  <Globe className="size-5" />
                 </a>
               )}
             </div>
+          )}
+        </div>
+        <div className="relative shrink-0">
+          {/* 96px circle with a 2px ring: marigold for featured, purple-300
+              (#b08df5, not a dc-* token yet) otherwise. Avatar handles photo /
+              identicon / initials; 92px fills the ring's inner box. */}
+          <div
+            className={cn(
+              "flex size-24 items-center justify-center overflow-clip rounded-full border-2",
+              isFeatured ? "border-dc-featured" : "border-[#b08df5]"
+            )}
+          >
+            <Avatar name={speaker.name} src={speaker.avatar || undefined} size={92} />
           </div>
+          {isFeatured && (
+            // Centred under the avatar, overlapping its bottom edge by 8px.
+            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
+              Featured
+            </span>
+          )}
         </div>
       </div>
 
       {/* Profile + actions */}
-      <div className="flex flex-col gap-6 border-b border-dc-hairline p-4">
+      <div className="flex flex-col gap-4 border-b border-dc-hairline p-4">
         {(speaker.description || tags.length > 0) && (
           <div className="flex flex-col gap-2">
             {speaker.description && (
-              <>
-                <h2 className="text-[14px] font-bold leading-5 text-dc-fg2">
-                  Profile
-                </h2>
-                <p className="text-[14px] leading-5 text-dc-fg2">
-                  {speaker.description}
-                </p>
-              </>
+              // No section title: the header already names the person, so the
+              // bio reads as theirs without a "Profile" label above it.
+              <p className="text-[14px] leading-5 text-dc-fg2">
+                {speaker.description}
+              </p>
             )}
             {/* Topic-tag recap — the list clips these, so the details view
                 spells them out (PR #112 feedback). Same 3-tag cap as the
@@ -188,10 +185,8 @@ export function SpeakerDetailsContent({
           >
             <Star
               className={cn(
-                "size-4",
-                interested
-                  ? "fill-dc-purple text-dc-purple"
-                  : "fill-transparent text-dc-fg2"
+                "size-4 text-dc-purple",
+                interested ? "fill-dc-purple" : "fill-transparent"
               )}
             />
             {interested ? "Interested" : "Add to Interests"}

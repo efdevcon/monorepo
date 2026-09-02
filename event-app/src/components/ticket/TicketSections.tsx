@@ -30,10 +30,11 @@ export function TicketSectionHeader({
 }
 
 /**
- * Icon-only refresh control. Not in the design; kept deliberately (see git
- * history). Also rendered by the loading/error/empty states in MyTickets and
- * Tickets, so an order that just flipped to paid can be refetched without a
- * reload.
+ * Refresh control: labelled white pill with a purple icon (the app's
+ * icon+label pill grammar — the icon-only circle was easy to miss). Not in
+ * the design; kept deliberately (see git history). Also rendered by the
+ * loading/error/empty states in MyTickets and Tickets, so an order that just
+ * flipped to paid can be refetched without a reload.
  */
 export function RefreshTicketsButton({
   onRefresh,
@@ -49,11 +50,12 @@ export function RefreshTicketsButton({
       onClick={onRefresh}
       disabled={disabled}
       aria-label="Refresh tickets"
-      className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-50"
+      className="flex h-8 shrink-0 cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white pl-2.5 pr-3 text-[12px] font-semibold leading-none text-dc-fg2 transition-colors duration-150 ease-out hover:bg-dc-purple-wash disabled:cursor-default disabled:opacity-50"
     >
       <RefreshCw
-        className={cn("size-4 text-dc-fg2", isRefreshing && "animate-spin")}
+        className={cn("size-4 text-dc-purple", isRefreshing && "animate-spin")}
       />
+      Refresh
     </button>
   );
 }

@@ -169,10 +169,8 @@ export function SessionDetailsContent({
             >
               <Star
                 className={cn(
-                  "size-4",
-                  interested
-                    ? "fill-dc-purple text-dc-purple"
-                    : "fill-transparent text-dc-fg2"
+                  "size-4 text-dc-purple",
+                  interested ? "fill-dc-purple" : "fill-transparent"
                 )}
               />
               {interested ? "Interested" : "Add to Interests"}

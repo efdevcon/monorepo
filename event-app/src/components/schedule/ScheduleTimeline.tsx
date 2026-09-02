@@ -146,9 +146,12 @@ function TimelineSession({
 const PILL_H = 16;
 const PILL_HALF_W = 22;
 
-/** Fullscreen controls: InterestedPill's white/hairline pill at 32px. */
+/** Fullscreen controls: InterestedPill's white/hairline pill, 40px tall.
+ *  flex-auto (not flex-1): each pill keeps its label's natural width and only
+ *  the leftover row width is shared — equal thirds squeezed the icons out of
+ *  "Jump to now" on a 390px phone. */
 const fullscreenPill =
-  "pointer-events-auto flex h-8 shrink-0 cursor-pointer items-center gap-1.5 rounded-full border px-3 text-[12px] font-semibold leading-none text-dc-fg2 shadow-[0_1px_4px_rgba(0,0,0,0.12)] transition-colors duration-150 ease-out";
+  "pointer-events-auto flex h-10 flex-auto cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border px-3 text-[14px] font-normal leading-none text-dc-fg2 shadow-[0_1px_4px_rgba(0,0,0,0.12)] transition-colors duration-150 ease-out";
 const fullscreenPillResting = "border-dc-hairline bg-white hover:bg-dc-purple-wash";
 /** Active toggle state, matching InterestedPill's lavender fill. */
 const fullscreenPillActive = "border-dc-purple bg-dc-lavender";
@@ -492,7 +495,7 @@ export function ScheduleTimeline({
       {fullscreen && (
         // Labelled pills (the Interested pill's recipe, one size down): icon-
         // only circles were easy to miss floating over the dense grid.
-        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+12px)] flex justify-end gap-2 pr-[calc(env(safe-area-inset-right)+16px)]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+20px)] flex justify-center gap-2 pl-[calc(env(safe-area-inset-left)+16px)] pr-[calc(env(safe-area-inset-right)+16px)]">
           {onToggleInterested && (
             <button
               onClick={onToggleInterested}
@@ -502,7 +505,10 @@ export function ScheduleTimeline({
                 interestedOnly ? fullscreenPillActive : fullscreenPillResting
               )}
             >
-              <Star className="size-4 text-dc-purple" fill="currentColor" />
+              <Star
+                className="size-4 shrink-0 text-dc-purple"
+                fill="currentColor"
+              />
               Interested
             </button>
           )}
@@ -510,7 +516,7 @@ export function ScheduleTimeline({
             onClick={onJumpToNow}
             className={cn(fullscreenPill, fullscreenPillResting)}
           >
-            <ClockArrowDown className="size-4 text-dc-purple" />
+            <ClockArrowDown className="size-4 shrink-0 text-dc-purple" />
             Jump to now
           </button>
           <button
@@ -519,7 +525,7 @@ export function ScheduleTimeline({
             aria-label="Exit fullscreen"
             className={cn(fullscreenPill, fullscreenPillResting)}
           >
-            <X className="size-4 text-dc-purple" />
+            <X className="size-4 shrink-0 text-dc-purple" />
             Exit
           </button>
         </div>
