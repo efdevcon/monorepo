@@ -25,12 +25,19 @@ export function DayTabs({
   selectedDay,
   onSelect,
   children,
+  pinned = true,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
   onSelect: (key: string) => void;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
+  /**
+   * `false` renders the bar in normal flow (no sticky offset, no stuck
+   * detection) — for hosts that place it themselves, like the fullscreen
+   * timeline overlay where it sits fixed at the very top.
+   */
+  pinned?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
@@ -38,6 +45,7 @@ export function DayTabs({
   // Pinned under the app header? (rAF-throttled; sticky clamps rect.top at
   // the offset, so <= offset+1 means stuck.)
   useEffect(() => {
+    if (!pinned) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -56,7 +64,7 @@ export function DayTabs({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [pinned]);
 
   if (days.length === 0) return null;
 
@@ -64,7 +72,10 @@ export function DayTabs({
     <div
       ref={ref}
       className={cn(
-        "sticky top-[calc(3.5rem+var(--safe-top))] z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:top-[calc(65px+var(--safe-top))] lg:items-center lg:px-4 lg:py-2",
+        "z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:items-center lg:px-4 lg:py-2",
+        pinned
+          ? "sticky top-[calc(3.5rem+var(--safe-top))] lg:top-[calc(65px+var(--safe-top))]"
+          : "relative shrink-0",
         // Desktop: soft lavender at rest → header glass once pinned.
         stuck && "lg:bg-white/75 lg:backdrop-blur-[4px]"
       )}

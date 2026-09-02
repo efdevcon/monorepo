@@ -40,20 +40,6 @@ export const formatTime = (unixSeconds: number) =>
 export const formatTimeRange = (session: Session) =>
   `${formatTime(session.start)} – ${formatTime(session.end)}`;
 
-/**
- * No dataset marks keynotes via `type` — the Pretalx mapper collapses keynote
- * submission types into "Talk" for every edition. The reliable marker (used by
- * the shipped DC7 app, and matching all 17 devcon-7 keynotes) is the title
- * prefix; the keynote room ids are the future-proof DC8 signal. The type check
- * stays as belt-and-braces should the mapping ever change.
- */
-export function isKeynoteSession(session: Session): boolean {
-  if (session.type?.toLowerCase() === "keynote") return true;
-  if (/^keynote[:\s]/i.test(session.title)) return true;
-  const roomId = session.room?.id?.toLowerCase();
-  return roomId === "keynote" || roomId === "keynote-stage";
-}
-
 export type SessionStatus = "live" | "soon" | "past" | "upcoming";
 
 /** Status relative to `nowMs`. "soon" = starts within the next hour. */
@@ -115,11 +101,45 @@ export function groupByTime(sessions: Session[]): TimeGroup[] {
 
 // --- Timeline view -----------------------------------------------------------
 
-/** One time column in the timeline = this many minutes, rendered this wide. */
+/** One time column in the timeline = this many minutes. */
 export const SLOT_MINUTES = 10;
-export const SLOT_WIDTH = 180; // px per slot (Figma: 10 min = 180px)
 
 const SLOT_MS = SLOT_MINUTES * 60_000;
+
+/**
+ * Pixel geometry of the timeline grid. Desktop is the Figma spec; mobile is
+ * ~1.8× denser horizontally and ~1.5× shorter (Devcon SEA app parity) so a
+ * phone shows ~30 min × 8 rooms instead of ~15 min × 5. An object, not a scale
+ * factor: lane and header heights don't shrink in step with slot width.
+ */
+export interface TimelineMetrics {
+  /** px per `SLOT_MINUTES` slot. */
+  slotWidth: number;
+  /** px width of the sticky room-name column. */
+  roomCol: number;
+  /** px height of each room lane. */
+  laneH: number;
+  /** px height of the time-axis header row. */
+  headerH: number;
+  /** px inset of session blocks inside their lane. */
+  blockInset: number;
+}
+
+export const DESKTOP_METRICS: TimelineMetrics = {
+  slotWidth: 180, // Figma: 10 min = 180px
+  roomCol: 120,
+  laneH: 74,
+  headerH: 40,
+  blockInset: 4,
+};
+
+export const MOBILE_METRICS: TimelineMetrics = {
+  slotWidth: 100,
+  roomCol: 96,
+  laneH: 56,
+  headerH: 32,
+  blockInset: 4,
+};
 
 /** Label shown when a session has no assigned room. */
 export const NO_ROOM_LABEL = "TBA";
@@ -185,17 +205,18 @@ export function buildTimeline(sessions: Session[]): Timeline {
 }
 
 /** Horizontal offset (px) of a timestamp (ms) from the grid origin. */
-export const offsetPx = (timeMs: number, startMs: number) =>
-  ((timeMs - startMs) / SLOT_MS) * SLOT_WIDTH;
+export const offsetPx = (timeMs: number, startMs: number, slotWidth: number) =>
+  ((timeMs - startMs) / SLOT_MS) * slotWidth;
 
-/** Pixel placement of a session within its room lane. */
+/** Pixel placement of a session within its room lane (min. half a slot wide). */
 export function sessionBox(
   session: Session,
-  startMs: number
+  startMs: number,
+  slotWidth: number
 ): { left: number; width: number } {
-  const left = offsetPx(ms(session.start), startMs);
-  const width = offsetPx(ms(session.end), startMs) - left;
-  return { left, width: Math.max(width, SLOT_WIDTH / 2) };
+  const left = offsetPx(ms(session.start), startMs, slotWidth);
+  const width = offsetPx(ms(session.end), startMs, slotWidth) - left;
+  return { left, width: Math.max(width, slotWidth / 2) };
 }
 
 const DAY_MS = 86_400_000;

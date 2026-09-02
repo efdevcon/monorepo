@@ -16,6 +16,7 @@ import {
   ClockArrowDown,
   List,
   ListFilter,
+  Maximize2,
   MoveDown,
   MoveUp,
   Search,
@@ -52,6 +53,8 @@ import { formatDayHeading } from "./utils";
 import { getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   useIsDesktop,
+  useIsLandscape,
+  useOrientationChange,
   isDesktopNow,
   headerOffsetNow,
   safeTopNow,
@@ -76,6 +79,13 @@ interface ScheduleSnapshot {
   scrollY: number;
   /** Timeline view's horizontal grid offset. */
   timelineScrollLeft: number;
+  /**
+   * Manual fullscreen choice (`null` = follow orientation). The override is
+   * what's remembered, not the effective state: coming back into a manually
+   * opened fullscreen restores it, an explicit exit stays exited, and the
+   * current orientation is always re-applied on top.
+   */
+  timelineFullscreen: boolean | null;
 }
 let lastSnapshot: ScheduleSnapshot | null = null;
 
@@ -90,7 +100,7 @@ const PANEL_EDGE_GAP = 16;
  * search + jump-to-now + interested circles, and the filter button with its
  * active count bubble. The star stays filled (matching InterestedPill); the
  * lavender circle fill carries the active state — on the search button it
- * signals both "drawer open" and "query applied with the drawer closed".
+ * means "drawer open" (closing the drawer also clears the query).
  */
 function HeaderActions({
   searchOpen,
@@ -460,7 +470,8 @@ export function Schedule() {
   );
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
-  const headerSearch = useHeaderSearch();
+  // Closing the drawer clears the query too (see useHeaderSearch).
+  const headerSearch = useHeaderSearch(() => setSearch(""));
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
@@ -552,13 +563,45 @@ export function Schedule() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentReady]);
 
+  // Mobile timeline fullscreen: auto in landscape, or by the toggle button.
+  // `null` follows orientation; a rotation always resets to the auto rule, so
+  // manual portrait fullscreen + rotate stays fullscreen and rotating back
+  // exits, while an X in landscape sticks until the next rotation.
+  const [fullscreenOverride, setFullscreenOverride] = useState<boolean | null>(
+    restore?.timelineFullscreen ?? null
+  );
+  useOrientationChange(() => setFullscreenOverride(null));
+  const isLandscape = useIsLandscape();
+  const timelineFullscreen =
+    !isDesktop &&
+    view === "timeline" &&
+    // The timeline renders nothing without sessions — never lock the page
+    // behind an overlay that isn't there.
+    resultCount > 0 &&
+    // Auto path only: an open soft keyboard (search) can make a phone
+    // viewport report landscape, so don't flip into fullscreen under the
+    // user's typing. An explicit tap on the button always wins.
+    (fullscreenOverride ?? (isLandscape && !headerSearch.searchOpen));
+
   // Snapshot on the way out (layout-effect cleanup runs in the same commit
   // as the unmount, before the next route resets the scroll position).
   const timelineScrollLeftRef = useRef(restore?.timelineScrollLeft ?? 0);
   const snapshotRef = useRef<
     Omit<ScheduleSnapshot, "scrollY" | "timelineScrollLeft">
-  >({ day: selectedDay, userPickedDay, view, completedOpen });
-  snapshotRef.current = { day: selectedDay, userPickedDay, view, completedOpen };
+  >({
+    day: selectedDay,
+    userPickedDay,
+    view,
+    completedOpen,
+    timelineFullscreen: fullscreenOverride,
+  });
+  snapshotRef.current = {
+    day: selectedDay,
+    userPickedDay,
+    view,
+    completedOpen,
+    timelineFullscreen: fullscreenOverride,
+  };
   useLayoutEffect(
     () => () => {
       lastSnapshot = {
@@ -686,7 +729,7 @@ export function Schedule() {
           <SessionCard
             key={session.id}
             session={session}
-            // Compact 2-up cells drop the inline KEYNOTE badge (Figma 4325).
+            // Compact 2-up cells drop the inline FEATURED badge (Figma 4325).
             compact={group.sessions.length > 1 && !sidePanelOpen}
             selected={session.id === selectedSessionId}
             // Clicking the already-selected card closes the panel (matches
@@ -702,7 +745,7 @@ export function Schedule() {
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
         searchOpen={headerSearch.searchOpen}
-        searchActive={headerSearch.searchOpen || search.trim().length > 0}
+        searchActive={headerSearch.searchOpen}
         onToggleSearch={headerSearch.toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
@@ -780,14 +823,33 @@ export function Schedule() {
             </DayTabs>
 
             {/* Content area: brand-neutrals/50 surface on desktop (Figma) */}
-            <div className="px-4 py-6 lg:rounded-b-xl lg:bg-dc-panel">
+            <div
+              className={cn(
+                "px-4 pt-6 lg:rounded-b-xl lg:bg-dc-panel lg:pb-6",
+                // Mobile timeline sits flush on the panel-grey underlay (see
+                // the timeline branch); the layout's nav clearance is the
+                // only gap left below it.
+                view === "timeline" ? "pb-0" : "pb-6"
+              )}
+            >
               {/* Mobile: "Sessions" heading + view toggle */}
               {resultCount > 0 && (
                 <div className="mb-3 flex items-center justify-between gap-3 lg:hidden">
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
                     Sessions
                   </h2>
-                  <ViewToggle view={view} onChange={setView} />
+                  <div className="flex items-center gap-3">
+                    {view === "timeline" && (
+                      <button
+                        onClick={() => setFullscreenOverride(true)}
+                        aria-label="Fullscreen timeline"
+                        className={cn(headerCircle, headerCircleResting)}
+                      >
+                        <Maximize2 className="size-4 text-dc-purple" />
+                      </button>
+                    )}
+                    <ViewToggle view={view} onChange={setView} />
+                  </div>
                 </div>
               )}
 
@@ -836,7 +898,16 @@ export function Schedule() {
                   onReset={clearFilters}
                 />
               ) : view === "timeline" ? (
-                <ScheduleTimeline
+                <>
+                  {/* Mobile: panel-grey underlay (between .app-bg and the
+                      content, like the details pages) so the space under the
+                      full-bleed grid reads as one surface instead of the
+                      gradient tail showing above the tab bar. */}
+                  <div
+                    className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden"
+                    aria-hidden
+                  />
+                  <ScheduleTimeline
                   sessions={daySessions}
                   nowMs={now}
                   dayLabel={
@@ -847,12 +918,26 @@ export function Schedule() {
                   onScrollLeft={(left) => {
                     timelineScrollLeftRef.current = left;
                   }}
+                  fullscreen={timelineFullscreen}
+                  onExitFullscreen={() => setFullscreenOverride(false)}
+                  onJumpToNow={jumpToNow}
+                  interestedOnly={interestedOnly}
+                  onToggleInterested={() => setInterestedOnly((v) => !v)}
+                  fullscreenTop={
+                    <DayTabs
+                      days={days}
+                      selectedDay={selectedDay}
+                      onSelect={setSelectedDay}
+                      pinned={false}
+                    />
+                  }
                   selectedSessionId={selectedSessionId}
                   // Clicking the already-selected block closes the panel.
                   onOpen={(id) =>
                     selectSession(id === selectedSessionId ? null : id)
                   }
-                />
+                  />
+                </>
               ) : (
                 <div className="flex flex-col gap-6">
                   {completedCount > 0 && (

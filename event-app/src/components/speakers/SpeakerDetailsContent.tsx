@@ -42,7 +42,7 @@ const socialLink =
 
 /**
  * Speaker details body (Figma "Speaker details" / side menu): hero image with
- * KEYNOTE badge, name and social links, then Profile + action pills, then the
+ * FEATURED badge, name and social links, then Profile + action pills, then the
  * speaker's sessions. Used by both the desktop side panel and the mobile
  * /speakers/[id] page (SessionDetailsContent pattern).
  */

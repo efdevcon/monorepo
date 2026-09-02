@@ -19,7 +19,7 @@ export function SpeakerTagChip({ tag }: { tag: string }) {
 
 /**
  * Speaker card (Figma "Speaker-Card"): 48px avatar, bold name + optional
- * KEYNOTE chip, session count + outlined uppercase topic tags, interested
+ * FEATURED chip, session count + outlined uppercase topic tags, interested
  * star. Desktop shows 3 tags inline in the meta row; mobile wraps 2 tags onto
  * their own row (compact variant). The star toggles the local "Interested"
  * speaker state without navigating.
@@ -105,9 +105,11 @@ export const SpeakerCard = memo(function SpeakerCard({
           )}
         </div>
 
-        {/* Mobile: up to 2 tags on their own row (compact card variant) */}
+        {/* Mobile: up to 2 tags on their own row (compact card variant).
+            flex-wrap, not overflow-hidden: a long pair drops the second chip
+            onto a new line instead of clipping it mid-word. */}
         {tags.length > 0 && (
-          <div className="flex min-w-0 items-center gap-1 overflow-hidden lg:hidden">
+          <div className="flex min-w-0 flex-wrap items-center gap-1 lg:hidden">
             {tags.slice(0, 2).map(tagChip)}
           </div>
         )}

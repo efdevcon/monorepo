@@ -48,6 +48,11 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 
   return (
     <main className="expand font-heading text-dc-fg">
+      {/* Mobile: panel-grey underlay over the app gradient (between .app-bg
+          at z -10 and the content) so the surface fills the whole viewport —
+          the content block alone ends at its own height, which left the
+          gradient showing below short sessions. Same fix as speaker.tsx. */}
+      <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
       <CalendarHeaderAction session={session} />
       <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
         <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">

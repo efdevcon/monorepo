@@ -5,7 +5,7 @@ import cn from "classnames";
 import type { Session } from "@/data/models";
 import { Link } from "@/routing";
 import { useInterested } from "@/data/interested/useInterested";
-import { formatTimeRange, isKeynoteSession } from "@/components/schedule/utils";
+import { formatTimeRange } from "@/components/schedule/utils";
 import {
   getTrackTheme,
   trackBadgeLabel,
@@ -18,13 +18,13 @@ const locationLabel = (session: Session) =>
 /**
  * Compact session card in the speaker details (Figma "Event Details
  * Container"): SessionCard's mobile presentation — 8px track rail, corner
- * KEYNOTE/track badges — forced at every breakpoint, since the 360px panel
+ * FEATURED/track badges — forced at every breakpoint, since the 360px panel
  * renders at desktop widths. The star toggles the session's "Interested"
  * state (session ids, not speaker ids) without navigating.
  */
 export function SpeakerSessionMiniCard({ session }: { session: Session }) {
   const theme = getTrackTheme(session.track);
-  const keynote = isKeynoteSession(session);
+  const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
 
@@ -95,9 +95,9 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
       </div>
 
       {/* Absolute corner badges (mobile SessionCard grammar) */}
-      {keynote && (
-        <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-keynote px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg">
-          Keynote
+      {featured && (
+        <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-featured px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg">
+          Featured
         </span>
       )}
       <span

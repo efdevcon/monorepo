@@ -25,7 +25,7 @@ export interface LetterGroup {
 
 /**
  * Speakers list view state: search, topic multi-select, format tab and
- * interested-only toggle, plus the derived filtered list, keynote subset and
+ * interested-only toggle, plus the derived filtered list, featured subset and
  * letter groups. Input `all` is name-sorted (from useSpeakersData), so every
  * derived list stays sorted for free.
  */
