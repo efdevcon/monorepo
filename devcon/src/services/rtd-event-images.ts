@@ -1,5 +1,5 @@
 /**
- * Mirrors NocoDB attachment images into a public Supabase Storage bucket so
+ * Mirrors NocoDB attachment images (event cards, community logos) into a public Supabase Storage bucket so
  * public pages serve stable, CDN-cacheable URLs instead of proxying NocoDB's
  * short-lived signed `/dltemp/` URLs through `/api/nocodb/file` on every view.
  *
@@ -13,13 +13,31 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 const BUCKET = 'rtd-event-images'
-const FOLDER = 'rtd-events'
 
-// Card display size: ~430px wide at the 3-column breakpoint, 2x for retina.
-// Generated once per attachment at mirror time so the page never depends on
-// a per-request image optimizer (whose cache Netlify purges on every deploy).
-const CARD_WIDTH = 860
-const CARD_QUALITY = 80
+// Variants are generated once per attachment at mirror time so the page never
+// depends on a per-request image optimizer (whose cache Netlify purges on
+// every deploy).
+const WEBP_QUALITY = 80
+
+/** Where in the bucket a mirrored image lives and which resized variant to serve. */
+interface MirrorOptions {
+  /** Bucket folder, e.g. 'rtd-events'. */
+  folder: string
+  /** Resized WebP variant to generate and serve; null serves the original. */
+  variant: { suffix: string; resize: { width?: number; height?: number } } | null
+  /** Accept SVG attachments (served as the original, never resized). Off by default. */
+  allowSvg?: boolean
+}
+
+// Event cards: ~430px wide at the 3-column breakpoint, 2x for retina.
+const EVENT_CARD: MirrorOptions = { folder: 'rtd-events', variant: { suffix: '-card', resize: { width: 860 } } }
+// Community logos: rendered at h-14 (56px), 2x for retina. Wordmarks are often
+// SVG, which we keep as-is so they stay crisp.
+const COMMUNITY_LOGO: MirrorOptions = {
+  folder: 'rtd-communities',
+  variant: { suffix: '-logo', resize: { height: 112 } },
+  allowSvg: true,
+}
 
 /** The slice of a NocoDB attachment cell entry we rely on. */
 export interface NocoAttachment {
@@ -37,6 +55,7 @@ const EXT_BY_MIME: Record<string, string> = {
   'image/webp': 'webp',
   'image/gif': 'gif',
 }
+const SVG_MIME = 'image/svg+xml'
 
 let client: SupabaseClient | null = null
 function getSupabase(): SupabaseClient {
@@ -51,15 +70,23 @@ function getSupabase(): SupabaseClient {
   return client
 }
 
-function storageKeys(rowId: string | number, att: NocoAttachment): { original: string; card: string } | null {
-  const ext = EXT_BY_MIME[String(att.mimetype ?? '').toLowerCase()]
+function storageKeys(
+  rowId: string | number,
+  att: NocoAttachment,
+  opts: MirrorOptions
+): { original: string; variant: string | null } | null {
+  const mime = String(att.mimetype ?? '').toLowerCase()
+  const isSvg = mime === SVG_MIME
+  const ext = isSvg ? (opts.allowSvg ? 'svg' : undefined) : EXT_BY_MIME[mime]
   if (!ext) return null
   // Attachment ids are stable per uploaded file; fall back to title+size so a
   // pre-id NocoDB row still gets a deterministic (if weaker) identity.
   const attId = att.id ?? `${att.title ?? 'file'}-${att.size ?? 0}`
   const safe = String(attId).replace(/[^a-zA-Z0-9._-]/g, '_')
-  const base = `${FOLDER}/${rowId}-${safe}`
-  return { original: `${base}.${ext}`, card: `${base}-card.webp` }
+  const base = `${opts.folder}/${rowId}-${safe}`
+  // SVGs are never rasterized — the original is the served file.
+  const variant = opts.variant && !isSvg ? `${base}${opts.variant.suffix}.webp` : null
+  return { original: `${base}.${ext}`, variant }
 }
 
 function downloadUrl(att: NocoAttachment): string | null {
@@ -95,45 +122,61 @@ async function download(att: NocoAttachment): Promise<Buffer> {
   return Buffer.from(await res.arrayBuffer())
 }
 
-/** Resize/re-encode to the card-sized WebP variant served on the public page. */
-async function toCardWebp(original: Buffer): Promise<Buffer> {
+/** Resize/re-encode to the WebP variant served on the public page. */
+async function toWebpVariant(original: Buffer, resize: { width?: number; height?: number }): Promise<Buffer> {
   // Dynamic import: sharp is a native module only needed at build/revalidate.
   const sharp = (await import('sharp')).default
   return sharp(original, { animated: true })
-    .resize({ width: CARD_WIDTH, withoutEnlargement: true })
-    .webp({ quality: CARD_QUALITY })
+    .resize({ ...resize, withoutEnlargement: true })
+    .webp({ quality: WEBP_QUALITY })
     .toBuffer()
 }
 
 /**
  * Ensure the attachment is mirrored into the public bucket and return the
- * stable public URL of its card-sized WebP variant (or the original if the
- * variant can't be generated). Downloads from NocoDB and resizes at most once
- * per attachment; on every later call the existence check short-circuits.
- * Returns null for attachments we can't mirror (unknown mime type); throws on
- * transport errors so callers can fall back.
+ * stable public URL of its resized WebP variant (or the original if there is
+ * no variant, or it can't be generated). Downloads from NocoDB and resizes at
+ * most once per attachment; on every later call the existence check
+ * short-circuits. Returns null for attachments we can't mirror (unknown mime
+ * type); throws on transport errors so callers can fall back.
  */
-export async function ensurePublicEventImage(rowId: string | number, att: NocoAttachment): Promise<string | null> {
-  const keys = storageKeys(rowId, att)
+async function ensurePublicImage(
+  rowId: string | number,
+  att: NocoAttachment,
+  opts: MirrorOptions
+): Promise<string | null> {
+  const keys = storageKeys(rowId, att, opts)
   if (!keys) return null
 
   const supabase = getSupabase()
   const publicUrl = (key: string) => supabase.storage.from(BUCKET).getPublicUrl(key).data.publicUrl
 
-  const { data: cardExists } = await supabase.storage.from(BUCKET).exists(keys.card)
-  if (cardExists) return publicUrl(keys.card)
+  const served = keys.variant ?? keys.original
+  const { data: servedExists } = await supabase.storage.from(BUCKET).exists(served)
+  if (servedExists) return publicUrl(served)
 
   const original = await download(att)
-  // Keep the full-size original alongside the card variant (e.g. for future
-  // OG images, or regenerating variants at a different size).
+  // Keep the full-size original alongside the variant (e.g. for future OG
+  // images, or regenerating variants at a different size).
   const { data: originalExists } = await supabase.storage.from(BUCKET).exists(keys.original)
   if (!originalExists) await upload(supabase, keys.original, original, att.mimetype)
+  if (!keys.variant || !opts.variant) return publicUrl(keys.original)
 
   try {
-    await upload(supabase, keys.card, await toCardWebp(original), 'image/webp')
+    await upload(supabase, keys.variant, await toWebpVariant(original, opts.variant.resize), 'image/webp')
   } catch (e) {
-    console.warn(`[rtd-event-images] card variant failed for ${keys.card}, serving original:`, (e as Error).message)
+    console.warn(`[rtd-event-images] variant failed for ${keys.variant}, serving original:`, (e as Error).message)
     return publicUrl(keys.original)
   }
-  return publicUrl(keys.card)
+  return publicUrl(keys.variant)
+}
+
+/** Event card image: 860px-wide WebP under `rtd-events/`. */
+export function ensurePublicEventImage(rowId: string | number, att: NocoAttachment): Promise<string | null> {
+  return ensurePublicImage(rowId, att, EVENT_CARD)
+}
+
+/** Community logo: 112px-tall WebP under `rtd-communities/` (SVGs served as-is). */
+export function ensurePublicCommunityLogo(rowId: string | number, att: NocoAttachment): Promise<string | null> {
+  return ensurePublicImage(rowId, att, COMMUNITY_LOGO)
 }

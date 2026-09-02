@@ -29,14 +29,14 @@ const FIELDS = {
 } as const
 
 /** Interpret a NocoDB checkbox/boolean cell as true. */
-function isChecked(v: any): boolean {
+export function isChecked(v: any): boolean {
   if (v === true) return true
   if (typeof v === 'number') return v !== 0
   if (typeof v === 'string') return ['true', '1', 'yes', 'checked'].includes(v.trim().toLowerCase())
   return false
 }
 
-function pick(row: Record<string, any>, keys: readonly string[]): any {
+export function pick(row: Record<string, any>, keys: readonly string[]): any {
   for (const k of keys) {
     const v = row[k]
     if (v !== undefined && v !== null && v !== '') return v
@@ -45,7 +45,7 @@ function pick(row: Record<string, any>, keys: readonly string[]): any {
 }
 
 /** Parse a NocoDB attachment cell and return its first image attachment, if any. */
-function firstImageAttachment(value: any): NocoAttachment | undefined {
+export function firstImageAttachment(value: any): NocoAttachment | undefined {
   let arr = value
   if (typeof value === 'string') {
     try {
@@ -64,7 +64,7 @@ function firstImageAttachment(value: any): NocoAttachment | undefined {
  * Fallback image URL through the `/api/nocodb/file` proxy (short-lived signed
  * URL, uncacheable — only used when mirroring to Supabase Storage fails).
  */
-function proxyImageUrl(a: NocoAttachment): string | undefined {
+export function proxyImageUrl(a: NocoAttachment): string | undefined {
   const name = a?.title ? `&filename=${encodeURIComponent(a.title)}` : ''
   if (a?.signedUrl) return `/api/nocodb/file/?url=${encodeURIComponent(a.signedUrl)}${name}`
   if (a?.signedPath) return `/api/nocodb/file/?path=${encodeURIComponent(a.signedPath)}${name}`

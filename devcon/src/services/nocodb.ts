@@ -108,3 +108,33 @@ export async function listRows(viewId: string, opts: { sort?: string } = {}): Pr
   }
   return out
 }
+
+/**
+ * List every row of a table by its table id via the v2 records API — no view
+ * or meta lookups needed (unlike `listViewRows`). Paginates to a cap.
+ * Read-only; safe for public listings.
+ */
+export async function listTableRows(
+  tableId: string,
+  opts: { pageSize?: number; maxRows?: number } = {}
+): Promise<Record<string, any>[]> {
+  if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) {
+    throw new Error('NocoDB env vars not configured (NOCODB_BASE_URL, NOCODB_API_TOKEN)')
+  }
+  const pageSize = opts.pageSize ?? 100
+  const maxRows = opts.maxRows ?? 500
+  const rows: Record<string, any>[] = []
+  let offset = 0
+  while (rows.length < maxRows) {
+    const url = `${NOCODB_BASE_URL}/api/v2/tables/${tableId}/records?limit=${pageSize}&offset=${offset}`
+    const res = await fetch(url, { headers: { 'xc-token': NOCODB_API_TOKEN } })
+    if (!res.ok) throw new Error(`NocoDB list records for ${tableId} failed: HTTP ${res.status}`)
+    const json = (await res.json()) as { list?: Record<string, any>[]; pageInfo?: { isLastPage?: boolean } }
+    const page = json.list ?? []
+    rows.push(...page)
+    const isLast = json.pageInfo?.isLastPage ?? page.length < pageSize
+    if (isLast) break
+    offset += pageSize
+  }
+  return rows
+}
