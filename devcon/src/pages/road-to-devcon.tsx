@@ -10,7 +10,9 @@ import { University, Sprout, ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { getMessages } from 'utils/intl'
 import { getRoadToDevconEvents } from 'services/rtd-events'
+import { getRoadToDevconCommunities } from 'services/rtd-communities'
 import { ROAD_TO_DEVCON_EVENTS, type RoadEvent } from 'components/domain/road-to-devcon/events'
+import { ROAD_TO_DEVCON_COMMUNITIES, type RoadCommunity } from 'components/domain/road-to-devcon/communities'
 import themes from './themes.module.scss'
 import css from './road-to-devcon.module.scss'
 
@@ -82,7 +84,13 @@ function AboutSection() {
   )
 }
 
-export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
+export default function RoadToDevconPage({
+  events,
+  communities,
+}: {
+  events: RoadEvent[]
+  communities: RoadCommunity[]
+}) {
   return (
     <div className={`${css['layout']} ${themes['index']}`}>
       <Header withHero />
@@ -94,7 +102,7 @@ export default function RoadToDevconPage({ events }: { events: RoadEvent[] }) {
 
         <RoadToDevconEvents events={events} />
 
-        <RoadToDevconCommunities />
+        <RoadToDevconCommunities communities={communities} />
 
         <RoadToDevconPrograms />
 
@@ -118,8 +126,18 @@ export async function getStaticProps(context: any) {
     console.error('[road-to-devcon] event fetch failed, using seed:', e)
     events = ROAD_TO_DEVCON_EVENTS
   }
+  // Community logos come from the NocoDB "RTD Communities Logos" table on the
+  // same ISR cadence, with the bundled seed as the offline fallback.
+  let communities: RoadCommunity[]
+  try {
+    communities = await getRoadToDevconCommunities()
+  } catch (e) {
+    console.error('[road-to-devcon] communities fetch failed, using seed:', e)
+    communities = ROAD_TO_DEVCON_COMMUNITIES
+  }
   // getStaticProps can't serialize `undefined`; round-trip through JSON to drop
   // any undefined-valued optional fields so a missing value never crashes the page.
   const safeEvents: RoadEvent[] = JSON.parse(JSON.stringify(events))
-  return { props: { events: safeEvents, messages }, revalidate: 1800 }
+  const safeCommunities: RoadCommunity[] = JSON.parse(JSON.stringify(communities))
+  return { props: { events: safeEvents, communities: safeCommunities, messages }, revalidate: 1800 }
 }
