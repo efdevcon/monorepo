@@ -2,7 +2,7 @@
 
 import type { Ticket } from "@/data/tickets/types";
 import { TicketProofButton } from "@/components/TicketProofButton";
-import { displayItemName, resolveTicketStyle } from "./ticketTheme";
+import { INDIA_FLAG, displayItemName } from "./ticketTheme";
 
 /**
  * "My Perks" entry for the ENS attendee perk. Card chrome only — the mint +
@@ -17,9 +17,10 @@ export function EnsPerkCard({
   /** Distinguish cards when the user holds several admission tickets. */
   showTicketLabel?: boolean;
 }) {
-  // Same display hint the old ticket-row button used: India-tier tickets lead
-  // with the free .eth name (the proof route decides the real tier at mint).
-  const freeName = resolveTicketStyle(ticket) === "india";
+  // The free .eth name hint must track the tier the proof route will mint:
+  // classifyTier keys off the flag emoji, not the card style (which also
+  // honors the golden/india item-id pins), so test the flag directly.
+  const freeName = INDIA_FLAG.test(ticket.itemName);
   const holder = ticket.attendeeName || ticket.attendeeEmail;
 
   return (
@@ -34,8 +35,7 @@ export function EnsPerkCard({
           </p>
         )}
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
-          Devcon attendees get exclusive perks from ENS. Claiming creates a private, single-use
-          proof of your ticket for ENS to verify.
+          Devcon attendees get exclusive perks from ENS.
         </p>
         <TicketProofButton ticketSecret={ticket.secret} freeName={freeName} />
       </div>

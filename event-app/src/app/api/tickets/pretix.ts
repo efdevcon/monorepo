@@ -1,4 +1,6 @@
 import type { Order, TicketStyle } from "@/data/tickets/types";
+import { mirrorPicture } from "./pictures";
+import { applyFixture, parseFixture, resolveFixtureSwag } from "./testFixture";
 
 export interface PretixStore {
   url: string;
@@ -129,6 +131,35 @@ export async function getPaidTicketsByEmail(
   const data = await response.json();
   const orders = data.results ?? [];
 
+  // Product photos for this user's positions, mirrored into Storage so the
+  // swag cards work offline (see pictures.ts). Keyed by source URL.
+  const sources = new Set<string>();
+  for (const order of orders) {
+    for (const p of order.positions ?? []) {
+      const picture = itemsMap.get(p.item)?.picture;
+      if (picture) sources.add(picture);
+    }
+  }
+  // Test fixture (see testFixture.ts): mirror the swag photos it borrows too.
+  const fixture = parseFixture(process.env.TICKET_TEST_INDIA_ORDER_CODE);
+  const fixtureSwag = resolveFixtureSwag(
+    [...itemsMap.values()].map((item) => ({
+      name: localized(item.name) ?? "",
+      picture: item.picture,
+    }))
+  );
+  if (fixture.length > 0) {
+    for (const swag of [fixtureSwag.shirt, fixtureSwag.chessSet]) {
+      if (swag.picture) sources.add(swag.picture);
+    }
+  }
+  const pictures = new Map<string, string>();
+  await Promise.all(
+    [...sources].map(async (src) => pictures.set(src, await mirrorPicture(src)))
+  );
+  const pictureUrl = (picture: string | null | undefined) =>
+    picture ? (pictures.get(picture) ?? picture) : undefined;
+
   // SECURITY: Pretix `search` matches orders by contact email too, so an order
   // can contain positions assigned to OTHER attendees. The signed-in user must
   // only ever get their OWN tickets — keep only positions whose attendee email
@@ -137,7 +168,7 @@ export async function getPaidTicketsByEmail(
   const ownedByUser = (p: any, orderEmail: string) =>
     (p.attendee_email || orderEmail || "").toLowerCase() === wanted;
 
-  return orders
+  const result = orders
     .map((order: any): Order => {
       // Real tickets are non-add-on positions assigned to the signed-in user.
       const ticketPositions = order.positions.filter(
@@ -165,7 +196,7 @@ export async function getPaidTicketsByEmail(
               attendeeName: addon.attendee_name,
               category: itemDetails?.category,
               active: itemDetails?.active,
-              imageUrl: itemDetails?.picture || undefined,
+              imageUrl: pictureUrl(itemDetails?.picture),
             };
           });
 
@@ -173,23 +204,35 @@ export async function getPaidTicketsByEmail(
           ? position.checkins
           : [];
 
+        // Devcon's Pretix checkout doesn't collect per-attendee names, so
+        // `attendee_name` is usually null. Fall back to the order's
+        // invoice/billing name before the UI's last-resort email fallback,
+        // but only for the buyer's own position: a gifted ticket (attendee
+        // email differs from the order email) must not show the buyer's name
+        // to its holder.
+        const isBuyersOwn =
+          !position.attendee_email ||
+          position.attendee_email.toLowerCase() ===
+            (order.email || "").toLowerCase();
+
         return {
           secret: position.secret,
-          // Devcon's Pretix checkout doesn't collect per-attendee names, so
-          // `attendee_name` is usually null — fall back to the order's
-          // invoice/billing name before the UI's last-resort email fallback.
           attendeeName:
-            position.attendee_name || order.invoice_address?.name || null,
+            position.attendee_name ||
+            (isBuyersOwn ? order.invoice_address?.name : null) ||
+            null,
           attendeeEmail: position.attendee_email || order.email,
           price: position.price,
           itemId: position.item,
           itemName:
             localized(mainItem?.name) || position.item_name || "Ticket",
           itemDescription: localized(mainItem?.description),
-          admission: mainItem?.admission === true,
+          // Tri-state on purpose: an item the catalog lookup could not resolve
+          // stays undefined (client treats it as a ticket), never `false`.
+          admission: mainItem ? mainItem.admission === true : undefined,
           addons,
           hasCheckedIn: checkins.length > 0,
-          imageUrl: mainItem?.picture || undefined,
+          imageUrl: pictureUrl(mainItem?.picture),
           style: styleForItem(position.item),
         };
       });
@@ -205,4 +248,8 @@ export async function getPaidTicketsByEmail(
       };
     })
     .filter((order: Order) => order.tickets.length > 0);
+
+  applyFixture(result, { fixture, email, swag: fixtureSwag, pictureUrl });
+
+  return result;
 }

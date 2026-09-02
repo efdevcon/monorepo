@@ -3,7 +3,11 @@
 import { useTickets } from "@/data/tickets/useTickets";
 import { useUser } from "@/data/auth/useUser";
 import { Link } from "@/routing";
-import { TicketSections } from "./ticket/TicketSections";
+import {
+  RefreshTicketsButton,
+  TicketSectionHeader,
+  TicketSections,
+} from "./ticket/TicketSections";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
 /** Home-page tickets section: signed in it renders the shared My Devcon
@@ -22,12 +26,25 @@ export function Tickets() {
 
   return (
     <section className="w-full text-left">
-      {/* TicketSections carries its own headings; the "Your tickets" header
-          only fronts the states that render without them. */}
+      {/* TicketSections carries its own headings (refresh control included);
+          the "Your tickets" header only fronts the states that render without
+          them, and keeps refresh reachable for signed-in users so a just-paid
+          order can be refetched without a reload. */}
       {(isLoading || !user || !hasTickets) && (
-        <h2 className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-          Your tickets
-        </h2>
+        <div className="mb-4">
+          <TicketSectionHeader
+            title="Your tickets"
+            action={
+              user && (
+                <RefreshTicketsButton
+                  onRefresh={refresh}
+                  isRefreshing={isRefreshing}
+                  disabled={isLoading || isRefreshing}
+                />
+              )
+            }
+          />
+        </div>
       )}
 
       {/* Order matters: isLoading folds in !hasInitialized (useTickets), so a
@@ -123,7 +140,7 @@ export function Tickets() {
               keep the sections and add a quiet notice instead. */}
           {error && (
             <p className="mb-2 text-xs text-dc-muted">
-              Couldn&apos;t refresh tickets — showing your saved ones.
+              Couldn&apos;t refresh tickets. Showing your saved ones.
             </p>
           )}
           <TicketSections

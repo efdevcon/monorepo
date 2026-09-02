@@ -30,9 +30,10 @@ export function SwagCard({
   onQrClick: (target: QrModalTarget) => void;
   shelfOnDesktop?: boolean;
 }) {
-  // Pretix-hosted product photos: retry once the connection returns, and show
-  // the placeholder instead of a broken image in the meantime (CLAUDE.md
-  // "Images (offline)" — remote images are never precached).
+  // Product photos come mirrored from Supabase Storage (api/tickets/pictures.ts)
+  // so the SW can cache them for offline. Retry once the connection returns and
+  // show the placeholder instead of a broken image in the meantime (CLAUDE.md
+  // "Images (offline)").
   const { failed, attempt, markFailed } = useRetryOnReconnect();
   const showImage = imageUrl && !failed;
   const name = displayItemName(title);
@@ -41,7 +42,6 @@ export function SwagCard({
     <button
       onClick={qr ? () => onQrClick({ kind: "swag", qr, title: name }) : undefined}
       disabled={!qr}
-      aria-label={`Enlarge ${name} QR code`}
       className={cn(
         // outline (not border) so the stroke sits just OUTSIDE the card
         // without shifting the image/strip by 1px. Hover tints it the same
@@ -51,6 +51,9 @@ export function SwagCard({
         shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0"
       )}
     >
+      {/* No aria-label (it would hide the product name from screen readers);
+          the strip text names the button, this hint states the action. */}
+      <span className="sr-only">Enlarge QR code.</span>
       <div
         className={cn(
           // 16:9 on mobile (the Figma 361×203 ratio, kept proportional at any
@@ -68,8 +71,10 @@ export function SwagCard({
           <img
             key={attempt}
             src={imageUrl}
+            // CORS mode keeps the SW cache entry non-opaque (CLAUDE.md rule 2).
+            crossOrigin="anonymous"
             onError={markFailed}
-            alt={name}
+            alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (

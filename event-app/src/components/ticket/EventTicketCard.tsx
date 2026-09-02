@@ -58,9 +58,12 @@ export function EventTicketCard({
           : undefined
       }
       disabled={!qr}
-      aria-label={`Enlarge ${typeName} QR code`}
       className="flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale,filter] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default enabled:hover:[filter:drop-shadow(0_4px_6px_rgba(22,11,43,0.07))_drop-shadow(0_2px_4px_rgba(22,11,43,0.05))] motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
     >
+      {/* No aria-label: it would replace the accessible name and hide the
+          holder/venue/dates from screen readers. The card's own text names
+          the button; this hint states the action. */}
+      <span className="sr-only">Enlarge QR code.</span>
       {/* Top half — product + holder + glyph art, dashed tear line below */}
       <div
         // `grow` + mt-auto on DEVCON.ORG: when carousel cards stretch to the
@@ -116,7 +119,7 @@ export function EventTicketCard({
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={qr}
-                  alt={`${typeName} QR code`}
+                  alt=""
                   className="size-[98px] rounded-[4px]"
                 />
               ) : (
@@ -129,7 +132,7 @@ export function EventTicketCard({
               <p className="text-[12px] font-bold leading-[1.15]">
                 MUMBAI, INDIA
               </p>
-              <p className="text-[12.5px] leading-[1.15]">3—6 Nov, 2026</p>
+              <p className="text-[12.5px] leading-[1.15]">Nov 3–6, 2026</p>
             </div>
             <div className="flex w-full flex-col gap-0.5 text-[9px] leading-[1.25]">
               <p className="font-semibold">Jio World Centre</p>

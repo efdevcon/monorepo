@@ -14,7 +14,6 @@ import { poisData } from '@/data/pois';
 import { districtsData } from '@/data/districts';
 import { poiGroupsData } from '@/data/poiGroups';
 import { supportersData } from '@/data/supporters';
-import Image from 'next/image';
 import backgroundImage from './bg-image-new.png';
 
 const initialFilters = {
@@ -524,11 +523,17 @@ export const VenueMap = () => {
         reset();
       }}
     >
-      <Image
-        src={backgroundImage}
-        alt="Background"
+      {/* Plain <img>, not next/image: the optimizer would serve per-device
+          width variants under /_next/image, which the SW can only cache once a
+          device has opened the map online. The imported asset is one stable
+          hashed URL, warmed by CacheWarmer (MAP_IMAGES) so the map has its
+          background offline even on the first visit. quality={100} meant the
+          optimizer saved nothing anyway. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={backgroundImage.src}
+        alt=""
         className="absolute inset-0 w-full h-full object-cover"
-        quality={100}
       />
       {/* Panzoom container */}
       <div

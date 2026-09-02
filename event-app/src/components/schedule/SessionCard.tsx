@@ -84,7 +84,6 @@ export function SessionCard({
             src={theme.gem}
             alt=""
             className="size-11 object-contain"
-            loading="lazy"
           />
         )}
       </div>

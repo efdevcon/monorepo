@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import cn from "classnames";
 import { RefreshCw } from "lucide-react";
 import type { Order, Ticket } from "@/data/tickets/types";
@@ -12,6 +12,51 @@ import { QrModal, type QrModalTarget } from "./QrModals";
 /** Section headings match the home page's (FeaturedCard.tsx etc.). */
 const SECTION_TITLE =
   "text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2";
+
+/** 32px section header row with an optional right-aligned action. */
+export function TicketSectionHeader({
+  title,
+  action,
+}: {
+  title: string;
+  action?: ReactNode;
+}) {
+  return (
+    <div className="flex h-8 items-center justify-between">
+      <h2 className={SECTION_TITLE}>{title}</h2>
+      {action}
+    </div>
+  );
+}
+
+/**
+ * Icon-only refresh control. Not in the design; kept deliberately (see git
+ * history). Also rendered by the loading/error/empty states in MyTickets and
+ * Tickets, so an order that just flipped to paid can be refetched without a
+ * reload.
+ */
+export function RefreshTicketsButton({
+  onRefresh,
+  isRefreshing = false,
+  disabled = false,
+}: {
+  onRefresh: () => void;
+  isRefreshing?: boolean;
+  disabled?: boolean;
+}) {
+  return (
+    <button
+      onClick={onRefresh}
+      disabled={disabled}
+      aria-label="Refresh tickets"
+      className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-50"
+    >
+      <RefreshCw
+        className={cn("size-4 text-dc-fg2", isRefreshing && "animate-spin")}
+      />
+    </button>
+  );
+}
 
 /**
  * The signed-in ticket layout (Figma "My Devcon", 5088-116/-1059), shared by
@@ -40,7 +85,8 @@ export function TicketSections({
   for (const order of tickets) {
     for (const ticket of order.tickets) {
       // `admission === false` is a Pretix item explicitly marked as
-      // merchandise; undefined (older cached data) still counts as a ticket.
+      // merchandise; undefined (older cached data, or an item the server could
+      // not resolve) still counts as a ticket.
       if (ticket.admission === false) {
         swagItems.push({
           secret: ticket.secret,
@@ -66,24 +112,18 @@ export function TicketSections({
   const multiTicket = admissionTickets.length > 1;
 
   const ticketHeader = (
-    <div className="flex h-8 items-center justify-between">
-      <h2 className={SECTION_TITLE}>
-        {multiTicket ? "My Event Tickets" : "My Event Ticket"}
-      </h2>
-      {/* Not in the design; kept deliberately (see git history). */}
-      {onRefresh && (
-        <button
-          onClick={onRefresh}
-          disabled={refreshDisabled}
-          aria-label="Refresh tickets"
-          className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:bg-dc-lavender disabled:cursor-default disabled:opacity-50"
-        >
-          <RefreshCw
-            className={cn("size-4 text-dc-fg2", isRefreshing && "animate-spin")}
+    <TicketSectionHeader
+      title={multiTicket ? "My Event Tickets" : "My Event Ticket"}
+      action={
+        onRefresh && (
+          <RefreshTicketsButton
+            onRefresh={onRefresh}
+            isRefreshing={isRefreshing}
+            disabled={refreshDisabled}
           />
-        </button>
-      )}
-    </div>
+        )
+      }
+    />
   );
 
   // Shared desktop-carousel treatment: matching negative margin/inset +
@@ -106,9 +146,7 @@ export function TicketSections({
         !multiTicket && "lg:min-w-0 lg:flex-1"
       )}
     >
-      <div className="flex h-8 items-center">
-        <h2 className={SECTION_TITLE}>My Swag</h2>
-      </div>
+      <TicketSectionHeader title="My Swag" />
       {/* The shelf absolutely fills the wrapper so the swag images can never
           inflate the row: beside a single ticket the ticket column sets the
           height, in the stacked multi-ticket layout the wrapper is fixed at
@@ -187,9 +225,7 @@ export function TicketSections({
       {/* One ENS perk per event ticket (see TicketProofButton). */}
       {admissionTickets.length > 0 && (
         <section className="flex w-full flex-col gap-4">
-          <div className="flex h-8 items-center">
-            <h2 className={SECTION_TITLE}>My Perks</h2>
-          </div>
+          <TicketSectionHeader title="My Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
             {admissionTickets.map((ticket) => (
               <EnsPerkCard
