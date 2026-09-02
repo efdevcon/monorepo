@@ -44,7 +44,10 @@ const serwist = new Serwist({
         !url.pathname.startsWith("/api/"),
       handler: new NetworkFirst({
         cacheName: "pages-rsc-prefetch",
-        networkTimeoutSeconds: 5,
+        // 2s, not 5: these are the payloads a tab tap waits on. On flaky
+        // venue wifi a longer wait reads as the app hanging, and the cached
+        // shell is identical anyway (all data is client-side via SWR).
+        networkTimeoutSeconds: 2,
         plugins: [
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
@@ -56,7 +59,7 @@ const serwist = new Serwist({
         sameOrigin && request.headers.get("RSC") === "1" && !url.pathname.startsWith("/api/"),
       handler: new NetworkFirst({
         cacheName: "pages-rsc",
-        networkTimeoutSeconds: 5,
+        networkTimeoutSeconds: 2,
         plugins: [
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),

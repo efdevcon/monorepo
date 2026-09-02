@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import useSWR from "swr";
 import type { User } from "@supabase/supabase-js";
 import { toast } from "sonner";
@@ -32,11 +39,20 @@ export type UseUserResult = {
   signOut: () => Promise<void>;
 };
 
+const UserContext = createContext<UseUserResult | null>(null);
+
 /**
  * Minimal email-OTP auth via Supabase.
  * Flow: sendOtp(email) -> user receives a code by email -> verifyOtp(email, code).
+ *
+ * One instance of this state lives in `UserProvider` (root layout) and every
+ * `useUser()` reads it. It used to be a plain hook: each of its ~12 call
+ * sites registered its own auth listener and re-ran the mount-time session
+ * restore, starting from `hasInitialized: false` — so screens like /ticket
+ * that gate on it re-showed "Loading…" on every visit. Mounted once, the
+ * state is already settled by the time any page renders.
  */
-export function useUser(): UseUserResult {
+function useUserState(): UseUserResult {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<string | false>("Initializing...");
   const [error, setError] = useState<string | null>(null);
@@ -211,4 +227,18 @@ export function useUser(): UseUserResult {
     verifyOtp,
     signOut,
   };
+}
+
+/** Mount once, above every screen (root layout). */
+export function UserProvider({ children }: { children: ReactNode }) {
+  const value = useUserState();
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+}
+
+export function useUser(): UseUserResult {
+  const ctx = useContext(UserContext);
+  if (!ctx) {
+    throw new Error("useUser() must be used inside <UserProvider>");
+  }
+  return ctx;
 }

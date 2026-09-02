@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import cn from "classnames";
 import { Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
@@ -144,6 +144,8 @@ export function ScheduleTimeline({
   jumpToNowSignal = 0,
   selectedSessionId = null,
   onOpen,
+  initialScrollLeft,
+  onScrollLeft,
 }: {
   sessions: Session[];
   nowMs: number;
@@ -155,6 +157,14 @@ export function ScheduleTimeline({
   selectedSessionId?: string | null;
   /** Desktop: open the details side panel instead of navigating. */
   onOpen?: (id: string) => void;
+  /**
+   * Horizontal offset to start at (restoring the grid where the user left
+   * it when they come back from a session's details page). Applied once,
+   * before first paint, as soon as the grid exists.
+   */
+  initialScrollLeft?: number;
+  /** Reports the grid's horizontal offset as the user scrolls. */
+  onScrollLeft?: (left: number) => void;
 }) {
   const { rooms, slots, startMs, byRoom } = useMemo(
     () => buildTimeline(sessions),
@@ -187,11 +197,24 @@ export function ScheduleTimeline({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jumpToNowSignal]);
 
-  if (sessions.length === 0) return null;
+  // Restore a remembered horizontal offset once the grid is in the DOM (it
+  // isn't while `sessions` is empty). Layout effect: lands before paint.
+  const restoredRef = useRef(false);
+  const hasGrid = sessions.length > 0;
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (restoredRef.current || initialScrollLeft == null || !el) return;
+    restoredRef.current = true;
+    el.scrollLeft = initialScrollLeft;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasGrid]);
+
+  if (!hasGrid) return null;
 
   return (
     <div
       ref={scrollRef}
+      onScroll={(e) => onScrollLeft?.(e.currentTarget.scrollLeft)}
       className="scroll-mt-[calc(112px+var(--safe-top))] overflow-x-auto rounded-xl border border-dc-hairline bg-white [scrollbar-width:thin] lg:scroll-mt-[calc(80px+var(--safe-top))]"
     >
       <div style={{ width: ROOM_COL + gridWidth }} className="relative">

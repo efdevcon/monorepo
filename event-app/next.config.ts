@@ -80,6 +80,14 @@ const withSerwist = withSerwistInit({
 const nextConfig: NextConfig = {
   devIndicators: false,
   transpilePackages: ["lib"],
+  experimental: {
+    // Keep prefetched route payloads in the client router cache for the whole
+    // session (default 5 min). Every tab is a static one-line shell — all data
+    // is client-side via SWR/Dexie — so re-fetching the RSC payload on a tab
+    // switch only ever added a network round-trip (and, through the service
+    // worker's NetworkFirst rule, a stall on bad wifi).
+    staleTimes: { static: 3600 },
+  },
   ...(isStaticExport && { output: "export" }),
   // Static export: only .native-app.tsx (single catch-all router for Capacitor)
   // Web build: normal .tsx files with full Next.js routing

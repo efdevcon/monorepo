@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import {
   CalendarRange,
   Check,
@@ -34,6 +35,8 @@ import {
   HEADER_SEARCH_PANEL_ID,
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
+import { isDetailView } from "@/components/Nav";
+import { previousPathnameBefore } from "@/routing/navHistory";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
@@ -58,6 +61,23 @@ type ViewMode = "list" | "timeline";
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
+
+/**
+ * Where the user was when they left the schedule for a session or speaker
+ * details page, so coming back lands them there instead of on "live now".
+ * Module state: the page unmounts on that navigation (details are a separate
+ * route), and a full reload should start fresh anyway.
+ */
+interface ScheduleSnapshot {
+  day: string | null;
+  userPickedDay: boolean;
+  view: ViewMode;
+  completedOpen: boolean;
+  scrollY: number;
+  /** Timeline view's horizontal grid offset. */
+  timelineScrollLeft: number;
+}
+let lastSnapshot: ScheduleSnapshot | null = null;
 
 /** Pinned side-panel edge gap: the aside pins at 81px + --safe-top, 16px
  *  below the 65px desktop header; the bottom keeps the same 16px to the
@@ -227,14 +247,10 @@ function ViewToggle({
  * inside it, revealed behind a hairline divider.
  */
 function CompletedPanel({
-  count,
-  untilLabel,
   open,
   onToggle,
   children,
 }: {
-  count: number;
-  untilLabel: string | null;
   open: boolean;
   onToggle: () => void;
   children?: React.ReactNode;
@@ -243,12 +259,7 @@ function CompletedPanel({
     <div className="flex flex-col rounded-lg border border-dc-hairline bg-white p-4">
       <div className="flex items-center justify-between gap-3">
         <span className="flex min-w-0 items-center gap-1 text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
-          <span className="min-w-0">
-            <span className="font-semibold">
-              {count} session{count > 1 ? "s" : ""}
-            </span>{" "}
-            completed{untilLabel ? ` before ${untilLabel}` : ""}
-          </span>
+          <span className="min-w-0 font-semibold">Completed sessions</span>
           <Check className="size-4 shrink-0 text-dc-muted" />
         </span>
         <button
@@ -401,10 +412,18 @@ function GroupHeader({
 export function Schedule() {
   const { sessions, isLoading, isError, error } = useSessions();
   const { ids: interestedIds } = useInterested();
+  const pathname = usePathname();
+  // Decided once per mount: back from a session/speaker page → restore the
+  // snapshot taken on the way out; any other entry (tab bar, home, reload)
+  // → land on "live now" below.
+  const [restore] = useState<ScheduleSnapshot | null>(() =>
+    isDetailView(previousPathnameBefore(pathname) ?? "") ? lastSnapshot : null
+  );
   const {
     now,
     days,
     selectedDay,
+    userPickedDay,
     setSelectedDay,
     jumpToToday,
     search,
@@ -417,18 +436,25 @@ export function Schedule() {
     visibleGroups,
     completedGroups,
     completedCount,
-    completedUntilLabel,
     interestedOnly,
     setInterestedOnly,
     filterOptions,
     daySessions,
     resultCount,
-  } = useScheduleState(sessions, interestedIds);
+  } = useScheduleState(
+    sessions,
+    interestedIds,
+    restore
+      ? { day: restore.day, userPickedDay: restore.userPickedDay }
+      : undefined
+  );
 
   const isDesktop = useIsDesktop();
-  const [view, setView] = useState<ViewMode>("list");
+  const [view, setView] = useState<ViewMode>(restore?.view ?? "list");
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [completedOpen, setCompletedOpen] = useState(false);
+  const [completedOpen, setCompletedOpen] = useState(
+    restore?.completedOpen ?? false
+  );
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
     null
   );
@@ -485,10 +511,9 @@ export function Schedule() {
   };
 
   // List view "jump to now": land on the "Live now" section, else a
-  // still-running one, else the next upcoming one. Runs as an effect so the
+  // still-running one, else the next upcoming one. Called from effects so the
   // closure sees the just-jumped-to day's groups and their mounted refs.
-  useEffect(() => {
-    if (listJumpSignal === 0) return;
+  const scrollListToNow = (behavior: ScrollBehavior) => {
     const target =
       visibleGroups.find((g) => g.isLive) ??
       visibleGroups.find((g) => g.isOngoing) ??
@@ -497,9 +522,53 @@ export function Schedule() {
     if (!target) return;
     groupRefs.current
       .get(target.key)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      ?.scrollIntoView({ behavior, block: "start" });
+  };
+  useEffect(() => {
+    if (listJumpSignal === 0) return;
+    scrollListToNow("smooth");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listJumpSignal]);
+
+  // Landing: the first time the selected day's content is actually in the
+  // DOM (sessions loaded, day resolved), either put the viewport back where
+  // the snapshot left it (returning from details) or jump straight to "live
+  // now" — instantly, before paint, so the list never visibly starts at the
+  // top. The timeline restores its own horizontal offset (initialScrollLeft).
+  const contentReady =
+    selectedDay !== null &&
+    (view === "list"
+      ? visibleGroups.length > 0 || completedGroups.length > 0
+      : daySessions.length > 0);
+  const landedRef = useRef(false);
+  useLayoutEffect(() => {
+    if (landedRef.current || !contentReady) return;
+    landedRef.current = true;
+    if (restore) {
+      window.scrollTo({ top: restore.scrollY, behavior: "auto" });
+      return;
+    }
+    if (view === "list") scrollListToNow("auto");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [contentReady]);
+
+  // Snapshot on the way out (layout-effect cleanup runs in the same commit
+  // as the unmount, before the next route resets the scroll position).
+  const timelineScrollLeftRef = useRef(restore?.timelineScrollLeft ?? 0);
+  const snapshotRef = useRef<
+    Omit<ScheduleSnapshot, "scrollY" | "timelineScrollLeft">
+  >({ day: selectedDay, userPickedDay, view, completedOpen });
+  snapshotRef.current = { day: selectedDay, userPickedDay, view, completedOpen };
+  useLayoutEffect(
+    () => () => {
+      lastSnapshot = {
+        ...snapshotRef.current,
+        scrollY: window.scrollY,
+        timelineScrollLeft: timelineScrollLeftRef.current,
+      };
+    },
+    []
+  );
 
   // Contiguous live groups render inside one full-bleed band (Figma frame 4).
   const segments = useMemo(() => {
@@ -774,6 +843,10 @@ export function Schedule() {
                     days.find((d) => d.key === selectedDay)?.label ?? ""
                   }
                   jumpToNowSignal={timelineJumpSignal}
+                  initialScrollLeft={restore?.timelineScrollLeft}
+                  onScrollLeft={(left) => {
+                    timelineScrollLeftRef.current = left;
+                  }}
                   selectedSessionId={selectedSessionId}
                   // Clicking the already-selected block closes the panel.
                   onOpen={(id) =>
@@ -784,8 +857,6 @@ export function Schedule() {
                 <div className="flex flex-col gap-6">
                   {completedCount > 0 && (
                     <CompletedPanel
-                      count={completedCount}
-                      untilLabel={completedUntilLabel}
                       open={completedOpen}
                       onToggle={() => setCompletedOpen((v) => !v)}
                     >
