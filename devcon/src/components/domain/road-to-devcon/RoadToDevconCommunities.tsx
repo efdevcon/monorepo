@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import cn from 'classnames'
 import { Link } from 'components/common/link'
 import { ctaSecondary } from 'components/common/cta'
@@ -40,15 +40,16 @@ export function RoadToDevconCommunities({ communities }: { communities: RoadComm
   const [showAll, setShowAll] = useState(false)
   // The random pick happens on the client only: SSR renders the server order
   // (invisible), then the grid fades in once shuffled — no hydration mismatch
-  // and no visible reorder.
-  const [mounted, setMounted] = useState(false)
+  // and no visible reorder. null = not shuffled yet.
+  const [shuffled, setShuffled] = useState<RoadCommunity[] | null>(null)
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setShuffled(shuffle(communities))
+  }, [communities])
 
-  const shuffled = useMemo(() => (mounted ? shuffle(communities) : communities), [communities, mounted])
-  const visible = showAll ? shuffled : shuffled.slice(0, INITIAL_COUNT)
-  const hasMore = communities.length > INITIAL_COUNT && !showAll
+  const mounted = shuffled !== null
+  const list = shuffled ?? communities
+  const visible = showAll ? list : list.slice(0, INITIAL_COUNT)
+  const hasMore = visible.length < list.length
 
   return (
     <section className="section relative z-10 bg-[#ffe6f1] py-16 text-[#160b2b]">

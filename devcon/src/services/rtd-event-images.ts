@@ -140,10 +140,13 @@ async function toWebpVariant(
 ): Promise<Buffer> {
   // Dynamic import: sharp is a native module only needed at build/revalidate.
   const sharp = (await import('sharp')).default
-  return sharp(original, isSvg ? { density: SVG_RASTER_DENSITY } : { animated: true })
-    .resize({ ...resize, withoutEnlargement: true })
-    .webp({ quality: WEBP_QUALITY })
-    .toBuffer()
+  return (
+    sharp(original, isSvg ? { density: SVG_RASTER_DENSITY } : { animated: true })
+      // Never upscale rasters; an SVG has no intrinsic pixel size so it may scale to the target.
+      .resize({ ...resize, withoutEnlargement: !isSvg })
+      .webp({ quality: WEBP_QUALITY })
+      .toBuffer()
+  )
 }
 
 /**
