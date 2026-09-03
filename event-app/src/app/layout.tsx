@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { SWRConfigProvider } from "@/data/cache";
+import { UserProvider } from "@/data/auth/useUser";
 import { CacheWarmer } from "@/components/CacheWarmer";
 import { IOSViewportHealer } from "@/components/IOSViewportHealer";
 import { Toaster } from "sonner";
@@ -197,8 +198,10 @@ export default function RootLayout({
           }}
         />
         <SWRConfigProvider>
-          <CacheWarmer />
-          {children}
+          <UserProvider>
+            <CacheWarmer />
+            {children}
+          </UserProvider>
         </SWRConfigProvider>
         <CustomScrollbar />
         <IOSViewportHealer />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Single source for the JS-side desktop breakpoint. Must mirror Tailwind's
@@ -31,6 +31,31 @@ export function useIsDesktop(): boolean {
 /** One-shot check for event handlers (no reactivity needed). */
 export function isDesktopNow(): boolean {
   return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
+}
+
+export const LANDSCAPE_MEDIA_QUERY = "(orientation: landscape)";
+
+/** Viewport wider than tall; `false` until hydration (SSR-safe). */
+export function useIsLandscape(): boolean {
+  return useMediaQuery(LANDSCAPE_MEDIA_QUERY);
+}
+
+/**
+ * Runs `onChange` when the device rotates (the landscape media query flips) —
+ * on changes only, never on mount, so a consumer can hold state that a
+ * rotation resets without a mount-time effect wiping a restored value.
+ */
+export function useOrientationChange(onChange: () => void): void {
+  const cbRef = useRef(onChange);
+  useEffect(() => {
+    cbRef.current = onChange;
+  }, [onChange]);
+  useEffect(() => {
+    const mq = window.matchMedia(LANDSCAPE_MEDIA_QUERY);
+    const handle = () => cbRef.current();
+    mq.addEventListener("change", handle);
+    return () => mq.removeEventListener("change", handle);
+  }, []);
 }
 
 /**

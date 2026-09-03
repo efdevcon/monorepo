@@ -124,7 +124,7 @@ function HeaderActions({
  * Redesigned speakers view (Figma "PWA / Speakers"). One combined view:
  * white panel (search toolbar, topic pills, format tabs) over a dc-panel
  * list sectioned Featured → # → A–Z, with the letter rail always present on
- * the right (keynote mic cell on top). Filters/search keep the sections and
+ * the right (featured mic cell on top). Filters/search keep the sections and
  * rail, just built from the filtered set (absent letters disable in the
  * rail). Speaker details open in a 360px right column; mobile navigates to
  * /speakers/[id] instead. All data derives from the cached speakers ×
@@ -167,7 +167,8 @@ export function Speakers() {
     null
   );
   const [topicSheetOpen, setTopicSheetOpen] = useState(false);
-  const headerSearch = useHeaderSearch();
+  // Closing the drawer clears the query too (see useHeaderSearch).
+  const headerSearch = useHeaderSearch(() => setSearch(""));
   const letterRefs = useRef(new Map<string, HTMLElement | null>());
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const stickyRowsRef = useRef<HTMLDivElement | null>(null);
@@ -241,7 +242,7 @@ export function Speakers() {
   if (livePanelContent) lastPanelContentRef.current = livePanelContent;
   const panelContent = livePanelContent ?? lastPanelContentRef.current;
 
-  // Rail/spy section order: the keynote section leads when present, then the
+  // Rail/spy section order: the featured section leads when present, then the
   // letter groups (# first, then A–Z) — all derived from the filtered set.
   const sections = useMemo(
     () =>
@@ -350,7 +351,7 @@ export function Speakers() {
         // breakpoint — position it directly rather than via static classes.
         rail.style.top = `${pinnedOffset}px`;
         // Compact = the natural cell stack (24px cells + 8px paddings):
-        // 26 letters + the keynote cell + the optional "#" cell.
+        // 26 letters + the featured cell + the optional "#" cell.
         const compact = (sections.includes("#") ? 28 : 27) * 24 + 16;
         // visualViewport catches browser-chrome overlays innerHeight misses.
         if (!isDesktopNow()) {
@@ -460,7 +461,7 @@ export function Speakers() {
     <main className="expand font-heading text-dc-fg">
       <HeaderActions
         searchOpen={headerSearch.searchOpen}
-        searchActive={headerSearch.searchOpen || search.trim().length > 0}
+        searchActive={headerSearch.searchOpen}
         onToggleSearch={headerSearch.toggleSearch}
         interestedOnly={interestedOnly}
         onToggleInterested={() => setInterestedOnly((v) => !v)}
@@ -642,7 +643,7 @@ export function Speakers() {
                         <div
                           className={cn(
                             "flex flex-col gap-6",
-                            // Hairline divider under the keynote block (Figma)
+                            // Hairline divider under the featured block (Figma)
                             featuredSpeakers.length > 0 &&
                               "border-t border-dc-hairline pt-6"
                           )}

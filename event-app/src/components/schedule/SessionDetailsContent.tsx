@@ -9,7 +9,7 @@ import { useNowMs } from "@/hooks/useNow";
 import { useInterested } from "@/data/interested/useInterested";
 import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
-import { formatDayLabel, formatTimeRange, isKeynoteSession } from "./utils";
+import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
@@ -78,7 +78,7 @@ export function SessionDetailsContent({
   const location = [session.type, session.room?.name]
     .filter(Boolean)
     .join(" - ");
-  const keynote = isKeynoteSession(session);
+  const featured = session.featured === true;
 
   return (
     <div className="flex flex-col bg-dc-panel">
@@ -146,9 +146,9 @@ export function SessionDetailsContent({
               >
                 {trackBadgeLabel(session.track)}
               </span>
-              {keynote && (
-                <span className="rounded-[2px] bg-dc-keynote px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-                  Keynote
+              {featured && (
+                <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
+                  Featured
                 </span>
               )}
             </div>
@@ -169,10 +169,8 @@ export function SessionDetailsContent({
             >
               <Star
                 className={cn(
-                  "size-4",
-                  interested
-                    ? "fill-dc-purple text-dc-purple"
-                    : "fill-transparent text-dc-fg2"
+                  "size-4 text-dc-purple",
+                  interested ? "fill-dc-purple" : "fill-transparent"
                 )}
               />
               {interested ? "Interested" : "Add to Interests"}

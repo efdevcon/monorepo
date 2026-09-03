@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { useEvent, useSessions, useSpeakers } from "@/data/hooks";
 import type { Session, Speaker } from "@/data/models";
 import { deriveTopicOptions } from "@/data/topics";
-import { isKeynoteSession } from "@/components/schedule/utils";
 
 /**
  * A speaker joined with their sessions. The API's speaker list carries none of
@@ -21,8 +20,8 @@ export interface DecoratedSpeaker {
   tags: string[];
   /** Distinct session types (drives the format tabs). */
   types: string[];
-  /** Featured speaker: has a session with Pretalx's is_featured flag, or (as
-   * fallback while nothing is flagged, e.g. the DC7 dataset) a keynote. */
+  /** Featured speaker: on the event's curated list, or (when the event has no
+   * list) has a session carrying Pretalx's is_featured flag. */
   isFeatured: boolean;
   /** Grouping letter: uppercased first character, "#" for non A–Z. */
   letter: string;
@@ -82,7 +81,7 @@ export function useSpeakersData() {
     }
 
     // Event-level curation (Pretalx "Featured speaker" question) wins when
-    // present; otherwise fall back to speakers with featured/keynote sessions.
+    // present; otherwise fall back to speakers with featured sessions.
     const featuredIds = event?.featuredSpeakers?.length
       ? new Set(event.featuredSpeakers)
       : null;
@@ -110,7 +109,7 @@ export function useSpeakersData() {
           types,
           isFeatured: featuredIds
             ? featuredIds.has(speaker.id)
-            : own.some((s) => s.featured === true || isKeynoteSession(s)),
+            : own.some((s) => s.featured === true),
           letter: letterFor(speaker.name),
         };
       })

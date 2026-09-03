@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { LogIn, LogOut, UserCog } from "lucide-react";
+import { LogIn, LogOut } from "lucide-react";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
@@ -26,8 +26,8 @@ type AuthProps = {
 /**
  * Mobile auth controls, portaled into the AppHeader's #header-actions target
  * (same pattern as the speakers page): a sign-in circle when signed out, the
- * account + sign-out circles when signed in. Desktop renders its own inline
- * controls next to the greeting instead.
+ * sign-out circle when signed in. Desktop renders its own inline controls
+ * next to the greeting instead.
  */
 function HeaderAuthActions({ user, signOut }: AuthProps) {
   const [target, setTarget] = useState<Element | null>(null);
@@ -40,23 +40,14 @@ function HeaderAuthActions({ user, signOut }: AuthProps) {
     <>
       {createPortal(
         user ? (
-          <>
-            {/* after:-inset-1.5 pads the 32px circles to a 44px hit area */}
-            <Link
-              href="/ticket"
-              aria-label="Account"
-              className="relative flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white after:absolute after:-inset-1.5 after:content-['']"
-            >
-              <UserCog className="size-4 text-dc-purple" />
-            </Link>
-            <button
-              onClick={signOut}
-              aria-label="Sign out"
-              className="relative flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 after:absolute after:-inset-1.5 after:content-['']"
-            >
-              <LogOut className="size-4 text-dc-error" />
-            </button>
-          </>
+          // after:-inset-1.5 pads the 32px circle to a 44px hit area
+          <button
+            onClick={signOut}
+            aria-label="Sign out"
+            className="relative flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 after:absolute after:-inset-1.5 after:content-['']"
+          >
+            <LogOut className="size-4 text-dc-error" />
+          </button>
         ) : (
           <Link
             href="/ticket"
@@ -161,14 +152,7 @@ export function Greeting() {
             <span className="font-heading text-base tracking-[-0.25px] text-dc-muted">
               {user.email}
             </span>
-            {/* after:-inset-0.5 pads the 40px circles to a 44px hit area */}
-            <Link
-              href="/ticket"
-              aria-label="Account"
-              className="relative flex size-10 items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors after:absolute after:-inset-0.5 after:content-[''] hover:bg-dc-purple-wash"
-            >
-              <UserCog className="size-4 text-dc-purple" />
-            </Link>
+            {/* after:-inset-0.5 pads the 40px circle to a 44px hit area */}
             <button
               onClick={signOut}
               aria-label="Sign out"
@@ -182,7 +166,7 @@ export function Greeting() {
             href="/ticket"
             className="flex h-10 items-center gap-2 rounded-full border border-dc-hairline bg-white/80 pl-3 pr-4 font-heading text-sm font-bold text-dc-fg2 transition-[scale,background-color] duration-150 ease-out hover:bg-white motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none"
           >
-            <LogIn className="size-4" />
+            <LogIn className="size-4 text-dc-purple" />
             Sign in
           </Link>
         )}

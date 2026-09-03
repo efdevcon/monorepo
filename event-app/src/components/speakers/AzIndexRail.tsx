@@ -14,7 +14,7 @@ export const FEATURED_SECTION = "featured";
  * A–Z jump rail (Figma "A–Z Scrollbar"): the letter stack inside the lavender
  * right-edge column — 24px cells, 12px semibold, `justify-between` so the
  * letters spread over whatever height the sticky wrapper gives the stack.
- * A keynote (mic) cell always tops the rail, above the optional "#" cell.
+ * A featured-speakers (mic) cell always tops the rail, above the optional "#" cell.
  *
  * The active section (topmost section in view) sits on a purple pill in
  * bold white. The pill is one absolutely-positioned element translated to the

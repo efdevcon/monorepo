@@ -6,7 +6,7 @@ import type { Session } from "@/data/models";
 import { Link } from "@/routing";
 import { useInterested } from "@/data/interested/useInterested";
 import { isDesktopNow } from "@/hooks/useIsDesktop";
-import { formatTimeRange, isKeynoteSession } from "./utils";
+import { formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /** Location meta reads "Type - Room" in the design (e.g. "Talk - Main Stage"). */
@@ -15,9 +15,12 @@ const locationLabel = (session: Session) =>
 
 /**
  * A session card (Figma "Event Details Container").
- * Mobile: 8px track-colored rail, 14px title, absolute KEYNOTE (top-right) and
+ * Mobile: 8px track-colored rail, 14px title, absolute FEATURED (top-right) and
  * track (bottom-right) badges. Desktop: 60px gem-art rail, 16px title, badges
  * inline. The star toggles the local "Interested" state without navigating.
+ *
+ * "Featured" is Pretalx's organizer-curated is_featured flag. It replaced the
+ * old title/room-based KEYNOTE heuristic (one tag, one signal).
  */
 export function SessionCard({
   session,
@@ -28,7 +31,7 @@ export function SessionCard({
   session: Session;
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
-  /** Desktop 2-up grid cell: drops the inline KEYNOTE badge (Figma 4325). */
+  /** Desktop 2-up grid cell: drops the inline FEATURED badge (Figma 4325). */
   compact?: boolean;
   /**
    * Desktop: open the session details side panel instead of navigating.
@@ -38,7 +41,6 @@ export function SessionCard({
 }) {
   const theme = getTrackTheme(session.track);
   const badge = trackBadgeLabel(session.track);
-  const keynote = isKeynoteSession(session);
   const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
@@ -94,11 +96,6 @@ export function SessionCard({
             <h3 className="line-clamp-2 min-w-0 text-[14px] font-bold leading-5 text-dc-fg lg:text-[16px] lg:leading-6 lg:text-dc-fg2">
               {session.title}
             </h3>
-            {keynote && !compact && (
-              <span className="hidden shrink-0 rounded-[4px] bg-dc-keynote px-1.5 py-0.5 text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
-                Keynote
-              </span>
-            )}
             {featured && !compact && (
               <span className="hidden shrink-0 rounded-[4px] bg-dc-featured px-1.5 py-0.5 text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex">
                 Featured
@@ -162,19 +159,18 @@ export function SessionCard({
         </button>
       </div>
 
-      {/* Mobile: absolute corner badges */}
-      {(featured || keynote) && (
+      {/* Mobile: absolute corner badge */}
+      {featured && (
         <span
           className={cn(
-            featured ? "bg-dc-featured" : "bg-dc-keynote",
-            "absolute right-0 top-0 rounded-bl-[2px] px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
-            // Compact 2-up desktop cells drop the inline chips (Figma 4325),
+            "absolute right-0 top-0 rounded-bl-[2px] bg-dc-featured px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
+            // Compact 2-up desktop cells drop the inline chip (Figma 4325),
             // so the corner badge steps in there — Featured must always be
-            // visible. Keynote keeps the Figma behavior (mobile corner only).
-            featured && compact ? "" : "lg:hidden"
+            // visible.
+            compact ? "" : "lg:hidden"
           )}
         >
-          {featured ? "Featured" : "Keynote"}
+          Featured
         </span>
       )}
       <span

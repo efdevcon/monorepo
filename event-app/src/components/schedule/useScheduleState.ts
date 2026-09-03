@@ -72,7 +72,13 @@ export interface DecoratedGroup extends TimeGroup {
  */
 export function useScheduleState(
   sessions: Session[],
-  interestedIds?: Set<string>
+  interestedIds?: Set<string>,
+  /**
+   * Day selection to start from instead of "today" — the schedule passes its
+   * pre-navigation snapshot here when the user comes back from a session or
+   * speaker details page, so they land on the day they left.
+   */
+  initialDay?: { day: string | null; userPickedDay: boolean }
 ) {
   // Ticks every minute so "live"/"soon" status stays current (URL-mockable).
   // `nowDate` is null until the mock (if any) has resolved — day defaulting
@@ -81,10 +87,14 @@ export function useScheduleState(
   const now = nowDate ? nowDate.getTime() : Date.now();
   const days = useMemo(() => getDays(sessions), [sessions]);
 
-  const [selectedDay, setSelectedDayState] = useState<string | null>(null);
+  const [selectedDay, setSelectedDayState] = useState<string | null>(
+    initialDay?.day ?? null
+  );
   // Sticky once the user taps a tab: auto-following "today" stops so the
   // clock (real or mocked) never fights an explicit choice.
-  const [userPickedDay, setUserPickedDay] = useState(false);
+  const [userPickedDay, setUserPickedDay] = useState(
+    initialDay?.userPickedDay ?? false
+  );
   const setSelectedDay = useCallback((key: string) => {
     setUserPickedDay(true);
     setSelectedDayState(key);
@@ -273,21 +283,23 @@ export function useScheduleState(
     return out;
   }, [groups, now]);
 
-  // Leading fully-completed groups collapse behind a summary bar (Figma 3a/3b).
-  const { completedGroups, visibleGroups } = useMemo(() => {
-    let i = 0;
-    while (i < decoratedGroups.length && decoratedGroups[i].isPast) i++;
-    return {
-      completedGroups: decoratedGroups.slice(0, i),
-      visibleGroups: decoratedGroups.slice(i),
-    };
-  }, [decoratedGroups]);
+  // Every fully-completed group collapses behind the "Completed sessions"
+  // panel — including ones that finished after a longer session started (the
+  // carry-over split above already separates finished sessions from
+  // still-running siblings), so the main list only ever shows live, ongoing
+  // and upcoming sessions.
+  const { completedGroups, visibleGroups } = useMemo(
+    () => ({
+      completedGroups: decoratedGroups.filter((g) => g.isPast),
+      visibleGroups: decoratedGroups.filter((g) => !g.isPast),
+    }),
+    [decoratedGroups]
+  );
 
   const completedCount = useMemo(
     () => completedGroups.reduce((n, g) => n + g.sessions.length, 0),
     [completedGroups]
   );
-  const completedUntilLabel = visibleGroups[0]?.timeLabel ?? null;
 
   // Flat, filtered sessions for the selected day (timeline view needs them
   // ungrouped). Derived from the same groups so filters/search stay in sync.
@@ -302,6 +314,7 @@ export function useScheduleState(
     now,
     days,
     selectedDay,
+    userPickedDay,
     setSelectedDay,
     jumpToToday,
     search,
@@ -317,7 +330,6 @@ export function useScheduleState(
     completedGroups,
     visibleGroups,
     completedCount,
-    completedUntilLabel,
     interestedOnly,
     setInterestedOnly,
     daySessions,

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { useLinkStatus } from "next/link";
 import cn from "classnames";
 import {
   Bell,
@@ -100,10 +101,41 @@ export function isDetailView(pathname: string): boolean {
 }
 
 /**
- * Mobile bottom tab bar (Figma "Dev Handoff" / "tab bar idea 2"): a
+ * One tab's icon + label. Rendered inside the Link so `useLinkStatus` can
+ * read that Link's pending navigation: the tapped tab lights up on the tap
+ * itself, not when the route commits (that gap is what read as a sluggish
+ * app). Outside a Link (native branch) the hook reports not pending.
+ */
+function NavTab({
+  item,
+  active,
+}: {
+  item: NavItem;
+  active: boolean;
+}) {
+  const { pending } = useLinkStatus();
+  const Icon = item.icon;
+  const lit = active || pending;
+  return (
+    <span
+      className={cn(
+        // Figma Tab Bar (5088:124): 40px cell, 16px icon, 12px label, 4px
+        // gap, uniform 8/4 padding in both states, active radius 4.
+        "flex h-10 w-full flex-col items-center justify-center gap-1 rounded px-2 py-1 text-[12px] leading-none transition-colors",
+        lit ? "bg-dc-purple font-bold text-white" : "font-medium text-dc-fg"
+      )}
+    >
+      <Icon className="size-4" />
+      <span className="whitespace-nowrap text-center">{item.short}</span>
+    </span>
+  );
+}
+
+/**
+ * Mobile bottom tab bar (Figma "Dev Handoff" / "Tab Bar" 5088:124): a
  * full-width translucent glass bar docked to the bottom edge, top corners
- * rounded, shadow cast upward; the active tab is a purple pill chip.
- * Desktop navigation lives in AppHeader.
+ * rounded, shadow cast upward; five equal-width cells, the active one a
+ * purple chip. Desktop navigation lives in AppHeader.
  */
 export function Nav() {
   const pathname = usePathname();
@@ -156,37 +188,19 @@ export function Nav() {
       // indicator).
       style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
     >
-      {items.map((item) => {
-        const active = isNavActive(pathname, item.href);
-        const Icon = item.icon;
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            prefetch
-            className={cn(
-              // Uniform px on both states — the Figma's 12px-active/8px-idle
-              // split made labels shift on every tab change. flex-auto (not
-              // flex-1): the basis is each label's natural width, so longer
-              // labels (Schedule, Speakers) get proportionally more room and
-              // only the leftover space is shared equally.
-              "flex flex-auto flex-col items-center justify-center gap-1.5 rounded-xl px-2 py-1 text-[11px] leading-none transition-colors",
-              active ? "bg-dc-purple font-bold text-white" : "font-medium text-dc-fg2"
-            )}
-          >
-            <Icon className="size-5" />
-            {/* Stacked twin: the invisible bold copy reserves the label's
-                active-state width, so flex-auto bases (and every tab's
-                position) hold still when the weight flips on tab change. */}
-            <span className="grid text-center">
-              <span className="col-start-1 row-start-1">{item.short}</span>
-              <span aria-hidden className="invisible col-start-1 row-start-1 font-bold">
-                {item.short}
-              </span>
-            </span>
-          </Link>
-        );
-      })}
+      {items.map((item) => (
+        // flex-1 + min-w-px (Figma `flex: 1 0 0`): a zero basis so every cell
+        // is the same width regardless of label length, which also keeps the
+        // tabs still when the active weight flips (no twin-label trick needed).
+        <Link
+          key={item.href}
+          href={item.href}
+          prefetch
+          className="flex min-w-px flex-1"
+        >
+          <NavTab item={item} active={isNavActive(pathname, item.href)} />
+        </Link>
+      ))}
     </nav>
   );
 }

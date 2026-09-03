@@ -296,9 +296,11 @@ export function FilterPanelContent({
 
       {/* Sticky footer. Close is the primary CTA (filters apply live, so
           "done" is the natural forward action, not the destructive reset).
-          Extra mobile pb: the sheet sits flush with the screen bottom, so
-          the buttons must also clear the iPhone home-indicator strip. */}
-      <div className="flex shrink-0 gap-3 border-t border-dc-hairline bg-white p-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))] lg:pb-4">
+          Mobile pb: 16px, or the iPhone home-indicator inset where that's
+          larger (the sheet sits flush with the screen bottom). max(), not
+          24px + inset: stacking both read as a huge dead band in the
+          installed PWA — same reasoning as the tab bar's padding. */}
+      <div className="flex shrink-0 gap-3 border-t border-dc-hairline bg-white p-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:pb-4">
         <SecondaryButton onClick={onClear}>Reset filters</SecondaryButton>
         <PrimaryButton onClick={onClose} className="flex-1">
           {/* Icon points where the panel exits: down for the mobile bottom

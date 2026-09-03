@@ -10,8 +10,13 @@ import { useRef, useState } from "react";
  * inside a user gesture, so everything the open path needs (inert removal,
  * focus, scroll reset) happens right here in the tap handler, before React
  * re-renders.
+ *
+ * `onClose` runs on every close path (circle tap, Escape, closeSearch) — the
+ * pages use it to clear the query, so closing the drawer also drops the
+ * filter it applied. A hidden-but-active search used to survive the close,
+ * signalled only by the filled circle, and read as the list being broken.
  */
-export function useHeaderSearch() {
+export function useHeaderSearch(onClose?: () => void) {
   const [searchOpen, setSearchOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   /** The drawer's collapsible wrapper — carries `inert` while closed. */
@@ -40,12 +45,14 @@ export function useHeaderSearch() {
       window.scrollTo({ top: 0, behavior: "auto" });
     } else {
       inputRef.current?.blur();
+      onClose?.();
     }
   };
 
   const closeSearch = () => {
     setSearchOpen(false);
     inputRef.current?.blur();
+    onClose?.();
   };
 
   return { searchOpen, toggleSearch, closeSearch, inputRef, drawerRef };

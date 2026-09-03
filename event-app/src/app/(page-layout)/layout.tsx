@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
 import cn from "classnames";
 import { Nav, isDetailView } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
+import { recordPathname } from "@/routing/navHistory";
 
 export default function PageLayout({
   children,
@@ -15,6 +16,12 @@ export default function PageLayout({
 }) {
   const [devaBotOpen, setDevaBotOpen] = useState(false);
   const pathname = usePathname();
+
+  // This layout stays mounted across every page, so it's the one place that
+  // sees each pathname change (pages can't — they unmount).
+  useEffect(() => {
+    recordPathname(pathname);
+  }, [pathname]);
 
   // Full-screen room-screen kiosk: no app chrome (it's shown on a TV).
   const isKiosk = pathname.startsWith("/room-screens/");
