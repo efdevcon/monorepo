@@ -266,16 +266,25 @@ function CompletedPanel({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col rounded-lg border border-dc-hairline bg-white p-4">
-      <div className="flex items-center justify-between gap-3">
+    <div className="flex flex-col rounded-lg border border-dc-hairline bg-white">
+      {/* The whole header row toggles, not just the "Show" label: collapsed,
+          the row is the entire card and a tap anywhere on it is what people
+          try first. Label + arrow stay as the affordance; the button carries
+          the card padding so the hit area is the full card. */}
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className={cn(
+          "group flex w-full cursor-pointer items-center justify-between gap-3 rounded-t-lg p-4 text-left transition-colors duration-150 ease-out hover:bg-dc-panel",
+          !open && "rounded-b-lg"
+        )}
+      >
         <span className="flex min-w-0 items-center gap-1 text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
           <span className="min-w-0 font-semibold">Completed sessions</span>
           <Check className="size-4 shrink-0 text-dc-muted" />
         </span>
-        <button
-          onClick={onToggle}
-          className="group flex shrink-0 cursor-pointer items-center gap-1 text-[14px] font-bold leading-none text-dc-purple lg:text-[16px] lg:leading-6"
-        >
+        <span className="flex shrink-0 items-center gap-1 text-[14px] font-bold leading-none text-dc-purple lg:text-[16px] lg:leading-6">
           <span className="group-hover:underline">
             {open ? "Hide" : "Show"}
           </span>
@@ -284,8 +293,8 @@ function CompletedPanel({
           ) : (
             <MoveDown className="size-3.5" />
           )}
-        </button>
-      </div>
+        </span>
+      </button>
       <div
         className={cn(
           "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
@@ -295,7 +304,7 @@ function CompletedPanel({
         <div className="min-h-0 overflow-hidden">
           <div
             className={cn(
-              "mt-3 grid grid-cols-1 gap-6 border-t border-dc-hairline pt-6",
+              "mx-4 mb-4 grid grid-cols-1 gap-6 border-t border-dc-hairline pt-5",
               "transition-opacity duration-300 motion-reduce:transition-none",
               open ? "opacity-100" : "opacity-0"
             )}
