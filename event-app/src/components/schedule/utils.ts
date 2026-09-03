@@ -2,7 +2,7 @@ import type { Room, Session } from "@/data/models";
 import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
 
 /** Session timing is stored as unix seconds. */
-const ms = (unixSeconds: number) => unixSeconds * 1000;
+export const ms = (unixSeconds: number) => unixSeconds * 1000;
 
 /**
  * Stable key ("YYYY-MM-DD") for the calendar day a session starts on, in the
@@ -207,6 +207,10 @@ export function buildTimeline(sessions: Session[]): Timeline {
 /** Horizontal offset (px) of a timestamp (ms) from the grid origin. */
 export const offsetPx = (timeMs: number, startMs: number, slotWidth: number) =>
   ((timeMs - startMs) / SLOT_MS) * slotWidth;
+
+/** Inverse of `offsetPx`: the timestamp (ms) at a horizontal offset. */
+export const timeAtOffset = (left: number, startMs: number, slotWidth: number) =>
+  startMs + (left / slotWidth) * SLOT_MS;
 
 /** Pixel placement of a session within its room lane (min. half a slot wide). */
 export function sessionBox(

@@ -49,7 +49,7 @@ import { FilterStatusBar } from "./FilterStatusBar";
 import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
-import { formatDayHeading } from "./utils";
+import { formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   useIsDesktop,
@@ -184,9 +184,12 @@ function HeaderActions({
 function ViewToggle({
   view,
   onChange,
+  compact = false,
 }: {
   view: ViewMode;
   onChange: (v: ViewMode) => void;
+  /** Icon-only, one step shorter: fits the pinned day bar on mobile. */
+  compact?: boolean;
 }) {
   const buttonRefs = useRef(new Map<ViewMode, HTMLButtonElement | null>());
   // The white pill slides between segments; measured after render so it lands
@@ -210,7 +213,12 @@ function ViewToggle({
   }, [view]);
 
   return (
-    <div className="relative flex h-10 shrink-0 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel">
+    <div
+      className={cn(
+        "relative flex shrink-0 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel",
+        compact ? "h-9" : "h-10"
+      )}
+    >
       <div
         aria-hidden
         style={
@@ -236,15 +244,17 @@ function ViewToggle({
             buttonRefs.current.set(mode, el);
           }}
           onClick={() => onChange(mode)}
+          aria-pressed={view === mode}
           className={cn(
-            "relative z-10 flex min-h-8 cursor-pointer items-center gap-2 rounded-[4px] px-2 py-1 text-[14px] leading-none transition-colors",
+            "relative z-10 flex cursor-pointer items-center gap-2 rounded-[4px] px-2 py-1 text-[14px] leading-none transition-colors",
+            compact ? "min-h-7" : "min-h-8",
             view === mode
               ? "font-bold text-dc-purple"
               : "font-medium text-dc-muted hover:text-dc-fg2"
           )}
         >
           <Icon className="size-5" />
-          {label}
+          <span className={cn(compact && "sr-only")}>{label}</span>
         </button>
       ))}
     </div>
@@ -486,6 +496,14 @@ export function Schedule() {
     null
   );
   const contentRef = useRef<HTMLDivElement | null>(null);
+  // Time carried across a view toggle (see changeView), and the timeline's
+  // report of the time at its left edge (updated as it scrolls).
+  const pendingTimeRef = useRef<number | null>(null);
+  const timelineLeftMsRef = useRef<number | null>(null);
+  const [timelineScrollToTime, setTimelineScrollToTime] = useState<{
+    ms: number;
+    seq: number;
+  } | null>(null);
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
   const mainCardRef = useRef<HTMLDivElement | null>(null);
@@ -598,6 +616,67 @@ export function Schedule() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dayJump]);
 
+  // Start of the group at the top of the viewport (the first one whose
+  // bottom clears the pinned-tabs line); null when nothing is on screen.
+  const topVisibleGroupStartMs = (): number | null => {
+    const el = contentRef.current;
+    const pin = el ? parseFloat(getComputedStyle(el).scrollMarginTop) || 0 : 0;
+    for (const group of visibleGroups) {
+      const node = groupRefs.current.get(group.key);
+      if (node && node.getBoundingClientRect().bottom > pin) {
+        return ms(group.sessions[0].start);
+      }
+    }
+    return null;
+  };
+
+  // The list's counterpart of "time at the left edge": the group starting at
+  // or after `t` (what's happening from t onward), else the last one.
+  const scrollListToTime = (t: number) => {
+    const target =
+      visibleGroups.find((g) => ms(g.sessions[0].start) >= t) ??
+      visibleGroups[visibleGroups.length - 1];
+    const node = target && groupRefs.current.get(target.key);
+    node?.scrollIntoView({ behavior: "auto", block: "start" });
+  };
+
+  // View toggle: the new view starts at the top of the content and at the
+  // same time the old one was showing — leaving the list, the group at the
+  // top of the viewport; leaving the timeline, the time at its left edge.
+  // Captured here, while the old view is still mounted; applied in the effect
+  // below once the new view is in the DOM.
+  const changeView = (next: ViewMode) => {
+    if (next === view) return;
+    const t =
+      view === "list" ? topVisibleGroupStartMs() : timelineLeftMsRef.current;
+    if (next === "timeline") {
+      // Batched with setView: the timeline mounts with the target already set
+      // and positions itself in its own layout effect, before paint.
+      if (t != null) {
+        setTimelineScrollToTime((prev) => ({
+          ms: t,
+          seq: (prev?.seq ?? 0) + 1,
+        }));
+      }
+      pendingTimeRef.current = null;
+    } else {
+      pendingTimeRef.current = t; // the list scrolls in the effect below
+    }
+    setView(next);
+  };
+  const viewMountedRef = useRef(false);
+  useLayoutEffect(() => {
+    if (!viewMountedRef.current) {
+      viewMountedRef.current = true; // mount: landing/restore decide
+      return;
+    }
+    scrollListTop();
+    const t = pendingTimeRef.current;
+    pendingTimeRef.current = null;
+    if (t != null && view === "list") scrollListToTime(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view]);
+
   // Landing: the first time the selected day's content is actually in the
   // DOM (sessions loaded, day resolved), either put the viewport back where
   // the snapshot left it (returning from details) or jump straight to "live
@@ -669,6 +748,15 @@ export function Schedule() {
     },
     []
   );
+
+  // Mobile list/timeline toggle, hosted by the pinned day bar (both the
+  // in-flow bar and the fullscreen timeline's copy, so fullscreen can switch
+  // back to list — which also exits fullscreen, since that derives from the
+  // view). Same gate as the "Sessions" heading it used to sit next to.
+  const mobileViewToggle =
+    resultCount > 0 ? (
+      <ViewToggle view={view} onChange={changeView} compact />
+    ) : null;
 
   // Contiguous live groups render inside one full-bleed band (Figma frame 4).
   const segments = useMemo(() => {
@@ -841,7 +929,7 @@ export function Schedule() {
                 placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
               />
-              <ViewToggle view={view} onChange={setView} />
+              <ViewToggle view={view} onChange={changeView} />
             </div>
 
             {/* Day tabs (sticky under the mobile header) + desktop controls */}
@@ -849,6 +937,7 @@ export function Schedule() {
               days={days}
               selectedDay={selectedDay}
               onSelect={selectDay}
+              trailing={mobileViewToggle}
             >
               <InterestedPill
                 active={interestedOnly}
@@ -893,24 +982,23 @@ export function Schedule() {
                 view === "timeline" ? "pb-0" : "pb-6"
               )}
             >
-              {/* Mobile: "Sessions" heading + view toggle */}
+              {/* Mobile: "Sessions" heading (+ fullscreen button in timeline
+                  view). The list/timeline toggle lives in the pinned day bar
+                  instead, so it stays reachable once the list is scrolled. */}
               {resultCount > 0 && (
-                <div className="mb-3 flex items-center justify-between gap-3 lg:hidden">
+                <div className="mb-3 flex min-h-8 items-center justify-between gap-3 lg:hidden">
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
                     Sessions
                   </h2>
-                  <div className="flex items-center gap-3">
-                    {view === "timeline" && (
-                      <button
-                        onClick={() => setFullscreenOverride(true)}
-                        aria-label="Fullscreen timeline"
-                        className={cn(headerCircle, headerCircleResting)}
-                      >
-                        <Maximize2 className="size-4 text-dc-purple" />
-                      </button>
-                    )}
-                    <ViewToggle view={view} onChange={setView} />
-                  </div>
+                  {view === "timeline" && (
+                    <button
+                      onClick={() => setFullscreenOverride(true)}
+                      aria-label="Fullscreen timeline"
+                      className={cn(headerCircle, headerCircleResting)}
+                    >
+                      <Maximize2 className="size-4 text-dc-purple" />
+                    </button>
+                  )}
                 </div>
               )}
 
@@ -977,9 +1065,11 @@ export function Schedule() {
                   jumpToNowSignal={timelineJumpSignal}
                   scrollToStartSignal={timelineStartSignal}
                   initialScrollLeft={restore?.timelineScrollLeft}
-                  onScrollLeft={(left) => {
+                  onScrollLeft={(left, leftMs) => {
                     timelineScrollLeftRef.current = left;
+                    timelineLeftMsRef.current = leftMs;
                   }}
+                  scrollToTime={timelineScrollToTime}
                   fullscreen={timelineFullscreen}
                   onExitFullscreen={() => setFullscreenOverride(false)}
                   onJumpToNow={jumpToNow}
@@ -991,6 +1081,7 @@ export function Schedule() {
                       selectedDay={selectedDay}
                       onSelect={selectDay}
                       pinned={false}
+                      trailing={mobileViewToggle}
                     />
                   }
                   selectedSessionId={selectedSessionId}

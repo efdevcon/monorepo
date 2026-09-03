@@ -25,6 +25,7 @@ export function DayTabs({
   selectedDay,
   onSelect,
   children,
+  trailing,
   pinned = true,
 }: {
   days: ScheduleDay[];
@@ -32,6 +33,8 @@ export function DayTabs({
   onSelect: (key: string) => void;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
+  /** Mobile-only control at the bar's right end, past the tabs' fade. */
+  trailing?: React.ReactNode;
   /**
    * `false` renders the bar in normal flow (no sticky offset, no stuck
    * detection) — for hosts that place it themselves, like the fullscreen
@@ -80,31 +83,40 @@ export function DayTabs({
         stuck && "lg:bg-white/75 lg:backdrop-blur-[4px]"
       )}
     >
-      {/* Mobile: full-bleed scroll behind a right-edge fade — an abruptly cut
-          tab reads as "no more days" (like the speakers topic pills). */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-dc-lavender to-transparent lg:hidden" />
-      {/* overflow-x-auto + shrink-0 tabs: with many days or a narrow phone the
-          bar must scroll — a packed row would clip later days without the fade. */}
-      <div className="flex min-w-0 flex-1 items-stretch justify-start gap-3 overflow-x-auto pl-4 pr-12 lg:flex-initial lg:items-center lg:gap-3 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {days.map((day) => {
-          const active = day.key === selectedDay;
-          return (
-            <button
-              key={day.key}
-              onClick={() => onSelect(day.key)}
-              className={cn(
-                "flex shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
-                active
-                  ? "border-dc-purple font-bold text-dc-purple"
-                  : "border-transparent font-normal text-dc-fg2 hover:text-dc-purple"
-              )}
-            >
-              <span className="lg:hidden">{shortLabel(day.label)}</span>
-              <span className="hidden lg:inline">{day.label}</span>
-            </button>
-          );
-        })}
+      {/* Mobile: the tabs scroll behind a right-edge fade — an abruptly cut
+          tab reads as "no more days" (like the speakers topic pills). The
+          fade belongs to the scroll region, so `trailing` sits past it. */}
+      <div className="relative flex min-w-0 flex-1 lg:flex-initial">
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-dc-lavender to-transparent lg:hidden" />
+        {/* overflow-x-auto + shrink-0 tabs: with many days or a narrow phone
+            the bar must scroll — a packed row would clip later days without
+            the fade. */}
+        <div className="flex min-w-0 flex-1 items-stretch justify-start gap-3 overflow-x-auto pl-4 pr-12 lg:flex-initial lg:items-center lg:gap-3 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {days.map((day) => {
+            const active = day.key === selectedDay;
+            return (
+              <button
+                key={day.key}
+                onClick={() => onSelect(day.key)}
+                className={cn(
+                  "flex shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
+                  active
+                    ? "border-dc-purple font-bold text-dc-purple"
+                    : "border-transparent font-normal text-dc-fg2 hover:text-dc-purple"
+                )}
+              >
+                <span className="lg:hidden">{shortLabel(day.label)}</span>
+                <span className="hidden lg:inline">{day.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
+      {trailing && (
+        <div className="flex shrink-0 items-center pl-1 pr-4 lg:hidden">
+          {trailing}
+        </div>
+      )}
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           {children}

@@ -13,6 +13,7 @@ import {
   formatTimeRange,
   MOBILE_METRICS,
   offsetPx,
+  timeAtOffset,
   sessionBox,
   type TimelineMetrics,
 } from "./utils";
@@ -182,6 +183,7 @@ export function ScheduleTimeline({
   dayLabel,
   jumpToNowSignal = 0,
   scrollToStartSignal = 0,
+  scrollToTime = null,
   selectedSessionId = null,
   onOpen,
   initialScrollLeft,
@@ -201,6 +203,11 @@ export function ScheduleTimeline({
   jumpToNowSignal?: number;
   /** Increment to scroll the grid back to the day's start (left edge). */
   scrollToStartSignal?: number;
+  /**
+   * Put this time at the left edge of the time area (view toggle from the
+   * list: the time that was at the top of the list). `seq` must grow.
+   */
+  scrollToTime?: { ms: number; seq: number } | null;
   /** Desktop side-panel selection highlight. */
   selectedSessionId?: string | null;
   /** Desktop: open the details side panel instead of navigating. */
@@ -212,7 +219,8 @@ export function ScheduleTimeline({
    */
   initialScrollLeft?: number;
   /** Reports the grid's horizontal offset as the user scrolls. */
-  onScrollLeft?: (left: number) => void;
+  /** Horizontal offset and the time at the time area's left edge. */
+  onScrollLeft?: (left: number, leftMs: number) => void;
   /** Mobile: render as a full-viewport overlay covering header + nav. */
   fullscreen?: boolean;
   /** Fullscreen X button / Escape. */
@@ -301,6 +309,21 @@ export function ScheduleTimeline({
     el.scrollTo({ left: 0, behavior: "auto" });
     syncHeader(0);
   }, [scrollToStartSignal]);
+
+  // View toggle from the list: the time that was at the top of the list goes
+  // to the left edge of the time area (just past the sticky room column).
+  // Layout effect so it lands before paint; declared after the restore below
+  // would be wrong — it must win over a stale restored offset on mount.
+  const handledTimeSeqRef = useRef(0);
+  useLayoutEffect(() => {
+    if (!scrollToTime || scrollToTime.seq <= handledTimeSeqRef.current) return;
+    handledTimeSeqRef.current = scrollToTime.seq;
+    const el = scrollRef.current;
+    if (!el || slots.length === 0) return;
+    el.scrollLeft = Math.max(0, offsetPx(scrollToTime.ms, startMs, m.slotWidth));
+    syncHeader(el.scrollLeft);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollToTime]);
 
   // Restore a remembered horizontal offset once the grid is in the DOM (it
   // isn't while `sessions` is empty). Layout effect: lands before paint.
@@ -441,10 +464,13 @@ export function ScheduleTimeline({
         onScroll={(e) => {
           const left = e.currentTarget.scrollLeft;
           syncHeader(left);
-          onScrollLeft?.(left);
+          onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
         }}
         className={cn(
-          "isolate overflow-x-auto [scrollbar-width:thin]",
+          // Scrollbar hidden (DayTabs pattern): the time-axis header and the
+          // room column already say "this pans", and the thin bar sat on top
+          // of the last lane on desktop.
+          "isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           fullscreen && "min-h-0 flex-1 overflow-auto [overscroll-behavior:contain]"
         )}
       >
