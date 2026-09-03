@@ -181,6 +181,7 @@ export function ScheduleTimeline({
   nowMs,
   dayLabel,
   jumpToNowSignal = 0,
+  scrollToStartSignal = 0,
   selectedSessionId = null,
   onOpen,
   initialScrollLeft,
@@ -198,6 +199,8 @@ export function ScheduleTimeline({
   dayLabel?: string;
   /** Increment to horizontally scroll the grid to the now line. */
   jumpToNowSignal?: number;
+  /** Increment to scroll the grid back to the day's start (left edge). */
+  scrollToStartSignal?: number;
   /** Desktop side-panel selection highlight. */
   selectedSessionId?: string | null;
   /** Desktop: open the details side panel instead of navigating. */
@@ -286,6 +289,18 @@ export function ScheduleTimeline({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jumpToNowSignal]);
+
+  // Day-tab switch to a day other than today: start at the day's left edge
+  // instead of wherever the previous day happened to be scrolled.
+  const handledStartRef = useRef(0);
+  useEffect(() => {
+    if (scrollToStartSignal <= handledStartRef.current) return;
+    handledStartRef.current = scrollToStartSignal;
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: 0, behavior: "auto" });
+    syncHeader(0);
+  }, [scrollToStartSignal]);
 
   // Restore a remembered horizontal offset once the grid is in the DOM (it
   // isn't while `sessions` is empty). Layout effect: lands before paint.

@@ -50,7 +50,7 @@ import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { formatDayHeading } from "./utils";
-import { getEventTimeZoneLabel } from "@/data/eventTime";
+import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   useIsDesktop,
   useIsLandscape,
@@ -479,6 +479,13 @@ export function Schedule() {
   );
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
+  const [timelineStartSignal, setTimelineStartSignal] = useState(0);
+  // Day-tab taps are signal-driven too: the scroll must run after the new
+  // day's groups are mounted. `key` is the tapped day.
+  const [dayJump, setDayJump] = useState<{ n: number; key: string } | null>(
+    null
+  );
+  const contentRef = useRef<HTMLDivElement | null>(null);
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
   const mainCardRef = useRef<HTMLDivElement | null>(null);
@@ -539,16 +546,57 @@ export function Schedule() {
       visibleGroups.find((g) => g.isOngoing) ??
       visibleGroups.find((g) => !g.isPast) ??
       visibleGroups[0];
-    if (!target) return;
-    groupRefs.current
-      .get(target.key)
-      ?.scrollIntoView({ behavior, block: "start" });
+    const el = target && groupRefs.current.get(target.key);
+    if (!el) return false;
+    el.scrollIntoView({ behavior, block: "start" });
+    return true;
   };
   useEffect(() => {
     if (listJumpSignal === 0) return;
     scrollListToNow("smooth");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listJumpSignal]);
+
+  // Top of the selected day's list, aligned under the pinned day tabs (the
+  // content wrapper carries the same scroll margin as the groups). Only ever
+  // scrolls UP: if the list start is already on screen, "top" must not move
+  // the page.
+  const scrollListTop = () => {
+    const el = contentRef.current;
+    if (!el) return;
+    const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    if (el.getBoundingClientRect().top < margin) {
+      el.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+  };
+
+  // Day tab tap: today lands on "live now" (the same rule as jump-to-now and
+  // the initial landing, falling back to the top once the day is over); any
+  // other day starts at the top of its list. Instant, not smooth: a tab is a
+  // new page, and a smooth scroll through content that just changed reads as
+  // scrolling the wrong day.
+  const selectDay = (key: string) => {
+    setSelectedDay(key);
+    setDayJump((prev) => ({ n: (prev?.n ?? 0) + 1, key }));
+  };
+  useLayoutEffect(() => {
+    if (!dayJump) return;
+    const isToday = dayJump.key === eventDayKey(now);
+    if (view === "timeline") {
+      // The timeline scrolls itself horizontally on signal; the now-jump also
+      // brings its root into view, the start-jump only resets the offset.
+      if (isToday) {
+        setTimelineJumpSignal((n) => n + 1);
+      } else {
+        setTimelineStartSignal((n) => n + 1);
+        scrollListTop();
+      }
+      return;
+    }
+    if (isToday && scrollListToNow("auto")) return;
+    scrollListTop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dayJump]);
 
   // Landing: the first time the selected day's content is actually in the
   // DOM (sessions loaded, day resolved), either put the viewport back where
@@ -800,7 +848,7 @@ export function Schedule() {
             <DayTabs
               days={days}
               selectedDay={selectedDay}
-              onSelect={setSelectedDay}
+              onSelect={selectDay}
             >
               <InterestedPill
                 active={interestedOnly}
@@ -833,8 +881,12 @@ export function Schedule() {
 
             {/* Content area: brand-neutrals/50 surface on desktop (Figma) */}
             <div
+              ref={contentRef}
               className={cn(
                 "px-4 pt-6 lg:rounded-b-xl lg:bg-dc-panel lg:pb-6",
+                // Scroll target for day-tab "top" (see scrollListTop); same
+                // pinned-tabs clearance as the group headers.
+                "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]",
                 // Mobile timeline sits flush on the panel-grey underlay (see
                 // the timeline branch); the layout's nav clearance is the
                 // only gap left below it.
@@ -923,6 +975,7 @@ export function Schedule() {
                     days.find((d) => d.key === selectedDay)?.label ?? ""
                   }
                   jumpToNowSignal={timelineJumpSignal}
+                  scrollToStartSignal={timelineStartSignal}
                   initialScrollLeft={restore?.timelineScrollLeft}
                   onScrollLeft={(left) => {
                     timelineScrollLeftRef.current = left;
@@ -936,7 +989,7 @@ export function Schedule() {
                     <DayTabs
                       days={days}
                       selectedDay={selectedDay}
-                      onSelect={setSelectedDay}
+                      onSelect={selectDay}
                       pinned={false}
                     />
                   }
