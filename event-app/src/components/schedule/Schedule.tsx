@@ -749,11 +749,32 @@ export function Schedule() {
     []
   );
 
-  // Mobile list/timeline toggle, hosted by the pinned day bar (both the
-  // in-flow bar and the fullscreen timeline's copy, so fullscreen can switch
-  // back to list — which also exits fullscreen, since that derives from the
-  // view). Same gate as the "Sessions" heading it used to sit next to.
-  const mobileViewToggle =
+  // Mobile list/timeline toggle. The full one sits next to the "Sessions"
+  // heading (design); once that row has scrolled under the pinned day bar, a
+  // compact copy appears in the bar so the view stays switchable. The
+  // fullscreen timeline's bar always carries the compact one (no heading
+  // there), and switching to list from it exits fullscreen, since that
+  // derives from the view.
+  const [headingToggleVisible, setHeadingToggleVisible] = useState(true);
+  const headingObserverRef = useRef<IntersectionObserver | null>(null);
+  const headingRowRef = useCallback((node: HTMLDivElement | null) => {
+    headingObserverRef.current?.disconnect();
+    headingObserverRef.current = null;
+    if (!node) {
+      setHeadingToggleVisible(true);
+      return;
+    }
+    // "Visible" = any part below the pinned day bar (mobile header + 48px
+    // tabs), not merely inside the viewport, which the sticky bars cover.
+    const pin = Math.round(headerOffsetNow() + 48);
+    const io = new IntersectionObserver(
+      ([entry]) => setHeadingToggleVisible(entry.isIntersecting),
+      { rootMargin: `-${pin}px 0px 0px 0px`, threshold: 0 }
+    );
+    io.observe(node);
+    headingObserverRef.current = io;
+  }, []);
+  const compactViewToggle =
     resultCount > 0 ? (
       <ViewToggle view={view} onChange={changeView} compact />
     ) : null;
@@ -937,7 +958,7 @@ export function Schedule() {
               days={days}
               selectedDay={selectedDay}
               onSelect={selectDay}
-              trailing={mobileViewToggle}
+              trailing={headingToggleVisible ? null : compactViewToggle}
             >
               <InterestedPill
                 active={interestedOnly}
@@ -982,23 +1003,29 @@ export function Schedule() {
                 view === "timeline" ? "pb-0" : "pb-6"
               )}
             >
-              {/* Mobile: "Sessions" heading (+ fullscreen button in timeline
-                  view). The list/timeline toggle lives in the pinned day bar
-                  instead, so it stays reachable once the list is scrolled. */}
+              {/* Mobile: "Sessions" heading + view toggle (+ fullscreen button
+                  in timeline view). Observed: once this row is under the
+                  pinned day bar, the bar shows the compact toggle instead. */}
               {resultCount > 0 && (
-                <div className="mb-3 flex min-h-8 items-center justify-between gap-3 lg:hidden">
+                <div
+                  ref={headingRowRef}
+                  className="mb-3 flex items-center justify-between gap-3 lg:hidden"
+                >
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
                     Sessions
                   </h2>
-                  {view === "timeline" && (
-                    <button
-                      onClick={() => setFullscreenOverride(true)}
-                      aria-label="Fullscreen timeline"
-                      className={cn(headerCircle, headerCircleResting)}
-                    >
-                      <Maximize2 className="size-4 text-dc-purple" />
-                    </button>
-                  )}
+                  <div className="flex items-center gap-3">
+                    {view === "timeline" && (
+                      <button
+                        onClick={() => setFullscreenOverride(true)}
+                        aria-label="Fullscreen timeline"
+                        className={cn(headerCircle, headerCircleResting)}
+                      >
+                        <Maximize2 className="size-4 text-dc-purple" />
+                      </button>
+                    )}
+                    <ViewToggle view={view} onChange={changeView} />
+                  </div>
                 </div>
               )}
 
@@ -1081,7 +1108,7 @@ export function Schedule() {
                       selectedDay={selectedDay}
                       onSelect={selectDay}
                       pinned={false}
-                      trailing={mobileViewToggle}
+                      trailing={compactViewToggle}
                     />
                   }
                   selectedSessionId={selectedSessionId}
