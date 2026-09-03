@@ -6,8 +6,8 @@
  */
 
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
-import { TICKETING } from 'config/ticketing'
-import { createVoucher, isItemAvailable } from './pretix'
+import { TICKETING, discountReservesQuota } from 'config/ticketing'
+import { createVoucher, isItemAvailable, PretixQuotaExhaustedError } from './pretix'
 
 export interface DiscountCode {
   id: number
@@ -265,16 +265,26 @@ export async function issueVoucher(
   }
 
   // Create a fresh single-use voucher that unlocks the item. `validityDays`
-  // sets a Pretix-enforced redemption deadline counted from creation.
-  const created = await createVoucher({
-    itemId,
-    tag: tag ?? collection,
-    maxUsages: 1,
-    comment: `Discount voucher for ${collection} (${assignedTo})`,
-    ...(opts.validityDays
-      ? { validUntil: new Date(Date.now() + opts.validityDays * 24 * 60 * 60 * 1000).toISOString() }
-      : {}),
-  })
+  // sets a Pretix-enforced redemption deadline counted from creation. Only
+  // types in `discountReservesQuota` hold a seat (see config/ticketing.ts);
+  // for those, Pretix refusing the hold is the authoritative sold-out signal
+  // and is surfaced exactly like the pre-check above.
+  let created: Awaited<ReturnType<typeof createVoucher>>
+  try {
+    created = await createVoucher({
+      itemId,
+      tag: tag ?? collection,
+      maxUsages: 1,
+      comment: `Discount voucher for ${collection} (${assignedTo})`,
+      reserveQuota: opts.type ? discountReservesQuota(opts.type) : false,
+      ...(opts.validityDays
+        ? { validUntil: new Date(Date.now() + opts.validityDays * 24 * 60 * 60 * 1000).toISOString() }
+        : {}),
+    })
+  } catch (err) {
+    if (err instanceof PretixQuotaExhaustedError) throw new DiscountSoldOutError()
+    throw err
+  }
 
   const now = new Date().toISOString()
   const { data, error } = await supabase

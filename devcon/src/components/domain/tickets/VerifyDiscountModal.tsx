@@ -643,6 +643,10 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                 <>
                   <div className={css['stackMd']}>
                     <p className={css['subtitle']}>Choose a discount to add to your cart:</p>
+                    <p className={css['footnote']}>
+                      A code unlocks the discount but doesn&apos;t reserve a ticket, so buy yours while tickets are
+                      available.
+                    </p>
                     <div className={css['options']}>
                       {DISCOUNTS.map(opt => {
                         // Sold out wins over eligibility: never selectable.

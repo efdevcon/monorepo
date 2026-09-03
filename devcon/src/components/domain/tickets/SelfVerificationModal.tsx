@@ -342,6 +342,10 @@ export function SelfVerificationModal({
                 Your Self proof was verified and you&apos;re eligible for the India Resident ticket. Continue to the
                 store to claim it.
               </p>
+              <p className={css['success-intro']}>
+                Your code unlocks the discount but doesn&apos;t reserve a ticket, so buy yours while tickets are
+                available.
+              </p>
             </div>
             <a href={claimUrl} className={css['voucher-cta']}>
               Claim your India Resident ticket

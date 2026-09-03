@@ -563,3 +563,9 @@
     opacity: 0.85;
   }
 }
+
+/* A footnote placed directly under the left-aligned subtitle reads as part of
+   that paragraph, so it is left-aligned too; standalone footnotes stay centered. */
+.subtitle + .footnote {
+  text-align: left;
+}

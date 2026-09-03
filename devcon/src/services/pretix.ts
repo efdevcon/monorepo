@@ -230,11 +230,28 @@ export async function createOrder(order: PretixOrderCreateRequest): Promise<Pret
   })
 }
 
+/** Pretix refused to create a quota-reserving voucher because the item's quota
+ *  has no seat left to hold. Kept distinct from other failures so callers can
+ *  surface "sold out" instead of a generic error. */
+export class PretixQuotaExhaustedError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'PretixQuotaExhaustedError'
+  }
+}
+
 /** Create a single Pretix voucher that unlocks a specific (voucher-gated)
  *  ticket item. `price_mode: 'none'` means the voucher does not change the
  *  price — the item's own configured price applies; the voucher only grants
- *  access to a normally-hidden ticket. Quota is governed by the item, so
- *  `block_quota` is false (the voucher does not reserve inventory). */
+ *  access to a normally-hidden ticket.
+ *
+ *  `reserveQuota` (default false) maps to Pretix `block_quota`: the voucher
+ *  holds one seat of the item's quota while unredeemed, and Pretix refuses to
+ *  mint it once the tier is fully allocated (PretixQuotaExhaustedError). The
+ *  default is deliberately off: auto-issued discounts are first come, first
+ *  served, so unredeemed codes never make a tier look sold out. It is on for
+ *  vouchers that back an explicit human promise (builder approvals, which
+ *  also expire so unused holds free themselves). */
 export async function createVoucher(opts: {
   itemId: number
   tag?: string
@@ -242,6 +259,7 @@ export async function createVoucher(opts: {
   comment?: string
   /** ISO timestamp after which the voucher can no longer be redeemed. Omit for no expiry. */
   validUntil?: string
+  reserveQuota?: boolean
 }): Promise<{ code: string; id: number }> {
   return withRetry('createVoucher', async () => {
     const url = `${baseUrl}organizers/${organizerName}/events/${eventName}/vouchers/`
@@ -252,7 +270,7 @@ export async function createVoucher(opts: {
         item: opts.itemId,
         price_mode: 'none',
         max_usages: opts.maxUsages ?? 1,
-        block_quota: false,
+        block_quota: opts.reserveQuota ?? false,
         tag: opts.tag ?? 'discount',
         comment: opts.comment ?? 'Auto-issued discount voucher',
         ...(opts.validUntil ? { valid_until: opts.validUntil } : {}),
@@ -261,6 +279,12 @@ export async function createVoucher(opts: {
 
     if (!response.ok) {
       const text = await response.text()
+      // Pretix's validation message when a reserving voucher cannot get a
+      // seat: "You cannot create a voucher that blocks quota as the selected
+      // product or quota is currently sold out or completely reserved."
+      if (response.status === 400 && /blocks quota/i.test(text)) {
+        throw new PretixQuotaExhaustedError(`Pretix voucher creation refused: ${text}`)
+      }
       throw new Error(`Pretix voucher creation failed ${response.status}: ${text}`)
     }
 

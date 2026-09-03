@@ -238,6 +238,20 @@ export function discountSoldOut(type: string): boolean {
   return TICKETING.discount.soldOut?.[type] === true
 }
 
+/** Discount types whose vouchers reserve a seat in the item's quota while
+ *  unredeemed (Pretix `block_quota`). Only types that back an explicit human
+ *  promise belong here: builder applicants are approved by a reviewer and told
+ *  they have a month to redeem, so the seat is held for that month (their
+ *  vouchers expire, so an unused hold frees itself). Auto-issued discounts stay
+ *  off this list on purpose: they are first come, first served, and unredeemed
+ *  codes must never make a tier look sold out. */
+const RESERVED_DISCOUNT_TYPES = new Set(['builder'])
+
+/** Whether a dynamically issued voucher for `type` should reserve quota. */
+export function discountReservesQuota(type: string): boolean {
+  return RESERVED_DISCOUNT_TYPES.has(type)
+}
+
 /** Recover the discount `type` from a voucher `collection` by stripping the env
  *  prefix (e.g. `test-india-resident` -> `india-resident`). */
 export function discountTypeForCollection(collection: string): string {
