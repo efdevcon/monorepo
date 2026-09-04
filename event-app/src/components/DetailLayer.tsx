@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaneActive } from "@/components/paneContext";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
@@ -10,10 +11,11 @@ import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
  */
 export function HeaderActionsPortal({ children }: { children: React.ReactNode }) {
   const [target, setTarget] = useState<Element | null>(null);
+  const paneActive = usePaneActive();
   useEffect(() => {
     setTarget(document.getElementById(HEADER_ACTIONS_ID));
   }, []);
-  if (!target) return null;
+  if (!target || !paneActive) return null;
   return createPortal(children, target);
 }
 

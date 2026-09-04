@@ -34,6 +34,17 @@ export function stripIgnoredParams(url: URL): URL {
   return out;
 }
 
+/**
+ * The bottom-bar destinations. They are persistent panes (components/
+ * TabPanes.tsx): our Link wrapper disables Next's scroll-to-top for hrefs into
+ * these paths so each pane can keep its own scroll position.
+ */
+export const TAB_PATHS = ["/", "/schedule", "/speakers", "/map", "/ticket"] as const;
+
+export function isTabPath(pathname: string): boolean {
+  return (TAB_PATHS as readonly string[]).includes(pathname);
+}
+
 export const DETAIL_ROUTES: Record<DetailKind, string> = {
   session: "/schedule",
   speaker: "/speakers",

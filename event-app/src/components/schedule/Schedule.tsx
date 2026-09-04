@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import {
   useCallback,
   useEffect,
@@ -37,7 +38,7 @@ import {
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useDetailParam } from "@/routing/detailParam";
-import { wasHistoryNavigation } from "@/routing/navigationType";
+import { RenderOnApproach } from "@/components/RenderOnApproach";
 import { DetailLayer, DetailNotFound } from "@/components/DetailLayer";
 import { SessionDetailsView } from "./SessionDetailsView";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
@@ -65,32 +66,6 @@ type ViewMode = "list" | "timeline";
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
-
-/**
- * Where the user was when they left the schedule for another section (a
- * speaker page, reached from a session's speaker card), so coming back through
- * browser history lands them there instead of on "live now". Opening a session
- * no longer unmounts the list (details are an in-page layer), so this only
- * matters for those cross-section round trips. Module state: the page unmounts
- * on that navigation, and a full reload should start fresh anyway.
- */
-interface ScheduleSnapshot {
-  day: string | null;
-  userPickedDay: boolean;
-  view: ViewMode;
-  completedOpen: boolean;
-  scrollY: number;
-  /** Timeline view's horizontal grid offset. */
-  timelineScrollLeft: number;
-  /**
-   * Manual fullscreen choice (`null` = follow orientation). The override is
-   * what's remembered, not the effective state: coming back into a manually
-   * opened fullscreen restores it, an explicit exit stays exited, and the
-   * current orientation is always re-applied on top.
-   */
-  timelineFullscreen: boolean | null;
-}
-let lastSnapshot: ScheduleSnapshot | null = null;
 
 /** Pinned side-panel edge gap: the aside pins at 81px + --safe-top, 16px
  *  below the 65px desktop header; the bottom keeps the same 16px to the
@@ -125,10 +100,11 @@ function HeaderActions({
   onOpenFilters: () => void;
 }) {
   const [target, setTarget] = useState<Element | null>(null);
+  const paneActive = usePaneActive();
   useEffect(() => {
     setTarget(document.getElementById(HEADER_ACTIONS_ID));
   }, []);
-  if (!target) return null;
+  if (!target || !paneActive) return null;
 
   return (
     <>
@@ -446,12 +422,6 @@ export function Schedule() {
   const { ids: interestedIds } = useInterested();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailParam("session");
-  // Decided once per mount: a history entry (back from a speaker page) restores
-  // the snapshot taken on the way out; any other entry (tab bar, home, reload)
-  // lands on "live now" below.
-  const [restore] = useState<ScheduleSnapshot | null>(() =>
-    wasHistoryNavigation() ? lastSnapshot : null
-  );
   const {
     now,
     days,
@@ -474,20 +444,15 @@ export function Schedule() {
     filterOptions,
     daySessions,
     resultCount,
-  } = useScheduleState(
-    sessions,
-    interestedIds,
-    restore
-      ? { day: restore.day, userPickedDay: restore.userPickedDay }
-      : undefined
-  );
+  } = useScheduleState(sessions, interestedIds);
 
   const isDesktop = useIsDesktop();
-  const [view, setView] = useState<ViewMode>(restore?.view ?? "list");
+  // False while another tab pane is showing: header portals and window
+  // measurements belong to the visible pane only (see TabPanes).
+  const paneActive = usePaneActive();
+  const [view, setView] = useState<ViewMode>("list");
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [completedOpen, setCompletedOpen] = useState(
-    restore?.completedOpen ?? false
-  );
+  const [completedOpen, setCompletedOpen] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
   const [timelineStartSignal, setTimelineStartSignal] = useState(0);
@@ -555,6 +520,8 @@ export function Schedule() {
     }
     setListJumpSignal((n) => n + 1);
   };
+  // Re-tapping the Schedule tab resets to the landing state: today, at "now".
+  useTabReselect(jumpToNow);
 
   // List view "jump to now": land on the "Live now" section, else a
   // still-running one, else the next upcoming one. Called from effects so the
@@ -668,7 +635,7 @@ export function Schedule() {
   const viewMountedRef = useRef(false);
   useLayoutEffect(() => {
     if (!viewMountedRef.current) {
-      viewMountedRef.current = true; // mount: landing/restore decide
+      viewMountedRef.current = true; // mount: the landing effect decides
       return;
     }
     scrollListTop();
@@ -679,10 +646,10 @@ export function Schedule() {
   }, [view]);
 
   // Landing: the first time the selected day's content is actually in the
-  // DOM (sessions loaded, day resolved), either put the viewport back where
-  // the snapshot left it (returning from details) or jump straight to "live
-  // now" — instantly, before paint, so the list never visibly starts at the
-  // top. The timeline restores its own horizontal offset (initialScrollLeft).
+  // DOM (sessions loaded, day resolved), jump straight to "live now",
+  // instantly, before paint, so the list never visibly starts at the top.
+  // Once per mount, and the pane stays mounted across tab switches (TabPanes
+  // restores the scroll position), so in practice once per app open.
   const contentReady =
     selectedDay !== null &&
     (view === "list"
@@ -692,10 +659,6 @@ export function Schedule() {
   useLayoutEffect(() => {
     if (landedRef.current || !contentReady) return;
     landedRef.current = true;
-    if (restore) {
-      window.scrollTo({ top: restore.scrollY, behavior: "auto" });
-      return;
-    }
     if (view === "list") scrollListToNow("auto");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentReady]);
@@ -705,7 +668,7 @@ export function Schedule() {
   // manual portrait fullscreen + rotate stays fullscreen and rotating back
   // exits, while an X in landscape sticks until the next rotation.
   const [fullscreenOverride, setFullscreenOverride] = useState<boolean | null>(
-    restore?.timelineFullscreen ?? null
+    null
   );
   useOrientationChange(() => setFullscreenOverride(null));
   const isLandscape = useIsLandscape();
@@ -720,35 +683,8 @@ export function Schedule() {
     // user's typing. An explicit tap on the button always wins.
     (fullscreenOverride ?? (isLandscape && !headerSearch.searchOpen));
 
-  // Snapshot on the way out (layout-effect cleanup runs in the same commit
-  // as the unmount, before the next route resets the scroll position).
-  const timelineScrollLeftRef = useRef(restore?.timelineScrollLeft ?? 0);
-  const snapshotRef = useRef<
-    Omit<ScheduleSnapshot, "scrollY" | "timelineScrollLeft">
-  >({
-    day: selectedDay,
-    userPickedDay,
-    view,
-    completedOpen,
-    timelineFullscreen: fullscreenOverride,
-  });
-  snapshotRef.current = {
-    day: selectedDay,
-    userPickedDay,
-    view,
-    completedOpen,
-    timelineFullscreen: fullscreenOverride,
-  };
-  useLayoutEffect(
-    () => () => {
-      lastSnapshot = {
-        ...snapshotRef.current,
-        scrollY: window.scrollY,
-        timelineScrollLeft: timelineScrollLeftRef.current,
-      };
-    },
-    []
-  );
+  // Timeline's horizontal offset, reported by the grid as it scrolls.
+  const timelineScrollLeftRef = useRef(0);
 
   // Mobile list/timeline toggle. The full one sits next to the "Sessions"
   // heading (design); once that row has scrolled under the pinned day bar, a
@@ -803,7 +739,7 @@ export function Schedule() {
   // The var mutates the DOM directly so per-frame scrolling doesn't
   // re-render the (large) session list.
   useEffect(() => {
-    if (!sidePanelOpen) return;
+    if (!sidePanelOpen || !paneActive) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -834,7 +770,7 @@ export function Schedule() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [sidePanelOpen]);
+  }, [sidePanelOpen, paneActive]);
 
   // Side-panel content, kept mounted through the 300ms exit transition so the
   // closing panel doesn't collapse into an empty box.
@@ -886,6 +822,16 @@ export function Schedule() {
       <GroupHeader group={group} inPanel={!!opts.inPanel} />
       {/* 2+ sessions in a timeslot: 2-col on desktop (collapses while the
           side panel narrows the main column). */}
+      {/* Cards render as the group approaches the viewport (placeholder of
+          about one card-row height each until then); the section and its
+          header stay real so jumps and sticky headers work. */}
+      <RenderOnApproach
+        estimatedHeight={
+          (group.sessions.length > 1 && !sidePanelOpen && isDesktop
+            ? Math.ceil(group.sessions.length / 2)
+            : group.sessions.length) * 116
+        }
+      >
       <div
         className={cn(
           "mt-3 flex flex-col gap-3",
@@ -905,6 +851,7 @@ export function Schedule() {
           />
         ))}
       </div>
+      </RenderOnApproach>
     </section>
   );
 
@@ -1114,7 +1061,6 @@ export function Schedule() {
                   }
                   jumpToNowSignal={timelineJumpSignal}
                   scrollToStartSignal={timelineStartSignal}
-                  initialScrollLeft={restore?.timelineScrollLeft}
                   onScrollLeft={(left, leftMs) => {
                     timelineScrollLeftRef.current = left;
                     timelineLeftMsRef.current = leftMs;

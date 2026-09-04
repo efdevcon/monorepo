@@ -1,14 +1,14 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
+import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
 import cn from "classnames";
 import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
 import { useDetailView } from "@/routing/detailParam";
-import { clearHistoryNavigation } from "@/routing/navigationType";
+import { TabPanes } from "@/components/TabPanes";
 
 /**
  * `useSearchParams` needs a Suspense boundary on statically rendered routes.
@@ -30,14 +30,7 @@ export default function PageLayout({
 function PageLayoutInner({ children }: { children: React.ReactNode }) {
   const [devaBotOpen, setDevaBotOpen] = useState(false);
   const pathname = usePathname();
-  const search = useSearchParams().toString();
   const { kind: detailKind } = useDetailView();
-
-  // After any URL change has committed, forget the history-navigation flag.
-  // Pages read it during their own mount, which runs before this effect.
-  useEffect(() => {
-    clearHistoryNavigation();
-  }, [pathname, search]);
 
   // Full-screen room-screen kiosk: no app chrome (it's shown on a TV).
   const isKiosk = pathname.startsWith("/room-screens/");
@@ -59,6 +52,9 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
             : "pb-28"
         )}
       >
+        {/* Bottom-bar tabs stay mounted across switches (TabPanes); their
+            route pages render nothing. Other routes render as children. */}
+        <TabPanes pathname={pathname} />
         {children}
       </div>
       <Nav />

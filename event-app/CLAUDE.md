@@ -40,6 +40,7 @@ report it correctly.
 ## Hard rules
 
 - **Catalogue data goes through the EventStore** (`src/data/store/`): sessions, speakers, rooms and the event record are one bundle from `GET /events/:id/bundle`, stored normalised in Dexie and synced only when `GET /events/:id/version` changes (60 bytes). Read it through the hooks in `src/data/hooks/` (`useSessions`, `useSpeaker`, …); never fetch catalogue data anywhere else. Adding a field means updating devcon-api's bundle allowlist, `store/types.ts`, `normalize.ts`, `materialize.ts` and the `data:test` fixture. Other persisted state (announcements, tickets, stars) goes through the Dexie-backed SWR layer, never ad-hoc fetch + useState. `/api/*` stays `NetworkOnly` in the service worker and the devcon-api origin is never cached by it.
+- **The five bottom-bar tabs are persistent panes** (`src/components/TabPanes.tsx`): their route `page.tsx` files render nothing and the layout keeps each visited pane mounted, toggling `hidden` on tab switches (a page mount of the speakers list cost ~800 ms on a mid-range phone; a toggle is a few ms) and restoring each tab's scroll position. Consequences: anything that portals into the app header or measures the window on scroll must check `usePaneActive()` (`src/components/paneContext.ts`), or every mounted pane does it at once; long lists render group by group with `RenderOnApproach` so first mount stays cheap; the schedule jumps to "live now" only on app open. Re-tapping the active tab resets its pane like a native tab bar (`handleTabClick` + `useTabReselect` in `paneContext.ts`): smooth scroll to top by default, the schedule jumps to "now"; with a detail open the tap closes the detail instead.
 - **No dynamic routes for content that must work offline.** Detail views are query params on a precached shell (`/schedule?session=<id>`, `/speakers?speaker=<id>`) opened with `useDetailParam` (`src/routing/detailParam.ts`: Next-integrated `history.pushState`, no RSC fetch). A `/foo/[id]` page cannot be precached, so a never-visited id fails offline; that is exactly the bug class this prevents. Build hrefs with `detailHref(kind, id)` and share links with `shareHref` (`src/routing/viewParams.ts`, also imported by the SW). Legacy `/schedule/<id>` links redirect (next.config + SW). `/room-screens/[id]` is the deliberate exception (TV kiosk, always online).
 - **Live-only features degrade, never error**: gate Q&A, streams, chat, sign-in, push and refresh on `useOnline()` and render `<NeedsConnection what="…" />` in the feature's slot.
 - **Service worker**: precache stays limited to the app-shell routes. Never enable `skipWaiting`; updates are opt-in via the update toast (`ServiceWorkerUpdater.tsx`).
@@ -100,6 +101,12 @@ Do **not** drop `loading="lazy"` to force caching. It works, but rasterizing
 hundreds of images down a tall page is the mechanism behind the iOS
 content-process crash the speakers page already hit once. Warm via `fetch`, which
 keeps the images out of the render tree.
+
+Warm concurrency stays at 6 (`CONCURRENCY` in `use-warm-images.ts`), decided
+2026-09-04: the full devcon-7 set warms in about 16 s, which is acceptable, and
+more parallel fetches during the first minute risk slowing low-end phones and
+competing with the images the user is actually looking at. Don't bump it
+without re-checking on a slow device.
 
 Warming is incremental on purpose: it reads the `static-images` cache and fetches
 only the difference, so reopening the app with nothing changed costs nothing.

@@ -23,6 +23,17 @@ opens offline, hard reload included. Mobile renders the detail as a full-screen 
 per-item social tags served by the shells (`src/data/share-metadata.ts`, images from devcon.org's
 social-card generator).
 
+**Tab switches** do not mount pages. The five bottom-bar destinations (`/`, `/schedule`, `/speakers`,
+`/map`, `/ticket`) are persistent panes rendered by the layout (`src/components/TabPanes.tsx`): the
+route pages render nothing, a pane mounts lazily on its first visit (code-split, client-only) and then
+stays mounted, hidden with `display: none` while another tab shows, keeping its own scroll position.
+Header portals and window-scroll measurements inside pages are gated on `usePaneActive()`. Long lists
+(speaker letter groups, schedule time groups) render as they approach the viewport via
+`RenderOnApproach`, so even a first mount costs a screenful of cards rather than all of them, and the
+speakers × sessions join is memoised per store snapshot rather than per mount. Re-tapping the active
+tab resets its pane (scroll to top; the schedule jumps to "now"), unless a detail is open, in which case
+the tap closes the detail.
+
 # data architecture
 
 **`/api/*` is `NetworkOnly`** in the service worker, and the devcon-api origin is never cached by it
@@ -132,3 +143,4 @@ Production build (`pnpm preview`) against the production API, mobile viewport.
 | Hydrate on boot | 23 ms |
 | Offline sweep (`scripts/offline-sweep.mjs`) | passed: 7 routes, 6 deep links, 2 legacy redirects, cross-section trip without reload |
 | `pnpm data:test` | 50 checks passing |
+| Tab switch, 4x CPU throttle (persistent panes + progressive lists) | Speakers 154 ms (was 809), Schedule 170 ms (was 635), Home 159 ms (was 483); first-ever Speakers visit 493 ms incl. its chunk (was 938) |

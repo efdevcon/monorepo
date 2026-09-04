@@ -6,6 +6,7 @@ import { ArrowLeft, Sparkles } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { closeDetail, useDetailView } from "@/routing/detailParam";
+import { handleTabClick } from "@/components/paneContext";
 import type { DetailKind } from "@/routing/viewParams";
 import { useUser } from "@/data/auth/useUser";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
@@ -155,6 +156,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
                 // Full prefetch (RSC included) so the SW caches each route's
                 // payload — enables smooth offline navigation between routes.
                 prefetch
+                onClick={(e) => handleTabClick(e, item.href, pathname)}
                 className={cn(
                   "flex items-center gap-2 border-b-2 px-2 pb-2 pt-3 text-[16px] leading-none tracking-[-0.25px] transition-colors",
                   active

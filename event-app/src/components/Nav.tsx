@@ -16,6 +16,7 @@ import {
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { useDetailView } from "@/routing/detailParam";
+import { handleTabClick } from "@/components/paneContext";
 
 export type NavItem = {
   href: string;
@@ -188,6 +189,9 @@ export function Nav() {
           key={item.href}
           href={item.href}
           prefetch
+          // Re-tapping the active tab resets its pane (top / "now") instead
+          // of navigating, like a native tab bar.
+          onClick={(e) => handleTabClick(e, item.href, pathname)}
           className="flex min-w-px flex-1"
         >
           <NavTab item={item} active={isNavActive(pathname, item.href)} />

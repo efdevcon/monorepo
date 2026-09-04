@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaneActive } from "@/components/paneContext";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CircleX, ListFilter, Search, Star } from "lucide-react";
@@ -32,6 +33,7 @@ import {
   HeaderActionsPortal,
 } from "@/components/DetailLayer";
 import { ShareButton } from "@/components/ShareButton";
+import { RenderOnApproach } from "@/components/RenderOnApproach";
 import { useSpeakersData, type DecoratedSpeaker } from "./useSpeakersData";
 import { useSpeakersState } from "./useSpeakersState";
 import { SpeakerCard } from "./SpeakerCard";
@@ -78,10 +80,11 @@ function HeaderActions({
   onOpenFilters: () => void;
 }) {
   const [target, setTarget] = useState<Element | null>(null);
+  const paneActive = usePaneActive();
   useEffect(() => {
     setTarget(document.getElementById(HEADER_ACTIONS_ID));
   }, []);
-  if (!target) return null;
+  if (!target || !paneActive) return null;
 
   return (
     <>
@@ -172,6 +175,9 @@ export function Speakers() {
   } = useSpeakersState(decorated, interestedIds);
 
   const isDesktop = useIsDesktop();
+  // False while another tab pane is showing: header portals and window
+  // measurements belong to the visible pane only (see TabPanes).
+  const paneActive = usePaneActive();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailParam("speaker");
   const selectedSpeakerId = detailId;
@@ -290,6 +296,7 @@ export function Speakers() {
   // Heights/vars mutate the DOM directly so per-frame scrolling doesn't
   // re-render the (large) speaker list; only the rare boolean/letter flips do.
   useEffect(() => {
+    if (!paneActive) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -427,12 +434,25 @@ export function Speakers() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [sidePanelOpen, sections]);
+  }, [sidePanelOpen, sections, paneActive]);
 
   const filtersActive =
     activeFilterCount > 0 || interestedOnly || search.trim().length > 0;
 
+  // Cards render as their letter group approaches the viewport (a placeholder
+  // of about the right height holds the place until then), so mounting the
+  // page costs a screenful of cards instead of all 700+.
   const renderGrid = (speakers: DecoratedSpeaker[]) => (
+    <RenderOnApproach
+      estimatedHeight={Math.max(
+        0,
+        (isDesktop && !sidePanelOpen
+          ? Math.ceil(speakers.length / 2)
+          : speakers.length) *
+          92 -
+          12
+      )}
+    >
     <div
       className={cn(
         "grid grid-cols-1 gap-3",
@@ -450,6 +470,7 @@ export function Speakers() {
         />
       ))}
     </div>
+    </RenderOnApproach>
   );
 
   return (

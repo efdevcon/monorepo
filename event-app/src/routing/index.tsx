@@ -3,6 +3,7 @@
 import NextLink from "next/link";
 import { useRouter as useNextRouter } from "next/navigation";
 import { ReactNode, useContext, createContext, useCallback, useEffect, useState } from "react";
+import { isTabPath } from "./viewParams";
 
 // Debug/dev query params that should follow the user across internal navigation
 // so a selected dataset and mocked time persist between pages. These live only
@@ -88,8 +89,14 @@ export function Link({ href, children, className, ...nextLinkProps }: LinkProps 
     );
   }
 
+  // Tab routes are persistent panes that restore their own scroll position;
+  // Next's default scroll-to-top after navigation would override that (it runs
+  // after the pane's restore). Callers can still pass `scroll` explicitly.
+  const scroll =
+    nextLinkProps.scroll ?? !isTabPath(href.split(/[?#]/)[0] || "/");
+
   return (
-    <NextLink href={finalHref} className={className} {...nextLinkProps}>
+    <NextLink href={finalHref} className={className} {...nextLinkProps} scroll={scroll}>
       {children}
     </NextLink>
   );

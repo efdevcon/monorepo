@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaneActive } from "@/components/paneContext";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import cn from "classnames";
@@ -43,10 +44,11 @@ export function HeaderSearchDrawer({
   drawerRef: DrawerRef;
 }) {
   const [target, setTarget] = useState<Element | null>(null);
+  const paneActive = usePaneActive();
   useEffect(() => {
     setTarget(document.getElementById(HEADER_DRAWER_ID));
   }, []);
-  if (!target) return null;
+  if (!target || !paneActive) return null;
 
   return (
     <>
