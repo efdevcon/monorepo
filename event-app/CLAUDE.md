@@ -5,10 +5,26 @@ Offline-first PWA for Devcon events (Next.js App Router + Serwist service worker
 ## Commands
 
 ```bash
-pnpm dev          # next dev --turbopack
+pnpm dev          # next dev --turbopack (no service worker — see below)
+pnpm preview      # build + serve, the only faithful way to test offline/PWA
 pnpm typecheck    # tsc --noEmit, run before considering a task complete
 pnpm lint
 ```
+
+**Testing offline / the service worker.** Use `pnpm preview` (`next build
+--webpack && next start`), optionally with `--port`. There is no dev shortcut
+worth using: the SW is off under `pnpm dev` because it would cache dev chunks,
+whose names change on every recompile, and `@serwist/next` is a webpack plugin
+with no Turbopack support. Enabling it under `next dev --webpack` was tried and
+isn't a useful stand-in — precache is thin there (`injectManifest` has no build
+output to glob) and webpack dev is slow, so it misleads on exactly the
+install/precache behaviour you'd want to check.
+
+Most offline behaviour needs **no** SW at all, though: the Dexie/SWR layer covers
+cached API data, so the announcements inbox, schedule and speakers can be tested
+offline under plain `pnpm dev` with DevTools offline. Only SW-owned behaviour
+(image caching, precached routes, the `/offline` fallback, push) needs
+`pnpm preview`.
 
 ## Hard rules
 
@@ -24,7 +40,7 @@ Authored in one Notion DB ("Devcon 8 App · Announcements & Highlights", Type co
 
 ## Web push (announcements Phase 2)
 
-Announcements with the Notion `Push` checkbox go out as web push at their Send At time; the inbox stays the source of truth (push is best-effort). Pipeline: `src/app/api/push/service.ts` (claim/fan-out/prune design notes in its header) + routes under `src/app/api/push/`; SW handlers at the bottom of `src/sw.ts` (Declarative Web Push JSON for Safari 18.4+, classic handler elsewhere); opt-in UI on `/announcements` (`PushOptIn` + `src/data/push/usePushSubscription.ts` — never auto-prompt). The dispatcher is `netlify/functions/push-dispatch.mts` (every minute → secret-gated `/api/push/dispatch`; idempotent, crash-reclaim after 10 min). Team test-sends: `POST /api/push/test {id}` (@ethereum.org only, doesn't consume the row's status). Env: `NEXT_PUBLIC_VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY` (one keypair forever — rotating orphans every subscription), `PUSH_DISPATCH_SECRET`. Subscriptions live in `devcon8_push_subscriptions`. Note: the SW is disabled in dev, so subscribe/receive can only be tested on a production build or deploy.
+Announcements with the Notion `Push` checkbox go out as web push at their Send At time; the inbox stays the source of truth (push is best-effort). Pipeline: `src/app/api/push/service.ts` (claim/fan-out/prune design notes in its header) + routes under `src/app/api/push/`; SW handlers at the bottom of `src/sw.ts` (Declarative Web Push JSON for Safari 18.4+, classic handler elsewhere); opt-in UI on `/announcements` (`PushOptIn` + `src/data/push/usePushSubscription.ts` — never auto-prompt). The dispatcher is `netlify/functions/push-dispatch.mts` (every minute → secret-gated `/api/push/dispatch`; idempotent, crash-reclaim after 10 min). Team test-sends: `POST /api/push/test {id}` (@ethereum.org only, doesn't consume the row's status). Env: `NEXT_PUBLIC_VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY` (one keypair forever — rotating orphans every subscription), `PUSH_DISPATCH_SECRET`. Subscriptions live in `devcon8_push_subscriptions`. Note: the SW is off under `pnpm dev`, so subscribe/receive needs `pnpm preview` (build + serve) or a deploy.
 
 ## Images (offline)
 
@@ -82,9 +98,9 @@ image is a new URL and shows up as missing on its own.
 The SW image rule needs `CacheableResponsePlugin({ statuses: [0, 200] })`.
 Serwist only skips its status-200-only filter when a plugin implements
 `cacheWillUpdate`, and `ExpirationPlugin` doesn't — without it, every opaque
-response is dropped and no cross-origin image caches at all. The service worker
-is disabled in dev, so image caching can only be verified on a production build
-or a deploy.
+response is dropped and no cross-origin image caches at all. Verify image
+caching with `pnpm preview` (build + serve) or a deploy; plain `pnpm dev` has no
+service worker at all, so nothing caches.
 
 ## Why these rules exist
 

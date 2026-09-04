@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "preview": "next build --webpack && next start",
     "build": "next build --webpack",
     "build:static": "STATIC_EXPORT=true next build --webpack",
     "cap:init": "pnpm build:static && cap add ios && cap add android && pnpm cap:assets",
