@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import cn from "classnames";
 import { useUser } from "@/data/auth/useUser";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "./NeedsConnection";
 import { PrimaryButton } from "./Buttons";
 import { InstallAppButton } from "./InstallAppButton";
 import { OtpInput } from "./OtpInput";
@@ -30,6 +32,8 @@ export function TicketSignIn() {
   const [cooldown, setCooldown] = useState(0);
   // JS gate (not just CSS hiding) so mobile never downloads the key art PNG.
   const isDesktop = useIsDesktop();
+  // OTP send/verify need the auth service; offline the form says so.
+  const online = useOnline();
 
   const busy = loading !== false;
   // Trimmed: addresses copied out of a confirmation email (or via an iOS
@@ -155,10 +159,11 @@ export function TicketSignIn() {
             <PrimaryButton
               className="min-h-12 w-full"
               onClick={sendCode}
-              disabled={busy || !emailValid}
+              disabled={busy || !emailValid || !online}
             >
               {busy ? loading : "Send one-time code"}
             </PrimaryButton>
+            {!online && <NeedsConnection what="Signing in" className="mt-3" />}
           </div>
 
           <Footer />
@@ -191,7 +196,7 @@ export function TicketSignIn() {
             <PrimaryButton
               className="min-h-12 w-full lg:max-w-[348px] lg:self-center"
               onClick={() => verify()}
-              disabled={busy || code.length < 6}
+              disabled={busy || code.length < 6 || !online}
             >
               {busy ? loading : "Confirm verification code"}
             </PrimaryButton>
@@ -202,7 +207,7 @@ export function TicketSignIn() {
           <div className="flex items-center justify-between text-[14px] leading-none">
             <button
               type="button"
-              disabled={busy || cooldown > 0}
+              disabled={busy || cooldown > 0 || !online}
               onClick={sendCode}
               className={
                 cooldown > 0

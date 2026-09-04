@@ -24,9 +24,18 @@ import {
   headerOffsetNow,
   safeTopNow,
 } from "@/hooks/useIsDesktop";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useDetailParam } from "@/routing/detailParam";
+import {
+  DetailLayer,
+  DetailNotFound,
+  HeaderActionsPortal,
+} from "@/components/DetailLayer";
+import { ShareButton } from "@/components/ShareButton";
 import { useSpeakersData, type DecoratedSpeaker } from "./useSpeakersData";
 import { useSpeakersState } from "./useSpeakersState";
 import { SpeakerCard } from "./SpeakerCard";
+import { SpeakerDetailsContent } from "./SpeakerDetailsContent";
 import { TopicPills } from "./TopicPills";
 import { TypeTabs, typeLabel } from "./TypeTabs";
 import { TopicSheet } from "./TopicSheet";
@@ -127,7 +136,7 @@ function HeaderActions({
  * the right (featured mic cell on top). Filters/search keep the sections and
  * rail, just built from the filtered set (absent letters disable in the
  * rail). Speaker details open in a 360px right column; mobile navigates to
- * /speakers/[id] instead. All data derives from the cached speakers ×
+ * a full-screen layer over the list instead. All data derives from the cached speakers ×
  * sessions join (offline-safe).
  */
 export function Speakers() {
@@ -163,9 +172,9 @@ export function Speakers() {
   } = useSpeakersState(decorated, interestedIds);
 
   const isDesktop = useIsDesktop();
-  const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(
-    null
-  );
+  const { id: detailId, open: openDetail, close: closeDetail } =
+    useDetailParam("speaker");
+  const selectedSpeakerId = detailId;
   const [topicSheetOpen, setTopicSheetOpen] = useState(false);
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
@@ -182,40 +191,25 @@ export function Speakers() {
     topics.forEach((t) => toggleTopic(t));
   }, [topics, toggleTopic]);
 
-  // Desktop side panel selection, mirrored to ?speaker= for shareability.
-  // The ref mirrors the state so card callbacks can stay referentially
-  // stable (memoized cards would otherwise re-render on every selection).
-  const selectedIdRef = useRef<string | null>(null);
-  const selectSpeaker = useCallback((id: string | null) => {
-    selectedIdRef.current = id;
-    setSelectedSpeakerId(id);
-    const url = new URL(window.location.href);
-    if (id) url.searchParams.set("speaker", id);
-    else url.searchParams.delete("speaker");
-    window.history.replaceState(null, "", url.toString());
-  }, []);
+  // Selection lives in the URL (?speaker=<id>) on every viewport: desktop
+  // renders it in the side panel, mobile in a full-screen layer over the list.
+  // Card callbacks read the URL directly so they stay referentially stable
+  // (memoized cards would otherwise re-render on every selection).
+  const selectSpeaker = useCallback(
+    (id: string | null) => {
+      if (id) openDetail(id);
+      else closeDetail();
+    },
+    [openDetail, closeDetail]
+  );
   // Clicking the already-selected card closes the panel.
   const onOpenCard = useCallback(
-    (id: string) => selectSpeaker(id === selectedIdRef.current ? null : id),
+    (id: string) => {
+      const current = new URLSearchParams(window.location.search).get("speaker");
+      selectSpeaker(id === current ? null : id);
+    },
     [selectSpeaker]
   );
-  useEffect(() => {
-    // Desktop-only: selection renders in the side panel there. On mobile the
-    // highlight has no clear affordance (details live on /speakers/[id]), so
-    // restoring it would pin one card purple forever.
-    if (!isDesktopNow()) return;
-    const id = new URLSearchParams(window.location.search).get("speaker");
-    if (id) {
-      selectedIdRef.current = id;
-      setSelectedSpeakerId(id);
-    }
-  }, []);
-
-  // Crossing below lg leaves the selection with no panel and no deselect
-  // affordance (one card permanently lavender, stale ?speaker=) — clear it.
-  useEffect(() => {
-    if (!isDesktop && selectedSpeakerId) selectSpeaker(null);
-  }, [isDesktop, selectedSpeakerId, selectSpeaker]);
 
   // The sheet only exists below lg; a stale open flag would otherwise pop it
   // open uninvited when the viewport narrows back.
@@ -227,6 +221,7 @@ export function Speakers() {
     () => (selectedSpeakerId ? (byId.get(selectedSpeakerId) ?? null) : null),
     [byId, selectedSpeakerId]
   );
+  useDocumentTitle(selectedSpeaker?.speaker.name ?? null);
 
   const sidePanelOpen = isDesktop && !!selectedSpeaker;
 
@@ -459,15 +454,18 @@ export function Speakers() {
 
   return (
     <main className="expand font-heading text-dc-fg">
-      <HeaderActions
-        searchOpen={headerSearch.searchOpen}
-        searchActive={headerSearch.searchOpen}
-        onToggleSearch={headerSearch.toggleSearch}
-        interestedOnly={interestedOnly}
-        onToggleInterested={() => setInterestedOnly((v) => !v)}
-        filterCount={topics.length}
-        onOpenFilters={() => setTopicSheetOpen(true)}
-      />
+      {/* The detail layer owns the header on mobile (back arrow + share). */}
+      {!(detailId && !isDesktop) && (
+        <HeaderActions
+          searchOpen={headerSearch.searchOpen}
+          searchActive={headerSearch.searchOpen}
+          onToggleSearch={headerSearch.toggleSearch}
+          interestedOnly={interestedOnly}
+          onToggleInterested={() => setInterestedOnly((v) => !v)}
+          filterCount={topics.length}
+          onOpenFilters={() => setTopicSheetOpen(true)}
+        />
+      )}
       <HeaderSearchDrawer
         open={headerSearch.searchOpen}
         onClose={headerSearch.closeSearch}
@@ -478,7 +476,38 @@ export function Speakers() {
         drawerRef={headerSearch.drawerRef}
       />
 
-      <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
+      {/* Mobile: speaker details as a layer over the (still mounted) list. */}
+      {!isDesktop && detailId && (
+        <DetailLayer label="Speaker details">
+          {selectedSpeaker ? (
+            <>
+              <HeaderActionsPortal>
+                <ShareButton
+                  kind="speaker"
+                  id={selectedSpeaker.speaker.id}
+                  title={selectedSpeaker.speaker.name}
+                />
+              </HeaderActionsPortal>
+              <SpeakerDetailsContent
+                decorated={selectedSpeaker}
+                className="min-h-full"
+              />
+            </>
+          ) : (
+            <DetailNotFound label="Speaker not found" onBack={closeDetail} />
+          )}
+        </DetailLayer>
+      )}
+
+      <div
+        className={cn(
+          "lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0",
+          // Under the detail layer: keep layout + scroll position, stop the
+          // sticky rows and the A-Z rail from painting through, block input.
+          !isDesktop && detailId && "invisible"
+        )}
+        inert={(!isDesktop && !!detailId) || undefined}
+      >
         {/* Desktop page title */}
         <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
           Speakers

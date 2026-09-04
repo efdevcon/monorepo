@@ -9,7 +9,6 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { usePathname } from "next/navigation";
 import {
   CalendarRange,
   Check,
@@ -36,8 +35,11 @@ import {
   HEADER_SEARCH_PANEL_ID,
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
-import { isDetailView } from "@/components/Nav";
-import { previousPathnameBefore } from "@/routing/navHistory";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { useDetailParam } from "@/routing/detailParam";
+import { wasHistoryNavigation } from "@/routing/navigationType";
+import { DetailLayer, DetailNotFound } from "@/components/DetailLayer";
+import { SessionDetailsView } from "./SessionDetailsView";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
@@ -55,7 +57,6 @@ import {
   useIsDesktop,
   useIsLandscape,
   useOrientationChange,
-  isDesktopNow,
   headerOffsetNow,
   safeTopNow,
 } from "@/hooks/useIsDesktop";
@@ -66,10 +67,12 @@ type ViewMode = "list" | "timeline";
 const PANEL_SLOT_W = 376;
 
 /**
- * Where the user was when they left the schedule for a session or speaker
- * details page, so coming back lands them there instead of on "live now".
- * Module state: the page unmounts on that navigation (details are a separate
- * route), and a full reload should start fresh anyway.
+ * Where the user was when they left the schedule for another section (a
+ * speaker page, reached from a session's speaker card), so coming back through
+ * browser history lands them there instead of on "live now". Opening a session
+ * no longer unmounts the list (details are an in-page layer), so this only
+ * matters for those cross-section round trips. Module state: the page unmounts
+ * on that navigation, and a full reload should start fresh anyway.
  */
 interface ScheduleSnapshot {
   day: string | null;
@@ -441,12 +444,13 @@ function GroupHeader({
 export function Schedule() {
   const { sessions, isLoading, isError, error } = useSessions();
   const { ids: interestedIds } = useInterested();
-  const pathname = usePathname();
-  // Decided once per mount: back from a session/speaker page → restore the
-  // snapshot taken on the way out; any other entry (tab bar, home, reload)
-  // → land on "live now" below.
+  const { id: detailId, open: openDetail, close: closeDetail } =
+    useDetailParam("session");
+  // Decided once per mount: a history entry (back from a speaker page) restores
+  // the snapshot taken on the way out; any other entry (tab bar, home, reload)
+  // lands on "live now" below.
   const [restore] = useState<ScheduleSnapshot | null>(() =>
-    isDetailView(previousPathnameBefore(pathname) ?? "") ? lastSnapshot : null
+    wasHistoryNavigation() ? lastSnapshot : null
   );
   const {
     now,
@@ -484,9 +488,6 @@ export function Schedule() {
   const [completedOpen, setCompletedOpen] = useState(
     restore?.completedOpen ?? false
   );
-  const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
-    null
-  );
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
   const [timelineStartSignal, setTimelineStartSignal] = useState(0);
@@ -510,23 +511,22 @@ export function Schedule() {
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
-  // Desktop side panel selection, mirrored to ?session= for shareability.
-  const selectSession = useCallback((id: string | null) => {
-    setSelectedSessionId(id);
-    if (id) setFiltersOpen(false);
-    const url = new URL(window.location.href);
-    if (id) url.searchParams.set("session", id);
-    else url.searchParams.delete("session");
-    window.history.replaceState(null, "", url.toString());
-  }, []);
-  useEffect(() => {
-    // Desktop-only: selection renders in the side panel there. On mobile the
-    // highlight has no clear affordance (details live on /schedule/[id]), so
-    // restoring it would pin one card purple forever.
-    if (!isDesktopNow()) return;
-    const id = new URLSearchParams(window.location.search).get("session");
-    if (id) setSelectedSessionId(id);
-  }, []);
+  // Selection lives in the URL (?session=<id>) on every viewport: desktop
+  // renders it in the side panel, mobile in a full-screen layer over the list.
+  // Opening pushes a history entry (Next-integrated, no RSC fetch) so back /
+  // swipe closes it; see routing/detailParam.ts.
+  const selectedSessionId = detailId;
+  const selectSession = useCallback(
+    (id: string | null) => {
+      if (id) {
+        setFiltersOpen(false);
+        openDetail(id);
+      } else {
+        closeDetail();
+      }
+    },
+    [openDetail, closeDetail]
+  );
 
   const selectedSession = useMemo(
     () =>
@@ -535,6 +535,7 @@ export function Schedule() {
         : null,
     [sessions, selectedSessionId]
   );
+  useDocumentTitle(selectedSession?.title ?? null);
 
   const openFilters = () => {
     setFiltersOpen(true);
@@ -909,16 +910,19 @@ export function Schedule() {
 
   return (
     <main className="expand font-heading text-dc-fg">
-      <HeaderActions
-        searchOpen={headerSearch.searchOpen}
-        searchActive={headerSearch.searchOpen}
-        onToggleSearch={headerSearch.toggleSearch}
-        interestedOnly={interestedOnly}
-        onToggleInterested={() => setInterestedOnly((v) => !v)}
-        onJumpToNow={jumpToNow}
-        filterCount={activeFilterCount}
-        onOpenFilters={openFilters}
-      />
+      {/* The detail layer owns the header on mobile (back arrow, share, calendar). */}
+      {!(detailId && !isDesktop) && (
+        <HeaderActions
+          searchOpen={headerSearch.searchOpen}
+          searchActive={headerSearch.searchOpen}
+          onToggleSearch={headerSearch.toggleSearch}
+          interestedOnly={interestedOnly}
+          onToggleInterested={() => setInterestedOnly((v) => !v)}
+          onJumpToNow={jumpToNow}
+          filterCount={activeFilterCount}
+          onOpenFilters={openFilters}
+        />
+      )}
       <HeaderSearchDrawer
         open={headerSearch.searchOpen}
         onClose={headerSearch.closeSearch}
@@ -929,7 +933,26 @@ export function Schedule() {
         drawerRef={headerSearch.drawerRef}
       />
 
-      <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
+      {/* Mobile: session details as a layer over the (still mounted) list. */}
+      {!isDesktop && detailId && (
+        <DetailLayer label="Session details">
+          {selectedSession ? (
+            <SessionDetailsView session={selectedSession} />
+          ) : (
+            <DetailNotFound label="Session not found" onBack={closeDetail} />
+          )}
+        </DetailLayer>
+      )}
+
+      <div
+        className={cn(
+          "lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0",
+          // Under the detail layer: keep layout + scroll position, stop the
+          // sticky day bar from painting through, block interaction.
+          !isDesktop && detailId && "invisible"
+        )}
+        inert={(!isDesktop && !!detailId) || undefined}
+      >
         {/* Desktop page title */}
         <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
           Schedule

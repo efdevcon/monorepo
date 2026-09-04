@@ -3,20 +3,26 @@
 import { SWRConfig, type Cache } from "swr";
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { createDexieCacheProvider } from "./indexeddb-cache";
+import { eventStore } from "../store/event-store";
+import { getActiveDataset } from "../dataset";
 
 /**
- * Custom SWR configuration with:
- * - Extended deduplication interval (30 seconds)
- * - Stale-while-revalidate enabled (default)
- * - IndexedDB persistence via Dexie for offline support (supports large datasets)
- *
- * Waits for IndexedDB cache to initialize before rendering children,
- * preventing a race condition where Dexie's async init overwrites SWR's state.
+ * Data boot gate. Hydrates two things in parallel before rendering children:
+ * the Dexie-backed SWR cache (announcements, tickets, user state) and the
+ * EventStore (sessions, speakers, rooms, event). Waiting keeps the first paint
+ * free of content flashes and makes it work with no network at all. Once
+ * ready, the store's sync triggers start (first sync, visibility, online,
+ * 60 s poll).
  */
-export function SWRConfigProvider({ children }: { children: ReactNode }) {
-  const { cacheReady, cacheProvider } = useDexieCache();
+export function DataProvider({ children }: { children: ReactNode }) {
+  const { ready, cacheProvider } = useBoot();
 
-  if (!cacheReady) return null;
+  useEffect(() => {
+    if (!ready) return;
+    return eventStore.startTriggers(getActiveDataset());
+  }, [ready]);
+
+  if (!ready) return null;
 
   return (
     <SWRConfig
@@ -38,16 +44,17 @@ export function SWRConfigProvider({ children }: { children: ReactNode }) {
   );
 }
 
-function useDexieCache() {
+function useBoot() {
   const providerRef = useRef<Map<string, unknown> | null>(null);
-  const [cacheReady, setCacheReady] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const { cache, initPromise } = createDexieCacheProvider();
     providerRef.current = cache;
-
-    initPromise.then(() => setCacheReady(true));
+    Promise.all([initPromise, eventStore.hydrate(getActiveDataset())]).then(
+      () => setReady(true)
+    );
   }, []);
 
-  return { cacheReady, cacheProvider: providerRef.current };
+  return { ready, cacheProvider: providerRef.current };
 }

@@ -1,11 +1,11 @@
 "use client";
 
 import { memo } from "react";
+import { detailHref } from "@/routing/viewParams";
 import { Speech, Star } from "lucide-react";
 import cn from "classnames";
 import { Link } from "@/routing";
 import { Avatar } from "@/components/Avatar";
-import { isDesktopNow } from "@/hooks/useIsDesktop";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 
 /** Outlined uppercase topic-tag chip, shared by the card and details views. */
@@ -39,10 +39,7 @@ export const SpeakerCard = memo(function SpeakerCard({
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
   interested: boolean;
-  /**
-   * Desktop: open the speaker details side panel instead of navigating.
-   * Mobile keeps the normal link navigation to /speakers/[id].
-   */
+  /** Open the speaker details in place (side panel on desktop, layer on mobile). */
   onOpen?: (id: string) => void;
   onToggleInterested: (id: string, name: string) => void;
 }) {
@@ -52,14 +49,14 @@ export const SpeakerCard = memo(function SpeakerCard({
 
   return (
     <Link
-      href={`/speakers/${speaker.id}`}
+      href={detailHref("speaker", speaker.id)}
       // No viewport prefetch: hundreds of cards sweeping past the shared link
-      // observer during an A–Z jump fire an /speakers/[id]?_rsc= request storm
+      // observer during an A–Z jump fire an RSC prefetch request storm
       // that thrashes the SW prefetch cache and crashes iOS Safari — and the
       // target is a client page reading the same Dexie/SWR join anyway.
       prefetch={false}
       onClick={(e) => {
-        if (onOpen && isDesktopNow()) {
+        if (onOpen) {
           e.preventDefault();
           onOpen(speaker.id);
         }

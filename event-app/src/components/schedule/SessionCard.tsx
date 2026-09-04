@@ -1,11 +1,11 @@
 "use client";
 
 import { Clock3, MapPin, Star, User } from "lucide-react";
+import { detailHref } from "@/routing/viewParams";
 import cn from "classnames";
 import type { Session } from "@/data/models";
 import { Link } from "@/routing";
 import { useInterested } from "@/data/interested/useInterested";
-import { isDesktopNow } from "@/hooks/useIsDesktop";
 import { formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
@@ -33,10 +33,7 @@ export function SessionCard({
   selected?: boolean;
   /** Desktop 2-up grid cell: drops the inline FEATURED badge (Figma 4325). */
   compact?: boolean;
-  /**
-   * Desktop: open the session details side panel instead of navigating.
-   * Mobile keeps the normal link navigation to /schedule/[id].
-   */
+  /** Open the session details in place (side panel on desktop, layer on mobile). */
   onOpen?: (id: string) => void;
 }) {
   const theme = getTrackTheme(session.track);
@@ -47,11 +44,11 @@ export function SessionCard({
 
   return (
     <Link
-      href={`/schedule/${session.id}`}
+      href={detailHref("session", session.id)}
       // No viewport prefetch (see SpeakerCard) — client page on cached data.
       prefetch={false}
       onClick={(e) => {
-        if (onOpen && isDesktopNow()) {
+        if (onOpen) {
           e.preventDefault();
           onOpen(session.id);
         }

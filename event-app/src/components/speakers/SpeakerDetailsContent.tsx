@@ -47,7 +47,7 @@ const socialLink =
  * speaker's sessions. Featured speakers get a marigold ring, a FEATURED tag
  * under the avatar and a peach band; everyone else a purple ring and a
  * lavender band. Used by both the desktop side panel and the mobile
- * /speakers/[id] page (SessionDetailsContent pattern).
+ * detail layer (SessionDetailsContent pattern).
  */
 export function SpeakerDetailsContent({
   decorated,

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { SWRConfigProvider } from "@/data/cache";
+import { DataProvider } from "@/data/cache";
 import { UserProvider } from "@/data/auth/useUser";
 import { CacheWarmer } from "@/components/CacheWarmer";
 import { IOSViewportHealer } from "@/components/IOSViewportHealer";
@@ -197,12 +197,12 @@ export default function RootLayout({
               "window.dispatchEvent(new Event('install-prompt-available'));});})();",
           }}
         />
-        <SWRConfigProvider>
+        <DataProvider>
           <UserProvider>
             <CacheWarmer />
             {children}
           </UserProvider>
-        </SWRConfigProvider>
+        </DataProvider>
         <CustomScrollbar />
         <IOSViewportHealer />
         <DebugPanel />

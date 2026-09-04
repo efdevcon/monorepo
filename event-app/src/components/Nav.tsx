@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
+import { useDetailView } from "@/routing/detailParam";
 
 export type NavItem = {
   href: string;
@@ -90,17 +91,6 @@ export function isNavActive(pathname: string, href: string): boolean {
 }
 
 /**
- * Mobile detail views (session / speaker details) hide the bottom bar so
- * they read as focused, single-purpose screens — the header back arrow is
- * the way out. The layout also trims its nav clearance on these routes.
- */
-export function isDetailView(pathname: string): boolean {
-  return (
-    pathname.startsWith("/schedule/") || pathname.startsWith("/speakers/")
-  );
-}
-
-/**
  * One tab's icon + label. Rendered inside the Link so `useLinkStatus` can
  * read that Link's pending navigation: the tapped tab lights up on the tap
  * itself, not when the route commits (that gap is what read as a sluggish
@@ -139,11 +129,13 @@ function NavTab({
  */
 export function Nav() {
   const pathname = usePathname();
+  const { kind: detailKind } = useDetailView();
   const navRef = useRef<HTMLElement | null>(null);
 
-  // No nav on the full-screen room-screen kiosk or on mobile detail views.
-  const hidden =
-    pathname.startsWith("/room-screens/") || isDetailView(pathname);
+  // No nav on the full-screen room-screen kiosk or on mobile detail views
+  // (session / speaker layers read as focused, single-purpose screens; the
+  // header back arrow is the way out). The layout trims its clearance too.
+  const hidden = pathname.startsWith("/room-screens/") || detailKind !== null;
 
   // Publish the bar's rendered height as --nav-clearance so bottom-anchored
   // overlays outside the layout flow (map controls, debug FAB) can sit above

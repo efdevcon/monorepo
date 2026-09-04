@@ -22,8 +22,8 @@ const APP_CONFIG = {
   APP_ORIGIN: process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app",
 
   // Feature flags - enable/disable routes
-  SCHEDULE_ENABLED: true, // /schedule, /schedule/[id]
-  SPEAKERS_ENABLED: true, // /speakers, /speakers/[id]
+  SCHEDULE_ENABLED: true, // /schedule (+ ?session=)
+  SPEAKERS_ENABLED: true, // /speakers (+ ?speaker=)
   ROOMS_ENABLED: true, // /room-screens/[id]
   MAP_ENABLED: true, // /map (venue map)
   ANNOUNCEMENTS_ENABLED: true, // /announcements (Notion-authored inbox) + home section

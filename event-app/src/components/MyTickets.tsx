@@ -1,6 +1,7 @@
 "use client";
 
 import { useTickets } from "@/data/tickets/useTickets";
+import { useOnline } from "@/hooks/useOnline";
 import {
   RefreshTicketsButton,
   TicketSectionHeader,
@@ -14,16 +15,19 @@ import {
 export function MyTickets() {
   const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
+  const online = useOnline();
 
   if (!isLoading && tickets.length > 0) {
     return (
       <div className="w-full text-left">
         {/* A failed revalidation must never hide cached tickets/QR codes:
             keep the sections and add a quiet notice instead (same rule as the
-            home page's Tickets.tsx). */}
-        {error && (
+            home page's Tickets.tsx). Offline, say so plainly. */}
+        {(error || !online) && (
           <p className="mb-2 text-xs text-dc-muted">
-            Couldn&apos;t refresh tickets. Showing your saved ones.
+            {online
+              ? "Couldn't refresh tickets. Showing your saved ones."
+              : "You're offline. Showing your saved tickets."}
           </p>
         )}
         <TicketSections
@@ -31,7 +35,7 @@ export function MyTickets() {
           qrCodes={qrCodes}
           onRefresh={refresh}
           isRefreshing={isRefreshing}
-          refreshDisabled={isLoading || isRefreshing}
+          refreshDisabled={isLoading || isRefreshing || !online}
         />
       </div>
     );
@@ -48,7 +52,7 @@ export function MyTickets() {
           <RefreshTicketsButton
             onRefresh={refresh}
             isRefreshing={isRefreshing}
-            disabled={isLoading || isRefreshing}
+            disabled={isLoading || isRefreshing || !online}
           />
         }
       />

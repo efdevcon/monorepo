@@ -1,196 +1,33 @@
-import type { ConferenceEvent, Room, Session, Speaker } from "../models";
-import { datasetForEventId, getActiveDataset } from "../dataset";
-import { dayKeyToUtcMidnightMs, eventDayKey } from "../eventTime";
-import { BaseProvider, type SessionFilters } from "./provider-interface";
+import type { Dataset } from "../dataset";
+import type { EventBundle } from "../store/types";
+import type { IEventDataProvider } from "./provider-interface";
 
-export class DevconApiProvider extends BaseProvider {
-  /** Resolved at call time so the active dataset (?dataset) is respected. */
-  private get dataset() {
-    return getActiveDataset();
-  }
+async function getJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init);
+  if (!res.ok) throw new Error(`DevconAPI ${res.status}: ${url}`);
+  const json = (await res.json()) as { data: T };
+  return json.data;
+}
 
-  private async fetchApi<T>(path: string): Promise<T> {
-    const url = `${this.dataset.apiUrl}${path}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`DevconAPI ${res.status}: ${url}`);
-    const json = await res.json();
-    return json.data;
-  }
-
-  private mapSession(raw: any): Session {
-    const startMs = typeof raw.slot_start === "number"
-      ? raw.slot_start
-      : raw.slot_start ? new Date(raw.slot_start).getTime() : 0;
-    const endMs = typeof raw.slot_end === "number"
-      ? raw.slot_end
-      : raw.slot_end ? new Date(raw.slot_end).getTime() : 0;
-
-    const start = Math.floor(startMs / 1000);
-    const end = Math.floor(endMs / 1000);
-    const duration = end - start;
-
-    // Day fields are derived in the venue timezone (like the schedule UI),
-    // via the day key's synthetic UTC midnight.
-    const date = startMs ? eventDayKey(startMs) : undefined;
-    const utcMid = date ? new Date(dayKeyToUtcMidnightMs(date)) : null;
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    return {
-      id: raw.id,
-      title: raw.title,
-      description: raw.description ?? "",
-      abstract: raw.abstract ?? raw.description ?? "",
-      track: raw.track ?? "",
-      type: raw.type ?? "Talk",
-      expertise: raw.expertise ?? "",
-      duration,
-      start,
-      end,
-      day: utcMid ? String(utcMid.getUTCDay()) : undefined,
-      date,
-      dayOfWeek: utcMid ? days[utcMid.getUTCDay()] : undefined,
-      room: raw.slot_room
-        ? this.mapRoom(raw.slot_room)
-        : undefined,
-      speakers: (raw.speakers ?? []).map((s: any) =>
-        typeof s === "string"
-          ? this.stampEvent({ id: s, name: s }, this.dataset.eventId)
-          : this.mapSpeaker(s, this.dataset.eventId)
-      ),
-      featured: raw.featured === true ? true : undefined,
-      tags: typeof raw.tags === "string"
-        ? raw.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
-        : raw.tags ?? [],
-      resources: [],
-      // AV enrichment: the API serves '' for un-enriched sessions - normalise
-      // to undefined so `session.sources_youtubeId` is cleanly falsy.
-      sources_youtubeId: raw.sources_youtubeId || undefined,
-      sources_streamethId: raw.sources_streamethId || undefined,
-      sources_swarmHash: raw.sources_swarmHash || undefined,
-    };
-  }
-
-  private mapSpeaker(raw: any, eventId: string): Speaker {
-    return this.stampEvent(
-      {
-        id: raw.id,
-        name: raw.name ?? "",
-        description: raw.description ?? "",
-        avatar: raw.avatar ?? "",
-        twitter: raw.twitter,
-        github: raw.github,
-        role: raw.role,
-        company: raw.company,
-        website: raw.website,
-      },
-      eventId
+/**
+ * devcon-api source. Both endpoints are CDN-cached for 60 s; the version probe
+ * is fetched with `no-cache` so the browser revalidates instead of serving its
+ * own copy for another minute (the poll interval is also 60 s). The bundle
+ * carries its own `version`, so an edge node lagging behind the version
+ * endpoint self-heals on the next poll.
+ */
+export class DevconApiProvider implements IEventDataProvider {
+  async getVersion(dataset: Dataset): Promise<string> {
+    const version = await getJson<string | number>(
+      `${dataset.apiUrl}/events/${dataset.eventId}/version`,
+      { cache: "no-cache" }
     );
+    return String(version);
   }
 
-  /** Tag a speaker with its event provenance (id + human-readable label). */
-  private stampEvent(speaker: Speaker, eventId: string): Speaker {
-    return {
-      ...speaker,
-      eventId,
-      eventLabel: datasetForEventId(eventId)?.label ?? eventId,
-    };
-  }
-
-  private mapRoom(raw: any): Room {
-    return {
-      id: raw.id,
-      name: raw.name ?? "",
-      description: raw.description ?? "",
-      info: raw.info ?? "",
-      capacity: raw.capacity,
-      // Livestream config (hand-authored per event in devcon-api room JSONs).
-      youtubeStreamUrl_1: raw.youtubeStreamUrl_1 || undefined,
-      youtubeStreamUrl_2: raw.youtubeStreamUrl_2 || undefined,
-      youtubeStreamUrl_3: raw.youtubeStreamUrl_3 || undefined,
-      youtubeStreamUrl_4: raw.youtubeStreamUrl_4 || undefined,
-      translationUrl: raw.translationUrl || undefined,
-    };
-  }
-
-  async getSessions(filters?: SessionFilters): Promise<Session[]> {
-    const params = new URLSearchParams();
-    params.set("event", this.dataset.eventId);
-    if (filters?.track) params.set("track", filters.track);
-    if (filters?.type) params.set("type", filters.type);
-    if (filters?.roomId) params.set("room", filters.roomId);
-    if (filters?.search) params.set("q", filters.search);
-    params.set("size", "1000");
-
-    const data = await this.fetchApi<any>(
-      `/sessions?${params.toString()}`
+  async getBundle(dataset: Dataset): Promise<EventBundle> {
+    return getJson<EventBundle>(
+      `${dataset.apiUrl}/events/${dataset.eventId}/bundle`
     );
-    const items = data?.items ?? data ?? [];
-    return this.validateSessions(items.map((s: any) => this.mapSession(s)));
-  }
-
-  async getSession(id: string): Promise<Session> {
-    const data = await this.fetchApi<any>(`/sessions/${id}`);
-    return this.validateSession(this.mapSession(data));
-  }
-
-  async getSessionsBySpeaker(speakerId: string): Promise<Session[]> {
-    const data = await this.fetchApi<any>(
-      `/speakers/${speakerId}/sessions?event=${this.dataset.eventId}`
-    );
-    const items = data?.items ?? data ?? [];
-    return this.validateSessions(items.map((s: any) => this.mapSession(s)));
-  }
-
-  async getSessionsByTrack(track: string): Promise<Session[]> {
-    return this.getSessions({ track });
-  }
-
-  async getSessionsByDay(day: string): Promise<Session[]> {
-    const sessions = await this.getSessions();
-    return sessions.filter((s) => s.day === day || s.date === day);
-  }
-
-  async getSpeakers(eventId?: string): Promise<Speaker[]> {
-    const event = eventId ?? this.dataset.eventId;
-    const data = await this.fetchApi<any>(
-      `/speakers?event=${event}&size=1000`
-    );
-    const items = data?.items ?? data ?? [];
-    return this.validateSpeakers(items.map((s: any) => this.mapSpeaker(s, event)));
-  }
-
-  async getSpeaker(id: string): Promise<Speaker> {
-    const data = await this.fetchApi<any>(`/speakers/${id}`);
-    return this.validateSpeaker(this.mapSpeaker(data, this.dataset.eventId));
-  }
-
-  async searchSpeakers(query: string): Promise<Speaker[]> {
-    const speakers = await this.getSpeakers();
-    const q = query.toLowerCase();
-    return speakers.filter((s) => s.name.toLowerCase().includes(q));
-  }
-
-  async getRooms(): Promise<Room[]> {
-    const data = await this.fetchApi<any>(`/events/${this.dataset.eventId}/rooms`);
-    const items = data?.items ?? data ?? [];
-    return this.validateRooms(items.map((r: any) => this.mapRoom(r)));
-  }
-
-  async getRoom(id: string): Promise<Room> {
-    const rooms = await this.getRooms();
-    const room = rooms.find((r) => r.id === id);
-    if (!room) throw new Error(`Room ${id} not found`);
-    return room;
-  }
-
-  async getEvent(): Promise<ConferenceEvent> {
-    const data = await this.fetchApi<any>(`/events/${this.dataset.eventId}`);
-    return this.validateEvent({
-      id: data.id ?? this.dataset.eventId,
-      title: data.title || undefined,
-      startDate: data.startDate || undefined,
-      endDate: data.endDate || undefined,
-      featuredSpeakers: Array.isArray(data.featuredSpeakers) ? data.featuredSpeakers : undefined,
-    });
   }
 }

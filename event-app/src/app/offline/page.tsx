@@ -4,25 +4,20 @@ import { useEffect, useState } from "react";
 import { WifiOff } from "lucide-react";
 
 /**
- * Offline fallback. The service worker serves this page's HTML for any document
- * navigation it can't fulfil offline (a route that isn't precached and was never
- * cached online — typically a dynamic detail page like /speakers/[id] visited
- * for the first time while offline). The address bar keeps the original URL, so
- * reloading once back online lands the user on the page they actually wanted.
- *
- * It lives outside the (page-layout) group on purpose: no nav chrome, no auth
- * gate — just a clear message that works regardless of where it surfaces.
+ * Offline fallback, served by the service worker for a document navigation it
+ * can't fulfil offline. Every app route is a precached shell (details are
+ * query params on those shells), so this only shows for routes that aren't
+ * part of the app shell at all. The address bar keeps the original URL, so
+ * reconnecting reloads the page the user actually wanted.
  */
 export default function OfflinePage() {
   const [online, setOnline] = useState(false);
 
   useEffect(() => {
     setOnline(navigator.onLine);
-    // When connectivity returns, reload the *current* URL — the SW (or network)
-    // can now serve the page the user was actually trying to reach.
     const onOnline = () => window.location.reload();
-    window.addEventListener("online", onOnline);
     const onOffline = () => setOnline(false);
+    window.addEventListener("online", onOnline);
     window.addEventListener("offline", onOffline);
     return () => {
       window.removeEventListener("online", onOnline);
@@ -40,8 +35,8 @@ export default function OfflinePage() {
         <h1 className="text-xl font-bold text-gray-900">You&apos;re offline</h1>
         <p className="text-sm text-gray-500">
           {online
-            ? "You're back online — reloading…"
-            : "This page hasn't been saved for offline use yet. Reconnect to load it, or head back to a page you've already opened."}
+            ? "You're back online, reloading…"
+            : "This page isn't available offline. Reconnect to load it, or head back to the app."}
         </p>
       </div>
 
@@ -53,9 +48,8 @@ export default function OfflinePage() {
         >
           Try again
         </button>
-        {/* Deliberately a hard <a> navigation, not <Link>: this page is the
-            service worker's offline fallback, so client routing is exactly
-            what just failed — a full load retries the network/SW instead. */}
+        {/* Hard <a>, not <Link>: this page is the SW's fallback, so client
+            routing is exactly what just failed; a full load retries the SW. */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a
           href="/"

@@ -1,6 +1,7 @@
 "use client";
 
 import { Speech } from "lucide-react";
+import { detailHref } from "@/routing/viewParams";
 import type { Speaker } from "@/data/models";
 import { Link } from "@/routing";
 import { Avatar } from "@/components/Avatar";
@@ -20,7 +21,7 @@ export function SessionSpeakerCard({ speaker }: { speaker: Speaker }) {
 
   return (
     <Link
-      href={`/speakers/${speaker.id}`}
+      href={detailHref("speaker", speaker.id)}
       // No viewport prefetch (see SpeakerCard) — client page on cached data.
       prefetch={false}
       className="flex items-center gap-4 rounded-lg border border-dc-hairline bg-white p-3 transition-colors hover:border-dc-purple/40"

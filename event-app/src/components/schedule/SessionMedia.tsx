@@ -3,6 +3,8 @@
 import { useEvent } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
+import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "@/components/NeedsConnection";
 import { getStatus, streamUrlForDay } from "@/components/schedule/utils";
 
 /**
@@ -54,6 +56,7 @@ export function sessionHasMedia(
 export function SessionMedia({ session }: { session: Session }) {
   const nowMs = useNowMs(30_000);
   const { event } = useEvent();
+  const online = useOnline();
 
   const { src, streamSrc, translationUrl } = getSessionMediaSources(
     session,
@@ -68,18 +71,24 @@ export function SessionMedia({ session }: { session: Session }) {
       {streamSrc && (
         <p className="mb-1 text-sm font-semibold text-dc-red">Livestream</p>
       )}
-      {src && (
-        <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
-          <iframe
-            src={src}
-            title={session.title}
-            className="h-full w-full border-0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
+      {/* Embeds are live-only: offline, say so instead of a black box. */}
+      {src &&
+        (online ? (
+          <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+            <iframe
+              src={src}
+              title={session.title}
+              className="h-full w-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <NeedsConnection
+            what={streamSrc ? "The livestream" : "The recording"}
           />
-        </div>
-      )}
+        ))}
       {translationUrl && (
         <a
           href={translationUrl}
