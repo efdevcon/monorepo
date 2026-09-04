@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 const MIN_THUMB = 36;
@@ -12,14 +11,15 @@ const MIN_THUMB = 36;
  * space (so scrollable content never shifts the layout width). Auto-hides when
  * the page isn't scrollable.
  *
- * Hidden on mobile for the speakers pages: the A–Z rail already sits on that
- * right edge and doubles as the position indicator, so the thumb was a second
- * vertical strip beside it — and a drag affordance is pointless on touch.
+ * Desktop only. On mobile a drag affordance is pointless on touch, the speakers
+ * page's A–Z rail already occupies that edge, and with persistent tab panes and
+ * full-screen detail layers the document scroll it tracks is often not what the
+ * user is scrolling (a detail layer scrolls itself while the list underneath
+ * keeps its position), so the thumb showed a stale position.
  */
 export function CustomScrollbar() {
-  const pathname = usePathname();
   const isDesktop = useIsDesktop();
-  const suppressed = !isDesktop && pathname.startsWith("/speakers");
+  const suppressed = !isDesktop;
 
   const [thumb, setThumb] = useState({ height: 0, top: 0, visible: false });
   const drag = useRef<{ startY: number; startScroll: number } | null>(null);

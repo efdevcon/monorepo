@@ -2,6 +2,7 @@
 // https://github.com/timmywil/panzoom
 import React, { useRef, useEffect, useState } from 'react';
 import { usePanzoom, PanzoomControls } from './panzoom';
+import { useTabReselect } from '@/components/paneContext';
 import MapWrapper from './maps/MapWrapper';
 import cn from 'classnames';
 import css from './map.module.scss';
@@ -72,6 +73,21 @@ export const VenueMap = () => {
       reset,
       selection ? baseZoomLevel : undefined
     );
+
+  // Re-tapping the Map tab resets the map like the Home control: filters
+  // cleared, view back to the initial position and zoom, and any URL
+  // selection dropped (replaceState is Next-integrated, no fetch).
+  const resetView = () => {
+    reset();
+    if (panzoomInstance) {
+      panzoomInstance.pause();
+      panzoomInstance.moveTo(0, 0);
+      panzoomInstance.zoomAbs(0, 0, 1);
+      panzoomInstance.resume();
+    }
+    if (selection) window.history.replaceState({}, '', '/map');
+  };
+  useTabReselect(resetView);
 
   useEffect(() => {
     const selection = searchParams.get('filter');

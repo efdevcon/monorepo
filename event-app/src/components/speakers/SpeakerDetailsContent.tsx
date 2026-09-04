@@ -157,7 +157,7 @@ export function SpeakerDetailsContent({
             {speaker.description && (
               // No section title: the header already names the person, so the
               // bio reads as theirs without a "Profile" label above it.
-              <p className="text-[14px] leading-5 text-dc-fg2">
+              <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
                 {speaker.description}
               </p>
             )}

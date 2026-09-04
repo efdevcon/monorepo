@@ -56,7 +56,7 @@ export function DetailLayer({
       aria-label={label}
       // z-[25]: above every page-level sticky bar and fixed rail (z-20/21),
       // below the app header (z-30).
-      className="fixed inset-0 z-[25] overflow-y-auto overscroll-contain bg-dc-panel outline-none lg:hidden"
+      className="fixed inset-0 z-[25] overflow-x-hidden overflow-y-auto overscroll-contain bg-dc-panel outline-none lg:hidden"
     >
       <div className="min-h-full pb-[calc(2rem+env(safe-area-inset-bottom))] pt-[calc(3.5rem+var(--safe-top))]">
         {children}

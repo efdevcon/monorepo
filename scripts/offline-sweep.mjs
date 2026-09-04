@@ -76,6 +76,20 @@ async function contentFillsViewport(label) {
   check(`${label}: content fills the viewport`, w >= viewport * 0.8, `main width ${w}px of ${viewport}`);
 }
 
+// Nothing may be wider than the screen: a long unbroken string inside the
+// fixed detail layer once widened it to 560px on a 390px phone, and iOS
+// Safari answers that by widening the layout viewport ("broken viewport").
+async function noHorizontalOverflow(label) {
+  const o = await page.evaluate(() => {
+    const dialog = document.querySelector('[role="dialog"]');
+    return {
+      doc: document.documentElement.scrollWidth - innerWidth,
+      dialog: dialog ? dialog.scrollWidth - dialog.clientWidth : 0,
+    };
+  });
+  check(`${label}: no horizontal overflow`, o.doc <= 1 && o.dialog <= 1, `document +${o.doc}px, layer +${o.dialog}px`);
+}
+
 async function noBrokenImages(label) {
   const broken = await page.evaluate(() =>
     [...document.images].filter((img) => img.src && img.complete && img.naturalWidth === 0).map((img) => img.src)
@@ -130,12 +144,14 @@ for (const id of sessionIds) {
   await page.waitForTimeout(500);
   await noOfflineFallback(`deep link session ${id}`);
   check(`deep link session ${id}: layer open`, (await page.locator('[role="dialog"][aria-label="Session details"]').count()) === 1);
+  await noHorizontalOverflow(`deep link session ${id}`);
 }
 for (const id of speakerIds) {
   await page.goto(`${base}/speakers?speaker=${encodeURIComponent(id)}&${q}`, { waitUntil: "load" });
   await page.waitForTimeout(500);
   await noOfflineFallback(`deep link speaker ${id}`);
   check(`deep link speaker ${id}: layer open`, (await page.locator('[role="dialog"][aria-label="Speaker details"]').count()) === 1);
+  await noHorizontalOverflow(`deep link speaker ${id}`);
 }
 
 // Legacy URLs redirect offline (served by the SW).
