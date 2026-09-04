@@ -19,6 +19,39 @@ sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
 sessionsRouter.put(`/sessions/sources/:id`, apikeyHandler, UpdateSessionSources)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
 
+/**
+ * Optional `?fields=id,title,...` projection for the sessions list.
+ *
+ * The list is ~3.7MB for a 650-session event and 62% of that is
+ * `transcript_text` alone, which the event-app PWA discards the moment it
+ * arrives. Letting a client name the fields it needs keeps ~2.4MB per fetch off
+ * mobile connections at the venue.
+ *
+ * Additive on purpose: no `fields` returns the full record, so existing
+ * consumers are untouched (the archive needs transcripts; devcon-app takes
+ * everything). Unknown names are ignored rather than rejected, so a typo
+ * degrades to a missing key instead of a 400.
+ *
+ * Note the CDN caches per full URL, so each distinct `fields` combination is
+ * its own cache entry.
+ */
+function pickFields(items: any[], fields?: string) {
+  if (!fields) return items
+  const keys = fields
+    .split(',')
+    .map((f) => f.trim())
+    .filter(Boolean)
+  if (keys.length === 0) return items
+
+  return items.map((item) => {
+    const projected: Record<string, any> = {}
+    for (const key of keys) {
+      if (key in item) projected[key] = item[key]
+    }
+    return projected
+  })
+}
+
 export async function GetSessions(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
 
@@ -45,7 +78,7 @@ export async function GetSessions(req: Request, res: Response) {
     data: {
       total: data.total,
       currentPage: currentPage,
-      items: data.items,
+      items: pickFields(data.items, req.query.fields as string | undefined),
     },
   })
 }
